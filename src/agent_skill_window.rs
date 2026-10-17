@@ -21,6 +21,10 @@ struct Skill {
     parameters: BTreeMap<String, serde_json::Value>,
     centred_damage: Option<project_rl::skills::area_damage::CentredDamageBinding>,
 }
+pub(super) fn parameter_label(key: &str) -> Option<&'static str> {
+    catalogue().labels.get(key).map(String::as_str)
+}
+
 fn catalogue() -> &'static Catalogue {
     static DATA: OnceLock<Catalogue> = OnceLock::new();
     DATA.get_or_init(|| {
@@ -251,7 +255,7 @@ pub(super) fn art(id: &str, category: &str, rect: Rect, clip: Option<Rect>) -> b
                     .join(filename);
                 let bytes = std::fs::read(path).expect("packaged accepted skill drawing");
                 let texture = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
-                texture.set_filter(FilterMode::Linear);
+                texture.set_filter(FilterMode::Nearest);
                 texture
             });
         let visible = clip.map_or(rect, |clip| {

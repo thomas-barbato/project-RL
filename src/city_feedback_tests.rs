@@ -15,7 +15,7 @@ fn monster_reward_current_client_uses_new_pool_and_legacy_runs_keep_the_old_rule
             .is_some()
     );
     let mut app = AsciiApp::from_seed(8, rules, texts, loot, expeditions).unwrap();
-    assert_eq!(app.generation_version, 141);
+    assert_eq!(app.generation_version, CURRENT_GENERATION_VERSION);
     app.prepare_monster_reward_diagnostic().unwrap();
     let items: std::collections::BTreeSet<_> = app
         .game

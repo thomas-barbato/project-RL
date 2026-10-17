@@ -1,80 +1,96 @@
-//! Accepted D58-BODY01 and D59-BODY03, used by persistent drone actors.
+//! Accepted drone bodies: identical sources for the map and inspection.
+use super::{Visual, portrait::Sheet};
 use macroquad::prelude::*;
 use std::cell::OnceCell;
 thread_local! {
-    static SCOUT: OnceCell<Texture2D> = const { OnceCell::new() };
-    static TRACKER: OnceCell<Texture2D> = const { OnceCell::new() };
-    static GUNNER: OnceCell<Texture2D> = const { OnceCell::new() };
-    static GUARDIAN: OnceCell<Texture2D> = const { OnceCell::new() };
+    static SCOUT: OnceCell<Sheet> = const { OnceCell::new() };
+    static TRACKER: OnceCell<Sheet> = const { OnceCell::new() };
+    static GUNNER: OnceCell<Sheet> = const { OnceCell::new() };
+    static GUARDIAN: OnceCell<Sheet> = const { OnceCell::new() };
 }
 
-pub(super) fn draw_scout(rect: Rect, opacity: f32) {
-    SCOUT.with(|cache| {
-        let image = cache.get_or_init(|| {
-            let image = Texture2D::from_file_with_format(include_bytes!(
+fn with_source(visual: Visual, draw: impl FnOnce(&Sheet)) {
+    let (cache, bytes, side): (_, &[u8], u16) = match visual {
+        Visual::DroneScout => (
+            &SCOUT,
+            include_bytes!(
                 "../assets/animations/agent/skill-animation-review-97/D56-BODY01-SIZE02-native128.png"
-            ), Some(ImageFormat::Png));
-            image.set_filter(FilterMode::Nearest);
-            image
-        });
-        draw_ellipse(rect.center().x, rect.center().y + rect.h * 30. / 64.,
-            rect.w * 22. / 64., rect.h * 3. / 64., 0., Color::new(0.,0.,0.,opacity*0.3));
-        draw_texture_ex(image, rect.center().x - rect.w, rect.center().y - rect.h,
-            Color::new(1.,1.,1.,opacity), DrawTextureParams {
-                dest_size:Some(vec2(rect.w*2.,rect.h*2.)), ..Default::default()
-            });
-    });
+            ),
+            128,
+        ),
+        Visual::DroneTracker => (
+            &TRACKER,
+            include_bytes!(
+                "../assets/animations/agent/skill-animation-review-96/D58-BODY01-native128.png"
+            ),
+            128,
+        ),
+        Visual::DroneGunner => (
+            &GUNNER,
+            include_bytes!(
+                "../assets/animations/agent/skill-animation-review-92/artilleur-body03/D59-BODY03-native64.png"
+            ),
+            64,
+        ),
+        Visual::DroneGuardian => (
+            &GUARDIAN,
+            include_bytes!(
+                "../assets/animations/agent/skill-animation-review-94/gardien-size01/D66-BODY02-SIZE01-native128.png"
+            ),
+            128,
+        ),
+        _ => return,
+    };
+    cache.with(|cache| draw(cache.get_or_init(|| Sheet::load(bytes, side))));
 }
 
-pub(super) fn draw_gunner(rect: Rect, opacity: f32) {
-    GUNNER.with(|cache| {
-        let image=cache.get_or_init(|| {
-            let image=Texture2D::from_file_with_format(include_bytes!(
-                "../assets/animations/agent/skill-animation-review-92/artilleur-body03/D59-BODY03-native64.png"
-            ),Some(ImageFormat::Png));
-            image.set_filter(FilterMode::Nearest);
-            image
-        });
-        draw_texture_ex(image,rect.x,rect.y,Color::new(1.,1.,1.,opacity),
-            DrawTextureParams { dest_size:Some(vec2(rect.w,rect.h)),..Default::default() });
-    });
+pub(super) fn draw_portrait(rect: Rect, visual: Visual) {
+    with_source(visual, |source| source.draw(rect, 0, 1.));
 }
-pub(super) fn draw_tracker(rect: Rect, opacity: f32) {
-    TRACKER.with(|cache| {
-        let image = cache.get_or_init(|| {
-            let image = Texture2D::from_file_with_format(
-                include_bytes!(
-                    "../assets/animations/agent/skill-animation-review-96/D58-BODY01-native128.png"
-                ),
-                Some(ImageFormat::Png),
+
+fn draw_world(rect: Rect, visual: Visual, opacity: f32) {
+    with_source(visual, |source| {
+        if visual == Visual::DroneScout {
+            draw_ellipse(
+                rect.center().x,
+                rect.center().y + rect.h * 30. / 64.,
+                rect.w * 22. / 64.,
+                rect.h * 3. / 64.,
+                0.,
+                Color::new(0., 0., 0., opacity * 0.3),
             );
-            image.set_filter(FilterMode::Nearest);
-            image
-        });
+        }
+        let destination = if visual == Visual::DroneGunner {
+            rect
+        } else {
+            Rect::new(
+                rect.center().x - rect.w,
+                rect.center().y - rect.h,
+                rect.w * 2.,
+                rect.h * 2.,
+            )
+        };
         draw_texture_ex(
-            image,
-            rect.center().x - rect.w,
-            rect.center().y - rect.h,
+            &source.texture,
+            destination.x,
+            destination.y,
             Color::new(1., 1., 1., opacity),
             DrawTextureParams {
-                dest_size: Some(vec2(rect.w * 2., rect.h * 2.)),
+                dest_size: Some(destination.size()),
                 ..Default::default()
             },
         );
     });
 }
-
+pub(super) fn draw_scout(rect: Rect, opacity: f32) {
+    draw_world(rect, Visual::DroneScout, opacity);
+}
+pub(super) fn draw_tracker(rect: Rect, opacity: f32) {
+    draw_world(rect, Visual::DroneTracker, opacity);
+}
+pub(super) fn draw_gunner(rect: Rect, opacity: f32) {
+    draw_world(rect, Visual::DroneGunner, opacity);
+}
 pub(super) fn draw_guardian(rect: Rect, opacity: f32) {
-    GUARDIAN.with(|cache| {
-        let image=cache.get_or_init(|| {
-            let image=Texture2D::from_file_with_format(include_bytes!(
-                "../assets/animations/agent/skill-animation-review-94/gardien-size01/D66-BODY02-SIZE01-native128.png"
-            ),Some(ImageFormat::Png));
-            image.set_filter(FilterMode::Nearest); image
-        });
-        draw_texture_ex(image,rect.center().x-rect.w,rect.center().y-rect.h,
-            Color::new(1.,1.,1.,opacity),DrawTextureParams {
-                dest_size:Some(vec2(rect.w*2.,rect.h*2.)),..Default::default()
-            });
-    });
+    draw_world(rect, Visual::DroneGuardian, opacity);
 }

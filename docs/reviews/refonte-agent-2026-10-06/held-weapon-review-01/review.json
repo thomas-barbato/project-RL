@@ -1,0 +1,120 @@
+{
+  "review_id": "HELD-WEAPON-64-01",
+  "date": "2026-10-16",
+  "status": "candidates pending explicit visual acceptance; no game integration",
+  "user_requests": [
+    "Make equipped heavy ranged weapons more imposing; ordinary two-handed firearms are satisfactory.",
+    "Hold two-handed axes and blunt weapons horizontally.",
+    "Correct the tilted axe head."
+  ],
+  "candidates": [
+    {
+      "id": "PRISES64-01",
+      "source_review_id": "BD-W032",
+      "source": "assets/source-art/refonte-agent-2026-10-06/comic-catalogue-review-01/sources/BD-W032.png",
+      "source_sha256": "a1db10704db78f15f89f60187982970613f583a8e031ff7ddbc2d66c6c71051d",
+      "content_id": "core:mitrailleuse_lourde",
+      "change": "heavy firearm scale 1.55, actual grip/support registration"
+    },
+    {
+      "id": "PRISES64-02",
+      "source_review_id": "BD-W024",
+      "source": "assets/source-art/refonte-agent-2026-10-06/comic-catalogue-review-01/sources/BD-W024.png",
+      "source_sha256": "313c2c84b14730be093e52981477fd23ddbc69f727f4b1d008a87bb57082343c",
+      "content_id": "core:lance_grenades",
+      "change": "heavy firearm scale 1.55, actual grip/support registration"
+    },
+    {
+      "id": "PRISES64-03",
+      "source_review_id": "BD-W016",
+      "source": "assets/source-art/refonte-agent-2026-10-06/comic-catalogue-review-01/sources/BD-W016.png",
+      "source_sha256": "05fcfa6e31ab9b75a6f5fed84f9ee992061bba569e3bfca076be6bac8a8b45d2",
+      "content_id": "core:modele_derven_f80",
+      "change": "heavy firearm scale 1.55, actual grip/support registration"
+    },
+    {
+      "id": "PRISES64-04",
+      "source_review_id": "BD-W064",
+      "source": "assets/source-art/refonte-agent-2026-10-06/comic-catalogue-review-01/sources/BD-W064.png",
+      "source_sha256": "99113abf15020c57d0c3d60547c17f45409901de0d8268812726880ab644da20",
+      "content_id": "core:hache_de_combat",
+      "change": "horizontal haft; source axe rotated exactly 90 degrees without the old oblique rig angle"
+    },
+    {
+      "id": "PRISES64-05",
+      "source_review_id": "BD-W098",
+      "source": "assets/source-art/refonte-agent-2026-10-06/comic-catalogue-review-01/sources/BD-W098.png",
+      "source_sha256": "8e6ac6cc54e56607f2b7bb344580720e3edccbbd5e5c02e5bd548dc1c805167e",
+      "content_id": "core:marteau_de_guerre",
+      "change": "horizontal two-handed blunt pose study only; current one-handed hammer rules unchanged"
+    },
+    {
+      "id": "PRISES64-06",
+      "source_review_id": "BD-W003",
+      "source": "assets/source-art/refonte-agent-2026-10-06/comic-catalogue-review-01/sources/BD-W003.png",
+      "source_sha256": "2fd872a7dc1c23d5e5da65fadba7d586c3a01d5e510b4329625768905d84f4db",
+      "content_id": "core:fusil_d_assaut",
+      "change": "unchanged ordinary rifle control"
+    }
+  ],
+  "outfits": [
+    "AR-01 Cerbère",
+    "AR-N10 Arcaniste",
+    "AR-03 Chrysalide (olive/bone)"
+  ],
+  "native_tile": 64,
+  "composition_canvas": 128,
+  "method": "Isolated Macroquad example; existing source paintings and game sleeve/finger layers with shared registration across outfits. Source-authored opposed gloves for melee. No repainting or generated replacement.",
+  "mechanical_changes": false,
+  "runtime_assets_modified": false,
+  "limits": [
+    "Five proposed renderings and one unchanged control; not a completed production rollout.",
+    "Candidate 05 studies the requested blunt two-handed pose using an existing hammer drawing; it does not convert one-handed weapons to two-handed weapons.",
+    "Only the shown candidates are submitted. Numerical scale and hand anchors are review parameters."
+  ],
+  "verification": {
+    "prototype_build": "cargo run --locked --example held_weapon_review passed without compiler warning",
+    "native_output": "inspected locally; 18 before/after comparisons",
+    "visible_head_pixels_unchanged": true,
+    "weapons_not_clipped_by_composition_canvas": true,
+    "ordinary_rifle_control_identical": true,
+    "active_bank_matches_previous_integration_receipt": true,
+    "full_game_suite": "not rerun; production code and assets untouched",
+    "browser_render": "not observed; file protocol access blocked by browser URL policy; no alternate browser or server workaround used",
+    "gallery_javascript_syntax": "passed with Node; single selected review section checked",
+    "gallery_embedded_capture_matches_native_export": true,
+    "protected_runtime_files_rechecked_after_gallery_update": 16
+  },
+  "capture": {
+    "path": "artifacts/apercu-prises64.png",
+    "dimensions": [
+      1280,
+      944
+    ],
+    "bytes": 351121,
+    "sha256": "2c2980781616c60ed830631fa28147297c34d51e5a08bacb090a7292a8a2a198"
+  },
+  "protected_runtime_files": {
+    "assets/sprites/flat-agents/bodies-128.png": "7d43da463d5993e60ab3fb10870b59e84777213d4a069b8a04433c4bb9ed2092",
+    "assets/sprites/flat-agents/fingers-128.png": "90c23266f3469fa363b4c67d6a1634b1cf1e84ad91252af4ac3c045f01df012a",
+    "assets/sprites/flat-agents/manifest.json": "5b28534490cd009648a95420047acc8da01e1befe71e8c77349ba3c89cf37b25",
+    "assets/sprites/flat-agents/outfit-icons-32.png": "fc82cfcc00958db0d31200ee8a237b42351e57d4021f0f59ee6414f803906512",
+    "assets/sprites/flat-agents/reviewed-128.png": "b841aa36f5cdd0956987861104cf78eb17160e6cfb15430b2f313d32d7fa754e",
+    "assets/sprites/flat-agents/reviewed-64.png": "598c168753a6684d5863a4a14863f234699bf40eddfa5794f24ce1b3725ee299",
+    "assets/sprites/flat-agents/weapons-128.png": "8358ec0aba5ff8aa607dcb042a0e180244d7d6d9cbf4a3e41b499fe92efe40af",
+    "assets/sprites/equipment-native64/bodies-128.png": "c86b0db775dd3bcff57db0145ae272a1367cecf0957915f9941c0523ed1b9967",
+    "assets/sprites/equipment-native64/fingers-128.png": "ba8191bf730df94d9e919277ff29c207e17453c7ffb27de85233d77c5beb7d95",
+    "assets/sprites/equipment-native64/icons-32.png": "6cb75c857f6824d01e63583cdee98011e920a1bd21bacc2794d148f7543ef7c8",
+    "assets/sprites/equipment-native64/icons-64.png": "0f6264d4caad227dc3936e6b0cdfd3f98ff7c9a49ae3e9ac223a4450eef66c0f",
+    "assets/sprites/equipment-native64/manifest.json": "0ad96bbc5b590eb59f29e234e5ae75df15b39623b029518c7bd0fa76f63c38db",
+    "assets/sprites/equipment-native64/materials-32.png": "c481cbb8428b36e304d2def6f295b7cd121615f499c99c021700db6912d72d65",
+    "assets/sprites/equipment-native64/materials-64.png": "094bf8233ee4b506ed6f50e7311a1913b2317cb95b1e513cfd0cea3b544e132e",
+    "assets/sprites/equipment-native64/outfits-128.png": "2fcc1610daa5d8c2dcd9c61d2f48410f152180495bec238919f1edee62c65a60",
+    "assets/sprites/equipment-native64/outfits-64.png": "1f42a15e158583a1e2eca13527d2d28a888729d294d8841e5a50fa18a74616c0"
+  },
+  "prototype": {
+    "path": "examples/held_weapon_review.rs",
+    "sha256": "fe06d1135784f5b96a53ec663483fcb822f0f9fb3d68347d77ee3ed32a8524ec"
+  },
+  "cleanup": "One reusable PNG and its embedded HTML retained for this pending review. No eight-frame series or test CMD generated. Remove temporary capture after acceptance."
+}

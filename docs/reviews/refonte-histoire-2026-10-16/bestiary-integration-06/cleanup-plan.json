@@ -1,0 +1,3456 @@
+{
+  "review_id": "BESTIARY-CLEANUP-06",
+  "native_export_relocations": [
+    {
+      "old": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-01-r02-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/boss-tiles/BOSS-01-r02-native64.png",
+      "sha256": "0e99265c3a98feed56f4f909dbdb60a2553e2043548fbf8961830338eef005df"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-02-r01-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/boss-tiles/BOSS-02-r01-native64.png",
+      "sha256": "8e586a6945a6a6020c47eb716167ee5e8e1a45cdce3d4345931cd8438d281b9d"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-02-r02-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/boss-tiles/BOSS-02-r02-native64.png",
+      "sha256": "e47808bfeaec7ca59fb4e585ebe10dabfe4182a45810725f4103a77a1c22d5ca"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-03-r01-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/boss-tiles/BOSS-03-r01-native64.png",
+      "sha256": "63aac7b4b71a7b7e9d21dcfa35dd6c08b6f57f98692b3c1472ad03e3396278cc"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-04-r01-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/boss-tiles/BOSS-04-r01-native64.png",
+      "sha256": "b98d1cbd300603894e0302d286d23f5abce5810aa7ef71ac5c154143200a6e54"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/catalogue/shadows/DEM-F01-r01-shadow64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/catalogue/shadows/DEM-F01-r01-shadow64.png",
+      "sha256": "631127a53b5e8093c979a5912c8928a9c6a684717a7a78c3c4da86e190511f33"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/catalogue/shadows/NEC-D02-r01-shadow64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/catalogue/shadows/NEC-D02-r01-shadow64.png",
+      "sha256": "e4a5719020a6019510cb5d9b56bd0dcbe175d1f4f22f9b11e5567fa9380b2ee9"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/catalogue/tiles/TROUP-05-r01-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/026-r01-A.png",
+      "sha256": "f9c62a575abdceb5156ee4c9702fbe130352b238b638e16b1901a772032ab901"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/130-r01-A.png",
+      "sha256": "8dbef49e336de434a28caeefe2f54b652c46d58de4500a5699df8ea50d513f4d"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/130-r01-B.png",
+      "sha256": "53252f3d135549a892917b720f431e8d1a7ea81b8ee6e95f3f9458b84064b9a5"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/131-r01-A.png",
+      "sha256": "95443aa13e5b83323030f6b083121021bf83f0508c1b399d6959b1ed3400710c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/131-r01-B.png",
+      "sha256": "294476ba6ae4c7bcad853e2461f01fbc71e482eba9ba5fcef9bb8642aa539e60"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-04-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/116-r01-A.png",
+      "sha256": "67998ac48f353040a2fed85f51f41c44ab07b920b6177999454df3388a07560b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-04-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/116-r01-B.png",
+      "sha256": "fed3030bd1b59437ea95fa971d22b2cbb71a213df00be5d50a51278b069271f2"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-05-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/117-r01-A.png",
+      "sha256": "52888f37c6c02375530671b1287889da809e5bf88185270d55cf4763c9f008d2"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-05-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/117-r01-B.png",
+      "sha256": "2e9370aa5866d33322c2f93417001271c094b523269e823f5aa660ae0122ca08"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-06-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/118-r01-A.png",
+      "sha256": "7c9880526be02decf2ee37814d3bf329113be92bc8119124b966005a954864af"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-06-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/118-r01-B.png",
+      "sha256": "cd0fc291658acca66be2c4f7d3554bc5fc82d2f2098d3cb3125317250fd03c0c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-07-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/119-r01-A.png",
+      "sha256": "794f6acadffe0b51e10aea8a8df106161ebbebaa3a9c36e46710320c672656e5"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-07-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/119-r01-B.png",
+      "sha256": "992b920bc9f54f2fa732c362167ff2b68b870185a6b24aff85ac76a5da160f5f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/124-r01-A.png",
+      "sha256": "39fa4dab3f6056e402b21851d4a10b968bc3d3a6ca5d03f2cca330a2049be8ad"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/124-r01-B.png",
+      "sha256": "8a382926f1f6c99259eb208868d1e9fbeb26ac39c30c0d11106d47d15cbb41a0"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/125-r01-A.png",
+      "sha256": "aad1dc23c8aa6e5266dff3944611c415e0051c53af8aeb44fd1293c581e61461"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/125-r01-B.png",
+      "sha256": "3b775d09558d3af125bb925512cfed6ac52de1bcf7fc9cc623c23c8ecb533f75"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-03-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/126-r01-A.png",
+      "sha256": "dbb0b202d23099a75444a9e8651bae917858e9c481000b1fe4551d9f33339b01"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-03-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/126-r01-B.png",
+      "sha256": "179fedcc34994b38554df995fbe8a449c87e68a6e52cc9531e9b1d706691bc85"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-04-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/127-r01-A.png",
+      "sha256": "30a9e532841bdf5e0b3afd8c5c3cc730e2d16c33215cad2c50bd715e708af16a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-04-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/127-r01-B.png",
+      "sha256": "f54165634c74d674745f73523f0b312ab6fecc7479314f98cce70e3b4bb0683a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/128-r01-A.png",
+      "sha256": "d27564d13a3bcd74caf786e2f494172f831ed48414d9f4aea6f6a715fdc4f8bc"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/128-r01-B.png",
+      "sha256": "afc09289562d31c210025b758b5632dd4d3aef07d54e5742ec71679dea7ef103"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/129-r01-A.png",
+      "sha256": "b3d0ff60fcfad9f8bf5a473d39902ad1243d5f44e519247bee3d54411d70b3c9"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/129-r01-B.png",
+      "sha256": "937fc49d81ecdb6c2c74f29c2a10e3c87fbdc77dcfcf79aa9eb5d2abfe3882c5"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/120-r01-A.png",
+      "sha256": "908d91407b550bcb87eecf5fbbd9071da48cd4f33cfd569ca42235f79d016003"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/120-r01-B.png",
+      "sha256": "1417a8699da2c57777aba0b0ceb9933c1a7a022fbbdaa980f696ab6a700a4103"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/121-r01-A.png",
+      "sha256": "62bb72f64eeccb1bfe827c6a8da2f24c3ac60528558031738af8de0e7caaa02a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/121-r01-B.png",
+      "sha256": "ee4e35875a3c94c63c214919d5d6bcb8c2af69a4fbd97027f1b7d98f0d0ff8c7"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-03-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/122-r01-A.png",
+      "sha256": "f3be6f683106b0709299a6629e124edd24c9dd1e980e4be5e63f7a882d9d2add"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-03-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/122-r01-B.png",
+      "sha256": "9b39b83add2f4f6123a1866f46e9c3abe5e039c6c1931cb49fa3d4006c45746c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-04-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/123-r01-A.png",
+      "sha256": "649e5f835b2b2b89fef30adac95d4c5722d704efd12164fd3d982d6aa41957fa"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-04-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/123-r01-B.png",
+      "sha256": "3d0f142edc20f6d700cabbff4ef1970912896a28a84fc0915b79cadb40fae35b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-01-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-18/tiles/DEMON-01-r01-A-native64.png",
+      "sha256": "9a034de3bbf9d5cc5cdbdfc5d377b0f9c85e54b438979012e96d849489ef4548"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-01-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-18/tiles/DEMON-01-r01-B-native64.png",
+      "sha256": "df0fb83b390aaf9cadbb327d58ee7560e27d2e36e345f837b8127fecc55e3481"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-02-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-18/tiles/DEMON-02-r01-A-native64.png",
+      "sha256": "7fde500b1e7f5a722a47d15a4c61aa92551b779989d07d09bdb984f20e509da7"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-02-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-18/tiles/DEMON-02-r01-B-native64.png",
+      "sha256": "4df305b3b53164c9d2e8ce2b751a7f05b56fb58d9ceb2403fff393272d77a384"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-03-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-18/tiles/DEMON-03-r01-A-native64.png",
+      "sha256": "d8a1fac788e5f708431f896dfc7a2c8d555b9f6da10fc3d5f31f5fef71c0f143"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-03-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-18/tiles/DEMON-03-r01-B-native64.png",
+      "sha256": "5be0051d4a3f762cf831da8831149d69d49a701fece33a7faf5d2f6438a13b5b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-04-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-18/tiles/DEMON-04-r01-A-native64.png",
+      "sha256": "a6735b05575c3629775a961828606b9a6a20d58e589cd46fe0a0718193976f07"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-04-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-18/tiles/DEMON-04-r01-B-native64.png",
+      "sha256": "125ec001efdb7e542fb2b443a28ecb4abcbf5809c6818360cedec2090a37e01d"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-05-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-18/tiles/DEMON-05-r01-A-native64.png",
+      "sha256": "5f86cf861ece108b4304fb66a7d9512dd6c43d35a38b60a724e5c16f33bf4bbf"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-05-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-18/tiles/DEMON-05-r01-B-native64.png",
+      "sha256": "72335a19b54089891bd72a87e299fd17efc26f3af50926b2f1832cbfb4b94a6c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-01-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-01-r01-A-native64.png",
+      "sha256": "487d1a01970bc3d2ea49c4139ffb7d01bae3fe922773e106697094b65843659b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-01-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-01-r01-B-native64.png",
+      "sha256": "98ef1a2ae7fa6a282f59d5bca659fe4d8c584cd48fc01d07df88c3b2311279a4"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-02-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-02-r01-A-native64.png",
+      "sha256": "4a75b572581d4a0db794e8e02b7f3fdf9846b666fba1970f2136aa924885cbf1"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-02-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-02-r01-B-native64.png",
+      "sha256": "3492f9b0734d72fb2057110ea751952746b6c4fdcfef42b1340e9ae44271f23e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-03-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-03-r01-A-native64.png",
+      "sha256": "7027322328ad003cea24c92ee521eb821cf14023d2fab89504badcd93ee7e4b8"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-03-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-03-r01-B-native64.png",
+      "sha256": "f75a9e19f9396f2944ed293f3cbfe46beae6baa2e894f9519c38e88c3e6997f6"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-04-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-04-r01-A-native64.png",
+      "sha256": "777b5510b747c12bb9750589025e09651dfeac66f34a5afcceea77019931a8fe"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-04-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-04-r01-B-native64.png",
+      "sha256": "acd70ee8b13200cb5d5dcf0c973f6b41ec99e9ebc03a004fd920acc150ee0cdb"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-05-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-05-r01-A-native64.png",
+      "sha256": "50708a3ae184f4944af3dca064552d7dbb5adfa8fe631c8d5f726011d76dc332"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-05-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-05-r01-B-native64.png",
+      "sha256": "fb27228dc9f8c7282cd17736aea05dbc2361d76c9990e5a387547c138c22fdea"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-06-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-06-r01-A-native64.png",
+      "sha256": "4d5077eee5c81c93450f38512c5efbfe13a32f3c349844e8e9c3378268a53f61"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-06-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-06-r01-B-native64.png",
+      "sha256": "dc40354854ad703b2c04063dae5df8c6e922678b235e925d905c3721f57e0c3d"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-07-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-07-r01-A-native64.png",
+      "sha256": "5d9b1ccbcf47e3fb5d9403f5701817acdae166e20d52724161af81f47b933c44"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-07-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-07-r01-B-native64.png",
+      "sha256": "b1d8374edcf5b535f95cfb07b33232c1f9e7f11a9bc3f73c9fa2447ca8117ef2"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-08-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-08-r01-A-native64.png",
+      "sha256": "d03d02ad5d9bd9d50f391e62a3632f4a082d5dfd92ec76ee891a3beb30d10f21"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-08-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-08-r01-B-native64.png",
+      "sha256": "49523c03731cb48f91c078f94c42468d5c3aed123e6badb62c6f1d7578bd8adf"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-09-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-09-r01-A-native64.png",
+      "sha256": "f3b385f2ede023f6227181c65cf2773eff6444aa904b8d8faca3e51bc9266b9f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-09-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-09-r01-B-native64.png",
+      "sha256": "2d3d3c9753c551940bed2bda87fde50dcb9e42db74d08272c3a14e744ad7995d"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-10-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-10-r01-A-native64.png",
+      "sha256": "31d3005ca0e4682216c76f237d8dccbfb97ab2dd36a421d2d480e821754bddec"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-10-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-10-r01-B-native64.png",
+      "sha256": "66127de73e66a093f8c33224191ff7484b6c20b4129f6a96a1da4ab7802c42fc"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-11-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-11-r01-A-native64.png",
+      "sha256": "cec023601c4abf1e2dd04e8844bc26dda8f38c5dda4adbd0905c2b686856eae1"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-11-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-11-r01-B-native64.png",
+      "sha256": "6ed724592b5c7aa7786e7ac84837c7fdc8b9f3162826372feb2590e96ff58775"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-12-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-12-r01-A-native64.png",
+      "sha256": "4fd8a6913291180b9301565bf9f7e9b813bb751c132b923c580d4a143a21d982"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-12-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-12-r01-B-native64.png",
+      "sha256": "0b362310f5d7dc4fe6e7f5878afb7974e39915eeef1ddd610073e7ee32e56017"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-13-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-13-r01-A-native64.png",
+      "sha256": "486492ea3b50a33350f07dbf1527030f73fc272a4946cfdd2aa9bf08f508cde4"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-13-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-13-r01-B-native64.png",
+      "sha256": "d99521a1cc73c78847627916dde4009736874eb47be196ec4b2ecee8315b8eb6"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-14-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-14-r01-A-native64.png",
+      "sha256": "e0f84f499e8a7e14bfd9ea84af94255b1d0ac5a94a1200ec285a284fbdae34ba"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-14-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-14-r01-B-native64.png",
+      "sha256": "2f6faba70f9f58eca9046d6b8723ef63e689c3ac512b1b700a2dd09654135497"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-15-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-15-r01-A-native64.png",
+      "sha256": "fa7aa0148c1d143cca5b1beb8a956674ddc3ce6f6364d1ab7f85b43da1ee8406"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-15-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-19/tiles/ARPG-15-r01-B-native64.png",
+      "sha256": "640dca7710d43aee52d7d5bf79273a8cd7c1d59f00a2c36f33b093fa5036917c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-01-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/060-r02-A.png",
+      "sha256": "ba994453365e9bd55b547299ba6bff0762a944dee44c2da88bb512c551ef163a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-01-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/060-r02-B.png",
+      "sha256": "1958c76537e2dc44c40dffe19ef6919ed5a6cd8056b4068490483bdce5a6b7e2"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-02-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/061-r02-A.png",
+      "sha256": "227d2d8785a0469e3926648943d1b433159552e0104a65fabb19cdee4d47bd89"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-02-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/061-r02-B.png",
+      "sha256": "bf5d555621039ab80883a64cd245ad8e1fb198ce3bc1b08c89d095a1fb0f1ccf"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-03-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/062-r02-A.png",
+      "sha256": "6d13a53f7745b6bb5c6352ea5b10cc16687edd0b01eb1ab846f4d568f6703694"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-03-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/062-r02-B.png",
+      "sha256": "4dc9ba863027a7e6cf3880ffbc34e15ce2629235a5d69327f83f900e28ca9b8e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-04-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/063-r02-A.png",
+      "sha256": "354ddea48178de0d527ee8b575376518f0c70a76e544d53822c499b7734fce3c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-04-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/063-r02-B.png",
+      "sha256": "2afe3d3bc7fe2dc090b18f75b48cc537a76e53343d260992f34313dd173bb26a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-05-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/064-r02-A.png",
+      "sha256": "e9287aaa8529b64dcf9aced58f5921eac4234de9571415995ba43b3f6edcd37f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-05-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/064-r02-B.png",
+      "sha256": "f1d7c0e2efd65fb359a9da5c389d5261099ae9a6db5313ce6af639aa585433e1"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-06-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/065-r02-A.png",
+      "sha256": "0e7af5059b29965238771f8c9c4b699fe0ad5eeb85edcec4705bd431f8bb3511"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-06-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/065-r02-B.png",
+      "sha256": "3ca714570c57db7e9f40f0483bfb6b36582acd078918b51010b543a742c1bdc2"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-07-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/066-r02-A.png",
+      "sha256": "f457c354c5264e930307b5e18be5b58e96e03ef7f7d45cccedb8c3d56552d5fb"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-07-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/066-r02-B.png",
+      "sha256": "f073808472301a51a574ee58d47e342ac7c8ca629e69047f51f06f1fa5516cb5"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-08-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/067-r02-A.png",
+      "sha256": "1c3484b3f02784e92dfb13d14060c1f35476e5f590394ea1749cecd0e57b85a9"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-08-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/067-r02-B.png",
+      "sha256": "00c256ae608bbcbe538b0d039fcf443628a9a18bae474f46b028374982397356"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-09-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/068-r02-A.png",
+      "sha256": "2d160f8481e14f5ea5c3d6e3abfb1b6c68cbd5171f602e69150eff8017c0daff"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-09-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/068-r02-B.png",
+      "sha256": "b8da9d64556bd4dd1d8eda5e0233f7c2749b5fadc2a71720b824a0246948e727"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-10-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/069-r02-A.png",
+      "sha256": "514126c49707f232ce1755ed21447b92474e56f6eed4ed8aeec49927d55e5642"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-10-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/069-r02-B.png",
+      "sha256": "1ada76c026a0a903ce07775a7c6b79444f483892be4d802ddedefa3b051bc98f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-11-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/070-r02-A.png",
+      "sha256": "6e2bd0d7c829a8bc740ecacc5a52fdc39b5768230d1f4bd3b6e78f8f4f011530"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-11-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/070-r02-B.png",
+      "sha256": "f6a5deaf2af03f72ce08514d71db86e4ea7f2fd9eab432b9667c3dafc042ad90"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-12-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/071-r02-A.png",
+      "sha256": "75db234e167d939b65967b78c99f4bb77b37ba1211d077e76a5237f24ac1f730"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-12-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/071-r02-B.png",
+      "sha256": "569dbc448750ad6b09342e924dd8c4df58612f03f04cb86e2c3cddf4ea39d18b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-13-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/072-r02-A.png",
+      "sha256": "3aaae9ea24ff995fdacfed62314ec697c667aefb1da1e6c4e91c0f5bce9e6ac5"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-13-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/072-r02-B.png",
+      "sha256": "e4ec63ab3a6836711f78d62c9d40110251d05de1d9a96700c96e04e7e2d8eb51"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-14-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/073-r02-A.png",
+      "sha256": "533db90e6390b2810dbe7c3b762541f713a34032e773d27b97224511a3279d81"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-14-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/073-r02-B.png",
+      "sha256": "4ec2ebbb8af993c178fff265045924dd4cb349eae540993d67ea1184b555056b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-15-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/074-r02-A.png",
+      "sha256": "14ebba665dfd4a7802b03d7fc8dae609e810d5826e59a968d870f12e7dca1e40"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-15-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/074-r02-B.png",
+      "sha256": "1f7e83a55280409b68936840f3ed89ffa8edd54a9bc1801e9bc9835d002ac862"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-16-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/075-r02-A.png",
+      "sha256": "a99ebf03fd9cf3ba990ca5c51c3a76c697a5b00da56d1e5317ea3a5c6a01542a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-16-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/075-r02-B.png",
+      "sha256": "c1defff7748a15b620a79651affabd073763fa472a20998c2c17adbc8d16d107"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-17-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/076-r02-A.png",
+      "sha256": "1290547b16c807f054e697f8adade8a60cc958dc47481b3b93b73b9a888f11f1"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-17-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/076-r02-B.png",
+      "sha256": "c6e95c5eb5d2ec9c327adfe55f050402e1cd30ae28aa76ed19234351823e70f6"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-18-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/077-r02-A.png",
+      "sha256": "4c72796b0fa184e44cff622628dce8b2c7a14dbb73d60ed0470dbb436d582be5"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-18-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/077-r02-B.png",
+      "sha256": "077de3e93ad7e3868ce73f980d98836e58d2c3f0663b57d51f4717a11f74913c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-19-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/078-r02-A.png",
+      "sha256": "c9a4f9654fe5fb286cc2c098f3ab6be6447adcfbae3e5eddbfe84d5ece309824"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-19-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/078-r02-B.png",
+      "sha256": "7772beb87ebdaabf1b12e448e4306a5b7cf06adc75fb25e36e615a4daa0a66d7"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-20-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/079-r02-A.png",
+      "sha256": "5b2eb800f5495bf91289bcf6aeaa39d7fdecf7029aa297350e76cf4ddadc863b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-20-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/079-r02-B.png",
+      "sha256": "8d7b5e1212252844e61e5250c708cac809ec810a375bacd2c840b39b856ca35f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-21-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/080-r01-A.png",
+      "sha256": "410d94935c966837a025a952b7a67de15cd0a7723bd9783f9d8588a95b88bd54"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-21-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/080-r01-B.png",
+      "sha256": "da5151d9fd7955a8efea23546857108295f0d2f37d09a0fb2f8cebb7b09de904"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-22-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/081-r01-A.png",
+      "sha256": "c128a3728601efc63aa2fa5f5acb34ef3eada8bb695e9cc258d412f3a6ece3ee"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-22-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/081-r01-B.png",
+      "sha256": "0a3149143c2744bb4f07be913bde5a18bf560fcceeb2b73f8b7e028ce797571d"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-23-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/082-r01-A.png",
+      "sha256": "70a532c310fe3fa9b14ade6e3fd44942c7fdd282113b4859875510fe9d84fcf5"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-23-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/082-r01-B.png",
+      "sha256": "e48d986c533bac7d1566905583b05316a557852c99311d7d1bf72beff8046012"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-24-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/083-r01-A.png",
+      "sha256": "5110c74f93a476fdfafd2e30c832fa55f5cc83b7fc8dff7cb9521b80bd585f85"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-24-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/083-r01-B.png",
+      "sha256": "27f61931da081d27f8b5776c154461677ba7db1c562159dd86dfffefda4f786e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-25-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/084-r01-A.png",
+      "sha256": "44f5c68e8bf53bcc1934abd5ceeb5f0bed6c4dd31b6a4692e0306a7448d8496a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-25-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/084-r01-B.png",
+      "sha256": "528e9f30ae60681801d1bcf9e9ee0fec501e1c38e1755f501d67d67dc5f0f150"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-26-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/085-r01-A.png",
+      "sha256": "be9de0e6cb64d59e875467aeaa23cbd08999475b8d9817e45f6156324b5cf8f7"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-26-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/085-r01-B.png",
+      "sha256": "08b326f511170e9aed8cf542f44b0e069293465a387fcc8242cf95acea4f9006"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-27-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/086-r01-A.png",
+      "sha256": "fcbc9f7bfaa6071ad365f32bb725d68fc30b8cb5c900d8d9eb1b94da7a4aa39f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-27-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/086-r01-B.png",
+      "sha256": "4cd812998d63cfa3f58cf73a9bcc6efca014fff12729eef3fbaa3cfcc2c2d753"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-28-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/087-r01-A.png",
+      "sha256": "73dc185e686737a5f0bb3c127144fca6d3221c5774e61e05d592087fdddd1cb7"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-28-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/087-r01-B.png",
+      "sha256": "d461d1e4e6111da52ddd1d1b54bd940c5ef318fde3eae5ea36eb41defb5dc04e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-29-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/088-r01-A.png",
+      "sha256": "568da03042d41d8257700acb1f79a896fb40fe65b113479a8972fdbc3cba0a66"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-29-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/088-r01-B.png",
+      "sha256": "f3cdf2dd15e11adcd19b80c471d696a898e1178e30e7b81a70edb68f12457b50"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-30-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/089-r01-A.png",
+      "sha256": "9d2902389bdc2cc63a2f5bc4cef44d5123e880570c921e50ad7dd5eab71933f7"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-30-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/089-r01-B.png",
+      "sha256": "80a19ec16b26aefd4a1a56689f903e65caed912b678d12e8bd65f84c5223858a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-31-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/090-r01-A.png",
+      "sha256": "30b3b8e628b5ab84f1e03f870c962e9e1d8c9b310c8701470ab68c4c3764baa0"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-31-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/090-r01-B.png",
+      "sha256": "166691cd03254d565f9aa6ae491842800b3efd5fe22bec1779639953e23abc1d"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/144-r01-A.png",
+      "sha256": "9d7b123d62b21b72e1862ead6811e4d21a365fbf3adbe654f013d1b6cb85a4d2"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/144-r01-B.png",
+      "sha256": "1428f28635f418a6578ce5e06c3779c7ae429aa058f775776992c543cf20b1d2"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/145-r01-A.png",
+      "sha256": "86897b1b68b3f881c3d9344635c75598ecbe0745c6288cf3a95f6c1ec6c74eed"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/145-r01-B.png",
+      "sha256": "b422e1cf39b963b917bd1f097fac21d707b63d911446cfa2e01ad8990ac789d9"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A03-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/146-r01-A.png",
+      "sha256": "c467cf4f0e2a0cf114bcaaf58f427bebe1481573bfb6ced849b26828957627d3"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A03-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/146-r01-B.png",
+      "sha256": "a27f5d5d9f33ec7a639ccd840b8a999b98c5583142017697847db10c80d94120"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A04-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/147-r01-A.png",
+      "sha256": "055fda6b71e093ee7778032c87d3a1129cad17f3b7015340ec4f084515b24ddd"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A04-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/147-r01-B.png",
+      "sha256": "0d1ca2a9bf3bcc7b0d2f796139b642acdb501108a2b31c145a9727d282e5c9db"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F01-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-27/tiles/DEM-F01-r01-A-native64.png",
+      "sha256": "782e6ddd9da651f0b697bab4bb159cec32be83cf07f5a32d7d8b21f626a59b1c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F01-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/demons-27/tiles/DEM-F01-r01-B-native64.png",
+      "sha256": "5d7ae8572e17228630b8e5ea7319484fbb497d4fba64d7c877a12f1912f8fb67"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/157-r01-A.png",
+      "sha256": "fdec22bfdda25e1f715a5a2fefea82f035dfd03f9daf97d79238f51c4468cc4f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/157-r01-B.png",
+      "sha256": "d42ca1499113d46f7ac78bb89c03f62f03895ce935755f569913f3668c46480a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F03-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/158-r01-A.png",
+      "sha256": "39f6ab95378a3c43e73578c25d5d0b40492ea4f79c98b78a57e61618dd23a38e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F03-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/158-r01-B.png",
+      "sha256": "4b8f467b331771ca250d1479db006e2e8b235ff44d6f65a220ed52b43b5d4a69"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F04-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/159-r01-A.png",
+      "sha256": "b547018ab40f36a5434418ec3e010849392bb597e92d8393d3b2bcdf6a10a469"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F04-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/159-r01-B.png",
+      "sha256": "8c47948e31ae2758d81715dd44c2573f62910e247876b66a01e97c59734699c0"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/160-r01-A.png",
+      "sha256": "60d263783dd154e05976a9c7add28158730f328f43b93b86e2e86447416b7f1a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/160-r01-B.png",
+      "sha256": "94698a8072634c58829f4a34895d298ee42b9d5a3ff0976f90d2ced4159fee21"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/161-r01-A.png",
+      "sha256": "0cf45db116dd2b8d952f77b2c2bbf5dc55fe77bf51c68ab87a1780d835df802e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/161-r01-B.png",
+      "sha256": "01c3c3921ac49ed2179f8e1dfff5f40939d24df8023dc51cbfc1a170b2934296"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H03-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/162-r01-A.png",
+      "sha256": "43acca9dd63c1c242f164761f31206075b35de0e72b73bffb9492c84e90d0f6a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H03-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/162-r01-B.png",
+      "sha256": "5aaac303984d7e2a58a41f52e5787703ddc2b5e1ac2237b5dcb5912d8e7c065c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/148-r01-A.png",
+      "sha256": "bec873f694daea1855ca178fbd39905ab80e6ffab349b11cc0321af2e7a759fd"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/148-r01-B.png",
+      "sha256": "732201df17fdcba15349649c4d9344ffce7c82f5b7d89a92953e9612dcd3025b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/149-r01-A.png",
+      "sha256": "7d0024cb9c3f151f4803eea8b8287ef6c7caffeb80b3073b40c705e10fb8bea4"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/149-r01-B.png",
+      "sha256": "ee5f41847c96ddb33ce20447be33175dacf99ece3d06f7182384c3cb97fad96e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M03-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/150-r01-A.png",
+      "sha256": "e4ed680fba86b96c1edf6c7a2ca507b0e1dba25baae29cafa2135c7b458f89d0"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M03-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/150-r01-B.png",
+      "sha256": "22d7969bcd2cd9faf9f8bfac44b3056540b4d1efbd79e56582bbe707919f0695"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M04-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/151-r01-A.png",
+      "sha256": "911436b8073effb6b8e104f8e21ff7ff23659b7bfb990b00c77242c4e637bee6"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M04-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/151-r01-B.png",
+      "sha256": "d3e3275115bd581ac7b0b7efccd85071b380b1c81fc441e0a9955a32af1746b5"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/152-r01-A.png",
+      "sha256": "576bda490af1b1a363b844a64c6f34976bd9df5cea32800cd8e58fd3ba57683f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/152-r01-B.png",
+      "sha256": "5943dcfee4874efd65043552f0f4439b7cad39e269f244b54f5f13d1e0d1476b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/153-r01-A.png",
+      "sha256": "17e82903fdf4170d20766f4129747b275028f772e5a6ae97db994d02e509786b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/153-r01-B.png",
+      "sha256": "a3a22e2ca7f1ade09fa778ac311fab27c33e74f2c75898dd33cd7d62a414149a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P03-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/154-r01-A.png",
+      "sha256": "5761d990aae0463a81ca40fa67848738a75af2e7d4ac39b3788528ad5eda52d5"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P03-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/154-r01-B.png",
+      "sha256": "2163e777b4023867650d09d08864e73d6a94b915cb107654b183a3ec5d438955"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P04-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/155-r01-A.png",
+      "sha256": "2e3ea686296679f2db875e09fafbeae8b3c7c9b9da8d9dc26e96de11949b7bf8"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P04-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/155-r01-B.png",
+      "sha256": "5dec880bb27fd541651fc3d7881ee0648d290f281e00d8c4a545d4dabb6cad4b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/140-r01-A.png",
+      "sha256": "7605f6989e884997e7d95c15d25b9c5e595430053d1c7d1e7cb5df2d7fb8fa06"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/140-r01-B.png",
+      "sha256": "dc8e801e96dece553615fefe7054b62db3da7783707bc3b9b1e168bb661d0acf"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/141-r01-A.png",
+      "sha256": "c7675382cc935c6a570a46ae2980945230d135a9b1541790a25287424ad17188"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/141-r01-B.png",
+      "sha256": "c151ef3c170e92cc103397bba54fd552939b020cc4759517c1637935e9441080"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V03-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/142-r01-A.png",
+      "sha256": "cb9b9ae5ac64d4d38c88ca9f21d34f6bdb4e934e98b9e8ef618a763428cb7d63"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V03-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/142-r01-B.png",
+      "sha256": "489a721084af7d86479de109da3445242b621c1317d88a83bc4497fbbdc4216c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V04-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/143-r01-A.png",
+      "sha256": "d8d18e2c5dc0db851f551f791875bf2ce9513938d33f0f542596afd0ca89703d"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V04-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/143-r01-B.png",
+      "sha256": "c8e2b2bd908f145302fb4c2b44cb11272054e4322a035efac05e59b51e58bd0f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/elite-tiles/ELITE-03-r02-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/020-r02-A.png",
+      "sha256": "078d4e9fcfcffc787532b421569348d0684c218af4fc78fd7566b168eba4b182"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/elite-tiles/ELITE-04-r02-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/021-r02-A.png",
+      "sha256": "d8865d6fc9dc65679b0a09f108086dd05480a950c6f22370c99405ee0c84d317"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C01-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/132-r02-A.png",
+      "sha256": "d28d33f9063f4852b49d3ace51cb48a29e311de6590d1543429cd3203303c446"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C01-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/132-r02-B.png",
+      "sha256": "78bcf16fce61c81b3b5e9e57945a9548799d83ab65252f7b37d7d47481d9ee62"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C02-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/133-r02-A.png",
+      "sha256": "17e30f8e1bdd30767489e01b02830fc09ca433d84e37e5cf39f21b83798fef9b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C02-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/133-r02-B.png",
+      "sha256": "71c8f2475ee68e7e03352b73a654bc01297d964fd540779b2b18ca2bf278dd9b"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C03-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/134-r02-A.png",
+      "sha256": "b435d21b523d35ff03f78782318e370334e697cd89ea232086f4aae17e5f7a50"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C03-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/134-r02-B.png",
+      "sha256": "bccf310fb54b1b9b9dd25e36f89ffdcf90880adef49f926dbf4f0be2e1968c5e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C04-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/135-r01-A.png",
+      "sha256": "113e3d23e4111f89b91e02edb4fd2dc5a3760349406e98ead88be57485bfadb4"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C04-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/135-r01-B.png",
+      "sha256": "7cb388a05a35647cda19ef0d88249d21032d7c1864ad0161f738e12b1f157a04"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/136-r01-A.png",
+      "sha256": "dff6bb18f5bb8a4eb416ae619ba64b9ffda75beaa658cb50dbe16d76e4a3fa18"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/136-r01-B.png",
+      "sha256": "05d226d9b6ecb72858f93bc98c630f6fe77c52d188916275678c2aa5bdf34dab"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/necros-25/tiles/NEC-D02-r01-A-native64.png",
+      "sha256": "8a4599183d801f7e55f7ae1ccc0560df56ada6caed79cca6ffef6d30bea6eafd"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/necros-25/tiles/NEC-D02-r01-B-native64.png",
+      "sha256": "df8b21b0f3cea5d1cd22d8643f4d6fb877aaaf058f691b2df6a3ff5e7befde1a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/137-r02-A.png",
+      "sha256": "28343d2c79bce788a6a03f0c3287d2523edea9e90ce5865828e3de1a9ae0fd24"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/137-r02-B.png",
+      "sha256": "e3fa2b7fba517364a479669a2f739a1018d993d5cc61d2f20c4b2c619ddf310e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D03-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/138-r01-A.png",
+      "sha256": "c1dbadd746c6a3ca9bd137e55cc169fb2b79a16fb9a8dec8380ffd7362116dec"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D03-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/138-r01-B.png",
+      "sha256": "221abf631fa3367e674a2d4264247c149ced5919206ee785a8d48241ea8779e0"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D04-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/139-r02-A.png",
+      "sha256": "181c048fb26de1c0863f66bded561ea09b6e33fac7d37fb957cacd0de4b8bceb"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D04-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/139-r02-B.png",
+      "sha256": "b508397e6a945a539aecf3082605ca280d5541d28a86c5d63791af1ebf72f542"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/BOSS-01-cell64-canvas256.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/tiles/BOSS-01-cell64-canvas256.png",
+      "sha256": "9ed1990df51cb6c9f110bd0f5eb37ff2add5445fc4b613d04ca07b5604edf8e5"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/CULT-02-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/014-r04-A.png",
+      "sha256": "d559d723944ac0ec4262cb3576c763471fe9334c3abbe9d420ecacfea08d74e7"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/CULT-03-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/015-r03-A.png",
+      "sha256": "144979b33fbeeb2a1d51938ce9c2b8284bf3306a3e51495fd61acaf0401d8068"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/ELITE-01-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/016-r01-A.png",
+      "sha256": "3937a4a8791308c7c24b09d856f92fafc68c9a27fa1f6ab7c1256f408b1c1436"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/ELITE-02-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/017-r01-A.png",
+      "sha256": "52ddab560f767e51b04eb29356275f3b09e7006642b7bfb64c2d5ebddf3f597c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/MON-01-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/005-r02-A.png",
+      "sha256": "2482e6dabebb386bb674bd72d09836ea9e3b7e51ab556d99382a9f770fb821f3"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/MON-02-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/006-r02-A.png",
+      "sha256": "6495bc8e1782b132444132f6333fc41c9454b8d2335378a96885b02f83925eca"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/MON-03-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/007-r02-A.png",
+      "sha256": "b4ce619b5a56a8c942856f2b35cf7ee3024c34e62ace153a8873119f37f57a62"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/MON-04-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/008-r02-A.png",
+      "sha256": "87bc7fc59d530fdcc7aaf829fdf53707672f3daf50c41c9b22b73f6aa3b94c1e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/MON-05-cell64-canvas256.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/009-r03-A.png",
+      "sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/MON-06-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/010-r02-A.png",
+      "sha256": "2a48fbc69ea5a9fb9533d4d7106b4682a7d90d03492d49049c55893167bd1687"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/MON-07-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/011-r02-A.png",
+      "sha256": "07d548ec471d3a7efbbfd5392352b36c74d58cccde8a17a76950d8c66547350d"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/MON-08-cell64-canvas128.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/012-r02-A.png",
+      "sha256": "4e2bf2af3b23679c2b54ae87918bdc14cd025eb64819ac4d7dc4f3912bb3d5f4"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/NPC-01-cell64-canvas128.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/tiles/NPC-01-cell64-canvas128.png",
+      "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/NPC-02-cell64-canvas128.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/tiles/NPC-02-cell64-canvas128.png",
+      "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/NPC-03-cell64-canvas128.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/tiles/NPC-03-cell64-canvas128.png",
+      "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/tiles/NPC-04-cell64-canvas128.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/tiles/NPC-04-cell64-canvas128.png",
+      "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/022-r01-A.png",
+      "sha256": "7e2b6b61082fa1b269f5d92bd2ac81af0f5cc7823021c41805c02f150a303221"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/022-r01-B.png",
+      "sha256": "6861ae1dc6e5a7b864a0179e04015a5dbac546f9d0d15dcea4387378869bd5fa"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-03-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/024-r01-A.png",
+      "sha256": "f8c105b813021e47d8f19e13139c52a8076dcac4ace045b41d29018d6e559aba"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-03-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/024-r01-B.png",
+      "sha256": "e91d372171d92042fad30bf613d2ea528e285949f50633b13d31bfcb895a201f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-04-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/025-r01-A.png",
+      "sha256": "782f69fc271b2a945ac0afa34b8a99dcb4b8f6ea1c6820f14732391f1ed2f642"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-04-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/025-r01-B.png",
+      "sha256": "3bfbda8c699bd744e2bf74e57d48b3c95128fa3571659158e8b24a230ce3e361"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r01-A-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/troupes-tiles/TROUP-07-r01-A-native64.png",
+      "sha256": "81f7909659dc92e7af7b74e76284f18d2f0abbb812e3eaf855b8ea251e24cc24"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r01-B-native64.png",
+      "durable": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/frozen-review-exports/troupes-tiles/TROUP-07-r01-B-native64.png",
+      "sha256": "f05ceecad54e02ee1941233d1d0b1ea1e137e98bee1815689ba00063a7bc44ec"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r02-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/028-r02-A.png",
+      "sha256": "6fb8aa2ec65c99345d7f90ef45bfeffffa1669ed8605048b6f8c26e4b3e3e397"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r02-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/028-r02-B.png",
+      "sha256": "5de8aa47e38fa4b616be0350b0ccb2060390821ca6b1828d6d03ca6266336e16"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-08-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/029-r01-A.png",
+      "sha256": "000c343fa6fd9a221581d857b0b7c43ceeab9da43dc73c577a06e3e784cd6610"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-08-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/029-r01-B.png",
+      "sha256": "81d6021756b36525d9e83720a2ce03b088d81ed6a4f312eb9ff9cab5b65b7c1f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-09-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/030-r01-A.png",
+      "sha256": "6f4e8c4aeccc7dfeed667900bddec03aecaedf8ccf2068aed3bedee1b7c2f1c3"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-09-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/030-r01-B.png",
+      "sha256": "a51b77a018a90148b7ea94240ab6358fef3c404c62770cdecd4993e11ae3b724"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-10-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/031-r01-A.png",
+      "sha256": "344cff76f1681e60736f41869fb3a5da124d1e90122709f5ae8b653dadeb52f9"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-10-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/031-r01-B.png",
+      "sha256": "4b0da7b335443be7e21dbbf4b1a40bb15deeac38689c86513469e443676d2280"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-11-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/032-r01-A.png",
+      "sha256": "911bd1715e0f5886d61b7ff051f84ae0b91467cf559f18fdd694827b376951fe"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-11-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/032-r01-B.png",
+      "sha256": "27e6329622ee623942bd842e61fa952b32c2595f07e67cd9eb4238ab1fae2aff"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-12-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/033-r01-A.png",
+      "sha256": "3e1aae99195cb744c07a69333620c4a11a9f4cd1567e5d813f07bcdc5889d32d"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-12-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/033-r01-B.png",
+      "sha256": "856a0eab4e51a46267bb17d2373aa1be48cfd17c398d0a22296c8c56d28326f9"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-13-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/034-r01-A.png",
+      "sha256": "8088c02864a883b577f33bc669be51a67aeef4324a562daed68b536a3b8acb80"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-13-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/034-r01-B.png",
+      "sha256": "d7b8dd8447df964ed6fe80e2443cf55c759e6891a8dc735186dcd194a5e1fdf9"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-14-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/035-r01-A.png",
+      "sha256": "2143f788fd20669f98c05a4294bd64c95f9fe2bddb3a447312d993a83a4ceec3"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-14-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/035-r01-B.png",
+      "sha256": "d93004ca4a9936646569c5a8c1a668aafc938054cb4e1ac18db8656bd40fb644"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-15-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/036-r01-A.png",
+      "sha256": "d3762614feb6f8597ad6451dc0f4ceb66c2d422d0ce32cd65cdaaf0ec0fcf98f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-15-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/036-r01-B.png",
+      "sha256": "3ed37832b3d8fdcab80baf7c32816ef9e275aa912598b662eff75b8e557f38d9"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-16-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/037-r01-A.png",
+      "sha256": "a4814f47bd759bd5142dec12004cf8e995d11171ffeea5dadf206c7e144fc62a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-16-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/037-r01-B.png",
+      "sha256": "5fd009e3f3828b003bd2d5a9a944fb9856b5dbebc641953737e7ed9de714239f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-17-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/038-r01-A.png",
+      "sha256": "67aef7576fba9ca5535868c98fd4a7068efc55cc7393cae41cabf075c8ea5849"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-17-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/038-r01-B.png",
+      "sha256": "f467f50f623473deeafde4720a1a0678fa90f1967364d91ddafe0ba295880026"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-18-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/039-r01-A.png",
+      "sha256": "5e93351812c1f564a957814793ea7c7e6dee7d5a54b129b62ae023f9633aab79"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-18-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/039-r01-B.png",
+      "sha256": "bf88d20b4a22342c750b8d7206847c4748dfdf31debb3abe80cb65d3b3413852"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-01-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/092-r01-A.png",
+      "sha256": "64352aedb8f481a79e86cf489c00ce23b965ebf9fc6da126218eeb9f388d72de"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-01-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/092-r01-B.png",
+      "sha256": "7a82dcdc7d9058219f5faf6650dc756a30ad61230a4c57e804e8e41646c6e11f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-02-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/093-r01-A.png",
+      "sha256": "a68a944ecf8680b3718d4710534994ae88011589d42a7e3e46a4ee7631727894"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-02-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/093-r01-B.png",
+      "sha256": "4219efdf3d5d7063de9e85400d7cff336abd2828cf098f4f21790beaf92bf618"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-05-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/096-r01-A.png",
+      "sha256": "2ac3e6c8185adbbb7c9a816b117a35f93e44858b19d2290489b3b0e74a59333a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-05-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/096-r01-B.png",
+      "sha256": "8444fc020621e79ccccc03a742fd2ced04b86fdc2c30d813ffca9c3ded6e69e8"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-07-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/098-r01-A.png",
+      "sha256": "a5a3f4c41784fd13a6123eaf24517719135d7a138e354af7ef1e8dea0d8864cb"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-07-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/098-r01-B.png",
+      "sha256": "e80012e137f0cf1a06082bb3f436d14b683929afd6ef82105c130f0813d0dbe8"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-08-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/099-r01-A.png",
+      "sha256": "f2ebdfa8a9d5824807eb73533250747fc50caa7d2217ed3ced92763e9e1eccda"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-08-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/099-r01-B.png",
+      "sha256": "5c3cb8e1538f1825d508dbc818ead7bfc570fa35c6642372bbd93815f09bf631"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-09-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/100-r01-A.png",
+      "sha256": "8a8de13992bef8f3d8c68bee5cc4d2734109acbb980a87352f0a07545885b3c3"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-09-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/100-r01-B.png",
+      "sha256": "112dd7dd00c208b5d7a4c3089f7a24bf94a1a3dd08c7af649d92bb11af898c05"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-10-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/101-r01-A.png",
+      "sha256": "460767239b416ccc1842a7de9bf1062bfe3ff5401b316d55722dae283c8b1048"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-10-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/101-r01-B.png",
+      "sha256": "7ce7bcd37e216e00a999e3e5be34ba7f72c65aa7fe3a802293bc7b0bc25c2069"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-11-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/102-r01-A.png",
+      "sha256": "1b1723b2132ef0a01e3139cc41a2930ac4ebda309144c8f4f3eafa409bbab86e"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-11-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/102-r01-B.png",
+      "sha256": "febad96803fcd645f7b2ebace40bd021a39be76397e1e148cdcde5636c8b0a39"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-12-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/103-r01-A.png",
+      "sha256": "e29fd77edbe1eb924b6b658f92eee91404c8c5494d6552e9e92f8293b7b6c737"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-12-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/103-r01-B.png",
+      "sha256": "2bf008c8f6bd101362561888f365aced4f5df6943406c0ee0564dcfbf5b97051"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-13-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/104-r01-A.png",
+      "sha256": "d145ea2a1809beb9738a9313c87fbf72607e8c75249908331b971543d5062c43"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-13-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/104-r01-B.png",
+      "sha256": "b2b2bb6449e968b4cfdb4e5ef2337b0b2c1359bf504ec5d7da37f47fa0b2ebed"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-14-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/105-r01-A.png",
+      "sha256": "0cccede081eb428ba1a21d2aeacd9ffeac36781e838d87e0908a212b7fb8961a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-14-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/105-r01-B.png",
+      "sha256": "4db00d6059722e8c1acfe55c9b032956ff07a5c89a3806839281ed4dd0308907"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-15-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/106-r01-A.png",
+      "sha256": "9530b9c51abcd9393daaa71f1f84eadf8db774982fda6f24e529fab897e5a10a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-15-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/106-r01-B.png",
+      "sha256": "034e741ce3c0c6de9445cd069b71a6a996d1fa01be13d469739adac17f1b5846"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-16-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/107-r01-A.png",
+      "sha256": "caf20d6179c8b4dcb5d9a66d3e15bc11d4ddb41e61cdcd015ab62dd2a8e57644"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-16-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/107-r01-B.png",
+      "sha256": "3d9bd2236ad32134400d3fba707642c85ffbdf65223ed6ffd7b4093ec8c7665a"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-17-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/108-r01-A.png",
+      "sha256": "a858ca57d586c1306acc80483c85811375c946ba7916b3f9503fee072c3a5bd0"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-17-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/108-r01-B.png",
+      "sha256": "57fbee69a4e1a1c14b92482d3c6eade7baaf7b4d7f82b7f5760d26505527f6ac"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-18-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/109-r01-A.png",
+      "sha256": "6e9861d2d4686d41b3c27a4f382b175f6b04333775b4f155489a08af1722c311"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-18-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/109-r01-B.png",
+      "sha256": "6c2406a14d3858bd8bf63b979713f2ba93fcf8ba4a27d188b2f52b8c102e1f02"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-20-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/111-r01-A.png",
+      "sha256": "c727e1b4b742163960dab0ac845e038ff37b9b8d12607af188d653b10c58610f"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-20-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/111-r01-B.png",
+      "sha256": "4a87472c2a8f984254c07e2d6637c66f347bea7023e57d88a4dbce8e8b4d9103"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-21-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/112-r01-A.png",
+      "sha256": "cdd6e3bda6c3396eb235937450ea99c1bd5050b9128fc984af12753e85a1551c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-21-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/112-r01-B.png",
+      "sha256": "78f95d1bcee5fcc1a9aa81c4bb383fabdd0201b57ef07560043be419c40ac62c"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-22-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/113-r01-A.png",
+      "sha256": "f602dbf87db6c955ff24e004decc51722f050d24bc561625064117272350ce09"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-22-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/113-r01-B.png",
+      "sha256": "54f4801eb58fa16bf01a0494d968b5ddbe9f383de7d99a6fb00279c363c80089"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-24-r01-A-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/115-r01-A.png",
+      "sha256": "bd8344c7b5b7737599dbd8f6e3ba4002541636e2c2cb59006896fa42765bf658"
+    },
+    {
+      "old": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-24-r01-B-native64.png",
+      "durable": "assets/sprites/campaign-monsters/tiles/115-r01-B.png",
+      "sha256": "a2b9a44a994e382c67f2789410b744cda94989d704f29575cab34ba28dc3540d"
+    }
+  ],
+  "targets": [
+    {
+      "path": "artifacts/npc-monsters-review-01/acceptance03-before.json",
+      "bytes": 73408,
+      "sha256": "16005cf1027ea1ea384faef555703bdd55d473e71512f5ac34135e36361672d3"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/acceptance04-before.json",
+      "bytes": 73408,
+      "sha256": "4334f85cd16fc0344ecbfe3b833c6576a268883bb8041b90894d6cfe50f81e54"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/acceptance05-before.json",
+      "bytes": 73408,
+      "sha256": "189580506a56d1167817475ebaa08057284744139c69e1250a3226fcc03e6992"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/acceptance06-before.json",
+      "bytes": 73408,
+      "sha256": "ef759fd9dc382375840150ab988a56f5526f32d0cf1f647b6fde706c62cb5094"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/acceptance07-before.json",
+      "bytes": 73764,
+      "sha256": "371f85b26aa391b43de1f6d1cd5925d170d0a43fd5d4483033a1e2bf2d22186d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/apercu.html",
+      "bytes": 32178153,
+      "sha256": "219e1020e3c890726cc90670795a9bcaa63ecd8309cd4bbbc2e49b6dd96d96ca"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/boss-preview-script.js",
+      "bytes": 72894,
+      "sha256": "df86e6510bc0b4104993a66a282bdc05b926400ae364deaab05faa5e82fbfb4f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/boss-secteurs-18-19.png",
+      "bytes": 105654,
+      "sha256": "653381b940ccd511ebf150ed69a31aeb43c129c4c27c26363e61f80c35d9d044"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/boss-secteurs-20-21.html",
+      "bytes": 133478,
+      "sha256": "c3d91eedb75c6ae913226c7a23573fa31aa0b4b3d67974d637e7defec606261f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/boss-secteurs-20-21.png",
+      "bytes": 238485,
+      "sha256": "76713cc80ce0b4a8101db77f0c6c3f1b72ab29e9b271fb80b3d40d7c9c0944e4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/boss-secteurs.html",
+      "bytes": 74186,
+      "sha256": "841d5c51d13b444e8a7449a999eae1db1867c7a84f0a8975555432f21d4b0813"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-01-r02-native64.png",
+      "bytes": 23064,
+      "sha256": "0e99265c3a98feed56f4f909dbdb60a2553e2043548fbf8961830338eef005df"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-02-r01-native64.png",
+      "bytes": 46316,
+      "sha256": "8e586a6945a6a6020c47eb716167ee5e8e1a45cdce3d4345931cd8438d281b9d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-02-r02-native64.png",
+      "bytes": 30577,
+      "sha256": "e47808bfeaec7ca59fb4e585ebe10dabfe4182a45810725f4103a77a1c22d5ca"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-03-r01-native64.png",
+      "bytes": 43416,
+      "sha256": "63aac7b4b71a7b7e9d21dcfa35dd6c08b6f57f98692b3c1472ad03e3396278cc"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-04-r01-native64.png",
+      "bytes": 53010,
+      "sha256": "b98d1cbd300603894e0302d286d23f5abce5810aa7ef71ac5c154143200a6e54"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/catalogue/shadows/ARPG-32-r01-shadow64.png",
+      "bytes": 200,
+      "sha256": "0c94fb900c89260fff59a040cbe1ae6b6e6535286933618c1425c073cf0b9b06"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/catalogue/shadows/CULT-01-r03-shadow64.png",
+      "bytes": 199,
+      "sha256": "73817e1561d14ad79cbb3db08f381399a957a1a69b5f6763c7cd1682daa7777b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/catalogue/shadows/DEM-F01-r01-shadow64.png",
+      "bytes": 197,
+      "sha256": "631127a53b5e8093c979a5912c8928a9c6a684717a7a78c3c4da86e190511f33"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/catalogue/shadows/DEM-H04-r01-shadow64.png",
+      "bytes": 199,
+      "sha256": "24bcf93ef46566d9a137daecbf6f325cd1656362517709cde73e8e82e05501c5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/catalogue/shadows/NEC-D02-r01-shadow64.png",
+      "bytes": 198,
+      "sha256": "e4a5719020a6019510cb5d9b56bd0dcbe175d1f4f22f9b11e5567fa9380b2ee9"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/catalogue/shadows/TROUP-02-r01-shadow64.png",
+      "bytes": 145,
+      "sha256": "70036ef6b8ff4cf281a669ea5b8a36ad002de2d98fa86065842d79db4550045b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/catalogue/shadows/TROUP-06-r01-shadow64.png",
+      "bytes": 148,
+      "sha256": "d6fa7e4ff29164cf27ae859de726efa331da4114415e721457d0ff6c695f6e98"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/catalogue/tiles/TROUP-05-r01-native64.png",
+      "bytes": 2073,
+      "sha256": "f9c62a575abdceb5156ee4c9702fbe130352b238b638e16b1901a772032ab901"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/catalogue/tiles/TROUP-06-r01-native64.png",
+      "bytes": 1468,
+      "sha256": "d40f8d185b22462eb739731954275305978a522f0e25472125b827c29474ae32"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/comparaison-lisibilite.png",
+      "bytes": 97180,
+      "sha256": "dd03b54639a5bfec0aab20602d81de4ecf580f9b17659e2caa38f077873015e1"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/demon-28-taille-joueur.png",
+      "bytes": 31160,
+      "sha256": "f25fd95be9ee591680abbcdd351f8b98d0b6a8bd9c8428ed575382fd574383e4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/demons-116-119.png",
+      "bytes": 75883,
+      "sha256": "4e48ceb6ba4bf70ad6e2646dd6de1cd1be7438a2700d1b20cf91619aaa7e9e4b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/demons-120-123.png",
+      "bytes": 78587,
+      "sha256": "a8dd9351818795c124cb598df0d511c0de5923dc0b613eb0e5dad14c64ec0967"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/demons-124-127.png",
+      "bytes": 80403,
+      "sha256": "29624c9a8dfd4a4a1e087c293337204f1274737c6bf8675ee9f2bc8c273209f1"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/demons-128-131.png",
+      "bytes": 84846,
+      "sha256": "04058c01656a706b999793afac010d6e11ecf8719c0b6ef8519b636168db02a7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-01-r01-A-native64.png",
+      "bytes": 5128,
+      "sha256": "8dbef49e336de434a28caeefe2f54b652c46d58de4500a5699df8ea50d513f4d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-01-r01-B-native64.png",
+      "bytes": 5122,
+      "sha256": "53252f3d135549a892917b720f431e8d1a7ea81b8ee6e95f3f9458b84064b9a5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-02-r01-A-native64.png",
+      "bytes": 3709,
+      "sha256": "95443aa13e5b83323030f6b083121021bf83f0508c1b399d6959b1ed3400710c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-02-r01-B-native64.png",
+      "bytes": 3858,
+      "sha256": "294476ba6ae4c7bcad853e2461f01fbc71e482eba9ba5fcef9bb8642aa539e60"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-04-r01-A-native64.png",
+      "bytes": 3648,
+      "sha256": "67998ac48f353040a2fed85f51f41c44ab07b920b6177999454df3388a07560b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-04-r01-B-native64.png",
+      "bytes": 3637,
+      "sha256": "fed3030bd1b59437ea95fa971d22b2cbb71a213df00be5d50a51278b069271f2"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-05-r01-A-native64.png",
+      "bytes": 3485,
+      "sha256": "52888f37c6c02375530671b1287889da809e5bf88185270d55cf4763c9f008d2"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-05-r01-B-native64.png",
+      "bytes": 3468,
+      "sha256": "2e9370aa5866d33322c2f93417001271c094b523269e823f5aa660ae0122ca08"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-06-r01-A-native64.png",
+      "bytes": 2698,
+      "sha256": "7c9880526be02decf2ee37814d3bf329113be92bc8119124b966005a954864af"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-06-r01-B-native64.png",
+      "bytes": 2715,
+      "sha256": "cd0fc291658acca66be2c4f7d3554bc5fc82d2f2098d3cb3125317250fd03c0c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-07-r01-A-native64.png",
+      "bytes": 3912,
+      "sha256": "794f6acadffe0b51e10aea8a8df106161ebbebaa3a9c36e46710320c672656e5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-07-r01-B-native64.png",
+      "bytes": 3926,
+      "sha256": "992b920bc9f54f2fa732c362167ff2b68b870185a6b24aff85ac76a5da160f5f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-01-r01-A-native64.png",
+      "bytes": 3790,
+      "sha256": "39fa4dab3f6056e402b21851d4a10b968bc3d3a6ca5d03f2cca330a2049be8ad"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-01-r01-B-native64.png",
+      "bytes": 3780,
+      "sha256": "8a382926f1f6c99259eb208868d1e9fbeb26ac39c30c0d11106d47d15cbb41a0"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-02-r01-A-native64.png",
+      "bytes": 4294,
+      "sha256": "aad1dc23c8aa6e5266dff3944611c415e0051c53af8aeb44fd1293c581e61461"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-02-r01-B-native64.png",
+      "bytes": 4286,
+      "sha256": "3b775d09558d3af125bb925512cfed6ac52de1bcf7fc9cc623c23c8ecb533f75"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-03-r01-A-native64.png",
+      "bytes": 3455,
+      "sha256": "dbb0b202d23099a75444a9e8651bae917858e9c481000b1fe4551d9f33339b01"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-03-r01-B-native64.png",
+      "bytes": 3425,
+      "sha256": "179fedcc34994b38554df995fbe8a449c87e68a6e52cc9531e9b1d706691bc85"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-04-r01-A-native64.png",
+      "bytes": 4699,
+      "sha256": "30a9e532841bdf5e0b3afd8c5c3cc730e2d16c33215cad2c50bd715e708af16a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-04-r01-B-native64.png",
+      "bytes": 4603,
+      "sha256": "f54165634c74d674745f73523f0b312ab6fecc7479314f98cce70e3b4bb0683a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-01-r01-A-native64.png",
+      "bytes": 3682,
+      "sha256": "d27564d13a3bcd74caf786e2f494172f831ed48414d9f4aea6f6a715fdc4f8bc"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-01-r01-B-native64.png",
+      "bytes": 3684,
+      "sha256": "afc09289562d31c210025b758b5632dd4d3aef07d54e5742ec71679dea7ef103"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-02-r01-A-native64.png",
+      "bytes": 4586,
+      "sha256": "b3d0ff60fcfad9f8bf5a473d39902ad1243d5f44e519247bee3d54411d70b3c9"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-02-r01-B-native64.png",
+      "bytes": 4632,
+      "sha256": "937fc49d81ecdb6c2c74f29c2a10e3c87fbdc77dcfcf79aa9eb5d2abfe3882c5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-01-r01-A-native64.png",
+      "bytes": 3927,
+      "sha256": "908d91407b550bcb87eecf5fbbd9071da48cd4f33cfd569ca42235f79d016003"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-01-r01-B-native64.png",
+      "bytes": 3922,
+      "sha256": "1417a8699da2c57777aba0b0ceb9933c1a7a022fbbdaa980f696ab6a700a4103"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-02-r01-A-native64.png",
+      "bytes": 3571,
+      "sha256": "62bb72f64eeccb1bfe827c6a8da2f24c3ac60528558031738af8de0e7caaa02a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-02-r01-B-native64.png",
+      "bytes": 3621,
+      "sha256": "ee4e35875a3c94c63c214919d5d6bcb8c2af69a4fbd97027f1b7d98f0d0ff8c7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-03-r01-A-native64.png",
+      "bytes": 2779,
+      "sha256": "f3be6f683106b0709299a6629e124edd24c9dd1e980e4be5e63f7a882d9d2add"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-03-r01-B-native64.png",
+      "bytes": 2773,
+      "sha256": "9b39b83add2f4f6123a1866f46e9c3abe5e039c6c1931cb49fa3d4006c45746c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-04-r01-A-native64.png",
+      "bytes": 6187,
+      "sha256": "649e5f835b2b2b89fef30adac95d4c5722d704efd12164fd3d982d6aa41957fa"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-04-r01-B-native64.png",
+      "bytes": 6107,
+      "sha256": "3d0f142edc20f6d700cabbff4ef1970912896a28a84fc0915b79cadb40fae35b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/cultistes-13-15.png",
+      "bytes": 59862,
+      "sha256": "1b76ee4431c2b76884dc8c5ff34506f857750b055cf24807ead73c73159e3489"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/demon-28-taille-joueur.png",
+      "bytes": 31160,
+      "sha256": "f25fd95be9ee591680abbcdd351f8b98d0b6a8bd9c8428ed575382fd574383e4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/demons-40-43.png",
+      "bytes": 100388,
+      "sha256": "5855018fe0cd5a96ebecc16c0ba321c12f28d4008bea1447538cce6126ccf972"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/demons-44-47.png",
+      "bytes": 38754,
+      "sha256": "6de599509d01069c9885a2b926098fcd5372e922a1d8505c41469d7837181c9e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-01-r01-A-native64.png",
+      "bytes": 5589,
+      "sha256": "9a034de3bbf9d5cc5cdbdfc5d377b0f9c85e54b438979012e96d849489ef4548"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-01-r01-B-native64.png",
+      "bytes": 5516,
+      "sha256": "df0fb83b390aaf9cadbb327d58ee7560e27d2e36e345f837b8127fecc55e3481"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-02-r01-A-native64.png",
+      "bytes": 3851,
+      "sha256": "7fde500b1e7f5a722a47d15a4c61aa92551b779989d07d09bdb984f20e509da7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-02-r01-B-native64.png",
+      "bytes": 3786,
+      "sha256": "4df305b3b53164c9d2e8ce2b751a7f05b56fb58d9ceb2403fff393272d77a384"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-03-r01-A-native64.png",
+      "bytes": 4686,
+      "sha256": "d8a1fac788e5f708431f896dfc7a2c8d555b9f6da10fc3d5f31f5fef71c0f143"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-03-r01-B-native64.png",
+      "bytes": 4715,
+      "sha256": "5be0051d4a3f762cf831da8831149d69d49a701fece33a7faf5d2f6438a13b5b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-04-r01-A-native64.png",
+      "bytes": 8347,
+      "sha256": "a6735b05575c3629775a961828606b9a6a20d58e589cd46fe0a0718193976f07"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-04-r01-B-native64.png",
+      "bytes": 8419,
+      "sha256": "125ec001efdb7e542fb2b443a28ecb4abcbf5809c6818360cedec2090a37e01d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-05-r01-A-native64.png",
+      "bytes": 3403,
+      "sha256": "5f86cf861ece108b4304fb66a7d9512dd6c43d35a38b60a724e5c16f33bf4bbf"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-05-r01-B-native64.png",
+      "bytes": 3369,
+      "sha256": "72335a19b54089891bd72a87e299fd17efc26f3af50926b2f1832cbfb4b94a6c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/demon-28-taille-joueur.png",
+      "bytes": 31160,
+      "sha256": "f25fd95be9ee591680abbcdd351f8b98d0b6a8bd9c8428ed575382fd574383e4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/demons-60-63.png",
+      "bytes": 80528,
+      "sha256": "3571bb7ec636a3967ef27732761f181f31a205e6d90ae0f3710eb029dc56e6c7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/demons-64-67.png",
+      "bytes": 86316,
+      "sha256": "a299d191f1e563124ddc728737b1d78cf3fb13cf56d0658e18c6df17e8a223b9"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/demons-68-71.png",
+      "bytes": 93591,
+      "sha256": "888449f7e6f5f3cf8290eb095914f2784f615ff1e5038a0fe870d0ff88d8b33f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/demons-72-75.png",
+      "bytes": 79280,
+      "sha256": "fdf287924e4900c98f4ec3a8cd310d1d0416bc820d98c50bdf395c8976816b64"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-01-r01-A-native64.png",
+      "bytes": 2314,
+      "sha256": "487d1a01970bc3d2ea49c4139ffb7d01bae3fe922773e106697094b65843659b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-01-r01-B-native64.png",
+      "bytes": 2337,
+      "sha256": "98ef1a2ae7fa6a282f59d5bca659fe4d8c584cd48fc01d07df88c3b2311279a4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-02-r01-A-native64.png",
+      "bytes": 3349,
+      "sha256": "4a75b572581d4a0db794e8e02b7f3fdf9846b666fba1970f2136aa924885cbf1"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-02-r01-B-native64.png",
+      "bytes": 3427,
+      "sha256": "3492f9b0734d72fb2057110ea751952746b6c4fdcfef42b1340e9ae44271f23e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-03-r01-A-native64.png",
+      "bytes": 3693,
+      "sha256": "7027322328ad003cea24c92ee521eb821cf14023d2fab89504badcd93ee7e4b8"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-03-r01-B-native64.png",
+      "bytes": 3702,
+      "sha256": "f75a9e19f9396f2944ed293f3cbfe46beae6baa2e894f9519c38e88c3e6997f6"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-04-r01-A-native64.png",
+      "bytes": 3254,
+      "sha256": "777b5510b747c12bb9750589025e09651dfeac66f34a5afcceea77019931a8fe"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-04-r01-B-native64.png",
+      "bytes": 3332,
+      "sha256": "acd70ee8b13200cb5d5dcf0c973f6b41ec99e9ebc03a004fd920acc150ee0cdb"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-05-r01-A-native64.png",
+      "bytes": 2896,
+      "sha256": "50708a3ae184f4944af3dca064552d7dbb5adfa8fe631c8d5f726011d76dc332"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-05-r01-B-native64.png",
+      "bytes": 2888,
+      "sha256": "fb27228dc9f8c7282cd17736aea05dbc2361d76c9990e5a387547c138c22fdea"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-06-r01-A-native64.png",
+      "bytes": 5345,
+      "sha256": "4d5077eee5c81c93450f38512c5efbfe13a32f3c349844e8e9c3378268a53f61"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-06-r01-B-native64.png",
+      "bytes": 5367,
+      "sha256": "dc40354854ad703b2c04063dae5df8c6e922678b235e925d905c3721f57e0c3d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-07-r01-A-native64.png",
+      "bytes": 4677,
+      "sha256": "5d9b1ccbcf47e3fb5d9403f5701817acdae166e20d52724161af81f47b933c44"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-07-r01-B-native64.png",
+      "bytes": 4827,
+      "sha256": "b1d8374edcf5b535f95cfb07b33232c1f9e7f11a9bc3f73c9fa2447ca8117ef2"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-08-r01-A-native64.png",
+      "bytes": 2147,
+      "sha256": "d03d02ad5d9bd9d50f391e62a3632f4a082d5dfd92ec76ee891a3beb30d10f21"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-08-r01-B-native64.png",
+      "bytes": 2196,
+      "sha256": "49523c03731cb48f91c078f94c42468d5c3aed123e6badb62c6f1d7578bd8adf"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-09-r01-A-native64.png",
+      "bytes": 5333,
+      "sha256": "f3b385f2ede023f6227181c65cf2773eff6444aa904b8d8faca3e51bc9266b9f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-09-r01-B-native64.png",
+      "bytes": 5364,
+      "sha256": "2d3d3c9753c551940bed2bda87fde50dcb9e42db74d08272c3a14e744ad7995d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-10-r01-A-native64.png",
+      "bytes": 2623,
+      "sha256": "31d3005ca0e4682216c76f237d8dccbfb97ab2dd36a421d2d480e821754bddec"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-10-r01-B-native64.png",
+      "bytes": 2694,
+      "sha256": "66127de73e66a093f8c33224191ff7484b6c20b4129f6a96a1da4ab7802c42fc"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-11-r01-A-native64.png",
+      "bytes": 5463,
+      "sha256": "cec023601c4abf1e2dd04e8844bc26dda8f38c5dda4adbd0905c2b686856eae1"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-11-r01-B-native64.png",
+      "bytes": 5534,
+      "sha256": "6ed724592b5c7aa7786e7ac84837c7fdc8b9f3162826372feb2590e96ff58775"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-12-r01-A-native64.png",
+      "bytes": 4602,
+      "sha256": "4fd8a6913291180b9301565bf9f7e9b813bb751c132b923c580d4a143a21d982"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-12-r01-B-native64.png",
+      "bytes": 4735,
+      "sha256": "0b362310f5d7dc4fe6e7f5878afb7974e39915eeef1ddd610073e7ee32e56017"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-13-r01-A-native64.png",
+      "bytes": 4845,
+      "sha256": "486492ea3b50a33350f07dbf1527030f73fc272a4946cfdd2aa9bf08f508cde4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-13-r01-B-native64.png",
+      "bytes": 4812,
+      "sha256": "d99521a1cc73c78847627916dde4009736874eb47be196ec4b2ecee8315b8eb6"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-14-r01-A-native64.png",
+      "bytes": 4318,
+      "sha256": "e0f84f499e8a7e14bfd9ea84af94255b1d0ac5a94a1200ec285a284fbdae34ba"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-14-r01-B-native64.png",
+      "bytes": 4273,
+      "sha256": "2f6faba70f9f58eca9046d6b8723ef63e689c3ac512b1b700a2dd09654135497"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-15-r01-A-native64.png",
+      "bytes": 4111,
+      "sha256": "fa7aa0148c1d143cca5b1beb8a956674ddc3ce6f6364d1ab7f85b43da1ee8406"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-19/tiles/ARPG-15-r01-B-native64.png",
+      "bytes": 4149,
+      "sha256": "640dca7710d43aee52d7d5bf79273a8cd7c1d59f00a2c36f33b093fa5036917c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/demon-28-taille-joueur.png",
+      "bytes": 31160,
+      "sha256": "f25fd95be9ee591680abbcdd351f8b98d0b6a8bd9c8428ed575382fd574383e4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/demons-60-63.png",
+      "bytes": 84920,
+      "sha256": "2c759885dfaa8a6b32ac6c35092824b3fc5d5ac967aba8ab75fcd1adb5ee83e7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/demons-64-67.png",
+      "bytes": 90978,
+      "sha256": "4d138b1d66ed7232d20346d8e8971371116d596e68aa5edbac5f82b1ff36c86b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/demons-68-71.png",
+      "bytes": 100325,
+      "sha256": "141f3e8c5ef5bb81ce161974607bf1c51129048a8a27911cca64c611dcf33129"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/demons-72-75.png",
+      "bytes": 98302,
+      "sha256": "cfadd17f8bdfb1cf84491286d2f85094476cd732a963d328553225dc611de1ba"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/demons-76-79.png",
+      "bytes": 109399,
+      "sha256": "fa78fc60f40ad4722f789e428ecda1bbc82eb8ad8cb746b0b08a47d8075475b6"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-01-r02-A-native64.png",
+      "bytes": 2666,
+      "sha256": "ba994453365e9bd55b547299ba6bff0762a944dee44c2da88bb512c551ef163a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-01-r02-B-native64.png",
+      "bytes": 2685,
+      "sha256": "1958c76537e2dc44c40dffe19ef6919ed5a6cd8056b4068490483bdce5a6b7e2"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-02-r02-A-native64.png",
+      "bytes": 3741,
+      "sha256": "227d2d8785a0469e3926648943d1b433159552e0104a65fabb19cdee4d47bd89"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-02-r02-B-native64.png",
+      "bytes": 3799,
+      "sha256": "bf5d555621039ab80883a64cd245ad8e1fb198ce3bc1b08c89d095a1fb0f1ccf"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-03-r02-A-native64.png",
+      "bytes": 4359,
+      "sha256": "6d13a53f7745b6bb5c6352ea5b10cc16687edd0b01eb1ab846f4d568f6703694"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-03-r02-B-native64.png",
+      "bytes": 4304,
+      "sha256": "4dc9ba863027a7e6cf3880ffbc34e15ce2629235a5d69327f83f900e28ca9b8e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-04-r02-A-native64.png",
+      "bytes": 3829,
+      "sha256": "354ddea48178de0d527ee8b575376518f0c70a76e544d53822c499b7734fce3c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-04-r02-B-native64.png",
+      "bytes": 3853,
+      "sha256": "2afe3d3bc7fe2dc090b18f75b48cc537a76e53343d260992f34313dd173bb26a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-05-r02-A-native64.png",
+      "bytes": 3525,
+      "sha256": "e9287aaa8529b64dcf9aced58f5921eac4234de9571415995ba43b3f6edcd37f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-05-r02-B-native64.png",
+      "bytes": 3470,
+      "sha256": "f1d7c0e2efd65fb359a9da5c389d5261099ae9a6db5313ce6af639aa585433e1"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-06-r02-A-native64.png",
+      "bytes": 6202,
+      "sha256": "0e7af5059b29965238771f8c9c4b699fe0ad5eeb85edcec4705bd431f8bb3511"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-06-r02-B-native64.png",
+      "bytes": 6137,
+      "sha256": "3ca714570c57db7e9f40f0483bfb6b36582acd078918b51010b543a742c1bdc2"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-07-r02-A-native64.png",
+      "bytes": 5368,
+      "sha256": "f457c354c5264e930307b5e18be5b58e96e03ef7f7d45cccedb8c3d56552d5fb"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-07-r02-B-native64.png",
+      "bytes": 5356,
+      "sha256": "f073808472301a51a574ee58d47e342ac7c8ca629e69047f51f06f1fa5516cb5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-08-r02-A-native64.png",
+      "bytes": 2408,
+      "sha256": "1c3484b3f02784e92dfb13d14060c1f35476e5f590394ea1749cecd0e57b85a9"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-08-r02-B-native64.png",
+      "bytes": 2434,
+      "sha256": "00c256ae608bbcbe538b0d039fcf443628a9a18bae474f46b028374982397356"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-09-r02-A-native64.png",
+      "bytes": 6839,
+      "sha256": "2d160f8481e14f5ea5c3d6e3abfb1b6c68cbd5171f602e69150eff8017c0daff"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-09-r02-B-native64.png",
+      "bytes": 6856,
+      "sha256": "b8da9d64556bd4dd1d8eda5e0233f7c2749b5fadc2a71720b824a0246948e727"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-10-r02-A-native64.png",
+      "bytes": 2864,
+      "sha256": "514126c49707f232ce1755ed21447b92474e56f6eed4ed8aeec49927d55e5642"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-10-r02-B-native64.png",
+      "bytes": 2894,
+      "sha256": "1ada76c026a0a903ce07775a7c6b79444f483892be4d802ddedefa3b051bc98f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-11-r02-A-native64.png",
+      "bytes": 6439,
+      "sha256": "6e2bd0d7c829a8bc740ecacc5a52fdc39b5768230d1f4bd3b6e78f8f4f011530"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-11-r02-B-native64.png",
+      "bytes": 6442,
+      "sha256": "f6a5deaf2af03f72ce08514d71db86e4ea7f2fd9eab432b9667c3dafc042ad90"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-12-r02-A-native64.png",
+      "bytes": 5313,
+      "sha256": "75db234e167d939b65967b78c99f4bb77b37ba1211d077e76a5237f24ac1f730"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-12-r02-B-native64.png",
+      "bytes": 5298,
+      "sha256": "569dbc448750ad6b09342e924dd8c4df58612f03f04cb86e2c3cddf4ea39d18b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-13-r02-A-native64.png",
+      "bytes": 5499,
+      "sha256": "3aaae9ea24ff995fdacfed62314ec697c667aefb1da1e6c4e91c0f5bce9e6ac5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-13-r02-B-native64.png",
+      "bytes": 5406,
+      "sha256": "e4ec63ab3a6836711f78d62c9d40110251d05de1d9a96700c96e04e7e2d8eb51"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-14-r02-A-native64.png",
+      "bytes": 5038,
+      "sha256": "533db90e6390b2810dbe7c3b762541f713a34032e773d27b97224511a3279d81"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-14-r02-B-native64.png",
+      "bytes": 5088,
+      "sha256": "4ec2ebbb8af993c178fff265045924dd4cb349eae540993d67ea1184b555056b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-15-r02-A-native64.png",
+      "bytes": 5038,
+      "sha256": "14ebba665dfd4a7802b03d7fc8dae609e810d5826e59a968d870f12e7dca1e40"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-15-r02-B-native64.png",
+      "bytes": 5044,
+      "sha256": "1f7e83a55280409b68936840f3ed89ffa8edd54a9bc1801e9bc9835d002ac862"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-16-r02-A-native64.png",
+      "bytes": 5338,
+      "sha256": "a99ebf03fd9cf3ba990ca5c51c3a76c697a5b00da56d1e5317ea3a5c6a01542a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-16-r02-B-native64.png",
+      "bytes": 5336,
+      "sha256": "c1defff7748a15b620a79651affabd073763fa472a20998c2c17adbc8d16d107"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-17-r02-A-native64.png",
+      "bytes": 6763,
+      "sha256": "1290547b16c807f054e697f8adade8a60cc958dc47481b3b93b73b9a888f11f1"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-17-r02-B-native64.png",
+      "bytes": 6802,
+      "sha256": "c6e95c5eb5d2ec9c327adfe55f050402e1cd30ae28aa76ed19234351823e70f6"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-18-r02-A-native64.png",
+      "bytes": 7361,
+      "sha256": "4c72796b0fa184e44cff622628dce8b2c7a14dbb73d60ed0470dbb436d582be5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-18-r02-B-native64.png",
+      "bytes": 7324,
+      "sha256": "077de3e93ad7e3868ce73f980d98836e58d2c3f0663b57d51f4717a11f74913c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-19-r02-A-native64.png",
+      "bytes": 8753,
+      "sha256": "c9a4f9654fe5fb286cc2c098f3ab6be6447adcfbae3e5eddbfe84d5ece309824"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-19-r02-B-native64.png",
+      "bytes": 8774,
+      "sha256": "7772beb87ebdaabf1b12e448e4306a5b7cf06adc75fb25e36e615a4daa0a66d7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-20-r02-A-native64.png",
+      "bytes": 4214,
+      "sha256": "5b2eb800f5495bf91289bcf6aeaa39d7fdecf7029aa297350e76cf4ddadc863b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-20/tiles/ARPG-20-r02-B-native64.png",
+      "bytes": 4237,
+      "sha256": "8d7b5e1212252844e61e5250c708cac809ec810a375bacd2c840b39b856ca35f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/demon-28-taille-joueur.png",
+      "bytes": 31160,
+      "sha256": "f25fd95be9ee591680abbcdd351f8b98d0b6a8bd9c8428ed575382fd574383e4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/demons-80-83.png",
+      "bytes": 99124,
+      "sha256": "fba8f748acfe739d4654b653eaae1557304db9b620f736a9b2385cd214d50c8a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/demons-84-87.png",
+      "bytes": 92507,
+      "sha256": "27ce6972da506f359527cc38918ff1737460daf5dbb55046dac75888d86292e7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/demons-88-91.png",
+      "bytes": 86649,
+      "sha256": "5bdd039fb2ac8f7318a4f16c5c9f7fce1158dcbb14120cb750d9a6357c1ea86c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-21-r01-A-native64.png",
+      "bytes": 7969,
+      "sha256": "410d94935c966837a025a952b7a67de15cd0a7723bd9783f9d8588a95b88bd54"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-21-r01-B-native64.png",
+      "bytes": 8046,
+      "sha256": "da5151d9fd7955a8efea23546857108295f0d2f37d09a0fb2f8cebb7b09de904"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-22-r01-A-native64.png",
+      "bytes": 3555,
+      "sha256": "c128a3728601efc63aa2fa5f5acb34ef3eada8bb695e9cc258d412f3a6ece3ee"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-22-r01-B-native64.png",
+      "bytes": 3483,
+      "sha256": "0a3149143c2744bb4f07be913bde5a18bf560fcceeb2b73f8b7e028ce797571d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-23-r01-A-native64.png",
+      "bytes": 5793,
+      "sha256": "70a532c310fe3fa9b14ade6e3fd44942c7fdd282113b4859875510fe9d84fcf5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-23-r01-B-native64.png",
+      "bytes": 5862,
+      "sha256": "e48d986c533bac7d1566905583b05316a557852c99311d7d1bf72beff8046012"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-24-r01-A-native64.png",
+      "bytes": 3776,
+      "sha256": "5110c74f93a476fdfafd2e30c832fa55f5cc83b7fc8dff7cb9521b80bd585f85"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-24-r01-B-native64.png",
+      "bytes": 3819,
+      "sha256": "27f61931da081d27f8b5776c154461677ba7db1c562159dd86dfffefda4f786e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-25-r01-A-native64.png",
+      "bytes": 4644,
+      "sha256": "44f5c68e8bf53bcc1934abd5ceeb5f0bed6c4dd31b6a4692e0306a7448d8496a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-25-r01-B-native64.png",
+      "bytes": 4610,
+      "sha256": "528e9f30ae60681801d1bcf9e9ee0fec501e1c38e1755f501d67d67dc5f0f150"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-26-r01-A-native64.png",
+      "bytes": 5632,
+      "sha256": "be9de0e6cb64d59e875467aeaa23cbd08999475b8d9817e45f6156324b5cf8f7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-26-r01-B-native64.png",
+      "bytes": 5533,
+      "sha256": "08b326f511170e9aed8cf542f44b0e069293465a387fcc8242cf95acea4f9006"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-27-r01-A-native64.png",
+      "bytes": 4089,
+      "sha256": "fcbc9f7bfaa6071ad365f32bb725d68fc30b8cb5c900d8d9eb1b94da7a4aa39f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-27-r01-B-native64.png",
+      "bytes": 4153,
+      "sha256": "4cd812998d63cfa3f58cf73a9bcc6efca014fff12729eef3fbaa3cfcc2c2d753"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-28-r01-A-native64.png",
+      "bytes": 3651,
+      "sha256": "73dc185e686737a5f0bb3c127144fca6d3221c5774e61e05d592087fdddd1cb7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-28-r01-B-native64.png",
+      "bytes": 3670,
+      "sha256": "d461d1e4e6111da52ddd1d1b54bd940c5ef318fde3eae5ea36eb41defb5dc04e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-29-r01-A-native64.png",
+      "bytes": 4706,
+      "sha256": "568da03042d41d8257700acb1f79a896fb40fe65b113479a8972fdbc3cba0a66"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-29-r01-B-native64.png",
+      "bytes": 4740,
+      "sha256": "f3cdf2dd15e11adcd19b80c471d696a898e1178e30e7b81a70edb68f12457b50"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-30-r01-A-native64.png",
+      "bytes": 3225,
+      "sha256": "9d2902389bdc2cc63a2f5bc4cef44d5123e880570c921e50ad7dd5eab71933f7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-30-r01-B-native64.png",
+      "bytes": 3258,
+      "sha256": "80a19ec16b26aefd4a1a56689f903e65caed912b678d12e8bd65f84c5223858a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-31-r01-A-native64.png",
+      "bytes": 2571,
+      "sha256": "30b3b8e628b5ab84f1e03f870c962e9e1d8c9b310c8701470ab68c4c3764baa0"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-31-r01-B-native64.png",
+      "bytes": 2591,
+      "sha256": "166691cd03254d565f9aa6ae491842800b3efd5fe22bec1779639953e23abc1d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-32-r01-A-native64.png",
+      "bytes": 4514,
+      "sha256": "e731d0e1b85e8cbbc487fcccdacc33551ce8f0380b526cf03eb947a1b97ec55a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-32-r01-B-native64.png",
+      "bytes": 4429,
+      "sha256": "2b8fb4caa0a99f0f39ac01fe2b3f69c77a1cf169dcae23fa725be7cc0aa644da"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/controle-trois-sols-native64.png",
+      "bytes": 778341,
+      "sha256": "21c9a0965f924acd295030f6d557cd086d181e52955a041facf49e0f3b02189c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/demons-140-143.png",
+      "bytes": 95771,
+      "sha256": "574b914e27bea7c8e63f1d979681a71ab92ad7f45f4faec46c08b109e4b4d98f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/demons-140-163-native64.png",
+      "bytes": 717775,
+      "sha256": "7cef5bb223c27ffb987874332c8cc64a42edc79f24f7d553650d1443e535eaed"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/demons-144-147.png",
+      "bytes": 139090,
+      "sha256": "649f15af490a2fe520d3efe978d98bafb343943747418c3240b198704fef6226"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/demons-148-151.png",
+      "bytes": 140391,
+      "sha256": "b5b27be9602046156078302a75c6dc24372791870546260995ddedf5741e9d03"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/demons-152-155.png",
+      "bytes": 123120,
+      "sha256": "1fa5949e5a6cf037d3c283bed458cc4f06c263379f26d3302619cca0c9cebc48"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/demons-156-159.png",
+      "bytes": 127312,
+      "sha256": "2d0232c491eae60787782c085f6a37a46a150dd89fa05c8057b5d2204a4de3c6"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/demons-160-163.png",
+      "bytes": 94445,
+      "sha256": "50df88c22ee2dc9b38e2ddd60724eae30869285e7feeac598dea21d7d722613f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A01-r01-A-native64.png",
+      "bytes": 9184,
+      "sha256": "9d7b123d62b21b72e1862ead6811e4d21a365fbf3adbe654f013d1b6cb85a4d2"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A01-r01-B-native64.png",
+      "bytes": 9439,
+      "sha256": "1428f28635f418a6578ce5e06c3779c7ae429aa058f775776992c543cf20b1d2"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A02-r01-A-native64.png",
+      "bytes": 11089,
+      "sha256": "86897b1b68b3f881c3d9344635c75598ecbe0745c6288cf3a95f6c1ec6c74eed"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A02-r01-B-native64.png",
+      "bytes": 11142,
+      "sha256": "b422e1cf39b963b917bd1f097fac21d707b63d911446cfa2e01ad8990ac789d9"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A03-r01-A-native64.png",
+      "bytes": 10306,
+      "sha256": "c467cf4f0e2a0cf114bcaaf58f427bebe1481573bfb6ced849b26828957627d3"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A03-r01-B-native64.png",
+      "bytes": 10343,
+      "sha256": "a27f5d5d9f33ec7a639ccd840b8a999b98c5583142017697847db10c80d94120"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A04-r01-A-native64.png",
+      "bytes": 9672,
+      "sha256": "055fda6b71e093ee7778032c87d3a1129cad17f3b7015340ec4f084515b24ddd"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-A04-r01-B-native64.png",
+      "bytes": 9620,
+      "sha256": "0d1ca2a9bf3bcc7b0d2f796139b642acdb501108a2b31c145a9727d282e5c9db"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F01-r01-A-native64.png",
+      "bytes": 10535,
+      "sha256": "782e6ddd9da651f0b697bab4bb159cec32be83cf07f5a32d7d8b21f626a59b1c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F01-r01-B-native64.png",
+      "bytes": 10606,
+      "sha256": "5d7ae8572e17228630b8e5ea7319484fbb497d4fba64d7c877a12f1912f8fb67"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F02-r01-A-native64.png",
+      "bytes": 7625,
+      "sha256": "fdec22bfdda25e1f715a5a2fefea82f035dfd03f9daf97d79238f51c4468cc4f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F02-r01-B-native64.png",
+      "bytes": 7610,
+      "sha256": "d42ca1499113d46f7ac78bb89c03f62f03895ce935755f569913f3668c46480a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F03-r01-A-native64.png",
+      "bytes": 7047,
+      "sha256": "39f6ab95378a3c43e73578c25d5d0b40492ea4f79c98b78a57e61618dd23a38e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F03-r01-B-native64.png",
+      "bytes": 7075,
+      "sha256": "4b8f467b331771ca250d1479db006e2e8b235ff44d6f65a220ed52b43b5d4a69"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F04-r01-A-native64.png",
+      "bytes": 10420,
+      "sha256": "b547018ab40f36a5434418ec3e010849392bb597e92d8393d3b2bcdf6a10a469"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-F04-r01-B-native64.png",
+      "bytes": 10339,
+      "sha256": "8c47948e31ae2758d81715dd44c2573f62910e247876b66a01e97c59734699c0"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H01-r01-A-native64.png",
+      "bytes": 4941,
+      "sha256": "60d263783dd154e05976a9c7add28158730f328f43b93b86e2e86447416b7f1a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H01-r01-B-native64.png",
+      "bytes": 4960,
+      "sha256": "94698a8072634c58829f4a34895d298ee42b9d5a3ff0976f90d2ced4159fee21"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H02-r01-A-native64.png",
+      "bytes": 3737,
+      "sha256": "0cf45db116dd2b8d952f77b2c2bbf5dc55fe77bf51c68ab87a1780d835df802e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H02-r01-B-native64.png",
+      "bytes": 3824,
+      "sha256": "01c3c3921ac49ed2179f8e1dfff5f40939d24df8023dc51cbfc1a170b2934296"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H03-r01-A-native64.png",
+      "bytes": 5216,
+      "sha256": "43acca9dd63c1c242f164761f31206075b35de0e72b73bffb9492c84e90d0f6a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H03-r01-B-native64.png",
+      "bytes": 5197,
+      "sha256": "5aaac303984d7e2a58a41f52e5787703ddc2b5e1ac2237b5dcb5912d8e7c065c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H04-r01-A-native64.png",
+      "bytes": 7038,
+      "sha256": "9d113743e3622777e45bbe44a6d577e8fb74c9563f1443961ffd0f424298b900"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-H04-r01-B-native64.png",
+      "bytes": 7040,
+      "sha256": "4648fc780356c1ba31f90a45f3d51d0b6b227019dea911a5b97a6907e773fc75"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M01-r01-A-native64.png",
+      "bytes": 11369,
+      "sha256": "bec873f694daea1855ca178fbd39905ab80e6ffab349b11cc0321af2e7a759fd"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M01-r01-B-native64.png",
+      "bytes": 11613,
+      "sha256": "732201df17fdcba15349649c4d9344ffce7c82f5b7d89a92953e9612dcd3025b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M02-r01-A-native64.png",
+      "bytes": 11626,
+      "sha256": "7d0024cb9c3f151f4803eea8b8287ef6c7caffeb80b3073b40c705e10fb8bea4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M02-r01-B-native64.png",
+      "bytes": 11663,
+      "sha256": "ee5f41847c96ddb33ce20447be33175dacf99ece3d06f7182384c3cb97fad96e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M03-r01-A-native64.png",
+      "bytes": 11269,
+      "sha256": "e4ed680fba86b96c1edf6c7a2ca507b0e1dba25baae29cafa2135c7b458f89d0"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M03-r01-B-native64.png",
+      "bytes": 11196,
+      "sha256": "22d7969bcd2cd9faf9f8bfac44b3056540b4d1efbd79e56582bbe707919f0695"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M04-r01-A-native64.png",
+      "bytes": 10068,
+      "sha256": "911436b8073effb6b8e104f8e21ff7ff23659b7bfb990b00c77242c4e637bee6"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-M04-r01-B-native64.png",
+      "bytes": 10275,
+      "sha256": "d3e3275115bd581ac7b0b7efccd85071b380b1c81fc441e0a9955a32af1746b5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P01-r01-A-native64.png",
+      "bytes": 9608,
+      "sha256": "576bda490af1b1a363b844a64c6f34976bd9df5cea32800cd8e58fd3ba57683f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P01-r01-B-native64.png",
+      "bytes": 9470,
+      "sha256": "5943dcfee4874efd65043552f0f4439b7cad39e269f244b54f5f13d1e0d1476b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P02-r01-A-native64.png",
+      "bytes": 9234,
+      "sha256": "17e82903fdf4170d20766f4129747b275028f772e5a6ae97db994d02e509786b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P02-r01-B-native64.png",
+      "bytes": 9373,
+      "sha256": "a3a22e2ca7f1ade09fa778ac311fab27c33e74f2c75898dd33cd7d62a414149a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P03-r01-A-native64.png",
+      "bytes": 7722,
+      "sha256": "5761d990aae0463a81ca40fa67848738a75af2e7d4ac39b3788528ad5eda52d5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P03-r01-B-native64.png",
+      "bytes": 7547,
+      "sha256": "2163e777b4023867650d09d08864e73d6a94b915cb107654b183a3ec5d438955"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P04-r01-A-native64.png",
+      "bytes": 8316,
+      "sha256": "2e3ea686296679f2db875e09fafbeae8b3c7c9b9da8d9dc26e96de11949b7bf8"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-P04-r01-B-native64.png",
+      "bytes": 8399,
+      "sha256": "5dec880bb27fd541651fc3d7881ee0648d290f281e00d8c4a545d4dabb6cad4b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V01-r01-A-native64.png",
+      "bytes": 4000,
+      "sha256": "7605f6989e884997e7d95c15d25b9c5e595430053d1c7d1e7cb5df2d7fb8fa06"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V01-r01-B-native64.png",
+      "bytes": 4083,
+      "sha256": "dc8e801e96dece553615fefe7054b62db3da7783707bc3b9b1e168bb661d0acf"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V02-r01-A-native64.png",
+      "bytes": 7315,
+      "sha256": "c7675382cc935c6a570a46ae2980945230d135a9b1541790a25287424ad17188"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V02-r01-B-native64.png",
+      "bytes": 7382,
+      "sha256": "c151ef3c170e92cc103397bba54fd552939b020cc4759517c1637935e9441080"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V03-r01-A-native64.png",
+      "bytes": 4218,
+      "sha256": "cb9b9ae5ac64d4d38c88ca9f21d34f6bdb4e934e98b9e8ef618a763428cb7d63"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V03-r01-B-native64.png",
+      "bytes": 4201,
+      "sha256": "489a721084af7d86479de109da3445242b621c1317d88a83bc4497fbbdc4216c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V04-r01-A-native64.png",
+      "bytes": 5951,
+      "sha256": "d8d18e2c5dc0db851f551f791875bf2ce9513938d33f0f542596afd0ca89703d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/demons-27/tiles/DEM-V04-r01-B-native64.png",
+      "bytes": 5831,
+      "sha256": "c8e2b2bd908f145302fb4c2b44cb11272054e4322a035efac05e59b51e58bd0f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/elite-tiles/ELITE-03-r02-native64.png",
+      "bytes": 11168,
+      "sha256": "078d4e9fcfcffc787532b421569348d0684c218af4fc78fd7566b168eba4b182"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/elite-tiles/ELITE-04-r02-native64.png",
+      "bytes": 10030,
+      "sha256": "d8865d6fc9dc65679b0a09f108086dd05480a950c6f22370c99405ee0c84d317"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/elites-20-21.html",
+      "bytes": 31463,
+      "sha256": "b6458e4f69d8aa35a857e7cadc6ab401cbbcb4780e1d6fd4b000332408dcfce1"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/elites-20-21.png",
+      "bytes": 126527,
+      "sha256": "6bada8d7c87ea1a9ebc5659b53d078f3be5916a07368ba6d7e5aee16b2c4c775"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/elites-boss-16-18.png",
+      "bytes": 81775,
+      "sha256": "2b49c6c3b4c68ce6349dc646e1dcf6cff2644c28c72cadfa3669f1d0673f8c75"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/elites-preview-script.js",
+      "bytes": 30530,
+      "sha256": "865ad2aee081d8fcc16ab8b0d3089e950cfd6019cc73eaa02bf37c7bf932d089"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/magicien-possede-25.png",
+      "bytes": 23868,
+      "sha256": "9483c3eb58d27a388d89cad2810cac16ccb70a9d88f7fd539183a73db4348772"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/monstres-10-12.png",
+      "bytes": 88020,
+      "sha256": "cc7f4c71b86c50b937ed75e992dcf1d519a6c4201b3df0fb45532ee9bced70bb"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/137-reliquaire-native64.png",
+      "bytes": 28649,
+      "sha256": "f6773aaa21479b7adea0ca69f93af138b1fff962f0b9dd8e5b72b04d211aa491"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/demons-132-135.png",
+      "bytes": 78373,
+      "sha256": "ae0f11e4b6a3896857c2dd6a17672897680ec413369fa19f590ad4dfddd5923b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/demons-136-139.png",
+      "bytes": 101555,
+      "sha256": "2d3674abd68636027030e9b10746e60fcdb05c910b48157dc276b1be722c8c04"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C01-r02-A-native64.png",
+      "bytes": 3736,
+      "sha256": "d28d33f9063f4852b49d3ace51cb48a29e311de6590d1543429cd3203303c446"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C01-r02-B-native64.png",
+      "bytes": 3740,
+      "sha256": "78bcf16fce61c81b3b5e9e57945a9548799d83ab65252f7b37d7d47481d9ee62"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C02-r02-A-native64.png",
+      "bytes": 4693,
+      "sha256": "17e30f8e1bdd30767489e01b02830fc09ca433d84e37e5cf39f21b83798fef9b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C02-r02-B-native64.png",
+      "bytes": 4659,
+      "sha256": "71c8f2475ee68e7e03352b73a654bc01297d964fd540779b2b18ca2bf278dd9b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C03-r02-A-native64.png",
+      "bytes": 3597,
+      "sha256": "b435d21b523d35ff03f78782318e370334e697cd89ea232086f4aae17e5f7a50"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C03-r02-B-native64.png",
+      "bytes": 3597,
+      "sha256": "bccf310fb54b1b9b9dd25e36f89ffdcf90880adef49f926dbf4f0be2e1968c5e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C04-r01-A-native64.png",
+      "bytes": 3577,
+      "sha256": "113e3d23e4111f89b91e02edb4fd2dc5a3760349406e98ead88be57485bfadb4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C04-r01-B-native64.png",
+      "bytes": 3586,
+      "sha256": "7cb388a05a35647cda19ef0d88249d21032d7c1864ad0161f738e12b1f157a04"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D01-r01-A-native64.png",
+      "bytes": 5771,
+      "sha256": "dff6bb18f5bb8a4eb416ae619ba64b9ffda75beaa658cb50dbe16d76e4a3fa18"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D01-r01-B-native64.png",
+      "bytes": 5754,
+      "sha256": "05d226d9b6ecb72858f93bc98c630f6fe77c52d188916275678c2aa5bdf34dab"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r01-A-native64.png",
+      "bytes": 5006,
+      "sha256": "8a4599183d801f7e55f7ae1ccc0560df56ada6caed79cca6ffef6d30bea6eafd"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r01-B-native64.png",
+      "bytes": 5011,
+      "sha256": "df8b21b0f3cea5d1cd22d8643f4d6fb877aaaf058f691b2df6a3ff5e7befde1a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r02-A-native64.png",
+      "bytes": 5323,
+      "sha256": "28343d2c79bce788a6a03f0c3287d2523edea9e90ce5865828e3de1a9ae0fd24"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r02-B-native64.png",
+      "bytes": 5355,
+      "sha256": "e3fa2b7fba517364a479669a2f739a1018d993d5cc61d2f20c4b2c619ddf310e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D03-r01-A-native64.png",
+      "bytes": 7156,
+      "sha256": "c1dbadd746c6a3ca9bd137e55cc169fb2b79a16fb9a8dec8380ffd7362116dec"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D03-r01-B-native64.png",
+      "bytes": 7133,
+      "sha256": "221abf631fa3367e674a2d4264247c149ced5919206ee785a8d48241ea8779e0"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D04-r02-A-native64.png",
+      "bytes": 5268,
+      "sha256": "181c048fb26de1c0863f66bded561ea09b6e33fac7d37fb957cacd0de4b8bceb"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D04-r02-B-native64.png",
+      "bytes": 5267,
+      "sha256": "b508397e6a945a539aecf3082605ca280d5541d28a86c5d63791af1ebf72f542"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/NPC-01-r02-revue.png",
+      "bytes": 17489,
+      "sha256": "c2e888a640e7472d3bd3a93c26ad5fa1263d744fb30e3f3915428702d601ad71"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/NPC-01-revue.png",
+      "bytes": 53883,
+      "sha256": "c3624bedcc0e9c5ab39a14885eb4d1e5ed9f9f0eb3b1d6833fedc04886411f32"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/ombres-monstres.png",
+      "bytes": 267554,
+      "sha256": "88f2ecadf06302655edb4a24a2f98390104405d8a7667172e0f3a01c0eecce7d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/petits-demons-28-33.png",
+      "bytes": 96424,
+      "sha256": "fca7bf795234e883b4ad56808cf76a059a45c86d0a5456151eaa1c014d6bcb97"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/petits-demons-34-39.png",
+      "bytes": 99965,
+      "sha256": "bb36bd38dc0ce642e1a176ebd1e5ff9f6e9757a372c3240070d557d3bbbc19c1"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/planche-01.png",
+      "bytes": 243375,
+      "sha256": "f92f0b4138dca6124dabf65e242a2825bde51fd08fd0367d21420efde9c9a85f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/possedes-hybrides-05-07.png",
+      "bytes": 92098,
+      "sha256": "3f56322de3ca9c55f029b036b22dfe175e4d73b1c3c8f1fd32ac1dbd863f6de4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/preview-script.js",
+      "bytes": 117106,
+      "sha256": "3628846aa49d7d7e57bfab6e1b7c1a277efba6544a896c0c6d6ce46b4ce989b3"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/profondeurs-glace-08-09.png",
+      "bytes": 108548,
+      "sha256": "c6caaeea70c341f9f5a02e25479825c824b9aa1cfe56dfe806551e0baba0db91"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/services-02-04.png",
+      "bytes": 60734,
+      "sha256": "78642848f2c1fbd6bf48f2d61109353c4304d0a4a4fe6f3ac41513efcc6e8760"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/BOSS-01-cell64-canvas256.png",
+      "bytes": 8347,
+      "sha256": "9ed1990df51cb6c9f110bd0f5eb37ff2add5445fc4b613d04ca07b5604edf8e5"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/CULT-01-cell64-canvas128.png",
+      "bytes": 2514,
+      "sha256": "4c4398f991b46d559361d8e7f3c93bcc953d07faae91cedef34babe2fb58c8a9"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/CULT-02-cell64-canvas128.png",
+      "bytes": 2287,
+      "sha256": "d559d723944ac0ec4262cb3576c763471fe9334c3abbe9d420ecacfea08d74e7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/CULT-03-cell64-canvas128.png",
+      "bytes": 2174,
+      "sha256": "144979b33fbeeb2a1d51938ce9c2b8284bf3306a3e51495fd61acaf0401d8068"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/ELITE-01-cell64-canvas128.png",
+      "bytes": 3243,
+      "sha256": "3937a4a8791308c7c24b09d856f92fafc68c9a27fa1f6ab7c1256f408b1c1436"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/ELITE-02-cell64-canvas128.png",
+      "bytes": 2700,
+      "sha256": "52ddab560f767e51b04eb29356275f3b09e7006642b7bfb64c2d5ebddf3f597c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/MON-01-cell64-canvas128.png",
+      "bytes": 4087,
+      "sha256": "2482e6dabebb386bb674bd72d09836ea9e3b7e51ab556d99382a9f770fb821f3"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/MON-02-cell64-canvas128.png",
+      "bytes": 5330,
+      "sha256": "6495bc8e1782b132444132f6333fc41c9454b8d2335378a96885b02f83925eca"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/MON-03-cell64-canvas128.png",
+      "bytes": 7480,
+      "sha256": "b4ce619b5a56a8c942856f2b35cf7ee3024c34e62ace153a8873119f37f57a62"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/MON-04-cell64-canvas128.png",
+      "bytes": 4894,
+      "sha256": "87bc7fc59d530fdcc7aaf829fdf53707672f3daf50c41c9b22b73f6aa3b94c1e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/MON-05-cell64-canvas256.png",
+      "bytes": 13649,
+      "sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/MON-06-cell64-canvas128.png",
+      "bytes": 4333,
+      "sha256": "2a48fbc69ea5a9fb9533d4d7106b4682a7d90d03492d49049c55893167bd1687"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/MON-07-cell64-canvas128.png",
+      "bytes": 5653,
+      "sha256": "07d548ec471d3a7efbbfd5392352b36c74d58cccde8a17a76950d8c66547350d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/MON-08-cell64-canvas128.png",
+      "bytes": 5777,
+      "sha256": "4e2bf2af3b23679c2b54ae87918bdc14cd025eb64819ac4d7dc4f3912bb3d5f4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/NPC-01-cell64-canvas128.png",
+      "bytes": 2884,
+      "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/NPC-02-cell64-canvas128.png",
+      "bytes": 2582,
+      "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/NPC-03-cell64-canvas128.png",
+      "bytes": 2416,
+      "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/tiles/NPC-04-cell64-canvas128.png",
+      "bytes": 2334,
+      "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-01-r01-A-native64.png",
+      "bytes": 2370,
+      "sha256": "7e2b6b61082fa1b269f5d92bd2ac81af0f5cc7823021c41805c02f150a303221"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-01-r01-B-native64.png",
+      "bytes": 2397,
+      "sha256": "6861ae1dc6e5a7b864a0179e04015a5dbac546f9d0d15dcea4387378869bd5fa"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-02-r01-A-native64.png",
+      "bytes": 2213,
+      "sha256": "7889d54e838a02f9a92dff38ccbec5100b173366e56de3a1886919c515912996"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-02-r01-B-native64.png",
+      "bytes": 2235,
+      "sha256": "7932f69e8c2a19586f19bfe93dc17c4e96c769d440658c1f652093840835aa07"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-03-r01-A-native64.png",
+      "bytes": 2127,
+      "sha256": "f8c105b813021e47d8f19e13139c52a8076dcac4ace045b41d29018d6e559aba"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-03-r01-B-native64.png",
+      "bytes": 2179,
+      "sha256": "e91d372171d92042fad30bf613d2ea528e285949f50633b13d31bfcb895a201f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-04-r01-A-native64.png",
+      "bytes": 2343,
+      "sha256": "782f69fc271b2a945ac0afa34b8a99dcb4b8f6ea1c6820f14732391f1ed2f642"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-04-r01-B-native64.png",
+      "bytes": 2350,
+      "sha256": "3bfbda8c699bd744e2bf74e57d48b3c95128fa3571659158e8b24a230ce3e361"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r01-A-native64.png",
+      "bytes": 2255,
+      "sha256": "81f7909659dc92e7af7b74e76284f18d2f0abbb812e3eaf855b8ea251e24cc24"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r01-B-native64.png",
+      "bytes": 2238,
+      "sha256": "f05ceecad54e02ee1941233d1d0b1ea1e137e98bee1815689ba00063a7bc44ec"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r02-A-native64.png",
+      "bytes": 4531,
+      "sha256": "6fb8aa2ec65c99345d7f90ef45bfeffffa1669ed8605048b6f8c26e4b3e3e397"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r02-B-native64.png",
+      "bytes": 4622,
+      "sha256": "5de8aa47e38fa4b616be0350b0ccb2060390821ca6b1828d6d03ca6266336e16"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-08-r01-A-native64.png",
+      "bytes": 1249,
+      "sha256": "000c343fa6fd9a221581d857b0b7c43ceeab9da43dc73c577a06e3e784cd6610"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-08-r01-B-native64.png",
+      "bytes": 1282,
+      "sha256": "81d6021756b36525d9e83720a2ce03b088d81ed6a4f312eb9ff9cab5b65b7c1f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-09-r01-A-native64.png",
+      "bytes": 1348,
+      "sha256": "6f4e8c4aeccc7dfeed667900bddec03aecaedf8ccf2068aed3bedee1b7c2f1c3"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-09-r01-B-native64.png",
+      "bytes": 1352,
+      "sha256": "a51b77a018a90148b7ea94240ab6358fef3c404c62770cdecd4993e11ae3b724"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-10-r01-A-native64.png",
+      "bytes": 2113,
+      "sha256": "344cff76f1681e60736f41869fb3a5da124d1e90122709f5ae8b653dadeb52f9"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-10-r01-B-native64.png",
+      "bytes": 2111,
+      "sha256": "4b0da7b335443be7e21dbbf4b1a40bb15deeac38689c86513469e443676d2280"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-11-r01-A-native64.png",
+      "bytes": 1741,
+      "sha256": "911bd1715e0f5886d61b7ff051f84ae0b91467cf559f18fdd694827b376951fe"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-11-r01-B-native64.png",
+      "bytes": 1733,
+      "sha256": "27e6329622ee623942bd842e61fa952b32c2595f07e67cd9eb4238ab1fae2aff"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-12-r01-A-native64.png",
+      "bytes": 1616,
+      "sha256": "3e1aae99195cb744c07a69333620c4a11a9f4cd1567e5d813f07bcdc5889d32d"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-12-r01-B-native64.png",
+      "bytes": 1603,
+      "sha256": "856a0eab4e51a46267bb17d2373aa1be48cfd17c398d0a22296c8c56d28326f9"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-13-r01-A-native64.png",
+      "bytes": 2202,
+      "sha256": "8088c02864a883b577f33bc669be51a67aeef4324a562daed68b536a3b8acb80"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-13-r01-B-native64.png",
+      "bytes": 2283,
+      "sha256": "d7b8dd8447df964ed6fe80e2443cf55c759e6891a8dc735186dcd194a5e1fdf9"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-14-r01-A-native64.png",
+      "bytes": 2047,
+      "sha256": "2143f788fd20669f98c05a4294bd64c95f9fe2bddb3a447312d993a83a4ceec3"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-14-r01-B-native64.png",
+      "bytes": 2046,
+      "sha256": "d93004ca4a9936646569c5a8c1a668aafc938054cb4e1ac18db8656bd40fb644"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-15-r01-A-native64.png",
+      "bytes": 2589,
+      "sha256": "d3762614feb6f8597ad6451dc0f4ceb66c2d422d0ce32cd65cdaaf0ec0fcf98f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-15-r01-B-native64.png",
+      "bytes": 2596,
+      "sha256": "3ed37832b3d8fdcab80baf7c32816ef9e275aa912598b662eff75b8e557f38d9"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-16-r01-A-native64.png",
+      "bytes": 1243,
+      "sha256": "a4814f47bd759bd5142dec12004cf8e995d11171ffeea5dadf206c7e144fc62a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-16-r01-B-native64.png",
+      "bytes": 1274,
+      "sha256": "5fd009e3f3828b003bd2d5a9a944fb9856b5dbebc641953737e7ed9de714239f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-17-r01-A-native64.png",
+      "bytes": 1959,
+      "sha256": "67aef7576fba9ca5535868c98fd4a7068efc55cc7393cae41cabf075c8ea5849"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-17-r01-B-native64.png",
+      "bytes": 1999,
+      "sha256": "f467f50f623473deeafde4720a1a0678fa90f1967364d91ddafe0ba295880026"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-18-r01-A-native64.png",
+      "bytes": 3063,
+      "sha256": "5e93351812c1f564a957814793ea7c7e6dee7d5a54b129b62ae023f9633aab79"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-18-r01-B-native64.png",
+      "bytes": 3072,
+      "sha256": "bf88d20b4a22342c750b8d7206847c4748dfdf31debb3abe80cb65d3b3413852"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/demon-28-taille-joueur.png",
+      "bytes": 31160,
+      "sha256": "f25fd95be9ee591680abbcdd351f8b98d0b6a8bd9c8428ed575382fd574383e4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/demons-103-103.png",
+      "bytes": 39587,
+      "sha256": "5ce1b29bfbb32e4cff1ac35683587c9df46b677f8dc62b774c97c31222d9af1b"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/demons-92-98.png",
+      "bytes": 93823,
+      "sha256": "84c7a2d9bfcfcbdb174c9414f28c0a092a6bc22d6bceb9e15c2a481f931fa04e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/demons-99-102.png",
+      "bytes": 103336,
+      "sha256": "7fc2c8f30b8e948e72ac164b190e94bb8a391b5a405cbbdbd0718fafbdbb8356"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-01-r01-A-native64.png",
+      "bytes": 3849,
+      "sha256": "64352aedb8f481a79e86cf489c00ce23b965ebf9fc6da126218eeb9f388d72de"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-01-r01-B-native64.png",
+      "bytes": 3819,
+      "sha256": "7a82dcdc7d9058219f5faf6650dc756a30ad61230a4c57e804e8e41646c6e11f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-02-r01-A-native64.png",
+      "bytes": 6906,
+      "sha256": "a68a944ecf8680b3718d4710534994ae88011589d42a7e3e46a4ee7631727894"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-02-r01-B-native64.png",
+      "bytes": 6801,
+      "sha256": "4219efdf3d5d7063de9e85400d7cff336abd2828cf098f4f21790beaf92bf618"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-05-r01-A-native64.png",
+      "bytes": 4575,
+      "sha256": "2ac3e6c8185adbbb7c9a816b117a35f93e44858b19d2290489b3b0e74a59333a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-05-r01-B-native64.png",
+      "bytes": 4569,
+      "sha256": "8444fc020621e79ccccc03a742fd2ced04b86fdc2c30d813ffca9c3ded6e69e8"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-07-r01-A-native64.png",
+      "bytes": 5189,
+      "sha256": "a5a3f4c41784fd13a6123eaf24517719135d7a138e354af7ef1e8dea0d8864cb"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-07-r01-B-native64.png",
+      "bytes": 5286,
+      "sha256": "e80012e137f0cf1a06082bb3f436d14b683929afd6ef82105c130f0813d0dbe8"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-08-r01-A-native64.png",
+      "bytes": 6273,
+      "sha256": "f2ebdfa8a9d5824807eb73533250747fc50caa7d2217ed3ced92763e9e1eccda"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-08-r01-B-native64.png",
+      "bytes": 6223,
+      "sha256": "5c3cb8e1538f1825d508dbc818ead7bfc570fa35c6642372bbd93815f09bf631"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-09-r01-A-native64.png",
+      "bytes": 3716,
+      "sha256": "8a8de13992bef8f3d8c68bee5cc4d2734109acbb980a87352f0a07545885b3c3"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-09-r01-B-native64.png",
+      "bytes": 3686,
+      "sha256": "112dd7dd00c208b5d7a4c3089f7a24bf94a1a3dd08c7af649d92bb11af898c05"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-10-r01-A-native64.png",
+      "bytes": 6063,
+      "sha256": "460767239b416ccc1842a7de9bf1062bfe3ff5401b316d55722dae283c8b1048"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-10-r01-B-native64.png",
+      "bytes": 6038,
+      "sha256": "7ce7bcd37e216e00a999e3e5be34ba7f72c65aa7fe3a802293bc7b0bc25c2069"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-11-r01-A-native64.png",
+      "bytes": 9031,
+      "sha256": "1b1723b2132ef0a01e3139cc41a2930ac4ebda309144c8f4f3eafa409bbab86e"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-11-r01-B-native64.png",
+      "bytes": 8953,
+      "sha256": "febad96803fcd645f7b2ebace40bd021a39be76397e1e148cdcde5636c8b0a39"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-12-r01-A-native64.png",
+      "bytes": 4945,
+      "sha256": "e29fd77edbe1eb924b6b658f92eee91404c8c5494d6552e9e92f8293b7b6c737"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-22/tiles/RLU-12-r01-B-native64.png",
+      "bytes": 4833,
+      "sha256": "2bf008c8f6bd101362561888f365aced4f5df6943406c0ee0564dcfbf5b97051"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/demon-28-taille-joueur.png",
+      "bytes": 31160,
+      "sha256": "f25fd95be9ee591680abbcdd351f8b98d0b6a8bd9c8428ed575382fd574383e4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/demons-104-107.png",
+      "bytes": 89028,
+      "sha256": "177902407cd5ec9b566bd9160b8b285c3c557a6a0ab9e83303e2d17c60c34a88"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/demons-108-112.png",
+      "bytes": 90378,
+      "sha256": "5efa182493bba82c96bab034b26e34bc0e3158963ac7baf239638a7056b2b6a4"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/demons-113-115.png",
+      "bytes": 48659,
+      "sha256": "cc686e5b8aab28507c8d451b78e08b86ecc9487cdcf4c1898559f6f78ae63d1a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-13-r01-A-native64.png",
+      "bytes": 3706,
+      "sha256": "d145ea2a1809beb9738a9313c87fbf72607e8c75249908331b971543d5062c43"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-13-r01-B-native64.png",
+      "bytes": 3661,
+      "sha256": "b2b2bb6449e968b4cfdb4e5ef2337b0b2c1359bf504ec5d7da37f47fa0b2ebed"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-14-r01-A-native64.png",
+      "bytes": 5072,
+      "sha256": "0cccede081eb428ba1a21d2aeacd9ffeac36781e838d87e0908a212b7fb8961a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-14-r01-B-native64.png",
+      "bytes": 5060,
+      "sha256": "4db00d6059722e8c1acfe55c9b032956ff07a5c89a3806839281ed4dd0308907"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-15-r01-A-native64.png",
+      "bytes": 4665,
+      "sha256": "9530b9c51abcd9393daaa71f1f84eadf8db774982fda6f24e529fab897e5a10a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-15-r01-B-native64.png",
+      "bytes": 4637,
+      "sha256": "034e741ce3c0c6de9445cd069b71a6a996d1fa01be13d469739adac17f1b5846"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-16-r01-A-native64.png",
+      "bytes": 4221,
+      "sha256": "caf20d6179c8b4dcb5d9a66d3e15bc11d4ddb41e61cdcd015ab62dd2a8e57644"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-16-r01-B-native64.png",
+      "bytes": 4252,
+      "sha256": "3d9bd2236ad32134400d3fba707642c85ffbdf65223ed6ffd7b4093ec8c7665a"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-17-r01-A-native64.png",
+      "bytes": 3445,
+      "sha256": "a858ca57d586c1306acc80483c85811375c946ba7916b3f9503fee072c3a5bd0"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-17-r01-B-native64.png",
+      "bytes": 3439,
+      "sha256": "57fbee69a4e1a1c14b92482d3c6eade7baaf7b4d7f82b7f5760d26505527f6ac"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-18-r01-A-native64.png",
+      "bytes": 3273,
+      "sha256": "6e9861d2d4686d41b3c27a4f382b175f6b04333775b4f155489a08af1722c311"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-18-r01-B-native64.png",
+      "bytes": 3256,
+      "sha256": "6c2406a14d3858bd8bf63b979713f2ba93fcf8ba4a27d188b2f52b8c102e1f02"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-20-r01-A-native64.png",
+      "bytes": 7719,
+      "sha256": "c727e1b4b742163960dab0ac845e038ff37b9b8d12607af188d653b10c58610f"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-20-r01-B-native64.png",
+      "bytes": 7655,
+      "sha256": "4a87472c2a8f984254c07e2d6637c66f347bea7023e57d88a4dbce8e8b4d9103"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-21-r01-A-native64.png",
+      "bytes": 4573,
+      "sha256": "cdd6e3bda6c3396eb235937450ea99c1bd5050b9128fc984af12753e85a1551c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-21-r01-B-native64.png",
+      "bytes": 4555,
+      "sha256": "78f95d1bcee5fcc1a9aa81c4bb383fabdd0201b57ef07560043be419c40ac62c"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-22-r01-A-native64.png",
+      "bytes": 3209,
+      "sha256": "f602dbf87db6c955ff24e004decc51722f050d24bc561625064117272350ce09"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-22-r01-B-native64.png",
+      "bytes": 3203,
+      "sha256": "54f4801eb58fa16bf01a0494d968b5ddbe9f383de7d99a6fb00279c363c80089"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-24-r01-A-native64.png",
+      "bytes": 4593,
+      "sha256": "bd8344c7b5b7737599dbd8f6e3ba4002541636e2c2cb59006896fa42765bf658"
+    },
+    {
+      "path": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-24-r01-B-native64.png",
+      "bytes": 4556,
+      "sha256": "a2b9a44a994e382c67f2789410b744cda94989d704f29575cab34ba28dc3540d"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-32-r01.png",
+      "bytes": 1094314,
+      "sha256": "be846f482a53fb6ac7633a0fe3ed779424db003ca98595d96fbf01d228448e05",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r01.png",
+      "bytes": 1287347,
+      "sha256": "3718c68f94db9959e3270ba229f1de74961bcc753a70073392603be766ad87b5",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r02.png",
+      "bytes": 1204803,
+      "sha256": "08913fe344a7c781b53e67416b746467724baf8888c8403a00800643ea60e7f2",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+      "bytes": 1293477,
+      "sha256": "ee8152aaeaa96e6c272fb59b1412b98ea8358a303ea03cdfdebef6ed1f72b7a1",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEM-H04-r01.png",
+      "bytes": 1133229,
+      "sha256": "afd6b8034d9dd0273193a596a493dc528af1807973606cdb6c551ba31ce0aad7",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-02-r01.png",
+      "bytes": 1284502,
+      "sha256": "2446f7d63da60fedb511fc80dcb1cffad54e48891385d24598bc712f054b7d44",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-06-r01.png",
+      "bytes": 755585,
+      "sha256": "034a1861cd43d3d85e5a04eb5bf953e69debc652be8f565140f2e12a8fe694d0",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/CULT-01-r03-shadow64.png",
+      "bytes": 199,
+      "sha256": "73817e1561d14ad79cbb3db08f381399a957a1a69b5f6763c7cd1682daa7777b",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-32-r01-shadow64.png",
+      "bytes": 200,
+      "sha256": "0c94fb900c89260fff59a040cbe1ae6b6e6535286933618c1425c073cf0b9b06",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-27/DEM-H04-r01-shadow64.png",
+      "bytes": 199,
+      "sha256": "24bcf93ef46566d9a137daecbf6f325cd1656362517709cde73e8e82e05501c5",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-02-r01-shadow64.png",
+      "bytes": 145,
+      "sha256": "70036ef6b8ff4cf281a669ea5b8a36ad002de2d98fa86065842d79db4550045b",
+      "reason": "explicit user refusal"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/CULT-01-r03/CULT-01-r03-native64.png",
+      "bytes": 2514,
+      "sha256": "4c4398f991b46d559361d8e7f3c93bcc953d07faae91cedef34babe2fb58c8a9",
+      "reason": "explicit user refusal"
+    }
+  ],
+  "total_bytes": 49253447,
+  "preserved": [
+    "artifacts/map-editor/",
+    "all source drawings except explicitly refused models",
+    "current catalogue",
+    "compiled game and legacy assets"
+  ]
+}

@@ -39,6 +39,31 @@ pub(super) const DEEP_BASE_IDS: [&str; 12] = [
 ];
 const EQUIPMENT_SEED_SALT: u64 = 0x4551_5549_504c_4f54;
 
+pub(super) const RETIRED_CORE_ITEMS: [&str; 7] = [
+    "core:integrity_blade",
+    "core:needle_launcher",
+    "core:flamethrower",
+    "core:composite_carapace",
+    "core:brigandine_cognefer",
+    "core:agent_cellule_energie",
+    "core:agent_dose_soin",
+];
+pub(super) const RETIRED_AVIATOR: &str = "core:veste_matelassee";
+
+pub(super) fn is_retired_test_item(id: &ContentId) -> bool {
+    id.namespace().as_str() == "lab"
+        || RETIRED_CORE_ITEMS.contains(&id.as_str())
+        || id.as_str() == RETIRED_AVIATOR
+}
+
+pub(super) fn is_retired_at_version(id: &ContentId, version: u8) -> bool {
+    if id.as_str() == RETIRED_AVIATOR {
+        version >= RETIRED_AVIATOR_GENERATION_VERSION
+    } else {
+        version >= RETIRED_TEST_ITEMS_GENERATION_VERSION && is_retired_test_item(id)
+    }
+}
+
 #[path = "firearm_models.rs"]
 mod firearm_models;
 pub(super) use firearm_models::{LEGACY_FIREARM_IDS, firearm_model_ids};
@@ -70,6 +95,14 @@ pub(super) fn current_model_ids() -> Vec<ItemId> {
 mod enemy_equipment;
 
 impl AsciiApp {
+    pub(super) fn remove_retired_test_drops(&self, blueprint: &mut ZoneBlueprint) {
+        if self.generation_version >= RETIRED_TEST_ITEMS_GENERATION_VERSION {
+            blueprint
+                .loot
+                .retain(|loot| !is_retired_at_version(loot.item(), self.generation_version));
+        }
+    }
+
     #[cfg(debug_assertions)]
     pub(super) fn prepare_rarity_equipment_diagnostic(&mut self) -> Result<(), String> {
         self.open_menu(MenuScreen::Main);
@@ -256,6 +289,194 @@ mod tests {
     use super::*;
     use project_rl::game::ZoneInfo;
     use project_rl::world::{Map, Terrain};
+    #[test]
+    fn aviator_retirement_preserves_generation148_and_reversible_catalogs() {
+        let (base, _, loot, _) = ascii_game_content().unwrap();
+        let old = rules_for_generation_version(base.clone(), 148);
+        let current = rules_for_generation_version(base.clone(), CURRENT_GENERATION_VERSION);
+        assert!(
+            old.monster_equipment_loot
+                .as_ref()
+                .unwrap()
+                .iter()
+                .any(|(id, _)| id.as_str() == RETIRED_AVIATOR)
+        );
+        assert!(
+            current
+                .monster_equipment_loot
+                .as_ref()
+                .unwrap()
+                .iter()
+                .all(|(id, _)| !is_retired_test_item(id))
+        );
+        let restored = rules_for_generation_version(current, 148);
+        assert_eq!(format!("{old:?}"), format!("{restored:?}"));
+        let old_loot = loot_for_generation_version(&loot, &base.items, 148);
+        let current_loot =
+            loot_for_generation_version(&loot, &base.items, CURRENT_GENERATION_VERSION);
+        assert!(
+            old_loot
+                .equipment()
+                .iter()
+                .any(|(id, _)| id.as_str() == RETIRED_AVIATOR)
+        );
+        assert!(
+            current_loot
+                .equipment()
+                .iter()
+                .all(|(id, _)| !is_retired_test_item(id))
+        );
+        assert_eq!(
+            loot_for_generation_version(&current_loot, &base.items, 148),
+            old_loot
+        );
+
+        let mut drops = blueprint();
+        drops.loot = vec![GroundLootBlueprint::new(
+            GridPos::new(2, 2),
+            RETIRED_AVIATOR.parse().unwrap(),
+            1,
+        )];
+        app(148).remove_retired_test_drops(&mut drops);
+        assert_eq!(drops.loot.len(), 1);
+        app(CURRENT_GENERATION_VERSION).remove_retired_test_drops(&mut drops);
+        assert!(drops.loot.is_empty());
+    }
+    #[test]
+    fn current_classes_start_with_real_equipment_without_generic_test_inventory() {
+        let (base, _, _, _) = ascii_game_content().unwrap();
+        let classes = ascii_character_class_catalog().unwrap();
+        for (_, class) in classes
+            .iter()
+            .filter(|(_, class)| class.agent_start().is_some())
+        {
+            let mut rules = base.clone();
+            class
+                .apply_to_rules(&mut rules, class.recommended_attributes())
+                .unwrap();
+            weapon_supplies_app::ensure_class_weapon_supplies(
+                &mut rules,
+                CURRENT_GENERATION_VERSION,
+            );
+            let legacy = rules_for_generation_version(rules.clone(), 147);
+            for (id, quantity) in [
+                ("core:agent_dose_soin", 2),
+                ("core:agent_cellule_energie", 1),
+            ] {
+                assert!(
+                    legacy
+                        .player_starting_items
+                        .iter()
+                        .any(|item| { item.item.as_str() == id && item.quantity == quantity })
+                );
+            }
+            let rules = rules_for_generation_version(rules, CURRENT_GENERATION_VERSION);
+            let game = GameState::new_with_rules(
+                Map::from_ascii("#####\n#...#\n#####").unwrap(),
+                GridPos::new(2, 1),
+                148,
+                rules,
+            )
+            .unwrap();
+            let ids: Vec<_> = game
+                .player_inventory()
+                .iter()
+                .map(|entry| entry.item().as_str())
+                .collect();
+            assert!(
+                ids.iter()
+                    .all(|id| !is_retired_test_item(&id.parse().unwrap())
+                        && !matches!(
+                            *id,
+                            "core:integrity_blade"
+                                | "core:needle_launcher"
+                                | "core:flamethrower"
+                                | "core:composite_carapace"
+                                | "core:sound_decoy"
+                                | "core:camouflage_bundle"
+                        )),
+                "{}: {ids:?}",
+                class.id()
+            );
+            assert!(ids.iter().any(|id| id.starts_with("core:tenue_")));
+            assert!(game.ground_items().iter().next().is_none());
+        }
+    }
+    #[test]
+    fn retired_test_drops_disappear_only_from_new_runs_and_keep_quest_resources() {
+        let mut drops = blueprint();
+        drops.loot = [
+            "core:integrity_blade",
+            "core:needle_launcher",
+            "core:flamethrower",
+            "core:composite_carapace",
+            "lab:armor_reference",
+            "core:brigandine_cognefer",
+            "core:agent_cellule_energie",
+            "core:agent_dose_soin",
+            "core:power_regulator",
+            "core:patched_plating",
+        ]
+        .into_iter()
+        .enumerate()
+        .map(|(index, id)| {
+            GroundLootBlueprint::new(GridPos::new(index as i32, 1), id.parse().unwrap(), 1)
+        })
+        .collect();
+        let original = drops.loot.clone();
+        app(147).remove_retired_test_drops(&mut drops);
+        assert_eq!(drops.loot, original);
+        let current = app(CURRENT_GENERATION_VERSION);
+        current.remove_retired_test_drops(&mut drops);
+        assert_eq!(drops.loot, original[8..]);
+        assert!(
+            current
+                .rules
+                .monster_equipment_loot
+                .as_ref()
+                .unwrap()
+                .iter()
+                .all(|(id, _)| !is_retired_test_item(id))
+        );
+        assert!(
+            current
+                .game
+                .ground_items()
+                .iter()
+                .all(|(_, item)| item.item().as_str() != "core:repair_patch")
+        );
+        assert!(
+            current
+                .game
+                .ground_items()
+                .iter()
+                .any(|(_, item)| item.item().as_str() == "core:power_regulator")
+        );
+    }
+    #[test]
+    fn legacy_loot_projection_survives_current_menu_initialization() {
+        let (rules, _, loot, _) = ascii_game_content().unwrap();
+        let projected = loot_for_generation_version(&loot, &rules.items, 137);
+        let twice = loot_for_generation_version(&projected, &rules.items, 137);
+        assert_eq!(projected, twice);
+        let current = loot_for_generation_version(&loot, &rules.items, CURRENT_GENERATION_VERSION);
+        for version in [
+            131,
+            134,
+            137,
+            139,
+            140,
+            145,
+            148,
+            CURRENT_GENERATION_VERSION,
+        ] {
+            assert_eq!(
+                loot_for_generation_version(&current, &rules.items, version),
+                loot_for_generation_version(&loot, &rules.items, version),
+                "generation {version}"
+            );
+        }
+    }
     #[test]
     fn improvement_preserves_version_135() {
         let old = app(135);

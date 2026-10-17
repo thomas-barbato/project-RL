@@ -1,0 +1,1964 @@
+{
+  "review_id": "NECROS-25",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "status": "proposal_pending_later_individual_selection",
+  "user_request": "ajoute les à la liste :) est-ce que tu pourrais faire aussi des nécromanciens ? qu’ils soient scientifiques (pour les version cultistes) et démoniaques aussi (pour les versions démon)",
+  "records": [
+    {
+      "id": "NEC-C01",
+      "number": 132,
+      "revision": "r02",
+      "label": "Thanatopracteur du culte",
+      "family": "Nécromanciens scientifiques",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 57,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-C01-r02.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nThis is a NEW replacement design for a rejected scientist necromancer. Image 2 supplies only the CULT MEMBER affiliation (hood and physical mask), NOT the costume silhouette. The prior attempt looked like a cultist wearing an apron; do NOT repeat a cult robe with a cream bib or strapped apron.\nAn unmistakable adult HUMAN MALE LABORATORY SCIENTIST employed by a grim necromantic cult. Lean narrow adult human shoulders, ordinary human hands and legs, slightly stooped analytical posture, not a muscular fighter. Wear a REAL KNEE-LENGTH DIRTY-WHITE CLINICAL LAB COAT with large broad NOTCHED LAPELS, full-length sleeves and cuffs, one broad rectangular breast pocket, one broad lower pocket, and an open front showing charcoal shirt with a narrow BURGUNDY neck panel. The coat begins at the shoulders with full white sleeves; no sleeveless apron, no straps, no armor. Dark charcoal slim trousers, plain black work shoes rather than huge combat greaves.\nHead is covered by a small close-fitting charcoal fabric HOOD tucked inside the white lab coat collar. Hide the entire face behind a plain ivory physical clinical respirator-like mask with dark smoked protective EYE GOGGLES as one simple horizontal band. No exposed human face, occult crown, beaked plague mask or horn. One broad burgundy cloth cuff at the LEFT wrist marks cult affiliation.\nRight gloved hand (viewer left) carefully holds ONE RIGID STRAIGHT MEDICAL SYRINGE VERTICALLY at its waist: flat plunger thumb plate directly above, straight plunger rod, transparent pale-green cylindrical barrel, centered metal hub and short straight blunt needle directly below. ALL THESE PARTS MUST SHARE EXACTLY ONE STRAIGHT VERTICAL AXIS. No bend, curved barrel, separate side nozzle or pistol grip. Two fingers rest on the upper finger flanges, thumb near plunger, hand beside the barrel so its continuous straight outline is visible.\nLeft hand holds a small closed charcoal specimen case at hip level with a single ivory bone-shaped insignia, no text. Scientific sinister clinical intent. Only these two compact props; no flowing magic or visible remains.\nMaximum complete final silhouette including props 57px wide by 64px high on 64px-per-cell base. Large readable coat masses, TWO shadow values, no tiny medical details or micro labels.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Capuche, masque physique et identité du culte"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-ee13d6f0-445d-463a-b559-010ebc84109e.png",
+      "source_sha256": "a233d6baa973d9d055477876dc74e686b9c0071862e7f278b9260caff4463c81",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-25/NEC-C01-r02-shadow64.png",
+        "sha256": "3e1f02eaf69767b9ea0806a1eb985a53b4da0e7198f429ff51b8781aa46f72e2",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            62,
+            95
+          ],
+          "width": 31,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 116,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              92,
+              58,
+              61
+            ],
+            "target": [
+              64,
+              81,
+              85
+            ]
+          },
+          {
+            "source": [
+              107,
+              34,
+              41
+            ],
+            "target": [
+              55,
+              91,
+              98
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C01-r02-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            32,
+            85,
+            96
+          ],
+          "colors": 23,
+          "sha256": "d28d33f9063f4852b49d3ace51cb48a29e311de6590d1543429cd3203303c446",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C01-r02-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            32,
+            85,
+            96
+          ],
+          "colors": 23,
+          "sha256": "78bcf16fce61c81b3b5e9e57945a9548799d83ab65252f7b37d7d47481d9ee62",
+          "visual_approved": false
+        }
+      ],
+      "candidate_collection_approved": true,
+      "candidate_collection_approval_review": "NEC-D02-artifact-26.json"
+    },
+    {
+      "id": "NEC-C02",
+      "number": 133,
+      "revision": "r02",
+      "label": "Réanimateur galvanique",
+      "family": "Nécromanciens scientifiques",
+      "maximum_body_height64": 67,
+      "maximum_body_width64": 59,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-C02-r02.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nImage 2 is the CORRECTED scientist clothing and ordinary human proportion reference. Use the white clinical LAB COAT, broad lapels, concealed physical-mask face and plain human limbs. Do not copy its syringe, suitcase or pose. Earlier black cult robes with pale aprons did NOT read as scientists. White laboratory clothing must dominate this figure, with narrow burgundy affiliation accents only.\nA slightly STOOPED ordinary adult HUMAN laboratory biophysicist. A real dirty-WHITE knee-length lab coat with full white sleeves, broad NOTCHED LAPELS, one broad breast pocket and one open lower pocket, over charcoal clothes and a NARROW burgundy cloth strip at neck, no long burgundy tabard. Dark slim trousers, plain black working shoes. Small charcoal cloth hood around a plain ivory physical clinical mask and one smoked black protective goggle band. Only one distinguishing medical device: compact charcoal rectangular GALVANIC REANIMATION pack behind shoulders with two short copper posts, ONE thick attached cable along right arm to one compact two-prong electrode paddle held in right gloved hand. Left hand rests on the pack's belt control box. Cable belongs to the equipment, is not an arm. No separate weapons, no apron/bib, no armored collar, tiny knobs or fine wires. Mask covered, human hands and legs, scientist examining an experiment. Entire final outline maximum59px wide,67px high.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        },
+        {
+          "path": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-ee13d6f0-445d-463a-b559-010ebc84109e.png",
+          "role": "Blouse clinique et proportions humaines corrigées, sans copier pose ou seringue"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-83ff4435-3a6f-4f00-9f8c-9e081c1c1edf.png",
+      "source_sha256": "1d2bc38182d3b101005f487047f72bb7dbf6992bfb5769566234fde2f76f980a",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-25/NEC-C02-r02-shadow64.png",
+        "sha256": "93d7941460974c645df5850e7f9af7e284145b5194d961db1130b3654caaae46",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            78,
+            95
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 263,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              51,
+              13,
+              17
+            ],
+            "target": [
+              24,
+              43,
+              47
+            ]
+          },
+          {
+            "source": [
+              113,
+              44,
+              50
+            ],
+            "target": [
+              63,
+              97,
+              104
+            ]
+          },
+          {
+            "source": [
+              131,
+              119,
+              108
+            ],
+            "target": [
+              107,
+              118,
+              121
+            ]
+          },
+          {
+            "source": [
+              165,
+              154,
+              142
+            ],
+            "target": [
+              138,
+              150,
+              152
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C02-r02-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            45,
+            29,
+            84,
+            96
+          ],
+          "colors": 24,
+          "sha256": "17e30f8e1bdd30767489e01b02830fc09ca433d84e37e5cf39f21b83798fef9b",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C02-r02-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            45,
+            29,
+            84,
+            96
+          ],
+          "colors": 24,
+          "sha256": "71c8f2475ee68e7e03352b73a654bc01297d964fd540779b2b18ca2bf278dd9b",
+          "visual_approved": false
+        }
+      ],
+      "candidate_collection_approved": true,
+      "candidate_collection_approval_review": "NEC-D02-artifact-26.json"
+    },
+    {
+      "id": "NEC-C03",
+      "number": 134,
+      "revision": "r02",
+      "label": "Conservateur de moelle",
+      "family": "Nécromanciens scientifiques",
+      "maximum_body_height64": 62,
+      "maximum_body_width64": 56,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-C03-r02.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nImage 2 is the CORRECTED scientist clothing and ordinary human proportion reference. Use the white clinical LAB COAT, broad lapels, concealed physical-mask face and plain human limbs. Do not copy its syringe, suitcase or pose. Earlier black cult robes with pale aprons did NOT read as scientists. White laboratory clothing must dominate this figure, with narrow burgundy affiliation accents only.\nAn ordinary lean adult HUMAN lab biologist with slightly bent back. A real dirty-WHITE knee-length lab coat with large NOTCHED LAPELS, full ivory sleeves, one broad breast pocket and one broad lower pocket, open front over plain charcoal human shirt and trousers, a narrow BURGUNDY strip at neck. Small charcoal close-fitting cloth hood, ivory physical clinical mask with a single smoked dark protective goggle band; entire human face hidden. Both grey-TEAL rubber-gloved hands naturally support ONE sealed broad cylindrical glass sample vessel at belly level, charcoal top and base, grey-green fluid and ONE simple ivory bone-shaped specimen, no organs or fetus. No apron straps, burgundy robe/tabard, armor, gun, belt trinkets or tiny details. Ordinary human shoulders and two plain black shoes, compact triangular elbows. Maximum final entire silhouette56px wide,62px high.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        },
+        {
+          "path": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-ee13d6f0-445d-463a-b559-010ebc84109e.png",
+          "role": "Blouse clinique et proportions humaines corrigées, sans copier pose ou seringue"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-15fdce34-870e-41a2-8938-791d7dee71ae.png",
+      "source_sha256": "ac4c14f45d3c23ff8ae5eb7b7f8faddea8919e19456493b552351ef91491a543",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-25/NEC-C03-r02-shadow64.png",
+        "sha256": "d7504fdacb851f714a23d8d5a3979de45a7720c2b71e262715ec95ea77769849",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            66,
+            95
+          ],
+          "width": 29,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 66,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              60,
+              33,
+              38
+            ],
+            "target": [
+              39,
+              53,
+              55
+            ]
+          },
+          {
+            "source": [
+              89,
+              73,
+              73
+            ],
+            "target": [
+              72,
+              80,
+              82
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C03-r02-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            49,
+            34,
+            79,
+            96
+          ],
+          "colors": 24,
+          "sha256": "b435d21b523d35ff03f78782318e370334e697cd89ea232086f4aae17e5f7a50",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C03-r02-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            49,
+            34,
+            79,
+            96
+          ],
+          "colors": 24,
+          "sha256": "bccf310fb54b1b9b9dd25e36f89ffdcf90880adef49f926dbf4f0be2e1968c5e",
+          "visual_approved": false
+        }
+      ],
+      "candidate_collection_approved": true,
+      "candidate_collection_approval_review": "NEC-D02-artifact-26.json"
+    },
+    {
+      "id": "NEC-C04",
+      "number": 135,
+      "revision": "r01",
+      "label": "Cryothanaturge",
+      "family": "Nécromanciens scientifiques",
+      "maximum_body_height64": 66,
+      "maximum_body_width64": 58,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-C04-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nSubject:\nImage 2 supplies only the CULT UNIFORM IDENTITY. Human adult cult scientist, face fully hidden by a physical dirty-ivory mask with short dark eye slits; charcoal hood, burgundy cloth panels/cuffs, black boots and broad matte gloves. No bare human face. Add distinctive clinical laboratory clothing and one reanimation-themed instrument as specified, while preserving the hood and uniform. No exposed organs, graphic injuries, dangling body parts, camera head, trolley wheels or ivory mechanical soldier limbs.\nA long lean cult cryolab specialist with a pale GREY-BLUE knee-length protective overcoat worn open over the BURGUNDY/charcoal uniform, charcoal hood, ivory physical mask. One compact dull steel cold-storage canister on the back, ONE thick grey tube fixed along left arm into a broad mitten-like clamp. The right gloved hand holds one small rectangular dark clinical tablet with a SINGLE ivory bone silhouette on its screen, no text. Cold equipment is matte, no frost mist or effect. Leaning slightly to one side, narrow shoulders, straight two boots. No armor plates or helmet. Maximum final body and equipment 58px wide by 66px high.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Capuche, masque physique et identité du culte"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-9867dcd9-bead-4a88-a877-0f2e97fcd412.png",
+      "source_sha256": "5a3d69c681f914782291a8d3507ecf7f94adbf91ea1d4cfa39da9fe4019dcf5e",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-25/NEC-C04-r01-shadow64.png",
+        "sha256": "6331d2bc62f8ba6d84eec5d570fd1d3e51aa6f91e0d84f79ad0430780594c6f1",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            64,
+            95
+          ],
+          "width": 31,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 281,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              74,
+              19,
+              23
+            ],
+            "target": [
+              35,
+              63,
+              68
+            ]
+          },
+          {
+            "source": [
+              84,
+              44,
+              47
+            ],
+            "target": [
+              53,
+              73,
+              77
+            ]
+          },
+          {
+            "source": [
+              103,
+              22,
+              27
+            ],
+            "target": [
+              46,
+              87,
+              95
+            ]
+          },
+          {
+            "source": [
+              126,
+              35,
+              42
+            ],
+            "target": [
+              62,
+              107,
+              116
+            ]
+          },
+          {
+            "source": [
+              152,
+              46,
+              54
+            ],
+            "target": [
+              76,
+              129,
+              140
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C04-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            48,
+            30,
+            81,
+            96
+          ],
+          "colors": 24,
+          "sha256": "113e3d23e4111f89b91e02edb4fd2dc5a3760349406e98ead88be57485bfadb4",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-C04-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            48,
+            30,
+            81,
+            96
+          ],
+          "colors": 24,
+          "sha256": "7cb388a05a35647cda19ef0d88249d21032d7c1864ad0161f738e12b1f157a04",
+          "visual_approved": false
+        }
+      ],
+      "candidate_collection_approved": true,
+      "candidate_collection_approval_review": "NEC-D02-artifact-26.json"
+    },
+    {
+      "id": "NEC-D01",
+      "number": 136,
+      "revision": "r01",
+      "label": "Fossoyeur des failles",
+      "family": "Nécromanciens démoniaques",
+      "maximum_body_height64": 76,
+      "maximum_body_width64": 64,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-D01-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nSubject:\nA gaunt fully demonic necromancer with desaturated grey-beige FLESH, long bent legs, elongated claw hands, forward hunch. The head is a narrow eyeless elongated flesh head beneath a dark PLUM membrane hood grown from its back, two short curved backward horns, closed lipless mouth, no human face. Tattered charcoal waist cloth, broad pale chest scar-like seam with no wound. Right hand naturally grips ONE short thick crooked bone cane bearing ONE simplified small skull at its top at shoulder height, left claw open as a commanding gesture. Sparse bones, fleshy anatomy dominant. Two grounded claw feet, no skull piles, crown, big wing, aura, corpse, active spell or cult mask. Maximum final complete silhouette including cane 64px wide by 76px high.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-1c002092-7829-4ef3-9c8b-7b30343c66d6.png",
+      "source_sha256": "2109900b3e70f0b467753f4790d8af47e93136b680320d6437dc970722b1c9d1",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-25/NEC-D01-r01-shadow64.png",
+        "sha256": "ded406e86f6f9ca8aab1df97a2313e30882e624700e1777aa7ef4bbcfac0389b",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            65,
+            95
+          ],
+          "width": 54,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1084,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              51,
+              42,
+              46
+            ],
+            "target": [
+              42,
+              46,
+              47
+            ]
+          },
+          {
+            "source": [
+              56,
+              48,
+              50
+            ],
+            "target": [
+              47,
+              51,
+              52
+            ]
+          },
+          {
+            "source": [
+              72,
+              61,
+              62
+            ],
+            "target": [
+              60,
+              65,
+              66
+            ]
+          },
+          {
+            "source": [
+              89,
+              81,
+              73
+            ],
+            "target": [
+              72,
+              80,
+              82
+            ]
+          },
+          {
+            "source": [
+              120,
+              104,
+              92
+            ],
+            "target": [
+              94,
+              108,
+              110
+            ]
+          },
+          {
+            "source": [
+              142,
+              128,
+              113
+            ],
+            "target": [
+              113,
+              128,
+              131
+            ]
+          },
+          {
+            "source": [
+              159,
+              142,
+              126
+            ],
+            "target": [
+              127,
+              143,
+              146
+            ]
+          },
+          {
+            "source": [
+              174,
+              152,
+              135
+            ],
+            "target": [
+              137,
+              156,
+              160
+            ]
+          },
+          {
+            "source": [
+              188,
+              174,
+              153
+            ],
+            "target": [
+              152,
+              169,
+              173
+            ]
+          },
+          {
+            "source": [
+              228,
+              215,
+              195
+            ],
+            "target": [
+              190,
+              206,
+              210
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D01-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            34,
+            20,
+            94,
+            96
+          ],
+          "colors": 22,
+          "sha256": "dff6bb18f5bb8a4eb416ae619ba64b9ffda75beaa658cb50dbe16d76e4a3fa18",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D01-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            34,
+            20,
+            94,
+            96
+          ],
+          "colors": 22,
+          "sha256": "05d226d9b6ecb72858f93bc98c630f6fe77c52d188916275678c2aa5bdf34dab",
+          "visual_approved": false
+        }
+      ],
+      "candidate_collection_approved": true,
+      "candidate_collection_approval_review": "NEC-D02-artifact-26.json"
+    },
+    {
+      "id": "NEC-D02",
+      "number": 137,
+      "revision": "r02",
+      "label": "Fossoyeuse chitineuse",
+      "family": "Nécromanciens démoniaques",
+      "maximum_body_height64": 72,
+      "maximum_body_width64": 70,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-D02-r02.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept / localized original character edit.\nEdit ONLY the held book/tablet-like object and the immediate position of the two main supporting claws in this supplied original insectoid necromancer image. Candidate137, NEC-D02 r02. Preserve the existing adult insectoid body, head, antennae/horns, olive-brown chitin carapace, plum membrane cowl, chest and folded small thorax limbs, abdomen, TWO hooked hind legs/feet, nearly frontal slightly overhead pose and entire silhouette. Same clean dark outlines, large flat color masses, 2–3 values per material, one broad shadow plane. Do not add detail to the body. Native64px-per-cell readability, same max70px wide and72px high.\n\nRemove the whole dark rectangular BOOK/TABLET and its pale skull emblem. Replace it with ONE clearly three-dimensional SORDID NECROMANTIC RELIQUARY, compact and oblong/ovoid at the same waist position, NOT rectangular and NOT another book or shield. Main visual is a desiccated grey-beige FLESH POD shaped like a shrivelled heart or closed lump of dead tissue, with one broad bruised plum central seam and two simple large wrinkled folds, closed intact skin, no graphic wound, blood or visible organ interior. It is imprisoned inside THREE thick curved blackened iron ribs/clamps, with just TWO small dull-ivory BONE HOOKS gripping its upper end. Closed dark leather binding at the bottom. Small asymmetry and age suggest a stolen death relic. One fist-sized relic proportional to this character; not gigantic, no creature inside it, no extra severed parts, no skull pile, writing, gems, candles or chains.\n\nThe two main front claws naturally cradle the heavy relic from BOTH SIDES AND BELOW. Claw tips must visibly wrap around outer iron ribs, without going through the flesh or clipping the relic. Existing small thorax limbs stay folded and attached. Keep all body features and stance unchanged beyond adjusting the two supporting claw fingers for the new prop.\n\nUse broad readable material contrast: dull pale flesh core, black iron ribs, sparse ivory hook accents. No glowing aura, particles, spell, smoke, floor, baked shadow, added frame, labels, extra character, photographic rendering or tiny surface noise. Preserve genuinely transparent background and generous margins. This is appearance only; no new combat power or animation is being depicted.",
+      "references": [
+        {
+          "path": "C:/Users/User/AppData/Local/Temp/codex-clipboard-79ff60ef-cc58-4dc3-974f-a5bf673d645b.png",
+          "role": "Cible : remplacer le livre par un reliquaire, conserver le personnage"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-36013fa4-a9a6-493c-81f8-8504a835920f.png",
+      "source_sha256": "e1864321108819b578498ddd4205a43ea845318a013d57693b08a02a9f93886a",
+      "artifact_revision_review": "NEC-D02-artifact-26.json",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-25/NEC-D02-r02-shadow64.png",
+        "sha256": "e4a5719020a6019510cb5d9b56bd0dcbe175d1f4f22f9b11e5567fa9380b2ee9",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            63,
+            95
+          ],
+          "width": 44,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 945,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              58,
+              42,
+              40
+            ],
+            "target": [
+              43,
+              52,
+              53
+            ]
+          },
+          {
+            "source": [
+              58,
+              50,
+              38
+            ],
+            "target": [
+              41,
+              51,
+              53
+            ]
+          },
+          {
+            "source": [
+              70,
+              53,
+              45
+            ],
+            "target": [
+              49,
+              62,
+              64
+            ]
+          },
+          {
+            "source": [
+              73,
+              63,
+              44
+            ],
+            "target": [
+              50,
+              64,
+              67
+            ]
+          },
+          {
+            "source": [
+              88,
+              68,
+              55
+            ],
+            "target": [
+              61,
+              78,
+              81
+            ]
+          },
+          {
+            "source": [
+              93,
+              80,
+              54
+            ],
+            "target": [
+              62,
+              82,
+              86
+            ]
+          },
+          {
+            "source": [
+              109,
+              89,
+              66
+            ],
+            "target": [
+              75,
+              96,
+              100
+            ]
+          },
+          {
+            "source": [
+              121,
+              102,
+              70
+            ],
+            "target": [
+              81,
+              106,
+              111
+            ]
+          },
+          {
+            "source": [
+              136,
+              117,
+              82
+            ],
+            "target": [
+              93,
+              120,
+              125
+            ]
+          },
+          {
+            "source": [
+              152,
+              133,
+              97
+            ],
+            "target": [
+              107,
+              134,
+              140
+            ]
+          },
+          {
+            "source": [
+              195,
+              180,
+              140
+            ],
+            "target": [
+              147,
+              174,
+              179
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r02-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            42,
+            24,
+            86,
+            96
+          ],
+          "colors": 23,
+          "sha256": "28343d2c79bce788a6a03f0c3287d2523edea9e90ce5865828e3de1a9ae0fd24",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r02-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            42,
+            24,
+            86,
+            96
+          ],
+          "colors": 23,
+          "sha256": "e3fa2b7fba517364a479669a2f739a1018d993d5cc61d2f20c4b2c619ddf310e",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "NEC-D03",
+      "number": 138,
+      "revision": "r01",
+      "label": "Gardien des chairs mortes",
+      "family": "Nécromanciens démoniaques",
+      "maximum_body_height64": 70,
+      "maximum_body_width64": 74,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-D03-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nSubject:\nA repugnant but non-graphic stout FLESHY demon necromancer, NOT merely a skeleton or human mage. Hunched barrel torso, large sagging grey-beige/ochre closed-skin belly, three thick stumpy grounded claw legs. A small recessed head with a broad downturned closed toothless mouth and two small dark eyes, protected by a dark maroon organic hood folding from its shoulders. TWO attached long knuckled flesh arms with three large dark claw fingers. Right hand holds a short black thick ritual crook at belly level capped with ONE broad ivory vertebra shape; left hand clutches ONE closed charcoal mortuary book bound by a single ivory spine-shaped clasp. No skull pile, visible organs, bloody wounds, gore, nudity, crown or active magical effect. Silhouette squat and wide, maximum final 74px wide by 70px high.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-b470e34e-2012-4c94-80d9-042b3be3bd72.png",
+      "source_sha256": "590afc666b6d135388c4a9e87f4442bdb83c78ce882827e723079df6e17d0025",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-25/NEC-D03-r01-shadow64.png",
+        "sha256": "b5957d13667f6e83abfbb3416459e97d24cd70caf57b9d91673d0a822447ae1d",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            63,
+            95
+          ],
+          "width": 18,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1762,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              63,
+              25,
+              29
+            ],
+            "target": [
+              35,
+              54,
+              58
+            ]
+          },
+          {
+            "source": [
+              64,
+              57,
+              54
+            ],
+            "target": [
+              53,
+              58,
+              59
+            ]
+          },
+          {
+            "source": [
+              85,
+              37,
+              41
+            ],
+            "target": [
+              49,
+              73,
+              78
+            ]
+          },
+          {
+            "source": [
+              98,
+              67,
+              62
+            ],
+            "target": [
+              69,
+              87,
+              90
+            ]
+          },
+          {
+            "source": [
+              108,
+              92,
+              79
+            ],
+            "target": [
+              82,
+              96,
+              99
+            ]
+          },
+          {
+            "source": [
+              128,
+              110,
+              94
+            ],
+            "target": [
+              97,
+              114,
+              118
+            ]
+          },
+          {
+            "source": [
+              145,
+              124,
+              105
+            ],
+            "target": [
+              109,
+              129,
+              133
+            ]
+          },
+          {
+            "source": [
+              161,
+              138,
+              117
+            ],
+            "target": [
+              122,
+              144,
+              148
+            ]
+          },
+          {
+            "source": [
+              172,
+              150,
+              127
+            ],
+            "target": [
+              131,
+              154,
+              158
+            ]
+          },
+          {
+            "source": [
+              191,
+              168,
+              142
+            ],
+            "target": [
+              146,
+              171,
+              176
+            ]
+          },
+          {
+            "source": [
+              201,
+              177,
+              150
+            ],
+            "target": [
+              154,
+              180,
+              185
+            ]
+          },
+          {
+            "source": [
+              226,
+              208,
+              179
+            ],
+            "target": [
+              180,
+              203,
+              208
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D03-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            27,
+            32,
+            101,
+            96
+          ],
+          "colors": 23,
+          "sha256": "c1dbadd746c6a3ca9bd137e55cc169fb2b79a16fb9a8dec8380ffd7362116dec",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D03-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            27,
+            32,
+            101,
+            96
+          ],
+          "colors": 23,
+          "sha256": "221abf631fa3367e674a2d4264247c149ced5919206ee785a8d48241ea8779e0",
+          "visual_approved": false
+        }
+      ],
+      "candidate_collection_approved": true,
+      "candidate_collection_approval_review": "NEC-D02-artifact-26.json"
+    },
+    {
+      "id": "NEC-D04",
+      "number": 139,
+      "revision": "r02",
+      "label": "Nécromancien du linceul",
+      "family": "Nécromanciens démoniaques",
+      "maximum_body_height64": 82,
+      "maximum_body_width64": 60,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-D04-r02.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept / local character edit.\nEdit ONLY the head/face and the held book plus its supporting left hand/forearm in this supplied original character image. This is NEC-D04 r02. Preserve the existing design elsewhere: dark teal long membrane robe/hood, grey-blue organic flesh arms, extended right claw on viewer LEFT, THREE grey-blue curled tentacle feet, body proportions, dark outlines, clean broad cel shaded masses, nearly frontal game pose, current color palette and genuinely transparent background. No scenery, shadow, aura, particles, text or extra character.\n\n1. FACE: Remove the smooth ivory pointed split-oval mask completely. Replace it with an ORGANIC head in exactly the same grey-blue flesh material and shading as its arms and tentacle feet. A small unsettling cephalopod-like demonic head nestles inside the existing hood: broad rounded top tapering into TWO short thick fleshy chin lobes, two small recessed dark horizontal eyes, ONE short closed dark mouth seam between the lobes. Organic folds at the cheek and jaw only, no fine tentacle beard. Clearly alive fleshy anatomy, not a human face, bone mask, bird beak, tall ivory plate or vertical slit. Face follows the inclination of the body and glances naturally down toward the book.\n\n2. BOOK: Rotate and OPEN the bulky dark ritual book so this creature can naturally READ IT. Place it at the existing left torso/waist position (viewer RIGHT), held at a shallow diagonal in a broad open V. Its ivory pages face UPWARD AND INWARD TOWARD THE CREATURE'S FACE, not outward like a sign presented to the viewer. Viewer sees the dark covers underneath and a foreshortened strip of pale open pages from above. Keep a broad ivory spine clasp, just one, compact prop. No letters or symbols on pages. Adjust only the supporting LEFT forearm and hand: palm supports the underside near the spine, fingers curl around the lower cover edge, thumb stabilizes the upper edge. Hand and book must obey the SAME perspective, both covers visibly connected at a real spine. Four broad organic claw digits, all attached, no duplicate hand or floating book. The outstretched right claw on the other side stays as is.\n\nMaintain actual proposed game silhouette of max 60px wide by82px high, same final native64 size. Do not add texture detail, bones, fins, tall horns, extra limbs, effects, lighting bloom or new equipment. Preserve all other features and transparent margins.",
+      "references": [
+        {
+          "path": "C:/Users/User/AppData/Local/Temp/codex-clipboard-8b90012d-744c-4d82-9b50-4e648fc07d62.png",
+          "role": "Cible de modification : visage et orientation/prise du livre uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-2a37d907-5fb5-4ddf-a3d2-2cc5875f8086.png",
+      "source_sha256": "cb79c6c6d435ee6b2d8c9f1f9d843ade3ba00221628117f6933f0417432e2326",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-25/NEC-D04-r02-shadow64.png",
+        "sha256": "83108f0f15ca18137c3b6859fa8378c2adfbd4dc38d70011aa4b83bd57c51f26",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            66,
+            95
+          ],
+          "width": 50,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 951,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              28,
+              52,
+              55
+            ],
+            "target": [
+              34,
+              48,
+              51
+            ]
+          },
+          {
+            "source": [
+              36,
+              60,
+              63
+            ],
+            "target": [
+              42,
+              55,
+              58
+            ]
+          },
+          {
+            "source": [
+              37,
+              69,
+              72
+            ],
+            "target": [
+              45,
+              63,
+              66
+            ]
+          },
+          {
+            "source": [
+              42,
+              74,
+              78
+            ],
+            "target": [
+              50,
+              68,
+              72
+            ]
+          },
+          {
+            "source": [
+              46,
+              81,
+              85
+            ],
+            "target": [
+              55,
+              74,
+              78
+            ]
+          },
+          {
+            "source": [
+              69,
+              81,
+              87
+            ],
+            "target": [
+              69,
+              78,
+              80
+            ]
+          },
+          {
+            "source": [
+              72,
+              113,
+              119
+            ],
+            "target": [
+              81,
+              105,
+              109
+            ]
+          },
+          {
+            "source": [
+              74,
+              97,
+              104
+            ],
+            "target": [
+              78,
+              93,
+              96
+            ]
+          },
+          {
+            "source": [
+              138,
+              157,
+              169
+            ],
+            "target": [
+              137,
+              152,
+              155
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D04-r02-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            39,
+            14,
+            90,
+            96
+          ],
+          "colors": 23,
+          "sha256": "181c048fb26de1c0863f66bded561ea09b6e33fac7d37fb957cacd0de4b8bceb",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D04-r02-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            39,
+            14,
+            90,
+            96
+          ],
+          "colors": 23,
+          "sha256": "b508397e6a945a539aecf3082605ca280d5541d28a86c5d63791af1ebf72f542",
+          "visual_approved": false
+        }
+      ],
+      "candidate_collection_approved": true,
+      "candidate_collection_approval_review": "NEC-D02-artifact-26.json"
+    }
+  ],
+  "style_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+    "sha256": "b2309124fde55808415378da561f5f26b0d7936688edefa257a8f938c58d4e2b",
+    "role": "Sources acceptees du joueur et de ses armes : contours, aplats et ombrages"
+  },
+  "player_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "foot_anchor": [
+      64,
+      96
+    ]
+  },
+  "preview_title": "Nécromanciens scientifiques et démoniaques · taille native",
+  "individual_acceptance_deferred": true,
+  "runtime_connected": false,
+  "superseded_revisions": [
+    {
+      "id": "NEC-C01",
+      "number": 132,
+      "revision": "r01",
+      "label": "Thanatopracteur du culte",
+      "family": "Nécromanciens scientifiques",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 57,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-C01-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nSubject:\nImage 2 supplies only the CULT UNIFORM IDENTITY. Human adult cult scientist, face fully hidden by a physical dirty-ivory mask with short dark eye slits; charcoal hood, burgundy cloth panels/cuffs, black boots and broad matte gloves. No bare human face. Add distinctive clinical laboratory clothing and one reanimation-themed instrument as specified, while preserving the hood and uniform. No exposed organs, graphic injuries, dangling body parts, camera head, trolley wheels or ivory mechanical soldier limbs.\nA rigid adult with a broad DIRTY-IVORY sleeveless laboratory apron over the charcoal/burgundy hooded coat. Two broad black apron straps and one dark belt, no fine instruments scattered on chest. In the right gloved hand (viewer left), a single compact charcoal rectangular INJECTOR with one broad dull-green fluid cylinder, short blunt metallic nozzle angled down; natural fingers wrapped around its handle. Other hand held forward, palm slightly open. One chunky dark-green reservoir on the belt, no hoses. Plain mask, hunched clinical intent, two stable booted feet. Maximum final whole figure including tool: 57px wide by 64px high.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Capuche, masque physique et identité du culte"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "rejected_by_user",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-5516d50e-7ea8-4b71-b214-3f56e0e3d1d9.png",
+      "rejection_reason": "Seringue mal alignée ; apparence insuffisamment scientifique.",
+      "source_sha256": "5f3914e8079ba0b84a82513fd689f57eac670a1f75dc39961bfc5fb428675347"
+    },
+    {
+      "id": "NEC-C02",
+      "number": 133,
+      "revision": "r01",
+      "label": "Réanimateur galvanique",
+      "family": "Nécromanciens scientifiques",
+      "maximum_body_height64": 67,
+      "maximum_body_width64": 59,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-C02-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nSubject:\nImage 2 supplies only the CULT UNIFORM IDENTITY. Human adult cult scientist, face fully hidden by a physical dirty-ivory mask with short dark eye slits; charcoal hood, burgundy cloth panels/cuffs, black boots and broad matte gloves. No bare human face. Add distinctive clinical laboratory clothing and one reanimation-themed instrument as specified, while preserving the hood and uniform. No exposed organs, graphic injuries, dangling body parts, camera head, trolley wheels or ivory mechanical soldier limbs.\nA narrower hunched scientist with a knee-length CHARCOAL lab coat, BURGUNDY central panel, long dirty-ivory rubber gloves and a short ivory shoulder cape/apron bib. A compact rectangular metal reanimation pack on back protrudes only slightly at each shoulder; TWO short blunt copper electrode posts at shoulder level. One thick attached black cable runs along the right upper arm into a single broad two-pronged clinical clamp held in that hand; no electricity. Other hand rests on the pack's belt control box, broad shapes only. No tank forest, tiny wires or armor. Mask tilts forward like an exacting experimenter. Maximum final silhouette 59px wide by 67px high including pack.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Capuche, masque physique et identité du culte"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "superseded_for_scientist_readability",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-d27d9e53-1d68-43a5-bfb1-202e44bab645.png",
+      "source_sha256": "1d18c66188563850672b7847102c644783ca52980a6cdd75e7247ca2db98b51a"
+    },
+    {
+      "id": "NEC-C03",
+      "number": 134,
+      "revision": "r01",
+      "label": "Conservateur de moelle",
+      "family": "Nécromanciens scientifiques",
+      "maximum_body_height64": 62,
+      "maximum_body_width64": 56,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-C03-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nSubject:\nImage 2 supplies only the CULT UNIFORM IDENTITY. Human adult cult scientist, face fully hidden by a physical dirty-ivory mask with short dark eye slits; charcoal hood, burgundy cloth panels/cuffs, black boots and broad matte gloves. No bare human face. Add distinctive clinical laboratory clothing and one reanimation-themed instrument as specified, while preserving the hood and uniform. No exposed organs, graphic injuries, dangling body parts, camera head, trolley wheels or ivory mechanical soldier limbs.\nA stooped adult cult biologist in the charcoal hood and BURGUNDY knee-length lab smock, with a single broad dirty-ivory apron panel and dark teal rubber gloves. BOTH hands naturally grip one sealed broad cylindrical glass sample vessel at abdomen level. Vessel has a charcoal top and base and muted grey-green translucent fluid with ONE clearly stylized small ivory bone-shaped specimen, no organs, no fetus, no face in glass. Broad shadow shapes, not realistic reflections. Slightly bent knees, two black boots, elbows give a compact triangular silhouette. No staff, weapon, halo or potion belt clutter. Final whole silhouette maximum 56px wide by 62px high.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Capuche, masque physique et identité du culte"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "superseded_for_scientist_readability",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-12327b8a-d77b-4864-b43c-fbc5a126d810.png",
+      "source_sha256": "70029263cd4660624e1c5d1d75c9df0e09e964d34f75b41e492784a4cea22fa1"
+    },
+    {
+      "id": "NEC-D04",
+      "number": 139,
+      "revision": "r01",
+      "label": "Nécromancien du linceul",
+      "family": "Nécromanciens démoniaques",
+      "maximum_body_height64": 82,
+      "maximum_body_width64": 60,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-D04-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nSubject:\nA long narrow LOVECRAFTIAN demonic necromancer with a dark desaturated TEAL flexible mantle grown from its shoulders and grey-blue smooth flesh arms. Nonhuman head is a vertical bone-pale featureless split oval with ONE dark vertical eye slit, inside the membrane cowl, no human face, no beak or real cult mask. Lower body ends in THREE thick short tentacle feet curled on ground, not floating. TWO elongated arms, four broad hooked fingers each. Left hand cradles ONE closed bulky charcoal ritual codex against the ribs with ONE large ivory spine binding; right claw extended palm down in a slow spellcaster gesture, no actual spell. Broad uninterrupted mantle panels, no fringes of fine tentacles or little runes. No armor, crown, halo, aura or particles. Maximum final whole figure 60px wide by 82px high.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "revision_requested_by_user",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-8d8f9cf9-92fd-44d8-a9bf-2f2fa5aabe4b.png",
+      "rejection_reason": "Visage incohérent avec le corps ; orientation du livre à corriger.",
+      "source_sha256": "134598fd590eeff9e59feac12f8ac0b6110ac313b83bc486b67de940bec0b758"
+    },
+    {
+      "id": "NEC-D02",
+      "number": 137,
+      "revision": "r01",
+      "label": "Fossoyeuse chitineuse",
+      "family": "Nécromanciens démoniaques",
+      "maximum_body_height64": 72,
+      "maximum_body_width64": 70,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Nécromancien proposé, règles à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-D02-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": 0.13,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nOne original static whole-body enemy concept for Project RL, a grim cyberpunk apocalypse with a technoreligious cult and real demons. Image 1 supplies ONLY the approved PLAYER + WEAPON GRAPHIC STYLE: clean dark contours, large flat masses, 2 or 3 values per material, one broad shadow plane and sparse highlights. Do not copy player armor, helmet, shield, sword or heroic fighter stance.\nDesign for native 64px per cell: compact adult proportions, broad readable limbs, few distinctive features. No 3D render, painterly/photo finish, noise, tiny wrinkles, little veins, delicate patterns, excessive bone clutter, cute/chibi proportions. Exactly ONE complete figure in nearly frontal slightly overhead game view, all extremities inside generous transparent margins. Genuinely transparent alpha background. No other figure, sheet, label, lettering, floor, baked shadow, smoke, glowing aura, particles or active spell. A separate contact shadow will be added later.\nA necromancer should read as an occult death specialist from posture, clothes and equipment. Appearance only, no combat mechanics or summoning scene. Normal enemy or possible elite candidate, not a sector boss or leader. No crown or royal regalia. Respect the final body size specification; equipment must stay compact enough to read at that size.\nSubject:\nA clearly INSECTOID demonic necromancer, hunched yet standing on TWO hooked hind legs. Broad dull BROWN-OLIVE carapace, small angular mantis-like head, two short swept antennae, a compact dark PLUM membrane cowl around the neck. Two main long forearms curve inward; their hooked three-pronged claws support ONE broad dark ritual tablet at waist height, bearing ONE large pale bone emblem, no text. A second much smaller folded pair of thorax arms visibly tucked near chest, all attached correctly. One round abdomen behind legs, no swarm, eggs, fine hairs, many little spines, wings, human face, flowing particles or royal regalia. Necromantic ceremonial posture, readable simple joint masses. Maximum final silhouette 70px wide by 72px high.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "revision_requested_by_user",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-d231ccd2-06a7-4f3d-860c-185bd716ee57.png",
+      "source_sha256": "dedf80102fa1bb77f6140a70f69bf7c91a1711e3287fd2066ce06879c4d0ba7e",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-25/NEC-D02-r01-shadow64.png",
+        "sha256": "e4a5719020a6019510cb5d9b56bd0dcbe175d1f4f22f9b11e5567fa9380b2ee9",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            63,
+            95
+          ],
+          "width": 44,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 938,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              50,
+              45,
+              37
+            ],
+            "target": [
+              38,
+              45,
+              46
+            ]
+          },
+          {
+            "source": [
+              51,
+              37,
+              37
+            ],
+            "target": [
+              39,
+              46,
+              47
+            ]
+          },
+          {
+            "source": [
+              62,
+              47,
+              43
+            ],
+            "target": [
+              46,
+              55,
+              57
+            ]
+          },
+          {
+            "source": [
+              62,
+              54,
+              41
+            ],
+            "target": [
+              44,
+              55,
+              57
+            ]
+          },
+          {
+            "source": [
+              73,
+              63,
+              46
+            ],
+            "target": [
+              51,
+              64,
+              67
+            ]
+          },
+          {
+            "source": [
+              83,
+              70,
+              54
+            ],
+            "target": [
+              59,
+              73,
+              76
+            ]
+          },
+          {
+            "source": [
+              96,
+              78,
+              62
+            ],
+            "target": [
+              68,
+              85,
+              88
+            ]
+          },
+          {
+            "source": [
+              107,
+              92,
+              65
+            ],
+            "target": [
+              73,
+              94,
+              98
+            ]
+          },
+          {
+            "source": [
+              123,
+              108,
+              77
+            ],
+            "target": [
+              86,
+              109,
+              113
+            ]
+          },
+          {
+            "source": [
+              141,
+              126,
+              91
+            ],
+            "target": [
+              100,
+              125,
+              130
+            ]
+          },
+          {
+            "source": [
+              191,
+              177,
+              136
+            ],
+            "target": [
+              143,
+              170,
+              176
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            42,
+            24,
+            86,
+            96
+          ],
+          "colors": 23,
+          "sha256": "8a4599183d801f7e55f7ae1ccc0560df56ada6caed79cca6ffef6d30bea6eafd",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            42,
+            24,
+            86,
+            96
+          ],
+          "colors": 23,
+          "sha256": "df8b21b0f3cea5d1cd22d8643f4d6fb877aaaf058f691b2df6a3ff5e7befde1a",
+          "visual_approved": false
+        }
+      ],
+      "rejection_reason": "Remplacer le livre par un artefact sordide."
+    }
+  ],
+  "generated_source_count": 8,
+  "active_candidate_count": 8,
+  "listed_in": "monster-candidate-list.json",
+  "static_appearance_only": true,
+  "scientific_revision_request": "Scientifique insuffisamment reconnaissable et seringue non droite : blouse clinique, proportions humaines et axe droit sur NEC-C01-r02.",
+  "demonic_revision_request": "NEC-D04 : visage organique assorti au corps et livre ouvert orienté vers son regard, avec prise de main cohérente.",
+  "catalogue_image": "artifacts/npc-monsters-review-01/catalogue/monstres-candidats-native64.png",
+  "preview_scale": 1,
+  "zoom_previews_generated": false,
+  "preview_sheets": [
+    "artifacts/npc-monsters-review-01/necros-25/demons-132-135.png",
+    "artifacts/npc-monsters-review-01/necros-25/demons-136-139.png"
+  ],
+  "total_imagegen_outputs": 13,
+  "previous_revision_count": 5,
+  "latest_visual_revision": "NEC-D02-artifact-26.json"
+}

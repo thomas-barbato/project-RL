@@ -127,8 +127,23 @@ impl GroundItemRegistry {
         self.insert_at(position, item, quantity, owner, None)
     }
 
+    /// Player drops share the loot-pile semantics of death and cargo drops.
+    /// Authored map placements still use `spawn_with_owner` to catch duplicates.
+    pub(crate) fn spawn_player_drop(
+        &mut self,
+        position: GridPos,
+        item: ItemId,
+        quantity: u16,
+        owner: Option<SocialGroupId>,
+    ) -> Result<GroundItemId, GroundItemRegistryError> {
+        if quantity == 0 {
+            return Err(GroundItemRegistryError::ZeroQuantity);
+        }
+        self.insert_at(position, item, quantity, owner, None)
+    }
+
     /// Death must not erase loot just because another item occupies the tile.
-    /// Ordinary placements retain their historical one-stack-per-cell rule.
+    /// Authored placements retain their historical one-stack-per-cell rule.
     pub(crate) fn spawn_remains(
         &mut self,
         position: GridPos,
@@ -337,7 +352,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn ground_items_have_stable_ids_and_one_stack_per_tile() {
+    fn authored_ground_items_have_stable_ids_and_reject_duplicate_placements() {
         let mut items = GroundItemRegistry::default();
         let first = items
             .spawn(

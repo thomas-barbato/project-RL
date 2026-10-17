@@ -1,0 +1,146 @@
+{
+  "review": "HUD-07 / UX-PETS-06",
+  "builds": {
+    "debug": "cargo build --locked — OK",
+    "release": "cargo build --locked --release — OK"
+  },
+  "targeted_tests": [
+    {
+      "scope": "familiers et gestes souris",
+      "passed": 6
+    },
+    {
+      "scope": "préférences et menu affichage",
+      "passed": 16
+    },
+    {
+      "scope": "caméra, carte et zones de clic",
+      "passed": 20
+    },
+    {
+      "scope": "barre de compétences et changement d’arme",
+      "passed": 14
+    },
+    {
+      "scope": "projection des effets et groupe mixte",
+      "passed": 1
+    },
+    {
+      "scope": "métriques de texte et cache",
+      "passed": 2
+    }
+  ],
+  "targeted_total_passed": 59,
+  "native_capture_check": {
+    "captures": [
+      {
+        "image": "familiers-metal-1920x1080.png",
+        "playfield": [
+          339.70001220703125,
+          51.45000076293945,
+          1208.10009765625,
+          773.1500244140625
+        ],
+        "viewport": [
+          1920.0,
+          1080.0
+        ]
+      },
+      {
+        "image": "familiers-terminal-1920x1080.png",
+        "playfield": [
+          339.70001220703125,
+          51.45000076293945,
+          1208.10009765625,
+          773.1500244140625
+        ],
+        "viewport": [
+          1920.0,
+          1080.0
+        ]
+      },
+      {
+        "image": "familiers-metal-2560x1440.png",
+        "playfield": [
+          439.5999755859375,
+          54.599998474121094,
+          1634.7999267578125,
+          1056.2000732421875
+        ],
+        "viewport": [
+          2560.0,
+          1440.0
+        ]
+      },
+      {
+        "image": "familiers-terminal-2560x1440.png",
+        "playfield": [
+          439.5999755859375,
+          54.599998474121094,
+          1634.7999267578125,
+          1056.2000732421875
+        ],
+        "viewport": [
+          2560.0,
+          1440.0
+        ]
+      },
+      {
+        "image": "familiers-metal-3840x2160.png",
+        "playfield": [
+          484.0,
+          56.0,
+          2820.0,
+          1742.0
+        ],
+        "viewport": [
+          3840.0,
+          2160.0
+        ]
+      },
+      {
+        "image": "familiers-terminal-3840x2160.png",
+        "playfield": [
+          484.0,
+          56.0,
+          2820.0,
+          1742.0
+        ],
+        "viewport": [
+          3840.0,
+          2160.0
+        ]
+      }
+    ],
+    "companions": 4,
+    "drag_reordered": true,
+    "drones": 3,
+    "presentation_preserves_engine": true,
+    "real_reanimation_deadline": true,
+    "review": "HUD-07 / UX-PETS-06",
+    "user_saves_untouched": true
+  },
+  "text_centering": {
+    "measurements": 18,
+    "tolerance_logical_pixels": 2.0,
+    "location_max_offset_physical_pixels": 0.5
+  },
+  "binaries": [
+    {
+      "path": "target\\debug\\project-rl.exe",
+      "bytes": 115030528,
+      "sha256": "78ae91f545daaad4da1c641f58c5ce6c81e893043dac601482efb1b4c45a8e5e"
+    },
+    {
+      "path": "target\\release\\project-rl.exe",
+      "bytes": 47625728,
+      "sha256": "f684a27073fb292e06eb61384f44783173e2c4f085dd02659398acdfc8c9be0d"
+    }
+  ],
+  "full_suite": {
+    "completed": false,
+    "passed": false,
+    "note": "La suite binaire générale a été interrompue après plus de 940 résultats, avec plusieurs échecs. Elle ne peut pas être présentée comme validée. L’assertion de largeur du panneau de statut a été adaptée au nouvel agencement et ses 20 tests passent. Deux échecs UX ont été reproduits : la hauteur attendue des jauges compactes et le raccourci de comparaison d’inventaire. Ces chemins existaient dans la copie avant intégration ; ils restent hors des modifications présentes."
+  },
+  "runtime_depends_on_artifacts": false
+}

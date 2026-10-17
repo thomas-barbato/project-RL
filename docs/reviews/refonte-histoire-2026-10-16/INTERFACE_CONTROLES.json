@@ -1,0 +1,57 @@
+{
+  "review": "HUD-02 / UX-PETS-03",
+  "date": "2026-10-16",
+  "scope": "HUD audit and interactive proposals; no runtime integration",
+  "target_resolutions": [
+    [
+      1920,
+      1080
+    ],
+    [
+      2560,
+      1440
+    ],
+    [
+      3840,
+      2160
+    ]
+  ],
+  "secondary_resolution": [
+    1280,
+    720
+  ],
+  "native_baseline_captures": [
+    [
+      1280,
+      720
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      1280,
+      800
+    ]
+  ],
+  "mockup_browser_checks": [
+    "both layouts render",
+    "images loaded",
+    "no horizontal overflow at desktop preview width",
+    "pet window within map bounds",
+    "collapse and expand",
+    "individual selection",
+    "remaining reanimation duration",
+    "group drone orders leave raised allies autonomous",
+    "destroy confirmation cancellation",
+    "keyboard movement of pet window",
+    "character defense panel",
+    "expanded map",
+    "no browser console error"
+  ],
+  "source_content_asset_files_unchanged": 7014,
+  "git_diff_check_passed": true,
+  "fragment_bytes": 629296,
+  "runtime_tests": "No code changed; existing drone diagnostic passed. New client layout and native QHD/4K not tested.",
+  "mockup_path": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\16\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\interface-familiers.html"
+}

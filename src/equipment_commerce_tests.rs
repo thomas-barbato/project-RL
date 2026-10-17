@@ -13,7 +13,11 @@ fn shops_cover_every_layer_with_white_stock_and_current_tier_gambles() {
     for depth in 0..=7 {
         let (shop, quotes) = shop_definition(original.clone(), loot.equipment(), depth).unwrap();
         let tier = depth.saturating_add(1).min(6) as u8;
-        assert_eq!(quotes.len(), 108);
+        assert_eq!(
+            quotes.len(),
+            equipment_generation::current_model_ids().len() + equipment_generation::BASE_IDS.len()
+                - 2
+        );
         let equipment: Vec<_> = shop
             .offers
             .iter()
@@ -27,8 +31,10 @@ fn shops_cover_every_layer_with_white_stock_and_current_tier_gambles() {
         assert_eq!(
             equipment.len(),
             match depth {
+                // The Cognefer outfit and Aviator jacket were both tier one.
                 0 => 18,
-                _ => 19,
+                1 => 38,
+                _ => 40,
             }
         );
         assert!(
@@ -36,7 +42,17 @@ fn shops_cover_every_layer_with_white_stock_and_current_tier_gambles() {
                 .iter()
                 .all(|base| base.tier == tier || base.tier + 1 == tier)
         );
-        assert_eq!(shop.gambles.len(), 18);
+        assert_eq!(shop.gambles.len(), if depth == 0 { 18 } else { 20 });
+        assert!(
+            shop.offers
+                .iter()
+                .all(|offer| !equipment_generation::is_retired_test_item(&offer.item))
+        );
+        assert!(
+            shop.gambles
+                .iter()
+                .all(|offer| !equipment_generation::is_retired_test_item(&offer.item))
+        );
         for gamble in &shop.gambles {
             let base = loot
                 .equipment()

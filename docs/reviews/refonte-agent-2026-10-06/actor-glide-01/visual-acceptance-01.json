@@ -1,0 +1,22 @@
+{
+  "review_id": "ACTOR-GLIDE-01",
+  "date": "2026-10-16",
+  "user_approval": "oui je veux bien :D",
+  "approved_proposal": "Very short tile-to-tile glide, about 80 ms, immediate start and eased arrival; whole actor with equipment and attached effects; player, monsters, drones and transformations; no input lock or gameplay change.",
+  "approval_scope": "The user's reply accepts this precise movement proposal. It does not approve new character drawings or a walking animation.",
+  "duration_milliseconds": 80,
+  "native_tiles": [32, 64],
+  "presentation": [
+    "Quadratic ease-out from previous displayed position to committed destination",
+    "Consecutive adjacent steps retarget immediately without queuing or blocking commands",
+    "Player camera and mouse projection share the presentation offset",
+    "Existing hit reactions compose with the glide",
+    "Actor-local status icons, burning, freezing, equipment and contact shadow share the actor rectangle",
+    "Reduced motion disables the glide; breathing is suspended while displaced"
+  ],
+  "mechanical_changes": false,
+  "serialization_changes": false,
+  "source_pixels_modified": false,
+  "supersedes_proposal_only_status_in": "../held-weapon-review-01/armor-breathing-extension-01.json",
+  "reusable_preview": "artifacts/apercu-equipement64.html"
+}

@@ -1,0 +1,1048 @@
+{
+  "review_id": "UNIVERS-23-VALIDATION",
+  "date": "2026-10-17",
+  "status": "passed",
+  "new_sources": 10,
+  "native_variants": 20,
+  "new_shadows": 10,
+  "retained_from_previous_batch": 9,
+  "removed_numbers": [
+    94,
+    95,
+    97
+  ],
+  "removed_png_files": 18,
+  "unrendered_briefs": [
+    110,
+    114
+  ],
+  "listed_available_candidates": 51,
+  "protected_files": 945,
+  "preserved_rust_sources": 367,
+  "checks": [
+    {
+      "name": "10 available new candidates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "2 blocked briefs not treated as user rejections",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native review and deferred selection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "story unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104 source copy preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104 transparent source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104 selection and lore pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104A native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104A body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104B native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104B body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104 identical alpha and dark contours",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104 indexed palette only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104 alternate differs",
+      "passed": true,
+      "detail": 1133
+    },
+    {
+      "name": "104 separate shadow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105 source copy preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105 transparent source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105 selection and lore pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105A native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105A body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105B native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105B body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105 identical alpha and dark contours",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105 indexed palette only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105 alternate differs",
+      "passed": true,
+      "detail": 1232
+    },
+    {
+      "name": "105 separate shadow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106 source copy preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106 transparent source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106 selection and lore pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106A native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106A body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106B native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106B body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106 identical alpha and dark contours",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106 indexed palette only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106 alternate differs",
+      "passed": true,
+      "detail": 1193
+    },
+    {
+      "name": "106 separate shadow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107 source copy preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107 transparent source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107 selection and lore pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107A native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107A body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107B native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107B body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107 identical alpha and dark contours",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107 indexed palette only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107 alternate differs",
+      "passed": true,
+      "detail": 1228
+    },
+    {
+      "name": "107 separate shadow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108 source copy preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108 transparent source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108 selection and lore pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108A native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108A body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108B native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108B body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108 identical alpha and dark contours",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108 indexed palette only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108 alternate differs",
+      "passed": true,
+      "detail": 641
+    },
+    {
+      "name": "108 separate shadow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109 source copy preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109 transparent source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109 selection and lore pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109A native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109A body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109B native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109B body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109 identical alpha and dark contours",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109 indexed palette only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109 alternate differs",
+      "passed": true,
+      "detail": 659
+    },
+    {
+      "name": "109 separate shadow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111 source copy preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111 transparent source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111 selection and lore pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111A native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111A body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111B native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111B body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111 identical alpha and dark contours",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111 indexed palette only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111 alternate differs",
+      "passed": true,
+      "detail": 1705
+    },
+    {
+      "name": "111 separate shadow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112 source copy preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112 transparent source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112 selection and lore pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112A native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112A body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112B native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112B body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112 identical alpha and dark contours",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112 indexed palette only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112 alternate differs",
+      "passed": true,
+      "detail": 816
+    },
+    {
+      "name": "112 separate shadow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113 source copy preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113 transparent source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113 selection and lore pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113A native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113A body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113B native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113B body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113 identical alpha and dark contours",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113 indexed palette only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113 alternate differs",
+      "passed": true,
+      "detail": 675
+    },
+    {
+      "name": "113 separate shadow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115 source copy preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115 transparent source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115 selection and lore pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115A native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115A body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115B native binary export",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115B body limits and margins",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115 identical alpha and dark contours",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115 indexed palette only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115 alternate differs",
+      "passed": true,
+      "detail": 611
+    },
+    {
+      "name": "115 separate shadow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "style_reference unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "player_reference unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all18 exact requested resource/obsolete preview deletions completed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rejected identifiers are inert tombstones",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "9 prior models retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "945 other protected files unchanged",
+      "passed": true,
+      "detail": {
+        "count": 945,
+        "failed": []
+      }
+    },
+    {
+      "name": "original18 entries and17 approvals intact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "41 retained candidate records unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "51 available candidates and correct exclusions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no candidate approval inferred",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "60 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "61 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "62 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "63 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "64 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "65 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "66 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "67 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "68 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "69 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "70 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "71 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "72 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "73 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "74 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "75 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "76 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "77 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "78 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "79 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "80 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "81 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "82 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "83 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "84 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "85 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "86 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "87 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "88 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "89 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "90 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "91 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "92 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "93 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "96 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "98 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "99 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "100 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "101 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "102 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "103 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "104 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "105 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "106 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "107 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "108 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "109 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "111 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "112 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "113 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "115 listed files exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "registry points to curated list",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "demons-92-98.png native board",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "demons-99-102.png native board",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "demons-103-103.png native board",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "demons-104-107.png native board",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "demons-108-112.png native board",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "demons-113-115.png native board",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "obsolete partial preview removed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "preview tool syntax",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "readable list includes only retained/rendered rows",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "actual_dimensions": [
+    {
+      "number": 104,
+      "label": "Rebut de cuve",
+      "body": [
+        58,
+        38
+      ],
+      "palette_changed_pixels": 1133
+    },
+    {
+      "number": 105,
+      "label": "Dévié",
+      "body": [
+        52,
+        70
+      ],
+      "palette_changed_pixels": 1232
+    },
+    {
+      "number": 106,
+      "label": "Ligaturé",
+      "body": [
+        61,
+        48
+      ],
+      "palette_changed_pixels": 1193
+    },
+    {
+      "number": 107,
+      "label": "Cocon marcheur",
+      "body": [
+        54,
+        56
+      ],
+      "palette_changed_pixels": 1228
+    },
+    {
+      "number": 108,
+      "label": "Oreillard des failles",
+      "body": [
+        38,
+        64
+      ],
+      "palette_changed_pixels": 641
+    },
+    {
+      "number": 109,
+      "label": "Tresse rampante",
+      "body": [
+        53,
+        40
+      ],
+      "palette_changed_pixels": 659
+    },
+    {
+      "number": 111,
+      "label": "Porte-lest",
+      "body": [
+        73,
+        76
+      ],
+      "palette_changed_pixels": 1705
+    },
+    {
+      "number": 112,
+      "label": "Voilé des cryptes",
+      "body": [
+        42,
+        72
+      ],
+      "palette_changed_pixels": 816
+    },
+    {
+      "number": 113,
+      "label": "Étoile des fosses",
+      "body": [
+        52,
+        38
+      ],
+      "palette_changed_pixels": 675
+    },
+    {
+      "number": 115,
+      "label": "Veilleur du givre",
+      "body": [
+        40,
+        82
+      ],
+      "palette_changed_pixels": 611
+    }
+  ],
+  "runtime_connected": false,
+  "rust_tests_run": false,
+  "reason_no_rust_tests": "Only review artwork, metadata, documentation and preview tool changed. All Rust sources and game sprite files match pre-turn snapshot.",
+  "visual_inspection": "Three new native boards inspected beside unchanged player. Filtered prior boards regenerated without refused models. Artistic selection remains deferred."
+}

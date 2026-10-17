@@ -1,0 +1,1662 @@
+{
+  "review_id": "NPC-MONSTERS-01",
+  "created": "2026-10-16",
+  "generator": "built-in image_gen",
+  "status": "partially_approved_not_integrated",
+  "records": [
+    {
+      "id": "NPC-01",
+      "number": 1,
+      "label": "Responsable des missions",
+      "role": "PNJ / missions",
+      "depth": "Refuge des premiers secteurs",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-dd0141c5-0886-45f6-9eef-1ee7295cfcfb.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r03.png",
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 40,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "layering_status": "Static clothed and holstered-weapon concept only; modular arm/weapon/finger layers not authored.",
+      "prompt": "Use case: stylized-concept.\nAsset type: NPC-01 revision r03, ONE original full-body mission-officer concept for Project RL, grim industrial cyberpunk roguelike. This is a substantially NEW DESIGN, not a recolor of a soldier.\nInput images: Image 1 is ONLY a graphic STYLE and compact adult-proportions reference: bold controlled black contours, large readable hands and boots, five-heads-tall figure, broad clean cel-shaded masses. Do NOT copy its armor, helmet, equipment or combat stance. Image 2 is the REJECTED previous mission officer: use only as an explicit negative comparison, do NOT reproduce its plate armor, enclosed angular faceplate, huge armored shoulders, long flared coat or heroic stance.\nPrimary request: a male armed prison command official, visibly DIFFERENT from the armored playable soldier even at 32 or 64px. Older, thick-necked, stocky adult man, broad rectangular torso with a modest belly, stern pale weathered lower face, heavy grey moustache, severe jaw. Same human standing height as the reference, not a giant or dwarf.\nUniform and silhouette: a rigid short HIP-LENGTH double-breasted dark military-olive command jacket with a high closed collar, broad ochre-ivory breast belt crossing diagonally to a thick black duty belt, flat cloth epaulettes, one wide ivory rank band on the upper arm. Large uninterrupted olive cloth surfaces, NO chest plate, NO armored shoulder pauldrons, NO abdominal armor, NO long coat tails, NO cape. Charcoal navy straight trousers and knee-high matte black leather duty boots with plainly shaped soles, no armored greaves. Two large contrasting material zones: olive jacket and dark navy trousers, with the wide light diagonal belt as a strong readable sign. No real-world insignia, no lettering.\nHELMET: a matte charcoal institutional SECURITY HELMET with a low broad rounded bowl and a very distinct short wide projecting PEAK like a brutal industrial officer's visor. A single broad dark smoked-amber eye visor ends above the nose, leaving the nose, square jaw and grey moustache clearly visible. Firm chin strap along cheeks, ear covers tucked close to helmet. NOT a medieval knight helmet, not a T-shaped face slit, not a full armored mask. No helmet crest, plume, horns or glowing eyes.\nArmed status and pose: one compact chunky industrial PISTOL clearly seated in an OPEN black rigid holster on his right hip, viewer left, visible squared gun slide and grip above the holster. His right gloved hand rests authoritatively on the belt immediately beside the pistol grip, fingers naturally placed, no floating gun. Left arm bent with hand behind the lower back; do not invent a third hand. Upright rigid supervisory posture, chin slightly lifted, feet much closer together than the playable fighter, one boot subtly advanced. He looks like the man who orders an expendable prisoner into danger, not the hero who goes there. No handheld tablet or other props.\nStyle: match the flat graphic-novel game art references, 2-3 values per material, intentional large shapes, crisp contour, restrained useful detail, no texture noise, no 3D, no photorealism, no pink, no shiny luxury ornament. Slightly overhead but essentially frontal full body, all limbs and helmet fully inside generous transparent margins. ONE character only, one pose.\nBackground: genuine alpha transparency, no floor, no environment, no shadow, no glow, no text, no alternative views. The holstered weapon is part of this static REVIEW CONCEPT; this does not imply authored modular runtime layers.",
+      "framing_edit_prompt": null,
+      "revision": "r03",
+      "design_intent": "Officier pénitentiaire distinct du joueur : veste courte olive et baudrier ivoire, casque à visière saillante laissant voir la mâchoire et la moustache, posture rigide, pistolet au holster. Homme casqué et armé conservé.",
+      "previous_revisions": [
+        {
+          "revision": "r02",
+          "status": "rejected_by_user",
+          "reason": "Ressemble trop au joueur",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r02.png"
+        }
+      ],
+      "visual_acceptance": "visual-acceptance-01.json",
+      "accepted_source_sha256": "76f2e0db87f746ad175f75a873f4cc12dbe764ff8e459861caa3e26ccc1ca843",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            49,
+            36,
+            79,
+            96
+          ],
+          "colors": 23,
+          "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f"
+        },
+        "32": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native32.png",
+          "cell": 32,
+          "canvas": 64,
+          "foot_anchor": [
+            32,
+            48
+          ],
+          "occupied": [
+            25,
+            18,
+            40,
+            48
+          ],
+          "colors": 22,
+          "sha256": "e1738a8de2d0aedefcb185419fddbe5cb7811ba67ce1deb17da9c1ff63ad89c9"
+        }
+      }
+    },
+    {
+      "id": "NPC-02",
+      "number": 2,
+      "revision": "r02",
+      "label": "Armurier",
+      "role": "PNJ / équipement",
+      "depth": "Refuge",
+      "width": 48,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised full-body NPC appearance source for Project RL, a grim industrial cyberpunk roguelike, native 64px tiles.\nInput image 1 is the EDIT TARGET: keep that service character's human identity, sex, hair, adult build and basic costume identity, while revising its readability and professional props as described. Input image 2 is ONLY a style reference for clean bold comic contours, large flat material masses and restrained shading. Do NOT copy the cultist's hood, mask, uniform, baton or pose.\nStyle: compact mature adult game proportions, around five heads tall, matching the accepted humans' standing height. Broad flat shapes, ONE clear shadow per material, very few purposeful lines. No fine cloth polygon patchwork, wear flecks, little buckles, tiny seams, dense straps, armor panel clutter or photographic texture. Strong natural hand/prop connection.\nComposition: ONE complete standing character, nearly frontal and slightly viewed from above, head, hands, equipment and boot soles fully inside generous true ALPHA transparent margins. No background, ground, contact shadow, glow, text, symbols, alternate views or other figures. Dark calm industrial setting expressed through clothes and attitude only. Static appearance proposal; no new game service, powers, statistics or effects.\nSubject: revise the stocky middle-aged male ARMORER of image 1. Retain his short greying hair/beard, stern tired face and raised amber work goggles. Broader shoulders and short practical stance, intact normal human anatomy.\nKeep a broad dark TEAL work shirt, rolled sleeves and ONE heavy charcoal leather APRON ending near knees. Plain muted grey work trousers and heavy dark steel-toed boots. Two main large garment masses are teal and charcoal; amber goggles are a small accent. Remove the many bright straps, pale armor patches and segmented guards. One plain belt and a single apron pocket are enough.\nBoth large dark work gloves hold ONE short dark-steel FIREARM RECEIVER/BARREL ASSEMBLY horizontally across the lower chest and upper apron. It is an unfinished angular compact rifle mechanism with a short barrel pointing to viewer LEFT, held down and safely, without aiming or combat pose. The LEFT glove supports the rear receiver from below, the RIGHT glove wraps under the forward barrel assembly. Both normal-length elbows bent naturally, two clearly attached gloves. Expose teal shirt shoulders and much of the apron below it. ONE broad dull steel plane makes the part visible against apron. No muzzle light, ammunition belts, holstered guns or other weapons. This prop shows a craftsperson's work; it creates no weapon model or repair mechanic.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-02-r01.png",
+          "role": "Cible de révision non validée : identité et tenue de métier"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Référence de style validée : masses et contours ; aucun élément du culte à reprendre"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-d233fbc2-1e97-4ea6-b0bd-b1d06bfa648e.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-02-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 48,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-07",
+      "layering_status": "Static clothed service-character and prop study; modular body, arm, prop and finger layers not authored",
+      "source_sha256": "20e48d138d317815fee6e87fc119264e30a2c0dc92f2aaa82af8bfc6a09ceeee",
+      "previous_revisions": [
+        {
+          "id": "NPC-02",
+          "number": 2,
+          "label": "Armurier",
+          "role": "PNJ / équipement",
+          "depth": "Refuge",
+          "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-bb2211df-1890-41e9-8843-838fce682321.png",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-02-r01.png",
+          "maximum_body_height64": 60,
+          "maximum_body_width64": 44,
+          "native_body_reference": 64,
+          "status": "superseded_unapproved",
+          "visual_approved": false,
+          "name_approved": false,
+          "rules_approved": false,
+          "layering_status": "unarmed_body_source; held equipment and pose layers not yet authored",
+          "prompt": "Use case: stylized-concept. Asset type: ONE individual full-body NPC source for a 64px cyberpunk roguelike tile. Input image is a style and SCALE reference ONLY, do not copy its uniform or face. Match its compact graphic-novel game figure: FIVE HEADS tall, head 20% of standing height, bold clean dark outline, broad cel-shaded color planes, readable enlarged gloved hands and heavy boots. All shapes must read when directly exported to 64px standing height. Industrial apocalypse, original survivor, practical lived-in equipment. Two broad contrasting clothing colors, 2-3 tones per material, no tiny rivets or noisy scratches, no smooth photorealistic rendering, no 3D, no pink, no medieval fantasy or cute baby look. Full-body single neutral near-front base pose, feet on one ground line, arms relaxed and slightly apart from torso with visible EMPTY hands. NO handheld tool or weapon, no gun baked into clothing, no backpack bigger than torso. Transparent background, no shadow, no floor, no text or alternate poses. Leave clear margin around every extremity.\nSubject: male prison-armory keeper, stocky adult with a broad torso and short grey stubble, work-scarred olive skin and shaved head. Folded amber welding visor raised over forehead, NOT a medieval helmet. Muted turquoise industrial padded jacket with thick rolled sleeves, broad charcoal-black protective apron from chest to knees, ochre-yellow work trousers and steel-toed boots. A large squared utility belt and one compact squared parts pouch convey equipment service without a handheld prop. One readable brass fastener and broad metal cuff; restraint in detail. Guarded blunt expression, substantial grounded silhouette different from the slimmer female leader. Both gloves empty, no guns or weapons anywhere on his body.",
+          "framing_edit_prompt": null,
+          "revision": "r01"
+        }
+      ],
+      "visual_acceptance": "visual-acceptance-04.json",
+      "accepted_source_sha256": "20e48d138d317815fee6e87fc119264e30a2c0dc92f2aaa82af8bfc6a09ceeee",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            49,
+            36,
+            80,
+            96
+          ],
+          "colors": 18,
+          "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6"
+        }
+      }
+    },
+    {
+      "id": "NPC-03",
+      "number": 3,
+      "revision": "r02",
+      "label": "Secouriste",
+      "role": "PNJ / soins",
+      "depth": "Refuge",
+      "width": 44,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised full-body NPC appearance source for Project RL, a grim industrial cyberpunk roguelike, native 64px tiles.\nInput image 1 is the EDIT TARGET: keep that service character's human identity, sex, hair, adult build and basic costume identity, while revising its readability and professional props as described. Input image 2 is ONLY a style reference for clean bold comic contours, large flat material masses and restrained shading. Do NOT copy the cultist's hood, mask, uniform, baton or pose.\nStyle: compact mature adult game proportions, around five heads tall, matching the accepted humans' standing height. Broad flat shapes, ONE clear shadow per material, very few purposeful lines. No fine cloth polygon patchwork, wear flecks, little buckles, tiny seams, dense straps, armor panel clutter or photographic texture. Strong natural hand/prop connection.\nComposition: ONE complete standing character, nearly frontal and slightly viewed from above, head, hands, equipment and boot soles fully inside generous true ALPHA transparent margins. No background, ground, contact shadow, glow, text, symbols, alternate views or other figures. Dark calm industrial setting expressed through clothes and attitude only. Static appearance proposal; no new game service, powers, statistics or effects.\nSubject: revise the adult female MEDIC in image 1. Retain her tied-up dark hair, amber goggles pushed onto forehead, normal human face, athletic/slim build and calm severe expression. She looks exhausted but capable, not glamorous.\nUse an OLIVE practical knee-length work coat with ONE broad IVORY washable front panel and ivory forearm cuffs. Plain olive trousers, simple dark practical boots, one black waist belt. Keep a single small muted brick-red sleeve patch with a plain ivory rectangular inset, no writing or cross. Remove the armored shoulder plates, bulky segmented wrist/leg armor and many pouches. Give her a civilian emergency-worker silhouette rather than a combat medic suit.\nHer RIGHT glove (viewer LEFT) holds the single broad handle of ONE closed rectangular MEDICAL CASE down beside her right thigh. Case is about hip-to-knee height and sits clearly outside the coat silhouette; simple dull IVORY shell with ONE broad brick-red horizontal panel. Hand visibly wraps over the handle, forearm hangs at normal length. The other hand rests near waist, unarmed. Keep both boots visible and case bottom well ABOVE ground, so carrying it does not shrink the body. No syringe, liquid, blood, hologram, surgical gore, health aura or floating symbols. The readable primary sign is the rectangular carried medical case.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-03-r01.png",
+          "role": "Cible de révision non validée : identité et tenue de métier"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Référence de style validée : masses et contours ; aucun élément du culte à reprendre"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-e34486b4-bc6d-4b4b-911f-91523b0a05c6.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-03-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 44,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-07",
+      "layering_status": "Static clothed service-character and prop study; modular body, arm, prop and finger layers not authored",
+      "source_sha256": "3ee7bcaf86e718c19b0a3803d89da47415b4a2ecaf743bf224d109e0ab7c2d17",
+      "previous_revisions": [
+        {
+          "id": "NPC-03",
+          "number": 3,
+          "label": "Secouriste",
+          "role": "PNJ / soins",
+          "depth": "Refuge",
+          "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-bc866448-d556-41f7-8dfb-b3d416914db1.png",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-03-r01.png",
+          "maximum_body_height64": 60,
+          "maximum_body_width64": 40,
+          "native_body_reference": 64,
+          "status": "superseded_unapproved",
+          "visual_approved": false,
+          "name_approved": false,
+          "rules_approved": false,
+          "layering_status": "unarmed_body_source; held equipment and pose layers not yet authored",
+          "prompt": "Use case: stylized-concept. Asset type: ONE individual full-body NPC source for a 64px cyberpunk roguelike tile. Input image is a style and SCALE reference ONLY, do not copy its uniform or face. Match its compact graphic-novel game figure: FIVE HEADS tall, head 20% of standing height, bold clean dark outline, broad cel-shaded color planes, readable enlarged gloved hands and heavy boots. All shapes must read when directly exported to 64px standing height. Industrial apocalypse, original survivor, practical lived-in equipment. Two broad contrasting clothing colors, 2-3 tones per material, no tiny rivets or noisy scratches, no smooth photorealistic rendering, no 3D, no pink, no medieval fantasy or cute baby look. Full-body single neutral near-front base pose, feet on one ground line, arms relaxed and slightly apart from torso with visible EMPTY hands. NO handheld tool or weapon, no gun baked into clothing, no backpack bigger than torso. Transparent background, no shadow, no floor, no text or alternate poses. Leave clear margin around every extremity.\nSubject: adult field medic woman with tired fair skin, dark brown hair tied in a short high knot and a simple transparent amber protective visor on forehead. Muted medical-green jacket and trousers, broad dirty ivory long protective vest and ivory sleeves, dark charcoal boots and gloves. Readable flat rust-red armband with a plain ivory horizontal rectangle, not lettering. One compact square medicine pouch attached to belt, no carried kit, no syringe or held gadget. Lighter silhouette than the armored security reference; compassion and toughness, no smiling pin-up, no sexualized clothing. Green and ivory must be two genuinely large distinct color blocks. Both hands visibly empty and separated from hips.",
+          "framing_edit_prompt": null,
+          "revision": "r01"
+        }
+      ],
+      "visual_acceptance": "visual-acceptance-04.json",
+      "accepted_source_sha256": "3ee7bcaf86e718c19b0a3803d89da47415b4a2ecaf743bf224d109e0ab7c2d17",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            50,
+            36,
+            78,
+            96
+          ],
+          "colors": 20,
+          "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7"
+        }
+      }
+    },
+    {
+      "id": "NPC-04",
+      "number": 4,
+      "revision": "r02",
+      "label": "Technicien",
+      "role": "PNJ / service technique",
+      "depth": "Refuge",
+      "width": 46,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised full-body NPC appearance source for Project RL, a grim industrial cyberpunk roguelike, native 64px tiles.\nInput image 1 is the EDIT TARGET: keep that service character's human identity, sex, hair, adult build and basic costume identity, while revising its readability and professional props as described. Input image 2 is ONLY a style reference for clean bold comic contours, large flat material masses and restrained shading. Do NOT copy the cultist's hood, mask, uniform, baton or pose.\nStyle: compact mature adult game proportions, around five heads tall, matching the accepted humans' standing height. Broad flat shapes, ONE clear shadow per material, very few purposeful lines. No fine cloth polygon patchwork, wear flecks, little buckles, tiny seams, dense straps, armor panel clutter or photographic texture. Strong natural hand/prop connection.\nComposition: ONE complete standing character, nearly frontal and slightly viewed from above, head, hands, equipment and boot soles fully inside generous true ALPHA transparent margins. No background, ground, contact shadow, glow, text, symbols, alternate views or other figures. Dark calm industrial setting expressed through clothes and attitude only. Static appearance proposal; no new game service, powers, statistics or effects.\nSubject: revise the adult female TECHNICIAN in image 1. Retain her short asymmetric dark hair with shaved side, hearing-protection ear cups, warm normal human face, compact practical build, orange work overalls, short olive jacket and pale industrial prosthetic RIGHT forearm (viewer LEFT). This prosthesis is a normal practical replacement, not a monstrous graft. ONE elbow swivel disc and ONE broad ivory forearm casing are enough; keep normal arm length and a simple five-finger mechanical hand. No exposed tubes or anatomy.\nUse ORANGE overalls as ONE large garment mass and a short OLIVE work jacket as the other. Charcoal work boots, simple black belt, single rectangular utility pouch. Remove repeated little pockets, strap buckles, armored knees, bright shoulder gadgets and patchwork of internal cloth triangles. No chest armor or military helmet.\nThe prosthetic RIGHT hand (viewer LEFT) holds ONE short thick OPEN-ENDED INDUSTRIAL WRENCH, angled slightly outward and down, clearly separated from the overalls. Thumb/fingers encircle its thick grip; simple dull grey broad shaft and ONE visible open U jaw. Tool about forearm length, not a giant fantasy weapon. Her natural LEFT hand (viewer RIGHT), in a dark glove, rests on a plain small belt-mounted diagnostic block. No active screen graphics, no floating drone, no summoned machine, electrical effects or guns. Her unmistakable signs are orange overalls, hearing protection and ivory tool-holding forearm.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-04-r01.png",
+          "role": "Cible de révision non validée : identité et tenue de métier"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Référence de style validée : masses et contours ; aucun élément du culte à reprendre"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-aca7518b-1321-459f-add0-535fee811618.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-04-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 46,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-07",
+      "layering_status": "Static clothed service-character and prop study; modular body, arm, prop and finger layers not authored",
+      "source_sha256": "336964dd9b09beee80705e8bb719a4cde226eff3d0bb900a3a7abb8483b07415",
+      "previous_revisions": [
+        {
+          "id": "NPC-04",
+          "number": 4,
+          "label": "Technicien",
+          "role": "PNJ / service technique",
+          "depth": "Refuge",
+          "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-be048ae4-903e-4f9c-a320-5abd1f77436d.png",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-04-r01.png",
+          "maximum_body_height64": 60,
+          "maximum_body_width64": 40,
+          "native_body_reference": 64,
+          "status": "superseded_unapproved",
+          "visual_approved": false,
+          "name_approved": false,
+          "rules_approved": false,
+          "layering_status": "unarmed_body_source; held equipment and pose layers not yet authored",
+          "prompt": "Use case: stylized-concept. Asset type: ONE individual full-body NPC source for a 64px cyberpunk roguelike tile. Input image is a style and SCALE reference ONLY, do not copy its uniform or face. Match its compact graphic-novel game figure: FIVE HEADS tall, head 20% of standing height, bold clean dark outline, broad cel-shaded color planes, readable enlarged gloved hands and heavy boots. All shapes must read when directly exported to 64px standing height. Industrial apocalypse, original survivor, practical lived-in equipment. Two broad contrasting clothing colors, 2-3 tones per material, no tiny rivets or noisy scratches, no smooth photorealistic rendering, no 3D, no pink, no medieval fantasy or cute baby look. Full-body single neutral near-front base pose, feet on one ground line, arms relaxed and slightly apart from torso with visible EMPTY hands. NO handheld tool or weapon, no gun baked into clothing, no backpack bigger than torso. Transparent background, no shadow, no floor, no text or alternate poses. Leave clear margin around every extremity.\nSubject: adult underground systems technician, slim but compact adult proportions, medium tan skin, shaved sides with a short dark grey crest, a large matte charcoal ear-protection headset with no floating antenna. Broad burnt-orange maintenance overalls with square knee pads and a short dark moss-green reinforced jacket. One ivory cybernetic forearm with a normal-sized empty five-fingered hand, the other hand in a dark work glove; this is a functional prosthesis, not a weapon. Simple olive utility belt and a readable blunt rectangular test module fixed at belt, no carried prop. Worn industrial materials, no luminous neon strips. Distinct small shoulder silhouette, boots practical and chunky; no armor cape and no medical motifs.",
+          "framing_edit_prompt": null,
+          "revision": "r01"
+        }
+      ],
+      "visual_acceptance": "visual-acceptance-04.json",
+      "accepted_source_sha256": "336964dd9b09beee80705e8bb719a4cde226eff3d0bb900a3a7abb8483b07415",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            50,
+            36,
+            79,
+            96
+          ],
+          "colors": 20,
+          "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac"
+        }
+      }
+    },
+    {
+      "id": "MON-01",
+      "number": 5,
+      "revision": "r02",
+      "label": "Ouvrier possédé",
+      "family": "Possédés industriels",
+      "role": "Monstre normal / possédé",
+      "depth": "Après les premières zones cultistes",
+      "height": 60,
+      "width": 64,
+      "palette": 16,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised monster source for Project RL, a grim industrial cyberpunk horror roguelike with native 64px tiles.\nInput image 1 is the EDIT TARGET, an earlier monster proposal appreciated for its concept. Preserve its identity, basic anatomy, number of limbs, distinctive integrated equipment and relative body shape. Revise the visual complexity only as specified. Input image 2 is ONLY the accepted simplified comic style reference: bold clean dark contours, broad flat color masses, large useful negative spaces, ONE main shadow per material. Do NOT copy the reference's cannon arm, respirator, clothes or pose.\nReadability: use a small number of big purposeful shapes, no little rust scratches, flecks, gore filigree, anatomy hatching, skin mottling, small bolts, repeated rib lines, grids of panels or triangular cloth patchwork. Muted industrial palette; no pink, no gold ornament. Mature frightening design, not cute.\nComposition: ONE complete creature, nearly frontal with slight overhead game camera. Entire head, limbs, claws and supports fully inside generous true ALPHA transparent margins. No background, floor, shadow, glow, spell effect, particles, text, collage or alternate pose. Static appearance review only, no ability, statistic, collision or animation is created.\nSubject: the possessed industrial WORKER from image 1. Keep the hunched formerly human adult, exactly TWO legs and TWO arms, mustard-yellow short work jacket, muted teal work trousers and dark heavy work boots. He remains visibly an industrial worker corrupted by possession, not a member of the hooded cult and not an armored fighter.\nMain identifying shape is his enlarged flesh-and-bone RIGHT forearm and hand (viewer LEFT), hanging down and outward: ONE broad ivory skin/bone surface, ONE exposed dark brick-red muscle channel and THREE long dark hooked claws. Keep elbow, wrist and attached palm anatomically coherent. No chains, cannon, mechanical replacement, additional tendrils or held weapon. Normal LEFT arm (viewer RIGHT) is lean and smaller, with a simple pale hand and a few dark nails.\nHead: short dark disordered hair, hollow pale eyes, jaw stretched open into ONE clear black mouth cavity with TWO broad ivory fangs. Remove the multiple cheek holes, gums, tooth rows and tiny facial lines. A torn jacket shoulder and one torn trouser knee are enough; no busy field of rips or surface wear. Keep at most one broad pale work stripe per upper sleeve. Remove the hanging respirator and its straps from the chest to reduce clutter. Readable broad yellow shoulder mass and teal legs, simple black shirt beneath. Wide off-balance stance, recognizable human body with a terrifying asymmetric claw.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r01.png",
+          "role": "Cible de révision : conserver l'identité, l'anatomie et les greffes de la première proposition appréciée"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+          "role": "Référence de style simplifié validée ; ne pas copier le bras-canon ni la tenue"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-3598123d-6414-4832-a4b3-4b8615df435f.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 64,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-08",
+      "layering_status": "Organic and integrated mechanical anatomy; no separately held weapon",
+      "mechanics_status": "Apparence validée uniquement ; aucun dégât, vitesse, capacité, collision, effet ou placement intégré.",
+      "source_sha256": "db6983fe234f4237a3656474a628570e6f0d061a51c3f0258211e3c797ca043f",
+      "previous_revisions": [
+        {
+          "id": "MON-01",
+          "number": 5,
+          "label": "Ouvrier possédé",
+          "role": "Monstre normal",
+          "depth": "Après les premières zones cultistes",
+          "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-eb06b48a-66ab-43dd-9162-7814c6fe46e1.png",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r01.png",
+          "maximum_body_height64": 60,
+          "maximum_body_width64": 64,
+          "native_body_reference": 64,
+          "status": "superseded_proposal_for_readability",
+          "visual_approved": false,
+          "name_approved": false,
+          "rules_approved": false,
+          "layering_status": "organic or integrated mechanical anatomy; no held weapon",
+          "prompt": "Use case: stylized-concept. Asset type: ONE full-body monster source for an original cyberpunk-apocalypse roguelike Project RL. Input images are STYLE references only. Flat graphic-novel game-tile art, strong clean dark outline, broad purposeful cel-shaded planes with two or three values per material. Retain the accepted humanoid reference's compact readable game proportions and the hybrid reference's clear separation of organic and mechanical materials, but invent the subject specified below. The source must remain legible when directly exported to a 64px character tile: simple silhouette, few strong diagnostic details, no tiny scratch texture, no dense rivets, no photorealism, no 3D, no smooth painted portrait, no cute chibi, no pink. A single neutral standing or crouching full-body creature, all extremities inside the canvas with a clear margin, nearly frontal or readable three-quarter view. Actual transparent background, no ground shadow, no glowing aura, no floor, no lettering, no other pose or creature. Horror through abnormal anatomy and visible material integration; avoid flying gore and effects.\nSubject: early-sector COMMON ENEMY, a human industrial maintenance worker recently possessed. Still visibly a human adult in torn dull teal work trousers, worn ochre-yellow short jacket and heavy boots, a broken single-sided work respirator hanging at the neck. Human-sized compact body with head enlarged for tile readability, stooped spine and one shoulder raised unnaturally. Sallow ash-grey skin, no pink. The mouth opens too wide with TWO large irregular ivory teeth; the cheek has a single dark torn opening, not dozens of small wounds. One exposed forearm has become longer and ends in three clear dark bony claws; the other hand still mostly human. No mechanical limbs, no horns, no wings, no medieval gear, no held weapon. Early stages of demonic influence recognizable in a familiar industrial worker, strong humanoid silhouette, not a generic fantasy zombie in rags.",
+          "framing_edit_prompt": null,
+          "user_feedback_2026_10_17": "Modèle apprécié par le joueur ; règles et intégration non validées.",
+          "revision": "r01"
+        }
+      ],
+      "visual_acceptance": "visual-acceptance-05.json",
+      "accepted_source_sha256": "db6983fe234f4237a3656474a628570e6f0d061a51c3f0258211e3c797ca043f",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-01-r02/MON-01-r02-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            33,
+            36,
+            95,
+            96
+          ],
+          "colors": 16,
+          "sha256": "2482e6dabebb386bb674bd72d09836ea9e3b7e51ab556d99382a9f770fb821f3"
+        }
+      }
+    },
+    {
+      "id": "MON-02",
+      "number": 6,
+      "revision": "r02",
+      "label": "Coureur greffé",
+      "family": "Hybrides de conversion",
+      "role": "Monstre normal / hybride bas",
+      "depth": "Secteurs intermédiaires",
+      "height": 58,
+      "width": 64,
+      "palette": 16,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised monster source for Project RL, a grim industrial cyberpunk horror roguelike with native 64px tiles.\nInput image 1 is the EDIT TARGET, an earlier monster proposal appreciated for its concept. Preserve its identity, basic anatomy, number of limbs, distinctive integrated equipment and relative body shape. Revise the visual complexity only as specified. Input image 2 is ONLY the accepted simplified comic style reference: bold clean dark contours, broad flat color masses, large useful negative spaces, ONE main shadow per material. Do NOT copy the reference's cannon arm, respirator, clothes or pose.\nReadability: use a small number of big purposeful shapes, no little rust scratches, flecks, gore filigree, anatomy hatching, skin mottling, small bolts, repeated rib lines, grids of panels or triangular cloth patchwork. Muted industrial palette; no pink, no gold ornament. Mature frightening design, not cute.\nComposition: ONE complete creature, nearly frontal with slight overhead game camera. Entire head, limbs, claws and supports fully inside generous true ALPHA transparent margins. No background, floor, shadow, glow, spell effect, particles, text, collage or alternate pose. Static appearance review only, no ability, statistic, collision or animation is created.\nSubject: the low-slung QUADRUPED FLESH/MACHINE PREDATOR from image 1. Preserve exactly FOUR weight-bearing limbs: two thick muscular hindlegs, one organic front limb and one integrated mechanical front limb; no extra arm, tail, wing or tentacle. Low forward shoulder/chest mass and large skull-like animal muzzle, raw pale ivory hide, broad brick-red muscle patches, dark steel and a short rust-orange back casing. No fur, ordinary dog ears or human clothes.\nThe main reading must be ONE hunched animal body braced on four separate supports, with its RIGHT front limb (viewer LEFT) replaced by ONE very simple heavy dark steel GRIPPER. This is anatomically joined at shoulder through a short clear forearm housing; ONE pivot disc, TWO thick blunt gripper jaws and ONE broad metal plane are enough. No intricate hinges, pistons, little segments, cables or armor plates. Preserve a visible gap between gripper and neighboring legs.\nThoracic conversion: ONE dark rectangular steel insert on side of chest bordered by ONE broad pale bone frame. ONE thick brick-red tube curves from shoulder to chest. Back casing consists of TWO broad rust-orange slabs only. Remove all tiny ribs, repeated tube loops, bolts and metal scuff marks.\nFace: one simple angular ivory skull muzzle, one small dull BLUE artificial eye lens, one dark open mouth and TWO broad large fangs. No many little teeth or multiple holes in skull. Organic front paw has THREE broad dark claws, hindfeet THREE blunt toes. Broad pale skin planes and a few deep red seams suggest a disturbing conversion without dense anatomy texture. Strong low pouncing-ready pose, not standing upright like a humanoid.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-02-r01.png",
+          "role": "Cible de révision : conserver l'identité, l'anatomie et les greffes de la première proposition appréciée"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+          "role": "Référence de style simplifié validée ; ne pas copier le bras-canon ni la tenue"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-79bdd729-d84e-41df-a653-8a4d9dc1d691.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-02-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 58,
+      "maximum_body_width64": 64,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-08",
+      "layering_status": "Organic and integrated mechanical anatomy; no separately held weapon",
+      "mechanics_status": "Apparence validée uniquement ; aucun dégât, vitesse, capacité, collision, effet ou placement intégré.",
+      "source_sha256": "f37951224c9868f0d1f0112cde5d4afb685531d352749e988697c881b18a9cff",
+      "previous_revisions": [
+        {
+          "id": "MON-02",
+          "number": 6,
+          "label": "Coureur greffé",
+          "role": "Monstre normal hybride",
+          "depth": "Secteurs intermédiaires",
+          "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-b60f5005-7da8-47af-b264-bf8c4a55d7f8.png",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-02-r01.png",
+          "maximum_body_height64": 58,
+          "maximum_body_width64": 64,
+          "native_body_reference": 64,
+          "status": "superseded_proposal_for_readability",
+          "visual_approved": false,
+          "name_approved": false,
+          "rules_approved": false,
+          "layering_status": "organic or integrated mechanical anatomy; no held weapon",
+          "prompt": "Use case: stylized-concept. Asset type: ONE original monster SOURCE for a 64px cyberpunk roguelike tile. Image 1 is style/proportion reference only. Match its flat bold comic-book game art: controlled dark outline, chunky shapes, three cel-shaded values per material, simplified broad color areas, very readable at 64 pixels. No realistic painting, no 3D, no microtexture, no pink, no glow. Genuine transparent background, one centered full-body creature, no floor or shadow, no text, no other creature.\nCandidate MON-02: an intermediate-sector flesh-machine hybrid hunter, approximately human-sized but crawling low on four limbs. Its anatomy is an uncanny hairless muscular ochre-grey organic hound with the front half of its ribcage visibly fused around an open charcoal industrial motor housing. The back legs and one front arm remain convincingly ORGANIC and clawed. The other front arm is a heavy hydraulic support with a mechanical clamp fused as its limb (NOT a weapon held in a hand). Two thick ivory bone plates border the industrial chest, broad rust-red armored panel over the spine, one visible short cable bridging flesh to machine. A deep dark open jaw, two large readable ivory teeth, small cold-blue optical implant on one side of skull. The muzzle and stomach should be sickly and repulsive, not a clean robot dog with decorative meat pasted onto armor. Avoid a helmet, saddle, harness or pet appearance. Three-quarter view with legs clearly separated and all feet within canvas. Strong low triangular predator silhouette, larger forequarters, clear material boundary where tissue has overgrown the machine. No gratuitous spray of gore. Industrial apocalypse horror, graphic and deliberate.",
+          "framing_edit_prompt": null,
+          "user_feedback_2026_10_17": "Modèle apprécié par le joueur ; règles et intégration non validées.",
+          "revision": "r01"
+        }
+      ],
+      "visual_acceptance": "visual-acceptance-05.json",
+      "accepted_source_sha256": "f37951224c9868f0d1f0112cde5d4afb685531d352749e988697c881b18a9cff",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-02-r02/MON-02-r02-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            33,
+            38,
+            96,
+            96
+          ],
+          "colors": 16,
+          "sha256": "6495bc8e1782b132444132f6333fc41c9454b8d2335378a96885b02f83925eca"
+        }
+      }
+    },
+    {
+      "id": "MON-03",
+      "number": 7,
+      "revision": "r02",
+      "label": "Porte-presse",
+      "family": "Hybrides industriels",
+      "role": "Élite proposée / hybride massif",
+      "depth": "Secteurs intermédiaires",
+      "height": 76,
+      "width": 80,
+      "palette": 16,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised monster source for Project RL, a grim industrial cyberpunk horror roguelike with native 64px tiles.\nInput image 1 is the EDIT TARGET, an earlier monster proposal appreciated for its concept. Preserve its identity, basic anatomy, number of limbs, distinctive integrated equipment and relative body shape. Revise the visual complexity only as specified. Input image 2 is ONLY the accepted simplified comic style reference: bold clean dark contours, broad flat color masses, large useful negative spaces, ONE main shadow per material. Do NOT copy the reference's cannon arm, respirator, clothes or pose.\nReadability: use a small number of big purposeful shapes, no little rust scratches, flecks, gore filigree, anatomy hatching, skin mottling, small bolts, repeated rib lines, grids of panels or triangular cloth patchwork. Muted industrial palette; no pink, no gold ornament. Mature frightening design, not cute.\nComposition: ONE complete creature, nearly frontal with slight overhead game camera. Entire head, limbs, claws and supports fully inside generous true ALPHA transparent margins. No background, floor, shadow, glow, spell effect, particles, text, collage or alternate pose. Static appearance review only, no ability, statistic, collision or animation is created.\nSubject: the huge upright INDUSTRIAL PRESS/FLESH HYBRID from image 1. Preserve exactly TWO thick organic legs and TWO arms, a very small severe pale human head sunk between broad shoulders, exposed pale flesh over deep brick-red muscle, muted olive industrial housings, and its massive RIGHT mechanical press-arm (viewer LEFT). It is a corrupted living being integrated into industrial machinery, not a person simply wearing a clean exosuit. Same overall broad upright body shape, clearly larger than a normal human.\nPrimary silhouette is the enormous integrated RIGHT PRESS-ARM: ONE olive shoulder block, ONE visible broad hydraulic cylinder joining upper arm to forearm, and TWO thick dark blunt rectangular press jaws at the end. Keep the press physically attached through the arm, with a large open gap between its two jaws. No tiny rotating gears, nested pivots, many little plates, rivets, labels, rust flecks or elaborate segments. This is anatomical machinery, not a weapon held in a hand.\nThe natural LEFT arm (viewer RIGHT) is a single swollen pale forearm with ONE dark red muscle seam and a huge hand with THREE broad ivory blunt talons. Both arms attach naturally to two shoulders.\nTorso is built around ONE simple dark steel VERTICAL ENGINE CORE partly swallowed by flesh; TWO broad pale curved rib/bone slabs frame it. Only ONE thick red hose on each side; no dense rib cage, many valves or branching cables. Olive shoulder armor is TWO broad blocks, not layered plates. Legs thick and fleshy with ONE simple olive knee pad each, dark ankle housings and broad pale toes. Head has short cropped/bald scalp, closed grim mouth, two tiny dark eyes; no ornate helmet or skull face. One large light and shadow plane per surface. Heavy square planted stance, intimidating through mass and press silhouette rather than texture or ornament.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-03-r01.png",
+          "role": "Cible de révision : conserver l'identité, l'anatomie et les greffes de la première proposition appréciée"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+          "role": "Référence de style simplifié validée ; ne pas copier le bras-canon ni la tenue"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-bf868aa1-03b3-4e4b-b7e2-48bd8c5d7d55.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-03-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 76,
+      "maximum_body_width64": 80,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-08",
+      "layering_status": "Organic and integrated mechanical anatomy; no separately held weapon",
+      "mechanics_status": "Apparence validée uniquement ; aucun dégât, vitesse, capacité, collision, effet ou placement intégré.",
+      "source_sha256": "4d38e6cd05490f9aa9763c4a9374afdcf8ed6dac0e348e1c133124e5f58bea7f",
+      "previous_revisions": [
+        {
+          "id": "MON-03",
+          "number": 7,
+          "label": "Porte-presse",
+          "role": "Étude de monstre élite hybride",
+          "depth": "Secteurs intermédiaires",
+          "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-0d983a7f-a6c2-4ba6-be12-0e1ba1d11105.png",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-03-r01.png",
+          "maximum_body_height64": 76,
+          "maximum_body_width64": 80,
+          "native_body_reference": 64,
+          "status": "superseded_proposal_for_readability",
+          "visual_approved": false,
+          "name_approved": false,
+          "rules_approved": false,
+          "layering_status": "organic or integrated mechanical anatomy; no held weapon",
+          "prompt": "Use case: stylized-concept. Asset type: ONE full-body monster source for an original cyberpunk-apocalypse roguelike Project RL. Input images are STYLE references only. Flat graphic-novel game-tile art, strong clean dark outline, broad purposeful cel-shaded planes with two or three values per material. Retain the accepted humanoid reference's compact readable game proportions and the hybrid reference's clear separation of organic and mechanical materials, but invent the subject specified below. The source must remain legible when directly exported to a 64px character tile: simple silhouette, few strong diagnostic details, no tiny scratch texture, no dense rivets, no photorealism, no 3D, no smooth painted portrait, no cute chibi, no pink. A single neutral standing or crouching full-body creature, all extremities inside the canvas with a clear margin, nearly frontal or readable three-quarter view. Actual transparent background, no ground shadow, no glowing aura, no floor, no lettering, no other pose or creature. Horror through abnormal anatomy and visible material integration; avoid flying gore and effects.\nSubject: intermediate-sector ELITE hybrid, a hulking converted industrial furnace laborer standing on TWO stout legs, no animal/hound head. Distinct wide squared-off barrel torso, tiny sunken eyeless human face under a single ivory bone brow and hunched broad shoulders. A charcoal machine core is lodged INSIDE an open chest cavity and the remaining ochre-grey organic chest has visibly grown around it. One arm is a massive asymmetrical rusted olive industrial PRESS, fused at shoulder with thick exposed connective tissue; one huge mechanical lower jaw of the press forms a blunt crushing clamp. This is an integrated limb, not a handheld weapon. The other arm remains oversized flesh ending in three broad ivory digits. Two large dirty ivory bony rib plates, a wide oxidized green shoulder shroud, deep ochre tissue and dark charcoal mechanical masses; enough negative space to distinguish every limb. Meat sags around the machine but in simple cel-shaded shapes, not excessive intricate gore. The silhouette should read like a walking factory accident and be visibly more imposing than a normal humanoid. No giant glowing reactor, no fire plume, no clean robot armor suit, no pet appearance. Body mostly frontal, all feet and press tips within frame.",
+          "framing_edit_prompt": null,
+          "user_feedback_2026_10_17": "Modèle apprécié par le joueur ; règles et intégration non validées.",
+          "revision": "r01"
+        }
+      ],
+      "visual_acceptance": "visual-acceptance-05.json",
+      "accepted_source_sha256": "4d38e6cd05490f9aa9763c4a9374afdcf8ed6dac0e348e1c133124e5f58bea7f",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-03-r02/MON-03-r02-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            25,
+            20,
+            103,
+            96
+          ],
+          "colors": 14,
+          "sha256": "b4ce619b5a56a8c942856f2b35cf7ee3024c34e62ace153a8873119f37f57a62"
+        }
+      }
+    },
+    {
+      "id": "MON-04",
+      "number": 8,
+      "revision": "r02",
+      "label": "Fendeur",
+      "family": "Démons organiques",
+      "role": "Monstre démoniaque / profondeurs",
+      "depth": "Secteurs profonds",
+      "height": 68,
+      "width": 64,
+      "palette": 16,
+      "native_body_reference": 64,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised monster source for Project RL, a grim industrial cyberpunk horror roguelike rendered at native 64px tiles.\nInput image 1 is the EDIT TARGET: preserve its recognizable creature identity, main silhouette, anatomy and number of limbs. Input image 2 is ONLY the accepted simplified graphic style reference, not an anatomical or equipment reference. Never copy its cannon arm, respirator, clothes, mechanical parts or pose.\nStyle: clean bold dark comic outlines, strong large flat colored shapes, ONE main shadow per material. Remove fine scratches, skin mottling, repeated inner muscle lines, gore filigree, many small teeth, dense rib patterns, little folds and polygon patchwork. Mature unsettling original game creature, no cute or heroic treatment. No pink.\nComposition: ONE full creature, nearly frontal with slight overhead game camera. ALL limbs, claws and upper tips comfortably inside generous actual ALPHA transparent margins. No floor, shadow, background, halo, active magic, particles, extra figures, text or collage. Static appearance revision only: no combat ability, damage, status, timer, animation, collision or spawning rule.\nSubject: the tall narrow ORGANIC SPLIT-HEADED DEMON from image 1. Preserve exactly TWO long arms and TWO bent digitigrade legs, the elongated pale blade-like skull with its hooked upper crown, a deep VERTICAL split mouth and huge curved ivory hand talons. No wings, tail, additional head or extra limbs.\nThe main identifying shape is ONE long ivory skull shell split vertically around a dark mouth cavity: retain its long forward hook at the crown, but show only THREE large broad tooth points on each side of the split, no rows of little teeth. No human face, eyes, nose or conventional jaw. Make the dark central opening clear and readable, with ONE dark brick-red inner plane.\nBody is dark desaturated PURPLE-GREY sinewy organic flesh with muted brown/brick-red muscle channels and sparse ivory bone growths. One broad pale curved rib/bone plate on either side of upper chest, a single dark recessed belly, no complicated loops of dangling entrails or tiny ribs. No metal, machinery, armor, clothes, frost or ice: this demon belongs to the deep sectors but is not a frozen-plane recolor.\nEach long forearm ends in THREE broad sweeping ivory hooked talons attached naturally to the palm, with visible gaps between them. Keep normal coherent shoulders, elbows and wrists. Each bent leg ends in THREE broad bone toes. Preserve the thin threatening hunch and tall hooked head, not a bulky bodybuilder. Large clean areas of dark skin, pale bone and dark red are enough; simplify the numerous little bone fragments and small muscle subdivisions of the target.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-04-r01.png",
+          "role": "Cible de révision appréciée : préserver silhouette et anatomie"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+          "role": "Référence de style simplifié validée ; ni anatomie ni équipement à copier"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-24169560-ee49-4214-a228-c2dfe9e112bc.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-04-r02.png",
+      "maximum_body_height64": 68,
+      "maximum_body_width64": 64,
+      "palette_limit": 16,
+      "status": "proposal",
+      "review_batch": "NPC-MONSTERS-09",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "layering_status": "Entirely organic or ice anatomy; no separately held weapon",
+      "mechanics_status": "Apparence proposée uniquement ; aucun effet, dégât, collision, animation ou placement défini.",
+      "source_sha256": "779eff786e84db7d3d9364ea757b0a3a44dfff1353e1c25313bf92eef5c7a680",
+      "previous_revisions": [
+        {
+          "id": "MON-04",
+          "number": 8,
+          "label": "Fendeur",
+          "role": "Monstre démoniaque",
+          "depth": "Secteurs profonds",
+          "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-b6c849f6-76a9-430b-a9c7-ebddb7bed248.png",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-04-r01.png",
+          "maximum_body_height64": 68,
+          "maximum_body_width64": 64,
+          "native_body_reference": 64,
+          "status": "superseded_proposal_for_readability",
+          "visual_approved": false,
+          "name_approved": false,
+          "rules_approved": false,
+          "layering_status": "organic or integrated mechanical anatomy; no held weapon",
+          "prompt": "Use case: stylized-concept. Asset type: ONE full-body monster source for an original cyberpunk-apocalypse roguelike Project RL. Input images are STYLE references only. Flat graphic-novel game-tile art, strong clean dark outline, broad purposeful cel-shaded planes with two or three values per material. Retain the accepted humanoid reference's compact readable game proportions and the hybrid reference's clear separation of organic and mechanical materials, but invent the subject specified below. The source must remain legible when directly exported to a 64px character tile: simple silhouette, few strong diagnostic details, no tiny scratch texture, no dense rivets, no photorealism, no 3D, no smooth painted portrait, no cute chibi, no pink. A single neutral standing or crouching full-body creature, all extremities inside the canvas with a clear margin, nearly frontal or readable three-quarter view. Actual transparent background, no ground shadow, no glowing aura, no floor, no lettering, no other pose or creature. Horror through abnormal anatomy and visible material integration; avoid flying gore and effects.\nSubject: deep-sector COMMON DEMON, wholly organic and viscerally alien, no cybernetic machinery. Thin but hunched upright body with an asymmetrical enlarged ribcage, reverse-jointed legs and two long forearms ending in three large sickle-like ivory claws. The head is a single faceless elongated charcoal bone hood split vertically into a dark tooth-lined aperture, no ordinary eyes and no generic horned goat face. One blunt ivory crescent grows from the back of the skull, one simple pale skeletal spine ridge down the shoulders. The torso has one large open dark visceral cavity with several thick visible hanging tendons, designed as a clear broad shape rather than intricate guts. Main flesh color desaturated deep indigo/grey and muted dark purple (never pink), with ivory hard plates and dull ochre exposed tissue. More unmistakably demonic and repulsive than a mutant worker or a mechanical hybrid, while maintaining the clean outlined comic-tile rendering. Not a licensed monster, not an angel or a tidy fantasy wizard, no wings, no cloak, no held weapon. Readable tall crooked silhouette with empty space between arms and torso.",
+          "framing_edit_prompt": null,
+          "user_feedback_2026_10_17": "Modèle apprécié par le joueur ; règles et intégration non validées.",
+          "revision": "r01"
+        }
+      ]
+    },
+    {
+      "id": "MON-05",
+      "number": 9,
+      "revision": "r03",
+      "label": "Amas du gel",
+      "family": "Créatures du plan glacé",
+      "role": "Créature du plan glacé",
+      "depth": "Plan démoniaque / enfer de glace",
+      "height": 124,
+      "width": 124,
+      "palette": 20,
+      "native_body_reference": 128,
+      "canvas_cells": 4,
+      "ground_cell": 3,
+      "prompt": "Use case: precise-object-edit.\nAsset type: corrected MON-05 appearance for Project RL, a native 64px-tile grim horror/cyberpunk roguelike.\nEDIT TARGET: the supplied six-legged ice boss study. Keep the same creature identity, exactly SIX clearly separated supporting limbs (three per side), same large low broad silhouette, single vertical ventral mouth, and exactly THREE dark blue-black ice spires on the back. Keep the legs staggered and readable, all feet and spires fully inside generous actual alpha-transparent margins.\nUSER CORRECTION: the current monster has far too much exposed bone and too little repulsive natural-colored flesh. Replace its dominant ivory skeleton/armor with heavy disgusting FLESH. This is the main change; not merely a flesh recolor of the bone plates.\nFlesh direction: a huge bloated, sagging, asymmetrical mass of sickly NATURAL SKIN COLOR, pale warm peach/beige with dull raw reddish flesh in deep fold seams and a few broad bruised violet-brown patches. Thick soft rolls, stretched skin, heavy lobes and a few large swollen blister-like nodules. It should look clammy, diseased, unpleasant and corrupted, not like a smooth friendly pink ball. Natural pale flesh is explicitly requested; no bright magenta, neon pink, stone-grey hide or skeletal ivory plating. Flesh must clearly dominate at least four fifths of the body and limb surfaces.\nREMOVE the ivory bone frames around ALL legs, the rigid rib-like mouth border, and the branching ivory lattice around ice-spire roots. Replace every one with soft rounded skin folds and flesh. Ice spires grow directly through three small dark torn fleshy sockets in the back, no bone crowns.\nAll SIX supporting legs are now thick fleshy jointed limbs made of the same pallid natural skin, with sagging folds at knees and ankles, ending in broad fleshy digits and TWO short dull dark nails each. Preserve the three separate feet per side in clear negative spaces. No long exposed-bone shins, ivory armor, giant pale talons, new extra limbs or tentacles.\nMouth: one long cavernous dark burgundy-black vertical ventral opening with a heavy irregular red fleshy lip. Only a FEW short crooked yellowish teeth partly buried in gums, no long white fangs or enclosing bone trim. One simple dark red inner fold, no separate human face, eyeballs, tongue tentacle or gore strands.\nKeep all three dark ice spires, but restrict the blue/black material to those spires, with only two or three broad flat facets and a restrained cold light edge.\nStyle: clean bold dark COMIC GAME outlines, large clear flat masses, one shadow plane per material and a few broad clammy highlights. Large meaningful shapes readable after native64 export. No dense pores, hundreds of pustules, little veins, mottling, tiny lines, texture noise, photorealistic render or elaborate gore.\nNo floor, shadow, background, halo, fog, active frost effect, particles, text or other creature. Appearance correction only, no ability, statistics, collision or spawning change.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r02.png",
+          "role": "Cible de correction refusée : remplacer les plaques osseuses par de la chair, conserver six appuis et trois pointes de glace"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-bbbfc57a-41b9-4bcb-ba5b-1382b83505ef.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+      "maximum_body_height64": 124,
+      "maximum_body_width64": 124,
+      "palette_limit": 20,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-09",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "layering_status": "Entirely organic or ice anatomy; no separately held weapon",
+      "mechanics_status": "Apparence validée ; pas un boss de secteur. Catégorie de rencontre, capacités, statistiques et apparitions à définir.",
+      "revision_review": "MON-05-flesh-revision-03.json",
+      "source_sha256": "42e933da4133b396e8918031afb4b869bfb06a7a9608b2b326f19d7030460dae",
+      "design_intent": "Masse de chair couleur peau maladive, plis et boursouflures ; plaques osseuses retirées, six appuis et trois pointes de glace conservés.",
+      "previous_revisions": [
+        {
+          "id": "MON-05",
+          "number": 9,
+          "label": "Amas du gel",
+          "role": "Étude de boss",
+          "depth": "Plan démoniaque / enfer de glace",
+          "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-03067d7d-f2a3-4f24-bf98-fc5876bcff3f.png",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r01.png",
+          "maximum_body_height64": 124,
+          "maximum_body_width64": 124,
+          "native_body_reference": 128,
+          "status": "superseded_proposal_for_readability",
+          "visual_approved": false,
+          "name_approved": false,
+          "rules_approved": false,
+          "layering_status": "organic or integrated mechanical anatomy; no held weapon",
+          "prompt": "Use case: stylized-concept. Asset type: ONE original large boss monster SOURCE, for a 128px game creature alongside 64px normal actors in a grimdark cyberpunk-apocalypse roguelike. Both reference images are STYLE references only, not edit targets and not designs to copy. Match their bold clean black contour, broad flat comic-book cel-shading and highly readable tile-art shapes. Two or three values per material, restrained purposeful detail, no photo painting, no 3D, no noisy scratches, no pink, no glow.\nSubject MON-05: an abominable deep-hell creature for an OTHERWORLDLY ICE REALM, an original monster study, not a named story boss. A squat, enormous swollen corpse-grey organic core supported by SIX bent asymmetrical skeletal legs, three per side, planted widely; silhouette closer to a horrible walking reliquary than a wolf, spider, human knight or robot. The central low sagging torso has ONE huge open vertical dark mouth in its belly, bordered by a few large yellowed ivory teeth and stretched dark sinew. No human head. Above the torso, a high broken fan of dense black-ice and desaturated blue-grey bone grows outward as part of its anatomy; three main broad shards only, not a forest of micro-spikes. Thick frost clings in broad matte ivory chunks where bone meets sallow grey tissue. Two large scarred organic sacs hang between the front legs; skin cracked by freezing, not shiny smooth plastic. The legs are pale bony structures with exposed charcoal tendons; feet have broad black hooks. Organic repulsiveness and alien ritual presence, not an animal wearing decorative crystal armor. No machines at this deep stage, no weapons, no cables, no fire or lava, no tidy magical runes. Readable pale bone / corpse-grey flesh / black ice / restrained cold blue palette, dark cavity offering strong value contrast.\nFull body nearly frontal with a slight overhead view only enough to separate the six supports. One creature centered on a genuinely transparent background; all appendages and shard tips safely inside clear margins. No environment, no ice floor, no floating snow, no shadow, no effects, no text or alternate poses. Big two-tile visual mass is a PROPOSAL only and must not imply changed gameplay collisions.",
+          "framing_edit_prompt": "Use case: precise-object-edit. The reference image is the EXACT edit target, candidate MON-05. Preserve its creature design, pose, anatomy, cel-shaded graphic style and exact color relationships. Correct ONLY the framing: give the COMPLETE existing creature, including every outermost skeletal leg hook and the tallest ice shard, a broad truly transparent margin of at least 8 percent of the full image width and height on ALL four sides. The original image has appendages too close to edges. Do not crop, alter, remove, lengthen or invent a leg, tooth or shard. Scale the complete creature down within the canvas until it fits comfortably, keep its aspect ratio and center it. No floor, no shadow, no added effects, no text; keep genuine alpha transparency. One monster only.",
+          "user_feedback_2026_10_17": "Modèle apprécié par le joueur ; règles et intégration non validées.",
+          "revision": "r01"
+        },
+        {
+          "id": "MON-05",
+          "number": 9,
+          "revision": "r02",
+          "label": "Amas du gel",
+          "family": "Créatures du plan glacé",
+          "role": "Étude de boss / plan glacé",
+          "depth": "Plan démoniaque / enfer de glace",
+          "height": 124,
+          "width": 124,
+          "palette": 20,
+          "native_body_reference": 128,
+          "canvas_cells": 4,
+          "ground_cell": 3,
+          "prompt": "Use case: identity-preserve.\nAsset type: revised monster source for Project RL, a grim industrial cyberpunk horror roguelike rendered at native 64px tiles.\nInput image 1 is the EDIT TARGET: preserve its recognizable creature identity, main silhouette, anatomy and number of limbs. Input image 2 is ONLY the accepted simplified graphic style reference, not an anatomical or equipment reference. Never copy its cannon arm, respirator, clothes, mechanical parts or pose.\nStyle: clean bold dark comic outlines, strong large flat colored shapes, ONE main shadow per material. Remove fine scratches, skin mottling, repeated inner muscle lines, gore filigree, many small teeth, dense rib patterns, little folds and polygon patchwork. Mature unsettling original game creature, no cute or heroic treatment. No pink.\nComposition: ONE full creature, nearly frontal with slight overhead game camera. ALL limbs, claws and upper tips comfortably inside generous actual ALPHA transparent margins. No floor, shadow, background, halo, active magic, particles, extra figures, text or collage. Static appearance revision only: no combat ability, damage, status, timer, animation, collision or spawning rule.\nSubject: the enormous low broad ORGANIC ICE-PLANE BOSS STUDY from image 1. This is the same six-supported fleshy creature, NOT a newly assigned story character or the named final boss. Preserve one huge squat central fleshy mass, a gaping VERTICAL VENTRAL MOUTH, exactly SIX weight-bearing clawed limbs (three on each side), and THREE large dark ice growths projecting from the back.\nThe three limbs on each side attach separately to the same single central body: front pair nearest viewer, middle pair braced sideways, rear pair visible behind with their clawed supports staggered outward. All SIX limbs must remain legible as separate supports, with clear negative-space channels; no extra dangling arms, tentacles, wings, human torso or separate humanoid head. The creature has no ordinary face or pair of eyes.\nIts single long dark ventral mouth is the central focal sign, vertically open with only FOUR large irregular ivory fangs on each side and ONE dark brick-red interior plane. Keep a blunt ivory lip/bone edge; no tiny tooth rows, tongues, gore trails or dripping liquids. Body: broad pale cold PURPLE-GREY folds over charcoal shadow; only THREE or FOUR large flesh folds around mouth. Remove the tiny wrinkled skin lines and two little hanging gland sacs to reduce clutter. Sparse thick ivory bone plates around limb joints; ONE broad bone sheath per limb, THREE blunt dark hooked digits per support, no many spikes or many armor-like segments.\nBack: exactly THREE broad asymmetrical DARK BLUE-BLACK ICE SPIRES, one central taller spike and one lower outward spike on each side. Each spire has TWO or THREE large flat facets only, with ONE pale cold-blue edge to read as dark ice. Retain an ivory bony root at base of each spire, but no branching bone lattice. No floating snow, frost aura, sparkling ice particles, icicle fringe or active freezing effect. Flesh, bone, dark ice and mouth should be readable from a few large masses, not a surface covered in texture.\nKeep its entire broad low body and all six feet within generous margins. About twice a human's visual mass/height at native scale is intended; the enlarged composition is visual only and does not define occupied gameplay cells.",
+          "references": [
+            {
+              "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r01.png",
+              "role": "Cible de révision appréciée : préserver silhouette et anatomie"
+            },
+            {
+              "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+              "role": "Référence de style simplifié validée ; ni anatomie ni équipement à copier"
+            }
+          ],
+          "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-e2a7c0ec-674e-4159-9a97-1f5749c1e7c4.png",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r02.png",
+          "maximum_body_height64": 124,
+          "maximum_body_width64": 124,
+          "palette_limit": 20,
+          "status": "rejected_by_user",
+          "review_batch": "NPC-MONSTERS-09",
+          "visual_approved": false,
+          "name_approved": false,
+          "rules_approved": false,
+          "layering_status": "Entirely organic or ice anatomy; no separately held weapon",
+          "mechanics_status": "Apparence proposée uniquement ; aucun effet, dégât, collision, animation ou placement défini.",
+          "refinements": [
+            {
+              "purpose": "Distinguer clairement les six appuis, trois de chaque côté",
+              "prompt": "Use case: precise-object-edit.\nEdit target: the supplied ice-creature image. Change ONLY the layout and visibility of the SIX supporting legs. Preserve the same creature identity, central fleshy mass, vertical ventral mouth, three dark blue-black ice spires, colors, simple comic drawing style and approximate overall visual size. Preserve actual alpha transparency.\nCurrent problem: rear supports overlap the foreground legs, so the count is unclear. Redraw the support arrangement so the viewer can unambiguously count exactly THREE separate clawed legs on the LEFT and THREE on the RIGHT, SIX total, with each complete foot clearly visible.\nMake a roughly symmetrical fan of legs around the mouth/body:\n- rear pair attaches high at left and right body flanks and reaches outward to the TOPMOST pair of clawed feet, near the body's mid-height;\n- middle pair attaches at the middle flanks, reaching farthest outward/down to the MIDDLE pair of clawed feet;\n- front pair attaches low/forward, thick legs reaching down toward the BOTTOMMOST pair of feet, closer to the centerline.\nAll three feet on EACH side must be in clear separate negative spaces, staggered in height. Do NOT stack any rear foot behind a front shin, mouth, or another foot. Each leg is one coherent pale bone/flesh jointed support ending in a small broad claw cluster. No free floating claws, amputated stumps, extra tentacles, arms or more than six limbs. Keep all feet within generous transparent margins.\nKeep the mouth, body and ice-spire drawing unchanged except the minimal attachment adjustments needed for clear six-leg connections. No text, ground, shadow, effects, new anatomy or background. This is still a static appearance proposal, no gameplay collision or ability.",
+              "input_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-ca24e597-e390-4815-8205-9e008b6d0c2c.png",
+              "input_source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/archive/MON-05-r02-supports-before.png",
+              "output_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-e2a7c0ec-674e-4159-9a97-1f5749c1e7c4.png",
+              "input_sha256": "84c83eeee9b2ab920c1c34ea0d65d1cfafea9c3e28e210f45621fa763e01b043"
+            }
+          ],
+          "source_sha256": "fc95f8b170084b83f49b0705e2049ca02ad3ee60270a644e9dec01b3946d2d21",
+          "rejection_reason": "j'aime pas la seconde, il y a trop de parties osseuses et pas assez de chaire répugnante (avec couleur chaire ) par exemple ?"
+        }
+      ],
+      "visual_acceptance": "visual-acceptance-06.json",
+      "accepted_source_sha256": "42e933da4133b396e8918031afb4b869bfb06a7a9608b2b326f19d7030460dae",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-05-r03/MON-05-r03-native64.png",
+          "cell": 64,
+          "canvas": 256,
+          "foot_anchor": [
+            128,
+            192
+          ],
+          "occupied": [
+            66,
+            77,
+            190,
+            192
+          ],
+          "colors": 20,
+          "sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f"
+        }
+      },
+      "encounter_role": "not_sector_boss",
+      "encounter_category": "to_define",
+      "encounter_direction_review": "encounter-direction-10.json"
+    },
+    {
+      "id": "MON-06",
+      "number": 10,
+      "label": "Tireur greffé",
+      "family": "Possédés industriels",
+      "role": "Ennemi ordinaire / distance",
+      "depth": "Conversions / après les premières zones cultistes",
+      "height": 60,
+      "width": 66,
+      "prompt": "Use case: precise-object-edit.\nAsset type: revised monster SOURCE for a native 64px game tile. The reference image is the EXACT character to simplify, not a general inspiration.\nPrimary request: REDRAW into a much cleaner, LESS DETAILED graphic-novel game sprite. Preserve the same identity, anatomical limb count, approximate pose, adult proportions, overall silhouette, main palette and industrial flesh-machine nature. Preserve broad negative spaces. Make a dramatic reduction in internal detail, not merely a palette filter: about THREE quarters of the little lines and texture marks should disappear. Think bold ink contour and big almost plain color shapes with ONE broad shadow per material, a restrained palette of about 14-16 colors. No hatching, no grain, no rust speckles, no tiny scratches, no little rivets, no dense edge highlights, no polygon-faceted muscle or cloth textures, no painted shading gradients. Keep a grim adult horror-game tone, not cute chibi.\nLegibility is judged at only 60-70 pixels standing height: each major part must be a single clear mass. Darkness and grotesque anatomy can remain without filling every surface with markings. Fully visible one creature, no crop and generous genuine alpha transparent margins. No background, no floor, no shadow, no glow, no attack effects, no text, no alternate poses. Static appearance review only.\nKeep the hunched human possessed worker, petrol-blue vest, ochre trousers, respirator, normal left arm, two boots, and the right forearm converted into a short round-barrel firing organ. Simplify the firing organ to ONE dark barrel shape with ONE pale rim and one ochre collar, no repeated rings or plates. Keep only ONE broad hose loop from back to arm. Show corruption by one large exposed sinew patch at shoulder, not a web of muscles. Make vest mostly plain blue and trousers mostly plain ochre, at most one readable torn gap in each. Remove the backpack's little bolts, all scuffs, straps except one broad belt, dense trouser folds and boot laces. Preserve the cannon muzzle, face opening and left hand distinctly.",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-9c04a847-1564-4959-87f6-49826768a274.png",
+      "revision": "r02",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Only proposed tactical role; no ability, value, timer, animation or spawning change is defined or integrated.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 66,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "framing_edit_prompt": null,
+      "layering_status": "Integrated organic and mechanical anatomy; no separately held weapon",
+      "previous_revisions": [
+        {
+          "revision": "r01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r01.png",
+          "status": "superseded_proposal_for_readability",
+          "reason": "Détail jugé trop dense à taille native ; proposition simplifiée demandée."
+        }
+      ],
+      "palette_limit": 16,
+      "review_batch": "NPC-MONSTERS-03",
+      "visual_acceptance": "visual-acceptance-02.json",
+      "accepted_source_sha256": "59740719ce671bdf55b1f47e8ae2bc77177293308cb7ac2270b6f15fee6c7260",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-06-r02/MON-06-r02-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            35,
+            36,
+            94,
+            96
+          ],
+          "colors": 16,
+          "sha256": "2a48fbc69ea5a9fb9533d4d7106b4682a7d90d03492d49049c55893167bd1687"
+        }
+      }
+    },
+    {
+      "id": "MON-07",
+      "number": 11,
+      "label": "Porte-cuves",
+      "family": "Conversions médicales",
+      "role": "Ennemi ordinaire / soutien",
+      "depth": "Secteurs intermédiaires / cliniques",
+      "height": 66,
+      "width": 68,
+      "prompt": "Use case: precise-object-edit.\nAsset type: revised monster SOURCE for a native 64px game tile. The reference image is the EXACT character to simplify, not a general inspiration.\nPrimary request: REDRAW into a much cleaner, LESS DETAILED graphic-novel game sprite. Preserve the same identity, anatomical limb count, approximate pose, adult proportions, overall silhouette, main palette and industrial flesh-machine nature. Preserve broad negative spaces. Make a dramatic reduction in internal detail, not merely a palette filter: about THREE quarters of the little lines and texture marks should disappear. Think bold ink contour and big almost plain color shapes with ONE broad shadow per material, a restrained palette of about 14-16 colors. No hatching, no grain, no rust speckles, no tiny scratches, no little rivets, no dense edge highlights, no polygon-faceted muscle or cloth textures, no painted shading gradients. Keep a grim adult horror-game tone, not cute chibi.\nLegibility is judged at only 60-70 pixels standing height: each major part must be a single clear mass. Darkness and grotesque anatomy can remain without filling every surface with markings. Fully visible one creature, no crop and generous genuine alpha transparent margins. No background, no floor, no shadow, no glow, no attack effects, no text, no alternate poses. Static appearance review only.\nKeep the medical conversion's TWO tall green fluid tanks, bowed human head, ivory/green smock, exactly TWO natural feet and TWO flanking short mechanical support struts (four ground contacts total). These tanks should be two plain green rounded rectangles in dark caps, each with one broad light band, no reflections or fragments inside. Show just TWO thick smooth hoses joining the tank bases to the shoulders. Torso should be one mostly closed broad green/ivory smock mass with ONE dark chest cavity, flanked by TWO broad pale bone brackets, not many individual ribs. Keep the two folded forearms and blunt clamp-like hands but simplify them to single solid rounded forms, no complex teeth or finger joints. Flesh should be broad smooth sickly ochre-grey patches. Remove all clusters of pustules, repeated ribs, tendons, torn-cloth sawtooth edges, tiny hardware and layered plates. Make the paired tanks the strongest readable identifying feature.",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-ab837b12-cb11-48d4-bcea-1d7e626753b7.png",
+      "revision": "r02",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Only proposed tactical role; no ability, value, timer, animation or spawning change is defined or integrated.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-07-r02.png",
+      "maximum_body_height64": 66,
+      "maximum_body_width64": 68,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "framing_edit_prompt": null,
+      "layering_status": "Integrated organic and mechanical anatomy; no separately held weapon",
+      "previous_revisions": [
+        {
+          "revision": "r01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-07-r01.png",
+          "status": "superseded_proposal_for_readability",
+          "reason": "Détail jugé trop dense à taille native ; proposition simplifiée demandée."
+        }
+      ],
+      "palette_limit": 16,
+      "review_batch": "NPC-MONSTERS-03",
+      "visual_acceptance": "visual-acceptance-02.json",
+      "accepted_source_sha256": "b3f30ca5d3a3204f600eff4130129aaa96f91204b1c6675a453d8163ee8de5cd",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-07-r02/MON-07-r02-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            37,
+            30,
+            92,
+            96
+          ],
+          "colors": 16,
+          "sha256": "07d548ec471d3a7efbbfd5392352b36c74d58cccde8a17a76950d8c66547350d"
+        }
+      }
+    },
+    {
+      "id": "MON-08",
+      "number": 12,
+      "label": "Entraveur",
+      "family": "Hybrides des ateliers",
+      "role": "Ennemi ordinaire / contrôle",
+      "depth": "Secteurs intermédiaires / ateliers",
+      "height": 68,
+      "width": 86,
+      "prompt": "Use case: precise-object-edit.\nAsset type: revised monster SOURCE for a native 64px game tile. The reference image is the EXACT character to simplify, not a general inspiration.\nPrimary request: REDRAW into a much cleaner, LESS DETAILED graphic-novel game sprite. Preserve the same identity, anatomical limb count, approximate pose, adult proportions, overall silhouette, main palette and industrial flesh-machine nature. Preserve broad negative spaces. Make a dramatic reduction in internal detail, not merely a palette filter: about THREE quarters of the little lines and texture marks should disappear. Think bold ink contour and big almost plain color shapes with ONE broad shadow per material, a restrained palette of about 14-16 colors. No hatching, no grain, no rust speckles, no tiny scratches, no little rivets, no dense edge highlights, no polygon-faceted muscle or cloth textures, no painted shading gradients. Keep a grim adult horror-game tone, not cute chibi.\nLegibility is judged at only 60-70 pixels standing height: each major part must be a single clear mass. Darkness and grotesque anatomy can remain without filling every surface with markings. Fully visible one creature, no crop and generous genuine alpha transparent margins. No background, no floor, no shadow, no glow, no attack effects, no text, no alternate poses. Static appearance review only.\nKeep ONE broad circular cable-reel hump on the upper torso, the small human head below its front rim, TWO short sturdy legs with steel feet, and exactly TWO long curved cable-arms terminating in heavy industrial clamps. Make the reel ONE dark disc/body with only THREE broad cable ribs, not a stack of narrow segmented surfaces. Each cable-arm should be ONE mostly unbroken pale thick curved tube with a broad charcoal core visible only at the elbow, not many rings or separated armor segments. Each end clamp is TWO broad blunt jaws, two simple shapes without bolts, scallops or inner subdivisions. The original operator's face remains visible as a small pale face framed by one dark recess; no extra teeth or gore-web around it. Keep ochre shorts as one simple color block, thighs as large smooth corpse-grey masses with only one exposed dark-red patch. Remove all rust, repeated panel seams, little knee plates, individual muscle fibers and boot subdivisions. Enlarge the clear gaps separating the cable-arms from the torso. The disc and two sweeping pale arcs must dominate the small-size read.",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-a69beb03-b326-4337-b4d8-d60a05c0c03a.png",
+      "revision": "r02",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Only proposed tactical role; no ability, value, timer, animation or spawning change is defined or integrated.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-08-r02.png",
+      "maximum_body_height64": 68,
+      "maximum_body_width64": 86,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "framing_edit_prompt": null,
+      "layering_status": "Integrated organic and mechanical anatomy; no separately held weapon",
+      "previous_revisions": [
+        {
+          "revision": "r01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-08-r01.png",
+          "status": "superseded_proposal_for_readability",
+          "reason": "Détail jugé trop dense à taille native ; proposition simplifiée demandée."
+        }
+      ],
+      "palette_limit": 16,
+      "review_batch": "NPC-MONSTERS-03",
+      "visual_acceptance": "visual-acceptance-02.json",
+      "accepted_source_sha256": "bfd8a8baeac7ced1604650283897ae593824e02888909ca5427e9f3e18c68e3d",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-08-r02/MON-08-r02-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            29,
+            28,
+            99,
+            96
+          ],
+          "colors": 15,
+          "sha256": "4e2bf2af3b23679c2b54ae87918bdc14cd025eb64819ac4d7dc4f3912bb3d5f4"
+        }
+      }
+    },
+    {
+      "id": "CULT-01",
+      "number": 13,
+      "label": "Cultiste à matraque",
+      "family": "Cultistes humains",
+      "role": "Humain ordinaire / contact",
+      "depth": "Toutes premières rencontres",
+      "height": 60,
+      "width": 44,
+      "prompt": "Use case: precise-object-edit.\nAsset type: masked human cultist character source, 64px native tile game review.\nThe first reference is the EXACT hooded human cultist to revise. Preserve its intact normal human anatomy, scale and proportions, shared uniform, dark gloves, boots, main silhouette and specified held equipment.\nUser's correction: replace the BLACK EMPTY HOOD OPENING with an actual VISIBLE PHYSICAL MASK. Keep the deep hood. Do not expose a face.\nThe cult's shared mask is a simple matte dirty-IVORY industrial ceramic faceplate, opaque and continuous, broad upper face tapering to a blunt squared chin. TWO short narrow black eye-slits and ONE short straight black mouth-vent only. No eyeballs, skin, nose anatomy, human lips, teeth or hair visible; eye openings are deep black with no light. A small plain crease down the center is enough; no carved designs, scratches, tiny holes or inscriptions. Not a skull, not a respirator, not a smiling face, no recognizable licensed mask. It should read as a bleak anonymous ritual faceplate rather than a black hole. Strong pale-mask / dark-hood contrast is essential at small size.\nKeep the exact shared cult uniform: knee-length charcoal-grey cloth coat, broad burgundy central panel and cuffs, charcoal hood with burgundy lining, black belt and dark boots. Two large plain clothing regions. Worn, oppressive, clandestine industrial cult mood; no shiny armor or decorative chains. Normal human proportions, no possession, mutilation or grafts.\nClean bold dark outlines, broad flat cel-shaded planes with only one large shadow per material; around 14-16 useful colors, no texture noise, tiny wrinkles or mottled shading. One full-body nearly frontal character, generous real alpha transparent margins, no floor, background, shadow, smoke, glow halo or text. Eye and mouth slots are opaque black shading, NOT transparent holes. All clothing and mask opaque. Static visual concept, modular runtime layers not yet authored.\nChange ONLY the hood's black facial opening into the physical mask. Preserve ONE short blunt steel baton in RIGHT gloved hand (viewer LEFT), and empty guarded LEFT hand. Preserve the broad ordinary human stance and existing plain clothing. No spells or magical equipment on this melee cultist.",
+      "revision": "r03",
+      "mode": "generate",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-8a04a748-432c-4e2a-a3be-519dc0c5994e.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r03.png",
+          "role": "Adult scale and graphic style only"
+        }
+      ],
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Static appearance and equipment proposal; no gameplay change.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 44,
+      "native_body_reference": 64,
+      "palette_limit": 16,
+      "status": "visually_approved",
+      "layering_status": "Static armed-pose review; modular body/arm/weapon/finger layers not authored",
+      "framing_edit_prompt": null,
+      "review_batch": "NPC-MONSTERS-05",
+      "previous_revisions": [
+        {
+          "revision": "r01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r01.png",
+          "status": "superseded_by_hooded_uniform_request"
+        },
+        {
+          "revision": "r02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r02.png",
+          "status": "superseded_by_physical_mask_request"
+        }
+      ],
+      "appearance_direction": "Uniforme anthracite/bordeaux commun, capuche et masque ivoire ; aucune peau ou yeux visibles.",
+      "visual_acceptance": "visual-acceptance-02.json",
+      "accepted_source_sha256": "ee8152aaeaa96e6c272fb59b1412b98ea8358a303ea03cdfdebef6ed1f72b7a1",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/CULT-01-r03/CULT-01-r03-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "colors": 16,
+          "sha256": "4c4398f991b46d559361d8e7f3c93bcc953d07faae91cedef34babe2fb58c8a9"
+        }
+      }
+    },
+    {
+      "id": "CULT-02",
+      "number": 14,
+      "label": "Tireuse du culte",
+      "family": "Cultistes humains",
+      "role": "Humain ordinaire / distance",
+      "depth": "Premières zones cultistes",
+      "height": 60,
+      "width": 44,
+      "prompt": "Use case: precise-object-edit.\nAsset type: masked human cultist character source, 64px native tile game review.\nThe first reference is the EXACT hooded human cultist to revise. Preserve its intact normal human anatomy, scale and proportions, shared uniform, dark gloves, boots, main silhouette and specified held equipment.\nUser's correction: replace the BLACK EMPTY HOOD OPENING with an actual VISIBLE PHYSICAL MASK. Keep the deep hood. Do not expose a face.\nThe cult's shared mask is a simple matte dirty-IVORY industrial ceramic faceplate, opaque and continuous, broad upper face tapering to a blunt squared chin. TWO short narrow black eye-slits and ONE short straight black mouth-vent only. No eyeballs, skin, nose anatomy, human lips, teeth or hair visible; eye openings are deep black with no light. A small plain crease down the center is enough; no carved designs, scratches, tiny holes or inscriptions. Not a skull, not a respirator, not a smiling face, no recognizable licensed mask. It should read as a bleak anonymous ritual faceplate rather than a black hole. Strong pale-mask / dark-hood contrast is essential at small size.\nKeep the exact shared cult uniform: knee-length charcoal-grey cloth coat, broad burgundy central panel and cuffs, charcoal hood with burgundy lining, black belt and dark boots. Two large plain clothing regions. Worn, oppressive, clandestine industrial cult mood; no shiny armor or decorative chains. Normal human proportions, no possession, mutilation or grafts.\nClean bold dark outlines, broad flat cel-shaded planes with only one large shadow per material; around 14-16 useful colors, no texture noise, tiny wrinkles or mottled shading. One full-body nearly frontal character, generous real alpha transparent margins, no floor, background, shadow, smoke, glow halo or text. Eye and mouth slots are opaque black shading, NOT transparent holes. All clothing and mask opaque. Static visual concept, modular runtime layers not yet authored.\nChange ONLY the hood's black facial opening into the physical mask, matching image 2 exactly. Preserve ONE short compact grey PISTOL in RIGHT gloved hand (viewer LEFT), held horizontally outward away from the body at waist height. Keep the barrel outside the torso outline, natural bent elbow and clear hand grip. LEFT hand remains empty near belt. No extra gun, no long rifle, no magical effect.\nImage 1 is the exact hooded gun cultist to edit. Image 2 is the SHARED MASK and UNIFORM reference: copy the plain dirty-ivory mask shape with two narrow opaque black eye slits and one short black mouth vent, inside the same charcoal/burgundy hood. Keep image 1's pistol arm and other proportions unchanged.",
+      "revision": "r04",
+      "mode": "generate",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-308a443e-9c06-46e5-86a8-c9d7c9b9a61d.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r03.png",
+          "role": "Adult scale and graphic style only"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r01.png",
+          "role": "Faction palette and simplicity reference"
+        }
+      ],
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Static appearance and equipment proposal; no gameplay change.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-02-r04.png",
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 44,
+      "native_body_reference": 64,
+      "palette_limit": 16,
+      "status": "visually_approved",
+      "layering_status": "Static armed-pose review; modular body/arm/weapon/finger layers not authored",
+      "framing_edit_prompt": null,
+      "review_batch": "NPC-MONSTERS-05",
+      "previous_revisions": [
+        {
+          "revision": "r01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-02-r01.png",
+          "status": "superseded_proposal_for_weapon_readability"
+        },
+        {
+          "revision": "r02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-02-r02.png",
+          "status": "superseded_by_hooded_uniform_request"
+        },
+        {
+          "revision": "r03",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-02-r03.png",
+          "status": "superseded_by_physical_mask_request"
+        }
+      ],
+      "appearance_direction": "Uniforme anthracite/bordeaux commun, capuche et masque ivoire ; aucune peau ou yeux visibles.",
+      "visual_acceptance": "visual-acceptance-02.json",
+      "accepted_source_sha256": "e40b4f4731f3de62e1da16b4b9ae2cfcad99de400f0429c62391792bb2bc2d66",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/CULT-02-r04/CULT-02-r04-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            47,
+            36,
+            82,
+            96
+          ],
+          "colors": 15,
+          "sha256": "d559d723944ac0ec4262cb3576c763471fe9334c3abbe9d420ecacfea08d74e7"
+        }
+      }
+    },
+    {
+      "id": "CULT-03",
+      "number": 15,
+      "label": "Occultiste du culte",
+      "family": "Cultistes humains",
+      "role": "Humain ordinaire / magie",
+      "depth": "Zones cultistes, après les premières rencontres",
+      "height": 60,
+      "width": 46,
+      "prompt": "Use case: precise-object-edit.\nAsset type: masked human cultist character source, 64px native tile game review.\nThe first reference is the EXACT hooded human cultist to revise. Preserve its intact normal human anatomy, scale and proportions, shared uniform, dark gloves, boots, main silhouette and specified held equipment.\nUser's correction: replace the BLACK EMPTY HOOD OPENING with an actual VISIBLE PHYSICAL MASK. Keep the deep hood. Do not expose a face.\nThe cult's shared mask is a simple matte dirty-IVORY industrial ceramic faceplate, opaque and continuous, broad upper face tapering to a blunt squared chin. TWO short narrow black eye-slits and ONE short straight black mouth-vent only. No eyeballs, skin, nose anatomy, human lips, teeth or hair visible; eye openings are deep black with no light. A small plain crease down the center is enough; no carved designs, scratches, tiny holes or inscriptions. Not a skull, not a respirator, not a smiling face, no recognizable licensed mask. It should read as a bleak anonymous ritual faceplate rather than a black hole. Strong pale-mask / dark-hood contrast is essential at small size.\nKeep the exact shared cult uniform: knee-length charcoal-grey cloth coat, broad burgundy central panel and cuffs, charcoal hood with burgundy lining, black belt and dark boots. Two large plain clothing regions. Worn, oppressive, clandestine industrial cult mood; no shiny armor or decorative chains. Normal human proportions, no possession, mutilation or grafts.\nClean bold dark outlines, broad flat cel-shaded planes with only one large shadow per material; around 14-16 useful colors, no texture noise, tiny wrinkles or mottled shading. One full-body nearly frontal character, generous real alpha transparent margins, no floor, background, shadow, smoke, glow halo or text. Eye and mouth slots are opaque black shading, NOT transparent holes. All clothing and mask opaque. Static visual concept, modular runtime layers not yet authored.\nThis ordinary human cultist is now a SPELLCASTER. The universe contains magic; being a human does not mean being unable to cast. Keep the same anonymous uniform and mask as image 2, no monstrous transformation.\nReplace ONLY the blank rectangular plaque at the top of the staff with a SIMPLE INDUSTRIAL ARCANE FOCUS: one squared charcoal-metal open bracket holding one broad matte dim VIOLET inset crystal/lens. The focus is a physically held part of the staff, not a floating effect, no signboard and no lettering. No spikes, decorative rings or fine electronics. Staff stays in LEFT gloved hand (viewer RIGHT), natural firm hand-to-shaft contact, lower end beside boot. His empty RIGHT hand is raised at chest height, fingers slightly curled in a restrained casting-ready gesture. Spellcaster role should read from the staff's violet focus and ready hand alone. NO projectile, fireball, beam, particles, glow cloud or drawn spell impact; precise spells and effects will be designed later. Do not invent a particular spell, damage value or summoning ability. Same ordinary human height as other cultists.\nImage 1 is the exact hooded staff cultist to revise; image 2 is the SHARED MASK and UNIFORM reference. Copy image 2's simple matte dirty-ivory faceplate with two short narrow black eye-slits and short mouth vent. Keep the staff on viewer RIGHT and speaking/casting hand on viewer LEFT. Uniform and adult size must match the melee and pistol cultists. The violet staff focus is ONE physical flat inset held by a plain open bracket, no ring of floating runes, no halo or particle effects.",
+      "revision": "r03",
+      "mode": "generate",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-7b5cce1c-6fac-4742-a722-7f1b1d2ad82f.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r03.png",
+          "role": "Adult scale and graphic style only"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r01.png",
+          "role": "Faction palette and simplicity reference"
+        }
+      ],
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Spellcaster role authorized; particular spells, values and effects not yet defined or implemented.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-03-r03.png",
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 46,
+      "native_body_reference": 64,
+      "palette_limit": 16,
+      "status": "visually_approved",
+      "layering_status": "Static armed-pose review; modular body/arm/weapon/finger layers not authored",
+      "framing_edit_prompt": null,
+      "review_batch": "NPC-MONSTERS-05",
+      "previous_revisions": [
+        {
+          "revision": "r01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-03-r01.png",
+          "status": "superseded_by_hooded_uniform_request"
+        },
+        {
+          "revision": "r02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-03-r02.png",
+          "status": "superseded_by_physical_mask_request"
+        }
+      ],
+      "appearance_direction": "Uniforme anthracite/bordeaux commun, capuche et masque ivoire ; aucune peau ou yeux visibles.",
+      "preserve_mask_and_violet_focus": true,
+      "visual_acceptance": "visual-acceptance-02.json",
+      "accepted_source_sha256": "9db1d075e5978daf1476fe21e94f2dff739d165657a004639e5c266e78363355",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/CULT-03-r03/CULT-03-r03-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            50,
+            36,
+            79,
+            96
+          ],
+          "colors": 16,
+          "sha256": "144979b33fbeeb2a1d51938ce9c2b8284bf3306a3e51495fd61acaf0401d8068"
+        }
+      }
+    },
+    {
+      "id": "ELITE-01",
+      "number": 16,
+      "label": "Garde du culte",
+      "family": "Cultistes humains",
+      "role": "Élite humaine / contact",
+      "depth": "Accès fortifiés / après les premières rencontres",
+      "height": 60,
+      "width": 70,
+      "palette": 20,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE new enemy character source for Project RL, a native 64px-tile grim industrial cyberpunk roguelike. New appearance proposal, not a modified copy of the reference's pose.\nReferences are ONLY accepted graphic style, scale, faction uniform and mask references. Keep strong clean dark comic-book contours, compact adult game proportions about FIVE HEADS tall, broad flat material masses, just ONE main shadow per material. Readable at native tile size. No tiny wear marks, rust speckles, ornate panel seams, dense cloth folds, rivets, tiny symbols, photorealism, 3D or texture noise. Two major clothing colors; restrained useful detail. No pink.\nShared CULT uniform: knee-length charcoal-grey coat with broad burgundy center panel and cuffs, charcoal deep hood with burgundy lining, plain black belt, grey trousers and dark work boots. A simple matte dirty-IVORY physical mask hides the whole face: TWO short opaque black eye-slits and ONE short black mouth vent; no skin, hair, eyeballs or facial features visible. No literal transparent face-hole, no skull mask or licensed mask. Still a normal HUMAN with intact anatomy, no mutation, grafts, claws, extra limbs or supernatural body.\nOne full body, nearly frontal with a slight overhead game view, the entire human and all equipment within generous true ALPHA transparent margins. No floor, background, shadow, halo, particles, text, names, alternate poses or other figures. Equipment meets normal human hands. This is a STATIC appearance REVIEW only; modular body/arm/weapon/finger layers and game abilities are not authored by this image.\nSubject ELITE-01: a stocky heavy-set human cult guard, same standing HEIGHT as the ordinary cultists, NOT an oversized giant. His elite presence comes from a strongly ASYMMETRICAL broad defensive silhouette, not new colors or a glowing outline. Preserve the same hood and ivory mask.\nLEFT forearm (viewer RIGHT) is visibly behind and braced against ONE broad knee-to-chest height INDUSTRIAL RIOT SHIELD, a blunt RECTANGULAR slab with slightly chamfered corners, broad dark steel outer border, one large dull grey center panel crossed by a single wide burgundy vertical painted band. No heraldic crest, fantasy metal spikes or tiny viewport detail. The bracing glove grips an actual handle at the shield's inside edge, visible where the forearm comes behind it. Keep most of his hood, mask, torso and two legs visible outside/above shield.\nRIGHT gloved hand (viewer LEFT) holds ONE short chunky blunt industrial club/mace down and outward: short straight steel handle with ONE heavy rectangular dark metal striking block at its outer end. Normal wrist and arm length, grip firmly enclosed by palm/fingers; negative space separates weapon from coat. No long sword, gun, chain or two-handed grip. One plain dull steel plate over the upper chest and broad dark padded shoulders are enough protection; keep burgundy uniform panel obvious below and beside the plate. No segmented breast armor, giant armored pauldrons or ornate helmet. Feet planted wider than the ordinary cultists, slight defensive forward lean. All differences should read from shield, club and stance.",
+      "revision": "r01",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-6593bfd2-c0ae-445e-bdd4-93ecf58ba91e.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Style, proportions humaines, uniforme et masque validés"
+        }
+      ],
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Apparence proposée ; aucune compétence, valeur, collision, protection de bouclier, contrôle ou rencontre intégrée.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ELITE-01-r01.png",
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 70,
+      "native_body_reference": 64,
+      "palette_limit": 20,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-06",
+      "framing_edit_prompt": null,
+      "layering_status": "Static character/equipment study; modular body, arm, prop and finger layers not authored",
+      "visual_acceptance": "visual-acceptance-03.json",
+      "accepted_source_sha256": "a0749da523bd5b9ee23e8fb2b7485f165600895f5afd5e34087aa50ca29004bb",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/ELITE-01-r01/ELITE-01-r01-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            36,
+            85,
+            96
+          ],
+          "colors": 20,
+          "sha256": "3937a4a8791308c7c24b09d856f92fafc68c9a27fa1f6ab7c1256f408b1c1436"
+        }
+      }
+    },
+    {
+      "id": "ELITE-02",
+      "number": 17,
+      "label": "Prédicateur du culte",
+      "family": "Cultistes humains",
+      "role": "Élite humaine / magie",
+      "depth": "Accès fortifiés / groupes du culte",
+      "height": 60,
+      "width": 62,
+      "palette": 20,
+      "preserve_focus": true,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE new enemy character source for Project RL, a native 64px-tile grim industrial cyberpunk roguelike. New appearance proposal, not a modified copy of the reference's pose.\nReferences are ONLY accepted graphic style, scale, faction uniform and mask references. Keep strong clean dark comic-book contours, compact adult game proportions about FIVE HEADS tall, broad flat material masses, just ONE main shadow per material. Readable at native tile size. No tiny wear marks, rust speckles, ornate panel seams, dense cloth folds, rivets, tiny symbols, photorealism, 3D or texture noise. Two major clothing colors; restrained useful detail. No pink.\nShared CULT uniform: knee-length charcoal-grey coat with broad burgundy center panel and cuffs, charcoal deep hood with burgundy lining, plain black belt, grey trousers and dark work boots. A simple matte dirty-IVORY physical mask hides the whole face: TWO short opaque black eye-slits and ONE short black mouth vent; no skin, hair, eyeballs or facial features visible. No literal transparent face-hole, no skull mask or licensed mask. Still a normal HUMAN with intact anatomy, no mutation, grafts, claws, extra limbs or supernatural body.\nOne full body, nearly frontal with a slight overhead game view, the entire human and all equipment within generous true ALPHA transparent margins. No floor, background, shadow, halo, particles, text, names, alternate poses or other figures. Equipment meets normal human hands. This is a STATIC appearance REVIEW only; modular body/arm/weapon/finger layers and game abilities are not authored by this image.\nSubject ELITE-02: an intact thin adult HUMAN elite spellcaster/ritual leader of the same cult, same human standing height, face still entirely covered by the exact ivory faction mask and deep hood. A very broad simple charcoal SHOULDER MANTLE forms one clean triangular mass from the shoulders to the elbows, over the shared burgundy-front uniform. His lower coat extends close to the ankles as a plain tapering burgundy/charcoal shape, making a narrow tall silhouette unlike the guard. No decorative trim, chains, jewelry or floating objects.\nLEFT glove (viewer RIGHT) holds ONE squared industrial focus staff vertical beside body, its bottom beside the boot. Staff head stays at or below the hood top so a larger weapon does not shrink the human. The head is ONE wide open dark metal tuning-fork-shaped bracket holding ONE broad violet crystal inset; THREE broad prongs at most, no little electronics, inscriptions or magical runes. Large distinct violet plane should survive native64 reduction. RIGHT arm (viewer LEFT) is extended a little to the side with a plain open gloved palm raised to chest level in a severe casting-ready command gesture. Normal arm lengths and natural hand anatomy. Elite identity comes from broad shoulder mantle, tapered long robe, forked staff and gesture, rather than taller anatomy or elaborate detail.\nDo not draw a projectile, energy beam, magical aura or active spell effect. The role of human spellcaster is authorized; no particular spell, damage, timer, resurrection, summon or buff is defined by this image.",
+      "revision": "r01",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-976c0ee5-68eb-4c23-bfd5-6a40256fbf8e.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-03-r03.png",
+          "role": "Style, proportions humaines, uniforme et masque validés"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Style, proportions humaines, uniforme et masque validés"
+        }
+      ],
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Apparence proposée ; aucune compétence, valeur, collision, protection de bouclier, contrôle ou rencontre intégrée.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ELITE-02-r01.png",
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 62,
+      "native_body_reference": 64,
+      "palette_limit": 20,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-06",
+      "framing_edit_prompt": null,
+      "layering_status": "Static character/equipment study; modular body, arm, prop and finger layers not authored",
+      "preserve_mask_and_violet_focus": true,
+      "visual_acceptance": "visual-acceptance-03.json",
+      "accepted_source_sha256": "f7ef369ec7c7a4b0d23876f4fdc2d2afd7c69cba33be87c8d4a5f0de8beff568",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/ELITE-02-r01/ELITE-02-r01-native64.png",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            48,
+            36,
+            80,
+            96
+          ],
+          "colors": 20,
+          "sha256": "52ddab560f767e51b04eb29356275f3b09e7006642b7bfb64c2d5ebddf3f597c"
+        }
+      }
+    },
+    {
+      "id": "BOSS-01",
+      "number": 18,
+      "label": "Maréchal des Chaînes",
+      "family": "Démons de guerre",
+      "role": "Boss proposé / accès fortifiés",
+      "depth": "Fin du premier acte",
+      "height": 96,
+      "width": 108,
+      "palette": 24,
+      "canvas_cells": 4,
+      "ground_cell": 3,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original full-body FIRST-ACT BOSS source for Project RL, a grim industrial cyberpunk horror roguelike with native 64px tiles. New visual proposal for the provisional story boss called the Marshal of Chains. Its height is proposed at about 96 native pixels versus 60 for a normal human; visual mass only, no new gameplay footprint.\nInput image 1 is ONLY a reference for clean comic-book contours, flat color masses and industrial flesh/metal materials. Input image 2 is ONLY the cult faction's burgundy/charcoal color relationship. Do not copy either character's anatomy, respirator, cannon-arm, mask, hood, pose or equipment.\nSubject: a disciplined monstrous WAR DEMON commander of the fortified access sector. He was enslaved by the cult and now wears his OPEN BROKEN RESTRAINT COLLAR as a rank decoration. Upright broad imposing military bearing, unmistakably non-human but not a chaotic tentacle monster. Exactly TWO thick legs planted squarely and TWO strong arms. Large grey-ivory demonic head with a heavy wedge brow and jaw, short blunt bony cheek planes, a stern CLOSED jagged mouth with just two broad downward fangs. TWO broad dark backward-swept horns, not many tiny spikes. Dull ivory eye slits, no glow. No ordinary human officer's face, no human skull mask, no hood.\nTHREE dominant identifying masses: (1) horned pale demon head, (2) the giant OPEN steel neck-yoke, (3) one short heavy CHAIN. The yoke consists of two broad thick dark-steel collar halves projecting left and right around the base of the neck, with broken front ends CLEARLY separated. One hinge block at the back is enough. It should read as an opened shackle he can freely move in, not closed armor enclosing his head. No inscriptions, little locks, warning labels or dangling pendant clutter.\nBody: thick sallow grey-ivory hide on neck and forearms; broad dull charcoal steel military chest and shoulder protection in only THREE large slabs, a broad dark BURGUNDY waist coat/skirt panel ending above the knees, black belt and dark simple trousers. Wide thick steel-toed boots with TWO blunt front toe sections, not a forest of armor plates. Big bare clawed hands, each FOUR digits (three fingers and a thumb), no extra arms. The RIGHT hand (viewer LEFT) is held open at waist/chest height in a severe command gesture. The LEFT hand (viewer RIGHT) firmly grips the upper link of a short hanging heavy steel chain of THREE or FOUR LARGE broad oval links. The chain hangs to mid-shin, never below the boots, and must visibly meet his closed hand. A simple opened cuff remains around that wrist, no tiny chain webs. No other held weapon or shield. Do not link his hands together or present him as a helpless bound prisoner.\nColor and detail: broad ivory-grey organic skin against charcoal armor and one large burgundy cloth panel. Original industrial brutal equipment, no gold ornament, medieval heraldry, intricate rivets or decorative fantasy spikes. ONE main shadow per material, clean bold controlled dark contour, large flat shapes, only a few purposeful anatomical lines. No mottled flesh, rust speckles, gore filigree, fine scratches, dense cloth folds, polygon patchwork or 3D/photo rendering. Mature grim comic-game proportions, compact heavy adult anatomy; intimidating and cold, not cute or heroic.\nComposition: one complete nearly frontal standing boss, slight overhead game view, entire horn tips, chain links, hands and boot soles comfortably inside generous true ALPHA transparent margins. No environment, floor, shadow, aura, effects, ice, fire, background, text, alternative pose or other figure. This is the FIRST-act military demon, not a late frozen-hell boss. Do not depict a spell or create any ability, damage number, arena mechanic or new collision. Static review source only; held props and modular runtime layers are not yet authored.",
+      "revision": "r01",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-8a32a369-fdb6-4121-8efe-3331c979226e.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+          "role": "Style/matières et relation de palette ; ni anatomie ni équipement à copier"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Style/matières et relation de palette ; ni anatomie ni équipement à copier"
+        }
+      ],
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Apparence proposée ; aucune compétence, valeur, collision, protection de bouclier, contrôle ou rencontre intégrée.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-01-r01.png",
+      "maximum_body_height64": 96,
+      "maximum_body_width64": 108,
+      "native_body_reference": 64,
+      "palette_limit": 24,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-06",
+      "framing_edit_prompt": null,
+      "layering_status": "Static character/equipment study; modular body, arm, prop and finger layers not authored",
+      "visual_acceptance": "visual-acceptance-03.json",
+      "accepted_source_sha256": "a7280ad2fd6febf7e9733f5813c02e2622efb9e65f37b6b999eec665ddd404d4",
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/BOSS-01-r01/BOSS-01-r01-native64.png",
+          "cell": 64,
+          "canvas": 256,
+          "foot_anchor": [
+            128,
+            192
+          ],
+          "occupied": [
+            98,
+            96,
+            159,
+            192
+          ],
+          "colors": 24,
+          "sha256": "9ed1990df51cb6c9f110bd0f5eb37ff2add5445fc4b613d04ca07b5604edf8e5"
+        }
+      },
+      "approved_larger_variant": {
+        "revision": "r02",
+        "review": "sector-bosses-11.json",
+        "visual_acceptance": "visual-acceptance-07.json"
+      }
+    }
+  ],
+  "updated": "2026-10-17",
+  "display_cell": 64,
+  "active_export_resolutions": [
+    64
+  ],
+  "encounter_direction": "Cultistes humains ordinaires d’abord ; possédés et hybrides ensuite. Hiérarchie de menace qualitative, sans chiffres intégrés.",
+  "cultist_direction": "Cultistes humains, capuches, masques physiques et uniforme commun glauque ; des lanceurs de sorts existent, compétences à définir.",
+  "accepted_sector_boss_review": "sector-bosses-11.json",
+  "accepted_sector_boss_candidates": [
+    "BOSS-01-r02",
+    "BOSS-02-r01"
+  ],
+  "demonic_diversity_direction": "demonic-diversity-12.json",
+  "pending_sector_boss_review": "sector-bosses-11.json",
+  "pending_sector_boss_candidates": [
+    "BOSS-02-r02"
+  ],
+  "contact_shadow_review": "contact-shadows-14.json",
+  "historical_sector_boss_proposal": "sector-bosses-15.json",
+  "current_elite_review": "elite-monsters-16.json",
+  "pending_elite_candidates": [
+    "ELITE-03-r02",
+    "ELITE-04-r02"
+  ],
+  "boss_leadership_direction": "elite-monsters-16.json",
+  "rank_and_file_review": "petites-troupes-17.json",
+  "rank_and_file_current_candidate_numbers": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "separate_possessed_caster_direction": "magicien-possede-25-direction.json",
+  "current_demon_gallery_review": "demons-21.json",
+  "demon_design_reference_review": "demons-arpg-19.json",
+  "pending_demon_candidate_numbers": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91
+  ],
+  "demon_selection_deferred": true,
+  "demon_player_style_direction": "DEMONS-20.md",
+  "demon_gallery_reviews": [
+    "demons-style-20.json",
+    "demons-21.json"
+  ],
+  "demon_candidate_list": "monster-candidate-list.json",
+  "current_monster_gallery_review": "demon-bestiary-27.json",
+  "monster_gallery_reviews": [
+    "cultists-zombies-spirits-24.json",
+    "demon-bestiary-27.json",
+    "demons-21.json",
+    "demons-style-20.json",
+    "elite-monsters-16.json",
+    "necromancers-25.json",
+    "petites-troupes-17.json",
+    "review.json",
+    "sector-bosses-11.json",
+    "universe-monsters-22.json",
+    "universe-monsters-23.json"
+  ],
+  "pending_monster_candidate_numbers": [
+    8,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    96,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    111,
+    112,
+    113,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163
+  ],
+  "monster_selection_deferred": true,
+  "monster_rejections_review": "removed-monsters-23.json",
+  "catalogued_monster_numbers": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    96,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    111,
+    112,
+    113,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163
+  ],
+  "monster_catalogue_image": "artifacts/npc-monsters-review-01/catalogue/monstres-candidats-native64.png",
+  "monster_catalogue_layout": "catalogue-layout-27.json",
+  "monster_catalogue_viewer": "artifacts/npc-monsters-review-01/catalogue/index.html",
+  "latest_monster_visual_revision": "demon-bestiary-27.json"
+}

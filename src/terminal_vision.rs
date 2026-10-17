@@ -318,6 +318,7 @@ mod tests {
             rows: 15,
             origin: Vec2::ZERO,
             cell: 32.0,
+            viewport: Rect::new(0., 0., 480., 480.),
         };
         let world = |door: DoorState, hidden: Terrain| {
             let mut map = Map::filled(24, 24, Terrain::Floor).unwrap();

@@ -1,0 +1,53 @@
+{
+  "review_id": "NPC-MONSTERS-01-ACCEPT01",
+  "date": "2026-10-17",
+  "user_statement": "ok je valide :)",
+  "candidate_id": "NPC-01",
+  "candidate_number": 1,
+  "accepted_revision": "r03",
+  "accepted_scope": "Apparence présentée du responsable des missions, y compris tenue, casque, posture et pistolet au holster.",
+  "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r03.png",
+  "source_sha256": "76f2e0db87f746ad175f75a873f4cc12dbe764ff8e459861caa3e26ccc1ca843",
+  "frozen_native_exports": {
+    "64": {
+      "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+      "cell": 64,
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "occupied": [
+        49,
+        36,
+        79,
+        96
+      ],
+      "colors": 23,
+      "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f"
+    },
+    "32": {
+      "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native32.png",
+      "cell": 32,
+      "canvas": 64,
+      "foot_anchor": [
+        32,
+        48
+      ],
+      "occupied": [
+        25,
+        18,
+        40,
+        48
+      ],
+      "colors": 22,
+      "sha256": "e1738a8de2d0aedefcb185419fddbe5cb7811ba67ce1deb17da9c1ff63ad89c9"
+    }
+  },
+  "visual_approved": true,
+  "name_approved": false,
+  "rules_approved": false,
+  "other_candidates_not_changed": true,
+  "modular_animation_layers_not_part_of_this_review": true,
+  "runtime_status": "Not connected: new campaign mission authority has no runtime actor identity yet. Existing prototype quest actors retain their identities and graphics."
+}

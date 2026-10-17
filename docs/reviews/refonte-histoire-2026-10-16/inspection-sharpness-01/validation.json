@@ -1,0 +1,178 @@
+{
+  "review_id": "INSPECTION-SHARPNESS-01",
+  "status": "Framing fixed and verified. Full detail parity still requires replacement of legacy native32 artwork.",
+  "checks": {
+    "cargo_fmt_all_check": "passed",
+    "cargo_check_locked_all_targets": "passed",
+    "cargo_build_locked_debug": "passed",
+    "cargo_build_locked_release": "passed",
+    "git_diff_check": "passed",
+    "game_art_tests": {
+      "passed": 40,
+      "failed": 0
+    },
+    "self_inspection_regression": {
+      "passed": 1,
+      "failed": 0
+    },
+    "full_test_suite": "not run for this scoped rendering change",
+    "native_captures": 30,
+    "capture_sizes": [
+      [
+        1920,
+        1080
+      ],
+      [
+        2560,
+        1440
+      ],
+      [
+        3840,
+        2160
+      ]
+    ],
+    "styles": [
+      "Metal",
+      "Terminal"
+    ],
+    "simulation_fingerprint_unchanged": true,
+    "world_strip_comparisons": [
+      {
+        "image": "inspection-metal-1920x1080.png",
+        "world_strip_unchanged": true
+      },
+      {
+        "image": "inspection-metal-2560x1440.png",
+        "world_strip_unchanged": true
+      },
+      {
+        "image": "inspection-metal-3840x2160.png",
+        "world_strip_unchanged": true
+      },
+      {
+        "image": "inspection-terminal-1920x1080.png",
+        "world_strip_unchanged": true
+      },
+      {
+        "image": "inspection-terminal-2560x1440.png",
+        "world_strip_unchanged": true
+      },
+      {
+        "image": "inspection-terminal-3840x2160.png",
+        "world_strip_unchanged": true
+      }
+    ]
+  },
+  "performance": {
+    "build": "debug",
+    "compared_to_baseline": false,
+    "note": "Current measurement only; no performance improvement claim. Diagnostic verifies unchanged simulation.",
+    "scenes": [
+      {
+        "scene": "world",
+        "first_cpu_ms": 353.37239999999997,
+        "cpu": {
+          "max_ms": 16.710800000000003,
+          "median_ms": 10.7167,
+          "p95_ms": 14.215300000000001
+        }
+      },
+      {
+        "scene": "pause",
+        "first_cpu_ms": 27.2835,
+        "cpu": {
+          "max_ms": 20.350900000000003,
+          "median_ms": 12.014000000000001,
+          "p95_ms": 18.753700000000002
+        }
+      },
+      {
+        "scene": "world-return",
+        "first_cpu_ms": 14.5736,
+        "cpu": {
+          "max_ms": 18.419700000000002,
+          "median_ms": 10.743300000000001,
+          "p95_ms": 15.248299999999999
+        }
+      },
+      {
+        "scene": "inventory",
+        "first_cpu_ms": 28.5093,
+        "cpu": {
+          "max_ms": 22.3688,
+          "median_ms": 14.285,
+          "p95_ms": 18.8965
+        }
+      },
+      {
+        "scene": "skills",
+        "first_cpu_ms": 171.51559999999998,
+        "cpu": {
+          "max_ms": 21.2032,
+          "median_ms": 13.2491,
+          "p95_ms": 16.9124
+        }
+      },
+      {
+        "scene": "help",
+        "first_cpu_ms": 102.30930000000001,
+        "cpu": {
+          "max_ms": 20.8044,
+          "median_ms": 12.55,
+          "p95_ms": 18.0622
+        }
+      },
+      {
+        "scene": "main",
+        "first_cpu_ms": 15.085700000000001,
+        "cpu": {
+          "max_ms": 2.1886,
+          "median_ms": 1.0843999999999998,
+          "p95_ms": 1.5176
+        }
+      },
+      {
+        "scene": "ground-fire",
+        "first_cpu_ms": 42.53,
+        "cpu": {
+          "max_ms": 14.8428,
+          "median_ms": 8.7089,
+          "p95_ms": 13.6576
+        }
+      },
+      {
+        "scene": "ground-fire-pause",
+        "first_cpu_ms": 20.093,
+        "cpu": {
+          "max_ms": 16.310100000000002,
+          "median_ms": 9.617799999999999,
+          "p95_ms": 13.1647
+        }
+      },
+      {
+        "scene": "ground-fire-return",
+        "first_cpu_ms": 8.82,
+        "cpu": {
+          "max_ms": 15.305900000000001,
+          "median_ms": 8.7565,
+          "p95_ms": 13.4693
+        }
+      }
+    ]
+  },
+  "files": {
+    "src/game_art.rs": "97580ce6be3ac7df02670b35aa6db6cdc0cfd805901a62144ef3a33baf4985fb",
+    "src/game_art_portrait.rs": "dcfaa9c36b7e877382ebaecb496f6458131c635884bc473bb63d53d3bc41600d",
+    "src/game_art_worn.rs": "8739c81968c845d54d2fd986215fd1b17bebb4d917f85015d2700af258e71300",
+    "src/game_art_palette.rs": "8aca5e549732b841295a9e72c19aa9857a077c76eb405832129f8b93991ffb2d",
+    "src/game_art_drone.rs": "d3ec36b81e44d364e2106691dbdef0b608b97423fe7c0b0d3cd08ab15d0d3353",
+    "src/game_art_bestiary.rs": "9f2e5d89a8ca4ae651b0b5ebf47d0b36acb5750f2199d27bbd0588c9fc52071a",
+    "src/game_art_spectral.rs": "97d2e473f05765cc279409e3c9045d8d29f001855d27085407367d27d896fab3",
+    "src/terminal_view.rs": "1c8130d3030a257c0204d568966e520493662d812b0fd320e487a21b38eb6b9a",
+    "src/ascii_app.rs": "ad48ac6c72f0ebec7807e15a4247cf14ca4bf3073c2ce147a617baed870a4591",
+    "src/agent_skill_window.rs": "4e7b80702440caf9eaa173ae03045b61c3fd4ca8445b58129a66653eec048103",
+    "src/main.rs": "4814daede3c81fd8a272dfbd807b44090d0dc36abd9fa3793a8ff9e2996d7cfa",
+    "src/inspection_capture.rs": "602d2816b46c4f6607f86bcdd86660dcc1b6a1d4d76774be86df5a9193f4a5ac"
+  },
+  "assets_modified": []
+}

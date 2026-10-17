@@ -1,0 +1,157 @@
+{
+  "review_id": "DEMON-28-SCALE-02",
+  "date": "2026-10-17",
+  "number": 28,
+  "id": "TROUP-07",
+  "request": "Le joueur demande que ce demon ait la stature du joueur, et que les autres tailles soient variees.",
+  "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-07-r01.png",
+  "source_sha256": "4a7af2046c665879dcbd7d9250af3704eb48c9691e4e02fad9e846b6917e2c75",
+  "previous_revisions": [
+    {
+      "revision": "r01",
+      "maximum_body_height64": 40,
+      "maximum_body_width64": 42,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            12,
+            20,
+            53,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "81f7909659dc92e7af7b74e76284f18d2f0abbb812e3eaf855b8ea251e24cc24",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            12,
+            20,
+            53,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "f05ceecad54e02ee1941233d1d0b1ea1e137e98bee1815689ba00063a7bc44ec",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-07-r01-shadow64.png",
+        "sha256": "4d0f3d426f885332b16182923463f3187a542906fae9d0c7256c33507b9381ae",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            21,
+            59
+          ],
+          "width": 22,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "status": "scale_superseded_by_user_request"
+    }
+  ],
+  "revision": "r02",
+  "variants": [
+    {
+      "variant": "A",
+      "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r02-A-native64.png",
+      "canvas": 128,
+      "cell": 64,
+      "occupied": [
+        31,
+        31,
+        98,
+        96
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "colors": 15,
+      "sha256": "6fb8aa2ec65c99345d7f90ef45bfeffffa1669ed8605048b6f8c26e4b3e3e397",
+      "visual_approved": false
+    },
+    {
+      "variant": "B",
+      "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r02-B-native64.png",
+      "canvas": 128,
+      "cell": 64,
+      "occupied": [
+        31,
+        31,
+        98,
+        96
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "colors": 15,
+      "sha256": "5de8aa47e38fa4b616be0350b0ccb2060390821ca6b1828d6d03ca6266336e16",
+      "visual_approved": false
+    }
+  ],
+  "contact_shadow": {
+    "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-07-r02-shadow64.png",
+    "sha256": "9f5106ea71957e5ebab5f43a30db1a5a40c1e759d7fdcf414533d3f5876ebaa9",
+    "foot_anchor": [
+      64,
+      96
+    ],
+    "contact": {
+      "center": [
+        46,
+        95
+      ],
+      "width": 32,
+      "band_height": 2,
+      "palette_origin": "src/game_art.rs::draw_contact_shadow"
+    },
+    "visual_approved": false
+  },
+  "native_cell": 64,
+  "actual_body_size": [
+    67,
+    65
+  ],
+  "player_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "foot_anchor": [
+      64,
+      96
+    ]
+  },
+  "source_unchanged": true,
+  "export_direct_from_large_source": true,
+  "small_export_not_enlarged": true,
+  "visual_approved": false,
+  "scale_approved": false,
+  "rules_approved": false,
+  "runtime_connected": false,
+  "individual_selection_deferred": true
+}

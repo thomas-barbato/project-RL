@@ -1,0 +1,228 @@
+{
+  "review_id": "SECTOR-BOSSES-11",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen and direct native exports of accepted sources",
+  "status": "partially_visually_approved_not_integrated",
+  "user_statements": [
+    "et les boss de secteurs feront bien plus de 64 px :) ils doivent avoir une taille bien plus grosse (mais tous differents :) )",
+    "bref on peut continuer"
+  ],
+  "confirmed_direction": "Boss de secteur nettement plus grands qu'une case de 64 px, avec tailles et silhouettes différentes. Un seul grand boss par secteur.",
+  "proposed_dimensions_not_approved": true,
+  "abilities_stats_collisions_not_defined": true,
+  "player_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "foot_anchor": [
+      64,
+      96
+    ],
+    "approval": "ACTOR-RES01-ACCEPT01",
+    "role": "Tenue du joueur validée, sans arme ; repère de taille à l'échelle native 64 px"
+  },
+  "records": [
+    {
+      "id": "BOSS-01",
+      "number": 18,
+      "label": "Maréchal des Chaînes",
+      "revision": "r02",
+      "role": "Boss de secteur proposé / accès fortifiés",
+      "depth": "Fin du premier acte",
+      "change_scope": "Gabarit et export uniquement ; dessin source r01 déjà accepté conservé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-01-r01.png",
+      "source_appearance_approval": "visual-acceptance-03.json",
+      "source_appearance_approved": true,
+      "maximum_body_height64": 192,
+      "maximum_body_width64": 216,
+      "canvas_cells": 6,
+      "ground_cell": 4.5,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "visual_approved": true,
+      "scale_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "accepted_exports": {
+        "64": {
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/BOSS-01-r02/BOSS-01-r02-native64.png",
+          "cell": 64,
+          "canvas": 384,
+          "foot_anchor": [
+            192,
+            288
+          ],
+          "occupied": [
+            131,
+            96,
+            254,
+            288
+          ],
+          "colors": 23,
+          "sha256": "0e99265c3a98feed56f4f909dbdb60a2553e2043548fbf8961830338eef005df"
+        }
+      },
+      "fabrication": "Nouvel export direct de la grande source image_gen acceptée ; aucun dessin ni agrandissement du PNG natif 96 px.",
+      "prompt": null,
+      "layering_status": "Static armed source; modular arm, weapon and finger layers not authored",
+      "source_sha256": "a7280ad2fd6febf7e9733f5813c02e2622efb9e65f37b6b999eec665ddd404d4",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-01-r02-native64.png",
+        "cell": 64,
+        "canvas": 384,
+        "foot_anchor": [
+          192,
+          288
+        ],
+        "occupied": [
+          131,
+          96,
+          254,
+          288
+        ],
+        "colors": 23,
+        "sha256": "0e99265c3a98feed56f4f909dbdb60a2553e2043548fbf8961830338eef005df"
+      },
+      "status": "visually_approved",
+      "visual_acceptance": "visual-acceptance-07.json",
+      "accepted_source_sha256": "a7280ad2fd6febf7e9733f5813c02e2622efb9e65f37b6b999eec665ddd404d4"
+    },
+    {
+      "id": "BOSS-02",
+      "number": 19,
+      "label": "Mère Suture",
+      "revision": "r02",
+      "role": "Boss de secteur proposé / cliniques",
+      "depth": "Fin du deuxième acte",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-02-r01.png",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-45fec0b6-121d-430b-8248-ffb6f8bd4938.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE new sector-boss appearance source for Project RL, a grim industrial cyberpunk horror roguelike. Proposed candidate 19, provisional story name Mère Suture, medical-conversion sector.\nInput image 1 is ONLY the accepted comic style reference: clean bold dark outlines, large flat masses, few purposeful shadows, simple industrial materials. Do NOT copy its male military demon, horns, collar, chain, armor or pose.\nInput image 2 is ONLY a material reference for repulsive natural-colored flesh: pallid warm skin, thick folds, swellings and dark raw-red seams. Do NOT copy its six-legged body, vertical belly mouth, claws, ice or silhouette.\nSubject: an enormous TALL, LANKY, DISARTICULATED medical-conversion demon, unlike the stocky military commander. About 288 native pixels high overall versus a human around 60; this is a large independent creature drawing, never a 64px figure enlarged. Small unsettling near-human female head, long misshapen neck, sagging tall flesh torso and exactly TWO heavy flesh legs. Exactly TWO natural flesh arms plus FOUR mechanical surgical arms attached to a single clearly visible dark medical rig embedded into her upper back. No wings, tail, extra heads, floating arms or extra natural limbs.\nPrimary silhouette: one narrow high central body, surrounded by a broad ASYMMETRICAL arch of FOUR thick jointed surgical arms, TWO per side. Each machine arm is THREE large dark-steel segments with ONE visible circular elbow joint, no dense cables or little gears. All four roots visibly join the same shoulder-back support rig. Upper left arm ends in one broad closed surgical clamp; upper right one large short blade; lower left one blunt three-prong gripping tool; lower right one short needle/injector block. Keep those tool shapes simple and physically attached, no tiny markings. Tools are parts of the monster, no hand-held sword, gun or staff.\nThe long narrow body itself is imposing and at least TWO THIRDS of overall height; the arm arch should frame it without tiny body shrinking below huge equipment. She leans slightly to one side, one shoulder higher and one knee bent, with a frightening controlled clinical posture. Two long natural arms hang forward in a calm 'caregiver' gesture, ending in normal-shaped but stretched hands with dark nails.\nFlesh predominates on exposed torso, belly, natural arms and legs: sickly pale WARM PEACH/BEIGE skin, a few broad swollen lobes and heavy loose folds, dark muted red at joints and one broad stitched-looking seam across abdomen. Sparse large stitch marks only, no fine gore filigree, dangling guts or dense vein patterns. No bone armor, ribs, skull mask, exposed skeleton or ivory talons.\nCostume: a minimal torn dull SURGICAL GREEN apron/coat split into TWO plain long strips over a dark charcoal undergarment, enough to imply a former clinical authority while leaving the corrupted flesh visible. No religious nun habit, hood, cape, crown, cult uniform, polished military armor or pin-up anatomy. No readable writing, medical emblems or symbols. Thin dark steel neck support is enough. Head is small and almost bald, calm severe mouth with a very faint disturbing smile, half-lidded dark eyes, one dark flat clinical visor pushed above forehead. No glamorous makeup, child proportions, skull head or glowing eyes.\nColor and detail: warm sick flesh contrasted with dull surgical green and charcoal steel; ONE main shadow plane per material, large clean forms and a few functional highlights. No neon pink or magenta, texture noise, surface scratches, many little cloth folds, intricate rivets or photorealism. Dark mature comic-game style, readable at its PROPOSED LARGE native body size.\nComposition: one entire creature, nearly frontal with slight overhead game camera, generous true ALPHA transparent margins around every surgical arm/tool tip, head and both feet. No floor, shadow, background, glow, particles, victim, table, minions, active surgery or spell effect. This STATIC appearance proposal does not define any combat ability, resurrection, summon, damage, footprint, collision, or animation.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-01-r01.png",
+          "role": "Style BD et grandes masses ; ni anatomie ni équipement à copier"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Matière de chair couleur peau ; ni silhouette ni glace à copier"
+        }
+      ],
+      "maximum_body_height64": 224,
+      "maximum_body_width64": 320,
+      "canvas_cells": 6,
+      "ground_cell": 4.5,
+      "palette_limit": 28,
+      "native_body_reference": 64,
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "accepted_exports": {},
+      "layering_status": "Integrated four surgical arms plus two natural arms and two flesh legs; static appearance only",
+      "source_sha256": "e4b387cd339a33eeb45894dc5329dc79c6ec8dca9017bd2cbcf386c996e88b6f",
+      "status": "scale_revision_proposal",
+      "accepted_source_sha256": "e4b387cd339a33eeb45894dc5329dc79c6ec8dca9017bd2cbcf386c996e88b6f",
+      "source_appearance_approved": true,
+      "source_appearance_approval": "visual-acceptance-07.json",
+      "previous_approved_height64": 288,
+      "revision_review": "BOSS-02-scale-revision-02.json",
+      "previous_revisions": [
+        {
+          "id": "BOSS-02",
+          "number": 19,
+          "label": "Mère Suture",
+          "revision": "r01",
+          "role": "Boss de secteur proposé / cliniques",
+          "depth": "Fin du deuxième acte",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-02-r01.png",
+          "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-45fec0b6-121d-430b-8248-ffb6f8bd4938.png",
+          "prompt": "Use case: stylized-concept.\nAsset type: ONE new sector-boss appearance source for Project RL, a grim industrial cyberpunk horror roguelike. Proposed candidate 19, provisional story name Mère Suture, medical-conversion sector.\nInput image 1 is ONLY the accepted comic style reference: clean bold dark outlines, large flat masses, few purposeful shadows, simple industrial materials. Do NOT copy its male military demon, horns, collar, chain, armor or pose.\nInput image 2 is ONLY a material reference for repulsive natural-colored flesh: pallid warm skin, thick folds, swellings and dark raw-red seams. Do NOT copy its six-legged body, vertical belly mouth, claws, ice or silhouette.\nSubject: an enormous TALL, LANKY, DISARTICULATED medical-conversion demon, unlike the stocky military commander. About 288 native pixels high overall versus a human around 60; this is a large independent creature drawing, never a 64px figure enlarged. Small unsettling near-human female head, long misshapen neck, sagging tall flesh torso and exactly TWO heavy flesh legs. Exactly TWO natural flesh arms plus FOUR mechanical surgical arms attached to a single clearly visible dark medical rig embedded into her upper back. No wings, tail, extra heads, floating arms or extra natural limbs.\nPrimary silhouette: one narrow high central body, surrounded by a broad ASYMMETRICAL arch of FOUR thick jointed surgical arms, TWO per side. Each machine arm is THREE large dark-steel segments with ONE visible circular elbow joint, no dense cables or little gears. All four roots visibly join the same shoulder-back support rig. Upper left arm ends in one broad closed surgical clamp; upper right one large short blade; lower left one blunt three-prong gripping tool; lower right one short needle/injector block. Keep those tool shapes simple and physically attached, no tiny markings. Tools are parts of the monster, no hand-held sword, gun or staff.\nThe long narrow body itself is imposing and at least TWO THIRDS of overall height; the arm arch should frame it without tiny body shrinking below huge equipment. She leans slightly to one side, one shoulder higher and one knee bent, with a frightening controlled clinical posture. Two long natural arms hang forward in a calm 'caregiver' gesture, ending in normal-shaped but stretched hands with dark nails.\nFlesh predominates on exposed torso, belly, natural arms and legs: sickly pale WARM PEACH/BEIGE skin, a few broad swollen lobes and heavy loose folds, dark muted red at joints and one broad stitched-looking seam across abdomen. Sparse large stitch marks only, no fine gore filigree, dangling guts or dense vein patterns. No bone armor, ribs, skull mask, exposed skeleton or ivory talons.\nCostume: a minimal torn dull SURGICAL GREEN apron/coat split into TWO plain long strips over a dark charcoal undergarment, enough to imply a former clinical authority while leaving the corrupted flesh visible. No religious nun habit, hood, cape, crown, cult uniform, polished military armor or pin-up anatomy. No readable writing, medical emblems or symbols. Thin dark steel neck support is enough. Head is small and almost bald, calm severe mouth with a very faint disturbing smile, half-lidded dark eyes, one dark flat clinical visor pushed above forehead. No glamorous makeup, child proportions, skull head or glowing eyes.\nColor and detail: warm sick flesh contrasted with dull surgical green and charcoal steel; ONE main shadow plane per material, large clean forms and a few functional highlights. No neon pink or magenta, texture noise, surface scratches, many little cloth folds, intricate rivets or photorealism. Dark mature comic-game style, readable at its PROPOSED LARGE native body size.\nComposition: one entire creature, nearly frontal with slight overhead game camera, generous true ALPHA transparent margins around every surgical arm/tool tip, head and both feet. No floor, shadow, background, glow, particles, victim, table, minions, active surgery or spell effect. This STATIC appearance proposal does not define any combat ability, resurrection, summon, damage, footprint, collision, or animation.",
+          "references": [
+            {
+              "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-01-r01.png",
+              "role": "Style BD et grandes masses ; ni anatomie ni équipement à copier"
+            },
+            {
+              "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+              "role": "Matière de chair couleur peau ; ni silhouette ni glace à copier"
+            }
+          ],
+          "maximum_body_height64": 288,
+          "maximum_body_width64": 320,
+          "canvas_cells": 8,
+          "ground_cell": 6,
+          "palette_limit": 28,
+          "native_body_reference": 64,
+          "visual_approved": true,
+          "scale_approved": true,
+          "name_approved": false,
+          "rules_approved": false,
+          "accepted_exports": {
+            "64": {
+              "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/BOSS-02-r01/BOSS-02-r01-native64.png",
+              "cell": 64,
+              "canvas": 512,
+              "foot_anchor": [
+                256,
+                384
+              ],
+              "occupied": [
+                163,
+                96,
+                349,
+                384
+              ],
+              "colors": 28,
+              "sha256": "8e586a6945a6a6020c47eb716167ee5e8e1a45cdce3d4345931cd8438d281b9d"
+            }
+          },
+          "layering_status": "Integrated four surgical arms plus two natural arms and two flesh legs; static appearance only",
+          "source_sha256": "e4b387cd339a33eeb45894dc5329dc79c6ec8dca9017bd2cbcf386c996e88b6f",
+          "native64_export": {
+            "file": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-02-r01-native64.png",
+            "cell": 64,
+            "canvas": 512,
+            "foot_anchor": [
+              256,
+              384
+            ],
+            "occupied": [
+              163,
+              96,
+              349,
+              384
+            ],
+            "colors": 28,
+            "sha256": "8e586a6945a6a6020c47eb716167ee5e8e1a45cdce3d4345931cd8438d281b9d"
+          },
+          "status": "previously_approved_scale_reference",
+          "visual_acceptance": "visual-acceptance-07.json",
+          "accepted_source_sha256": "e4b387cd339a33eeb45894dc5329dc79c6ec8dca9017bd2cbcf386c996e88b6f"
+        }
+      ],
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-02-r02-native64.png",
+        "cell": 64,
+        "canvas": 384,
+        "foot_anchor": [
+          192,
+          288
+        ],
+        "occupied": [
+          120,
+          64,
+          264,
+          288
+        ],
+        "colors": 27,
+        "sha256": "e47808bfeaec7ca59fb4e585ebe10dabfe4182a45810725f4103a77a1c22d5ca"
+      }
+    }
+  ],
+  "preview": "artifacts/npc-monsters-review-01/boss-secteurs-18-19.png",
+  "dimensions_approved": false,
+  "visual_acceptance": "visual-acceptance-07.json",
+  "pending_scale_candidates": [
+    "BOSS-02-r02"
+  ],
+  "latest_scale_revision": "BOSS-02-scale-revision-02.json"
+}

@@ -1,5 +1,7 @@
 # Architecture du moteur
 
+> **Campagne au 16 octobre 2026 :** les descriptions de l'ancien départ, des habitants et quêtes historiques sont des preuves du prototype. Elles ne définissent pas [l'histoire courante](HISTOIRE_CAMPAGNE.md), qui reste à intégrer. Voir le [cadrage](reviews/refonte-histoire-2026-10-16/CADRAGE.md).
+
 Le moteur de Project RL est une bibliothèque de simulation indépendante de Macroquad. Une interface graphique, un outil de test ou un serveur de validation doivent pouvoir lui envoyer les mêmes commandes et lire les mêmes événements.
 
 La charte de la couche de présentation, ses garanties clavier/souris et la séparation entre interface commune, rendu terminal et futur rendu texturé sont détaillées dans [`INTERFACE.md`](INTERFACE.md).
@@ -619,9 +621,10 @@ position actuelle ; sinon, elle précise s'il faut approcher, rejoindre la case,
 faire face à la cible ou résoudre un verrouillage. Les éléments seulement
 mémorisés ne portent ni repère d'interaction ni infobulle.
 
-Le [suivi d'intégration narrative](SUIVI_INTEGRATION_NARRATIVE.md) précise les textes
-raccordés et les limites de cette tranche : les branches matérielles de réouverture
-et la suite de la campagne restent à réaliser.
+Cette tranche narrative appartient au prototype historique. Son ancien cahier
+de textes et son suivi sont retirés au profit de [l'histoire courante](HISTOIRE_CAMPAGNE.md).
+Le [cadrage de refonte](reviews/refonte-histoire-2026-10-16/CADRAGE.md) décrit la
+transition documentaire ; la nouvelle campagne n'est pas encore intégrée.
 
 ## Récompense de l'enquête — génération 88
 

@@ -9,7 +9,178 @@ l'acceptation artistique du joueur.
 
 ## 1. Statut des décisions
 
+### Décision courante du 17 octobre 2026 — rendu 64 px uniquement
+
+Le joueur annule explicitement la version du jeu en 32 px. Le seul rendu
+proposé dans les options et la seule taille à fabriquer pour les nouvelles
+ressources sont désormais **64 px par case**. Les cases logiques, collisions,
+proportions relatives, points d'attache, couches et règles de jeu restent
+inchangés. Les anciennes préférences de taille sont migrées vers 64 sans
+réinitialiser les autres réglages. Les sources, preuves d'accord et ressources
+historiques 32 px sont conservées ; certaines restent des données internes
+ou des icônes, ce qui ne rétablit pas un mode de jeu 32 px.
+Cette décision remplace les obligations de double export ci-dessous, dont
+les paragraphes datés conservent la trace historique.
+Voir `docs/reviews/refonte-histoire-2026-10-16/native64-only-01/decision.json`.
+
 ### Décisions confirmées par le joueur
+
+Le 17 octobre, le joueur juge les derniers monstres potentiellement trop
+détaillés et difficiles à lire. La revue suivante privilégie des masses
+simples, un signe principal par modèle et une forte réduction des textures
+et traits internes, à contrôler en 64 px natifs. Elle ne remplace aucun dessin
+accepté sans revue. Le joueur précise aussi que les premières rencontres
+doivent être des cultistes humains ordinaires, moins dangereux dans la
+progression que les possédés et hybrides. Ceux-ci sont réservés à la suite
+de la descente. Aucune valeur de combat n'est déduite de cette hiérarchie.
+Trace : `docs/reviews/refonte-histoire-2026-10-16/npc-monsters-review-01/readability-cultists-03.json`.
+
+Le joueur précise ensuite la tenue des cultistes : capuches, uniforme commun
+glauque, aucun visage visible et **masques physiques**, qui remplacent
+l'essai de simple ouverture noire. Ce sont des humains ; certains peuvent
+lancer des sorts puisque la magie existe dans l'univers. Cette permission
+ne définit pas leurs compétences, chiffres ou effets. Les candidats concrets
+restent alors à valider. Trace : `masked-cultists-05.json` dans la même revue.
+
+Le joueur valide ensuite la présentation courante : les cultistes masqués
+13–15 et les versions simplifiées 10–12 sont figés dans
+`npc-monsters-review-01/visual-acceptance-02.json` de la refonte d'histoire.
+Cette acceptation porte sur les apparences, sans définir les compétences
+des monstres, leurs statistiques ou leurs rencontres.
+
+Après leur présentation à taille native, le joueur confirme les deux élites
+humaines du culte et le premier boss, candidats 16–18 r01, par
+« je les aimes bien oui :) ». Leurs apparences et PNG exacts sont figés dans
+`npc-monsters-review-01/visual-acceptance-03.json`. Les noms et capacités restent
+à examiner séparément ; cet accord ne raccorde aucun nouvel acteur au jeu.
+
+Le joueur valide ensuite par « je valide :) » les apparences r02 des PNJ de
+services 02–04 : armurier, secouriste et technicien. Leurs dessins et PNG 64 px
+exacts sont figés dans `npc-monsters-review-01/visual-acceptance-04.json`.
+Les anciens essais r01 restent non validés ; les noms, règles de service,
+dialogues et futures couches séparées ne sont pas approuvés par cet accord.
+
+Le joueur valide aussi par « je valide :) » les apparences r02 des candidats
+05–07 : ouvrier possédé, coureur greffé et Porte-presse. Leurs grandes sources
+et PNG natifs exacts sont figés dans `npc-monsters-review-01/visual-acceptance-05.json`.
+Les anciennes r01 restent distinctes de cet accord ; les noms, compétences,
+statistiques, collisions, animations et rencontres ne sont pas définis par
+cette acceptation visuelle.
+
+Pour la créature 09 du plan glacé, le joueur refuse ensuite la r02 :
+trop d'os et pas assez de chair répugnante couleur chair. La r03 proposée
+privilégie une peau charnue, plissée et boursouflée, avec des teintes chair
+naturelles et beaucoup moins d'os visibles. Cette correction est limitée
+au 09 ; elle ne change pas le démon 08 ni les apparences acceptées.
+Le joueur valide ensuite la r03 par « oui je valide » ; sa source et son PNG
+exact sont figés dans `npc-monsters-review-01/visual-acceptance-06.json`.
+Il exclut le rôle de boss de secteur pour le 09. Plusieurs autres boss sont
+possibles, avec un seul grand boss par secteur ; la catégorie de rencontre
+du 09 reste à définir. Voir `encounter-direction-10.json` dans la même revue.
+Le 08 reste inchangé et non validé par cet accord.
+
+Le joueur précise ensuite que les **boss de secteur dépassent largement une
+case de 64 px**, avec des tailles et silhouettes différentes pour chacun.
+Cette direction ne fixe pas une taille unique. La revue `sector-bosses-11.json`
+présente d'abord le Maréchal à 192 px de haut et Mère Suture à 288 px ; ces
+apparences et dimensions sont validées dans `visual-acceptance-07.json`.
+Le joueur trouve ensuite Mère Suture peut-être trop haute : un nouveau
+gabarit r02 de 224 px est proposé, sans changer son dessin ni effacer le
+PNG de 288 px accepté. Cette révision reste à valider ; voir
+`BOSS-02-scale-revision-02.json`. Le Maréchal réutilise sa grande source
+acceptée avec un nouvel export direct ; son ancien PNG accepté reste intact.
+Les canevas de 384 et 512 px servent aux débordements visuels et ne définissent
+aucune collision. Les noms et capacités des boss restent en revue séparée.
+
+Le joueur demande pour la suite une **diversité anatomique des démons**,
+avec notamment des insectoïdes et des formes lovecraftiennes. Les futures
+silhouettes doivent varier au-delà des humanoïdes corrompus, en conservant
+une lecture claire à taille native. Cette direction ne fixe ni espèce,
+nom, dessin, compétence ou rencontre précis et ne remplace aucun dessin
+accepté. Trace : `npc-monsters-review-01/demonic-diversity-12.json`.
+
+Le joueur précise ensuite que cette diversité insectoïde et lovecraftienne
+concerne les monstres ordinaires et les élites. Les **boss de secteur doivent
+évoquer des dirigeants, des chefs**, avec une identité et une autorité lisibles.
+Une grande taille ou une anatomie inhabituelle ne suffit pas à définir ce rôle.
+Les dessins 20 et 21 sont appréciés, mais réaffectés à des propositions d'élites
+de taille réduite. Leur ancienne attribution aux chefs « Le Chœur » et
+« Gueule-Fournaise » est retirée ; ces personnages restent à dessiner.
+Leurs nouveaux gabarits restent à examiner dans `elite-monsters-16.json`.
+Cette précision ne remet pas en cause les dessins acceptés des 18 et 19.
+
+Le joueur rappelle qu'une **ombre de contact doit accompagner chaque monstre**.
+Elle est préparée sur un calque séparé sous le corps, sans retoucher les PNG
+des créatures. La revue `contact-shadows-14.json` montre les variantes courantes
+avec les bandes sombres déjà employées par le rendu du jeu, adaptées aux appuis.
+La direction est confirmée ; ces compositions restent des aperçus de revue.
+
+Le joueur demande ensuite davantage de **petites troupes démoniaques ordinaires**,
+de type « chair à canon ». Il précise qu'il parle des démons : les nouveaux
+essais de cultistes, d'hybrides humains et de machine ne constituent pas ce lot.
+La revue `TROUPES-17` propose douze démons 28–39, avec de petits gabarits variés
+sur des cases de 64 px. Leurs planches sont présentées **uniquement à taille
+native, sans zoom**, conformément à cette demande. Les variantes de couleur
+sont autorisées dans leur principe : elles conservent exactement la géométrie
+et l'alpha du même dessin, sans définir de différence de puissance ou de règles.
+Les candidats, palettes et tailles concrets restent à examiner avant intégration.
+Le dessin 25 est apprécié séparément comme proposition de magicien possédé ;
+ce rôle ne définit pas ses sorts. Voir `petites-troupes-17.json` et
+`magicien-possede-25-direction.json` dans la revue de la nouvelle campagne.
+
+Le joueur précise que **varier les tailles ne signifie pas rendre tous les
+démons plus petits que le joueur**. Il demande explicitement que le 28 ait
+la stature du joueur. Son dessin est conservé et réexporté à 65 px de haut,
+sans agrandissement du petit PNG précédent. Les corps peuvent déborder d'une
+case de référence de 64 px ; les canevas transparents ne définissent aucune
+collision. La galerie `DEMONS-18` ajoute des gabarits petits, de stature humaine
+et plus grands, avec des anatomies différentes. Le joueur souhaite accumuler
+de nombreux candidats avant de choisir : **les validations et refus individuels
+viendront plus tard**. Aucune approbation globale des dessins, palettes ou tailles
+n'est déduite de cet encouragement à poursuivre. Les accords plus anciens
+restent inchangés. Voir `demons-varied-18.json` dans la même revue.
+
+Le joueur recadre ensuite les inspirations : **Diablo II et Grim Dawn**.
+La revue `DEMONS-19` prend leurs bestiaires comme références de familles,
+d'anatomies et de matières, avec une interprétation plus sombre et moins
+caricaturale pour les nouveaux candidats. Les silhouettes et créatures restent
+originales. Les pages officielles et les illustrations effectivement observées
+sont consignées dans `demons-arpg-19.json`. Les dix dessins déjà fabriqués de
+la revue 18 sont conservés à part ; ses dix autres briefs ne sont pas générés.
+Le 28 garde sa correction de stature. Les nouveaux dessins, palettes, gabarits
+et noms attendent toujours la sélection individuelle annoncée par le joueur.
+
+Le joueur apprécie les **designs** de cette série mais demande de conserver
+le **style graphique actuel du joueur et des armes**. L'inspiration Diablo II
+et Grim Dawn concerne donc les anatomies et les familles, sans remplacer le
+trait du jeu par un rendu réaliste. `DEMONS-20` reprend les quinze sources
+60–74 en contours sombres, aplats et ombres simples, en gardant leurs designs ;
+les cinq derniers candidats 75–79 sont dessinés directement dans ce style.
+Les sources précédentes restent intactes comme références de design. Les
+vingt versions r02, leurs palettes et leurs tailles restent à sélectionner
+individuellement. Voir `demons-style-20.json` et `DEMONS-20.md` dans la revue.
+
+Le joueur demande ensuite de **les ajouter à la liste et de continuer**,
+avec regroupement et validations ou refus individuels plus tard. L'index
+`monster-candidate-list.json` et `CANDIDATS-MONSTRES.md` conservent les lots
+récents, sans convertir leur inscription en acceptation. `DEMONS-21` ajoute
+douze propositions 80–91 dans le même style ; les lots antérieurs restent
+conservés en attente du regroupement général.
+
+Le joueur demande ensuite de conserver les douze derniers et d'imaginer une
+série **directement depuis notre univers**. `UNIVERS-22` propose les 92–103
+depuis les motifs de l'histoire courante, en gardant le trait du joueur et
+des armes. Les nouvelles espèces, origines et associations aux secteurs sont
+des propositions, sans canonisation ni intégration. Les validations individuelles
+restent différées ; voir `MONSTRES-UNIVERS-22.md` dans la même revue.
+
+Le joueur refuse ensuite explicitement les **94, 95 et 97**, montrés en images,
+et demande leur suppression directe. Leurs ressources graphiques sont supprimées,
+les neuf autres restent candidats. La trace textuelle est conservée dans
+`removed-monsters-23.json`. Ce refus porte sur ces modèles précis et ne crée
+pas d'interdiction générale des hybrides. `UNIVERS-23` poursuit avec dix dessins
+disponibles parmi les 104–115 ; les 110 et 114 restent des briefs sans image.
+Les validations individuelles des autres modèles restent différées.
 
 - Dungeon Crawl Stone Soup est la référence de **taille et de qualité**.
 - Étudier sa méthode depuis les sources locales et l'adapter aux personnages,
@@ -79,6 +250,38 @@ portraits, objets au sol et fiches d'inspection restent fixes. Les mouvements
 réduits et les instants de déplacement par un effet de combat désactivent la
 respiration. Elle ne consomme aucun tour et ne modifie pas les collisions.
 
+Le 16 octobre, le joueur demande son extension à **toutes les armures**.
+Les 19 tenues frontales et leurs trois palettes reprennent ce même cycle,
+avec une amplitude équivalente entre résolutions : un pixel en 32 px, deux
+pixels en 64 px. Le haut du corps et les couches portées suivent le mouvement ;
+les pieds et le bas de la tenue restent fixes. Les parties d'arme dépassant
+sous la taille continuent à bouger avec les mains. Le rendu statique accepté
+reste la première pose exacte. Les portraits, mouvements réduits et réactions
+de combat conservent leur désactivation existante. Cette extension ne crée
+aucune règle de déplacement ni animation de marche.
+
+### Glissement entre cases accepté le 16 octobre 2026
+
+Le joueur valide `ACTOR-GLIDE-01` : les déplacements ordinaires d'une case
+glissent pendant 80 ms, avec un départ immédiat et une arrivée adoucie.
+Le dessin complet se déplace ensemble : corps, tenue, armes, ombre et effets
+attachés, y compris les marqueurs au-dessus de la tête. Cette présentation
+commune concerne le joueur, les monstres, les drones et les transformations.
+La caméra suit le même glissement et la projection du pointeur reste alignée.
+
+Une nouvelle commande n'attend jamais la fin du glissement. Un pas rapproché
+repart de la position affichée ; il ne crée pas une file d'animations retardées.
+Les positions logiques, collisions, tours, portées et perceptions s'appliquent
+immédiatement comme avant. Les déplacements de compétence conservent leur
+présentation propre. Aucun mouvement de marche, rebond ou particule n'est ajouté.
+Le réglage « mouvements réduits » conserve le déplacement instantané.
+La respiration reprend au repos, après le déplacement et les réactions de combat.
+La validation et ses contrôles sont dans
+`docs/reviews/refonte-agent-2026-10-06/actor-glide-01/`.
+Après avoir vu l’aperçu intégré, le joueur confirme ce rendu par « Je valide :) ».
+Cette validation visuelle finale est conservée dans `visual-acceptance-02.json`
+du même dossier ; elle complète l’accord initial sur la proposition.
+
 Les deux poses partagent le cache borné à 192 textures, sans création d'image
 par frame après son échauffement. Les captures et tests sont conservés dans
 `artifacts/terminal-console-proposition-2026-10-05/`. La proposition de HUD
@@ -132,7 +335,7 @@ public pour une **partie** des ressources, pas une garantie globale par fichier.
 
 ### Grille de référence
 
-- Tile : **32 × 32 pixels**.
+- Rendu courant : **64 × 64 pixels par case** ; version 32 px abandonnée.
 - Vue native : un pixel du dessin pour un pixel de l'écran.
 - Agrandissements de revue : facteurs entiers ×2, ×3 ou ×4, filtrage nearest.
 - Le zoom d'une fenêtre ou du navigateur ne constitue pas une mesure native.
@@ -196,7 +399,101 @@ Les portraits utilisent également la source détaillée. Les réglages proposé
 sont désormais 32 et 64 px ; les anciens réglages intermédiaires chargés sont
 rapprochés de ces deux tailles sans réinitialiser les autres préférences.
 
-### Humains
+### Revue des armes et armures en 64 px — 16 octobre 2026
+
+Le joueur signale encore un rendu de type 32 px agrandi pour les armes et les
+armures, à l'exception de la tenue de mage. Il demande de remplacer les anciens
+rendus après préparation de vrais visuels adaptés au 64 px.
+
+L'audit du chemin actif distingue deux problèmes : `game_art_palette.rs`
+échantillonne systématiquement les icônes en 32 px ; `game_art_worn.rs` ne
+sélectionne la banque détaillée que pour les douze tenues de l'accord
+ACTOR-RES01-ACCEPT01. Les autres torses passent par le corps historique 32 px.
+
+La revue **EQUIPMENT-NATIVE64-01** réutilise les sources détaillées conservées,
+avec export direct, sans étape 32 px et sans prétendre à un nouveau dessin.
+Elle présente 110 armes et 34 modèles d'armure, soit 176 exports d'icônes avec
+les trois couleurs des seize tenues associées à un objet torse. Les équipements
+déjà supprimés ou rejetés ne sont pas réintroduits. Les douze tenues détaillées
+acceptées restent des références inchangées ; sept autres tenues portées sont
+des candidats dont le remplacement reste à valider. Trois références acceptées
+n'ont actuellement pas d'objet torse associé et sont identifiées comme telles.
+
+Les identifiants, sources et empreintes sont conservés dans
+`docs/reviews/refonte-agent-2026-10-06/equipment-native64-01/review.json`.
+Le joueur autorise ensuite l'intégration des candidats présentés. Les 176
+exports d'icônes sont raccordés au rendu commun du sol, de l'inventaire et des
+fiches. Une destination dépassant 32 px sélectionne la source 64 px, y compris
+un objet de 56 px dans une case de 64 px. Les petits emplacements utilisent
+une réduction des mêmes dessins. La résolution fait partie de la clé du cache.
+
+Les sept tenues supplémentaires disposent des poses et doigts séparés pour
+tous les modèles d'armes et les paires à une main. Leurs 336 compositions de
+référence sont conditionnées dans `assets/sprites/equipment-native64/`, avec
+les icônes et les masques de matériaux. Les 576 compositions des douze tenues
+initialement acceptées restent identiques. Les anciens rendus de PNJ et des
+contenus historiques restent distincts ; la banque 32 px n'est plus utilisée
+pour agrandir les équipements actuels dans les affichages supérieurs à 32 px.
+
+Le joueur refuse ensuite la base rose/cyan de la Carapace Chrysalide et choisit
+finalement de reprendre sa variante déjà montrée **olive sombre et os**.
+Cette variante approuvée devient aussi sa base sur les icônes, les portraits
+et toutes les poses. Les autres variantes gardent leurs pixels. Le choix
+graphite précédemment envisagé est abandonné ; aucun nouveau dessin n'est créé.
+La décision est conservée dans `palette-defaults-01.json` auprès de la revue.
+
+La page unique `artifacts/apercu-equipement64.html` montre désormais les banques
+actives et les captures du jeu. Elle est produite par
+`tools/art/show_equipment_native64.py`. Les propositions antérieures restent
+reproductibles par `prepare_equipment64_review.py` ; les sources et décisions
+sont conservées. Les captures utiles sont embarquées dans cette seule page
+d'aperçu ; le résultat réel du nettoyage, y compris un éventuel refus du
+contrôle automatique, est indiqué dans `integration-validation-01.json`.
+
+La référence de butin encore présente pour la Tenue d'aviateur, déjà rejetée,
+est retirée des nouvelles parties à partir de la génération 149. Le filtrage
+du catalogue est réversible pour reconstruire les parties antérieures,
+notamment 148 ; les identifiants historiques restent lisibles.
+
+### Prises des armes lourdes et de mêlée — revue du 16 octobre 2026
+
+Le joueur demande surtout des **armes lourdes à distance** plus imposantes
+lorsqu'elles sont portées. Les autres armes de tir à deux mains lui conviennent
+et conservent leur échelle. Il demande également une prise horizontale pour les
+haches et contondantes à deux mains, avec un fer de hache correctement aligné,
+sans inclinaison parasite.
+
+La revue **HELD-WEAPON-64-01**, dans
+`docs/reviews/refonte-agent-2026-10-06/held-weapon-review-01/review.json`,
+présente cinq études numérotées et un fusil témoin inchangé, sur trois tenues.
+L'exemple isolé `examples/held_weapon_review.rs` réutilise les dessins sources,
+les manches et les doigts séparés, avec des points d'attache identiques entre
+armures. Le manche de la hache est tourné exactement de 90 degrés depuis son
+axe vertical source, sans reprendre l'angle oblique de la précédente pose.
+L'étude de contondante n'attribue pas une prise à deux mains aux marteaux à une
+main existants et ne modifie aucune règle.
+
+Le joueur valide ces propositions sous **HELD-WEAPON-64-01-ACCEPT01**.
+Le gabarit est raccordé aux 27 modèles actifs de mitrailleuse, lance-flammes,
+lance-grenades et lance-roquettes, ainsi qu'aux sept haches à deux mains.
+Les fusils ordinaires et armes à une main restent inchangés. La prise
+contondante acceptée reste une référence pour les modèles à deux mains ;
+elle ne convertit pas les marteaux et masses à une main du catalogue.
+
+Les nouvelles couches d'armes sont conditionnées dans
+`assets/sprites/held-native64/`. Les poses utilisent les manches et doigts
+des 19 tenues et de leurs trois couleurs, avec les mêmes prises par modèle.
+La composition rejoint le cache existant du plateau et des portraits, sans
+nouveau calcul à chaque image. Les douze compositions concrètes de la revue
+restent vérifiées pixel par pixel et les anciens presets non concernés
+conservent leurs pixels. Aucun identifiant ni comportement d'objet ne change.
+
+La page unique `artifacts/apercu-equipement64.html` montre le rendu intégré dans
+l'onglet « Prises intégrées », ajouté par `tools/art/show_held_weapon_review.py`.
+`tools/art/build_held_weapon_assets.py --check` vérifie les sources, les
+correspondances de modèles et la conservation des anciennes banques.
+
+### Humains — proportions
 
 Les sources humaines étudiées occupent environ trente pixels de haut dans une
 tile de trente-deux. Utiliser cette échelle comme repère, avec une anatomie
@@ -229,7 +526,7 @@ Les objets au sol sont cadrés dans leur case ; éviter les débordements arbitr
 
 ### Priorités de lecture
 
-1. Identifier la catégorie ou l'espèce à 32 pixels.
+1. Identifier la catégorie ou l'espèce à 64 pixels natifs.
 2. Lire les grandes masses du corps, du vêtement et de l'arme.
 3. Séparer les matériaux et les éléments tactiquement utiles.
 4. Reconnaître le modèle par quelques signes propres.
@@ -675,7 +972,7 @@ réussie n'est pas une acceptation artistique.
 Contenu : ID existant, nom, statut.
 Usage : joueur / NPC / monstre / objet au sol / arme tenue.
 Référence : DCSS pour taille, économie de pixels et qualité.
-Grille finale : 32 × 32 ; revue 1:1 et zoom entier nearest.
+Grille finale : 64 × 64 ; revue 1:1 et zoom entier nearest.
 Silhouette : forme dominante, proportions, parties à préserver.
 Échelle : taille relative, pied/contact, marges visuelles.
 Palette : zones principale/secondaire, rampes, neutres et peau protégés.
@@ -3386,3 +3683,82 @@ La revue 70 reste un brouillon non présenté, avec une approche de cible
 inadaptée à la comparaison. La revue 71 est la proposition à examiner.
 L’accord sur le passif ne valide pas encore cette composition agrandie.
 Aucune compétence, règle de campagne ou sauvegarde n’est modifiée.
+
+
+### Catalogue global 24 — tailles réelles et familles complémentaires
+
+Le 17 octobre 2026, le joueur demande une grande image avec nom, code et sprite
+à la taille réellement prévue pour le jeu, ainsi que le retour des anciens
+cultistes dans la liste. `npc-monsters-review-01/CANDIDATS-MONSTRES.md` réunit
+102 modèles des revues courantes, sans redimensionnement à la composition,
+avec le joueur comme référence. La base d'affichage reste 64 px par case ; les
+petites créatures, adultes, élites et boss gardent leurs différences de taille.
+Le lot `CULTES-24` ajoute seize propositions : cultistes possédés, zombies,
+esprits torturés, squelettes et créatures enflammées. Les flammes et silhouettes
+spectrales présentées sont des dessins statiques à examiner. L'inscription au
+catalogue ne valide pas individuellement ces nouvelles apparences, leurs noms
+ou leurs règles ; les validations antérieures restent conservées.
+
+
+### Nécromanciens 25 — lecture clinique et cohérence des accessoires
+
+Le joueur demande des nécromanciens scientifiques du culte et démoniaques.
+Pendant la création, il refuse le scientifique 132 r01 : seringue non droite,
+tenue trop peu scientifique. Les nouvelles propositions emploient une blouse
+à revers et poches avec proportions humaines ; la seringue du 132 r02 partage
+un axe vertical. Il demande aussi de corriger le visage et le livre du 139 :
+la r02 propose une tête organique assortie au corps et un livre ouvert orienté
+vers son regard, soutenu par une main adaptée. Ces révisions restent à examiner
+dans `npc-monsters-review-01/NECROMANCIENS-25.md`. Les noms et les règles restent
+distincts ; le catalogue courant conserve 110 modèles à taille native.
+
+
+### Reliquaire 26 — nécromancien insectoïde
+
+Le joueur demande un artefact sordide à la place du livre du 137. La r02
+propose un reliquaire charnel sous métal noirci et crochets d'os, conservant le
+gabarit natif et la silhouette. Les pinces sont adaptées à sa prise. Il confirme
+les sept autres nécromanciens pour leur présence dans la liste. La r02 reste
+à examiner ; voir `npc-monsters-review-01/NEC-D02-ARTEFACT-26.md`.
+
+
+### Bestiaire démoniaque 27 — ailes, vers et familles
+
+Le joueur demande de nombreux vers et larves, des démons musclés ailés de
+différentes couleurs, des minotaures ailés, des démons de peste et du froid,
+ainsi que des formes presque humaines. Il autorise les tailles supérieures
+à 64 px. La revue `BESTIAIRE-DEMONIAQUE-27.md` présente vingt-quatre modèles
+140–163 à taille native sur base de 64 px par case, avec deux palettes chacun,
+ombres séparées et contrôle sur fonds clair, sombre et texturé. Les gabarits
+et envergures restent propres à chaque silhouette ; les nouveaux dessins,
+noms et règles restent des propositions. Aucun boss ou pouvoir nouveau n'est
+défini par cette famille graphique. Le catalogue courant contient 134 modèles.
+
+### Palettes de matériaux 07 — extension validée
+
+Le 17 octobre 2026, le joueur valide et demande l’intégration des 176 variantes
+rouge-orangé et vertes des 88 autres modèles présentés sur six planches natives.
+La revue `monster-material-palettes-07/review.json` conserve l’accord explicite.
+Avec les quatre palettes antérieures des modèles 144 et 150, 90 modèles disposent
+de cartes de couleurs de matériaux. Les dessins sources A/B, contours, alpha,
+gabarits et points d’appui restent identiques. Les masques propres aux sources
+protègent les tissus, les os et les métaux, y compris lorsqu’ils partagent un RGB
+avec la chair. Les vêtements marron du 156 restent distincts de sa peau.
+
+La génération 151 utilise ces variantes pour les rôles déjà intégrés. Les
+apparences de la génération 150 restent identiques ; sauvegarde, inspection et
+corps au sol conservent le modèle et sa palette. Les lanceurs de sorts réservés
+attendent leurs pouvoirs. Cet accord visuel ne définit aucun nouveau pouvoir,
+chiffre ou nom. Le catalogue courant conserve les apparences à taille native.
+
+### Complément bleu 08 — validation et intégration
+
+Le joueur demande ensuite des variantes bleues pour le gel et valide les 51
+palettes E présentées sur six planches natives : « Valider et intégrer les 51
+bleues ». Les 39 modèles qui avaient déjà un bleu, bleu-gris ou cyan conservent
+ces dessins. Les cartes explicites utilisent les mêmes masques et points
+d’appui que la revue 07, sans changer les tailles ni les matériaux protégés.
+La génération 152 active ce complément ; les affectations des générations
+150 et 151 restent identiques. L’accord est conservé dans
+`monster-blue-palettes-08/review.json`. Les futurs dégâts de gel restent
+distincts de cette validation visuelle.

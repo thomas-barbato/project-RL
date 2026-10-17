@@ -1,0 +1,2765 @@
+{
+  "review_id": "UNIVERS-23",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "status": "proposal_pending_later_individual_selection",
+  "user_statement": "okay j'aime bien mais ceux que je vais te donner ici seront à supprimer directement, les autres peuvent rejoindre la liste des candidats :) puis tu peux continuer à generer :) .",
+  "removal_review": "removed-monsters-23.json",
+  "previous_collection": "universe-monsters-22.json",
+  "story_reference": "docs/HISTOIRE_CAMPAGNE.md",
+  "lore_status": "proposal_not_canon",
+  "individual_acceptance_deferred": true,
+  "runtime_connected": false,
+  "preview_title": "Monstres de notre univers · nouvelles formes · taille native",
+  "records": [
+    {
+      "id": "RLU-13",
+      "number": 104,
+      "revision": "r01",
+      "label": "Rebut de cuve",
+      "family": "Conversions aberrantes",
+      "maximum_body_height64": 38,
+      "maximum_body_width64": 68,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-13-r01.png",
+      "universe_basis": "Conversions inachevées suggérées par les cliniques.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 200,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nA squat eyeless FOUR-LEGGED flesh creature, native38px high, at most68px wide. One heavy flattened warm-beige body, TWO massive braced front limbs and TWO short hind legs, each ending in a broad charcoal blunt nail group. Its small wedge head is tucked deeply beneath the front shoulder fold, with one closed dark mouth crease. A single broad dark olive hide patch covers the upper rear body, two large folds at most. Thick short hooked tail follows the ground beside a rear foot. Adult stocky and repulsive, not a baby. No equipment, shell, bones, horns, tubes, machinery, pustule texture or accessories.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-38449b8a-4892-42c0-abbb-1475bd4d2929.png",
+      "source_sha256": "ae69ba42f7477e723abcf8219e12f9a63dfce7738d28ca20fff5000a73e23f4d",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-23/RLU-13-r01-shadow64.png",
+        "sha256": "d861828a001b7113c0b14184379c13b21fca8b8819fc8513333a1b55d27eb16c",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            56,
+            95
+          ],
+          "width": 44,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1133,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              58,
+              48,
+              42
+            ],
+            "target": [
+              44,
+              50,
+              53
+            ]
+          },
+          {
+            "source": [
+              66,
+              62,
+              55
+            ],
+            "target": [
+              54,
+              59,
+              61
+            ]
+          },
+          {
+            "source": [
+              79,
+              71,
+              62
+            ],
+            "target": [
+              63,
+              69,
+              73
+            ]
+          },
+          {
+            "source": [
+              90,
+              80,
+              65
+            ],
+            "target": [
+              68,
+              78,
+              83
+            ]
+          },
+          {
+            "source": [
+              98,
+              87,
+              70
+            ],
+            "target": [
+              73,
+              85,
+              90
+            ]
+          },
+          {
+            "source": [
+              118,
+              103,
+              84
+            ],
+            "target": [
+              88,
+              102,
+              109
+            ]
+          },
+          {
+            "source": [
+              137,
+              120,
+              95
+            ],
+            "target": [
+              101,
+              118,
+              126
+            ]
+          },
+          {
+            "source": [
+              163,
+              142,
+              118
+            ],
+            "target": [
+              123,
+              141,
+              150
+            ]
+          },
+          {
+            "source": [
+              182,
+              158,
+              131
+            ],
+            "target": [
+              137,
+              157,
+              167
+            ]
+          },
+          {
+            "source": [
+              192,
+              169,
+              139
+            ],
+            "target": [
+              145,
+              166,
+              177
+            ]
+          },
+          {
+            "source": [
+              204,
+              181,
+              151
+            ],
+            "target": [
+              156,
+              177,
+              188
+            ]
+          },
+          {
+            "source": [
+              218,
+              193,
+              162
+            ],
+            "target": [
+              167,
+              189,
+              201
+            ]
+          },
+          {
+            "source": [
+              227,
+              203,
+              171
+            ],
+            "target": [
+              175,
+              198,
+              209
+            ]
+          },
+          {
+            "source": [
+              232,
+              208,
+              174
+            ],
+            "target": [
+              179,
+              202,
+              213
+            ]
+          },
+          {
+            "source": [
+              233,
+              209,
+              175
+            ],
+            "target": [
+              180,
+              203,
+              214
+            ]
+          },
+          {
+            "source": [
+              235,
+              212,
+              174
+            ],
+            "target": [
+              180,
+              204,
+              216
+            ]
+          },
+          {
+            "source": [
+              239,
+              216,
+              183
+            ],
+            "target": [
+              186,
+              209,
+              220
+            ]
+          },
+          {
+            "source": [
+              251,
+              234,
+              208
+            ],
+            "target": [
+              205,
+              222,
+              231
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-13-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            35,
+            58,
+            93,
+            96
+          ],
+          "colors": 22,
+          "sha256": "d145ea2a1809beb9738a9313c87fbf72607e8c75249908331b971543d5062c43",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-13-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            35,
+            58,
+            93,
+            96
+          ],
+          "colors": 22,
+          "sha256": "b2b2bb6449e968b4cfdb4e5ef2337b0b2c1359bf504ec5d7da37f47fa0b2ebed",
+          "visual_approved": false
+        }
+      ],
+      "in_current_candidate_list": true
+    },
+    {
+      "id": "RLU-14",
+      "number": 105,
+      "revision": "r01",
+      "label": "Dévié",
+      "family": "Conversions aberrantes",
+      "maximum_body_height64": 70,
+      "maximum_body_width64": 70,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-14-r01.png",
+      "universe_basis": "Asymétrie des corps transformés dans les installations humaines.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 105,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nOne adult lean nonhuman biped, native70px high, at most70px wide. Exactly TWO digitigrade legs and TWO long uneven arms. Torso twists diagonally: one shoulder high, other low, small flat eyeless head angled from the upper side of the chest, no separate upright neck. One broad dark rust-red muscle plane sweeps across the warm ochre torso. Hands have three broad charcoal claw groups, feet wide and planted. A single charcoal hide band wraps the lower hips naturally. Keep limbs fully attached, joints clear and adult head small. No exposed ribs, wounds, clothes, armor, mask, chains, prostheses or equipment.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-112f705c-65b4-47a2-bc7e-36688f8dbb75.png",
+      "source_sha256": "78be37d15ef86a2aba22fafae30c832c8901ccbb87fa94c6f28372473af2ed74",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-23/RLU-14-r01-shadow64.png",
+        "sha256": "f8ceb8814cd95bcdf6f71bc1f315c83fdae94e2956cb0a3181b6a6af5388c280",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            66,
+            95
+          ],
+          "width": 39,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1232,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              64,
+              58,
+              49
+            ],
+            "target": [
+              52,
+              59,
+              50
+            ]
+          },
+          {
+            "source": [
+              72,
+              29,
+              24
+            ],
+            "target": [
+              45,
+              66,
+              38
+            ]
+          },
+          {
+            "source": [
+              90,
+              42,
+              33
+            ],
+            "target": [
+              57,
+              83,
+              49
+            ]
+          },
+          {
+            "source": [
+              97,
+              78,
+              62
+            ],
+            "target": [
+              74,
+              89,
+              68
+            ]
+          },
+          {
+            "source": [
+              119,
+              58,
+              45
+            ],
+            "target": [
+              76,
+              109,
+              65
+            ]
+          },
+          {
+            "source": [
+              123,
+              103,
+              80
+            ],
+            "target": [
+              94,
+              113,
+              87
+            ]
+          },
+          {
+            "source": [
+              152,
+              110,
+              87
+            ],
+            "target": [
+              111,
+              140,
+              101
+            ]
+          },
+          {
+            "source": [
+              165,
+              137,
+              107
+            ],
+            "target": [
+              126,
+              152,
+              117
+            ]
+          },
+          {
+            "source": [
+              180,
+              153,
+              120
+            ],
+            "target": [
+              139,
+              166,
+              130
+            ]
+          },
+          {
+            "source": [
+              193,
+              164,
+              129
+            ],
+            "target": [
+              149,
+              178,
+              139
+            ]
+          },
+          {
+            "source": [
+              206,
+              174,
+              138
+            ],
+            "target": [
+              159,
+              190,
+              149
+            ]
+          },
+          {
+            "source": [
+              214,
+              186,
+              147
+            ],
+            "target": [
+              167,
+              197,
+              157
+            ]
+          },
+          {
+            "source": [
+              240,
+              225,
+              191
+            ],
+            "target": [
+              199,
+              221,
+              191
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-14-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            38,
+            26,
+            90,
+            96
+          ],
+          "colors": 23,
+          "sha256": "0cccede081eb428ba1a21d2aeacd9ffeac36781e838d87e0908a212b7fb8961a",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-14-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            38,
+            26,
+            90,
+            96
+          ],
+          "colors": 23,
+          "sha256": "4db00d6059722e8c1acfe55c9b032956ff07a5c89a3806839281ed4dd0308907",
+          "visual_approved": false
+        }
+      ],
+      "in_current_candidate_list": true
+    },
+    {
+      "id": "RLU-15",
+      "number": 106,
+      "revision": "r01",
+      "label": "Ligaturé",
+      "family": "Corps de contrainte",
+      "maximum_body_height64": 48,
+      "maximum_body_width64": 76,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-15-r01.png",
+      "universe_basis": "Des formes vivantes dont l'anatomie rappelle la contrainte et les liens.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 205,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nOne compact FOUR-LEGGED corded demon, native48px high, at most76px wide. Small narrow central torso surrounded by THREE broad dark brown living tendon bands crossing over its shoulders and back in large simple loops. The loops are physically attached body tissue, not hanging cables or ropes. Warm beige powerful jointed limbs splay outward with long elbows, broad hooked dark feet, all four visible. Small blunt eyeless head sits low at the front, one dark closed mouth. Thick arched upper silhouette and low body suspended between the elbows. No fine cords, many little tendons, hardware, wires, metal bands, bones or costume.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-0bc9d1c9-f4da-4a55-8e10-c91867337003.png",
+      "source_sha256": "facd2f63911d92a12bd373af5a7180c4599978d8f4947f4c279c18aa7bdc200a",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-23/RLU-15-r01-shadow64.png",
+        "sha256": "bf874ad08655f3417a9010bb15919eebf6ee67eddc1a275ece150405853ed054",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            73,
+            95
+          ],
+          "width": 44,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1193,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              49,
+              39,
+              35
+            ],
+            "target": [
+              37,
+              42,
+              45
+            ]
+          },
+          {
+            "source": [
+              58,
+              40,
+              38
+            ],
+            "target": [
+              41,
+              48,
+              53
+            ]
+          },
+          {
+            "source": [
+              62,
+              46,
+              42
+            ],
+            "target": [
+              45,
+              52,
+              57
+            ]
+          },
+          {
+            "source": [
+              68,
+              52,
+              47
+            ],
+            "target": [
+              50,
+              57,
+              63
+            ]
+          },
+          {
+            "source": [
+              74,
+              62,
+              54
+            ],
+            "target": [
+              56,
+              63,
+              68
+            ]
+          },
+          {
+            "source": [
+              87,
+              73,
+              62
+            ],
+            "target": [
+              65,
+              74,
+              80
+            ]
+          },
+          {
+            "source": [
+              91,
+              62,
+              58
+            ],
+            "target": [
+              64,
+              75,
+              84
+            ]
+          },
+          {
+            "source": [
+              102,
+              84,
+              73
+            ],
+            "target": [
+              76,
+              87,
+              94
+            ]
+          },
+          {
+            "source": [
+              103,
+              72,
+              66
+            ],
+            "target": [
+              73,
+              86,
+              95
+            ]
+          },
+          {
+            "source": [
+              120,
+              100,
+              85
+            ],
+            "target": [
+              89,
+              102,
+              110
+            ]
+          },
+          {
+            "source": [
+              149,
+              122,
+              101
+            ],
+            "target": [
+              108,
+              125,
+              137
+            ]
+          },
+          {
+            "source": [
+              174,
+              150,
+              121
+            ],
+            "target": [
+              128,
+              147,
+              160
+            ]
+          },
+          {
+            "source": [
+              191,
+              166,
+              134
+            ],
+            "target": [
+              142,
+              162,
+              176
+            ]
+          },
+          {
+            "source": [
+              208,
+              180,
+              147
+            ],
+            "target": [
+              155,
+              176,
+              191
+            ]
+          },
+          {
+            "source": [
+              225,
+              201,
+              166
+            ],
+            "target": [
+              172,
+              192,
+              207
+            ]
+          },
+          {
+            "source": [
+              241,
+              222,
+              170
+            ],
+            "target": [
+              179,
+              204,
+              222
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-15-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            34,
+            48,
+            95,
+            96
+          ],
+          "colors": 24,
+          "sha256": "9530b9c51abcd9393daaa71f1f84eadf8db774982fda6f24e529fab897e5a10a",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-15-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            34,
+            48,
+            95,
+            96
+          ],
+          "colors": 24,
+          "sha256": "034e741ce3c0c6de9445cd069b71a6a996d1fa01be13d469739adac17f1b5846",
+          "visual_approved": false
+        }
+      ],
+      "in_current_candidate_list": true
+    },
+    {
+      "id": "RLU-16",
+      "number": 107,
+      "revision": "r01",
+      "label": "Cocon marcheur",
+      "family": "Faune des conversions",
+      "maximum_body_height64": 56,
+      "maximum_body_width64": 66,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-16-r01.png",
+      "universe_basis": "Proposition d'organisme issu du milieu de conversion, sans origine individuelle fixée.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 15,
+        "hue_max": 100,
+        "target_hue": 210,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nOne ordinary FOUR-LEGGED cocoon-backed demon, native56px high, at most66px wide. Huge upright asymmetric olive-brown egg-shaped organic mantle forms the back, with exactly THREE broad pale beige seam lines. Under it a low warm-beige living abdomen and a tiny dark wedge head with two very small black eyes, no cute face. FOUR strong bent dark fleshy legs emerge from below the mantle, all visibly separated and planted, broad claw toes. One mantle, not a forest of eggs or a spiral shell. No antenna crown, tiny scales, holes, teeth, bone armor, machinery, wheels or equipment. Adult unsettling heavy organism, not a mascot.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-f4425623-9327-4073-9abe-11a880ea5180.png",
+      "source_sha256": "19111c076dfbb70ff668b2b0bf269ff70d530d02b2c83693fa498ee174431784",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-23/RLU-16-r01-shadow64.png",
+        "sha256": "352f487f77060c09a8d8b8c257c5facc16205c8ec0b44bb70fe8f14cde3051c0",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            62,
+            95
+          ],
+          "width": 39,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1228,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              50,
+              41,
+              36
+            ],
+            "target": [
+              38,
+              42,
+              46
+            ]
+          },
+          {
+            "source": [
+              57,
+              47,
+              35
+            ],
+            "target": [
+              39,
+              46,
+              52
+            ]
+          },
+          {
+            "source": [
+              68,
+              56,
+              46
+            ],
+            "target": [
+              49,
+              56,
+              63
+            ]
+          },
+          {
+            "source": [
+              72,
+              62,
+              42
+            ],
+            "target": [
+              48,
+              57,
+              66
+            ]
+          },
+          {
+            "source": [
+              75,
+              64,
+              57
+            ],
+            "target": [
+              58,
+              64,
+              69
+            ]
+          },
+          {
+            "source": [
+              84,
+              71,
+              57
+            ],
+            "target": [
+              61,
+              69,
+              77
+            ]
+          },
+          {
+            "source": [
+              95,
+              79,
+              60
+            ],
+            "target": [
+              66,
+              77,
+              87
+            ]
+          },
+          {
+            "source": [
+              97,
+              85,
+              63
+            ],
+            "target": [
+              69,
+              79,
+              89
+            ]
+          },
+          {
+            "source": [
+              112,
+              94,
+              70
+            ],
+            "target": [
+              78,
+              90,
+              103
+            ]
+          },
+          {
+            "source": [
+              125,
+              107,
+              74
+            ],
+            "target": [
+              85,
+              100,
+              115
+            ]
+          },
+          {
+            "source": [
+              134,
+              115,
+              79
+            ],
+            "target": [
+              90,
+              107,
+              123
+            ]
+          },
+          {
+            "source": [
+              146,
+              128,
+              95
+            ],
+            "target": [
+              104,
+              119,
+              134
+            ]
+          },
+          {
+            "source": [
+              174,
+              145,
+              111
+            ],
+            "target": [
+              122,
+              141,
+              160
+            ]
+          },
+          {
+            "source": [
+              196,
+              172,
+              134
+            ],
+            "target": [
+              143,
+              162,
+              180
+            ]
+          },
+          {
+            "source": [
+              237,
+              217,
+              183
+            ],
+            "target": [
+              186,
+              202,
+              218
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-16-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            37,
+            40,
+            91,
+            96
+          ],
+          "colors": 22,
+          "sha256": "caf20d6179c8b4dcb5d9a66d3e15bc11d4ddb41e61cdcd015ab62dd2a8e57644",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-16-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            37,
+            40,
+            91,
+            96
+          ],
+          "colors": 22,
+          "sha256": "3d9bd2236ad32134400d3fba707642c85ffbdf65223ed6ffd7b4093ec8c7665a",
+          "visual_approved": false
+        }
+      ],
+      "in_current_candidate_list": true
+    },
+    {
+      "id": "RLU-17",
+      "number": 108,
+      "revision": "r01",
+      "label": "Oreillard des failles",
+      "family": "Présences du réseau",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 76,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-17-r01.png",
+      "universe_basis": "La perception et les voix du secteur inspirent une forme organique proposée.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 150,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nA slender adult demonic biped, native64px high, at most76px wide. Exactly TWO narrow legs with broad dark claw feet and TWO long arms ending in small three-digit hooked hands. Low small eyeless head and short closed mouth, with TWO huge flat triangular leathery EAR-like lobes spreading diagonally backward beside the neck. These are broad dark umber flesh lobes, single flat planes, not bat wings, speakers or horns. Warm ochre chest, charcoal-plum hide at shoulders and lower hips. Main silhouette is the thin body framed by the two broad lobes. No fur, large eyes, headphones, microphones, human mask, machinery, active sound or magic effect.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-87092afd-3ed8-4913-a4f7-4c87db7a6277.png",
+      "source_sha256": "94ebe42921482eb91d206d6cc6895e923a4abc84d5c5ed2e8e8f030078d743df",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-23/RLU-17-r01-shadow64.png",
+        "sha256": "e40cd73fb41f6774a706f56af7441c37ce14601de905f774b2e6370788237145",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            62,
+            95
+          ],
+          "width": 33,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 641,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              59,
+              45,
+              45
+            ],
+            "target": [
+              46,
+              54,
+              50
+            ]
+          },
+          {
+            "source": [
+              66,
+              47,
+              46
+            ],
+            "target": [
+              49,
+              61,
+              55
+            ]
+          },
+          {
+            "source": [
+              70,
+              55,
+              55
+            ],
+            "target": [
+              55,
+              64,
+              60
+            ]
+          },
+          {
+            "source": [
+              78,
+              60,
+              59
+            ],
+            "target": [
+              60,
+              72,
+              66
+            ]
+          },
+          {
+            "source": [
+              79,
+              69,
+              64
+            ],
+            "target": [
+              64,
+              73,
+              68
+            ]
+          },
+          {
+            "source": [
+              95,
+              71,
+              67
+            ],
+            "target": [
+              71,
+              87,
+              79
+            ]
+          },
+          {
+            "source": [
+              108,
+              85,
+              75
+            ],
+            "target": [
+              80,
+              99,
+              89
+            ]
+          },
+          {
+            "source": [
+              123,
+              87,
+              77
+            ],
+            "target": [
+              86,
+              113,
+              99
+            ]
+          },
+          {
+            "source": [
+              134,
+              115,
+              99
+            ],
+            "target": [
+              102,
+              123,
+              113
+            ]
+          },
+          {
+            "source": [
+              160,
+              132,
+              106
+            ],
+            "target": [
+              115,
+              147,
+              131
+            ]
+          },
+          {
+            "source": [
+              184,
+              145,
+              118
+            ],
+            "target": [
+              130,
+              169,
+              150
+            ]
+          },
+          {
+            "source": [
+              204,
+              173,
+              137
+            ],
+            "target": [
+              148,
+              188,
+              168
+            ]
+          },
+          {
+            "source": [
+              242,
+              221,
+              186
+            ],
+            "target": [
+              189,
+              223,
+              206
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-17-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            45,
+            32,
+            83,
+            96
+          ],
+          "colors": 22,
+          "sha256": "a858ca57d586c1306acc80483c85811375c946ba7916b3f9503fee072c3a5bd0",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-17-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            45,
+            32,
+            83,
+            96
+          ],
+          "colors": 22,
+          "sha256": "57fbee69a4e1a1c14b92482d3c6eade7baaf7b4d7f82b7f5760d26505527f6ac",
+          "visual_approved": false
+        }
+      ],
+      "in_current_candidate_list": true
+    },
+    {
+      "id": "RLU-18",
+      "number": 109,
+      "revision": "r01",
+      "label": "Tresse rampante",
+      "family": "Présences du réseau",
+      "maximum_body_height64": 40,
+      "maximum_body_width64": 88,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-18-r01.png",
+      "universe_basis": "Une silhouette de réseau et d'entrelacs transposée en anatomie vivante.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 190,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nA low SIX-LEGGED organic stalking demon, native40px high, at most88px wide. Long narrow warm grey-beige core body on SIX strong bent limbs in THREE clear pairs, all attached and visibly separated. Across its back lie TWO broad intertwined dark brown living tissue ridges, large simple curves with no fine string texture. Small smooth low angular head at the front, one closed short jaw line, two tiny dull black side eyes, no stalks. Feet are wide charcoal hooked tips. Asymmetrical predatory stance, not a real spider and not a mechanical robot. No actual wire, plugs, camera, tiny hair, many leg combs, exposed organs, clothes or accessories.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-1e64dfef-c457-48ba-acb0-52dcc3ed7e84.png",
+      "source_sha256": "3e8bb1a619d0b95d8a2f2901ceb615f96f897b328d1ac870992886b69a318609",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-23/RLU-18-r01-shadow64.png",
+        "sha256": "f784b0f1b0084ef28666676669247cdeee71743d9cbbea92ae75d365c0690602",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            68,
+            95
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 659,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              59,
+              49,
+              45
+            ],
+            "target": [
+              46,
+              53,
+              54
+            ]
+          },
+          {
+            "source": [
+              75,
+              63,
+              57
+            ],
+            "target": [
+              58,
+              67,
+              69
+            ]
+          },
+          {
+            "source": [
+              84,
+              74,
+              67
+            ],
+            "target": [
+              67,
+              76,
+              77
+            ]
+          },
+          {
+            "source": [
+              98,
+              78,
+              70
+            ],
+            "target": [
+              73,
+              87,
+              90
+            ]
+          },
+          {
+            "source": [
+              99,
+              88,
+              77
+            ],
+            "target": [
+              78,
+              89,
+              91
+            ]
+          },
+          {
+            "source": [
+              115,
+              101,
+              88
+            ],
+            "target": [
+              90,
+              103,
+              106
+            ]
+          },
+          {
+            "source": [
+              137,
+              116,
+              100
+            ],
+            "target": [
+              104,
+              122,
+              126
+            ]
+          },
+          {
+            "source": [
+              146,
+              133,
+              108
+            ],
+            "target": [
+              112,
+              131,
+              134
+            ]
+          },
+          {
+            "source": [
+              172,
+              146,
+              125
+            ],
+            "target": [
+              130,
+              154,
+              158
+            ]
+          },
+          {
+            "source": [
+              185,
+              166,
+              140
+            ],
+            "target": [
+              143,
+              166,
+              170
+            ]
+          },
+          {
+            "source": [
+              209,
+              185,
+              157
+            ],
+            "target": [
+              161,
+              187,
+              192
+            ]
+          },
+          {
+            "source": [
+              233,
+              211,
+              178
+            ],
+            "target": [
+              181,
+              209,
+              214
+            ]
+          },
+          {
+            "source": [
+              247,
+              228,
+              188
+            ],
+            "target": [
+              192,
+              221,
+              227
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-18-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            38,
+            56,
+            91,
+            96
+          ],
+          "colors": 22,
+          "sha256": "6e9861d2d4686d41b3c27a4f382b175f6b04333775b4f155489a08af1722c311",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-18-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            38,
+            56,
+            91,
+            96
+          ],
+          "colors": 22,
+          "sha256": "6c2406a14d3858bd8bf63b979713f2ba93fcf8ba4a27d188b2f52b8c102e1f02",
+          "visual_approved": false
+        }
+      ],
+      "in_current_candidate_list": true
+    },
+    {
+      "id": "RLU-19",
+      "number": 110,
+      "revision": "r01",
+      "label": "Mâche-scories",
+      "family": "Bêtes des forges",
+      "maximum_body_height64": 48,
+      "maximum_body_width64": 90,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-19-r01.png",
+      "universe_basis": "Chaleur, dépôts et matières des forges comme motifs anatomiques proposés.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 220,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create ONE original ordinary four-legged dark-fantasy game beast, for Project RL. Use the attached approved player and weapon drawing ONLY for clean dark comic outlines, broad flat color masses, two or three values per material and one simple shadow plane. Do not copy the human, armor, helmet, sword or shield.\nThe beast has a broad low long torso of rough DARK RUSSET hide, exactly FOUR strong widely planted legs ending in broad black claws, a short thick tail, and a huge flattened shovel-shaped head with a heavy CLOSED jaw and two tiny recessed dark eyes. THREE large matte charcoal slag-like dorsal plates grow naturally from its back. One broad dull ochre throat plane. An original infernal scavenger associated with seized industrial forges, with no human features.\nNative body48px high and at most90px wide on a64px-per-cell scale. Full nearly frontal static pose, slight overhead view, all four limbs and tail attached and separated, complete creature inside generous genuine alpha-transparent margins. One mature unsettling common monster, no cute mascot or oversized eyes. Economical large shapes, no texture noise, miniature detail, photo or3D rendering.\nNo other figure, text, floor, scene, prop, equipment, regalia, exposed organs, skeleton, flame, smoke, glow, spell, particles or baked shadow. Shadow will be a separate layer. One creature only, not a sheet. Original Project RL appearance proposal, no abilities or rules defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "generation_blocked_no_image",
+      "generation_attempts": [
+        {
+          "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nA broad low FOUR-LEGGED infernal slag beast, native48px high, at most90px wide. Huge flattened shovel-shaped head with heavy CLOSED broad lower jaw, two small recessed dark eyes. Warm dark russet living body, pale ochre throat and belly, exactly THREE large low matte charcoal-black slag-like organic plates across its back. Front legs stout and wide, rear legs leaner, all four feet visible with broad blunt dark claws, one short thick tail. Wide front-heavy predatory silhouette. No tiny teeth, many spikes, skeleton, chains, full metal shell, machinery, flames, smoke or boss regalia.",
+          "result": "Image generation returned no image: output moderation category other."
+        },
+        {
+          "prompt": "Create ONE original ordinary four-legged dark-fantasy game beast, for Project RL. Use the attached approved player and weapon drawing ONLY for clean dark comic outlines, broad flat color masses, two or three values per material and one simple shadow plane. Do not copy the human, armor, helmet, sword or shield.\nThe beast has a broad low long torso of rough DARK RUSSET hide, exactly FOUR strong widely planted legs ending in broad black claws, a short thick tail, and a huge flattened shovel-shaped head with a heavy CLOSED jaw and two tiny recessed dark eyes. THREE large matte charcoal slag-like dorsal plates grow naturally from its back. One broad dull ochre throat plane. An original infernal scavenger associated with seized industrial forges, with no human features.\nNative body48px high and at most90px wide on a64px-per-cell scale. Full nearly frontal static pose, slight overhead view, all four limbs and tail attached and separated, complete creature inside generous genuine alpha-transparent margins. One mature unsettling common monster, no cute mascot or oversized eyes. Economical large shapes, no texture noise, miniature detail, photo or3D rendering.\nNo other figure, text, floor, scene, prop, equipment, regalia, exposed organs, skeleton, flame, smoke, glow, spell, particles or baked shadow. Shadow will be a separate layer. One creature only, not a sheet. Original Project RL appearance proposal, no abilities or rules defined.",
+          "result": "No image returned on retry; generated output rejected by image generation moderation (other)."
+        }
+      ],
+      "in_current_candidate_list": false
+    },
+    {
+      "id": "RLU-20",
+      "number": 111,
+      "revision": "r01",
+      "label": "Porte-lest",
+      "family": "Bêtes des forges",
+      "maximum_body_height64": 76,
+      "maximum_body_width64": 80,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-20-r01.png",
+      "universe_basis": "Déformation par les matières et charges des installations détournées.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 110,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nOne heavy ordinary adult nonhuman biped, native76px high, at most80px wide. Short bent legs and TWO thick uneven long arms ending in broad blunt charcoal claws. Torso leans sharply beneath ONE huge irregular dark slag-like stone-and-hide wedge fused to one upper shoulder and half the back. Rest of body warm ochre-beige, one broad dark rust-red chest plane, short small eyeless flattened head low beneath the shoulder line, closed mouth crease. A charcoal natural hide band around hips, no human apron. Single asymmetric burden dominates the silhouette. No rock-pile texture, crown, carried boulder, hammer, armor suit, bones, many spikes, machine or regal pose.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-1e06e423-37c2-4346-880b-ca87060ae772.png",
+      "source_sha256": "22d7ff0e42ada90eabd9b789c26f802d3536dd7fcaae67247c0dc5fff11af2d1",
+      "in_current_candidate_list": true,
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-23/RLU-20-r01-shadow64.png",
+        "sha256": "75942d9c7315ad1db63c9618812dafce0e921fd0aaddbb7afa54a445467e79b6",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            62,
+            95
+          ],
+          "width": 40,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1705,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              61,
+              35,
+              29
+            ],
+            "target": [
+              40,
+              56,
+              37
+            ]
+          },
+          {
+            "source": [
+              89,
+              40,
+              30
+            ],
+            "target": [
+              52,
+              82,
+              47
+            ]
+          },
+          {
+            "source": [
+              89,
+              71,
+              61
+            ],
+            "target": [
+              68,
+              82,
+              65
+            ]
+          },
+          {
+            "source": [
+              129,
+              110,
+              89
+            ],
+            "target": [
+              99,
+              119,
+              95
+            ]
+          },
+          {
+            "source": [
+              147,
+              123,
+              97
+            ],
+            "target": [
+              110,
+              135,
+              105
+            ]
+          },
+          {
+            "source": [
+              169,
+              140,
+              110
+            ],
+            "target": [
+              126,
+              155,
+              120
+            ]
+          },
+          {
+            "source": [
+              180,
+              155,
+              123
+            ],
+            "target": [
+              137,
+              166,
+              132
+            ]
+          },
+          {
+            "source": [
+              201,
+              171,
+              134
+            ],
+            "target": [
+              152,
+              185,
+              145
+            ]
+          },
+          {
+            "source": [
+              219,
+              188,
+              149
+            ],
+            "target": [
+              167,
+              201,
+              160
+            ]
+          },
+          {
+            "source": [
+              237,
+              211,
+              173
+            ],
+            "target": [
+              186,
+              218,
+              180
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-20-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            28,
+            20,
+            101,
+            96
+          ],
+          "colors": 23,
+          "sha256": "c727e1b4b742163960dab0ac845e038ff37b9b8d12607af188d653b10c58610f",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-20-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            28,
+            20,
+            101,
+            96
+          ],
+          "colors": 23,
+          "sha256": "4a87472c2a8f984254c07e2d6637c66f347bea7023e57d88a4dbce8e8b4d9103",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "RLU-21",
+      "number": 112,
+      "revision": "r01",
+      "label": "Voilé des cryptes",
+      "family": "Serviteurs des profondeurs",
+      "maximum_body_height64": 72,
+      "maximum_body_width64": 70,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-21-r01.png",
+      "universe_basis": "Une forme organique évoquant le vêtement rituel, sans nouveau culte ajouté.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 175,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nOne upright moth-like ordinary demon, native72px high, at most70px wide. Exactly TWO thin bent legs with broad dark hooked feet and TWO long WING-ARMS folded tightly down around the narrow body, each ending in ONE visible thumb claw near the hips. The two long triangular dark charcoal and dull ivory living membranes resemble a plain hanging mantle, but are organic wings, not cloth. Tiny narrow eyeless dark head between shoulders, one closed short mouth, no mask or faceplate. Warm grey-beige chest visible as one narrow plane, no fine vein pattern, feathers, many wing spots, antenna crown or large eyes. Adult alien shape, no clothing, halo, staff, regalia, equipment or magic.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-9d450b55-1d10-4d5a-b6a8-6a9cae311b01.png",
+      "source_sha256": "1d4eda7d17659b447dd2c3058bb52bad1b1113721c3f6a4369c1a4a6655d3408",
+      "in_current_candidate_list": true,
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-23/RLU-21-r01-shadow64.png",
+        "sha256": "3e5cc70d8cd11650d4da009f912fe2d72dbdafe2ca957779c1fd5cdb84762d81",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            63,
+            95
+          ],
+          "width": 36,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 816,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              77,
+              71,
+              66
+            ],
+            "target": [
+              64,
+              71,
+              70
+            ]
+          },
+          {
+            "source": [
+              86,
+              79,
+              70
+            ],
+            "target": [
+              70,
+              79,
+              78
+            ]
+          },
+          {
+            "source": [
+              105,
+              95,
+              84
+            ],
+            "target": [
+              84,
+              97,
+              96
+            ]
+          },
+          {
+            "source": [
+              132,
+              122,
+              107
+            ],
+            "target": [
+              106,
+              121,
+              120
+            ]
+          },
+          {
+            "source": [
+              157,
+              143,
+              123
+            ],
+            "target": [
+              124,
+              144,
+              143
+            ]
+          },
+          {
+            "source": [
+              179,
+              165,
+              139
+            ],
+            "target": [
+              141,
+              165,
+              163
+            ]
+          },
+          {
+            "source": [
+              200,
+              185,
+              159
+            ],
+            "target": [
+              159,
+              184,
+              182
+            ]
+          },
+          {
+            "source": [
+              223,
+              208,
+              182
+            ],
+            "target": [
+              181,
+              205,
+              203
+            ]
+          },
+          {
+            "source": [
+              239,
+              225,
+              198
+            ],
+            "target": [
+              195,
+              220,
+              218
+            ]
+          },
+          {
+            "source": [
+              246,
+              234,
+              207
+            ],
+            "target": [
+              203,
+              226,
+              224
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-21-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            24,
+            85,
+            96
+          ],
+          "colors": 23,
+          "sha256": "cdd6e3bda6c3396eb235937450ea99c1bd5050b9128fc984af12753e85a1551c",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-21-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            24,
+            85,
+            96
+          ],
+          "colors": 23,
+          "sha256": "78f95d1bcee5fcc1a9aa81c4bb383fabdd0201b57ef07560043be419c40ac62c",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "RLU-22",
+      "number": 113,
+      "revision": "r01",
+      "label": "Étoile des fosses",
+      "family": "Organismes des profondeurs",
+      "maximum_body_height64": 38,
+      "maximum_body_width64": 86,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-22-r01.png",
+      "universe_basis": "Diversité non humanoïde des créatures des plans démoniaques.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 210,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nAn unsettling adult FIVE-LIMBED ground demon, native38px high, at most86px wide. One low flattened asymmetric diamond-shaped living central body on FIVE thick angular muscular limbs spread in a predatory star-like stance, tips firmly planted and separated. Broad warm grey-beige upper masses, dark umber underside and charcoal pointed blunt claw tips, only TWO or THREE big folded tissue planes. At the front rim are TWO tiny recessed black eyes and ONE short CLOSED horizontal mouth crease, no big face. Arms are angular and weight-bearing, not cute curled tentacles. No human anatomy, suckers, holes, organs, many little folds, shell, machinery, crown or effects. Clearly one creature with five attached supports.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-024172f9-2695-43ed-b0a8-36abc0ce1ef3.png",
+      "source_sha256": "51f2bf006998451bd42bb247a48056054a65d0272e6561da0472e2d560b0e513",
+      "in_current_candidate_list": true,
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-23/RLU-22-r01-shadow64.png",
+        "sha256": "f6fce47b312c3efd65a2286cf9160d2c7149e438533714a3e3ed24e8b7d6eeb6",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            74,
+            95
+          ],
+          "width": 37,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 675,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              51,
+              45,
+              42
+            ],
+            "target": [
+              42,
+              44,
+              47
+            ]
+          },
+          {
+            "source": [
+              64,
+              56,
+              54
+            ],
+            "target": [
+              53,
+              56,
+              59
+            ]
+          },
+          {
+            "source": [
+              86,
+              72,
+              62
+            ],
+            "target": [
+              65,
+              72,
+              79
+            ]
+          },
+          {
+            "source": [
+              97,
+              85,
+              73
+            ],
+            "target": [
+              75,
+              82,
+              89
+            ]
+          },
+          {
+            "source": [
+              110,
+              97,
+              86
+            ],
+            "target": [
+              87,
+              94,
+              101
+            ]
+          },
+          {
+            "source": [
+              123,
+              109,
+              95
+            ],
+            "target": [
+              96,
+              105,
+              113
+            ]
+          },
+          {
+            "source": [
+              136,
+              125,
+              107
+            ],
+            "target": [
+              108,
+              116,
+              125
+            ]
+          },
+          {
+            "source": [
+              163,
+              141,
+              124
+            ],
+            "target": [
+              127,
+              138,
+              150
+            ]
+          },
+          {
+            "source": [
+              173,
+              158,
+              137
+            ],
+            "target": [
+              138,
+              148,
+              159
+            ]
+          },
+          {
+            "source": [
+              193,
+              175,
+              155
+            ],
+            "target": [
+              155,
+              166,
+              178
+            ]
+          },
+          {
+            "source": [
+              210,
+              192,
+              171
+            ],
+            "target": [
+              170,
+              182,
+              193
+            ]
+          },
+          {
+            "source": [
+              220,
+              203,
+              181
+            ],
+            "target": [
+              179,
+              191,
+              202
+            ]
+          },
+          {
+            "source": [
+              227,
+              210,
+              188
+            ],
+            "target": [
+              186,
+              197,
+              209
+            ]
+          },
+          {
+            "source": [
+              236,
+              220,
+              199
+            ],
+            "target": [
+              195,
+              206,
+              217
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-22-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            38,
+            58,
+            90,
+            96
+          ],
+          "colors": 23,
+          "sha256": "f602dbf87db6c955ff24e004decc51722f050d24bc561625064117272350ce09",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-22-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            38,
+            58,
+            90,
+            96
+          ],
+          "colors": 23,
+          "sha256": "54f4801eb58fa16bf01a0494d968b5ddbe9f383de7d99a6fb00279c363c80089",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "RLU-23",
+      "number": 114,
+      "revision": "r01",
+      "label": "Perce-banquise",
+      "family": "Faune du Gel Noir",
+      "maximum_body_height64": 44,
+      "maximum_body_width64": 80,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-23-r01.png",
+      "universe_basis": "La glace noire participe à l'anatomie d'une faune infernale proposée.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 170,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create ONE original SIX-LIMBED ordinary ice-realm fantasy creature for Project RL. Use the attached approved player and weapon drawing ONLY for graphic style: clean dark contours, broad flat colors, two or three values and one main shadow plane. Do not copy the human armor or equipment.\nA compact low arthropod demon with a broad DARK GREY-BROWN living body covered by ONE smooth smoky BLACK-ICE carapace. Exactly FOUR sturdy short walking legs with broad dark feet, plus TWO forward forelimbs ending in wide inward-curved black-ice hooks. Six attached limbs total, all separated and clearly visible. Small flat angular head below the front carapace, two tiny dark eyes, short closed mouth. Only a few broad muted ochre joint areas under the dark body. No human features. Original alien predator of a hostile black-ice prison realm.\nNative44px high, at most80px wide on a64px-per-cell reference. ONE complete static grounded nearly frontal creature with slight overhead game view. All extremities inside generous truly alpha-transparent margins. Menacing mature animal proportions, simple material planes, no tiny texture, fine pores, many plates, large eyes, chibi, photo or3D.\nNo other figure, background, text, insets, floor, machinery, metal devices, skeleton, exposed organs, crown, halo, armor suit, particles, ice breath, glow, aura or baked shadow. Shadow is composed separately later. One creature, no alternatives inside the image. Visual proposal only, no combat rules or skills defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "generation_blocked_no_image",
+      "generation_attempts": [
+        {
+          "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nOne low SIX-LIMBED ice-realm demon, native44px high, at most80px wide. Warm pale grey-beige thick flattened torso on FOUR short muscular walking legs with broad dark feet, plus TWO powerful forelimbs angled forward, each ending in ONE wide inward-curving smoky BLACK-ICE hook. Six limbs total, all attached and visible. Small wedge head below a single smooth dark ice cap, one closed narrow jaw and two very small black eyes. Two large flesh folds across the shoulders, smooth material planes. No metal, human apparatus, bone ridges, many ice spikes, blue mascot skin, ice-breath effect, particles, crown or armor suit.",
+          "result": "Image generation returned no image: output moderation category other."
+        },
+        {
+          "prompt": "Create ONE original SIX-LIMBED ordinary ice-realm fantasy creature for Project RL. Use the attached approved player and weapon drawing ONLY for graphic style: clean dark contours, broad flat colors, two or three values and one main shadow plane. Do not copy the human armor or equipment.\nA compact low arthropod demon with a broad DARK GREY-BROWN living body covered by ONE smooth smoky BLACK-ICE carapace. Exactly FOUR sturdy short walking legs with broad dark feet, plus TWO forward forelimbs ending in wide inward-curved black-ice hooks. Six attached limbs total, all separated and clearly visible. Small flat angular head below the front carapace, two tiny dark eyes, short closed mouth. Only a few broad muted ochre joint areas under the dark body. No human features. Original alien predator of a hostile black-ice prison realm.\nNative44px high, at most80px wide on a64px-per-cell reference. ONE complete static grounded nearly frontal creature with slight overhead game view. All extremities inside generous truly alpha-transparent margins. Menacing mature animal proportions, simple material planes, no tiny texture, fine pores, many plates, large eyes, chibi, photo or3D.\nNo other figure, background, text, insets, floor, machinery, metal devices, skeleton, exposed organs, crown, halo, armor suit, particles, ice breath, glow, aura or baked shadow. Shadow is composed separately later. One creature, no alternatives inside the image. Visual proposal only, no combat rules or skills defined.",
+          "result": "No image returned on retry; generated output rejected by image generation moderation (other)."
+        }
+      ],
+      "in_current_candidate_list": false
+    },
+    {
+      "id": "RLU-24",
+      "number": 115,
+      "revision": "r01",
+      "label": "Veilleur du givre",
+      "family": "Faune du Gel Noir",
+      "maximum_body_height64": 82,
+      "maximum_body_width64": 62,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/RLU-24-r01.png",
+      "universe_basis": "Une présence étroite et sévère pour le royaume-prison, sans rôle de chef.",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 195,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary creature candidate for Project RL, a grim cyberpunk world during a real demonic invasion. Motifs: a technoreligious cult's broken enslavement, failed bodily conversions, altered industrial sites, ritual devotion, and an alien black-ice prison realm.\nUse the attached approved PLAYER + WEAPON drawing ONLY for GRAPHIC STYLE. Match its clean dark contours, broad flat color/material masses, TWO or THREE values per material, ONE main shadow plane and sparse large highlights. Do NOT copy the reference's human body, armor, helmet, sword or shield. The new creature must look drawn by the same artist as the existing player and weapons.\nNative64px-per-cell readability: economical strong silhouette and only a few big anatomical shapes. Mature frightening proportions, not cute, chibi, bobblehead, photorealistic, pre-rendered3D, noisy, finely veined, hairy, scaly or covered in tiny details. Flesh is warm natural beige, ochre, grey-brown or dark hide as specified, never candy pink. Closed intact flesh with broad folds; no exposed organs or explicit wounds. Avoid excessive skeletal parts.\nExactly ONE complete creature, ONE grounded static nearly frontal pose with slight overhead game view, all extremities attached and inside generous genuinely ALPHA TRANSPARENT margins. No sheet, inset, reference person, labels, text, floor, scene, baked shadow, glow, aura, particles, smoke or active spell. Contact shadow is composed on a separate layer later. Do not place multiple color or size versions in this image.\nOrdinary troop concept, no sector boss or leader: no crown, halo, royal cape, rank signs, throne, regal pose or ceremonial giant weapon. No human camera head, hospital trolley, wheels, ivory soldier-like prosthetic limb or mask-and-armor suit. These are new distinct designs, not revisions of rejected candidates.\nNo stats, abilities, spawn rules, collisions or animations defined. Draw a full source suitable for a direct native export to the body limits below.\nSubject:\nOne tall lean adult nonhuman biped of the ice prison realm, native82px high, at most62px wide. TWO long sturdy digitigrade legs with dark broad claw feet, TWO long arms ending in three broad hooked finger groups. Very small elongated eyeless head bowed beneath the shoulder line, closed mouth crease. Warm pale grey-beige chest and limbs, dark charcoal natural hide across lower hips. ONE long smooth smoky BLACK-ICE blade-like plate follows the spine and rises obliquely behind ONE shoulder, short enough not to resemble a crown or halo. A broad dark ice sheath covers one forearm only, other arm remains flesh. Severe narrow silhouette, no human uniform, armor, mask, machines, bone crown, many spikes, blue recolor, giant weapon or effects.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait, aplats et ombres du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-3fd286ca-5d17-4ad6-962e-6dbfa8e4651e.png",
+      "source_sha256": "e152892aff96e15b4abe954acd902d7697bc44e936d9b12c151a6148352867bc",
+      "in_current_candidate_list": true,
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-23/RLU-24-r01-shadow64.png",
+        "sha256": "660cb153a3f430f5733bc18d6c66ea1fd836abd69cb017abd64dbe37dd5db5aa",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            53,
+            95
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 611,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              59,
+              55,
+              50
+            ],
+            "target": [
+              49,
+              53,
+              54
+            ]
+          },
+          {
+            "source": [
+              114,
+              106,
+              98
+            ],
+            "target": [
+              95,
+              102,
+              105
+            ]
+          },
+          {
+            "source": [
+              132,
+              117,
+              102
+            ],
+            "target": [
+              104,
+              117,
+              121
+            ]
+          },
+          {
+            "source": [
+              144,
+              132,
+              118
+            ],
+            "target": [
+              117,
+              129,
+              132
+            ]
+          },
+          {
+            "source": [
+              160,
+              146,
+              130
+            ],
+            "target": [
+              129,
+              143,
+              147
+            ]
+          },
+          {
+            "source": [
+              170,
+              162,
+              140
+            ],
+            "target": [
+              138,
+              152,
+              156
+            ]
+          },
+          {
+            "source": [
+              188,
+              172,
+              152
+            ],
+            "target": [
+              151,
+              168,
+              173
+            ]
+          },
+          {
+            "source": [
+              214,
+              196,
+              174
+            ],
+            "target": [
+              173,
+              191,
+              197
+            ]
+          },
+          {
+            "source": [
+              237,
+              223,
+              178
+            ],
+            "target": [
+              183,
+              209,
+              218
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-24-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            14,
+            84,
+            96
+          ],
+          "colors": 22,
+          "sha256": "bd8344c7b5b7737599dbd8f6e3ba4002541636e2c2cb59006896fa42765bf658",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/universe-23/tiles/RLU-24-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            14,
+            84,
+            96
+          ],
+          "colors": 22,
+          "sha256": "a2b9a44a994e382c67f2789410b744cda94989d704f29575cab34ba28dc3540d",
+          "visual_approved": false
+        }
+      ]
+    }
+  ],
+  "style_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+    "sha256": "b2309124fde55808415378da561f5f26b0d7936688edefa257a8f938c58d4e2b",
+    "role": "Sources acceptees du joueur et de ses armes : contours, aplats et ombrages"
+  },
+  "player_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "foot_anchor": [
+      64,
+      96
+    ]
+  },
+  "story_sha256": "62adb331bdcc54d6da9ef56c0206e409b2fd3760759b576e05124027f5f010a7",
+  "preview_scale": 1,
+  "zoom_previews_generated": false,
+  "preview_sheets": [
+    "artifacts/npc-monsters-review-01/universe-23/demons-104-107.png",
+    "artifacts/npc-monsters-review-01/universe-23/demons-108-112.png",
+    "artifacts/npc-monsters-review-01/universe-23/demons-113-115.png"
+  ],
+  "generated_source_count": 10,
+  "active_candidate_count": 10,
+  "unrendered_brief_numbers": [
+    110,
+    114
+  ],
+  "unrendered_briefs_are_user_rejections": false,
+  "listed_in": "monster-candidate-list.json"
+}

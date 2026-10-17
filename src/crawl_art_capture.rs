@@ -50,6 +50,316 @@ fn tile_background(x: f32, y: f32, side: f32) {
     );
 }
 impl AsciiApp {
+    /// Native renderer contact sheet, sampled at 10 ms; no game command or RNG.
+    pub(super) fn draw_actor_glide_review(&self, direction: usize, age: f64) {
+        clear_background(Color::from_rgba(17, 25, 31, 255));
+        let ink = Color::from_rgba(220, 231, 232, 255);
+        draw_text_bold("DÉPLACEMENT COURT / CASES DE 64 PX", 24., 31., 22., ink);
+        draw_text(
+            "80 ms · commandes libres · équipement et effets attachés",
+            24.,
+            58.,
+            17.,
+            ink,
+        );
+        let path = [
+            GridPos::new(0, 0),
+            GridPos::new(1, 0),
+            GridPos::new(1, 1),
+            GridPos::new(0, 1),
+        ];
+        let from = path[direction % 4];
+        let to = path[(direction + 1) % 4];
+        for (index, (name, visual)) in [
+            (
+                "Joueur · arme et brûlure · caméra suivie",
+                Visual::Player {
+                    body: 3,
+                    equipment: [None; 4],
+                    weapon: Some(31),
+                    hands: None,
+                    palettes: [EquipmentPalette::Original; 3],
+                },
+            ),
+            ("Monstre · gel attaché", Visual::Actor(8)),
+            ("Drone Traqueur", Visual::DroneTracker),
+            ("Transformation", Visual::AgentForm(2)),
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            let x = 36. + (index % 2) as f32 * 444.;
+            let y = 104. + (index / 2) as f32 * 252.;
+            draw_text(name, x, y - 15., 15., ink);
+            let id = self.game.player_id();
+            let mut motion = crate::combat_visuals::CombatMotion::default();
+            motion.glide(id, from, to, 0.0);
+            let focus = if index == 0 { to } else { GridPos::new(0, 0) };
+            let camera =
+                crate::terminal_view::GridCamera::new(Rect::new(x, y, 384., 192.), 64., focus)
+                    .with_focus_offset(if index == 0 {
+                        motion.glide_offset(id, age, false)
+                    } else {
+                        Vec2::ZERO
+                    });
+            // Draw only the native board; clipped overscan matches the actual world camera.
+            unsafe {
+                macroquad::window::get_internal_gl()
+                    .quad_gl
+                    .scissor(Some((x as i32, y as i32, 384, 192)));
+            }
+            for row in 0..camera.rows {
+                for column in 0..camera.columns {
+                    let at = GridPos::new(camera.first.x + column, camera.first.y + row);
+                    crate::terminal_view::draw_scenery_preview(
+                        camera.rect(at),
+                        crate::test_sector::Decor::Deck,
+                        at,
+                    );
+                }
+            }
+            let actor = motion.actor_rect(id, camera.rect(to), age, false);
+            if index == 0 {
+                motion.draw_burn(id, actor, 0.5 + age, false, true);
+            }
+            if index == 1 {
+                motion.draw_gel(id, actor, 0.5 + age, false, true);
+            }
+            crate::game_art::draw_world_animated(actor, visual, 1., None);
+            if index == 0 {
+                motion.draw_burn(id, actor, 0.5 + age, false, false);
+            }
+            if index == 1 {
+                motion.draw_gel(id, actor, 0.5 + age, false, false);
+            }
+            unsafe {
+                macroquad::window::get_internal_gl().quad_gl.scissor(None);
+            }
+        }
+        draw_text(
+            "Quatre directions · même mouvement à 32 px · désactivé avec les mouvements réduits",
+            24.,
+            620.,
+            16.,
+            ink,
+        );
+    }
+
+    fn draw_armor_breath_review(&self, raised: bool) {
+        clear_background(Color::from_rgba(17, 25, 31, 255));
+        let text = Color::from_rgba(220, 231, 232, 255);
+        draw_text_bold("RESPIRATION / LES 19 TENUES EN 64 PX", 22., 31., 24., text);
+        draw_text(
+            "Cycle de 3 secondes · haut du corps et équipement ensemble · pieds fixes",
+            22.,
+            57.,
+            17.,
+            text,
+        );
+        for outfit in 0..19 {
+            let x = 84. + (outfit % 5) as f32 * 242.;
+            let y = 110. + (outfit / 5) as f32 * 165.;
+            draw_text(
+                &format!("Tenue {:02}", outfit + 1),
+                x - 8.,
+                y - 15.,
+                15.,
+                text,
+            );
+            tile_background(x, y, 64.);
+            crate::game_art::draw_armor_breath_review(
+                Rect::new(x, y, 64., 64.),
+                200 + outfit as u16,
+                Some([31, 63, 0][outfit % 3]),
+                if raised { 1.5 } else { 0. },
+            );
+        }
+        draw_text(
+            "Même respiration que les modèles existants : 1 px en 32 px, 2 px en 64 px. Les portraits restent fixes.",
+            22.,
+            781.,
+            16.,
+            text,
+        );
+    }
+    fn draw_held_native64_review(&self, page: usize) {
+        clear_background(Color::from_rgba(17, 25, 31, 255));
+        let text = Color::from_rgba(220, 231, 232, 255);
+        draw_text_bold(
+            "PRISES VALIDÉES / RENDU DU JEU EN 64 PX",
+            22.,
+            31.,
+            24.,
+            text,
+        );
+        draw_text(
+            "Armes lourdes plus imposantes ; haches horizontales. Dessins à taille native.",
+            22.,
+            57.,
+            17.,
+            text,
+        );
+        let names = [
+            "Assaut",
+            "Technique",
+            "Traque",
+            "Rituelle",
+            "Métamorphe",
+            "Mage léger",
+            "Légère",
+            "Très lourde",
+            "Tablier",
+            "Membranes",
+            "Peau-Seconde",
+            "Technicien",
+            "Cerbère",
+            "Chrysalide",
+            "Fantôme",
+            "Mue",
+            "Bastion",
+            "Seconde Ombre",
+            "Nomade",
+        ];
+        let start = page * 10;
+        let end = (start + 10).min(19);
+        for (col, outfit) in (start..end).enumerate() {
+            let x = 140. + col as f32 * 112.;
+            draw_text(names[outfit], x - 12., 91., 12., text);
+            draw_text(&format!("{}", outfit + 1), x + 22., 109., 12., text);
+            for (row, weapon) in [31, 23, 15, 51, 63, 61].into_iter().enumerate() {
+                let y = 129. + row as f32 * 103.;
+                tile_background(x, y, 64.);
+                crate::game_art::draw_grip_review(
+                    Rect::new(x, y, 64., 64.),
+                    200 + outfit as u16,
+                    Some(weapon),
+                    None,
+                );
+            }
+        }
+        for (row, label) in [
+            "Mitrailleuse",
+            "Lance-grenades",
+            "Lance-flammes",
+            "Lance-roquettes",
+            "Hache",
+            "Bardiche",
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            draw_text(label, 10., 168. + row as f32 * 103., 14., text);
+        }
+        draw_text(
+            &format!(
+                "Tenues {} à {} sur 19 · rendu commun du plateau et des portraits · page {} / 2",
+                start + 1,
+                end,
+                page + 1
+            ),
+            22.,
+            781.,
+            16.,
+            text,
+        );
+    }
+    fn draw_equipment_native64_review(&self) {
+        clear_background(Color::from_rgba(17, 25, 31, 255));
+        let text = Color::from_rgba(220, 231, 232, 255);
+        draw_text_bold("ÉQUIPEMENTS 64 PX / RENDU ACTIF", 22.0, 31.0, 24.0, text);
+        draw_text(
+            "Sources communes : sol, inventaire, fiches et équipement porté",
+            22.0,
+            57.0,
+            17.0,
+            text,
+        );
+        for (i, (id, name)) in [
+            ("core:modele_cogneur_p01", "Cogneur P-01"),
+            ("core:modele_crache_fer_pm01", "Crache-fer PM-01"),
+            ("core:melee_epee_longue", "Épée longue"),
+            ("core:hache_de_combat", "Hache"),
+            ("core:casque_cerbere", "Casque Cerbère"),
+            ("core:bottes_cerbere", "Bottes Cerbère"),
+            ("core:armure_cerbere", "Armure Cerbère"),
+            ("core:patched_plating", "Tablier de cuir"),
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            let x = 126.0 + i as f32 * 141.0;
+            draw_text(name, x - 18.0, 87.0, 14.0, text);
+            tile_background(x, 104.0, 64.0);
+            crate::game_art::draw_world(
+                Rect::new(x + 4.0, 108.0, 56.0, 56.0),
+                Visual::ColoredItem(
+                    crate::game_art::item(id).unwrap(),
+                    EquipmentPalette::Original,
+                ),
+                1.0,
+            );
+            crate::game_art::draw_item(Rect::new(x + 16.0, 199.0, 32.0, 32.0), id);
+            crate::game_art::draw_item(Rect::new(x - 16.0, 260.0, 96.0, 96.0), id);
+        }
+        for (label, y) in [
+            ("Sol / case 64", 137.0),
+            ("Icône 32", 222.0),
+            ("Fiche 96", 311.0),
+        ] {
+            draw_text(label, 12.0, y, 15.0, text);
+        }
+        draw_text_bold(
+            "TENUES PORTÉES / CASES NATIVES DE 64 PX",
+            22.0,
+            402.0,
+            21.0,
+            text,
+        );
+        let pistol = crate::game_art::held_weapon("core:modele_cogneur_p01");
+        let sword = crate::game_art::held_weapon("core:melee_epee_courte");
+        let rifle = crate::game_art::held_weapon("core:modele_brenek_a80");
+        for (i, (torso, name)) in [
+            (101, "Cerbère"),
+            (103, "Chrysalide"),
+            (105, "Fantôme"),
+            (106, "Robe de mue"),
+            (107, "Bastion"),
+            (109, "Seconde Ombre"),
+            (114, "Nomade"),
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            let x = 125.0 + i as f32 * 160.0;
+            draw_text(name, x - 15.0, 435.0, 15.0, text);
+            for (row, (weapon, hands)) in
+                [(None, None), (None, Some([sword, pistol])), (rifle, None)]
+                    .into_iter()
+                    .enumerate()
+            {
+                let y = 460.0 + row as f32 * 106.0;
+                tile_background(x, y, 64.0);
+                crate::game_art::draw_world(
+                    Rect::new(x, y, 64.0, 64.0),
+                    Visual::Player {
+                        body: 3,
+                        equipment: [Some(torso), None, None, None],
+                        weapon,
+                        hands,
+                        palettes: [EquipmentPalette::Original; 3],
+                    },
+                    1.0,
+                );
+            }
+        }
+        for (label, y) in [
+            ("Sans arme", 494.0),
+            ("Épée + pistolet", 600.0),
+            ("Fusil", 706.0),
+        ] {
+            draw_text(label, 12.0, y, 14.0, text);
+        }
+    }
     fn draw_bestiary_bank_review(&self, scene: &str) {
         clear_background(Color::from_rgba(17, 25, 31, 255));
         let text = Color::from_rgba(185, 225, 220, 255);
@@ -185,6 +495,18 @@ impl AsciiApp {
     }
 
     pub(super) fn draw_crawl_review(&self, scene: &str) {
+        if scene.starts_with("crawl-breath64-") {
+            self.draw_armor_breath_review(scene.ends_with('1'));
+            return;
+        }
+        if scene.starts_with("crawl-held64-") {
+            self.draw_held_native64_review(usize::from(scene.ends_with('2')));
+            return;
+        }
+        if scene == "crawl-equipment64" {
+            self.draw_equipment_native64_review();
+            return;
+        }
         if scene.starts_with("crawl-bank-") {
             self.draw_bestiary_bank_review(scene);
             return;

@@ -30,18 +30,21 @@ Contrôle du 16 octobre 2026 :
 944 tests moteur réussis et, côté client, 856 réussites, 37 échecs et 15 tests ignorés.
 Depuis ce passage, les trois attentes périmées du laboratoire ont été adaptées et ses
 39 tests passent : ancien raccourci fixe et ancien feu générique remplacés par les
-chemins actuels. Les 34 autres échecs ne sont pas corrigés ici. Trois attentes périmées
-sont démontrées dans HEAD ; les 31 autres restent non attribuées à une référence antérieure.
+chemins actuels. Ce passage laissait 34 autres échecs ; certains ont depuis été
+traités par les contrôles ciblés de nettoyage ci-dessous. Trois attentes périmées
+étaient démontrées dans HEAD ; les 31 autres n’étaient pas attribuées à une référence antérieure.
 Aucune empreinte attendue n’a été remplacée pour masquer un échec. Le passage complet
 n’a pas été répété après les derniers correctifs ciblés.
 Les noms et les résultats sont conservés dans
 `docs/reviews/refonte-agent-2026-10-06/skill-playable-review-01/validation.json`, bloc
 `general_integration`.
 
-La suppression des captures et journaux temporaires de ce contrôle a été tentée
+Lors de ce contrôle historique, la suppression des captures et journaux temporaires avait été tentée
 avec la permission du joueur, mais le contrôle automatique l’a refusée :
 `blocked by policy`, sans autre motif fourni. Aucun fichier n’a été supprimé et
-aucun contournement n’a été tenté. Les assets utilisés et le binaire sont conservés.
+aucun contournement n’avait été tenté. Le nettoyage global ultérieur du 16 octobre
+a supprimé les sorties jetables après déplacement des sources utiles ; son bilan
+est dans `docs/maintenance/nettoyage-2026-10-16/`.
 
 ### Correctifs après essais du joueur — 16 octobre 2026
 
@@ -89,7 +92,99 @@ complète n’a pas été rejouée pour ce correctif.
 
 La suppression des six nouveaux journaux et capture de ce correctif (435 413 octets)
 a été refusée par la vérification automatique : `blocked by policy`, sans autre motif.
-Ils restent en place ; aucun nouvel essai ni contournement n’a été effectué.
+Ils ont ensuite été traités par ce nettoyage global ; cette mention conserve le
+résultat de la première tentative, pas l’état courant des dossiers.
+
+### Retrait des objets et scénarios de démonstration — 16 octobre 2026
+
+Le joueur demande le retrait des anciens objets de test des parties normales et
+du laboratoire. La génération **148** retire les dépôts de démonstration du
+départ. Les nouvelles zones ne conservent plus les anciennes Lame d’intégrité,
+Lanceur d’aiguilles, Lance-flammes prototype et Carapace composite ; la Tenue
+Cognefer, déjà refusée, est également retirée des nouveaux butins et stocks.
+Le Tablier de cuir et les ressources utiles aux quêtes restent des objets actuels.
+
+Le laboratoire jouable utilise les modèles actuels de premier palier, avec des
+exemplaires ordinaires et enchantés issus du catalogue. La tenue de départ de la
+classe est prioritaire sur les armures supplémentaires proposées pour les essais.
+Depuis le menu sans classe sélectionnée, il reprend le profil Arcaniste déjà
+utilisé par `--laboratoire-competences`. Les 94 compétences et les 1 000 points
+d’essai restent accessibles ; retour et réinitialisation restent isolés de la campagne.
+
+Quatre scénarios devenus propres à l’ancienne démonstration ont été supprimés :
+inventaire imposé de 54 armes / 2 armures, exécution de ses 14 variantes annoncées,
+tirage particulier de leurs bonus et trajet fixé pour l’ancienne scène Percussion.
+Les tests généraux d’inventaire, d’effets, de ciblage et de sauvegarde sont conservés.
+Leurs objets synthétiques restent des données internes de régression, accessibles
+aux diagnostics historiques, pas des objets proposés par le laboratoire jouable.
+
+Les anciennes définitions restent disponibles pour reconstruire les parties
+historiques. Les exclusions et les élargissements de niveaux du catalogue sont
+réversibles lorsque le menu courant reprend une ancienne génération. Les nouvelles
+tenues de départ ne modifient plus les empreintes des règles antérieures à leur
+introduction ; les rangs d’agent vides ne modifient plus leur représentation historique.
+Cela ne résout pas tous les écarts d’empreintes d’état signalés plus haut : aucune
+empreinte attendue n’a été remplacée. Trois petites sauvegardes de référence,
+nécessaires aux tests, sont conservées dans `tests/fixtures/one-hand-firearms/`
+avec leur provenance Git, hors des sorties temporaires.
+
+À la demande du joueur, les **Doses de soin** et **Cellules d’énergie** sont
+également retirées des équipements de départ courants, de leur affichage dans la
+sélection des classes et du laboratoire. Les filtres des nouvelles zones et des
+marchands les excluent aussi. Aucun consommable ne les remplace : les potions
+seront conçues plus tard. Leurs définitions et anciens équipements de départ sont
+conservés pour reconstruire les sauvegardes antérieures à la génération 148.
+La couverture des dessins reste vérifiée pour tous les objets actuels.
+
+À la demande suivante du joueur, le laboratoire courant possède une seconde
+salle à l’est : **48 monstres agressifs** regroupés dans une pièce séparée par
+une porte fermée. Ils réutilisent un dessin existant et l’IA ordinaire de chasse,
+de déplacement et d’attaque ; ils ne remplacent pas les mannequins passifs.
+La réinitialisation restaure le groupe complet et le point de départ habituel.
+Les profils propres à cet essai restent isolés de la campagne. La salle permet
+de vérifier les dégâts et Gel de Blizzard sur une forte densité de cibles mobiles.
+
+Contrôles de cette étape : **954 tests moteur** et **70 tests client distincts**
+réussis. Le groupe
+client a d’abord donné 69 réussites et une attente devenue périmée sur le nombre
+d’acteurs du laboratoire ; cette attente est passée de 17 à 65 et son test a été
+rejoué avec succès. Les deux nouveaux contrôles vérifient l’isolement, les attaques,
+la réinitialisation et les vrais dégâts/Gel de Blizzard dans la salle remplie.
+La compilation debug et le contrôle release réussissent sans avertissement.
+Le passage global client commencé pendant le nettoyage a été interrompu avant
+les derniers correctifs ; il ne constitue pas un nouveau bilan global complet.
+
+### Toutes les cibles de zone — ZONE-CIBLES01
+
+Le joueur confirme le 16 octobre 2026 que les dégâts et statuts d’un sort de zone
+concernent **tous les monstres dans sa zone réellement affectée**, sauf exception
+annoncée dans le descriptif. Aucun plafond implicite de victimes ne doit exister.
+Une application directe concerne chaque cible admissible ; une chance de statut
+est tirée séparément pour chaque cible. Le succès du statut ne conditionne pas
+les dégâts ordinaires du sort. Les dégâts dégressifs selon la distance au centre
+conservent leur fonctionnement : ils réduisent les valeurs, pas le nombre de cibles.
+
+Les obstacles, cases protégées, résistances, immunités, cibles autorisées et délais
+du sort restent applicables. Blizzard conserve explicitement ses 50 % d’impact par
+case et par tour, puis son jet de Gel indépendant pour chaque victime touchée.
+Le Mur de glace applique le Gel au contact, et l’Explosion cristalline consomme
+le Gel des sources qu’elle fait exploser ; ces cas ne deviennent pas des statuts
+automatiques sur toute leur représentation graphique.
+
+Contrôle des chemins de dégâts et de statuts : sorts de feu/froid, Déflagration
+occulte, affaiblissements de zone, mines et résidus, grenades, actions de forme,
+Autodestruction et provocation des Gardiens. Les limites explicites des techniques
+d’armes restent distinctes des sorts de zone. Les nouveaux tests densément remplis
+vérifient sept sorts de dégâts et leurs statuts garantis ; les tests probabilistes
+vérifient les jets individuels de Souffle de feu et des cinq affaiblissements.
+Les tests existants de Blizzard vérifient le jet par case, sans quota de victimes,
+et les dégâts lorsque le Gel échoue. Aucun effet mécanique n’a dû être modifié
+pour cette confirmation.
+
+Deux captures natives en 64 px vérifient l’inventaire courant et la salle remplie.
+Ces captures et les journaux temporaires ont été supprimés après contrôle. Le bilan
+durable de cette étape est dans
+`docs/reviews/refonte-agent-2026-10-06/skill-playable-review-01/nettoyage-laboratoire-2026-10-16.json`.
 
 ### Laboratoire courant
 
@@ -453,4 +548,4 @@ compétences, conformément à la priorité du joueur.
 - Revue d’animation 32 : palette occulte violette acceptée.
 
 Les fichiers de décision sont conservés dans
-`artifacts/refonte-agent-2026-10-06/`.
+`docs/reviews/refonte-agent-2026-10-06/`.

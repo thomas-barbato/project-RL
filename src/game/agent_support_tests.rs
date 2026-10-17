@@ -25,6 +25,119 @@ fn cast(g: &mut GameState, id: &str, at: GridPos) -> CommandOutcome {
 }
 
 #[test]
+fn companion_hud_reads_real_deadlines_and_orders_only_the_drones_in_a_mixed_group() {
+    let mut g = agent_drone_cast::tests::fixture();
+    g.rules.player_companion_behaviors = true;
+    g.player_energy = crate::resources::EnergyReserve::new(60000, 60000).unwrap();
+    for id in ["D58", "OC07", "SU03"] {
+        learn(&mut g, id);
+    }
+    assert_eq!(
+        cast(&mut g, "D58", GridPos::new(4, 3)),
+        CommandOutcome::Applied
+    );
+    let drone = g.actors.entity_at(GridPos::new(4, 3)).unwrap();
+    let victim = enemy(&mut g, GridPos::new(5, 4));
+    g.agent_runtime_mut()
+        .support
+        .necromancy_marks
+        .insert(victim, 1);
+    g.apply_damage_to(
+        Some(g.player),
+        victim,
+        DamagePacket::new(600, crate::combat::DamageType::Corruption, 0),
+    )
+    .unwrap();
+    let raised = g.actors.entity_at(GridPos::new(5, 4)).unwrap();
+    assert!(g.agent_reanimated_ally(raised));
+    let expires = g.agent_runtime().support.raised[&raised].1;
+    assert_eq!(
+        g.agent_reanimated_remaining_turns(raised),
+        Some(expires - g.turn)
+    );
+    assert_eq!(g.agent_reanimated_remaining_turns(drone), None);
+    g.apply_agent_support_status("SU03", 3, drone, 4);
+    g.drain_events();
+    let snapshot = bincode::serialize(&g.snapshot().unwrap()).unwrap();
+    assert_eq!(
+        g.agent_status_hud_value(drone, &"agent:thorns".parse().unwrap()),
+        Some((
+            "reflected_direct_melee_damage_percent",
+            agent::definition("SU03")
+                .unwrap()
+                .value("reflected_direct_melee_damage_percent", 3)
+        ))
+    );
+    assert_eq!(
+        bincode::serialize(&g.snapshot().unwrap()).unwrap(),
+        snapshot
+    );
+    let turn = g.turn;
+    assert_eq!(
+        g.process_player_command(GameCommand::SetCompanionBehavior {
+            behavior: CompanionBehavior::Defensive
+        }),
+        CommandOutcome::AppliedWithoutTime
+    );
+    assert_eq!(g.turn, turn);
+    assert!(g.agent_reanimated_ally(raised));
+    assert!(matches!(
+        g.actors.get(drone).unwrap().drone().unwrap().order(),
+        crate::drone::DroneOrder::Companion {
+            behavior: CompanionBehavior::Defensive,
+            ..
+        }
+    ));
+}
+
+#[test]
+fn area_afflictions_roll_for_every_monster_in_the_footprint_independently() {
+    for (id, status) in [
+        ("AF02", "armor_breach"),
+        ("AF03", "silence"),
+        ("AF04", "regeneration_break"),
+        ("AF05", "disorientation"),
+        ("O02", "interference"),
+    ] {
+        let mut game = arena();
+        learn(&mut game, id);
+        game.player_energy = crate::resources::EnergyReserve::new(60000, 60000).unwrap();
+        let center = GridPos::new(6, 3);
+        let cells: Vec<_> = game
+            .agent_spell_preview(id, center)
+            .unwrap()
+            .cells()
+            .iter()
+            .map(|c| c.position)
+            .collect();
+        let victims: Vec<_> = cells.into_iter().map(|at| enemy(&mut game, at)).collect();
+        let outside = enemy(&mut game, GridPos::new(9, 3));
+        game.rng = GameRng::from_seed(14);
+        let mut expected_rng = game.rng;
+        // The accepted rank-one power (100), Processing 5 and ordinary
+        // Willpower 5 give 80%. All nine recipients get their own roll.
+        let expected: BTreeSet<_> = victims
+            .iter()
+            .copied()
+            .filter(|_| expected_rng.percentile() <= 80)
+            .collect();
+        assert!(expected.len() > 3 && expected.len() < victims.len(), "{id}");
+        assert_eq!(cast(&mut game, id, center), CommandOutcome::Applied, "{id}");
+        let status: crate::status::StatusId = format!("agent:{status}").parse().unwrap();
+        let actual: BTreeSet<_> = victims
+            .iter()
+            .copied()
+            .filter(|v| game.actors.get(*v).unwrap().status(&status).is_some())
+            .collect();
+        assert_eq!(
+            actual, expected,
+            "{id}: independent application to all recipients"
+        );
+        assert!(game.actors.get(outside).unwrap().status(&status).is_none());
+    }
+}
+
+#[test]
 fn every_catalogue_active_has_a_real_use_profile_or_a_concrete_weapon_condition() {
     let mut g = arena();
     for s in agent::definitions() {

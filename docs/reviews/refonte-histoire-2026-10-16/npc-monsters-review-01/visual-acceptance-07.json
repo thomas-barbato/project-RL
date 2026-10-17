@@ -1,0 +1,64 @@
+{
+  "review_id": "NPC-MONSTERS-01-ACCEPT07",
+  "date": "2026-10-17",
+  "user_statement": "on valide :) parcontre j'aimerais aussi que plus tard certains démons soient plutot insectoïdes , d'autres plus lovecraftiens etc etc :) bref, il va falloir de la diversité",
+  "accepted_scope": "18 r02 : nouvel export et gabarit de 123 × 192 px de la source déjà acceptée ; 19 r01 : apparence de Mère Suture et gabarit de 186 × 288 px présentés à taille native.",
+  "records": [
+    {
+      "id": "BOSS-01",
+      "number": 18,
+      "revision": "r02",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-01-r01.png",
+      "source_sha256": "a7280ad2fd6febf7e9733f5813c02e2622efb9e65f37b6b999eec665ddd404d4",
+      "frozen_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/BOSS-01-r02/BOSS-01-r02-native64.png",
+        "cell": 64,
+        "canvas": 384,
+        "foot_anchor": [
+          192,
+          288
+        ],
+        "occupied": [
+          131,
+          96,
+          254,
+          288
+        ],
+        "colors": 23,
+        "sha256": "0e99265c3a98feed56f4f909dbdb60a2553e2043548fbf8961830338eef005df"
+      },
+      "approved_dimensions": true
+    },
+    {
+      "id": "BOSS-02",
+      "number": 19,
+      "revision": "r01",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-02-r01.png",
+      "source_sha256": "e4b387cd339a33eeb45894dc5329dc79c6ec8dca9017bd2cbcf386c996e88b6f",
+      "frozen_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/BOSS-02-r01/BOSS-02-r01-native64.png",
+        "cell": 64,
+        "canvas": 512,
+        "foot_anchor": [
+          256,
+          384
+        ],
+        "occupied": [
+          163,
+          96,
+          349,
+          384
+        ],
+        "colors": 28,
+        "sha256": "8e586a6945a6a6020c47eb716167ee5e8e1a45cdce3d4345931cd8438d281b9d"
+      },
+      "approved_dimensions": true
+    }
+  ],
+  "names_approved": false,
+  "mechanics_approved": false,
+  "collisions_approved": false,
+  "runtime_connected": false,
+  "other_candidates_unchanged": true,
+  "diversity_direction_review": "demonic-diversity-12.json"
+}

@@ -1,0 +1,206 @@
+{
+  "review_id": "NPC-MONSTERS-06",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "status": "visually_approved_not_integrated",
+  "native_cell": 64,
+  "request": "oui c'est parfait on continue :)",
+  "scope": "Suite visuelle : deux élites humaines du culte et un premier boss inspiré du Maréchal des Chaînes de l'histoire courante.",
+  "records": [
+    {
+      "id": "ELITE-01",
+      "number": 16,
+      "label": "Garde du culte",
+      "family": "Cultistes humains",
+      "role": "Élite humaine / contact",
+      "depth": "Accès fortifiés / après les premières rencontres",
+      "height": 60,
+      "width": 70,
+      "palette": 20,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE new enemy character source for Project RL, a native 64px-tile grim industrial cyberpunk roguelike. New appearance proposal, not a modified copy of the reference's pose.\nReferences are ONLY accepted graphic style, scale, faction uniform and mask references. Keep strong clean dark comic-book contours, compact adult game proportions about FIVE HEADS tall, broad flat material masses, just ONE main shadow per material. Readable at native tile size. No tiny wear marks, rust speckles, ornate panel seams, dense cloth folds, rivets, tiny symbols, photorealism, 3D or texture noise. Two major clothing colors; restrained useful detail. No pink.\nShared CULT uniform: knee-length charcoal-grey coat with broad burgundy center panel and cuffs, charcoal deep hood with burgundy lining, plain black belt, grey trousers and dark work boots. A simple matte dirty-IVORY physical mask hides the whole face: TWO short opaque black eye-slits and ONE short black mouth vent; no skin, hair, eyeballs or facial features visible. No literal transparent face-hole, no skull mask or licensed mask. Still a normal HUMAN with intact anatomy, no mutation, grafts, claws, extra limbs or supernatural body.\nOne full body, nearly frontal with a slight overhead game view, the entire human and all equipment within generous true ALPHA transparent margins. No floor, background, shadow, halo, particles, text, names, alternate poses or other figures. Equipment meets normal human hands. This is a STATIC appearance REVIEW only; modular body/arm/weapon/finger layers and game abilities are not authored by this image.\nSubject ELITE-01: a stocky heavy-set human cult guard, same standing HEIGHT as the ordinary cultists, NOT an oversized giant. His elite presence comes from a strongly ASYMMETRICAL broad defensive silhouette, not new colors or a glowing outline. Preserve the same hood and ivory mask.\nLEFT forearm (viewer RIGHT) is visibly behind and braced against ONE broad knee-to-chest height INDUSTRIAL RIOT SHIELD, a blunt RECTANGULAR slab with slightly chamfered corners, broad dark steel outer border, one large dull grey center panel crossed by a single wide burgundy vertical painted band. No heraldic crest, fantasy metal spikes or tiny viewport detail. The bracing glove grips an actual handle at the shield's inside edge, visible where the forearm comes behind it. Keep most of his hood, mask, torso and two legs visible outside/above shield.\nRIGHT gloved hand (viewer LEFT) holds ONE short chunky blunt industrial club/mace down and outward: short straight steel handle with ONE heavy rectangular dark metal striking block at its outer end. Normal wrist and arm length, grip firmly enclosed by palm/fingers; negative space separates weapon from coat. No long sword, gun, chain or two-handed grip. One plain dull steel plate over the upper chest and broad dark padded shoulders are enough protection; keep burgundy uniform panel obvious below and beside the plate. No segmented breast armor, giant armored pauldrons or ornate helmet. Feet planted wider than the ordinary cultists, slight defensive forward lean. All differences should read from shield, club and stance.",
+      "revision": "r01",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-6593bfd2-c0ae-445e-bdd4-93ecf58ba91e.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Style, proportions humaines, uniforme et masque validés"
+        }
+      ],
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Apparence proposée ; aucune compétence, valeur, collision, protection de bouclier, contrôle ou rencontre intégrée.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ELITE-01-r01.png",
+      "source_sha256": "a0749da523bd5b9ee23e8fb2b7485f165600895f5afd5e34087aa50ca29004bb",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/ELITE-01-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          44,
+          36,
+          85,
+          96
+        ],
+        "colors": 20,
+        "sha256": "3937a4a8791308c7c24b09d856f92fafc68c9a27fa1f6ab7c1256f408b1c1436"
+      },
+      "visual_acceptance": "visual-acceptance-03.json",
+      "accepted_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/ELITE-01-r01/ELITE-01-r01-native64.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          44,
+          36,
+          85,
+          96
+        ],
+        "colors": 20,
+        "sha256": "3937a4a8791308c7c24b09d856f92fafc68c9a27fa1f6ab7c1256f408b1c1436"
+      }
+    },
+    {
+      "id": "ELITE-02",
+      "number": 17,
+      "label": "Prédicateur du culte",
+      "family": "Cultistes humains",
+      "role": "Élite humaine / magie",
+      "depth": "Accès fortifiés / groupes du culte",
+      "height": 60,
+      "width": 62,
+      "palette": 20,
+      "preserve_focus": true,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE new enemy character source for Project RL, a native 64px-tile grim industrial cyberpunk roguelike. New appearance proposal, not a modified copy of the reference's pose.\nReferences are ONLY accepted graphic style, scale, faction uniform and mask references. Keep strong clean dark comic-book contours, compact adult game proportions about FIVE HEADS tall, broad flat material masses, just ONE main shadow per material. Readable at native tile size. No tiny wear marks, rust speckles, ornate panel seams, dense cloth folds, rivets, tiny symbols, photorealism, 3D or texture noise. Two major clothing colors; restrained useful detail. No pink.\nShared CULT uniform: knee-length charcoal-grey coat with broad burgundy center panel and cuffs, charcoal deep hood with burgundy lining, plain black belt, grey trousers and dark work boots. A simple matte dirty-IVORY physical mask hides the whole face: TWO short opaque black eye-slits and ONE short black mouth vent; no skin, hair, eyeballs or facial features visible. No literal transparent face-hole, no skull mask or licensed mask. Still a normal HUMAN with intact anatomy, no mutation, grafts, claws, extra limbs or supernatural body.\nOne full body, nearly frontal with a slight overhead game view, the entire human and all equipment within generous true ALPHA transparent margins. No floor, background, shadow, halo, particles, text, names, alternate poses or other figures. Equipment meets normal human hands. This is a STATIC appearance REVIEW only; modular body/arm/weapon/finger layers and game abilities are not authored by this image.\nSubject ELITE-02: an intact thin adult HUMAN elite spellcaster/ritual leader of the same cult, same human standing height, face still entirely covered by the exact ivory faction mask and deep hood. A very broad simple charcoal SHOULDER MANTLE forms one clean triangular mass from the shoulders to the elbows, over the shared burgundy-front uniform. His lower coat extends close to the ankles as a plain tapering burgundy/charcoal shape, making a narrow tall silhouette unlike the guard. No decorative trim, chains, jewelry or floating objects.\nLEFT glove (viewer RIGHT) holds ONE squared industrial focus staff vertical beside body, its bottom beside the boot. Staff head stays at or below the hood top so a larger weapon does not shrink the human. The head is ONE wide open dark metal tuning-fork-shaped bracket holding ONE broad violet crystal inset; THREE broad prongs at most, no little electronics, inscriptions or magical runes. Large distinct violet plane should survive native64 reduction. RIGHT arm (viewer LEFT) is extended a little to the side with a plain open gloved palm raised to chest level in a severe casting-ready command gesture. Normal arm lengths and natural hand anatomy. Elite identity comes from broad shoulder mantle, tapered long robe, forked staff and gesture, rather than taller anatomy or elaborate detail.\nDo not draw a projectile, energy beam, magical aura or active spell effect. The role of human spellcaster is authorized; no particular spell, damage, timer, resurrection, summon or buff is defined by this image.",
+      "revision": "r01",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-976c0ee5-68eb-4c23-bfd5-6a40256fbf8e.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-03-r03.png",
+          "role": "Style, proportions humaines, uniforme et masque validés"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Style, proportions humaines, uniforme et masque validés"
+        }
+      ],
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Apparence proposée ; aucune compétence, valeur, collision, protection de bouclier, contrôle ou rencontre intégrée.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ELITE-02-r01.png",
+      "source_sha256": "f7ef369ec7c7a4b0d23876f4fdc2d2afd7c69cba33be87c8d4a5f0de8beff568",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/ELITE-02-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          48,
+          36,
+          80,
+          96
+        ],
+        "colors": 20,
+        "sha256": "52ddab560f767e51b04eb29356275f3b09e7006642b7bfb64c2d5ebddf3f597c"
+      },
+      "visual_acceptance": "visual-acceptance-03.json",
+      "accepted_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/ELITE-02-r01/ELITE-02-r01-native64.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          48,
+          36,
+          80,
+          96
+        ],
+        "colors": 20,
+        "sha256": "52ddab560f767e51b04eb29356275f3b09e7006642b7bfb64c2d5ebddf3f597c"
+      }
+    },
+    {
+      "id": "BOSS-01",
+      "number": 18,
+      "label": "Maréchal des Chaînes",
+      "family": "Démons de guerre",
+      "role": "Boss proposé / accès fortifiés",
+      "depth": "Fin du premier acte",
+      "height": 96,
+      "width": 108,
+      "palette": 24,
+      "canvas_cells": 4,
+      "ground_cell": 3,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original full-body FIRST-ACT BOSS source for Project RL, a grim industrial cyberpunk horror roguelike with native 64px tiles. New visual proposal for the provisional story boss called the Marshal of Chains. Its height is proposed at about 96 native pixels versus 60 for a normal human; visual mass only, no new gameplay footprint.\nInput image 1 is ONLY a reference for clean comic-book contours, flat color masses and industrial flesh/metal materials. Input image 2 is ONLY the cult faction's burgundy/charcoal color relationship. Do not copy either character's anatomy, respirator, cannon-arm, mask, hood, pose or equipment.\nSubject: a disciplined monstrous WAR DEMON commander of the fortified access sector. He was enslaved by the cult and now wears his OPEN BROKEN RESTRAINT COLLAR as a rank decoration. Upright broad imposing military bearing, unmistakably non-human but not a chaotic tentacle monster. Exactly TWO thick legs planted squarely and TWO strong arms. Large grey-ivory demonic head with a heavy wedge brow and jaw, short blunt bony cheek planes, a stern CLOSED jagged mouth with just two broad downward fangs. TWO broad dark backward-swept horns, not many tiny spikes. Dull ivory eye slits, no glow. No ordinary human officer's face, no human skull mask, no hood.\nTHREE dominant identifying masses: (1) horned pale demon head, (2) the giant OPEN steel neck-yoke, (3) one short heavy CHAIN. The yoke consists of two broad thick dark-steel collar halves projecting left and right around the base of the neck, with broken front ends CLEARLY separated. One hinge block at the back is enough. It should read as an opened shackle he can freely move in, not closed armor enclosing his head. No inscriptions, little locks, warning labels or dangling pendant clutter.\nBody: thick sallow grey-ivory hide on neck and forearms; broad dull charcoal steel military chest and shoulder protection in only THREE large slabs, a broad dark BURGUNDY waist coat/skirt panel ending above the knees, black belt and dark simple trousers. Wide thick steel-toed boots with TWO blunt front toe sections, not a forest of armor plates. Big bare clawed hands, each FOUR digits (three fingers and a thumb), no extra arms. The RIGHT hand (viewer LEFT) is held open at waist/chest height in a severe command gesture. The LEFT hand (viewer RIGHT) firmly grips the upper link of a short hanging heavy steel chain of THREE or FOUR LARGE broad oval links. The chain hangs to mid-shin, never below the boots, and must visibly meet his closed hand. A simple opened cuff remains around that wrist, no tiny chain webs. No other held weapon or shield. Do not link his hands together or present him as a helpless bound prisoner.\nColor and detail: broad ivory-grey organic skin against charcoal armor and one large burgundy cloth panel. Original industrial brutal equipment, no gold ornament, medieval heraldry, intricate rivets or decorative fantasy spikes. ONE main shadow per material, clean bold controlled dark contour, large flat shapes, only a few purposeful anatomical lines. No mottled flesh, rust speckles, gore filigree, fine scratches, dense cloth folds, polygon patchwork or 3D/photo rendering. Mature grim comic-game proportions, compact heavy adult anatomy; intimidating and cold, not cute or heroic.\nComposition: one complete nearly frontal standing boss, slight overhead game view, entire horn tips, chain links, hands and boot soles comfortably inside generous true ALPHA transparent margins. No environment, floor, shadow, aura, effects, ice, fire, background, text, alternative pose or other figure. This is the FIRST-act military demon, not a late frozen-hell boss. Do not depict a spell or create any ability, damage number, arena mechanic or new collision. Static review source only; held props and modular runtime layers are not yet authored.",
+      "revision": "r01",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-8a32a369-fdb6-4121-8efe-3331c979226e.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+          "role": "Style/matières et relation de palette ; ni anatomie ni équipement à copier"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Style/matières et relation de palette ; ni anatomie ni équipement à copier"
+        }
+      ],
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Apparence proposée ; aucune compétence, valeur, collision, protection de bouclier, contrôle ou rencontre intégrée.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-01-r01.png",
+      "source_sha256": "a7280ad2fd6febf7e9733f5813c02e2622efb9e65f37b6b999eec665ddd404d4",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/BOSS-01-cell64-canvas256.png",
+        "cell": 64,
+        "canvas": 256,
+        "foot_anchor": [
+          128,
+          192
+        ],
+        "occupied": [
+          98,
+          96,
+          159,
+          192
+        ],
+        "colors": 24,
+        "sha256": "9ed1990df51cb6c9f110bd0f5eb37ff2add5445fc4b613d04ca07b5604edf8e5"
+      },
+      "visual_acceptance": "visual-acceptance-03.json",
+      "accepted_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/BOSS-01-r01/BOSS-01-r01-native64.png",
+        "cell": 64,
+        "canvas": 256,
+        "foot_anchor": [
+          128,
+          192
+        ],
+        "occupied": [
+          98,
+          96,
+          159,
+          192
+        ],
+        "colors": 24,
+        "sha256": "9ed1990df51cb6c9f110bd0f5eb37ff2add5445fc4b613d04ca07b5604edf8e5"
+      }
+    }
+  ],
+  "visual_acceptance": "visual-acceptance-03.json"
+}

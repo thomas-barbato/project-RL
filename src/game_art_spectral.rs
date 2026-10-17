@@ -68,6 +68,7 @@ gl_FragColor=texture2D(Texture,uv)*tint*vec4(0.58+lit*0.20,0.78+lit*0.20,1.0,1.0
         match source {
             Source::Player{body,palettes,weapon,equipment,hands}=>
                 player_layers::draw_player(rect,body,equipment,weapon,hands,palettes,side,alpha,None),
+            Source::Form(index) if side == 128 => draw_agent_form_portrait(rect,index,alpha),
             Source::Form(index)=>draw_agent_form(rect,index,alpha),
         }
         gl_use_default_material();

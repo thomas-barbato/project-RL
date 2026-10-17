@@ -1,0 +1,38 @@
+{
+  "review_id": "ARMOR-BREATHING-EXTENSION01",
+  "date": "2026-10-16",
+  "user_request": "il faudra aussi ajouter les petits effets de respirations sur toutes les armures du jeu",
+  "authorization": "Extend the already accepted breathing rule to every existing outfit; no new movement or walk effect.",
+  "outfits": 19,
+  "authored_palettes": 3,
+  "native_resolutions": [
+    32,
+    64
+  ],
+  "cycle_seconds": 3,
+  "pose_seconds": 1.5,
+  "displacement_pixels": {
+    "32": 1,
+    "64": 2
+  },
+  "fixed_parts": [
+    "feet",
+    "lower outfit below the waist"
+  ],
+  "moving_parts": [
+    "upper body",
+    "sleeves",
+    "hands",
+    "whole held weapon, including portions below the waist"
+  ],
+  "disabled_for": [
+    "portraits",
+    "reduced motion",
+    "active combat displacement"
+  ],
+  "gameplay_changes": false,
+  "ordinary_tile_motion": {
+    "status": "proposal only, not implemented",
+    "description": "Quick tile-to-tile visual glide, about 80ms, immediate start and softened arrival, no input lock."
+  }
+}

@@ -1,8 +1,10 @@
 # Guetteurs — terrain et transmission lisibles
 
-27 septembre 2026. Première tranche visuelle locale de la
-[descente vers le numérique](DESCENTE_VERS_LE_NUMERIQUE.md), après la
-[répartition des milieux](REPARTITION_DES_PROFONDEURS.md).
+> **Statut au 16 octobre 2026 : référence du prototype antérieur.** Ce document conserve des systèmes, contenus ou essais existants ; son peuplement et son organisation du monde ne définissent pas la nouvelle campagne. Voir [l'histoire courante](HISTOIRE_CAMPAGNE.md) et le [cadrage de refonte](reviews/refonte-histoire-2026-10-16/CADRAGE.md). Une réutilisation artistique ou narrative reste à examiner.
+
+27 septembre 2026. Tranche visuelle du prototype antérieur, après la
+[répartition des milieux](REPARTITION_DES_PROFONDEURS.md). L'ancien fil narratif
+numérique est retiré ; les rendus décrits ici ne définissent pas la nouvelle campagne.
 
 ## En jeu
 

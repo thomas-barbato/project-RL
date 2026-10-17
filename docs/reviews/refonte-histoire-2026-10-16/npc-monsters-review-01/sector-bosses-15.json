@@ -1,0 +1,202 @@
+{
+  "review_id": "SECTOR-BOSSES-15",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "status": "sector_boss_classification_superseded_not_integrated",
+  "request": "il faudra pas oublier sur les monstres d'ajouter une ombre :) , bon on continue.",
+  "scope": "Deux propositions de boss de secteur : Chœur lovecraftien et Gueule-Fournaise insectoïde ; ombres de contact séparées ; noms, tailles et capacités à examiner.",
+  "player_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "foot_anchor": [
+      64,
+      96
+    ]
+  },
+  "contact_shadow_review": "contact-shadows-14.json",
+  "records": [
+    {
+      "id": "BOSS-03",
+      "number": 20,
+      "revision": "r01",
+      "label": "Le Chœur",
+      "role": "Boss de secteur proposé / surveillance",
+      "depth": "Fin du troisième acte",
+      "family": "Démons des relais",
+      "height": 176,
+      "width": 240,
+      "palette": 26,
+      "canvas_cells": 6,
+      "ground_cell": 4.5,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original large sector-boss source for Project RL, a grim industrial cyberpunk horror roguelike with native 64px cells and differently sized bosses.\nInput image 1 is ONLY a graphic style and brutal industrial-material reference: strong dark comic contours, a small number of large flat material masses, readable mature anatomy, controlled shading. Do NOT copy its horned humanoid, armor, collar, chain or pose.\nInput image 2 is ONLY a reference for repulsive natural-colored flesh and broad swelling folds. Do NOT copy its six-legged body, vertical mouth, ice spires or silhouette.\nStyle: bold dark contour, clean purposeful large forms, ONE main shadow plane per material, at most a few broad highlights. No dense little tubes, fine skin pores, veins, rust flecks, scratches, tiny glyphs, many rivets, endless teeth, photorealism, painterly texture noise or licensed design. Natural sick flesh colors may appear; no neon magenta.\nComposition: one complete creature nearly frontal, slight overhead game camera, with generous genuine ALPHA transparent margins around EVERY appendage. No text, other figures, environment, floor, glow, particles, active attack effect or shadow. Ground contact shadow will be added as a SEPARATE code-rendered layer in the review, so do not bake any shadow into the creature.\nStatic appearance proposal only: no specific combat ability, statistics, summons, illusion effects, collision footprint, timing or spawn rule is being defined.\nSubject: THE CHOIR, a proposed manifestation of the data-surveillance sector's demon. It is a real ORGANIC DEMON using machinery, not an AI, normal computer, humanoid cyborg or armored warrior. Give it a distinctly LOVECRAFTIAN, non-humanoid, asymmetric anatomy.\nPrimary silhouette: ONE swollen lobed organic central mass, wider than tall, carried low on FOUR thick irregular fleshy tendril-supports. Not a six-legged insect or a human torso. Three repulsively calm FACE-LIKE fleshy lobes emerge at different heights from the central mass, all visibly connected by thick flesh. Faces resemble incomplete stretched former captive masks, not three separate standing people or skulls. Each has ONE broad dark slit-like mouth and a few broad distorted facial planes; one face may have an offset pair of dull eyes, another smooth eyeless upper face. No tiny face clusters, many little mouths or crown of tentacles. Asymmetry and impossible fused anatomy should create the cosmic horror.\nMaterials and color: pallid grey-beige natural flesh over deep bruised INDIGO membranes and broad muted dark-red connecting seams. The central body is heavy sagging skin with THREE or FOUR large folds, no skeletal plates. Four supports are thick fleshy tapered tentacles, two bent under front mass and two curling outward, clear gaps between them; each is ONE large readable curve without a grid of suction cups. The tips rest low, so it does not tower like the tall surgeon boss.\nTechnology: TWO simple squat charcoal industrial RELAY BOXES are visibly half swallowed by the central flesh, one toward each side. ONE broad horizontal speaker vent on each box, two or three large slots only. THREE thick short dark cables join flesh lobes to these relay boxes, plainly connected, not a tangled cable forest. No screens with faces, labels, holograms, glowing runes or antenna crown. The technology is a crude tool embedded into the demon, not its whole body.\nThe three fused faces, the one broad indigo flesh mass and the two dark relay blocks are the only main identifying details. No horns, giant bony teeth, wings, conventional legs/boots, weapons or ice. Keep it strange, diseased and threatening, with a broad irregular outline unlike the military demon and tall surgeon. A roughly 176px-high by up-to-240px-wide native body is planned, versus a human around65px; proportions and drawing source only.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-01-r01.png",
+          "role": "Style BD et matières industrielles, sans reprendre la silhouette"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Matière de chair couleur peau, sans reprendre l'anatomie"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-5e434762-0ba9-4c99-9409-6a5ce557ffd3.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-03-r01.png",
+      "maximum_body_height64": 176,
+      "maximum_body_width64": 240,
+      "palette_limit": 26,
+      "native_body_reference": 64,
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "accepted_exports": {},
+      "status": "proposal",
+      "layering_status": "Organic and integrated machine anatomy; contact shadow separate; static appearance only",
+      "source_sha256": "85ef8513de34773b5fb99de7f32c1543a3c695f16d91f5182b237f8c775fd649",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-03-r01-native64.png",
+        "cell": 64,
+        "canvas": 384,
+        "foot_anchor": [
+          192,
+          288
+        ],
+        "occupied": [
+          72,
+          112,
+          312,
+          288
+        ],
+        "colors": 26,
+        "sha256": "63aac7b4b71a7b7e9d21dcfa35dd6c08b6f57f98692b3c1472ad03e3396278cc"
+      },
+      "contact_shadow": {
+        "id": "BOSS-03",
+        "number": 20,
+        "revision": "r01",
+        "body_file": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-03-r01-native64.png",
+        "body_sha256": "63aac7b4b71a7b7e9d21dcfa35dd6c08b6f57f98692b3c1472ad03e3396278cc",
+        "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/BOSS-03-r01-shadow64.png",
+        "shadow_sha256": "b55ad563ec89134aaa8172a21b6ae5a2d1214236a96198a03e6cf4c55b84291f",
+        "canvas": 384,
+        "foot_anchor": [
+          192,
+          288
+        ],
+        "contact": {
+          "center": [
+            206,
+            287
+          ],
+          "width": 216,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "shadow_visual_approved": false
+      },
+      "sector_boss_role_rejected": true,
+      "current_elite_id": "ELITE-03",
+      "current_review": "elite-monsters-16.json"
+    },
+    {
+      "id": "BOSS-04",
+      "number": 21,
+      "revision": "r01",
+      "label": "Gueule-Fournaise",
+      "role": "Boss de secteur proposé / forges",
+      "depth": "Fin du quatrième acte",
+      "family": "Démons de forge",
+      "height": 184,
+      "width": 336,
+      "palette": 26,
+      "canvas_cells": 8,
+      "ground_cell": 5.5,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original large sector-boss source for Project RL, a grim industrial cyberpunk horror roguelike with native 64px cells and differently sized bosses.\nInput image 1 is ONLY a graphic style and brutal industrial-material reference: strong dark comic contours, a small number of large flat material masses, readable mature anatomy, controlled shading. Do NOT copy its horned humanoid, armor, collar, chain or pose.\nInput image 2 is ONLY a reference for repulsive natural-colored flesh and broad swelling folds. Do NOT copy its six-legged body, vertical mouth, ice spires or silhouette.\nStyle: bold dark contour, clean purposeful large forms, ONE main shadow plane per material, at most a few broad highlights. No dense little tubes, fine skin pores, veins, rust flecks, scratches, tiny glyphs, many rivets, endless teeth, photorealism, painterly texture noise or licensed design. Natural sick flesh colors may appear; no neon magenta.\nComposition: one complete creature nearly frontal, slight overhead game camera, with generous genuine ALPHA transparent margins around EVERY appendage. No text, other figures, environment, floor, glow, particles, active attack effect or shadow. Ground contact shadow will be added as a SEPARATE code-rendered layer in the review, so do not bake any shadow into the creature.\nStatic appearance proposal only: no specific combat ability, statistics, summons, illusion effects, collision footprint, timing or spawn rule is being defined.\nSubject: FURNACE MAW, the colossal animal-like demon fused with industrial forge equipment. A clearly INSECTOID sector boss, NOT another upright humanoid, giant skull, dragon or ordinary insect recolor. One VERY BROAD LOW forward-facing abdomen/chest mass braced on exactly SIX thick articulated insect legs, THREE per side, all tips visible and separated. A broad horizontal wedge silhouette is its identity, wider than the other bosses, not tall like the surgeon.\nAnatomy: heavy beetle/mantis-like chitin body fused organically into a forge. The back shell is only THREE huge overlapping DARK RUST-OCHRE carapace plates, with broad charcoal iron borders and simple dark steel underside. Distinct front-middle-rear plate masses, no dozens of little segments, spikes or surface damage. The shell is living chitin with crude forge housings growing through it, not decorative medieval armor.\nHead/front: ONE giant LOW horizontal FURNACE MOUTH takes much of the front width, a broad dark charcoal interior bordered by two huge blunt rusty-steel mandibular crusher plates. FOUR large blocklike uneven metal molars only, no rows of tiny teeth. A single muted ember-orange inner material plane suggests a furnace inside, without bright glow, flames, sparks, aura or attack effect. TWO small deep-set dull amber insect eyes above the mouth. No human face, horns or skull bone trim.\nEach of the SIX legs is a short strong kinked chitin/steel load-bearing structure with THREE large broad segments and ONE blocklike joint; heavy dark pointed feet. Legs fan around body in three clearly separated pairs, with visible contact tips, not tangled cables or long spider filigree. Rear pair partly reaches sideways from abdomen, middle pair widest, front pair forward and down. No extra pincers or grasping arms beyond the six supports. Mandibles belong to mouth, not extra limbs.\nForge fusion: ONE squat rectangular exhaust housing grows from each rear side of shell, low and blunt, not towering chimneys. ONE broad dark steel brace joins shell plates. Small patches of sick warm beige flesh and muted dark red tissue are visible only at the underside and the six leg roots, showing a living demon fused with machinery. No bony exoskeleton or exposed rib cage. Main colors are rust-ochre chitin, charcoal steel and sparse warm raw tissue.\nThis creature looks like an enormous hungry industrial animal: low, wide, stubborn, almost crushing its surroundings with mass. No fire effects, molten puddle, victims, smaller insects or minions. Native body planned around184px high and up-to336px wide, making it much broader and lower than the two earlier bosses. Do not shrink the body to make it fit a64px silhouette.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-01-r01.png",
+          "role": "Style BD et matières industrielles, sans reprendre la silhouette"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Matière de chair couleur peau, sans reprendre l'anatomie"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-5b813658-d05f-4d4f-9d87-217b273f90eb.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BOSS-04-r01.png",
+      "maximum_body_height64": 184,
+      "maximum_body_width64": 336,
+      "palette_limit": 26,
+      "native_body_reference": 64,
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "accepted_exports": {},
+      "status": "proposal",
+      "layering_status": "Organic and integrated machine anatomy; contact shadow separate; static appearance only",
+      "refinements": [
+        {
+          "purpose": "Dégager la sixième patte masquée",
+          "prompt": "Use case: precise-object-edit.\nEDIT TARGET: the supplied broad rust-orange industrial insect furnace boss. Change ONLY the leg arrangement to make exactly SIX clearly visible legs, THREE on each side. Keep the same body, three broad shell plates, two vents, front furnace mouth, mandibles, eyes, flesh/metal materials, comic drawing and colors.\nCurrent image visibly shows three supports on viewer LEFT but only two on viewer RIGHT. Add/reveal the missing FOREGROUND leg on viewer RIGHT, attached naturally at the low front-right body root, mirroring the existing large foreground leg on viewer LEFT in approximate size and weight. Its joint bends outward/down, with one broad chitin shin and dark pointed foot ending in clear negative space BELOW the other two right-side feet. Do not merge that foot with the middle right leg. Keep all existing five clearly visible supports, with exactly one additional visible front-right support, six total.\nEach side must now have a rear upper outward foot, a middle outward/lower foot, and a front lowest foot. All tips are completely within generous alpha-transparent margins. No seventh/eighth leg, extra arm, pincer or tail. Mandibles stay part of the mouth.\nDo not redesign or duplicate the body or mouth. No active fire, glow, background, floor, baked shadow, text, particles or other figure. Keep true alpha. Static appearance proposal only.",
+          "input_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-b48a4d59-c30f-4ea6-9572-dbd551f69113.png",
+          "input_source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/archive/BOSS-04-r01-five-supports.png",
+          "output_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-5b813658-d05f-4d4f-9d87-217b273f90eb.png",
+          "input_sha256": "53411047b66f66b55ad20e898563aff49f99ddb859ef0c5c1c9c9b22b6078c27"
+        }
+      ],
+      "source_sha256": "13177e58d8727d15687ebc17b57c4464cd92cdd61bb90dbdcbc6bd7555000aec",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-04-r01-native64.png",
+        "cell": 64,
+        "canvas": 512,
+        "foot_anchor": [
+          256,
+          352
+        ],
+        "occupied": [
+          100,
+          168,
+          413,
+          352
+        ],
+        "colors": 26,
+        "sha256": "b98d1cbd300603894e0302d286d23f5abce5810aa7ef71ac5c154143200a6e54"
+      },
+      "contact_shadow": {
+        "id": "BOSS-04",
+        "number": 21,
+        "revision": "r01",
+        "body_file": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-04-r01-native64.png",
+        "body_sha256": "b98d1cbd300603894e0302d286d23f5abce5810aa7ef71ac5c154143200a6e54",
+        "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/BOSS-04-r01-shadow64.png",
+        "shadow_sha256": "4cd5fc2cf1f36c318e22dad2041e2259d69c4cb59aa300061910c144dc11ba82",
+        "canvas": 512,
+        "foot_anchor": [
+          256,
+          352
+        ],
+        "contact": {
+          "center": [
+            262,
+            351
+          ],
+          "width": 133,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "shadow_visual_approved": false
+      },
+      "sector_boss_role_rejected": true,
+      "current_elite_id": "ELITE-04",
+      "current_review": "elite-monsters-16.json"
+    }
+  ],
+  "superseded_by": "elite-monsters-16.json",
+  "correction_user_statements": [
+    "non quand je parlais de démons plus du genre \"insectes\" je voulais parler de simples monstres, pas de bosses. Les bosses doivent avoir vraiment l'air d'un boss, un dirigeant quoi... un chef .",
+    "bref tes deux design j'aime bien mais je les verrais plutot comme des monstres elites ou quelque chose comme ca (donc avec la taille correctes)"
+  ],
+  "correction": "Dessins conservés pour des propositions d'élites plus petites ; ces grands gabarits et rôles de chefs ne sont pas retenus.",
+  "source_appearance_acceptance": "visual-acceptance-08.json"
+}

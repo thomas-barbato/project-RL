@@ -232,7 +232,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn approved_art_covers_every_loaded_core_item_and_weapon() {
+    fn approved_art_covers_every_current_core_item_and_weapon() {
         let (rules, _, _, _) = ascii_game_content().unwrap();
         let ids: std::collections::BTreeSet<_> = rules
             .items
@@ -240,11 +240,14 @@ mod tests {
             .map(|(id, _)| id)
             .chain(rules.weapons.iter().map(|(id, _)| id))
             .filter(|id| id.namespace().as_str() == "core")
+            .filter(|id| !equipment_generation::is_retired_test_item(id))
             .collect();
-        assert_eq!(ids.len(), 162);
-        for id in ids {
-            assert!(crate::game_art::item(id.as_str()).is_some(), "{id}");
-        }
+        assert!(!ids.is_empty());
+        let missing: Vec<_> = ids
+            .iter()
+            .filter(|id| crate::game_art::item(id.as_str()).is_none())
+            .collect();
+        assert!(missing.is_empty(), "Missing approved item art: {missing:?}");
         for (id, _) in rules
             .weapons
             .iter()

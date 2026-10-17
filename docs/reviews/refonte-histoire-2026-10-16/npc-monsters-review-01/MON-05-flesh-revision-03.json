@@ -1,0 +1,62 @@
+{
+  "review_id": "NPC-MONSTERS-09-FLESH03",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "status": "visually_approved_not_integrated",
+  "user_statement": "j'aime pas la seconde, il y a trop de parties osseuses et pas assez de chaire répugnante (avec couleur chaire ) par exemple ?",
+  "scope": "Corriger uniquement le candidat 09 : la r02 est refusée pour excès d'os et manque de chair. Le 08 r02 reste inchangé, sans validation déduite.",
+  "prompt": "Use case: precise-object-edit.\nAsset type: corrected MON-05 appearance for Project RL, a native 64px-tile grim horror/cyberpunk roguelike.\nEDIT TARGET: the supplied six-legged ice boss study. Keep the same creature identity, exactly SIX clearly separated supporting limbs (three per side), same large low broad silhouette, single vertical ventral mouth, and exactly THREE dark blue-black ice spires on the back. Keep the legs staggered and readable, all feet and spires fully inside generous actual alpha-transparent margins.\nUSER CORRECTION: the current monster has far too much exposed bone and too little repulsive natural-colored flesh. Replace its dominant ivory skeleton/armor with heavy disgusting FLESH. This is the main change; not merely a flesh recolor of the bone plates.\nFlesh direction: a huge bloated, sagging, asymmetrical mass of sickly NATURAL SKIN COLOR, pale warm peach/beige with dull raw reddish flesh in deep fold seams and a few broad bruised violet-brown patches. Thick soft rolls, stretched skin, heavy lobes and a few large swollen blister-like nodules. It should look clammy, diseased, unpleasant and corrupted, not like a smooth friendly pink ball. Natural pale flesh is explicitly requested; no bright magenta, neon pink, stone-grey hide or skeletal ivory plating. Flesh must clearly dominate at least four fifths of the body and limb surfaces.\nREMOVE the ivory bone frames around ALL legs, the rigid rib-like mouth border, and the branching ivory lattice around ice-spire roots. Replace every one with soft rounded skin folds and flesh. Ice spires grow directly through three small dark torn fleshy sockets in the back, no bone crowns.\nAll SIX supporting legs are now thick fleshy jointed limbs made of the same pallid natural skin, with sagging folds at knees and ankles, ending in broad fleshy digits and TWO short dull dark nails each. Preserve the three separate feet per side in clear negative spaces. No long exposed-bone shins, ivory armor, giant pale talons, new extra limbs or tentacles.\nMouth: one long cavernous dark burgundy-black vertical ventral opening with a heavy irregular red fleshy lip. Only a FEW short crooked yellowish teeth partly buried in gums, no long white fangs or enclosing bone trim. One simple dark red inner fold, no separate human face, eyeballs, tongue tentacle or gore strands.\nKeep all three dark ice spires, but restrict the blue/black material to those spires, with only two or three broad flat facets and a restrained cold light edge.\nStyle: clean bold dark COMIC GAME outlines, large clear flat masses, one shadow plane per material and a few broad clammy highlights. Large meaningful shapes readable after native64 export. No dense pores, hundreds of pustules, little veins, mottling, tiny lines, texture noise, photorealistic render or elaborate gore.\nNo floor, shadow, background, halo, fog, active frost effect, particles, text or other creature. Appearance correction only, no ability, statistics, collision or spawning change.",
+  "references": [
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r02.png",
+      "role": "Cible de correction refusée : remplacer les plaques osseuses par de la chair, conserver six appuis et trois pointes de glace"
+    }
+  ],
+  "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-bbbfc57a-41b9-4bcb-ba5b-1382b83505ef.png",
+  "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+  "visual_approved": true,
+  "name_approved": false,
+  "rules_approved": false,
+  "runtime_connected": false,
+  "unchanged_MON04_source_sha256": "779eff786e84db7d3d9364ea757b0a3a44dfff1353e1c25313bf92eef5c7a680",
+  "unchanged_MON04_native64_sha256": "87bc7fc59d530fdcc7aaf829fdf53707672f3daf50c41c9b22b73f6aa3b94c1e",
+  "source_sha256": "42e933da4133b396e8918031afb4b869bfb06a7a9608b2b326f19d7030460dae",
+  "native64_export": {
+    "file": "artifacts/npc-monsters-review-01/tiles/MON-05-cell64-canvas256.png",
+    "cell": 64,
+    "canvas": 256,
+    "foot_anchor": [
+      128,
+      192
+    ],
+    "occupied": [
+      66,
+      77,
+      190,
+      192
+    ],
+    "colors": 20,
+    "sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f"
+  },
+  "visual_acceptance": "visual-acceptance-06.json",
+  "accepted_native64": {
+    "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-05-r03/MON-05-r03-native64.png",
+    "cell": 64,
+    "canvas": 256,
+    "foot_anchor": [
+      128,
+      192
+    ],
+    "occupied": [
+      66,
+      77,
+      190,
+      192
+    ],
+    "colors": 20,
+    "sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f"
+  },
+  "encounter_direction_review": "encounter-direction-10.json",
+  "role": "Créature du plan glacé",
+  "encounter_role": "not_sector_boss"
+}

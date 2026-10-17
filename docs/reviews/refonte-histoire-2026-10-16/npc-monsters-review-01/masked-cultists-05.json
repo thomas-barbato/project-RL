@@ -1,0 +1,143 @@
+{
+  "review_id": "NPC-MONSTERS-05",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "mode": "edit",
+  "status": "proposal_not_integrated",
+  "native_cell": 64,
+  "user_statements": [
+    "pas de visages :) met des capuches :) et un uniforme :) il faut qu'ils soient glauques :)",
+    "tu peux meme en faire qui lancent des sorts :) , la magie existe dans cet univers (on a juste pas encore fait les compétences des monstres)",
+    "et à la place du trou dans le visage tu peux mettre un masque :)"
+  ],
+  "accepted_direction": [
+    "Cultistes humains ordinaires lors des premières rencontres.",
+    "Capuches, uniforme commun glauque et masques physiques cachant les visages.",
+    "La magie existe ; certains cultistes peuvent être des lanceurs de sorts."
+  ],
+  "records": [
+    {
+      "id": "CULT-01",
+      "number": 13,
+      "revision": "r03",
+      "prompt": "Use case: precise-object-edit.\nAsset type: masked human cultist character source, 64px native tile game review.\nThe first reference is the EXACT hooded human cultist to revise. Preserve its intact normal human anatomy, scale and proportions, shared uniform, dark gloves, boots, main silhouette and specified held equipment.\nUser's correction: replace the BLACK EMPTY HOOD OPENING with an actual VISIBLE PHYSICAL MASK. Keep the deep hood. Do not expose a face.\nThe cult's shared mask is a simple matte dirty-IVORY industrial ceramic faceplate, opaque and continuous, broad upper face tapering to a blunt squared chin. TWO short narrow black eye-slits and ONE short straight black mouth-vent only. No eyeballs, skin, nose anatomy, human lips, teeth or hair visible; eye openings are deep black with no light. A small plain crease down the center is enough; no carved designs, scratches, tiny holes or inscriptions. Not a skull, not a respirator, not a smiling face, no recognizable licensed mask. It should read as a bleak anonymous ritual faceplate rather than a black hole. Strong pale-mask / dark-hood contrast is essential at small size.\nKeep the exact shared cult uniform: knee-length charcoal-grey cloth coat, broad burgundy central panel and cuffs, charcoal hood with burgundy lining, black belt and dark boots. Two large plain clothing regions. Worn, oppressive, clandestine industrial cult mood; no shiny armor or decorative chains. Normal human proportions, no possession, mutilation or grafts.\nClean bold dark outlines, broad flat cel-shaded planes with only one large shadow per material; around 14-16 useful colors, no texture noise, tiny wrinkles or mottled shading. One full-body nearly frontal character, generous real alpha transparent margins, no floor, background, shadow, smoke, glow halo or text. Eye and mouth slots are opaque black shading, NOT transparent holes. All clothing and mask opaque. Static visual concept, modular runtime layers not yet authored.\nChange ONLY the hood's black facial opening into the physical mask. Preserve ONE short blunt steel baton in RIGHT gloved hand (viewer LEFT), and empty guarded LEFT hand. Preserve the broad ordinary human stance and existing plain clothing. No spells or magical equipment on this melee cultist.",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-8a04a748-432c-4e2a-a3be-519dc0c5994e.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r02.png",
+          "role": "Exact hooded target to revise"
+        }
+      ],
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Static appearance and equipment proposal; no gameplay change.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+      "source_sha256": "ee8152aaeaa96e6c272fb59b1412b98ea8358a303ea03cdfdebef6ed1f72b7a1",
+      "label": "Cultiste à matraque",
+      "role": "Humain ordinaire / contact",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/CULT-01-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          47,
+          36,
+          81,
+          96
+        ],
+        "colors": 16,
+        "sha256": "4c4398f991b46d559361d8e7f3c93bcc953d07faae91cedef34babe2fb58c8a9"
+      }
+    },
+    {
+      "id": "CULT-02",
+      "number": 14,
+      "revision": "r04",
+      "prompt": "Use case: precise-object-edit.\nAsset type: masked human cultist character source, 64px native tile game review.\nThe first reference is the EXACT hooded human cultist to revise. Preserve its intact normal human anatomy, scale and proportions, shared uniform, dark gloves, boots, main silhouette and specified held equipment.\nUser's correction: replace the BLACK EMPTY HOOD OPENING with an actual VISIBLE PHYSICAL MASK. Keep the deep hood. Do not expose a face.\nThe cult's shared mask is a simple matte dirty-IVORY industrial ceramic faceplate, opaque and continuous, broad upper face tapering to a blunt squared chin. TWO short narrow black eye-slits and ONE short straight black mouth-vent only. No eyeballs, skin, nose anatomy, human lips, teeth or hair visible; eye openings are deep black with no light. A small plain crease down the center is enough; no carved designs, scratches, tiny holes or inscriptions. Not a skull, not a respirator, not a smiling face, no recognizable licensed mask. It should read as a bleak anonymous ritual faceplate rather than a black hole. Strong pale-mask / dark-hood contrast is essential at small size.\nKeep the exact shared cult uniform: knee-length charcoal-grey cloth coat, broad burgundy central panel and cuffs, charcoal hood with burgundy lining, black belt and dark boots. Two large plain clothing regions. Worn, oppressive, clandestine industrial cult mood; no shiny armor or decorative chains. Normal human proportions, no possession, mutilation or grafts.\nClean bold dark outlines, broad flat cel-shaded planes with only one large shadow per material; around 14-16 useful colors, no texture noise, tiny wrinkles or mottled shading. One full-body nearly frontal character, generous real alpha transparent margins, no floor, background, shadow, smoke, glow halo or text. Eye and mouth slots are opaque black shading, NOT transparent holes. All clothing and mask opaque. Static visual concept, modular runtime layers not yet authored.\nChange ONLY the hood's black facial opening into the physical mask, matching image 2 exactly. Preserve ONE short compact grey PISTOL in RIGHT gloved hand (viewer LEFT), held horizontally outward away from the body at waist height. Keep the barrel outside the torso outline, natural bent elbow and clear hand grip. LEFT hand remains empty near belt. No extra gun, no long rifle, no magical effect.\nImage 1 is the exact hooded gun cultist to edit. Image 2 is the SHARED MASK and UNIFORM reference: copy the plain dirty-ivory mask shape with two narrow opaque black eye slits and one short black mouth vent, inside the same charcoal/burgundy hood. Keep image 1's pistol arm and other proportions unchanged.",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-308a443e-9c06-46e5-86a8-c9d7c9b9a61d.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-02-r03.png",
+          "role": "Exact hooded target to revise"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Exact shared mask and uniform reference"
+        }
+      ],
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Static appearance and equipment proposal; no gameplay change.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-02-r04.png",
+      "source_sha256": "e40b4f4731f3de62e1da16b4b9ae2cfcad99de400f0429c62391792bb2bc2d66",
+      "label": "Tireuse du culte",
+      "role": "Humain ordinaire / distance",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/CULT-02-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          47,
+          36,
+          82,
+          96
+        ],
+        "colors": 15,
+        "sha256": "d559d723944ac0ec4262cb3576c763471fe9334c3abbe9d420ecacfea08d74e7"
+      }
+    },
+    {
+      "id": "CULT-03",
+      "number": 15,
+      "revision": "r03",
+      "prompt": "Use case: precise-object-edit.\nAsset type: masked human cultist character source, 64px native tile game review.\nThe first reference is the EXACT hooded human cultist to revise. Preserve its intact normal human anatomy, scale and proportions, shared uniform, dark gloves, boots, main silhouette and specified held equipment.\nUser's correction: replace the BLACK EMPTY HOOD OPENING with an actual VISIBLE PHYSICAL MASK. Keep the deep hood. Do not expose a face.\nThe cult's shared mask is a simple matte dirty-IVORY industrial ceramic faceplate, opaque and continuous, broad upper face tapering to a blunt squared chin. TWO short narrow black eye-slits and ONE short straight black mouth-vent only. No eyeballs, skin, nose anatomy, human lips, teeth or hair visible; eye openings are deep black with no light. A small plain crease down the center is enough; no carved designs, scratches, tiny holes or inscriptions. Not a skull, not a respirator, not a smiling face, no recognizable licensed mask. It should read as a bleak anonymous ritual faceplate rather than a black hole. Strong pale-mask / dark-hood contrast is essential at small size.\nKeep the exact shared cult uniform: knee-length charcoal-grey cloth coat, broad burgundy central panel and cuffs, charcoal hood with burgundy lining, black belt and dark boots. Two large plain clothing regions. Worn, oppressive, clandestine industrial cult mood; no shiny armor or decorative chains. Normal human proportions, no possession, mutilation or grafts.\nClean bold dark outlines, broad flat cel-shaded planes with only one large shadow per material; around 14-16 useful colors, no texture noise, tiny wrinkles or mottled shading. One full-body nearly frontal character, generous real alpha transparent margins, no floor, background, shadow, smoke, glow halo or text. Eye and mouth slots are opaque black shading, NOT transparent holes. All clothing and mask opaque. Static visual concept, modular runtime layers not yet authored.\nThis ordinary human cultist is now a SPELLCASTER. The universe contains magic; being a human does not mean being unable to cast. Keep the same anonymous uniform and mask as image 2, no monstrous transformation.\nReplace ONLY the blank rectangular plaque at the top of the staff with a SIMPLE INDUSTRIAL ARCANE FOCUS: one squared charcoal-metal open bracket holding one broad matte dim VIOLET inset crystal/lens. The focus is a physically held part of the staff, not a floating effect, no signboard and no lettering. No spikes, decorative rings or fine electronics. Staff stays in LEFT gloved hand (viewer RIGHT), natural firm hand-to-shaft contact, lower end beside boot. His empty RIGHT hand is raised at chest height, fingers slightly curled in a restrained casting-ready gesture. Spellcaster role should read from the staff's violet focus and ready hand alone. NO projectile, fireball, beam, particles, glow cloud or drawn spell impact; precise spells and effects will be designed later. Do not invent a particular spell, damage value or summoning ability. Same ordinary human height as other cultists.\nImage 1 is the exact hooded staff cultist to revise; image 2 is the SHARED MASK and UNIFORM reference. Copy image 2's simple matte dirty-ivory faceplate with two short narrow black eye-slits and short mouth vent. Keep the staff on viewer RIGHT and speaking/casting hand on viewer LEFT. Uniform and adult size must match the melee and pistol cultists. The violet staff focus is ONE physical flat inset held by a plain open bracket, no ring of floating runes, no halo or particle effects.",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-7b5cce1c-6fac-4742-a722-7f1b1d2ad82f.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-03-r02.png",
+          "role": "Exact hooded target to revise"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Exact shared mask and uniform reference"
+        }
+      ],
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Spellcaster role authorized; particular spells, values and effects not yet defined or implemented.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-03-r03.png",
+      "source_sha256": "9db1d075e5978daf1476fe21e94f2dff739d165657a004639e5c266e78363355",
+      "label": "Occultiste du culte",
+      "role": "Humain ordinaire / magie",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/CULT-03-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          50,
+          36,
+          79,
+          96
+        ],
+        "colors": 16,
+        "sha256": "144979b33fbeeb2a1d51938ce9c2b8284bf3306a3e51495fd61acaf0401d8068"
+      },
+      "palette_conditioning_note": "16 colors, with 2 source-derived ivory and 2 violet shades reserved to preserve the small mask and physical staff focus; remaining colors describe the uniform."
+    }
+  ]
+}

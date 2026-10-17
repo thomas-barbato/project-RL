@@ -1,5 +1,7 @@
 # Projet de roguelike / immersive simulation — Document de conception
 
+> **Statut au 16 octobre 2026 : document fondateur historique.** Les passages concernant l'IA prisonnière, la simulation, son évasion et les anciens jalons narratifs sont dépassés. La [nouvelle histoire](docs/HISTOIRE_CAMPAGNE.md) et le [cadrage courant](docs/reviews/refonte-histoire-2026-10-16/CADRAGE.md) définissent la référence narrative. Les éléments techniques utiles sont conservés ; les anciennes prescriptions de scénario ne doivent plus être appliquées.
+
 **Version :** 0.2 — document fondateur  
 **Public :** humain / conception / direction du projet  
 **Statut :** vision initiale à préciser avant production  
@@ -410,9 +412,9 @@ Le joueur doit pouvoir consacrer une session à se promener, découvrir une hist
 
 Une première tentative victorieuse reste possible, sans être facile ni attendue. Les morts ne sont pas une condition obligatoire de progression. La durée chiffrée reste ouverte : les essais distingueront une partie gagnante, l'apprentissage cumulé jusqu'à la première victoire, l'exploration approfondie et un parcours de joueur expérimenté.
 
-Le contrat détaillé figure dans [Monde, exploration et progression](docs/MONDE_EXPLORATION_ET_PROGRESSION.md). Les suggestions de durée et l'avis critique sur la trame figurent dans [l'évaluation narrative](docs/EVALUATION_NARRATIVE.md) ; ils restent des recommandations.
+Le contrat courant figure dans [Monde, exploration et progression](docs/MONDE_EXPLORATION_ET_PROGRESSION.md). Le [cadrage de la refonte](docs/reviews/refonte-histoire-2026-10-16/CADRAGE.md) remplace l'ancienne évaluation narrative ; aucune durée chiffrée n'est fixée.
 
-Les correctifs narratifs acceptés le 21 septembre développent des personnages avec des buts indépendants de l'évasion, des situations de quête variées, des révélations distinctes et des histoires facultatives aux conséquences locales. Leur première rédaction est centralisée dans [Textes narratifs proposés](docs/TEXTES_NARRATIFS_PROPOSES.md), avec identifiants et conditions d'affichage pour la relecture. L'accord sur ces correctifs ne vaut pas validation mot à mot ni preuve de leur intégration au jeu.
+Les correctifs de l'ancien récit sont remplacés par la [nouvelle base narrative](docs/HISTOIRE_CAMPAGNE.md). Les futures formulations, règles et apparences seront revues séparément avant leur intégration.
 
 ---
 

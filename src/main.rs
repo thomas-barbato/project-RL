@@ -18,6 +18,7 @@ mod test_regional;
 mod test_sector;
 #[cfg(debug_assertions)]
 mod ui_capture;
+mod ui_skin;
 mod ui_theme;
 mod visual_effects;
 mod watcher_signals;
@@ -51,7 +52,17 @@ async fn main() {
     #[cfg(debug_assertions)]
     if let Some(output) = graphics::ui_smoke_output() {
         let mode = std::env::args().nth(1).unwrap_or_default();
-        let result = if mode == "--ui-cold-agent-catalogue-playable" {
+        let result = if mode == "--ui-cold-campaign-bestiary" {
+            AsciiApp::capture_campaign_monsters(&output, false, false).await
+        } else if mode == "--ui-cold-monster-palettes" {
+            AsciiApp::capture_campaign_monsters(&output, true, false).await
+        } else if mode == "--ui-cold-monster-blue-palettes" {
+            AsciiApp::capture_campaign_monsters(&output, true, true).await
+        } else if mode == "--ui-cold-inspection" {
+            AsciiApp::capture_inspection(&output).await
+        } else if mode == "--ui-cold-native-hud" {
+            AsciiApp::capture_native_hud(&output).await
+        } else if mode == "--ui-cold-agent-catalogue-playable" {
             AsciiApp::capture_agent_catalogue_playable(&output).await
         } else if mode == "--ui-cold-agent-skill-animations" {
             agent_skill_lab_review::capture(&output).await

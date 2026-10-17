@@ -10,6 +10,33 @@ fn content() -> LoadedContent {
 }
 
 #[test]
+fn depth_projection_restores_authored_bounds_after_cloning_and_filtering() {
+    let loaded = content();
+    let mut base = loaded.loot().equipment().iter().next().unwrap().1.clone();
+    base.minimum_depth = Some(8);
+    base.maximum_depth = Some(12);
+    let id = base.item.clone();
+    let mut catalogue = EquipmentLootCatalog::default();
+    catalogue
+        .register(base, loaded.items(), loaded.weapons())
+        .unwrap();
+    let original = catalogue.clone();
+    catalogue.set_adjacent_model_tiers(std::slice::from_ref(&id), true);
+    catalogue.set_adjacent_model_tiers(std::slice::from_ref(&id), true);
+    let mut projected = catalogue.without_items(&["test:unrelated".parse().unwrap()]);
+    projected.set_adjacent_model_tiers(&[id], false);
+    assert_eq!(projected, original);
+    assert_eq!(format!("{projected:?}"), format!("{original:?}"));
+    let id = original.iter().next().unwrap().0.clone();
+    projected.set_excluded_items(std::slice::from_ref(&id), true);
+    projected.set_excluded_items(std::slice::from_ref(&id), true);
+    assert!(projected.is_empty());
+    let mut restored = projected.without_items(&["test:unrelated".parse().unwrap()]);
+    restored.set_excluded_items(&[id], false);
+    assert_eq!(restored, original);
+}
+
+#[test]
 fn weighted_rarity_matches_approved_rates_and_keeps_properties_distinct() {
     let loaded = content();
     let mut catalogue = loaded.loot().equipment().clone();

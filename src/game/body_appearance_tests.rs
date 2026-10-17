@@ -175,17 +175,13 @@ fn body_appearance_can_reference_real_equipment_and_clears_when_its_item_is_drop
     assert_eq!(game.player_equipment.body_appearance(), None);
     assert_eq!(game.player_visible_body_item(), Some(look));
     game.process_player_command(appearance(look));
-    let before_refused_drop = format!("{game:?}");
-    assert!(matches!(
-        game.process_player_command(GameCommand::DropItem { item: look }),
-        CommandOutcome::Rejected(CommandRejection::CannotDropItemHere)
-    ));
-    assert_eq!(format!("{game:?}"), before_refused_drop);
-    game.process_player_command(GameCommand::Move(Direction::East));
+    let at = game.player_position().unwrap();
     assert_eq!(
         game.process_player_command(GameCommand::DropItem { item: look }),
         CommandOutcome::Applied
     );
     assert_eq!(game.player_equipment.body_appearance(), None);
     assert_eq!(game.player_visible_body_item(), None);
+    assert_eq!(game.player_position(), Some(at));
+    assert_eq!(game.ground_items.count_at(at), 2);
 }

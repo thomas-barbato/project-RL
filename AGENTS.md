@@ -2,8 +2,10 @@
 
 Avant de créer ou modifier des personnages, armes, équipements portés ou monstres,
 lire `docs/DIRECTION_ARTISTIQUE_TILES.md` et appliquer sa procédure de revue.
-Dungeon Crawl Stone Soup est la référence de taille et de qualité : tiles natives
-32 × 32, formes lisibles et composition par couches avec points d'attache.
+Dungeon Crawl Stone Soup reste la référence de lisibilité et de qualité.
+Depuis l'accord du 17 octobre 2026, le jeu et les nouveaux dessins sont en
+64 × 64 uniquement ; la version d'affichage 32 px est abandonnée.
+Conserver les formes lisibles et la composition par couches avec points d'attache.
 Présenter les nouveaux candidats numérotés à taille native avant leur intégration,
 sauf si le joueur a déjà autorisé explicitement l'intégration de ces candidats.
 Conserver les identités de contenu et les règles de jeu lors d'un changement visuel.

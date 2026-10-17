@@ -104,7 +104,7 @@ pub(super) fn draw(
     now: f64,
     reduced: bool,
     background: bool,
-    rect: impl Fn(GridPos) -> Option<Rect>,
+    rect: impl Fn(project_rl::entity::EntityId, GridPos) -> Option<Rect>,
 ) {
     if background {
         return;
@@ -128,7 +128,7 @@ pub(super) fn draw(
             if !game.player_visibility().is_visible(actor.position()) {
                 continue;
             }
-            let Some(r) = rect(actor.position()) else {
+            let Some(r) = rect(entity, actor.position()) else {
                 continue;
             };
             if skill == "HL02" {
@@ -248,6 +248,7 @@ pub(super) fn burst(
     map: &Map,
     background: bool,
     rect: impl Fn(GridPos) -> Option<Rect>,
+    clip: Rect,
 ) {
     if !(0.0..0.8).contains(&age) {
         return;
@@ -408,6 +409,7 @@ pub(super) fn burst(
                     map,
                     &rect,
                     from,
+                    clip,
                 );
             }
         });
@@ -663,6 +665,7 @@ fn masked_sheet(
     map: &Map,
     rect: &impl Fn(GridPos) -> Option<Rect>,
     origin_rect: Rect,
+    clip: Rect,
 ) {
     let radius = size.length() * 0.5;
     let extent = vec2(
@@ -694,10 +697,10 @@ fn masked_sheet(
             {
                 continue;
             }
-            let x = r.x.floor().max(0.0);
-            let y = r.y.floor().max(0.0);
-            let w = (r.right().ceil().min(screen_width()) - x).max(0.0);
-            let h = (r.bottom().ceil().min(screen_height()) - y).max(0.0);
+            let x = r.x.floor().max(clip.x).max(0.0);
+            let y = r.y.floor().max(clip.y).max(0.0);
+            let w = (r.right().ceil().min(clip.right()).min(screen_width()) - x).max(0.0);
+            let h = (r.bottom().ceil().min(clip.bottom()).min(screen_height()) - y).max(0.0);
             if w <= 0.0 || h <= 0.0 {
                 continue;
             }
@@ -710,6 +713,11 @@ fn masked_sheet(
         }
     }
     unsafe {
-        macroquad::window::get_internal_gl().quad_gl.scissor(None);
+        macroquad::window::get_internal_gl().quad_gl.scissor(Some((
+            clip.x as i32,
+            clip.y as i32,
+            clip.w as i32,
+            clip.h as i32,
+        )));
     }
 }

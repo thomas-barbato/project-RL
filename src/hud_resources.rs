@@ -84,28 +84,10 @@ impl AsciiApp {
             15,
             UiTheme.text(),
         );
-        let coordinates = crate::terminal_view::local_coordinates(self.game.player_position());
-        let coordinates_width = measure_text(&coordinates, None, 14, 1.0).width.min(width);
-        crate::ui_theme::draw_text_in_rect(
-            &coordinates,
-            Rect::new(
-                panel.right() - 12.0 - coordinates_width,
-                panel.bottom() - 26.0,
-                coordinates_width,
-                18.0,
-            ),
-            14,
-            UiTheme.text(),
-        );
         if !self.test_lab {
             crate::ui_theme::draw_text_in_rect(
                 format!("Journal [{}]", self.controls.label(Action::QuestJournal)),
-                Rect::new(
-                    x,
-                    panel.bottom() - 26.0,
-                    (width - coordinates_width - 12.0).max(0.0),
-                    18.0,
-                ),
+                Rect::new(x, panel.bottom() - 26.0, width, 18.0),
                 12,
                 if self.menu_focus.hovered == Some(50_023) {
                     UiTheme.accent()
@@ -147,9 +129,16 @@ impl AsciiApp {
                 self.graphics.active.world_cell_px,
                 navigation,
                 at,
+                self.camera_glide_offset(),
             ) else {
                 continue;
             };
+            let cell = self.combat_motion.actor_rect(
+                id,
+                cell,
+                self.world_presentation_time.get(),
+                self.graphics.active.reduced_motion,
+            );
             let width = (cell.w * 0.82).clamp(8.0, 34.0);
             let badge_rows = self.effect_badges_at(at).len().div_ceil(4) as f32;
             let bar = Rect::new(
@@ -386,11 +375,31 @@ impl AsciiApp {
                 self.game.player_companion_count()
             };
             gauges.push(ResourceGauge {
-                label: "Compagnons",
+                label: if agent { "Drones" } else { "Compagnons" },
                 value: format!("{count} / {maximum}"),
                 ratio: count as f32 / f32::from(maximum.max(1)),
                 color: UiTheme.accent(),
                 reserved_ratio: 0.0,
+                companion_slots: Some((count, maximum)),
+            });
+        }
+        let rank = self.game.player_agent_skill_rank("OC07");
+        if rank > 0 {
+            let maximum = project_rl::skills::agent::definition("OC07")
+                .unwrap()
+                .value("maximum_raised_allies", rank);
+            let count = self
+                .game
+                .player_controlled_companions()
+                .iter()
+                .filter(|id| self.game.agent_reanimated_ally(**id))
+                .count();
+            gauges.push(ResourceGauge {
+                label: "Réanimés",
+                value: format!("{count} / {maximum}"),
+                ratio: count as f32 / f32::from(maximum.max(1)),
+                color: UiTheme.accent(),
+                reserved_ratio: 0.,
                 companion_slots: Some((count, maximum)),
             });
         }
@@ -554,7 +563,7 @@ impl AsciiApp {
     fn draw_hud_resource_gauge(&self, rect: Rect, gauge: &ResourceGauge) {
         match gauge.label {
             "Énergie" => self.ux.hud_energy.set(Some(rect)),
-            "Compagnons" => self.ux.hud_companions.set(Some(rect)),
+            "Compagnons" | "Drones" => self.ux.hud_companions.set(Some(rect)),
             _ => {}
         }
         Self::draw_resource_gauge(rect, gauge);

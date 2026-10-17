@@ -1,0 +1,8337 @@
+{
+  "review_id": "MONSTER-BLUE-PALETTES-08",
+  "status": "accepted",
+  "visual_approved": true,
+  "runtime_connected": true,
+  "date": "2026-10-17",
+  "records": [
+    {
+      "number": 8,
+      "code": "MON-04-r02",
+      "label": "Fendeur",
+      "material": "chitine claire",
+      "source": "assets/sprites/campaign-monsters/tiles/008-r02-A.png",
+      "source_sha256": "87bc7fc59d530fdcc7aaf829fdf53707672f3daf50c41c9b22b73f6aa3b94c1e",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 3,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/008-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            126,
+            90,
+            72
+          ],
+          "target": [
+            53,
+            90,
+            145
+          ]
+        },
+        {
+          "source": [
+            140,
+            125,
+            108
+          ],
+          "target": [
+            67,
+            113,
+            181
+          ]
+        },
+        {
+          "source": [
+            176,
+            158,
+            133
+          ],
+          "target": [
+            108,
+            145,
+            201
+          ]
+        },
+        {
+          "source": [
+            207,
+            189,
+            159
+          ],
+          "target": [
+            150,
+            176,
+            216
+          ]
+        },
+        {
+          "source": [
+            236,
+            216,
+            182
+          ],
+          "target": [
+            188,
+            205,
+            230
+          ]
+        }
+      ],
+      "blue_sha256": "4f874b56c5ce68f8fcb6c8b7e6ae43dcbdb430e8d7ec8e6ea46e2272b33161ce",
+      "occupied": [
+        34,
+        28,
+        95,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 9,
+      "code": "MON-05-r03",
+      "label": "Amas du gel",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/009-r03-A.png",
+      "source_sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f",
+      "foot_anchor": [
+        128,
+        192
+      ],
+      "side": 256,
+      "atlas_index": 0,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/009-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            227,
+            168,
+            136
+          ],
+          "target": [
+            148,
+            171,
+            215
+          ]
+        },
+        {
+          "source": [
+            227,
+            183,
+            153
+          ],
+          "target": [
+            160,
+            181,
+            220
+          ]
+        },
+        {
+          "source": [
+            234,
+            201,
+            174
+          ],
+          "target": [
+            181,
+            197,
+            227
+          ]
+        },
+        {
+          "source": [
+            241,
+            190,
+            152
+          ],
+          "target": [
+            170,
+            188,
+            223
+          ]
+        },
+        {
+          "source": [
+            250,
+            210,
+            171
+          ],
+          "target": [
+            190,
+            204,
+            231
+          ]
+        }
+      ],
+      "blue_sha256": "4dbf61b481873c6d287d1473cdc71298889b6a8177099de2cb203304ca2f8f1b",
+      "occupied": [
+        66,
+        77,
+        190,
+        192
+      ],
+      "canvas": 256,
+      "scale": 1
+    },
+    {
+      "number": 20,
+      "code": "ELITE-03-r02",
+      "label": "Masse des relais",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/020-r02-A.png",
+      "source_sha256": "078d4e9fcfcffc787532b421569348d0684c218af4fc78fd7566b168eba4b182",
+      "foot_anchor": [
+        96,
+        128
+      ],
+      "side": 192,
+      "atlas_index": 0,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/020-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            180,
+            135,
+            115
+          ],
+          "target": [
+            97,
+            151,
+            196
+          ]
+        },
+        {
+          "source": [
+            197,
+            146,
+            124
+          ],
+          "target": [
+            115,
+            162,
+            201
+          ]
+        },
+        {
+          "source": [
+            202,
+            158,
+            131
+          ],
+          "target": [
+            126,
+            171,
+            207
+          ]
+        },
+        {
+          "source": [
+            210,
+            163,
+            136
+          ],
+          "target": [
+            135,
+            177,
+            211
+          ]
+        },
+        {
+          "source": [
+            216,
+            173,
+            143
+          ],
+          "target": [
+            145,
+            183,
+            214
+          ]
+        },
+        {
+          "source": [
+            225,
+            182,
+            150
+          ],
+          "target": [
+            156,
+            191,
+            219
+          ]
+        },
+        {
+          "source": [
+            230,
+            192,
+            158
+          ],
+          "target": [
+            166,
+            197,
+            222
+          ]
+        },
+        {
+          "source": [
+            236,
+            196,
+            162
+          ],
+          "target": [
+            173,
+            202,
+            225
+          ]
+        },
+        {
+          "source": [
+            239,
+            202,
+            168
+          ],
+          "target": [
+            180,
+            206,
+            227
+          ]
+        },
+        {
+          "source": [
+            246,
+            219,
+            186
+          ],
+          "target": [
+            198,
+            218,
+            234
+          ]
+        }
+      ],
+      "blue_sha256": "cc0583ac862b27a434d11b5195c90c1e61964981563e8d0cca2393ea293d1032",
+      "occupied": [
+        47,
+        56,
+        145,
+        128
+      ],
+      "canvas": 192,
+      "scale": 1
+    },
+    {
+      "number": 21,
+      "code": "ELITE-04-r02",
+      "label": "Insectoïde de forge",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/021-r02-A.png",
+      "source_sha256": "d8865d6fc9dc65679b0a09f108086dd05480a950c6f22370c99405ee0c84d317",
+      "foot_anchor": [
+        96,
+        128
+      ],
+      "side": 192,
+      "atlas_index": 1,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/021-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            51,
+            19,
+            12
+          ],
+          "target": [
+            15,
+            27,
+            39
+          ]
+        },
+        {
+          "source": [
+            60,
+            37,
+            30
+          ],
+          "target": [
+            24,
+            44,
+            65
+          ]
+        },
+        {
+          "source": [
+            84,
+            19,
+            10
+          ],
+          "target": [
+            19,
+            34,
+            50
+          ]
+        },
+        {
+          "source": [
+            101,
+            41,
+            24
+          ],
+          "target": [
+            30,
+            56,
+            82
+          ]
+        },
+        {
+          "source": [
+            109,
+            55,
+            36
+          ],
+          "target": [
+            38,
+            70,
+            102
+          ]
+        },
+        {
+          "source": [
+            123,
+            73,
+            56
+          ],
+          "target": [
+            48,
+            88,
+            129
+          ]
+        },
+        {
+          "source": [
+            138,
+            56,
+            31
+          ],
+          "target": [
+            41,
+            77,
+            112
+          ]
+        },
+        {
+          "source": [
+            157,
+            61,
+            31
+          ],
+          "target": [
+            46,
+            85,
+            124
+          ]
+        },
+        {
+          "source": [
+            162,
+            124,
+            106
+          ],
+          "target": [
+            78,
+            134,
+            190
+          ]
+        },
+        {
+          "source": [
+            165,
+            94,
+            66
+          ],
+          "target": [
+            62,
+            114,
+            167
+          ]
+        },
+        {
+          "source": [
+            175,
+            70,
+            34
+          ],
+          "target": [
+            52,
+            96,
+            140
+          ]
+        },
+        {
+          "source": [
+            186,
+            74,
+            35
+          ],
+          "target": [
+            55,
+            102,
+            148
+          ]
+        },
+        {
+          "source": [
+            197,
+            79,
+            36
+          ],
+          "target": [
+            58,
+            108,
+            158
+          ]
+        },
+        {
+          "source": [
+            229,
+            177,
+            144
+          ],
+          "target": [
+            155,
+            186,
+            218
+          ]
+        }
+      ],
+      "blue_sha256": "237945d24e137079c478deb405787f4605b00a746cf81df29894bed12fd30e9f",
+      "occupied": [
+        42,
+        64,
+        151,
+        128
+      ],
+      "canvas": 192,
+      "scale": 1
+    },
+    {
+      "number": 28,
+      "code": "TROUP-07-r02",
+      "label": "Démon voûté",
+      "material": "peau olivâtre",
+      "source": "assets/sprites/campaign-monsters/tiles/028-r02-A.png",
+      "source_sha256": "6fb8aa2ec65c99345d7f90ef45bfeffffa1669ed8605048b6f8c26e4b3e3e397",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 11,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/028-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            44,
+            41,
+            31
+          ],
+          "target": [
+            20,
+            34,
+            55
+          ]
+        },
+        {
+          "source": [
+            56,
+            54,
+            39
+          ],
+          "target": [
+            26,
+            43,
+            69
+          ]
+        },
+        {
+          "source": [
+            67,
+            61,
+            42
+          ],
+          "target": [
+            29,
+            49,
+            80
+          ]
+        },
+        {
+          "source": [
+            74,
+            69,
+            47
+          ],
+          "target": [
+            33,
+            55,
+            88
+          ]
+        },
+        {
+          "source": [
+            88,
+            84,
+            54
+          ],
+          "target": [
+            38,
+            64,
+            104
+          ]
+        },
+        {
+          "source": [
+            105,
+            100,
+            64
+          ],
+          "target": [
+            46,
+            77,
+            123
+          ]
+        },
+        {
+          "source": [
+            106,
+            92,
+            54
+          ],
+          "target": [
+            43,
+            73,
+            117
+          ]
+        },
+        {
+          "source": [
+            112,
+            102,
+            64
+          ],
+          "target": [
+            48,
+            80,
+            128
+          ]
+        },
+        {
+          "source": [
+            126,
+            110,
+            66
+          ],
+          "target": [
+            52,
+            87,
+            140
+          ]
+        },
+        {
+          "source": [
+            178,
+            147,
+            81
+          ],
+          "target": [
+            72,
+            118,
+            187
+          ]
+        }
+      ],
+      "blue_sha256": "c65271b3b77b8c1633cd11563458753546cb465e834b43e4b4bdd73c92011603",
+      "occupied": [
+        31,
+        31,
+        98,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 29,
+      "code": "TROUP-08-r01",
+      "label": "Larve de chair",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/029-r01-A.png",
+      "source_sha256": "000c343fa6fd9a221581d857b0b7c43ceeab9da43dc73c577a06e3e784cd6610",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "side": 64,
+      "atlas_index": 7,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/029-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            167,
+            123,
+            104
+          ],
+          "target": [
+            81,
+            119,
+            190
+          ]
+        },
+        {
+          "source": [
+            211,
+            155,
+            130
+          ],
+          "target": [
+            132,
+            159,
+            209
+          ]
+        },
+        {
+          "source": [
+            228,
+            172,
+            142
+          ],
+          "target": [
+            153,
+            175,
+            217
+          ]
+        },
+        {
+          "source": [
+            234,
+            188,
+            151
+          ],
+          "target": [
+            164,
+            184,
+            221
+          ]
+        },
+        {
+          "source": [
+            239,
+            196,
+            155
+          ],
+          "target": [
+            170,
+            189,
+            224
+          ]
+        },
+        {
+          "source": [
+            242,
+            200,
+            159
+          ],
+          "target": [
+            175,
+            193,
+            226
+          ]
+        },
+        {
+          "source": [
+            248,
+            207,
+            165
+          ],
+          "target": [
+            184,
+            200,
+            229
+          ]
+        },
+        {
+          "source": [
+            254,
+            231,
+            204
+          ],
+          "target": [
+            217,
+            225,
+            241
+          ]
+        }
+      ],
+      "blue_sha256": "3f2757c6d6909d09f2bf67511cde06df0cbceff0dd3dd5691472dc4172b07112",
+      "occupied": [
+        15,
+        40,
+        50,
+        60
+      ],
+      "canvas": 64,
+      "scale": 1
+    },
+    {
+      "number": 30,
+      "code": "TROUP-09-r01",
+      "label": "Coléoptère des scories",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/030-r01-B.png",
+      "source_sha256": "a51b77a018a90148b7ea94240ab6358fef3c404c62770cdecd4993e11ae3b724",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/030-r01-B.png"
+    },
+    {
+      "number": 31,
+      "code": "TROUP-10-r01",
+      "label": "Mante des conduits",
+      "material": "carapace turquoise",
+      "source": "assets/sprites/campaign-monsters/tiles/031-r01-A.png",
+      "source_sha256": "344cff76f1681e60736f41869fb3a5da124d1e90122709f5ae8b653dadeb52f9",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "existing_blue": true,
+      "blue_variant": "A",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/031-r01-A.png"
+    },
+    {
+      "number": 32,
+      "code": "TROUP-11-r01",
+      "label": "Palpeur aveugle",
+      "material": "chair sous capuche",
+      "source": "assets/sprites/campaign-monsters/tiles/032-r01-A.png",
+      "source_sha256": "911bd1715e0f5886d61b7ff051f84ae0b91467cf559f18fdd694827b376951fe",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "side": 64,
+      "atlas_index": 13,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/032-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            132,
+            64,
+            64
+          ],
+          "target": [
+            47,
+            83,
+            127
+          ]
+        },
+        {
+          "source": [
+            204,
+            114,
+            102
+          ],
+          "target": [
+            98,
+            137,
+            185
+          ]
+        },
+        {
+          "source": [
+            215,
+            146,
+            122
+          ],
+          "target": [
+            128,
+            163,
+            207
+          ]
+        },
+        {
+          "source": [
+            229,
+            176,
+            144
+          ],
+          "target": [
+            155,
+            183,
+            218
+          ]
+        },
+        {
+          "source": [
+            247,
+            203,
+            161
+          ],
+          "target": [
+            181,
+            202,
+            227
+          ]
+        }
+      ],
+      "blue_sha256": "9dfa68608b57b7061c115b4b6d9af58e67c334b3dac42a57838e42073a537101",
+      "occupied": [
+        14,
+        20,
+        51,
+        60
+      ],
+      "canvas": 64,
+      "scale": 1
+    },
+    {
+      "number": 33,
+      "code": "TROUP-12-r01",
+      "label": "Ver du gel noir",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/033-r01-A.png",
+      "source_sha256": "3e1aae99195cb744c07a69333620c4a11a9f4cd1567e5d813f07bcdc5889d32d",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "side": 64,
+      "atlas_index": 15,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/033-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            218,
+            164,
+            139
+          ],
+          "target": [
+            143,
+            171,
+            214
+          ]
+        },
+        {
+          "source": [
+            230,
+            183,
+            152
+          ],
+          "target": [
+            162,
+            185,
+            220
+          ]
+        },
+        {
+          "source": [
+            237,
+            193,
+            160
+          ],
+          "target": [
+            173,
+            193,
+            224
+          ]
+        },
+        {
+          "source": [
+            242,
+            201,
+            166
+          ],
+          "target": [
+            181,
+            199,
+            227
+          ]
+        },
+        {
+          "source": [
+            245,
+            207,
+            169
+          ],
+          "target": [
+            185,
+            203,
+            229
+          ]
+        },
+        {
+          "source": [
+            250,
+            216,
+            179
+          ],
+          "target": [
+            196,
+            211,
+            233
+          ]
+        }
+      ],
+      "blue_sha256": "28dbb5e66ceb5047a5e817c5d4f858dc55eb40eb351f7e6ccfaaf9129ab1144f",
+      "occupied": [
+        12,
+        36,
+        53,
+        60
+      ],
+      "canvas": 64,
+      "scale": 1
+    },
+    {
+      "number": 34,
+      "code": "TROUP-13-r01",
+      "label": "Diablotin des braises",
+      "material": "chair rouge",
+      "source": "assets/sprites/campaign-monsters/tiles/034-r01-B.png",
+      "source_sha256": "d7b8dd8447df964ed6fe80e2443cf55c759e6891a8dc735186dcd194a5e1fdf9",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/034-r01-B.png"
+    },
+    {
+      "number": 35,
+      "code": "TROUP-14-r01",
+      "label": "Gueule rampante",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/035-r01-A.png",
+      "source_sha256": "2143f788fd20669f98c05a4294bd64c95f9fe2bddb3a447312d993a83a4ceec3",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "side": 64,
+      "atlas_index": 19,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/035-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            74,
+            64,
+            58
+          ],
+          "target": [
+            36,
+            69,
+            96
+          ]
+        },
+        {
+          "source": [
+            210,
+            156,
+            123
+          ],
+          "target": [
+            126,
+            171,
+            207
+          ]
+        },
+        {
+          "source": [
+            230,
+            179,
+            137
+          ],
+          "target": [
+            151,
+            187,
+            216
+          ]
+        },
+        {
+          "source": [
+            244,
+            195,
+            150
+          ],
+          "target": [
+            170,
+            200,
+            224
+          ]
+        },
+        {
+          "source": [
+            247,
+            202,
+            156
+          ],
+          "target": [
+            177,
+            204,
+            226
+          ]
+        },
+        {
+          "source": [
+            252,
+            227,
+            191
+          ],
+          "target": [
+            206,
+            223,
+            237
+          ]
+        }
+      ],
+      "blue_sha256": "6a67fed90668d974c1d30e2bd72ef5d7a7abdc5ede451118331c8d54ee75943d",
+      "occupied": [
+        10,
+        28,
+        54,
+        60
+      ],
+      "canvas": 64,
+      "scale": 1
+    },
+    {
+      "number": 36,
+      "code": "TROUP-15-r01",
+      "label": "Griffeur des fosses",
+      "material": "peau bleue",
+      "source": "assets/sprites/campaign-monsters/tiles/036-r01-A.png",
+      "source_sha256": "d3762614feb6f8597ad6451dc0f4ceb66c2d422d0ce32cd65cdaaf0ec0fcf98f",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "existing_blue": true,
+      "blue_variant": "A",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/036-r01-A.png"
+    },
+    {
+      "number": 37,
+      "code": "TROUP-16-r01",
+      "label": "Tique de charnier",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/037-r01-B.png",
+      "source_sha256": "5fd009e3f3828b003bd2d5a9a944fb9856b5dbebc641953737e7ed9de714239f",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/037-r01-B.png"
+    },
+    {
+      "number": 38,
+      "code": "TROUP-17-r01",
+      "label": "Rampant abyssal",
+      "material": "peau bleue",
+      "source": "assets/sprites/campaign-monsters/tiles/038-r01-A.png",
+      "source_sha256": "67aef7576fba9ca5535868c98fd4a7068efc55cc7393cae41cabf075c8ea5849",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "existing_blue": true,
+      "blue_variant": "A",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/038-r01-A.png"
+    },
+    {
+      "number": 39,
+      "code": "TROUP-18-r01",
+      "label": "Rôdeur membraneux",
+      "material": "chair rouge",
+      "source": "assets/sprites/campaign-monsters/tiles/039-r01-B.png",
+      "source_sha256": "bf88d20b4a22342c750b8d7206847c4748dfdf31debb3abe80cb65d3b3413852",
+      "foot_anchor": [
+        32,
+        60
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/039-r01-B.png"
+    },
+    {
+      "number": 60,
+      "code": "ARPG-01-r02",
+      "label": "Diablotin ferrailleur",
+      "material": "chair rouge",
+      "source": "assets/sprites/campaign-monsters/tiles/060-r02-B.png",
+      "source_sha256": "1958c76537e2dc44c40dffe19ef6919ed5a6cd8056b4068490483bdce5a6b7e2",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/060-r02-B.png"
+    },
+    {
+      "number": 61,
+      "code": "ARPG-02-r02",
+      "label": "Bouc des failles",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/061-r02-B.png",
+      "source_sha256": "bf5d555621039ab80883a64cd245ad8e1fb198ce3bc1b08c89d095a1fb0f1ccf",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/061-r02-B.png"
+    },
+    {
+      "number": 62,
+      "code": "ARPG-03-r02",
+      "label": "Décharné",
+      "material": "muscles écorchés",
+      "source": "assets/sprites/campaign-monsters/tiles/062-r02-B.png",
+      "source_sha256": "4dc9ba863027a7e6cf3880ffbc34e15ce2629235a5d69327f83f900e28ca9b8e",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/062-r02-B.png"
+    },
+    {
+      "number": 63,
+      "code": "ARPG-04-r02",
+      "label": "Dévoreur de soufre",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/063-r02-B.png",
+      "source_sha256": "2afe3d3bc7fe2dc090b18f75b48cc537a76e53343d260992f34313dd173bb26a",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/063-r02-B.png"
+    },
+    {
+      "number": 64,
+      "code": "ARPG-05-r02",
+      "label": "Rampant du charnier",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/064-r02-A.png",
+      "source_sha256": "e9287aaa8529b64dcf9aced58f5921eac4234de9571415995ba43b3f6edcd37f",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 21,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/064-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            104,
+            82,
+            72
+          ],
+          "target": [
+            48,
+            76,
+            128
+          ]
+        },
+        {
+          "source": [
+            125,
+            109,
+            102
+          ],
+          "target": [
+            61,
+            98,
+            166
+          ]
+        },
+        {
+          "source": [
+            174,
+            132,
+            116
+          ],
+          "target": [
+            94,
+            130,
+            196
+          ]
+        },
+        {
+          "source": [
+            178,
+            146,
+            126
+          ],
+          "target": [
+            105,
+            138,
+            199
+          ]
+        },
+        {
+          "source": [
+            190,
+            164,
+            136
+          ],
+          "target": [
+            121,
+            150,
+            205
+          ]
+        },
+        {
+          "source": [
+            205,
+            176,
+            149
+          ],
+          "target": [
+            141,
+            166,
+            213
+          ]
+        },
+        {
+          "source": [
+            214,
+            184,
+            157
+          ],
+          "target": [
+            154,
+            176,
+            217
+          ]
+        },
+        {
+          "source": [
+            222,
+            197,
+            168
+          ],
+          "target": [
+            167,
+            187,
+            223
+          ]
+        },
+        {
+          "source": [
+            247,
+            237,
+            211
+          ],
+          "target": [
+            217,
+            225,
+            241
+          ]
+        }
+      ],
+      "blue_sha256": "e745f1d32c59b6c2c0f3f94e821b8bce8d950c3bca16687474bf7d45016c605c",
+      "occupied": [
+        28,
+        64,
+        100,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 65,
+      "code": "ARPG-06-r02",
+      "label": "Serpent des tranchées",
+      "material": "peau olivâtre",
+      "source": "assets/sprites/campaign-monsters/tiles/065-r02-A.png",
+      "source_sha256": "0e7af5059b29965238771f8c9c4b699fe0ad5eeb85edcec4705bd431f8bb3511",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 23,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/065-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            38,
+            35,
+            29
+          ],
+          "target": [
+            18,
+            35,
+            49
+          ]
+        },
+        {
+          "source": [
+            47,
+            45,
+            35
+          ],
+          "target": [
+            22,
+            43,
+            60
+          ]
+        },
+        {
+          "source": [
+            56,
+            53,
+            40
+          ],
+          "target": [
+            26,
+            50,
+            70
+          ]
+        },
+        {
+          "source": [
+            63,
+            62,
+            46
+          ],
+          "target": [
+            29,
+            57,
+            80
+          ]
+        },
+        {
+          "source": [
+            74,
+            68,
+            51
+          ],
+          "target": [
+            34,
+            65,
+            91
+          ]
+        },
+        {
+          "source": [
+            79,
+            77,
+            56
+          ],
+          "target": [
+            36,
+            71,
+            99
+          ]
+        },
+        {
+          "source": [
+            92,
+            80,
+            54
+          ],
+          "target": [
+            39,
+            76,
+            107
+          ]
+        },
+        {
+          "source": [
+            92,
+            85,
+            65
+          ],
+          "target": [
+            42,
+            82,
+            115
+          ]
+        },
+        {
+          "source": [
+            97,
+            94,
+            66
+          ],
+          "target": [
+            44,
+            85,
+            119
+          ]
+        },
+        {
+          "source": [
+            118,
+            113,
+            78
+          ],
+          "target": [
+            53,
+            103,
+            143
+          ]
+        },
+        {
+          "source": [
+            142,
+            131,
+            88
+          ],
+          "target": [
+            62,
+            120,
+            168
+          ]
+        },
+        {
+          "source": [
+            234,
+            210,
+            159
+          ],
+          "target": [
+            170,
+            199,
+            223
+          ]
+        }
+      ],
+      "blue_sha256": "5701b5789f67d4fb3af0eadd43d499025f9cf0749234788d2015842f56dff8c7",
+      "occupied": [
+        31,
+        31,
+        98,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 66,
+      "code": "ARPG-07-r02",
+      "label": "Charognard membraneux",
+      "material": "chair rouge",
+      "source": "assets/sprites/campaign-monsters/tiles/066-r02-A.png",
+      "source_sha256": "f457c354c5264e930307b5e18be5b58e96e03ef7f7d45cccedb8c3d56552d5fb",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 25,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/066-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            40,
+            26,
+            23
+          ],
+          "target": [
+            17,
+            31,
+            45
+          ]
+        },
+        {
+          "source": [
+            46,
+            36,
+            33
+          ],
+          "target": [
+            21,
+            39,
+            58
+          ]
+        },
+        {
+          "source": [
+            58,
+            33,
+            27
+          ],
+          "target": [
+            22,
+            40,
+            59
+          ]
+        },
+        {
+          "source": [
+            65,
+            44,
+            38
+          ],
+          "target": [
+            28,
+            51,
+            75
+          ]
+        },
+        {
+          "source": [
+            77,
+            42,
+            36
+          ],
+          "target": [
+            28,
+            52,
+            76
+          ]
+        },
+        {
+          "source": [
+            78,
+            51,
+            43
+          ],
+          "target": [
+            32,
+            60,
+            88
+          ]
+        },
+        {
+          "source": [
+            83,
+            61,
+            53
+          ],
+          "target": [
+            37,
+            68,
+            99
+          ]
+        },
+        {
+          "source": [
+            87,
+            48,
+            41
+          ],
+          "target": [
+            32,
+            60,
+            87
+          ]
+        },
+        {
+          "source": [
+            97,
+            52,
+            43
+          ],
+          "target": [
+            35,
+            65,
+            95
+          ]
+        },
+        {
+          "source": [
+            100,
+            65,
+            55
+          ],
+          "target": [
+            41,
+            77,
+            112
+          ]
+        },
+        {
+          "source": [
+            114,
+            74,
+            62
+          ],
+          "target": [
+            47,
+            87,
+            127
+          ]
+        },
+        {
+          "source": [
+            117,
+            63,
+            50
+          ],
+          "target": [
+            42,
+            79,
+            115
+          ]
+        },
+        {
+          "source": [
+            119,
+            86,
+            75
+          ],
+          "target": [
+            52,
+            97,
+            142
+          ]
+        },
+        {
+          "source": [
+            136,
+            72,
+            56
+          ],
+          "target": [
+            49,
+            90,
+            132
+          ]
+        },
+        {
+          "source": [
+            143,
+            88,
+            74
+          ],
+          "target": [
+            57,
+            105,
+            154
+          ]
+        },
+        {
+          "source": [
+            150,
+            107,
+            88
+          ],
+          "target": [
+            64,
+            119,
+            174
+          ]
+        },
+        {
+          "source": [
+            162,
+            86,
+            68
+          ],
+          "target": [
+            58,
+            108,
+            157
+          ]
+        },
+        {
+          "source": [
+            168,
+            128,
+            109
+          ],
+          "target": [
+            85,
+            138,
+            192
+          ]
+        },
+        {
+          "source": [
+            220,
+            191,
+            151
+          ],
+          "target": [
+            154,
+            186,
+            217
+          ]
+        }
+      ],
+      "blue_sha256": "a53730b4ab486bb2ae1c36bf58f25470d408267bdd02936769db7d7ae1c4fc71",
+      "occupied": [
+        23,
+        37,
+        105,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 67,
+      "code": "ARPG-08-r02",
+      "label": "Sangsue de cendre",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/067-r02-B.png",
+      "source_sha256": "00c256ae608bbcbe538b0d039fcf443628a9a18bae474f46b028374982397356",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/067-r02-B.png"
+    },
+    {
+      "number": 68,
+      "code": "ARPG-09-r02",
+      "label": "Briseur cornu",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/068-r02-B.png",
+      "source_sha256": "b8da9d64556bd4dd1d8eda5e0233f7c2749b5fadc2a71720b824a0246948e727",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/068-r02-B.png"
+    },
+    {
+      "number": 69,
+      "code": "ARPG-10-r02",
+      "label": "Coléoptère sanglant",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/069-r02-B.png",
+      "source_sha256": "1ada76c026a0a903ce07775a7c6b79444f483892be4d802ddedefa3b051bc98f",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/069-r02-B.png"
+    },
+    {
+      "number": 70,
+      "code": "ARPG-11-r02",
+      "label": "Mante de dépouille",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/070-r02-A.png",
+      "source_sha256": "6e2bd0d7c829a8bc740ecacc5a52fdc39b5768230d1f4bd3b6e78f8f4f011530",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 33,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/070-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            30,
+            27,
+            23
+          ],
+          "target": [
+            14,
+            28,
+            39
+          ]
+        },
+        {
+          "source": [
+            38,
+            35,
+            29
+          ],
+          "target": [
+            18,
+            35,
+            49
+          ]
+        },
+        {
+          "source": [
+            46,
+            46,
+            36
+          ],
+          "target": [
+            22,
+            43,
+            60
+          ]
+        },
+        {
+          "source": [
+            62,
+            48,
+            39
+          ],
+          "target": [
+            27,
+            53,
+            74
+          ]
+        },
+        {
+          "source": [
+            70,
+            66,
+            51
+          ],
+          "target": [
+            33,
+            63,
+            88
+          ]
+        },
+        {
+          "source": [
+            74,
+            59,
+            48
+          ],
+          "target": [
+            33,
+            64,
+            89
+          ]
+        },
+        {
+          "source": [
+            80,
+            79,
+            61
+          ],
+          "target": [
+            38,
+            74,
+            103
+          ]
+        },
+        {
+          "source": [
+            94,
+            87,
+            66
+          ],
+          "target": [
+            43,
+            84,
+            117
+          ]
+        },
+        {
+          "source": [
+            108,
+            107,
+            77
+          ],
+          "target": [
+            50,
+            97,
+            135
+          ]
+        },
+        {
+          "source": [
+            113,
+            98,
+            75
+          ],
+          "target": [
+            51,
+            98,
+            137
+          ]
+        },
+        {
+          "source": [
+            114,
+            81,
+            65
+          ],
+          "target": [
+            48,
+            94,
+            131
+          ]
+        },
+        {
+          "source": [
+            125,
+            121,
+            94
+          ],
+          "target": [
+            59,
+            115,
+            160
+          ]
+        },
+        {
+          "source": [
+            154,
+            116,
+            91
+          ],
+          "target": [
+            66,
+            128,
+            179
+          ]
+        },
+        {
+          "source": [
+            161,
+            143,
+            108
+          ],
+          "target": [
+            79,
+            140,
+            190
+          ]
+        },
+        {
+          "source": [
+            197,
+            175,
+            133
+          ],
+          "target": [
+            124,
+            169,
+            206
+          ]
+        },
+        {
+          "source": [
+            237,
+            223,
+            179
+          ],
+          "target": [
+            186,
+            210,
+            230
+          ]
+        }
+      ],
+      "blue_sha256": "1ff0fc0e0082e8c901232ad1feba36b46c4d15b7695916f5f7ad8cecd3937b6e",
+      "occupied": [
+        28,
+        22,
+        101,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 71,
+      "code": "ARPG-12-r02",
+      "label": "Tisseur des fosses",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/071-r02-B.png",
+      "source_sha256": "569dbc448750ad6b09342e924dd8c4df58612f03f04cb86e2c3cddf4ea39d18b",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/071-r02-B.png"
+    },
+    {
+      "number": 72,
+      "code": "ARPG-13-r02",
+      "label": "Cracheur des failles",
+      "material": "chair et glandes",
+      "source": "assets/sprites/campaign-monsters/tiles/072-r02-A.png",
+      "source_sha256": "3aaae9ea24ff995fdacfed62314ec697c667aefb1da1e6c4e91c0f5bce9e6ac5",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 37,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/072-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            52,
+            42,
+            37
+          ],
+          "target": [
+            24,
+            42,
+            65
+          ]
+        },
+        {
+          "source": [
+            78,
+            61,
+            49
+          ],
+          "target": [
+            34,
+            61,
+            93
+          ]
+        },
+        {
+          "source": [
+            91,
+            76,
+            63
+          ],
+          "target": [
+            42,
+            73,
+            112
+          ]
+        },
+        {
+          "source": [
+            111,
+            88,
+            71
+          ],
+          "target": [
+            49,
+            87,
+            133
+          ]
+        },
+        {
+          "source": [
+            132,
+            106,
+            86
+          ],
+          "target": [
+            59,
+            104,
+            159
+          ]
+        },
+        {
+          "source": [
+            143,
+            121,
+            98
+          ],
+          "target": [
+            65,
+            115,
+            176
+          ]
+        },
+        {
+          "source": [
+            178,
+            143,
+            116
+          ],
+          "target": [
+            97,
+            142,
+            197
+          ]
+        },
+        {
+          "source": [
+            197,
+            168,
+            136
+          ],
+          "target": [
+            126,
+            162,
+            207
+          ]
+        },
+        {
+          "source": [
+            216,
+            188,
+            152
+          ],
+          "target": [
+            151,
+            181,
+            217
+          ]
+        },
+        {
+          "source": [
+            217,
+            175,
+            145
+          ],
+          "target": [
+            147,
+            178,
+            215
+          ]
+        },
+        {
+          "source": [
+            227,
+            201,
+            164
+          ],
+          "target": [
+            168,
+            193,
+            223
+          ]
+        }
+      ],
+      "blue_sha256": "7b4d51233cb93bed62853988af44835b6bff2be9c41dcbafadd03b642045e1b1",
+      "occupied": [
+        36,
+        32,
+        93,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 73,
+      "code": "ARPG-14-r02",
+      "label": "Suture aberrante",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/073-r02-A.png",
+      "source_sha256": "533db90e6390b2810dbe7c3b762541f713a34032e773d27b97224511a3279d81",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 39,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/073-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            57,
+            47,
+            41
+          ],
+          "target": [
+            26,
+            44,
+            72
+          ]
+        },
+        {
+          "source": [
+            67,
+            59,
+            51
+          ],
+          "target": [
+            32,
+            54,
+            86
+          ]
+        },
+        {
+          "source": [
+            95,
+            73,
+            61
+          ],
+          "target": [
+            42,
+            71,
+            114
+          ]
+        },
+        {
+          "source": [
+            109,
+            93,
+            76
+          ],
+          "target": [
+            50,
+            84,
+            135
+          ]
+        },
+        {
+          "source": [
+            137,
+            108,
+            87
+          ],
+          "target": [
+            60,
+            102,
+            164
+          ]
+        },
+        {
+          "source": [
+            171,
+            131,
+            108
+          ],
+          "target": [
+            86,
+            129,
+            193
+          ]
+        },
+        {
+          "source": [
+            187,
+            149,
+            121
+          ],
+          "target": [
+            108,
+            145,
+            200
+          ]
+        },
+        {
+          "source": [
+            202,
+            167,
+            135
+          ],
+          "target": [
+            129,
+            161,
+            208
+          ]
+        },
+        {
+          "source": [
+            222,
+            188,
+            152
+          ],
+          "target": [
+            156,
+            181,
+            218
+          ]
+        },
+        {
+          "source": [
+            234,
+            202,
+            163
+          ],
+          "target": [
+            173,
+            193,
+            224
+          ]
+        },
+        {
+          "source": [
+            249,
+            234,
+            198
+          ],
+          "target": [
+            209,
+            221,
+            238
+          ]
+        }
+      ],
+      "blue_sha256": "c1036ec338fb64812dcc2d747af1c7ed32dbf25e5eca586531e001e62d1cf7e6",
+      "occupied": [
+        38,
+        26,
+        90,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 74,
+      "code": "ARPG-15-r02",
+      "label": "Rôdeur du vide",
+      "material": "chair grise",
+      "source": "assets/sprites/campaign-monsters/tiles/074-r02-A.png",
+      "source_sha256": "14ebba665dfd4a7802b03d7fc8dae609e810d5826e59a968d870f12e7dca1e40",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 41,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/074-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            58,
+            35,
+            34
+          ],
+          "target": [
+            25,
+            40,
+            67
+          ]
+        },
+        {
+          "source": [
+            66,
+            47,
+            42
+          ],
+          "target": [
+            29,
+            47,
+            79
+          ]
+        },
+        {
+          "source": [
+            90,
+            64,
+            56
+          ],
+          "target": [
+            39,
+            63,
+            107
+          ]
+        },
+        {
+          "source": [
+            92,
+            78,
+            76
+          ],
+          "target": [
+            45,
+            72,
+            123
+          ]
+        },
+        {
+          "source": [
+            126,
+            99,
+            81
+          ],
+          "target": [
+            56,
+            89,
+            151
+          ]
+        },
+        {
+          "source": [
+            153,
+            120,
+            95
+          ],
+          "target": [
+            67,
+            107,
+            181
+          ]
+        },
+        {
+          "source": [
+            166,
+            144,
+            110
+          ],
+          "target": [
+            84,
+            122,
+            192
+          ]
+        }
+      ],
+      "blue_sha256": "7ffe18dc9fd93c928f4d317c5dc6fb785ce7ebc653671c1db0d48b9b35f17b39",
+      "occupied": [
+        32,
+        28,
+        97,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 75,
+      "code": "ARPG-16-r02",
+      "label": "Quadrupède des scories",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/075-r02-A.png",
+      "source_sha256": "a99ebf03fd9cf3ba990ca5c51c3a76c697a5b00da56d1e5317ea3a5c6a01542a",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 43,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/075-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            34,
+            27,
+            26
+          ],
+          "target": [
+            16,
+            31,
+            43
+          ]
+        },
+        {
+          "source": [
+            40,
+            31,
+            30
+          ],
+          "target": [
+            18,
+            35,
+            50
+          ]
+        },
+        {
+          "source": [
+            49,
+            34,
+            30
+          ],
+          "target": [
+            21,
+            40,
+            56
+          ]
+        },
+        {
+          "source": [
+            53,
+            42,
+            41
+          ],
+          "target": [
+            25,
+            48,
+            67
+          ]
+        },
+        {
+          "source": [
+            61,
+            46,
+            42
+          ],
+          "target": [
+            27,
+            53,
+            74
+          ]
+        },
+        {
+          "source": [
+            67,
+            52,
+            48
+          ],
+          "target": [
+            31,
+            59,
+            83
+          ]
+        },
+        {
+          "source": [
+            70,
+            55,
+            51
+          ],
+          "target": [
+            32,
+            63,
+            87
+          ]
+        },
+        {
+          "source": [
+            73,
+            59,
+            55
+          ],
+          "target": [
+            34,
+            67,
+            93
+          ]
+        },
+        {
+          "source": [
+            82,
+            62,
+            56
+          ],
+          "target": [
+            37,
+            71,
+            99
+          ]
+        },
+        {
+          "source": [
+            86,
+            44,
+            32
+          ],
+          "target": [
+            29,
+            56,
+            78
+          ]
+        },
+        {
+          "source": [
+            90,
+            65,
+            58
+          ],
+          "target": [
+            39,
+            75,
+            105
+          ]
+        },
+        {
+          "source": [
+            90,
+            70,
+            63
+          ],
+          "target": [
+            41,
+            80,
+            111
+          ]
+        },
+        {
+          "source": [
+            133,
+            58,
+            35
+          ],
+          "target": [
+            40,
+            78,
+            109
+          ]
+        },
+        {
+          "source": [
+            133,
+            87,
+            69
+          ],
+          "target": [
+            53,
+            103,
+            144
+          ]
+        },
+        {
+          "source": [
+            137,
+            74,
+            53
+          ],
+          "target": [
+            48,
+            93,
+            129
+          ]
+        },
+        {
+          "source": [
+            157,
+            118,
+            94
+          ],
+          "target": [
+            68,
+            131,
+            183
+          ]
+        },
+        {
+          "source": [
+            204,
+            186,
+            170
+          ],
+          "target": [
+            156,
+            190,
+            218
+          ]
+        }
+      ],
+      "blue_sha256": "5166e2a502966e38457e426a4f1426ffc6eac0af3d4b6ecc9301736b6c5363c9",
+      "occupied": [
+        22,
+        44,
+        107,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 76,
+      "code": "ARPG-17-r02",
+      "label": "Tentaculaire des boyaux",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/076-r02-A.png",
+      "source_sha256": "1290547b16c807f054e697f8adade8a60cc958dc47481b3b93b73b9a888f11f1",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 45,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/076-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            131,
+            99,
+            80
+          ],
+          "target": [
+            57,
+            105,
+            154
+          ]
+        },
+        {
+          "source": [
+            141,
+            121,
+            100
+          ],
+          "target": [
+            65,
+            120,
+            176
+          ]
+        },
+        {
+          "source": [
+            157,
+            134,
+            108
+          ],
+          "target": [
+            76,
+            132,
+            189
+          ]
+        },
+        {
+          "source": [
+            167,
+            146,
+            119
+          ],
+          "target": [
+            91,
+            143,
+            195
+          ]
+        },
+        {
+          "source": [
+            186,
+            159,
+            129
+          ],
+          "target": [
+            113,
+            157,
+            202
+          ]
+        },
+        {
+          "source": [
+            194,
+            173,
+            141
+          ],
+          "target": [
+            127,
+            167,
+            208
+          ]
+        },
+        {
+          "source": [
+            200,
+            177,
+            144
+          ],
+          "target": [
+            134,
+            172,
+            210
+          ]
+        },
+        {
+          "source": [
+            209,
+            188,
+            155
+          ],
+          "target": [
+            148,
+            182,
+            216
+          ]
+        },
+        {
+          "source": [
+            231,
+            210,
+            175
+          ],
+          "target": [
+            179,
+            203,
+            227
+          ]
+        },
+        {
+          "source": [
+            246,
+            227,
+            185
+          ],
+          "target": [
+            197,
+            215,
+            234
+          ]
+        },
+        {
+          "source": [
+            249,
+            233,
+            201
+          ],
+          "target": [
+            211,
+            225,
+            239
+          ]
+        }
+      ],
+      "blue_sha256": "ac950c02fe6cb96ccac8fd21718bb6f0696ab2418212813946d2199d1e47a2c7",
+      "occupied": [
+        22,
+        34,
+        106,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 77,
+      "code": "ARPG-18-r02",
+      "label": "Démon à membres rompus",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/077-r02-B.png",
+      "source_sha256": "077de3e93ad7e3868ce73f980d98836e58d2c3f0663b57d51f4717a11f74913c",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/077-r02-B.png"
+    },
+    {
+      "number": 78,
+      "code": "ARPG-19-r02",
+      "label": "Cuirassé des abysses",
+      "material": "peau bleue",
+      "source": "assets/sprites/campaign-monsters/tiles/078-r02-A.png",
+      "source_sha256": "c9a4f9654fe5fb286cc2c098f3ab6be6447adcfbae3e5eddbfe84d5ece309824",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "A",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/078-r02-A.png"
+    },
+    {
+      "number": 79,
+      "code": "ARPG-20-r02",
+      "label": "Lame de chair",
+      "material": "chair rouge",
+      "source": "assets/sprites/campaign-monsters/tiles/079-r02-B.png",
+      "source_sha256": "8d7b5e1212252844e61e5250c708cac809ec810a375bacd2c840b39b856ca35f",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/079-r02-B.png"
+    },
+    {
+      "number": 80,
+      "code": "ARPG-21-r01",
+      "label": "Cyclope voûté",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/080-r01-A.png",
+      "source_sha256": "410d94935c966837a025a952b7a67de15cd0a7723bd9783f9d8588a95b88bd54",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 53,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/080-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            90,
+            78,
+            65
+          ],
+          "target": [
+            42,
+            81,
+            113
+          ]
+        },
+        {
+          "source": [
+            122,
+            96,
+            79
+          ],
+          "target": [
+            54,
+            105,
+            147
+          ]
+        },
+        {
+          "source": [
+            135,
+            115,
+            94
+          ],
+          "target": [
+            62,
+            120,
+            167
+          ]
+        },
+        {
+          "source": [
+            150,
+            132,
+            110
+          ],
+          "target": [
+            72,
+            136,
+            187
+          ]
+        },
+        {
+          "source": [
+            168,
+            146,
+            121
+          ],
+          "target": [
+            94,
+            150,
+            195
+          ]
+        },
+        {
+          "source": [
+            177,
+            153,
+            127
+          ],
+          "target": [
+            105,
+            157,
+            199
+          ]
+        },
+        {
+          "source": [
+            188,
+            165,
+            138
+          ],
+          "target": [
+            121,
+            167,
+            205
+          ]
+        },
+        {
+          "source": [
+            213,
+            189,
+            159
+          ],
+          "target": [
+            154,
+            189,
+            218
+          ]
+        },
+        {
+          "source": [
+            230,
+            205,
+            172
+          ],
+          "target": [
+            176,
+            203,
+            226
+          ]
+        },
+        {
+          "source": [
+            246,
+            226,
+            197
+          ],
+          "target": [
+            206,
+            223,
+            237
+          ]
+        }
+      ],
+      "blue_sha256": "505b4c395d986576555827c9f3f2cfd0df30befc606cf76fe4a2c27247fcbb81",
+      "occupied": [
+        29,
+        16,
+        99,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 81,
+      "code": "ARPG-22-r01",
+      "label": "Sangsue cuirassée",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/081-r01-A.png",
+      "source_sha256": "c128a3728601efc63aa2fa5f5acb34ef3eada8bb695e9cc258d412f3a6ece3ee",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 55,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/081-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            74,
+            63,
+            47
+          ],
+          "target": [
+            33,
+            60,
+            88
+          ]
+        },
+        {
+          "source": [
+            84,
+            72,
+            52
+          ],
+          "target": [
+            37,
+            68,
+            99
+          ]
+        },
+        {
+          "source": [
+            92,
+            79,
+            58
+          ],
+          "target": [
+            40,
+            75,
+            110
+          ]
+        },
+        {
+          "source": [
+            109,
+            93,
+            68
+          ],
+          "target": [
+            48,
+            88,
+            129
+          ]
+        },
+        {
+          "source": [
+            122,
+            107,
+            76
+          ],
+          "target": [
+            53,
+            99,
+            145
+          ]
+        }
+      ],
+      "blue_sha256": "e4d922d2ab53a820fde9b98fc2923c4ff184d07f4b72d68a92e2e2fb1a4e2394",
+      "occupied": [
+        34,
+        62,
+        95,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 82,
+      "code": "ARPG-23-r01",
+      "label": "Rôdeur cervidé",
+      "material": "chair rouge",
+      "source": "assets/sprites/campaign-monsters/tiles/082-r01-B.png",
+      "source_sha256": "e48d986c533bac7d1566905583b05316a557852c99311d7d1bf72beff8046012",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/082-r01-B.png"
+    },
+    {
+      "number": 83,
+      "code": "ARPG-24-r01",
+      "label": "Scorpion des scories",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/083-r01-B.png",
+      "source_sha256": "27f61931da081d27f8b5776c154461677ba7db1c562159dd86dfffefda4f786e",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/083-r01-B.png"
+    },
+    {
+      "number": 84,
+      "code": "ARPG-25-r01",
+      "label": "Gueule tripode",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/084-r01-B.png",
+      "source_sha256": "528e9f30ae60681801d1bcf9e9ee0fec501e1c38e1755f501d67d67dc5f0f150",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/084-r01-B.png"
+    },
+    {
+      "number": 85,
+      "code": "ARPG-26-r01",
+      "label": "Porte-kyste",
+      "material": "kyste dorsal",
+      "source": "assets/sprites/campaign-monsters/tiles/085-r01-B.png",
+      "source_sha256": "08b326f511170e9aed8cf542f44b0e069293465a387fcc8242cf95acea4f9006",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/085-r01-B.png"
+    },
+    {
+      "number": 86,
+      "code": "ARPG-27-r01",
+      "label": "Griffe-faucille",
+      "material": "chair rouge",
+      "source": "assets/sprites/campaign-monsters/tiles/086-r01-B.png",
+      "source_sha256": "4cd812998d63cfa3f58cf73a9bcc6efca014fff12729eef3fbaa3cfcc2c2d753",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/086-r01-B.png"
+    },
+    {
+      "number": 87,
+      "code": "ARPG-28-r01",
+      "label": "Crapaud des fosses",
+      "material": "peau olivâtre",
+      "source": "assets/sprites/campaign-monsters/tiles/087-r01-B.png",
+      "source_sha256": "d461d1e4e6111da52ddd1d1b54bd940c5ef318fde3eae5ea36eb41defb5dc04e",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/087-r01-B.png"
+    },
+    {
+      "number": 88,
+      "code": "ARPG-29-r01",
+      "label": "Bec des charniers",
+      "material": "chair et membranes",
+      "source": "assets/sprites/campaign-monsters/tiles/088-r01-B.png",
+      "source_sha256": "f3cdf2dd15e11adcd19b80c471d696a898e1178e30e7b81a70edb68f12457b50",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/088-r01-B.png"
+    },
+    {
+      "number": 89,
+      "code": "ARPG-30-r01",
+      "label": "Arpenteur des failles",
+      "material": "peau bleue",
+      "source": "assets/sprites/campaign-monsters/tiles/089-r01-A.png",
+      "source_sha256": "9d2902389bdc2cc63a2f5bc4cef44d5123e880570c921e50ad7dd5eab71933f7",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 71,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/089-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            27,
+            27,
+            34
+          ],
+          "target": [
+            16,
+            26,
+            45
+          ]
+        },
+        {
+          "source": [
+            40,
+            41,
+            54
+          ],
+          "target": [
+            25,
+            41,
+            69
+          ]
+        },
+        {
+          "source": [
+            49,
+            48,
+            60
+          ],
+          "target": [
+            29,
+            47,
+            79
+          ]
+        },
+        {
+          "source": [
+            50,
+            54,
+            73
+          ],
+          "target": [
+            33,
+            53,
+            90
+          ]
+        }
+      ],
+      "blue_sha256": "505218c46370cbdaa366fedf0410ac9eeba07315617cf3ca6e58c7ccd512748c",
+      "occupied": [
+        36,
+        36,
+        92,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 90,
+      "code": "ARPG-31-r01",
+      "label": "Myriapode fouisseur",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/090-r01-B.png",
+      "source_sha256": "166691cd03254d565f9aa6ae491842800b3efd5fe22bec1779639953e23abc1d",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/090-r01-B.png"
+    },
+    {
+      "number": 92,
+      "code": "RLU-01-r01",
+      "label": "Traîne-carcan",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/092-r01-A.png",
+      "source_sha256": "64352aedb8f481a79e86cf489c00ce23b965ebf9fc6da126218eeb9f388d72de",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 75,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/092-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            39,
+            35,
+            32
+          ],
+          "target": [
+            19,
+            34,
+            52
+          ]
+        },
+        {
+          "source": [
+            57,
+            51,
+            47
+          ],
+          "target": [
+            28,
+            50,
+            76
+          ]
+        },
+        {
+          "source": [
+            64,
+            59,
+            53
+          ],
+          "target": [
+            32,
+            56,
+            85
+          ]
+        },
+        {
+          "source": [
+            73,
+            59,
+            51
+          ],
+          "target": [
+            33,
+            59,
+            91
+          ]
+        },
+        {
+          "source": [
+            78,
+            68,
+            61
+          ],
+          "target": [
+            38,
+            66,
+            101
+          ]
+        },
+        {
+          "source": [
+            88,
+            78,
+            68
+          ],
+          "target": [
+            42,
+            74,
+            114
+          ]
+        },
+        {
+          "source": [
+            103,
+            86,
+            74
+          ],
+          "target": [
+            48,
+            84,
+            129
+          ]
+        },
+        {
+          "source": [
+            112,
+            94,
+            80
+          ],
+          "target": [
+            52,
+            92,
+            140
+          ]
+        },
+        {
+          "source": [
+            122,
+            100,
+            85
+          ],
+          "target": [
+            56,
+            99,
+            151
+          ]
+        },
+        {
+          "source": [
+            127,
+            109,
+            91
+          ],
+          "target": [
+            59,
+            104,
+            159
+          ]
+        },
+        {
+          "source": [
+            135,
+            118,
+            105
+          ],
+          "target": [
+            65,
+            114,
+            175
+          ]
+        },
+        {
+          "source": [
+            152,
+            130,
+            111
+          ],
+          "target": [
+            75,
+            126,
+            188
+          ]
+        },
+        {
+          "source": [
+            176,
+            152,
+            131
+          ],
+          "target": [
+            107,
+            149,
+            200
+          ]
+        },
+        {
+          "source": [
+            191,
+            170,
+            146
+          ],
+          "target": [
+            129,
+            165,
+            208
+          ]
+        },
+        {
+          "source": [
+            201,
+            178,
+            154
+          ],
+          "target": [
+            142,
+            174,
+            213
+          ]
+        },
+        {
+          "source": [
+            212,
+            189,
+            163
+          ],
+          "target": [
+            156,
+            184,
+            219
+          ]
+        },
+        {
+          "source": [
+            243,
+            227,
+            198
+          ],
+          "target": [
+            205,
+            219,
+            236
+          ]
+        }
+      ],
+      "blue_sha256": "03594416e5cf19338955de3c5175d969099dd27b3ae58b1b25adfca66e81ef5a",
+      "occupied": [
+        38,
+        52,
+        91,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 93,
+      "code": "RLU-02-r01",
+      "label": "Brise-entrave",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/093-r01-B.png",
+      "source_sha256": "4219efdf3d5d7063de9e85400d7cff336abd2828cf098f4f21790beaf92bf618",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/093-r01-B.png"
+    },
+    {
+      "number": 100,
+      "code": "RLU-09-r01",
+      "label": "Pénitent de suie",
+      "material": "robe",
+      "source": "assets/sprites/campaign-monsters/tiles/100-r01-A.png",
+      "source_sha256": "8a8de13992bef8f3d8c68bee5cc4d2734109acbb980a87352f0a07545885b3c3",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 85,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/100-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            29,
+            28,
+            28
+          ],
+          "target": [
+            21,
+            29,
+            36
+          ]
+        },
+        {
+          "source": [
+            36,
+            34,
+            34
+          ],
+          "target": [
+            26,
+            36,
+            44
+          ]
+        },
+        {
+          "source": [
+            43,
+            41,
+            41
+          ],
+          "target": [
+            31,
+            43,
+            53
+          ]
+        },
+        {
+          "source": [
+            54,
+            49,
+            46
+          ],
+          "target": [
+            36,
+            51,
+            64
+          ]
+        },
+        {
+          "source": [
+            64,
+            61,
+            58
+          ],
+          "target": [
+            45,
+            63,
+            77
+          ]
+        },
+        {
+          "source": [
+            84,
+            72,
+            60
+          ],
+          "target": [
+            53,
+            74,
+            91
+          ]
+        },
+        {
+          "source": [
+            103,
+            92,
+            80
+          ],
+          "target": [
+            67,
+            94,
+            116
+          ]
+        }
+      ],
+      "blue_sha256": "95c8bb4e83341ead4821a54dbe21a297857dda294274c4c9470d04739e7e6666",
+      "occupied": [
+        46,
+        28,
+        82,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 101,
+      "code": "RLU-10-r01",
+      "label": "Encensoir rampant",
+      "material": "chair sous cage",
+      "source": "assets/sprites/campaign-monsters/tiles/101-r01-A.png",
+      "source_sha256": "460767239b416ccc1842a7de9bf1062bfe3ff5401b316d55722dae283c8b1048",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 87,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/101-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            82,
+            65,
+            48
+          ],
+          "target": [
+            35,
+            65,
+            95
+          ]
+        },
+        {
+          "source": [
+            88,
+            76,
+            66
+          ],
+          "target": [
+            42,
+            77,
+            112
+          ]
+        },
+        {
+          "source": [
+            101,
+            78,
+            54
+          ],
+          "target": [
+            42,
+            77,
+            113
+          ]
+        },
+        {
+          "source": [
+            106,
+            85,
+            64
+          ],
+          "target": [
+            46,
+            85,
+            124
+          ]
+        },
+        {
+          "source": [
+            116,
+            95,
+            76
+          ],
+          "target": [
+            52,
+            96,
+            140
+          ]
+        },
+        {
+          "source": [
+            132,
+            105,
+            75
+          ],
+          "target": [
+            56,
+            103,
+            151
+          ]
+        },
+        {
+          "source": [
+            144,
+            118,
+            91
+          ],
+          "target": [
+            63,
+            117,
+            172
+          ]
+        },
+        {
+          "source": [
+            159,
+            136,
+            113
+          ],
+          "target": [
+            81,
+            136,
+            191
+          ]
+        },
+        {
+          "source": [
+            184,
+            155,
+            126
+          ],
+          "target": [
+            109,
+            155,
+            201
+          ]
+        },
+        {
+          "source": [
+            196,
+            171,
+            145
+          ],
+          "target": [
+            132,
+            170,
+            209
+          ]
+        },
+        {
+          "source": [
+            218,
+            195,
+            170
+          ],
+          "target": [
+            166,
+            194,
+            222
+          ]
+        }
+      ],
+      "blue_sha256": "fd6336aa86f37ec2da6e48b427ba6b7e43b914f4531bed1ae578e6d65c584893",
+      "occupied": [
+        26,
+        42,
+        103,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 102,
+      "code": "RLU-11-r01",
+      "label": "Étreigneur du gel",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/102-r01-A.png",
+      "source_sha256": "1b1723b2132ef0a01e3139cc41a2930ac4ebda309144c8f4f3eafa409bbab86e",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 89,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/102-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            92,
+            82,
+            73
+          ],
+          "target": [
+            45,
+            79,
+            120
+          ]
+        },
+        {
+          "source": [
+            110,
+            100,
+            92
+          ],
+          "target": [
+            55,
+            96,
+            147
+          ]
+        },
+        {
+          "source": [
+            150,
+            134,
+            118
+          ],
+          "target": [
+            78,
+            128,
+            190
+          ]
+        },
+        {
+          "source": [
+            169,
+            150,
+            130
+          ],
+          "target": [
+            101,
+            145,
+            198
+          ]
+        },
+        {
+          "source": [
+            182,
+            160,
+            140
+          ],
+          "target": [
+            118,
+            157,
+            204
+          ]
+        },
+        {
+          "source": [
+            191,
+            173,
+            151
+          ],
+          "target": [
+            132,
+            167,
+            210
+          ]
+        },
+        {
+          "source": [
+            210,
+            190,
+            164
+          ],
+          "target": [
+            156,
+            184,
+            218
+          ]
+        },
+        {
+          "source": [
+            220,
+            200,
+            173
+          ],
+          "target": [
+            170,
+            194,
+            223
+          ]
+        },
+        {
+          "source": [
+            238,
+            222,
+            193
+          ],
+          "target": [
+            197,
+            214,
+            234
+          ]
+        }
+      ],
+      "blue_sha256": "a0293fb280a57ae7755dc4ce70e6206c6b5dca82bcc0f5a6c5b47881235a6d40",
+      "occupied": [
+        26,
+        16,
+        103,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 103,
+      "code": "RLU-12-r01",
+      "label": "Gueule de banquise",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/103-r01-A.png",
+      "source_sha256": "e29fd77edbe1eb924b6b658f92eee91404c8c5494d6552e9e92f8293b7b6c737",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 91,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/103-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            150,
+            139,
+            121
+          ],
+          "target": [
+            81,
+            125,
+            190
+          ]
+        },
+        {
+          "source": [
+            170,
+            157,
+            135
+          ],
+          "target": [
+            105,
+            143,
+            200
+          ]
+        },
+        {
+          "source": [
+            182,
+            169,
+            144
+          ],
+          "target": [
+            121,
+            155,
+            205
+          ]
+        },
+        {
+          "source": [
+            189,
+            177,
+            154
+          ],
+          "target": [
+            133,
+            164,
+            210
+          ]
+        },
+        {
+          "source": [
+            201,
+            189,
+            164
+          ],
+          "target": [
+            149,
+            176,
+            216
+          ]
+        },
+        {
+          "source": [
+            215,
+            202,
+            175
+          ],
+          "target": [
+            167,
+            189,
+            223
+          ]
+        },
+        {
+          "source": [
+            223,
+            210,
+            183
+          ],
+          "target": [
+            179,
+            198,
+            227
+          ]
+        },
+        {
+          "source": [
+            230,
+            217,
+            190
+          ],
+          "target": [
+            189,
+            206,
+            231
+          ]
+        },
+        {
+          "source": [
+            244,
+            235,
+            207
+          ],
+          "target": [
+            212,
+            223,
+            239
+          ]
+        }
+      ],
+      "blue_sha256": "a87aab469d94d501954f3025472debeff70e4c3e58735eb0ba453d570ded0fa9",
+      "occupied": [
+        29,
+        50,
+        100,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 104,
+      "code": "RLU-13-r01",
+      "label": "Rebut de cuve",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/104-r01-A.png",
+      "source_sha256": "d145ea2a1809beb9738a9313c87fbf72607e8c75249908331b971543d5062c43",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 93,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/104-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            58,
+            48,
+            42
+          ],
+          "target": [
+            27,
+            43,
+            73
+          ]
+        },
+        {
+          "source": [
+            66,
+            62,
+            55
+          ],
+          "target": [
+            33,
+            52,
+            88
+          ]
+        },
+        {
+          "source": [
+            79,
+            71,
+            62
+          ],
+          "target": [
+            38,
+            61,
+            103
+          ]
+        },
+        {
+          "source": [
+            90,
+            80,
+            65
+          ],
+          "target": [
+            42,
+            67,
+            113
+          ]
+        },
+        {
+          "source": [
+            98,
+            87,
+            70
+          ],
+          "target": [
+            45,
+            72,
+            123
+          ]
+        },
+        {
+          "source": [
+            118,
+            103,
+            84
+          ],
+          "target": [
+            55,
+            87,
+            147
+          ]
+        },
+        {
+          "source": [
+            137,
+            120,
+            95
+          ],
+          "target": [
+            63,
+            100,
+            169
+          ]
+        },
+        {
+          "source": [
+            163,
+            142,
+            118
+          ],
+          "target": [
+            88,
+            125,
+            193
+          ]
+        },
+        {
+          "source": [
+            182,
+            158,
+            131
+          ],
+          "target": [
+            111,
+            143,
+            202
+          ]
+        },
+        {
+          "source": [
+            192,
+            169,
+            139
+          ],
+          "target": [
+            124,
+            153,
+            207
+          ]
+        },
+        {
+          "source": [
+            204,
+            181,
+            151
+          ],
+          "target": [
+            142,
+            167,
+            213
+          ]
+        },
+        {
+          "source": [
+            218,
+            193,
+            162
+          ],
+          "target": [
+            160,
+            181,
+            220
+          ]
+        },
+        {
+          "source": [
+            227,
+            203,
+            171
+          ],
+          "target": [
+            173,
+            191,
+            225
+          ]
+        },
+        {
+          "source": [
+            232,
+            208,
+            174
+          ],
+          "target": [
+            179,
+            196,
+            227
+          ]
+        },
+        {
+          "source": [
+            233,
+            209,
+            175
+          ],
+          "target": [
+            181,
+            197,
+            227
+          ]
+        },
+        {
+          "source": [
+            235,
+            212,
+            174
+          ],
+          "target": [
+            181,
+            198,
+            228
+          ]
+        },
+        {
+          "source": [
+            239,
+            216,
+            183
+          ],
+          "target": [
+            191,
+            205,
+            231
+          ]
+        },
+        {
+          "source": [
+            251,
+            234,
+            208
+          ],
+          "target": [
+            218,
+            226,
+            241
+          ]
+        }
+      ],
+      "blue_sha256": "3fc843100189bae0c85a3e6c21631a24c0043c8dd14d858d739ad8bdb79166c7",
+      "occupied": [
+        35,
+        58,
+        93,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 105,
+      "code": "RLU-14-r01",
+      "label": "Dévié",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/105-r01-A.png",
+      "source_sha256": "0cccede081eb428ba1a21d2aeacd9ffeac36781e838d87e0908a212b7fb8961a",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 95,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/105-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            64,
+            58,
+            49
+          ],
+          "target": [
+            31,
+            59,
+            82
+          ]
+        },
+        {
+          "source": [
+            97,
+            78,
+            62
+          ],
+          "target": [
+            43,
+            83,
+            116
+          ]
+        },
+        {
+          "source": [
+            123,
+            103,
+            80
+          ],
+          "target": [
+            55,
+            106,
+            148
+          ]
+        },
+        {
+          "source": [
+            152,
+            110,
+            87
+          ],
+          "target": [
+            65,
+            125,
+            174
+          ]
+        },
+        {
+          "source": [
+            165,
+            137,
+            107
+          ],
+          "target": [
+            81,
+            141,
+            191
+          ]
+        },
+        {
+          "source": [
+            180,
+            153,
+            120
+          ],
+          "target": [
+            102,
+            155,
+            198
+          ]
+        },
+        {
+          "source": [
+            193,
+            164,
+            129
+          ],
+          "target": [
+            118,
+            165,
+            204
+          ]
+        },
+        {
+          "source": [
+            206,
+            174,
+            138
+          ],
+          "target": [
+            134,
+            176,
+            210
+          ]
+        },
+        {
+          "source": [
+            214,
+            186,
+            147
+          ],
+          "target": [
+            146,
+            184,
+            215
+          ]
+        },
+        {
+          "source": [
+            240,
+            225,
+            191
+          ],
+          "target": [
+            197,
+            217,
+            234
+          ]
+        }
+      ],
+      "blue_sha256": "4ce55aa472ca8f6f64dda419f7d503773a28b8701fc1cd74cb4030edc4f8b103",
+      "occupied": [
+        38,
+        26,
+        90,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 106,
+      "code": "RLU-15-r01",
+      "label": "Ligaturé",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/106-r01-A.png",
+      "source_sha256": "9530b9c51abcd9393daaa71f1f84eadf8db774982fda6f24e529fab897e5a10a",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 97,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/106-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            49,
+            39,
+            35
+          ],
+          "target": [
+            23,
+            42,
+            61
+          ]
+        },
+        {
+          "source": [
+            74,
+            62,
+            54
+          ],
+          "target": [
+            35,
+            64,
+            93
+          ]
+        },
+        {
+          "source": [
+            87,
+            73,
+            62
+          ],
+          "target": [
+            40,
+            74,
+            109
+          ]
+        },
+        {
+          "source": [
+            102,
+            84,
+            73
+          ],
+          "target": [
+            47,
+            87,
+            128
+          ]
+        },
+        {
+          "source": [
+            120,
+            100,
+            85
+          ],
+          "target": [
+            55,
+            102,
+            150
+          ]
+        },
+        {
+          "source": [
+            149,
+            122,
+            101
+          ],
+          "target": [
+            68,
+            125,
+            182
+          ]
+        },
+        {
+          "source": [
+            174,
+            150,
+            121
+          ],
+          "target": [
+            98,
+            147,
+            197
+          ]
+        },
+        {
+          "source": [
+            191,
+            166,
+            134
+          ],
+          "target": [
+            120,
+            162,
+            205
+          ]
+        },
+        {
+          "source": [
+            208,
+            180,
+            147
+          ],
+          "target": [
+            142,
+            177,
+            213
+          ]
+        },
+        {
+          "source": [
+            225,
+            201,
+            166
+          ],
+          "target": [
+            168,
+            195,
+            223
+          ]
+        },
+        {
+          "source": [
+            241,
+            222,
+            170
+          ],
+          "target": [
+            183,
+            205,
+            228
+          ]
+        }
+      ],
+      "blue_sha256": "04cfb4ad2e4d79b5002fe336bc3fd3e6769deb28c25c5914bebce19a41fad1f6",
+      "occupied": [
+        34,
+        48,
+        95,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 107,
+      "code": "RLU-16-r01",
+      "label": "Cocon marcheur",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/107-r01-A.png",
+      "source_sha256": "caf20d6179c8b4dcb5d9a66d3e15bc11d4ddb41e61cdcd015ab62dd2a8e57644",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 99,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/107-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            31,
+            25,
+            23
+          ],
+          "target": [
+            15,
+            26,
+            39
+          ]
+        },
+        {
+          "source": [
+            41,
+            33,
+            29
+          ],
+          "target": [
+            19,
+            33,
+            51
+          ]
+        },
+        {
+          "source": [
+            50,
+            41,
+            36
+          ],
+          "target": [
+            23,
+            41,
+            63
+          ]
+        },
+        {
+          "source": [
+            57,
+            47,
+            35
+          ],
+          "target": [
+            25,
+            44,
+            67
+          ]
+        },
+        {
+          "source": [
+            60,
+            49,
+            46
+          ],
+          "target": [
+            29,
+            51,
+            77
+          ]
+        },
+        {
+          "source": [
+            68,
+            56,
+            46
+          ],
+          "target": [
+            31,
+            54,
+            83
+          ]
+        },
+        {
+          "source": [
+            72,
+            62,
+            42
+          ],
+          "target": [
+            31,
+            54,
+            83
+          ]
+        },
+        {
+          "source": [
+            75,
+            64,
+            57
+          ],
+          "target": [
+            36,
+            63,
+            96
+          ]
+        },
+        {
+          "source": [
+            84,
+            71,
+            57
+          ],
+          "target": [
+            38,
+            67,
+            103
+          ]
+        },
+        {
+          "source": [
+            95,
+            79,
+            60
+          ],
+          "target": [
+            42,
+            74,
+            113
+          ]
+        },
+        {
+          "source": [
+            97,
+            85,
+            63
+          ],
+          "target": [
+            43,
+            76,
+            117
+          ]
+        },
+        {
+          "source": [
+            112,
+            94,
+            70
+          ],
+          "target": [
+            49,
+            87,
+            133
+          ]
+        },
+        {
+          "source": [
+            125,
+            107,
+            74
+          ],
+          "target": [
+            54,
+            95,
+            145
+          ]
+        },
+        {
+          "source": [
+            134,
+            115,
+            79
+          ],
+          "target": [
+            58,
+            102,
+            155
+          ]
+        },
+        {
+          "source": [
+            146,
+            128,
+            95
+          ],
+          "target": [
+            65,
+            115,
+            176
+          ]
+        },
+        {
+          "source": [
+            174,
+            145,
+            111
+          ],
+          "target": [
+            91,
+            137,
+            194
+          ]
+        },
+        {
+          "source": [
+            196,
+            172,
+            134
+          ],
+          "target": [
+            124,
+            161,
+            206
+          ]
+        },
+        {
+          "source": [
+            237,
+            217,
+            183
+          ],
+          "target": [
+            189,
+            208,
+            231
+          ]
+        }
+      ],
+      "blue_sha256": "fab4291bd2394fdae1306cff27e84bfa9aa3d2b792d6eacb833fd9abf738fce0",
+      "occupied": [
+        37,
+        40,
+        91,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 108,
+      "code": "RLU-17-r01",
+      "label": "Oreillard des failles",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/108-r01-A.png",
+      "source_sha256": "a858ca57d586c1306acc80483c85811375c946ba7916b3f9503fee072c3a5bd0",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 101,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/108-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            79,
+            69,
+            64
+          ],
+          "target": [
+            39,
+            65,
+            104
+          ]
+        },
+        {
+          "source": [
+            108,
+            85,
+            75
+          ],
+          "target": [
+            49,
+            83,
+            134
+          ]
+        },
+        {
+          "source": [
+            134,
+            115,
+            99
+          ],
+          "target": [
+            63,
+            106,
+            170
+          ]
+        },
+        {
+          "source": [
+            160,
+            132,
+            106
+          ],
+          "target": [
+            77,
+            122,
+            189
+          ]
+        },
+        {
+          "source": [
+            184,
+            145,
+            118
+          ],
+          "target": [
+            103,
+            141,
+            199
+          ]
+        },
+        {
+          "source": [
+            204,
+            173,
+            137
+          ],
+          "target": [
+            132,
+            163,
+            209
+          ]
+        },
+        {
+          "source": [
+            242,
+            221,
+            186
+          ],
+          "target": [
+            195,
+            210,
+            233
+          ]
+        }
+      ],
+      "blue_sha256": "70c46280fb0b5569efd8636ed37cc4a660f8f9f06d133cd7069a9f561210a457",
+      "occupied": [
+        45,
+        32,
+        83,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 109,
+      "code": "RLU-18-r01",
+      "label": "Tresse rampante",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/109-r01-A.png",
+      "source_sha256": "6e9861d2d4686d41b3c27a4f382b175f6b04333775b4f155489a08af1722c311",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 103,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/109-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            59,
+            49,
+            45
+          ],
+          "target": [
+            28,
+            45,
+            76
+          ]
+        },
+        {
+          "source": [
+            75,
+            63,
+            57
+          ],
+          "target": [
+            36,
+            57,
+            96
+          ]
+        },
+        {
+          "source": [
+            84,
+            74,
+            67
+          ],
+          "target": [
+            41,
+            65,
+            110
+          ]
+        },
+        {
+          "source": [
+            98,
+            78,
+            70
+          ],
+          "target": [
+            45,
+            72,
+            123
+          ]
+        },
+        {
+          "source": [
+            99,
+            88,
+            77
+          ],
+          "target": [
+            48,
+            76,
+            128
+          ]
+        },
+        {
+          "source": [
+            115,
+            101,
+            88
+          ],
+          "target": [
+            55,
+            87,
+            148
+          ]
+        },
+        {
+          "source": [
+            137,
+            116,
+            100
+          ],
+          "target": [
+            64,
+            102,
+            173
+          ]
+        },
+        {
+          "source": [
+            146,
+            133,
+            108
+          ],
+          "target": [
+            69,
+            109,
+            185
+          ]
+        },
+        {
+          "source": [
+            172,
+            146,
+            125
+          ],
+          "target": [
+            100,
+            134,
+            197
+          ]
+        },
+        {
+          "source": [
+            185,
+            166,
+            140
+          ],
+          "target": [
+            120,
+            150,
+            205
+          ]
+        },
+        {
+          "source": [
+            209,
+            185,
+            157
+          ],
+          "target": [
+            150,
+            173,
+            216
+          ]
+        },
+        {
+          "source": [
+            233,
+            211,
+            178
+          ],
+          "target": [
+            183,
+            199,
+            228
+          ]
+        },
+        {
+          "source": [
+            247,
+            228,
+            188
+          ],
+          "target": [
+            200,
+            212,
+            235
+          ]
+        }
+      ],
+      "blue_sha256": "9dc2a29eaa6262f9982404900f8d6ae0776f40cfb893d4c027e0577cce2ad90a",
+      "occupied": [
+        38,
+        56,
+        91,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 111,
+      "code": "RLU-20-r01",
+      "label": "Porte-lest",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/111-r01-A.png",
+      "source_sha256": "c727e1b4b742163960dab0ac845e038ff37b9b8d12607af188d653b10c58610f",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 105,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/111-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            89,
+            71,
+            61
+          ],
+          "target": [
+            40,
+            75,
+            110
+          ]
+        },
+        {
+          "source": [
+            129,
+            110,
+            89
+          ],
+          "target": [
+            59,
+            109,
+            159
+          ]
+        },
+        {
+          "source": [
+            147,
+            123,
+            97
+          ],
+          "target": [
+            66,
+            122,
+            178
+          ]
+        },
+        {
+          "source": [
+            169,
+            140,
+            110
+          ],
+          "target": [
+            86,
+            139,
+            193
+          ]
+        },
+        {
+          "source": [
+            180,
+            155,
+            123
+          ],
+          "target": [
+            104,
+            151,
+            199
+          ]
+        },
+        {
+          "source": [
+            201,
+            171,
+            134
+          ],
+          "target": [
+            127,
+            167,
+            208
+          ]
+        },
+        {
+          "source": [
+            219,
+            188,
+            149
+          ],
+          "target": [
+            151,
+            184,
+            217
+          ]
+        },
+        {
+          "source": [
+            237,
+            211,
+            173
+          ],
+          "target": [
+            182,
+            205,
+            228
+          ]
+        }
+      ],
+      "blue_sha256": "6c8859da2c83176339051a4489bdfc0dbfb21688ed871b33492496e41bd8ce30",
+      "occupied": [
+        28,
+        20,
+        101,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 112,
+      "code": "RLU-21-r01",
+      "label": "Voilé des cryptes",
+      "material": "robe claire",
+      "source": "assets/sprites/campaign-monsters/tiles/112-r01-A.png",
+      "source_sha256": "cdd6e3bda6c3396eb235937450ea99c1bd5050b9128fc984af12753e85a1551c",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 107,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/112-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            86,
+            79,
+            70
+          ],
+          "target": [
+            57,
+            76,
+            99
+          ]
+        },
+        {
+          "source": [
+            105,
+            95,
+            84
+          ],
+          "target": [
+            69,
+            92,
+            120
+          ]
+        },
+        {
+          "source": [
+            132,
+            122,
+            107
+          ],
+          "target": [
+            87,
+            116,
+            152
+          ]
+        },
+        {
+          "source": [
+            157,
+            143,
+            123
+          ],
+          "target": [
+            109,
+            137,
+            171
+          ]
+        },
+        {
+          "source": [
+            179,
+            165,
+            139
+          ],
+          "target": [
+            133,
+            156,
+            185
+          ]
+        },
+        {
+          "source": [
+            200,
+            185,
+            159
+          ],
+          "target": [
+            159,
+            177,
+            200
+          ]
+        },
+        {
+          "source": [
+            223,
+            208,
+            182
+          ],
+          "target": [
+            188,
+            201,
+            217
+          ]
+        },
+        {
+          "source": [
+            239,
+            225,
+            198
+          ],
+          "target": [
+            209,
+            218,
+            228
+          ]
+        },
+        {
+          "source": [
+            246,
+            234,
+            207
+          ],
+          "target": [
+            219,
+            226,
+            234
+          ]
+        }
+      ],
+      "blue_sha256": "7de377ae2d6f2e1ea9205afee7dd25c8f9bba41290a5aa218fd0d5439c711c55",
+      "occupied": [
+        43,
+        24,
+        85,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 113,
+      "code": "RLU-22-r01",
+      "label": "Étoile des fosses",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/113-r01-A.png",
+      "source_sha256": "f602dbf87db6c955ff24e004decc51722f050d24bc561625064117272350ce09",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 109,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/113-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            51,
+            45,
+            42
+          ],
+          "target": [
+            25,
+            42,
+            68
+          ]
+        },
+        {
+          "source": [
+            86,
+            72,
+            62
+          ],
+          "target": [
+            40,
+            67,
+            108
+          ]
+        },
+        {
+          "source": [
+            97,
+            85,
+            73
+          ],
+          "target": [
+            46,
+            77,
+            124
+          ]
+        },
+        {
+          "source": [
+            110,
+            97,
+            86
+          ],
+          "target": [
+            53,
+            89,
+            143
+          ]
+        },
+        {
+          "source": [
+            123,
+            109,
+            95
+          ],
+          "target": [
+            59,
+            99,
+            159
+          ]
+        },
+        {
+          "source": [
+            136,
+            125,
+            107
+          ],
+          "target": [
+            66,
+            110,
+            177
+          ]
+        },
+        {
+          "source": [
+            163,
+            141,
+            124
+          ],
+          "target": [
+            92,
+            133,
+            195
+          ]
+        },
+        {
+          "source": [
+            173,
+            158,
+            137
+          ],
+          "target": [
+            109,
+            146,
+            201
+          ]
+        },
+        {
+          "source": [
+            193,
+            175,
+            155
+          ],
+          "target": [
+            137,
+            167,
+            211
+          ]
+        },
+        {
+          "source": [
+            210,
+            192,
+            171
+          ],
+          "target": [
+            161,
+            185,
+            220
+          ]
+        },
+        {
+          "source": [
+            220,
+            203,
+            181
+          ],
+          "target": [
+            175,
+            195,
+            226
+          ]
+        },
+        {
+          "source": [
+            227,
+            210,
+            188
+          ],
+          "target": [
+            186,
+            203,
+            229
+          ]
+        },
+        {
+          "source": [
+            236,
+            220,
+            199
+          ],
+          "target": [
+            200,
+            214,
+            235
+          ]
+        },
+        {
+          "source": [
+            247,
+            234,
+            214
+          ],
+          "target": [
+            219,
+            228,
+            242
+          ]
+        }
+      ],
+      "blue_sha256": "a5d046cdba7b6a9384e1a8bdd7294def554cea10764ff7788c41ddb9f23e82c1",
+      "occupied": [
+        38,
+        58,
+        90,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 115,
+      "code": "RLU-24-r01",
+      "label": "Veilleur du givre",
+      "material": "chitine claire",
+      "source": "assets/sprites/campaign-monsters/tiles/115-r01-A.png",
+      "source_sha256": "bd8344c7b5b7737599dbd8f6e3ba4002541636e2c2cb59006896fa42765bf658",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 111,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/115-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            59,
+            55,
+            50
+          ],
+          "target": [
+            29,
+            57,
+            80
+          ]
+        },
+        {
+          "source": [
+            132,
+            117,
+            102
+          ],
+          "target": [
+            63,
+            122,
+            171
+          ]
+        },
+        {
+          "source": [
+            144,
+            132,
+            118
+          ],
+          "target": [
+            74,
+            137,
+            188
+          ]
+        },
+        {
+          "source": [
+            160,
+            146,
+            130
+          ],
+          "target": [
+            94,
+            150,
+            196
+          ]
+        },
+        {
+          "source": [
+            170,
+            162,
+            140
+          ],
+          "target": [
+            109,
+            160,
+            201
+          ]
+        },
+        {
+          "source": [
+            188,
+            172,
+            152
+          ],
+          "target": [
+            131,
+            174,
+            209
+          ]
+        },
+        {
+          "source": [
+            214,
+            196,
+            174
+          ],
+          "target": [
+            166,
+            197,
+            222
+          ]
+        },
+        {
+          "source": [
+            237,
+            223,
+            178
+          ],
+          "target": [
+            186,
+            210,
+            229
+          ]
+        }
+      ],
+      "blue_sha256": "b653061a23779791157081808078a66276ce8225eb2c57c6e78bb18fbc624334",
+      "occupied": [
+        44,
+        14,
+        84,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 136,
+      "code": "NEC-D01-r01",
+      "label": "Fossoyeur des failles",
+      "material": "robe",
+      "source": "assets/sprites/campaign-monsters/tiles/136-r01-A.png",
+      "source_sha256": "dff6bb18f5bb8a4eb416ae619ba64b9ffda75beaa658cb50dbe16d76e4a3fa18",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 153,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/136-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            28,
+            23,
+            25
+          ],
+          "target": [
+            18,
+            25,
+            32
+          ]
+        },
+        {
+          "source": [
+            32,
+            29,
+            30
+          ],
+          "target": [
+            22,
+            30,
+            39
+          ]
+        },
+        {
+          "source": [
+            38,
+            32,
+            34
+          ],
+          "target": [
+            25,
+            35,
+            44
+          ]
+        },
+        {
+          "source": [
+            43,
+            38,
+            39
+          ],
+          "target": [
+            30,
+            40,
+            51
+          ]
+        },
+        {
+          "source": [
+            51,
+            42,
+            46
+          ],
+          "target": [
+            34,
+            46,
+            58
+          ]
+        },
+        {
+          "source": [
+            56,
+            48,
+            50
+          ],
+          "target": [
+            38,
+            52,
+            66
+          ]
+        },
+        {
+          "source": [
+            60,
+            54,
+            56
+          ],
+          "target": [
+            42,
+            57,
+            72
+          ]
+        },
+        {
+          "source": [
+            72,
+            61,
+            62
+          ],
+          "target": [
+            48,
+            66,
+            84
+          ]
+        },
+        {
+          "source": [
+            89,
+            81,
+            73
+          ],
+          "target": [
+            59,
+            81,
+            103
+          ]
+        }
+      ],
+      "blue_sha256": "27e7d2fe3380153d1f055e7201f49c87dbf3c0954cc816799835b9ef6fddaf18",
+      "occupied": [
+        34,
+        20,
+        94,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 137,
+      "code": "NEC-D02-r02",
+      "label": "Fossoyeuse chitineuse",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/137-r02-A.png",
+      "source_sha256": "28343d2c79bce788a6a03f0c3287d2523edea9e90ce5865828e3de1a9ae0fd24",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 155,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/137-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            38,
+            28,
+            26
+          ],
+          "target": [
+            17,
+            31,
+            47
+          ]
+        },
+        {
+          "source": [
+            40,
+            33,
+            27
+          ],
+          "target": [
+            18,
+            32,
+            49
+          ]
+        },
+        {
+          "source": [
+            45,
+            39,
+            32
+          ],
+          "target": [
+            21,
+            37,
+            56
+          ]
+        },
+        {
+          "source": [
+            58,
+            42,
+            40
+          ],
+          "target": [
+            26,
+            47,
+            72
+          ]
+        },
+        {
+          "source": [
+            58,
+            50,
+            38
+          ],
+          "target": [
+            26,
+            46,
+            70
+          ]
+        },
+        {
+          "source": [
+            70,
+            53,
+            45
+          ],
+          "target": [
+            31,
+            55,
+            84
+          ]
+        },
+        {
+          "source": [
+            73,
+            63,
+            44
+          ],
+          "target": [
+            32,
+            56,
+            85
+          ]
+        },
+        {
+          "source": [
+            88,
+            68,
+            55
+          ],
+          "target": [
+            39,
+            68,
+            104
+          ]
+        },
+        {
+          "source": [
+            93,
+            80,
+            54
+          ],
+          "target": [
+            40,
+            70,
+            107
+          ]
+        },
+        {
+          "source": [
+            109,
+            89,
+            66
+          ],
+          "target": [
+            47,
+            83,
+            128
+          ]
+        },
+        {
+          "source": [
+            121,
+            102,
+            70
+          ],
+          "target": [
+            52,
+            91,
+            139
+          ]
+        },
+        {
+          "source": [
+            136,
+            117,
+            82
+          ],
+          "target": [
+            59,
+            104,
+            159
+          ]
+        },
+        {
+          "source": [
+            152,
+            133,
+            97
+          ],
+          "target": [
+            67,
+            119,
+            182
+          ]
+        },
+        {
+          "source": [
+            195,
+            180,
+            140
+          ],
+          "target": [
+            127,
+            163,
+            208
+          ]
+        }
+      ],
+      "blue_sha256": "6678a89afc071fac3d34695cf4f2ea742fcda2b4c3e8c064cb647b303298a963",
+      "occupied": [
+        42,
+        24,
+        86,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 138,
+      "code": "NEC-D03-r01",
+      "label": "Gardien des chairs mortes",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/138-r01-A.png",
+      "source_sha256": "c1dbadd746c6a3ca9bd137e55cc169fb2b79a16fb9a8dec8380ffd7362116dec",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 157,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/138-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            64,
+            57,
+            54
+          ],
+          "target": [
+            32,
+            54,
+            86
+          ]
+        },
+        {
+          "source": [
+            108,
+            92,
+            79
+          ],
+          "target": [
+            50,
+            85,
+            137
+          ]
+        },
+        {
+          "source": [
+            128,
+            110,
+            94
+          ],
+          "target": [
+            60,
+            101,
+            162
+          ]
+        },
+        {
+          "source": [
+            145,
+            124,
+            105
+          ],
+          "target": [
+            68,
+            114,
+            182
+          ]
+        },
+        {
+          "source": [
+            161,
+            138,
+            117
+          ],
+          "target": [
+            86,
+            128,
+            192
+          ]
+        },
+        {
+          "source": [
+            172,
+            150,
+            127
+          ],
+          "target": [
+            101,
+            140,
+            198
+          ]
+        },
+        {
+          "source": [
+            191,
+            168,
+            142
+          ],
+          "target": [
+            126,
+            158,
+            207
+          ]
+        },
+        {
+          "source": [
+            201,
+            177,
+            150
+          ],
+          "target": [
+            139,
+            168,
+            212
+          ]
+        },
+        {
+          "source": [
+            226,
+            208,
+            179
+          ],
+          "target": [
+            178,
+            198,
+            227
+          ]
+        }
+      ],
+      "blue_sha256": "c59e80a769f81a0c7d27c7e9cc00ba26c083b8fc2814c6525c801eecbefdec71",
+      "occupied": [
+        27,
+        32,
+        101,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 139,
+      "code": "NEC-D04-r02",
+      "label": "Nécromancien du linceul",
+      "material": "robe turquoise",
+      "source": "assets/sprites/campaign-monsters/tiles/139-r02-A.png",
+      "source_sha256": "181c048fb26de1c0863f66bded561ea09b6e33fac7d37fb957cacd0de4b8bceb",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "A",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/139-r02-A.png"
+    },
+    {
+      "number": 140,
+      "code": "DEM-V01-r01",
+      "label": "Larve du charnier",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/140-r01-B.png",
+      "source_sha256": "dc8e801e96dece553615fefe7054b62db3da7783707bc3b9b1e168bb661d0acf",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/140-r01-B.png"
+    },
+    {
+      "number": 141,
+      "code": "DEM-V02-r01",
+      "label": "Ver des fosses",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/141-r01-A.png",
+      "source_sha256": "c7675382cc935c6a570a46ae2980945230d135a9b1541790a25287424ad17188",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 163,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/141-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            89,
+            76,
+            70
+          ],
+          "target": [
+            43,
+            79,
+            116
+          ]
+        },
+        {
+          "source": [
+            127,
+            112,
+            98
+          ],
+          "target": [
+            61,
+            112,
+            164
+          ]
+        },
+        {
+          "source": [
+            140,
+            126,
+            111
+          ],
+          "target": [
+            68,
+            125,
+            183
+          ]
+        },
+        {
+          "source": [
+            161,
+            142,
+            125
+          ],
+          "target": [
+            91,
+            143,
+            195
+          ]
+        },
+        {
+          "source": [
+            172,
+            155,
+            135
+          ],
+          "target": [
+            107,
+            153,
+            200
+          ]
+        },
+        {
+          "source": [
+            178,
+            161,
+            141
+          ],
+          "target": [
+            116,
+            159,
+            203
+          ]
+        },
+        {
+          "source": [
+            185,
+            168,
+            147
+          ],
+          "target": [
+            125,
+            166,
+            207
+          ]
+        },
+        {
+          "source": [
+            200,
+            182,
+            159
+          ],
+          "target": [
+            145,
+            179,
+            214
+          ]
+        },
+        {
+          "source": [
+            216,
+            198,
+            173
+          ],
+          "target": [
+            167,
+            194,
+            222
+          ]
+        },
+        {
+          "source": [
+            225,
+            207,
+            181
+          ],
+          "target": [
+            179,
+            203,
+            227
+          ]
+        },
+        {
+          "source": [
+            235,
+            217,
+            190
+          ],
+          "target": [
+            193,
+            212,
+            232
+          ]
+        }
+      ],
+      "blue_sha256": "a01267307f5e7f648f73aa5cbd241e9e02d81ee7c019ac9ccdea2c6534b7d8bc",
+      "occupied": [
+        31,
+        18,
+        97,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 142,
+      "code": "DEM-V03-r01",
+      "label": "Sangsue des égouts noirs",
+      "material": "chitine pourpre",
+      "source": "assets/sprites/campaign-monsters/tiles/142-r01-A.png",
+      "source_sha256": "cb9b9ae5ac64d4d38c88ca9f21d34f6bdb4e934e98b9e8ef618a763428cb7d63",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 165,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/142-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            43,
+            33,
+            31
+          ],
+          "target": [
+            20,
+            35,
+            54
+          ]
+        },
+        {
+          "source": [
+            46,
+            24,
+            32
+          ],
+          "target": [
+            18,
+            31,
+            47
+          ]
+        },
+        {
+          "source": [
+            47,
+            26,
+            34
+          ],
+          "target": [
+            19,
+            33,
+            50
+          ]
+        },
+        {
+          "source": [
+            48,
+            27,
+            34
+          ],
+          "target": [
+            19,
+            34,
+            52
+          ]
+        },
+        {
+          "source": [
+            53,
+            29,
+            37
+          ],
+          "target": [
+            21,
+            37,
+            56
+          ]
+        },
+        {
+          "source": [
+            64,
+            33,
+            44
+          ],
+          "target": [
+            24,
+            43,
+            65
+          ]
+        },
+        {
+          "source": [
+            77,
+            42,
+            52
+          ],
+          "target": [
+            30,
+            53,
+            81
+          ]
+        },
+        {
+          "source": [
+            78,
+            56,
+            54
+          ],
+          "target": [
+            36,
+            63,
+            96
+          ]
+        },
+        {
+          "source": [
+            91,
+            46,
+            60
+          ],
+          "target": [
+            34,
+            60,
+            92
+          ]
+        },
+        {
+          "source": [
+            103,
+            56,
+            71
+          ],
+          "target": [
+            40,
+            71,
+            109
+          ]
+        },
+        {
+          "source": [
+            140,
+            100,
+            105
+          ],
+          "target": [
+            65,
+            114,
+            175
+          ]
+        }
+      ],
+      "blue_sha256": "ec115818ce12f2922390e9911aa5bef48a32c71424e8ca50e5807a617bbbc820",
+      "occupied": [
+        14,
+        65,
+        114,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 143,
+      "code": "DEM-V04-r01",
+      "label": "Larve boursouflée",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/143-r01-A.png",
+      "source_sha256": "d8d18e2c5dc0db851f551f791875bf2ce9513938d33f0f542596afd0ca89703d",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 167,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/143-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            57,
+            49,
+            45
+          ],
+          "target": [
+            28,
+            46,
+            74
+          ]
+        },
+        {
+          "source": [
+            75,
+            68,
+            62
+          ],
+          "target": [
+            37,
+            62,
+            100
+          ]
+        },
+        {
+          "source": [
+            101,
+            89,
+            79
+          ],
+          "target": [
+            49,
+            82,
+            131
+          ]
+        },
+        {
+          "source": [
+            126,
+            114,
+            102
+          ],
+          "target": [
+            62,
+            104,
+            166
+          ]
+        },
+        {
+          "source": [
+            147,
+            136,
+            120
+          ],
+          "target": [
+            78,
+            122,
+            189
+          ]
+        },
+        {
+          "source": [
+            175,
+            137,
+            115
+          ],
+          "target": [
+            94,
+            135,
+            196
+          ]
+        },
+        {
+          "source": [
+            182,
+            168,
+            147
+          ],
+          "target": [
+            123,
+            156,
+            206
+          ]
+        },
+        {
+          "source": [
+            190,
+            177,
+            156
+          ],
+          "target": [
+            135,
+            165,
+            211
+          ]
+        },
+        {
+          "source": [
+            199,
+            184,
+            163
+          ],
+          "target": [
+            147,
+            174,
+            215
+          ]
+        },
+        {
+          "source": [
+            213,
+            199,
+            177
+          ],
+          "target": [
+            167,
+            189,
+            223
+          ]
+        },
+        {
+          "source": [
+            228,
+            215,
+            191
+          ],
+          "target": [
+            189,
+            205,
+            230
+          ]
+        },
+        {
+          "source": [
+            236,
+            223,
+            194
+          ],
+          "target": [
+            197,
+            211,
+            233
+          ]
+        },
+        {
+          "source": [
+            237,
+            224,
+            200
+          ],
+          "target": [
+            202,
+            215,
+            235
+          ]
+        },
+        {
+          "source": [
+            241,
+            229,
+            205
+          ],
+          "target": [
+            208,
+            220,
+            238
+          ]
+        },
+        {
+          "source": [
+            248,
+            238,
+            215
+          ],
+          "target": [
+            221,
+            229,
+            242
+          ]
+        }
+      ],
+      "blue_sha256": "a29d95accd39566dd2a9bd41e489c9f4f51ef649f2ff204478415d38b494d309",
+      "occupied": [
+        24,
+        41,
+        104,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 144,
+      "code": "DEM-A01-r01",
+      "label": "Écorcheur écarlate",
+      "material": "chair et membranes",
+      "source": "assets/sprites/campaign-monsters/tiles/144-r01-B.png",
+      "source_sha256": "1428f28635f418a6578ce5e06c3779c7ae429aa058f775776992c543cf20b1d2",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/144-r01-B.png"
+    },
+    {
+      "number": 145,
+      "code": "DEM-A02-r01",
+      "label": "Ailé d'obsidienne",
+      "material": "peau bleue",
+      "source": "assets/sprites/campaign-monsters/tiles/145-r01-A.png",
+      "source_sha256": "86897b1b68b3f881c3d9344635c75598ecbe0745c6288cf3a95f6c1ec6c74eed",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "A",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/145-r01-A.png"
+    },
+    {
+      "number": 146,
+      "code": "DEM-A03-r01",
+      "label": "Brute soufrée",
+      "material": "carapace",
+      "source": "assets/sprites/campaign-monsters/tiles/146-r01-A.png",
+      "source_sha256": "c467cf4f0e2a0cf114bcaaf58f427bebe1481573bfb6ced849b26828957627d3",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 173,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/146-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            44,
+            36,
+            25
+          ],
+          "target": [
+            19,
+            34,
+            50
+          ]
+        },
+        {
+          "source": [
+            69,
+            60,
+            46
+          ],
+          "target": [
+            31,
+            57,
+            84
+          ]
+        },
+        {
+          "source": [
+            86,
+            64,
+            33
+          ],
+          "target": [
+            32,
+            59,
+            87
+          ]
+        },
+        {
+          "source": [
+            92,
+            74,
+            46
+          ],
+          "target": [
+            37,
+            69,
+            101
+          ]
+        },
+        {
+          "source": [
+            104,
+            84,
+            47
+          ],
+          "target": [
+            41,
+            75,
+            110
+          ]
+        },
+        {
+          "source": [
+            136,
+            106,
+            50
+          ],
+          "target": [
+            50,
+            93,
+            136
+          ]
+        },
+        {
+          "source": [
+            158,
+            114,
+            44
+          ],
+          "target": [
+            55,
+            101,
+            147
+          ]
+        },
+        {
+          "source": [
+            166,
+            127,
+            58
+          ],
+          "target": [
+            60,
+            112,
+            164
+          ]
+        },
+        {
+          "source": [
+            182,
+            135,
+            56
+          ],
+          "target": [
+            64,
+            119,
+            174
+          ]
+        },
+        {
+          "source": [
+            201,
+            159,
+            76
+          ],
+          "target": [
+            85,
+            138,
+            192
+          ]
+        },
+        {
+          "source": [
+            223,
+            173,
+            78
+          ],
+          "target": [
+            102,
+            150,
+            199
+          ]
+        },
+        {
+          "source": [
+            231,
+            184,
+            88
+          ],
+          "target": [
+            116,
+            159,
+            203
+          ]
+        },
+        {
+          "source": [
+            249,
+            217,
+            134
+          ],
+          "target": [
+            162,
+            191,
+            221
+          ]
+        }
+      ],
+      "blue_sha256": "988ee108ff18cc4e5bd07a78c594a3660384a0166c457184528dbf62989c6b0d",
+      "occupied": [
+        11,
+        16,
+        118,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 147,
+      "code": "DEM-A04-r01",
+      "label": "Furie violette",
+      "material": "membranes",
+      "source": "assets/sprites/campaign-monsters/tiles/147-r01-A.png",
+      "source_sha256": "055fda6b71e093ee7778032c87d3a1129cad17f3b7015340ec4f084515b24ddd",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 175,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/147-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            35,
+            28,
+            40
+          ],
+          "target": [
+            18,
+            32,
+            49
+          ]
+        },
+        {
+          "source": [
+            45,
+            35,
+            52
+          ],
+          "target": [
+            23,
+            41,
+            62
+          ]
+        },
+        {
+          "source": [
+            62,
+            47,
+            74
+          ],
+          "target": [
+            31,
+            55,
+            84
+          ]
+        },
+        {
+          "source": [
+            75,
+            53,
+            92
+          ],
+          "target": [
+            36,
+            64,
+            98
+          ]
+        },
+        {
+          "source": [
+            75,
+            61,
+            84
+          ],
+          "target": [
+            39,
+            69,
+            106
+          ]
+        },
+        {
+          "source": [
+            87,
+            65,
+            102
+          ],
+          "target": [
+            43,
+            76,
+            117
+          ]
+        },
+        {
+          "source": [
+            92,
+            72,
+            104
+          ],
+          "target": [
+            47,
+            83,
+            127
+          ]
+        },
+        {
+          "source": [
+            102,
+            72,
+            123
+          ],
+          "target": [
+            49,
+            87,
+            133
+          ]
+        },
+        {
+          "source": [
+            107,
+            76,
+            129
+          ],
+          "target": [
+            52,
+            91,
+            140
+          ]
+        },
+        {
+          "source": [
+            120,
+            96,
+            131
+          ],
+          "target": [
+            61,
+            108,
+            166
+          ]
+        },
+        {
+          "source": [
+            151,
+            131,
+            160
+          ],
+          "target": [
+            95,
+            140,
+            196
+          ]
+        },
+        {
+          "source": [
+            166,
+            142,
+            175
+          ],
+          "target": [
+            114,
+            154,
+            203
+          ]
+        },
+        {
+          "source": [
+            175,
+            150,
+            184
+          ],
+          "target": [
+            126,
+            162,
+            207
+          ]
+        },
+        {
+          "source": [
+            199,
+            176,
+            208
+          ],
+          "target": [
+            161,
+            186,
+            218
+          ]
+        },
+        {
+          "source": [
+            206,
+            183,
+            215
+          ],
+          "target": [
+            170,
+            193,
+            221
+          ]
+        },
+        {
+          "source": [
+            223,
+            206,
+            230
+          ],
+          "target": [
+            198,
+            213,
+            232
+          ]
+        }
+      ],
+      "blue_sha256": "33b105daccdc49fce3cbb116e8a73551fe400a958557818dab83930fe7ae6b93",
+      "occupied": [
+        7,
+        12,
+        122,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 148,
+      "code": "DEM-M01-r01",
+      "label": "Taureau des brèches",
+      "material": "chair rouge",
+      "source": "assets/sprites/campaign-monsters/tiles/148-r01-B.png",
+      "source_sha256": "732201df17fdcba15349649c4d9344ffce7c82f5b7d89a92953e9612dcd3025b",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/148-r01-B.png"
+    },
+    {
+      "number": 149,
+      "code": "DEM-M02-r01",
+      "label": "Minotaure de cendre",
+      "material": "chair cendrée",
+      "source": "assets/sprites/campaign-monsters/tiles/149-r01-A.png",
+      "source_sha256": "7d0024cb9c3f151f4803eea8b8287ef6c7caffeb80b3073b40c705e10fb8bea4",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 179,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/149-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            121,
+            114,
+            110
+          ],
+          "target": [
+            62,
+            100,
+            169
+          ]
+        },
+        {
+          "source": [
+            146,
+            137,
+            132
+          ],
+          "target": [
+            86,
+            123,
+            192
+          ]
+        },
+        {
+          "source": [
+            160,
+            151,
+            146
+          ],
+          "target": [
+            106,
+            139,
+            200
+          ]
+        },
+        {
+          "source": [
+            182,
+            173,
+            164
+          ],
+          "target": [
+            135,
+            162,
+            211
+          ]
+        },
+        {
+          "source": [
+            194,
+            182,
+            172
+          ],
+          "target": [
+            150,
+            173,
+            216
+          ]
+        },
+        {
+          "source": [
+            206,
+            195,
+            183
+          ],
+          "target": [
+            167,
+            186,
+            222
+          ]
+        }
+      ],
+      "blue_sha256": "391ec4c608aa78a9de41d52cea2cb695e48a9de8134d2b0d355e1583d1aed8b7",
+      "occupied": [
+        6,
+        8,
+        123,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 150,
+      "code": "DEM-M03-r01",
+      "label": "Cornu vert-de-gris",
+      "material": "chair et membranes",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/150-palette-3.png",
+      "source_sha256": "dca64c604662d77bfde4e728526da5c95927ff12bf3d5f3fb443a85b228bce24",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "D",
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/150-palette-3.png"
+    },
+    {
+      "number": 151,
+      "code": "DEM-M04-r01",
+      "label": "Minotaure pâle ailé",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/151-r01-B.png",
+      "source_sha256": "d3e3275115bd581ac7b0b7efccd85071b380b1c81fc441e0a9955a32af1746b5",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/151-r01-B.png"
+    },
+    {
+      "number": 152,
+      "code": "DEM-P01-r01",
+      "label": "Boursouflé de peste",
+      "material": "peau olivâtre",
+      "source": "assets/sprites/campaign-monsters/tiles/152-r01-A.png",
+      "source_sha256": "576bda490af1b1a363b844a64c6f34976bd9df5cea32800cd8e58fd3ba57683f",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 185,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/152-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            104,
+            97,
+            76
+          ],
+          "target": [
+            49,
+            86,
+            131
+          ]
+        },
+        {
+          "source": [
+            124,
+            116,
+            86
+          ],
+          "target": [
+            57,
+            100,
+            153
+          ]
+        },
+        {
+          "source": [
+            134,
+            125,
+            99
+          ],
+          "target": [
+            63,
+            111,
+            170
+          ]
+        },
+        {
+          "source": [
+            148,
+            136,
+            104
+          ],
+          "target": [
+            68,
+            120,
+            184
+          ]
+        },
+        {
+          "source": [
+            164,
+            147,
+            107
+          ],
+          "target": [
+            81,
+            130,
+            190
+          ]
+        },
+        {
+          "source": [
+            168,
+            158,
+            121
+          ],
+          "target": [
+            94,
+            139,
+            195
+          ]
+        },
+        {
+          "source": [
+            177,
+            163,
+            119
+          ],
+          "target": [
+            99,
+            143,
+            197
+          ]
+        },
+        {
+          "source": [
+            180,
+            168,
+            126
+          ],
+          "target": [
+            106,
+            148,
+            200
+          ]
+        },
+        {
+          "source": [
+            208,
+            191,
+            139
+          ],
+          "target": [
+            136,
+            170,
+            211
+          ]
+        }
+      ],
+      "blue_sha256": "65c95f86a6723181b394139016b578ece984ad624f3cc8f26892abd1938af76c",
+      "occupied": [
+        25,
+        18,
+        103,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 153,
+      "code": "DEM-P02-r01",
+      "label": "Porte-fièvre",
+      "material": "peau olivâtre",
+      "source": "assets/sprites/campaign-monsters/tiles/153-r01-A.png",
+      "source_sha256": "17e82903fdf4170d20766f4129747b275028f772e5a6ae97db994d02e509786b",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 187,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/153-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            56,
+            50,
+            37
+          ],
+          "target": [
+            25,
+            42,
+            68
+          ]
+        },
+        {
+          "source": [
+            82,
+            72,
+            47
+          ],
+          "target": [
+            35,
+            59,
+            94
+          ]
+        },
+        {
+          "source": [
+            101,
+            91,
+            68
+          ],
+          "target": [
+            46,
+            77,
+            123
+          ]
+        },
+        {
+          "source": [
+            123,
+            110,
+            75
+          ],
+          "target": [
+            53,
+            90,
+            145
+          ]
+        },
+        {
+          "source": [
+            142,
+            128,
+            84
+          ],
+          "target": [
+            61,
+            103,
+            165
+          ]
+        },
+        {
+          "source": [
+            196,
+            182,
+            125
+          ],
+          "target": [
+            117,
+            152,
+            204
+          ]
+        }
+      ],
+      "blue_sha256": "02138ca2613ad037af10460840a2d503c25e7bd630c3f24d08b60bf4861f8334",
+      "occupied": [
+        14,
+        15,
+        114,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 154,
+      "code": "DEM-P03-r01",
+      "label": "Molosse putride",
+      "material": "excroissances",
+      "source": "assets/sprites/campaign-monsters/tiles/154-r01-B.png",
+      "source_sha256": "2163e777b4023867650d09d08864e73d6a94b915cb107654b183a3ec5d438955",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/154-r01-B.png"
+    },
+    {
+      "number": 155,
+      "code": "DEM-P04-r01",
+      "label": "Moissonneur fongique",
+      "material": "excroissances",
+      "source": "assets/sprites/campaign-monsters/tiles/155-r01-A.png",
+      "source_sha256": "2e3ea686296679f2db875e09fafbeae8b3c7c9b9da8d9dc26e96de11949b7bf8",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 191,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/155-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            59,
+            60,
+            48
+          ],
+          "target": [
+            29,
+            56,
+            79
+          ]
+        },
+        {
+          "source": [
+            99,
+            100,
+            79
+          ],
+          "target": [
+            48,
+            94,
+            131
+          ]
+        },
+        {
+          "source": [
+            126,
+            125,
+            100
+          ],
+          "target": [
+            61,
+            118,
+            165
+          ]
+        },
+        {
+          "source": [
+            143,
+            143,
+            117
+          ],
+          "target": [
+            72,
+            136,
+            187
+          ]
+        },
+        {
+          "source": [
+            159,
+            152,
+            119
+          ],
+          "target": [
+            86,
+            144,
+            192
+          ]
+        },
+        {
+          "source": [
+            174,
+            175,
+            145
+          ],
+          "target": [
+            116,
+            164,
+            204
+          ]
+        },
+        {
+          "source": [
+            193,
+            187,
+            149
+          ],
+          "target": [
+            132,
+            175,
+            210
+          ]
+        },
+        {
+          "source": [
+            199,
+            197,
+            162
+          ],
+          "target": [
+            146,
+            184,
+            215
+          ]
+        },
+        {
+          "source": [
+            241,
+            220,
+            145
+          ],
+          "target": [
+            164,
+            196,
+            222
+          ]
+        }
+      ],
+      "blue_sha256": "3c1589e13c05eb752189b9fd16e8e195130c9d77cbd7a71e684336e39e5ea8c8",
+      "occupied": [
+        29,
+        8,
+        100,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 156,
+      "code": "DEM-F01-r02",
+      "label": "Briseur de givre",
+      "material": "peau bleue",
+      "source": "assets/sprites/campaign-monsters/tiles/156-r02-A.png",
+      "source_sha256": "5bb9d99c89da6b81be5db6414b491cebbfd1a45ae424ac1356052798ee89e875",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "A",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/156-r02-A.png"
+    },
+    {
+      "number": 157,
+      "code": "DEM-F02-r01",
+      "label": "Rôdeur des glaces",
+      "material": "peau bleue",
+      "source": "assets/sprites/campaign-monsters/tiles/157-r01-A.png",
+      "source_sha256": "fdec22bfdda25e1f715a5a2fefea82f035dfd03f9daf97d79238f51c4468cc4f",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "A",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/157-r01-A.png"
+    },
+    {
+      "number": 158,
+      "code": "DEM-F03-r01",
+      "label": "Coléoptère du gel",
+      "material": "peau bleue",
+      "source": "assets/sprites/campaign-monsters/tiles/158-r01-A.png",
+      "source_sha256": "39f6ab95378a3c43e73578c25d5d0b40492ea4f79c98b78a57e61618dd23a38e",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "A",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/158-r01-A.png"
+    },
+    {
+      "number": 159,
+      "code": "DEM-F04-r01",
+      "label": "Étrangleur du blizzard",
+      "material": "peau bleue",
+      "source": "assets/sprites/campaign-monsters/tiles/159-r01-A.png",
+      "source_sha256": "b547018ab40f36a5434418ec3e010849392bb597e92d8393d3b2bcdf6a10a469",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 198,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/159-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            28,
+            31,
+            37
+          ],
+          "target": [
+            18,
+            28,
+            47
+          ]
+        },
+        {
+          "source": [
+            43,
+            47,
+            57
+          ],
+          "target": [
+            27,
+            43,
+            73
+          ]
+        },
+        {
+          "source": [
+            54,
+            63,
+            78
+          ],
+          "target": [
+            36,
+            57,
+            96
+          ]
+        },
+        {
+          "source": [
+            70,
+            74,
+            82
+          ],
+          "target": [
+            41,
+            66,
+            111
+          ]
+        },
+        {
+          "source": [
+            83,
+            95,
+            110
+          ],
+          "target": [
+            52,
+            83,
+            141
+          ]
+        },
+        {
+          "source": [
+            102,
+            110,
+            123
+          ],
+          "target": [
+            61,
+            97,
+            164
+          ]
+        },
+        {
+          "source": [
+            119,
+            134,
+            150
+          ],
+          "target": [
+            79,
+            118,
+            190
+          ]
+        },
+        {
+          "source": [
+            163,
+            171,
+            176
+          ],
+          "target": [
+            130,
+            158,
+            209
+          ]
+        },
+        {
+          "source": [
+            175,
+            198,
+            212
+          ],
+          "target": [
+            165,
+            185,
+            222
+          ]
+        }
+      ],
+      "blue_sha256": "deefd6921c71cb851a5eaa671b7e4f27435dd7eb01dbc4da2a66f67a8be0533b",
+      "occupied": [
+        21,
+        5,
+        107,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 160,
+      "code": "DEM-H01-r01",
+      "label": "Faux dévot",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/160-r01-A.png",
+      "source_sha256": "60d263783dd154e05976a9c7add28158730f328f43b93b86e2e86447416b7f1a",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 200,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/160-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            52,
+            44,
+            40
+          ],
+          "target": [
+            25,
+            48,
+            67
+          ]
+        },
+        {
+          "source": [
+            65,
+            53,
+            47
+          ],
+          "target": [
+            30,
+            59,
+            82
+          ]
+        },
+        {
+          "source": [
+            69,
+            59,
+            55
+          ],
+          "target": [
+            33,
+            65,
+            91
+          ]
+        },
+        {
+          "source": [
+            76,
+            65,
+            60
+          ],
+          "target": [
+            37,
+            71,
+            99
+          ]
+        },
+        {
+          "source": [
+            84,
+            77,
+            71
+          ],
+          "target": [
+            42,
+            81,
+            113
+          ]
+        },
+        {
+          "source": [
+            101,
+            79,
+            67
+          ],
+          "target": [
+            45,
+            88,
+            123
+          ]
+        },
+        {
+          "source": [
+            122,
+            91,
+            75
+          ],
+          "target": [
+            53,
+            103,
+            144
+          ]
+        },
+        {
+          "source": [
+            126,
+            111,
+            94
+          ],
+          "target": [
+            59,
+            115,
+            161
+          ]
+        },
+        {
+          "source": [
+            154,
+            125,
+            91
+          ],
+          "target": [
+            66,
+            128,
+            179
+          ]
+        },
+        {
+          "source": [
+            189,
+            168,
+            142
+          ],
+          "target": [
+            124,
+            170,
+            207
+          ]
+        },
+        {
+          "source": [
+            227,
+            213,
+            193
+          ],
+          "target": [
+            189,
+            212,
+            231
+          ]
+        }
+      ],
+      "blue_sha256": "7361d6ae065662bae003fc57cfc10c91618dc0e2a0a33f8b57e872883ca3cc5a",
+      "occupied": [
+        37,
+        26,
+        91,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    },
+    {
+      "number": 161,
+      "code": "DEM-H02-r01",
+      "label": "Écorchante carmine",
+      "material": "chair rouge",
+      "source": "assets/sprites/campaign-monsters/tiles/161-r01-B.png",
+      "source_sha256": "01c3c3921ac49ed2179f8e1dfff5f40939d24df8023dc51cbfc1a170b2934296",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "existing_blue": true,
+      "blue_variant": "B",
+      "blue_file": "assets/sprites/campaign-monsters/tiles/161-r01-B.png"
+    },
+    {
+      "number": 162,
+      "code": "DEM-H03-r01",
+      "label": "Pâle imposteur",
+      "material": "chair",
+      "source": "assets/sprites/campaign-monsters/tiles/162-r01-A.png",
+      "source_sha256": "43acca9dd63c1c242f164761f31206075b35de0e72b73bffb9492c84e90d0f6a",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "side": 128,
+      "atlas_index": 204,
+      "existing_blue": false,
+      "blue_variant": "E",
+      "variant_index": 4,
+      "blue_file": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/162-palette-4.png",
+      "colors": [
+        {
+          "source": [
+            161,
+            151,
+            142
+          ],
+          "target": [
+            104,
+            147,
+            199
+          ]
+        },
+        {
+          "source": [
+            192,
+            184,
+            174
+          ],
+          "target": [
+            150,
+            180,
+            216
+          ]
+        },
+        {
+          "source": [
+            228,
+            221,
+            212
+          ],
+          "target": [
+            204,
+            218,
+            236
+          ]
+        }
+      ],
+      "blue_sha256": "c6ef6c5fbb9ff68816dd0cf73c40097606c9452a899e7536c9c025250d2657fa",
+      "occupied": [
+        37,
+        20,
+        91,
+        96
+      ],
+      "canvas": 128,
+      "scale": 1
+    }
+  ],
+  "acceptance": {
+    "answer": "Valider et intégrer les 51 bleues",
+    "date": "2026-10-17",
+    "scope": "51 palettes E bleues présentées sur six planches natives ; les 39 bleus existants restent identiques."
+  },
+  "new_blue_palettes": 51,
+  "existing_blue_models": 39,
+  "numbered_models": 90,
+  "actor_resize_operations": 0,
+  "alpha_geometry_anchors_and_protected_materials_preserved": true,
+  "protected_opaque_pixels": 57164,
+  "changed_material_pixels": 59789
+}

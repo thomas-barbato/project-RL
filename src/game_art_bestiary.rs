@@ -15,18 +15,18 @@ pub(super) struct BankEntry {
 include!("../assets/sprites/bestiary/catalog.rs");
 
 struct BankTextures {
-    living: [Texture2D; 2],
-    corpses: [Texture2D; 2],
+    living: [super::portrait::Sheet; 2],
+    corpses: [super::portrait::Sheet; 2],
 }
 thread_local! {
     static TEXTURES: BankTextures = BankTextures {
         living: [
-            super::texture(include_bytes!("../assets/sprites/bestiary/living-32.png"), FilterMode::Nearest),
-            super::texture(include_bytes!("../assets/sprites/bestiary/living-64.png"), FilterMode::Nearest),
+            super::portrait::Sheet::load(include_bytes!("../assets/sprites/bestiary/living-32.png"), 32),
+            super::portrait::Sheet::load(include_bytes!("../assets/sprites/bestiary/living-64.png"), 64),
         ],
         corpses: [
-            super::texture(include_bytes!("../assets/sprites/bestiary/corpse-32.png"), FilterMode::Nearest),
-            super::texture(include_bytes!("../assets/sprites/bestiary/corpse-64.png"), FilterMode::Nearest),
+            super::portrait::Sheet::load(include_bytes!("../assets/sprites/bestiary/corpse-32.png"), 32),
+            super::portrait::Sheet::load(include_bytes!("../assets/sprites/bestiary/corpse-64.png"), 64),
         ],
     };
 }
@@ -65,16 +65,18 @@ pub(super) fn draw(rect: Rect, number: u8, corpse: bool, opacity: f32, world: bo
     } else {
         rect
     };
-    super::draw_contact_shadow(
-        rect,
-        if corpse {
-            entry.dead_shadow
-        } else {
-            entry.live_shadow
-        },
-        entry.side,
-        opacity,
-    );
+    if world {
+        super::draw_contact_shadow(
+            rect,
+            if corpse {
+                entry.dead_shadow
+            } else {
+                entry.live_shadow
+            },
+            entry.side,
+            opacity,
+        );
+    }
     TEXTURES.with(|textures| {
         let family = usize::from(entry.side == 64);
         let texture = if corpse {
@@ -82,7 +84,11 @@ pub(super) fn draw(rect: Rect, number: u8, corpse: bool, opacity: f32, world: bo
         } else {
             &textures.living[family]
         };
-        super::draw_cell(texture, rect, entry.index, entry.side, opacity);
+        if world {
+            super::draw_cell(&texture.texture, rect, entry.index, entry.side, opacity);
+        } else {
+            texture.draw(rect, entry.index, opacity);
+        }
     });
 }
 

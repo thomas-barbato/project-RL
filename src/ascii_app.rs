@@ -104,6 +104,8 @@ mod effects_lab;
 mod end_screen_app;
 #[path = "equipment_affix_names.rs"]
 mod equipment_affix_names;
+#[path = "familiar_window.rs"]
+mod familiar_window;
 #[path = "inventory_terminal.rs"]
 mod inventory_terminal;
 #[cfg(debug_assertions)]
@@ -288,7 +290,13 @@ const WEAPON_HANDS_GENERATION_VERSION: u8 = INSTALLATION_INTERACTIONS_GENERATION
 const EQUIPMENT_COLORS_GENERATION_VERSION: u8 = WEAPON_HANDS_GENERATION_VERSION + 1;
 const ONE_HAND_FIREARMS_GENERATION_VERSION: u8 = EQUIPMENT_COLORS_GENERATION_VERSION + 1;
 const PLAYER_VISION_GENERATION_VERSION: u8 = ONE_HAND_FIREARMS_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = PLAYER_VISION_GENERATION_VERSION;
+const RETIRED_TEST_ITEMS_GENERATION_VERSION: u8 = PLAYER_VISION_GENERATION_VERSION + 1;
+const RETIRED_AVIATOR_GENERATION_VERSION: u8 = RETIRED_TEST_ITEMS_GENERATION_VERSION + 1;
+const CAMPAIGN_BESTIARY_GENERATION_VERSION: u8 = RETIRED_AVIATOR_GENERATION_VERSION + 1;
+const MONSTER_MATERIAL_PALETTES_GENERATION_VERSION: u8 = CAMPAIGN_BESTIARY_GENERATION_VERSION + 1;
+const MONSTER_BLUE_PALETTES_GENERATION_VERSION: u8 =
+    MONSTER_MATERIAL_PALETTES_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = MONSTER_BLUE_PALETTES_GENERATION_VERSION;
 
 #[cfg(test)]
 mod player_vision_revision_tests {
@@ -405,6 +413,9 @@ mod hub_layout_app;
 #[cfg(test)]
 #[path = "hub_layout_tests.rs"]
 mod hub_layout_tests;
+#[cfg(debug_assertions)]
+#[path = "inspection_capture.rs"]
+mod inspection_capture;
 #[path = "installation_interactions_app.rs"]
 mod installation_interactions_app;
 #[cfg(test)]
@@ -456,7 +467,6 @@ const FLOATING_MESSAGE_CAPACITY: usize = 32;
 const DISPLAY_LOCALE: &str = "fr";
 const WAIT_ACTION_FOCUS: usize = usize::MAX;
 const QUEST_JOURNAL_FOCUS: usize = usize::MAX - 1;
-const COMPANION_ACTION_FOCUS_BASE: usize = usize::MAX - 8;
 const NPC_TRADE_TAB_FOCUS_BASE: usize = usize::MAX - 16;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -1124,38 +1134,6 @@ struct CharacterLayout {
     actions: [Rect; 3],
 }
 
-#[derive(Clone, Copy, Debug)]
-struct CompanionBarLayout {
-    panel: Rect,
-    behavior_buttons: [Rect; 4],
-}
-
-impl CompanionBarLayout {
-    fn new(width: f32, height: f32) -> Self {
-        // Companion orders are a contextual segmented control, not a second
-        // full-width HUD. Keeping the panel bounded leaves the world visible
-        // even on wide screens while retaining comfortable mouse targets.
-        let panel_width = (width - 24.0).clamp(420.0, 460.0);
-        let panel = Rect::new(12.0, height - 153.0, panel_width, 48.0);
-        let gap = 4.0;
-        let button_width = 38.0;
-        let controls_width = button_width * 4.0 + gap * 3.0;
-        let button_x = panel.x + panel.w - controls_width - 9.0;
-        let behavior_buttons = std::array::from_fn(|index| {
-            Rect::new(
-                button_x + index as f32 * (button_width + gap),
-                panel.y + 8.0,
-                button_width,
-                32.0,
-            )
-        });
-        Self {
-            panel,
-            behavior_buttons,
-        }
-    }
-}
-
 impl CharacterLayout {
     fn new(width: f32, height: f32) -> Self {
         let margin = 32.0;
@@ -1542,6 +1520,8 @@ pub struct AsciiApp {
     component_selection: Option<ComponentSelection>,
     visual_cues: VisualCuePlayer,
     combat_motion: crate::combat_visuals::CombatMotion,
+    // One presentation clock for world drawing, camera projection and pointer hits.
+    world_presentation_time: std::cell::Cell<f64>,
     floating_messages: Vec<FloatingMessage>,
     trace_cells: BTreeMap<GridPos, Direction>,
     traces_visible_until: f64,
@@ -1645,6 +1625,7 @@ impl AsciiApp {
             return;
         }
         let now = get_time();
+        self.world_presentation_time.set(now);
         self.visual_cues.prune(now);
         self.combat_motion.prune(now);
         if self.resume_requested {
@@ -3407,11 +3388,120 @@ impl AsciiApp {
             }
             return Ok(());
         }
+        if scene == "crawl-glide64" {
+            app.prepare_cyberpunk_diagnostic(scene)?;
+            let before = app.game.recovery_snapshot_bytes()?;
+            request_new_screen_size(896., 640.);
+            for _ in 0..3 {
+                next_frame().await;
+            }
+            for direction in 0..4 {
+                app.draw_actor_glide_review(direction, 0.04);
+            }
+            next_frame().await;
+            let warm_cache = crate::game_art::cache_stats();
+            let mut atlas = Image::gen_image_color(896 * 6, 640 * 6, BLACK);
+            for frame in 0..36 {
+                app.draw_actor_glide_review(frame / 9, (frame % 9) as f64 * 0.01);
+                let image = crate::ui_capture::framebuffer()?;
+                if (image.width, image.height) != (896, 640) {
+                    return Err("Dimensions inattendues pour le diagnostic de déplacement".into());
+                }
+                for row in 0..640 {
+                    let dst = ((frame / 6 * 640 + row) * 896 * 6 + frame % 6 * 896) * 4;
+                    atlas.bytes[dst..dst + 896 * 4].copy_from_slice(
+                        &image.bytes[(639 - row) * 896 * 4..(640 - row) * 896 * 4],
+                    );
+                }
+                next_frame().await;
+            }
+            // CPU images export upside down in Macroquad; framebuffer exports already compensate.
+            let stride = usize::from(atlas.width) * 4;
+            let original = atlas.bytes.clone();
+            for row in 0..usize::from(atlas.height) {
+                atlas.bytes[row * stride..(row + 1) * stride].copy_from_slice(
+                    &original[(usize::from(atlas.height) - row - 1) * stride
+                        ..(usize::from(atlas.height) - row) * stride],
+                );
+            }
+            atlas.export_png(
+                output
+                    .join("native-glide-atlas.png")
+                    .to_str()
+                    .ok_or("Chemin non UTF-8")?,
+            );
+            let unchanged = before == app.game.recovery_snapshot_bytes()?;
+            let repeated_cache = crate::game_art::cache_stats();
+            let stable_cache = warm_cache == repeated_cache;
+            // Also exercise the real world/HUD path during a committed movement.
+            app.graphics.active.world_cell_px = 64;
+            app.draw();
+            next_frame().await;
+            if app.execute_command(GameCommand::Move(Direction::West)) != CommandOutcome::Applied {
+                return Err("Le déplacement du diagnostic a été refusé".into());
+            }
+            app.capture_events_at(Some(get_time()));
+            let moved_snapshot = app.game.recovery_snapshot_bytes()?;
+            app.draw();
+            crate::ui_capture::framebuffer()?.export_png(
+                output
+                    .join("world-glide.png")
+                    .to_str()
+                    .ok_or("Chemin non UTF-8")?,
+            );
+            let world_unchanged = moved_snapshot == app.game.recovery_snapshot_bytes()?;
+            let position = app.game.player_position().ok_or("Joueur absent")?;
+            let cell = app
+                .terminal
+                .world_cell_rect(
+                    &app.game,
+                    app.terminal_bounds(),
+                    app.ui_scale(),
+                    64,
+                    app.navigation_signal_summary().is_some(),
+                    position,
+                    app.camera_glide_offset(),
+                )
+                .ok_or("Joueur hors caméra")?;
+            let pointer_agrees = app.terminal.hit_test(
+                &app.game,
+                app.terminal_bounds(),
+                app.ui_scale(),
+                64,
+                app.navigation_signal_summary().is_some(),
+                cell.center().into(),
+                app.camera_glide_offset(),
+            ) == Some(position);
+            std::fs::write(
+                output.join("art-validation.json"),
+                serde_json::to_vec_pretty(&serde_json::json!({
+                    "review_id": "ACTOR-GLIDE-01", "native_tile": 64, "frames": 36,
+                    "frame_size": [896, 640], "columns": 6, "glide_milliseconds": 80,
+                    "state_unchanged_after_render": unchanged,
+                    "cache_after_warmup": warm_cache, "cache_after_repeated_frames": repeated_cache,
+                    "cache_after_separate_world_check": crate::game_art::cache_stats(),
+                    "no_new_textures_after_warmup": stable_cache,
+                    "world_snapshot_unchanged_after_render": world_unchanged,
+                    "world_pointer_projection_agrees": pointer_agrees,
+                }))
+                .map_err(|e| e.to_string())?,
+            )
+            .map_err(|e| e.to_string())?;
+            if !unchanged || !stable_cache || !world_unchanged || !pointer_agrees {
+                return Err("Le diagnostic de déplacement a changé l'état ou les textures".into());
+            }
+            return Ok(());
+        }
         if matches!(
             scene,
             "combat-review"
                 | "crawl-agents"
                 | "crawl-weapons"
+                | "crawl-equipment64"
+                | "crawl-held64-1"
+                | "crawl-held64-2"
+                | "crawl-breath64-0"
+                | "crawl-breath64-1"
                 | "crawl-outfits"
                 | "crawl-palettes-1"
                 | "crawl-palettes-2"
@@ -3466,8 +3556,23 @@ impl AsciiApp {
                     }
                 }
             }
+            if scene.starts_with("crawl-breath64-") {
+                let other = if scene.ends_with('0') {
+                    "crawl-breath64-1"
+                } else {
+                    "crawl-breath64-0"
+                };
+                app.draw_combat_proposal(other, 0.0);
+                app.draw_combat_proposal(scene, 0.0);
+            }
             let warm_cache = crate::game_art::cache_stats();
-            for frame in 0..8 {
+            for frame in
+                0..if scene.starts_with("crawl-held64-") || scene.starts_with("crawl-breath64-") {
+                    0
+                } else {
+                    8
+                }
+            {
                 app.draw_combat_proposal(
                     scene,
                     if scene.starts_with("crawl-idle") {
@@ -3497,7 +3602,7 @@ impl AsciiApp {
             std::fs::write(
                 output.join("art-validation.json"),
                 serde_json::to_vec_pretty(&serde_json::json!({
-                    "scene": scene, "native_tile": 32, "body_height": 30,
+                    "scene": scene, "native_tile": if scene == "crawl-equipment64" || scene.starts_with("crawl-held64-") || scene.starts_with("crawl-breath64-") { 64 } else { 32 },
                     "weapon_models": crate::game_art::HELD_WEAPON_COUNT,
                     "weapon_families": crate::game_art::WEAPON_FAMILY_COUNT,
                     "state_unchanged_after_render": true,
@@ -3755,11 +3860,14 @@ impl AsciiApp {
             }
             "effects-lab"
             | "effects-lab-inventory"
+            | "effects-lab-crowd"
             | "effects-lab-impact"
             | "effects-lab-pause" => {
                 app.open_menu(MenuScreen::Main);
                 app.enter_test_lab()?;
-                if scene == "effects-lab-inventory" {
+                if scene == "effects-lab-crowd" {
+                    app.prepare_lab_crowd_fixture()?;
+                } else if scene == "effects-lab-inventory" {
                     app.inventory_open = true;
                 } else if scene == "effects-lab-pause" {
                     app.open_menu(MenuScreen::Pause);
@@ -4645,9 +4753,9 @@ impl AsciiApp {
                     )
                     .map_err(|error| error.to_string())?;
                 app.capture_events_at(Some(get_time() - 5.0));
-                if linked {
-                    app.menu_focus.hovered = Some(COMPANION_ACTION_FOCUS_BASE);
-                }
+                app.ux.familiars.open = true;
+                app.ux.familiars.selected =
+                    app.game.player_controlled_companions().first().copied();
             }
             "level-up" => app.open_level_up_screen(LevelUpNotice {
                 level: 2,
@@ -5505,6 +5613,7 @@ impl AsciiApp {
                     app.graphics.active.world_cell_px,
                     app.navigation_signal_summary().is_some(),
                     at,
+                    app.camera_glide_offset(),
                 )
                 .ok_or("Cible hors caméra")?;
             let pointer = Some((
@@ -5552,6 +5661,7 @@ impl AsciiApp {
                     app.graphics.active.world_cell_px,
                     app.navigation_signal_summary().is_some(),
                     app.game.player_position().unwrap(),
+                    app.camera_glide_offset(),
                 )
                 .unwrap();
             app.update_input(&InputFrame {
@@ -5615,6 +5725,7 @@ impl AsciiApp {
                     app.graphics.active.world_cell_px,
                     navigation,
                     p,
+                    app.camera_glide_offset(),
                 )
             };
             let rgb_at = |p: Vec2| {
@@ -5744,6 +5855,7 @@ impl AsciiApp {
                             app.graphics.active.world_cell_px,
                             navigation,
                             position,
+                            app.camera_glide_offset(),
                         )
                         .map(|rect| {
                             let p = rect.center() * pixel_scale;
@@ -6563,6 +6675,9 @@ impl AsciiApp {
     }
 
     fn update_input_at(&mut self, input: &InputFrame, captured_at: Option<f64>) {
+        if let Some(now) = captured_at {
+            self.world_presentation_time.set(now);
+        }
         self.sync_agent_skill_bar();
         self.update_crash_recovery();
         self.close_finished_run_overlays();
@@ -6719,6 +6834,9 @@ impl AsciiApp {
         }
         if self.world_cursor.is_some() {
             self.update_world_cursor(input, captured_at.unwrap_or(0.0));
+            return;
+        }
+        if self.route_familiar_window(input) {
             return;
         }
         if self.route_agent_skill_bar(input, self.skills_open) {
@@ -7167,30 +7285,6 @@ impl AsciiApp {
                 return;
             }
         }
-        if self.has_controlled_companion() {
-            let layout = CompanionBarLayout::new(width, height);
-            let hovered_behavior = input.pointer.and_then(|point| {
-                layout
-                    .behavior_buttons
-                    .iter()
-                    .position(|rect| rect.contains(point.into()))
-            });
-            if let Some(index) = hovered_behavior {
-                self.menu_focus.hovered = Some(COMPANION_ACTION_FOCUS_BASE + index);
-            }
-            if input.pressed.contains(&controls::Binding::MouseLeft)
-                && let Some(index) = hovered_behavior
-            {
-                let behavior = CompanionBehavior::ALL[index];
-                if let CommandOutcome::Rejected(reason) =
-                    self.execute_command(GameCommand::SetCompanionBehavior { behavior })
-                {
-                    self.push_log(command_rejection_message(reason).to_owned());
-                }
-                self.capture_events();
-                return;
-            }
-        }
         let wait_button = if self.game.player_technique_preparation().is_some() {
             preparation_continue_rect(width, height)
         } else {
@@ -7344,7 +7438,12 @@ impl AsciiApp {
                 }
                 self.push_log(command_rejection_message(reason).to_owned());
             }
-            self.capture_events();
+            if let Some(now) = captured_at {
+                self.capture_events_with_navigation(Some(now), true);
+                self.update_crash_recovery();
+            } else {
+                self.capture_events();
+            }
         }
     }
 
@@ -7359,8 +7458,10 @@ impl AsciiApp {
     }
 
     pub fn draw(&self) {
+        self.world_presentation_time.set(get_time());
         crate::ui_theme::set_high_contrast(self.graphics.active.high_contrast);
         crate::ui_theme::set_interface_theme(self.graphics.active.interface_theme);
+        crate::ui_theme::set_interface_style(self.graphics.active.interface_style);
         self.ux.hud_points.set(None);
         self.ux.hud_objective.set(None);
         clear_background(Color::from_rgba(5, 8, 12, 255));
@@ -7416,7 +7517,7 @@ impl AsciiApp {
             valid: resolved_attack_preview.as_ref().is_some_and(Result::is_ok),
         });
         let navigation_signal = self.navigation_signal_summary();
-        let effect_time = get_time();
+        let effect_time = self.world_presentation_time.get();
         // Sample each perceived NPC once; no additional linear entity_at
         // search for each actor drawn on the map.
         let npc_appearances: BTreeMap<_, _> = self
@@ -7453,6 +7554,7 @@ impl AsciiApp {
                 ui_scale: self.ui_scale(),
                 cell_size: self.graphics.active.world_cell_px,
                 reduced_motion: self.graphics.active.reduced_motion,
+                hover_monster_health: self.graphics.active.hover_monster_health,
                 combat_motion: &self.combat_motion,
                 combat_time: effect_time,
                 player_appearance: self.player_appearance(),
@@ -7554,9 +7656,10 @@ impl AsciiApp {
             self.draw_header();
             self.draw_player_status_panel();
             self.draw_objective_panel();
-            self.draw_companion_bar();
             self.draw_footer();
             self.draw_agent_skill_bar(false);
+            self.draw_actor_effect_icons();
+            self.draw_familiar_window();
         }
         if self.legend_open {
             self.draw_help();
@@ -10091,14 +10194,9 @@ impl AsciiApp {
     }
 
     fn terminal_bounds_for(&self, width: f32, height: f32, ui_scale: f32) -> Rect {
-        let companion_height = if self.has_controlled_companion() {
-            64.0 * ui_scale
-        } else {
-            0.0
-        };
         let has_alert = self.visible_alert_summary().is_some();
         let wide_top = if has_alert { 76.0 } else { 7.0 };
-        let expanded_height = height - (wide_top + 104.0) * ui_scale - companion_height;
+        let expanded_height = height - (wide_top + 104.0) * ui_scale;
         let wide_hud = terminal_status_panel(
             Rect::new(20.0, 7.0 * ui_scale, width - 40.0, expanded_height),
             ui_scale,
@@ -10113,7 +10211,7 @@ impl AsciiApp {
             20.0,
             top,
             width - 40.0,
-            (height - top - 104.0 * ui_scale - companion_height).max(100.0),
+            (height - top - 104.0 * ui_scale).max(100.0),
         )
     }
 
@@ -11070,6 +11168,16 @@ impl AsciiApp {
             if generation_version >= PLAYER_RELATIONS_GENERATION_VERSION {
                 enemy = enemy.with_player_relation(PlayerRelation::Hostile);
             }
+            if generation_version >= CAMPAIGN_BESTIARY_GENERATION_VERSION {
+                project_rl::monster_art::assign(
+                    std::slice::from_mut(&mut enemy),
+                    0,
+                    seed,
+                    crate::game_art::cultist_two_handed,
+                    generation_version >= MONSTER_MATERIAL_PALETTES_GENERATION_VERSION,
+                    generation_version >= MONSTER_BLUE_PALETTES_GENERATION_VERSION,
+                );
+            }
             let id = game.spawn_actor(enemy).map_err(|error| error.to_string())?;
             actor_glyphs.insert(id, glyph);
         }
@@ -11168,6 +11276,9 @@ impl AsciiApp {
                 .find(|(id, _)| id.as_str() == "core:repair_patch")
                 .map(|(id, _)| (id.clone(), 1)),
         );
+        if generation_version >= RETIRED_TEST_ITEMS_GENERATION_VERSION {
+            loot.clear();
+        }
         for ((item, quantity), position) in loot.into_iter().zip(loot_positions) {
             game.spawn_ground_item(position, item, quantity)
                 .map_err(|error| error.to_string())?;
@@ -11250,6 +11361,7 @@ impl AsciiApp {
             component_selection: None,
             visual_cues: VisualCuePlayer::with_catalog(ascii_visual_cue_catalog()?),
             combat_motion: crate::combat_visuals::CombatMotion::default(),
+            world_presentation_time: std::cell::Cell::new(0.0),
             floating_messages: Vec::new(),
             trace_cells: BTreeMap::new(),
             traces_visible_until: 0.0,
@@ -11839,6 +11951,7 @@ impl AsciiApp {
             .map(|message| (message.clone(), false))
             .collect::<Vec<_>>();
         recent.reverse();
+        recent.dedup();
         let onboarding = if !self.test_lab && self.game.turn() < 30 {
             if !self.ux.moved && self.game.turn() == 0 {
                 Some(format!(
@@ -12203,6 +12316,7 @@ impl AsciiApp {
         } else {
             None
         };
+        self.remove_retired_test_drops(&mut generated.blueprint);
         self.game
             .materialize_passage_destination_with_connections_and_facility(
                 *target,
@@ -12302,8 +12416,29 @@ impl AsciiApp {
                 descriptor.seed,
             )?;
         }
+        self.remove_retired_test_drops(&mut generated.blueprint);
         if self.generation_version >= CARRIED_WEAPON_GENERATION_VERSION {
             self.populate_carried_weapons(&mut generated.blueprint, descriptor.seed)?;
+        }
+        if self.generation_version >= CAMPAIGN_BESTIARY_GENERATION_VERSION {
+            project_rl::monster_art::assign(
+                &mut generated.blueprint.actors,
+                coordinate.depth,
+                descriptor.seed,
+                crate::game_art::cultist_two_handed,
+                self.generation_version >= MONSTER_MATERIAL_PALETTES_GENERATION_VERSION,
+                self.generation_version >= MONSTER_BLUE_PALETTES_GENERATION_VERSION,
+            );
+            for source in &mut generated.blueprint.threat_sources {
+                project_rl::monster_art::assign(
+                    std::slice::from_mut(&mut source.actor),
+                    coordinate.depth,
+                    descriptor.seed,
+                    crate::game_art::cultist_two_handed,
+                    self.generation_version >= MONSTER_MATERIAL_PALETTES_GENERATION_VERSION,
+                    self.generation_version >= MONSTER_BLUE_PALETTES_GENERATION_VERSION,
+                );
+            }
         }
         let mut connections = Vec::new();
         let mut mappings = Vec::new();
@@ -12549,10 +12684,14 @@ impl AsciiApp {
         let mut level_up_notice: Option<LevelUpNotice> = None;
         let mut floating_alert_positions = Vec::new();
         let visual_time = replay_time.unwrap_or_else(get_time);
+        self.world_presentation_time.set(visual_time);
         let mut damage_totals: BTreeMap<EntityId, (GridPos, u32)> = BTreeMap::new();
         let mut missed_hits: BTreeMap<(GridPos, bool), u16> = BTreeMap::new();
         let mut guarded_impacts = std::collections::BTreeSet::new();
         let events = self.game.drain_events();
+        let changed_zone = events
+            .iter()
+            .any(|event| matches!(event, GameEvent::ZoneChanged { .. }));
         // The simulation allocates a new identity for a raised creature.
         // Transfer its existing presentation before EntityDied removes the old keys.
         for event in &events {
@@ -12576,7 +12715,9 @@ impl AsciiApp {
             self.tactical_projection.borrow_mut().invalidate();
         }
         for event in events {
-            self.capture_combat_visual(&event, &mut combat_origins, visual_time);
+            if !(changed_zone && matches!(event, GameEvent::EntityMoved { .. })) {
+                self.capture_combat_visual(&event, &mut combat_origins, visual_time);
+            }
             self.update_npc_art(&event);
             if let GameEvent::DamageApplied { target, amount, .. }
             | GameEvent::DamageImpactApplied { target, amount, .. } = &event
@@ -13593,7 +13734,7 @@ impl AsciiApp {
                             visual_time,
                         );
                     }
-                    self.push_log(format!("Vous attendez · tour {}.", self.game.turn()));
+                    self.push_log("Vous attendez.".to_owned());
                 }
                 GameEvent::EntityDied { entity, at } if entity != self.game.player_id() => {
                     self.actor_glyphs.remove(&entity);
@@ -15809,16 +15950,25 @@ impl AsciiApp {
             if elapsed >= lifetime || !self.game.player_visibility().is_visible(message.at) {
                 continue;
             }
-            let Some(cell) = self.terminal.world_cell_rect(
+            let Some(mut cell) = self.terminal.world_cell_rect(
                 &self.game,
                 bounds,
                 scale,
                 self.graphics.active.world_cell_px,
                 navigation_signal_visible,
                 message.at,
+                self.camera_glide_offset(),
             ) else {
                 continue;
             };
+            if let Some(entity) = self.game.actors().entity_at(message.at) {
+                cell = self.combat_motion.actor_rect(
+                    entity,
+                    cell,
+                    now,
+                    self.graphics.active.reduced_motion,
+                );
+            }
             let progress = (elapsed / lifetime) as f32;
             let alpha = if progress <= 0.72 {
                 1.0
@@ -16077,6 +16227,9 @@ impl AsciiApp {
     }
 
     fn front_actor_visual(&self, entity: EntityId) -> Option<crate::game_art::Visual> {
+        if entity == self.game.player_id() {
+            return Some(self.front_player_visual());
+        }
         if self.game.actors().get(entity).is_some_and(|actor| {
             actor
                 .tags()
@@ -16098,6 +16251,14 @@ impl AsciiApp {
             })
         {
             return Some(visual);
+        }
+        if let Some((number, variant)) = self
+            .game
+            .actors()
+            .get(entity)
+            .and_then(project_rl::monster_art::appearance)
+        {
+            return Some(crate::game_art::Visual::CampaignMonster { number, variant });
         }
         let symbol = if let Some(role) = self.game.active_worker_role(entity) {
             match role {
@@ -16619,6 +16780,7 @@ impl AsciiApp {
             self.graphics.active.world_cell_px,
             self.navigation_signal_summary().is_some(),
             (pointer.0 * scale, pointer.1 * scale),
+            self.camera_glide_offset(),
         )
     }
 
@@ -17710,6 +17872,7 @@ impl AsciiApp {
         }
         let observer = self.game.player_position()?;
         let mut name = match self.hostile_glyph(target) {
+            _ if target == self.game.player_id() => "Vous",
             'd' => "Traqueur",
             't' => "Sentinelle",
             'r' => "Tirailleur",
@@ -17741,6 +17904,9 @@ impl AsciiApp {
             _ => "Entité détectée",
         }
         .to_owned();
+        if let Some(campaign_name) = project_rl::monster_art::display_name(actor) {
+            name = campaign_name.to_owned();
+        }
         if let Some(level) = actor
             .tags()
             .iter()
@@ -17818,7 +17984,7 @@ impl AsciiApp {
                 _ => "Aucun état visible".to_owned(),
             });
         let analysis = (self.test_lab || self.game.player_has_analyzed_target(target)).then(|| {
-            let resistances = [
+            let mut resistances = [
                 ("KIN", DamageType::Kinetic),
                 ("PIR", DamageType::Piercing),
                 ("EXP", DamageType::Explosive),
@@ -17835,6 +18001,10 @@ impl AsciiApp {
                 (value != 0).then_some(format!("{label} {value:+}%"))
             })
             .collect::<Vec<_>>();
+            let physical = project_rl::monster_modifiers::physical_resistance_percent(actor);
+            if physical > 0 {
+                resistances.push(format!("PHY +{physical}%"));
+            }
             TerminalTargetAnalysis {
                 integrity: actor.integrity(),
                 maximum_integrity: actor.maximum_integrity(),
@@ -17851,6 +18021,7 @@ impl AsciiApp {
         });
         Some(TerminalTargetSummary {
             name,
+            modifiers: project_rl::monster_modifiers::visible_modifiers(actor),
             visual: self.front_actor_visual(target),
             distance: grid_distance(observer, actor.position()),
             visible_state,
@@ -17902,99 +18073,6 @@ impl AsciiApp {
             );
         }
     }
-    fn draw_companion_bar(&self) {
-        let companions = self.game.player_controlled_companions();
-        let Some(entity) = companions.first().copied() else {
-            return;
-        };
-        let Some(actor) = self.game.actors().get(entity) else {
-            return;
-        };
-        let Some(drone) = actor.drone() else {
-            return;
-        };
-        let layout = CompanionBarLayout::new(self.ui_width(), self.ui_height());
-        UiTheme.hud_panel(layout.panel);
-        let linked = companions
-            .iter()
-            .all(|entity| self.game.player_companion_is_linked(*entity));
-        let active_behavior = match drone.order() {
-            DroneOrder::Companion { behavior, .. } => Some(*behavior),
-            DroneOrder::Escort { .. } => Some(CompanionBehavior::Follow),
-            _ => None,
-        };
-        let title = format!(
-            "Drone{} · {} [{}]",
-            if companions.len() > 1 { "s" } else { "" },
-            active_behavior.map_or("Ordre spécial", companion_behavior_label),
-            self.controls.label(Action::CompanionOrder)
-        );
-        draw_text_bold(
-            &title,
-            layout.panel.x + 10.0,
-            layout.panel.y + 19.0,
-            14.0,
-            if linked {
-                UiTheme.success()
-            } else {
-                UiTheme.danger()
-            },
-        );
-        draw_text(
-            format!(
-                "PV {}/{} · BAT {}/{} · {}",
-                actor.integrity(),
-                actor.maximum_integrity(),
-                drone.energy().available(),
-                drone.energy().capacity(),
-                if linked { "LIÉ" } else { "RETOUR AUTO" }
-            ),
-            layout.panel.x + 10.0,
-            layout.panel.y + 38.0,
-            13.0,
-            if linked {
-                UiTheme.text()
-            } else {
-                UiTheme.danger()
-            },
-        );
-        let companion_tone = companion_button_tone(linked);
-        for (index, behavior) in CompanionBehavior::ALL.into_iter().enumerate() {
-            let focused = self.menu_focus.hovered == Some(COMPANION_ACTION_FOCUS_BASE + index);
-            let active = active_behavior == Some(behavior);
-            UiTheme.hud_action(
-                layout.behavior_buttons[index],
-                if active {
-                    1.0
-                } else if focused {
-                    0.65
-                } else {
-                    0.0
-                },
-            );
-            draw_companion_behavior_icon(
-                layout.behavior_buttons[index],
-                behavior,
-                if companion_tone == ButtonTone::Danger {
-                    UiTheme.danger()
-                } else if active {
-                    UiTheme.accent()
-                } else if focused {
-                    UiTheme.accent()
-                } else {
-                    UiTheme.text()
-                },
-            );
-        }
-        if let Some((index, behavior)) = CompanionBehavior::ALL
-            .into_iter()
-            .enumerate()
-            .find(|(index, _)| self.menu_focus.hovered == Some(COMPANION_ACTION_FOCUS_BASE + index))
-        {
-            draw_companion_behavior_tooltip(layout.behavior_buttons[index], behavior);
-        }
-    }
-
     pub(super) fn attack_aim_confirm_rect(width: f32, height: f32) -> Rect {
         Rect::new(width - 196.0, height - 82.0, 172.0, 32.0)
     }
@@ -18166,7 +18244,7 @@ impl AsciiApp {
         }
 
         for (index, (message, objective)) in self.footer_lines().into_iter().enumerate() {
-            let y = self.ui_height() - 42.0 + index as f32 * 20.0;
+            let y = self.ui_height() - 27.0 + index as f32 * 17.0;
             crate::terminal_chrome::heading(">", 22.0, y, 14, UiTheme.accent());
             draw_wrapped_text(
                 &message,
@@ -19935,9 +20013,15 @@ impl AsciiApp {
                     .starting_weapons()
                     .iter()
                     .map(|id| self.item_name(id))
-                    .chain(class.starting_items().iter().map(|item| {
-                        format!("{} ×{}", self.item_name(item.item()), item.quantity())
-                    }))
+                    .chain(
+                        class
+                            .starting_items()
+                            .iter()
+                            .filter(|item| !equipment_generation::is_retired_test_item(item.item()))
+                            .map(|item| {
+                                format!("{} ×{}", self.item_name(item.item()), item.quantity())
+                            }),
+                    )
                     .collect::<Vec<_>>()
                     .join(" · ");
                 draw_text_bold(
@@ -21603,7 +21687,7 @@ impl AsciiApp {
         if ((clicked && hovered.is_some()) || activate)
             && self.menu_row_enabled(self.menu_selection)
         {
-            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection, 0..=6) {
+            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection, 0..=7) {
                 let rect = MenuLayout::for_screen(
                     self.menu,
                     input.viewport.unwrap_or((1280.0, 800.0)).0,
@@ -21662,14 +21746,14 @@ impl AsciiApp {
                 (MenuScreen::Options, 1) => self.open_menu(MenuScreen::Graphics),
                 (MenuScreen::Options, 2) => self.open_menu(self.options_return),
                 (MenuScreen::ConfirmAbandon, 0) => self.open_menu(MenuScreen::Pause),
-                (MenuScreen::Graphics, row @ 0..=6) => self.graphics.draft.cycle(row, true),
-                (MenuScreen::Graphics, 7) => self.graphics.draft = GraphicsSettings::default(),
-                (MenuScreen::Graphics, 8) => {
+                (MenuScreen::Graphics, row @ 0..=7) => self.graphics.draft.cycle(row, true),
+                (MenuScreen::Graphics, 8) => self.graphics.draft = GraphicsSettings::default(),
+                (MenuScreen::Graphics, 9) => {
                     if self.graphics.begin_preview() {
                         self.open_menu(MenuScreen::ConfirmGraphics);
                     }
                 }
-                (MenuScreen::Graphics, 9) => self.open_menu(MenuScreen::Options),
+                (MenuScreen::Graphics, 10) => self.open_menu(MenuScreen::Options),
                 (MenuScreen::ConfirmGraphics, 0) => self.open_menu(MenuScreen::Graphics),
                 (MenuScreen::ConfirmGraphics, 1) => {
                     self.graphics.confirm();
@@ -21774,7 +21858,6 @@ impl AsciiApp {
                     "Thème de l'interface : {}",
                     settings.interface_theme.label()
                 ),
-                format!("Taille des cases : {} px", settings.world_cell_px),
                 format!(
                     "Contraste renforcé : {}",
                     if settings.high_contrast { "oui" } else { "non" }
@@ -21782,6 +21865,18 @@ impl AsciiApp {
                 format!(
                     "Animations réduites : {}",
                     if settings.reduced_motion {
+                        "oui"
+                    } else {
+                        "non"
+                    }
+                ),
+                format!(
+                    "Habillage de l’interface : {}",
+                    settings.interface_style.label()
+                ),
+                format!(
+                    "Vie au survol : {}",
+                    if settings.hover_monster_health {
                         "oui"
                     } else {
                         "non"
@@ -21970,10 +22065,11 @@ impl AsciiApp {
         for (index, (label, rect)) in buttons.iter().zip(&layout.buttons).enumerate() {
             let enabled = self.menu_row_enabled(index);
             let selected = enabled && self.menu_focus.highlighted(index, self.menu_selection);
-            if self.menu == MenuScreen::Graphics && index <= 6 {
+            if self.menu == MenuScreen::Graphics && index <= 7 {
                 let toggle = match index {
-                    5 => Some(self.graphics.draft.high_contrast),
-                    6 => Some(self.graphics.draft.reduced_motion),
+                    4 => Some(self.graphics.draft.high_contrast),
+                    5 => Some(self.graphics.draft.reduced_motion),
+                    7 => Some(self.graphics.draft.hover_monster_health),
                     _ => None,
                 };
                 theme.setting_row(*rect, label, selected, enabled, toggle);
@@ -22505,6 +22601,7 @@ impl AsciiApp {
             log: self.log.clone(),
             observed_events: self.ux.history.clone(),
             tracked_quest: self.ux.tracked_quest.as_ref().map(ToString::to_string),
+            familiar_order: self.ux.familiars.order.iter().map(|id| id.get()).collect(),
             agent_skill_bar: if self.ux.skill_bar.iter().any(Option::is_some) {
                 self.ux.skill_bar.to_vec()
             } else {
@@ -22742,6 +22839,12 @@ impl AsciiApp {
                 .filter(|id| restored.can_assign_agent_skill(id))
                 .cloned();
         }
+        let companions = restored.game.player_controlled_companions();
+        restored.ux.familiars.order = saved
+            .familiar_order
+            .iter()
+            .filter_map(|saved_id| companions.iter().copied().find(|id| id.get() == *saved_id))
+            .collect();
         restored.log = saved.log.clone();
         if !saved.observed_events.is_empty() {
             restored.ux.history = saved
@@ -23867,6 +23970,49 @@ const fn prototype_enemy_base_armor(index: usize, generation_version: u8) -> u16
 }
 
 fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules {
+    {
+        let models: Vec<_> = equipment_generation::RETIRED_CORE_ITEMS
+            .iter()
+            .map(|id| id.parse().unwrap())
+            .collect();
+        let excluded = version >= RETIRED_TEST_ITEMS_GENERATION_VERSION;
+        if excluded {
+            rules
+                .player_starting_items
+                .retain(|item| !equipment_generation::is_retired_at_version(&item.item, version));
+        }
+        if let Some(catalog) = &mut rules.monster_equipment_loot {
+            catalog.set_excluded_items(&models, excluded);
+        }
+        if let Some(upgrade) = &mut rules.equipment_upgrade {
+            upgrade.catalog.set_excluded_items(&models, excluded);
+        }
+        // This outfit had already been rejected visually. Retire its remaining
+        // loot binding only for new runs, preserving generation 148 replays.
+        let aviator = [equipment_generation::RETIRED_AVIATOR.parse().unwrap()];
+        let excluded = version >= RETIRED_AVIATOR_GENERATION_VERSION;
+        if let Some(catalog) = &mut rules.monster_equipment_loot {
+            catalog.set_excluded_items(&aviator, excluded);
+        }
+        if let Some(upgrade) = &mut rules.equipment_upgrade {
+            upgrade.catalog.set_excluded_items(&aviator, excluded);
+        }
+    }
+    // Agent starter content arrived with generation 147. Agent class trials
+    // can deliberately use older maps and must retain their own loadout.
+    if version < PLAYER_VISION_GENERATION_VERSION && rules.agent_class_start.is_none() {
+        for id in [
+            "core:tenue_assaut",
+            "core:tenue_metamorphe",
+            "core:tenue_rituelle",
+            "core:tenue_technique",
+            "core:tenue_traque",
+            "core:agent_cellule_energie",
+            "core:agent_dose_soin",
+        ] {
+            rules.items = rules.items.without_id(&id.parse().unwrap());
+        }
+    }
     if version < PLAYER_VISION_GENERATION_VERSION {
         rules.player_field_of_view.radius = 8;
         rules.ordinary_actor_field_of_view = None;
@@ -24354,10 +24500,20 @@ fn loot_for_generation_version(
     items: &project_rl::item::ItemCatalog,
     version: u8,
 ) -> LootCatalog {
+    // Restore hidden bases before historical version filters and tier metadata
+    // run. Restoring them afterwards would revive newer metadata or models
+    // which the old version's projection had deliberately removed.
+    let retired: Vec<_> = equipment_generation::RETIRED_CORE_ITEMS
+        .iter()
+        .chain(std::iter::once(&equipment_generation::RETIRED_AVIATOR))
+        .map(|id| id.parse().unwrap())
+        .collect();
+    let mut restored = loot.clone();
+    restored.equipment_mut().set_excluded_items(&retired, false);
     let mut compatible = if version < ARMOR_EQUIPMENT_GENERATION_VERSION {
-        loot.without_item_kind(items, ItemKind::Armor)
+        restored.without_item_kind(items, ItemKind::Armor)
     } else {
-        loot.clone()
+        restored
     };
     compatible
         .equipment_mut()
@@ -24431,11 +24587,15 @@ fn loot_for_generation_version(
             .expect("built-in surface salvage table ID must remain valid");
         compatible = compatible.without_table(&salvage);
     }
-    if version >= CITY_LIFE_AND_LOOT_GENERATION_VERSION {
-        compatible
-            .equipment_mut()
-            .allow_adjacent_model_tiers(&equipment_generation::current_model_ids());
-    }
+    compatible.equipment_mut().set_adjacent_model_tiers(
+        &equipment_generation::current_model_ids(),
+        version >= CITY_LIFE_AND_LOOT_GENERATION_VERSION,
+    );
+    // Regional caches use this catalog, while monsters use the rules catalog.
+    // Apply the same current exclusions without changing older projections.
+    compatible
+        .equipment_mut()
+        .set_excluded_items(&retired, version >= RETIRED_AVIATOR_GENERATION_VERSION);
     compatible
 }
 
@@ -25153,7 +25313,7 @@ const fn menu_button_tone(menu: MenuScreen, index: usize, has_suspension: bool) 
         }
         MenuScreen::Pause if index == 0 => ButtonTone::Primary,
         MenuScreen::Pause if index == 3 => ButtonTone::Danger,
-        MenuScreen::Graphics if index == 8 => ButtonTone::Primary,
+        MenuScreen::Graphics if index == 9 => ButtonTone::Primary,
         MenuScreen::ConfirmGraphics if index == 1 => ButtonTone::Primary,
         MenuScreen::ConfirmAbandon | MenuScreen::ConfirmNewRun | MenuScreen::ConfirmRestart
             if index == 1 =>
@@ -25179,12 +25339,13 @@ const fn menu_button_icon(menu: MenuScreen, index: usize) -> UiIcon {
         (MenuScreen::Graphics, 0) => UiIcon::Window,
         (MenuScreen::Graphics, 1 | 3) => UiIcon::Display,
         (MenuScreen::Graphics, 2) => UiIcon::Character,
-        (MenuScreen::Graphics, 4) => UiIcon::Grid,
-        (MenuScreen::Graphics, 5) => UiIcon::Contrast,
-        (MenuScreen::Graphics, 6) => UiIcon::Motion,
-        (MenuScreen::Graphics, 7) => UiIcon::Reset,
-        (MenuScreen::Graphics, 8) => UiIcon::Confirm,
-        (MenuScreen::Graphics, 9) => UiIcon::Back,
+        (MenuScreen::Graphics, 4) => UiIcon::Contrast,
+        (MenuScreen::Graphics, 5) => UiIcon::Motion,
+        (MenuScreen::Graphics, 7) => UiIcon::Target,
+        (MenuScreen::Graphics, 6) => UiIcon::Display,
+        (MenuScreen::Graphics, 8) => UiIcon::Reset,
+        (MenuScreen::Graphics, 9) => UiIcon::Confirm,
+        (MenuScreen::Graphics, 10) => UiIcon::Back,
         (MenuScreen::ConfirmGraphics, 0) => UiIcon::Reset,
         (MenuScreen::ConfirmGraphics, 1) => UiIcon::Confirm,
         (MenuScreen::ConfirmAbandon, 0) | (MenuScreen::ConfirmNewRun, 0) => UiIcon::Cancel,
@@ -25658,14 +25819,6 @@ const fn companion_behavior_confirmation(behavior: CompanionBehavior) -> &'stati
     }
 }
 
-const fn companion_button_tone(linked: bool) -> ButtonTone {
-    if linked {
-        ButtonTone::Secondary
-    } else {
-        ButtonTone::Danger
-    }
-}
-
 fn draw_companion_behavior_icon(rect: Rect, behavior: CompanionBehavior, color: Color) {
     let center_x = rect.x + rect.w * 0.5;
     let center_y = rect.y + rect.h * 0.5 - 1.0;
@@ -25906,6 +26059,18 @@ mod tests {
 
     fn saved_package(id: &str, version: &str) -> SavedPackage {
         SavedPackage::new(id, version).unwrap()
+    }
+
+    #[test]
+    fn inspecting_yourself_keeps_the_actual_layered_player_visual() {
+        let app = AsciiApp::new_agent_drone_trial().unwrap();
+        let expected = app.front_player_visual();
+        let summary = app
+            .terminal_target_summary_for(app.game.player_id())
+            .unwrap();
+        assert_eq!(summary.visual, Some(expected));
+        assert_eq!(summary.distance, 0);
+        assert!(matches!(expected, crate::game_art::Visual::Player { .. }));
     }
 
     #[test]
@@ -27405,7 +27570,7 @@ mod tests {
     }
 
     #[test]
-    fn companion_bar_changes_behavior_without_spending_a_turn() {
+    fn familiar_window_changes_behavior_without_spending_a_turn() {
         let mut app = app_with_test_controls();
         app.character_creation = None;
         let drone = spawn_ui_test_drone(&mut app, 4);
@@ -27414,16 +27579,8 @@ mod tests {
                 .iter()
                 .any(|message| message.text == "+ DRONE")
         );
-        let layout = CompanionBarLayout::new(1280.0, 800.0);
-        assert_eq!(companion_button_tone(true), ButtonTone::Secondary);
-        assert_eq!(companion_button_tone(false), ButtonTone::Danger);
-        assert!(layout.panel.w <= 460.0);
-        assert!(layout.behavior_buttons.iter().all(|button| {
-            button.x >= layout.panel.x
-                && button.x + button.w <= layout.panel.x + layout.panel.w
-                && button.w == 38.0
-                && button.h == 32.0
-        }));
+        app.ux.familiars.open = true;
+        let layout = familiar_window::Layout::new(1280., 800., &app.ux.familiars);
         let turn_before = app.game.turn();
 
         app.update_input(&rect_pointer(layout.behavior_buttons[2], 0.0));
@@ -27550,6 +27707,30 @@ mod tests {
         app.menu = MenuScreen::Hidden;
         app.update_input_at(&held, Some(7.0));
         assert_eq!(app.game.player_position(), before_menu);
+    }
+
+    #[test]
+    fn a_second_movement_press_is_accepted_while_the_first_glide_is_running() {
+        let mut app = app_with_test_controls();
+        let before = app.game.player_position().unwrap();
+        let turn = app.game.turn();
+        let input = InputFrame {
+            pressed: [Binding::key("D")].into(),
+            held: [Binding::key("D")].into(),
+            ..Default::default()
+        };
+        app.update_input_at(&input, Some(5.0));
+        app.update_input_at(&input, Some(5.02));
+        assert_eq!(app.game.turn(), turn + 2);
+        assert_eq!(
+            app.game.player_position(),
+            Some(GridPos::new(before.x + 2, before.y))
+        );
+        assert_ne!(
+            app.combat_motion
+                .glide_offset(app.game.player_id(), 5.02, false),
+            Vec2::ZERO
+        );
     }
 
     fn held_menu_key(key: &str, pressed: bool) -> InputFrame {
@@ -27793,7 +27974,16 @@ mod tests {
         assert_eq!(app.graphics.draft.mode, WindowMode::Windowed);
         app.update_input(&menu_pointer(MenuScreen::Graphics, 1, true));
         assert_eq!(app.graphics.draft.windowed_size, [1600, 900]);
-        app.update_input(&menu_pointer(MenuScreen::Graphics, 8, true));
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 6, true));
+        assert_eq!(
+            app.graphics.draft.interface_style,
+            graphics::InterfaceStyle::Terminal
+        );
+        assert_eq!(
+            app.graphics.active.interface_style,
+            graphics::InterfaceStyle::Metal
+        );
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 9, true));
         assert_eq!(app.menu, MenuScreen::ConfirmGraphics);
         assert!(app.graphics.previewing());
         assert!(!app.graphics.path.exists());
@@ -27839,7 +28029,7 @@ mod tests {
             app.open_menu(MenuScreen::Graphics);
             app.update_input(&input("Enter")); // Borderless -> windowed draft.
             assert_eq!(app.graphics.active.mode, WindowMode::Borderless);
-            app.update_input(&menu_pointer(MenuScreen::Graphics, 8, true));
+            app.update_input(&menu_pointer(MenuScreen::Graphics, 9, true));
             assert_eq!(app.menu, MenuScreen::ConfirmGraphics);
             for key in ["W", "Space", "F", "R"] {
                 app.update_input(&input(key));
@@ -27911,7 +28101,7 @@ mod tests {
         let display = app.graphics.active;
         app.open_menu(MenuScreen::Graphics);
         app.update_input(&input("Enter"));
-        app.update_input(&menu_pointer(MenuScreen::Graphics, 8, true));
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 9, true));
         assert!(app.graphics.previewing());
         app.request_quit();
         assert!(app.should_quit());

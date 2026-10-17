@@ -1,0 +1,263 @@
+{
+  "review_id": "EQUIPMENT-NATIVE64-01-INTEGRATION01",
+  "date": "2026-10-16",
+  "visual_acceptance": "accepted and integrated",
+  "acceptance_receipts": [
+    "visual-acceptance-01.json",
+    "palette-defaults-01.json"
+  ],
+  "scope": "Ground objects, inventory icons, item illustrations, worn outfits and held weapons. Chrysalide default uses the exact existing olive/bone variant. No new drawing or palette invented.",
+  "pixel_verification": {
+    "review_id": "EQUIPMENT-NATIVE64-01",
+    "reviewed_icons_exact_to_approved_sources": 176,
+    "new_worn_compositions_exact_to_approved_sources": 336,
+    "existing_worn_compositions_unchanged": 576,
+    "chrysalide_default_icons_replaced_by_existing_olive_variant": 1,
+    "chrysalide_default_compositions_replaced_by_existing_olive_variant": 16,
+    "runtime_assets_bytes": 2202140,
+    "artifacts_runtime_dependencies": false
+  },
+  "active_bank": [
+    {
+      "path": "assets/sprites/equipment-native64/bodies-128.png",
+      "bytes": 228399,
+      "sha256": "c86b0db775dd3bcff57db0145ae272a1367cecf0957915f9941c0523ed1b9967"
+    },
+    {
+      "path": "assets/sprites/equipment-native64/fingers-128.png",
+      "bytes": 45840,
+      "sha256": "ba8191bf730df94d9e919277ff29c207e17453c7ffb27de85233d77c5beb7d95"
+    },
+    {
+      "path": "assets/sprites/equipment-native64/icons-32.png",
+      "bytes": 229015,
+      "sha256": "6cb75c857f6824d01e63583cdee98011e920a1bd21bacc2794d148f7543ef7c8"
+    },
+    {
+      "path": "assets/sprites/equipment-native64/icons-64.png",
+      "bytes": 651187,
+      "sha256": "0f6264d4caad227dc3936e6b0cdfd3f98ff7c9a49ae3e9ac223a4450eef66c0f"
+    },
+    {
+      "path": "assets/sprites/equipment-native64/manifest.json",
+      "bytes": 48748,
+      "sha256": "0ad96bbc5b590eb59f29e234e5ae75df15b39623b029518c7bd0fa76f63c38db"
+    },
+    {
+      "path": "assets/sprites/equipment-native64/materials-32.png",
+      "bytes": 12148,
+      "sha256": "c481cbb8428b36e304d2def6f295b7cd121615f499c99c021700db6912d72d65"
+    },
+    {
+      "path": "assets/sprites/equipment-native64/materials-64.png",
+      "bytes": 28892,
+      "sha256": "094bf8233ee4b506ed6f50e7311a1913b2317cb95b1e513cfd0cea3b544e132e"
+    },
+    {
+      "path": "assets/sprites/equipment-native64/outfits-128.png",
+      "bytes": 690499,
+      "sha256": "2fcc1610daa5d8c2dcd9c61d2f48410f152180495bec238919f1edee62c65a60"
+    },
+    {
+      "path": "assets/sprites/equipment-native64/outfits-64.png",
+      "bytes": 267412,
+      "sha256": "1f42a15e158583a1e2eca13527d2d28a888729d294d8841e5a50fa18a74616c0"
+    }
+  ],
+  "validation": {
+    "engine": {
+      "passed": 955,
+      "scope": "engine suite; before the final palette-only repack"
+    },
+    "graphics": {
+      "passed": 34,
+      "scope": "game_art tests after final Chrysalide palette repack"
+    },
+    "merchant_stock": {
+      "passed": 1
+    },
+    "legacy_loot_projection": {
+      "passed": 1,
+      "includes_generation": 148
+    },
+    "aviator_retirement_compatibility": {
+      "passed": 1,
+      "current_generation": 149,
+      "prior_generation": 148
+    },
+    "debug_build": "passed without compiler warnings after final palette repack",
+    "release_check": "passed; no release executable built",
+    "format_check": "passed",
+    "git_diff_check": "passed",
+    "gallery_javascript_syntax": "passed with Node",
+    "native_capture_visual_review": "Production render paths inspected at native 64px; modern Bastion inventory inspected",
+    "full_client_suite": "not green; no claim of complete project test success",
+    "equipment_generation_cohort": {
+      "passed": 9,
+      "failed": 9,
+      "failures": [
+        "accessory_models_preserve_version_133",
+        "bonus_rarity_preserves_version_134",
+        "firearm_models_preserve_version_129",
+        "improvement_preserves_version_135",
+        "melee_models_preserve_version_130",
+        "reinforced_armor_preserves_version_132",
+        "sword_models_preserve_version_131",
+        "version_106_keeps_its_original_merchants_and_can_resume",
+        "version_107_keeps_its_original_equipment_and_can_resume"
+      ],
+      "failure_type": "historical state fingerprints differ; rules and loot fingerprint assertions pass",
+      "expected_fingerprints_changed": false,
+      "baseline": "No fresh pre-integration baseline established for these nine tests; do not attribute their origin to this change."
+    }
+  },
+  "runtime_capture_diagnostics": {
+    "cache_after_repeated_frames": [
+      [
+        25,
+        25
+      ],
+      [
+        16,
+        16
+      ]
+    ],
+    "cache_after_warmup": [
+      [
+        25,
+        25
+      ],
+      [
+        16,
+        16
+      ]
+    ],
+    "native_tile": 64,
+    "no_new_textures_after_warmup": true,
+    "scene": "crawl-equipment64",
+    "state_unchanged_after_render": true,
+    "weapon_families": 18,
+    "weapon_models": 113
+  },
+  "captures": [
+    {
+      "scene": "equipment64-runtime-check",
+      "source": "artifacts/equipment64-runtime-check/cold-start.png",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "sha256": "e7ed63d82c3d0ce43f41d57d28fb73ba95fc545623f666151d6667025e02b0d1",
+      "retention": "pixels embedded in artifacts/apercu-equipement64.html; temporary PNG still present because automatic deletion was blocked by policy"
+    },
+    {
+      "scene": "equipment64-inventory-check",
+      "source": "artifacts/equipment64-inventory-check/cold-start.png",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "sha256": "5c63eda7f40ebef6c6e32ef77e70a09ade782436e6ca315d1dafe92b7cf8612f",
+      "retention": "pixels embedded in artifacts/apercu-equipement64.html; temporary PNG still present because automatic deletion was blocked by policy"
+    }
+  ],
+  "gallery": {
+    "path": "artifacts/apercu-equipement64.html",
+    "bytes": 728277,
+    "sha256": "4e70ef6e940a87c21eba4394e6171f198aff928348792f4d311cce71adcd703c",
+    "embedded_captures": 2
+  },
+  "cleanup": {
+    "status": "blocked by automatic command policy",
+    "files": [
+      {
+        "path": "artifacts/equipment64-runtime-check/art-validation.json",
+        "bytes": 381,
+        "sha256": "3ce196080c4cb7e21b2c045e59f35dd517181fee79ebc2211ca1c66fa157ae6b"
+      },
+      {
+        "path": "artifacts/equipment64-runtime-check/cold-start.png",
+        "bytes": 352504,
+        "sha256": "e7ed63d82c3d0ce43f41d57d28fb73ba95fc545623f666151d6667025e02b0d1"
+      },
+      {
+        "path": "artifacts/equipment64-runtime-check/frame-00.png",
+        "bytes": 352504,
+        "sha256": "e7ed63d82c3d0ce43f41d57d28fb73ba95fc545623f666151d6667025e02b0d1"
+      },
+      {
+        "path": "artifacts/equipment64-runtime-check/frame-01.png",
+        "bytes": 352504,
+        "sha256": "e7ed63d82c3d0ce43f41d57d28fb73ba95fc545623f666151d6667025e02b0d1"
+      },
+      {
+        "path": "artifacts/equipment64-runtime-check/frame-02.png",
+        "bytes": 352504,
+        "sha256": "e7ed63d82c3d0ce43f41d57d28fb73ba95fc545623f666151d6667025e02b0d1"
+      },
+      {
+        "path": "artifacts/equipment64-runtime-check/frame-03.png",
+        "bytes": 352504,
+        "sha256": "e7ed63d82c3d0ce43f41d57d28fb73ba95fc545623f666151d6667025e02b0d1"
+      },
+      {
+        "path": "artifacts/equipment64-runtime-check/frame-04.png",
+        "bytes": 352504,
+        "sha256": "e7ed63d82c3d0ce43f41d57d28fb73ba95fc545623f666151d6667025e02b0d1"
+      },
+      {
+        "path": "artifacts/equipment64-runtime-check/frame-05.png",
+        "bytes": 352504,
+        "sha256": "e7ed63d82c3d0ce43f41d57d28fb73ba95fc545623f666151d6667025e02b0d1"
+      },
+      {
+        "path": "artifacts/equipment64-runtime-check/frame-06.png",
+        "bytes": 352504,
+        "sha256": "e7ed63d82c3d0ce43f41d57d28fb73ba95fc545623f666151d6667025e02b0d1"
+      },
+      {
+        "path": "artifacts/equipment64-runtime-check/frame-07.png",
+        "bytes": 352504,
+        "sha256": "e7ed63d82c3d0ce43f41d57d28fb73ba95fc545623f666151d6667025e02b0d1"
+      },
+      {
+        "path": "artifacts/equipment64-inventory-check/cold-start.png",
+        "bytes": 167634,
+        "sha256": "5c63eda7f40ebef6c6e32ef77e70a09ade782436e6ca315d1dafe92b7cf8612f"
+      },
+      {
+        "path": "artifacts/equipment64-generation-tests.txt",
+        "bytes": 4961,
+        "sha256": "7e0a0972f8e3d929b8dfe8e781ebeda41c0c6497134a823259dbcaaa33b25048"
+      },
+      {
+        "path": "artifacts/equipement64-controle.png",
+        "bytes": 110282,
+        "sha256": "d8c147b777e40231f86df3c744a8c139978b91921114361e1fe5e4eccbfa7df3"
+      },
+      {
+        "path": "artifacts/equipement64-tenues.png",
+        "bytes": 109855,
+        "sha256": "2b38fd917c9f2b8f21067102606877e978fc806c3fbe07696459b9273e53788c"
+      }
+    ],
+    "bytes": 3565649,
+    "preserved": [
+      "source artwork",
+      "active sprite banks",
+      "documentation and acceptance receipts",
+      "artifacts/map-editor",
+      "rebuilt debug executable",
+      "single reusable HTML gallery"
+    ],
+    "runtime_dependencies_on_artifacts": false,
+    "policy_message": "blocked by policy",
+    "policy_reason": "No further reason supplied by automatic review",
+    "deleted_files": 0,
+    "reclaimed_bytes": 0,
+    "remaining_files": 14,
+    "remaining_bytes": 3565649,
+    "retry_or_alternate_deletion_attempted_after_rejection": false
+  },
+  "git_operations": "No staging, commit, push or history edit."
+}

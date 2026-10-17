@@ -22,12 +22,34 @@ const RESOLUTIONS: &[[u32; 2]] = &[
     [1280, 800],
     [1600, 900],
     [1920, 1080],
+    [2560, 1440],
+    [3840, 2160],
 ];
 const UI_SCALES: &[u16] = &[75, 100, 125, 150, 175, 200];
-const CELL_SIZES: &[u16] = &[32, 64];
-const LEGACY_CELL_SIZES: &[u16] = &[16, 20, 24, 40, 48];
+const CELL_SIZES: &[u16] = &[64];
+const LEGACY_CELL_SIZES: &[u16] = &[16, 20, 24, 32, 40, 48];
 fn default_cell_size() -> u16 {
-    32
+    64
+}
+fn default_hover_health() -> bool {
+    true
+}
+
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum InterfaceStyle {
+    #[default]
+    Metal,
+    Terminal,
+}
+impl InterfaceStyle {
+    pub const ALL: [Self; 2] = [Self::Metal, Self::Terminal];
+    pub const fn label(self) -> &'static str {
+        match self {
+            Self::Metal => "Métal sombre",
+            Self::Terminal => "Terminal PC",
+        }
+    }
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -82,9 +104,13 @@ pub struct GraphicsSettings {
     #[serde(default)]
     pub interface_theme: InterfaceTheme,
     #[serde(default)]
+    pub interface_style: InterfaceStyle,
+    #[serde(default)]
     pub high_contrast: bool,
     #[serde(default)]
     pub reduced_motion: bool,
+    #[serde(default = "default_hover_health")]
+    pub hover_monster_health: bool,
 }
 
 impl Default for GraphicsSettings {
@@ -96,8 +122,10 @@ impl Default for GraphicsSettings {
             ui_scale_percent: 100,
             world_cell_px: default_cell_size(),
             interface_theme: InterfaceTheme::default(),
+            interface_style: InterfaceStyle::default(),
             high_contrast: false,
             reduced_motion: false,
+            hover_monster_health: true,
         }
     }
 }
@@ -120,7 +148,7 @@ impl GraphicsSettings {
     fn decode(source: &str) -> Result<Self, String> {
         let mut settings: Self = serde_json::from_str(source).map_err(|e| e.to_string())?;
         if LEGACY_CELL_SIZES.contains(&settings.world_cell_px) {
-            settings.world_cell_px = if settings.world_cell_px >= 48 { 64 } else { 32 };
+            settings.world_cell_px = default_cell_size();
         }
         settings.validate()?;
         Ok(settings)
@@ -206,9 +234,13 @@ impl GraphicsSettings {
                 self.interface_theme =
                     cycle_value(&InterfaceTheme::ALL, self.interface_theme, forward)
             }
-            4 => self.world_cell_px = cycle_value(CELL_SIZES, self.world_cell_px, forward),
-            5 => self.high_contrast = !self.high_contrast,
-            6 => self.reduced_motion = !self.reduced_motion,
+            4 => self.high_contrast = !self.high_contrast,
+            5 => self.reduced_motion = !self.reduced_motion,
+            6 => {
+                self.interface_style =
+                    cycle_value(&InterfaceStyle::ALL, self.interface_style, forward)
+            }
+            7 => self.hover_monster_health = !self.hover_monster_health,
             _ => {}
         }
     }
@@ -377,6 +409,55 @@ mod tests {
     }
 
     #[test]
+    fn interface_styles_migrate_cycle_and_roundtrip_without_changing_other_preferences() {
+        let mut settings = GraphicsSettings {
+            interface_theme: InterfaceTheme::Red,
+            world_cell_px: 64,
+            ..Default::default()
+        };
+        let mut legacy = serde_json::to_value(settings).unwrap();
+        legacy.as_object_mut().unwrap().remove("interface_style");
+        assert_eq!(
+            GraphicsSettings::decode(&legacy.to_string()).unwrap(),
+            settings
+        );
+        let original = settings;
+        for style in [InterfaceStyle::Terminal, InterfaceStyle::Metal] {
+            settings.cycle(6, true);
+            assert_eq!(settings.interface_style, style);
+            assert_eq!(
+                GraphicsSettings::decode(&serde_json::to_string(&settings).unwrap()).unwrap(),
+                settings
+            );
+            assert_eq!(settings.interface_theme, original.interface_theme);
+            assert_eq!(settings.world_cell_px, original.world_cell_px);
+        }
+        assert_eq!(settings, original);
+    }
+
+    #[test]
+    fn hover_health_defaults_for_old_preferences_and_roundtrips_disabled() {
+        let mut original = GraphicsSettings {
+            ui_scale_percent: 150,
+            ..Default::default()
+        };
+        let mut legacy = serde_json::to_value(original).unwrap();
+        legacy
+            .as_object_mut()
+            .unwrap()
+            .remove("hover_monster_health");
+        assert_eq!(
+            GraphicsSettings::decode(&legacy.to_string()).unwrap(),
+            original
+        );
+        original.hover_monster_health = false;
+        assert_eq!(
+            GraphicsSettings::decode(&serde_json::to_string(&original).unwrap()).unwrap(),
+            original
+        );
+    }
+
+    #[test]
     fn settings_reject_unsupported_modes_dimensions_scales_and_versions() {
         let valid = serde_json::to_value(GraphicsSettings::default()).unwrap();
         for (field, value) in [
@@ -413,8 +494,8 @@ mod tests {
         assert_eq!(settings.ui_scale_percent, 200);
         settings.cycle(2, true);
         assert_eq!(settings.ui_scale_percent, 75);
+        settings.cycle(4, true);
         settings.cycle(5, true);
-        settings.cycle(6, true);
         assert!(settings.high_contrast);
         assert!(settings.reduced_motion);
     }
@@ -430,37 +511,32 @@ mod tests {
     }
 
     #[test]
-    fn tile_zoom_is_independent_and_legacy_graphics_keep_their_preferences() {
-        let mut document = serde_json::to_value(GraphicsSettings::default()).unwrap();
+    fn legacy_tile_sizes_migrate_to_native64_without_resetting_other_preferences() {
+        let original = GraphicsSettings {
+            ui_scale_percent: 150,
+            interface_theme: InterfaceTheme::Red,
+            interface_style: InterfaceStyle::Terminal,
+            high_contrast: true,
+            reduced_motion: true,
+            windowed_size: [2560, 1440],
+            ..Default::default()
+        };
+        let mut document = serde_json::to_value(original).unwrap();
         document.as_object_mut().unwrap().remove("world_cell_px");
-        document.as_object_mut().unwrap().remove("high_contrast");
-        document.as_object_mut().unwrap().remove("reduced_motion");
-        document.as_object_mut().unwrap().remove("interface_theme");
-        document["ui_scale_percent"] = serde_json::json!(150);
         let mut settings = GraphicsSettings::decode(&document.to_string()).unwrap();
-        assert_eq!(settings.world_cell_px, 32);
-        assert_eq!(settings.interface_theme, InterfaceTheme::Violet);
-        assert!(!settings.high_contrast);
-        assert!(!settings.reduced_motion);
-        settings.cycle(4, true);
-        assert_eq!(settings.world_cell_px, 64);
-        assert_eq!(settings.ui_scale_percent, 150);
-        settings.cycle(4, true);
-        assert_eq!(settings.world_cell_px, 32);
-        settings.cycle(4, true);
-        assert_eq!(settings.world_cell_px, 64);
-        assert_eq!(settings.ui_scale_percent, 150);
+        assert_eq!(settings, original);
+        for row in 0..=6 {
+            settings.cycle(row, true);
+            assert_eq!(settings.world_cell_px, 64);
+        }
         assert_eq!(
             GraphicsSettings::decode(&serde_json::to_string(&settings).unwrap()).unwrap(),
             settings
         );
-        settings.cycle(4, false);
-        assert_eq!(settings.world_cell_px, 32);
         for size in LEGACY_CELL_SIZES {
             document["world_cell_px"] = serde_json::json!(size);
             let migrated = GraphicsSettings::decode(&document.to_string()).unwrap();
-            assert_eq!(migrated.world_cell_px, if *size >= 48 { 64 } else { 32 });
-            assert_eq!(migrated.ui_scale_percent, 150);
+            assert_eq!(migrated, original);
         }
         document["world_cell_px"] = serde_json::json!(1);
         assert!(GraphicsSettings::decode(&document.to_string()).is_err());
@@ -469,7 +545,7 @@ mod tests {
     #[test]
     fn themes_roundtrip_and_preserve_existing_display_preferences() {
         let mut settings = GraphicsSettings {
-            world_cell_px: 32,
+            world_cell_px: 64,
             ui_scale_percent: 150,
             mode: WindowMode::Windowed,
             ..Default::default()
@@ -488,7 +564,7 @@ mod tests {
             assert_ne!(settings.interface_theme, theme);
             settings.cycle(3, false);
             assert_eq!(settings.interface_theme, theme);
-            assert_eq!(settings.world_cell_px, 32);
+            assert_eq!(settings.world_cell_px, 64);
             assert_eq!(settings.ui_scale_percent, 150);
         }
         settings.interface_theme = InterfaceTheme::Red;

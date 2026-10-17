@@ -103,6 +103,23 @@ struct Motion {
     recoil: bool,
 }
 
+/// Offset from the already committed destination, in world tiles. Never saved.
+#[derive(Clone, Debug)]
+struct TileGlide {
+    offset: Vec2,
+    destination: GridPos,
+    started: f64,
+}
+
+impl TileGlide {
+    const SECONDS: f64 = 0.080;
+
+    fn offset(&self, now: f64) -> Vec2 {
+        let remaining = (1.0 - (now - self.started) / Self::SECONDS).clamp(0.0, 1.0) as f32;
+        self.offset * remaining * remaining
+    }
+}
+
 #[derive(Clone, Debug)]
 struct RuptureStrike {
     origin: GridPos,
@@ -113,6 +130,7 @@ struct RuptureStrike {
 #[derive(Default, Debug)]
 pub(crate) struct CombatMotion {
     motions: BTreeMap<EntityId, Motion>,
+    glides: BTreeMap<EntityId, TileGlide>,
     travels: BTreeMap<EntityId, (Vec2, f64)>,
     spells: Vec<agent_spells::SpellFlight>,
     blasts: Vec<agent_spells::SpellBlast>,
@@ -125,6 +143,53 @@ pub(crate) struct CombatMotion {
 }
 
 impl CombatMotion {
+    pub fn glide(&mut self, entity: EntityId, from: GridPos, to: GridPos, now: f64) {
+        let delta = vec2((from.x - to.x) as f32, (from.y - to.y) as f32);
+        // Long transfers and skills with their own travel retain that presentation.
+        if delta == Vec2::ZERO
+            || delta.abs().max_element() > 1.0
+            || self
+                .travels
+                .get(&entity)
+                .is_some_and(|(_, started)| now - started < 0.18)
+        {
+            self.glides.remove(&entity);
+            return;
+        }
+        let previous = self
+            .glides
+            .get(&entity)
+            .filter(|glide| glide.destination == from)
+            .map_or(Vec2::ZERO, |glide| glide.offset(now));
+        self.glides.insert(
+            entity,
+            TileGlide {
+                offset: delta + previous,
+                destination: to,
+                started: now,
+            },
+        );
+    }
+
+    pub fn stop_glide(&mut self, entity: EntityId) {
+        self.glides.remove(&entity);
+    }
+
+    pub fn glide_offset(&self, entity: EntityId, now: f64, reduced_motion: bool) -> Vec2 {
+        if reduced_motion {
+            Vec2::ZERO
+        } else {
+            self.glides
+                .get(&entity)
+                .map_or(Vec2::ZERO, |glide| glide.offset(now))
+        }
+    }
+
+    pub fn actor_rect(&self, entity: EntityId, rect: Rect, now: f64, reduced_motion: bool) -> Rect {
+        let offset = self.offset(entity, now, reduced_motion) * rect.w;
+        Rect::new(rect.x + offset.x, rect.y + offset.y, rect.w, rect.h)
+    }
+
     pub fn play_agent_travel(
         &mut self,
         entity: EntityId,
@@ -132,6 +197,7 @@ impl CombatMotion {
         target: GridPos,
         now: f64,
     ) {
+        self.glides.remove(&entity);
         self.travels.insert(
             entity,
             (
@@ -168,12 +234,22 @@ impl CombatMotion {
         now: f64,
         reduced: bool,
         background: bool,
+        clip: Rect,
         rect: impl Fn(GridPos) -> Option<Rect>,
     ) {
         agent_magic::draw(game, &self.magic, now, reduced, background, &rect);
         agent_devices::draw(game, now, reduced, background, &rect);
-        agent_weapons::draw(game, now, reduced, background, &rect);
-        agent_support::draw(game, &self.magic, now, reduced, background, &rect);
+        let actor_rect = |entity, at| rect(at).map(|r| self.actor_rect(entity, r, now, reduced));
+        agent_weapons::draw(game, now, reduced, background, &actor_rect);
+        agent_support::draw(
+            game,
+            &self.magic,
+            now,
+            reduced,
+            background,
+            &rect,
+            &actor_rect,
+        );
         for flight in &self.magic {
             agent_weapons::burst(
                 &flight.skill,
@@ -184,6 +260,7 @@ impl CombatMotion {
                 game.map(),
                 background,
                 &rect,
+                clip,
             );
             if matches!(
                 flight.skill.as_str(),
@@ -418,17 +495,21 @@ impl CombatMotion {
         if reduced_motion {
             return Vec2::ZERO;
         }
-        self.motions.get(&entity).map_or(Vec2::ZERO, |motion| {
-            motion_offset(motion.direction, now - motion.started, motion.recoil)
-        }) + self
-            .travels
-            .get(&entity)
-            .map_or(Vec2::ZERO, |(offset, started)| {
-                *offset * (1. - ((now - *started) / 0.18).clamp(0., 1.) as f32)
+        self.glide_offset(entity, now, false)
+            + self.motions.get(&entity).map_or(Vec2::ZERO, |motion| {
+                motion_offset(motion.direction, now - motion.started, motion.recoil)
             })
+            + self
+                .travels
+                .get(&entity)
+                .map_or(Vec2::ZERO, |(offset, started)| {
+                    *offset * (1. - ((now - *started) / 0.18).clamp(0., 1.) as f32)
+                })
     }
 
     pub fn prune(&mut self, now: f64) {
+        self.glides
+            .retain(|_, glide| now - glide.started < TileGlide::SECONDS);
         self.travels.retain(|_, (_, started)| now - *started < 0.18);
         self.fireballs.retain(|s| now - s.started < 0.90);
         self.magic.retain(|s| now - s.started < 1.2);
@@ -442,6 +523,7 @@ impl CombatMotion {
         self.motions.retain(|_, motion| now - motion.started < 0.18);
     }
     pub fn clear(&mut self) {
+        self.glides.clear();
         self.fireballs.clear();
         self.embers.clear();
         self.magic.clear();
@@ -535,6 +617,13 @@ impl CombatResidue {
 pub(crate) fn draw_residue(rect: Rect, cell: &ResidueCell, visible: bool) {
     let px = rect.w / 32.0;
     let alpha = if visible { 0.90 } else { 0.30 };
+    let native_corpse = cell
+        .corpse_symbol
+        .and_then(crate::game_art::campaign::decode_corpse);
+    if let Some((number, variant)) = native_corpse.filter(|_| cell.blood == 0) {
+        crate::game_art::campaign::draw_corpse(rect, number, variant, alpha);
+        return;
+    }
     // The approved corpse already contains its pool, or is a dry machine wreck.
     // Keep saved actor indices; select the authored drawing in the renderer.
     if let Some(sprite) = cell
@@ -589,6 +678,10 @@ pub(crate) fn draw_residue(rect: Rect, cell: &ResidueCell, visible: bool) {
             },
             red,
         );
+    }
+    if let Some((number, variant)) = native_corpse {
+        crate::game_art::campaign::draw_corpse(rect, number, variant, alpha);
+        return;
     }
     if let Some(sprite) = cell.corpse {
         crate::game_art::draw_corpse(rect, sprite, alpha);
@@ -700,6 +793,77 @@ mod tests {
         motion.play(id, GridPos::new(2, 2), GridPos::new(3, 2), true, 2.0);
         assert!(motion.offset(id, 2.05, false).x < -0.15);
         assert_eq!(motion.offset(id, 2.05, true), Vec2::ZERO);
+    }
+
+    #[test]
+    fn tile_glide_moves_the_whole_actor_and_rests_after_eighty_milliseconds() {
+        let id: EntityId = serde_json::from_str("1").unwrap();
+        let from = GridPos::new(10, 10);
+        for to in [
+            GridPos::new(11, 10),
+            GridPos::new(9, 10),
+            GridPos::new(10, 9),
+            GridPos::new(10, 11),
+        ] {
+            let mut motion = CombatMotion::default();
+            motion.glide(id, from, to, 1.0);
+            let delta = vec2((from.x - to.x) as f32, (from.y - to.y) as f32);
+            assert_eq!(motion.offset(id, 1.0, false), delta);
+            assert!((motion.offset(id, 1.04, false) - delta * 0.25).length() < 0.0001);
+            for tile in [32., 64.] {
+                let destination = Rect::new(to.x as f32 * tile, to.y as f32 * tile, tile, tile);
+                let start = motion.actor_rect(id, destination, 1.0, false);
+                assert_eq!(
+                    start.point(),
+                    vec2(from.x as f32 * tile, from.y as f32 * tile)
+                );
+                assert_eq!(motion.actor_rect(id, destination, 1.08, false), destination);
+                assert_eq!(motion.actor_rect(id, destination, 1.02, true), destination);
+            }
+            motion.prune(1.08);
+            assert!(motion.glides.is_empty());
+        }
+    }
+
+    #[test]
+    fn a_new_step_retargets_the_displayed_position_without_a_queue_or_a_snap() {
+        let id: EntityId = serde_json::from_str("1").unwrap();
+        let mut motion = CombatMotion::default();
+        let a = GridPos::new(10, 10);
+        let b = GridPos::new(11, 10);
+        let c = GridPos::new(11, 9);
+        motion.glide(id, a, b, 1.0);
+        let shown = vec2(b.x as f32, b.y as f32) + motion.offset(id, 1.02, false);
+        motion.glide(id, b, c, 1.02);
+        assert!(
+            (vec2(c.x as f32, c.y as f32) + motion.offset(id, 1.02, false) - shown).length()
+                < 0.0001
+        );
+        assert_eq!(motion.offset(id, 1.11, false), Vec2::ZERO);
+        assert_eq!(motion.glides.len(), 1);
+        motion.play(id, c, b, true, 1.02);
+        assert_ne!(
+            motion.offset(id, 1.05, false),
+            motion.glide_offset(id, 1.05, false)
+        );
+        motion.clear();
+        assert_eq!(motion.offset(id, 1.05, false), Vec2::ZERO);
+    }
+
+    #[test]
+    fn tile_glides_do_not_replace_skill_travel_or_teleports() {
+        let id: EntityId = serde_json::from_str("1").unwrap();
+        let mut motion = CombatMotion::default();
+        let a = GridPos::new(10, 10);
+        let b = GridPos::new(11, 10);
+        motion.glide(id, a, b, 1.0);
+        motion.play_agent_travel(id, a, b, 1.01);
+        assert_eq!(motion.glide_offset(id, 1.02, false), Vec2::ZERO);
+        motion.glide(id, a, b, 1.02);
+        assert_eq!(motion.glide_offset(id, 1.03, false), Vec2::ZERO);
+        motion.prune(2.0);
+        motion.glide(id, b, GridPos::new(15, 10), 2.0);
+        assert_eq!(motion.offset(id, 2.0, false), Vec2::ZERO);
     }
 
     #[test]

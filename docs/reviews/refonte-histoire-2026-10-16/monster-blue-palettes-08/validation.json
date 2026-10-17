@@ -1,0 +1,92 @@
+{
+  "check_all_targets": "passed",
+  "debug_build": "passed",
+  "focused_monster_tests": {
+    "passed": 12,
+    "failed": 0
+  },
+  "native_corpse_and_bincode_json_test": {
+    "passed": 1,
+    "failed": 0
+  },
+  "engine_suite_before_blue_followup": {
+    "passed": 966,
+    "failed": 0
+  },
+  "generation_150_frozen_assignments_identical": 768,
+  "generation_151_frozen_assignments_identical": 768,
+  "real_game_captures": {
+    "actual_framebuffer_sizes": [
+      [
+        1920,
+        1080
+      ],
+      [
+        1920,
+        1080
+      ],
+      [
+        2560,
+        1440
+      ],
+      [
+        2560,
+        1440
+      ],
+      [
+        3840,
+        2160
+      ],
+      [
+        3840,
+        2160
+      ]
+    ],
+    "additional_material_palettes": 231,
+    "blue_palettes": true,
+    "extended_palettes": true,
+    "interface_styles": [
+      "metal",
+      "terminal"
+    ],
+    "native_models": 129,
+    "packaged_native_variants": 240,
+    "real_game_renderer": true,
+    "requested_resolutions": [
+      [
+        1920,
+        1080
+      ],
+      [
+        2560,
+        1440
+      ],
+      [
+        3840,
+        2160
+      ]
+    ],
+    "simulation_unchanged": true,
+    "window_manager_may_limit_requests": true
+  },
+  "all_231_gpu_palettes_match_native_exports": true,
+  "catalogue_native_pixels_verified": 1021168,
+  "catalogue_variants": 473,
+  "interface_styles": [
+    "metal",
+    "terminal"
+  ],
+  "visually_inspected_captures": [
+    "bestiary-metal-1920x1080.png",
+    "bestiary-metal-2560x1440.png",
+    "bestiary-terminal-3840x2160.png"
+  ],
+  "release_build": "passed",
+  "release_warnings": [
+    "Unused debug inspection wrapper"
+  ],
+  "global_application_suite": "Not rerun; 28 other application failures remain recorded in bestiary-integration-06/validation.json.",
+  "cleanup": "Two obsolete internal audit PNGs removed; accepted drawings, native boards and current renderer evidence retained.",
+  "release_build_elapsed": "1m 55s",
+  "integration_complete": true
+}

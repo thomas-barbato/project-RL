@@ -1,6 +1,6 @@
 # Refonte du contexte et du personnage
 
-Décisions du 6 octobre 2026. Le nouveau contexte est celui d'un agent humain
+Décisions de systèmes du 6 octobre 2026, contexte narratif actualisé le 16 octobre. Le personnage est un détenu humain
 augmenté réveillé de cryogénie, dans un univers cyberpunk sombre confronté à une
 menace démoniaque. La refonte concerne la campagne, les cinq classes de départ,
 les compétences actives et passives, les statistiques et la création du
@@ -113,35 +113,26 @@ la maquette et les icônes restent à présenter avant intégration.
 
 ## Contexte retenu
 
-Une organisation secrète réveille l'agent et l'envoie nettoyer les zones
-souterraines. Ses renseignements évoquent un plan visant à faire remonter une
-menace et envahir le monde de la surface.
+Le contexte antérieur de l'agent employé par une organisation secrète est remplacé
+par [Histoire de la campagne](HISTOIRE_CAMPAGNE.md), version 4 fournie par le joueur
+le 16 octobre 2026. Un détenu humain est réveillé dans une cryoprison pendant une
+apocalypse démoniaque et accepte de fermer la voie principale d'invasion en
+échange de sa liberté. Le récit se poursuit dans un véritable plan démoniaque
+glacé ; sa peine est réellement commuée après la réussite.
 
-Le joueur commence par traquer de petites menaces. Son enquête révèle
-progressivement une autre organisation qui a tenté d'assujettir des démons
-grâce à la technologie. Il découvre ensuite que cette tentative a échoué.
-Sa mission se poursuit dans les profondeurs, jusqu'à essayer de détruire la
-racine du mal.
+La magie reste réelle ; la technologie peut la canaliser sans l'expliquer
+entièrement. Ce principe déjà retenu accompagne les pouvoirs existants.
 
-La découverte de l'organisation adverse et de son échec appartient à la
-progression de l'histoire. Le briefing initial ne révèle pas d'emblée ces
-informations. L'organisation qui emploie l'agent et celle qui a mené les
-expériences sont deux rôles distincts ; aucun lien secret, mensonge ou
-retournement entre elles n'est encore défini.
+Les noms sont temporaires. Les six actes, les habitants, les quêtes et les combats
+détaillés restent des propositions. Le joueur accepte un nombre de quêtes réduit
+et retient le voyage rapide entre camps déjà débloqués. Les modalités restent à
+définir dans le [cadrage courant](reviews/refonte-histoire-2026-10-16/CADRAGE.md).
 
-Le cadre reste futuriste, industriel et cyberpunk sombre. La présence
-démoniaque s'ajoute à cette identité. La magie est réelle et la technologie
-peut la canaliser sans l'expliquer entièrement. La manière dont l'agent
-acquiert cet accès, la nature exacte de la racine du mal et les noms des
-organisations restent à choisir.
-
-Le lore comprend plusieurs dimensions démoniaques. Pendant l'exploration
-des souterrains, des portails permettent de rejoindre des cartes bonus
-situées dans ces dimensions. Ces cartes contiennent des monstres plus
-coriaces et offrent de meilleurs gains d'expérience et d'équipement.
-Elles ajoutent des détours facultatifs à la descente. Le retour, la fréquence
-des portails et la manière dont les dimensions interviennent dans la quête
-principale restent à définir.
+Les classes, compétences, attributs et effets déjà acceptés conservent leurs
+validations. Le lien narratif précis entre pouvoirs et passé du détenu reste à
+concevoir. Ni l'import de l'histoire ni ses exemples ne modifient leurs paramètres.
+Cette mise à jour documentaire ne remplace pas encore le départ ou les passages
+dans le code, le contenu jouable et les sauvegardes.
 
 ## Cinq orientations de départ
 

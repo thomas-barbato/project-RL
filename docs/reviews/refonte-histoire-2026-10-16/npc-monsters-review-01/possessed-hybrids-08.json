@@ -1,0 +1,228 @@
+{
+  "review_id": "NPC-MONSTERS-08",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "status": "visually_approved_not_integrated",
+  "request": "parfait on continue :)",
+  "scope": "Révisions lisibles des candidats 05–07 : ouvrier possédé, coureur greffé et élite Porte-presse. Ces créatures viennent après les premiers cultistes humains ; aucun chiffre ou nouveau fonctionnement défini.",
+  "native_cell": 64,
+  "records": [
+    {
+      "id": "MON-01",
+      "number": 5,
+      "revision": "r02",
+      "label": "Ouvrier possédé",
+      "family": "Possédés industriels",
+      "role": "Monstre normal / possédé",
+      "depth": "Après les premières zones cultistes",
+      "height": 60,
+      "width": 64,
+      "palette": 16,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised monster source for Project RL, a grim industrial cyberpunk horror roguelike with native 64px tiles.\nInput image 1 is the EDIT TARGET, an earlier monster proposal appreciated for its concept. Preserve its identity, basic anatomy, number of limbs, distinctive integrated equipment and relative body shape. Revise the visual complexity only as specified. Input image 2 is ONLY the accepted simplified comic style reference: bold clean dark contours, broad flat color masses, large useful negative spaces, ONE main shadow per material. Do NOT copy the reference's cannon arm, respirator, clothes or pose.\nReadability: use a small number of big purposeful shapes, no little rust scratches, flecks, gore filigree, anatomy hatching, skin mottling, small bolts, repeated rib lines, grids of panels or triangular cloth patchwork. Muted industrial palette; no pink, no gold ornament. Mature frightening design, not cute.\nComposition: ONE complete creature, nearly frontal with slight overhead game camera. Entire head, limbs, claws and supports fully inside generous true ALPHA transparent margins. No background, floor, shadow, glow, spell effect, particles, text, collage or alternate pose. Static appearance review only, no ability, statistic, collision or animation is created.\nSubject: the possessed industrial WORKER from image 1. Keep the hunched formerly human adult, exactly TWO legs and TWO arms, mustard-yellow short work jacket, muted teal work trousers and dark heavy work boots. He remains visibly an industrial worker corrupted by possession, not a member of the hooded cult and not an armored fighter.\nMain identifying shape is his enlarged flesh-and-bone RIGHT forearm and hand (viewer LEFT), hanging down and outward: ONE broad ivory skin/bone surface, ONE exposed dark brick-red muscle channel and THREE long dark hooked claws. Keep elbow, wrist and attached palm anatomically coherent. No chains, cannon, mechanical replacement, additional tendrils or held weapon. Normal LEFT arm (viewer RIGHT) is lean and smaller, with a simple pale hand and a few dark nails.\nHead: short dark disordered hair, hollow pale eyes, jaw stretched open into ONE clear black mouth cavity with TWO broad ivory fangs. Remove the multiple cheek holes, gums, tooth rows and tiny facial lines. A torn jacket shoulder and one torn trouser knee are enough; no busy field of rips or surface wear. Keep at most one broad pale work stripe per upper sleeve. Remove the hanging respirator and its straps from the chest to reduce clutter. Readable broad yellow shoulder mass and teal legs, simple black shirt beneath. Wide off-balance stance, recognizable human body with a terrifying asymmetric claw.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r01.png",
+          "role": "Cible de révision : conserver l'identité, l'anatomie et les greffes de la première proposition appréciée"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+          "role": "Référence de style simplifié validée ; ne pas copier le bras-canon ni la tenue"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-3598123d-6414-4832-a4b3-4b8615df435f.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 64,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-08",
+      "layering_status": "Organic and integrated mechanical anatomy; no separately held weapon",
+      "mechanics_status": "Apparence validée uniquement ; aucun dégât, vitesse, capacité, collision, effet ou placement intégré.",
+      "source_sha256": "db6983fe234f4237a3656474a628570e6f0d061a51c3f0258211e3c797ca043f",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-01-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          33,
+          36,
+          95,
+          96
+        ],
+        "colors": 16,
+        "sha256": "2482e6dabebb386bb674bd72d09836ea9e3b7e51ab556d99382a9f770fb821f3"
+      },
+      "visual_acceptance": "visual-acceptance-05.json",
+      "accepted_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-01-r02/MON-01-r02-native64.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          33,
+          36,
+          95,
+          96
+        ],
+        "colors": 16,
+        "sha256": "2482e6dabebb386bb674bd72d09836ea9e3b7e51ab556d99382a9f770fb821f3"
+      }
+    },
+    {
+      "id": "MON-02",
+      "number": 6,
+      "revision": "r02",
+      "label": "Coureur greffé",
+      "family": "Hybrides de conversion",
+      "role": "Monstre normal / hybride bas",
+      "depth": "Secteurs intermédiaires",
+      "height": 58,
+      "width": 64,
+      "palette": 16,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised monster source for Project RL, a grim industrial cyberpunk horror roguelike with native 64px tiles.\nInput image 1 is the EDIT TARGET, an earlier monster proposal appreciated for its concept. Preserve its identity, basic anatomy, number of limbs, distinctive integrated equipment and relative body shape. Revise the visual complexity only as specified. Input image 2 is ONLY the accepted simplified comic style reference: bold clean dark contours, broad flat color masses, large useful negative spaces, ONE main shadow per material. Do NOT copy the reference's cannon arm, respirator, clothes or pose.\nReadability: use a small number of big purposeful shapes, no little rust scratches, flecks, gore filigree, anatomy hatching, skin mottling, small bolts, repeated rib lines, grids of panels or triangular cloth patchwork. Muted industrial palette; no pink, no gold ornament. Mature frightening design, not cute.\nComposition: ONE complete creature, nearly frontal with slight overhead game camera. Entire head, limbs, claws and supports fully inside generous true ALPHA transparent margins. No background, floor, shadow, glow, spell effect, particles, text, collage or alternate pose. Static appearance review only, no ability, statistic, collision or animation is created.\nSubject: the low-slung QUADRUPED FLESH/MACHINE PREDATOR from image 1. Preserve exactly FOUR weight-bearing limbs: two thick muscular hindlegs, one organic front limb and one integrated mechanical front limb; no extra arm, tail, wing or tentacle. Low forward shoulder/chest mass and large skull-like animal muzzle, raw pale ivory hide, broad brick-red muscle patches, dark steel and a short rust-orange back casing. No fur, ordinary dog ears or human clothes.\nThe main reading must be ONE hunched animal body braced on four separate supports, with its RIGHT front limb (viewer LEFT) replaced by ONE very simple heavy dark steel GRIPPER. This is anatomically joined at shoulder through a short clear forearm housing; ONE pivot disc, TWO thick blunt gripper jaws and ONE broad metal plane are enough. No intricate hinges, pistons, little segments, cables or armor plates. Preserve a visible gap between gripper and neighboring legs.\nThoracic conversion: ONE dark rectangular steel insert on side of chest bordered by ONE broad pale bone frame. ONE thick brick-red tube curves from shoulder to chest. Back casing consists of TWO broad rust-orange slabs only. Remove all tiny ribs, repeated tube loops, bolts and metal scuff marks.\nFace: one simple angular ivory skull muzzle, one small dull BLUE artificial eye lens, one dark open mouth and TWO broad large fangs. No many little teeth or multiple holes in skull. Organic front paw has THREE broad dark claws, hindfeet THREE blunt toes. Broad pale skin planes and a few deep red seams suggest a disturbing conversion without dense anatomy texture. Strong low pouncing-ready pose, not standing upright like a humanoid.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-02-r01.png",
+          "role": "Cible de révision : conserver l'identité, l'anatomie et les greffes de la première proposition appréciée"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+          "role": "Référence de style simplifié validée ; ne pas copier le bras-canon ni la tenue"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-79bdd729-d84e-41df-a653-8a4d9dc1d691.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-02-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 58,
+      "maximum_body_width64": 64,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-08",
+      "layering_status": "Organic and integrated mechanical anatomy; no separately held weapon",
+      "mechanics_status": "Apparence validée uniquement ; aucun dégât, vitesse, capacité, collision, effet ou placement intégré.",
+      "source_sha256": "f37951224c9868f0d1f0112cde5d4afb685531d352749e988697c881b18a9cff",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-02-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          33,
+          38,
+          96,
+          96
+        ],
+        "colors": 16,
+        "sha256": "6495bc8e1782b132444132f6333fc41c9454b8d2335378a96885b02f83925eca"
+      },
+      "visual_acceptance": "visual-acceptance-05.json",
+      "accepted_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-02-r02/MON-02-r02-native64.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          33,
+          38,
+          96,
+          96
+        ],
+        "colors": 16,
+        "sha256": "6495bc8e1782b132444132f6333fc41c9454b8d2335378a96885b02f83925eca"
+      }
+    },
+    {
+      "id": "MON-03",
+      "number": 7,
+      "revision": "r02",
+      "label": "Porte-presse",
+      "family": "Hybrides industriels",
+      "role": "Élite proposée / hybride massif",
+      "depth": "Secteurs intermédiaires",
+      "height": 76,
+      "width": 80,
+      "palette": 16,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised monster source for Project RL, a grim industrial cyberpunk horror roguelike with native 64px tiles.\nInput image 1 is the EDIT TARGET, an earlier monster proposal appreciated for its concept. Preserve its identity, basic anatomy, number of limbs, distinctive integrated equipment and relative body shape. Revise the visual complexity only as specified. Input image 2 is ONLY the accepted simplified comic style reference: bold clean dark contours, broad flat color masses, large useful negative spaces, ONE main shadow per material. Do NOT copy the reference's cannon arm, respirator, clothes or pose.\nReadability: use a small number of big purposeful shapes, no little rust scratches, flecks, gore filigree, anatomy hatching, skin mottling, small bolts, repeated rib lines, grids of panels or triangular cloth patchwork. Muted industrial palette; no pink, no gold ornament. Mature frightening design, not cute.\nComposition: ONE complete creature, nearly frontal with slight overhead game camera. Entire head, limbs, claws and supports fully inside generous true ALPHA transparent margins. No background, floor, shadow, glow, spell effect, particles, text, collage or alternate pose. Static appearance review only, no ability, statistic, collision or animation is created.\nSubject: the huge upright INDUSTRIAL PRESS/FLESH HYBRID from image 1. Preserve exactly TWO thick organic legs and TWO arms, a very small severe pale human head sunk between broad shoulders, exposed pale flesh over deep brick-red muscle, muted olive industrial housings, and its massive RIGHT mechanical press-arm (viewer LEFT). It is a corrupted living being integrated into industrial machinery, not a person simply wearing a clean exosuit. Same overall broad upright body shape, clearly larger than a normal human.\nPrimary silhouette is the enormous integrated RIGHT PRESS-ARM: ONE olive shoulder block, ONE visible broad hydraulic cylinder joining upper arm to forearm, and TWO thick dark blunt rectangular press jaws at the end. Keep the press physically attached through the arm, with a large open gap between its two jaws. No tiny rotating gears, nested pivots, many little plates, rivets, labels, rust flecks or elaborate segments. This is anatomical machinery, not a weapon held in a hand.\nThe natural LEFT arm (viewer RIGHT) is a single swollen pale forearm with ONE dark red muscle seam and a huge hand with THREE broad ivory blunt talons. Both arms attach naturally to two shoulders.\nTorso is built around ONE simple dark steel VERTICAL ENGINE CORE partly swallowed by flesh; TWO broad pale curved rib/bone slabs frame it. Only ONE thick red hose on each side; no dense rib cage, many valves or branching cables. Olive shoulder armor is TWO broad blocks, not layered plates. Legs thick and fleshy with ONE simple olive knee pad each, dark ankle housings and broad pale toes. Head has short cropped/bald scalp, closed grim mouth, two tiny dark eyes; no ornate helmet or skull face. One large light and shadow plane per surface. Heavy square planted stance, intimidating through mass and press silhouette rather than texture or ornament.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-03-r01.png",
+          "role": "Cible de révision : conserver l'identité, l'anatomie et les greffes de la première proposition appréciée"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+          "role": "Référence de style simplifié validée ; ne pas copier le bras-canon ni la tenue"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-bf868aa1-03b3-4e4b-b7e2-48bd8c5d7d55.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-03-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 76,
+      "maximum_body_width64": 80,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-08",
+      "layering_status": "Organic and integrated mechanical anatomy; no separately held weapon",
+      "mechanics_status": "Apparence validée uniquement ; aucun dégât, vitesse, capacité, collision, effet ou placement intégré.",
+      "source_sha256": "4d38e6cd05490f9aa9763c4a9374afdcf8ed6dac0e348e1c133124e5f58bea7f",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-03-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          25,
+          20,
+          103,
+          96
+        ],
+        "colors": 14,
+        "sha256": "b4ce619b5a56a8c942856f2b35cf7ee3024c34e62ace153a8873119f37f57a62"
+      },
+      "visual_acceptance": "visual-acceptance-05.json",
+      "accepted_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-03-r02/MON-03-r02-native64.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          25,
+          20,
+          103,
+          96
+        ],
+        "colors": 14,
+        "sha256": "b4ce619b5a56a8c942856f2b35cf7ee3024c34e62ace153a8873119f37f57a62"
+      }
+    }
+  ],
+  "visual_acceptance": "visual-acceptance-05.json"
+}

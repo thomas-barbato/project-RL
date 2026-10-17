@@ -1,0 +1,2606 @@
+{
+  "review_id": "MONSTER-BLUE-PALETTES-08",
+  "accepted": true,
+  "new_models": 51,
+  "new_palettes": 51,
+  "total_palette_models": 90,
+  "total_material_palettes": 231,
+  "base_models": 129,
+  "base_variants": 240,
+  "changed_material_pixels": 274675,
+  "protected_opaque_pixel_comparisons": 242818,
+  "original_alpha_geometry_anchors_and_protected_pixels_identical": true,
+  "four_generation_150_palettes_identical": true,
+  "six_native_boards_verified": true,
+  "gpu_exports_rgba_identical": true,
+  "original_base_a_hashes": [
+    {
+      "number": 8,
+      "file": "tiles/008-r02-A.png",
+      "sha256": "87bc7fc59d530fdcc7aaf829fdf53707672f3daf50c41c9b22b73f6aa3b94c1e"
+    },
+    {
+      "number": 9,
+      "file": "tiles/009-r03-A.png",
+      "sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f"
+    },
+    {
+      "number": 20,
+      "file": "tiles/020-r02-A.png",
+      "sha256": "078d4e9fcfcffc787532b421569348d0684c218af4fc78fd7566b168eba4b182"
+    },
+    {
+      "number": 21,
+      "file": "tiles/021-r02-A.png",
+      "sha256": "d8865d6fc9dc65679b0a09f108086dd05480a950c6f22370c99405ee0c84d317"
+    },
+    {
+      "number": 28,
+      "file": "tiles/028-r02-A.png",
+      "sha256": "6fb8aa2ec65c99345d7f90ef45bfeffffa1669ed8605048b6f8c26e4b3e3e397"
+    },
+    {
+      "number": 29,
+      "file": "tiles/029-r01-A.png",
+      "sha256": "000c343fa6fd9a221581d857b0b7c43ceeab9da43dc73c577a06e3e784cd6610"
+    },
+    {
+      "number": 30,
+      "file": "tiles/030-r01-A.png",
+      "sha256": "6f4e8c4aeccc7dfeed667900bddec03aecaedf8ccf2068aed3bedee1b7c2f1c3"
+    },
+    {
+      "number": 31,
+      "file": "tiles/031-r01-A.png",
+      "sha256": "344cff76f1681e60736f41869fb3a5da124d1e90122709f5ae8b653dadeb52f9"
+    },
+    {
+      "number": 32,
+      "file": "tiles/032-r01-A.png",
+      "sha256": "911bd1715e0f5886d61b7ff051f84ae0b91467cf559f18fdd694827b376951fe"
+    },
+    {
+      "number": 33,
+      "file": "tiles/033-r01-A.png",
+      "sha256": "3e1aae99195cb744c07a69333620c4a11a9f4cd1567e5d813f07bcdc5889d32d"
+    },
+    {
+      "number": 34,
+      "file": "tiles/034-r01-A.png",
+      "sha256": "8088c02864a883b577f33bc669be51a67aeef4324a562daed68b536a3b8acb80"
+    },
+    {
+      "number": 35,
+      "file": "tiles/035-r01-A.png",
+      "sha256": "2143f788fd20669f98c05a4294bd64c95f9fe2bddb3a447312d993a83a4ceec3"
+    },
+    {
+      "number": 36,
+      "file": "tiles/036-r01-A.png",
+      "sha256": "d3762614feb6f8597ad6451dc0f4ceb66c2d422d0ce32cd65cdaaf0ec0fcf98f"
+    },
+    {
+      "number": 37,
+      "file": "tiles/037-r01-A.png",
+      "sha256": "a4814f47bd759bd5142dec12004cf8e995d11171ffeea5dadf206c7e144fc62a"
+    },
+    {
+      "number": 38,
+      "file": "tiles/038-r01-A.png",
+      "sha256": "67aef7576fba9ca5535868c98fd4a7068efc55cc7393cae41cabf075c8ea5849"
+    },
+    {
+      "number": 39,
+      "file": "tiles/039-r01-A.png",
+      "sha256": "5e93351812c1f564a957814793ea7c7e6dee7d5a54b129b62ae023f9633aab79"
+    },
+    {
+      "number": 60,
+      "file": "tiles/060-r02-A.png",
+      "sha256": "ba994453365e9bd55b547299ba6bff0762a944dee44c2da88bb512c551ef163a"
+    },
+    {
+      "number": 61,
+      "file": "tiles/061-r02-A.png",
+      "sha256": "227d2d8785a0469e3926648943d1b433159552e0104a65fabb19cdee4d47bd89"
+    },
+    {
+      "number": 62,
+      "file": "tiles/062-r02-A.png",
+      "sha256": "6d13a53f7745b6bb5c6352ea5b10cc16687edd0b01eb1ab846f4d568f6703694"
+    },
+    {
+      "number": 63,
+      "file": "tiles/063-r02-A.png",
+      "sha256": "354ddea48178de0d527ee8b575376518f0c70a76e544d53822c499b7734fce3c"
+    },
+    {
+      "number": 64,
+      "file": "tiles/064-r02-A.png",
+      "sha256": "e9287aaa8529b64dcf9aced58f5921eac4234de9571415995ba43b3f6edcd37f"
+    },
+    {
+      "number": 65,
+      "file": "tiles/065-r02-A.png",
+      "sha256": "0e7af5059b29965238771f8c9c4b699fe0ad5eeb85edcec4705bd431f8bb3511"
+    },
+    {
+      "number": 66,
+      "file": "tiles/066-r02-A.png",
+      "sha256": "f457c354c5264e930307b5e18be5b58e96e03ef7f7d45cccedb8c3d56552d5fb"
+    },
+    {
+      "number": 67,
+      "file": "tiles/067-r02-A.png",
+      "sha256": "1c3484b3f02784e92dfb13d14060c1f35476e5f590394ea1749cecd0e57b85a9"
+    },
+    {
+      "number": 68,
+      "file": "tiles/068-r02-A.png",
+      "sha256": "2d160f8481e14f5ea5c3d6e3abfb1b6c68cbd5171f602e69150eff8017c0daff"
+    },
+    {
+      "number": 69,
+      "file": "tiles/069-r02-A.png",
+      "sha256": "514126c49707f232ce1755ed21447b92474e56f6eed4ed8aeec49927d55e5642"
+    },
+    {
+      "number": 70,
+      "file": "tiles/070-r02-A.png",
+      "sha256": "6e2bd0d7c829a8bc740ecacc5a52fdc39b5768230d1f4bd3b6e78f8f4f011530"
+    },
+    {
+      "number": 71,
+      "file": "tiles/071-r02-A.png",
+      "sha256": "75db234e167d939b65967b78c99f4bb77b37ba1211d077e76a5237f24ac1f730"
+    },
+    {
+      "number": 72,
+      "file": "tiles/072-r02-A.png",
+      "sha256": "3aaae9ea24ff995fdacfed62314ec697c667aefb1da1e6c4e91c0f5bce9e6ac5"
+    },
+    {
+      "number": 73,
+      "file": "tiles/073-r02-A.png",
+      "sha256": "533db90e6390b2810dbe7c3b762541f713a34032e773d27b97224511a3279d81"
+    },
+    {
+      "number": 74,
+      "file": "tiles/074-r02-A.png",
+      "sha256": "14ebba665dfd4a7802b03d7fc8dae609e810d5826e59a968d870f12e7dca1e40"
+    },
+    {
+      "number": 75,
+      "file": "tiles/075-r02-A.png",
+      "sha256": "a99ebf03fd9cf3ba990ca5c51c3a76c697a5b00da56d1e5317ea3a5c6a01542a"
+    },
+    {
+      "number": 76,
+      "file": "tiles/076-r02-A.png",
+      "sha256": "1290547b16c807f054e697f8adade8a60cc958dc47481b3b93b73b9a888f11f1"
+    },
+    {
+      "number": 77,
+      "file": "tiles/077-r02-A.png",
+      "sha256": "4c72796b0fa184e44cff622628dce8b2c7a14dbb73d60ed0470dbb436d582be5"
+    },
+    {
+      "number": 78,
+      "file": "tiles/078-r02-A.png",
+      "sha256": "c9a4f9654fe5fb286cc2c098f3ab6be6447adcfbae3e5eddbfe84d5ece309824"
+    },
+    {
+      "number": 79,
+      "file": "tiles/079-r02-A.png",
+      "sha256": "5b2eb800f5495bf91289bcf6aeaa39d7fdecf7029aa297350e76cf4ddadc863b"
+    },
+    {
+      "number": 80,
+      "file": "tiles/080-r01-A.png",
+      "sha256": "410d94935c966837a025a952b7a67de15cd0a7723bd9783f9d8588a95b88bd54"
+    },
+    {
+      "number": 81,
+      "file": "tiles/081-r01-A.png",
+      "sha256": "c128a3728601efc63aa2fa5f5acb34ef3eada8bb695e9cc258d412f3a6ece3ee"
+    },
+    {
+      "number": 82,
+      "file": "tiles/082-r01-A.png",
+      "sha256": "70a532c310fe3fa9b14ade6e3fd44942c7fdd282113b4859875510fe9d84fcf5"
+    },
+    {
+      "number": 83,
+      "file": "tiles/083-r01-A.png",
+      "sha256": "5110c74f93a476fdfafd2e30c832fa55f5cc83b7fc8dff7cb9521b80bd585f85"
+    },
+    {
+      "number": 84,
+      "file": "tiles/084-r01-A.png",
+      "sha256": "44f5c68e8bf53bcc1934abd5ceeb5f0bed6c4dd31b6a4692e0306a7448d8496a"
+    },
+    {
+      "number": 85,
+      "file": "tiles/085-r01-A.png",
+      "sha256": "be9de0e6cb64d59e875467aeaa23cbd08999475b8d9817e45f6156324b5cf8f7"
+    },
+    {
+      "number": 86,
+      "file": "tiles/086-r01-A.png",
+      "sha256": "fcbc9f7bfaa6071ad365f32bb725d68fc30b8cb5c900d8d9eb1b94da7a4aa39f"
+    },
+    {
+      "number": 87,
+      "file": "tiles/087-r01-A.png",
+      "sha256": "73dc185e686737a5f0bb3c127144fca6d3221c5774e61e05d592087fdddd1cb7"
+    },
+    {
+      "number": 88,
+      "file": "tiles/088-r01-A.png",
+      "sha256": "568da03042d41d8257700acb1f79a896fb40fe65b113479a8972fdbc3cba0a66"
+    },
+    {
+      "number": 89,
+      "file": "tiles/089-r01-A.png",
+      "sha256": "9d2902389bdc2cc63a2f5bc4cef44d5123e880570c921e50ad7dd5eab71933f7"
+    },
+    {
+      "number": 90,
+      "file": "tiles/090-r01-A.png",
+      "sha256": "30b3b8e628b5ab84f1e03f870c962e9e1d8c9b310c8701470ab68c4c3764baa0"
+    },
+    {
+      "number": 92,
+      "file": "tiles/092-r01-A.png",
+      "sha256": "64352aedb8f481a79e86cf489c00ce23b965ebf9fc6da126218eeb9f388d72de"
+    },
+    {
+      "number": 93,
+      "file": "tiles/093-r01-A.png",
+      "sha256": "a68a944ecf8680b3718d4710534994ae88011589d42a7e3e46a4ee7631727894"
+    },
+    {
+      "number": 100,
+      "file": "tiles/100-r01-A.png",
+      "sha256": "8a8de13992bef8f3d8c68bee5cc4d2734109acbb980a87352f0a07545885b3c3"
+    },
+    {
+      "number": 101,
+      "file": "tiles/101-r01-A.png",
+      "sha256": "460767239b416ccc1842a7de9bf1062bfe3ff5401b316d55722dae283c8b1048"
+    },
+    {
+      "number": 102,
+      "file": "tiles/102-r01-A.png",
+      "sha256": "1b1723b2132ef0a01e3139cc41a2930ac4ebda309144c8f4f3eafa409bbab86e"
+    },
+    {
+      "number": 103,
+      "file": "tiles/103-r01-A.png",
+      "sha256": "e29fd77edbe1eb924b6b658f92eee91404c8c5494d6552e9e92f8293b7b6c737"
+    },
+    {
+      "number": 104,
+      "file": "tiles/104-r01-A.png",
+      "sha256": "d145ea2a1809beb9738a9313c87fbf72607e8c75249908331b971543d5062c43"
+    },
+    {
+      "number": 105,
+      "file": "tiles/105-r01-A.png",
+      "sha256": "0cccede081eb428ba1a21d2aeacd9ffeac36781e838d87e0908a212b7fb8961a"
+    },
+    {
+      "number": 106,
+      "file": "tiles/106-r01-A.png",
+      "sha256": "9530b9c51abcd9393daaa71f1f84eadf8db774982fda6f24e529fab897e5a10a"
+    },
+    {
+      "number": 107,
+      "file": "tiles/107-r01-A.png",
+      "sha256": "caf20d6179c8b4dcb5d9a66d3e15bc11d4ddb41e61cdcd015ab62dd2a8e57644"
+    },
+    {
+      "number": 108,
+      "file": "tiles/108-r01-A.png",
+      "sha256": "a858ca57d586c1306acc80483c85811375c946ba7916b3f9503fee072c3a5bd0"
+    },
+    {
+      "number": 109,
+      "file": "tiles/109-r01-A.png",
+      "sha256": "6e9861d2d4686d41b3c27a4f382b175f6b04333775b4f155489a08af1722c311"
+    },
+    {
+      "number": 111,
+      "file": "tiles/111-r01-A.png",
+      "sha256": "c727e1b4b742163960dab0ac845e038ff37b9b8d12607af188d653b10c58610f"
+    },
+    {
+      "number": 112,
+      "file": "tiles/112-r01-A.png",
+      "sha256": "cdd6e3bda6c3396eb235937450ea99c1bd5050b9128fc984af12753e85a1551c"
+    },
+    {
+      "number": 113,
+      "file": "tiles/113-r01-A.png",
+      "sha256": "f602dbf87db6c955ff24e004decc51722f050d24bc561625064117272350ce09"
+    },
+    {
+      "number": 115,
+      "file": "tiles/115-r01-A.png",
+      "sha256": "bd8344c7b5b7737599dbd8f6e3ba4002541636e2c2cb59006896fa42765bf658"
+    },
+    {
+      "number": 136,
+      "file": "tiles/136-r01-A.png",
+      "sha256": "dff6bb18f5bb8a4eb416ae619ba64b9ffda75beaa658cb50dbe16d76e4a3fa18"
+    },
+    {
+      "number": 137,
+      "file": "tiles/137-r02-A.png",
+      "sha256": "28343d2c79bce788a6a03f0c3287d2523edea9e90ce5865828e3de1a9ae0fd24"
+    },
+    {
+      "number": 138,
+      "file": "tiles/138-r01-A.png",
+      "sha256": "c1dbadd746c6a3ca9bd137e55cc169fb2b79a16fb9a8dec8380ffd7362116dec"
+    },
+    {
+      "number": 139,
+      "file": "tiles/139-r02-A.png",
+      "sha256": "181c048fb26de1c0863f66bded561ea09b6e33fac7d37fb957cacd0de4b8bceb"
+    },
+    {
+      "number": 140,
+      "file": "tiles/140-r01-A.png",
+      "sha256": "7605f6989e884997e7d95c15d25b9c5e595430053d1c7d1e7cb5df2d7fb8fa06"
+    },
+    {
+      "number": 141,
+      "file": "tiles/141-r01-A.png",
+      "sha256": "c7675382cc935c6a570a46ae2980945230d135a9b1541790a25287424ad17188"
+    },
+    {
+      "number": 142,
+      "file": "tiles/142-r01-A.png",
+      "sha256": "cb9b9ae5ac64d4d38c88ca9f21d34f6bdb4e934e98b9e8ef618a763428cb7d63"
+    },
+    {
+      "number": 143,
+      "file": "tiles/143-r01-A.png",
+      "sha256": "d8d18e2c5dc0db851f551f791875bf2ce9513938d33f0f542596afd0ca89703d"
+    },
+    {
+      "number": 144,
+      "file": "tiles/144-r01-A.png",
+      "sha256": "9d7b123d62b21b72e1862ead6811e4d21a365fbf3adbe654f013d1b6cb85a4d2"
+    },
+    {
+      "number": 145,
+      "file": "tiles/145-r01-A.png",
+      "sha256": "86897b1b68b3f881c3d9344635c75598ecbe0745c6288cf3a95f6c1ec6c74eed"
+    },
+    {
+      "number": 146,
+      "file": "tiles/146-r01-A.png",
+      "sha256": "c467cf4f0e2a0cf114bcaaf58f427bebe1481573bfb6ced849b26828957627d3"
+    },
+    {
+      "number": 147,
+      "file": "tiles/147-r01-A.png",
+      "sha256": "055fda6b71e093ee7778032c87d3a1129cad17f3b7015340ec4f084515b24ddd"
+    },
+    {
+      "number": 148,
+      "file": "tiles/148-r01-A.png",
+      "sha256": "bec873f694daea1855ca178fbd39905ab80e6ffab349b11cc0321af2e7a759fd"
+    },
+    {
+      "number": 149,
+      "file": "tiles/149-r01-A.png",
+      "sha256": "7d0024cb9c3f151f4803eea8b8287ef6c7caffeb80b3073b40c705e10fb8bea4"
+    },
+    {
+      "number": 150,
+      "file": "tiles/150-r01-A.png",
+      "sha256": "e4ed680fba86b96c1edf6c7a2ca507b0e1dba25baae29cafa2135c7b458f89d0"
+    },
+    {
+      "number": 151,
+      "file": "tiles/151-r01-A.png",
+      "sha256": "911436b8073effb6b8e104f8e21ff7ff23659b7bfb990b00c77242c4e637bee6"
+    },
+    {
+      "number": 152,
+      "file": "tiles/152-r01-A.png",
+      "sha256": "576bda490af1b1a363b844a64c6f34976bd9df5cea32800cd8e58fd3ba57683f"
+    },
+    {
+      "number": 153,
+      "file": "tiles/153-r01-A.png",
+      "sha256": "17e82903fdf4170d20766f4129747b275028f772e5a6ae97db994d02e509786b"
+    },
+    {
+      "number": 154,
+      "file": "tiles/154-r01-A.png",
+      "sha256": "5761d990aae0463a81ca40fa67848738a75af2e7d4ac39b3788528ad5eda52d5"
+    },
+    {
+      "number": 155,
+      "file": "tiles/155-r01-A.png",
+      "sha256": "2e3ea686296679f2db875e09fafbeae8b3c7c9b9da8d9dc26e96de11949b7bf8"
+    },
+    {
+      "number": 156,
+      "file": "tiles/156-r02-A.png",
+      "sha256": "5bb9d99c89da6b81be5db6414b491cebbfd1a45ae424ac1356052798ee89e875"
+    },
+    {
+      "number": 157,
+      "file": "tiles/157-r01-A.png",
+      "sha256": "fdec22bfdda25e1f715a5a2fefea82f035dfd03f9daf97d79238f51c4468cc4f"
+    },
+    {
+      "number": 158,
+      "file": "tiles/158-r01-A.png",
+      "sha256": "39f6ab95378a3c43e73578c25d5d0b40492ea4f79c98b78a57e61618dd23a38e"
+    },
+    {
+      "number": 159,
+      "file": "tiles/159-r01-A.png",
+      "sha256": "b547018ab40f36a5434418ec3e010849392bb597e92d8393d3b2bcdf6a10a469"
+    },
+    {
+      "number": 160,
+      "file": "tiles/160-r01-A.png",
+      "sha256": "60d263783dd154e05976a9c7add28158730f328f43b93b86e2e86447416b7f1a"
+    },
+    {
+      "number": 161,
+      "file": "tiles/161-r01-A.png",
+      "sha256": "0cf45db116dd2b8d952f77b2c2bbf5dc55fe77bf51c68ab87a1780d835df802e"
+    },
+    {
+      "number": 162,
+      "file": "tiles/162-r01-A.png",
+      "sha256": "43acca9dd63c1c242f164761f31206075b35de0e72b73bffb9492c84e90d0f6a"
+    }
+  ],
+  "renderer_exports": [
+    {
+      "number": 8,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/008-palette-2.png",
+      "sha256": "a680f81854c1a8f5e3d702e6f04dabae479740d7531c50e2dfae04a94532e533",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/008-palette-2.png",
+      "gpu_sha256": "0ca025368f67198cb08dd69b218d4fc10568b80574f85c1737b1b05f5e85c2eb",
+      "rgba_identical": true
+    },
+    {
+      "number": 8,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/008-palette-3.png",
+      "sha256": "fb3d7aaa7a7bad24ed86a5399ac21c3874719f7a74c19f97ab3fa14014608660",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/008-palette-3.png",
+      "gpu_sha256": "1026f3ac524dcf602121192af2b089f339f0bdb68119d730f8e4b865d0957ddd",
+      "rgba_identical": true
+    },
+    {
+      "number": 8,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/008-palette-4.png",
+      "sha256": "4f874b56c5ce68f8fcb6c8b7e6ae43dcbdb430e8d7ec8e6ea46e2272b33161ce",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/008-palette-4.png",
+      "gpu_sha256": "2e0c2b830723685a10a228d365259d8bf9cd6a3de69bda2e4b3b018d5dd30ff3",
+      "rgba_identical": true
+    },
+    {
+      "number": 9,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/009-palette-2.png",
+      "sha256": "89920ace6b7d1a5a52d990667b3fc1c3845edbb6f5a633a65ca59d7ffaf9e80f",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/009-palette-2.png",
+      "gpu_sha256": "bb621e6ed716d19f8e7700f781e978b126f47de8185b2c45cd0621b532bc8a3b",
+      "rgba_identical": true
+    },
+    {
+      "number": 9,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/009-palette-3.png",
+      "sha256": "85f31c54c94aa78343ce026d1aadceebfaadea499c2f886b58582c0befd635b2",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/009-palette-3.png",
+      "gpu_sha256": "5dc967ffe337a6fd6c68e22cbeeb98ad5926fb3ee92adc543dd4e23343afea26",
+      "rgba_identical": true
+    },
+    {
+      "number": 9,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/009-palette-4.png",
+      "sha256": "4dbf61b481873c6d287d1473cdc71298889b6a8177099de2cb203304ca2f8f1b",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/009-palette-4.png",
+      "gpu_sha256": "cc131214e03335ff300d6b347e043fb1af82026fa85041b27bad83e0b6fd7acd",
+      "rgba_identical": true
+    },
+    {
+      "number": 20,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/020-palette-2.png",
+      "sha256": "4efbfb45fc46562fad1486de80d4868c21c0b41d5bef734f0af740aeaf97fe1a",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/020-palette-2.png",
+      "gpu_sha256": "a374b2b990791983020dc441d9221b9228628c6ae054fe13e57a121130a7fe01",
+      "rgba_identical": true
+    },
+    {
+      "number": 20,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/020-palette-3.png",
+      "sha256": "02b991546578a041d0301319f260b9436f8758b92a42e5a87145e5a61bdaaed6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/020-palette-3.png",
+      "gpu_sha256": "702d09501458495446264516ab91c53a14eb007684458454c47b9c3d98104fa3",
+      "rgba_identical": true
+    },
+    {
+      "number": 20,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/020-palette-4.png",
+      "sha256": "cc0583ac862b27a434d11b5195c90c1e61964981563e8d0cca2393ea293d1032",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/020-palette-4.png",
+      "gpu_sha256": "1412d3a9d9959420518e1743b046fe1a63eed1b524bfb3f84c50b97cdb196872",
+      "rgba_identical": true
+    },
+    {
+      "number": 21,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/021-palette-2.png",
+      "sha256": "e32fe59213ec5ee6ac0480df0a8ec0d5d12718dc2e6bf4686bc34c58aa0bd342",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/021-palette-2.png",
+      "gpu_sha256": "f2730b7d4a6678d2fa0c732449d332fccf9240876f673ccce32986f39ae57503",
+      "rgba_identical": true
+    },
+    {
+      "number": 21,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/021-palette-3.png",
+      "sha256": "af0a4d8484f91e00721c0313f13f666cb467f8be42434ccdb501e8f19d9e882d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/021-palette-3.png",
+      "gpu_sha256": "6c91c305bdea61b2123cd50cb3273b6a778e9d3b3d4ea063143d57a97b4bbd08",
+      "rgba_identical": true
+    },
+    {
+      "number": 21,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/021-palette-4.png",
+      "sha256": "237945d24e137079c478deb405787f4605b00a746cf81df29894bed12fd30e9f",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/021-palette-4.png",
+      "gpu_sha256": "49f501e8e96553e35348a8ac1e283e80570d073be8d00b6d7c51862851979f83",
+      "rgba_identical": true
+    },
+    {
+      "number": 28,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/028-palette-2.png",
+      "sha256": "387004b8448155b734df056714a28c53969d2f78f14727c81a7ef1b22c117722",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/028-palette-2.png",
+      "gpu_sha256": "58979fc05776b9c7ec50bfb9b431c6473c9a4473f1c8a30dcffb9d77a03b3971",
+      "rgba_identical": true
+    },
+    {
+      "number": 28,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/028-palette-3.png",
+      "sha256": "96b6d8f82ce1cc93f71156417570081440dc1731133fffa01ff9f6a14a482cd5",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/028-palette-3.png",
+      "gpu_sha256": "d3f38e365b38b5307b72ab1a3c9e9183459d56b15fae81d5d3cd6eaf091e7748",
+      "rgba_identical": true
+    },
+    {
+      "number": 28,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/028-palette-4.png",
+      "sha256": "c65271b3b77b8c1633cd11563458753546cb465e834b43e4b4bdd73c92011603",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/028-palette-4.png",
+      "gpu_sha256": "260b81f67df81566c89b4e81a70fdcf818bdb3d49ef3f665e61712146cc49e53",
+      "rgba_identical": true
+    },
+    {
+      "number": 29,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/029-palette-2.png",
+      "sha256": "cd2e6dcd77cd18bfbb5bc92f5aea22580fde924c0bc646195b34c417b14a9891",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/029-palette-2.png",
+      "gpu_sha256": "cda3e52540a1c7e55969dc707e12e673297b4627935e67ea548501b9b3262a5c",
+      "rgba_identical": true
+    },
+    {
+      "number": 29,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/029-palette-3.png",
+      "sha256": "8969562e110db1d5c1a60b070a0add507638b5d642ef3f0b9bfa3e20a4ba20a3",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/029-palette-3.png",
+      "gpu_sha256": "417ac4f80c25b3f13d7ad02ffd577a79d3d20d8bf80547f34b1b4d02ea0ed51b",
+      "rgba_identical": true
+    },
+    {
+      "number": 29,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/029-palette-4.png",
+      "sha256": "3f2757c6d6909d09f2bf67511cde06df0cbceff0dd3dd5691472dc4172b07112",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/029-palette-4.png",
+      "gpu_sha256": "447cef031ecceabba229a28b377d9df9182fb5fcf1e7e55c9c82c2604d16a151",
+      "rgba_identical": true
+    },
+    {
+      "number": 30,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/030-palette-2.png",
+      "sha256": "bf332a8d7854fa10ecd11e54f2261928c1cf0c77ea5d8ec646507145c997cd0e",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/030-palette-2.png",
+      "gpu_sha256": "a84a5a8d276ea944e18c431fd66afc32fcb4260ec96460723dc2dbbf47b8c74c",
+      "rgba_identical": true
+    },
+    {
+      "number": 30,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/030-palette-3.png",
+      "sha256": "fa21b2f458d895142057bfbce70b2874825625754ceb689dfb180e48429a8123",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/030-palette-3.png",
+      "gpu_sha256": "d085057c09475910222e9578081357c7ae6dd9574527835e00ce07594f5820d5",
+      "rgba_identical": true
+    },
+    {
+      "number": 31,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/031-palette-2.png",
+      "sha256": "4dad47e4689e31725a03e12c92bb5e4c83ba7c35c29810285bc7631331d9aeaa",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/031-palette-2.png",
+      "gpu_sha256": "3c2b4534b4c26dabb787b7603ad03ac1adad90183111a74b305024f4321417ac",
+      "rgba_identical": true
+    },
+    {
+      "number": 31,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/031-palette-3.png",
+      "sha256": "a877955bd29cc87d566fb7713fb98c3d0de9c4483f9107cd4936a7b35464fd21",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/031-palette-3.png",
+      "gpu_sha256": "1575b8551bb035f0d018ea6647fb688a3d3a16299dae48d8988dad164daef413",
+      "rgba_identical": true
+    },
+    {
+      "number": 32,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/032-palette-2.png",
+      "sha256": "9275f3fc527457798d7469f791b2b2a2fadc0cefb6802a3f557ae599a01ea507",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/032-palette-2.png",
+      "gpu_sha256": "59dd69dbfeeea02b2684cbd036dee1f3c9794787fc6f8d938dfb6620e852317d",
+      "rgba_identical": true
+    },
+    {
+      "number": 32,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/032-palette-3.png",
+      "sha256": "be7354cbdfe6bfaad64f92b516a68e8b447c5a88d337e24e466e326d44a8356c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/032-palette-3.png",
+      "gpu_sha256": "c5f0575ac3dc6c589433faafb41dd7718feca26440fff3fe3cf3f6995afb0bf9",
+      "rgba_identical": true
+    },
+    {
+      "number": 32,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/032-palette-4.png",
+      "sha256": "9dfa68608b57b7061c115b4b6d9af58e67c334b3dac42a57838e42073a537101",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/032-palette-4.png",
+      "gpu_sha256": "70314226af1ed3024e0c76196ac5f5d3f23433d272dc323caca31b854d5a83ac",
+      "rgba_identical": true
+    },
+    {
+      "number": 33,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/033-palette-2.png",
+      "sha256": "2dfa4b397b012bdb67db30c125545d6d7c0d69ac6a7a5a1b2395f0734b93b827",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/033-palette-2.png",
+      "gpu_sha256": "ae19b8fa555f5d3aa695ebfec71aa8fac4601fb63617d1112f0adde3ef1e49b5",
+      "rgba_identical": true
+    },
+    {
+      "number": 33,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/033-palette-3.png",
+      "sha256": "d31d80bdb36e5e6f568e9eb6024958bd1692a52f1a072b187c621940919db59b",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/033-palette-3.png",
+      "gpu_sha256": "112d3ad75315fe61f6686df4f9cf08f658f6d2e490432231f2ec103ab57e230e",
+      "rgba_identical": true
+    },
+    {
+      "number": 33,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/033-palette-4.png",
+      "sha256": "28dbb5e66ceb5047a5e817c5d4f858dc55eb40eb351f7e6ccfaaf9129ab1144f",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/033-palette-4.png",
+      "gpu_sha256": "a1e98156154835e04c56fbd583747f81914ba5e17e68455d26965ce0a811b1cd",
+      "rgba_identical": true
+    },
+    {
+      "number": 34,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/034-palette-2.png",
+      "sha256": "4a91d063d01900340695c6f8ea73ed6330a3dcd842d3ee78fc7334a6c5a0df50",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/034-palette-2.png",
+      "gpu_sha256": "c6775299a9c810901059919072892a7a6c3e32c1f0faa9e8a5b964a0fb2a4d68",
+      "rgba_identical": true
+    },
+    {
+      "number": 34,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/034-palette-3.png",
+      "sha256": "ac012a706a42f346b00d52a7b7981d0a1eb36c6f4b48b0197387dbe6fe529a83",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/034-palette-3.png",
+      "gpu_sha256": "b53e18a87c5735e6c9dca858af49f312d9bf252ac14680bbe25c0e4ac549156d",
+      "rgba_identical": true
+    },
+    {
+      "number": 35,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/035-palette-2.png",
+      "sha256": "519b3b7350441b68e9d2243689e5f4f52c0eefbf5ed99914551dd552fb252a4c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/035-palette-2.png",
+      "gpu_sha256": "6275dafdd8a1071e3289d5e18af9398ab73454843a03a7966f1aba4e3a7fda6e",
+      "rgba_identical": true
+    },
+    {
+      "number": 35,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/035-palette-3.png",
+      "sha256": "bd4b4e89bf6792098c1402fa4ed27a4591b51e229ed4cad4907be033972c4694",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/035-palette-3.png",
+      "gpu_sha256": "cff2ef65c23fd88d23b9dfced04c65ced0af45fa6f97b69ab8666583a86036b7",
+      "rgba_identical": true
+    },
+    {
+      "number": 35,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/035-palette-4.png",
+      "sha256": "6a67fed90668d974c1d30e2bd72ef5d7a7abdc5ede451118331c8d54ee75943d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/035-palette-4.png",
+      "gpu_sha256": "dd4d31852e7c02a666ff7fb0176cb0c96a76280e6554497315768fbadf77de83",
+      "rgba_identical": true
+    },
+    {
+      "number": 36,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/036-palette-2.png",
+      "sha256": "5e200226dfec509e863c8dc8ba8026716b87495c70578e1eee4b886c46d9e543",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/036-palette-2.png",
+      "gpu_sha256": "e0e5ee0cfbd915fbf8d3c3ac87071b641f573026de105ca7fb83614538deb105",
+      "rgba_identical": true
+    },
+    {
+      "number": 36,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/036-palette-3.png",
+      "sha256": "7037f1e82a1e9c4dd0ac097cde16b33ba36e28769f194f3c59afa9e2e8025dd6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/036-palette-3.png",
+      "gpu_sha256": "52499c4e9025c77f598b93d328705104112042399ef5125b966af9dbba6f3d95",
+      "rgba_identical": true
+    },
+    {
+      "number": 37,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/037-palette-2.png",
+      "sha256": "3f10c993b7c102afe09affe876383d95bb2cef78c67a471a489b1193684f8757",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/037-palette-2.png",
+      "gpu_sha256": "7ea0b0bf9d525e3406fa79fffccca8159ee6da0fbf2588e40162a5cd8461a1c7",
+      "rgba_identical": true
+    },
+    {
+      "number": 37,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/037-palette-3.png",
+      "sha256": "b35d06b0c90d828386f11d20c010c43126467fbb51b082d70812859a4863fe93",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/037-palette-3.png",
+      "gpu_sha256": "dff713ae91d742e7e22a676fcd8832846b1ffcaa87ccbefb8de4665cac69e625",
+      "rgba_identical": true
+    },
+    {
+      "number": 38,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/038-palette-2.png",
+      "sha256": "2116dc13d811aea7ab44264b552db61833bab1ec74cecdb8f0bdcc4a39c2b8b3",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/038-palette-2.png",
+      "gpu_sha256": "0ca28a745b008fb8a3bc8611b85283d37ee59c77ea53674ee24dabb3fb38844a",
+      "rgba_identical": true
+    },
+    {
+      "number": 38,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/038-palette-3.png",
+      "sha256": "1607a523ffa2d8bdadd2ba382354245cfcebd963698842d2bd771a8b6e979102",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/038-palette-3.png",
+      "gpu_sha256": "4f1759aca700b2ce1c74ab02f71bb645a1e25a7a86b0cd4b178323df01b55b47",
+      "rgba_identical": true
+    },
+    {
+      "number": 39,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/039-palette-2.png",
+      "sha256": "186db1828e41f5ae2a0d929dbfbf547a4552b5533636b089e8892991340144a6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/039-palette-2.png",
+      "gpu_sha256": "915fa3324ca1c9eb8370edf0ba65ca165982536dacc5a96f4736162471d2ca1a",
+      "rgba_identical": true
+    },
+    {
+      "number": 39,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/039-palette-3.png",
+      "sha256": "d29cf102f48d8484562ac0dd18d80419738ecb437733126a752d2c1f4137c6bd",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/039-palette-3.png",
+      "gpu_sha256": "cebfac47c16fea3deb9e22829ceddd401a5f50ff670456673180634acfcadb68",
+      "rgba_identical": true
+    },
+    {
+      "number": 60,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/060-palette-2.png",
+      "sha256": "ab9504105b1c711be857814130ef8ab23bd30a91291d581193cb9224c3723a3b",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/060-palette-2.png",
+      "gpu_sha256": "aa675eca536b2b3425636b6612418aff658671ba8eb85d54d1d9c47224f96cb2",
+      "rgba_identical": true
+    },
+    {
+      "number": 60,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/060-palette-3.png",
+      "sha256": "bb11fc68a17fab6a02b712dc3494345ff2213960e1f85f2a61d8ca50072af736",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/060-palette-3.png",
+      "gpu_sha256": "70c8e2dd84866a74c0a6210493c3445eece44245e0a3237a0c28c461052e7c91",
+      "rgba_identical": true
+    },
+    {
+      "number": 61,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/061-palette-2.png",
+      "sha256": "f3c532a51b4b93b9db89fbb5f0cd1293982e46e37182ad245de89d2c34304677",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/061-palette-2.png",
+      "gpu_sha256": "8a30115e36f62cc9662eeba313eb9b741cc41553a6c31226952e7b6ece9212b3",
+      "rgba_identical": true
+    },
+    {
+      "number": 61,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/061-palette-3.png",
+      "sha256": "2bddf5c5aab749f373b38c7cdcd734288036c6ad229408b1c677dc0eaffe5406",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/061-palette-3.png",
+      "gpu_sha256": "1c580c8a76e7e525ff820be549eabd8f3d7f500536c1cdeffece46551c2ac55a",
+      "rgba_identical": true
+    },
+    {
+      "number": 62,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/062-palette-2.png",
+      "sha256": "0752f1d82bf404599c726570d145841e39f2e3b6e834ba202238319ec7f9cac8",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/062-palette-2.png",
+      "gpu_sha256": "3666a56bccd307f7edae5008b203cc87fa98c27edae6e7fcb33432d90c47e5eb",
+      "rgba_identical": true
+    },
+    {
+      "number": 62,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/062-palette-3.png",
+      "sha256": "a4953cc63ba2366564c3fdb258928d0de0217cba0e8168de789680975029990a",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/062-palette-3.png",
+      "gpu_sha256": "6348c40fe947542e07703f99069ed95f707999b0d90dbdbb10133d0b27d9438a",
+      "rgba_identical": true
+    },
+    {
+      "number": 63,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/063-palette-2.png",
+      "sha256": "b2a14d3a347b06daad1782a525f0026da922dd0e1cc874b0366f1297f2a1dfbd",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/063-palette-2.png",
+      "gpu_sha256": "dc1cc8aeb36db09f0bd0d95f9f2da1c63421c58a372c3a352d897b43a72e644d",
+      "rgba_identical": true
+    },
+    {
+      "number": 63,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/063-palette-3.png",
+      "sha256": "fb41dd3e9a93fba468830b153fe4148763b844a71de446d030e959521d86baa5",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/063-palette-3.png",
+      "gpu_sha256": "fca9469d34b49ad266ada9dbdfa51305c5ea4259a72fd34234553109249a8bc4",
+      "rgba_identical": true
+    },
+    {
+      "number": 64,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/064-palette-2.png",
+      "sha256": "a67c8f87fbfbc50b6cf5b7ebb79b4966942b4cceae25b4166c657926da26c0a0",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/064-palette-2.png",
+      "gpu_sha256": "be65c5560899da4952281b4e3afdb9d4db41722433032bb390d357a595b5405c",
+      "rgba_identical": true
+    },
+    {
+      "number": 64,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/064-palette-3.png",
+      "sha256": "cf88e0f0bdeae5189bb5fc96f73ba85718ec2d75da5b88535fd2cc9199f30a29",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/064-palette-3.png",
+      "gpu_sha256": "db22cfadb1e66210c42bea173b29cdd79fa6a6f8fd21edc9384cf17c44edb80a",
+      "rgba_identical": true
+    },
+    {
+      "number": 64,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/064-palette-4.png",
+      "sha256": "e745f1d32c59b6c2c0f3f94e821b8bce8d950c3bca16687474bf7d45016c605c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/064-palette-4.png",
+      "gpu_sha256": "867bc6743c524c8332b37d5b13665a76fa58f61aac62abb9e19eee935ff9a837",
+      "rgba_identical": true
+    },
+    {
+      "number": 65,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/065-palette-2.png",
+      "sha256": "401d62f33d02261f6eb462698b96bac489b11de4cf9c94f9535d09efa244b485",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/065-palette-2.png",
+      "gpu_sha256": "d23b086f4d078fddab6c45e95151d55e55927ec01c6414a0812100da05c64e36",
+      "rgba_identical": true
+    },
+    {
+      "number": 65,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/065-palette-3.png",
+      "sha256": "2daa3fbef59d7dc8ae14270db9c1706afeedd62afc70fbd1294f05cfa77b7406",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/065-palette-3.png",
+      "gpu_sha256": "ca4db59166bc6328620ed807adce7da79082ec3aa54692f4fc4cc7b2af33d737",
+      "rgba_identical": true
+    },
+    {
+      "number": 65,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/065-palette-4.png",
+      "sha256": "5701b5789f67d4fb3af0eadd43d499025f9cf0749234788d2015842f56dff8c7",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/065-palette-4.png",
+      "gpu_sha256": "5a807ab653b938ca32f7e71fd8bee847925f96a5b0d7e1574f2dfa3e5a6f0d43",
+      "rgba_identical": true
+    },
+    {
+      "number": 66,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/066-palette-2.png",
+      "sha256": "c935fb0203cd20847dc6bf272d155d647f5548d14fe455f3a1c67b05928afc4e",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/066-palette-2.png",
+      "gpu_sha256": "4e2a4d082ba2a37a88ac12107f002423bdad6ad65d55e9739a583e8592786bdb",
+      "rgba_identical": true
+    },
+    {
+      "number": 66,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/066-palette-3.png",
+      "sha256": "75bd59be9317c29a4a91e743cfe1b855fb83bc8f168c6d4e41ee463d09358889",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/066-palette-3.png",
+      "gpu_sha256": "7b4b95b307051f4b9269ea47bca951991a26ce8447dadc36684039b3b00f72ff",
+      "rgba_identical": true
+    },
+    {
+      "number": 66,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/066-palette-4.png",
+      "sha256": "a53730b4ab486bb2ae1c36bf58f25470d408267bdd02936769db7d7ae1c4fc71",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/066-palette-4.png",
+      "gpu_sha256": "57c2c3898330a2a2905f8caf762d0446df934eb9eacdeeda79ffdcf4057aab0d",
+      "rgba_identical": true
+    },
+    {
+      "number": 67,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/067-palette-2.png",
+      "sha256": "515ef309e2e7f713ba43dce509741fc4cf39a98380d9409ae3946babd45650da",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/067-palette-2.png",
+      "gpu_sha256": "45ac1cb36963b1acfe0584ce2bbbc26e053a1675b0e392197219c7f2e8bccdbe",
+      "rgba_identical": true
+    },
+    {
+      "number": 67,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/067-palette-3.png",
+      "sha256": "760bf8d5574f82f420bafc3d429b7387060bbf5b4cca2ac1a49af739c1bc80a6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/067-palette-3.png",
+      "gpu_sha256": "4bc3b4931bdea267eccb4bd4c35dd5c0a39c81f849be3df24ef4fb837e5af454",
+      "rgba_identical": true
+    },
+    {
+      "number": 68,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/068-palette-2.png",
+      "sha256": "ca16211892eeb73c1bb47a43be428b6258bd32c20a21a3424786b82d267cdce4",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/068-palette-2.png",
+      "gpu_sha256": "f9ed08e4f43327c390d54894299effaf7fb0e3a403656c44fb9c930509cc3ca1",
+      "rgba_identical": true
+    },
+    {
+      "number": 68,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/068-palette-3.png",
+      "sha256": "0625b916ded8a65177ea5bb1fc9b2ae821a660d7ad227e06f85fcf5995e8fdce",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/068-palette-3.png",
+      "gpu_sha256": "f272c82a77f0a59a1a947a2a7d4db41b0ba93b1183cdd6019807065971d92ad9",
+      "rgba_identical": true
+    },
+    {
+      "number": 69,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/069-palette-2.png",
+      "sha256": "d687f5c531ca80e8c3a163b27e93ebf6b405a950e35e796a17e8f08f12e1295b",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/069-palette-2.png",
+      "gpu_sha256": "965d7d4dc4f460aa2a977bbe7d036ad1c363515db06e3be2aa5b08fa470b382a",
+      "rgba_identical": true
+    },
+    {
+      "number": 69,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/069-palette-3.png",
+      "sha256": "21b57b86d302a753d547a735b01325918337f9c84047be6adf10901be8c4eed6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/069-palette-3.png",
+      "gpu_sha256": "68c295680370a09c1ae6d59856e01497bd813429bc2aee237751aa723c0c3e18",
+      "rgba_identical": true
+    },
+    {
+      "number": 70,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/070-palette-2.png",
+      "sha256": "95c705a55f0f84747caa808dfeb34cdba5a22762c88e514b0e279380273604b8",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/070-palette-2.png",
+      "gpu_sha256": "60d0f973dd35c391fa052f8334f07a0f4473ba7bbfbf0e305ade3fea28ae0c52",
+      "rgba_identical": true
+    },
+    {
+      "number": 70,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/070-palette-3.png",
+      "sha256": "66023277490b67c4ec2ef4f61475b79b58419291ff0880c8d49aaf7e95f1fbe3",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/070-palette-3.png",
+      "gpu_sha256": "92c78ff1db1f8a1710bfd0135f48e216c44560deec06b4182c147df4fd8cf2dd",
+      "rgba_identical": true
+    },
+    {
+      "number": 70,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/070-palette-4.png",
+      "sha256": "1ff0fc0e0082e8c901232ad1feba36b46c4d15b7695916f5f7ad8cecd3937b6e",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/070-palette-4.png",
+      "gpu_sha256": "3f57b69503269beb62aabd215fff88fa7cf63f080568d2e251c529c9f0859f65",
+      "rgba_identical": true
+    },
+    {
+      "number": 71,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/071-palette-2.png",
+      "sha256": "6a0c000c5171d88a6a3643b284e765728967a11cf92bad669f46c54378f12648",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/071-palette-2.png",
+      "gpu_sha256": "a7c16bb3bbabc770113fc6947791afa2d0b4effdbffecfe11378b195c192a51a",
+      "rgba_identical": true
+    },
+    {
+      "number": 71,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/071-palette-3.png",
+      "sha256": "bd70da592c6622eb0d8e30c1c7725cdfcc68932756fb37c6cade03591c5a4108",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/071-palette-3.png",
+      "gpu_sha256": "29bd03b45d0786fd0c6ebcd558ef1fe8ee0886c2213ebd4640eb5dde93cb330c",
+      "rgba_identical": true
+    },
+    {
+      "number": 72,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/072-palette-2.png",
+      "sha256": "28088fb1a6a29d261cade3a581ac88fbdaa0f890c0e941569409ab3ca04104e1",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/072-palette-2.png",
+      "gpu_sha256": "c8fa4c05a3c2664126c186c2cb8fca1f3f82f300f2cf022156228c2aec70c77d",
+      "rgba_identical": true
+    },
+    {
+      "number": 72,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/072-palette-3.png",
+      "sha256": "199468a99a8e5b801b1e9ce0db86b4dbf67886bceb89ca327379db72868c1e7c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/072-palette-3.png",
+      "gpu_sha256": "2a7bc5f5c26e3482fed03f98d963f0442c9c41c013dc90a921bd92f5c5a94caf",
+      "rgba_identical": true
+    },
+    {
+      "number": 72,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/072-palette-4.png",
+      "sha256": "7b4d51233cb93bed62853988af44835b6bff2be9c41dcbafadd03b642045e1b1",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/072-palette-4.png",
+      "gpu_sha256": "b7710570d238f1a5521ec720f0de2a376a4a17152f39e9dc1c7b3e8cdc3ba97a",
+      "rgba_identical": true
+    },
+    {
+      "number": 73,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/073-palette-2.png",
+      "sha256": "85d72a307d9c15d342612e6c6530d73dd38f81af88bec4981f0fe507fc3e9e60",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/073-palette-2.png",
+      "gpu_sha256": "f237688659430b68df71639456c62cb74eee5a0985f20ff06b033fbc8d988965",
+      "rgba_identical": true
+    },
+    {
+      "number": 73,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/073-palette-3.png",
+      "sha256": "116d72272c6d306c40112713458827b4096b97bda2da9c6765e29f6addbadd6f",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/073-palette-3.png",
+      "gpu_sha256": "cbd8c89386779c812b02a521d7aec5d3f982842ba04b176ddb98cf834f25b3f7",
+      "rgba_identical": true
+    },
+    {
+      "number": 73,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/073-palette-4.png",
+      "sha256": "c1036ec338fb64812dcc2d747af1c7ed32dbf25e5eca586531e001e62d1cf7e6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/073-palette-4.png",
+      "gpu_sha256": "ee30094422f57c03c91ad3c284aeb77b4e664bc38c65da4931e931b8517d67d2",
+      "rgba_identical": true
+    },
+    {
+      "number": 74,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/074-palette-2.png",
+      "sha256": "59b4556c76c4f147bec62a0462ef0aec4741f46e05581dd51adbfbcc5cf5316b",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/074-palette-2.png",
+      "gpu_sha256": "f221f06678c3aadcb42546af8426a573501899d32623f8234dcb98524b3de13b",
+      "rgba_identical": true
+    },
+    {
+      "number": 74,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/074-palette-3.png",
+      "sha256": "575601bce6b9780fe033cf93b2f02a794e7e151cd7296583e07d2a7eb8dcad93",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/074-palette-3.png",
+      "gpu_sha256": "ecd2d42eada1a1c42c3e12847b3f9acbd382fa1620709a02a127d065b53adf6b",
+      "rgba_identical": true
+    },
+    {
+      "number": 74,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/074-palette-4.png",
+      "sha256": "7ffe18dc9fd93c928f4d317c5dc6fb785ce7ebc653671c1db0d48b9b35f17b39",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/074-palette-4.png",
+      "gpu_sha256": "6a4094a64d32842cb419e9724ff43074fed851786ffdfdc9f16b30890280351e",
+      "rgba_identical": true
+    },
+    {
+      "number": 75,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/075-palette-2.png",
+      "sha256": "7b4a03100a21682ff63000282614a8e824275421238cf1f93bd75b5053fa04ad",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/075-palette-2.png",
+      "gpu_sha256": "486adf7b56dadf02afcdd59c9f6f7d1cb208cc13f40fdf8449aeea1fc96c3f8b",
+      "rgba_identical": true
+    },
+    {
+      "number": 75,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/075-palette-3.png",
+      "sha256": "85e7a4db5dcb5cff02364ff266d1b84f3474cd05c97e4aec00abd2d23c27fef9",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/075-palette-3.png",
+      "gpu_sha256": "a28fc282d5dd78ca47d76839f9e9bccd29cc1534c4295cce7c170be6c95120cd",
+      "rgba_identical": true
+    },
+    {
+      "number": 75,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/075-palette-4.png",
+      "sha256": "5166e2a502966e38457e426a4f1426ffc6eac0af3d4b6ecc9301736b6c5363c9",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/075-palette-4.png",
+      "gpu_sha256": "ddb1d79e732203518744c89a9705e9c9964a7510b1a0e98c99fb9f053f3a853f",
+      "rgba_identical": true
+    },
+    {
+      "number": 76,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/076-palette-2.png",
+      "sha256": "688949b7d4a833f1c498196303a6525173db235bb376ef5f0a803aee77d065c3",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/076-palette-2.png",
+      "gpu_sha256": "84312e7d5c294c1e7b39a2430182b614b499e9bea920479e092a243c3f26e91f",
+      "rgba_identical": true
+    },
+    {
+      "number": 76,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/076-palette-3.png",
+      "sha256": "2d7fb1e6009cf94bdd2a120bb52ae5046665590dfd8325c87010c0c208f62e8d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/076-palette-3.png",
+      "gpu_sha256": "566f74856f5beceb6e3c248f9d026a70525e2b787a0077e64bd3dfeb612eae7b",
+      "rgba_identical": true
+    },
+    {
+      "number": 76,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/076-palette-4.png",
+      "sha256": "ac950c02fe6cb96ccac8fd21718bb6f0696ab2418212813946d2199d1e47a2c7",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/076-palette-4.png",
+      "gpu_sha256": "0d69c1128e3fb9f87a5a3c0943acc64ba7abc47846ce422d3997e395588e8bd3",
+      "rgba_identical": true
+    },
+    {
+      "number": 77,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/077-palette-2.png",
+      "sha256": "ef9f5d42a2a9638ddd39c35e7e8c1486b21b41ce322ed59af4e78050d72256b6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/077-palette-2.png",
+      "gpu_sha256": "008476c98c78aa80d9b67b8ffa5b619fae3a619c5f40d501a337159e33468184",
+      "rgba_identical": true
+    },
+    {
+      "number": 77,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/077-palette-3.png",
+      "sha256": "75b7a0dda03d308c9ba7856998d70b0f17065f89f7e4574afea4ea8119b8846d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/077-palette-3.png",
+      "gpu_sha256": "9a65c9b4741f722d3a040067b8bfaacc64f917f93ce0be2b8343686a59c21a8b",
+      "rgba_identical": true
+    },
+    {
+      "number": 78,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/078-palette-2.png",
+      "sha256": "2972c0dda217fb3c035d1cc44f33c257663f330368ccbbe7a4f5980842665c97",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/078-palette-2.png",
+      "gpu_sha256": "fafcce1df2e73fdc6dbd52dbf30f1a90d0d23a0e9fd8b980afe2b1428645cb06",
+      "rgba_identical": true
+    },
+    {
+      "number": 78,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/078-palette-3.png",
+      "sha256": "ac075a6978b81a037a10720deaf277dd250a99a2ab39fc82a7ff0b3d768d7595",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/078-palette-3.png",
+      "gpu_sha256": "4405180cdabeb872311d7f22edf9863715f7f1aeef106ca1ad386f410660f46d",
+      "rgba_identical": true
+    },
+    {
+      "number": 79,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/079-palette-2.png",
+      "sha256": "771fd5cd3ce871d6ca8efd2d9fcfeb7263bb3c8ff04bcedafa78760d4aca90db",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/079-palette-2.png",
+      "gpu_sha256": "d9e39d9aba6b07a10feec9189c5daed3f66df4b498b3a9f2851a71a55dcec434",
+      "rgba_identical": true
+    },
+    {
+      "number": 79,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/079-palette-3.png",
+      "sha256": "a3ccce91dbe1ceae18ae90cc0440893f069d8e9ab7fdb152553e1831504b1196",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/079-palette-3.png",
+      "gpu_sha256": "c1e1f781836420b0b144bf54873ec7c29f21cb86a4a3e0ae3091b2ad3ff9be93",
+      "rgba_identical": true
+    },
+    {
+      "number": 80,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/080-palette-2.png",
+      "sha256": "c0449b31732a1c14479ce55cb3bb39c311eb5ea3ca78d130b8a4bdc201d7408c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/080-palette-2.png",
+      "gpu_sha256": "9c41ab5c5dc36596b588d3f9cad3dea11503be404acd513fe285019c398cc4c0",
+      "rgba_identical": true
+    },
+    {
+      "number": 80,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/080-palette-3.png",
+      "sha256": "6976fd87e0aa25932039233bd40df4c3d8cef1f6b96fb2b8ec7b0379b936b737",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/080-palette-3.png",
+      "gpu_sha256": "9a88bd2a6b88a8dac318170f2af93efba850d09298ce13e985b4e744b43570b1",
+      "rgba_identical": true
+    },
+    {
+      "number": 80,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/080-palette-4.png",
+      "sha256": "505b4c395d986576555827c9f3f2cfd0df30befc606cf76fe4a2c27247fcbb81",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/080-palette-4.png",
+      "gpu_sha256": "104d7e036f4be31db8149e95d4cafb89b51aa823e460a86086362410936ada15",
+      "rgba_identical": true
+    },
+    {
+      "number": 81,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/081-palette-2.png",
+      "sha256": "9a84c0ffaa7779eb3d9b35e4991fc74d344d0376194ba035ac41fbb95a1f1bbd",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/081-palette-2.png",
+      "gpu_sha256": "6b41e878e0e6c2af294945e2cb04493ae6faf9105253749345e7bb87550dead7",
+      "rgba_identical": true
+    },
+    {
+      "number": 81,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/081-palette-3.png",
+      "sha256": "449d99838d88d3cb412fe857f222674ca1b943e1b099ee62644e50080d92cf5e",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/081-palette-3.png",
+      "gpu_sha256": "600a42474b724976772e938e9b781bda1867522716f4b10c726bcf03b7eb50fe",
+      "rgba_identical": true
+    },
+    {
+      "number": 81,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/081-palette-4.png",
+      "sha256": "e4d922d2ab53a820fde9b98fc2923c4ff184d07f4b72d68a92e2e2fb1a4e2394",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/081-palette-4.png",
+      "gpu_sha256": "824126b90f8256e8769abda2dcf3e8673e56620372506a4d2277f0ef5b1e00e6",
+      "rgba_identical": true
+    },
+    {
+      "number": 82,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/082-palette-2.png",
+      "sha256": "433b2a1da06cff22127ae5f14af653aac3149da97e0f25401a3f5e70db36b48c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/082-palette-2.png",
+      "gpu_sha256": "112038d0fc870b852ee55edd97464653bebabd76dc153fd293c7e653bac42092",
+      "rgba_identical": true
+    },
+    {
+      "number": 82,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/082-palette-3.png",
+      "sha256": "da92769453b8472d82a0ab023f861a29a73727cb09f56a21845a119b630cb766",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/082-palette-3.png",
+      "gpu_sha256": "964b7ad4484a92c69997e1b40b760674b2f3d0c6d6c887124d9f5d27b18505a0",
+      "rgba_identical": true
+    },
+    {
+      "number": 83,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/083-palette-2.png",
+      "sha256": "7334d62501af33c35529d120beb23df403fb1135a710978b2a422a2e87a3be74",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/083-palette-2.png",
+      "gpu_sha256": "76d5ee07d5974ce7b849415549920285c847589815510f7087eb70a8518d66f5",
+      "rgba_identical": true
+    },
+    {
+      "number": 83,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/083-palette-3.png",
+      "sha256": "b44210f7141cb7d88974214ef885493d86889f60bfd0592e5a8db17bd09cdcc6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/083-palette-3.png",
+      "gpu_sha256": "8bda4d7a46e3f74ef4c43d6e25d90befb74a1b9a0de642197cf3f4319d16f5ff",
+      "rgba_identical": true
+    },
+    {
+      "number": 84,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/084-palette-2.png",
+      "sha256": "a45666f39815e78d7e5d3661327b2ed4179d79b404bc3ce81800ed3b67e88f21",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/084-palette-2.png",
+      "gpu_sha256": "37dedc88fdafe4b9b77ccb0496baed85f1bcae3c26fcc61fc6b366a512937706",
+      "rgba_identical": true
+    },
+    {
+      "number": 84,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/084-palette-3.png",
+      "sha256": "0bdd3d79523d58121838738aeb6b18b8c5d82e67e5c41def21350612c8e0c1b5",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/084-palette-3.png",
+      "gpu_sha256": "31e9dabe6dbfd7d1a20be17b05936d6c62c45fad0ba25bfab6166c188c6a7414",
+      "rgba_identical": true
+    },
+    {
+      "number": 85,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/085-palette-2.png",
+      "sha256": "0c82a746ec03d8c85b3723b03ae32ec9843eef76957185aee497d681a0c12d32",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/085-palette-2.png",
+      "gpu_sha256": "b94a57b6ae33e8618e322be71d528f6d1ebbda90bbed1b8876af6fab7b094ba8",
+      "rgba_identical": true
+    },
+    {
+      "number": 85,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/085-palette-3.png",
+      "sha256": "5797368483c5fd82d4b7a463e837ca1f776124f8b5684887fa31160154d9fdfb",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/085-palette-3.png",
+      "gpu_sha256": "f2f978178ea41e86c18d0393cad916db1cdc1991913881435ddd18559d2f88f9",
+      "rgba_identical": true
+    },
+    {
+      "number": 86,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/086-palette-2.png",
+      "sha256": "8e35747223213f25d0c38e7433de129e3f9b3dfe054e48db0a377edb301a1d0d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/086-palette-2.png",
+      "gpu_sha256": "2e1681437bb0fd5023faace0ac8d17fe487e3ac01aca782888a383c31824900f",
+      "rgba_identical": true
+    },
+    {
+      "number": 86,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/086-palette-3.png",
+      "sha256": "8630cc639bf1875dbab9e21b4589f4ddc1c0c809dffaa775657a05d38fc66e18",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/086-palette-3.png",
+      "gpu_sha256": "18c23b27043a46e6631c02b0681d4518e47e04f945bb57895a87a339f24eb2e6",
+      "rgba_identical": true
+    },
+    {
+      "number": 87,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/087-palette-2.png",
+      "sha256": "9fb0df9dd1810b4b2e37f62a0e2ba61634057673604140bd82f4d49f58bd88ac",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/087-palette-2.png",
+      "gpu_sha256": "c58ce06df49d41db539af66dae674eed1e4f6e779d114da860e758087f9c462c",
+      "rgba_identical": true
+    },
+    {
+      "number": 87,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/087-palette-3.png",
+      "sha256": "fa1dcd34784cea612ab0a9745243f9d1f7b9262f3242ece547789e1dca8ac4ed",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/087-palette-3.png",
+      "gpu_sha256": "d6de6210fe81edfe717c7ff77f6f6e6be3349ed031f616998e8614bf8519a483",
+      "rgba_identical": true
+    },
+    {
+      "number": 88,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/088-palette-2.png",
+      "sha256": "9c3a64b27afd0daab03eaa11c145f516b349943aef7b04db511bf41e1cd78efd",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/088-palette-2.png",
+      "gpu_sha256": "74ff39055d4450f28de067a11dbce334710e0c3e2bda4d4e5a445efc87a8115c",
+      "rgba_identical": true
+    },
+    {
+      "number": 88,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/088-palette-3.png",
+      "sha256": "5675113e2df41de25e25e07a8f1cd3fdae599176639e69bcf235ac9c38732972",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/088-palette-3.png",
+      "gpu_sha256": "dfcae9072df4f60558e6e81eafc0482e4504a210cf5bedee6cc1559ed8e9f71f",
+      "rgba_identical": true
+    },
+    {
+      "number": 89,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/089-palette-2.png",
+      "sha256": "88935d17d78b382100ec1602c312ea94625b14a4eaa599c9bcebf7ecea96fda3",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/089-palette-2.png",
+      "gpu_sha256": "9bfd610b3df0cdf87675bb1cac82053f2b24c20cf15a84d7aa0942d75250f32b",
+      "rgba_identical": true
+    },
+    {
+      "number": 89,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/089-palette-3.png",
+      "sha256": "7c29f5c277cb50fa4e43873cf4fce78948bcbc56a413e582a1f2ead4686ca475",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/089-palette-3.png",
+      "gpu_sha256": "c04a5e5883437f6499b78c6c3531740ea7ab48d8104104b3a2dfec44c9f27270",
+      "rgba_identical": true
+    },
+    {
+      "number": 89,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/089-palette-4.png",
+      "sha256": "505218c46370cbdaa366fedf0410ac9eeba07315617cf3ca6e58c7ccd512748c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/089-palette-4.png",
+      "gpu_sha256": "4ef39c0309b73fc3fdc1d4004ff4794ad3ef427849ae1767088dbda5412f4d0c",
+      "rgba_identical": true
+    },
+    {
+      "number": 90,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/090-palette-2.png",
+      "sha256": "37af288f3710034c0a08d3219577422318db318d391f17b778461bb73358e7fe",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/090-palette-2.png",
+      "gpu_sha256": "3b112843da9afe32b6e5c6ac994dffd812dfb228e2dac75774e5fe4568c52ab7",
+      "rgba_identical": true
+    },
+    {
+      "number": 90,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/090-palette-3.png",
+      "sha256": "7bd1ec6b11cb49739902fcc8daeb0d06fd65c29a53bf382b8c21231af0a10196",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/090-palette-3.png",
+      "gpu_sha256": "1e4ec5effa2f2eeaecbfab01be743f0a55b9d00508dadafb695394f1002bb7d1",
+      "rgba_identical": true
+    },
+    {
+      "number": 92,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/092-palette-2.png",
+      "sha256": "2268082aaa6a8667ebfb2ec4163a48cf09794fff162bd7f2c9b3c12dcdb35bb1",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/092-palette-2.png",
+      "gpu_sha256": "87cf37dbd3a8e0258752777ff09c2b8e411abb96b02dfe0c555c9fd1dbd22dd2",
+      "rgba_identical": true
+    },
+    {
+      "number": 92,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/092-palette-3.png",
+      "sha256": "3d9e159dd1b6f28a34def5a7bb953fd358e8a724ef51c9e0a1432c0a01d7ad64",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/092-palette-3.png",
+      "gpu_sha256": "3a2ead0e9f3fdde9a9bcb513a180683fc9724ea755164ffe16bbf3cc80e7cb9e",
+      "rgba_identical": true
+    },
+    {
+      "number": 92,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/092-palette-4.png",
+      "sha256": "03594416e5cf19338955de3c5175d969099dd27b3ae58b1b25adfca66e81ef5a",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/092-palette-4.png",
+      "gpu_sha256": "cb50a52815c6c063ef0533d62aee4700f5a349bdb1f971e849e132533e44bb13",
+      "rgba_identical": true
+    },
+    {
+      "number": 93,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/093-palette-2.png",
+      "sha256": "0959f1ffef82b7db98a326362f25e82324b575e997bb7ee80ec0b9506dc1f9b3",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/093-palette-2.png",
+      "gpu_sha256": "e197b69ad7d442d746879a121ec51d81f376dd5db198d7314059d7a21c588233",
+      "rgba_identical": true
+    },
+    {
+      "number": 93,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/093-palette-3.png",
+      "sha256": "4b40083921f35a59b832d0e2a119551a65a6fa5d099912067baaf968f525c82c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/093-palette-3.png",
+      "gpu_sha256": "4f3c96445bf89855ca1a20fb57c0ad2bb2c90bcad192ef02d9c3ad222ec5f539",
+      "rgba_identical": true
+    },
+    {
+      "number": 100,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/100-palette-2.png",
+      "sha256": "0b73dd92ad67f1bdac27f1d0b5496d76e7d2cf16364f41c77f8ec9f386eb92fc",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/100-palette-2.png",
+      "gpu_sha256": "a556c930b7dc18ac5d713f42efd189fbce66b9c5ef3c1098e2f0c1d3563e2b61",
+      "rgba_identical": true
+    },
+    {
+      "number": 100,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/100-palette-3.png",
+      "sha256": "688771004717a758f85a10258d38c88fe05e1454fb4f13cc641df7a171bfb0bc",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/100-palette-3.png",
+      "gpu_sha256": "89cc87eb9a1f656dfa1f841180d06fe43e52aadb23ba68b871995e6d5e2bd478",
+      "rgba_identical": true
+    },
+    {
+      "number": 100,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/100-palette-4.png",
+      "sha256": "95c8bb4e83341ead4821a54dbe21a297857dda294274c4c9470d04739e7e6666",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/100-palette-4.png",
+      "gpu_sha256": "3c0e61a4a9e573895d39806826414fe10a5a73185b921f58ff67c7fdf3517a6d",
+      "rgba_identical": true
+    },
+    {
+      "number": 101,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/101-palette-2.png",
+      "sha256": "99f854554e71e30604c0eafd978278b93feab41d6b1acf897faae6e26a028479",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/101-palette-2.png",
+      "gpu_sha256": "eeb2877030cdabc6fcddfa0159d1bb9b1f41d6dbb79a09fd278bdf25d34d085f",
+      "rgba_identical": true
+    },
+    {
+      "number": 101,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/101-palette-3.png",
+      "sha256": "f78bf222364b71c68e0a5c7ab600131e6c804db49c86a934ff2dac2a26d6b0b3",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/101-palette-3.png",
+      "gpu_sha256": "915264d96d227f94c72404f54dc76d5bb5d34e4b816c3203daccdc7986e83fbe",
+      "rgba_identical": true
+    },
+    {
+      "number": 101,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/101-palette-4.png",
+      "sha256": "fd6336aa86f37ec2da6e48b427ba6b7e43b914f4531bed1ae578e6d65c584893",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/101-palette-4.png",
+      "gpu_sha256": "8c764785533cbf1c579e0f7ec81a7fa7c19c88fddbac685f4c125899838d51af",
+      "rgba_identical": true
+    },
+    {
+      "number": 102,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/102-palette-2.png",
+      "sha256": "274ad5f234d681b0b8ae52f696f6efcdce753d15156965be47f86067bb3c6603",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/102-palette-2.png",
+      "gpu_sha256": "3d90629a3153332f8fd22a36bae676311bf557ae2bd58a0cfe9844362079c3a2",
+      "rgba_identical": true
+    },
+    {
+      "number": 102,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/102-palette-3.png",
+      "sha256": "8441701e0fd27b936bfc091d3a4ae5d958f5c7c0144cc3aa5586a800f97f728d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/102-palette-3.png",
+      "gpu_sha256": "d4e6ff5df0d44e88a348c3eae24976070506e84696f92da5a6b7d582f5980ebe",
+      "rgba_identical": true
+    },
+    {
+      "number": 102,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/102-palette-4.png",
+      "sha256": "a0293fb280a57ae7755dc4ce70e6206c6b5dca82bcc0f5a6c5b47881235a6d40",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/102-palette-4.png",
+      "gpu_sha256": "732ac88553235de93694a99d1ed80541aed12cb14f77f15be343ef4f53b580da",
+      "rgba_identical": true
+    },
+    {
+      "number": 103,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/103-palette-2.png",
+      "sha256": "a04977c238395f3582eae1f3f32a26e92726a0909476e4ecac0d2d9c2e46a8bb",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/103-palette-2.png",
+      "gpu_sha256": "76c1c99cf4dcb60f5022a4edf9fa870d2f8424441834b23ddf7a9f47ccf8b1b9",
+      "rgba_identical": true
+    },
+    {
+      "number": 103,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/103-palette-3.png",
+      "sha256": "19feffdfe3921829e4c5a154f3d4f262521751ad36fb29587aaad38dafd90d5a",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/103-palette-3.png",
+      "gpu_sha256": "abab2cb7c525aa87c07558cc68d5a15431d921b8d55d5dc1b8298cf00de23a01",
+      "rgba_identical": true
+    },
+    {
+      "number": 103,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/103-palette-4.png",
+      "sha256": "a87aab469d94d501954f3025472debeff70e4c3e58735eb0ba453d570ded0fa9",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/103-palette-4.png",
+      "gpu_sha256": "399982603c8a9ac8b589991d040419a849f64ab8fdd144a6e845d18a7f6938d4",
+      "rgba_identical": true
+    },
+    {
+      "number": 104,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/104-palette-2.png",
+      "sha256": "1f946683d28c1d69f83bf0fc6ee6a8c481ba8b05bc5ac1764395804b393f9f3f",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/104-palette-2.png",
+      "gpu_sha256": "0446a6e27d60791473198909d986734918a7cfa98f9c77921f299809c20a334f",
+      "rgba_identical": true
+    },
+    {
+      "number": 104,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/104-palette-3.png",
+      "sha256": "3eb4ace1b74cb03c8712425ee85e0b7389f274984022e3645db8080d447d375b",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/104-palette-3.png",
+      "gpu_sha256": "fa731fc8c41a4b47f74c03aa856cfad41eac3e56eea50e727d7d691be358dcd4",
+      "rgba_identical": true
+    },
+    {
+      "number": 104,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/104-palette-4.png",
+      "sha256": "3fc843100189bae0c85a3e6c21631a24c0043c8dd14d858d739ad8bdb79166c7",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/104-palette-4.png",
+      "gpu_sha256": "99159a78d144c9fb5c1c59d2afd993ca639fec7f7478cd78e988da17530cb518",
+      "rgba_identical": true
+    },
+    {
+      "number": 105,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/105-palette-2.png",
+      "sha256": "0a5419ce43f909c2165603616d1a062c05bfc0e0156d56bb60410d57ef62a7e6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/105-palette-2.png",
+      "gpu_sha256": "2b6bab51dd063dae7f5fc426b107a2704118296cba8f046788e556121ae38110",
+      "rgba_identical": true
+    },
+    {
+      "number": 105,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/105-palette-3.png",
+      "sha256": "720bcc36eec7e7af3e4b29d335645fa26fbfa8a100d308032a1bcc5d73bf9bcc",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/105-palette-3.png",
+      "gpu_sha256": "ddb65e6cdd94eb5d2de8ac20814a8942ded26b9b69032bd4344de3b0ae7d1aed",
+      "rgba_identical": true
+    },
+    {
+      "number": 105,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/105-palette-4.png",
+      "sha256": "4ce55aa472ca8f6f64dda419f7d503773a28b8701fc1cd74cb4030edc4f8b103",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/105-palette-4.png",
+      "gpu_sha256": "d670f2e9b995fe6830311bec4e7a660a1714f147344ccfe8a69c0cd67361022c",
+      "rgba_identical": true
+    },
+    {
+      "number": 106,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/106-palette-2.png",
+      "sha256": "f03ab30ba949ac4ad8635ee4cf383ec53ebce126ff0ef4a1fad1d0cc972d9dd1",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/106-palette-2.png",
+      "gpu_sha256": "4d344b6cbb680a23335d0624ed097514169f7ecd02e490195e9f97da2953e1f5",
+      "rgba_identical": true
+    },
+    {
+      "number": 106,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/106-palette-3.png",
+      "sha256": "e02cf4b424e2067b6cfd22628afd535afcf04be408b8c435b3c0925592c72189",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/106-palette-3.png",
+      "gpu_sha256": "d70e9dcace92e4f3eb5120cddefa6c2ec6b711deaabe4bc2a1c29f6c6504c8d6",
+      "rgba_identical": true
+    },
+    {
+      "number": 106,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/106-palette-4.png",
+      "sha256": "04cfb4ad2e4d79b5002fe336bc3fd3e6769deb28c25c5914bebce19a41fad1f6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/106-palette-4.png",
+      "gpu_sha256": "d57dac628f8aebbc6d00e3be6ad81e2856111d1a4e684e79204559577fc39d29",
+      "rgba_identical": true
+    },
+    {
+      "number": 107,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/107-palette-2.png",
+      "sha256": "2aad081174fb60765b5522d29aabc9267afa5881ee83c28b14378d66ea233991",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/107-palette-2.png",
+      "gpu_sha256": "445a7e8b711becb8c59e8bd80d1033723b4242e9c73424860a82619da2f2c629",
+      "rgba_identical": true
+    },
+    {
+      "number": 107,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/107-palette-3.png",
+      "sha256": "f0e4e9d73a1937b1956859bf1fcf6b0abf69fe2ed8aeaa01e7d8010b7a2e7868",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/107-palette-3.png",
+      "gpu_sha256": "34405accaa97d662c5a6177779bc32087b351d7df279484a714a5eaf138643c9",
+      "rgba_identical": true
+    },
+    {
+      "number": 107,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/107-palette-4.png",
+      "sha256": "fab4291bd2394fdae1306cff27e84bfa9aa3d2b792d6eacb833fd9abf738fce0",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/107-palette-4.png",
+      "gpu_sha256": "d83cd03be5cd523f627200f94c6ca1c3d7f8abfb44bb792c3c1743125501e6fd",
+      "rgba_identical": true
+    },
+    {
+      "number": 108,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/108-palette-2.png",
+      "sha256": "19a191caf5940c127039968f3b13d59e9c0181a22000bf6a666bab7adf74613d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/108-palette-2.png",
+      "gpu_sha256": "5bad1a23917d028e239f989f57a63b0865afd2e9cf4b17415c8eca909036240a",
+      "rgba_identical": true
+    },
+    {
+      "number": 108,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/108-palette-3.png",
+      "sha256": "87903b0859d542442e090bc7b22ac86ed41c186b67a0dbcac828bd381ba0b178",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/108-palette-3.png",
+      "gpu_sha256": "c2a0f84fbe54e83cd1890b90fe8cf8d65ebd360a86b6f439a9f5bcf3daf06c93",
+      "rgba_identical": true
+    },
+    {
+      "number": 108,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/108-palette-4.png",
+      "sha256": "70c46280fb0b5569efd8636ed37cc4a660f8f9f06d133cd7069a9f561210a457",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/108-palette-4.png",
+      "gpu_sha256": "7af0c7bf372b5376b174f65453ba4052c4bd2456a3693657e471598ef3001a53",
+      "rgba_identical": true
+    },
+    {
+      "number": 109,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/109-palette-2.png",
+      "sha256": "c6dbb646eb884328363f98a4d99062e6a4502a3dc24eb733562ff5b55b963542",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/109-palette-2.png",
+      "gpu_sha256": "02950b74d6005d900b73f327748b3decc5b40393a69bbb929063aeb5286d56f6",
+      "rgba_identical": true
+    },
+    {
+      "number": 109,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/109-palette-3.png",
+      "sha256": "b52fe901bb1b77713494cf887773dedd5670a67dc3c96088beeadcc126729e83",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/109-palette-3.png",
+      "gpu_sha256": "e9cdbd5d9a6033dcb1ca67dd38ae41d351ff700ec09220265d48ee73501c86da",
+      "rgba_identical": true
+    },
+    {
+      "number": 109,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/109-palette-4.png",
+      "sha256": "9dc2a29eaa6262f9982404900f8d6ae0776f40cfb893d4c027e0577cce2ad90a",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/109-palette-4.png",
+      "gpu_sha256": "d7435ab54434055d5cd2c533ddba3a23d88e6777666bdcb7ae63257bb8d39bde",
+      "rgba_identical": true
+    },
+    {
+      "number": 111,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/111-palette-2.png",
+      "sha256": "3cbd914879e4bf55d89bddd0b47fd29b3942c62647690ceab769f72c1e016f5e",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/111-palette-2.png",
+      "gpu_sha256": "5eb7acfe41f7612dcf50f96aedd17c9d5a79b5ac40ba9f143e4d8a32e6c26324",
+      "rgba_identical": true
+    },
+    {
+      "number": 111,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/111-palette-3.png",
+      "sha256": "2e58927bceb7c963c4dffbe6833778d33725e82caa71862ecc47659694827a02",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/111-palette-3.png",
+      "gpu_sha256": "baf71319b9ba2582a21fba155a0f4772f63660c1676dc4a6ae3674294a6d47fe",
+      "rgba_identical": true
+    },
+    {
+      "number": 111,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/111-palette-4.png",
+      "sha256": "6c8859da2c83176339051a4489bdfc0dbfb21688ed871b33492496e41bd8ce30",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/111-palette-4.png",
+      "gpu_sha256": "7b6793d2d57365df3a578bd19620afe8aafe1bd56ba280589d15df33030884ac",
+      "rgba_identical": true
+    },
+    {
+      "number": 112,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/112-palette-2.png",
+      "sha256": "f9ed7d789e6c4163829793400cf491f4a9e6aaf48113f66ba1879da81c2f94d2",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/112-palette-2.png",
+      "gpu_sha256": "531554f59a6075c80da115347dd208c7746ef7c22b3ea9c3294b1f76216e9f86",
+      "rgba_identical": true
+    },
+    {
+      "number": 112,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/112-palette-3.png",
+      "sha256": "ab55f83eed2cf6c4803e1ac26a26dd3521c95a6784f8ca59bc4c46ac1ccf7743",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/112-palette-3.png",
+      "gpu_sha256": "b4eb3672fd6a0a5f0ec8abbb270902b6eaa8492135fff69cc192ac97ffcb4917",
+      "rgba_identical": true
+    },
+    {
+      "number": 112,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/112-palette-4.png",
+      "sha256": "7de377ae2d6f2e1ea9205afee7dd25c8f9bba41290a5aa218fd0d5439c711c55",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/112-palette-4.png",
+      "gpu_sha256": "f3e01b2248acf7f014ce2c554f799448d5d46c087fb359cce8f3e639de7c46d1",
+      "rgba_identical": true
+    },
+    {
+      "number": 113,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/113-palette-2.png",
+      "sha256": "e33e0f4747da43def16f736520a68deaa438ee4d78e30f8b7ae7d22efb630203",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/113-palette-2.png",
+      "gpu_sha256": "c07fda91a6a8a113ce80befbd9472eb5874cf6c8640c63a2ff911815b203adfc",
+      "rgba_identical": true
+    },
+    {
+      "number": 113,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/113-palette-3.png",
+      "sha256": "332747d3403500edf5757488a96943112ec80c013181e9bd03a1d3b4b741542f",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/113-palette-3.png",
+      "gpu_sha256": "21073728fcbefec91ecfce020baa0b99d6103d5c0acd1a39e6769be0d47d4f92",
+      "rgba_identical": true
+    },
+    {
+      "number": 113,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/113-palette-4.png",
+      "sha256": "a5d046cdba7b6a9384e1a8bdd7294def554cea10764ff7788c41ddb9f23e82c1",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/113-palette-4.png",
+      "gpu_sha256": "eb0efe8acf72237bcbea12c34450c76ec540d16e02dcb935d62093f8f9b5b179",
+      "rgba_identical": true
+    },
+    {
+      "number": 115,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/115-palette-2.png",
+      "sha256": "da20284283a7d4d43d820a4839c72e329fe26fde034bcebd8f952b94996ac07c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/115-palette-2.png",
+      "gpu_sha256": "f4c79871a248782017545be779a726ead2b6fe76a68af07825851d75f3ab6068",
+      "rgba_identical": true
+    },
+    {
+      "number": 115,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/115-palette-3.png",
+      "sha256": "122dae45eee0b2a4915546e00dc55937b9b9d101c8dd84d981cbef65660a5fda",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/115-palette-3.png",
+      "gpu_sha256": "be03c8477f1eae237160318c1da966f1feb953a99f4601e937455233ce472a85",
+      "rgba_identical": true
+    },
+    {
+      "number": 115,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/115-palette-4.png",
+      "sha256": "b653061a23779791157081808078a66276ce8225eb2c57c6e78bb18fbc624334",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/115-palette-4.png",
+      "gpu_sha256": "36bfb98cfcfad61220d3f1869b149c9e046ad7b90f53e9213ee418eca7ba5571",
+      "rgba_identical": true
+    },
+    {
+      "number": 136,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/136-palette-2.png",
+      "sha256": "f68e6fa41caf45dc11561053ecf89f8e020da45d7c2e03f65b997321d47c8318",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/136-palette-2.png",
+      "gpu_sha256": "d3b5b0b674eb4654adf4bdd503bc7a076a9324d1a889b55fd0cc5ebe92aeaf03",
+      "rgba_identical": true
+    },
+    {
+      "number": 136,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/136-palette-3.png",
+      "sha256": "546f72af6068336e88ba30281e64057e0f3a07b385303caa3198ef11d540863b",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/136-palette-3.png",
+      "gpu_sha256": "8dfe86de94f059bcb1d03676ba2f8cacce9ab3fc012e124482c39a32547386fa",
+      "rgba_identical": true
+    },
+    {
+      "number": 136,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/136-palette-4.png",
+      "sha256": "27e7d2fe3380153d1f055e7201f49c87dbf3c0954cc816799835b9ef6fddaf18",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/136-palette-4.png",
+      "gpu_sha256": "3a832a864cb2b7854e607804f67febae9e3f6d98563baf84475de77f6f53b6e4",
+      "rgba_identical": true
+    },
+    {
+      "number": 137,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/137-palette-2.png",
+      "sha256": "353875e1cb3827b72e98360130aa8e89129fb3be919317319ff7267460d588ac",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/137-palette-2.png",
+      "gpu_sha256": "814543c201405ee5dbc875522139ce8f0db4edebf0e05da95e619e49775f42fc",
+      "rgba_identical": true
+    },
+    {
+      "number": 137,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/137-palette-3.png",
+      "sha256": "a522b91083a631d33b083eb782a4c0f5bd026cf15ae1b34aebbbe9366990d0f0",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/137-palette-3.png",
+      "gpu_sha256": "209312d84830f070b604648eea61ba7b909f1e6c5c80d299d6a1f5258cb997f9",
+      "rgba_identical": true
+    },
+    {
+      "number": 137,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/137-palette-4.png",
+      "sha256": "6678a89afc071fac3d34695cf4f2ea742fcda2b4c3e8c064cb647b303298a963",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/137-palette-4.png",
+      "gpu_sha256": "6546f29c064856e89bfee898ffe5f9a31716a21c421ef2eff17676872d2e83cb",
+      "rgba_identical": true
+    },
+    {
+      "number": 138,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/138-palette-2.png",
+      "sha256": "e942eb1cc2884c35521f445b19bd4b520cbe027a57a12ef4476f3ff352964a17",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/138-palette-2.png",
+      "gpu_sha256": "0e9177934c9d6867fdf5fe92b4716657aea45287532fd426930c2ed36978ba53",
+      "rgba_identical": true
+    },
+    {
+      "number": 138,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/138-palette-3.png",
+      "sha256": "631d5b4163228273e69716f51b5cd6829597fbb4fda631539bccd0124af73462",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/138-palette-3.png",
+      "gpu_sha256": "8efa8647dc2e4cd82a78fa04fcd88c1bfa6f82bda5b58de01d6558353cc5a529",
+      "rgba_identical": true
+    },
+    {
+      "number": 138,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/138-palette-4.png",
+      "sha256": "c59e80a769f81a0c7d27c7e9cc00ba26c083b8fc2814c6525c801eecbefdec71",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/138-palette-4.png",
+      "gpu_sha256": "68be94f4014000aa43ec6e513a59db446c25ebc0ab78634fff8ae64f47abebeb",
+      "rgba_identical": true
+    },
+    {
+      "number": 139,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/139-palette-2.png",
+      "sha256": "446164c9f0382f130e43ef05c3a17935c0588197d6201192ed5bc3b930130552",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/139-palette-2.png",
+      "gpu_sha256": "26232eaf850ad23b70c568b0a569300e0c3f8261ccfb2e122f25ca47d3c46993",
+      "rgba_identical": true
+    },
+    {
+      "number": 139,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/139-palette-3.png",
+      "sha256": "7acbf03db2f4d0b3f7fbe386dba7b3dad72d1a3f25302c43caf97f5ef08fc7e3",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/139-palette-3.png",
+      "gpu_sha256": "4af401aba0a2787c3dc670f53faa0de30e5aedafde69a8ce62dc5524308ccfdc",
+      "rgba_identical": true
+    },
+    {
+      "number": 140,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/140-palette-2.png",
+      "sha256": "feb1baf1580454be230a735ea6c8e6eebcf80ae36eea243760c0f6f463587521",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/140-palette-2.png",
+      "gpu_sha256": "9bd166cca487d325ef6392184dd5597ed10bb540bf7de4e6f0597a00653c3d9d",
+      "rgba_identical": true
+    },
+    {
+      "number": 140,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/140-palette-3.png",
+      "sha256": "9bc38f2cd1428fd6875c7c557c181c15048e4a2eaad94782a385dad64a306b2e",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/140-palette-3.png",
+      "gpu_sha256": "a70b660a9bd31d1ae762638c73b5da95037a519c894f102cd0e60094fbad7d74",
+      "rgba_identical": true
+    },
+    {
+      "number": 141,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/141-palette-2.png",
+      "sha256": "266fa9c553f43381e0bc2d5c37088806d2e625d217083f281e0baab0d9675320",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/141-palette-2.png",
+      "gpu_sha256": "506da0ce6e67516d75397ba5c35f844fa3365e01377b04898fb28d6ea12520ea",
+      "rgba_identical": true
+    },
+    {
+      "number": 141,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/141-palette-3.png",
+      "sha256": "128f88dc4ee2511bc1b60e11c12287010353cabce8f4931a4efa5f3dd1dab783",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/141-palette-3.png",
+      "gpu_sha256": "6eb3e041aefad5530556972f9b00b17cd14d794dc4d1478bfe08dbe8ba9c32a2",
+      "rgba_identical": true
+    },
+    {
+      "number": 141,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/141-palette-4.png",
+      "sha256": "a01267307f5e7f648f73aa5cbd241e9e02d81ee7c019ac9ccdea2c6534b7d8bc",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/141-palette-4.png",
+      "gpu_sha256": "14e8e6f2feea36436b6a1f6f288ab1b8504375ed98f9cbaa9b7dd4e3c2ab7b03",
+      "rgba_identical": true
+    },
+    {
+      "number": 142,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/142-palette-2.png",
+      "sha256": "fe4e026546cf31a3bdc3e1d61720e1298aa1b2548e701066926b3e4c69cf45dc",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/142-palette-2.png",
+      "gpu_sha256": "c356b639d053f1f2fcbd4bf27db3a2aab17ce2ef237ba9b32ee3cc560cbea11a",
+      "rgba_identical": true
+    },
+    {
+      "number": 142,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/142-palette-3.png",
+      "sha256": "b1ace93283022dc1478aa7a832973aa2f8a3e499f8a7f78a84c26ceba88ce547",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/142-palette-3.png",
+      "gpu_sha256": "c08afa07e1ea5ab1af6899fda9752200ae083ff31cea5dfc73104222fc9bd809",
+      "rgba_identical": true
+    },
+    {
+      "number": 142,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/142-palette-4.png",
+      "sha256": "ec115818ce12f2922390e9911aa5bef48a32c71424e8ca50e5807a617bbbc820",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/142-palette-4.png",
+      "gpu_sha256": "df9b60cb712c15a8ab8f65f821fb552fd2ac3d3973bd0527454e4f19f3dfb5a7",
+      "rgba_identical": true
+    },
+    {
+      "number": 143,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/143-palette-2.png",
+      "sha256": "65d995130ea5dcb5339317fbbd06dd439675e2d613c0fd159943c971292ea79d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/143-palette-2.png",
+      "gpu_sha256": "3cce18053817521be34c41d4dbf90526452c1b130c1ea66bcf4a4d38f9b722ac",
+      "rgba_identical": true
+    },
+    {
+      "number": 143,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/143-palette-3.png",
+      "sha256": "fdc12b5e958e7f830ad2635332df3e3e2c0889a8c7e50234e4cbcf66111d3f3d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/143-palette-3.png",
+      "gpu_sha256": "3b34e155a27804629d0c8baf98897fd8095928683f4bcce961dd23f76c5c61cc",
+      "rgba_identical": true
+    },
+    {
+      "number": 143,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/143-palette-4.png",
+      "sha256": "a29d95accd39566dd2a9bd41e489c9f4f51ef649f2ff204478415d38b494d309",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/143-palette-4.png",
+      "gpu_sha256": "cfcac894720453e8dee59af1fae297a68a59e845bcb7aec6b54188f962496372",
+      "rgba_identical": true
+    },
+    {
+      "number": 144,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/144-palette-2.png",
+      "sha256": "4b33437f9c6cc38977d553a6d0f6cde8929b1558b3058a17858e61d14177cbac",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/144-palette-2.png",
+      "gpu_sha256": "cc2b5eb10fe2c90c66879320917d8394eed3c7e1425ce06c277633fb4de57f2f",
+      "rgba_identical": true
+    },
+    {
+      "number": 144,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/144-palette-3.png",
+      "sha256": "fde0cb0f2f0fee32713800a032041b81a23d6b39e3209f17eaa37d981066c1b1",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/144-palette-3.png",
+      "gpu_sha256": "7c4fbd6b57ad7f22200b70ce83cfb746fa1471992597151d261e0ec062cd09e0",
+      "rgba_identical": true
+    },
+    {
+      "number": 145,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/145-palette-2.png",
+      "sha256": "4e18da36b1703361eba18922fc65e1c23f89ceef6dd93ee2010e99ac77c00ebc",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/145-palette-2.png",
+      "gpu_sha256": "31add1c6010d511b9158c06b88e954d151ec89cd024371768a586524840788f2",
+      "rgba_identical": true
+    },
+    {
+      "number": 145,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/145-palette-3.png",
+      "sha256": "eb5b04db6193c94b735dacce2d4f590547162e75ae736146b236bca06f8e3dbd",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/145-palette-3.png",
+      "gpu_sha256": "f7fc3c1ba782e7e517550c47ba6d2486de88060239677fe52f3d9045c118355c",
+      "rgba_identical": true
+    },
+    {
+      "number": 146,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/146-palette-2.png",
+      "sha256": "5052a6e54d741e0464961b1e0cdcc8318b08e5885b1ebdadb8b525498b29eea2",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/146-palette-2.png",
+      "gpu_sha256": "1e099a2a971f9c0fbe106683cb49fa198c32ceb66c5ea4615b40c6d10d14a802",
+      "rgba_identical": true
+    },
+    {
+      "number": 146,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/146-palette-3.png",
+      "sha256": "6c08744e96026b0e8b779eb95bbdc284a5c93ddb60eb3455a0c791b00986622d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/146-palette-3.png",
+      "gpu_sha256": "4625743bdcba08ee0ba5c2b2f9c40ca498073ebb5ecb5970095325552479417e",
+      "rgba_identical": true
+    },
+    {
+      "number": 146,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/146-palette-4.png",
+      "sha256": "988ee108ff18cc4e5bd07a78c594a3660384a0166c457184528dbf62989c6b0d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/146-palette-4.png",
+      "gpu_sha256": "bb808ee4353093e99b7f94523f0a9d435f4fc76ec5976b38d5efad85ae0f468e",
+      "rgba_identical": true
+    },
+    {
+      "number": 147,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/147-palette-2.png",
+      "sha256": "ffc15aab55fb80dc5a6814c3a3cc58109368e0d862c2d7c31eeefe52d98bff33",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/147-palette-2.png",
+      "gpu_sha256": "24cdc1d65d94c03bbf4dadcc5c5fb4def2bfc1bc1d2d5198d6272f4d340f5201",
+      "rgba_identical": true
+    },
+    {
+      "number": 147,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/147-palette-3.png",
+      "sha256": "d2bc311c61d8c4bc04356d37975c4124bdcec4a8f1d70587cb66295c9c36586f",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/147-palette-3.png",
+      "gpu_sha256": "851e4719dfc2ca0788bd98d025b34967a92379ff000d9721bda355c178e8c622",
+      "rgba_identical": true
+    },
+    {
+      "number": 147,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/147-palette-4.png",
+      "sha256": "33b105daccdc49fce3cbb116e8a73551fe400a958557818dab83930fe7ae6b93",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/147-palette-4.png",
+      "gpu_sha256": "e380907a5033257fe111c39437d922873569c070332284ab26772f1669bd7f9b",
+      "rgba_identical": true
+    },
+    {
+      "number": 148,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/148-palette-2.png",
+      "sha256": "376c0316a415d821a866e4f9bd74bf04bd21e1bc527f86371d796d17805dce8d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/148-palette-2.png",
+      "gpu_sha256": "780ab8d69859cf8800f289e29995a0dc536a4cc7715b55507d7ab5e3f92e1f27",
+      "rgba_identical": true
+    },
+    {
+      "number": 148,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/148-palette-3.png",
+      "sha256": "81bcc707452901924043c11d69f7b21db5c1801d5084ce43240f1c40493f05cf",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/148-palette-3.png",
+      "gpu_sha256": "415e2a249259a91960ce76d9c5f013344285e4ea584188aece229d26c983d8f8",
+      "rgba_identical": true
+    },
+    {
+      "number": 149,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/149-palette-2.png",
+      "sha256": "e6bf8c099857ccd8fe5660bf13c3e2b91796e013b9930a12994b051b06d16be1",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/149-palette-2.png",
+      "gpu_sha256": "144f508ec37cf798bbacf1b795ee3bb88a1737d3b3b5702347ed44f0a40d7f7e",
+      "rgba_identical": true
+    },
+    {
+      "number": 149,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/149-palette-3.png",
+      "sha256": "4bed8e8ecadd1217126acae4cbd6ea1b86ae0f51172ec8a89ecfd370d04ab4af",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/149-palette-3.png",
+      "gpu_sha256": "01464d9c751cda2d49c35c48faf446e2f81b0185e18e37d9b338cfeed72c8040",
+      "rgba_identical": true
+    },
+    {
+      "number": 149,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/149-palette-4.png",
+      "sha256": "391ec4c608aa78a9de41d52cea2cb695e48a9de8134d2b0d355e1583d1aed8b7",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/149-palette-4.png",
+      "gpu_sha256": "29cccfd520e1cd3d30c40be38d9071640b1b51a00ef11eeda383f03c9fb33bfa",
+      "rgba_identical": true
+    },
+    {
+      "number": 150,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/150-palette-2.png",
+      "sha256": "3b760b2324d5b91ecac93110243563fd22e9d8196cc7fce3d4cf6a786686976f",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/150-palette-2.png",
+      "gpu_sha256": "57b0970ff730eb3f3e549ed7d0e5cb620af0cd7c99fb13a7a5c14ebab5814bdc",
+      "rgba_identical": true
+    },
+    {
+      "number": 150,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/150-palette-3.png",
+      "sha256": "dca64c604662d77bfde4e728526da5c95927ff12bf3d5f3fb443a85b228bce24",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/150-palette-3.png",
+      "gpu_sha256": "efa35a3daf99b32838542edcaedad0d1ca57c58133f57abb9abf11a20a5fec48",
+      "rgba_identical": true
+    },
+    {
+      "number": 151,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/151-palette-2.png",
+      "sha256": "57da02a6d3c8421103a3fac953322a001ccb05230a013656284cb7ec5de3665e",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/151-palette-2.png",
+      "gpu_sha256": "1553ed8f747b025a15ffa021705457b36d74b998cf31bf017378a105ff1c37b7",
+      "rgba_identical": true
+    },
+    {
+      "number": 151,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/151-palette-3.png",
+      "sha256": "cc94d9867e2f1b2e4dd7dbabc73ef470e337278f695685a16756e84c2f5de5c7",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/151-palette-3.png",
+      "gpu_sha256": "969ae4c9d7362c26e3210102c65bf02e5062aaf55c8c5fa4797e792bc3783131",
+      "rgba_identical": true
+    },
+    {
+      "number": 152,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/152-palette-2.png",
+      "sha256": "eed3545702aa79a6b353513713dbc65204478b6a8ce8fc28530fb0d88bb4fbe2",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/152-palette-2.png",
+      "gpu_sha256": "e6b5d1fee6ab49a6c61c544d4e3ca742c21b5d45a252198f6fc44c09b5df3928",
+      "rgba_identical": true
+    },
+    {
+      "number": 152,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/152-palette-3.png",
+      "sha256": "43355579e4ae07d4827b00e7bbeffd33f9316d218de3c80cfa1408255094e0a1",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/152-palette-3.png",
+      "gpu_sha256": "9de8e6cab62cb83e9bdeec8990ce84516cb0b845c216101abad207cd6d32f922",
+      "rgba_identical": true
+    },
+    {
+      "number": 152,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/152-palette-4.png",
+      "sha256": "65c95f86a6723181b394139016b578ece984ad624f3cc8f26892abd1938af76c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/152-palette-4.png",
+      "gpu_sha256": "020d3c9487da252acb5017d389b1ec9f06e801f436a87728acb08a735320fadc",
+      "rgba_identical": true
+    },
+    {
+      "number": 153,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/153-palette-2.png",
+      "sha256": "485f75029f0e637fe568d3371fa72c9cdb6b8bcaae77f4ed70df6dadfdf491ca",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/153-palette-2.png",
+      "gpu_sha256": "2f0110b6279398da46ed39b8dbb6f08aa6ae660a08f42d32ae43850a0f863cb9",
+      "rgba_identical": true
+    },
+    {
+      "number": 153,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/153-palette-3.png",
+      "sha256": "f818bbfdeece3918c9164256c2e9cf30ea56abd01a829abdef025caf5e5db4ef",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/153-palette-3.png",
+      "gpu_sha256": "cf822f9a857f8011bbc4127e974ba5844bf0665353e8aad36ae873c8ca1a6824",
+      "rgba_identical": true
+    },
+    {
+      "number": 153,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/153-palette-4.png",
+      "sha256": "02138ca2613ad037af10460840a2d503c25e7bd630c3f24d08b60bf4861f8334",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/153-palette-4.png",
+      "gpu_sha256": "535c21d058f9741b0b4a25ab592d43782df8ad49ddeba12adebaeec6a2d8c049",
+      "rgba_identical": true
+    },
+    {
+      "number": 154,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/154-palette-2.png",
+      "sha256": "c42e17494b247fa10885a4fb66869fc4a1879afd6058c505aa66c9a890b1c058",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/154-palette-2.png",
+      "gpu_sha256": "ed49f53293cf002f6decb9b3aeb5d8bf284f25760d61426287574b0e93da46d8",
+      "rgba_identical": true
+    },
+    {
+      "number": 154,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/154-palette-3.png",
+      "sha256": "72bcbdf5ff020419c6c33a721883ba3a4fab0352dec048362dc606280437ccf5",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/154-palette-3.png",
+      "gpu_sha256": "03d7e2964a21dcce539b1b0ed231cf48e95644f69a0f9b9144b207e0d719b469",
+      "rgba_identical": true
+    },
+    {
+      "number": 155,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/155-palette-2.png",
+      "sha256": "99b47515833ed87cafb39d1ee2fa46b987611d63e5695458bbc7a91f40eedc65",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/155-palette-2.png",
+      "gpu_sha256": "4c96ab04b29dcaa133bc5a7a75e962b31e89186b15008627d7562e9755fa315b",
+      "rgba_identical": true
+    },
+    {
+      "number": 155,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/155-palette-3.png",
+      "sha256": "c2a0b657b29f9a99df604c84421b9238b162de1d21432042c21c899b0d5f6325",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/155-palette-3.png",
+      "gpu_sha256": "736684c4f1a095294c98edf2d14557d96c5f4da313f7a63e892f98b99216fb19",
+      "rgba_identical": true
+    },
+    {
+      "number": 155,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/155-palette-4.png",
+      "sha256": "3c1589e13c05eb752189b9fd16e8e195130c9d77cbd7a71e684336e39e5ea8c8",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/155-palette-4.png",
+      "gpu_sha256": "0873cac2ceb429e3b6e65b5b27d92936dafc347e69d71fd6bd51bfc05bd28c52",
+      "rgba_identical": true
+    },
+    {
+      "number": 156,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/156-palette-2.png",
+      "sha256": "9332f2dbfcfce418ef23a947a999836a509099b3f8ea7c62514c1f6bbf5f9ded",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/156-palette-2.png",
+      "gpu_sha256": "2310718d2180882ae9c18a5cec6e34364fef7ad6953ef9de888b89c8b0715346",
+      "rgba_identical": true
+    },
+    {
+      "number": 156,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/156-palette-3.png",
+      "sha256": "4e058faa70196ff0e35d8b3cd3c237cac580b26c2def98f182e07ced728b6cca",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/156-palette-3.png",
+      "gpu_sha256": "f26a22889b79192f145a60a74945b2764e42d639814fbae0f0055023933f5175",
+      "rgba_identical": true
+    },
+    {
+      "number": 157,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/157-palette-2.png",
+      "sha256": "16e46aba86aadc57bd279381d93b7301da8c63f6a87309e340b6b486d42a465c",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/157-palette-2.png",
+      "gpu_sha256": "7236ea943942c07aef3647f2d7cd708ff85623d88115d937adff31c2a1c5559a",
+      "rgba_identical": true
+    },
+    {
+      "number": 157,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/157-palette-3.png",
+      "sha256": "7517a2bbb538a227566d3994ae1971d625b5241bd340d9f69873f67d96bf660f",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/157-palette-3.png",
+      "gpu_sha256": "1f3d9af65766751d613ec2a76f513e0fe17855ff1b06a465bedded0d9bb1e25f",
+      "rgba_identical": true
+    },
+    {
+      "number": 158,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/158-palette-2.png",
+      "sha256": "056fe4a2c6db4181401cb10ca8f96cff46798c47f56a974246e5b8797e55b3f6",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/158-palette-2.png",
+      "gpu_sha256": "77df96c5dfa3f5fda80c2e0e199fb05e9cc4ceef0c8d38951ad9436ea08c96a7",
+      "rgba_identical": true
+    },
+    {
+      "number": 158,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/158-palette-3.png",
+      "sha256": "779bf7d3c02c3056c5a2056ba864c5dd056037912d44cd1d0f39803cba98400a",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/158-palette-3.png",
+      "gpu_sha256": "3c579a63432ceafac210653c0a0e4db46055ea3daac4f359dc4fbc8546df2c7f",
+      "rgba_identical": true
+    },
+    {
+      "number": 159,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/159-palette-2.png",
+      "sha256": "5a25cb6c720d043b9cded4b5cac4206d01f88c81ffcd556cc64181b4315bd3f3",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/159-palette-2.png",
+      "gpu_sha256": "9f76b0cd559dd9eece54ea572917b611468555573e29208624837ff6cbac4ce5",
+      "rgba_identical": true
+    },
+    {
+      "number": 159,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/159-palette-3.png",
+      "sha256": "6eae4c5b92221e1e235e6e1ef99f8ec252cef28044eba78c3c604bb26294ec7d",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/159-palette-3.png",
+      "gpu_sha256": "31c95f7c9674edeac6b339840f7043cc9c94e3598d879377718916d7cf967818",
+      "rgba_identical": true
+    },
+    {
+      "number": 159,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/159-palette-4.png",
+      "sha256": "deefd6921c71cb851a5eaa671b7e4f27435dd7eb01dbc4da2a66f67a8be0533b",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/159-palette-4.png",
+      "gpu_sha256": "ed0835b17eb8ffcd189b157aa358909448fbc21f7eac2534685c92727eae5512",
+      "rgba_identical": true
+    },
+    {
+      "number": 160,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/160-palette-2.png",
+      "sha256": "ab0f6f0be1dad1226780606c26e0ada54edf8616fddd3b8de075e19e0b9dc321",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/160-palette-2.png",
+      "gpu_sha256": "a03ad470e1b6876da6bb5372f1a7c4438c8132fcb12b15e5aef0ed5beaf5d7b9",
+      "rgba_identical": true
+    },
+    {
+      "number": 160,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/160-palette-3.png",
+      "sha256": "d21b45c6b2f37f722d6d526bc5c2d181766b79d8cb301f1f7bc7c341ad633423",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/160-palette-3.png",
+      "gpu_sha256": "d3ea9f459e27cbe1f89ddc210cc62c067f6d2fbde3eac6bf199797c0bd20030c",
+      "rgba_identical": true
+    },
+    {
+      "number": 160,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/160-palette-4.png",
+      "sha256": "7361d6ae065662bae003fc57cfc10c91618dc0e2a0a33f8b57e872883ca3cc5a",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/160-palette-4.png",
+      "gpu_sha256": "acaff0006df5bbf8b6c6b1e0fe7fccf132f002ac16cc561b82aff612be4d9373",
+      "rgba_identical": true
+    },
+    {
+      "number": 161,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/161-palette-2.png",
+      "sha256": "3f46273d6d5c3232ed9b3abc62e79fb6c8491193522cc257011b3eeb642c9f51",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/161-palette-2.png",
+      "gpu_sha256": "a476e5e5eddb5123f56667643ca860ab3bd4a21988230b9513b4c3208884d001",
+      "rgba_identical": true
+    },
+    {
+      "number": 161,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/161-palette-3.png",
+      "sha256": "8214f39ebc1aacfeba43d4792d065225c2bd2e80b8e4035d6b4dbf441b4e64b5",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/161-palette-3.png",
+      "gpu_sha256": "4dff001419827f1f8e3917744021a5f03e2895160f31ee1ca721fbcc04372c9b",
+      "rgba_identical": true
+    },
+    {
+      "number": 162,
+      "variant": 2,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/162-palette-2.png",
+      "sha256": "f7711f5a53a534624e240140fdef6f99c643c3b6d98cfa4264b875d967c301b4",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/162-palette-2.png",
+      "gpu_sha256": "c35fbf4ba38ddbe4121f8a64bd5dbf7fb54690f41215ae8d5d36d9905bc415bf",
+      "rgba_identical": true
+    },
+    {
+      "number": 162,
+      "variant": 3,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-material-palettes-07/native64/162-palette-3.png",
+      "sha256": "49d685191a06e6e7ab59ff2e2ae358680676bf5e9137adb19d82ead2ae44d163",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/162-palette-3.png",
+      "gpu_sha256": "f1896a6482cc0730c5c3ea0e8ceb4a1cd33d788f2d44c7a4c73432809d393af5",
+      "rgba_identical": true
+    },
+    {
+      "number": 162,
+      "variant": 4,
+      "expected": "assets/source-art/refonte-histoire-2026-10-16/monster-blue-palettes-08/native64/162-palette-4.png",
+      "sha256": "c6ef6c5fbb9ff68816dd0cf73c40097606c9452a899e7536c9c025250d2657fa",
+      "gpu_export": "artifacts/monster-blue-palettes-08/runtime/162-palette-4.png",
+      "gpu_sha256": "60e6115215e41bd99f291efb010b9959186cea0be593392e3219981d22ce6176",
+      "rgba_identical": true
+    }
+  ],
+  "real_game_capture": {
+    "actual_framebuffer_sizes": [
+      [
+        1920,
+        1080
+      ],
+      [
+        1920,
+        1080
+      ],
+      [
+        2560,
+        1440
+      ],
+      [
+        2560,
+        1440
+      ],
+      [
+        3840,
+        2160
+      ],
+      [
+        3840,
+        2160
+      ]
+    ],
+    "additional_material_palettes": 231,
+    "blue_palettes": true,
+    "extended_palettes": true,
+    "interface_styles": [
+      "metal",
+      "terminal"
+    ],
+    "native_models": 129,
+    "packaged_native_variants": 240,
+    "real_game_renderer": true,
+    "requested_resolutions": [
+      [
+        1920,
+        1080
+      ],
+      [
+        2560,
+        1440
+      ],
+      [
+        3840,
+        2160
+      ]
+    ],
+    "simulation_unchanged": true,
+    "window_manager_may_limit_requests": true
+  },
+  "existing_blue_models": 39,
+  "new_blues_preserve_masks_and_pixels": true,
+  "blue_native_boards_verified": true
+}

@@ -1,5 +1,7 @@
 # Première couche : une expédition entre deux profondeurs
 
+> **Statut au 16 octobre 2026 : référence du prototype antérieur.** Ce document conserve des systèmes, contenus ou essais existants ; son peuplement et son organisation du monde ne définissent pas la nouvelle campagne. Voir [l'histoire courante](HISTOIRE_CAMPAGNE.md) et le [cadrage de refonte](reviews/refonte-histoire-2026-10-16/CADRAGE.md). Une réutilisation artistique ou narrative reste à examiner.
+
 **Date :** 27 septembre 2026.
 
 **Statut :** plan et passages intégrés en génération 118 ; terrains locaux, annexes et raccourci en 119 ; première répartition des groupes par lieu en 120. Les essais comparatifs et leurs limites sont consignés dans [Essais de la première couche](ESSAIS_PREMIERE_COUCHE.md). Les intitulés des régions décrivent leur fonction, sans fixer de nouveaux noms propres. Cette tranche n'est pas encore une couche équilibrée ni une campagne.
@@ -201,7 +203,7 @@ Les quêtes de démonstration restent des quêtes de démonstration. Cette tranc
 - [Expédition continue depuis la surface](EXPEDITION_CONTINUE_SURFACE_PROFONDEURS.md)
 - [PV et expérience dans douze parcours en génération 122](PREMIERE_COUCHE_PV_ET_EXPERIENCE.md)
 - [Monde, exploration et progression](MONDE_EXPLORATION_ET_PROGRESSION.md)
-- [Descente vers le numérique](DESCENTE_VERS_LE_NUMERIQUE.md)
+- [Nouvelle histoire de campagne](HISTOIRE_CAMPAGNE.md)
 - [Répartition des profondeurs](REPARTITION_DES_PROFONDEURS.md)
 - [Expédition et ressources finies](EXPEDITION_SURVIE.md)
 - [Repli dans les secteurs générés](REPLI_SECTEURS_GENERES.md)

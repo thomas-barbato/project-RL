@@ -1,5 +1,7 @@
 # Factions et communautés — première base de conception
 
+> **Statut au 16 octobre 2026 : référence du prototype antérieur.** Ce document conserve des systèmes, contenus ou essais existants ; son peuplement et son organisation du monde ne définissent pas la nouvelle campagne. Voir [l'histoire courante](HISTOIRE_CAMPAGNE.md) et le [cadrage de refonte](reviews/refonte-histoire-2026-10-16/CADRAGE.md). Une réutilisation artistique ou narrative reste à examiner.
+
 Version 0.6 — 20 septembre 2026.
 
 ## 1. Statut et périmètre
@@ -8,9 +10,9 @@ L'utilisateur a approuvé la proposition des quatre premiers groupes, avec une e
 
 Les noms des groupes restent provisoires. Leur identité, leurs besoins et les comportements décrits ci-dessous sont la direction retenue. Les quantités, durées, seuils de réputation, lieux exacts, personnages et formats techniques restent à définir. Les pistes d'implémentation ne sont pas présentées comme des systèmes déjà disponibles.
 
-Complément soumis à validation : [six peuplades candidates](PROPOSITION_PEUPLADES_v0.1.md). Leurs noms, corps et coutumes sont des propositions, pas des choix déjà approuvés. Ces peuplades ne remplacent pas les quatre groupes ci-dessous : origine culturelle, affiliation et métier restent distincts.
+Les anciennes propositions de peuplades de la simulation sont retirées. Les habitants et groupes de la nouvelle campagne seront définis séparément ; les systèmes du prototype ne leur attribuent pas automatiquement une identité.
 
-Références : [document de conception](../Projet_Roguelike_IA_Document_Conception_v0.2.md), [trame narrative, notamment le monde habité](../Trame%20narrative%20et%20qu%C3%AAte%20principale%20%E2%80%94%20Projet%20Roguelike%20IA.md), [architecture actuelle](MOTEUR.md) et [ville de test](VILLE_ET_EXTERIEUR.md). Les documents fondateurs et le scénario ne sont pas modifiés par cette annexe. La ville du prototype reste un terrain de test, pas une identification définitive avec une ville du récit.
+Références : [document fondateur historique](../Projet_Roguelike_IA_Document_Conception_v0.2.md), [nouvelle histoire](HISTOIRE_CAMPAGNE.md), [architecture actuelle](MOTEUR.md) et [ville de test](VILLE_ET_EXTERIEUR.md). La ville du prototype reste un terrain de test ; les groupes décrits ci-dessous ne sont pas automatiquement ceux des futurs refuges.
 
 ## 2. Principes retenus
 

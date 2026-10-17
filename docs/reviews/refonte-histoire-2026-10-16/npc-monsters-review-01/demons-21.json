@@ -1,0 +1,3491 @@
+{
+  "review_id": "DEMONS-21",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "status": "listed_pending_later_individual_selection",
+  "user_statement": "bien ajoute ces monstres à la liste et continue d'en generer (plus tard donc nous regrouperont tous les monstres et je les validerais ou non :) )",
+  "previous_collection": "demons-style-20.json",
+  "design_reference_review": "demons-arpg-19.json",
+  "individual_acceptance_deferred": true,
+  "runtime_connected": false,
+  "preview_title": "Démons · nouveaux candidats · style du joueur · taille native",
+  "records": [
+    {
+      "id": "ARPG-21",
+      "number": 80,
+      "revision": "r01",
+      "label": "Cyclope voûté",
+      "family": "Démons de chair",
+      "maximum_body_height64": 82,
+      "maximum_body_width64": 70,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-21-r01.png",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 75,
+        "target_hue": 195,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nA heavy hunched adult nonhuman biped, native82px high and at most70px wide. Exactly TWO legs and TWO long massive arms, one forearm visibly heavier. A low broad wedge head partly sunk between the shoulders, ONE large dull black central eye, wide closed dark mouth, no teeth rows. Warm ash-beige hide, large dark rust-red tissue panels on shoulders, charcoal hands and blunt nail groups. Broad compressed belly and short powerful digitigrade legs, heavy grounded forward stance. No horns, crown, clothing, clubs, exposed bones, armor or equipment. Menacing common brute, not a giant king.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-2841a77f-1b43-4ab1-8298-f6c466b43474.png",
+      "source_sha256": "6ca1e72168c5cd8d5a121388867f2f82da2656c6353768c7556e5ee891895024",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-21-r01-shadow64.png",
+        "sha256": "1ac02d8e678b5222011c8a85f4ebcac8447bc6c498c6011803f216a2cfc82619",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            49,
+            95
+          ],
+          "width": 20,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 2304,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              55,
+              37,
+              33
+            ],
+            "target": [
+              37,
+              47,
+              51
+            ]
+          },
+          {
+            "source": [
+              57,
+              20,
+              17
+            ],
+            "target": [
+              29,
+              46,
+              52
+            ]
+          },
+          {
+            "source": [
+              84,
+              42,
+              34
+            ],
+            "target": [
+              47,
+              70,
+              77
+            ]
+          },
+          {
+            "source": [
+              90,
+              78,
+              65
+            ],
+            "target": [
+              68,
+              79,
+              83
+            ]
+          },
+          {
+            "source": [
+              121,
+              53,
+              42
+            ],
+            "target": [
+              64,
+              100,
+              111
+            ]
+          },
+          {
+            "source": [
+              122,
+              96,
+              79
+            ],
+            "target": [
+              87,
+              106,
+              112
+            ]
+          },
+          {
+            "source": [
+              135,
+              115,
+              94
+            ],
+            "target": [
+              100,
+              118,
+              124
+            ]
+          },
+          {
+            "source": [
+              150,
+              132,
+              110
+            ],
+            "target": [
+              114,
+              132,
+              138
+            ]
+          },
+          {
+            "source": [
+              168,
+              146,
+              121
+            ],
+            "target": [
+              126,
+              148,
+              155
+            ]
+          },
+          {
+            "source": [
+              177,
+              153,
+              127
+            ],
+            "target": [
+              133,
+              155,
+              163
+            ]
+          },
+          {
+            "source": [
+              188,
+              165,
+              138
+            ],
+            "target": [
+              143,
+              165,
+              173
+            ]
+          },
+          {
+            "source": [
+              213,
+              189,
+              159
+            ],
+            "target": [
+              164,
+              188,
+              196
+            ]
+          },
+          {
+            "source": [
+              230,
+              205,
+              172
+            ],
+            "target": [
+              177,
+              203,
+              212
+            ]
+          },
+          {
+            "source": [
+              246,
+              226,
+              197
+            ],
+            "target": [
+              197,
+              219,
+              226
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-21-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            29,
+            16,
+            99,
+            96
+          ],
+          "colors": 22,
+          "sha256": "410d94935c966837a025a952b7a67de15cd0a7723bd9783f9d8588a95b88bd54",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-21-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            29,
+            16,
+            99,
+            96
+          ],
+          "colors": 22,
+          "sha256": "da5151d9fd7955a8efea23546857108295f0d2f37d09a0fb2f8cebb7b09de904",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-22",
+      "number": 81,
+      "revision": "r01",
+      "label": "Sangsue cuirassée",
+      "family": "Vermine infernale",
+      "maximum_body_height64": 34,
+      "maximum_body_width64": 80,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-22-r01.png",
+      "palette_transfer": {
+        "hue_min": 20,
+        "hue_max": 100,
+        "target_hue": 205,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nA low long slug-like adult demon, native34px high, at most80px wide. Thick warm-beige muscular foot/body on the ground, broad blunt eyeless mouth-fold at front. Exactly TWO short front arms splay forward and brace against the floor. Back covered by THREE large overlapping dull olive-brown organic shell plates, rear tapering into one short thick flesh tail. The shell is low and broad, NOT a spiral snail shell. No antennae, eye stalks, many legs, tiny scales, sharp spikes, bones or equipment. Squat repulsive silhouette with obvious big plate versus fleshy underside masses.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-543be72f-15d0-4ab3-91da-4a6b512b82cf.png",
+      "source_sha256": "846257a68376dce757148cc35eddeeaff569c7c5da6fbdec592997bc32d5281e",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-22-r01-shadow64.png",
+        "sha256": "96d1ba54588d0b29e8380962c904aad711947ae12040307eee6273f545f3a6bb",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            52,
+            95
+          ],
+          "width": 39,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 777,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              50,
+              43,
+              34
+            ],
+            "target": [
+              36,
+              42,
+              46
+            ]
+          },
+          {
+            "source": [
+              74,
+              63,
+              47
+            ],
+            "target": [
+              52,
+              61,
+              68
+            ]
+          },
+          {
+            "source": [
+              84,
+              72,
+              52
+            ],
+            "target": [
+              58,
+              69,
+              77
+            ]
+          },
+          {
+            "source": [
+              92,
+              79,
+              58
+            ],
+            "target": [
+              64,
+              76,
+              85
+            ]
+          },
+          {
+            "source": [
+              102,
+              84,
+              62
+            ],
+            "target": [
+              70,
+              84,
+              94
+            ]
+          },
+          {
+            "source": [
+              109,
+              93,
+              68
+            ],
+            "target": [
+              76,
+              90,
+              100
+            ]
+          },
+          {
+            "source": [
+              122,
+              107,
+              76
+            ],
+            "target": [
+              85,
+              101,
+              112
+            ]
+          },
+          {
+            "source": [
+              157,
+              119,
+              93
+            ],
+            "target": [
+              106,
+              128,
+              144
+            ]
+          },
+          {
+            "source": [
+              184,
+              143,
+              111
+            ],
+            "target": [
+              126,
+              151,
+              169
+            ]
+          },
+          {
+            "source": [
+              211,
+              166,
+              132
+            ],
+            "target": [
+              147,
+              174,
+              194
+            ]
+          },
+          {
+            "source": [
+              226,
+              189,
+              151
+            ],
+            "target": [
+              163,
+              189,
+              208
+            ]
+          },
+          {
+            "source": [
+              240,
+              210,
+              162
+            ],
+            "target": [
+              174,
+              201,
+              221
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-22-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            34,
+            62,
+            95,
+            96
+          ],
+          "colors": 22,
+          "sha256": "c128a3728601efc63aa2fa5f5acb34ef3eada8bb695e9cc258d412f3a6ece3ee",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-22-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            34,
+            62,
+            95,
+            96
+          ],
+          "colors": 22,
+          "sha256": "0a3149143c2744bb4f07be913bde5a18bf560fcceeb2b73f8b7e028ce797571d",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-23",
+      "number": 82,
+      "revision": "r01",
+      "label": "Rôdeur cervidé",
+      "family": "Bêtes infernales",
+      "maximum_body_height64": 70,
+      "maximum_body_width64": 94,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-23-r01.png",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 90,
+        "target_hue": 200,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nA predatory four-legged demonic ungulate, native70px high and at most94px wide. Adult long narrow dark russet torso, exactly FOUR lean powerful legs with large split charcoal hooves, ALL four feet separated and attached. A low angled long neck and elongated blunt eyeless skull-like FLESH head with a single narrow jaw crease, no exposed skull. TWO thick short horns swept backward beside the neck, NOT a branch antler forest. Two broad pale warm beige flesh planes at throat and ribs, a low simple back ridge, short pointed tail. Head slightly turned but body nearly frontal in a stalking posture. No human torso, armor, rider, decorative crown or excessive bones.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-5e2c5db7-6a7c-4091-8e31-14a8cae28aef.png",
+      "source_sha256": "57c46c87c6ae74a5f90107231a6f0516f0888dbf78506717475ec796a0599465",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-23-r01-shadow64.png",
+        "sha256": "20f60d9faa348c2d6e49a70388bf657af3038422e0d1869acfd441045d456f4e",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            64,
+            95
+          ],
+          "width": 89,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1704,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              49,
+              19,
+              18
+            ],
+            "target": [
+              27,
+              39,
+              45
+            ]
+          },
+          {
+            "source": [
+              76,
+              29,
+              26
+            ],
+            "target": [
+              40,
+              60,
+              70
+            ]
+          },
+          {
+            "source": [
+              80,
+              63,
+              57
+            ],
+            "target": [
+              60,
+              69,
+              74
+            ]
+          },
+          {
+            "source": [
+              90,
+              34,
+              28
+            ],
+            "target": [
+              46,
+              70,
+              83
+            ]
+          },
+          {
+            "source": [
+              94,
+              45,
+              37
+            ],
+            "target": [
+              52,
+              75,
+              86
+            ]
+          },
+          {
+            "source": [
+              98,
+              37,
+              30
+            ],
+            "target": [
+              49,
+              77,
+              90
+            ]
+          },
+          {
+            "source": [
+              108,
+              83,
+              66
+            ],
+            "target": [
+              74,
+              91,
+              99
+            ]
+          },
+          {
+            "source": [
+              119,
+              48,
+              38
+            ],
+            "target": [
+              61,
+              93,
+              109
+            ]
+          },
+          {
+            "source": [
+              136,
+              56,
+              44
+            ],
+            "target": [
+              70,
+              107,
+              125
+            ]
+          },
+          {
+            "source": [
+              142,
+              60,
+              46
+            ],
+            "target": [
+              73,
+              112,
+              131
+            ]
+          },
+          {
+            "source": [
+              154,
+              113,
+              82
+            ],
+            "target": [
+              99,
+              127,
+              142
+            ]
+          },
+          {
+            "source": [
+              156,
+              70,
+              54
+            ],
+            "target": [
+              83,
+              123,
+              144
+            ]
+          },
+          {
+            "source": [
+              178,
+              139,
+              102
+            ],
+            "target": [
+              118,
+              149,
+              164
+            ]
+          },
+          {
+            "source": [
+              217,
+              176,
+              132
+            ],
+            "target": [
+              149,
+              183,
+              200
+            ]
+          },
+          {
+            "source": [
+              245,
+              218,
+              168
+            ],
+            "target": [
+              179,
+              210,
+              225
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-23-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            22,
+            26,
+            106,
+            96
+          ],
+          "colors": 24,
+          "sha256": "70a532c310fe3fa9b14ade6e3fd44942c7fdd282113b4859875510fe9d84fcf5",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-23-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            22,
+            26,
+            106,
+            96
+          ],
+          "colors": 24,
+          "sha256": "e48d986c533bac7d1566905583b05316a557852c99311d7d1bf72beff8046012",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-24",
+      "number": 83,
+      "revision": "r01",
+      "label": "Scorpion des scories",
+      "family": "Démons insectoïdes",
+      "maximum_body_height64": 50,
+      "maximum_body_width64": 74,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-24-r01.png",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 205,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nAn original compact scorpion-like infernal demon, native50px high and at most74px wide. Flattened warm rust-ochre chitin body, exactly FOUR short walking legs attached at sides, TWO broad front pincer arms, and ONE thick tail curved up beside the rear with a single dark stinger. All four walking feet and both pincers visibly separated. One broad head plate with two tiny dark eye recesses, fleshy beige joints and underside. Three large tail segments only, broad pincers with a single clear gap, no serrated tiny teeth, little spikes, many plates, mechanical parts or equipment. Low crawling adult creature, not a cute oversized-eyed pet.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-10607c5c-5c20-4895-ad0e-a34a1d773743.png",
+      "source_sha256": "d91be7b4ed19c8d5740f87a1074b93b1a689cc051fa174a941c94fad5a0c1613",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-24-r01-shadow64.png",
+        "sha256": "020c1dc18b492c882c858d29d76ca7f344bae78300112baa31e0e9266eaef7d4",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            60,
+            95
+          ],
+          "width": 33,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 969,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              50,
+              0,
+              0
+            ],
+            "target": [
+              18,
+              35,
+              46
+            ]
+          },
+          {
+            "source": [
+              67,
+              27,
+              17
+            ],
+            "target": [
+              32,
+              49,
+              62
+            ]
+          },
+          {
+            "source": [
+              75,
+              37,
+              25
+            ],
+            "target": [
+              39,
+              57,
+              69
+            ]
+          },
+          {
+            "source": [
+              92,
+              38,
+              25
+            ],
+            "target": [
+              45,
+              68,
+              85
+            ]
+          },
+          {
+            "source": [
+              98,
+              60,
+              43
+            ],
+            "target": [
+              57,
+              76,
+              90
+            ]
+          },
+          {
+            "source": [
+              104,
+              43,
+              28
+            ],
+            "target": [
+              50,
+              77,
+              96
+            ]
+          },
+          {
+            "source": [
+              118,
+              48,
+              31
+            ],
+            "target": [
+              57,
+              87,
+              109
+            ]
+          },
+          {
+            "source": [
+              127,
+              81,
+              58
+            ],
+            "target": [
+              76,
+              100,
+              117
+            ]
+          },
+          {
+            "source": [
+              141,
+              112,
+              82
+            ],
+            "target": [
+              94,
+              115,
+              130
+            ]
+          },
+          {
+            "source": [
+              142,
+              60,
+              38
+            ],
+            "target": [
+              68,
+              105,
+              131
+            ]
+          },
+          {
+            "source": [
+              153,
+              64,
+              41
+            ],
+            "target": [
+              74,
+              113,
+              141
+            ]
+          },
+          {
+            "source": [
+              159,
+              67,
+              42
+            ],
+            "target": [
+              76,
+              117,
+              146
+            ]
+          },
+          {
+            "source": [
+              165,
+              70,
+              44
+            ],
+            "target": [
+              79,
+              122,
+              152
+            ]
+          },
+          {
+            "source": [
+              178,
+              80,
+              49
+            ],
+            "target": [
+              87,
+              132,
+              164
+            ]
+          },
+          {
+            "source": [
+              180,
+              141,
+              105
+            ],
+            "target": [
+              121,
+              147,
+              166
+            ]
+          },
+          {
+            "source": [
+              187,
+              91,
+              58
+            ],
+            "target": [
+              95,
+              140,
+              172
+            ]
+          },
+          {
+            "source": [
+              221,
+              113,
+              72
+            ],
+            "target": [
+              114,
+              166,
+              203
+            ]
+          },
+          {
+            "source": [
+              229,
+              205,
+              144
+            ],
+            "target": [
+              160,
+              190,
+              211
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-24-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            37,
+            46,
+            91,
+            96
+          ],
+          "colors": 23,
+          "sha256": "5110c74f93a476fdfafd2e30c832fa55f5cc83b7fc8dff7cb9521b80bd585f85",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-24-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            37,
+            46,
+            91,
+            96
+          ],
+          "colors": 23,
+          "sha256": "27f61931da081d27f8b5776c154461677ba7db1c562159dd86dfffefda4f786e",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-25",
+      "number": 84,
+      "revision": "r01",
+      "label": "Gueule tripode",
+      "family": "Démons de chair",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 78,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-25-r01.png",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 80,
+        "target_hue": 175,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nA headless tripod flesh demon, native64px high and at most78px wide. One broad thick hanging organ body shaped like a collapsed bell, warm sick beige flesh with THREE large connected folds. Exactly THREE strong fleshy legs planted far apart in a visible triangular base, feet end in dark blunt pads. ONE broad downward-facing raw dark-red mouth fold across the underside of the body; NO separate face, eyes, skull or teeth rows. Two short dark hide lobes atop the body, asymmetric rather than a flower crown. Keep its readable wide upper mass and triangular base. No arms, tentacle forest, ribs, bones, costume, regalia or machinery.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-0355163b-fdd3-41a8-9278-edc662e6bdb9.png",
+      "source_sha256": "747662bc0a63b57f04f259a9f498a3b7237dfa8006cd38af4d5214dd0a615463",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-25-r01-shadow64.png",
+        "sha256": "88b87e97a9db9b9db3e819db3551109fe480d8fbd4aab706eea6592645ea3940",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            63,
+            95
+          ],
+          "width": 64,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1518,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              49,
+              36,
+              35
+            ],
+            "target": [
+              37,
+              45,
+              44
+            ]
+          },
+          {
+            "source": [
+              57,
+              0,
+              0
+            ],
+            "target": [
+              21,
+              52,
+              50
+            ]
+          },
+          {
+            "source": [
+              57,
+              42,
+              40
+            ],
+            "target": [
+              42,
+              52,
+              52
+            ]
+          },
+          {
+            "source": [
+              70,
+              43,
+              40
+            ],
+            "target": [
+              46,
+              64,
+              63
+            ]
+          },
+          {
+            "source": [
+              96,
+              47,
+              41
+            ],
+            "target": [
+              55,
+              88,
+              86
+            ]
+          },
+          {
+            "source": [
+              98,
+              73,
+              62
+            ],
+            "target": [
+              69,
+              90,
+              88
+            ]
+          },
+          {
+            "source": [
+              141,
+              96,
+              79
+            ],
+            "target": [
+              93,
+              130,
+              127
+            ]
+          },
+          {
+            "source": [
+              144,
+              79,
+              66
+            ],
+            "target": [
+              86,
+              132,
+              129
+            ]
+          },
+          {
+            "source": [
+              153,
+              111,
+              90
+            ],
+            "target": [
+              103,
+              141,
+              138
+            ]
+          },
+          {
+            "source": [
+              167,
+              123,
+              100
+            ],
+            "target": [
+              114,
+              154,
+              150
+            ]
+          },
+          {
+            "source": [
+              169,
+              132,
+              106
+            ],
+            "target": [
+              118,
+              155,
+              152
+            ]
+          },
+          {
+            "source": [
+              190,
+              139,
+              112
+            ],
+            "target": [
+              128,
+              175,
+              171
+            ]
+          },
+          {
+            "source": [
+              192,
+              151,
+              120
+            ],
+            "target": [
+              134,
+              177,
+              173
+            ]
+          },
+          {
+            "source": [
+              200,
+              160,
+              128
+            ],
+            "target": [
+              141,
+              184,
+              180
+            ]
+          },
+          {
+            "source": [
+              215,
+              180,
+              143
+            ],
+            "target": [
+              155,
+              198,
+              194
+            ]
+          },
+          {
+            "source": [
+              230,
+              193,
+              154
+            ],
+            "target": [
+              166,
+              212,
+              208
+            ]
+          },
+          {
+            "source": [
+              238,
+              205,
+              163
+            ],
+            "target": [
+              174,
+              219,
+              215
+            ]
+          },
+          {
+            "source": [
+              247,
+              220,
+              159
+            ],
+            "target": [
+              175,
+              227,
+              223
+            ]
+          },
+          {
+            "source": [
+              252,
+              236,
+              211
+            ],
+            "target": [
+              207,
+              232,
+              230
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-25-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            34,
+            32,
+            95,
+            96
+          ],
+          "colors": 24,
+          "sha256": "44f5c68e8bf53bcc1934abd5ceeb5f0bed6c4dd31b6a4692e0306a7448d8496a",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-25-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            34,
+            32,
+            95,
+            96
+          ],
+          "colors": 24,
+          "sha256": "528e9f30ae60681801d1bcf9e9ee0fec501e1c38e1755f501d67d67dc5f0f150",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-26",
+      "number": 85,
+      "revision": "r01",
+      "label": "Porte-kyste",
+      "family": "Démons de chair",
+      "maximum_body_height64": 76,
+      "maximum_body_width64": 68,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-26-r01.png",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 80,
+        "target_hue": 190,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nAn adult nonhuman hunched biped, native76px high, at most68px wide. Lean warm ochre-beige torso bent forward beneath ONE huge smooth dark rust-brown fleshy cyst high on its back; the cyst is a SINGLE broad living mass, no backpack or equipment. Small pointed eyeless head below the shoulders, closed mouth slit. Exactly TWO long thin powerful arms hanging almost to the knees, three blunt black nail groups per hand, and TWO strong bent legs with broad claw feet. One broad raw-red fold joins the cyst to the shoulder. The attached cyst makes its silhouette asymmetrically high behind its small head. No many pustules, pores, exposed bones, horns, clothes, staff or boss signs.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-db916702-f0c9-47b9-84f4-58295592f30e.png",
+      "source_sha256": "7443345874c06cc3ee4f60f2757b5f6f1719c22adfd66025fd954dd112ec4037",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-26-r01-shadow64.png",
+        "sha256": "3d68a6b0fb7b07e1ad978e487f2618ea035bc2b7ad3fff667656841fe8fac23a",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            68,
+            95
+          ],
+          "width": 49,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 2050,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              52,
+              21,
+              16
+            ],
+            "target": [
+              26,
+              44,
+              48
+            ]
+          },
+          {
+            "source": [
+              52,
+              31,
+              24
+            ],
+            "target": [
+              31,
+              45,
+              48
+            ]
+          },
+          {
+            "source": [
+              59,
+              49,
+              34
+            ],
+            "target": [
+              39,
+              52,
+              54
+            ]
+          },
+          {
+            "source": [
+              81,
+              32,
+              25
+            ],
+            "target": [
+              41,
+              69,
+              75
+            ]
+          },
+          {
+            "source": [
+              86,
+              57,
+              39
+            ],
+            "target": [
+              51,
+              74,
+              79
+            ]
+          },
+          {
+            "source": [
+              106,
+              44,
+              33
+            ],
+            "target": [
+              54,
+              90,
+              98
+            ]
+          },
+          {
+            "source": [
+              107,
+              79,
+              54
+            ],
+            "target": [
+              67,
+              93,
+              98
+            ]
+          },
+          {
+            "source": [
+              111,
+              53,
+              39
+            ],
+            "target": [
+              59,
+              95,
+              102
+            ]
+          },
+          {
+            "source": [
+              126,
+              95,
+              66
+            ],
+            "target": [
+              80,
+              110,
+              116
+            ]
+          },
+          {
+            "source": [
+              138,
+              61,
+              47
+            ],
+            "target": [
+              73,
+              118,
+              127
+            ]
+          },
+          {
+            "source": [
+              156,
+              82,
+              63
+            ],
+            "target": [
+              88,
+              134,
+              144
+            ]
+          },
+          {
+            "source": [
+              156,
+              117,
+              82
+            ],
+            "target": [
+              99,
+              136,
+              144
+            ]
+          },
+          {
+            "source": [
+              170,
+              135,
+              95
+            ],
+            "target": [
+              112,
+              149,
+              156
+            ]
+          },
+          {
+            "source": [
+              190,
+              150,
+              105
+            ],
+            "target": [
+              124,
+              166,
+              175
+            ]
+          },
+          {
+            "source": [
+              197,
+              162,
+              115
+            ],
+            "target": [
+              132,
+              173,
+              181
+            ]
+          },
+          {
+            "source": [
+              219,
+              176,
+              130
+            ],
+            "target": [
+              148,
+              193,
+              201
+            ]
+          },
+          {
+            "source": [
+              236,
+              201,
+              152
+            ],
+            "target": [
+              167,
+              209,
+              217
+            ]
+          },
+          {
+            "source": [
+              252,
+              235,
+              188
+            ],
+            "target": [
+              194,
+              225,
+              232
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-26-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            34,
+            20,
+            95,
+            96
+          ],
+          "colors": 23,
+          "sha256": "be9de0e6cb64d59e875467aeaa23cbd08999475b8d9817e45f6156324b5cf8f7",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-26-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            34,
+            20,
+            95,
+            96
+          ],
+          "colors": 23,
+          "sha256": "08b326f511170e9aed8cf542f44b0e069293465a387fcc8242cf95acea4f9006",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-27",
+      "number": 86,
+      "revision": "r01",
+      "label": "Griffe-faucille",
+      "family": "Démons prédateurs",
+      "maximum_body_height64": 66,
+      "maximum_body_width64": 68,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-27-r01.png",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 80,
+        "target_hue": 210,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nA human-stature lean adult demonic biped, native66px high and at most68px wide. Exactly TWO narrow powerful legs and TWO long arms, each forearm ending in ONE thick inward-curved keratin HOOK integrated into living tissue. Hooks sweep downward outside the hips and remain clearly separated from the legs. Small long faceless head angled down, one short horizontal dark mouth, no eyes, horns or hair. Warm dark russet skin, pale ochre chest plane, charcoal black hooks and feet. Shoulders low and wide, adult predatory posture, large simple joint masses, no web of tendons. No carried sickle, swords, clothing, tail, wings, ribs or machinery.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-e3906774-9a0a-4fe8-a35a-732d795f1983.png",
+      "source_sha256": "455c5430302709276f7714ea20101b046e186daf2428c7d24b7acd72c7a4688c",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-27-r01-shadow64.png",
+        "sha256": "085f3aa72be34e2478e756ee608528372e4c59c5c3108f296b09eb83703600c9",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            52,
+            95
+          ],
+          "width": 17,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1122,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              49,
+              40,
+              38
+            ],
+            "target": [
+              39,
+              42,
+              45
+            ]
+          },
+          {
+            "source": [
+              61,
+              28,
+              22
+            ],
+            "target": [
+              33,
+              44,
+              56
+            ]
+          },
+          {
+            "source": [
+              66,
+              57,
+              54
+            ],
+            "target": [
+              54,
+              57,
+              61
+            ]
+          },
+          {
+            "source": [
+              80,
+              35,
+              26
+            ],
+            "target": [
+              41,
+              57,
+              74
+            ]
+          },
+          {
+            "source": [
+              89,
+              41,
+              31
+            ],
+            "target": [
+              47,
+              65,
+              82
+            ]
+          },
+          {
+            "source": [
+              101,
+              44,
+              33
+            ],
+            "target": [
+              52,
+              73,
+              93
+            ]
+          },
+          {
+            "source": [
+              113,
+              52,
+              38
+            ],
+            "target": [
+              59,
+              82,
+              104
+            ]
+          },
+          {
+            "source": [
+              129,
+              80,
+              61
+            ],
+            "target": [
+              78,
+              98,
+              119
+            ]
+          },
+          {
+            "source": [
+              133,
+              61,
+              45
+            ],
+            "target": [
+              70,
+              96,
+              122
+            ]
+          },
+          {
+            "source": [
+              149,
+              68,
+              51
+            ],
+            "target": [
+              78,
+              108,
+              137
+            ]
+          },
+          {
+            "source": [
+              166,
+              110,
+              81
+            ],
+            "target": [
+              102,
+              127,
+              153
+            ]
+          },
+          {
+            "source": [
+              170,
+              83,
+              61
+            ],
+            "target": [
+              91,
+              124,
+              156
+            ]
+          },
+          {
+            "source": [
+              176,
+              138,
+              91
+            ],
+            "target": [
+              111,
+              137,
+              162
+            ]
+          },
+          {
+            "source": [
+              225,
+              197,
+              143
+            ],
+            "target": [
+              158,
+              182,
+              207
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-27-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            39,
+            30,
+            89,
+            96
+          ],
+          "colors": 22,
+          "sha256": "fcbc9f7bfaa6071ad365f32bb725d68fc30b8cb5c900d8d9eb1b94da7a4aa39f",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-27-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            39,
+            30,
+            89,
+            96
+          ],
+          "colors": 22,
+          "sha256": "4cd812998d63cfa3f58cf73a9bcc6efca014fff12729eef3fbaa3cfcc2c2d753",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-28",
+      "number": 87,
+      "revision": "r01",
+      "label": "Crapaud des fosses",
+      "family": "Bêtes infernales",
+      "maximum_body_height64": 36,
+      "maximum_body_width64": 66,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-28-r01.png",
+      "palette_transfer": {
+        "hue_min": 20,
+        "hue_max": 100,
+        "target_hue": 200,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nA squat heavy adult toad-like demon, native36px high, at most66px wide. Exactly FOUR short thick splayed legs attached to one broad low fleshy torso; front feet small, rear thighs huge. Wide flattened head merges into the shoulders, TWO tiny dull black side-set eyes, ONE broad closed thin mouth crease, no visible teeth. Sick dull olive skin, broad warm ochre lower jaw and belly, only TWO large asymmetric dark skin swellings across its back. Strong flattened adult silhouette, low crouch, not a smiling frog mascot and no big round eyes. No horns, shell, tiny warts, many spots, protruding bones, accessories or clothes.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-fa009acd-356f-49ce-86bb-8e45e1a7ed48.png",
+      "source_sha256": "578366f28a120cbf0ec8b98664c9d755317963529450f6c2e9e5fb33489ec8f5",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-28-r01-shadow64.png",
+        "sha256": "21e684cc3ca208b9a9aeac13f73b3d869b7118ec49f7ed807ebff09a12dc312d",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            66,
+            95
+          ],
+          "width": 57,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1127,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              51,
+              44,
+              30
+            ],
+            "target": [
+              34,
+              43,
+              47
+            ]
+          },
+          {
+            "source": [
+              58,
+              49,
+              36
+            ],
+            "target": [
+              40,
+              49,
+              53
+            ]
+          },
+          {
+            "source": [
+              67,
+              60,
+              34
+            ],
+            "target": [
+              42,
+              55,
+              62
+            ]
+          },
+          {
+            "source": [
+              75,
+              63,
+              40
+            ],
+            "target": [
+              48,
+              62,
+              69
+            ]
+          },
+          {
+            "source": [
+              78,
+              68,
+              43
+            ],
+            "target": [
+              51,
+              65,
+              72
+            ]
+          },
+          {
+            "source": [
+              84,
+              76,
+              45
+            ],
+            "target": [
+              54,
+              70,
+              77
+            ]
+          },
+          {
+            "source": [
+              93,
+              78,
+              47
+            ],
+            "target": [
+              58,
+              76,
+              86
+            ]
+          },
+          {
+            "source": [
+              98,
+              88,
+              53
+            ],
+            "target": [
+              63,
+              81,
+              90
+            ]
+          },
+          {
+            "source": [
+              107,
+              92,
+              55
+            ],
+            "target": [
+              67,
+              88,
+              98
+            ]
+          },
+          {
+            "source": [
+              115,
+              103,
+              61
+            ],
+            "target": [
+              74,
+              95,
+              106
+            ]
+          },
+          {
+            "source": [
+              117,
+              106,
+              63
+            ],
+            "target": [
+              75,
+              97,
+              108
+            ]
+          },
+          {
+            "source": [
+              118,
+              96,
+              56
+            ],
+            "target": [
+              71,
+              96,
+              109
+            ]
+          },
+          {
+            "source": [
+              120,
+              108,
+              64
+            ],
+            "target": [
+              77,
+              99,
+              110
+            ]
+          },
+          {
+            "source": [
+              135,
+              112,
+              65
+            ],
+            "target": [
+              82,
+              110,
+              124
+            ]
+          },
+          {
+            "source": [
+              135,
+              123,
+              73
+            ],
+            "target": [
+              87,
+              112,
+              124
+            ]
+          },
+          {
+            "source": [
+              164,
+              127,
+              75
+            ],
+            "target": [
+              98,
+              133,
+              151
+            ]
+          },
+          {
+            "source": [
+              182,
+              148,
+              89
+            ],
+            "target": [
+              112,
+              149,
+              167
+            ]
+          },
+          {
+            "source": [
+              215,
+              179,
+              117
+            ],
+            "target": [
+              139,
+              178,
+              198
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-28-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            36,
+            60,
+            92,
+            96
+          ],
+          "colors": 24,
+          "sha256": "73dc185e686737a5f0bb3c127144fca6d3221c5774e61e05d592087fdddd1cb7",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-28-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            36,
+            60,
+            92,
+            96
+          ],
+          "colors": 24,
+          "sha256": "d461d1e4e6111da52ddd1d1b54bd940c5ef318fde3eae5ea36eb41defb5dc04e",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-29",
+      "number": 88,
+      "revision": "r01",
+      "label": "Bec des charniers",
+      "family": "Démons aviaires",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 60,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-29-r01.png",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 190,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nA grounded featherless demonic carrion bird, native64px high and at most60px wide. Adult narrow bent neck, small low head with ONE thick down-curved charcoal beak, two tiny sunken dark eyes. Exactly TWO digitigrade legs ending in three broad claw groups per foot, and TWO short folded WING-ARMS close to the sides, each with one thick thumb claw. Rust-brown leathery wing membranes form big triangular folded side masses, warm pale ochre bare chest and neck, short pointed rear tail. Hunched forward, body slightly angled nearly frontal, both feet planted. No feather texture, wide spread bat wings, human hands, exposed ribs, skull mask, bones or clothing.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-3a2e60df-0133-4aca-9365-a0275e20c457.png",
+      "source_sha256": "d0869f0d7413d916ab26061edc6cf4d2993222d0900b498d11fb2962bffa1e9f",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-29-r01-shadow64.png",
+        "sha256": "691cd312a020c03000c80aaf8c45870606b524ca0a4707e1172f44fb66821fb4",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            62,
+            95
+          ],
+          "width": 47,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1489,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              52,
+              29,
+              27
+            ],
+            "target": [
+              33,
+              45,
+              48
+            ]
+          },
+          {
+            "source": [
+              53,
+              25,
+              23
+            ],
+            "target": [
+              31,
+              46,
+              49
+            ]
+          },
+          {
+            "source": [
+              54,
+              45,
+              42
+            ],
+            "target": [
+              43,
+              48,
+              50
+            ]
+          },
+          {
+            "source": [
+              67,
+              31,
+              29
+            ],
+            "target": [
+              39,
+              58,
+              62
+            ]
+          },
+          {
+            "source": [
+              73,
+              35,
+              32
+            ],
+            "target": [
+              43,
+              63,
+              67
+            ]
+          },
+          {
+            "source": [
+              73,
+              62,
+              54
+            ],
+            "target": [
+              56,
+              65,
+              67
+            ]
+          },
+          {
+            "source": [
+              82,
+              38,
+              34
+            ],
+            "target": [
+              47,
+              71,
+              75
+            ]
+          },
+          {
+            "source": [
+              85,
+              44,
+              38
+            ],
+            "target": [
+              50,
+              74,
+              78
+            ]
+          },
+          {
+            "source": [
+              100,
+              47,
+              40
+            ],
+            "target": [
+              56,
+              86,
+              92
+            ]
+          },
+          {
+            "source": [
+              107,
+              65,
+              52
+            ],
+            "target": [
+              66,
+              93,
+              98
+            ]
+          },
+          {
+            "source": [
+              126,
+              99,
+              78
+            ],
+            "target": [
+              87,
+              111,
+              116
+            ]
+          },
+          {
+            "source": [
+              133,
+              63,
+              51
+            ],
+            "target": [
+              73,
+              114,
+              122
+            ]
+          },
+          {
+            "source": [
+              150,
+              73,
+              57
+            ],
+            "target": [
+              82,
+              129,
+              138
+            ]
+          },
+          {
+            "source": [
+              170,
+              111,
+              82
+            ],
+            "target": [
+              104,
+              148,
+              156
+            ]
+          },
+          {
+            "source": [
+              198,
+              152,
+              111
+            ],
+            "target": [
+              130,
+              173,
+              182
+            ]
+          },
+          {
+            "source": [
+              241,
+              205,
+              153
+            ],
+            "target": [
+              169,
+              213,
+              222
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-29-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            38,
+            32,
+            91,
+            96
+          ],
+          "colors": 24,
+          "sha256": "568da03042d41d8257700acb1f79a896fb40fe65b113479a8972fdbc3cba0a66",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-29-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            38,
+            32,
+            91,
+            96
+          ],
+          "colors": 24,
+          "sha256": "f3cdf2dd15e11adcd19b80c471d696a898e1178e30e7b81a70edb68f12457b50",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-30",
+      "number": 89,
+      "revision": "r01",
+      "label": "Arpenteur des failles",
+      "family": "Démons insectoïdes",
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 74,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-30-r01.png",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 175,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create one original SIX-LEGGED INSECTOID DEMON game sprite source for Project RL. Use the attached approved player drawing solely for its clean dark comic contours, flat color masses, two or three simple values per material and broad shadow planes. The new creature must belong beside that existing player and its weapons.\nSubject: an angular, tall, slender six-legged monster. Compact flattened triangular body covered by TWO broad dark indigo organic chitin plates. Exactly SIX long bent supporting legs arranged in THREE pairs, spread apart, all attached and clearly visible. Sturdy tapered legs in dull warm ochre, ending in broad charcoal pointed toes. A small wedge head under the front plate, two tiny dull black eyes and two short blunt mandibles. Two short broad fin-shaped hide lobes slope backward from the body. Adult unsettling arthropod proportions, not a cute pet; sparse large shapes, no tiny texture or complicated plates.\nSlight overhead nearly frontal standing pose, full creature, one static pose, all extremities well inside generous genuinely transparent ALPHA margins. Native body target60px high and at most74px wide on a64px-per-cell reference, exported later directly from this full source.\nOne common ordinary demon, no rank signs or boss regalia. No clothes, human equipment, weapons, floor, environment, text, other figures, insets, shadows, glow, particles or active effects. No photorealism or3D, intricate scales, miniature scratches, hairs, fine veins, soft gradients or oversized eyes. Do not copy the reference human body, armor or sword. Original anatomy loosely inspired by the variety of dark ARPG bestiaries such as Diablo II and Grim Dawn; preserve Project RL's existing graphic style.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "generation_attempts": [
+        {
+          "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nA repulsive eyeless bladder-like ordinary demon, native60px high and at most74px wide. One high asymmetric swollen warm beige oval visceral body, broad dark indigo living hide cap draped over its rear third. Exactly FOUR short thick muscular tentacle legs ending in blunt dark tips, all visibly attached and planted apart, front pair curled outward. ONE vertical raw-red compressed seam-mouth low on the body, no head, face, eyes or teeth. Two large broad stretched-flesh planes only, no tiny pores, repeated suckers, many mouths, horns, frill crown, machinery or equipment. Readable big rounded upper mass with four strong supporting limbs, not a floating cute jellyfish.",
+          "result": "Image generation output rejected by safety system (sexual); no image returned."
+        },
+        {
+          "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nAn original ordinary four-legged dark-fantasy alien creature, native60px high, at most74px wide. One high asymmetric oval light-tan body under a heavy dark indigo mantle of living hide covering its upper rear third. Exactly FOUR short sturdy bent walking legs with broad blunt charcoal toes, all visibly attached and planted apart; two front feet facing outward, two rear feet visible beside them. A small closed HORIZONTAL dark mouth in the center front, no teeth, no eyes, no separate head. Large smooth flat areas and only two broad creases across the upper mantle, no fine texture. Grim, heavy and unsettling through its strange silhouette, not a cute pet. Entirely non-sexual fantasy game creature; no human anatomy, wounds, exposed organs, genital shapes, openings or suggestive poses. No armor, equipment, crown, tentacle forest or skull.",
+          "result": "No image returned; generated output moderation rejected (other)."
+        }
+      ],
+      "brief_change_reason": "Previous concept outputs were blocked; replaced with a distinct angular six-legged creature before presentation. No prior accepted design changed.",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-e446a16a-93f3-4be2-a0cb-f2b5c78b9ad0.png",
+      "source_sha256": "cf5b6154c446518126f819c2cfa02baf8b24a011abc833d8f48b6346318c4584",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-30-r01-shadow64.png",
+        "sha256": "6053c710c14e6bee4fcc9c7de291a9c5ce997ae2a20fe1a93f8afb6fcc011b0a",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            84,
+            95
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 509,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              53,
+              41,
+              30
+            ],
+            "target": [
+              35,
+              49,
+              48
+            ]
+          },
+          {
+            "source": [
+              94,
+              71,
+              49
+            ],
+            "target": [
+              60,
+              86,
+              84
+            ]
+          },
+          {
+            "source": [
+              113,
+              97,
+              93
+            ],
+            "target": [
+              92,
+              104,
+              103
+            ]
+          },
+          {
+            "source": [
+              120,
+              83,
+              56
+            ],
+            "target": [
+              72,
+              110,
+              107
+            ]
+          },
+          {
+            "source": [
+              148,
+              110,
+              67
+            ],
+            "target": [
+              88,
+              136,
+              132
+            ]
+          },
+          {
+            "source": [
+              179,
+              138,
+              89
+            ],
+            "target": [
+              111,
+              165,
+              160
+            ]
+          },
+          {
+            "source": [
+              209,
+              161,
+              96
+            ],
+            "target": [
+              125,
+              192,
+              187
+            ]
+          },
+          {
+            "source": [
+              240,
+              215,
+              159
+            ],
+            "target": [
+              172,
+              221,
+              217
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-30-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            36,
+            36,
+            92,
+            96
+          ],
+          "colors": 21,
+          "sha256": "9d2902389bdc2cc63a2f5bc4cef44d5123e880570c921e50ad7dd5eab71933f7",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-30-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            36,
+            36,
+            92,
+            96
+          ],
+          "colors": 21,
+          "sha256": "80a19ec16b26aefd4a1a56689f903e65caed912b678d12e8bd65f84c5223858a",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-31",
+      "number": 90,
+      "revision": "r01",
+      "label": "Myriapode fouisseur",
+      "family": "Vermine infernale",
+      "maximum_body_height64": 28,
+      "maximum_body_width64": 90,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-31-r01.png",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 90,
+        "target_hue": 205,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nA low horizontal burrowing flesh-insect demon, native28px high and at most90px wide. Long thick body in FIVE broad muscular sections, pale dirty warm beige tissue and THREE large dark rust-brown dorsal hide panels, no little plates. Exactly EIGHT short hooked walking legs (four pairs), visible separated against transparency and firmly attached to the body, with one blunt wedge head at the front angled slightly toward viewer. Head has TWO broad charcoal inward-curving jaw hooks and no eyes. Small tapered tail at rear, no stinger. No dense millipede leg comb, tiny spikes, chitin noise, bone ribs, machinery, cute face or equipment.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-2bef119a-0a9e-4115-8060-6099a1fab2c9.png",
+      "source_sha256": "40fde841e3e4ae6725a62fbf0c9d95d5fa0b95cf8eca7ee6b3ab03c83931212f",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-31-r01-shadow64.png",
+        "sha256": "fd505b40f1becdff3957b5f94eb8b6ee5c6616edfb5b28a085f004c1713076d5",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            61,
+            95
+          ],
+          "width": 28,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 669,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              52,
+              40,
+              35
+            ],
+            "target": [
+              38,
+              44,
+              48
+            ]
+          },
+          {
+            "source": [
+              71,
+              21,
+              16
+            ],
+            "target": [
+              32,
+              52,
+              65
+            ]
+          },
+          {
+            "source": [
+              73,
+              52,
+              44
+            ],
+            "target": [
+              50,
+              60,
+              67
+            ]
+          },
+          {
+            "source": [
+              75,
+              69,
+              60
+            ],
+            "target": [
+              60,
+              65,
+              69
+            ]
+          },
+          {
+            "source": [
+              82,
+              42,
+              32
+            ],
+            "target": [
+              46,
+              63,
+              75
+            ]
+          },
+          {
+            "source": [
+              100,
+              52,
+              38
+            ],
+            "target": [
+              55,
+              77,
+              92
+            ]
+          },
+          {
+            "source": [
+              103,
+              75,
+              59
+            ],
+            "target": [
+              68,
+              84,
+              95
+            ]
+          },
+          {
+            "source": [
+              119,
+              95,
+              77
+            ],
+            "target": [
+              84,
+              99,
+              109
+            ]
+          },
+          {
+            "source": [
+              120,
+              60,
+              43
+            ],
+            "target": [
+              64,
+              91,
+              110
+            ]
+          },
+          {
+            "source": [
+              132,
+              68,
+              48
+            ],
+            "target": [
+              71,
+              101,
+              121
+            ]
+          },
+          {
+            "source": [
+              138,
+              114,
+              91
+            ],
+            "target": [
+              99,
+              115,
+              127
+            ]
+          },
+          {
+            "source": [
+              155,
+              77,
+              57
+            ],
+            "target": [
+              84,
+              118,
+              143
+            ]
+          },
+          {
+            "source": [
+              163,
+              127,
+              100
+            ],
+            "target": [
+              112,
+              134,
+              150
+            ]
+          },
+          {
+            "source": [
+              176,
+              146,
+              115
+            ],
+            "target": [
+              125,
+              147,
+              162
+            ]
+          },
+          {
+            "source": [
+              197,
+              169,
+              136
+            ],
+            "target": [
+              145,
+              166,
+              181
+            ]
+          },
+          {
+            "source": [
+              218,
+              183,
+              148
+            ],
+            "target": [
+              159,
+              183,
+              201
+            ]
+          },
+          {
+            "source": [
+              231,
+              202,
+              162
+            ],
+            "target": [
+              171,
+              195,
+              213
+            ]
+          },
+          {
+            "source": [
+              248,
+              224,
+              167
+            ],
+            "target": [
+              180,
+              208,
+              228
+            ]
+          },
+          {
+            "source": [
+              253,
+              239,
+              210
+            ],
+            "target": [
+              207,
+              222,
+              233
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-31-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            40,
+            68,
+            89,
+            96
+          ],
+          "colors": 23,
+          "sha256": "30b3b8e628b5ab84f1e03f870c962e9e1d8c9b310c8701470ab68c4c3764baa0",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-31-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            40,
+            68,
+            89,
+            96
+          ],
+          "colors": 23,
+          "sha256": "166691cd03254d565f9aa6ae491842800b3efd5fe22bec1779639953e23abc1d",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ARPG-32",
+      "number": 91,
+      "revision": "r01",
+      "label": "Biface des cendres",
+      "family": "Démons de chair",
+      "maximum_body_height64": 62,
+      "maximum_body_width64": 72,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ARPG-32-r01.png",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 195,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nAsset: ONE original ordinary demon candidate for the grim industrial dark-fantasy/cyberpunk game Project RL, continuing its varied bestiary.\nUse the supplied approved PLAYER + WEAPON image ONLY for DRAWING STYLE: clean dark contours, large flat color masses, TWO or THREE values per material, ONE purposeful main shadow plane, sparse broad highlights. Draw the monster as if made by the SAME artist as this player and its weapons. Do NOT copy the player's human anatomy, costume, armor, helmet, sword or shield.\nDesign inspiration is the mature unsettling creature diversity of Diablo II and Grim Dawn, with an original species and silhouette, NOT a recognizable licensed monster and NOT their photorealistic pre-rendered surface treatment.\nClear anatomy and readable silhouette at actual 64px-per-cell game scale. Simplify broad muscle/tissue/chitin planes without miniature texture. Adult menacing proportions, small predatory head where relevant, no chibi, cute mascot, bobblehead or toy. No fine veins, pores, intricate scales, many wrinkles, tiny scratch marks, bone-covered design, soft gradients, airbrush or 3D rendering. Flesh colors are natural warm beige, ochre, russet, dark red; no bright candy pink.\nExactly ONE complete full-body creature in ONE static pose, nearly frontal at slight overhead game angle. All feet, claws, tail or extremities attached and comfortably inside generous genuinely ALPHA TRANSPARENT margins. No reference figure, inset, sheet, text, label, floor, environment, baked shadow, cast shadow, glow, spell, aura, slime trail or particles. Contact shadow is a separate layer added later.\nThis is a common troop, NOT a leader or sector boss: no crown, rank insignia, regal cape, throne, oversized ceremonial gear or triumphant boss pose. No statistics, powers, spells, encounters, collision or animation are defined by this static visual.\nThe actual native body gabarit below varies naturally; render a full source drawing with economical shapes that will export directly to those pixel limits. Do NOT put multiple size or color alternatives in the image.\nSubject:\nAn original adult TWO-HEADED ordinary demon, native62px high and at most72px wide. One stocky warm grey-beige biped body with exactly TWO thick arms and TWO short powerful legs. Exactly TWO small long eyeless fleshy heads grow from short uneven necks, one slightly higher than the other; each has one closed short mouth seam. A single broad dark rust-red shoulder plane joins the two neck bases; belly pale ochre, charcoal clawed hands and feet. Heads small relative to the torso, no huge mouths, eyes, hair, grin, horns or bone crests. Hunched lopsided predatory stance, both feet planted. No clothing, weapons, crowns, boss regalia, exposed skeleton or many scars.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Style graphique du joueur et de ses armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "listed_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-c89099e6-bece-4b9f-9328-e0f5e6c1ba9f.png",
+      "source_sha256": "be846f482a53fb6ac7633a0fe3ed779424db003ca98595d96fbf01d228448e05",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-21/ARPG-32-r01-shadow64.png",
+        "sha256": "0c94fb900c89260fff59a040cbe1ae6b6e6535286933618c1425c073cf0b9b06",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            60,
+            95
+          ],
+          "width": 35,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1286,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              57,
+              46,
+              42
+            ],
+            "target": [
+              43,
+              50,
+              52
+            ]
+          },
+          {
+            "source": [
+              72,
+              64,
+              58
+            ],
+            "target": [
+              58,
+              64,
+              66
+            ]
+          },
+          {
+            "source": [
+              95,
+              83,
+              73
+            ],
+            "target": [
+              74,
+              84,
+              87
+            ]
+          },
+          {
+            "source": [
+              99,
+              44,
+              34
+            ],
+            "target": [
+              52,
+              81,
+              91
+            ]
+          },
+          {
+            "source": [
+              130,
+              99,
+              82
+            ],
+            "target": [
+              91,
+              112,
+              120
+            ]
+          },
+          {
+            "source": [
+              135,
+              119,
+              102
+            ],
+            "target": [
+              104,
+              119,
+              124
+            ]
+          },
+          {
+            "source": [
+              149,
+              70,
+              52
+            ],
+            "target": [
+              79,
+              123,
+              137
+            ]
+          },
+          {
+            "source": [
+              154,
+              131,
+              110
+            ],
+            "target": [
+              115,
+              135,
+              142
+            ]
+          },
+          {
+            "source": [
+              166,
+              141,
+              120
+            ],
+            "target": [
+              125,
+              146,
+              153
+            ]
+          },
+          {
+            "source": [
+              183,
+              151,
+              125
+            ],
+            "target": [
+              134,
+              160,
+              168
+            ]
+          },
+          {
+            "source": [
+              194,
+              172,
+              147
+            ],
+            "target": [
+              150,
+              171,
+              178
+            ]
+          },
+          {
+            "source": [
+              210,
+              181,
+              153
+            ],
+            "target": [
+              159,
+              185,
+              193
+            ]
+          },
+          {
+            "source": [
+              227,
+              196,
+              163
+            ],
+            "target": [
+              171,
+              199,
+              209
+            ]
+          },
+          {
+            "source": [
+              242,
+              215,
+              167
+            ],
+            "target": [
+              178,
+              211,
+              223
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-32-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            39,
+            34,
+            90,
+            96
+          ],
+          "colors": 23,
+          "sha256": "e731d0e1b85e8cbbc487fcccdacc33551ce8f0380b526cf03eb947a1b97ec55a",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-21/tiles/ARPG-32-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            39,
+            34,
+            90,
+            96
+          ],
+          "colors": 23,
+          "sha256": "2b8fb4caa0a99f0f39ac01fe2b3f69c77a1cf169dcae23fa725be7cc0aa644da",
+          "visual_approved": false
+        }
+      ]
+    }
+  ],
+  "style_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+    "sha256": "b2309124fde55808415378da561f5f26b0d7936688edefa257a8f938c58d4e2b",
+    "role": "Sources acceptees du joueur et de ses armes : contours, aplats et ombrages"
+  },
+  "player_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "foot_anchor": [
+      64,
+      96
+    ]
+  },
+  "preview_scale": 1,
+  "zoom_previews_generated": false,
+  "generated_source_count": 12,
+  "preview_sheets": [
+    "artifacts/npc-monsters-review-01/demons-21/demons-80-83.png",
+    "artifacts/npc-monsters-review-01/demons-21/demons-84-87.png",
+    "artifacts/npc-monsters-review-01/demons-21/demons-88-91.png"
+  ],
+  "listed_in": "monster-candidate-list.json"
+}

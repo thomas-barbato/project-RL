@@ -11,6 +11,7 @@ fn pointer_frame(app: &AsciiApp, at: GridPos, viewport: (f32, f32)) -> InputFram
             app.graphics.active.world_cell_px,
             app.navigation_signal_summary().is_some(),
             at,
+            app.camera_glide_offset(),
         )
         .expect("fixture cell must fit in the camera");
     app.graphics.active.transform_input(InputFrame {

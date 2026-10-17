@@ -1,5 +1,7 @@
 # Interface et accessibilité
 
+> **Refonte demandée le 16 octobre 2026 :** une interface moins chargée doit être proposée avec la nouvelle direction visuelle. Les descriptions ci-dessous documentent le rendu antérieur et ne sont pas une maquette de cette refonte. Voir [HUD-01](reviews/refonte-histoire-2026-10-16/CADRAGE.md#hud-01--allègement-à-étudier).
+
 ## Rendu du jeu — 3 octobre 2026
 
 Le jeu utilise des symboles dessinés vus de dessus sur un fond noir. Les
@@ -12,9 +14,10 @@ L'interface propose quatre accents persistants : bleu électrique, violet
 ultraviolet, vert néon et rouge néon. Ce choix ne recolore ni les personnages,
 ni les matériaux, ni les lumières des décors. Les surfaces restent presque
 noires et les panneaux du HUD n'ajoutent pas de rails décoratifs près des PV,
-du secteur ou de l'objectif. Le zoom de carte propose aussi des cases de 16 et
-20 unités logiques, indépendamment de la taille de l'interface. Les préférences
-de zoom déjà enregistrées sont conservées.
+du secteur ou de l'objectif. Depuis la décision du 17 octobre 2026, les cases
+du jeu sont affichées uniquement en 64 px, indépendamment de la taille de
+l'interface. Les anciennes tailles enregistrées sont migrées vers 64 px,
+en conservant les autres préférences.
 
 Les sols n'affichent plus de bordure de case ni de point répété dans les angles.
 Métal, chaussée, béton, gravier, herbe, friche et boue possèdent un grain discret
@@ -131,7 +134,7 @@ Les événements immédiatement perceptibles peuvent produire un message flottan
 Les options d'affichage proposent :
 
 - une taille d'interface persistante, en plus de l'adaptation automatique ;
-- un thème d'interface bleu, violet, vert ou rouge et un zoom de carte indépendant ;
+- un thème d'interface bleu, violet, vert ou rouge et le choix de l'habillage ;
 - un contraste renforcé, qui épaissit et accentue les contours porteurs d'information ;
 - des animations réduites, qui suppriment notamment la pulsation des alertes sans masquer leur bandeau, leur texte ni leur symbole.
 
@@ -177,3 +180,26 @@ L'onglet F1 « Statistiques et jauges » remplace « Règles utiles » et prése
 - Cliquer sur Énergie ou Compagnons ouvre **Énergie et compagnons**. Au clavier, ouvrir État/cible puis utiliser la touche de confirmation actuelle. Consulter est gratuit ; arrêter un effet ou renvoyer un compagnon prend un tour. Les flèches configurées sélectionnent une ligne, la confirmation configurée exécute son action, Échap ferme. Les compagnons hors de la zone restent comptés mais se gèrent en les rejoignant.
 - Le surcadencement conserve ses limites thermiques propres. L'écran État/cible affiche la chaleur, le coût par usage, le seuil sûr, la limite et le refroidissement lorsqu'un module est surcadencé. La surchauffe des systèmes ennemis reste distincte.
 - F1 décrit les ressources effectivement utilisées par la partie et indique les touches configurées. Les nouvelles parties n’y présentent aucune rubrique de chaleur ; les attributs du joueur suivent directement les ressources. Les suspensions des générations antérieures conservent leur fonctionnement historique ; le nouveau format d'instantané permet de conserver les réservations et leur arrêt, avec le journal comme reprise compatible.
+
+
+## HUD natif HUD-07 — 16 octobre 2026
+
+Métal sombre est l’habillage par défaut ; Terminal PC se choisit dans Options,
+Affichage, Habillage de l’interface. Les préférences antérieures sont conservées.
+La zone jouable est agrandie, la barre de compétences et le changement d’arme
+restent centrés, et les commandes du bas occupent deux rangées plus discrètes.
+
+Le bouton à icône Familiers suit Techniques. La fenêtre commune se déplace,
+se replie avec « − » et permet de classer les compagnons par glisser-déposer.
+Elle expose les PV, la batterie ou la durée de réanimation, les effets actifs et
+les bonus passifs applicables. Le classement est conservé dans la suspension.
+Les drones ont des ordres individuels ou communs ; F3 garde le cycle commun.
+Les réanimés restent autonomes. La destruction utilise une confirmation.
+
+Pour l’agent refondu, les limites des drones et des réanimés sont distinctes et
+proviennent du moteur ; le plafond historique de cinq compagnons décrit plus
+haut ne définit pas ces deux capacités. Les effets à un tour restant clignotent
+doucement, ou gardent un contour fixe si les animations sont réduites.
+
+Décisions et contrôles :
+[HUD-07 / UX-PETS-06](reviews/refonte-histoire-2026-10-16/INTEGRATION_07.md).

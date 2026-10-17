@@ -1,0 +1,2852 @@
+{
+  "review_id": "CULTES-24",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "status": "proposal_pending_later_individual_selection",
+  "user_requests": [
+    "Réunir les monstres avec les cultistes anciens dans une énorme image avec nom, code et image.",
+    "Créer de nouveaux cultistes moins humains et plus possédés, ainsi que des zombies.",
+    "des esprits torturés aussi",
+    "Les images doivent être dans leur taille réellement prévue pour le jeu.",
+    "tu peux meme faire des squelettes, des monstres enflammées etc )"
+  ],
+  "individual_acceptance_deferred": true,
+  "runtime_connected": false,
+  "preview_title": "Cultistes, morts-vivants, esprits et braises - taille native",
+  "records": [
+    {
+      "id": "CULT-04",
+      "number": 116,
+      "revision": "r01",
+      "label": "Adepte distordu",
+      "family": "Cultistes possédés",
+      "maximum_body_height64": 66,
+      "maximum_body_width64": 64,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-04-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 30,
+        "target_hue": 100,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nImage2 supplies ONLY the accepted cult uniform and physical-mask identity, not the unpossessed human anatomy, baton or stance.\nA visibly POSSESSED adult cultist in the exact uniform family of image2: charcoal hood and knee-length coat, broad BURGUNDY central panel and cuffs, black belt and boots. Entire face hidden behind a PHYSICAL dirty-IVORY angular ceramic mask with two short dark eye slits and one short straight mouth vent. No visible human face.\nIts adult humanoid body is twisted: one shoulder high, one low, TWO uneven long flesh arms below shortened sleeves, hands transformed into THREE large dark hooked claw groups. TWO legs bent at uneven angles, one boot split around a broad claw foot. Mask tilted downward with hood intact. No additional limbs, weapons, fine decoration, many straps or gore. One corrupted member of the cult, not an armored hero.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Uniforme et masque du culte ; nouvelle anatomie possédée"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-0c04ffce-4bb8-43cf-aa19-adbaf143d55f.png",
+      "source_sha256": "1a2d38350c409f76a3097a6402a3df9053512b356934972f3fb930efec39ad3d",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/CULT-04-r01-shadow64.png",
+        "sha256": "cedcb17779d10a99bc67fc88ceb99c91fed63a0adf8dcd32f96aed53eb186edc",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            52,
+            95
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 52,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              114,
+              105,
+              97
+            ],
+            "target": [
+              98,
+              105,
+              95
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-04-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            30,
+            85,
+            95
+          ],
+          "colors": 23,
+          "sha256": "67998ac48f353040a2fed85f51f41c44ab07b920b6177999454df3388a07560b",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-04-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            30,
+            85,
+            95
+          ],
+          "colors": 23,
+          "sha256": "fed3030bd1b59437ea95fa971d22b2cbb71a213df00be5d50a51278b069271f2",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "CULT-05",
+      "number": 117,
+      "revision": "r01",
+      "label": "Psalmodiant possédé",
+      "family": "Cultistes possédés",
+      "maximum_body_height64": 70,
+      "maximum_body_width64": 62,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-05-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 325,
+        "hue_max": 360,
+        "target_hue": 95,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92,
+        "adjustment_reason": "Indexed palette selects actual source hues, without changing geometry."
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nImage2 supplies ONLY the accepted cult uniform and physical-mask identity, not the unpossessed human anatomy, baton or stance.\nA tall gaunt POSSESSED cultist, same charcoal-and-BURGUNDY hooded uniform as image2. Entire face concealed by a plain dirty-IVORY physical elongated ceramic mask, two short black eye-slits and one short dark mouth vent. Adult narrow torso, unusually long covered neck, TWO very long arms bent at low elbows, open dark hooked hands held slightly apart in an unsettling quiet recitation pose. TWO narrow strong legs in dark trousers and boots; worn coat hangs to knees, not a regal cape. Broad pale-grey forearms visible beneath cuffs. Head small relative to the body, hood clearly continuous with coat. No staff, weapon, skull, horns, halo, magic effect, glowing eyes or text. Static potential spellcaster silhouette, no abilities defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Uniforme et masque du culte ; nouvelle anatomie possédée"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-3115e2ee-7ed4-4885-b78c-e4fd0c696ccd.png",
+      "source_sha256": "b0c6caa303ace5e779760d0359d05422c59987c1bd9f68b5464b4adb6d48fade",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/CULT-05-r01-shadow64.png",
+        "sha256": "59c83121fb72bebb6bab1c99608b3f2c23789affdfe93751d2ee98de05096210",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            65,
+            95
+          ],
+          "width": 36,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 427,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              57,
+              20,
+              23
+            ],
+            "target": [
+              40,
+              52,
+              30
+            ]
+          },
+          {
+            "source": [
+              90,
+              47,
+              50
+            ],
+            "target": [
+              68,
+              83,
+              57
+            ]
+          },
+          {
+            "source": [
+              101,
+              33,
+              38
+            ],
+            "target": [
+              69,
+              93,
+              52
+            ]
+          },
+          {
+            "source": [
+              112,
+              36,
+              42
+            ],
+            "target": [
+              77,
+              103,
+              58
+            ]
+          },
+          {
+            "source": [
+              124,
+              38,
+              45
+            ],
+            "target": [
+              84,
+              114,
+              63
+            ]
+          },
+          {
+            "source": [
+              147,
+              46,
+              54
+            ],
+            "target": [
+              100,
+              135,
+              75
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-05-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            26,
+            85,
+            96
+          ],
+          "colors": 22,
+          "sha256": "52888f37c6c02375530671b1287889da809e5bf88185270d55cf4763c9f008d2",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-05-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            26,
+            85,
+            96
+          ],
+          "colors": 22,
+          "sha256": "2e9370aa5866d33322c2f93417001271c094b523269e823f5aa660ae0122ca08",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "CULT-06",
+      "number": 118,
+      "revision": "r01",
+      "label": "Dévot rampant",
+      "family": "Cultistes possédés",
+      "maximum_body_height64": 44,
+      "maximum_body_width64": 80,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-06-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 30,
+        "target_hue": 100,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nImage2 supplies ONLY the accepted cult uniform and physical-mask identity, not the unpossessed human anatomy, baton or stance.\nOne crouching FOUR-LIMBED possessed adult cultist, wearing the charcoal coat and broad BURGUNDY central cloth panel/cuffs of image2, plain black belt. Deep hood and physical dirty-IVORY angular mask fully hide its face; mask looks down with two short dark slits.\nTWO grotesquely lengthened grey-beige arms carry most of its weight on three broad charcoal claw groups; TWO bent legs fold behind with dark boots and broad claws protruding at toes. Torso low and long like a crawling adult, ragged short coat drapes over back and sides, no huge cloak. All four limbs visibly attached and separated. No extra arms, wheels, devices, weapons, exposed organs, ribs or many tiny folds.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Uniforme et masque du culte ; nouvelle anatomie possédée"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-1c142a7e-9816-4c06-8a46-250029a0dd12.png",
+      "source_sha256": "2751a06d056dfb8d178e1dcc70bb6b7a3e80987c1dac6710e5dcc517823789ee",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/CULT-06-r01-shadow64.png",
+        "sha256": "f784b0f1b0084ef28666676669247cdeee71743d9cbbea92ae75d365c0690602",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            68,
+            95
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 78,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              55,
+              45,
+              45
+            ],
+            "target": [
+              47,
+              51,
+              45
+            ]
+          },
+          {
+            "source": [
+              133,
+              121,
+              109
+            ],
+            "target": [
+              113,
+              122,
+              108
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-06-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            52,
+            85,
+            95
+          ],
+          "colors": 23,
+          "sha256": "7c9880526be02decf2ee37814d3bf329113be92bc8119124b966005a954864af",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-06-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            52,
+            85,
+            95
+          ],
+          "colors": 23,
+          "sha256": "cd0fc291658acca66be2c4f7d3554bc5fc82d2f2098d3cb3125317250fd03c0c",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "CULT-07",
+      "number": 119,
+      "revision": "r01",
+      "label": "Adepte aux quatre bras",
+      "family": "Cultistes possédés",
+      "maximum_body_height64": 68,
+      "maximum_body_width64": 72,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-07-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 30,
+        "target_hue": 100,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nImage2 supplies ONLY the accepted cult uniform and physical-mask identity, not the unpossessed human anatomy, baton or stance.\nA FOUR-ARMED possessed adult cultist in the same simple charcoal-and-BURGUNDY hooded uniform as image2. A physical dirty-IVORY angular mask with two short dark eye-slits and short mouth vent fully conceals face under the hood.\nTWO main long grey-beige arms hang outside sleeves with broad dark hooked hands. A SECOND shorter pair emerges below the upper arms through coat side openings and folds inward across the abdomen, all four arms clearly attached. TWO sturdy bent legs with black cloth and dark claw boots. Small tilted masked head, narrow adult body, simple knee-length coat and black belt, no armor. No wings, many tendrils, horns, crown, staff, active spell, halo or gore. The extra arms are the sole major mutation sign.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Uniforme et masque du culte ; nouvelle anatomie possédée"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-0922cda7-a9eb-40ee-92bd-e19eb9855bf5.png",
+      "source_sha256": "ca4c5df6536578b7a3db97e85c57daefbd88f67c7d91e0cf0860f8bf177bd377",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/CULT-07-r01-shadow64.png",
+        "sha256": "f8ceb8814cd95bcdf6f71bc1f315c83fdae94e2956cb0a3181b6a6af5388c280",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            66,
+            95
+          ],
+          "width": 39,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 93,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              75,
+              60,
+              60
+            ],
+            "target": [
+              63,
+              69,
+              60
+            ]
+          },
+          {
+            "source": [
+              160,
+              144,
+              131
+            ],
+            "target": [
+              136,
+              147,
+              130
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-07-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            28,
+            86,
+            96
+          ],
+          "colors": 23,
+          "sha256": "794f6acadffe0b51e10aea8a8df106161ebbebaa3a9c36e46710320c672656e5",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/CULT-07-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            28,
+            86,
+            96
+          ],
+          "colors": 23,
+          "sha256": "992b920bc9f54f2fa732c362167ff2b68b870185a6b24aff85ac76a5da160f5f",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ZOM-01",
+      "number": 120,
+      "revision": "r01",
+      "label": "Détenu réanimé",
+      "family": "Zombies",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 50,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ZOM-01-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 140,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nAn ordinary adult zombie from an abandoned cryoprison, TWO arms and TWO legs, fully clothed in a worn plain dark SLATE prison jumpsuit with ONE broad dull ochre chest band, no text or insignia. Gaunt grey-beige hands and bald adult head, two tiny sunken dark eye shadows, slack CLOSED dark mouth, no teeth rows or realistic face details. One shoulder droops, both arms hang unevenly, fingers form three broad dark groups, knees bent and worn heavy charcoal boots planted apart. A single broad cloth wrist band, not shackles or gadgets. Intact closed skin, no wounds, exposed skeleton, armor, mask, weapons or heroic pose. Restrained unsettling shambling silhouette, not cute.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-c156f36c-3ee8-4917-92a8-56fd351ce5d5.png",
+      "source_sha256": "a31b8f90194f9a7ec7d8f7dfa3adb3b3942a955b5306f6f964a180006b6c00b8",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/ZOM-01-r01-shadow64.png",
+        "sha256": "e29d97fa86fd0b9b187b84ec554ba26782e731d447ad53a5d702455fa04016e4",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            64,
+            95
+          ],
+          "width": 40,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 211,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              131,
+              117,
+              97
+            ],
+            "target": [
+              100,
+              121,
+              107
+            ]
+          },
+          {
+            "source": [
+              168,
+              154,
+              125
+            ],
+            "target": [
+              129,
+              155,
+              137
+            ]
+          },
+          {
+            "source": [
+              213,
+              199,
+              176
+            ],
+            "target": [
+              174,
+              196,
+              181
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-01-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            45,
+            32,
+            83,
+            96
+          ],
+          "colors": 23,
+          "sha256": "908d91407b550bcb87eecf5fbbd9071da48cd4f33cfd569ca42235f79d016003",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-01-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            45,
+            32,
+            83,
+            96
+          ],
+          "colors": 23,
+          "sha256": "1417a8699da2c57777aba0b0ceb9933c1a7a022fbbdaa980f696ab6a700a4103",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ZOM-02",
+      "number": 121,
+      "revision": "r01",
+      "label": "Ouvrier mort-vivant",
+      "family": "Zombies",
+      "maximum_body_height64": 62,
+      "maximum_body_width64": 58,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ZOM-02-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 10,
+        "hue_max": 85,
+        "target_hue": 200,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nAn ordinary adult industrial-worker zombie, TWO long loose arms and TWO bent legs. Worn dark charcoal work trousers, black boots and ONE simple torn dull RUST-ORANGE work vest over a slate shirt. Grey-beige adult face angled down, small deep dark eye shadows and CLOSED short mouth; no gore, rotting holes, teeth rows or detailed facial lines. Broad shoulders slumped forward, one hand lower than the other, three broad rigid dark finger groups per hand. One pale grey-beige forearm visible where a sleeve is missing; all other clothing covers torso and hips. No tools, helmet, mechanical limbs, exposed ribs, machinery, weapons or equipment.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-2da053a1-5f6d-4dd7-80c0-b1326fd5bb34.png",
+      "source_sha256": "d198d19d8f67c6143e6e9631a853598146778ccc7385743daaf31acbd69b3b9f",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/ZOM-02-r01-shadow64.png",
+        "sha256": "512c2e41291982cbb2398f67bc3ce4d40a03a9840b339d9a2447119340dc4b31",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            63,
+            95
+          ],
+          "width": 30,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 359,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              70,
+              43,
+              31
+            ],
+            "target": [
+              41,
+              57,
+              64
+            ]
+          },
+          {
+            "source": [
+              88,
+              66,
+              55
+            ],
+            "target": [
+              61,
+              74,
+              81
+            ]
+          },
+          {
+            "source": [
+              147,
+              68,
+              31
+            ],
+            "target": [
+              66,
+              112,
+              135
+            ]
+          },
+          {
+            "source": [
+              161,
+              99,
+              64
+            ],
+            "target": [
+              90,
+              129,
+              148
+            ]
+          },
+          {
+            "source": [
+              174,
+              158,
+              135
+            ],
+            "target": [
+              137,
+              152,
+              160
+            ]
+          },
+          {
+            "source": [
+              224,
+              207,
+              178
+            ],
+            "target": [
+              179,
+              197,
+              206
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-02-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            46,
+            34,
+            82,
+            96
+          ],
+          "colors": 24,
+          "sha256": "62bb72f64eeccb1bfe827c6a8da2f24c3ac60528558031738af8de0e7caaa02a",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-02-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            46,
+            34,
+            82,
+            96
+          ],
+          "colors": 24,
+          "sha256": "ee4e35875a3c94c63c214919d5d6bcb8c2af69a4fbd97027f1b7d98f0d0ff8c7",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ZOM-03",
+      "number": 122,
+      "revision": "r01",
+      "label": "Cadavre rampant",
+      "family": "Zombies",
+      "maximum_body_height64": 30,
+      "maximum_body_width64": 76,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ZOM-03-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 170,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nA prone crawling adult zombie, exactly TWO weight-bearing arms and TWO bent attached legs trailing low behind. Worn dark SLATE coveralls, one broad ochre shoulder cloth patch, charcoal boots, pale grey-beige forearms. Small bald grey head angled toward ground with dark recessed eyes and one CLOSED jaw crease. Long forearms and spread broad rigid hands pull its low torso forward; both hind legs remain fully attached, clearly separated, bent sideways rather than severed. Adult full body stretched horizontally, not a tiny child or miniature human. Native body30px high because it is prone. No injuries, exposed organs, blood, loose bones, wheels, equipment, weapons, helmets or particles.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-8a131955-bd12-4095-99b6-37e8c209dae2.png",
+      "source_sha256": "3459b879756036afc61e861e48ec8aab07fff344eac14bed74db15515f03423e",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/ZOM-03-r01-shadow64.png",
+        "sha256": "ac977fa85ff80d30e84e5c5f6bed3c85a2f1caa98e4de5854984c5be70dbb2f5",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            56,
+            95
+          ],
+          "width": 43,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 238,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              96,
+              89,
+              79
+            ],
+            "target": [
+              78,
+              88,
+              87
+            ]
+          },
+          {
+            "source": [
+              129,
+              114,
+              93
+            ],
+            "target": [
+              97,
+              119,
+              115
+            ]
+          },
+          {
+            "source": [
+              165,
+              148,
+              123
+            ],
+            "target": [
+              127,
+              152,
+              148
+            ]
+          },
+          {
+            "source": [
+              191,
+              177,
+              157
+            ],
+            "target": [
+              155,
+              176,
+              172
+            ]
+          },
+          {
+            "source": [
+              217,
+              203,
+              182
+            ],
+            "target": [
+              179,
+              200,
+              196
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-03-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            36,
+            66,
+            92,
+            96
+          ],
+          "colors": 22,
+          "sha256": "f3be6f683106b0709299a6629e124edd24c9dd1e980e4be5e63f7a882d9d2add",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-03-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            36,
+            66,
+            92,
+            96
+          ],
+          "colors": 22,
+          "sha256": "9b39b83add2f4f6123a1866f46e9c3abe5e039c6c1931cb49fa3d4006c45746c",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ZOM-04",
+      "number": 123,
+      "revision": "r01",
+      "label": "Boursouflé",
+      "family": "Zombies",
+      "maximum_body_height64": 74,
+      "maximum_body_width64": 70,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ZOM-04-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 155,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nA heavy bloated adult zombie with exactly TWO thick arms and TWO short sturdy legs. Large asymmetrical round belly and hunched shoulders fully clothed in a loose worn dark SLATE medical/industrial coverall with ONE broad muted ochre side panel. Tiny bald grey-beige head low between shoulders, small dark eye recesses, CLOSED flat mouth; broad dull grey hands and black boots. Clothing uses two broad creases only, no pus, wounds or visible internal anatomy. Heavy forward lean and widely planted feet, one arm slightly higher. Common troop, not a boss. No apron full of tools, armor, giant weapon, horns, crown, gore or comedy mascot expression.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-1b1967dd-c9c0-4b10-9169-a4195e6a95f1.png",
+      "source_sha256": "8776a4ada7d109b63a90de36edb68c6ec149948e817e74f1dadb6e55cf3bfc78",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/ZOM-04-r01-shadow64.png",
+        "sha256": "e17e12d2e5ee0e25277c568f4587f6ef4316a8adb392372f6c611826d4b067d4",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            65,
+            95
+          ],
+          "width": 56,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 679,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              84,
+              76,
+              66
+            ],
+            "target": [
+              67,
+              77,
+              73
+            ]
+          },
+          {
+            "source": [
+              105,
+              97,
+              87
+            ],
+            "target": [
+              86,
+              97,
+              92
+            ]
+          },
+          {
+            "source": [
+              143,
+              112,
+              73
+            ],
+            "target": [
+              90,
+              132,
+              114
+            ]
+          },
+          {
+            "source": [
+              169,
+              141,
+              105
+            ],
+            "target": [
+              117,
+              155,
+              140
+            ]
+          },
+          {
+            "source": [
+              201,
+              188,
+              170
+            ],
+            "target": [
+              166,
+              185,
+              177
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-04-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            35,
+            22,
+            94,
+            96
+          ],
+          "colors": 24,
+          "sha256": "649e5f835b2b2b89fef30adac95d4c5722d704efd12164fd3d982d6aa41957fa",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ZOM-04-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            35,
+            22,
+            94,
+            96
+          ],
+          "colors": 24,
+          "sha256": "3d0f142edc20f6d700cabbff4ef1970912896a28a84fc0915b79cadb40fae35b",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ESP-01",
+      "number": 124,
+      "revision": "r01",
+      "label": "Âme entravée",
+      "family": "Esprits torturés",
+      "maximum_body_height64": 72,
+      "maximum_body_width64": 64,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ESP-01-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 175,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nAn adult tormented spirit in a long torn DARK CHARCOAL shroud with broad PALE GREY-BEIGE wraps across chest, hood and hands. Exactly TWO long arms angled inward at the wrists, where ONE simple dark broken restraint band and THREE broad attached chain links suggest old confinement. Small fully veiled bowed head with no exposed face; two tiny dark recesses beneath the veil, no skull. Narrow adult silhouette, lower shroud tapers into two long torn cloth tips reaching close to ground, no detailed feet required. Distress expressed by a folded protective posture. Solid clear readable cel-shaded apparition design, not a realistic person. No floating debris, long loose chains, mist, glow, halo, aura, fog or particles. Static appearance only, not a movement/flying mechanic.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-4549b3e9-a2fc-42d2-a991-9aa34d3d36da.png",
+      "source_sha256": "7ad792e942036a39a460723cf5deb860f139f2245d5c3be472610f32ed59cff1",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/ESP-01-r01-shadow64.png",
+        "sha256": "70082fdd44f1b5dd14c3824555cc88cf8ab317b895bf4134dc3d27621c366e34",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            64,
+            95
+          ],
+          "width": 29,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 302,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              111,
+              104,
+              94
+            ],
+            "target": [
+              92,
+              102,
+              101
+            ]
+          },
+          {
+            "source": [
+              136,
+              124,
+              111
+            ],
+            "target": [
+              110,
+              125,
+              124
+            ]
+          },
+          {
+            "source": [
+              155,
+              146,
+              129
+            ],
+            "target": [
+              127,
+              143,
+              141
+            ]
+          },
+          {
+            "source": [
+              175,
+              165,
+              146
+            ],
+            "target": [
+              144,
+              161,
+              160
+            ]
+          },
+          {
+            "source": [
+              198,
+              186,
+              166
+            ],
+            "target": [
+              163,
+              182,
+              181
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-01-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            51,
+            24,
+            77,
+            96
+          ],
+          "colors": 24,
+          "sha256": "39fa4dab3f6056e402b21851d4a10b968bc3d3a6ca5d03f2cca330a2049be8ad",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-01-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            51,
+            24,
+            77,
+            96
+          ],
+          "colors": 24,
+          "sha256": "8a382926f1f6c99259eb208868d1e9fbeb26ac39c30c0d11106d47d15cbb41a0",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ESP-02",
+      "number": 125,
+      "revision": "r01",
+      "label": "Hurleur sans voix",
+      "family": "Esprits torturés",
+      "maximum_body_height64": 70,
+      "maximum_body_width64": 60,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ESP-02-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 190,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nA gaunt adult tormented spirit, long narrow PALE ASH-GREY hooded shroud over charcoal underlayers. Exactly TWO thin arms raised at bent elbows, broad dark fingers bracing against the sides of its veiled head, an anguished protective pose. Head is an elongated cloth-like face silhouette with one single dark CLOSED vertical crease, no realistic face, teeth, wounds or skull. Two small dark recessed eye marks under hood only. Lower robe splits into two pointed long cloth tips close to the ground. Sparse broad folds, strong dark contour, simple cel-shaded pale planes, mature unsettling proportions. No scream rings, active sound effect, aura, smoke, fog, glow, floating debris, wings or magic. One static ordinary spirit, no boss signs.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-39f16ddc-ac88-4ac5-b261-a2292d8e892d.png",
+      "source_sha256": "43427ad9331e7fac7e815b97d945b7f74e1a072f51796c3b797844a0c0d23309",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/ESP-02-r01-shadow64.png",
+        "sha256": "05edf945cf2d2d692956b3371b44d023a1fd848aa28afe3f5e27f6a893d4cd2a",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            64,
+            95
+          ],
+          "width": 50,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 47,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              178,
+              163,
+              152
+            ],
+            "target": [
+              148,
+              161,
+              164
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-02-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            42,
+            26,
+            87,
+            96
+          ],
+          "colors": 24,
+          "sha256": "aad1dc23c8aa6e5266dff3944611c415e0051c53af8aeb44fd1293c581e61461",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-02-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            42,
+            26,
+            87,
+            96
+          ],
+          "colors": 24,
+          "sha256": "3b775d09558d3af125bb925512cfed6ac52de1bcf7fc9cc623c23c8ecb533f75",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ESP-03",
+      "number": 126,
+      "revision": "r01",
+      "label": "Esprit recousu",
+      "family": "Esprits torturés",
+      "maximum_body_height64": 66,
+      "maximum_body_width64": 62,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ESP-03-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 150,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nOne adult spectral figure in a worn PALE GREY-BEIGE shroud with ONE broad DARK diagonal seam across the torso, marked by exactly THREE large simple coarse stitch crosses, sewing in CLOTH not skin. Exactly TWO long arms crossed tightly around its chest in a defensive self-embrace; long broad dark fingers emerge from short ragged sleeves. Small hooded bowed head entirely veiled, no human face, skull or eyes visible, only a dark inner fold. Lower shroud forms two uneven hanging cloth tips near ground. A single charcoal drape across one shoulder gives asymmetric silhouette, no tiny tears or fine folds. Static tortured-spirit appearance in the game's flat comic style. No blood, exposed body, needles, equipment, floating parts, mist, aura, halo, glow or particles.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-4a88b193-6c6b-497d-a073-082260bd0349.png",
+      "source_sha256": "153e91503b929a7ff4556a3537dab1d804636cca6c53d25140374b7b9bbcd126",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/ESP-03-r01-shadow64.png",
+        "sha256": "80a7da78570d0e1087b3c3ca6fe1f51106c2c938967a02fd079af17c505656f5",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            66,
+            95
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 728,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              83,
+              78,
+              71
+            ],
+            "target": [
+              69,
+              76,
+              73
+            ]
+          },
+          {
+            "source": [
+              96,
+              90,
+              81
+            ],
+            "target": [
+              79,
+              88,
+              84
+            ]
+          },
+          {
+            "source": [
+              112,
+              105,
+              95
+            ],
+            "target": [
+              93,
+              103,
+              98
+            ]
+          },
+          {
+            "source": [
+              128,
+              119,
+              106
+            ],
+            "target": [
+              105,
+              118,
+              111
+            ]
+          },
+          {
+            "source": [
+              140,
+              132,
+              119
+            ],
+            "target": [
+              116,
+              129,
+              123
+            ]
+          },
+          {
+            "source": [
+              155,
+              145,
+              130
+            ],
+            "target": [
+              128,
+              143,
+              135
+            ]
+          },
+          {
+            "source": [
+              165,
+              155,
+              139
+            ],
+            "target": [
+              136,
+              152,
+              144
+            ]
+          },
+          {
+            "source": [
+              175,
+              165,
+              148
+            ],
+            "target": [
+              145,
+              161,
+              153
+            ]
+          },
+          {
+            "source": [
+              187,
+              176,
+              158
+            ],
+            "target": [
+              155,
+              172,
+              163
+            ]
+          },
+          {
+            "source": [
+              194,
+              183,
+              165
+            ],
+            "target": [
+              161,
+              178,
+              170
+            ]
+          },
+          {
+            "source": [
+              198,
+              187,
+              169
+            ],
+            "target": [
+              165,
+              182,
+              173
+            ]
+          },
+          {
+            "source": [
+              205,
+              194,
+              175
+            ],
+            "target": [
+              171,
+              189,
+              180
+            ]
+          },
+          {
+            "source": [
+              219,
+              207,
+              187
+            ],
+            "target": [
+              182,
+              201,
+              192
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-03-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            51,
+            30,
+            78,
+            96
+          ],
+          "colors": 23,
+          "sha256": "dbb0b202d23099a75444a9e8651bae917858e9c481000b1fe4551d9f33339b01",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-03-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            51,
+            30,
+            78,
+            96
+          ],
+          "colors": 23,
+          "sha256": "179fedcc34994b38554df995fbe8a449c87e68a6e52cc9531e9b1d706691bc85",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "ESP-04",
+      "number": 127,
+      "revision": "r01",
+      "label": "Supplicié du gel",
+      "family": "Esprits torturés",
+      "maximum_body_height64": 76,
+      "maximum_body_width64": 66,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/ESP-04-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 360,
+        "target_hue": 190,
+        "minimum_saturation": -0.01,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92,
+        "saturation_floor": 0.12,
+        "adjustment_reason": "Low saturation source: alternate uses a restrained cool tint, preserving geometry and dark contours."
+      },
+      "prompt": "Use case: stylized-concept.\nONE original ordinary enemy source for Project RL, a grim cyberpunk game during a real demonic apocalypse caused by a technoreligious cult. This is a new review candidate, not an edit of any previous sprite.\nImage1 is ONLY the approved PLAYER + WEAPON GRAPHIC STYLE reference. Match clean dark contours, large flat material/color masses, TWO or THREE values per material, one main shadow plane and sparse broad highlights. Do not copy human player armor, helmet, sword, shield or equipment. No photo,3D rendering, texture noise, tiny wrinkles, miniature scratches, many little veins, bone clutter, chibi, cute mascot or huge head.\nNative64px-per-cell readability. Adult unsettling anatomy, simple broad limb shapes, actual final body limits below. Uniform clothes remain matte large masses. Flesh is desaturated grey-beige/ochre as specified, no candy pink. Closed intact skin and worn clothes, no graphic injuries or exposed internal organs.\nONE complete whole character, ONE static nearly frontal slightly overhead game pose, all extremities attached and fully inside generous genuinely transparent ALPHA margins. No other figure, sheet, inset, label, text, background, floor, baked shadow, particles, active aura, smoke or spell. Contact shadow is added separately later. For a spirit, draw a clear spectral-looking static silhouette, with no surrounding fog or animation.\nOrdinary troop, no sector boss, leader, crown, halo, royal cape, rank insignia or giant ceremonial weapon. Appearance only: do not define combat powers, flying rules, status effects, stats, encounters or animation. No camera head, trolley wheels or ivory soldier-like mechanical limb.\nSubject:\nAn adult tormented spirit of a hostile black-ice prison realm. Narrow upper body wrapped fully in a torn CHARCOAL hooded shroud and broad PALE IVORY-GREY chest wraps, small faceless bowed veiled head. Exactly TWO long arms, one held close across the body inside ONE broad smooth smoky BLACK-ICE sheath, the other reaching down with a broad dark hooked hand. Lower shroud splits into two uneven long tapering tips close to ground; one tip has a single low smooth black-ice plate around it. Pained folded posture, head tilted sideways, very few broad cloth planes, no realistic face, bones, wounds, detailed torture device or loose body parts. No crown, spikes forest, blue mascot look, glow, freezing breath, fog, aura or particles. Static ordinary spirit design only, no freezing or flying rule defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-1dc46ac2-fe19-42b7-bb80-5e37a9e7d9d9.png",
+      "source_sha256": "37b10ff53998abcb7324b4c3e0d2abf2cba36c2f0bca5482fa53a644c9704d5e",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/ESP-04-r01-shadow64.png",
+        "sha256": "352f487f77060c09a8d8b8c257c5facc16205c8ec0b44bb70fe8f14cde3051c0",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            62,
+            95
+          ],
+          "width": 39,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 877,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              43,
+              45,
+              49
+            ],
+            "target": [
+              40,
+              44,
+              45
+            ]
+          },
+          {
+            "source": [
+              46,
+              47,
+              50
+            ],
+            "target": [
+              40,
+              45,
+              46
+            ]
+          },
+          {
+            "source": [
+              49,
+              50,
+              54
+            ],
+            "target": [
+              44,
+              49,
+              50
+            ]
+          },
+          {
+            "source": [
+              53,
+              54,
+              57
+            ],
+            "target": [
+              46,
+              51,
+              52
+            ]
+          },
+          {
+            "source": [
+              60,
+              60,
+              62
+            ],
+            "target": [
+              50,
+              56,
+              57
+            ]
+          },
+          {
+            "source": [
+              66,
+              65,
+              66
+            ],
+            "target": [
+              53,
+              60,
+              61
+            ]
+          },
+          {
+            "source": [
+              71,
+              71,
+              72
+            ],
+            "target": [
+              58,
+              65,
+              66
+            ]
+          },
+          {
+            "source": [
+              81,
+              78,
+              77
+            ],
+            "target": [
+              66,
+              73,
+              75
+            ]
+          },
+          {
+            "source": [
+              99,
+              96,
+              92
+            ],
+            "target": [
+              80,
+              89,
+              91
+            ]
+          },
+          {
+            "source": [
+              130,
+              125,
+              118
+            ],
+            "target": [
+              105,
+              117,
+              120
+            ]
+          },
+          {
+            "source": [
+              164,
+              156,
+              145
+            ],
+            "target": [
+              133,
+              148,
+              151
+            ]
+          },
+          {
+            "source": [
+              210,
+              201,
+              185
+            ],
+            "target": [
+              170,
+              189,
+              193
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-04-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            20,
+            85,
+            96
+          ],
+          "colors": 22,
+          "sha256": "30a9e532841bdf5e0b3afd8c5c3cc730e2d16c33215cad2c50bd715e708af16a",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/ESP-04-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            20,
+            85,
+            96
+          ],
+          "colors": 22,
+          "sha256": "f54165634c74d674745f73523f0b312ab6fecc7479314f98cce70e3b4bb0683a",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "SQUE-01",
+      "number": 128,
+      "revision": "r01",
+      "label": "Squelette de maintenance",
+      "family": "Squelettes",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 52,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/SQUE-01-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 160,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create ONE original ordinary SKELETON enemy for Project RL, using the attached player drawing ONLY for clean dark comic outlines, large flat shapes, two or three simple values and one main shadow plane. No copying player armor, helmet, sword or shield.\nAdult human-height skeleton in a plain torn charcoal industrial work jumpsuit with one broad dull rust-orange shoulder panel. The suit is open enough at forearms and shins to show simplified dry IVORY bones, with two broad bone groups per limb rather than tiny anatomical detail. One simple dry skull, two dark eye sockets, CLOSED blunt jaw with three broad teeth marks at most. Exactly TWO arms, TWO legs, broad bony dark-tipped hands and old charcoal boots, slumped hostile standing pose. No flesh, blood or graphic injury, no exposed organ, human face, armor suit, weapon, crown or regalia.\nOne complete nearly frontal slight-overhead static figure, all extremities in generous genuinely ALPHA transparent margins. Native body64px high, at most52px wide on a64px-per-cell reference. ONE figure only; no sheet, text, ground, scene, shadow, glow, magic or particles. Clear restrained game sprite source, not photo,3D, cute, chibi, tiny bones or noisy cracks. Appearance proposal only, no rules defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-62034524-3797-4084-a9a6-5e166c2ae57f.png",
+      "source_sha256": "934b480c6a32546c5ab4cfb917bf3a2d8f8f8f0c37d7ece0f30c9a01a642bb01",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/SQUE-01-r01-shadow64.png",
+        "sha256": "4c96c0e41ee5795713fcba8cede20636e5b9c379d32fdbfa2df363f9f622180a",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            62,
+            95
+          ],
+          "width": 37,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 286,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              52,
+              46,
+              43
+            ],
+            "target": [
+              42,
+              48,
+              46
+            ]
+          },
+          {
+            "source": [
+              104,
+              98,
+              84
+            ],
+            "target": [
+              84,
+              96,
+              92
+            ]
+          },
+          {
+            "source": [
+              128,
+              69,
+              40
+            ],
+            "target": [
+              65,
+              118,
+              100
+            ]
+          },
+          {
+            "source": [
+              163,
+              126,
+              98
+            ],
+            "target": [
+              111,
+              150,
+              137
+            ]
+          },
+          {
+            "source": [
+              196,
+              186,
+              151
+            ],
+            "target": [
+              153,
+              180,
+              171
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-01-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            32,
+            84,
+            96
+          ],
+          "colors": 22,
+          "sha256": "d27564d13a3bcd74caf786e2f494172f831ed48414d9f4aea6f6a715fdc4f8bc",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-01-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            32,
+            84,
+            96
+          ],
+          "colors": 22,
+          "sha256": "afc09289562d31c210025b758b5632dd4d3aef07d54e5742ec71679dea7ef103",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "SQUE-02",
+      "number": 129,
+      "revision": "r01",
+      "label": "Squelette entravé",
+      "family": "Squelettes",
+      "maximum_body_height64": 66,
+      "maximum_body_width64": 58,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/SQUE-02-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 190,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create ONE original ordinary SKELETON enemy for Project RL, matching the attached approved player's clean dark contours, broad flat masses, two or three values and one simple shadow plane. Reference is for graphic style only, not armor or pose.\nLean adult skeleton with simplified dry dull IVORY bones, small simple skull with two black eye cavities and CLOSED jaw, exactly TWO arms and TWO legs. ONE plain tattered charcoal-and-muted ochre cloth wrap covers hips and upper thighs. Each wrist retains ONE broad open dark iron restraint cuff, with just THREE large broken links between wrists, all links connected and visible. Shoulders bowed, long arms drooping, knees bent and broad bony feet planted apart. Each limb shown in a few thick bone shapes, no tiny ribs or finger forest. No flesh, blood, organs, armor, helmet, sword, crown, regal cape or glow.\nNative body66px high and at most58px wide on a64px cell. Complete single nearly frontal static figure, slight overhead view, all extremities within genuine alpha-transparent margins. No other figure, inset, label, background, ground, baked shadow, particles or spell. Dark adult fantasy design, no cute proportions, photorealism,3D or noisy cracks. No stats, new abilities or encounters defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-8f3e4019-2a35-4a1b-80bc-be5ef25c53c3.png",
+      "source_sha256": "eafe23cf39b7bd1b1f04a3c90abadbdafb52d9b771963b2d52759da8e2cc5884",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/SQUE-02-r01-shadow64.png",
+        "sha256": "b935f4180e1b3e55f78228b351e57eea25d881917dca63bb4297a3ca7eba8710",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            64,
+            95
+          ],
+          "width": 47,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 870,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              57,
+              53,
+              49
+            ],
+            "target": [
+              48,
+              52,
+              52
+            ]
+          },
+          {
+            "source": [
+              85,
+              76,
+              64
+            ],
+            "target": [
+              66,
+              76,
+              78
+            ]
+          },
+          {
+            "source": [
+              92,
+              88,
+              79
+            ],
+            "target": [
+              77,
+              83,
+              85
+            ]
+          },
+          {
+            "source": [
+              110,
+              95,
+              78
+            ],
+            "target": [
+              82,
+              98,
+              101
+            ]
+          },
+          {
+            "source": [
+              119,
+              109,
+              93
+            ],
+            "target": [
+              94,
+              107,
+              109
+            ]
+          },
+          {
+            "source": [
+              133,
+              126,
+              112
+            ],
+            "target": [
+              110,
+              120,
+              122
+            ]
+          },
+          {
+            "source": [
+              158,
+              142,
+              119
+            ],
+            "target": [
+              122,
+              141,
+              145
+            ]
+          },
+          {
+            "source": [
+              179,
+              166,
+              144
+            ],
+            "target": [
+              144,
+              161,
+              165
+            ]
+          },
+          {
+            "source": [
+              203,
+              188,
+              161
+            ],
+            "target": [
+              162,
+              183,
+              187
+            ]
+          },
+          {
+            "source": [
+              223,
+              208,
+              180
+            ],
+            "target": [
+              179,
+              201,
+              205
+            ]
+          },
+          {
+            "source": [
+              244,
+              231,
+              202
+            ],
+            "target": [
+              199,
+              220,
+              224
+            ]
+          },
+          {
+            "source": [
+              254,
+              249,
+              213
+            ],
+            "target": [
+              209,
+              230,
+              234
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-02-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            30,
+            85,
+            96
+          ],
+          "colors": 23,
+          "sha256": "b3d0ff60fcfad9f8bf5a473d39902ad1243d5f44e519247bee3d54411d70b3c9",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/SQUE-02-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            30,
+            85,
+            96
+          ],
+          "colors": 23,
+          "sha256": "937fc49d81ecdb6c2c74f29c2a10e3c87fbdc77dcfcf79aa9eb5d2abfe3882c5",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "BRA-01",
+      "number": 130,
+      "revision": "r01",
+      "label": "Charbon ardent",
+      "family": "Créatures enflammées",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 62,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BRA-01-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 205,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create ONE original ordinary FLAMING DEMON source for Project RL. Match the attached approved player and weapons GRAPHIC STYLE only: clean dark contours, broad flat colors, two or three values per material, one strong shadow plane, sparse broad highlights. Do not copy its human armor, helmet, sword or shield.\nAdult stocky nonhuman TWO-LEGGED demon with TWO long thick arms, heavy charcoal-black coarse hide, small blunt eyeless head and CLOSED dark mouth. Broad hooked hands, wide dark claw feet, bent hostile posture. Exactly THREE broad attached flame tongues rise from its upper shoulders and back: simple CLEAR ORANGE shapes with YELLOW inner planes, visibly connected to the body, not a surrounding aura. A few broad ember-orange material planes on the chest, no many cracks. Body stays clear and mostly charcoal, static fire depicted as part of this single still concept, no animated system implied.\nNative TOTAL figure height including flame tips64px, width at most62px, on a64px cell reference. Whole nearly frontal slight-overhead game pose inside generous truly ALPHA transparent margins. One ordinary demon, no boss signs, crown, wings, bone clutter, equipment, human face, blood, organs, tiny sparks, smoke, light bloom, halo, cast-light effect or baked shadow. No text, scene, inset or other figure. No photo or3D, chibi or cute mascot. Static fire appearance is explicitly requested; no burning rules, damage or abilities defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-2bc996f6-e569-402e-8247-cce42fca2f2c.png",
+      "source_sha256": "55e75b60ef3a82b002b147b8fcc427334ba345cb80d53ff1da748cee37afa9a4",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/BRA-01-r01-shadow64.png",
+        "sha256": "172095fd722f687dc32c8851b6d38aa7c3e98f45bcbc70bfe5c276aa018d5b10",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            50,
+            95
+          ],
+          "width": 21,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 409,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              55,
+              36,
+              28
+            ],
+            "target": [
+              34,
+              44,
+              51
+            ]
+          },
+          {
+            "source": [
+              132,
+              57,
+              13
+            ],
+            "target": [
+              50,
+              92,
+              121
+            ]
+          },
+          {
+            "source": [
+              152,
+              84,
+              44
+            ],
+            "target": [
+              75,
+              113,
+              140
+            ]
+          },
+          {
+            "source": [
+              158,
+              110,
+              74
+            ],
+            "target": [
+              95,
+              124,
+              145
+            ]
+          },
+          {
+            "source": [
+              249,
+              163,
+              24
+            ],
+            "target": [
+              95,
+              173,
+              229
+            ]
+          },
+          {
+            "source": [
+              252,
+              227,
+              80
+            ],
+            "target": [
+              129,
+              189,
+              232
+            ]
+          },
+          {
+            "source": [
+              254,
+              113,
+              14
+            ],
+            "target": [
+              93,
+              175,
+              234
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-01-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            33,
+            32,
+            95,
+            96
+          ],
+          "colors": 24,
+          "sha256": "8dbef49e336de434a28caeefe2f54b652c46d58de4500a5699df8ea50d513f4d",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-01-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            33,
+            32,
+            95,
+            96
+          ],
+          "colors": 24,
+          "sha256": "53252f3d135549a892917b720f431e8d1a7ea81b8ee6e95f3f9458b84064b9a5",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "BRA-02",
+      "number": 131,
+      "revision": "r01",
+      "label": "Bête des braises",
+      "family": "Créatures enflammées",
+      "maximum_body_height64": 48,
+      "maximum_body_width64": 88,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BRA-02-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 195,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create ONE original ordinary FOUR-LEGGED FLAMING BEAST for Project RL, drawn in the same clean dark-contour flat comic style as the attached player and weapon reference. Two or three large values per material, one main shadow plane, no fine texture, photorealism or3D. Reference is only style, not human anatomy or armor.\nBroad low adult infernal quadruped with a long dark charcoal-russet muscular body, low wedge head, two tiny dark eyes, CLOSED heavy jaw, exactly FOUR sturdy legs ending in broad black hooked claws, short thick tail. TWO large attached ORANGE flame crests with simple YELLOW inner planes grow directly from the upper back, one behind the shoulders and one at the rear. Flame shapes are broad, sparse and clearly separated, not a continuous aura or background. Underbelly a single dull ochre plane. Menacing stalking posture, all four feet visible.\nNative TOTAL figure including flames48px high, at most88px wide,64px-per-cell reference. Complete single nearly frontal slight-overhead static creature inside generous actual ALPHA transparent margins. No ground, environment, text, other figure, inset, baked shadow, smoke, sparks, particles, glow/bloom, halo, wings, machinery, collar, crown, many horns, skeleton, blood or gore. No cute or childlike face. Static visible flame design requested by user; no animation, fire damage, statuses or combat mechanics are defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-3964db09-fc17-423a-a5f0-dc93d4e3274b.png",
+      "source_sha256": "4e5608657b2624a626395235a0d9468078bb401300daa08d43f5c502684610a2",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-24/BRA-02-r01-shadow64.png",
+        "sha256": "eb86c23093b89a87126ff0f66759c83cca832eb43d3f7d0e9adcd047b4de2df3",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            56,
+            95
+          ],
+          "width": 48,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 820,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              59,
+              49,
+              49
+            ],
+            "target": [
+              48,
+              53,
+              54
+            ]
+          },
+          {
+            "source": [
+              60,
+              32,
+              25
+            ],
+            "target": [
+              34,
+              50,
+              55
+            ]
+          },
+          {
+            "source": [
+              81,
+              36,
+              24
+            ],
+            "target": [
+              40,
+              66,
+              75
+            ]
+          },
+          {
+            "source": [
+              88,
+              48,
+              34
+            ],
+            "target": [
+              49,
+              73,
+              81
+            ]
+          },
+          {
+            "source": [
+              101,
+              48,
+              36
+            ],
+            "target": [
+              54,
+              83,
+              93
+            ]
+          },
+          {
+            "source": [
+              118,
+              79,
+              40
+            ],
+            "target": [
+              62,
+              97,
+              109
+            ]
+          },
+          {
+            "source": [
+              130,
+              54,
+              24
+            ],
+            "target": [
+              56,
+              104,
+              120
+            ]
+          },
+          {
+            "source": [
+              220,
+              86,
+              5
+            ],
+            "target": [
+              81,
+              172,
+              202
+            ]
+          },
+          {
+            "source": [
+              232,
+              124,
+              19
+            ],
+            "target": [
+              86,
+              182,
+              213
+            ]
+          },
+          {
+            "source": [
+              251,
+              206,
+              31
+            ],
+            "target": [
+              99,
+              198,
+              231
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-02-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            35,
+            48,
+            93,
+            96
+          ],
+          "colors": 21,
+          "sha256": "95443aa13e5b83323030f6b083121021bf83f0508c1b399d6959b1ed3400710c",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/cultes-24/tiles/BRA-02-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            35,
+            48,
+            93,
+            96
+          ],
+          "colors": 21,
+          "sha256": "294476ba6ae4c7bcad853e2461f01fbc71e482eba9ba5fcef9bb8642aa539e60",
+          "visual_approved": false
+        }
+      ]
+    }
+  ],
+  "style_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+    "sha256": "b2309124fde55808415378da561f5f26b0d7936688edefa257a8f938c58d4e2b",
+    "role": "Sources acceptees du joueur et de ses armes : contours, aplats et ombrages"
+  },
+  "player_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "foot_anchor": [
+      64,
+      96
+    ]
+  },
+  "preview_scale": 1,
+  "zoom_previews_generated": false,
+  "preview_sheets": [
+    "artifacts/npc-monsters-review-01/cultes-24/demons-116-119.png",
+    "artifacts/npc-monsters-review-01/cultes-24/demons-120-123.png",
+    "artifacts/npc-monsters-review-01/cultes-24/demons-124-127.png",
+    "artifacts/npc-monsters-review-01/cultes-24/demons-128-131.png"
+  ],
+  "generated_source_count": 16,
+  "active_candidate_count": 16,
+  "listed_in": "monster-candidate-list.json",
+  "catalogue_image": "artifacts/npc-monsters-review-01/catalogue/monstres-candidats-native64.png",
+  "static_appearance_only": true,
+  "fire_and_spirits_note": "Static silhouettes only. No new animation, aura, burning, flight or combat rules are implemented or approved."
+}

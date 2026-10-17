@@ -31,7 +31,7 @@ impl AsciiApp {
         .parse()
         .unwrap();
         self.open_menu(MenuScreen::Main);
-        self.enter_test_lab()?;
+        self.enter_legacy_equipment_lab()?;
         let item = self
             .game
             .player_inventory()
@@ -275,7 +275,7 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let mut app = AsciiApp::from_seed(128, rules, texts, loot, expeditions).unwrap();
         app.open_menu(MenuScreen::Main);
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         for id in equipment_generation::TACTICAL_BASE_IDS {
             let entry = app
                 .game

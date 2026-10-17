@@ -1,0 +1,216 @@
+{
+  "review_id": "NPC-MONSTERS-07",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "status": "visually_approved_not_integrated",
+  "request": "parfait on continue",
+  "scope": "Révisions lisibles des PNJ de services 02–04 : armurier, secouriste et technicien ; mêmes identifiants, aucun nouveau service ou effet défini.",
+  "native_cell": 64,
+  "records": [
+    {
+      "id": "NPC-02",
+      "number": 2,
+      "revision": "r02",
+      "label": "Armurier",
+      "role": "PNJ / équipement",
+      "depth": "Refuge",
+      "width": 48,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised full-body NPC appearance source for Project RL, a grim industrial cyberpunk roguelike, native 64px tiles.\nInput image 1 is the EDIT TARGET: keep that service character's human identity, sex, hair, adult build and basic costume identity, while revising its readability and professional props as described. Input image 2 is ONLY a style reference for clean bold comic contours, large flat material masses and restrained shading. Do NOT copy the cultist's hood, mask, uniform, baton or pose.\nStyle: compact mature adult game proportions, around five heads tall, matching the accepted humans' standing height. Broad flat shapes, ONE clear shadow per material, very few purposeful lines. No fine cloth polygon patchwork, wear flecks, little buckles, tiny seams, dense straps, armor panel clutter or photographic texture. Strong natural hand/prop connection.\nComposition: ONE complete standing character, nearly frontal and slightly viewed from above, head, hands, equipment and boot soles fully inside generous true ALPHA transparent margins. No background, ground, contact shadow, glow, text, symbols, alternate views or other figures. Dark calm industrial setting expressed through clothes and attitude only. Static appearance proposal; no new game service, powers, statistics or effects.\nSubject: revise the stocky middle-aged male ARMORER of image 1. Retain his short greying hair/beard, stern tired face and raised amber work goggles. Broader shoulders and short practical stance, intact normal human anatomy.\nKeep a broad dark TEAL work shirt, rolled sleeves and ONE heavy charcoal leather APRON ending near knees. Plain muted grey work trousers and heavy dark steel-toed boots. Two main large garment masses are teal and charcoal; amber goggles are a small accent. Remove the many bright straps, pale armor patches and segmented guards. One plain belt and a single apron pocket are enough.\nBoth large dark work gloves hold ONE short dark-steel FIREARM RECEIVER/BARREL ASSEMBLY horizontally across the lower chest and upper apron. It is an unfinished angular compact rifle mechanism with a short barrel pointing to viewer LEFT, held down and safely, without aiming or combat pose. The LEFT glove supports the rear receiver from below, the RIGHT glove wraps under the forward barrel assembly. Both normal-length elbows bent naturally, two clearly attached gloves. Expose teal shirt shoulders and much of the apron below it. ONE broad dull steel plane makes the part visible against apron. No muzzle light, ammunition belts, holstered guns or other weapons. This prop shows a craftsperson's work; it creates no weapon model or repair mechanic.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-02-r01.png",
+          "role": "Cible de révision non validée : identité et tenue de métier"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Référence de style validée : masses et contours ; aucun élément du culte à reprendre"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-d233fbc2-1e97-4ea6-b0bd-b1d06bfa648e.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-02-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 48,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-07",
+      "layering_status": "Static clothed service-character and prop study; modular body, arm, prop and finger layers not authored",
+      "source_sha256": "20e48d138d317815fee6e87fc119264e30a2c0dc92f2aaa82af8bfc6a09ceeee",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/NPC-02-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          49,
+          36,
+          80,
+          96
+        ],
+        "colors": 18,
+        "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6"
+      },
+      "visual_acceptance": "visual-acceptance-04.json",
+      "accepted_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          49,
+          36,
+          80,
+          96
+        ],
+        "colors": 18,
+        "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6"
+      }
+    },
+    {
+      "id": "NPC-03",
+      "number": 3,
+      "revision": "r02",
+      "label": "Secouriste",
+      "role": "PNJ / soins",
+      "depth": "Refuge",
+      "width": 44,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised full-body NPC appearance source for Project RL, a grim industrial cyberpunk roguelike, native 64px tiles.\nInput image 1 is the EDIT TARGET: keep that service character's human identity, sex, hair, adult build and basic costume identity, while revising its readability and professional props as described. Input image 2 is ONLY a style reference for clean bold comic contours, large flat material masses and restrained shading. Do NOT copy the cultist's hood, mask, uniform, baton or pose.\nStyle: compact mature adult game proportions, around five heads tall, matching the accepted humans' standing height. Broad flat shapes, ONE clear shadow per material, very few purposeful lines. No fine cloth polygon patchwork, wear flecks, little buckles, tiny seams, dense straps, armor panel clutter or photographic texture. Strong natural hand/prop connection.\nComposition: ONE complete standing character, nearly frontal and slightly viewed from above, head, hands, equipment and boot soles fully inside generous true ALPHA transparent margins. No background, ground, contact shadow, glow, text, symbols, alternate views or other figures. Dark calm industrial setting expressed through clothes and attitude only. Static appearance proposal; no new game service, powers, statistics or effects.\nSubject: revise the adult female MEDIC in image 1. Retain her tied-up dark hair, amber goggles pushed onto forehead, normal human face, athletic/slim build and calm severe expression. She looks exhausted but capable, not glamorous.\nUse an OLIVE practical knee-length work coat with ONE broad IVORY washable front panel and ivory forearm cuffs. Plain olive trousers, simple dark practical boots, one black waist belt. Keep a single small muted brick-red sleeve patch with a plain ivory rectangular inset, no writing or cross. Remove the armored shoulder plates, bulky segmented wrist/leg armor and many pouches. Give her a civilian emergency-worker silhouette rather than a combat medic suit.\nHer RIGHT glove (viewer LEFT) holds the single broad handle of ONE closed rectangular MEDICAL CASE down beside her right thigh. Case is about hip-to-knee height and sits clearly outside the coat silhouette; simple dull IVORY shell with ONE broad brick-red horizontal panel. Hand visibly wraps over the handle, forearm hangs at normal length. The other hand rests near waist, unarmed. Keep both boots visible and case bottom well ABOVE ground, so carrying it does not shrink the body. No syringe, liquid, blood, hologram, surgical gore, health aura or floating symbols. The readable primary sign is the rectangular carried medical case.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-03-r01.png",
+          "role": "Cible de révision non validée : identité et tenue de métier"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Référence de style validée : masses et contours ; aucun élément du culte à reprendre"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-e34486b4-bc6d-4b4b-911f-91523b0a05c6.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-03-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 44,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-07",
+      "layering_status": "Static clothed service-character and prop study; modular body, arm, prop and finger layers not authored",
+      "source_sha256": "3ee7bcaf86e718c19b0a3803d89da47415b4a2ecaf743bf224d109e0ab7c2d17",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/NPC-03-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          50,
+          36,
+          78,
+          96
+        ],
+        "colors": 20,
+        "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7"
+      },
+      "visual_acceptance": "visual-acceptance-04.json",
+      "accepted_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          50,
+          36,
+          78,
+          96
+        ],
+        "colors": 20,
+        "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7"
+      }
+    },
+    {
+      "id": "NPC-04",
+      "number": 4,
+      "revision": "r02",
+      "label": "Technicien",
+      "role": "PNJ / service technique",
+      "depth": "Refuge",
+      "width": 46,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised full-body NPC appearance source for Project RL, a grim industrial cyberpunk roguelike, native 64px tiles.\nInput image 1 is the EDIT TARGET: keep that service character's human identity, sex, hair, adult build and basic costume identity, while revising its readability and professional props as described. Input image 2 is ONLY a style reference for clean bold comic contours, large flat material masses and restrained shading. Do NOT copy the cultist's hood, mask, uniform, baton or pose.\nStyle: compact mature adult game proportions, around five heads tall, matching the accepted humans' standing height. Broad flat shapes, ONE clear shadow per material, very few purposeful lines. No fine cloth polygon patchwork, wear flecks, little buckles, tiny seams, dense straps, armor panel clutter or photographic texture. Strong natural hand/prop connection.\nComposition: ONE complete standing character, nearly frontal and slightly viewed from above, head, hands, equipment and boot soles fully inside generous true ALPHA transparent margins. No background, ground, contact shadow, glow, text, symbols, alternate views or other figures. Dark calm industrial setting expressed through clothes and attitude only. Static appearance proposal; no new game service, powers, statistics or effects.\nSubject: revise the adult female TECHNICIAN in image 1. Retain her short asymmetric dark hair with shaved side, hearing-protection ear cups, warm normal human face, compact practical build, orange work overalls, short olive jacket and pale industrial prosthetic RIGHT forearm (viewer LEFT). This prosthesis is a normal practical replacement, not a monstrous graft. ONE elbow swivel disc and ONE broad ivory forearm casing are enough; keep normal arm length and a simple five-finger mechanical hand. No exposed tubes or anatomy.\nUse ORANGE overalls as ONE large garment mass and a short OLIVE work jacket as the other. Charcoal work boots, simple black belt, single rectangular utility pouch. Remove repeated little pockets, strap buckles, armored knees, bright shoulder gadgets and patchwork of internal cloth triangles. No chest armor or military helmet.\nThe prosthetic RIGHT hand (viewer LEFT) holds ONE short thick OPEN-ENDED INDUSTRIAL WRENCH, angled slightly outward and down, clearly separated from the overalls. Thumb/fingers encircle its thick grip; simple dull grey broad shaft and ONE visible open U jaw. Tool about forearm length, not a giant fantasy weapon. Her natural LEFT hand (viewer RIGHT), in a dark glove, rests on a plain small belt-mounted diagnostic block. No active screen graphics, no floating drone, no summoned machine, electrical effects or guns. Her unmistakable signs are orange overalls, hearing protection and ivory tool-holding forearm.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-04-r01.png",
+          "role": "Cible de révision non validée : identité et tenue de métier"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Référence de style validée : masses et contours ; aucun élément du culte à reprendre"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-aca7518b-1321-459f-add0-535fee811618.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-04-r02.png",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 46,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-07",
+      "layering_status": "Static clothed service-character and prop study; modular body, arm, prop and finger layers not authored",
+      "source_sha256": "336964dd9b09beee80705e8bb719a4cde226eff3d0bb900a3a7abb8483b07415",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/NPC-04-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          50,
+          36,
+          79,
+          96
+        ],
+        "colors": 20,
+        "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac"
+      },
+      "visual_acceptance": "visual-acceptance-04.json",
+      "accepted_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          50,
+          36,
+          79,
+          96
+        ],
+        "colors": 20,
+        "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac"
+      }
+    }
+  ],
+  "visual_acceptance": "visual-acceptance-04.json"
+}

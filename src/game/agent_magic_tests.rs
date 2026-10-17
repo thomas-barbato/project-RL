@@ -37,6 +37,135 @@ fn hits(g: &GameState, e: EntityId) -> usize {
         .filter(|ev| matches!(ev,GameEvent::DamageApplied{target,..}if *target==e))
         .count()
 }
+
+#[test]
+fn agent_magic_dense_areas_damage_every_recipient_and_apply_guaranteed_statuses() {
+    let template = arena(&[]);
+    for id in ["A02", "FE02", "FE03", "FE04", "FE05", "FR02", "FR04"] {
+        let mut game = GameState::new_with_rules(
+            template.map.clone(),
+            template.player_position().unwrap(),
+            19,
+            template.rules.clone(),
+        )
+        .unwrap();
+        // Effective ranks above ten are supported by equipment. At this rank
+        // these status chances reach their authored 100% cap, exposing quotas.
+        game.player_skills.set_agent_skill_rank(id, 31);
+        game.player_energy = crate::resources::EnergyReserve::new(60000, 60000).unwrap();
+        let selected = GridPos::new(6, 3);
+        let cells: Vec<_> = game
+            .agent_spell_preview(id, selected)
+            .unwrap()
+            .cells()
+            .iter()
+            .map(|c| c.position)
+            .collect();
+        let mut victims = Vec::new();
+        for at in cells {
+            if game.actors.entity_at(at).is_none() {
+                victims.push(enemy(&mut game, at, 60000));
+            }
+        }
+        // A projectile can intercept an earlier occupant. Use its actual
+        // committed preview, rather than assuming the cursor is its epicenter.
+        let preview = game.agent_spell_preview(id, selected).unwrap();
+        let expected: Vec<_> = victims
+            .into_iter()
+            .filter(|v| {
+                let at = game.actors.get(*v).unwrap().position();
+                preview.cells().iter().any(|c| c.position == at)
+            })
+            .collect();
+        assert!(expected.len() > 3, "{id}: dense area fixture");
+        assert_eq!(
+            game.process_player_command(cast(id, selected)),
+            CommandOutcome::Applied,
+            "{id}"
+        );
+        for _ in 0..3 {
+            if expected
+                .iter()
+                .all(|v| game.actors.get(*v).unwrap().integrity() < 60000)
+            {
+                break;
+            }
+            game.process_player_command(GameCommand::Wait);
+        }
+        for victim in expected {
+            let actor = game.actors.get(victim).unwrap();
+            assert!(actor.integrity() < 60000, "{id}: no damage on {victim:?}");
+            let status = if id.starts_with("FE") {
+                Some("core:burning")
+            } else if id.starts_with("FR") {
+                Some("agent:frozen")
+            } else {
+                None
+            };
+            if let Some(status) = status {
+                assert!(
+                    actor.status(&status.parse().unwrap()).is_some(),
+                    "{id}: missing {status} on {victim:?}"
+                );
+            }
+        }
+    }
+}
+
+#[test]
+fn agent_magic_breath_rolls_burn_for_each_victim_without_gating_their_damage() {
+    let mut game = arena(&["FE02"]);
+    game.player_skills.set_agent_skill_rank("FE02", 10);
+    let selected = GridPos::new(8, 3);
+    let cells: Vec<_> = game
+        .agent_spell_preview("FE02", selected)
+        .unwrap()
+        .cells()
+        .iter()
+        .map(|c| c.position)
+        .collect();
+    let origin = game.player_position().unwrap();
+    let victims: Vec<_> = cells
+        .into_iter()
+        .filter(|at| *at != origin)
+        .map(|at| enemy(&mut game, at, 60000))
+        .collect();
+    game.rng = GameRng::from_seed(14);
+    let mut expected_rng = game.rng;
+    let chance = crate::skills::agent::definition("FE02")
+        .unwrap()
+        .value("burn_chance_percent", 10);
+    let expected: BTreeSet<_> = victims
+        .iter()
+        .copied()
+        .filter(|_| u16::from(expected_rng.percentile()) <= chance)
+        .collect();
+    assert!(expected.len() > 3 && expected.len() < victims.len());
+    assert_eq!(
+        game.process_player_command(cast("FE02", selected)),
+        CommandOutcome::Applied
+    );
+    let actual: BTreeSet<_> = victims
+        .iter()
+        .copied()
+        .filter(|v| {
+            game.actors
+                .get(*v)
+                .unwrap()
+                .status(&"core:burning".parse().unwrap())
+                .is_some()
+        })
+        .collect();
+    assert_eq!(
+        actual, expected,
+        "one burn roll per victim, not one shared roll"
+    );
+    assert!(
+        victims
+            .iter()
+            .all(|v| game.actors.get(*v).unwrap().integrity() < 60000)
+    );
+}
 #[test]
 fn agent_magic_invalid_targets_and_previews_are_atomic() {
     for id in [

@@ -1,6 +1,7 @@
 //! Recolor authored material labels; geometry, steel, skin and outlines stay fixed.
 use super::*;
 use std::collections::BTreeMap;
+include!("game_art_equipment_catalog.rs");
 pub(super) fn decoded(bytes: &[u8]) -> Image {
     Image::from_file_with_format(bytes, Some(ImageFormat::Png)).expect("valid embedded sprite")
 }
@@ -78,7 +79,71 @@ struct ItemSources {
     items: Image,
     flat_outfits: Image,
     materials: Image,
-    cache: BTreeMap<(u16, EquipmentPalette), (Texture2D, f64)>,
+    native: NativeItems,
+    cache: BTreeMap<(u16, EquipmentPalette, u16), (Texture2D, f64)>,
+}
+struct NativeItems {
+    large: Image,
+    small: Image,
+    large_maps: Image,
+    small_maps: Image,
+}
+impl NativeItems {
+    fn load() -> Self {
+        Self {
+            large: decoded(include_bytes!(
+                "../assets/sprites/equipment-native64/icons-64.png"
+            )),
+            small: decoded(include_bytes!(
+                "../assets/sprites/equipment-native64/icons-32.png"
+            )),
+            large_maps: decoded(include_bytes!(
+                "../assets/sprites/equipment-native64/materials-64.png"
+            )),
+            small_maps: decoded(include_bytes!(
+                "../assets/sprites/equipment-native64/materials-32.png"
+            )),
+        }
+    }
+    fn image(
+        &self,
+        illustration: u16,
+        palette: EquipmentPalette,
+        resolution: u16,
+    ) -> Option<Image> {
+        let &(_, index, variants) = NATIVE_ITEMS.iter().find(|(i, _, _)| *i == illustration)?;
+        let index = index
+            + if variants {
+                authored_variant(palette)
+            } else {
+                0
+            };
+        let (sheet, maps) = if resolution == 64 {
+            (&self.large, &self.large_maps)
+        } else {
+            (&self.small, &self.small_maps)
+        };
+        let mut image = cell(sheet, index, resolution);
+        if !variants {
+            recolor(&mut image, &cell(maps, index, resolution), palette);
+        }
+        Some(image)
+    }
+}
+pub(super) fn authored_variant(palette: EquipmentPalette) -> u16 {
+    match palette {
+        EquipmentPalette::Original => 0,
+        EquipmentPalette::ReviewedVariant1
+        | EquipmentPalette::Blue
+        | EquipmentPalette::Violet
+        | EquipmentPalette::Turquoise => 1,
+        _ => 2,
+    }
+}
+fn item_resolution(rect: Rect) -> u16 {
+    // Ground items can be inset inside a 64px tile. Select by their actual
+    // destination size so a 56px icon never enlarges a 32px source.
+    if rect.w.max(rect.h) > 32.0 { 64 } else { 32 }
 }
 thread_local! {
     #[cfg(debug_assertions)]
@@ -86,41 +151,34 @@ thread_local! {
     static ITEMS: std::cell::RefCell<ItemSources> = std::cell::RefCell::new(ItemSources {
         items: decoded(include_bytes!("../assets/sprites/cyberpunk/crawl-items-32.png")),
         flat_outfits: decoded(include_bytes!("../assets/sprites/flat-agents/outfit-icons-32.png")),
-        materials: decoded(include_bytes!("../assets/sprites/cyberpunk/crawl-item-materials-32.png")),cache: BTreeMap::new(),
+        materials: decoded(include_bytes!("../assets/sprites/cyberpunk/crawl-item-materials-32.png")),
+        native: NativeItems::load(), cache: BTreeMap::new(),
     });
 }
 pub(super) fn prewarm() {
     ITEMS.with(|_| {});
 }
-pub(super) fn draw_item(
-    rect: Rect,
-    art: ItemArt,
-    palette: EquipmentPalette,
-    _side: u16,
-    opacity: f32,
-) {
+pub(super) fn draw_item(rect: Rect, art: ItemArt, palette: EquipmentPalette, opacity: f32) {
+    let resolution = item_resolution(rect);
     ITEMS.with(|sources| {
         let mut sources = sources.borrow_mut();
-        let key = (art.illustration, palette);
+        let key = (art.illustration, palette, resolution);
         if !sources.cache.contains_key(&key) {
-            let image = if let Some(outfit) = flat_outfit(art.illustration) {
-                let variant = match palette {
-                    EquipmentPalette::Original => 0,
-                    EquipmentPalette::ReviewedVariant1
-                    | EquipmentPalette::Blue
-                    | EquipmentPalette::Violet
-                    | EquipmentPalette::Turquoise => 1,
-                    EquipmentPalette::ReviewedVariant2 => 2,
-                    _ => 2,
+            let image =
+                if let Some(image) = sources.native.image(art.illustration, palette, resolution) {
+                    image
+                } else if let Some(outfit) = flat_outfit(art.illustration) {
+                    // Unbound reference outfits and retired save content retain
+                    // their historical source; current equipment uses NativeItems.
+                    let variant = authored_variant(palette);
+                    cell(&sources.flat_outfits, outfit * 3 + variant, 32)
+                } else {
+                    let mut image = cell(&sources.items, art.illustration, 32);
+                    let mask = cell(&sources.materials, art.illustration, 32);
+                    recolor_default_item(&mut image, &mask, art.illustration);
+                    recolor(&mut image, &mask, palette);
+                    image
                 };
-                cell(&sources.flat_outfits, outfit * 3 + variant, 32)
-            } else {
-                let mut image = cell(&sources.items, art.illustration, 32);
-                let mask = cell(&sources.materials, art.illustration, 32);
-                recolor_default_item(&mut image, &mask, art.illustration);
-                recolor(&mut image, &mask, palette);
-                image
-            };
             let sprite = Texture2D::from_image(&image);
             sprite.set_filter(FilterMode::Nearest);
             evict(&mut sources.cache, 256);
@@ -154,6 +212,14 @@ fn flat_outfit(illustration: u16) -> Option<u16> {
     }
 }
 
+pub(super) fn reviewed_outfit(illustration: u16) -> Option<u16> {
+    flat_outfit(illustration).map(|i| 200 + i).or_else(|| {
+        EXTENDED_TORSOS
+            .iter()
+            .find_map(|&(item, outfit)| (item == illustration).then_some(outfit))
+    })
+}
+
 #[cfg(debug_assertions)]
 pub(super) fn cache_stats() -> (usize, usize) {
     (
@@ -161,7 +227,7 @@ pub(super) fn cache_stats() -> (usize, usize) {
         CREATIONS.with(|c| c.get()),
     )
 }
-pub(super) fn evict<K: Copy + Ord>(cache: &mut BTreeMap<K, (Texture2D, f64)>, limit: usize) {
+pub(super) fn evict<K: Copy + Ord, V>(cache: &mut BTreeMap<K, (V, f64)>, limit: usize) {
     if cache.len() >= limit {
         if let Some(key) = cache
             .iter()
@@ -175,6 +241,125 @@ pub(super) fn evict<K: Copy + Ord>(cache: &mut BTreeMap<K, (Texture2D, f64)>, li
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn all_current_weapon_and_armor_ids_use_the_reviewed_bank() {
+        let catalog: serde_json::Value =
+            serde_json::from_str(include_str!("../assets/sprites/cyberpunk/manifest.json"))
+                .unwrap();
+        let review: serde_json::Value = serde_json::from_str(include_str!(
+            "../docs/reviews/refonte-agent-2026-10-06/equipment-native64-01/review.json"
+        ))
+        .unwrap();
+        let bank = NativeItems::load();
+        let mut checked = 0;
+        for entry in catalog["items"].as_array().unwrap() {
+            let id = entry["id"].as_str().unwrap();
+            if review["excluded_ids"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .any(|e| e == id)
+                || !(entry["icon"] == 2 || held_weapon(id).is_some())
+            {
+                continue;
+            }
+            let art = item(id).unwrap();
+            for resolution in [32, 64] {
+                let image = bank
+                    .image(art.illustration, EquipmentPalette::Original, resolution)
+                    .unwrap_or_else(|| panic!("missing equipment {id} at {resolution}px"));
+                assert_eq!((image.width, image.height), (resolution, resolution));
+                assert!(image.bytes.chunks_exact(4).any(|p| p[3] > 0));
+            }
+            checked += 1;
+        }
+        assert_eq!(checked, 139);
+        for id in [
+            "core:tenue_assaut",
+            "core:tenue_technique",
+            "core:tenue_traque",
+            "core:tenue_rituelle",
+            "core:tenue_metamorphe",
+        ] {
+            assert!(
+                bank.image(
+                    item(id).unwrap().illustration,
+                    EquipmentPalette::Original,
+                    64
+                )
+                .is_some()
+            );
+        }
+    }
+    #[test]
+    fn native64_equipment_never_reuses_an_enlarged_32px_frame() {
+        let bank = NativeItems::load();
+        for &(illustration, _, variants) in NATIVE_ITEMS {
+            for palette in [
+                EquipmentPalette::Original,
+                EquipmentPalette::ReviewedVariant1,
+                EquipmentPalette::ReviewedVariant2,
+            ]
+            .into_iter()
+            .take(if variants { 3 } else { 1 })
+            {
+                let large = bank.image(illustration, palette, 64).unwrap();
+                let small = bank.image(illustration, palette, 32).unwrap();
+                assert!(
+                    (0..64).any(|y| (0..64)
+                        .any(|x| { large.get_pixel(x, y) != small.get_pixel(x / 2, y / 2) })),
+                    "enlarged source for {illustration}/{palette:?}"
+                );
+            }
+        }
+        assert_eq!(item_resolution(Rect::new(0.0, 0.0, 56.0, 56.0)), 64);
+        assert_eq!(item_resolution(Rect::new(0.0, 0.0, 64.0, 64.0)), 64);
+        assert_eq!(item_resolution(Rect::new(0.0, 0.0, 128.0, 128.0)), 64);
+        assert_eq!(item_resolution(Rect::new(0.0, 0.0, 32.0, 32.0)), 32);
+    }
+    #[test]
+    fn chrysalide_icons_use_the_existing_olive_palette_as_the_default() {
+        let bank = NativeItems::load();
+        let illustration = item("core:carapace_chrysalide").unwrap().illustration;
+        for side in [32, 64] {
+            let default = bank
+                .image(illustration, EquipmentPalette::Original, side)
+                .unwrap();
+            let olive = bank
+                .image(illustration, EquipmentPalette::ReviewedVariant1, side)
+                .unwrap();
+            let red = bank
+                .image(illustration, EquipmentPalette::ReviewedVariant2, side)
+                .unwrap();
+            assert_eq!(default.bytes, olive.bytes);
+            assert_ne!(default.bytes, red.bytes);
+        }
+    }
+    #[test]
+    fn equipment_repainting_preserves_transparency_and_protected_materials() {
+        let bank = NativeItems::load();
+        for &(illustration, index, variants) in NATIVE_ITEMS.iter().filter(|(_, _, v)| !v) {
+            assert!(!variants);
+            let original = bank
+                .image(illustration, EquipmentPalette::Original, 64)
+                .unwrap();
+            let mask = cell(&bank.large_maps, index, 64);
+            for palette in EquipmentPalette::ALL {
+                let image = bank.image(illustration, palette, 64).unwrap();
+                for ((a, b), label) in original
+                    .bytes
+                    .chunks_exact(4)
+                    .zip(image.bytes.chunks_exact(4))
+                    .zip(mask.bytes.chunks_exact(4))
+                {
+                    assert_eq!(a[3], b[3]);
+                    if label[0] == 0 {
+                        assert_eq!(a, b);
+                    }
+                }
+            }
+        }
+    }
     #[test]
     fn approved_default_weapon_materials_keep_item_alpha_and_protected_parts() {
         let items = decoded(include_bytes!(

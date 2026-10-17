@@ -1,0 +1,42 @@
+{
+  "review_id": "EQUIPMENT-NATIVE64-01",
+  "date": "2026-10-16",
+  "visual_acceptance": "pending",
+  "gameplay_fix": "Player drops accept an existing ground-loot pile; stable IDs and exact inventory properties retained. Authored placement validation is unchanged.",
+  "validation": {
+    "engine": "955 tests passed",
+    "client_body_appearance": "1 focused test passed",
+    "debug_build": "passed without compiler warnings",
+    "release_check": "passed; no release executable built",
+    "format_check": "passed",
+    "diff_check": "passed",
+    "html_javascript": "syntax checked with Node; no browser rendering claim",
+    "accepted_native64_compositions_unchanged": 576,
+    "worn_source_files_checked": 912,
+    "native64_icon_candidates": 176,
+    "new_visuals_integrated": false
+  },
+  "browser_review": "Automatic file:// opening rejected by browser policy; no alternate browser or server workaround attempted. Native-size contact sheets inspected locally.",
+  "outputs": [
+    {
+      "path": "artifacts/apercu-equipement64.html",
+      "bytes": 1174534,
+      "sha256": "4fa75719762733ecfd7218263a914cc38591712aeb5f5b146470a450edb8a34e"
+    },
+    {
+      "path": "artifacts/equipement64-controle.png",
+      "bytes": 110282,
+      "sha256": "d8c147b777e40231f86df3c744a8c139978b91921114361e1fe5e4eccbfa7df3"
+    },
+    {
+      "path": "artifacts/equipement64-tenues.png",
+      "bytes": 109855,
+      "sha256": "2b38fd917c9f2b8f21067102606877e978fc806c3fbe07696459b9273e53788c"
+    }
+  ],
+  "temporary_screenshots_created": 0,
+  "runtime_assets_deleted": 0,
+  "cleanup": "One reusable gallery and two compact review sheets retained pending acceptance; detailed sources and map-editor data preserved.",
+  "phase": "historical pre-integration snapshot",
+  "superseded_by": "integration-validation-01.json"
+}

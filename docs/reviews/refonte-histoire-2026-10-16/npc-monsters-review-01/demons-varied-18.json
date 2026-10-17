@@ -1,0 +1,1765 @@
+{
+  "review_id": "DEMONS-18",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen; one independent source per new design",
+  "status": "direction_superseded_by_arpg_references",
+  "user_statement": "je ne voulais pas dire que tous les démons pouvaient être plus petits que le joueur , précisement celui que je te montre devrait être à la taille du joueur. Ce que je te demande c'est de varier un peu les tailles :) , voila tout : ) Bref, disons que pour l'instant je continues à valider, tu me fais enormement de démons differents avec des design differents et plus tard je te dirais lesquels je valides / Refuses : )",
+  "direction": [
+    "Gabarits variés : petits, de la stature du joueur et plus imposants, sans confondre grande taille et rôle de chef.",
+    "Le 28 doit avoir la hauteur du joueur dans sa pose actuelle.",
+    "Élargir la galerie ; sélection et refus individuels plus tard, sans acceptation automatique ni intégration.",
+    "Ombres séparées, variations de palette, présentation native uniquement."
+  ],
+  "player_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "foot_anchor": [
+      64,
+      96
+    ]
+  },
+  "runtime_connected": false,
+  "records": [
+    {
+      "id": "DEMON-01",
+      "number": 40,
+      "revision": "r01",
+      "label": "Mâchoire basse",
+      "family": "Démons de chair",
+      "maximum_body_height64": 65,
+      "maximum_body_width64": 72,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-01-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 35,
+        "hue_max": 165,
+        "target_hue": 12,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nHUMAN-SIZED ordinary demon, planned65px high, not a tiny imp. A stocky upright hunched biped with TWO arms and TWO legs, thick OLIVE leathery hide and dull OCHRE belly. Head is a low broad wedge almost sunk between shoulders, a giant thick LOWER lip/jaw is its single identifying feature; closed mouth, only two blunt fang tips. No snout like a frog, horns, tail, wings or human face. Broad flat brow shadows cover tiny recessed eyes. Powerful forearms hang low, hands have three simple blunt digits. Feet planted naturally, no noble wide military stance. ONE wide soft fold on each shoulder and a smooth broad chest. No weapons or clothing, bones, elaborate spines or equipment.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "earlier_direction_set_aside_not_approved",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-2fa44a78-8851-430d-8edd-94fada2da289.png",
+      "source_sha256": "26d4d4a7a998252f07a26491af1c6db6f7d00ed3060b678beecfd9d742e7bdc1",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-18/DEMON-01-r01-shadow64.png",
+        "sha256": "8b870c5fbd723f02e75a625448883d177ca932ec1af9f90d76ca085c05327154",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            66,
+            95
+          ],
+          "width": 44,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1976,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              62,
+              56,
+              35
+            ],
+            "target": [
+              59,
+              42,
+              38
+            ]
+          },
+          {
+            "source": [
+              71,
+              66,
+              39
+            ],
+            "target": [
+              67,
+              48,
+              43
+            ]
+          },
+          {
+            "source": [
+              81,
+              73,
+              45
+            ],
+            "target": [
+              77,
+              55,
+              50
+            ]
+          },
+          {
+            "source": [
+              86,
+              80,
+              43
+            ],
+            "target": [
+              82,
+              56,
+              49
+            ]
+          },
+          {
+            "source": [
+              89,
+              84,
+              52
+            ],
+            "target": [
+              85,
+              62,
+              56
+            ]
+          },
+          {
+            "source": [
+              98,
+              87,
+              52
+            ],
+            "target": [
+              93,
+              65,
+              58
+            ]
+          },
+          {
+            "source": [
+              105,
+              95,
+              57
+            ],
+            "target": [
+              100,
+              71,
+              63
+            ]
+          },
+          {
+            "source": [
+              113,
+              105,
+              63
+            ],
+            "target": [
+              107,
+              77,
+              69
+            ]
+          },
+          {
+            "source": [
+              119,
+              111,
+              65
+            ],
+            "target": [
+              113,
+              80,
+              72
+            ]
+          },
+          {
+            "source": [
+              125,
+              116,
+              68
+            ],
+            "target": [
+              119,
+              84,
+              75
+            ]
+          },
+          {
+            "source": [
+              130,
+              110,
+              63
+            ],
+            "target": [
+              123,
+              83,
+              73
+            ]
+          },
+          {
+            "source": [
+              145,
+              120,
+              69
+            ],
+            "target": [
+              138,
+              92,
+              80
+            ]
+          },
+          {
+            "source": [
+              159,
+              134,
+              80
+            ],
+            "target": [
+              151,
+              103,
+              91
+            ]
+          },
+          {
+            "source": [
+              204,
+              172,
+              107
+            ],
+            "target": [
+              194,
+              135,
+              120
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-01-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            33,
+            31,
+            96,
+            96
+          ],
+          "colors": 20,
+          "sha256": "9a034de3bbf9d5cc5cdbdfc5d377b0f9c85e54b438979012e96d849489ef4548",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-01-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            33,
+            31,
+            96,
+            96
+          ],
+          "colors": 20,
+          "sha256": "df0fb83b390aaf9cadbb327d58ee7560e27d2e36e345f837b8127fecc55e3481",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "DEMON-02",
+      "number": 41,
+      "revision": "r01",
+      "label": "Écorché aux longues mains",
+      "family": "Démons de chair",
+      "maximum_body_height64": 68,
+      "maximum_body_width64": 64,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-02-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 65,
+        "target_hue": 180,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nHUMAN-SIZED lean nonhuman demon, planned68px high, normal adult stature. Tall narrow warm BEIGE flesh torso with a single broad dark-red recessed central fold, small smooth rounded eyeless head, closed narrow mouth, TWO very long forearms ending in broad low four-digit soft clawed hands, TWO plain bent strong legs. Elbows and hands remain fully connected, no extra limbs. Shoulder height asymmetrical, one hand almost reaches the calf, feet slightly apart. Sparse dark charcoal claw tips. No exposed rib cage, skeleton, bone armor, horns, hooks, spine forest, human patient clothes, machinery or dangling guts. Only long hands and smooth eyeless head should identify it. Flesh predominates; three broad tissue folds maximum.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "earlier_direction_set_aside_not_approved",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-4259c948-2849-4e17-8c63-d80c066ee1c6.png",
+      "source_sha256": "be7ef768ccdd13d86ec328705739b4c4501898de7b065fd23d4becf72d79ac02",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-18/DEMON-02-r01-shadow64.png",
+        "sha256": "0c85df04180c915a077d61d7d352d81895693126284d4c769cda0edd06efa3cc",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            56,
+            95
+          ],
+          "width": 17,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1243,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              55,
+              36,
+              35
+            ],
+            "target": [
+              37,
+              52,
+              52
+            ]
+          },
+          {
+            "source": [
+              103,
+              73,
+              61
+            ],
+            "target": [
+              66,
+              98,
+              98
+            ]
+          },
+          {
+            "source": [
+              146,
+              71,
+              67
+            ],
+            "target": [
+              79,
+              139,
+              139
+            ]
+          },
+          {
+            "source": [
+              158,
+              91,
+              82
+            ],
+            "target": [
+              92,
+              150,
+              150
+            ]
+          },
+          {
+            "source": [
+              158,
+              111,
+              93
+            ],
+            "target": [
+              101,
+              150,
+              150
+            ]
+          },
+          {
+            "source": [
+              178,
+              134,
+              108
+            ],
+            "target": [
+              116,
+              169,
+              169
+            ]
+          },
+          {
+            "source": [
+              196,
+              115,
+              100
+            ],
+            "target": [
+              113,
+              186,
+              186
+            ]
+          },
+          {
+            "source": [
+              212,
+              142,
+              118
+            ],
+            "target": [
+              130,
+              201,
+              201
+            ]
+          },
+          {
+            "source": [
+              212,
+              162,
+              131
+            ],
+            "target": [
+              140,
+              201,
+              201
+            ]
+          },
+          {
+            "source": [
+              229,
+              173,
+              140
+            ],
+            "target": [
+              150,
+              218,
+              218
+            ]
+          },
+          {
+            "source": [
+              240,
+              176,
+              145
+            ],
+            "target": [
+              156,
+              228,
+              228
+            ]
+          },
+          {
+            "source": [
+              242,
+              193,
+              155
+            ],
+            "target": [
+              164,
+              230,
+              230
+            ]
+          },
+          {
+            "source": [
+              247,
+              202,
+              162
+            ],
+            "target": [
+              170,
+              235,
+              235
+            ]
+          },
+          {
+            "source": [
+              254,
+              233,
+              205
+            ],
+            "target": [
+              204,
+              241,
+              241
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-02-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            41,
+            28,
+            87,
+            96
+          ],
+          "colors": 17,
+          "sha256": "7fde500b1e7f5a722a47d15a4c61aa92551b779989d07d09bdb984f20e509da7",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-02-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            41,
+            28,
+            87,
+            96
+          ],
+          "colors": 17,
+          "sha256": "4df305b3b53164c9d2e8ce2b751a7f05b56fb58d9ceb2403fff393272d77a384",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "DEMON-03",
+      "number": 42,
+      "revision": "r01",
+      "label": "Porte-fente",
+      "family": "Démons de chair",
+      "maximum_body_height64": 62,
+      "maximum_body_width64": 60,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-03-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 205,
+        "hue_max": 310,
+        "target_hue": 150,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nHUMAN-SIZED compact bipedal demon, planned62px high. ONE vertical dark-red flesh slit runs down the middle of its broad eyeless head and short neck, mouth CLOSED enough to read as a seam, not a full split upper body. Body dark INDIGO leathery skin with a broad warm beige abdomen, two normal-length thick arms ending in blunt two-claw hands, two bowed legs with flat fleshy feet. Head slightly tilted, broad rounded shoulders, no horns, hair, armor, weapons, tail or wings. One dark cloth-like organic membrane folded around hips is skin, not costume. The one slit, dark indigo shoulders and pale belly are the only details. Ordinary low-rank adult creature, not a commander or skinless human.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "earlier_direction_set_aside_not_approved",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-efdc3ff2-7652-4634-ad19-2bc27a815007.png",
+      "source_sha256": "9780659fd7cdb9861b14b5bc77714223220dcccac524dad7486e271e44d363f4",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-18/DEMON-03-r01-shadow64.png",
+        "sha256": "55dee50d5ca1651f301bee6a0635c8cf1261320c3712702a0e8af66bca9ccbc8",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            64,
+            95
+          ],
+          "width": 43,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 746,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              38,
+              39,
+              57
+            ],
+            "target": [
+              40,
+              54,
+              47
+            ]
+          },
+          {
+            "source": [
+              44,
+              45,
+              66
+            ],
+            "target": [
+              46,
+              63,
+              54
+            ]
+          },
+          {
+            "source": [
+              51,
+              46,
+              60
+            ],
+            "target": [
+              46,
+              57,
+              52
+            ]
+          },
+          {
+            "source": [
+              54,
+              56,
+              80
+            ],
+            "target": [
+              56,
+              76,
+              66
+            ]
+          },
+          {
+            "source": [
+              61,
+              60,
+              80
+            ],
+            "target": [
+              61,
+              76,
+              68
+            ]
+          },
+          {
+            "source": [
+              71,
+              69,
+              92
+            ],
+            "target": [
+              70,
+              87,
+              79
+            ]
+          },
+          {
+            "source": [
+              81,
+              81,
+              105
+            ],
+            "target": [
+              82,
+              100,
+              91
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-03-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            36,
+            34,
+            92,
+            96
+          ],
+          "colors": 19,
+          "sha256": "d8a1fac788e5f708431f896dfc7a2c8d555b9f6da10fc3d5f31f5fef71c0f143",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-03-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            36,
+            34,
+            92,
+            96
+          ],
+          "colors": 19,
+          "sha256": "5be0051d4a3f762cf831da8831149d69d49a701fece33a7faf5d2f6438a13b5b",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "DEMON-04",
+      "number": 43,
+      "revision": "r01",
+      "label": "Dos-cuirasse",
+      "family": "Démons de chair",
+      "maximum_body_height64": 84,
+      "maximum_body_width64": 92,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-04-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 15,
+        "hue_max": 80,
+        "target_hue": 205,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nLARGER ORDINARY DEMON, planned84px high versus player65px, not a gigantic sector boss. A broad forward-stooping biped, TWO short thick legs and TWO heavy blunt arms. Head is a small blunt hairless ochre-grey demonic wedge below a HUGE single hump of dark RUST-BROWN leathery hide across the upper back. Hump resembles a natural smooth armor shell, only TWO broad overlapping tissue plates, not metal armor. Warm muted ochre forearms and belly, wide charcoal flat nails on three-digit hands and feet. One large thick neck fold. Very heavy but dull and unimportant labor-beast silhouette; no crown, horns, weapons, straps, chains, elite shoulder spikes, cape, exposed skeleton or ornament. Main features are one back hump and low head, not dense detail.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "earlier_direction_set_aside_not_approved",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-086f5e70-3d0a-4193-92b9-990830693904.png",
+      "source_sha256": "a78dd2558ac733f06037896094d3bb1d22d44d209f862e83cdbcb8f8a8197be2",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-18/DEMON-04-r01-shadow64.png",
+        "sha256": "24b4e6d52b48913e09723e19b0c6d3f0133a49df171a327d67701dc964887665",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            50,
+            95
+          ],
+          "width": 24,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 2258,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              75,
+              63,
+              48
+            ],
+            "target": [
+              51,
+              63,
+              71
+            ]
+          },
+          {
+            "source": [
+              117,
+              85,
+              58
+            ],
+            "target": [
+              66,
+              92,
+              111
+            ]
+          },
+          {
+            "source": [
+              138,
+              107,
+              71
+            ],
+            "target": [
+              80,
+              110,
+              131
+            ]
+          },
+          {
+            "source": [
+              155,
+              124,
+              80
+            ],
+            "target": [
+              90,
+              124,
+              147
+            ]
+          },
+          {
+            "source": [
+              175,
+              135,
+              89
+            ],
+            "target": [
+              101,
+              139,
+              166
+            ]
+          },
+          {
+            "source": [
+              189,
+              148,
+              95
+            ],
+            "target": [
+              108,
+              150,
+              180
+            ]
+          },
+          {
+            "source": [
+              204,
+              162,
+              108
+            ],
+            "target": [
+              121,
+              163,
+              194
+            ]
+          },
+          {
+            "source": [
+              220,
+              173,
+              110
+            ],
+            "target": [
+              125,
+              174,
+              209
+            ]
+          },
+          {
+            "source": [
+              227,
+              180,
+              116
+            ],
+            "target": [
+              131,
+              180,
+              216
+            ]
+          },
+          {
+            "source": [
+              234,
+              196,
+              137
+            ],
+            "target": [
+              149,
+              192,
+              222
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-04-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            20,
+            12,
+            108,
+            96
+          ],
+          "colors": 19,
+          "sha256": "a6735b05575c3629775a961828606b9a6a20d58e589cd46fe0a0718193976f07",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-04-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            20,
+            12,
+            108,
+            96
+          ],
+          "colors": 19,
+          "sha256": "125ec001efdb7e542fb2b443a28ecb4abcbf5809c6818360cedec2090a37e01d",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "DEMON-05",
+      "number": 44,
+      "revision": "r01",
+      "label": "Filiforme pâle",
+      "family": "Démons de chair",
+      "maximum_body_height64": 76,
+      "maximum_body_width64": 52,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-05-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 65,
+        "target_hue": 100,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nTALL THIN ORDINARY DEMON planned76px high, modestly taller than player. An adult nonhuman smooth warm PALE BEIGE stretched torso, small tapering head without human facial anatomy, one dark closed horizontal mouth groove, TWO exceptionally long thin arms and TWO long angular backward-kneed legs. No third arm, tail, horns, wings or tentacles. Hands end in two broad black flattened talons, toes blunt. Shoulders very narrow and one slightly lower, long arms curl gently inward near knees. Large simple dark-red joint shadows, no visible bones or ribs, no veins, tiny scars, flesh knots or detailed muscles. Fragile and unsettling walking low-rank creature, not a tall dignitary, noble, statue or boss.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "earlier_direction_set_aside_not_approved",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-63187145-160f-400b-8ce5-32477fb512db.png",
+      "source_sha256": "dbfe034c049d163b0facaf64cc3dcf3516a19416b70fd6075d46f1b5e4f0b0f9",
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-18/DEMON-05-r01-shadow64.png",
+        "sha256": "660cb153a3f430f5733bc18d6c66ea1fd836abd69cb017abd64dbe37dd5db5aa",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            53,
+            95
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "palette_variant": {
+        "changed_pixels": 1062,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              90,
+              55,
+              48
+            ],
+            "target": [
+              64,
+              86,
+              54
+            ]
+          },
+          {
+            "source": [
+              118,
+              90,
+              76
+            ],
+            "target": [
+              91,
+              112,
+              80
+            ]
+          },
+          {
+            "source": [
+              135,
+              63,
+              60
+            ],
+            "target": [
+              90,
+              128,
+              71
+            ]
+          },
+          {
+            "source": [
+              163,
+              127,
+              100
+            ],
+            "target": [
+              123,
+              155,
+              107
+            ]
+          },
+          {
+            "source": [
+              183,
+              96,
+              87
+            ],
+            "target": [
+              125,
+              174,
+              101
+            ]
+          },
+          {
+            "source": [
+              198,
+              136,
+              115
+            ],
+            "target": [
+              146,
+              188,
+              125
+            ]
+          },
+          {
+            "source": [
+              221,
+              143,
+              119
+            ],
+            "target": [
+              158,
+              210,
+              132
+            ]
+          },
+          {
+            "source": [
+              230,
+              168,
+              138
+            ],
+            "target": [
+              172,
+              218,
+              149
+            ]
+          },
+          {
+            "source": [
+              236,
+              184,
+              147
+            ],
+            "target": [
+              179,
+              224,
+              157
+            ]
+          },
+          {
+            "source": [
+              248,
+              194,
+              155
+            ],
+            "target": [
+              188,
+              236,
+              165
+            ]
+          },
+          {
+            "source": [
+              253,
+              207,
+              166
+            ],
+            "target": [
+              196,
+              240,
+              174
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-05-r01-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            20,
+            86,
+            96
+          ],
+          "colors": 16,
+          "sha256": "5f86cf861ece108b4304fb66a7d9512dd6c43d35a38b60a724e5c16f33bf4bbf",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/demons-18/tiles/DEMON-05-r01-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            43,
+            20,
+            86,
+            96
+          ],
+          "colors": 16,
+          "sha256": "72335a19b54089891bd72a87e299fd17efc26f3af50926b2f1832cbfb4b94a6c",
+          "visual_approved": false
+        }
+      ]
+    },
+    {
+      "id": "DEMON-06",
+      "number": 45,
+      "revision": "r01",
+      "label": "Mordeur à six appuis",
+      "family": "Bêtes démoniaques",
+      "maximum_body_height64": 42,
+      "maximum_body_width64": 74,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-06-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 65,
+        "target_hue": 95,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nLOW MEDIUM beast planned42px high and74px wide, natural low animal anatomy, not a miniature person. Broad sagging warm BEIGE flesh torso on exactly SIX short thick fleshy walking legs, THREE per side with clearly separated blunt dark contact feet. A single low horizontal lip mouth at the front, FOUR broad blunt teeth maximum. No conventional head, eyes, human face, tail, shell, ice spires, horns or bony plates. Back has only TWO very broad swelling flesh folds, no many segments. The six short appuis, a low forward lip and heavy broad flesh mass are the only features. This is an ordinary flesh demon, substantially simpler than the giant ice-plane reference and not copied from it. No machine, armor or active spit effect.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "earlier_direction_set_aside_not_approved",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-2442922b-1e91-4a12-8c49-879c1c84c306.png",
+      "source_sha256": "75ef336be6732f5d004fa89abcfa1b2dd5b793dc4efb411fc2bb10a9b6d8aa1f"
+    },
+    {
+      "id": "DEMON-07",
+      "number": 46,
+      "revision": "r01",
+      "label": "Limace à collerette",
+      "family": "Bêtes démoniaques",
+      "maximum_body_height64": 30,
+      "maximum_body_width64": 66,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-07-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 205,
+        "hue_max": 310,
+        "target_hue": 155,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nSMALL LOW demon planned30px high and66px long. A flattened thick fleshy slug body, warm beige underbelly and dark muted INDIGO leathery upper mantle, tail blunt and short. Around its broad front is ONE thick flared soft flesh collar that folds outward in TWO large asymmetrical lobes, not many petals. One tiny closed mouth slit within the collar, no eyes, teeth or head. Three short rounded fleshy pads on each side make ground contact, no conventional legs, arms or tentacles. Keep the collar membrane and long low body readable, not an intricate plant or giant worm lord. No ice, spikes, bones, machinery, poison puddle or spell. Only two broad folds on the body.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "earlier_direction_set_aside_not_approved",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-a97cc148-b6c2-4262-9aee-ce3b8a297e43.png",
+      "source_sha256": "5e51f6653e829960de49eeeb4d63bb9b4affd69fb3f402f13bab57d63faeab89"
+    },
+    {
+      "id": "DEMON-08",
+      "number": 47,
+      "revision": "r01",
+      "label": "Bête à deux cous",
+      "family": "Bêtes démoniaques",
+      "maximum_body_height64": 58,
+      "maximum_body_width64": 78,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-08-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 10,
+        "hue_max": 85,
+        "target_hue": 195,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nMEDIUM ORDINARY demonic quadruped, planned58px high and78px wide, animal scale below human head height. Exactly FOUR stout legs with dark blunt claws support ONE charcoal-OLIVE broad animal torso. At the front the single body divides into TWO short thick necks, each ending in one small smooth wedge head, both clearly connected to chest. The two heads have one closed horizontal mouth groove each and no eyes or horns. No more than two tiny blunt teeth on each. Warm ochre throat/chest plane, no fur, hair, skulls, spines, armor, collar, tails, wings or equipment. Front three-quarter-nearly-frontal pose shows all four contact feet and both neck roots clearly. A common ugly two-headed beast, not a royal multiheaded guardian or boss.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "earlier_direction_set_aside_not_approved",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-52ce4247-a515-4493-a37e-268dbf733995.png",
+      "source_sha256": "70e16e278d283b0c022f79d3611061f9d7f9aed39203c28b1f6f980f8855a7ea"
+    },
+    {
+      "id": "DEMON-09",
+      "number": 48,
+      "revision": "r01",
+      "label": "Rampant à plaques",
+      "family": "Bêtes démoniaques",
+      "maximum_body_height64": 48,
+      "maximum_body_width64": 92,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-09-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 15,
+        "hue_max": 85,
+        "target_hue": 215,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nBROAD LOW ORDINARY demon planned48px high and92px wide, heavier than small vermin but not a boss. A forward-crouched quadruped with FOUR thick squat feet, a blunt toothless head nearly hidden at front, and ONE broad dark OCHRE upper shell made of THREE large organic leathery plates. Warm sick beige belly and leg roots, dark charcoal foot tips. Body is an irregular flattened wedge, shoulders wider than rear, no human torso. The three huge plates are clean smooth hide, not metal, bones or dozens of insect segments. No horns, tail, wings, jaws full of teeth, weapons, chains or rank ornaments. All four feet visible and connected, no extra supports. Reads as an ugly demonic load-beast common soldier species.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "earlier_direction_set_aside_not_approved",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-fc299344-2a88-4eb9-9998-ac7287e862b4.png",
+      "source_sha256": "b57697092f29fc35fd69940ac8b34211bda6cde97c9b637cf56655dd200ca38a"
+    },
+    {
+      "id": "DEMON-10",
+      "number": 49,
+      "revision": "r01",
+      "label": "Sauteur charnu",
+      "family": "Bêtes démoniaques",
+      "maximum_body_height64": 54,
+      "maximum_body_width64": 62,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-10-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 65,
+        "target_hue": 115,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nMEDIUM ORDINARY fleshy demon planned54px high. A compact pear-shaped warm BEIGE soft body with TWO huge folded fleshy hind legs and TWO very short stout forearms, four limbs total. Head is a blunt forward lip with a tiny closed dark-red mouth and no eyes, nose, ears or human face. Large dark dull claws on three broad toe groups, no horns or tail. Deep muted red underside and one dark indigo joint shadow. Both large bent hind legs visible separated below hips and the two small forearms rest near chest; grounded crouch, not jumping action. Only two broad tissue folds on belly. Hideous squat anatomy, not cute frog, dinosaur, human child, skeleton, boss or giant mutant. No slime puddles, active effects, equipment or ornaments.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "earlier_direction_set_aside_not_approved",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-9d273f84-7ba1-4037-bb96-152e5cea1a07.png",
+      "source_sha256": "5d67bd2d637ca93c4138b8cbe1002d0aa75187fff1fb81a0eb818bf86008951e"
+    },
+    {
+      "id": "DEMON-11",
+      "number": 50,
+      "revision": "r01",
+      "label": "Coléoptère dressé",
+      "family": "Démons insectoïdes",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 70,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-11-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 10,
+        "hue_max": 80,
+        "target_hue": 210,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nHUMAN-SIZED upright ordinary INSECTOID demon, planned64px high, much taller than a small beetle. ONE OCHRE-RUST chitin body with exactly SIX limbs: TWO short strong hind legs supporting an upright abdomen, TWO middle side legs braced down near hips as extra ground supports, and TWO forelimbs folded at chest with simple blunt claws. Four contact feet clearly separated, two foreclaws distinct, all six attached. A low triangular head with two tiny dull amber eyes and one short dark closed mandible notch; TWO broad shell wing covers sit closed behind shoulders, no spread wings. Broad charcoal underside, three main chitin masses, one large joint per limb, no rows of spikes or many rivets. No weapon, armor, human clothing, halo, regalia or lord posture.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "not_generated_direction_superseded"
+    },
+    {
+      "id": "DEMON-12",
+      "number": 51,
+      "revision": "r01",
+      "label": "Foreuse de cendre",
+      "family": "Démons insectoïdes",
+      "maximum_body_height64": 36,
+      "maximum_body_width64": 72,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-12-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 10,
+        "hue_max": 85,
+        "target_hue": 195,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nLOW ORDINARY INSECTOID demon planned36px high and72px wide. Broad charcoal and dark RUST-ORANGE larval insect torso on exactly SIX thick short articulated legs, THREE per side with clear spaces. Front head has ONE blunt triangular wedge shield projecting downward like a crude digging snout, not a long horn; mouth is hidden under it. ONE large rounded shell plate over rear abdomen. Dull grey-beige flesh visible only in the six leg roots. Nearly frontal slight overhead pose shows complete body, all leg tips and front shield. No machines, chimney, furnace mouth, weapon, mechanical drill, many spikes or fine body segmentation. A common ugly burrowing species with a big simple head shield, not a tank or insect queen.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "not_generated_direction_superseded"
+    },
+    {
+      "id": "DEMON-13",
+      "number": 52,
+      "revision": "r01",
+      "label": "Mante décharnée",
+      "family": "Démons insectoïdes",
+      "maximum_body_height64": 78,
+      "maximum_body_width64": 74,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-13-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 65,
+        "hue_max": 190,
+        "target_hue": 15,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nTALL ORDINARY INSECTOID demon planned78px high, modestly taller than the player. A narrow dark MOSS-GREEN chitin thorax, one short swollen abdomen and exactly SIX limbs: FOUR angular stout walking legs with broad pointed contact tips, TWO forelimbs ending in ONE broad smooth sickle-like chitin hook each. Hooks are forelimbs, not carried swords. Head a small simple pentagonal dark wedge with two dull black eye depressions, ONE short thick antenna per side, no long filigree. Warm muted ochre inner joints, charcoal claws. Front view slightly from above, four ground legs spread clearly, hooks lower than head and upper body. Two huge uninterrupted chitin planes, no dozens of segments, tiny serrations, spikes, crown, regalia, equipment or wing fans.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "not_generated_direction_superseded"
+    },
+    {
+      "id": "DEMON-14",
+      "number": 53,
+      "revision": "r01",
+      "label": "Tique à pattes hautes",
+      "family": "Démons insectoïdes",
+      "maximum_body_height64": 66,
+      "maximum_body_width64": 84,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-14-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 65,
+        "target_hue": 190,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nHUMAN-SIZED ordinary arachnid-like flesh demon planned66px high and84px wide. ONE broad oval warm BEIGE swollen sac carried on exactly EIGHT fairly long thick angular dark chitin legs, FOUR per side, all tips clearly separated. Legs are simple strong two-section structures, not a wire forest; a high arch below the body makes its height. A single charcoal front mouth cone, no visible face or eyes, no horns. ONE large dark plum-brown rear saddle plate covers only the last third, warm flesh predominates. No more than two broad folds, no tiny spines, pores, fangs everywhere, exposed bone, equipment or ornaments. Distinct taller long-legged anatomy compared with the low24px tick; no queen abdomen tower or boss aura.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "not_generated_direction_superseded"
+    },
+    {
+      "id": "DEMON-15",
+      "number": 54,
+      "revision": "r01",
+      "label": "Cloporte cuirassé",
+      "family": "Démons insectoïdes",
+      "maximum_body_height64": 52,
+      "maximum_body_width64": 100,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-15-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 175,
+        "hue_max": 295,
+        "target_hue": 20,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nBROAD ORDINARY INSECTOID demon planned52px high and100px wide, about chest-high and very broad, not a sector boss. A low arching dark STEEL-BLUE living chitin back, only FOUR large overlapping shell plates, warm dull ochre flesh belly and exactly SIX short thick legs, THREE visible each side. A plain blunt head hangs slightly downward at front with one tiny dark mouth notch, no human face. Foot tips are dark broad wedges, each leg just two big simple segments. A nearly frontal slight overhead stance shows rear shell edge and all six supports, not a strict side view. No tentacle mass, long antennae, spikes, bone trim, weapons, fancy armor, mechanical cannons or throne. Bold shell silhouette is the main sign, no fine scale textures.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "not_generated_direction_superseded"
+    },
+    {
+      "id": "DEMON-16",
+      "number": 55,
+      "revision": "r01",
+      "label": "Nœud de chair",
+      "family": "Démons des profondeurs",
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 78,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-16-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 205,
+        "hue_max": 310,
+        "target_hue": 150,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nHUMAN-SIZED in height ordinary LOVECRAFTIAN demon planned60px high and78px wide. ONE asymmetric heavy vertical warm beige fleshy lobe wrapped in TWO broad dark INDIGO living membrane bands, not clothing or straps. Exactly FOUR short thick tentacle supports curl down from the lower lobe, all four ends clearly separated at ground. One broad off-center vertical dark-red slit on the main body, no eye, face, human torso, head, skull or tooth forest. No little mouths. One upper soft fold leans left, one lower fold right, no crown of tentacles, suction-cup rows, relays, speakers, cables, armor or machinery. Flesh and two indigo membrane strips define the whole creature, a nasty ordinary depth dweller rather than an elder god or boss.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "not_generated_direction_superseded"
+    },
+    {
+      "id": "DEMON-17",
+      "number": 56,
+      "revision": "r01",
+      "label": "Bouche en cloche",
+      "family": "Démons des profondeurs",
+      "maximum_body_height64": 70,
+      "maximum_body_width64": 82,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-17-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 65,
+        "target_hue": 95,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nHUMAN-SIZED ordinary alien demon planned70px high and82px wide. A heavy bell-shaped warm BEIGE fleshy body, broad flaring lower lip with ONE large horizontal dark mouth slit and just FOUR blunt wide teeth maximum. The top is a smooth soft dome with a single short folded crest of dark muted red flesh, no head, eyes, human face or skull. Exactly FOUR stubby thick bent flesh legs emerge beneath the rim and carry the bell, all visible separated, not a floating jellyfish. Two broad asymmetric drooping folds, dark charcoal feet. No tentacle forest, fringe of dozens of limbs, many mouths, exposed skeleton, bones, equipment, crown or ceremonial pose. Menacing common mouth creature, not a huge named boss.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "not_generated_direction_superseded"
+    },
+    {
+      "id": "DEMON-18",
+      "number": 57,
+      "revision": "r01",
+      "label": "Marcheur à membranes",
+      "family": "Démons des profondeurs",
+      "maximum_body_height64": 90,
+      "maximum_body_width64": 80,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-18-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 140,
+        "hue_max": 265,
+        "target_hue": 285,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nTALL ORDINARY demonic walker planned90px high versus player65px, a larger common monster without leader signals. Nonhuman narrow dark TEAL central fleshy trunk suspended between exactly FOUR long angular thick legs, two per side. No arms, head, face, eyes or horns. Between the two upper front-leg roots hangs ONE broad warm OCHRE fleshy membrane, a single inverted triangular panel with a dark-red closed slit near lower edge. A plain charcoal low dome across upper trunk, no skull or torso. Four ground feet are broad short wedges and clearly separated; limbs strong enough to read, not thin wire filigree. Only two broad membrane folds. Not a giant spider god, mage, bishop or commander, no crown, gear, symbols, tall antlers, weapons or active effects.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "not_generated_direction_superseded"
+    },
+    {
+      "id": "DEMON-19",
+      "number": 58,
+      "revision": "r01",
+      "label": "Boursouflé des failles",
+      "family": "Démons de chair",
+      "maximum_body_height64": 74,
+      "maximum_body_width64": 86,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-19-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 65,
+        "target_hue": 185,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nLARGE ORDINARY nonhuman flesh demon planned74px high and86px wide, heavier than player but never a boss. One broad swollen asymmetrical warm BEIGE body, a tiny nearly featureless blunt head sunk into the chest, TWO thick short legs and TWO unequal arms: one normal thick low arm, the other a single swollen soft forearm shaped like a broad blunt fist. Both hands have just three dull charcoal nail groups. One closed dark mouth groove in the small head, two recessed dull eye slits. Flesh surface only THREE large swollen masses and a few broad dark red joint folds. No pustule dots, pores, vein webs, little wounds, rib cage, bone armor, horns, equipment, chain, giant attached weapons or elite regalia. Awkward common brute with natural asymmetry, not heroic muscular giant.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "not_generated_direction_superseded"
+    },
+    {
+      "id": "DEMON-20",
+      "number": 59,
+      "revision": "r01",
+      "label": "Rôdeur fendu",
+      "family": "Démons mineurs",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 62,
+      "palette_limit": 20,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/DEMON-20-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; anatomie distincte"
+        }
+      ],
+      "palette_transfer": {
+        "hue_min": 175,
+        "hue_max": 295,
+        "target_hue": 125,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.8,
+        "value_factor": 0.95
+      },
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original ORDINARY nonhuman DEMON for the candidate gallery of Project RL, an industrial cyberpunk horror roguelike. Never a human cultist, possessed human, mundane robot, boss, ruler, officer or elite champion. This is an individual of a common demonic species, with no rank regalia. Its size is specified independently below: some demons are human-sized, some smaller, others a bit larger. Do not automatically miniaturize it or give it boss proportions.\nReference image: graphic STYLE and flesh-material reference ONLY, not an edit target. Bold controlled dark comic contours, a few large readable color/material masses, ONE main shadow plane per material, compact mature game anatomy. Clean, restrained interior lines. Preserve readability at the requested actual game size. NO dense texture, pores, veins, tiny scales, intricate armor panels, lots of teeth, scars everywhere, tiny ornaments, photorealism or 3D rendering. Horrific mature creature, not a cute pet or child.\nComposition: exactly ONE complete full-body creature, ONE nearly frontal pose with slight overhead game view. Every limb tip and head fully inside generous genuine ALPHA transparent margins. No alternate view, second figure, text, floor, contact shadow, background, aura, glow, particles or active spell/attack. Contact shadow is rendered separately.\nDistinctive organic demonic anatomy is the subject. No crown, rank insignia, throne, heroic cape, scepter, noble posture or boss set dressing. No new game mechanic, numerical rule, collision size or animation is defined. No direct copying of licensed monsters.\nKeep large flat colors separated so an indexed palette variant can reuse exactly this drawing. One base palette only in this source. Natural sick warm beige flesh is welcome; no neon pink. Simplify to TWO or THREE main identifying features rather than impressive complexity.\n\nSUBJECT:\nHUMAN-SIZED ordinary demonic biped planned64px high. Broad dark SLATE-BLUE shoulders, warm pale ochre lower torso, TWO legs and TWO arms, long forward-leaning neck and one narrow angular head. The head has a single deep diagonal DARK-RED crease across the muzzle, mouth otherwise closed, one recessed dark eye only visible on viewer-left. One large backward bent SOFT flesh crest on the right side of head, deliberately asymmetric, no huge horns. Hands simple dark three-digit claws, plain broad toes, no carried weapons. Compact mature upright yet skulking posture, not a tiny imp. Three large skin planes and one big shoulder fold; no costume, crown, rank insignia, wings, tail, mask, skull, exposed bones, many teeth or industrial hardware.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "scale_approved": false,
+      "status": "not_generated_direction_superseded"
+    }
+  ],
+  "preview_scale": 1,
+  "zoom_previews_generated": false,
+  "superseded_by": "demons-arpg-19.json",
+  "later_user_statements": [
+    "bon, inspire toi plutot de diablo 2 en faite...",
+    "et de grim dawn :)"
+  ],
+  "generated_source_count": 10,
+  "not_generated_count": 10
+}

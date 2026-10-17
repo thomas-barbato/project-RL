@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-16",
+  "scope": "Documentation only; no runtime content, assets, source code or saves changed.",
+  "source_path": "C:\\Users\\User\\Desktop\\Histoire_Roguelike_Hack_n_Slash_Cyberpunk.md",
+  "source_sha256": "7f92509ac70a6a5a56dc0b758920b979c15cc47fdb825d4c4e56b11a4ba449ca",
+  "import_path": "docs/HISTOIRE_CAMPAGNE.md",
+  "import_is_byte_identical": true,
+  "retired_documents": [
+    {
+      "path": "Trame narrative et quête principale — Projet Roguelike IA.md",
+      "sha256": "5a2991277444de309f7adfb462d6f0c6f736284b6565c5065ec900de7abf33ce",
+      "lines": 580
+    },
+    {
+      "path": "docs/EVALUATION_NARRATIVE.md",
+      "sha256": "e7d93b9eabd0bc477d090dbdb1397b90de62dbfa1d569c95d16cc7d2da56019e",
+      "lines": 134
+    },
+    {
+      "path": "docs/SUIVI_INTEGRATION_NARRATIVE.md",
+      "sha256": "3d804e7a127aa4aed73991e8c028d92bbaba7c76aa12317461d726c3aa79388d",
+      "lines": 78
+    },
+    {
+      "path": "docs/TEXTES_NARRATIFS_PROPOSES.md",
+      "sha256": "b972fc9d3dcbe9ece39f04ce33a34370dbee93ed889fca51c241876b1d4c56b5",
+      "lines": 1485
+    },
+    {
+      "path": "docs/DESCENTE_VERS_LE_NUMERIQUE.md",
+      "sha256": "dc578f3ffff6fd9ced7df7404a2de3e6e9513598d98c97151688743026ec900d",
+      "lines": 116
+    },
+    {
+      "path": "docs/PROPOSITION_PEUPLADES_v0.1.md",
+      "sha256": "99d11c140d3d11340e408b3089ee52f5b9f5bc6a3e27dff3057ac81c716d2445",
+      "lines": 150
+    }
+  ],
+  "updated_documents": [
+    "README.md",
+    "Projet_Roguelike_IA_Document_Conception_v0.2.md",
+    "Projet_Roguelike_IA_Spec_CODEX_v0.2.md",
+    "docs/BESTIAIRE_ET_RENCONTRES.md",
+    "docs/FACTIONS_ET_COMMUNAUTES.md",
+    "docs/GUETTEURS_DECOR_ET_SIGNAUX.md",
+    "docs/INTERFACE.md",
+    "docs/MONDE_EXPLORATION_ET_PROGRESSION.md",
+    "docs/MOTEUR.md",
+    "docs/PREMIERE_COUCHE_JOUABLE.md",
+    "docs/REFONTE_AGENT_CRYOGENISE.md",
+    "docs/REPARTITION_DES_PROFONDEURS.md",
+    "docs/HISTOIRE_CAMPAGNE.md",
+    "docs/reviews/refonte-histoire-2026-10-16/CADRAGE.md"
+  ],
+  "decisions": {
+    "CAMP-02": "Fewer quests accepted; final count remains open.",
+    "TRAVEL-01": "Fast travel between already unlocked camps; conditions and costs remain undefined."
+  },
+  "validation": {
+    "preexisting_tracked_changes_preserved": 53,
+    "no_unexpected_tracked_changes": true,
+    "no_new_broken_local_markdown_links": true,
+    "link_targets_checked_in_current_and_previous_documents": 249,
+    "git_diff_check_passed": true,
+    "runtime_tests": "Not run: documentation-only change.",
+    "visual_candidates": "None created or integrated."
+  }
+}

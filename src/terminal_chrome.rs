@@ -21,13 +21,7 @@ pub(crate) fn tint(alpha: f32) -> Color {
 }
 
 pub(crate) fn ink() -> Color {
-    let c = UiTheme.accent();
-    Color::new(
-        0.017 + c.r * 0.025,
-        0.022 + c.g * 0.025,
-        0.029 + c.b * 0.025,
-        1.0,
-    )
+    UiTheme.surface()
 }
 
 pub(crate) fn heading(text: &str, x: f32, y: f32, size: u16, color: Color) {
@@ -47,25 +41,13 @@ pub(crate) fn heading(text: &str, x: f32, y: f32, size: u16, color: Color) {
 }
 
 pub(crate) fn bezel(rect: Rect) {
-    draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 1.0, tint(0.32));
-    for (x, sx) in [(rect.x, 1.0), (rect.right(), -1.0)] {
-        for (y, sy) in [(rect.y, 1.0), (rect.bottom(), -1.0)] {
-            draw_line(
-                x,
-                y,
-                x + sx * 12.0_f32.min(rect.w * 0.25),
-                y,
-                2.0,
-                tint(0.9),
-            );
-            draw_line(x, y, x, y + sy * 9.0_f32.min(rect.h * 0.25), 2.0, tint(0.9));
-        }
-    }
+    draw_rectangle_lines(rect.x, rect.y, rect.w, rect.h, 1., tint(0.22));
 }
 
 pub(crate) fn module(rect: Rect, label: &str) {
-    draw_rectangle(rect.x, rect.y, rect.w, rect.h, ink());
-    draw_rectangle(rect.x + 1.0, rect.y + 1.0, rect.w - 2.0, 26.0, tint(0.085));
+    let label = label.split_once(" / ").map_or(label, |(_, title)| title);
+    crate::ui_skin::surface(rect, ink());
+    draw_rectangle(rect.x + 1.0, rect.y + 1.0, rect.w - 2.0, 26.0, tint(0.035));
     draw_line(
         rect.x + 1.0,
         rect.y + 27.0,
@@ -88,7 +70,10 @@ pub(crate) fn module(rect: Rect, label: &str) {
     } else {
         label.to_owned()
     };
-    heading(&label, rect.x + 10.0, rect.y + 18.0, size, UiTheme.accent());
+    let header = Rect::new(rect.x + 10., rect.y + 1., rect.w - 20., 26.);
+    let (_, baseline) =
+        ui_theme::centered_text_origin(header, ui_theme::measure_text_bold(&label, size));
+    heading(&label, header.x, baseline, size, UiTheme.accent());
     bezel(rect);
 }
 
@@ -100,7 +85,7 @@ pub(crate) fn segment(bar: Rect, divisions: usize) {
 }
 
 pub(crate) fn button(rect: Rect, focused: bool, active: bool, enabled: bool) {
-    draw_rectangle(rect.x, rect.y, rect.w, rect.h, ink());
+    crate::ui_skin::surface(rect, ink());
     if enabled && (focused || active) {
         draw_rectangle(
             rect.x + 1.0,
@@ -123,23 +108,45 @@ pub(crate) fn button(rect: Rect, focused: bool, active: bool, enabled: bool) {
 }
 
 pub(crate) fn command_rect(width: f32, height: f32, index: usize) -> Rect {
-    let gap = 4.0;
-    let w = (width - 40.0 - gap * 9.0) / 10.0;
-    Rect::new(20.0 + index as f32 * (w + gap), height - 94.0, w, 36.0)
+    let (row, column) = match index {
+        0 => (0, 0),
+        2 => (0, 1),
+        3 => (0, 2),
+        4 => (0, 3),
+        10 => (0, 4),
+        1 => (1, 0),
+        5 => (1, 1),
+        6 => (1, 2),
+        7 => (1, 3),
+        8 => (1, 4),
+        _ => (1, 5),
+    };
+    let w = ((width - 40. - 5. * 6.) / 6.).min(160.);
+    Rect::new(
+        20. + column as f32 * (w + 6.),
+        height - 100. + row as f32 * 32.,
+        w,
+        28.,
+    )
 }
 
 pub(crate) fn command(rect: Rect, label: &str, binding: &str, focused: bool) {
-    button(rect, focused, false, true);
+    if focused {
+        button(rect, true, false, true);
+    }
+    let text = if binding.is_empty() {
+        label.to_owned()
+    } else {
+        format!("{label}  [{binding}]")
+    };
     ui_theme::draw_text_in_rect(
-        label,
-        Rect::new(rect.x + 7.0, rect.y + 1.0, rect.w - 14.0, 17.0),
-        if rect.w < 80.0 { 12 } else { 13 },
-        UiTheme.text(),
-    );
-    ui_theme::draw_text_in_rect(
-        format!("[{binding}]"),
-        Rect::new(rect.x + 7.0, rect.y + 17.0, rect.w - 14.0, 17.0),
-        12,
-        UiTheme.accent(),
+        text,
+        Rect::new(rect.x + 7., rect.y, rect.w - 14., rect.h),
+        13,
+        if focused {
+            UiTheme.accent()
+        } else {
+            UiTheme.text()
+        },
     );
 }

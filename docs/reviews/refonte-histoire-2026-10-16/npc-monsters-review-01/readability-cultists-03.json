@@ -1,0 +1,213 @@
+{
+  "review_id": "NPC-MONSTERS-03",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "user_statement": "est-ce qu'ils ne sont pas un peu trop détaillés les rendants un peu difficiles à lire ? Aussi, j'aimerais que les premiers monstres soient des humains normaux (des cultistes) parce qu'ils sont moins dangereux que les possédés / hybrides :)",
+  "native_cell": 64,
+  "status": "proposal_not_integrated",
+  "palette_target": 16,
+  "accepted_design_direction": [
+    "Simplifier les traits et textures pour lire les masses à taille native.",
+    "Les premières rencontres sont des cultistes humains ordinaires, moins dangereux dans la progression que les possédés et hybrides.",
+    "Réserver possédés et hybrides à des rencontres ultérieures, puis accentuer la descente démoniaque."
+  ],
+  "records": [
+    {
+      "id": "MON-06",
+      "number": 10,
+      "revision": "r02",
+      "prompt": "Use case: precise-object-edit.\nAsset type: revised monster SOURCE for a native 64px game tile. The reference image is the EXACT character to simplify, not a general inspiration.\nPrimary request: REDRAW into a much cleaner, LESS DETAILED graphic-novel game sprite. Preserve the same identity, anatomical limb count, approximate pose, adult proportions, overall silhouette, main palette and industrial flesh-machine nature. Preserve broad negative spaces. Make a dramatic reduction in internal detail, not merely a palette filter: about THREE quarters of the little lines and texture marks should disappear. Think bold ink contour and big almost plain color shapes with ONE broad shadow per material, a restrained palette of about 14-16 colors. No hatching, no grain, no rust speckles, no tiny scratches, no little rivets, no dense edge highlights, no polygon-faceted muscle or cloth textures, no painted shading gradients. Keep a grim adult horror-game tone, not cute chibi.\nLegibility is judged at only 60-70 pixels standing height: each major part must be a single clear mass. Darkness and grotesque anatomy can remain without filling every surface with markings. Fully visible one creature, no crop and generous genuine alpha transparent margins. No background, no floor, no shadow, no glow, no attack effects, no text, no alternate poses. Static appearance review only.\nKeep the hunched human possessed worker, petrol-blue vest, ochre trousers, respirator, normal left arm, two boots, and the right forearm converted into a short round-barrel firing organ. Simplify the firing organ to ONE dark barrel shape with ONE pale rim and one ochre collar, no repeated rings or plates. Keep only ONE broad hose loop from back to arm. Show corruption by one large exposed sinew patch at shoulder, not a web of muscles. Make vest mostly plain blue and trousers mostly plain ochre, at most one readable torn gap in each. Remove the backpack's little bolts, all scuffs, straps except one broad belt, dense trouser folds and boot laces. Preserve the cannon muzzle, face opening and left hand distinctly.",
+      "mode": "edit",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-9c04a847-1564-4959-87f6-49826768a274.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r01.png",
+          "role": "Exact edit target; identity and main anatomy retained"
+        }
+      ],
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Appearance and broad role proposal only; no ability, number, placement or game change implemented.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+      "source_sha256": "59740719ce671bdf55b1f47e8ae2bc77177293308cb7ac2270b6f15fee6c7260",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-06-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          35,
+          36,
+          94,
+          96
+        ],
+        "colors": 16,
+        "sha256": "2a48fbc69ea5a9fb9533d4d7106b4682a7d90d03492d49049c55893167bd1687"
+      }
+    },
+    {
+      "id": "MON-07",
+      "number": 11,
+      "revision": "r02",
+      "prompt": "Use case: precise-object-edit.\nAsset type: revised monster SOURCE for a native 64px game tile. The reference image is the EXACT character to simplify, not a general inspiration.\nPrimary request: REDRAW into a much cleaner, LESS DETAILED graphic-novel game sprite. Preserve the same identity, anatomical limb count, approximate pose, adult proportions, overall silhouette, main palette and industrial flesh-machine nature. Preserve broad negative spaces. Make a dramatic reduction in internal detail, not merely a palette filter: about THREE quarters of the little lines and texture marks should disappear. Think bold ink contour and big almost plain color shapes with ONE broad shadow per material, a restrained palette of about 14-16 colors. No hatching, no grain, no rust speckles, no tiny scratches, no little rivets, no dense edge highlights, no polygon-faceted muscle or cloth textures, no painted shading gradients. Keep a grim adult horror-game tone, not cute chibi.\nLegibility is judged at only 60-70 pixels standing height: each major part must be a single clear mass. Darkness and grotesque anatomy can remain without filling every surface with markings. Fully visible one creature, no crop and generous genuine alpha transparent margins. No background, no floor, no shadow, no glow, no attack effects, no text, no alternate poses. Static appearance review only.\nKeep the medical conversion's TWO tall green fluid tanks, bowed human head, ivory/green smock, exactly TWO natural feet and TWO flanking short mechanical support struts (four ground contacts total). These tanks should be two plain green rounded rectangles in dark caps, each with one broad light band, no reflections or fragments inside. Show just TWO thick smooth hoses joining the tank bases to the shoulders. Torso should be one mostly closed broad green/ivory smock mass with ONE dark chest cavity, flanked by TWO broad pale bone brackets, not many individual ribs. Keep the two folded forearms and blunt clamp-like hands but simplify them to single solid rounded forms, no complex teeth or finger joints. Flesh should be broad smooth sickly ochre-grey patches. Remove all clusters of pustules, repeated ribs, tendons, torn-cloth sawtooth edges, tiny hardware and layered plates. Make the paired tanks the strongest readable identifying feature.",
+      "mode": "edit",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-ab837b12-cb11-48d4-bcea-1d7e626753b7.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-07-r01.png",
+          "role": "Exact edit target; identity and main anatomy retained"
+        }
+      ],
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Appearance and broad role proposal only; no ability, number, placement or game change implemented.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-07-r02.png",
+      "source_sha256": "b3f30ca5d3a3204f600eff4130129aaa96f91204b1c6675a453d8163ee8de5cd",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-07-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          37,
+          30,
+          92,
+          96
+        ],
+        "colors": 16,
+        "sha256": "07d548ec471d3a7efbbfd5392352b36c74d58cccde8a17a76950d8c66547350d"
+      }
+    },
+    {
+      "id": "MON-08",
+      "number": 12,
+      "revision": "r02",
+      "prompt": "Use case: precise-object-edit.\nAsset type: revised monster SOURCE for a native 64px game tile. The reference image is the EXACT character to simplify, not a general inspiration.\nPrimary request: REDRAW into a much cleaner, LESS DETAILED graphic-novel game sprite. Preserve the same identity, anatomical limb count, approximate pose, adult proportions, overall silhouette, main palette and industrial flesh-machine nature. Preserve broad negative spaces. Make a dramatic reduction in internal detail, not merely a palette filter: about THREE quarters of the little lines and texture marks should disappear. Think bold ink contour and big almost plain color shapes with ONE broad shadow per material, a restrained palette of about 14-16 colors. No hatching, no grain, no rust speckles, no tiny scratches, no little rivets, no dense edge highlights, no polygon-faceted muscle or cloth textures, no painted shading gradients. Keep a grim adult horror-game tone, not cute chibi.\nLegibility is judged at only 60-70 pixels standing height: each major part must be a single clear mass. Darkness and grotesque anatomy can remain without filling every surface with markings. Fully visible one creature, no crop and generous genuine alpha transparent margins. No background, no floor, no shadow, no glow, no attack effects, no text, no alternate poses. Static appearance review only.\nKeep ONE broad circular cable-reel hump on the upper torso, the small human head below its front rim, TWO short sturdy legs with steel feet, and exactly TWO long curved cable-arms terminating in heavy industrial clamps. Make the reel ONE dark disc/body with only THREE broad cable ribs, not a stack of narrow segmented surfaces. Each cable-arm should be ONE mostly unbroken pale thick curved tube with a broad charcoal core visible only at the elbow, not many rings or separated armor segments. Each end clamp is TWO broad blunt jaws, two simple shapes without bolts, scallops or inner subdivisions. The original operator's face remains visible as a small pale face framed by one dark recess; no extra teeth or gore-web around it. Keep ochre shorts as one simple color block, thighs as large smooth corpse-grey masses with only one exposed dark-red patch. Remove all rust, repeated panel seams, little knee plates, individual muscle fibers and boot subdivisions. Enlarge the clear gaps separating the cable-arms from the torso. The disc and two sweeping pale arcs must dominate the small-size read.",
+      "mode": "edit",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-a69beb03-b326-4337-b4d8-d60a05c0c03a.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-08-r01.png",
+          "role": "Exact edit target; identity and main anatomy retained"
+        }
+      ],
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Appearance and broad role proposal only; no ability, number, placement or game change implemented.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-08-r02.png",
+      "source_sha256": "bfd8a8baeac7ced1604650283897ae593824e02888909ca5427e9f3e18c68e3d",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-08-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          29,
+          28,
+          99,
+          96
+        ],
+        "colors": 15,
+        "sha256": "4e2bf2af3b23679c2b54ae87918bdc14cd025eb64819ac4d7dc4f3912bb3d5f4"
+      }
+    },
+    {
+      "id": "CULT-01",
+      "number": 13,
+      "label": "Cultiste à matraque",
+      "family": "Cultistes humains",
+      "role": "Humain ordinaire / contact",
+      "depth": "Toutes premières rencontres",
+      "height": 60,
+      "width": 44,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE full-body enemy character source for a 64px native game tile in Project RL, a grim industrial cyberpunk roguelike.\nPrimary request: a completely NORMAL HUMAN CULTIST, one of the FIRST and comparatively least dangerous enemies. Intact human body and human face; no possession, no mutation, no grafts or superhuman muscles. These are ordinary adult civilians who joined the cult. Five-heads-tall compact adult proportions, no chibi, height equal to the human mission officer.\nInput image: ONLY graphic-style and adult-scale reference. Do not copy the reference officer's uniform, helmet, diagonal belt or command stance.\nArt style: very clean bold controlled black outlines, broad FLAT graphic-novel color regions, only ONE broad shadow per material, around 14-16 useful colors, no little scratches, rust, grain, shading gradients, polygon facets, dense cloth folds or excessive seams. Design to stay immediately recognizable at only 60 pixels body height. Two large clothing colors, simple light/shadow hierarchy. Mature serious cyberpunk setting, not fantasy medieval, not cute cartoon.\nFaction clothing: repurposed civilian/work clothing in burgundy and slate-grey with one wide DIRTY-IVORY band wrapped around an upper arm. No diagonal chest sash, no chest armor, no big pauldrons, no heavy greaves, no glowing symbols, no magical effects or futuristic implants. Ordinary eyes with dark irises, normal intact skin in natural beige/brown/ochre tones (no pink palette), readable unmodified hands and face.\nFraming: one complete standing nearly frontal human, slight overhead game view, entire head, held equipment and boots fully inside generous true alpha transparent margins. No floor, environment, shadow, text, names, lettering, alternate poses or other people. Static armed-pose REVIEW concept; separate runtime body/arm/weapon/finger layers are not yet authored.\n\nSubject CULT-01: stocky adult male civilian cultist with short dark hair, a broad normal bare face and a tense angry frown, no beard large enough to obscure facial anatomy. Short burgundy sleeveless padded WORK VEST over plain slate-grey rolled sleeves, blue-grey work trousers, plain dark work boots. One broad ivory upper-arm band, otherwise minimal adornment. TWO normal hands and two normal legs. In his RIGHT gloved hand (viewer left) he holds ONE short thick blunt dark steel baton pointed diagonally down and out, its cylindrical grip clearly enclosed by fingers, with a small visible gap between baton and trouser leg. No sword blade, no spikes, no gigantic wrench. LEFT hand is empty, half-raised in a guarded tense posture. Grounded cautious stance with bent knees, far less imposing than an armored professional soldier. Hands, baton and face must read as ordinary human. Vest as one unbroken burgundy block, sleeves as one slate-grey block, trousers mostly plain with only one fold at each knee.",
+      "revision": "r01",
+      "mode": "generate",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-c5e0890f-24b1-4de9-8c6b-29e66efb9153.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r03.png",
+          "role": "Adult scale and graphic style only"
+        }
+      ],
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Appearance and broad role proposal only; no ability, number, placement or game change implemented.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r01.png",
+      "source_sha256": "3718c68f94db9959e3270ba229f1de74961bcc753a70073392603be766ad87b5"
+    },
+    {
+      "id": "CULT-02",
+      "number": 14,
+      "label": "Tireuse du culte",
+      "family": "Cultistes humains",
+      "role": "Humain ordinaire / distance",
+      "depth": "Premières zones cultistes",
+      "height": 60,
+      "width": 44,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE full-body enemy character source for a 64px native game tile in Project RL, a grim industrial cyberpunk roguelike.\nPrimary request: a completely NORMAL HUMAN CULTIST, one of the FIRST and comparatively least dangerous enemies. Intact human body and human face; no possession, no mutation, no grafts or superhuman muscles. These are ordinary adult civilians who joined the cult. Five-heads-tall compact adult proportions, no chibi, height equal to the human mission officer.\nInput image: ONLY graphic-style and adult-scale reference. Do not copy the reference officer's uniform, helmet, diagonal belt or command stance.\nArt style: very clean bold controlled black outlines, broad FLAT graphic-novel color regions, only ONE broad shadow per material, around 14-16 useful colors, no little scratches, rust, grain, shading gradients, polygon facets, dense cloth folds or excessive seams. Design to stay immediately recognizable at only 60 pixels body height. Two large clothing colors, simple light/shadow hierarchy. Mature serious cyberpunk setting, not fantasy medieval, not cute cartoon.\nFaction clothing: repurposed civilian/work clothing in burgundy and slate-grey with one wide DIRTY-IVORY band wrapped around an upper arm. No diagonal chest sash, no chest armor, no big pauldrons, no heavy greaves, no glowing symbols, no magical effects or futuristic implants. Ordinary eyes with dark irises, normal intact skin in natural beige/brown/ochre tones (no pink palette), readable unmodified hands and face.\nFraming: one complete standing nearly frontal human, slight overhead game view, entire head, held equipment and boots fully inside generous true alpha transparent margins. No floor, environment, shadow, text, names, lettering, alternate poses or other people. Static armed-pose REVIEW concept; separate runtime body/arm/weapon/finger layers are not yet authored.\n\nSubject CULT-02: lean adult woman cultist with normal medium-brown skin, ordinary dark eyes, clearly human stern face and short dark hair with one broad swept side lock. Short burgundy hood worn BACK around the neck as a thick cowl, no face mask; plain slate-grey long-sleeved utility jacket, burgundy sleeveless short over-vest, dark navy trousers and plain black ankle boots. ONE wide ivory upper-arm cloth band matches CULT-01's faction. No armor suit, no thigh straps or little gadgets. She carries ONE compact chunky grey industrial PISTOL in her RIGHT normal gloved hand (viewer left), elbow naturally bent, muzzle angled down and outward away from the body, grip clearly in palm and fingers. Index finger along the side of the frame. Her LEFT hand is empty, held near the lower ribs, not touching the pistol. The gun must have a short squared barrel and a distinct simple grip, not a long rifle or futuristic glowing emitter. A narrower, slightly side-on asymmetrical stance distinguishes her from the broad baton cultist, but maintain the same adult human height. No blood, no wounds, no demonic eyes.\nSecond reference image is CULT-01, a FACTION and simplicity reference: match the burgundy/slate clothing and ivory upper-arm band, while creating the distinct female ranged silhouette specified above. No extra marks, hardware or shading detail.",
+      "revision": "r01",
+      "mode": "generate",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-a0b4fe1a-a1e0-49d0-ae35-c323852fd43c.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r03.png",
+          "role": "Adult scale and graphic style only"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r01.png",
+          "role": "Faction palette and simplicity reference"
+        }
+      ],
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Appearance and broad role proposal only; no ability, number, placement or game change implemented.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-02-r01.png",
+      "source_sha256": "b461a30b0b5c02c649ece227133a47b4a616c359c434bdcf2d9c547ab03daff1"
+    },
+    {
+      "id": "CULT-03",
+      "number": 15,
+      "label": "Officiant du culte",
+      "family": "Cultistes humains",
+      "role": "Humain ordinaire / encadrement",
+      "depth": "Zones cultistes, après les premières rencontres",
+      "height": 60,
+      "width": 46,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE full-body enemy character source for a 64px native game tile in Project RL, a grim industrial cyberpunk roguelike.\nPrimary request: a completely NORMAL HUMAN CULTIST, one of the FIRST and comparatively least dangerous enemies. Intact human body and human face; no possession, no mutation, no grafts or superhuman muscles. These are ordinary adult civilians who joined the cult. Five-heads-tall compact adult proportions, no chibi, height equal to the human mission officer.\nInput image: ONLY graphic-style and adult-scale reference. Do not copy the reference officer's uniform, helmet, diagonal belt or command stance.\nArt style: very clean bold controlled black outlines, broad FLAT graphic-novel color regions, only ONE broad shadow per material, around 14-16 useful colors, no little scratches, rust, grain, shading gradients, polygon facets, dense cloth folds or excessive seams. Design to stay immediately recognizable at only 60 pixels body height. Two large clothing colors, simple light/shadow hierarchy. Mature serious cyberpunk setting, not fantasy medieval, not cute cartoon.\nFaction clothing: repurposed civilian/work clothing in burgundy and slate-grey with one wide DIRTY-IVORY band wrapped around an upper arm. No diagonal chest sash, no chest armor, no big pauldrons, no heavy greaves, no glowing symbols, no magical effects or futuristic implants. Ordinary eyes with dark irises, normal intact skin in natural beige/brown/ochre tones (no pink palette), readable unmodified hands and face.\nFraming: one complete standing nearly frontal human, slight overhead game view, entire head, held equipment and boots fully inside generous true alpha transparent margins. No floor, environment, shadow, text, names, lettering, alternate poses or other people. Static armed-pose REVIEW concept; separate runtime body/arm/weapon/finger layers are not yet authored.\n\nSubject CULT-03: thin older adult male cult member, healthy unmodified human anatomy, normal pale ochre-beige skin, gaunt intact face with dark eyes, shaved scalp visible under a plain burgundy low hood whose sides do not conceal the face. A simple knee-length burgundy civilian work coat, closed broad slate-grey center panel, slate-grey plain sleeves and trousers, ordinary dark boots. One wide ivory upper-arm cloth band is his only faction mark, no jewelry or tiny symbols. Thin upright human posture with feet fairly close, no heroic armor stance.\nHe holds one SHORT squared dark metal staff in his LEFT normal gloved hand (viewer right), held vertical beside the body with the lower end near the foot. The top is a simple broad EMPTY rectangular industrial plaque with one wide dirty ivory painted block, no runes, insignia, lettering, spikes, blade or magical glow. His RIGHT hand is open at chest height in a plain commanding speaking gesture with normal fingers. The staff is an ordinary carried sign of cult office, NOT a magic wand and no buff or power is visually depicted. This must read as a human organizer among civilians, not a possessed sorcerer. Keep the coat as two large mostly uninterrupted shapes with a single broad hem and only one fold, no long shredded fabric or dangling chains.\nSecond reference image is CULT-01, a FACTION and simplicity reference: match burgundy/slate clothing with one ivory upper-arm band, while making the older hooded human and vertical carried sign distinctly recognizable. No extra hardware, ornament or shading detail.",
+      "revision": "r01",
+      "mode": "generate",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-b485f45d-3428-44f0-8609-26fffd4dcfd2.png",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r03.png",
+          "role": "Adult scale and graphic style only"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r01.png",
+          "role": "Faction palette and simplicity reference"
+        }
+      ],
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Appearance and broad role proposal only; no ability, number, placement or game change implemented.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-03-r01.png",
+      "source_sha256": "5bab4de313ac6ac7b32d496fa699de5edda72ce2707283ad2d8fcd75ddd291c7"
+    }
+  ]
+}

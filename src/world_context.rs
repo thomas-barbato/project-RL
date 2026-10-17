@@ -132,6 +132,7 @@ impl AsciiApp {
                 self.graphics.active.world_cell_px,
                 self.navigation_signal_summary().is_some(),
                 at,
+                self.camera_glide_offset(),
             )
             .ok_or("Case hors caméra")?;
         let scale = self.ui_scale();
@@ -2119,6 +2120,7 @@ impl AsciiApp {
                     self.graphics.active.world_cell_px,
                     self.navigation_signal_summary().is_some(),
                     at,
+                    self.camera_glide_offset(),
                 )
                 .map_or((viewport.0 * 0.5, viewport.1 * 0.5), |r| {
                     (r.right() / scale, r.y / scale)
@@ -2140,6 +2142,7 @@ impl AsciiApp {
             self.graphics.active.world_cell_px,
             self.navigation_signal_summary().is_some(),
             at,
+            self.camera_glide_offset(),
         ) {
             draw_rectangle_lines(
                 r.x / scale - 2.0,

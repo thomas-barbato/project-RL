@@ -1,0 +1,197 @@
+{
+  "review": "HUD-06 / UX-PETS-05",
+  "date": "2026-10-16",
+  "native_integration": false,
+  "accepted_decisions": {
+    "styles": [
+      "Métal sombre",
+      "Terminal PC"
+    ],
+    "default": "Métal sombre",
+    "real_skill_and_status_icons": true,
+    "larger_familiar_window_with_each_ally_effects": true
+  },
+  "presented_adjustments": {
+    "familiar_button": "immediately after Techniques",
+    "familiar_window_width_logical_px": 400,
+    "visible_list_height_logical_px": 330,
+    "new_option_label": "Habillage de l’interface"
+  },
+  "browser_checks": {
+    "review": "HUD-06 / UX-PETS-05",
+    "sizes": [
+      {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "actions": [
+          "Attendre Espace",
+          "Interagir E",
+          "Attaquer F",
+          "Techniques U",
+          "Familiers"
+        ],
+        "effectTextHidden": true,
+        "elapsedTurnCounter": false,
+        "height": 913.5,
+        "onlyLastTurnBlinks": true,
+        "originalFooterCommands": 10,
+        "overflow": false,
+        "passives": 6,
+        "permanentsHaveNoTimers": true,
+        "petCount": 5,
+        "petFits": true,
+        "petHealthBars": true,
+        "petHeight": 541.15625,
+        "petScroll": true,
+        "petWidth": 400,
+        "realImages": true,
+        "skillCenterDelta": 0,
+        "skillDock": false,
+        "skillSlots": 6,
+        "temporaryEffects": 2,
+        "theme": "metal",
+        "weaponSwitch": 1,
+        "width": 1888,
+        "zoom": "1"
+      },
+      {
+        "viewport": {
+          "width": 2560,
+          "height": 1440
+        },
+        "actions": [
+          "Attendre Espace",
+          "Interagir E",
+          "Attaquer F",
+          "Techniques U",
+          "Familiers"
+        ],
+        "effectTextHidden": true,
+        "elapsedTurnCounter": false,
+        "height": 1139.25,
+        "onlyLastTurnBlinks": true,
+        "originalFooterCommands": 10,
+        "overflow": false,
+        "passives": 6,
+        "permanentsHaveNoTimers": true,
+        "petCount": 5,
+        "petFits": true,
+        "petHealthBars": true,
+        "petHeight": 674.75,
+        "petScroll": true,
+        "petWidth": 500,
+        "realImages": true,
+        "skillCenterDelta": 0,
+        "skillDock": false,
+        "skillSlots": 6,
+        "temporaryEffects": 2,
+        "theme": "metal",
+        "weaponSwitch": 1,
+        "width": 2528,
+        "zoom": "1.25"
+      },
+      {
+        "viewport": {
+          "width": 3840,
+          "height": 2160
+        },
+        "actions": [
+          "Attendre Espace",
+          "Interagir E",
+          "Attaquer F",
+          "Techniques U",
+          "Familiers"
+        ],
+        "effectTextHidden": true,
+        "elapsedTurnCounter": false,
+        "height": 1827.328125,
+        "onlyLastTurnBlinks": true,
+        "originalFooterCommands": 10,
+        "overflow": false,
+        "passives": 6,
+        "permanentsHaveNoTimers": true,
+        "petCount": 5,
+        "petFits": true,
+        "petHealthBars": true,
+        "petHeight": 1082.359375,
+        "petScroll": true,
+        "petWidth": 800,
+        "realImages": true,
+        "skillCenterDelta": 0,
+        "skillDock": false,
+        "skillSlots": 6,
+        "temporaryEffects": 2,
+        "theme": "metal",
+        "weaponSwitch": 1,
+        "width": 3808,
+        "zoom": "2"
+      },
+      {
+        "viewport": {
+          "width": 3840,
+          "height": 2160
+        },
+        "actions": [
+          "Attendre Espace",
+          "Interagir E",
+          "Attaquer F",
+          "Techniques U",
+          "Familiers"
+        ],
+        "effectTextHidden": true,
+        "elapsedTurnCounter": false,
+        "height": 1827.34375,
+        "onlyLastTurnBlinks": true,
+        "originalFooterCommands": 10,
+        "overflow": false,
+        "passives": 6,
+        "permanentsHaveNoTimers": true,
+        "petCount": 5,
+        "petFits": true,
+        "petHealthBars": true,
+        "petHeight": 1082.359375,
+        "petScroll": true,
+        "petWidth": 800,
+        "realImages": true,
+        "skillCenterDelta": 0,
+        "skillDock": false,
+        "skillSlots": 6,
+        "temporaryEffects": 2,
+        "theme": "terminal",
+        "weaponSwitch": 1,
+        "width": 3808,
+        "zoom": "2"
+      }
+    ],
+    "nativeGame": false
+  },
+  "interactions_verified": [
+    "menu to options to display",
+    "style preview",
+    "cancel restores style",
+    "apply retains style",
+    "style restored after reload",
+    "familiars open from button after Techniques",
+    "fold and unfold",
+    "selection of last raised ally scrolls list",
+    "passive tooltip visible with Permanent and no countdown"
+  ],
+  "game_effects": "No added buffs or propagation rules; illustrative statuses only in the mockup. Timed passive effects retain their timer; only actually permanent effects omit it.",
+  "preserved_reference": "INTERFACE_SAUVEGARDE_04B.json; hashes verified",
+  "icon_source_assets_unchanged": true,
+  "prior_baseline_comparison": {
+    "files": 7014,
+    "changed_since_earlier_review": []
+  },
+  "source_or_runtime_asset_edits_by_this_revision": false,
+  "fragment_bytes": 721633,
+  "fragment_sha256": "20911cdac706d3fc8069211be9b4a3c1e61ca3f3dc7b4f384c7c40fe777317e2",
+  "captures": [
+    "artifacts/interface-review/maquette-familiers-effets-metal.png",
+    "artifacts/interface-review/maquette-familiers-effets-terminal.png",
+    "artifacts/interface-review/maquette-options-habillage.png"
+  ],
+  "native_tests": "Not run; changes are review sources and documents only."
+}

@@ -1,0 +1,112 @@
+{
+  "review_id": "CULTISTS-TWO-HANDED-29",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "records": [
+    {
+      "number": 164,
+      "id": "CULT-08",
+      "revision": "r01",
+      "label": "Cultiste",
+      "review_label": "Tir à deux mains",
+      "family": "Cultistes humains",
+      "catalogue_section": "Cultistes humains",
+      "role": "Tir à deux mains",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-08-r01.png",
+      "source_sha256": "9be9700d02a5fdc85b90f2b656e86808a5f25983f6f17a8aafdc7e2a15557dff",
+      "maximum_body_height64": 60,
+      "maximum_body_width64": 72,
+      "palette_limit": 15,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "visual_approved": true,
+      "scale_approved": true,
+      "name_approved": true,
+      "rules_approved": false,
+      "runtime_authorized": true,
+      "variants": [
+        {
+          "variant": "A",
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/native64-review-only/cultists-29/CULT-08-r01-native64.png",
+          "sha256": "ad10188ee0fe156ecd14ef6f30111f63c39c7e7edc8d89699c469352c421d34d",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "colors": 15
+        }
+      ],
+      "acceptance_statement": "Valider les deux",
+      "accepted_date": "2026-10-17"
+    },
+    {
+      "number": 165,
+      "id": "CULT-09",
+      "revision": "r01",
+      "label": "Cultiste",
+      "review_label": "Mêlée à deux mains",
+      "family": "Cultistes humains",
+      "catalogue_section": "Cultistes humains",
+      "role": "Mêlée à deux mains",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-09-r01.png",
+      "source_sha256": "85572e4bbb8d8960e61053871b944abba7ed5b01c67c4f8644c9af7e13905912",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 72,
+      "palette_limit": 15,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "visual_approved": true,
+      "scale_approved": true,
+      "name_approved": true,
+      "rules_approved": false,
+      "runtime_authorized": true,
+      "variants": [
+        {
+          "variant": "A",
+          "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/native64-review-only/cultists-29/CULT-09-r01-native64.png",
+          "sha256": "3f19f1a233d5305e39068dec28c403e760e2be5e706cebd0d1901873494f52d8",
+          "cell": 64,
+          "canvas": 128,
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "occupied": [
+            44,
+            32,
+            84,
+            96
+          ],
+          "colors": 15
+        }
+      ],
+      "acceptance_statement": "Valider les deux",
+      "accepted_date": "2026-10-17"
+    }
+  ],
+  "expected_new_numbers": [
+    164,
+    165
+  ],
+  "expected_catalogue_count": 131,
+  "player_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "foot_anchor": [
+      64,
+      96
+    ]
+  },
+  "status": "visually_accepted",
+  "runtime_connected": false,
+  "preview": "artifacts/campaign-bestiary-integration-06/cultists-two-handed-native64.png",
+  "acceptance_statement": "Valider les deux"
+}

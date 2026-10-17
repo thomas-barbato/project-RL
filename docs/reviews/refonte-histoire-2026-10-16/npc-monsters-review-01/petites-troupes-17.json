@@ -1,0 +1,2738 @@
+{
+  "review_id": "TROUPES-17",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen; one separate generation per base drawing",
+  "status": "proposals_not_integrated",
+  "user_statements": [
+    "oui concernant les petites troupes, comme tu as pu l'étudier via diablo 2 , c'est qu'il y a toujours des monstres \"chaire à canon\" dans le jeu et je trouve qu'on en manque enormement. Bref je te laisse m'en generer plusieurs (comme pour les armures) en 64 px (certains peuvent meme etre plus petits :) mais toujours à la bonne taille , pas de zoom.",
+    "tu peux meme faire des memes monstres mais de couleurs differentes :) , ca se fait beaucoup dans diablo 2 :)",
+    "je parlais de démons",
+    "lui je l'aime bien, il pourrait faire office de magicien possédé"
+  ],
+  "scope": "Douze petits démons ordinaires 28–39 avec une variante de palette chacun, à taille native sans zoom. Les premiers essais humains et machines sont écartés de ce lot ; le 25 est conservé séparément comme magicien possédé apprécié.",
+  "runtime_connected": false,
+  "mechanics_defined": false,
+  "player_reference": {
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "foot_anchor": [
+      64,
+      96
+    ]
+  },
+  "records": [
+    {
+      "id": "TROUP-01",
+      "number": 22,
+      "revision": "r01",
+      "label": "Cultiste au couteau",
+      "family": "Cultistes humains",
+      "maximum_body_height64": 58,
+      "maximum_body_width64": 40,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Monstre ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-01-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nAn ordinary adult HUMAN cult novice, no visible face or skin. Same faction charcoal hood, simple short charcoal tunic with ONE muted burgundy front panel, dark trousers and plain boots. An opaque physical ivory mask with TWO broad black eye slits covers the complete face; not a black hole or skull. Both hands gloved, only TWO arms and TWO normal adult legs, about five heads tall. Slight hesitant forward stance, narrow unarmored shoulders, no elite mantle. One hand naturally grips ONE very short broad industrial knife held low at the hip, blade pointing outward, opposite hand open near the waist. A single plain belt, no pouches, armor plates or ornament. Keep blade thick and simple enough for a 58px figure. Knife and fingers visibly meet. This human should not be a tiny goblin or child.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "outside_current_demon_request",
+      "source_sha256": "40cd6818ffaceb634a755c48e9dd1d36a709d10638a74e73b9abe7af0bcc7324",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-ee1a1164-cd8b-44cc-ab43-4a02fb80d66c.png",
+      "palette_variant": {
+        "changed_pixels": 263,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              97,
+              58,
+              59
+            ],
+            "target": [
+              89,
+              97,
+              67
+            ]
+          },
+          {
+            "source": [
+              102,
+              35,
+              37
+            ],
+            "target": [
+              89,
+              102,
+              50
+            ]
+          },
+          {
+            "source": [
+              126,
+              40,
+              43
+            ],
+            "target": [
+              109,
+              126,
+              59
+            ]
+          },
+          {
+            "source": [
+              144,
+              46,
+              49
+            ],
+            "target": [
+              125,
+              144,
+              68
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-01-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            16,
+            2,
+            48,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 15,
+          "sha256": "7e2b6b61082fa1b269f5d92bd2ac81af0f5cc7823021c41805c02f150a303221",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-01-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            16,
+            2,
+            48,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 15,
+          "sha256": "6861ae1dc6e5a7b864a0179e04015a5dbac546f9d0d15dcea4387378869bd5fa",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-01-r01-shadow64.png",
+        "sha256": "26ed79f33f092522c222938a964b61b01756e3e872042280d5c13f800158e368",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            32,
+            59
+          ],
+          "width": 31,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "in_current_demon_batch": false
+    },
+    {
+      "id": "TROUP-02",
+      "number": 23,
+      "revision": "r01",
+      "label": "Cultiste à la barre",
+      "family": "Cultistes humains",
+      "maximum_body_height64": 58,
+      "maximum_body_width64": 44,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Monstre ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-02-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nA plain adult HUMAN cult laborer, the most basic member of a sinister industrial cult. Completely hidden face and skin: charcoal hood, opaque ivory physical mask with two black eye slits, dark gloves, plain boots. Same simple charcoal uniform with ONE muted burgundy sleeveless vest, straight charcoal trousers. Stockier torso than the knife novice but normal human adult standing height and two arms/two legs. Holds one simple short bent iron pipe DOWN beside viewer right hip, firmly grasped in that side glove, no chain or shield. Other hand hangs relaxed. Two or three large clothing folds maximum, one belt. No shoulder armor, backpack, robe mantle, magical implement, rank badge or heroic wide stance. Broad pipe and large mask are the only identifying details.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "outside_current_demon_request",
+      "source_sha256": "2446f7d63da60fedb511fc80dcb1cffad54e48891385d24598bc712f054b7d44",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-13e17d7a-79e9-4488-9bdd-2ef2a787a440.png",
+      "palette_variant": {
+        "changed_pixels": 311,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              69,
+              38,
+              40
+            ],
+            "target": [
+              63,
+              69,
+              45
+            ]
+          },
+          {
+            "source": [
+              90,
+              58,
+              59
+            ],
+            "target": [
+              84,
+              90,
+              65
+            ]
+          },
+          {
+            "source": [
+              112,
+              36,
+              42
+            ],
+            "target": [
+              97,
+              112,
+              53
+            ]
+          },
+          {
+            "source": [
+              140,
+              43,
+              50
+            ],
+            "target": [
+              121,
+              140,
+              64
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-02-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            16,
+            2,
+            49,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "7889d54e838a02f9a92dff38ccbec5100b173366e56de3a1886919c515912996",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-02-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            16,
+            2,
+            49,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "7932f69e8c2a19586f19bfe93dc17c4e96c769d440658c1f652093840835aa07",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-02-r01-shadow64.png",
+        "sha256": "70036ef6b8ff4cf281a669ea5b8a36ad002de2d98fa86065842d79db4550045b",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            33,
+            59
+          ],
+          "width": 32,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "in_current_demon_batch": false
+    },
+    {
+      "id": "TROUP-03",
+      "number": 24,
+      "revision": "r01",
+      "label": "Cultiste au pistolet",
+      "family": "Cultistes humains",
+      "maximum_body_height64": 58,
+      "maximum_body_width64": 46,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Monstre ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-03-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/CULT-01-r03.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nAn unarmored adult HUMAN cult sentry, not an elite marksman. Compact slender mature human, two legs and two arms, hood, ivory opaque physical mask, gloved hands, no visible skin. Charcoal hooded jacket and charcoal straight trousers; ONE broad muted burgundy upper-chest panel and dark boots. A tiny chunky plain industrial pistol is held naturally in one gloved hand beside the chest, angled slightly downward toward viewer LEFT, elbow bent and forearm clearly connected. Opposite hand is open near belt, not holding another weapon. No aiming laser, muzzle light, long barrel, scope, ammunition belts, pauldron, grenades or insignia. Same standing adult scale as other cultists, not a smaller species. Very simple three-mass silhouette: hooded masked head, cloth body, one short arm/pistol projection.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "outside_current_demon_request",
+      "source_sha256": "039a015b9b6ceb34676ce69b5921f72e307f7ced5ec69bfa3f7cab5c1a65561f",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-4f868b5b-1b4f-429b-8273-8a7b3eeb6f33.png",
+      "palette_variant": {
+        "changed_pixels": 265,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              95,
+              30,
+              36
+            ],
+            "target": [
+              82,
+              95,
+              44
+            ]
+          },
+          {
+            "source": [
+              106,
+              51,
+              55
+            ],
+            "target": [
+              95,
+              106,
+              63
+            ]
+          },
+          {
+            "source": [
+              119,
+              36,
+              43
+            ],
+            "target": [
+              103,
+              119,
+              54
+            ]
+          },
+          {
+            "source": [
+              137,
+              40,
+              49
+            ],
+            "target": [
+              118,
+              137,
+              61
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-03-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            17,
+            2,
+            48,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 15,
+          "sha256": "f8c105b813021e47d8f19e13139c52a8076dcac4ace045b41d29018d6e559aba",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-03-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            17,
+            2,
+            48,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 15,
+          "sha256": "e91d372171d92042fad30bf613d2ea528e285949f50633b13d31bfcb895a201f",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-03-r01-shadow64.png",
+        "sha256": "26ed79f33f092522c222938a964b61b01756e3e872042280d5c13f800158e368",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            32,
+            59
+          ],
+          "width": 31,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "in_current_demon_batch": false
+    },
+    {
+      "id": "TROUP-04",
+      "number": 25,
+      "revision": "r01",
+      "label": "Magicien possédé",
+      "family": "Corps altérés",
+      "maximum_body_height64": 54,
+      "maximum_body_width64": 42,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Lanceur de sorts possédé proposé par le joueur ; sorts à définir",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-04-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE weak shambling formerly human clinical captive, normal adult proportions but hunched a little, short of a full upright standing human height. TWO ordinary thin arms, TWO ordinary legs, intact feet and no giant claw. A simple loose dull TEAL clinical sleeveless tunic ending above knees, dark plain cropped trousers and bare sallow warm beige forearms/feet. Head hangs to one side, hairless, one broad flat steel clinical blindfold over eyes, slack CLOSED mouth. ONE broad muted dark-red flesh seam across one forearm, no exposed bones, ribs, skeleton, gore ribbons or clusters of lesions. No mask from cult, hood, hospital machinery backpack, weapon or magical apparatus. Frail unsettling unimportant body, shoulders narrow, hands hanging forward with only simple broad finger groups. Not a tall surgeon demon or boss.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "source_appreciated_separate_candidate",
+      "source_sha256": "e3b0f27dcbf8e0423320ab6147f7081efaa558650caf942bee8dfc1152b83a13",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-75d0688c-d43e-413b-9484-60fbedce137c.png",
+      "palette_variant": {
+        "changed_pixels": 216,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              44,
+              75,
+              77
+            ],
+            "target": [
+              72,
+              77,
+              51
+            ]
+          },
+          {
+            "source": [
+              77,
+              122,
+              125
+            ],
+            "target": [
+              117,
+              125,
+              87
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-04-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            16,
+            6,
+            48,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 16,
+          "sha256": "782f69fc271b2a945ac0afa34b8a99dcb4b8f6ea1c6820f14732391f1ed2f642",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-04-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            16,
+            6,
+            48,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 16,
+          "sha256": "3bfbda8c699bd744e2bf74e57d48b3c95128fa3571659158e8b24a230ce3e361",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-04-r01-shadow64.png",
+        "sha256": "d747a4b349375c09c0eb699a99baa4a861f8ac6ef3f8bad1beb854c78db5deee",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            26,
+            59
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "in_current_demon_batch": false,
+      "source_appearance_appreciated": true
+    },
+    {
+      "id": "TROUP-05",
+      "number": 26,
+      "revision": "r01",
+      "label": "Manœuvre greffé",
+      "family": "Hybrides industriels",
+      "maximum_body_height64": 56,
+      "maximum_body_width64": 46,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Monstre ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-05-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE mundane industrial worker partially possessed and crudely mechanized, TWO legs and TWO arms, mature ordinary human scale in a slight stoop. Plain dull MUSTARD work shirt over dark petrol-blue trousers and charcoal boots. Sallow beige bald head with a squat dark respirator covering nose and mouth, eyes are dull pale slits, not glowing. One forearm only is replaced by ONE simple dark-steel blocky two-prong industrial gripper, no giant press, gun, cannon, energy cell or giant blade. That forearm is slightly heavier than the normal bare flesh forearm, but it is not oversized elite equipment. THREE main color masses: mustard shirt, blue trousers, dark gripper/respirator. One broad muted red organic seam at the gripper root. No intricate pistons, many wires, armor, backpack or shoulder pylons.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "outside_current_demon_request",
+      "in_current_demon_batch": false,
+      "source_sha256": "6ce5874235b429475b6fb0225eced24507727bdd5a9ba4555afb6dbaa9d3b8ba",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-25badc26-ed41-4026-8f95-14dd994b4669.png"
+    },
+    {
+      "id": "TROUP-06",
+      "number": 27,
+      "revision": "r01",
+      "label": "Drone rampant",
+      "family": "Machines détournées",
+      "maximum_body_height64": 26,
+      "maximum_body_width64": 44,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Monstre ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-06-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE small low repurposed industrial crawler MACHINE, about boot-to-knee height on a standing human: native body intended26px high and44px wide. Squat simple OCHRE rectangular maintenance shell with rounded corners, a broad charcoal underside and exactly FOUR short stout mechanical legs, two per side, each ending in a small flat foot. All four leg tips clearly visible and separated. ONE broad dark red sensor window on front, no face or glowing effect. One flat pale steel latch on shell is enough. No gun, turret, antenna forest, cables, tanks, humanoid head, skeletal anatomy or huge mandibles. A cheap damaged work device, never a battle tank or boss. Keep each leg to two simple segments and large dark joint only. Hard brutal utility design, not a cute pet.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "outside_current_demon_request",
+      "in_current_demon_batch": false,
+      "source_sha256": "034a1861cd43d3d85e5a04eb5bf953e69debc652be8f565140f2e12a8fe694d0",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-3135d216-572e-4800-a080-eb2cd7fb6566.png"
+    },
+    {
+      "id": "TROUP-07",
+      "number": 28,
+      "revision": "r02",
+      "label": "Démon voûté",
+      "family": "Démons mineurs",
+      "maximum_body_height64": 65,
+      "maximum_body_width64": 68,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-07-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE small adult non-human lesser demon, native40px high, obviously a different squat species rather than a shrunken human child. Broad humped shoulders, round low head, short dark moss-OLIVE hide with warm dull ochre belly, two bowed short thick legs with blunt clawed feet, two long skinny arms braced slightly forward. Hairless flattened face with two small sunken dull black eyes and ONE broad closed toothless slit mouth, no giant grin. Only two broad dull claws per hand; no horns, crown, crest, hooves, tail, bones, accessories, loincloth or weapon. One asymmetrical large swollen shoulder gives the whole body an unpleasant silhouette. Three large skin folds at most, no pores/scales/spines. Wretched repulsive creature, not a cute goblin or iconic licensed imp. Natural game anatomy simplified for common mobs.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "revised_player_height_pending_selection",
+      "in_current_demon_batch": true,
+      "source_sha256": "4a7af2046c665879dcbd7d9250af3704eb48c9691e4e02fad9e846b6917e2c75",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-5f2fbaac-9e96-40fb-9f85-dbf1cc740300.png",
+      "palette_variant": {
+        "changed_pixels": 1080,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              56,
+              54,
+              39
+            ],
+            "target": [
+              56,
+              45,
+              42
+            ]
+          },
+          {
+            "source": [
+              67,
+              61,
+              42
+            ],
+            "target": [
+              67,
+              51,
+              47
+            ]
+          },
+          {
+            "source": [
+              74,
+              69,
+              47
+            ],
+            "target": [
+              74,
+              57,
+              52
+            ]
+          },
+          {
+            "source": [
+              88,
+              84,
+              54
+            ],
+            "target": [
+              88,
+              66,
+              61
+            ]
+          },
+          {
+            "source": [
+              105,
+              100,
+              64
+            ],
+            "target": [
+              105,
+              79,
+              72
+            ]
+          },
+          {
+            "source": [
+              112,
+              102,
+              64
+            ],
+            "target": [
+              112,
+              81,
+              74
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r02-A-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "occupied": [
+            31,
+            31,
+            98,
+            96
+          ],
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "colors": 15,
+          "sha256": "6fb8aa2ec65c99345d7f90ef45bfeffffa1669ed8605048b6f8c26e4b3e3e397",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r02-B-native64.png",
+          "canvas": 128,
+          "cell": 64,
+          "occupied": [
+            31,
+            31,
+            98,
+            96
+          ],
+          "foot_anchor": [
+            64,
+            96
+          ],
+          "colors": 15,
+          "sha256": "5de8aa47e38fa4b616be0350b0ccb2060390821ca6b1828d6d03ca6266336e16",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-07-r02-shadow64.png",
+        "sha256": "9f5106ea71957e5ebab5f43a30db1a5a40c1e759d7fdcf414533d3f5876ebaa9",
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "contact": {
+          "center": [
+            46,
+            95
+          ],
+          "width": 32,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      },
+      "previous_revisions": [
+        {
+          "revision": "r01",
+          "maximum_body_height64": 40,
+          "maximum_body_width64": 42,
+          "canvas_cells": 1,
+          "ground_cell": 0.9375,
+          "variants": [
+            {
+              "variant": "A",
+              "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r01-A-native64.png",
+              "canvas": 64,
+              "cell": 64,
+              "occupied": [
+                12,
+                20,
+                53,
+                60
+              ],
+              "foot_anchor": [
+                32,
+                60
+              ],
+              "colors": 14,
+              "sha256": "81f7909659dc92e7af7b74e76284f18d2f0abbb812e3eaf855b8ea251e24cc24",
+              "visual_approved": false
+            },
+            {
+              "variant": "B",
+              "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-07-r01-B-native64.png",
+              "canvas": 64,
+              "cell": 64,
+              "occupied": [
+                12,
+                20,
+                53,
+                60
+              ],
+              "foot_anchor": [
+                32,
+                60
+              ],
+              "colors": 14,
+              "sha256": "f05ceecad54e02ee1941233d1d0b1ea1e137e98bee1815689ba00063a7bc44ec",
+              "visual_approved": false
+            }
+          ],
+          "contact_shadow": {
+            "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-07-r01-shadow64.png",
+            "sha256": "4d0f3d426f885332b16182923463f3187a542906fae9d0c7256c33507b9381ae",
+            "foot_anchor": [
+              32,
+              60
+            ],
+            "contact": {
+              "center": [
+                21,
+                59
+              ],
+              "width": 22,
+              "band_height": 2,
+              "palette_origin": "src/game_art.rs::draw_contact_shadow"
+            },
+            "visual_approved": false
+          },
+          "status": "scale_superseded_by_user_request"
+        }
+      ],
+      "scale_approved": false
+    },
+    {
+      "id": "TROUP-08",
+      "number": 29,
+      "revision": "r01",
+      "label": "Larve de chair",
+      "family": "Vermine organique",
+      "maximum_body_height64": 20,
+      "maximum_body_width64": 42,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-08-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE repulsive low fleshy grub, native20px high and42px wide. Horizontal heavy blunt segmented body in warm sickly BEIGE flesh, only THREE broad swollen lobes and deep muted dark-red underside. Four very short fleshy prolegs, two per side, as simple rounded stubs; no articulated insect legs. Broad eyeless front head is a soft lip ring around ONE small dark horizontal slit, no teeth and no face. Body curves gently toward viewer right so front and rear are distinguishable in a slightly overhead nearly frontal game pose. Sparse broad flesh folds only. No bones, spine, spikes, shell, organs, blood spray, ice, equipment or tentacle forest. An ordinary ugly grub, not a giant worm boss. No baby/child human anatomy.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "27442aa3ea9a6d891934ae6488d8ceb4eee3cbc106441052fb07498b041c4aa8",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-a3c14933-b599-4d1a-a4ad-0d1f53aea354.png",
+      "palette_variant": {
+        "changed_pixels": 264,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              167,
+              123,
+              104
+            ],
+            "target": [
+              136,
+              150,
+              116
+            ]
+          },
+          {
+            "source": [
+              211,
+              155,
+              130
+            ],
+            "target": [
+              172,
+              190,
+              146
+            ]
+          },
+          {
+            "source": [
+              228,
+              172,
+              142
+            ],
+            "target": [
+              186,
+              205,
+              158
+            ]
+          },
+          {
+            "source": [
+              234,
+              188,
+              151
+            ],
+            "target": [
+              190,
+              211,
+              162
+            ]
+          },
+          {
+            "source": [
+              239,
+              196,
+              155
+            ],
+            "target": [
+              194,
+              215,
+              166
+            ]
+          },
+          {
+            "source": [
+              242,
+              200,
+              159
+            ],
+            "target": [
+              197,
+              218,
+              168
+            ]
+          },
+          {
+            "source": [
+              248,
+              207,
+              165
+            ],
+            "target": [
+              202,
+              223,
+              172
+            ]
+          },
+          {
+            "source": [
+              254,
+              231,
+              204
+            ],
+            "target": [
+              210,
+              229,
+              184
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-08-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            15,
+            40,
+            50,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "000c343fa6fd9a221581d857b0b7c43ceeab9da43dc73c577a06e3e784cd6610",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-08-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            15,
+            40,
+            50,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "81d6021756b36525d9e83720a2ce03b088d81ed6a4f312eb9ff9cab5b65b7c1f",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-08-r01-shadow64.png",
+        "sha256": "83424dae3b5422c4e301877f7428c754ffb0a359da8cf7979310c21d104a67df",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            40,
+            59
+          ],
+          "width": 23,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    },
+    {
+      "id": "TROUP-09",
+      "number": 30,
+      "revision": "r01",
+      "label": "Coléoptère des scories",
+      "family": "Vermine insectoïde",
+      "maximum_body_height64": 26,
+      "maximum_body_width64": 44,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-09-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE simple small insectoid demon scavenger, native26px high and44px wide. A low rounded beetle-like body with TWO broad RUST-ORANGE shell halves and charcoal black underside. Exactly SIX short chunky articulated legs, THREE per side with clear spaces, each has just two simple large sections. Front head is a small flat dark wedge with TWO blunt short mandibles and two dull ochre pin eyes, no human face. Main shell is clean and smooth with a single central seam, no spikes, gearwork, chimneys, vents, machinery, giant furnace mouth, weapons or ornament. This is a minor insect relative, NOT the giant forge elite and not a commander. Do not add ornate armor or many tiny body segments. All leg tips visible, compact clean silhouette, not a realistic macro photograph.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "eab2cb0785b77750068d081fbb806560b643a6bc5cd1376a10e31c4f716bf89e",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-65fbb450-9196-4419-92b2-320aeffa02c2.png",
+      "palette_variant": {
+        "changed_pixels": 342,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              70,
+              30,
+              16
+            ],
+            "target": [
+              33,
+              48,
+              63
+            ]
+          },
+          {
+            "source": [
+              94,
+              53,
+              35
+            ],
+            "target": [
+              44,
+              64,
+              85
+            ]
+          },
+          {
+            "source": [
+              116,
+              42,
+              24
+            ],
+            "target": [
+              54,
+              79,
+              104
+            ]
+          },
+          {
+            "source": [
+              145,
+              56,
+              28
+            ],
+            "target": [
+              68,
+              99,
+              130
+            ]
+          },
+          {
+            "source": [
+              168,
+              66,
+              31
+            ],
+            "target": [
+              79,
+              115,
+              151
+            ]
+          },
+          {
+            "source": [
+              179,
+              75,
+              35
+            ],
+            "target": [
+              84,
+              122,
+              161
+            ]
+          },
+          {
+            "source": [
+              193,
+              78,
+              34
+            ],
+            "target": [
+              90,
+              132,
+              174
+            ]
+          },
+          {
+            "source": [
+              193,
+              92,
+              44
+            ],
+            "target": [
+              90,
+              132,
+              174
+            ]
+          },
+          {
+            "source": [
+              232,
+              147,
+              52
+            ],
+            "target": [
+              109,
+              159,
+              209
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-09-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            13,
+            34,
+            51,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 15,
+          "sha256": "6f4e8c4aeccc7dfeed667900bddec03aecaedf8ccf2068aed3bedee1b7c2f1c3",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-09-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            13,
+            34,
+            51,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "a51b77a018a90148b7ea94240ab6358fef3c404c62770cdecd4993e11ae3b724",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-09-r01-shadow64.png",
+        "sha256": "cc97d72b8a36ae4baa0da87befe7bb7657a9cf808d53d77b75ebee48998b2e5f",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            34,
+            59
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    },
+    {
+      "id": "TROUP-10",
+      "number": 31,
+      "revision": "r01",
+      "label": "Mante des conduits",
+      "family": "Vermine insectoïde",
+      "maximum_body_height64": 44,
+      "maximum_body_width64": 46,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-10-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE small unsettling insectoid corridor predator, native44px high and46px wide, no machinery. A thin gently arched dark TEAL chitin body with a warm dull OCHRE underside, one simple triangular eyeless-looking head with two small black recesses, short thick abdomen. Exactly SIX limbs total: FOUR short rear walking legs visibly supporting the body, two per side, plus TWO front hooked forelimbs folded down in a primitive mantis pose. All six limb tips separated, no extra limbs. Hooks are ONE broad blunt chitin curve each, not giant swords; no serrations. Low rank creature, no noble upright posture, armor, wing fans, horns, crown, tail, weapon, giant boss scales or shoulder decoration. One broad shadow plane, a few simple joints, no complex vein patterns. Keep threatening and compact, not cute.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "8e3c3bc8c274d2e7d6313e211ed20c3ef43d15a1418b0eb705bb184fe758d1db",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-5ec0a495-6e78-4156-8cc5-61fe58fef520.png",
+      "palette_variant": {
+        "changed_pixels": 318,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              24,
+              50,
+              55
+            ],
+            "target": [
+              55,
+              37,
+              26
+            ]
+          },
+          {
+            "source": [
+              28,
+              61,
+              68
+            ],
+            "target": [
+              68,
+              45,
+              30
+            ]
+          },
+          {
+            "source": [
+              34,
+              73,
+              80
+            ],
+            "target": [
+              80,
+              53,
+              36
+            ]
+          },
+          {
+            "source": [
+              53,
+              79,
+              82
+            ],
+            "target": [
+              82,
+              65,
+              54
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-10-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            9,
+            24,
+            55,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 15,
+          "sha256": "344cff76f1681e60736f41869fb3a5da124d1e90122709f5ae8b653dadeb52f9",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-10-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            9,
+            24,
+            55,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 15,
+          "sha256": "4b0da7b335443be7e21dbbf4b1a40bb15deeac38689c86513469e443676d2280",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-10-r01-shadow64.png",
+        "sha256": "cec2e81c205e9be305469efc5dffdb26fbfecdeaa82890b4c9fefd4cafb906cd",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            30,
+            59
+          ],
+          "width": 41,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    },
+    {
+      "id": "TROUP-11",
+      "number": 32,
+      "revision": "r01",
+      "label": "Palpeur aveugle",
+      "family": "Vermine des profondeurs",
+      "maximum_body_height64": 40,
+      "maximum_body_width64": 48,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-11-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE small LOVECRAFTIAN non-humanoid lesser organism, native40px high and48px wide. An asymmetrical hanging pear-shaped fleshy sac, a broad dark INDIGO membrane wrapping half of a warm dull BEIGE central flesh lobe. NO human face, skull, eyes or conventional head. A single small vertical dark slit in one fleshy side is enough. Exactly THREE short thick fleshy tentacle supports splayed visibly under the mass: one to each side and one forward, simple large curves, ends at ground. ONE blunt short sensory stalk curves up from rear top, no eyeball. Do not copy the three-faced relay elite: no faces, cables, speakers, boxes, giant mass, many tentacles or long suction-cup rows. One main bulging body and three supports, unpleasant weak deep-lifeform rather than cosmic god or boss. No magic glow, symbols, bones or equipment.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "5b84a6a66a65222151eb59bb640794ee7f55a8b8773ee46d75511de6a12b5823",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-67332c23-14de-4b6c-aa14-aa8e3db687fa.png",
+      "palette_variant": {
+        "changed_pixels": 189,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              40,
+              37,
+              57
+            ],
+            "target": [
+              41,
+              57,
+              49
+            ]
+          },
+          {
+            "source": [
+              50,
+              50,
+              81
+            ],
+            "target": [
+              56,
+              81,
+              69
+            ]
+          },
+          {
+            "source": [
+              63,
+              51,
+              80
+            ],
+            "target": [
+              57,
+              80,
+              68
+            ]
+          },
+          {
+            "source": [
+              69,
+              68,
+              106
+            ],
+            "target": [
+              76,
+              106,
+              91
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-11-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            14,
+            20,
+            51,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "911bd1715e0f5886d61b7ff051f84ae0b91467cf559f18fdd694827b376951fe",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-11-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            14,
+            20,
+            51,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "27e6329622ee623942bd842e61fa952b32c2595f07e67cd9eb4238ab1fae2aff",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-11-r01-shadow64.png",
+        "sha256": "9b428916f37cdfb5287690eff5f69b5828719b0e5d28c3416de03739029d8b3b",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            32,
+            59
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    },
+    {
+      "id": "TROUP-12",
+      "number": 33,
+      "revision": "r01",
+      "label": "Ver du gel noir",
+      "family": "Vermine du plan glacé",
+      "maximum_body_height64": 24,
+      "maximum_body_width64": 46,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-12-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE small ordinary vermin of a demonic frozen plane, native24px high and46px wide. A low wide slug-like living warm grey-BEIGE fleshy body with dark muted red lip folds, TWO short broad dark ICE-BLUE ridge plates along its back, not high spires. Front is a flat eyeless fleshy snout with ONE horizontal dark mouth slit and no visible teeth. Body is a thick shallow curve with a blunt trailing rear, no humanoid anatomy, giant worm jaws, giant horns, wings or many tentacles. Three broad flesh folds maximum. A few small dark fleshy pads underbody for ground contact, no articulated legs. Flesh must predominate over bone or ice; there is NO bone armor. Not a rescaled version of the six-legged giant ice-plane creature in the reference; invent a distinct small horizontal slug silhouette. No frost aura, crystals on floor, vapor, attacks or magical effects.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "b989bd1e904a72d2063c3131e4a8774bf62cbfe57022f5aa3d7447fe9418289f",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-81f89ab8-fc9e-42c8-a30b-df7978133b0c.png",
+      "preserve_cold_blue_panels": true,
+      "palette_variant": {
+        "changed_pixels": 79,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              45,
+              57,
+              76
+            ],
+            "target": [
+              41,
+              61,
+              60
+            ]
+          },
+          {
+            "source": [
+              84,
+              105,
+              134
+            ],
+            "target": [
+              75,
+              107,
+              106
+            ]
+          },
+          {
+            "source": [
+              150,
+              182,
+              219
+            ],
+            "target": [
+              131,
+              175,
+              174
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-12-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            12,
+            36,
+            53,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 16,
+          "sha256": "3e1aae99195cb744c07a69333620c4a11a9f4cd1567e5d813f07bcdc5889d32d",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-12-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            12,
+            36,
+            53,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 16,
+          "sha256": "856a0eab4e51a46267bb17d2373aa1be48cfd17c398d0a22296c8c56d28326f9",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-12-r01-shadow64.png",
+        "sha256": "dafd84f3bff2c0f8250d525686099057214ab92f71933502a837dc4b3e5ee1e5",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            30,
+            59
+          ],
+          "width": 42,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    },
+    {
+      "id": "TROUP-13",
+      "number": 34,
+      "revision": "r01",
+      "label": "Diablotin des braises",
+      "family": "Démons mineurs",
+      "maximum_body_height64": 42,
+      "maximum_body_width64": 42,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-13-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE ordinary small adult nonhuman demon, native42px high, nothing regal or heroic. A squat forward-hunched dark burnt-ORANGE body with charcoal grey belly, oversized blunt angular ears, TWO short smooth backward horns, broad flat black nose, tiny dull eyes and a CLOSED broad mouth. Two long thin arms with large simple three-digit hands and two bowed short legs with broad clawed feet. A single thick short fleshy tail curls close beside a calf, fully visible. No fire, aura, glowing eyes, weapon, garments, jewelry, chains, skull armor, giant horns or wings. Compact wretched malicious lesser demon, not a human child or cute goblin, not a licensed imp. Only three broad muscle planes and sparse skin folds. The two stub horns and long arms are its identifying details.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "ecb79f5e4e6886472d51913153ff7d686abac521a3a7ae2768e02439b76acc64",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-958ace50-c060-46ed-98d4-fee5883e03a2.png",
+      "palette_variant": {
+        "changed_pixels": 668,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              50,
+              26,
+              18
+            ],
+            "target": [
+              24,
+              33,
+              46
+            ]
+          },
+          {
+            "source": [
+              70,
+              10,
+              5
+            ],
+            "target": [
+              33,
+              46,
+              64
+            ]
+          },
+          {
+            "source": [
+              95,
+              41,
+              21
+            ],
+            "target": [
+              45,
+              63,
+              87
+            ]
+          },
+          {
+            "source": [
+              127,
+              69,
+              42
+            ],
+            "target": [
+              61,
+              84,
+              117
+            ]
+          },
+          {
+            "source": [
+              132,
+              55,
+              27
+            ],
+            "target": [
+              63,
+              87,
+              121
+            ]
+          },
+          {
+            "source": [
+              183,
+              80,
+              36
+            ],
+            "target": [
+              88,
+              121,
+              168
+            ]
+          },
+          {
+            "source": [
+              210,
+              93,
+              42
+            ],
+            "target": [
+              100,
+              139,
+              193
+            ]
+          },
+          {
+            "source": [
+              225,
+              100,
+              45
+            ],
+            "target": [
+              108,
+              149,
+              207
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-13-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            11,
+            19,
+            53,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 13,
+          "sha256": "8088c02864a883b577f33bc669be51a67aeef4324a562daed68b536a3b8acb80",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-13-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            11,
+            19,
+            53,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 13,
+          "sha256": "d7b8dd8447df964ed6fe80e2443cf55c759e6891a8dc735186dcd194a5e1fdf9",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-13-r01-shadow64.png",
+        "sha256": "9ed8fddbb102643f3412bac060c8a0d1354b77134b31f67051c08ea7243510b6",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            32,
+            59
+          ],
+          "width": 46,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    },
+    {
+      "id": "TROUP-14",
+      "number": 35,
+      "revision": "r01",
+      "label": "Gueule rampante",
+      "family": "Bêtes démoniaques",
+      "maximum_body_height64": 32,
+      "maximum_body_width64": 48,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-14-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE small repulsive demonic scavenger BEAST, native32px high and48px wide, low to ground. Broad hairless warm BEIGE flesh body, short arched back, exactly FOUR stout bent animal legs with dark blunt feet; all four feet separated and visible in nearly frontal slight overhead pose. NO human head, eyes or ears. At the FRONT is ONE broad horizontal dark-red lip mouth with FOUR blunt wide ivory teeth, not a giant tooth forest. Neck is very short, body is a fat low wedge, rear is blunt without tail. Three large swollen flesh folds and dark red joints only. Not a dog skeleton or armed hellhound, no bone plates, ribs, horns, flames, spines, machinery, chain or collar. Low-ranked ugly flesh animal with one obvious mouth, not an elite or boss.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "e118ea9380ea81e470f47e74754b5a5b7e96b31cb4365c41a4a2d934f89d1054",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-bbb2c02f-7072-41fe-82e3-7bfe232bbf5c.png",
+      "palette_variant": {
+        "changed_pixels": 491,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              74,
+              64,
+              58
+            ],
+            "target": [
+              62,
+              68,
+              53
+            ]
+          },
+          {
+            "source": [
+              193,
+              127,
+              104
+            ],
+            "target": [
+              161,
+              178,
+              137
+            ]
+          },
+          {
+            "source": [
+              210,
+              156,
+              123
+            ],
+            "target": [
+              175,
+              193,
+              149
+            ]
+          },
+          {
+            "source": [
+              230,
+              179,
+              137
+            ],
+            "target": [
+              191,
+              212,
+              163
+            ]
+          },
+          {
+            "source": [
+              244,
+              195,
+              150
+            ],
+            "target": [
+              203,
+              224,
+              173
+            ]
+          },
+          {
+            "source": [
+              247,
+              202,
+              156
+            ],
+            "target": [
+              205,
+              227,
+              175
+            ]
+          },
+          {
+            "source": [
+              252,
+              227,
+              191
+            ],
+            "target": [
+              210,
+              232,
+              179
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-14-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            10,
+            28,
+            54,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 13,
+          "sha256": "2143f788fd20669f98c05a4294bd64c95f9fe2bddb3a447312d993a83a4ceec3",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-14-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            10,
+            28,
+            54,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 13,
+          "sha256": "d93004ca4a9936646569c5a8c1a668aafc938054cb4e1ac18db8656bd40fb644",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-14-r01-shadow64.png",
+        "sha256": "f0dda4f92c8488777398b14af3c25fbf8a14b5af176287e97f00a8cd81f119cc",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            34,
+            59
+          ],
+          "width": 39,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    },
+    {
+      "id": "TROUP-15",
+      "number": 36,
+      "revision": "r01",
+      "label": "Griffeur des fosses",
+      "family": "Démons mineurs",
+      "maximum_body_height64": 52,
+      "maximum_body_width64": 42,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-15-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE ordinary lean bipedal demon, native52px high, slender adult non-human body, slightly smaller than standing human. Dark SLATE-BLUE leathery skin, warm muted OCHRE inner chest/belly, a narrow eyeless sloped head with ONE broad dark horizontal slit near brow and a small closed mouth, no skull. TWO thin arms, TWO bent long legs and no tail or wings. Each arm ends in ONE large hooked dark hand shape with TWO broad talon tips, integrated fingers not held weapons; elbows naturally connected. A slightly forward stooping skulking pose, arms hanging low beside thighs. NO armor, skulls, rib exposure, crown, helmet, robe, ornate muscles or giant boss horns. ONE broad backward crest on head is short soft skin, not tall spikes. Few large folds, quiet menacing weak troop silhouette.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "235be01d394f1eb75b11acc9d73d6cebb6249b1c71b044aad6cfdbd3409834ff",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-a32ac591-3979-4c4d-9405-5afd602c7f28.png",
+      "palette_variant": {
+        "changed_pixels": 465,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              44,
+              50,
+              61
+            ],
+            "target": [
+              47,
+              61,
+              47
+            ]
+          },
+          {
+            "source": [
+              50,
+              63,
+              79
+            ],
+            "target": [
+              56,
+              79,
+              56
+            ]
+          },
+          {
+            "source": [
+              72,
+              78,
+              89
+            ],
+            "target": [
+              75,
+              89,
+              75
+            ]
+          },
+          {
+            "source": [
+              75,
+              90,
+              113
+            ],
+            "target": [
+              83,
+              113,
+              83
+            ]
+          },
+          {
+            "source": [
+              87,
+              96,
+              110
+            ],
+            "target": [
+              92,
+              110,
+              92
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-15-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            12,
+            8,
+            53,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 15,
+          "sha256": "d3762614feb6f8597ad6451dc0f4ceb66c2d422d0ce32cd65cdaaf0ec0fcf98f",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-15-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            12,
+            8,
+            53,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 15,
+          "sha256": "3ed37832b3d8fdcab80baf7c32816ef9e275aa912598b662eff75b8e557f38d9",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-15-r01-shadow64.png",
+        "sha256": "e43ffeb47bd5ea057495fbe93027642cdcfa85e3d4080ef08383a93ed909ab1d",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            23,
+            59
+          ],
+          "width": 16,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    },
+    {
+      "id": "TROUP-16",
+      "number": 37,
+      "revision": "r01",
+      "label": "Tique de charnier",
+      "family": "Vermine démoniaque",
+      "maximum_body_height64": 24,
+      "maximum_body_width64": 38,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-16-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE small grotesque tick-like demonic vermin, native24px high and38px wide. ONE swollen smooth fleshy ochre-BEIGE rounded sac with a charcoal dark-green saddle-like plate across only the rear quarter; flesh clearly predominates. Exactly EIGHT very short thick jointed dark feet, FOUR per side, fanned clearly apart, simple bent nubs rather than long spider filigree. Front head is a single squat dark mouth cone with no human face, horns, eyes or protruding fangs. One broad purple-grey flesh fold under the plate, one dark red undersurface plane, no fine patterns or pores. It is a low ordinary blood-feeding-looking demon, not a huge chitin war beetle, elite or boss. No equipment, magical effects, wounds, victims, skulls, bone armor or liquid. Entire body and all eight tips visible.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "62d64bf38faf4680a9ca5daf97162ad26efaaa4c4c68d7f2cc82a316dfc6be1c",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-1cc13f59-10e4-448a-a2d3-1614efc8857c.png",
+      "palette_variant": {
+        "changed_pixels": 307,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              70,
+              60,
+              54
+            ],
+            "target": [
+              50,
+              61,
+              64
+            ]
+          },
+          {
+            "source": [
+              95,
+              87,
+              76
+            ],
+            "target": [
+              70,
+              83,
+              87
+            ]
+          },
+          {
+            "source": [
+              178,
+              120,
+              97
+            ],
+            "target": [
+              128,
+              155,
+              164
+            ]
+          },
+          {
+            "source": [
+              204,
+              153,
+              117
+            ],
+            "target": [
+              146,
+              177,
+              188
+            ]
+          },
+          {
+            "source": [
+              230,
+              181,
+              133
+            ],
+            "target": [
+              165,
+              200,
+              212
+            ]
+          },
+          {
+            "source": [
+              242,
+              197,
+              145
+            ],
+            "target": [
+              174,
+              210,
+              223
+            ]
+          },
+          {
+            "source": [
+              247,
+              205,
+              154
+            ],
+            "target": [
+              177,
+              215,
+              227
+            ]
+          },
+          {
+            "source": [
+              252,
+              223,
+              175
+            ],
+            "target": [
+              181,
+              219,
+              232
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-16-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            16,
+            36,
+            49,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 13,
+          "sha256": "a4814f47bd759bd5142dec12004cf8e995d11171ffeea5dadf206c7e144fc62a",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-16-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            16,
+            36,
+            49,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 13,
+          "sha256": "5fd009e3f3828b003bd2d5a9a944fb9856b5dbebc641953737e7ed9de714239f",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-16-r01-shadow64.png",
+        "sha256": "08f6778a1795d495db97af3690c273c3cc73377545bf6f42bf2a232aea096c02",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            31,
+            59
+          ],
+          "width": 32,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    },
+    {
+      "id": "TROUP-17",
+      "number": 38,
+      "revision": "r01",
+      "label": "Rampant abyssal",
+      "family": "Démons des profondeurs",
+      "maximum_body_height64": 36,
+      "maximum_body_width64": 48,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-17-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE small LOVECRAFTIAN demonic floor predator, native36px high and48px wide. A LOW asymmetrical flattened dark TEAL fleshy mantle shaped like an uneven folded ray, with warm dull beige flesh underside. TWO broad thick front arm-supports curl down and forward, TWO tiny squat hind legs under rear, four ground supports total and all clearly separated. The mantle has ONE off-center open-looking black pit ringed by a broad thick flesh lip, NOT a human face, no eyes, skull, tooth rows or human torso. The back edge has only TWO blunt rounded tissue lobes, no tentacle forest or suction cups. One sparse indigo inner shadow plane. Original unsettling lesser demon, small and primitive, never a god, commander or boss. No wings, machinery, relays, speakers, pipes, crown, active spell, particles or equipment. Keep only three main fleshy masses.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "996114439dab9b82e877de2250728841c97381f98245f2dda0bbf2e76e361ccf",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-3d0a9332-f2e9-4a15-b8ab-3c7ac0999549.png",
+      "palette_variant": {
+        "changed_pixels": 353,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              30,
+              57,
+              66
+            ],
+            "target": [
+              56,
+              37,
+              66
+            ]
+          },
+          {
+            "source": [
+              39,
+              73,
+              84
+            ],
+            "target": [
+              72,
+              48,
+              84
+            ]
+          },
+          {
+            "source": [
+              54,
+              67,
+              72
+            ],
+            "target": [
+              67,
+              58,
+              72
+            ]
+          },
+          {
+            "source": [
+              78,
+              102,
+              98
+            ],
+            "target": [
+              96,
+              83,
+              102
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-17-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            8,
+            28,
+            56,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "67aef7576fba9ca5535868c98fd4a7068efc55cc7393cae41cabf075c8ea5849",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-17-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            8,
+            28,
+            56,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 14,
+          "sha256": "f467f50f623473deeafde4720a1a0678fa90f1967364d91ddafe0ba295880026",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-17-r01-shadow64.png",
+        "sha256": "09b96389bccef0609503c8f0796b2887d96ef026d89c35ba0b3abe1866248cc4",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            32,
+            59
+          ],
+          "width": 53,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    },
+    {
+      "id": "TROUP-18",
+      "number": 39,
+      "revision": "r01",
+      "label": "Rôdeur membraneux",
+      "family": "Démons mineurs",
+      "maximum_body_height64": 44,
+      "maximum_body_width64": 52,
+      "palette_limit": 16,
+      "native_body_reference": 64,
+      "canvas_cells": 1,
+      "ground_cell": 0.9375,
+      "role": "Démon ordinaire proposé / petite troupe",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/TROUP-18-r01.png",
+      "references": [
+        {
+          "path": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r02.png",
+          "role": "Référence de style et de matières ; silhouette distincte"
+        }
+      ],
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original COMMON expendable rank-and-file enemy for Project RL, a grim industrial cyberpunk horror roguelike. This is a weak-looking ordinary troop, NEVER a boss, leader, elite, champion or heroic adventurer.\nGraphic style references: clean heavy dark comic contours, compact mature game anatomy, only large readable masses. ONE simple shadow plane per material. Shape must read after native export into a 64x64 tile; body height varies by creature, human adults around58px. Do NOT draw tiny dense details, wear speckles, veins, intricate panels, many straps, patterned cloth, rows of teeth, photorealism, 3D shading or a polished collectible mini. Economy of shape is more important than impressive complexity.\nComposition: exactly ONE entire full-body subject, nearly frontal with a slight overhead game view, ONE pose, all extremities comfortably within generous genuine ALPHA transparent margins. No sheet, second figure, insets, text, environment, floor, glow, particles, spell or weapon effect, or baked contact shadow. A separate contact shadow is composed later. No crown, rank insignia, cape, throne, boss regalia, towering scale or gigantic weapons. Static appearance proposal only; do not define any statistics, ability effects, spawn density, collisions or game behavior.\nThe supplied reference is for STYLE and relevant material/color family ONLY. Do not copy its exact creature, equipment or pose.\nKeep large flat color regions cleanly separated to support alternate palette variants of the SAME drawing. Do not add a second color variant inside this image.\n\nSUBJECT:\nONE small grounded winged demonic scavenger, native44px high and52px wide, a squat adult nonhuman beast rather than a child humanoid. Dark muted PLUM-BROWN leathery skin, one broad warm dull OCHRE throat/chest plane, long blunt pointed ears, tiny recessed dull eyes and one CLOSED horizontal mouth with two short fang tips at most. Exactly TWO short strong hind legs with clear broad clawed feet, exactly TWO forelimbs that are thick folded membrane wings. Wings are partly folded DOWN beside the body, one visible blunt wing wrist near each knee, only TWO large charcoal membrane panels per side, no intricate wing veins or spread giant wings. The two feet carry the body; wing tips remain close to ground. No separate extra arms, tail, horns, clothes, weapons, rank insignia or magical effect. Compact ugly low-ranked demon, not a bat lord, dragon, gargoyle statue or boss. Broad shapes, few facial planes, no fine hair or skin texture.",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal",
+      "in_current_demon_batch": true,
+      "source_sha256": "da64723f3ddf1a6326f4f7fd6674dd9b3f65897b50fd89a4d9fab1507a416206",
+      "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-5cadf10b-d9c7-4e07-a454-e762a9ecfca5.png",
+      "palette_variant": {
+        "changed_pixels": 830,
+        "alpha_and_geometry_identical": true,
+        "palette_map": [
+          {
+            "source": [
+              53,
+              38,
+              37
+            ],
+            "target": [
+              37,
+              53,
+              50
+            ]
+          },
+          {
+            "source": [
+              66,
+              42,
+              41
+            ],
+            "target": [
+              45,
+              66,
+              62
+            ]
+          },
+          {
+            "source": [
+              76,
+              57,
+              56
+            ],
+            "target": [
+              56,
+              76,
+              73
+            ]
+          },
+          {
+            "source": [
+              79,
+              48,
+              46
+            ],
+            "target": [
+              54,
+              79,
+              75
+            ]
+          },
+          {
+            "source": [
+              101,
+              63,
+              60
+            ],
+            "target": [
+              69,
+              101,
+              96
+            ]
+          },
+          {
+            "source": [
+              111,
+              71,
+              68
+            ],
+            "target": [
+              75,
+              111,
+              105
+            ]
+          },
+          {
+            "source": [
+              130,
+              84,
+              75
+            ],
+            "target": [
+              88,
+              130,
+              123
+            ]
+          },
+          {
+            "source": [
+              154,
+              110,
+              56
+            ],
+            "target": [
+              105,
+              154,
+              146
+            ]
+          },
+          {
+            "source": [
+              210,
+              169,
+              117
+            ],
+            "target": [
+              143,
+              210,
+              199
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "A",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-18-r01-A-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            7,
+            16,
+            58,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 16,
+          "sha256": "5e93351812c1f564a957814793ea7c7e6dee7d5a54b129b62ae023f9633aab79",
+          "visual_approved": false
+        },
+        {
+          "variant": "B",
+          "file": "artifacts/npc-monsters-review-01/troupes-tiles/TROUP-18-r01-B-native64.png",
+          "canvas": 64,
+          "cell": 64,
+          "occupied": [
+            7,
+            16,
+            58,
+            60
+          ],
+          "foot_anchor": [
+            32,
+            60
+          ],
+          "colors": 16,
+          "sha256": "bf88d20b4a22342c750b8d7206847c4748dfdf31debb3abe80cb65d3b3413852",
+          "visual_approved": false
+        }
+      ],
+      "contact_shadow": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/troupes-shadows-17/TROUP-18-r01-shadow64.png",
+        "sha256": "7483c8b29ad03130aad59e8ad5f9b1964342b63c2a14749f725637c66461b537",
+        "foot_anchor": [
+          32,
+          60
+        ],
+        "contact": {
+          "center": [
+            34,
+            59
+          ],
+          "width": 45,
+          "band_height": 2,
+          "palette_origin": "src/game_art.rs::draw_contact_shadow"
+        },
+        "visual_approved": false
+      }
+    }
+  ],
+  "preview_scale": 1,
+  "zoom_previews_generated": false,
+  "active_candidate_numbers": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "excluded_trial_numbers": [
+    22,
+    23,
+    24,
+    26,
+    27
+  ],
+  "separate_appreciated_candidate_numbers": [
+    25
+  ],
+  "scale_correction_review": "demons-varied-18.json",
+  "selection_status": "Individual choices deferred by user; no batch approval inferred"
+}

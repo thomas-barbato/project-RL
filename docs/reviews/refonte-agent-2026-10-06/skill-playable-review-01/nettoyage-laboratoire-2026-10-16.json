@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-16",
+  "generation": 148,
+  "approvals": {
+    "retire_demonstration_objects": "normal games and playable laboratory",
+    "delete_obsolete_test_scenarios": true,
+    "remove_energy_cells_and_healing_doses": true,
+    "crowded_aggressive_room": true,
+    "all_area_recipients": "ZONE-CIBLES01"
+  },
+  "retired_current_items": [
+    "core:integrity_blade",
+    "core:needle_launcher",
+    "core:flamethrower",
+    "core:composite_carapace",
+    "core:brigandine_cognefer",
+    "core:agent_cellule_energie",
+    "core:agent_dose_soin"
+  ],
+  "preserved": [
+    "source assets and accepted rules",
+    "quest resources",
+    "Tablier de cuir",
+    "legacy definitions for deterministic replay",
+    "artifacts/map-editor",
+    "all pre-existing unrelated worktree changes"
+  ],
+  "playable_laboratory": {
+    "actual_current_equipment": true,
+    "class_starting_outfit_has_priority": true,
+    "skills": 94,
+    "skill_points": 1000,
+    "aggressive_room": {
+      "monsters": 48,
+      "position": "east of original laboratory",
+      "door": [
+        35,
+        12
+      ],
+      "door_initially_closed": true,
+      "existing_art": "Grignoteur / N / review 33",
+      "resets_with_laboratory": true
+    },
+    "obsolete_scenarios_removed": 4
+  },
+  "area_target_audit": {
+    "review_id": "ZONE-CIBLES01",
+    "runtime_changes_required": false,
+    "rule": "Every eligible monster in the actual footprint is processed for damage and its own status application; no hidden quota. Preserve described exceptions, walls, protection, immunity, resistance and falloff.",
+    "audited_groups": {
+      "fire_cold_occult": [
+        "A02",
+        "FE02",
+        "FE03",
+        "FE04",
+        "FE05",
+        "FR02",
+        "FR04",
+        "FR05",
+        "FR06"
+      ],
+      "afflictions": [
+        "AF02",
+        "AF03",
+        "AF04",
+        "AF05",
+        "O02"
+      ],
+      "contact_or_barrier_exceptions": [
+        "FR03",
+        "OC04"
+      ],
+      "mines_residues_grenades": [
+        "SM00",
+        "SM02",
+        "SM03",
+        "SM05",
+        "SG00",
+        "SG01",
+        "SG02"
+      ],
+      "form_area_actions": [
+        "M01_laceration",
+        "TR61_shockwave",
+        "TR63_discharge",
+        "TR64_pulse",
+        "TR65_line"
+      ],
+      "other_area_actions": [
+        "HY07",
+        "D66",
+        "HL02"
+      ]
+    },
+    "explicit_exceptions_preserved": [
+      "Blizzard: 50 percent independent impact per valid cell and turn, followed by independent Freeze",
+      "Ice Wall: contact-triggered Freeze",
+      "Crystalline Explosion: consumes Freeze on the exploding source",
+      "Weapon techniques with explicit maximum target counts"
+    ],
+    "new_engine_regressions": [
+      "agent_magic_dense_areas_damage_every_recipient_and_apply_guaranteed_statuses",
+      "agent_magic_breath_rolls_burn_for_each_victim_without_gating_their_damage",
+      "area_afflictions_roll_for_every_monster_in_the_footprint_independently"
+    ]
+  },
+  "compatibility": {
+    "empty_agent_ranks_debug_preserved": true,
+    "authored_loot_bounds_and_retirement_reversible": true,
+    "historical_fixtures": "tests/fixtures/one-hand-firearms; three exact JSON files with provenance",
+    "golden_hashes_changed": false,
+    "remaining_historical_client_failures": "unresolved; no complete final client suite run"
+  },
+  "validation": {
+    "engine": {
+      "command": "cargo test --locked --lib --quiet",
+      "passed": 954,
+      "failed": 0
+    },
+    "client": {
+      "distinct_passed": 70,
+      "failed_at_final_check": 0,
+      "scope": "laboratory, catalogue lab, arsenal/families, retirement, loot projection, inventory, current rewards/shops, resume and art coverage",
+      "run_detail": "69 passed together; actor-count expectation updated from 17 to 65 and rerun successfully; both crowd-room tests rerun after camera fixture correction"
+    },
+    "global_client": "intermediate run interrupted before final fixes; not reported as a final complete result",
+    "format": "passed",
+    "diff_check": "passed",
+    "debug_build": "passed",
+    "release_check": "passed; no release executable built",
+    "native": {
+      "tile_px": 64,
+      "viewport": [
+        1280,
+        800
+      ],
+      "inventory_review": "passed; current weapons and ritual outfit",
+      "crowd_review": "passed; 48 hostile sensors and existing Grignoteur art visible; laboratory title verified",
+      "exit_codes": [
+        0,
+        0
+      ]
+    },
+    "git": "no commit, stage, push or history rewrite"
+  },
+  "cleanup": {
+    "status": "completed",
+    "files_removed": 4,
+    "bytes_removed": 398691,
+    "empty_directory_removed": true,
+    "source_assets_preserved": true,
+    "method": "four explicitly named literal file paths, then an empty directory; no recursion",
+    "initial_grouped_attempt": {
+      "status": "blocked_by_automatic_review",
+      "reason": "blocked by policy; no further reason supplied",
+      "files_removed": 0
+    },
+    "targets": [
+      "artifacts/qa-laboratoire-courant-2026-10-16/cold-start.png",
+      "artifacts/qa-laboratoire-courant.stdout",
+      "artifacts/qa-laboratoire-courant.stderr",
+      "artifacts/verification-client-2026-10-16.txt"
+    ]
+  }
+}

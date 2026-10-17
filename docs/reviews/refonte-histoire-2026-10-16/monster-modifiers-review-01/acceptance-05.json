@@ -1,0 +1,37 @@
+{
+  "review_id": "MONSTER-MODIFIERS-05",
+  "date": "2026-10-17",
+  "player_statement": "parfait je valide :) .",
+  "source_proposal": "physical-resistance-04.json",
+  "keyword_id": "MM21",
+  "status": "shown_physical_resistance_rules_accepted",
+  "runtime_connected": false,
+  "accepted_label": "Résistant aux dégâts physiques",
+  "accepted_rules": {
+    "resistance_bonus_percentage_points": 30,
+    "maximum_effective_resistance_percent": 75,
+    "order": "Retirer l'armure effective une seule fois, puis réduire les dégâts physiques restants selon la résistance physique effective.",
+    "physical_formula": "floor(max(0,physical_damage-effective_armor)*(100-effective_physical_resistance)/100)",
+    "mixed_damage": "Appliquer la résistance physique seulement à la partie physique de l'attaque ; les composantes élémentaires utilisent leurs propres résistances.",
+    "distinction_from_MM07": "Cuirassé augmente l'armure, qui retire une quantité fixe de dégâts physiques. MM21 réduit ensuite les dégâts physiques en pourcentage.",
+    "shown_example": {"raw_physical": 100, "effective_armor": 20, "physical_resistance_percent": 30, "net_physical": 56}
+  },
+  "accepted_shown_copy": [
+    "MM21 — Résistant aux dégâts physiques",
+    "Cuirassé augmente l’armure, qui retire une quantité fixe de dégâts physiques.",
+    "Résistant aux dégâts physiques réduit en pourcentage les dégâts physiques restant après l’armure.",
+    "+30 points de résistance physique, avec un plafond effectif de 75 %.",
+    "Cette résistance s’appliquerait aussi à la partie physique d’une attaque mixte. Sa partie feu, froid ou électrique utiliserait sa propre résistance."
+  ],
+  "label_approved": true,
+  "shown_effect_approved": true,
+  "numbers_approved": true,
+  "visual_approved": false,
+  "approval_limits": [
+    "Cet accord concerne MM21 et les règles montrées dans la réponse précédente.",
+    "Les sept propositions chiffrées de scaling-and-elemental-03.json restent en attente : elles ne sont pas validées par cet accord sur MM21.",
+    "Les chiffres de MM07 Cuirassé restent à définir.",
+    "Aucun rendu visuel nouveau ni règle supplémentaire de vulnérabilité ou de pénétration physique n'est validé implicitement.",
+    "MM08 Rapide reste refusé."
+  ]
+}

@@ -137,6 +137,7 @@ pub(super) fn draw(
     reduced: bool,
     background: bool,
     rect: impl Fn(GridPos) -> Option<Rect>,
+    actor_rect: impl Fn(project_rl::entity::EntityId, GridPos) -> Option<Rect>,
 ) {
     let statuses = game.actors().iter().any(|(entity, a)| {
         game.agent_reanimation_marked(entity)
@@ -170,7 +171,7 @@ pub(super) fn draw(
         let art = cache.get_or_insert_with(Art::load);
         let clock = if reduced { 0.2 } else { now as f32 };
         for (entity, actor) in game.actors().iter() {
-            let Some(r) = rect(actor.position()) else {
+            let Some(r) = actor_rect(entity, actor.position()) else {
                 continue;
             };
             let p = r.center();
@@ -256,7 +257,18 @@ pub(super) fn draw(
                 continue;
             }
             let age = (now - flight.started) as f32;
-            let Some(r) = rect(flight.target) else {
+            let attached = matches!(
+                flight.skill.as_str(),
+                "B02" | "SU03" | "SU04" | "SU05" | "SU06"
+            );
+            let anchor = if attached {
+                game.actors()
+                    .get(game.player_id())
+                    .and_then(|actor| actor_rect(game.player_id(), actor.position()))
+            } else {
+                rect(flight.target)
+            };
+            let Some(r) = anchor else {
                 continue;
             };
             let scale = r.w / 64.;

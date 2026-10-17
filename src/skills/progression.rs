@@ -13,11 +13,41 @@ use crate::stats::{PrimaryAttribute, PrimaryAttributes};
 /// The order is retained so costs can follow the configured purchase curve and
 /// prerequisites can be validated without storing a second derived counter.
 /// Learning additional techniques is never capped.
-#[derive(Clone, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(Clone, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct SkillProgressionState {
     choices: BTreeMap<DisciplineId, Vec<TechniqueId>>,
     #[serde(default)]
     agent_ranks: BTreeMap<String, u8>,
+}
+
+impl std::fmt::Debug for SkillProgressionState {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut state = f.debug_struct("SkillProgressionState");
+        state.field("choices", &self.choices);
+        // Empty agent progression did not exist in historical replay hashes.
+        if !self.agent_ranks.is_empty() {
+            state.field("agent_ranks", &self.agent_ranks);
+        }
+        state.finish()
+    }
+}
+
+#[cfg(test)]
+mod fingerprint_tests {
+    use super::*;
+
+    #[test]
+    fn empty_agent_ranks_preserve_legacy_debug_but_learned_ranks_remain_visible() {
+        let mut state = SkillProgressionState::default();
+        assert_eq!(
+            format!("{state:?}"),
+            "SkillProgressionState { choices: {} }"
+        );
+        state.set_agent_skill_rank("FR05", 1);
+        assert!(format!("{state:?}").contains("agent_ranks: {\"FR05\": 1}"));
+        state.set_agent_skill_rank("FR05", 2);
+        assert!(format!("{state:?}").contains("agent_ranks: {\"FR05\": 2}"));
+    }
 }
 
 impl SkillProgressionState {

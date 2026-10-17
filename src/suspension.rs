@@ -20,7 +20,7 @@ use std::{
 };
 
 pub const MAX_COMMANDS: usize = 50_000;
-pub const MAX_GENERATION_VERSION: u8 = 147;
+pub const MAX_GENERATION_VERSION: u8 = 152;
 const REPLAY_RECOVERY_SCHEMA: u8 = 1;
 pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
 const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;
@@ -373,6 +373,10 @@ pub enum RecordedCommand {
     CompanionBehavior {
         behavior: RecordedCompanionBehavior,
     },
+    CompanionBehaviorFor {
+        entity: u64,
+        behavior: RecordedCompanionBehavior,
+    },
     Interact {
         x: i32,
         y: i32,
@@ -527,6 +531,12 @@ impl RecordedCommand {
             GameCommand::DismissCompanion { entity } => Self::DismissCompanion {
                 entity: entity.get(),
             },
+            GameCommand::SetCompanionBehaviorFor { entity, behavior } => {
+                Self::CompanionBehaviorFor {
+                    entity: entity.get(),
+                    behavior: RecordedCompanionBehavior::record(*behavior),
+                }
+            }
             GameCommand::SetCompanionBehavior { behavior } => Self::CompanionBehavior {
                 behavior: RecordedCompanionBehavior::record(*behavior),
             },
@@ -716,6 +726,13 @@ impl RecordedCommand {
             }
             Self::DismissCompanion { entity: id } => GameCommand::DismissCompanion {
                 entity: entity(*id)?,
+            },
+            Self::CompanionBehaviorFor {
+                entity: id,
+                behavior,
+            } => GameCommand::SetCompanionBehaviorFor {
+                entity: entity(*id)?,
+                behavior: behavior.restore(),
             },
             Self::CompanionBehavior { behavior } => GameCommand::SetCompanionBehavior {
                 behavior: behavior.restore(),
@@ -1410,6 +1427,8 @@ pub struct Suspension {
     pub tracked_quest: Option<String>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub agent_skill_bar: Vec<Option<String>>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub familiar_order: Vec<u64>,
 }
 
 pub fn fingerprint(value: &impl std::fmt::Debug) -> u64 {
@@ -1434,6 +1453,17 @@ pub fn fingerprint(value: &impl std::fmt::Debug) -> u64 {
 
 impl Suspension {
     pub fn validate(&self) -> Result<(), String> {
+        if self.familiar_order.len() > 1024
+            || self.familiar_order.contains(&0)
+            || self
+                .familiar_order
+                .iter()
+                .collect::<std::collections::BTreeSet<_>>()
+                .len()
+                != self.familiar_order.len()
+        {
+            return Err("Commandes incomplètes.".into());
+        }
         if self.agent_skill_bar.len() > 6
             || self.agent_skill_bar.iter().flatten().any(|id| {
                 id.len() > 48 || !id.bytes().all(|c| c.is_ascii_alphanumeric() || c == b'_')

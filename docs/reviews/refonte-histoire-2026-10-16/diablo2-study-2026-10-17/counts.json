@@ -1,0 +1,1534 @@
+{
+  "date": "2026-10-17",
+  "installation": "D:\\JEUX\\Diablo 2 old\\Diablo II",
+  "method": "Installed SFMPQ.dll opened archives with read APIs in 32-bit PowerShell. No write APIs, game launch or save access.",
+  "archive_hashes": [
+    {
+      "path": "D:\\JEUX\\Diablo 2 old\\Diablo II\\ProjectD2\\pd2data.mpq",
+      "size": 2157546,
+      "sha256": "196f9da7f5a7eead7bc000137514e6b564e50e893ca89bb4711359d03c29ce63"
+    },
+    {
+      "path": "D:\\JEUX\\Diablo 2 old\\Diablo II\\patch_d2.mpq",
+      "size": 3915305,
+      "sha256": "81470b762c497a8fcaf9a09990c0e869a4175395ef1fae13bd85cfec7b688ddc"
+    }
+  ],
+  "LoD": {
+    "compiled_area_count": 137,
+    "campaign_rows_verified_against_bin": 131,
+    "monster_baseids_verified_against_bin": 353,
+    "scope": "Ids 1..132 except bonus Cow Level 39; potential random pools only. Includes revisited families. Excludes fixed bosses, preset placements, quest waves and critters.",
+    "acts": [
+      {
+        "act": 1,
+        "area_rows": 38,
+        "modes": {
+          "normal": {
+            "variant_ids": 54,
+            "technical_baseids": 19,
+            "baseids": [
+              "arach1",
+              "bighead1",
+              "brute2",
+              "corruptrogue1",
+              "cr_archer1",
+              "cr_lancer1",
+              "crownest1",
+              "fallen1",
+              "fallenshaman1",
+              "fetish1",
+              "goatman1",
+              "quillrat1",
+              "sk_archer1",
+              "skeleton1",
+              "skmage_fire1",
+              "skmage_ltng1",
+              "vampire1",
+              "wraith1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 20,
+            "baseids_first_seen_in_this_act": 19
+          },
+          "nightmare_hell": {
+            "variant_ids": 54,
+            "technical_baseids": 19,
+            "baseids": [
+              "arach1",
+              "bighead1",
+              "brute2",
+              "corruptrogue1",
+              "cr_archer1",
+              "cr_lancer1",
+              "crownest1",
+              "fallen1",
+              "fallenshaman1",
+              "fetish1",
+              "goatman1",
+              "quillrat1",
+              "sk_archer1",
+              "skeleton1",
+              "skmage_fire1",
+              "skmage_ltng1",
+              "vampire1",
+              "wraith1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 20
+          }
+        },
+        "num_mon_distribution": {
+          "3": 36
+        },
+        "zones_over_three": []
+      },
+      {
+        "act": 2,
+        "area_rows": 35,
+        "modes": {
+          "normal": {
+            "variant_ids": 57,
+            "technical_baseids": 27,
+            "baseids": [
+              "baboon1",
+              "batdemon1",
+              "blunderbore1",
+              "brute2",
+              "clawviper1",
+              "crownest1",
+              "goatman1",
+              "mummy1",
+              "pantherwoman1",
+              "sandleaper1",
+              "sandmaggot1",
+              "sandraider1",
+              "scarab1",
+              "sk_archer1",
+              "skeleton1",
+              "skmage_cold1",
+              "skmage_fire1",
+              "skmage_ltng1",
+              "skmage_pois1",
+              "slinger1",
+              "slinger5",
+              "swarm1",
+              "unraveler1",
+              "vampire1",
+              "vulture1",
+              "wraith1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 30,
+            "baseids_first_seen_in_this_act": 17
+          },
+          "nightmare_hell": {
+            "variant_ids": 57,
+            "technical_baseids": 27,
+            "baseids": [
+              "baboon1",
+              "batdemon1",
+              "blunderbore1",
+              "brute2",
+              "clawviper1",
+              "crownest1",
+              "goatman1",
+              "mummy1",
+              "pantherwoman1",
+              "sandleaper1",
+              "sandmaggot1",
+              "sandraider1",
+              "scarab1",
+              "sk_archer1",
+              "skeleton1",
+              "skmage_cold1",
+              "skmage_fire1",
+              "skmage_ltng1",
+              "skmage_pois1",
+              "slinger1",
+              "slinger5",
+              "swarm1",
+              "unraveler1",
+              "vampire1",
+              "vulture1",
+              "wraith1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 30
+          }
+        },
+        "num_mon_distribution": {
+          "3": 33
+        },
+        "zones_over_three": []
+      },
+      {
+        "act": 3,
+        "area_rows": 28,
+        "modes": {
+          "normal": {
+            "variant_ids": 57,
+            "technical_baseids": 30,
+            "baseids": [
+              "arach1",
+              "baboon1",
+              "batdemon1",
+              "blunderbore1",
+              "bonefetish1",
+              "brute2",
+              "cantor1",
+              "clawviper1",
+              "corruptrogue1",
+              "cr_archer1",
+              "fetish1",
+              "fetishblow1",
+              "fetishshaman1",
+              "foulcrow1",
+              "frogdemon1",
+              "mosquito1",
+              "mummy1",
+              "sandleaper1",
+              "sandmaggot1",
+              "sandraider1",
+              "scarab1",
+              "swarm1",
+              "thornhulk1",
+              "unraveler1",
+              "vampire1",
+              "vulture1",
+              "willowisp1",
+              "wraith1",
+              "zealot1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 33,
+            "baseids_first_seen_in_this_act": 10
+          },
+          "nightmare_hell": {
+            "variant_ids": 57,
+            "technical_baseids": 30,
+            "baseids": [
+              "arach1",
+              "baboon1",
+              "batdemon1",
+              "blunderbore1",
+              "bonefetish1",
+              "brute2",
+              "cantor1",
+              "clawviper1",
+              "corruptrogue1",
+              "cr_archer1",
+              "fetish1",
+              "fetishblow1",
+              "fetishshaman1",
+              "foulcrow1",
+              "frogdemon1",
+              "mosquito1",
+              "mummy1",
+              "sandleaper1",
+              "sandmaggot1",
+              "sandraider1",
+              "scarab1",
+              "swarm1",
+              "thornhulk1",
+              "unraveler1",
+              "vampire1",
+              "vulture1",
+              "willowisp1",
+              "wraith1",
+              "zealot1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 33
+          }
+        },
+        "num_mon_distribution": {
+          "3": 27
+        },
+        "zones_over_three": []
+      },
+      {
+        "act": 4,
+        "area_rows": 6,
+        "modes": {
+          "normal": {
+            "variant_ids": 20,
+            "technical_baseids": 13,
+            "baseids": [
+              "batdemon1",
+              "bighead1",
+              "blunderbore1",
+              "doomknight1",
+              "doomknight2",
+              "doomknight3",
+              "fingermage1",
+              "megademon1",
+              "regurgitator1",
+              "sandleaper1",
+              "sandmaggot1",
+              "vilemother1",
+              "willowisp1"
+            ],
+            "plus_declared_minions_spawns": 16,
+            "baseids_first_seen_in_this_act": 7
+          },
+          "nightmare_hell": {
+            "variant_ids": 20,
+            "technical_baseids": 13,
+            "baseids": [
+              "batdemon1",
+              "bighead1",
+              "blunderbore1",
+              "doomknight1",
+              "doomknight2",
+              "doomknight3",
+              "fingermage1",
+              "megademon1",
+              "regurgitator1",
+              "sandleaper1",
+              "sandmaggot1",
+              "vilemother1",
+              "willowisp1"
+            ],
+            "plus_declared_minions_spawns": 16
+          }
+        },
+        "num_mon_distribution": {
+          "3": 5
+        },
+        "zones_over_three": []
+      },
+      {
+        "act": 5,
+        "area_rows": 24,
+        "modes": {
+          "normal": {
+            "variant_ids": 48,
+            "technical_baseids": 17,
+            "baseids": [
+              "ancientbarb1",
+              "bighead1",
+              "bloodlord1",
+              "deathmauler1",
+              "frozenhorror1",
+              "imp1",
+              "minion1",
+              "overseer1",
+              "putriddefiler1",
+              "quillrat1",
+              "reanimatedhorde1",
+              "siegebeast1",
+              "sk_archer1",
+              "snowyeti1",
+              "succubus1",
+              "succubuswitch1",
+              "suicideminion1"
+            ],
+            "plus_declared_minions_spawns": 17,
+            "baseids_first_seen_in_this_act": 14
+          },
+          "nightmare_hell": {
+            "variant_ids": 146,
+            "technical_baseids": 56,
+            "baseids": [
+              "ancientbarb1",
+              "arach1",
+              "baboon1",
+              "baboon6",
+              "batdemon1",
+              "bighead1",
+              "bloodlord1",
+              "blunderbore1",
+              "bonefetish1",
+              "cantor1",
+              "clawviper1",
+              "cr_archer1",
+              "cr_lancer1",
+              "deathmauler1",
+              "doomknight3",
+              "fallenshaman1",
+              "fetish1",
+              "fetishblow1",
+              "fetishshaman1",
+              "fingermage1",
+              "foulcrow1",
+              "frozenhorror1",
+              "goatman1",
+              "imp1",
+              "megademon1",
+              "minion1",
+              "mummy1",
+              "overseer1",
+              "pantherwoman1",
+              "putriddefiler1",
+              "quillrat1",
+              "reanimatedhorde1",
+              "regurgitator1",
+              "sandleaper1",
+              "sandmaggot1",
+              "sandraider1",
+              "scarab1",
+              "siegebeast1",
+              "sk_archer1",
+              "skeleton1",
+              "skmage_cold1",
+              "skmage_fire1",
+              "skmage_ltng1",
+              "skmage_pois1",
+              "slinger1",
+              "snowyeti1",
+              "succubus1",
+              "succubuswitch1",
+              "suicideminion1",
+              "thornhulk1",
+              "unraveler1",
+              "vampire1",
+              "vilemother1",
+              "vulture1",
+              "willowisp1",
+              "wraith1"
+            ],
+            "plus_declared_minions_spawns": 62
+          }
+        },
+        "num_mon_distribution": {
+          "2": 1,
+          "3": 20
+        },
+        "zones_over_three": []
+      }
+    ],
+    "examples": [
+      {
+        "id": 2,
+        "name": "Act 1 - Wilderness 1",
+        "level_name": "Blood Moor",
+        "normal_pool": [
+          "zombie1",
+          "fallen1",
+          "quillrat1"
+        ],
+        "nightmare_hell_pool": [
+          "zombie1",
+          "fallen1",
+          "quillrat1"
+        ],
+        "num_mon": 3,
+        "density": 520,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 0,
+        "warp_dist": 2025
+      },
+      {
+        "id": 3,
+        "name": "Act 1 - Wilderness 2",
+        "level_name": "Cold Plains",
+        "normal_pool": [
+          "brute1",
+          "corruptrogue1",
+          "fallenshaman1",
+          "cr_lancer1"
+        ],
+        "nightmare_hell_pool": [
+          "brute1",
+          "corruptrogue1",
+          "fallenshaman1",
+          "cr_lancer1"
+        ],
+        "num_mon": 3,
+        "density": 520,
+        "unique_min": 1,
+        "unique_max": 1,
+        "ranged_spawn": 0,
+        "warp_dist": 2025
+      },
+      {
+        "id": 4,
+        "name": "Act 1 - Wilderness 3",
+        "level_name": "Stony Field",
+        "normal_pool": [
+          "skeleton1",
+          "zombie2",
+          "crownest1",
+          "goatman1",
+          "cr_archer1"
+        ],
+        "nightmare_hell_pool": [
+          "skeleton1",
+          "zombie2",
+          "crownest1",
+          "goatman1",
+          "cr_archer1"
+        ],
+        "num_mon": 3,
+        "density": 520,
+        "unique_min": 1,
+        "unique_max": 2,
+        "ranged_spawn": 0,
+        "warp_dist": 2025
+      },
+      {
+        "id": 8,
+        "name": "Act 1 - Cave 1",
+        "level_name": "Den of Evil",
+        "normal_pool": [
+          "zombie1",
+          "brute1",
+          "fallenshaman1"
+        ],
+        "nightmare_hell_pool": [
+          "zombie1",
+          "brute1",
+          "fallenshaman1"
+        ],
+        "num_mon": 3,
+        "density": 600,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 0,
+        "warp_dist": 2025
+      },
+      {
+        "id": 67,
+        "name": "Act 2 - Tomb Tal 2",
+        "level_name": "Tal Rasha's Tomb",
+        "normal_pool": [
+          "wraith4",
+          "scarab4",
+          "mummy4",
+          "unraveler3",
+          "unraveler3",
+          "vampire1",
+          "blunderbore2"
+        ],
+        "nightmare_hell_pool": [
+          "wraith4",
+          "scarab4",
+          "mummy4",
+          "unraveler3",
+          "unraveler3",
+          "vampire1",
+          "blunderbore2"
+        ],
+        "num_mon": 3,
+        "density": 2200,
+        "unique_min": 0,
+        "unique_max": 2,
+        "ranged_spawn": 0,
+        "warp_dist": 2025
+      },
+      {
+        "id": 104,
+        "name": "Act 4 - Mesa 1",
+        "level_name": "Outer Steppes",
+        "normal_pool": [
+          "sandleaper5",
+          "vilemother1",
+          "fingermage1",
+          "regurgitator1",
+          "doomknight1",
+          "megademon3"
+        ],
+        "nightmare_hell_pool": [
+          "sandleaper5",
+          "vilemother1",
+          "fingermage1",
+          "regurgitator1",
+          "doomknight1",
+          "megademon3"
+        ],
+        "num_mon": 3,
+        "density": 800,
+        "unique_min": 0,
+        "unique_max": 1,
+        "ranged_spawn": 0,
+        "warp_dist": 3900
+      },
+      {
+        "id": 110,
+        "name": "Act 5 - Siege 1",
+        "level_name": "Bloody Foothills",
+        "normal_pool": [
+          "minion1",
+          "deathmauler1",
+          "overseer1",
+          "imp1",
+          "sk_archer6",
+          "quillrat6",
+          "bighead6"
+        ],
+        "nightmare_hell_pool": [
+          "minion1",
+          "deathmauler1",
+          "overseer1",
+          "imp1",
+          "sk_archer6",
+          "quillrat6",
+          "foulcrow5",
+          "vulture5",
+          "thornhulk5",
+          "slinger7"
+        ],
+        "num_mon": 2,
+        "density": 0,
+        "unique_min": 1,
+        "unique_max": 2,
+        "ranged_spawn": 1,
+        "warp_dist": 2025
+      },
+      {
+        "id": 128,
+        "name": "Act 5 - Baal Temple 1",
+        "level_name": "The Worldstone Keep Level 1",
+        "normal_pool": [
+          "reanimatedhorde5",
+          "succubuswitch2",
+          "putriddefiler3"
+        ],
+        "nightmare_hell_pool": [
+          "reanimatedhorde6",
+          "succubuswitch8",
+          "putriddefiler3",
+          "sandraider9",
+          "bloodlord5",
+          "cr_lancer8",
+          "vilemother5",
+          "cantor6",
+          "vampire7",
+          "fetishshaman8"
+        ],
+        "num_mon": 3,
+        "density": 700,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 1,
+        "warp_dist": 2025
+      },
+      {
+        "id": 129,
+        "name": "Act 5 - Baal Temple 2",
+        "level_name": "The Worldstone Keep Level 2",
+        "normal_pool": [
+          "suicideminion6",
+          "minion7"
+        ],
+        "nightmare_hell_pool": [
+          "suicideminion6",
+          "minion11",
+          "fetish8",
+          "batdemon7",
+          "clawviper10",
+          "mummy6",
+          "skmage_pois6",
+          "unraveler8",
+          "scarab7",
+          "willowisp6"
+        ],
+        "num_mon": 3,
+        "density": 700,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 1,
+        "warp_dist": 2025
+      },
+      {
+        "id": 130,
+        "name": "Act 5 - Baal Temple 3",
+        "level_name": "The Worldstone Keep Level 3",
+        "normal_pool": [
+          "bloodlord5",
+          "imp5",
+          "putriddefiler4"
+        ],
+        "nightmare_hell_pool": [
+          "bloodlord5",
+          "imp5",
+          "putriddefiler4",
+          "fingermage5",
+          "dkmag2",
+          "fetishblow8",
+          "skmage_ltng6",
+          "wraith8",
+          "succubus4",
+          "overseer4"
+        ],
+        "num_mon": 3,
+        "density": 700,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 1,
+        "warp_dist": 2025
+      },
+      {
+        "id": 131,
+        "name": "Act 5 - Throne Room",
+        "level_name": "Throne of Destruction",
+        "normal_pool": [
+          "bloodlord5",
+          "succubuswitch3"
+        ],
+        "nightmare_hell_pool": [
+          "bloodlord5",
+          "succubuswitch5",
+          "bonefetish7",
+          "sandraider10",
+          "willowisp7",
+          "vampire8",
+          "megademon5",
+          "unraveler9",
+          "dkmag2",
+          "clawviper10"
+        ],
+        "num_mon": 3,
+        "density": 700,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 1,
+        "warp_dist": 1000
+      }
+    ],
+    "group_examples": {
+      "fallen1": {
+        "NameStr": "Fallen",
+        "AI": "Fallen",
+        "MinGrp": "2",
+        "MaxGrp": "3",
+        "PartyMin": "2",
+        "PartyMax": "3",
+        "minion1": "fallen1",
+        "minion2": "",
+        "spawn": "",
+        "Rarity": "2"
+      },
+      "fallenshaman1": {
+        "NameStr": "FallenShaman",
+        "AI": "FallenShaman",
+        "MinGrp": "1",
+        "MaxGrp": "1",
+        "PartyMin": "2",
+        "PartyMax": "6",
+        "minion1": "fallen1",
+        "minion2": "",
+        "spawn": "",
+        "Rarity": "2"
+      },
+      "quillrat1": {
+        "NameStr": "QuillRat",
+        "AI": "QuillRat",
+        "MinGrp": "1",
+        "MaxGrp": "2",
+        "PartyMin": "",
+        "PartyMax": "",
+        "minion1": "",
+        "minion2": "",
+        "spawn": "",
+        "Rarity": "2"
+      },
+      "crownest1": {
+        "NameStr": "FoulCrowNest",
+        "AI": "FoulCrowNest",
+        "MinGrp": "1",
+        "MaxGrp": "1",
+        "PartyMin": "",
+        "PartyMax": "",
+        "minion1": "",
+        "minion2": "",
+        "spawn": "foulcrow1",
+        "Rarity": "2"
+      },
+      "unraveler1": {
+        "NameStr": "HollowOne",
+        "AI": "GreaterMummy",
+        "MinGrp": "1",
+        "MaxGrp": "1",
+        "PartyMin": "2",
+        "PartyMax": "8",
+        "minion1": "skeleton2",
+        "minion2": "",
+        "spawn": "",
+        "Rarity": "1"
+      },
+      "scarab1": {
+        "NameStr": "DungSoldier",
+        "AI": "Scarab",
+        "MinGrp": "2",
+        "MaxGrp": "4",
+        "PartyMin": "2",
+        "PartyMax": "4",
+        "minion1": "scarab1",
+        "minion2": "",
+        "spawn": "",
+        "Rarity": "1"
+      }
+    }
+  },
+  "PD2": {
+    "compiled_area_count": 202,
+    "campaign_rows_verified_against_bin": 131,
+    "monster_baseids_verified_against_bin": 352,
+    "scope": "Ids 1..132 except bonus Cow Level 39; potential random pools only. Includes revisited families. Excludes fixed bosses, preset placements, quest waves and critters.",
+    "acts": [
+      {
+        "act": 1,
+        "area_rows": 38,
+        "modes": {
+          "normal": {
+            "variant_ids": 54,
+            "technical_baseids": 19,
+            "baseids": [
+              "arach1",
+              "bighead1",
+              "brute2",
+              "corruptrogue1",
+              "cr_archer1",
+              "cr_lancer1",
+              "crownest1",
+              "fallen1",
+              "fallenshaman1",
+              "fetish1",
+              "goatman1",
+              "quillrat1",
+              "sk_archer1",
+              "skeleton1",
+              "skmage_fire1",
+              "skmage_ltng1",
+              "vampire1",
+              "wraith1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 20,
+            "baseids_first_seen_in_this_act": 19
+          },
+          "nightmare_hell": {
+            "variant_ids": 54,
+            "technical_baseids": 19,
+            "baseids": [
+              "arach1",
+              "bighead1",
+              "brute2",
+              "corruptrogue1",
+              "cr_archer1",
+              "cr_lancer1",
+              "crownest1",
+              "fallen1",
+              "fallenshaman1",
+              "fetish1",
+              "goatman1",
+              "quillrat1",
+              "sk_archer1",
+              "skeleton1",
+              "skmage_fire1",
+              "skmage_ltng1",
+              "vampire1",
+              "wraith1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 20
+          }
+        },
+        "num_mon_distribution": {
+          "3": 36
+        },
+        "zones_over_three": []
+      },
+      {
+        "act": 2,
+        "area_rows": 35,
+        "modes": {
+          "normal": {
+            "variant_ids": 57,
+            "technical_baseids": 27,
+            "baseids": [
+              "baboon1",
+              "batdemon1",
+              "blunderbore1",
+              "brute2",
+              "clawviper1",
+              "crownest1",
+              "goatman1",
+              "mummy1",
+              "pantherwoman1",
+              "sandleaper1",
+              "sandmaggot1",
+              "sandraider1",
+              "scarab1",
+              "sk_archer1",
+              "skeleton1",
+              "skmage_cold1",
+              "skmage_fire1",
+              "skmage_ltng1",
+              "skmage_pois1",
+              "slinger1",
+              "slinger5",
+              "swarm1",
+              "unraveler1",
+              "vampire1",
+              "vulture1",
+              "wraith1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 30,
+            "baseids_first_seen_in_this_act": 17
+          },
+          "nightmare_hell": {
+            "variant_ids": 57,
+            "technical_baseids": 27,
+            "baseids": [
+              "baboon1",
+              "batdemon1",
+              "blunderbore1",
+              "brute2",
+              "clawviper1",
+              "crownest1",
+              "goatman1",
+              "mummy1",
+              "pantherwoman1",
+              "sandleaper1",
+              "sandmaggot1",
+              "sandraider1",
+              "scarab1",
+              "sk_archer1",
+              "skeleton1",
+              "skmage_cold1",
+              "skmage_fire1",
+              "skmage_ltng1",
+              "skmage_pois1",
+              "slinger1",
+              "slinger5",
+              "swarm1",
+              "unraveler1",
+              "vampire1",
+              "vulture1",
+              "wraith1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 30
+          }
+        },
+        "num_mon_distribution": {
+          "3": 33
+        },
+        "zones_over_three": []
+      },
+      {
+        "act": 3,
+        "area_rows": 28,
+        "modes": {
+          "normal": {
+            "variant_ids": 57,
+            "technical_baseids": 30,
+            "baseids": [
+              "arach1",
+              "baboon1",
+              "batdemon1",
+              "blunderbore1",
+              "bonefetish1",
+              "brute2",
+              "cantor1",
+              "clawviper1",
+              "corruptrogue1",
+              "cr_archer1",
+              "fetish1",
+              "fetishblow1",
+              "fetishshaman1",
+              "foulcrow1",
+              "frogdemon1",
+              "mosquito1",
+              "mummy1",
+              "sandleaper1",
+              "sandmaggot1",
+              "sandraider1",
+              "scarab1",
+              "swarm1",
+              "thornhulk1",
+              "unraveler1",
+              "vampire1",
+              "vulture1",
+              "willowisp1",
+              "wraith1",
+              "zealot1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 33,
+            "baseids_first_seen_in_this_act": 10
+          },
+          "nightmare_hell": {
+            "variant_ids": 57,
+            "technical_baseids": 30,
+            "baseids": [
+              "arach1",
+              "baboon1",
+              "batdemon1",
+              "blunderbore1",
+              "bonefetish1",
+              "brute2",
+              "cantor1",
+              "clawviper1",
+              "corruptrogue1",
+              "cr_archer1",
+              "fetish1",
+              "fetishblow1",
+              "fetishshaman1",
+              "foulcrow1",
+              "frogdemon1",
+              "mosquito1",
+              "mummy1",
+              "sandleaper1",
+              "sandmaggot1",
+              "sandraider1",
+              "scarab1",
+              "swarm1",
+              "thornhulk1",
+              "unraveler1",
+              "vampire1",
+              "vulture1",
+              "willowisp1",
+              "wraith1",
+              "zealot1",
+              "zombie1"
+            ],
+            "plus_declared_minions_spawns": 33
+          }
+        },
+        "num_mon_distribution": {
+          "3": 27
+        },
+        "zones_over_three": []
+      },
+      {
+        "act": 4,
+        "area_rows": 6,
+        "modes": {
+          "normal": {
+            "variant_ids": 20,
+            "technical_baseids": 13,
+            "baseids": [
+              "batdemon1",
+              "bighead1",
+              "blunderbore1",
+              "doomknight1",
+              "doomknight2",
+              "doomknight3",
+              "fingermage1",
+              "megademon1",
+              "regurgitator1",
+              "sandleaper1",
+              "sandmaggot1",
+              "vilemother1",
+              "willowisp1"
+            ],
+            "plus_declared_minions_spawns": 16,
+            "baseids_first_seen_in_this_act": 7
+          },
+          "nightmare_hell": {
+            "variant_ids": 20,
+            "technical_baseids": 13,
+            "baseids": [
+              "batdemon1",
+              "bighead1",
+              "blunderbore1",
+              "doomknight1",
+              "doomknight2",
+              "doomknight3",
+              "fingermage1",
+              "megademon1",
+              "regurgitator1",
+              "sandleaper1",
+              "sandmaggot1",
+              "vilemother1",
+              "willowisp1"
+            ],
+            "plus_declared_minions_spawns": 16
+          }
+        },
+        "num_mon_distribution": {
+          "3": 5
+        },
+        "zones_over_three": []
+      },
+      {
+        "act": 5,
+        "area_rows": 24,
+        "modes": {
+          "normal": {
+            "variant_ids": 48,
+            "technical_baseids": 17,
+            "baseids": [
+              "ancientbarb1",
+              "bighead1",
+              "bloodlord1",
+              "deathmauler1",
+              "frozenhorror1",
+              "imp1",
+              "minion1",
+              "overseer1",
+              "putriddefiler1",
+              "quillrat1",
+              "reanimatedhorde1",
+              "siegebeast1",
+              "sk_archer1",
+              "snowyeti1",
+              "succubus1",
+              "succubuswitch1",
+              "suicideminion1"
+            ],
+            "plus_declared_minions_spawns": 17,
+            "baseids_first_seen_in_this_act": 14
+          },
+          "nightmare_hell": {
+            "variant_ids": 146,
+            "technical_baseids": 56,
+            "baseids": [
+              "ancientbarb1",
+              "arach1",
+              "baboon1",
+              "baboon6",
+              "batdemon1",
+              "bighead1",
+              "bloodlord1",
+              "blunderbore1",
+              "bonefetish1",
+              "cantor1",
+              "clawviper1",
+              "cr_archer1",
+              "cr_lancer1",
+              "deathmauler1",
+              "doomknight3",
+              "fallenshaman1",
+              "fetish1",
+              "fetishblow1",
+              "fetishshaman1",
+              "fingermage1",
+              "foulcrow1",
+              "frozenhorror1",
+              "goatman1",
+              "imp1",
+              "megademon1",
+              "minion1",
+              "mummy1",
+              "overseer1",
+              "pantherwoman1",
+              "putriddefiler1",
+              "quillrat1",
+              "reanimatedhorde1",
+              "regurgitator1",
+              "sandleaper1",
+              "sandmaggot1",
+              "sandraider1",
+              "scarab1",
+              "siegebeast1",
+              "sk_archer1",
+              "skeleton1",
+              "skmage_cold1",
+              "skmage_fire1",
+              "skmage_ltng1",
+              "skmage_pois1",
+              "slinger1",
+              "snowyeti1",
+              "succubus1",
+              "succubuswitch1",
+              "suicideminion1",
+              "thornhulk1",
+              "unraveler1",
+              "vampire1",
+              "vilemother1",
+              "vulture1",
+              "willowisp1",
+              "wraith1"
+            ],
+            "plus_declared_minions_spawns": 62
+          }
+        },
+        "num_mon_distribution": {
+          "2": 1,
+          "3": 17,
+          "5": 3
+        },
+        "zones_over_three": [
+          {
+            "id": 125,
+            "name": "Act 5 - Hell 1",
+            "num_mon": 5
+          },
+          {
+            "id": 126,
+            "name": "Act 5 - Hell 2",
+            "num_mon": 5
+          },
+          {
+            "id": 127,
+            "name": "Act 5 - Hell 3",
+            "num_mon": 5
+          }
+        ]
+      }
+    ],
+    "examples": [
+      {
+        "id": 2,
+        "name": "Act 1 - Wilderness 1",
+        "level_name": "Blood Moor",
+        "normal_pool": [
+          "zombie1",
+          "fallen1",
+          "quillrat1"
+        ],
+        "nightmare_hell_pool": [
+          "zombie1",
+          "fallen1",
+          "quillrat1"
+        ],
+        "num_mon": 3,
+        "density": 520,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 0,
+        "warp_dist": 2025
+      },
+      {
+        "id": 3,
+        "name": "Act 1 - Wilderness 2",
+        "level_name": "Cold Plains",
+        "normal_pool": [
+          "brute1",
+          "corruptrogue1",
+          "fallenshaman1",
+          "cr_lancer1"
+        ],
+        "nightmare_hell_pool": [
+          "brute1",
+          "corruptrogue1",
+          "fallenshaman1",
+          "cr_lancer1"
+        ],
+        "num_mon": 3,
+        "density": 520,
+        "unique_min": 1,
+        "unique_max": 1,
+        "ranged_spawn": 0,
+        "warp_dist": 2025
+      },
+      {
+        "id": 4,
+        "name": "Act 1 - Wilderness 3",
+        "level_name": "Stony Field",
+        "normal_pool": [
+          "skeleton1",
+          "zombie2",
+          "crownest1",
+          "goatman1",
+          "cr_archer1"
+        ],
+        "nightmare_hell_pool": [
+          "skeleton1",
+          "zombie2",
+          "crownest1",
+          "goatman1",
+          "cr_archer1"
+        ],
+        "num_mon": 3,
+        "density": 520,
+        "unique_min": 1,
+        "unique_max": 2,
+        "ranged_spawn": 0,
+        "warp_dist": 2025
+      },
+      {
+        "id": 8,
+        "name": "Act 1 - Cave 1",
+        "level_name": "Den of Evil",
+        "normal_pool": [
+          "zombie1",
+          "brute1",
+          "fallenshaman1"
+        ],
+        "nightmare_hell_pool": [
+          "zombie1",
+          "brute1",
+          "fallenshaman1"
+        ],
+        "num_mon": 3,
+        "density": 600,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 0,
+        "warp_dist": 2025
+      },
+      {
+        "id": 67,
+        "name": "Act 2 - Tomb Tal 2",
+        "level_name": "Tal Rasha's Tomb",
+        "normal_pool": [
+          "wraith4",
+          "scarab4",
+          "mummy4",
+          "unraveler3",
+          "unraveler3",
+          "vampire1",
+          "blunderbore2"
+        ],
+        "nightmare_hell_pool": [
+          "wraith4",
+          "scarab4",
+          "mummy4",
+          "unraveler3",
+          "unraveler3",
+          "vampire1",
+          "blunderbore2"
+        ],
+        "num_mon": 3,
+        "density": 2200,
+        "unique_min": 0,
+        "unique_max": 2,
+        "ranged_spawn": 0,
+        "warp_dist": 2025
+      },
+      {
+        "id": 104,
+        "name": "Act 4 - Mesa 1",
+        "level_name": "Outer Steppes",
+        "normal_pool": [
+          "sandleaper5",
+          "vilemother1",
+          "fingermage1",
+          "regurgitator1",
+          "doomknight1",
+          "megademon3"
+        ],
+        "nightmare_hell_pool": [
+          "sandleaper5",
+          "vilemother1",
+          "fingermage1",
+          "regurgitator1",
+          "doomknight1",
+          "megademon3"
+        ],
+        "num_mon": 3,
+        "density": 800,
+        "unique_min": 0,
+        "unique_max": 1,
+        "ranged_spawn": 0,
+        "warp_dist": 3900
+      },
+      {
+        "id": 110,
+        "name": "Act 5 - Siege 1",
+        "level_name": "Bloody Foothills",
+        "normal_pool": [
+          "minion1",
+          "deathmauler1",
+          "overseer1",
+          "imp1",
+          "sk_archer6",
+          "quillrat6",
+          "bighead6"
+        ],
+        "nightmare_hell_pool": [
+          "minion1",
+          "deathmauler1",
+          "overseer1",
+          "imp1",
+          "sk_archer6",
+          "quillrat6",
+          "foulcrow5",
+          "vulture5",
+          "thornhulk5",
+          "slinger7"
+        ],
+        "num_mon": 2,
+        "density": 0,
+        "unique_min": 1,
+        "unique_max": 2,
+        "ranged_spawn": 1,
+        "warp_dist": 2025
+      },
+      {
+        "id": 128,
+        "name": "Act 5 - Baal Temple 1",
+        "level_name": "The Worldstone Keep Level 1",
+        "normal_pool": [
+          "reanimatedhorde5",
+          "succubuswitch2",
+          "putriddefiler3"
+        ],
+        "nightmare_hell_pool": [
+          "reanimatedhorde6",
+          "succubuswitch8",
+          "putriddefiler3",
+          "sandraider9",
+          "bloodlord5",
+          "cr_lancer8",
+          "vilemother5",
+          "cantor6",
+          "vampire7",
+          "fetishshaman8"
+        ],
+        "num_mon": 3,
+        "density": 700,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 1,
+        "warp_dist": 2025
+      },
+      {
+        "id": 129,
+        "name": "Act 5 - Baal Temple 2",
+        "level_name": "The Worldstone Keep Level 2",
+        "normal_pool": [
+          "suicideminion6",
+          "minion7"
+        ],
+        "nightmare_hell_pool": [
+          "suicideminion6",
+          "minion11",
+          "fetish8",
+          "batdemon7",
+          "clawviper10",
+          "mummy6",
+          "skmage_pois6",
+          "unraveler8",
+          "scarab7",
+          "willowisp6"
+        ],
+        "num_mon": 3,
+        "density": 700,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 1,
+        "warp_dist": 2025
+      },
+      {
+        "id": 130,
+        "name": "Act 5 - Baal Temple 3",
+        "level_name": "The Worldstone Keep Level 3",
+        "normal_pool": [
+          "bloodlord5",
+          "imp5",
+          "putriddefiler4"
+        ],
+        "nightmare_hell_pool": [
+          "bloodlord5",
+          "imp5",
+          "putriddefiler4",
+          "fingermage5",
+          "dkmag2",
+          "fetishblow8",
+          "skmage_ltng6",
+          "wraith8",
+          "succubus4",
+          "overseer4"
+        ],
+        "num_mon": 3,
+        "density": 700,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 1,
+        "warp_dist": 2025
+      },
+      {
+        "id": 131,
+        "name": "Act 5 - Throne Room",
+        "level_name": "Throne of Destruction",
+        "normal_pool": [
+          "bloodlord5",
+          "succubuswitch3"
+        ],
+        "nightmare_hell_pool": [
+          "bloodlord5",
+          "succubuswitch5",
+          "bonefetish7",
+          "sandraider10",
+          "willowisp7",
+          "vampire8",
+          "megademon5",
+          "unraveler9",
+          "dkmag2",
+          "clawviper10"
+        ],
+        "num_mon": 3,
+        "density": 700,
+        "unique_min": 0,
+        "unique_max": 0,
+        "ranged_spawn": 1,
+        "warp_dist": 1000
+      }
+    ],
+    "group_examples": {
+      "fallen1": {
+        "NameStr": "Fallen",
+        "AI": "Fallen",
+        "MinGrp": "2",
+        "MaxGrp": "3",
+        "PartyMin": "2",
+        "PartyMax": "3",
+        "minion1": "fallen1",
+        "minion2": "",
+        "spawn": "",
+        "Rarity": "2"
+      },
+      "fallenshaman1": {
+        "NameStr": "FallenShaman",
+        "AI": "FallenShaman",
+        "MinGrp": "1",
+        "MaxGrp": "1",
+        "PartyMin": "2",
+        "PartyMax": "6",
+        "minion1": "fallen1",
+        "minion2": "",
+        "spawn": "",
+        "Rarity": "2"
+      },
+      "quillrat1": {
+        "NameStr": "QuillRat",
+        "AI": "QuillRat",
+        "MinGrp": "1",
+        "MaxGrp": "2",
+        "PartyMin": "",
+        "PartyMax": "",
+        "minion1": "",
+        "minion2": "",
+        "spawn": "",
+        "Rarity": "2"
+      },
+      "crownest1": {
+        "NameStr": "FoulCrowNest",
+        "AI": "FoulCrowNest",
+        "MinGrp": "1",
+        "MaxGrp": "1",
+        "PartyMin": "",
+        "PartyMax": "",
+        "minion1": "",
+        "minion2": "",
+        "spawn": "foulcrow1",
+        "Rarity": "2"
+      },
+      "unraveler1": {
+        "NameStr": "HollowOne",
+        "AI": "GreaterMummy",
+        "MinGrp": "1",
+        "MaxGrp": "1",
+        "PartyMin": "2",
+        "PartyMax": "8",
+        "minion1": "skeleton2",
+        "minion2": "",
+        "spawn": "",
+        "Rarity": "1"
+      },
+      "scarab1": {
+        "NameStr": "DungSoldier",
+        "AI": "Scarab",
+        "MinGrp": "2",
+        "MaxGrp": "4",
+        "PartyMin": "2",
+        "PartyMax": "4",
+        "minion1": "scarab1",
+        "minion2": "",
+        "spawn": "",
+        "Rarity": "1"
+      }
+    }
+  },
+  "engine_reference": "D2MOO targets LoD 1.10f; used for architecture, not claimed to reproduce PD2 closed engine exactly.",
+  "not_observed": "No live generated map or gameplay session was inspected."
+}

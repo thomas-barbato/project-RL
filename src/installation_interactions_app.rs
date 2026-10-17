@@ -810,6 +810,7 @@ impl AsciiApp {
                 self.graphics.active.world_cell_px,
                 self.navigation_signal_summary().is_some(),
                 actor.position(),
+                self.camera_glide_offset(),
             ) else {
                 continue;
             };
@@ -863,6 +864,7 @@ impl AsciiApp {
                 self.graphics.active.world_cell_px,
                 self.navigation_signal_summary().is_some(),
                 at,
+                self.camera_glide_offset(),
             )
         };
         let Some(origin_cell) = rect_at(origin) else {

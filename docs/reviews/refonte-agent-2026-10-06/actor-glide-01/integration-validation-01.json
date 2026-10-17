@@ -1,0 +1,84 @@
+{
+  "review_id": "ACTOR-GLIDE-01",
+  "date": "2026-10-16",
+  "sources": {
+    "src/combat_visuals.rs": "60b5a48ed8fed0ae998e63e3ad5df7bed356c80418a0cda3c761a3336d01d24b",
+    "src/combat_visuals_app.rs": "d7df7e5889fc9cbbfa47677e05866ca407393908e988456f72439a6047f27928",
+    "src/agent_support_visuals.rs": "079add737360266595befb4e75cc93d092cc0375871c67a93771cfd3356c280a",
+    "src/agent_weapon_visuals.rs": "63d3033048d150e86e6e4a1e4ba56188b369c0a66ef8e089fea2935c0098f8d8",
+    "src/terminal_view.rs": "2342ed5ae4cfc1f2cb4c0d55a10ea617ef49e31e386cde5bf25ce2655ef5cbb8",
+    "src/ascii_app.rs": "3e554e24320de150bf868db98ad6de1407509602ba4ccc3ce6257b5746c1e3d3",
+    "src/crawl_art_capture.rs": "151bb3b931d54c7a3d72ed20cd4f4969ca5da7241721de2cdf650e35217d0a63",
+    "src/hud_resources.rs": "1e3718e560477e381434d8848a1487ca1d533ecd3598f9d59ffd05ffad1041da",
+    "tools/art/show_actor_glide_review.py": "0fbee20b52688d53957b2bc2878c489e272227198af39f3c7d051da1d646aa7e"
+  },
+  "tests": {
+    "combat_visuals": 18,
+    "terminal_view": 43,
+    "attack_aim_input_tests": 8,
+    "movement": 19,
+    "game_art": 38
+  },
+  "targeted_tests_total": 126,
+  "full_suite_rerun": false,
+  "known_prior_full_client_failures": "Nine equipment-generation fingerprint assertions were previously failing; not changed or rerun as a full suite for this renderer task.",
+  "native_capture": "36 native frames plus full world/HUD screenshot inspected; state unchanged; camera pointer projection agrees",
+  "build": "cargo build --locked --bin project-rl passed without warnings",
+  "release_check": "cargo check --locked --release passed; no release executable produced",
+  "gameplay_changed": false,
+  "pixel_sources_changed": false,
+  "formatting": "cargo fmt --all --check passed",
+  "diff": "git diff --check passed",
+  "protected_art_banks": "16 source banks unchanged; 34 held models and 1938 outfit/palette combinations verified",
+  "native_receipt": "native-validation-01.json",
+  "browser_validation": "Inline JavaScript passed node --check. Browser rendering not inspected because file URL access is unavailable in this task; no alternate-server workaround used.",
+  "preview_previous_images_preserved": 6,
+  "cleanup": {
+    "status": "completed; seven generated files and the empty capture directory removed",
+    "files": [
+      {
+        "path": "artifacts\\actor-glide-check\\art-validation.json",
+        "bytes": 623,
+        "sha256": "df5d27e25b1ac010942fe81de0b92e227671b6ea82f850be25153df18739b57c"
+      },
+      {
+        "path": "artifacts\\actor-glide-check\\gallery-script.js",
+        "bytes": 32932,
+        "sha256": "6276b52483caa3c307e3a216db9d6617a16d9737d11f9a62ba7f7a85d545e756"
+      },
+      {
+        "path": "artifacts\\actor-glide-check\\inspect-0.png",
+        "bytes": 142988,
+        "sha256": "0e80e629ee8326b21e86cd485ab9879390fed81c445d5b985db30bb7032ca21b"
+      },
+      {
+        "path": "artifacts\\actor-glide-check\\inspect-4.png",
+        "bytes": 145873,
+        "sha256": "ac20707aee135cf7a316b0f77033b9ea7f17755adb58d45e2c6c869bae2ee9f3"
+      },
+      {
+        "path": "artifacts\\actor-glide-check\\inspect-8.png",
+        "bytes": 146177,
+        "sha256": "9f8cacb2dfbebd9e4a9497f32e831c338c851c87506df19b224f9da1f8ccb958"
+      },
+      {
+        "path": "artifacts\\actor-glide-check\\native-glide-atlas.png",
+        "bytes": 11645533,
+        "sha256": "6457b365f6620a886a53f9be74e35ed1312401d03fbee5dc27196cca2bc74ad3"
+      },
+      {
+        "path": "artifacts\\actor-glide-check\\world-glide.png",
+        "bytes": 247122,
+        "sha256": "8776b5a6a6f80d5de9bab2e363bd37c0a620bfadd9dec686739df84cc4979350"
+      }
+    ],
+    "bytes": 12361248,
+    "preserved": [
+      "all assets",
+      "all code",
+      "review receipts",
+      "reusable HTML with embedded native frames",
+      "artifacts/map-editor"
+    ]
+  }
+}

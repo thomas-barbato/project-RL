@@ -1,0 +1,55 @@
+{
+  "review_id": "BESTIARY-INTEGRATION-06",
+  "date": "2026-10-17",
+  "user_request": "on va integrer ca au jeu avec les monstres mais il faut aussi faire les variantes de couleurs comme définies :) puis tu fera le ménage dans les fichiers de generation etc , une fois qu’on en aura plus besoin",
+  "scope_answer": "Intégrer maintenant les visuels, les couleurs et les règles déjà validées ; compléter les pouvoirs ensuite.",
+  "additional_acceptance": {
+    "numbers": [
+      164,
+      165
+    ],
+    "answer": "Valider les deux"
+  },
+  "removed_numbers": [
+    13,
+    23,
+    27,
+    91,
+    163
+  ],
+  "deferred_sector_bosses": [
+    18,
+    19
+  ],
+  "native_cell": 64,
+  "source_policy": "Original drawings and frozen native exports kept in assets; no runtime dependency on artifacts.",
+  "palette_policy": "Explicit material color maps preserve silhouette, alpha, clothing, metal and horns. Color alone grants no unapproved power.",
+  "approved_physical_resistance": {
+    "review_id": "MM21",
+    "percentage_points": 30,
+    "cap": 75,
+    "order": "after physical Armor",
+    "mixed_attacks": "physical components only"
+  },
+  "deferred": "Unquantified damage bonuses, auras, curses, poison powers and caster AI; sector boss patterns.",
+  "generation": 150,
+  "legacy_policy": "No actor/save layout extension; new appearances and traits only on new generation 150. Model, palette and corpse identity persist.",
+  "image_generation": [
+    {
+      "number": 156,
+      "source": "DEM-F01-r02.png",
+      "instruction": "Keep the frost demon unchanged. Recolor only its neck wrap and loincloth in muted dark brown; preserve blue flesh, ice, horns, claws, silhouette and transparent background."
+    },
+    {
+      "number": 164,
+      "source": "CULT-08-r01.png",
+      "instruction": "Ordinary human cultist with grey hooded uniform, muted red panel and opaque ivory mask, no visible face. Hold a straight two-handed rifle correctly, both hands gripping stock and fore-end. Match the outlined cel-shaded player art; readable restrained details, complete body on transparent background."
+    },
+    {
+      "number": 165,
+      "source": "CULT-09-r01.png",
+      "instruction": "Matching ordinary human cultist with grey hooded uniform, muted red panel and opaque ivory mask. Carry a two-handed axe with a straight shaft, two distinct plausible hand grips. Readable restrained cel shading matching the player, full body, transparent background."
+    }
+  ],
+  "image_generation_note": "Instructions above summarize the three built-in image generation edits; native exports are frozen and hash-verified."
+}

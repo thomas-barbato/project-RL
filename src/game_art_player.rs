@@ -25,6 +25,16 @@ pub(super) fn draw_grip_review(
 ) {
     worn::draw_grip_review(rect, body, weapon, hands);
 }
+#[cfg(debug_assertions)]
+pub(super) fn draw_grip_review_at_time(
+    rect: Rect,
+    body: u16,
+    weapon: Option<u16>,
+    hands: Option<[Option<u16>; 2]>,
+    time: Option<f64>,
+) {
+    worn::draw_grip_review_at_time(rect, body, weapon, hands, time);
+}
 
 pub(super) fn draw_player(
     rect: Rect,

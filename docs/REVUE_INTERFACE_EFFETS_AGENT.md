@@ -38,6 +38,15 @@ Les icônes, noms affichés, textes, couleurs et emplacement attendent
 une revue visuelle. Ce besoin est prévu pour plus tard ; la discussion
 actuelle reste centrée sur les compétences à retenir.
 
+**Précision du 16 octobre — HUD-04-EFFETS :** le joueur demande des icônes
+sans texte permanent, avec détails au survol, et propose une disposition
+verticale. Il demande qu'elles clignotent lorsqu'il reste un tour. La
+[revue de l'interface](reviews/refonte-histoire-2026-10-16/INTERFACE_ET_FAMILIERS.md)
+montre cette disposition et propose une pulsation lente avec liseré fixe
+lorsque les animations sont réduites. Le rythme exact et les icônes restent
+à examiner. Les durées réelles, états permanents et conditions de HUD01 et
+HUD01-ALL01 sont conservés ; aucun compteur indépendant n'est ajouté.
+
 ### HUD02 Hostiles repérés et surbrillance
 
 **Demandes acceptées :** afficher seulement les hostiles actuellement
@@ -280,6 +289,22 @@ L’accord porte sur les demandes et la présentation montrée, avec les
 révisions explicites du joueur sur la mule et les repères. Icônes,
 dimensions, positions et rendu natif restent à présenter.
 Révision conservée sous [UX-PETS-02-03](../docs/reviews/refonte-agent-2026-10-06/review-familiar-window-UX-PETS-02-03.json).
+
+## UX-PETS-05 Lisibilité et effets de chaque familier
+
+Le 16 octobre, le joueur demande d'agrandir cette fenêtre pour afficher les
+buffs, passifs ou non, debuffs et durées qui touchent chaque familier. Il propose
+également de placer son bouton près de Techniques. La
+[revue courante](reviews/refonte-histoire-2026-10-16/INTERFACE_ET_FAMILIERS.md)
+montre une fenêtre de 400 pixels logiques, avec PV, jauges et icônes d'effets
+par acteur, en gardant le déplacement, le repli et le défilement.
+
+Afficher les effets et bonus qui concernent réellement ce familier, avec les
+dessins existants et les informations réelles au survol. Un effet permanent
+n'a pas de faux décompte ; un effet temporaire issu d'un passif garde sa durée.
+La durée de présence d'un réanimé et celles de ses effets restent distinctes.
+L'affichage ne crée aucun buff ni règle de propagation vers les alliés.
+La maquette est présentée avant le raccordement au client natif.
 
 ## UX-MULE-01 Contenu de la mule sur sa case après destruction
 

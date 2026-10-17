@@ -4,6 +4,7 @@ use std::cell::Cell;
 
 #[derive(Default)]
 pub(super) struct UxState {
+    pub familiars: super::familiar_window::State,
     pub skill_bar: [Option<String>; 6],
     pub skill_drag: Option<super::agent_skill_bar::Drag>,
     pub skill_bar_pointer: Option<(f32, f32)>,
@@ -540,9 +541,8 @@ impl AsciiApp {
         let current = self
             .game
             .player_controlled_companions()
-            .first()
-            .and_then(|id| self.game.actors().get(*id))
-            .and_then(Actor::drone)
+            .iter()
+            .find_map(|id| self.game.actors().get(*id).and_then(Actor::drone))
             .and_then(|d| match d.order() {
                 DroneOrder::Companion { behavior, .. } => Some(*behavior),
                 DroneOrder::Escort { .. } => Some(CompanionBehavior::Follow),
@@ -1136,6 +1136,20 @@ impl AsciiApp {
             })
     }
     pub(super) fn draw_hud_shortcuts(&self) {
+        let pet = crate::terminal_chrome::command_rect(self.ui_width(), self.ui_height(), 10);
+        agent_skill_window::art(
+            "D58",
+            "compact",
+            Rect::new(pet.x + 4., pet.y + 3., 22., 22.),
+            None,
+        );
+        crate::terminal_chrome::command(
+            Rect::new(pet.x + 28., pet.y, pet.w - 28., pet.h),
+            "Familiers",
+            "",
+            self.ux.familiars.open || self.ux.familiars.pointer.is_some_and(|p| pet.contains(p)),
+        );
+
         if self.test_lab {
             UiTheme.button(
                 self.lab_button(),

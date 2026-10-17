@@ -7,13 +7,8 @@ mod agent_rigs;
 #[path = "game_art_flat.rs"]
 mod flat_agents;
 pub(super) fn outfit_index(body: u8, equipment: [Option<u16>; 4]) -> u16 {
-    if let Some(id @ 200..=211) = equipment[0] {
-        return id;
-    }
-    if let Some(id) = equipment[0] {
-        if let Some(index) = [108, 110, 111, 112].iter().position(|old| *old == id) {
-            return 208 + index as u16;
-        }
+    if let Some(outfit) = equipment[0].and_then(palettes::reviewed_outfit) {
+        return outfit;
     }
     equipment[0]
         .filter(|id| (101..=114).contains(id))
@@ -82,7 +77,7 @@ thread_local! {
     #[cfg(debug_assertions)]
     static CREATIONS: std::cell::Cell<usize> = const { std::cell::Cell::new(0) };
     static SOURCES: Sources=Sources::load();
-    static CACHE: std::cell::RefCell<BTreeMap<(Key,u8,u16),(Texture2D,f64)>>=std::cell::RefCell::new(BTreeMap::new());
+    static CACHE: std::cell::RefCell<BTreeMap<(Key,u8,u16),(portrait::Sheet,f64)>>=std::cell::RefCell::new(BTreeMap::new());
 }
 fn layer(weapon: u16, left: bool) -> Option<HeldLayer> {
     let family = *WEAPON_FAMILIES.get(usize::from(weapon))?;
@@ -155,7 +150,7 @@ fn compose_pose(source: &Sources, key: Key, breath: u8) -> Image {
     compose_pose_at_resolution(source, key, breath, 32)
 }
 fn compose_pose_at_resolution(source: &Sources, key: Key, breath: u8, resolution: u16) -> Image {
-    if let Some(image) = source.flat.compose(key, resolution) {
+    if let Some(image) = source.flat.compose_pose(key, resolution, breath) {
         return image;
     }
     if let Some(image) = source.agents.compose(key, breath) {
@@ -218,7 +213,9 @@ pub(super) fn prewarm() {
     SOURCES.with(|_| {});
 }
 fn source_resolution(key: Key, rect: Rect, side: u16) -> u16 {
-    if (200..212).contains(&key.0) && (side == 128 || rect.w.max(rect.h) >= 64.0) {
+    if (200..200 + palettes::FLAT_OUTFIT_COUNT).contains(&key.0)
+        && (side == 128 || rect.w.max(rect.h) > 32.0)
+    {
         64
     } else {
         32
@@ -232,26 +229,26 @@ fn draw_key(rect: Rect, key: Key, side: u16, opacity: f32, idle_time: Option<f64
         if !cache.contains_key(&cache_key) {
             let image = SOURCES
                 .with(|source| compose_pose_at_resolution(source, key, cache_key.1, resolution));
-            let texture = Texture2D::from_image(&image);
-            texture.set_filter(FilterMode::Nearest);
+            let sheet = portrait::Sheet::from_image(&image, image.width);
             palettes::evict(&mut cache, 192);
-            cache.insert(cache_key, (texture, get_time()));
+            cache.insert(cache_key, (sheet, get_time()));
             #[cfg(debug_assertions)]
             CREATIONS.with(|count| count.set(count.get() + 1));
         }
-        let (texture, time) = cache.get_mut(&cache_key).unwrap();
+        let (sheet, time) = cache.get_mut(&cache_key).unwrap();
         *time = get_time();
+        if side == 128 {
+            sheet.draw(rect, 0, opacity);
+            return;
+        }
+        let texture = &sheet.texture;
         let scale = texture.width() / f32::from(resolution);
-        let destination = if side == 128 {
-            rect
-        } else {
-            Rect::new(
-                rect.x - rect.w * (scale - 1.0) * 0.5,
-                rect.y - rect.h * (scale - 1.0) * 0.5,
-                rect.w * scale,
-                rect.h * scale,
-            )
-        };
+        let destination = Rect::new(
+            rect.x - rect.w * (scale - 1.0) * 0.5,
+            rect.y - rect.h * (scale - 1.0) * 0.5,
+            rect.w * scale,
+            rect.h * scale,
+        );
         draw_texture_ex(
             texture,
             destination.x,
@@ -338,6 +335,16 @@ pub(super) fn draw_grip_review(
     weapon: Option<u16>,
     hands: Option<[Option<u16>; 2]>,
 ) {
+    draw_grip_review_at_time(rect, body, weapon, hands, None);
+}
+#[cfg(debug_assertions)]
+pub(super) fn draw_grip_review_at_time(
+    rect: Rect,
+    body: u16,
+    weapon: Option<u16>,
+    hands: Option<[Option<u16>; 2]>,
+    time: Option<f64>,
+) {
     draw_key(
         rect,
         (
@@ -347,7 +354,7 @@ pub(super) fn draw_grip_review(
         ),
         32,
         1.0,
-        None,
+        time,
     );
 }
 #[cfg(test)]
@@ -408,15 +415,47 @@ mod tests {
     fn torso_selects_whole_outfit_regardless_of_other_equipment_or_class() {
         for torso in 101..=114 {
             for body in 0..3 {
-                let expected = [108, 110, 111, 112]
-                    .iter()
-                    .position(|old| *old == torso)
-                    .map_or(3 + torso - 101, |i| 208 + i as u16);
+                let expected = match torso {
+                    101 => 212,
+                    103 => 213,
+                    105 => 214,
+                    106 => 215,
+                    107 => 216,
+                    108 => 208,
+                    109 => 217,
+                    110 => 209,
+                    111 => 210,
+                    112 => 211,
+                    114 => 218,
+                    _ => 3 + torso - 101,
+                };
                 assert_eq!(
                     outfit_index(body, [Some(torso), Some(120), Some(126), Some(132)]),
                     expected
                 );
             }
+        }
+    }
+    #[test]
+    fn all_reviewed_worn_outfits_select_native64_for_world_and_portraits() {
+        for body in 200..200 + palettes::FLAT_OUTFIT_COUNT {
+            let key = (body, [None, None], [EquipmentPalette::Original; 3]);
+            assert_eq!(
+                source_resolution(key, Rect::new(0.0, 0.0, 64.0, 64.0), 32),
+                64
+            );
+            assert_eq!(
+                source_resolution(key, Rect::new(0.0, 0.0, 56.0, 56.0), 32),
+                64
+            );
+            assert_eq!(
+                source_resolution(key, Rect::new(0.0, 0.0, 128.0, 128.0), 128),
+                64
+            );
+            assert_eq!(
+                source_resolution(key, Rect::new(0.0, 0.0, 32.0, 32.0), 32),
+                32
+            );
         }
     }
     #[test]

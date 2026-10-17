@@ -1,0 +1,32 @@
+{
+  "review_id": "NPC-MONSTERS-01",
+  "revision": "NPC-01-r03",
+  "date": "2026-10-17",
+  "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-dd0141c5-0886-45f6-9eef-1ee7295cfcfb.png",
+  "generator": "built-in image_gen",
+  "references": [
+    {
+      "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+      "role": "Graphic style and human scale only, not equipment or silhouette"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r02.png",
+      "role": "Rejected design; negative silhouette comparison"
+    }
+  ],
+  "prompt": "Use case: stylized-concept.\nAsset type: NPC-01 revision r03, ONE original full-body mission-officer concept for Project RL, grim industrial cyberpunk roguelike. This is a substantially NEW DESIGN, not a recolor of a soldier.\nInput images: Image 1 is ONLY a graphic STYLE and compact adult-proportions reference: bold controlled black contours, large readable hands and boots, five-heads-tall figure, broad clean cel-shaded masses. Do NOT copy its armor, helmet, equipment or combat stance. Image 2 is the REJECTED previous mission officer: use only as an explicit negative comparison, do NOT reproduce its plate armor, enclosed angular faceplate, huge armored shoulders, long flared coat or heroic stance.\nPrimary request: a male armed prison command official, visibly DIFFERENT from the armored playable soldier even at 32 or 64px. Older, thick-necked, stocky adult man, broad rectangular torso with a modest belly, stern pale weathered lower face, heavy grey moustache, severe jaw. Same human standing height as the reference, not a giant or dwarf.\nUniform and silhouette: a rigid short HIP-LENGTH double-breasted dark military-olive command jacket with a high closed collar, broad ochre-ivory breast belt crossing diagonally to a thick black duty belt, flat cloth epaulettes, one wide ivory rank band on the upper arm. Large uninterrupted olive cloth surfaces, NO chest plate, NO armored shoulder pauldrons, NO abdominal armor, NO long coat tails, NO cape. Charcoal navy straight trousers and knee-high matte black leather duty boots with plainly shaped soles, no armored greaves. Two large contrasting material zones: olive jacket and dark navy trousers, with the wide light diagonal belt as a strong readable sign. No real-world insignia, no lettering.\nHELMET: a matte charcoal institutional SECURITY HELMET with a low broad rounded bowl and a very distinct short wide projecting PEAK like a brutal industrial officer's visor. A single broad dark smoked-amber eye visor ends above the nose, leaving the nose, square jaw and grey moustache clearly visible. Firm chin strap along cheeks, ear covers tucked close to helmet. NOT a medieval knight helmet, not a T-shaped face slit, not a full armored mask. No helmet crest, plume, horns or glowing eyes.\nArmed status and pose: one compact chunky industrial PISTOL clearly seated in an OPEN black rigid holster on his right hip, viewer left, visible squared gun slide and grip above the holster. His right gloved hand rests authoritatively on the belt immediately beside the pistol grip, fingers naturally placed, no floating gun. Left arm bent with hand behind the lower back; do not invent a third hand. Upright rigid supervisory posture, chin slightly lifted, feet much closer together than the playable fighter, one boot subtly advanced. He looks like the man who orders an expendable prisoner into danger, not the hero who goes there. No handheld tablet or other props.\nStyle: match the flat graphic-novel game art references, 2-3 values per material, intentional large shapes, crisp contour, restrained useful detail, no texture noise, no 3D, no photorealism, no pink, no shiny luxury ornament. Slightly overhead but essentially frontal full body, all limbs and helmet fully inside generous transparent margins. ONE character only, one pose.\nBackground: genuine alpha transparency, no floor, no environment, no shadow, no glow, no text, no alternative views. The holstered weapon is part of this static REVIEW CONCEPT; this does not imply authored modular runtime layers.",
+  "user_request": "oui ton idée concernant les familles de monstre me va bien :) , je ne valide pas le donneur de mission qui ressemble trop au joueur :)",
+  "design_intent": "Officier pénitentiaire distinct du joueur : veste courte olive et baudrier ivoire, casque à visière saillante laissant voir la mâchoire et la moustache, posture rigide, pistolet au holster. Homme casqué et armé conservé.",
+  "status": "visually_approved",
+  "visual_approved": true,
+  "name_approved": false,
+  "rules_approved": false,
+  "replaces": {
+    "revision": "NPC-01-r02",
+    "status": "rejected_by_user",
+    "reason": "Ressemble trop au joueur",
+    "source_preserved": true
+  },
+  "layering_status": "Static clothed and holstered-weapon concept only; modular arm/weapon/finger layers not authored.",
+  "visual_acceptance": "visual-acceptance-01.json"
+}

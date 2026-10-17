@@ -16,6 +16,7 @@ static BOLD_FONT: OnceLock<Font> = OnceLock::new();
 thread_local! {
     static TEXT_PANE: std::cell::Cell<Option<(Rect, f32)>> = const { std::cell::Cell::new(None) };
     static HIGH_CONTRAST: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    static INTERFACE_STYLE: std::cell::Cell<crate::graphics::InterfaceStyle> = const { std::cell::Cell::new(crate::graphics::InterfaceStyle::Metal) };
     static INTERFACE_THEME: std::cell::Cell<crate::graphics::InterfaceTheme> = const { std::cell::Cell::new(crate::graphics::InterfaceTheme::Violet) };
     static TEXT_MEASUREMENTS: std::cell::RefCell<TextMeasurements> = std::cell::RefCell::new(TextMeasurements::default());
 }
@@ -88,6 +89,15 @@ pub fn set_high_contrast(enabled: bool) {
 pub fn set_interface_theme(theme: crate::graphics::InterfaceTheme) {
     INTERFACE_THEME.set(theme);
 }
+pub fn set_interface_style(style: crate::graphics::InterfaceStyle) {
+    if INTERFACE_STYLE.replace(style) != style {
+        TEXT_MEASUREMENTS.with_borrow_mut(|cache| *cache = TextMeasurements::default());
+    }
+}
+pub fn interface_style() -> crate::graphics::InterfaceStyle {
+    INTERFACE_STYLE.get()
+}
+
 pub fn begin_text_pane(rect: Rect, offset: f32) {
     TEXT_PANE.set(Some((rect, offset)));
 }
@@ -116,11 +126,19 @@ pub fn initialize_fonts() -> Result<(), String> {
 }
 
 pub fn regular_font() -> Option<&'static Font> {
-    REGULAR_FONT.get()
+    if interface_style() == crate::graphics::InterfaceStyle::Terminal {
+        None
+    } else {
+        REGULAR_FONT.get()
+    }
 }
 
 pub fn bold_font() -> Option<&'static Font> {
-    BOLD_FONT.get()
+    if interface_style() == crate::graphics::InterfaceStyle::Terminal {
+        None
+    } else {
+        BOLD_FONT.get()
+    }
 }
 
 /// Drop-in UI replacement for Macroquad's default-font drawing helper.
@@ -271,6 +289,18 @@ pub fn draw_text_in_rect(
     draw_text(text, rect.x, y, f32::from(size), color)
 }
 
+/// Left aligned, vertically centered with the active bold font's real bounds.
+pub fn draw_text_bold_in_rect(
+    text: impl AsRef<str>,
+    rect: Rect,
+    size: u16,
+    color: Color,
+) -> TextDimensions {
+    let (text, size, dimensions) = fitted_label(text.as_ref(), rect, size, true);
+    let (_, y) = centered_text_origin(rect, dimensions);
+    draw_text_bold(text, rect.x, y, f32::from(size), color)
+}
+
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum ButtonTone {
     #[default]
@@ -339,12 +369,20 @@ impl UiTheme {
         Color::new(0.008, 0.008, 0.012, 0.96)
     }
 
-    pub const fn surface(self) -> Color {
-        Color::from_rgba(8, 9, 11, 255)
+    pub fn surface(self) -> Color {
+        if interface_style() == crate::graphics::InterfaceStyle::Terminal {
+            Color::from_rgba(8, 19, 12, 255)
+        } else {
+            Color::from_rgba(18, 23, 30, 255)
+        }
     }
 
-    pub const fn surface_raised(self) -> Color {
-        Color::from_rgba(17, 19, 22, 255)
+    pub fn surface_raised(self) -> Color {
+        if interface_style() == crate::graphics::InterfaceStyle::Terminal {
+            Color::from_rgba(21, 49, 27, 255)
+        } else {
+            Color::from_rgba(27, 34, 45, 255)
+        }
     }
 
     pub fn surface_selected(self) -> Color {
@@ -357,8 +395,12 @@ impl UiTheme {
         )
     }
 
-    pub const fn text(self) -> Color {
-        Color::new(0.88, 0.94, 0.94, 1.0)
+    pub fn text(self) -> Color {
+        if interface_style() == crate::graphics::InterfaceStyle::Terminal {
+            Color::from_rgba(184, 220, 170, 255)
+        } else {
+            Color::from_rgba(231, 237, 245, 255)
+        }
     }
 
     pub fn muted(self) -> Color {
@@ -370,6 +412,9 @@ impl UiTheme {
     }
 
     pub fn accent(self) -> Color {
+        if interface_style() == crate::graphics::InterfaceStyle::Terminal {
+            return Color::from_rgba(208, 233, 175, 255);
+        }
         use crate::graphics::InterfaceTheme;
         match INTERFACE_THEME.get() {
             InterfaceTheme::Blue => Color::from_rgba(54, 185, 255, 255),
@@ -396,13 +441,7 @@ impl UiTheme {
     }
 
     pub fn panel(self, rect: Rect) {
-        rounded_rectangle(
-            Rect::new(rect.x + 4.0, rect.y + 6.0, rect.w, rect.h),
-            11.0,
-            Color::new(0.0, 0.0, 0.0, 0.42),
-        );
-        rounded_outline(rect, 11.0, 1.0, subdued(self.muted(), 0.20), self.surface());
-        surface_relief(rect, 11.0);
+        crate::ui_skin::frame(rect);
     }
 
     pub fn card(self, rect: Rect, selected: bool) {
@@ -481,20 +520,6 @@ impl UiTheme {
                 },
             );
         }
-    }
-
-    pub fn hud_action(self, rect: Rect, hover: f32) {
-        let hover = hover.clamp(0.0, 1.0);
-        surface_shadow(rect, 5.0);
-        rounded_rectangle(
-            rect,
-            5.0,
-            if hover > 0.0 {
-                self.surface_selected()
-            } else {
-                self.surface_raised()
-            },
-        );
     }
 
     pub fn hud_alert(self, rect: Rect, pulse: f32) {
@@ -1189,16 +1214,6 @@ pub fn draw_ui_icon(icon: UiIcon, rect: Rect, color: Color) {
 
 fn subdued(color: Color, alpha: f32) -> Color {
     Color::new(color.r, color.g, color.b, alpha)
-}
-
-fn surface_shadow(rect: Rect, radius: f32) {
-    for (offset, alpha) in [(6.0, 0.10), (3.0, 0.20)] {
-        rounded_rectangle(
-            Rect::new(rect.x + 1.0, rect.y + offset, rect.w, rect.h),
-            radius,
-            Color::new(0.0, 0.0, 0.0, alpha),
-        );
-    }
 }
 
 /// Quiet directional lighting, confined to the rim so text keeps its contrast.

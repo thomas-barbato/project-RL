@@ -604,6 +604,12 @@ pub enum GameEvent {
         entity: EntityId,
         at: GridPos,
     },
+    /// Carries the persistent model/palette before the dead actor is removed.
+    MonsterBodyFell {
+        at: GridPos,
+        number: u16,
+        variant: u8,
+    },
     /// A death directly attributed to the player, with stable content tags
     /// captured before the actor leaves the registry. Quest tracking consumes
     /// this fact without reconstructing identity from visuals or combat logs.

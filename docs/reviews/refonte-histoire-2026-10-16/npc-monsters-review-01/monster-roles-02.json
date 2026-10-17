@@ -1,0 +1,127 @@
+{
+  "review_id": "NPC-MONSTERS-02",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "display_cell": 64,
+  "status": "proposal_not_integrated",
+  "references": [
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-01-r01.png",
+      "role": "Style of corruption, cel-shading and humanoid scale only"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-03-r01.png",
+      "role": "Flesh-machine fusion and cel-shading style only"
+    }
+  ],
+  "records": [
+    {
+      "id": "MON-06",
+      "number": 10,
+      "label": "Tireur greffé",
+      "family": "Possédés industriels",
+      "role": "Ennemi ordinaire / distance",
+      "depth": "Premiers secteurs / début des conversions",
+      "height": 60,
+      "width": 66,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original full-body monster SOURCE for a 64px native-tile industrial cyberpunk horror roguelike. The two images are STYLE references ONLY, not edit targets and not designs to copy. Match their bold clean dark comic-book contour, broad flat cel-shaded planes, compact readable game anatomy, purposeful limited detail and 2-3 values per material. No photorealism, no 3D, no tiny texture noise, no pink, no glow. Palette must have broad clearly distinct clothing/mechanical and organic zones. Genuine transparent background, one single complete creature, no floor, no shadow, no text, no effects, no alternates. Nearly frontal with a slight overhead view. All extremities inside generous transparent margins. This is an appearance proposal only, not implemented mechanics.\nSubject MON-06: a corrupted industrial security worker reconfigured into a RANGED threat, still visibly a ruined human. Hunched narrow torso in a torn desaturated petrol-blue utility vest, broad ochre work trousers, two steel-capped boots. Face is a distorted sallow grey skull with one intact dull ivory eye, mouth clamped by a heavy dark industrial respirator graft; no helmet and no armour suit. The entire RIGHT forearm (viewer left) has become a short massive metal pneumatic firing organ: one thick cylindrical steel barrel with a distinct dark circular aperture facing slightly toward the viewer, jagged pale bone and dark rust sinew fused around its rear. The barrel is his actual forearm, not a held gun, no hand or fingers on that end. One thick corrugated hose connects this arm to a squat compressor block embedded in his upper back, with broad dark red muscle visibly growing around it. His LEFT arm remains a thin recognizably human arm with a slack three-fingered deformed hand, distinct from torso.\nSilhouette: asymmetrical, one forward horizontal cannon-arm and one hanging organic arm, narrow bent body, two planted boots; clearly different from the broad melee press-hybrid reference. Human height equal to the possessed worker, not an elite giant. Clear negative space between firing organ, torso and legs. No firing projectile, no muzzle flash, no target line, no carried weapon, no long rifle, no separate backpack object floating away. Industrial conversion with disturbing flesh-machine fusion, rather than a robot wearing human clothes.",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-bfa715c5-fa26-46ad-b3e2-23b8c80ca242.png",
+      "revision": "r01",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Only proposed tactical role; no ability, value, timer, animation or spawning change is defined or integrated.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r01.png",
+      "source_sha256": "5d2503cdc7c63edaca894bc6cfd824fc26c5d4a674f2b7bea78a15ffa9c4dd6f",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-06-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          35,
+          36,
+          94,
+          96
+        ],
+        "colors": 24,
+        "sha256": "86e44f5f2415775e08b562753b394b66a5a863f9e0113d8a41d00ddb4c4072f9"
+      }
+    },
+    {
+      "id": "MON-07",
+      "number": 11,
+      "label": "Porte-cuves",
+      "family": "Conversions médicales",
+      "role": "Ennemi ordinaire / soutien",
+      "depth": "Secteurs intermédiaires / cliniques",
+      "height": 66,
+      "width": 68,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original full-body monster SOURCE for a 64px native-tile industrial cyberpunk horror roguelike. The two images are STYLE references ONLY, not edit targets and not designs to copy. Match their bold clean dark comic-book contour, broad flat cel-shaded planes, compact readable game anatomy, purposeful limited detail and 2-3 values per material. No photorealism, no 3D, no tiny texture noise, no pink, no glow. Palette must have broad clearly distinct clothing/mechanical and organic zones. Genuine transparent background, one single complete creature, no floor, no shadow, no text, no effects, no alternates. Nearly frontal with a slight overhead view. All extremities inside generous transparent margins. This is an appearance proposal only, not implemented mechanics.\nSubject MON-07: a hideous former hospital orderly fused into a mobile treatment organism, proposed SUPPORT creature. A hunched bowed almost bald adult human head, sallow beige and corpse-grey face, slack open mouth and black empty eyes, sunk between high swollen shoulders. The long torso is enclosed by the torn lower halves of a dirty IVORY protective medical smock with large faded surgical-GREEN side panels. Two broad human feet in ruined dark work shoes support the creature, and TWO additional short bent mechanical support struts grow from the pelvis and end beside those feet; exactly FOUR ground contacts altogether, no wheels. The shoulders and upper back form one broad recognizable double-lobed silhouette: TWO large vertical dirty green glass-fluid canisters rooted into a heavy metal yoke. Each canister has only one large readable pale green fluid block, NO tiny numbers or writing. Three broad black rubber tubes enter thick grey-taupe fleshy tissue on the neck and flank, visibly integrated and attached. Thick ochre diseased growths bind machine and body. The chest is split around one large dark recessed cavity framed by pale ribs, no tiny gore speckles.\nBoth original forearms are folded low in front of the waist; hands have become TWO broad blunt surgical clamp-like bone tips, no weapon held. No giant melee claws, no broad combat armour, no halo, no magical orb, no syringe needles, no glowing healing beam, no extra attendants. The silhouette must read from its bowed head, paired high fluid tanks and four small supports, rather than a normal soldier's backpack. Repugnant medical conversion, industrial hardware still identifiable. One creature, clear limbs and tube contacts, pale ivory/medical green mass contrasted with charcoal machinery and ochre flesh.",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-bc17728d-d1ef-4900-b0ae-95f42a97d726.png",
+      "revision": "r01",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Only proposed tactical role; no ability, value, timer, animation or spawning change is defined or integrated.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-07-r01.png",
+      "source_sha256": "ec73937a2ee690bb731fcaeb9b20778183a164bce27d04638fd58314318fdabe",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-07-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          38,
+          30,
+          91,
+          96
+        ],
+        "colors": 24,
+        "sha256": "9cffbdae0487ef63d2eb220366aa35397e2db965481329fb11dc73b0edc88ace"
+      }
+    },
+    {
+      "id": "MON-08",
+      "number": 12,
+      "label": "Entraveur",
+      "family": "Hybrides des ateliers",
+      "role": "Ennemi ordinaire / contrôle",
+      "depth": "Secteurs intermédiaires / ateliers",
+      "height": 68,
+      "width": 86,
+      "prompt": "Use case: stylized-concept.\nAsset type: ONE original full-body monster SOURCE for a 64px native-tile industrial cyberpunk horror roguelike. The two images are STYLE references ONLY, not edit targets and not designs to copy. Match their bold clean dark comic-book contour, broad flat cel-shaded planes, compact readable game anatomy, purposeful limited detail and 2-3 values per material. No photorealism, no 3D, no tiny texture noise, no pink, no glow. Palette must have broad clearly distinct clothing/mechanical and organic zones. Genuine transparent background, one single complete creature, no floor, no shadow, no text, no effects, no alternates. Nearly frontal with a slight overhead view. All extremities inside generous transparent margins. This is an appearance proposal only, not implemented mechanics.\nSubject MON-08: an industrial cable-handling machine horribly fused with the remains of its human operator, proposed CONTROL creature. A low broad hunched human pelvis and torso, pale sallow grey-beige flesh and thick dark rust-red exposed sinew, supported by exactly TWO very thick short bent legs ending in broad square black steel feet. Torn deep mustard-orange work fabric survives around the hips. A single enormous round ribbed charcoal cable REEL grows through the torso and projects above the upper back like a broad almost circular hump; clearly round, not a rectangular backpack. A small contorted human head is welded into a notch immediately below the front upper rim, jaw partly buried in cable and skin, two dull ivory eyes and no helmet.\nExactly TWO long thick CABLE TENDRILS replace the arms, one emerging from each shoulder. They curve outward and down in readable broad S-shaped arcs, each ends in ONE heavy three-pronged industrial clamp suspended just above the ground on its own side of the body. Cables have broad pale segmented insulation torn open to show black wire and strips of fused tendon. Keep each tendril and clamp visibly connected to its shoulder, do not add a second pair of arms, tentacles or disconnected cable scraps. The large round reel, short grounded legs and two flanking curved cable-arms make a wide distinctive silhouette with generous negative spaces. Flesh visibly invades the machinery; not a tidy autonomous robot.\nNo magic, no floating effects, no electricity arcs, no attack animation, no cables extending outside frame, no floor anchors, no carried weapon. Dark steel circular mass / mustard cloth / pale grey flesh and cable insulation form three large readable regions. This is a mobile living creature, not a piece of scenery, no altered gameplay footprint implied.",
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-7ca10911-b663-46e0-b659-1fd8ec955f1e.png",
+      "revision": "r01",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "mechanics_status": "Only proposed tactical role; no ability, value, timer, animation or spawning change is defined or integrated.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-08-r01.png",
+      "source_sha256": "5d0ca29d48e057713366fef2fe9a832fba74a82b1f5c245c792cd89b0ac90d1b",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-08-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          30,
+          28,
+          99,
+          96
+        ],
+        "colors": 24,
+        "sha256": "d7aaece6b351af87c81ddf64d534b808df6a7fa3cd7dfa139c72fd673c095bb5"
+      }
+    }
+  ]
+}

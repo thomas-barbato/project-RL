@@ -1,0 +1,64 @@
+{
+  "review_id": "NATIVE64-ONLY-01",
+  "date": "2026-10-17",
+  "default_cell_px": 64,
+  "supported_settings_cells": [
+    64
+  ],
+  "legacy_cells_migrated": [
+    16,
+    20,
+    24,
+    32,
+    40,
+    48
+  ],
+  "other_preferences_preserved_by_migration": true,
+  "graphics_menu_cell_selector_removed": true,
+  "debug_build": "passed",
+  "release_build": "passed",
+  "all_targets_check": "passed",
+  "format_check": "passed",
+  "targeted_tests": {
+    "graphics_and_menus": 16,
+    "attack_hover_and_confirmation": 8
+  },
+  "captures": [
+    {
+      "file": "artifacts/native64-only-2026-10-17/graphics/cold-start.png",
+      "size": [
+        1920,
+        1061
+      ],
+      "sha256": "0005db5082c77e2fc9360d96eb4404c7e7ce1abb2c9c4d968fd2f2a0f54bbc3a",
+      "visually_inspected": true
+    },
+    {
+      "file": "artifacts/native64-only-2026-10-17/game/cold-start.png",
+      "size": [
+        1920,
+        1061
+      ],
+      "sha256": "64f7fb408bc1a52ac68efc06b0c478cf2434672d9f646fece7ba5397c2f88e41",
+      "visually_inspected": true
+    }
+  ],
+  "gameplay_rules_unchanged": true,
+  "story_text_unchanged": true,
+  "new_monster_candidates": [
+    10,
+    11,
+    12
+  ],
+  "new_monster_candidates_integrated": false,
+  "art_review_native64_exports": 12,
+  "earlier_nine_drawings_preserved": true,
+  "accepted_NPC01_native64_and_approval_preserved": true,
+  "obsolete_native32_preview_outputs_removed": true,
+  "historical_native32_sources_preserved": true,
+  "rust_files_changed": [
+    "src/graphics.rs",
+    "src/pause_menu.rs",
+    "src/ascii_app.rs"
+  ]
+}

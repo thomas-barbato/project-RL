@@ -1,4 +1,6 @@
 # PROJECT SPECIFICATION FOR CODEX
+
+> **Statut au 16 octobre 2026 : document fondateur historique.** Les passages concernant l'IA prisonnière, la simulation, son évasion et les anciens jalons narratifs sont dépassés. La [nouvelle histoire](docs/HISTOIRE_CAMPAGNE.md) et le [cadrage courant](docs/reviews/refonte-histoire-2026-10-16/CADRAGE.md) définissent la référence narrative. Les éléments techniques utiles sont conservés ; les anciennes prescriptions de scénario ne doivent plus être appliquées.
 # Roguelike / Simulation Escape Project
 
 **Document version:** 0.2  
@@ -1374,9 +1376,9 @@ Do not add an implicit global deadline merely because the protagonist wants to e
 
 Measure winning-run duration separately from cumulative learning and failed attempts. No numeric duration or target win rate has been approved. Do not pad progression with repeated dialogue, mandatory grinding, empty travel or arbitrary level gates. First-attempt victory may be possible without being easy; permanent power upgrades or prior deaths must not be required.
 
-The nine milestones in the proposed story are narrative roles, not a map count or a proven campaign length. The [narrative assessment](docs/EVALUATION_NARRATIVE.md) contains recommendations, not additional approved story canon.
+The former nine-milestone story is retired. Use the [current campaign manuscript](docs/HISTOIRE_CAMPAGNE.md) and its [review scope](docs/reviews/refonte-histoire-2026-10-16/CADRAGE.md); proposed act and quest counts are not fixed production quotas.
 
-The narrative corrections subsequently accepted on September 21 develop independent character motivations, distinct revelations, varied quest situations and optional local stories. Keep their proposed player-facing wording in [the narrative review manuscript](docs/TEXTES_NARRATIFS_PROPOSES.md), with stable editorial IDs and display conditions. This Markdown is not runtime content. Preserve the distinction between accepted direction, wording under review and implemented behavior; future integration must map IDs to localized content and verify the actual conditions before showing a line.
+The former narrative review manuscript is retired. New player-facing text, mechanics and visuals require their separate reviews before runtime integration. Importing the new campaign Markdown does not migrate runtime content or historical saves.
 
 ---
 

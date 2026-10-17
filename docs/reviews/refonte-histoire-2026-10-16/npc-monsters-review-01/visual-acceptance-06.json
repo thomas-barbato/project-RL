@@ -1,0 +1,38 @@
+{
+  "review_id": "NPC-MONSTERS-01-ACCEPT06",
+  "date": "2026-10-17",
+  "user_statement": "oui je valide",
+  "accepted_scope": "Apparence du candidat 09 r03, correction charnelle présentée à taille native et au zoom entier. Aucun rôle de boss validé ; la précision suivante exclut le rôle de boss de secteur.",
+  "records": [
+    {
+      "id": "MON-05",
+      "number": 9,
+      "revision": "r03",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+      "source_sha256": "42e933da4133b396e8918031afb4b869bfb06a7a9608b2b326f19d7030460dae",
+      "frozen_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-05-r03/MON-05-r03-native64.png",
+        "cell": 64,
+        "canvas": 256,
+        "foot_anchor": [
+          128,
+          192
+        ],
+        "occupied": [
+          66,
+          77,
+          190,
+          192
+        ],
+        "colors": 20,
+        "sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f"
+      }
+    }
+  ],
+  "names_approved": false,
+  "mechanics_approved": false,
+  "runtime_connected": false,
+  "other_candidates_unchanged": true,
+  "MON04_not_approved_by_this_acceptance": true,
+  "encounter_direction_review": "encounter-direction-10.json"
+}

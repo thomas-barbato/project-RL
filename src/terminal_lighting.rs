@@ -498,6 +498,7 @@ mod tests {
             rows: 20,
             origin: vec2(0., 0.),
             cell: 20.,
+            viewport: Rect::new(0., 0., 400., 400.),
         };
         let mut remembered: BTreeMap<_, _> = (0..20)
             .flat_map(|y| {

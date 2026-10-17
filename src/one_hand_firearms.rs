@@ -360,7 +360,7 @@ mod tests {
     #[test]
     fn one_hand_firearms_historical_saves_keep_the_pre_change_fingerprints() {
         let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-            .join("artifacts/pistolets-pm-integration-2026-10-05/avant");
+            .join("tests/fixtures/one-hand-firearms");
         for version in [143, 144, 145] {
             let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
             let baseline = Suspension::read(&dir.join(format!("partie-{version}.json"))).unwrap();

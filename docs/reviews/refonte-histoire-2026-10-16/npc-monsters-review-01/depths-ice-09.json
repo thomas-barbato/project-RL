@@ -1,0 +1,142 @@
+{
+  "review_id": "NPC-MONSTERS-09",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "status": "partially_visually_approved_not_integrated",
+  "request": "ok on continue :)",
+  "scope": "Révisions lisibles des candidats 08–09 : démon Fendeur et étude de boss du plan glacé. Le 09 ne définit pas le Premier Libre ni un autre chef nommé.",
+  "native_cell": 64,
+  "records": [
+    {
+      "id": "MON-04",
+      "number": 8,
+      "revision": "r02",
+      "label": "Fendeur",
+      "family": "Démons organiques",
+      "role": "Monstre démoniaque / profondeurs",
+      "depth": "Secteurs profonds",
+      "height": 68,
+      "width": 64,
+      "palette": 16,
+      "native_body_reference": 64,
+      "prompt": "Use case: identity-preserve.\nAsset type: revised monster source for Project RL, a grim industrial cyberpunk horror roguelike rendered at native 64px tiles.\nInput image 1 is the EDIT TARGET: preserve its recognizable creature identity, main silhouette, anatomy and number of limbs. Input image 2 is ONLY the accepted simplified graphic style reference, not an anatomical or equipment reference. Never copy its cannon arm, respirator, clothes, mechanical parts or pose.\nStyle: clean bold dark comic outlines, strong large flat colored shapes, ONE main shadow per material. Remove fine scratches, skin mottling, repeated inner muscle lines, gore filigree, many small teeth, dense rib patterns, little folds and polygon patchwork. Mature unsettling original game creature, no cute or heroic treatment. No pink.\nComposition: ONE full creature, nearly frontal with slight overhead game camera. ALL limbs, claws and upper tips comfortably inside generous actual ALPHA transparent margins. No floor, shadow, background, halo, active magic, particles, extra figures, text or collage. Static appearance revision only: no combat ability, damage, status, timer, animation, collision or spawning rule.\nSubject: the tall narrow ORGANIC SPLIT-HEADED DEMON from image 1. Preserve exactly TWO long arms and TWO bent digitigrade legs, the elongated pale blade-like skull with its hooked upper crown, a deep VERTICAL split mouth and huge curved ivory hand talons. No wings, tail, additional head or extra limbs.\nThe main identifying shape is ONE long ivory skull shell split vertically around a dark mouth cavity: retain its long forward hook at the crown, but show only THREE large broad tooth points on each side of the split, no rows of little teeth. No human face, eyes, nose or conventional jaw. Make the dark central opening clear and readable, with ONE dark brick-red inner plane.\nBody is dark desaturated PURPLE-GREY sinewy organic flesh with muted brown/brick-red muscle channels and sparse ivory bone growths. One broad pale curved rib/bone plate on either side of upper chest, a single dark recessed belly, no complicated loops of dangling entrails or tiny ribs. No metal, machinery, armor, clothes, frost or ice: this demon belongs to the deep sectors but is not a frozen-plane recolor.\nEach long forearm ends in THREE broad sweeping ivory hooked talons attached naturally to the palm, with visible gaps between them. Keep normal coherent shoulders, elbows and wrists. Each bent leg ends in THREE broad bone toes. Preserve the thin threatening hunch and tall hooked head, not a bulky bodybuilder. Large clean areas of dark skin, pale bone and dark red are enough; simplify the numerous little bone fragments and small muscle subdivisions of the target.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-04-r01.png",
+          "role": "Cible de révision appréciée : préserver silhouette et anatomie"
+        },
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-06-r02.png",
+          "role": "Référence de style simplifié validée ; ni anatomie ni équipement à copier"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-24169560-ee49-4214-a228-c2dfe9e112bc.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-04-r02.png",
+      "maximum_body_height64": 68,
+      "maximum_body_width64": 64,
+      "palette_limit": 16,
+      "status": "proposal",
+      "review_batch": "NPC-MONSTERS-09",
+      "visual_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "layering_status": "Entirely organic or ice anatomy; no separately held weapon",
+      "mechanics_status": "Apparence proposée uniquement ; aucun effet, dégât, collision, animation ou placement défini.",
+      "source_sha256": "779eff786e84db7d3d9364ea757b0a3a44dfff1353e1c25313bf92eef5c7a680",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-04-cell64-canvas128.png",
+        "cell": 64,
+        "canvas": 128,
+        "foot_anchor": [
+          64,
+          96
+        ],
+        "occupied": [
+          34,
+          28,
+          95,
+          96
+        ],
+        "colors": 16,
+        "sha256": "87bc7fc59d530fdcc7aaf829fdf53707672f3daf50c41c9b22b73f6aa3b94c1e"
+      }
+    },
+    {
+      "id": "MON-05",
+      "number": 9,
+      "revision": "r03",
+      "label": "Amas du gel",
+      "family": "Créatures du plan glacé",
+      "role": "Créature du plan glacé",
+      "depth": "Plan démoniaque / enfer de glace",
+      "height": 124,
+      "width": 124,
+      "palette": 20,
+      "native_body_reference": 128,
+      "canvas_cells": 4,
+      "ground_cell": 3,
+      "prompt": "Use case: precise-object-edit.\nAsset type: corrected MON-05 appearance for Project RL, a native 64px-tile grim horror/cyberpunk roguelike.\nEDIT TARGET: the supplied six-legged ice boss study. Keep the same creature identity, exactly SIX clearly separated supporting limbs (three per side), same large low broad silhouette, single vertical ventral mouth, and exactly THREE dark blue-black ice spires on the back. Keep the legs staggered and readable, all feet and spires fully inside generous actual alpha-transparent margins.\nUSER CORRECTION: the current monster has far too much exposed bone and too little repulsive natural-colored flesh. Replace its dominant ivory skeleton/armor with heavy disgusting FLESH. This is the main change; not merely a flesh recolor of the bone plates.\nFlesh direction: a huge bloated, sagging, asymmetrical mass of sickly NATURAL SKIN COLOR, pale warm peach/beige with dull raw reddish flesh in deep fold seams and a few broad bruised violet-brown patches. Thick soft rolls, stretched skin, heavy lobes and a few large swollen blister-like nodules. It should look clammy, diseased, unpleasant and corrupted, not like a smooth friendly pink ball. Natural pale flesh is explicitly requested; no bright magenta, neon pink, stone-grey hide or skeletal ivory plating. Flesh must clearly dominate at least four fifths of the body and limb surfaces.\nREMOVE the ivory bone frames around ALL legs, the rigid rib-like mouth border, and the branching ivory lattice around ice-spire roots. Replace every one with soft rounded skin folds and flesh. Ice spires grow directly through three small dark torn fleshy sockets in the back, no bone crowns.\nAll SIX supporting legs are now thick fleshy jointed limbs made of the same pallid natural skin, with sagging folds at knees and ankles, ending in broad fleshy digits and TWO short dull dark nails each. Preserve the three separate feet per side in clear negative spaces. No long exposed-bone shins, ivory armor, giant pale talons, new extra limbs or tentacles.\nMouth: one long cavernous dark burgundy-black vertical ventral opening with a heavy irregular red fleshy lip. Only a FEW short crooked yellowish teeth partly buried in gums, no long white fangs or enclosing bone trim. One simple dark red inner fold, no separate human face, eyeballs, tongue tentacle or gore strands.\nKeep all three dark ice spires, but restrict the blue/black material to those spires, with only two or three broad flat facets and a restrained cold light edge.\nStyle: clean bold dark COMIC GAME outlines, large clear flat masses, one shadow plane per material and a few broad clammy highlights. Large meaningful shapes readable after native64 export. No dense pores, hundreds of pustules, little veins, mottling, tiny lines, texture noise, photorealistic render or elaborate gore.\nNo floor, shadow, background, halo, fog, active frost effect, particles, text or other creature. Appearance correction only, no ability, statistics, collision or spawning change.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r02.png",
+          "role": "Cible de correction refusée : remplacer les plaques osseuses par de la chair, conserver six appuis et trois pointes de glace"
+        }
+      ],
+      "source_generated": "C:/Users/User/.codex/generated_images/01a145b1-fd86-78f3-bee1-e0d66af002bd/exec-bbbfc57a-41b9-4bcb-ba5b-1382b83505ef.png",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/MON-05-r03.png",
+      "maximum_body_height64": 124,
+      "maximum_body_width64": 124,
+      "palette_limit": 20,
+      "status": "visually_approved",
+      "review_batch": "NPC-MONSTERS-09",
+      "visual_approved": true,
+      "name_approved": false,
+      "rules_approved": false,
+      "layering_status": "Entirely organic or ice anatomy; no separately held weapon",
+      "mechanics_status": "Apparence validée ; pas un boss de secteur. Catégorie de rencontre, capacités, statistiques et apparitions à définir.",
+      "revision_review": "MON-05-flesh-revision-03.json",
+      "source_sha256": "42e933da4133b396e8918031afb4b869bfb06a7a9608b2b326f19d7030460dae",
+      "design_intent": "Masse de chair couleur peau maladive, plis et boursouflures ; plaques osseuses retirées, six appuis et trois pointes de glace conservés.",
+      "native64_export": {
+        "file": "artifacts/npc-monsters-review-01/tiles/MON-05-cell64-canvas256.png",
+        "cell": 64,
+        "canvas": 256,
+        "foot_anchor": [
+          128,
+          192
+        ],
+        "occupied": [
+          66,
+          77,
+          190,
+          192
+        ],
+        "colors": 20,
+        "sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f"
+      },
+      "visual_acceptance": "visual-acceptance-06.json",
+      "encounter_role": "not_sector_boss",
+      "encounter_category": "to_define",
+      "encounter_direction_review": "encounter-direction-10.json",
+      "accepted_native64": {
+        "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/MON-05-r03/MON-05-r03-native64.png",
+        "cell": 64,
+        "canvas": 256,
+        "foot_anchor": [
+          128,
+          192
+        ],
+        "occupied": [
+          66,
+          77,
+          190,
+          192
+        ],
+        "colors": 20,
+        "sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f"
+      }
+    }
+  ],
+  "latest_revision_review": "MON-05-flesh-revision-03.json",
+  "encounter_direction_review": "encounter-direction-10.json"
+}

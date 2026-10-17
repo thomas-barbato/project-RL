@@ -1,7 +1,9 @@
 # Rencontres et milieux — répartition 117
 
-27 septembre 2026. Première application de la
-[descente vers le numérique](DESCENTE_VERS_LE_NUMERIQUE.md).
+> **Statut au 16 octobre 2026 : référence du prototype antérieur.** Ce document conserve des systèmes, contenus ou essais existants ; son peuplement et son organisation du monde ne définissent pas la nouvelle campagne. Voir [l'histoire courante](HISTOIRE_CAMPAGNE.md) et le [cadrage de refonte](reviews/refonte-histoire-2026-10-16/CADRAGE.md). Une réutilisation artistique ou narrative reste à examiner.
+
+27 septembre 2026. Répartition du prototype antérieur. Son ancien fil narratif
+numérique est retiré ; ces tables ne constituent pas le découpage de la nouvelle campagne.
 
 ## Constat et périmètre
 

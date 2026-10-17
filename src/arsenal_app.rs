@@ -19,6 +19,7 @@ impl AsciiApp {
                 self.graphics.active.world_cell_px,
                 self.navigation_signal_summary().is_some(),
                 at,
+                self.camera_glide_offset(),
             )
             .ok_or("Cible hors caméra")?;
         let scale = self.ui_scale();
@@ -99,6 +100,7 @@ impl AsciiApp {
                     self.graphics.active.world_cell_px,
                     self.navigation_signal_summary().is_some(),
                     at,
+                    self.camera_glide_offset(),
                 )
                 .ok_or("Case d'essai hors caméra")?;
             let scale = self.ui_scale();
@@ -150,7 +152,7 @@ impl AsciiApp {
 
     pub(super) fn prepare_arsenal_diagnostic(&mut self, scene: &str) -> Result<(), String> {
         self.open_menu(MenuScreen::Main);
-        self.enter_test_lab()?;
+        self.enter_legacy_equipment_lab()?;
         let id = if scene.contains("rocket") {
             "core:lance_roquettes"
         } else if scene.contains("machine") {
@@ -486,7 +488,7 @@ mod tests {
                 AsciiApp::from_seed_version(129, rules, texts, loot, expeditions, version).unwrap();
             let campaign = suspension::fingerprint(&app.game);
             app.open_menu(MenuScreen::Main);
-            app.enter_test_lab().unwrap();
+            app.enter_legacy_equipment_lab().unwrap();
             let stock = app.game.player_matter().unwrap();
             assert!(stock >= 400);
             let mut remaining = stock;

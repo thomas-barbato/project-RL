@@ -747,6 +747,42 @@ impl GameState {
         self.agent_runtime().support.raised.contains_key(&entity)
             && self.actors.get(entity).is_some_and(Actor::is_alive)
     }
+    /// Read-only HUD projection of the actual resurrection deadline.
+    pub fn agent_reanimated_remaining_turns(&self, entity: EntityId) -> Option<u64> {
+        self.agent_runtime()
+            .support
+            .raised
+            .get(&entity)
+            .filter(|_| self.actors.get(entity).is_some_and(Actor::is_alive))
+            .map(|(_, expires)| expires.saturating_sub(self.turn))
+    }
+    /// Effective support values for a live actor's HUD; the stored application
+    /// rank and curse potency may differ from the caster's current equipment.
+    pub fn agent_status_hud_value(
+        &self,
+        target: EntityId,
+        status: &StatusId,
+    ) -> Option<(&'static str, u16)> {
+        let (id, key, use_potency) = match status.as_str() {
+            "agent:aegis" => ("B02", "direct_damage_reduction_percent", false),
+            "agent:thorns" => ("SU03", "reflected_direct_melee_damage_percent", false),
+            "agent:armor_breach" => ("AF02", "physical_armor_reduction_percent", true),
+            "agent:interference" => ("O02", "direct_damage_reduction_percent", true),
+            "agent:spectral_step" => ("T02", "evasion_bonus_units", false),
+            "agent:phase_traversal" => ("ES05", "evasion_bonus_units", false),
+            _ => return None,
+        };
+        let effect = self.agent_support_effect(target, id)?;
+        let value = agent::definition(id)?.value(key, effect.rank);
+        Some((
+            key,
+            if use_potency {
+                (u32::from(value) * u32::from(effect.potency) / 100).min(65535) as u16
+            } else {
+                value
+            },
+        ))
+    }
     pub(super) fn agent_support_owned(&self, entity: EntityId) -> bool {
         self.agent_runtime().support.raised.contains_key(&entity)
             || self.agent_support_effect(entity, "HY06").is_some()

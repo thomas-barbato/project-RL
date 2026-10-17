@@ -141,6 +141,10 @@ fn deserialize_tier<'de, D: serde::Deserializer<'de>>(deserializer: D) -> Result
 pub struct EquipmentLootCatalog {
     bases: BTreeMap<ItemId, EquipmentBaseDefinition>,
     weighted_bonus_counts: bool,
+    // Projection metadata, not an active rule: keep authored bounds so a menu
+    // using current content can still reopen an older generation exactly.
+    authored_depth_bounds: BTreeMap<ItemId, (Option<u16>, Option<u16>)>,
+    excluded_bases: BTreeMap<ItemId, EquipmentBaseDefinition>,
 }
 
 impl std::fmt::Debug for EquipmentLootCatalog {
@@ -183,6 +187,19 @@ const DEPTH_WEIGHTS: [[u16; 6]; 6] = [
 ];
 
 impl EquipmentLootCatalog {
+    /// Reversible generation policy: new runs can retire models while the
+    /// same content template still reconstructs older rules for verified replay.
+    pub fn set_excluded_items(&mut self, models: &[ItemId], excluded: bool) {
+        for id in models {
+            if excluded {
+                if let Some(base) = self.bases.remove(id) {
+                    self.excluded_bases.entry(id.clone()).or_insert(base);
+                }
+            } else if let Some(base) = self.excluded_bases.remove(id) {
+                self.bases.insert(id.clone(), base);
+            }
+        }
+    }
     /// Monster rewards draw the model uniformly across the whole humanoid
     /// equipment catalogue, independently of its source, tier or depth.
     /// The previous model is excluded when there is another candidate.
@@ -217,11 +234,19 @@ impl EquipmentLootCatalog {
     /// Versioned by the client: old catalogues retain their exact layer draws.
     /// Named models can remain below their usual layer or appear up to two
     /// layers early. Existing depth weights still favor local-strength bases.
-    pub fn allow_adjacent_model_tiers(&mut self, models: &[ItemId]) {
+    pub fn set_adjacent_model_tiers(&mut self, models: &[ItemId], enabled: bool) {
         for model in models {
             if let Some(base) = self.bases.get_mut(model) {
-                base.minimum_depth = Some(u16::from(base.tier.saturating_sub(3)));
-                base.maximum_depth = None;
+                if enabled {
+                    self.authored_depth_bounds
+                        .entry(model.clone())
+                        .or_insert((base.minimum_depth, base.maximum_depth));
+                    base.minimum_depth = Some(u16::from(base.tier.saturating_sub(3)));
+                    base.maximum_depth = None;
+                } else if let Some((minimum, maximum)) = self.authored_depth_bounds.remove(model) {
+                    base.minimum_depth = minimum;
+                    base.maximum_depth = maximum;
+                }
             }
         }
     }
@@ -341,6 +366,18 @@ impl EquipmentLootCatalog {
     pub fn without_items(&self, excluded: &[ItemId]) -> Self {
         Self {
             weighted_bonus_counts: self.weighted_bonus_counts,
+            excluded_bases: self
+                .excluded_bases
+                .iter()
+                .filter(|(id, _)| !excluded.contains(id))
+                .map(|(id, base)| (id.clone(), base.clone()))
+                .collect(),
+            authored_depth_bounds: self
+                .authored_depth_bounds
+                .iter()
+                .filter(|(id, _)| !excluded.contains(id))
+                .map(|(id, bounds)| (id.clone(), *bounds))
+                .collect(),
             bases: self
                 .bases
                 .iter()

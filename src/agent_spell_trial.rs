@@ -75,6 +75,7 @@ impl AsciiApp {
                     app.graphics.active.world_cell_px,
                     app.navigation_signal_summary().is_some(),
                     at,
+                    app.camera_glide_offset(),
                 )
                 .ok_or("Hover cell outside camera")?;
             let hover = app.graphics.active.transform_input(InputFrame {

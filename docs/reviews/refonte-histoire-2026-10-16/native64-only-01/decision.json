@@ -1,0 +1,18 @@
+{
+  "review_id": "NATIVE64-ONLY-01",
+  "date": "2026-10-17",
+  "user_statement": "ok on continue, parcontre tu peux oublier les version 32 px je pense ? on va annuler la version du jeu en 32 px.",
+  "accepted_render_cell": 64,
+  "retired_render_cell": 32,
+  "scope": [
+    "Le jeu propose désormais seulement le rendu 64 px par case.",
+    "Les nouvelles créations et la galerie courante ne fabriquent plus d'exports 32 px.",
+    "Les anciens fichiers graphics.json en 16/20/24/32/40/48 px chargent le rendu 64 px en conservant les autres préférences.",
+    "Les sources et preuves visuelles historiques restent préservées."
+  ],
+  "unchanged": [
+    "Cases logiques, collisions, règles, identités de contenu et sauvegardes de partie",
+    "Ressources internes, icônes et coordonnées de composition qui utilisent une grille 32"
+  ],
+  "validation": "validation.json"
+}

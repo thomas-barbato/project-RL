@@ -1,0 +1,273 @@
+{
+  "review_id": "HELD-WEAPON-64-01-INTEGRATION01",
+  "date": "2026-10-16",
+  "status": "approved references integrated; breathing extended at user request",
+  "approval_receipts": [
+    "visual-acceptance-01.json",
+    "armor-breathing-extension-01.json"
+  ],
+  "models": {
+    "heavy_ranged": 27,
+    "two_handed_axes": 7,
+    "ordinary_firearms_unchanged": true,
+    "one_handed_weapons_unchanged": true,
+    "blunt_two_handed_pose": "approved study retained in the reproducible reference compositor; no current one-handed model converted"
+  },
+  "outfits": 19,
+  "palettes": 3,
+  "packaging_combinations_checked": 1938,
+  "exact_approved_reference_compositions": 12,
+  "verification": {
+    "graphics_tests_passed": 38,
+    "debug_build": "passed without compiler warnings",
+    "release_check": "passed; no release executable built",
+    "format_check": "passed",
+    "git_diff_check": "passed",
+    "native_captures_inspected": 4,
+    "all_19_outfits_animated_with_unchanged_foot_patches": true,
+    "no_texture_growth_after_both_breathing_poses_warm": true,
+    "simulation_unchanged_by_render": true,
+    "gameplay_or_save_schema_changes": false,
+    "full_project_suite": "not rerun for renderer-only change; no claim of complete-suite success",
+    "gallery_javascript_syntax": "passed with Node; browser page itself not observed"
+  },
+  "runtime_assets": [
+    {
+      "path": "assets/sprites/held-native64/manifest.json",
+      "bytes": 21006,
+      "sha256": "a1e85fc888d2a8c93872763bcb4f0d61bc94632531a9fabc2f43174513be01d0"
+    },
+    {
+      "path": "assets/sprites/held-native64/weapons-128.png",
+      "bytes": 91950,
+      "sha256": "549e584842ce988303bc7aefd1996067048cecda8697c3903e4c8c84711978a3"
+    }
+  ],
+  "approved_reference": {
+    "path": "assets/source-art/refonte-agent-2026-10-06/held-weapon-review-01/approved-128.png",
+    "sha256": "c3b100b5fdb8d1a142f3d74c09a88ba2447286290f11b1f28f4025baa81d72e2"
+  },
+  "captures": [
+    {
+      "scene": "crawl-held64-1",
+      "path": "artifacts/held64-check-1/cold-start.png",
+      "sha256": "ac5f24857e72fee0cd51f9582d2b4fe7037ef9616e83d5f94cad708a53dcbfc9",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "diagnostics": {
+        "cache_after_repeated_frames": [
+          [
+            64,
+            64
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "cache_after_warmup": [
+          [
+            64,
+            64
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "native_tile": 64,
+        "no_new_textures_after_warmup": true,
+        "scene": "crawl-held64-1",
+        "state_unchanged_after_render": true,
+        "weapon_families": 18,
+        "weapon_models": 113
+      },
+      "retention": "Standalone PNG and diagnostic deleted; pixels embedded in reusable gallery, diagnostic data retained here."
+    },
+    {
+      "scene": "crawl-held64-2",
+      "path": "artifacts/held64-check-2/cold-start.png",
+      "sha256": "60fda7f46f0a486fc0a62ebb879eb6e289e6248583fcfd17a19bd2844aecb064",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "diagnostics": {
+        "cache_after_repeated_frames": [
+          [
+            58,
+            58
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "cache_after_warmup": [
+          [
+            58,
+            58
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "native_tile": 64,
+        "no_new_textures_after_warmup": true,
+        "scene": "crawl-held64-2",
+        "state_unchanged_after_render": true,
+        "weapon_families": 18,
+        "weapon_models": 113
+      },
+      "retention": "Standalone PNG and diagnostic deleted; pixels embedded in reusable gallery, diagnostic data retained here."
+    },
+    {
+      "scene": "crawl-breath64-0",
+      "path": "artifacts/breath64-check-0/cold-start.png",
+      "sha256": "3964c84c6715b849eb6f627b2d10f63d96d83f98a61e5527a66f99dced3da803",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "diagnostics": {
+        "cache_after_repeated_frames": [
+          [
+            42,
+            42
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "cache_after_warmup": [
+          [
+            42,
+            42
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "native_tile": 64,
+        "no_new_textures_after_warmup": true,
+        "scene": "crawl-breath64-0",
+        "state_unchanged_after_render": true,
+        "weapon_families": 18,
+        "weapon_models": 113
+      },
+      "retention": "Standalone PNG and diagnostic deleted; pixels embedded in reusable gallery, diagnostic data retained here."
+    },
+    {
+      "scene": "crawl-breath64-1",
+      "path": "artifacts/breath64-check-1/cold-start.png",
+      "sha256": "ddb932f74cef1ed8b24682d3f1c0f3a44269601fb4084379e114c2de8bed12f5",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "diagnostics": {
+        "cache_after_repeated_frames": [
+          [
+            40,
+            40
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "cache_after_warmup": [
+          [
+            40,
+            40
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "native_tile": 64,
+        "no_new_textures_after_warmup": true,
+        "scene": "crawl-breath64-1",
+        "state_unchanged_after_render": true,
+        "weapon_families": 18,
+        "weapon_models": 113
+      },
+      "retention": "Standalone PNG and diagnostic deleted; pixels embedded in reusable gallery, diagnostic data retained here."
+    }
+  ],
+  "gallery": {
+    "path": "artifacts/apercu-equipement64.html",
+    "bytes": 2731947,
+    "sha256": "4fef6a726f72e31e27c589c08d7eefcc5aac3af2643ae493cceb6c06dd60ba52"
+  },
+  "rebuilt_debug_executable": {
+    "bytes": 119275008,
+    "sha256": "c3704ce5d406814df21f2732f4842013f3ede6bb9f17b03850b702bbd0f3d9f6"
+  },
+  "movement_glide": "proposal only (about 80ms); no ordinary-movement animation implemented",
+  "cleanup": {
+    "status": "completed for this integration",
+    "files": [
+      {
+        "path": "artifacts/apercu-prises64.png",
+        "bytes": 351121,
+        "sha256": "2c2980781616c60ed830631fa28147297c34d51e5a08bacb090a7292a8a2a198"
+      },
+      {
+        "path": "artifacts/held64-check-1/cold-start.png",
+        "bytes": 534916,
+        "sha256": "ac5f24857e72fee0cd51f9582d2b4fe7037ef9616e83d5f94cad708a53dcbfc9"
+      },
+      {
+        "path": "artifacts/held64-check-1/art-validation.json",
+        "bytes": 374,
+        "sha256": "daa34c1861672bac4061b1949a8edee1bf58ff8691c23f4e76e5653f84c92325"
+      },
+      {
+        "path": "artifacts/held64-check-2/cold-start.png",
+        "bytes": 497596,
+        "sha256": "60fda7f46f0a486fc0a62ebb879eb6e289e6248583fcfd17a19bd2844aecb064"
+      },
+      {
+        "path": "artifacts/held64-check-2/art-validation.json",
+        "bytes": 374,
+        "sha256": "24263a4ef10303ea209458c17e69657d82ba3137a3373194d85c8973508efd46"
+      },
+      {
+        "path": "artifacts/breath64-check-0/cold-start.png",
+        "bytes": 234986,
+        "sha256": "3964c84c6715b849eb6f627b2d10f63d96d83f98a61e5527a66f99dced3da803"
+      },
+      {
+        "path": "artifacts/breath64-check-0/art-validation.json",
+        "bytes": 376,
+        "sha256": "3ae6cafa3d695aceef06c24848076fb64d7d103e558f931b0a45a64567f86992"
+      },
+      {
+        "path": "artifacts/breath64-check-1/cold-start.png",
+        "bytes": 232676,
+        "sha256": "ddb932f74cef1ed8b24682d3f1c0f3a44269601fb4084379e114c2de8bed12f5"
+      },
+      {
+        "path": "artifacts/breath64-check-1/art-validation.json",
+        "bytes": 376,
+        "sha256": "0cdc25932a65c9c0c0cbcaf7f0c5923438a746f1d0e98d698ff121e826b62e19"
+      }
+    ],
+    "bytes": 1852795,
+    "older_previously_blocked_cleanup_targets": "left untouched; see previous equipment integration receipt",
+    "deleted_files": 9,
+    "removed_empty_directories": 4,
+    "reclaimed_bytes": 1852795,
+    "embedded_capture_pixels_preserved": true,
+    "source_art_and_review_tools_preserved": true,
+    "map_editor_data_untouched": true
+  },
+  "git_operations": "No stage, commit, push or history edit."
+}

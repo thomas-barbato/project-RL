@@ -9,6 +9,10 @@ mod tactical_ai;
 #[path = "actor_loot_tests.rs"]
 mod actor_loot_tests;
 
+#[cfg(test)]
+#[path = "monster_modifier_tests.rs"]
+mod monster_modifier_tests;
+
 #[path = "agent_area_cast.rs"]
 mod agent_area_cast;
 #[path = "agent_cast.rs"]
@@ -2075,7 +2079,8 @@ impl GameState {
                     intrinsic.reinforcement(),
                     intrinsic.fragilization().max(status_fragilization),
                 ),
-            ),
+            )
+            .with_physical_resistance(crate::monster_modifiers::physical_resistance_percent(actor)),
         )
     }
 
@@ -2692,10 +2697,28 @@ impl GameState {
         &mut self,
         behavior: CompanionBehavior,
     ) -> Result<(), CommandRejection> {
+        self.set_player_companion_behavior_for(None, behavior)
+    }
+    fn set_player_companion_behavior_for(
+        &mut self,
+        selected: Option<EntityId>,
+        behavior: CompanionBehavior,
+    ) -> Result<(), CommandRejection> {
         if !self.rules.player_companion_behaviors {
             return Err(CommandRejection::CompanionCommandsUnavailable);
         }
-        let companions = self.player_controlled_companions();
+        let companions: Vec<_> = self
+            .player_controlled_companions()
+            .into_iter()
+            .filter(|id| selected.is_none_or(|entity| entity == *id))
+            .filter(|id| {
+                self.actors.get(*id).is_some_and(|actor| {
+                    actor
+                        .drone()
+                        .is_some_and(|drone| drone.controller() == self.player)
+                })
+            })
+            .collect();
         if companions.is_empty() {
             return Err(CommandRejection::NoControlledCompanion);
         }
@@ -2982,6 +3005,12 @@ impl GameState {
             }
             GameCommand::SetCompanionBehavior { behavior } => {
                 match self.set_player_companion_behavior(behavior) {
+                    Ok(()) => CommandOutcome::AppliedWithoutTime,
+                    Err(error) => CommandOutcome::Rejected(error),
+                }
+            }
+            GameCommand::SetCompanionBehaviorFor { entity, behavior } => {
+                match self.set_player_companion_behavior_for(Some(entity), behavior) {
                     Ok(()) => CommandOutcome::AppliedWithoutTime,
                     Err(error) => CommandOutcome::Rejected(error),
                 }
@@ -13196,7 +13225,7 @@ impl GameState {
         // an inventory item or silently unequip it.
         let mut next_ground_items = self.ground_items.clone();
         let ground_item = next_ground_items
-            .spawn_with_owner(
+            .spawn_player_drop(
                 position,
                 entry.item().clone(),
                 entry.quantity(),
@@ -13918,6 +13947,17 @@ impl GameState {
                 entity: target,
                 at: position,
             });
+            if let Some((number, variant)) = self
+                .actors
+                .get(target)
+                .and_then(crate::monster_art::appearance)
+            {
+                self.events.push(GameEvent::MonsterBodyFell {
+                    at: position,
+                    number,
+                    variant,
+                });
+            }
             if target != self.player && source == Some(self.player) {
                 self.events.push(GameEvent::EntityDefeatedByPlayer {
                     entity: target,
@@ -22569,6 +22609,47 @@ mod tests {
     }
 
     #[test]
+    fn player_drops_form_a_persistent_pile_and_can_all_be_recovered() {
+        let (rules, blade, arc) = equipment_rules();
+        let at = GridPos::new(1, 1);
+        let mut game =
+            GameState::new_with_rules(parse_map("#####\n#...#\n#####"), at, 1, rules).unwrap();
+        let instances: Vec<_> = game
+            .player_inventory()
+            .iter()
+            .filter(|entry| entry.item() == &blade || entry.item() == &arc)
+            .map(|entry| entry.instance())
+            .collect();
+        assert_eq!(instances.len(), 2);
+        for item in instances {
+            assert_eq!(
+                game.process_player_command(GameCommand::DropItem { item }),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(game.player_position(), Some(at));
+        assert_eq!(game.ground_items().count_at(at), 2);
+        assert!(game.player_equipment().iter().next().is_none());
+        game.drain_events();
+        let snapshot = game.snapshot().unwrap();
+        let mut restored = GameState::from_snapshot(snapshot, game.rules().clone());
+        assert_eq!(restored.ground_items().count_at(at), 2);
+        for remaining in [1, 0] {
+            assert_eq!(
+                restored.process_player_command(GameCommand::PickUp),
+                CommandOutcome::Applied
+            );
+            assert_eq!(restored.ground_items().count_at(at), remaining);
+        }
+        let recovered: BTreeSet<_> = restored
+            .player_inventory()
+            .iter()
+            .map(|entry| entry.item().clone())
+            .collect();
+        assert_eq!(recovered, [blade, arc].into_iter().collect());
+    }
+
+    #[test]
     fn failed_drop_preserves_inventory_equipment_and_turn() {
         let (rules, blade, arc) = equipment_rules();
         let mut game = GameState::new_with_rules(
@@ -22587,6 +22668,11 @@ mod tests {
         let existing_ground = game
             .spawn_ground_item(GridPos::new(1, 1), blade, 1)
             .unwrap_or_else(|error| panic!("valid ground item rejected: {error}"));
+        // Occupied cells now accept player drops. Exhaust the ID space instead
+        // to keep checking that an actual insertion failure remains atomic.
+        let mut exhausted = serde_json::to_value(&game.ground_items).unwrap();
+        exhausted["next_id"] = serde_json::json!(u64::MAX);
+        game.ground_items = serde_json::from_value(exhausted).unwrap();
         game.drain_events();
 
         assert_eq!(

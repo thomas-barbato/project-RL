@@ -1,0 +1,150 @@
+{
+  "review_id": "MONSTER-MODIFIERS-03",
+  "date": "2026-10-17",
+  "status": "scaling_requirement_recorded_numeric_batch_pending",
+  "previous_decision": "decision-02.json",
+  "runtime_connected": false,
+  "player_statement": "le truc c'est que la puissance dépend du monstre et du niveau de la zone donc, forcement un monstre de début de jeu avec des dégats de feu ne fait pas autant de dégats qu'un monstre qui fait desdégats de feu de haut niveau",
+  "confirmed_requirement": "La puissance dépend du profil du monstre et de son niveau dans la zone. Le mot-clé n'impose pas une quantité de dégâts identique à toutes les créatures.",
+  "scope": "Première revue chiffrée : MM01, MM02, MM03, MM04, MM15, MM16, MM17. Les douze autres concepts acceptés restent à chiffrer dans une revue suivante ; MM08 reste refusé.",
+  "existing_evidence": [
+    {
+      "file": "src/world/generation/encounter_balance.rs",
+      "finding": "balance_layer_encounters utilise la profondeur et le profil de couche pour ajuster vitalité, dégâts innés et niveau, en conservant les différences entre espèces. Les dégâts des porteurs d'armes sont traités séparément. Un marqueur empêche une deuxième application. Ce n'est pas une preuve que les futurs candidats du catalogue sont déjà intégrés ou équilibrés."
+    },
+    {
+      "file": "src/combat/damage.rs",
+      "finding": "DamageImpact permet plusieurs composantes dans un impact. L'armure physique n'est retirée qu'une fois ; les autres composantes utilisent leurs résistances. Le profil specialized borne les résistances effectives entre -50 et 75 %."
+    },
+    {
+      "file": "docs/reviews/refonte-agent-2026-10-06/common-resistance-system-acceptance-decisions.json",
+      "finding": "Résistances additionnées, malus retranchés puis limite -50/+75 ; surplus conservé avant malus ; armure une fois par impact ; arrondi inférieur après protections. Règles déjà acceptées, non redéfinies ici."
+    },
+    {
+      "file": "content/core/status/poisoned.json5",
+      "finding": "Le poison générique existant est 1 dégât chimique pendant 5 tours, avec rafraîchissement de durée et restrictions de cibles. Le poison proportionnel proposé ici n'est pas encore implémenté et ne remplace pas ce statut global."
+    }
+  ],
+  "proposed_calculation_conventions": {
+    "basis": "Dégâts de l'attaque concernée après prise en compte du profil du monstre, de son niveau de zone, de son arme et de la compétence utilisée, avant défenses de la victime et avant les bonus des autres mots-clés de rencontre.",
+    "zone_counted_once": true,
+    "source_basis_not_target_hp": true,
+    "player_level_autoscaling_created": false,
+    "variance": "Conserver les plages et distributions existantes. Appliquer le coefficient aux valeurs correspondantes sans créer une nouvelle variance globale.",
+    "rounding": "Suivre les arrondis déjà acceptés. Les exemples emploient des valeurs entières simples ; aucune règle générale de minimum 1 dégât n'est introduite.",
+    "native_traits": "Un mot-clé fixe peut simplement décrire un effet natif déjà défini par le profil et le niveau du monstre. Il ne rajoute pas le même effet. Les coefficients ci-dessous concernent l'ajout aléatoire d'un effet absent.",
+    "fixed_and_random_deduplication": "Exclure du tirage un effet déjà possédé nativement ou par un autre mot-clé. Les identifiants de revue restent stables.",
+    "turn_economy": "Aucune attaque ou action supplémentaire : les composantes élémentaires font partie du même impact. Les dégâts persistants se résolvent en fin de tour.",
+    "multi_hit": "Ne pas redonner le montant d'une attaque complète à chaque projectile ou sous-impact. Leur propre part de dégâts sert de base. Les règles détaillées de MM19 restent à revoir.",
+    "other_scaling": "Les futurs gains de vie, d'armure, soins et explosions devront aussi référencer les caractéristiques adaptées du monstre. Chances, durées et rayons ne sont pas obligés d'augmenter avec le niveau. Leurs chiffres ne sont pas fixés par cette convention.",
+    "approved": false
+  },
+  "numeric_proposals": [
+    {
+      "id": "MM01",
+      "label": "Dégâts de feu",
+      "added_damage_percent_of_basis": 25,
+      "element": "fire",
+      "mode": "additional_component_in_the_same_impact",
+      "original_damage_preserved": true,
+      "no_implicit_effects": ["Brûlure", "Résistance au feu", "Explosion à la mort"],
+      "player_copy": "Ses attaques ajoutent des dégâts de feu égaux à 25 % de leurs dégâts de base.",
+      "native_profile_copy_note": "Pour une attaque naturellement enflammée, présenter les dégâts réellement définis par son profil, sans annoncer automatiquement cet ajout de 25 %.",
+      "numbers_approved": false,
+      "new_copy_approved": false
+    },
+    {
+      "id": "MM02",
+      "label": "Dégâts de froid",
+      "added_damage_percent_of_basis": 25,
+      "element": "cold",
+      "mode": "additional_component_in_the_same_impact",
+      "original_damage_preserved": true,
+      "no_implicit_effects": ["Gel", "Ralentissement", "Résistance au froid"],
+      "player_copy": "Ses attaques ajoutent des dégâts de froid égaux à 25 % de leurs dégâts de base.",
+      "native_profile_copy_note": "Un profil naturellement froid garde ses propres dégâts, sans deuxième ajout automatique.",
+      "numbers_approved": false,
+      "new_copy_approved": false
+    },
+    {
+      "id": "MM03",
+      "label": "Venimeux",
+      "application_chance_percent": 50,
+      "duration_turns": 3,
+      "damage_each_turn_percent_of_triggering_attack_basis": 10,
+      "snapshot": "Mémoriser la base de l'attaque qui a appliqué le poison ; utiliser la résistance actuelle au poison de la victime à chaque tick.",
+      "application": "Un seul tirage par victime et par action offensive admissible ayant atteint la cible et infligé des dégâts. Aucune application sur coup raté ou cible incompatible.",
+      "tick_timing": "Un tick à chacune des trois fins de tour après application, en commençant à la prochaine fin de tour ; pas de tick supplémentaire à chaque réapplication.",
+      "stacking": "Pour ce poison de monstre, une seule puissance active. Une application plus forte ou égale remplace la puissance et remet la durée à 3 tours ; une application plus faible ne renforce ni ne prolonge le poison actif.",
+      "target_rules": "Les familles biologiquement admissibles et les immunités doivent être revues avec les profils. Ne pas modifier silencieusement les restrictions du statut générique existant.",
+      "player_copy": "Ses attaques ont 50 % de chances d'empoisonner. Le poison inflige 10 % des dégâts de base du coup par tour pendant 3 tours. Les applications ne cumulent pas leurs dégâts.",
+      "numbers_approved": false,
+      "new_copy_approved": false,
+      "stacking_and_timing_approved": false
+    },
+    {
+      "id": "MM04",
+      "label": "Dégâts électriques",
+      "added_damage_percent_of_basis": 25,
+      "element": "electrical",
+      "mode": "additional_component_in_the_same_impact",
+      "original_damage_preserved": true,
+      "no_implicit_effects": ["Étourdissement", "Chaîne électrique", "Résistance électrique"],
+      "player_copy": "Ses attaques ajoutent des dégâts électriques égaux à 25 % de leurs dégâts de base.",
+      "native_profile_copy_note": "Un profil naturellement électrique garde ses propres dégâts, sans deuxième ajout automatique.",
+      "numbers_approved": false,
+      "new_copy_approved": false
+    },
+    {
+      "id": "MM15",
+      "label": "Résistant au feu",
+      "resistance_bonus_percentage_points": 30,
+      "maximum_effective_resistance_percent": 75,
+      "calculation": "Ajouter 30 points aux bonus de résistance au feu, conserver la somme brute, soustraire les malus puis appliquer les limites existantes.",
+      "native_profile": "Le mot-clé peut également décrire une résistance native du profil ; ne pas ajouter deux fois le même trait.",
+      "player_copy": "Résistance au feu augmentée de 30 points.",
+      "numbers_approved": false,
+      "new_copy_approved": false
+    },
+    {
+      "id": "MM16",
+      "label": "Résistant au froid",
+      "resistance_bonus_percentage_points": 30,
+      "maximum_effective_resistance_percent": 75,
+      "calculation": "Même règle additive pour la résistance au froid. Les interactions déjà acceptées entre résistance au froid et chance de Gel restent applicables ; aucun nouveau modificateur de durée n'est créé.",
+      "native_profile": "Le mot-clé peut décrire une résistance native ; ne pas l'ajouter deux fois.",
+      "player_copy": "Résistance au froid augmentée de 30 points.",
+      "numbers_approved": false,
+      "new_copy_approved": false
+    },
+    {
+      "id": "MM17",
+      "label": "Résistant au poison",
+      "resistance_bonus_percentage_points": 30,
+      "maximum_effective_resistance_percent": 75,
+      "calculation": "Même règle additive pour les dégâts de poison. Ce bonus ne réduit pas automatiquement la durée ou la chance d'application du poison.",
+      "native_profile": "Le mot-clé peut décrire une résistance native ; ne pas l'ajouter deux fois.",
+      "implementation_reconciliation": "Le moteur représente actuellement ces dégâts via Chemical. Vérifier le raccord avec les autres sources chimiques avant implémentation ; ne pas élargir silencieusement le texte au-delà du poison.",
+      "player_copy": "Résistance au poison augmentée de 30 points.",
+      "numbers_approved": false,
+      "new_copy_approved": false
+    }
+  ],
+  "illustrative_examples": [
+    {"attack_basis": 20, "added_fire_damage": 5, "combined_raw_damage": 25},
+    {"attack_basis": 100, "added_fire_damage": 25, "combined_raw_damage": 125},
+    {"attack_basis": 20, "poison_damage_each_turn_before_resistance": 2, "poison_turns": 3, "poison_total_if_applied_before_resistance": 6},
+    {"attack_basis": 100, "poison_damage_each_turn_before_resistance": 10, "poison_turns": 3, "poison_total_if_applied_before_resistance": 30},
+    {"native_fire_resistance_percent": 20, "trait_bonus_percentage_points": 30, "malus_percentage_points": 0, "effective_fire_resistance_percent": 50},
+    {"native_fire_resistance_percent": 60, "trait_bonus_percentage_points": 30, "malus_percentage_points": 0, "effective_fire_resistance_percent": 75},
+    {"native_fire_resistance_percent": 60, "trait_bonus_percentage_points": 30, "malus_percentage_points": 25, "effective_fire_resistance_percent": 65}
+  ],
+  "review_limits": [
+    "Valeurs de départ à examiner, pas un équilibrage validé par des simulations de combats ou des essais en jeu.",
+    "Les exemples ne définissent pas les statistiques réelles d'un monstre du catalogue.",
+    "Ne pas multiplier la puissance par le niveau de la zone une seconde fois.",
+    "Ne pas déduire de nouveaux pouvoirs d'une simple couleur ou d'un mot-clé.",
+    "Les dégâts faibles peuvent s'arrondir à zéro selon les protections et règles existantes ; vérifier ce cas lors du réglage des profils sans inventer un minimum global.",
+    "La combinaison de plusieurs éléments distincts et son éventuel plafond restent à soumettre séparément."
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "review_id": "ELITE-MONSTERS-16-VALIDATION",
+  "date": "2026-10-17",
+  "status": "native_preview_verified_pending_scale_review_not_integrated",
+  "checks": {
+    "sources_before": {
+      "unchanged": true,
+      "files": 19
+    },
+    "runtime_before": {
+      "unchanged": true,
+      "files": 238
+    },
+    "rust_before": {
+      "unchanged": true,
+      "files": 367
+    },
+    "old_native64": {
+      "initial_unchanged": 18,
+      "large_variants_unchanged": 2
+    },
+    "previous_approvals_preserved": true,
+    "frozen_accepted_exports": {
+      "hashes_match": true,
+      "files": 20
+    },
+    "elite_native64": [
+      {
+        "id": "ELITE-03",
+        "width": 98,
+        "height": 72,
+        "colors": 25,
+        "source_unchanged": true,
+        "binary_alpha": true,
+        "scale_approved": false
+      },
+      {
+        "id": "ELITE-04",
+        "width": 109,
+        "height": 64,
+        "colors": 25,
+        "source_unchanged": true,
+        "binary_alpha": true,
+        "scale_approved": false
+      }
+    ],
+    "contact_shadows": {
+      "separate_layers": 18,
+      "hashes_and_dimensions_match": true
+    },
+    "python_syntax": "passed",
+    "html": {
+      "embedded_canvases": 2,
+      "script_extracted": true,
+      "browser_render_verified": false,
+      "node_syntax_check": "passed"
+    },
+    "git_diff_check": "passed; line-ending notices only"
+  },
+  "images_visually_inspected": [
+    "artifacts/npc-monsters-review-01/elites-20-21.png",
+    "artifacts/npc-monsters-review-01/ombres-monstres.png"
+  ],
+  "runtime_connected": false,
+  "rust_tests_run": false,
+  "rust_tests_reason": "No Rust code or runtime rendering assets modified."
+}

@@ -38,6 +38,9 @@ fn roll_lab_bonuses(
 }
 const LAB_START: GridPos = GridPos::new(7, 12);
 const LAB_PROBE: GridPos = GridPos::new(7, 20);
+const LAB_CROWD_DOOR: GridPos = GridPos::new(35, 12);
+#[cfg(any(test, debug_assertions))]
+const LAB_CROWD_ENTRY: GridPos = GridPos::new(38, 12);
 const LAB_KINDS: [&str; 14] = [
     "reference",
     "impact",
@@ -156,6 +159,42 @@ fn lab_effect(kind: &str) -> Result<Vec<WeaponEffect>, String> {
 }
 
 impl AsciiApp {
+    /// Isolated camera fixture for the actual playable crowd room.
+    #[cfg(any(test, debug_assertions))]
+    pub(super) fn prepare_lab_crowd_fixture(&mut self) -> Result<(), String> {
+        let zone = self.game.current_zone().cloned();
+        let mut game = GameState::new_with_rules(
+            self.game.map().clone(),
+            LAB_CROWD_ENTRY,
+            LAB_SEED,
+            self.game.rules().clone(),
+        )
+        .map_err(|e| e.to_string())?;
+        let mut glyphs = BTreeMap::new();
+        for (old_id, actor) in self.game.actors().iter() {
+            if old_id != self.game.player_id() {
+                let new_id = game.spawn_actor(actor.clone()).map_err(|e| e.to_string())?;
+                if let Some(glyph) = self.actor_glyphs.get(&old_id) {
+                    glyphs.insert(new_id, *glyph);
+                }
+            }
+        }
+        game.drain_events();
+        self.terminal = TerminalView::new(
+            self.terminal.decor.clone(),
+            game.map(),
+            game.player_visibility(),
+        );
+        self.game = WorldState::single(game);
+        if let Some(zone) = zone {
+            self.game.enable(zone).map_err(|e| e.to_string())?;
+        }
+        self.refresh_zone_title();
+        self.actor_glyphs = glyphs;
+        self.selected_target = None;
+        Ok(())
+    }
+
     /// Real persistent fields on empty cells, using ordinary attack commands.
     /// Diagnostic-only loadout; it never adds weapons to the playable lab.
     #[cfg(any(test, debug_assertions))]
@@ -326,6 +365,7 @@ impl AsciiApp {
                     self.graphics.active.world_cell_px,
                     self.navigation_signal_summary().is_some(),
                     at,
+                    self.camera_glide_offset(),
                 )
                 .ok_or("Cible de diagnostic hors caméra")?;
             let mut frame = self.graphics.active.transform_input(InputFrame {
@@ -784,13 +824,50 @@ impl AsciiApp {
                 .duration_since(std::time::UNIX_EPOCH)
                 .map_or(LAB_SEED, |d| d.as_nanos() as u64)
         };
-        self.build_test_lab_with_bonus_seed(bonus_seed)
+        let legacy_equipment = self.test_lab
+            && self
+                .game
+                .player_inventory()
+                .iter()
+                .any(|entry| entry.item().namespace().as_str() == "lab");
+        self.build_test_lab_with_equipment(bonus_seed, legacy_equipment)
     }
 
+    #[cfg(any(test, debug_assertions))]
     fn build_test_lab_with_bonus_seed(&self, bonus_seed: u64) -> Result<Self, String> {
+        self.build_test_lab_with_equipment(bonus_seed, true)
+    }
+
+    fn build_test_lab_with_equipment(
+        &self,
+        bonus_seed: u64,
+        legacy_equipment: bool,
+    ) -> Result<Self, String> {
         let mut bonus_rng = project_rl::game::GameRng::from_seed(bonus_seed);
         let base = self.lab_return.as_deref().unwrap_or(self);
-        let mut rules = base.rules.clone();
+        let mut rules = if legacy_equipment {
+            base.rules.clone()
+        } else {
+            ascii_game_content()?.0
+        };
+        let mut laboratory_class = base.character_class.clone();
+        if !legacy_equipment {
+            let classes = ascii_character_class_catalog()?;
+            let class = laboratory_class
+                .as_ref()
+                .and_then(|id| classes.get(id))
+                .filter(|class| class.agent_start().is_some())
+                .or_else(|| classes.get(&"core:arcaniste".parse().unwrap()))
+                .ok_or("Classe de laboratoire absente")?;
+            class
+                .apply_to_rules(&mut rules, class.recommended_attributes())
+                .map_err(|e| e.to_string())?;
+            laboratory_class = Some(class.id().clone());
+            rules
+                .player_starting_items
+                .retain(|item| !equipment_generation::is_retired_test_item(&item.item));
+        }
+        let class_starting_items = rules.player_starting_items.clone();
         if let Some(start) = rules.agent_class_start.as_mut() {
             start.skills = project_rl::skills::agent::definitions()
                 .iter()
@@ -1122,6 +1199,72 @@ impl AsciiApp {
             Some(lab_id("rifle_impact")),
             Some(lab_id("blade_bearer")),
         ];
+        if !legacy_equipment {
+            let current_models = equipment_generation::current_model_ids();
+            let catalogue = rules
+                .monster_equipment_loot
+                .clone()
+                .ok_or("Catalogue d'équipement absent")?;
+            let equipment: Vec<_> = catalogue
+                .iter()
+                .filter(|(id, model)| {
+                    model.tier == 1
+                        && current_models.contains(id)
+                        && !equipment_generation::is_retired_test_item(id)
+                })
+                .map(|(id, _)| id.clone())
+                .collect();
+            rules.player_starting_weapons = equipment
+                .iter()
+                .filter(|id| rules.weapons.get(id).is_some())
+                .cloned()
+                .collect();
+            rules.player_starting_items = equipment
+                .iter()
+                .filter(|id| rules.items.get(id).is_some())
+                .map(|id| StartingItemStack::new(id.clone(), 1))
+                .collect();
+            // Campaign class clothing takes precedence over the other samples.
+            rules.player_starting_items.extend(class_starting_items);
+            rules.player_starting_items.push(StartingItemStack::new(
+                "core:weapon_matter".parse().unwrap(),
+                LAB_AMMUNITION,
+            ));
+            rules
+                .player_armor_slots
+                .retain(|id| id.namespace().as_str() != "lab");
+            rules.player_starting_equipment = vec![None; 3];
+            rules.enable_weapon_hands();
+            for (slot, delivery) in [
+                (0, AttackDelivery::Melee),
+                (1, AttackDelivery::Ranged),
+                (2, AttackDelivery::Ranged),
+            ] {
+                rules.player_starting_equipment[slot] = rules
+                    .player_starting_weapons
+                    .iter()
+                    .find(|id| {
+                        rules.weapons.get(id).is_some_and(|weapon| {
+                            weapon.attack().delivery() == delivery
+                                && rules.weapon_fits_slot(weapon, slot)
+                        })
+                    })
+                    .cloned();
+            }
+            magic = equipment
+                .into_iter()
+                .map(|id| {
+                    catalogue
+                        .enchant_base(&id, 1, &mut bonus_rng)
+                        .map(|bonus| (id, bonus))
+                })
+                .collect::<Result<Vec<_>, _>>()?;
+            instance_effects.clear();
+            rules.player_inventory_capacity = rules.player_starting_weapons.len()
+                + rules.player_starting_items.len()
+                + magic.len()
+                + 8;
+        }
         rules.enable_weapon_hands();
         let mut app = Self::from_seed_base(
             LAB_SEED,
@@ -1132,16 +1275,23 @@ impl AsciiApp {
             base.regional_worlds.clone(),
             CURRENT_GENERATION_VERSION,
         )?;
-        let mut map = Map::filled(36, 25, Terrain::Floor).map_err(|e| e.to_string())?;
+        let width = if legacy_equipment { 36 } else { 56 };
+        let mut map = Map::filled(width as usize, 25, Terrain::Floor).map_err(|e| e.to_string())?;
         let mut decor = SectorDecor {
             fallback_name: Some("Laboratoire de test".into()),
             ..Default::default()
         };
         for y in 0..25 {
-            for x in 0..36 {
+            for x in 0..width {
                 let position = GridPos::new(x, y);
-                let (terrain, tile) = if x == 0
+                let (terrain, tile) = if !legacy_equipment && position == LAB_CROWD_DOOR {
+                    (
+                        Terrain::Door(project_rl::world::DoorState::Closed),
+                        crate::test_sector::Decor::DoorClosed,
+                    )
+                } else if x == 0
                     || x == 35
+                    || x == width - 1
                     || y == 0
                     || y == 24
                     || (x == 18 && (14..=21).contains(&y))
@@ -1177,6 +1327,12 @@ impl AsciiApp {
             decor.zones.push(crate::test_sector::Zone {
                 name: name.into(),
                 bounds,
+            });
+        }
+        if !legacy_equipment {
+            decor.zones.push(crate::test_sector::Zone {
+                name: "Essais de groupe".into(),
+                bounds: [36, 1, 19, 23],
             });
         }
         let mut game = GameState::new_with_rules(map, LAB_START, LAB_SEED, app.rules.clone())
@@ -1282,6 +1438,33 @@ impl AsciiApp {
         // Internal actor identity; terminal presentation is "!", not the
         // consumable symbol whose sensor category must remain an item.
         glyphs.insert(probe, 'Y');
+        if !legacy_equipment {
+            // Dense living pack behind a closed door. Ordinary vision, AI and
+            // attacks apply; the passive fixtures in the first hall are intact.
+            for y in 9..=14 {
+                for x in 41..=48 {
+                    let actor = Actor::new(GridPos::new(x, y), 120)
+                        .map_err(|e| e.to_string())?
+                        .with_body_profile(
+                            project_rl::stats::BodyProfile::new(120, 0)
+                                .map_err(|e| e.to_string())?,
+                        )
+                        .with_tags([lab_id("aggressive_pack")])
+                        .with_player_relation(PlayerRelation::Hostile)
+                        .with_ai(project_rl::ai::AiProfile::hunter(12, 0))
+                        .with_attack(AttackProfile::new(
+                            1,
+                            DistanceMetric::Chebyshev,
+                            true,
+                            DamageType::Kinetic,
+                            2,
+                            0,
+                        ));
+                    let entity = game.spawn_actor(actor).map_err(|e| e.to_string())?;
+                    glyphs.insert(entity, 'N');
+                }
+            }
+        }
         game.drain_events();
         app.terminal = TerminalView::new(decor, game.map(), game.player_visibility());
         app.game = WorldState::single(game);
@@ -1323,7 +1506,7 @@ impl AsciiApp {
             .map_err(|e| e.to_string())?;
         app.visual_cues = VisualCuePlayer::with_catalog(visuals);
         app.intro_city_reached = true;
-        app.character_class = base.character_class.clone();
+        app.character_class = laboratory_class;
         app.controls = self.controls.clone();
         app.controls_path = self.controls_path.clone();
         app.graphics = self.graphics.clone();
@@ -1345,6 +1528,15 @@ impl AsciiApp {
             "Catalyse : cône de flammes depuis le porteur ; chaque cible déjà brûlante explose.".into(),
             "Au sud-est : B, mannequin blindé ; E, mannequin d'esquive. Aucun ne riposte.".into(),
         ];
+        if !legacy_equipment {
+            app.log.retain(|line| {
+                line.starts_with("LABORATOIRE")
+                    || line.starts_with("X :")
+                    || line.starts_with("Ressources :")
+                    || line.starts_with("Inventaire :")
+                    || line.starts_with("Au sud-est :")
+            });
+        }
         Ok(app)
     }
 
@@ -1353,6 +1545,19 @@ impl AsciiApp {
             return Err("Le laboratoire s'ouvre depuis le menu principal.".into());
         }
         let lab = self.build_test_lab()?;
+        let previous = std::mem::replace(self, lab);
+        self.lab_return = Some(Box::new(previous));
+        Ok(())
+    }
+
+    /// Historical effect scenarios keep their exact equipment in the automated
+    /// regression/diagnostic harness, never in the playable menu entry point.
+    #[cfg(any(test, debug_assertions))]
+    pub(super) fn enter_legacy_equipment_lab(&mut self) -> Result<(), String> {
+        if self.test_lab || self.menu != MenuScreen::Main {
+            return Err("Le laboratoire s'ouvre depuis le menu principal.".into());
+        }
+        let lab = self.build_test_lab_with_bonus_seed(LAB_SEED)?;
         let previous = std::mem::replace(self, lab);
         self.lab_return = Some(Box::new(previous));
         Ok(())
@@ -1384,6 +1589,172 @@ impl AsciiApp {
 mod tests {
     use super::*;
     use crate::controls::{Binding, Layout};
+
+    #[test]
+    fn playable_laboratory_uses_current_equipment_and_keeps_rank_learning_and_return() {
+        let mut app = main_menu();
+        let campaign = suspension::fingerprint(&app.game);
+        app.enter_test_lab().unwrap();
+        assert!(app.game.rules().agent_class_start.is_some());
+        assert_eq!(app.game.player_agent_skill_rank("FR05"), 1);
+        let inventory: Vec<_> = app
+            .game
+            .player_inventory()
+            .iter()
+            .map(|entry| entry.item().as_str())
+            .collect();
+        assert!(
+            inventory
+                .iter()
+                .all(
+                    |id| !equipment_generation::is_retired_test_item(&id.parse().unwrap())
+                        && !matches!(
+                            *id,
+                            "core:integrity_blade"
+                                | "core:needle_launcher"
+                                | "core:flamethrower"
+                                | "core:composite_carapace"
+                        )
+                )
+        );
+        assert!(inventory.contains(&"core:melee_couteau_de_camp"));
+        assert!(inventory.contains(&"core:modele_cogneur_p01"));
+        assert!(!inventory.contains(&"core:brigandine_cognefer"));
+        let torso = app
+            .game
+            .player_equipment()
+            .equipped(&"core:body_armor".parse().unwrap())
+            .unwrap();
+        assert_eq!(
+            app.game
+                .player_inventory()
+                .get(torso)
+                .unwrap()
+                .item()
+                .as_str(),
+            "core:tenue_rituelle"
+        );
+        assert!(
+            app.game
+                .player_inventory()
+                .iter()
+                .any(|entry| entry.magic_modifiers().is_some())
+        );
+        for slot in 0..3 {
+            let weapon = app
+                .game
+                .equipped_player_weapon(slot)
+                .expect("usable real weapon in each slot");
+            assert!(app.game.rules().weapon_fits_slot(weapon, slot as usize));
+        }
+        assert_eq!(
+            app.execute_command(GameCommand::LearnAgentSkill {
+                skill: "FR05".into()
+            }),
+            CommandOutcome::AppliedWithoutTime
+        );
+        assert_eq!(app.game.player_agent_skill_rank("FR05"), 2);
+        app.reset_test_lab().unwrap();
+        assert!(
+            app.game
+                .player_inventory()
+                .iter()
+                .all(|entry| entry.item().namespace().as_str() != "lab")
+        );
+        app.leave_test_lab();
+        assert_eq!(suspension::fingerprint(&app.game), campaign);
+    }
+
+    #[test]
+    fn crowd_room_is_isolated_until_entered_and_its_monsters_move_and_attack() {
+        let mut app = main_menu();
+        app.enter_test_lab().unwrap();
+        let crowd = |app: &AsciiApp| -> BTreeMap<EntityId, GridPos> {
+            app.game
+                .actors()
+                .iter()
+                .filter(|(_, actor)| actor.tags().contains(&lab_id("aggressive_pack")))
+                .map(|(id, actor)| (id, actor.position()))
+                .collect()
+        };
+        let initial = crowd(&app);
+        assert_eq!(initial.len(), 48);
+        assert_eq!(
+            app.game.map().tile(LAB_CROWD_DOOR).unwrap().terrain,
+            Terrain::Door(project_rl::world::DoorState::Closed)
+        );
+        for _ in 0..4 {
+            assert_eq!(
+                app.execute_command(GameCommand::Wait),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(crowd(&app), initial);
+        app.prepare_lab_crowd_fixture().unwrap();
+        assert_eq!(
+            app.execute_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        assert_ne!(crowd(&app), initial);
+        let player = app.game.player_id();
+        let mut attacked = false;
+        for _ in 0..8 {
+            app.game.process_player_command(GameCommand::Wait);
+            attacked |= app.game.drain_events().iter().any(|event| {
+                matches!(event, GameEvent::AttackHitResolved { attacker, target, .. }
+                    if *target == player && app.game.actors().get(*attacker)
+                        .is_some_and(|actor| actor.tags().contains(&lab_id("aggressive_pack"))))
+            });
+            if attacked {
+                break;
+            }
+        }
+        // Armor and learned defensive passives may absorb their damage; the
+        // real accuracy/evasion event proves an attack rather than idle AI.
+        assert!(attacked, "the crowd must reach and attack the player");
+        app.reset_test_lab().unwrap();
+        assert_eq!(crowd(&app).len(), 48);
+        assert_eq!(app.game.player_position(), Some(LAB_START));
+    }
+
+    #[test]
+    fn crowd_room_allows_blizzard_to_damage_and_freeze_a_dense_hostile_pack() {
+        let mut app = main_menu();
+        app.enter_test_lab().unwrap();
+        app.prepare_lab_crowd_fixture().unwrap();
+        for _ in 1..10 {
+            assert_eq!(
+                app.game
+                    .process_player_command(GameCommand::LearnAgentSkill {
+                        skill: "FR05".into(),
+                    }),
+                CommandOutcome::AppliedWithoutTime
+            );
+        }
+        assert_eq!(
+            app.game
+                .process_player_command(GameCommand::UseTechniqueAt {
+                    technique: project_rl::skills::agent::technique("FR05"),
+                    target: GridPos::new(44, 12),
+                    weapon_slot: 0,
+                }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            app.game.process_player_command(GameCommand::Wait),
+            CommandOutcome::Applied
+        );
+        let mut damaged = 0;
+        let mut frozen = 0;
+        for (_, actor) in app.game.actors().iter() {
+            if actor.tags().contains(&lab_id("aggressive_pack")) {
+                damaged += usize::from(actor.integrity() < actor.maximum_integrity());
+                frozen += usize::from(actor.status(&"agent:frozen".parse().unwrap()).is_some());
+            }
+        }
+        assert!(damaged > 3, "dense pack damaged: {damaged}");
+        assert!(frozen > 0, "dense pack frozen: {frozen}");
+    }
 
     fn main_menu() -> AsciiApp {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
@@ -1699,7 +2070,7 @@ mod tests {
     fn sustained_fields_follow_real_turns_not_event_timestamps_and_leave_no_final_flash() {
         use crate::visual_effects::TerminalEffectFamily;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         for (element, families) in [
             ("fire", vec![TerminalEffectFamily::Flame]),
             ("acid", vec![TerminalEffectFamily::Caustic]),
@@ -1762,7 +2133,7 @@ mod tests {
     fn sustained_statuses_coexist_and_stop_with_their_actual_status() {
         use crate::visual_effects::TerminalEffectFamily;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         app.prepare_lab_status_fixture().unwrap();
         app.capture_events_at(Some(10.0));
         let at = GridPos::new(8, 12);
@@ -1812,7 +2183,7 @@ mod tests {
     #[test]
     fn sustained_burning_follows_its_bearer_without_leaving_false_ground_fire() {
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         // Use burning alone: the other fixture's locomotion debuff makes a
         // move take several turns and would legitimately expire the statuses.
         let mut rules = app.rules.clone();
@@ -1903,60 +2274,12 @@ mod tests {
                     .position(),
                 LAB_START
             );
-            assert_eq!(app.actor_glyphs.len(), 17);
+            assert_eq!(app.actor_glyphs.len(), 17 + 48);
             assert_eq!(app.terminal.title, "Laboratoire de test");
             let target = app.terminal_target_summary().unwrap();
             assert_eq!(target.name, "Mannequin d'essai");
             assert!(target.analysis.is_some());
             assert!(app.enter_test_lab().is_err());
-        }
-    }
-
-    #[test]
-    fn lab_bonus_rolls_are_varied_bounded_and_reproducible_without_weight_reduction() {
-        let mut first = project_rl::game::GameRng::from_seed(91);
-        let mut second = first;
-        let rolls: Vec<_> = (0..128)
-            .map(|_| roll_lab_bonuses(&mut first, EquipmentNameGrammar::FeminineSingular))
-            .collect();
-        assert_eq!(
-            rolls,
-            (0..128)
-                .map(|_| roll_lab_bonuses(&mut second, EquipmentNameGrammar::FeminineSingular))
-                .collect::<Vec<_>>()
-        );
-        let unique: std::collections::BTreeSet<_> =
-            rolls.iter().map(|r| format!("{r:?}")).collect();
-        assert!(unique.len() > 30);
-        for bonus in rolls {
-            assert_eq!(bonus.mass_reduction_percent(), 0);
-            assert_eq!(bonus.armor_bonus(), 0);
-            let attributes: Vec<_> = PrimaryAttribute::ALL
-                .into_iter()
-                .map(|a| bonus.attribute_bonus(a))
-                .collect();
-            assert!(attributes.iter().all(|v| *v <= 2));
-            let count = attributes.iter().filter(|v| **v > 0).count()
-                + usize::from(bonus.accuracy_bonus() > 0)
-                + usize::from(bonus.armor_penetration_bonus() > 0)
-                + usize::from(bonus.maximum_hit_points_bonus() > 0)
-                + usize::from(bonus.energy_capacity_bonus() > 0)
-                + usize::from(bonus.heat_dissipation_bonus() > 0);
-            assert!((1..=3).contains(&count));
-            assert!(bonus.accuracy_bonus() == 0 || (5..=10).contains(&bonus.accuracy_bonus()));
-            assert!(bonus.armor_penetration_bonus() <= 1);
-            assert!(
-                bonus.maximum_hit_points_bonus() == 0
-                    || (5..=15).contains(&bonus.maximum_hit_points_bonus())
-            );
-            assert!(
-                bonus.energy_capacity_bonus() == 0
-                    || (5..=15).contains(&bonus.energy_capacity_bonus())
-            );
-            assert!(bonus.heat_dissipation_bonus() <= 1);
-            let affixes = bonus.named_affixes().unwrap();
-            assert_eq!(affixes.iter().count(), count);
-            assert!(affixes.iter().all(|roll| roll.tier() == LAB_AFFIX_TIER));
         }
     }
 
@@ -2175,7 +2498,7 @@ mod tests {
     #[test]
     fn lab_parallax_keyboard_fire_chains_without_movement_or_waiting() {
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let id: ContentId = "core:fusil_de_parallaxe".parse().unwrap();
         let item = app
             .game
@@ -2225,7 +2548,7 @@ mod tests {
     fn lab_supply_weapons_spend_real_resources_and_reset_restores_them() {
         let mut app = main_menu();
         let campaign = suspension::fingerprint(&app.game);
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         assert_eq!(app.game.player_matter(), Some(u32::from(LAB_AMMUNITION)));
         let initial_energy = app.game.player_energy().available();
         let target = app.selected_target.unwrap();
@@ -2270,83 +2593,9 @@ mod tests {
     }
 
     #[test]
-    fn all_profiles_have_melee_ranged_and_real_stat_bonus_variants() {
-        let mut app = main_menu();
-        app.enter_test_lab().unwrap();
-        assert_eq!(app.game.player_inventory().len(), 71);
-        let mut expected_mass = 4_000_u64 + 3_500 + 3_700 + 2_100 + 3_400; // Armor pair and four campaign weapons.
-        expected_mass += 3_200 + 8_500 + 7_000 + 4_500 + 2_400 + 4_000 + 2_400 + 2_100;
-        expected_mass += 2_400 + 2_100;
-        for (prefix, base) in [
-            ("blade", "core:integrity_blade"),
-            ("rifle", "core:needle_launcher"),
-        ] {
-            let original = app.rules.weapons.get(&base.parse().unwrap()).unwrap();
-            for kind in LAB_KINDS {
-                if prefix == "blade" && kind == "ricochet" {
-                    continue;
-                }
-                let id = lab_id(&format!("{prefix}_{kind}"));
-                let definition = app.rules.weapons.get(&id).unwrap();
-                assert_eq!(definition.attack(), original.attack());
-                // Campaign bases do not all declare a mass yet; the authored
-                // laboratory base supplies one, shared by both instances.
-                assert_eq!(
-                    definition.mass_grams(),
-                    Some(original.mass_grams().unwrap_or(2_000))
-                );
-                assert!(definition.effects().is_empty());
-                let pair = app
-                    .game
-                    .player_inventory()
-                    .iter()
-                    .filter(|entry| entry.item() == &id)
-                    .collect::<Vec<_>>();
-                assert_eq!(pair.len(), 2);
-                assert_ne!(pair[0].instance(), pair[1].instance());
-                assert!(
-                    pair[0]
-                        .magic_modifiers()
-                        .and_then(|bonus| bonus.named_affixes())
-                        .is_none()
-                );
-                for entry in &pair {
-                    assert_eq!(
-                        app.game
-                            .player_item_weapon(entry.instance())
-                            .unwrap()
-                            .effects()
-                            .is_empty(),
-                        kind == "reference"
-                    );
-                }
-                let bonus = pair[1].magic_modifiers().unwrap();
-                assert_eq!(bonus.mass_reduction_percent(), 0);
-                assert_eq!(bonus.armor_bonus(), 0);
-                let count = PrimaryAttribute::ALL
-                    .iter()
-                    .filter(|a| bonus.attribute_bonus(**a) > 0)
-                    .count()
-                    + usize::from(bonus.accuracy_bonus() > 0)
-                    + usize::from(bonus.armor_penetration_bonus() > 0)
-                    + usize::from(bonus.maximum_hit_points_bonus() > 0)
-                    + usize::from(bonus.energy_capacity_bonus() > 0)
-                    + usize::from(bonus.heat_dissipation_bonus() > 0);
-                assert!((1..=3).contains(&count));
-                let mass = u64::from(definition.mass_grams().unwrap());
-                expected_mass += mass * 2;
-            }
-        }
-        assert_eq!(
-            app.game.actor_carried_mass_grams(app.game.player_id()),
-            Some(expected_mass)
-        );
-    }
-
-    #[test]
     fn two_zone_recipients_produce_two_totals_not_three_packets() {
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let target = app.selected_target.unwrap();
         let before = app.game.actors().get(target).unwrap().integrity();
         app.execute_command(GameCommand::Attack {
@@ -2429,7 +2678,7 @@ mod tests {
     fn life_steal_feedback_stays_on_the_bearer_and_stops_when_no_hp_is_restored() {
         use crate::visual_effects::TerminalEffectFamily;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let id = lab_id("blade_healing");
         let item = app
             .game
@@ -2483,7 +2732,7 @@ mod tests {
     fn badges_show_all_three_timed_statuses_and_disappear_on_expiration_or_hidden_cells() {
         use crate::terminal_view::TerminalEffectBadge;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         app.prepare_lab_status_fixture().unwrap();
         let at = GridPos::new(8, 12);
         let badges = app.effect_badges_at(at);
@@ -2512,7 +2761,7 @@ mod tests {
     fn caustic_exposure_badge_tracks_the_field_not_a_permanent_actor_status() {
         use crate::terminal_view::TerminalEffectBadge;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let item = app
             .game
             .player_inventory()
@@ -2544,7 +2793,7 @@ mod tests {
         use crate::terminal_view::TerminalEffectBadge;
         use crate::visual_effects::TerminalEffectFamily;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let item = app
             .game
             .player_inventory()
@@ -2654,7 +2903,7 @@ mod tests {
         use crate::terminal_view::TerminalEffectBadge;
         use crate::visual_effects::TerminalEffectFamily;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let item = app
             .game
             .player_inventory()
@@ -2724,22 +2973,10 @@ mod tests {
     }
 
     #[test]
-    fn percussion_fixed_fixture_route_avoids_the_damage_probe() {
-        let mut app = main_menu();
-        app.enter_test_lab().unwrap();
-        let player = app.game.player_id();
-        let before = app.game.actors().get(player).unwrap().integrity();
-        app.walk_fixture_to(GridPos::new(11, 18)).unwrap();
-        app.walk_fixture_to(GridPos::new(11, 21)).unwrap();
-        assert_eq!(app.game.player_position(), Some(GridPos::new(11, 21)));
-        assert_eq!(app.game.actors().get(player).unwrap().integrity(), before);
-    }
-
-    #[test]
     fn percussion_feedback_follows_the_same_target_and_reports_readiness() {
         use crate::visual_effects::TerminalEffectFamily;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let item = app
             .game
             .player_inventory()
@@ -2816,118 +3053,11 @@ mod tests {
     }
 
     #[test]
-    fn laboratory_weapons_execute_their_announced_effects() {
-        let mut app = main_menu();
-        app.enter_test_lab().unwrap();
-        for prefix in ["blade", "rifle"] {
-            for kind in LAB_KINDS {
-                if prefix == "blade" && kind == "ricochet" {
-                    continue;
-                }
-                for bonus in [false, true] {
-                    app.reset_test_lab().unwrap();
-                    let id = lab_id(&format!("{prefix}_{kind}"));
-                    let item = app
-                        .game
-                        .player_inventory()
-                        .iter()
-                        .find(|entry| {
-                            entry.item() == &id
-                                && entry
-                                    .magic_modifiers()
-                                    .and_then(|bonus| bonus.named_affixes())
-                                    .is_some()
-                                    == bonus
-                        })
-                        .unwrap()
-                        .instance();
-                    if app.game.equipped_player_weapon_item(0) != Some(item) {
-                        let equip = app.equip_diagnostic_weapon(item, 0);
-                        assert!(
-                            matches!(
-                                equip,
-                                CommandOutcome::Applied | CommandOutcome::AppliedWithoutTime
-                            ),
-                            "{equip:?}"
-                        );
-                    }
-                    let target = app.selected_target.unwrap();
-                    if kind == "catalysis" {
-                        app.prime_lab_catalysis(target).unwrap();
-                    }
-                    app.game.drain_events();
-                    assert_eq!(
-                        app.execute_command(GameCommand::Attack {
-                            slot: app.active_weapon_slot,
-                            target
-                        }),
-                        CommandOutcome::Applied,
-                        "{prefix}/{kind}/{bonus}"
-                    );
-                    let events = app.game.events();
-                    let centers = events
-                        .iter()
-                        .filter_map(|event| match event {
-                            GameEvent::PropagationResolved { origin, .. } => Some(*origin),
-                            _ => None,
-                        })
-                        .collect::<Vec<_>>();
-                    match kind {
-                        "ricochet" => assert_eq!(centers, vec![GridPos::new(8, 12)]),
-                        "echo" => assert_eq!(app.game.pending_weapon_echoes().collect::<Vec<_>>(), vec![(GridPos::new(8, 12), 2)]),
-                        "fracture" => {
-                            assert!(centers.is_empty());
-                            assert!(events.iter().any(|event| matches!(event, GameEvent::WeaponFractureResolved { target: affected, charges: 1, threshold: 3, .. } if *affected == target)));
-                        },
-                        "catalysis" => {
-                            assert_eq!(centers, vec![GridPos::new(8, 12)]);
-                            assert!(events.iter().any(|event| matches!(event, GameEvent::CatalyticExplosion { at, .. } if *at == GridPos::new(8, 12))));
-                            assert!(app.game.actors().get(target).unwrap().status(&"core:burning".parse().unwrap()).is_some());
-                        },
-                        "percussion" => {
-                            assert_eq!(app.game.actors().get(target).unwrap().position(), GridPos::new(9, 12));
-                            assert!(events.iter().any(|event| matches!(event, GameEvent::WeaponImpulseResolved { target: affected, .. } if *affected == target)));
-                            assert_eq!(app.percussion_readiness().as_deref(), Some("RECHARGE : 2 TOUR(S)"));
-                        },
-                        "aegis" => {
-                            assert!(events.iter().any(|event| matches!(event, GameEvent::StatusApplied { target: affected, status, .. } if *affected == app.game.player_id() && status == &lab_id("impact_aegis"))));
-                            assert_eq!(app.game.actors().get(app.game.player_id()).unwrap().status(&lab_id("impact_aegis")).unwrap().remaining_turns, Some(2));
-                        },
-                        "impact" | "conduction" => assert_eq!(centers, vec![GridPos::new(8, 12)]),
-                        "piercing" => {
-                            assert_eq!(centers, vec![GridPos::new(8, 12)]);
-                            for x in [10, 11] {
-                                let recipient = app.game.actors().entity_at(GridPos::new(x, 12)).unwrap();
-                                assert_eq!(app.game.actors().get(recipient).unwrap().integrity(), 117);
-                            }
-                        },
-                        "bearer" => assert_eq!(centers, vec![LAB_START]),
-                        "burning" => assert!(events.iter().any(|event| matches!(event, GameEvent::StatusApplied { target: affected, .. } if *affected == target))),
-                        "caustic" => assert!(events.iter().any(|event| matches!(event, GameEvent::GroundEffectCreated { at, .. } if *at == GridPos::new(8, 12)))),
-                        "healing" => {
-                            let damage: u16 = events.iter().filter_map(|event| match event {
-                                GameEvent::DamageApplied { source, target: victim, amount, .. }
-                                | GameEvent::DamageImpactApplied { source, target: victim, amount, .. }
-                                    if *source == Some(app.game.player_id()) && *victim == target => Some(*amount),
-                                _ => None,
-                            }).sum();
-                            let expected = (damage / 2).min(3);
-                            assert!(expected > 0);
-                            assert!(events.iter().any(|event| matches!(event, GameEvent::IntegrityRestored { entity, amount } if *entity == app.game.player_id() && *amount == expected)));
-                        },
-                        _ => assert!(centers.is_empty()),
-                    }
-                }
-            }
-        }
-    }
-
-    #[test]
     fn fracture_lab_counter_survives_weapon_swap_and_selection_then_bursts_once() {
         use crate::terminal_view::TerminalEffectBadge;
         use crate::visual_effects::TerminalEffectFamily;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let target = app.selected_target.unwrap();
         let at = app.game.actors().get(target).unwrap().position();
         for (charges, profile, bonus) in
@@ -3043,7 +3173,7 @@ mod tests {
     fn ricochet_lab_hits_a_second_target_without_memory_or_extra_damage_labels() {
         use crate::visual_effects::TerminalEffectFamily;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let item = app
             .game
             .player_inventory()
@@ -3093,7 +3223,7 @@ mod tests {
         use crate::terminal_view::TerminalEffectBadge;
         use crate::visual_effects::TerminalEffectFamily;
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let item = app
             .game
             .player_inventory()
@@ -3169,7 +3299,7 @@ mod tests {
         let mut app = main_menu();
         let normal = suspension::fingerprint(&app.game);
         let rules = suspension::fingerprint(&app.rules);
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let initial = suspension::fingerprint(&app.game);
         let first_seed = app.lab_bonus_seed;
         let initial_actors = suspension::fingerprint(app.game.actors());
@@ -3198,7 +3328,7 @@ mod tests {
         assert_eq!(app.menu, MenuScreen::Main);
         assert_eq!(suspension::fingerprint(&app.game), normal);
         assert_eq!(suspension::fingerprint(&app.rules), rules);
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         app.leave_test_lab();
         assert_eq!(suspension::fingerprint(&app.game), normal);
     }
@@ -3215,7 +3345,7 @@ mod tests {
             std::fs::write(path, b"normal run sentinel").unwrap();
         }
         app.crash_recovery_enabled = true;
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         assert!(app.suspension().is_err());
         assert!(app.suspend_run().is_err());
         assert!(app.write_crash_recovery_checkpoint().is_err());
@@ -3235,7 +3365,7 @@ mod tests {
     #[test]
     fn pointer_target_toggle_and_switch_never_attack_or_advance_time() {
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         app.selected_target = None;
         let first = GridPos::new(8, 12);
         let second = GridPos::new(10, 12);
@@ -3270,7 +3400,7 @@ mod tests {
     #[test]
     fn pointer_target_ignores_empty_hidden_and_player_cells() {
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let selected = app.selected_target;
         let before = suspension::fingerprint(&app.game);
         let hidden = app
@@ -3290,7 +3420,7 @@ mod tests {
     #[test]
     fn pointer_target_selection_drives_the_next_direct_ranged_attack() {
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let item = app
             .game
             .player_inventory()
@@ -3332,7 +3462,7 @@ mod tests {
     #[test]
     fn single_target_attack_is_direct_and_tab_still_changes_selection() {
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let first = app.selected_target.unwrap();
         let before = suspension::fingerprint(&app.game);
         app.update_input(&key("Tab"));
@@ -3355,7 +3485,7 @@ mod tests {
     #[test]
     fn catalytic_weapon_opens_preview_before_keyboard_confirmation_and_allows_cancel() {
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let item = app
             .game
             .player_inventory()
@@ -3391,7 +3521,7 @@ mod tests {
     #[test]
     fn catalytic_pointer_aim_can_preview_empty_ground_but_cannot_attack_it() {
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let item = app
             .game
             .player_inventory()
@@ -3417,7 +3547,7 @@ mod tests {
     #[test]
     fn single_target_weapon_does_not_open_free_tile_aim() {
         let mut app = main_menu();
-        app.enter_test_lab().unwrap();
+        app.enter_legacy_equipment_lab().unwrap();
         let before = suspension::fingerprint(&app.game);
         for at in [GridPos::new(8, 11), GridPos::new(8, 12)] {
             assert!(!app.begin_pointer_attack_aim(at, Some((400.0, 300.0))));

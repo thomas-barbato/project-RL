@@ -1,0 +1,57 @@
+{
+  "review_id": "MONSTER-MODIFIERS-04",
+  "date": "2026-10-17",
+  "status": "physical_resistance_requested_parameters_pending",
+  "player_statement": "il faut aussi un status de résistance physique :) (contre les armes / compétences qui n'ont pas de dégats elementaux)",
+  "runtime_connected": false,
+  "keyword": {
+    "id": "MM21",
+    "label": "Résistant aux dégâts physiques",
+    "concept_approved": true,
+    "label_approved": false,
+    "effect_approved": false,
+    "numbers_approved": false,
+    "visual_approved": false,
+    "status": "concept_requested_label_and_details_pending",
+    "effect": "Il subit moins de dégâts physiques. Une attaque mixte conserve sa partie élémentaire, qui utilise sa propre résistance.",
+    "player_copy": "Résistance aux dégâts physiques augmentée de 30 points.",
+    "proposed_resistance_bonus_percentage_points": 30,
+    "proposed_maximum_effective_resistance_percent": 75,
+    "scaling": "Réduction proportionnelle des dégâts physiques reçus ; pas une quantité fixe identique pour tous les coups. Les caractéristiques de l'attaquant, son niveau de zone et ses dégâts de base restent pris en compte normalement."
+  },
+  "distinction_from_MM07": {
+    "MM07_Cuirasse": "Augmente l'armure : réduction fixe de dégâts physiques par impact, selon les règles déjà acceptées. Ses chiffres restent à définir.",
+    "MM21_Physical_resistance": "Réduit en pourcentage les dégâts physiques restant après l'armure. Cette seconde étape est nouvelle et doit être revue avant implémentation.",
+    "neither_replaces_the_other": true,
+    "coexistence_balance": "Évaluer la combinaison lors du réglage des rencontres ; aucun nouveau poids, plafond de traits ou interdit de combinaison n'est décidé ici."
+  },
+  "proposed_resolution": {
+    "physical_scope": "Les composantes physiques de l'impact, y compris celles d'une arme ou d'une compétence possédant aussi des dégâts élémentaires.",
+    "current_physical_families": ["Kinetic", "Piercing", "Explosive"],
+    "physical_definition_note": "Explosive est physique dans le classement actuel ; un souffle comportant du feu conserve également sa composante Thermal séparée. Le type de l'arme ou son apparence ne remplace pas les composantes de dégâts réelles.",
+    "sequence": [
+      "Calculer les dégâts de l'attaque selon les règles et valeurs de son auteur.",
+      "Retirer l'armure effective une seule fois du total physique, comme actuellement.",
+      "Appliquer la résistance physique effective au physique restant, une fois.",
+      "Résoudre chaque composante élémentaire avec sa résistance propre, puis additionner les résultats."
+    ],
+    "physical_formula": "floor(max(0,physical_damage-effective_armor)*(100-effective_physical_resistance)/100)",
+    "resistance_stacking": "Ajouter les sources de résistance physique, soustraire les éventuels malus applicables, puis borner la valeur effective au plafond proposé de 75 %. Les règles de vulnérabilité physique et de pénétration de cette résistance restent à définir séparément ; aucune n'est inventée ici.",
+    "armor_penetration": "La pénétration d'armure agit sur l'armure ; ne pas l'utiliser automatiquement une deuxième fois comme pénétration de résistance physique.",
+    "no_automatic_immunity": true,
+    "no_extra_actions_or_duration": true,
+    "status_duration": "Trait fixe ou de rencontre selon le profil, comme les autres mots-clés ; aucune nouvelle durée temporaire n'est proposée.",
+    "approved": false
+  },
+  "examples": [
+    {"raw_physical": 100, "raw_fire": 0, "effective_armor": 0, "physical_resistance_percent": 30, "fire_resistance_percent": 0, "net_physical": 70, "net_fire": 0, "net_total": 70},
+    {"raw_physical": 100, "raw_fire": 20, "effective_armor": 20, "physical_resistance_percent": 30, "fire_resistance_percent": 0, "net_physical": 56, "net_fire": 20, "net_total": 76},
+    {"raw_physical": 100, "raw_fire": 20, "effective_armor": 20, "physical_resistance_percent": 30, "fire_resistance_percent": 50, "net_physical": 56, "net_fire": 10, "net_total": 66}
+  ],
+  "existing_evidence": [
+    {"file": "src/combat/damage.rs", "symbol": "DamageType::is_physical", "finding": "Classe actuellement Kinetic, Piercing et Explosive comme physiques."},
+    {"file": "src/combat/damage.rs", "symbol": "resolve_damage_impact_internal", "finding": "La branche protégée par l'armure ne passe actuellement pas dans les résistances en pourcentage ; ajouter MM21 au jeu nécessitera donc une modification du calcul, qui n'est pas effectuée par cette proposition."},
+    {"file": "docs/reviews/refonte-agent-2026-10-06/common-resistance-system-acceptance-decisions.json", "finding": "L'armure retire un point physique par point, une seule fois par impact. La résistance physique en pourcentage n'était pas incluse dans la liste élémentaire acceptée ; ne pas présenter son ajout ou son plafond comme une ancienne règle validée."}
+  ],
+  "approval_limits": "La demande valide l'existence d'une résistance physique. Le libellé présenté, l'ordre de calcul supplémentaire, les 30 points, le plafond de 75 %, les interactions et le rendu restent des propositions. Les sept chiffres de la revue 03 ne sont pas validés par ce message. MM08 Rapide reste refusé."
+}

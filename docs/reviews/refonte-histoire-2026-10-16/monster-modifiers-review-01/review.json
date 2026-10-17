@@ -1,0 +1,467 @@
+{
+  "review_id": "MONSTER-MODIFIERS-01",
+  "date": "2026-10-17",
+  "status": "keyword_concepts_accepted_except_MM08",
+  "runtime_connected": false,
+  "scope": "Étude de Diablo II et proposition de mots-clés et d'affichage. Aucun changement des monstres, du combat ou de l'interface du jeu.",
+  "user_requirements": [
+    "Un monstre peut avoir zéro, un ou plusieurs mots-clés.",
+    "Un même mot-clé ne peut pas être présent deux fois sur le même monstre.",
+    "Certains traits sont fixes et d'autres aléatoires.",
+    "Présenter les mots-clés pour validation ou refus avant intégration.",
+    "Étudier leur affichage sous le nom dans Examiner, avec la vie, et une barre de vie au survol sur le plateau."
+  ],
+  "evidence": {
+    "official_sources": [
+      {
+        "url": "https://classic.battle.net/diablo2exp/monsters/bonus.shtml",
+        "finding": "Profils de champions distincts ; bonus de monstres uniques, effets parfois groupés, restrictions et transmission partielle aux serviteurs. Fire Enchanted regroupe dégâts de feu, résistance et explosion à la mort."
+      },
+      {
+        "url": "https://classic.battle.net/diablo2exp/monsters/basics.shtml",
+        "finding": "Catégories normal/champion/unique ; bonus supplémentaires en Cauchemar et Enfer ; informations de cible au survol."
+      },
+      {
+        "url": "https://classic.battle.net/diablo2exp/monsters/super.shtml",
+        "finding": "Les superuniques ont des propriétés fixes et reçoivent des bonus aléatoires supplémentaires dans les difficultés supérieures."
+      }
+    ],
+    "reconstructed_source": {
+      "url": "https://github.com/ThePhrozenKeep/D2MOO/blob/master/source/D2Game/src/MONSTER/MonsterUnique.cpp",
+      "scope": "Reconstruction communautaire de LoD 1.10f, pas le code officiel de Blizzard ni celui de PD2 actuel.",
+      "functions": [
+        "sub_6FC6E940",
+        "sub_6FC6EC10",
+        "sub_6FC6EE90"
+      ],
+      "findings": [
+        "Les identifiants déjà présents alimentent une table d'exclusion des doublons.",
+        "La sélection pondérée ne retient que des modificateurs actifs, éligibles et encore absents.",
+        "Des filtres limitent certains bonus selon les modes et capacités du monstre, notamment les projectiles multiples.",
+        "Certains bonus peuvent être transmis aux serviteurs via le champ xfer."
+      ]
+    },
+    "local_data": {
+      "method": "Lecture des tables précédemment extraites ; empreintes des archives installées revérifiées et identiques à celles de l'extraction. Installation et sauvegardes non modifiées, jeu non lancé.",
+      "installation": "D:/JEUX/Diablo 2 old/Diablo II",
+      "archives": [
+        {
+          "file": "patch_d2.mpq",
+          "sha256": "81470b762c497a8fcaf9a09990c0e869a4175395ef1fae13bd85cfec7b688ddc"
+        },
+        {
+          "file": "ProjectD2/pd2data.mpq",
+          "sha256": "196f9da7f5a7eead7bc000137514e6b564e50e893ca89bb4711359d03c29ce63"
+        }
+      ],
+      "tables": [
+        {
+          "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/MonUMod.txt",
+          "sha256": "d515513e953c4db98b39f1af9cb6d58c972630a0f9a765d1381411128b9cdf0c"
+        },
+        {
+          "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/MonUMod.txt",
+          "sha256": "d515513e953c4db98b39f1af9cb6d58c972630a0f9a765d1381411128b9cdf0c"
+        }
+      ],
+      "positive_unique_weights": {
+        "normal": 12,
+        "nightmare": 13,
+        "hell": 13
+      },
+      "eligible_row_weight": 6,
+      "random_pool_ids_normal": [
+        5,
+        6,
+        7,
+        9,
+        17,
+        18,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "additional_random_pool_id_nightmare_and_hell": 8,
+      "poisonhit_id_23": "Présent mais poids upick nul ; ne pas le présenter comme un bonus aléatoire ordinaire de ces tables.",
+      "fixed_superunique_examples": [
+        {
+          "name": "Bishibosh",
+          "modifiers": [
+            "resist",
+            "fire"
+          ]
+        },
+        {
+          "name": "Corpsefire",
+          "modifiers": [
+            "spectralhit"
+          ]
+        },
+        {
+          "name": "Rakanishu",
+          "modifiers": [
+            "lightning",
+            "fast"
+          ]
+        }
+      ],
+      "limits": "Ces tables textuelles ne prouvent pas que le moteur PD2 applique les mêmes règles ou chiffres que LoD. La colonne constants ne décrit pas nécessairement le modificateur de sa ligne."
+    },
+    "existing_project": [
+      "src/terminal_view.rs::draw_inspection_panel affiche déjà une barre lorsque target.health est disponible.",
+      "Les défenses exactes sont soumises à l'analyse de la cible : conserver cette règle.",
+      "content/core/status/poisoned.json5 décrit déjà un état temporaire empoisonné.",
+      "src/combat/damage.rs distingue notamment Thermal, Cold, Chemical, Electrical et Corruption. Aucun nouveau type de dégâts n'est créé ici."
+    ]
+  },
+  "proposed_rules": [
+    {
+      "id": "MR01",
+      "text": "Construire l'ensemble final par union des identifiants fixes et aléatoires. Exclure les traits déjà présents avant chaque tirage ; ne jamais appliquer deux fois le même effet.",
+      "approved": false
+    },
+    {
+      "id": "MR02",
+      "text": "Limiter le tirage aux traits compatibles avec la famille, les attaques, le secteur et les capacités de l'acteur.",
+      "approved": false
+    },
+    {
+      "id": "MR03",
+      "text": "Tirer les traits de rencontre à l'apparition du monstre, puis les conserver après sauvegarde et chargement.",
+      "approved": false
+    },
+    {
+      "id": "MR04",
+      "text": "Conserver les troupes ordinaires simples ; réserver davantage de combinaisons aux rencontres renforcées. Aucun nombre, taux ou plafond n'est encore fixé.",
+      "approved": false
+    },
+    {
+      "id": "MR05",
+      "text": "Afficher ensemble les traits fixes et aléatoires sans ces étiquettes techniques. Garder les états temporaires et le rang du monstre séparés.",
+      "approved": false
+    },
+    {
+      "id": "MR06",
+      "text": "Séparer dégâts élémentaires, résistance et effet de mort. Dégâts de feu n'implique ni résistance au feu ni explosion.",
+      "approved": false
+    },
+    {
+      "id": "MR07",
+      "text": "Un trait peut décrire une capacité native déjà existante ; son affichage ne doit pas ajouter une seconde fois cette capacité.",
+      "approved": false
+    },
+    {
+      "id": "MR08",
+      "text": "La palette principale décrit l'identité de base. Les bonus aléatoires restent lisibles dans Examiner sans imposer une recoloration complète. Les compatibilités entre éléments restent à revoir.",
+      "approved": false
+    }
+  ],
+  "approval_policy": {
+    "all_entries_pending": false,
+    "label_approval_implies_mechanics_approval": false,
+    "mechanics_approval_implies_numbers_approval": false,
+    "mechanics_approval_implies_visual_approval": false,
+    "numbering": "MM01–MM20 stables ; MR pour les règles et MU pour l'interface.",
+    "numeric_parameters": "Tous à définir : intensité, probabilité, durée, portée, recharge, nombre de traits et poids de tirage.",
+    "effect_approved_scope": "Detailed proposed effects, beyond the accepted short concepts, remain pending; see decision-02.json."
+  },
+  "keywords": [
+    {
+      "id": "MM01",
+      "label": "Dégâts de feu",
+      "effect": "Ses attaques infligent des dégâts de feu.",
+      "eligibility": "Attaques compatibles ; fixe ou aléatoire.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM02",
+      "label": "Dégâts de froid",
+      "effect": "Ses attaques infligent des dégâts de froid. Cela ne promet pas à lui seul un gel ou un ralentissement.",
+      "eligibility": "Attaques compatibles ; fixe ou aléatoire.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM03",
+      "label": "Venimeux",
+      "effect": "Ses attaques peuvent empoisonner leur cible.",
+      "note": "Empoisonné désignerait plutôt l'état temporaire subi par le monstre. Probabilité, durée et attaques concernées restent à définir.",
+      "eligibility": "Cibles et attaques compatibles avec le poison.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM04",
+      "label": "Dégâts électriques",
+      "effect": "Ses attaques infligent des dégâts électriques.",
+      "eligibility": "Attaques compatibles ; fixe ou aléatoire.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM05",
+      "label": "Fort",
+      "effect": "Ses attaques physiques infligent davantage de dégâts.",
+      "eligibility": "Monstre utilisant des attaques physiques.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM06",
+      "label": "Robuste",
+      "effect": "Il possède davantage de points de vie.",
+      "eligibility": "Monstre doté d'une réserve de vie.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM07",
+      "label": "Cuirassé",
+      "effect": "Son armure le protège davantage contre les attaques physiques.",
+      "eligibility": "Modèle de défense à préciser avec les règles actuelles.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM08",
+      "label": "Rapide",
+      "effect": "Il se déplace plus vite.",
+      "note": "L'économie des actions en tour par tour doit être revue ; ne pas accélérer implicitement ses attaques.",
+      "eligibility": "Monstre mobile.",
+      "label_approved": false,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": false,
+      "status": "rejected"
+    },
+    {
+      "id": "MM09",
+      "label": "Régénérant",
+      "effect": "Il récupère progressivement des points de vie.",
+      "eligibility": "Restrictions de famille et conditions d'interruption à définir.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM10",
+      "label": "Vampirique",
+      "effect": "Il récupère des points de vie lorsqu'il inflige des dégâts.",
+      "eligibility": "Attaques, types de dégâts et victimes admissibles à définir.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM11",
+      "label": "Maudisseur",
+      "effect": "Ses attaques peuvent maudire leur cible et augmenter les dégâts physiques qu'elle subit.",
+      "note": "Alternative proposée à Maudit, qui peut faire penser que le monstre subit lui-même une malédiction. Les deux termes restent à discuter.",
+      "eligibility": "Familles capables de malédiction ; ne pas attribuer automatiquement à tout acteur.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM12",
+      "label": "Aura de maladie",
+      "effect": "Les ennemis proches reçoivent moins de soins.",
+      "note": "Sens proposé, pas une règle existante ou acceptée. Cette aura est distincte du poison. Portée, cumul et interaction avec les soins restent à définir.",
+      "eligibility": "Familles compatibles avec la peste ou la corruption.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM13",
+      "label": "Aura de force",
+      "effect": "Les alliés proches infligent davantage de dégâts physiques.",
+      "eligibility": "Porteurs d'aura appropriés ; cumul de plusieurs porteurs à définir.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM14",
+      "label": "Aura de poison",
+      "effect": "Les ennemis proches peuvent être empoisonnés.",
+      "eligibility": "Familles compatibles avec le poison ; rythme et cumul à définir.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM15",
+      "label": "Résistant au feu",
+      "effect": "Il subit moins de dégâts de feu.",
+      "eligibility": "Pas d'immunité implicite ; plafonds et cumul avec ses défenses natives à définir.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM16",
+      "label": "Résistant au froid",
+      "effect": "Il subit moins de dégâts de froid.",
+      "eligibility": "Pas d'immunité implicite ; plafonds et cumul avec ses défenses natives à définir.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM17",
+      "label": "Résistant au poison",
+      "effect": "Il subit moins de dégâts de poison.",
+      "note": "Ne signifie pas résister automatiquement à tous les dégâts chimiques ni annuler la durée de l'état ; raccord précis à revoir.",
+      "eligibility": "Cibles concernées par le poison.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM18",
+      "label": "Explosif",
+      "effect": "Il explose à sa mort et blesse les cibles proches.",
+      "eligibility": "Familles appropriées ; type de dégâts, délai, portée et avertissement visuel à définir.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM19",
+      "label": "Projectiles multiples",
+      "effect": "Son attaque tire plusieurs projectiles.",
+      "eligibility": "Uniquement une attaque à projectiles compatible ; nombre, dispersion et interactions à définir.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM20",
+      "label": "Réanimateur",
+      "effect": "Il peut relever certains morts pour les faire combattre à ses côtés.",
+      "eligibility": "Capacité native de familles adaptées, notamment nécromanciens ; pas un bonus tiré pour n'importe quel monstre. Cadavres admissibles et limites à revoir.",
+      "label_approved": true,
+      "effect_approved": false,
+      "numbers_approved": false,
+      "visual_approved": false,
+      "concept_approved": true,
+      "status": "concept_accepted_details_pending"
+    },
+    {
+      "id": "MM21",
+      "label": "Résistant aux dégâts physiques",
+      "concept_approved": true,
+      "label_approved": true,
+      "effect_approved": true,
+      "numbers_approved": true,
+      "visual_approved": false,
+      "status": "shown_rules_accepted_not_integrated",
+      "effect": "Il subit moins de dégâts physiques. Une attaque mixte conserve sa partie élémentaire, qui utilise sa propre résistance.",
+      "player_copy": "Résistance aux dégâts physiques augmentée de 30 points.",
+      "proposed_resistance_bonus_percentage_points": 30,
+      "proposed_maximum_effective_resistance_percent": 75,
+      "scaling": "Réduction proportionnelle des dégâts physiques reçus ; pas une quantité fixe identique pour tous les coups. Les caractéristiques de l'attaquant, son niveau de zone et ses dégâts de base restent pris en compte normalement.",
+      "acceptance_review": "acceptance-05.json"
+    }
+  ],
+  "ui_proposals": [
+    {
+      "id": "MU01",
+      "text": "Dans Examiner : nom, mots-clés lisibles sous le nom, barre de vie existante et informations de cible. Chaque mot-clé possède une courte explication au survol et au focus clavier. La ligne disparaît si le monstre n'a aucun trait.",
+      "approved": false
+    },
+    {
+      "id": "MU02",
+      "text": "Sur le plateau : petite barre de vie pour le seul monstre visible sous la souris ou désigné au clavier. Pas de texte de bonus flottant sur chaque acteur ; possibilité de désactiver cette barre.",
+      "approved": false
+    },
+    {
+      "id": "MU03",
+      "text": "Les mots-clés permanents sont séparés des icônes d'états temporaires. Ne pas révéler des défenses chiffrées encore soumises à l'analyse.",
+      "approved": false
+    }
+  ],
+  "prototype": {
+    "fragment": "C:/Users/User/.codex/visualizations/2026/10/16/01a145b1-fd86-78f3-bee1-e0d66af002bd/examiner-monstres-bonus.html",
+    "purpose": "Comparer zéro, un et plusieurs traits, Examiner et barre au survol, à taille native.",
+    "health_values": "Exemples fictifs de présentation ; aucune statistique de monstre proposée pour intégration.",
+    "sprites": "Réutilisation sans modification des candidats 22, 144 et 156, sans validation artistique implicite ni attribution réelle de bonus.",
+    "names": "Cultiste et Démon sont des libellés génériques de démonstration ; le catalogue n'est pas renommé.",
+    "game_changed": false
+  },
+  "deferred": [
+    "Briseur de feu reste en attente ; le système de traits permet d'étudier un nom de base sans imposer un suffixe.",
+    "Les suppressions de candidats et les retouches de couleurs de la discussion précédente ne sont pas effectuées pendant cette étude.",
+    "Les boss de secteur et leurs patterns spécifiques restent pour une revue ultérieure."
+  ],
+  "current_decision": "decision-02.json",
+  "physical_resistance_review": "physical-resistance-04.json",
+  "physical_resistance_acceptance": "acceptance-05.json"
+}

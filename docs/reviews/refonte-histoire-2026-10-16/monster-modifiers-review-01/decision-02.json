@@ -1,0 +1,46 @@
+{
+  "review_id": "MONSTER-MODIFIERS-02",
+  "date": "2026-10-17",
+  "previous_review": "MONSTER-MODIFIERS-01",
+  "player_statement": "oh oui ca me plait bien sauf \"rapide\" qui semble injouable ici vu que 1 tour = 1 action :)",
+  "runtime_connected": false,
+  "rejected": [
+    {
+      "id": "MM08",
+      "label": "Rapide",
+      "reason": "Ne correspond pas au fonctionnement conservé : un tour égale une action.",
+      "replacement": null,
+      "identifier_reserved": true
+    }
+  ],
+  "accepted_keyword_ids": ["MM01", "MM02", "MM03", "MM04", "MM05", "MM06", "MM07", "MM09", "MM10", "MM11", "MM12", "MM13", "MM14", "MM15", "MM16", "MM17", "MM18", "MM19", "MM20"],
+  "accepted_scope": "Noms et principes courts des 19 autres mots-clés tels que présentés dans la réponse précédente. L'approbation ne couvre pas automatiquement les détails supplémentaires du fichier de proposition.",
+  "accepted_summaries": {
+    "MM01": "Attaques avec des dégâts de feu.",
+    "MM02": "Attaques avec des dégâts de froid.",
+    "MM03": "Attaques pouvant empoisonner.",
+    "MM04": "Attaques avec des dégâts électriques.",
+    "MM05": "Davantage de dégâts physiques.",
+    "MM06": "Davantage de points de vie.",
+    "MM07": "Meilleure protection physique.",
+    "MM09": "Récupère progressivement de la vie.",
+    "MM10": "Récupère de la vie en infligeant des dégâts.",
+    "MM11": "Attaques pouvant infliger une malédiction.",
+    "MM12": "Réduit les soins reçus par ses ennemis proches.",
+    "MM13": "Renforce les attaques physiques des alliés proches.",
+    "MM14": "Peut empoisonner les ennemis proches.",
+    "MM15": "Subit moins de dégâts de feu.",
+    "MM16": "Subit moins de dégâts de froid.",
+    "MM17": "Subit moins de dégâts de poison.",
+    "MM18": "Explose à sa mort.",
+    "MM19": "Tire plusieurs projectiles.",
+    "MM20": "Relève certains morts ; réservé aux familles adaptées."
+  },
+  "ui_direction": "Accueil favorable du principe Examiner avec nom, mots-clés et vie, et de la barre de vie au survol. Cela ne valide pas les autres interfaces ou leurs réglages.",
+  "still_pending": [
+    "Valeurs, durées, probabilités, portées, cumuls et restrictions détaillées.",
+    "Nature précise de la malédiction MM11 : augmenter les dégâts physiques subis n'était pas détaillé dans le résumé accepté.",
+    "Poids et nombre de tirages aléatoires.",
+    "Effets visuels de combat et intégration au jeu."
+  ]
+}

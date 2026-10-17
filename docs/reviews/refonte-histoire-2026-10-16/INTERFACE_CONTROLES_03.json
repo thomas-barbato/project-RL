@@ -1,0 +1,79 @@
+{
+  "review": "HUD-03 / UX-PETS-04",
+  "date": "2026-10-16",
+  "status": "corrected proposal; no runtime integration",
+  "accepted_direction": [
+    "visual simplification preserves current information and commands",
+    "bottom area clarified with all actions and shortcuts",
+    "familiar window opens from icon button and starts closed"
+  ],
+  "supersedes": [
+    "HUD-02A",
+    "HUD-02B"
+  ],
+  "browser_checks": {
+    "review": "HUD-03 / UX-PETS-04",
+    "sizes": [
+      {
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "commands": 10,
+        "defenses": 10,
+        "height": 931.6875,
+        "overflow": false,
+        "petsClosed": true,
+        "width": 1888,
+        "zoom": "1"
+      },
+      {
+        "viewport": {
+          "width": 2560,
+          "height": 1440
+        },
+        "commands": 10,
+        "defenses": 10,
+        "height": 1162,
+        "overflow": false,
+        "petsClosed": true,
+        "width": 2513,
+        "zoom": "1.25"
+      },
+      {
+        "viewport": {
+          "width": 3840,
+          "height": 2160
+        },
+        "commands": 10,
+        "defenses": 10,
+        "height": 1863.703125,
+        "overflow": false,
+        "petsClosed": true,
+        "width": 3808,
+        "zoom": "2"
+      }
+    ],
+    "interactions": [
+      "opens via icon and button",
+      "close and reopen",
+      "fold and unfold",
+      "keyboard movement stays in bounds",
+      "individual drone mode",
+      "group modes leave raised allies autonomous",
+      "raised ally remaining turns",
+      "destroy confirmation and cancel",
+      "Escape closes"
+    ],
+    "nativeGame": false
+  },
+  "protected_tracked_source_content_assets_unchanged": 7014,
+  "fragment_bytes": 628612,
+  "git_diff_check": true,
+  "captures": [
+    "artifacts/interface-review/maquette-complete-fermee.png",
+    "artifacts/interface-review/maquette-complete-ouverte.png"
+  ],
+  "native_game_tests": "No runtime changes. Full HD/QHD/4K checks are for the HTML mockup, not the game renderer.",
+  "screenshot_note": "Full-page captures saved. Later screenshot attempts after viewport changes intermittently failed; existing verified captures were retained."
+}

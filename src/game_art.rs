@@ -47,6 +47,10 @@ pub(crate) enum Visual {
         number: u8,
         corpse: bool,
     },
+    CampaignMonster {
+        number: u16,
+        variant: u8,
+    },
     ColoredItem(ItemArt, EquipmentPalette),
     Terrain {
         kind: Decor,
@@ -71,10 +75,14 @@ pub(super) fn item(id: &str) -> Option<ItemArt> {
 }
 #[path = "game_art_bestiary.rs"]
 mod bestiary;
+#[path = "game_art_campaign.rs"]
+pub(crate) mod campaign;
 #[path = "game_art_drone.rs"]
 mod drones;
 #[path = "game_art_player.rs"]
 mod player_layers;
+#[path = "game_art_portrait.rs"]
+mod portrait;
 #[path = "game_art_spectral.rs"]
 mod spectral;
 
@@ -86,13 +94,13 @@ fn texture(bytes: &[u8], filter: FilterMode) -> Texture2D {
 
 struct ArtTextures {
     actors: Texture2D,
-    portraits: Texture2D,
+    portraits: portrait::Sheet,
 }
 
 thread_local! {
     static TEXTURES: ArtTextures = ArtTextures {
         actors: texture(include_bytes!("../assets/sprites/cyberpunk/actors-32.png"), FilterMode::Nearest),
-        portraits: texture(include_bytes!("../assets/sprites/cyberpunk/actors-128.png"), FilterMode::Nearest),
+        portraits: portrait::Sheet::load(include_bytes!("../assets/sprites/cyberpunk/actors-32.png"), 32),
     };
 }
 
@@ -101,6 +109,7 @@ pub(crate) fn prewarm() {
     palettes::prewarm();
     player_layers::prewarm();
     bestiary::prewarm();
+    campaign::prewarm();
 }
 
 #[cfg(debug_assertions)]
@@ -115,6 +124,10 @@ pub(crate) fn draw_grip_review(
     hands: Option<[Option<u16>; 2]>,
 ) {
     player_layers::draw_grip_review(rect, body, weapon, hands);
+}
+#[cfg(debug_assertions)]
+pub(crate) fn draw_armor_breath_review(rect: Rect, body: u16, weapon: Option<u16>, time: f64) {
+    player_layers::draw_grip_review_at_time(rect, body, weapon, None, Some(time));
 }
 
 pub(crate) fn terrain_visual(kind: Decor, x: i32, y: i32) -> Option<Visual> {
@@ -153,6 +166,14 @@ pub(crate) fn actor_for_symbol(symbol: char) -> Option<Visual> {
         _ => return None,
     };
     Some(Visual::Actor(3 + index))
+}
+
+pub(crate) fn cultist_two_handed(actor: &project_rl::entity::Actor) -> Option<bool> {
+    let model = held_weapon(actor.equipped_weapon()?.item().as_str())?;
+    Some(matches!(
+        weapon_hold(model),
+        WeaponHold::TwoHanded | WeaponHold::MeleeTwoHanded
+    ))
 }
 
 pub(crate) fn arm_actor(visual: Visual, weapon: Option<&str>) -> Visual {
@@ -325,7 +346,10 @@ pub(crate) fn draw_world_animated(
             player_layers::draw_npc(rect, body, Some(weapon), 32, opacity, idle_time);
         }
         Visual::Bestiary { number, corpse } => bestiary::draw(rect, number, corpse, opacity, true),
-        Visual::ColoredItem(item, palette) => palettes::draw_item(rect, item, palette, 32, opacity),
+        Visual::CampaignMonster { number, variant } => {
+            campaign::draw(rect, number, variant, opacity, true)
+        }
+        Visual::ColoredItem(item, palette) => palettes::draw_item(rect, item, palette, opacity),
         Visual::Terrain { kind, position } => {
             crate::terminal_view::draw_scenery_preview(rect, kind, position)
         }
@@ -334,11 +358,11 @@ pub(crate) fn draw_world_animated(
 
 pub(crate) fn draw_portrait(rect: Rect, visual: Visual) {
     TEXTURES.with(|art| match visual {
-        Visual::AgentForm(index) => draw_agent_form(rect, index, 1.0),
-        Visual::DroneScout => drones::draw_scout(rect, 1.),
-        Visual::DroneTracker => drones::draw_tracker(rect, 1.),
-        Visual::DroneGunner => drones::draw_gunner(rect, 1.),
-        Visual::DroneGuardian => drones::draw_guardian(rect, 1.),
+        Visual::AgentForm(index) => draw_agent_form_portrait(rect, index, 1.0),
+        Visual::DroneScout => drones::draw_portrait(rect, Visual::DroneScout),
+        Visual::DroneTracker => drones::draw_portrait(rect, Visual::DroneTracker),
+        Visual::DroneGunner => drones::draw_portrait(rect, Visual::DroneGunner),
+        Visual::DroneGuardian => drones::draw_portrait(rect, Visual::DroneGuardian),
         Visual::AgentHologram(source) => spectral::draw(rect, source, 1., None, 128),
         Visual::Player {
             body,
@@ -351,12 +375,15 @@ pub(crate) fn draw_portrait(rect: Rect, visual: Visual) {
                 rect, body, equipment, weapon, hands, palettes, 128, 1.0, None,
             );
         }
-        Visual::ColoredItem(item, palette) => palettes::draw_item(rect, item, palette, 128, 1.0),
-        Visual::Actor(index) => draw_cell(&art.portraits, rect, u16::from(index), 128, 1.0),
+        Visual::ColoredItem(item, palette) => palettes::draw_item(rect, item, palette, 1.0),
+        Visual::Actor(index) => art.portraits.draw(rect, u16::from(index), 1.0),
         Visual::ArmedActor { body, weapon } => {
             player_layers::draw_npc(rect, body, Some(weapon), 128, 1.0, None)
         }
         Visual::Bestiary { number, corpse } => bestiary::draw(rect, number, corpse, 1.0, false),
+        Visual::CampaignMonster { number, variant } => {
+            campaign::draw(rect, number, variant, 1., false)
+        }
         Visual::Terrain { kind, position } => {
             crate::terminal_view::draw_scenery_preview(rect, kind, position)
         }
@@ -443,6 +470,7 @@ pub(crate) fn visual_bleeds(visual: Visual) -> bool {
         Visual::Bestiary { number, .. } => {
             bestiary::entry(number).is_some_and(|entry| entry.bleeds)
         }
+        Visual::CampaignMonster { number, .. } => !matches!(number, 124..=127),
         Visual::Player { .. } | Visual::AgentForm(_) => true,
         _ => false,
     }
@@ -574,19 +602,19 @@ mod tests {
     }
 }
 
-thread_local! { static AGENT_FORMS:[Texture2D;6]=[
+thread_local! { static AGENT_FORMS:[portrait::Sheet;6]=[
     include_bytes!("../assets/animations/agent/skill-animation-review-39/predator-64.png").as_slice(),
     include_bytes!("../assets/animations/agent/skill-animation-review-39/colossus-64.png").as_slice(),
     include_bytes!("../assets/animations/agent/skill-animation-review-41/cuirasse-64.png").as_slice(),
     include_bytes!("../assets/animations/agent/skill-animation-review-41/possede-64.png").as_slice(),
     include_bytes!("../assets/animations/agent/skill-animation-review-44/abysse-64.png").as_slice(),
     include_bytes!("../assets/animations/agent/skill-animation-review-42/closed-64.png").as_slice(),
-].map(|data|{let t=Texture2D::from_file_with_format(data,Some(ImageFormat::Png));t.set_filter(FilterMode::Nearest);t});}
+].map(|data| portrait::Sheet::load(data, 64));}
 fn draw_agent_form(rect: Rect, index: u8, opacity: f32) {
     AGENT_FORMS.with(|textures| {
         if let Some(t) = textures.get(usize::from(index)) {
             draw_texture_ex(
-                t,
+                &t.texture,
                 rect.x,
                 rect.y,
                 Color::new(1., 1., 1., opacity),
@@ -595,6 +623,14 @@ fn draw_agent_form(rect: Rect, index: u8, opacity: f32) {
                     ..Default::default()
                 },
             );
+        }
+    });
+}
+
+fn draw_agent_form_portrait(rect: Rect, index: u8, opacity: f32) {
+    AGENT_FORMS.with(|textures| {
+        if let Some(source) = textures.get(usize::from(index)) {
+            source.draw(rect, 0, opacity);
         }
     });
 }

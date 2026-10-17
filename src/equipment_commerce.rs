@@ -110,6 +110,14 @@ impl AsciiApp {
             .ok_or("Merchant zone absent")?
             .depth;
         let (mut definition, quotes) = shop_definition(definition, self.loot.equipment(), depth)?;
+        if self.generation_version >= RETIRED_TEST_ITEMS_GENERATION_VERSION {
+            definition.offers.retain(|offer| {
+                !equipment_generation::is_retired_at_version(&offer.item, self.generation_version)
+            });
+            definition.gambles.retain(|offer| {
+                !equipment_generation::is_retired_at_version(&offer.item, self.generation_version)
+            });
+        }
         if self.generation_version >= EQUIPMENT_UPGRADE_GENERATION_VERSION {
             definition.offers.push(MerchantOfferDefinition {
                 item: "core:unstable_fragment".parse().unwrap(),

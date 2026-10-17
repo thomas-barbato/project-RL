@@ -466,6 +466,7 @@ pub struct ArmorProfile {
     equipment: u16,
     reinforcement: u16,
     fragilization: u16,
+    physical_resistance_percent: u8,
 }
 
 impl ArmorProfile {
@@ -475,7 +476,19 @@ impl ArmorProfile {
             equipment,
             reinforcement,
             fragilization,
+            physical_resistance_percent: 0,
         }
+    }
+
+    /// MM21: a separate percentage defense, applied after physical Armor.
+    /// Kept on this computed profile so actor/save layouts remain unchanged.
+    pub const fn with_physical_resistance(mut self, percentage: u8) -> Self {
+        self.physical_resistance_percent = if percentage > 75 { 75 } else { percentage };
+        self
+    }
+
+    pub const fn physical_resistance_percent(self) -> u8 {
+        self.physical_resistance_percent
     }
 
     pub const fn body(self) -> u16 {
@@ -593,9 +606,9 @@ pub fn resolve_damage(
 }
 
 /// Resolves the current defense model. A physical packet meets Armor once and
-/// does not also receive a physical percentage resistance. Other types ignore
-/// Armor and use their specialized resistance. The packet's penetration is
-/// therefore consumed by exactly one defense family.
+/// then receives the separately authored physical percentage resistance.
+/// Other types ignore Armor and use their specialized resistance. Physical
+/// penetration is consumed by Armor only, never a second time by MM21.
 pub fn resolve_damage_with_armor(
     packet: DamagePacket,
     resistances: ResistanceProfile,
@@ -730,6 +743,12 @@ fn resolve_damage_impact_internal(
             )
         });
 
+    let physical_resistance = armor.map_or(0, |(profile, _)| profile.physical_resistance_percent());
+    // Round the whole physical group once, before distributing its remainder
+    // over components. Splitting an impact must not bypass or multiply MM21.
+    let protected_remaining =
+        (u32::from(protected_remaining) * u32::from(100 - physical_resistance) / 100) as u16;
+
     let mut protected_raw_remaining = u32::from(protected_raw);
     let mut protected_damage_remaining = u32::from(protected_remaining);
     for component in impact.components() {
@@ -748,7 +767,7 @@ fn resolve_damage_impact_internal(
                 damage_type: component.damage_type,
                 raw_amount: component.amount,
                 amount: amount.min(u32::from(u16::MAX)) as u16,
-                effective_resistance_percent: 0,
+                effective_resistance_percent: i16::from(physical_resistance),
                 armor_protected: true,
             }
         } else {
@@ -810,6 +829,83 @@ fn resolve_percentage_resistance(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn mm21_reduces_only_physical_damage_after_armor() {
+        let impact = DamageImpact::mixed(
+            [
+                DamageComponent::new(100, DamageType::Kinetic),
+                DamageComponent::new(20, DamageType::Thermal),
+            ],
+            0,
+            [],
+        )
+        .unwrap();
+        let resolved = resolve_damage_impact_with_armor(
+            impact,
+            ResistanceProfile::default().with(DamageType::Thermal, 50),
+            ArmorProfile::new(20, 0, 0, 0).with_physical_resistance(30),
+            DamageRules::specialized(),
+            ArmorRules::default(),
+        );
+        assert_eq!(resolved.component(DamageType::Kinetic).unwrap().amount, 56);
+        assert_eq!(resolved.component(DamageType::Thermal).unwrap().amount, 10);
+        assert_eq!(resolved.absorbed_by_armor, 20);
+        assert_eq!(resolved.amount(), 66);
+    }
+
+    #[test]
+    fn mm21_caps_and_does_not_reuse_armor_penetration() {
+        let resolved = resolve_damage_with_armor(
+            DamagePacket::new(100, DamageType::Kinetic, 10),
+            ResistanceProfile::default(),
+            ArmorProfile::new(20, 0, 0, 0).with_physical_resistance(30),
+            DamageRules::specialized(),
+            ArmorRules::default(),
+        );
+        assert_eq!(resolved.effective_armor, 10);
+        assert_eq!(resolved.effective_resistance_percent, 30);
+        assert_eq!(resolved.amount, 63);
+        let capped = resolve_damage_with_armor(
+            DamagePacket::new(100, DamageType::Piercing, 0),
+            ResistanceProfile::default(),
+            ArmorProfile::default().with_physical_resistance(100),
+            DamageRules::specialized(),
+            ArmorRules::default(),
+        );
+        assert_eq!(capped.amount, 25);
+        assert_eq!(capped.effective_resistance_percent, 75);
+    }
+
+    #[test]
+    fn mm21_rounds_the_physical_group_once_and_keeps_full_armor_absorption() {
+        let impact = DamageImpact::mixed(
+            [
+                DamageComponent::new(60, DamageType::Kinetic),
+                DamageComponent::new(40, DamageType::Piercing),
+            ],
+            0,
+            [],
+        )
+        .unwrap();
+        let resolve = |armor| {
+            resolve_damage_impact_with_armor(
+                impact,
+                ResistanceProfile::default(),
+                armor,
+                DamageRules::specialized(),
+                ArmorRules::default(),
+            )
+        };
+        assert_eq!(
+            resolve(ArmorProfile::new(20, 0, 0, 0).with_physical_resistance(30)).amount(),
+            56
+        );
+        assert_eq!(
+            resolve(ArmorProfile::new(100, 0, 0, 0).with_physical_resistance(30)).amount(),
+            0
+        );
+    }
 
     #[test]
     fn resistance_and_penetration_are_resolved_centrally() {

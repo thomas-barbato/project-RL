@@ -1,0 +1,445 @@
+{
+  "review_id": "CONTACT-SHADOWS14",
+  "date": "2026-10-17",
+  "user_statement": "il faudra pas oublier sur les monstres d'ajouter une ombre :) , bon on continue.",
+  "status": "direction_confirmed_render_for_review",
+  "current_elite_review": "elite-monsters-16.json",
+  "direction": "Une ombre de contact sous tous les monstres, sur un calque séparé sous le corps.",
+  "implementation": "Même forme à bandes, couleurs et opacités que draw_contact_shadow ; largeur adaptée aux appuis visibles.",
+  "original_character_pngs_modified": false,
+  "runtime_connected": false,
+  "records": [
+    {
+      "id": "MON-01",
+      "number": 5,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/MON-01-cell64-canvas128.png",
+      "body_sha256": "2482e6dabebb386bb674bd72d09836ea9e3b7e51ab556d99382a9f770fb821f3",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/MON-01-r02-shadow64.png",
+      "shadow_sha256": "3ad48c7c192cbd42bd8c280d227638ce4f3427d29f6d0c1f59eb621f144baac4",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          70,
+          95
+        ],
+        "width": 45,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "MON-02",
+      "number": 6,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/MON-02-cell64-canvas128.png",
+      "body_sha256": "6495bc8e1782b132444132f6333fc41c9454b8d2335378a96885b02f83925eca",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/MON-02-r02-shadow64.png",
+      "shadow_sha256": "7be12d7b2d2dee9fb7e6b6df6f6c93fce7a6c8832e0e5703d987c91cd147598a",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          76,
+          95
+        ],
+        "width": 44,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "MON-03",
+      "number": 7,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/MON-03-cell64-canvas128.png",
+      "body_sha256": "b4ce619b5a56a8c942856f2b35cf7ee3024c34e62ace153a8873119f37f57a62",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/MON-03-r02-shadow64.png",
+      "shadow_sha256": "3aca67d3e26dbcc035d905c45bf6f32287d7f462c165cbfe24af09cc77303627",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          66,
+          95
+        ],
+        "width": 55,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "MON-04",
+      "number": 8,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/MON-04-cell64-canvas128.png",
+      "body_sha256": "87bc7fc59d530fdcc7aaf829fdf53707672f3daf50c41c9b22b73f6aa3b94c1e",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/MON-04-r02-shadow64.png",
+      "shadow_sha256": "6c2bc0c27780ea20b673b2f03ea0ea4fedf4cd000054ffb04a6f01577b87d6cc",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          70,
+          95
+        ],
+        "width": 43,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "MON-05",
+      "number": 9,
+      "revision": "r03",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/MON-05-cell64-canvas256.png",
+      "body_sha256": "fa724718b822623e7ebcb33982b7b40df2ac97612decdab6091441955538dc1f",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/MON-05-r03-shadow64.png",
+      "shadow_sha256": "e6a25fd58f146dc4271c732518d306a994b05a31ab6484ec6159bcc113a3f8c7",
+      "canvas": 256,
+      "foot_anchor": [
+        128,
+        192
+      ],
+      "contact": {
+        "center": [
+          134,
+          191
+        ],
+        "width": 86,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "MON-06",
+      "number": 10,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/MON-06-cell64-canvas128.png",
+      "body_sha256": "2a48fbc69ea5a9fb9533d4d7106b4682a7d90d03492d49049c55893167bd1687",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/MON-06-r02-shadow64.png",
+      "shadow_sha256": "3d68a6b0fb7b07e1ad978e487f2618ea035bc2b7ad3fff667656841fe8fac23a",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          68,
+          95
+        ],
+        "width": 49,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "MON-07",
+      "number": 11,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/MON-07-cell64-canvas128.png",
+      "body_sha256": "07d548ec471d3a7efbbfd5392352b36c74d58cccde8a17a76950d8c66547350d",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/MON-07-r02-shadow64.png",
+      "shadow_sha256": "65a22ade083b9a371125db8210116f86be26b5cbc333e3b8ade1fb48054272f5",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          64,
+          95
+        ],
+        "width": 60,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "MON-08",
+      "number": 12,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/MON-08-cell64-canvas128.png",
+      "body_sha256": "4e2bf2af3b23679c2b54ae87918bdc14cd025eb64819ac4d7dc4f3912bb3d5f4",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/MON-08-r02-shadow64.png",
+      "shadow_sha256": "22d48189b57794108d9934623b5f10c8ccae93852ac4783a98c24745f276f70c",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          65,
+          95
+        ],
+        "width": 66,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "CULT-01",
+      "number": 13,
+      "revision": "r03",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/CULT-01-cell64-canvas128.png",
+      "body_sha256": "4c4398f991b46d559361d8e7f3c93bcc953d07faae91cedef34babe2fb58c8a9",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/CULT-01-r03-shadow64.png",
+      "shadow_sha256": "73817e1561d14ad79cbb3db08f381399a957a1a69b5f6763c7cd1682daa7777b",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          64,
+          95
+        ],
+        "width": 32,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "CULT-02",
+      "number": 14,
+      "revision": "r04",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/CULT-02-cell64-canvas128.png",
+      "body_sha256": "d559d723944ac0ec4262cb3576c763471fe9334c3abbe9d420ecacfea08d74e7",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/CULT-02-r04-shadow64.png",
+      "shadow_sha256": "d6800091faaefa26f936270cbd0ca0f04d8564d2310a35b4f5a74378cfd4f0bb",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          68,
+          95
+        ],
+        "width": 31,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "CULT-03",
+      "number": 15,
+      "revision": "r03",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/CULT-03-cell64-canvas128.png",
+      "body_sha256": "144979b33fbeeb2a1d51938ce9c2b8284bf3306a3e51495fd61acaf0401d8068",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/CULT-03-r03-shadow64.png",
+      "shadow_sha256": "d42f38dd9d71c75fd4a36bbb6466deae95b471ae28b37ca31db46abd8d59837e",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          62,
+          95
+        ],
+        "width": 26,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "ELITE-01",
+      "number": 16,
+      "revision": "r01",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/ELITE-01-cell64-canvas128.png",
+      "body_sha256": "3937a4a8791308c7c24b09d856f92fafc68c9a27fa1f6ab7c1256f408b1c1436",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/ELITE-01-r01-shadow64.png",
+      "shadow_sha256": "352f487f77060c09a8d8b8c257c5facc16205c8ec0b44bb70fe8f14cde3051c0",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          62,
+          95
+        ],
+        "width": 39,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "ELITE-02",
+      "number": 17,
+      "revision": "r01",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/ELITE-02-cell64-canvas128.png",
+      "body_sha256": "52ddab560f767e51b04eb29356275f3b09e7006642b7bfb64c2d5ebddf3f597c",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/ELITE-02-r01-shadow64.png",
+      "shadow_sha256": "50afde8d649ca10073ac454ea67ac0c2eb5cf09755f164db83ca7d820759b360",
+      "canvas": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "contact": {
+        "center": [
+          62,
+          95
+        ],
+        "width": 27,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "BOSS-01",
+      "number": 18,
+      "revision": "r01",
+      "body_file": "artifacts/npc-monsters-review-01/tiles/BOSS-01-cell64-canvas256.png",
+      "body_sha256": "9ed1990df51cb6c9f110bd0f5eb37ff2add5445fc4b613d04ca07b5604edf8e5",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/BOSS-01-r01-shadow64.png",
+      "shadow_sha256": "32327b21f51db6d6cd49b0d9d727f157313766ea93015c70190ddb23d0606b01",
+      "canvas": 256,
+      "foot_anchor": [
+        128,
+        192
+      ],
+      "contact": {
+        "center": [
+          128,
+          191
+        ],
+        "width": 59,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "BOSS-01",
+      "number": 18,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-01-r02-native64.png",
+      "body_sha256": "0e99265c3a98feed56f4f909dbdb60a2553e2043548fbf8961830338eef005df",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/BOSS-01-r02-shadow64.png",
+      "shadow_sha256": "5ec5c833289553f832ca5564e3908aaba59a141d11fae117c4787c9885593d2c",
+      "canvas": 384,
+      "foot_anchor": [
+        192,
+        288
+      ],
+      "contact": {
+        "center": [
+          194,
+          287
+        ],
+        "width": 115,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "BOSS-02",
+      "number": 19,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/boss-tiles/BOSS-02-r02-native64.png",
+      "body_sha256": "e47808bfeaec7ca59fb4e585ebe10dabfe4182a45810725f4103a77a1c22d5ca",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/BOSS-02-r02-shadow64.png",
+      "shadow_sha256": "99d611a04bc766dc771e6028935727111c8927f024a95fd4dcc358d810acaad0",
+      "canvas": 384,
+      "foot_anchor": [
+        192,
+        288
+      ],
+      "contact": {
+        "center": [
+          200,
+          287
+        ],
+        "width": 96,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "ELITE-03",
+      "number": 20,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/elite-tiles/ELITE-03-r02-native64.png",
+      "body_sha256": "078d4e9fcfcffc787532b421569348d0684c218af4fc78fd7566b168eba4b182",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/ELITE-03-r02-shadow64.png",
+      "shadow_sha256": "28c220b558008ab67c2abf80c979320fb39f34b67430d937f8b47433bc167cce",
+      "canvas": 192,
+      "foot_anchor": [
+        96,
+        128
+      ],
+      "contact": {
+        "center": [
+          100,
+          127
+        ],
+        "width": 93,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    },
+    {
+      "id": "ELITE-04",
+      "number": 21,
+      "revision": "r02",
+      "body_file": "artifacts/npc-monsters-review-01/elite-tiles/ELITE-04-r02-native64.png",
+      "body_sha256": "d8865d6fc9dc65679b0a09f108086dd05480a950c6f22370c99405ee0c84d317",
+      "shadow_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/contact-shadows-14/ELITE-04-r02-shadow64.png",
+      "shadow_sha256": "c142867c2bbf613bcb8bf783eec5551b60e3a96d60ead0fede772516a3f2daed",
+      "canvas": 192,
+      "foot_anchor": [
+        96,
+        128
+      ],
+      "contact": {
+        "center": [
+          98,
+          127
+        ],
+        "width": 51,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "shadow_visual_approved": false
+    }
+  ]
+}

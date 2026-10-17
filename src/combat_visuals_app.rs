@@ -1,6 +1,14 @@
 use super::*;
 
 impl AsciiApp {
+    pub(super) fn camera_glide_offset(&self) -> Vec2 {
+        self.combat_motion.glide_offset(
+            self.game.player_id(),
+            self.world_presentation_time.get(),
+            self.graphics.active.reduced_motion,
+        )
+    }
+
     pub(super) fn capture_combat_visual(
         &mut self,
         event: &GameEvent,
@@ -8,6 +16,15 @@ impl AsciiApp {
         now: f64,
     ) {
         match event {
+            GameEvent::EntityMoved { entity, from, to } => {
+                if self.game.player_visibility().is_visible(*from)
+                    && self.game.player_visibility().is_visible(*to)
+                {
+                    self.combat_motion.glide(*entity, *from, *to, now);
+                } else {
+                    self.combat_motion.stop_glide(*entity);
+                }
+            }
             GameEvent::AgentReanimated { at, .. } => {
                 if self.game.player_visibility().is_visible(*at) {
                     self.combat_motion
@@ -315,7 +332,23 @@ impl AsciiApp {
                     .unwrap_or_else(|| at.step(Direction::North));
                 self.combat_motion.play(*target, at, source_at, true, now);
             }
+            GameEvent::MonsterBodyFell {
+                at,
+                number,
+                variant,
+            } => {
+                if self.game.player_visibility().is_visible(*at) {
+                    let cell = self.terminal.combat_residue.cells.entry(*at).or_default();
+                    cell.corpse = None;
+                    cell.corpse_symbol =
+                        Some(crate::game_art::campaign::corpse_code(*number, *variant));
+                    cell.blood = if matches!(*number, 124..=127) { 0 } else { 6 };
+                    cell.seed = self.game.turn() as u32 ^ (*number as u32);
+                    cell.wall = false;
+                }
+            }
             GameEvent::EntityDied { entity, at } if *entity != self.game.player_id() => {
+                self.combat_motion.stop_glide(*entity);
                 if let Some(
                     crate::game_art::Visual::Actor(sprite)
                     | crate::game_art::Visual::ArmedActor { body: sprite, .. },
@@ -353,6 +386,41 @@ mod tests {
         let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
         app.prepare_cyberpunk_diagnostic("combat-review").unwrap();
         app
+    }
+
+    #[test]
+    fn real_steps_only_change_presentation_and_hidden_moves_do_not_leave_glides() {
+        let mut app = fixture();
+        app.capture_events_at(Some(0.0));
+        let id = app.game.player_id();
+        let start = app.game.player_position().unwrap();
+        for time in [1.0, 1.02] {
+            assert_eq!(
+                app.execute_command(GameCommand::Move(Direction::East)),
+                CommandOutcome::Applied
+            );
+            let mut expected = app.game.clone();
+            expected.drain_events();
+            let snapshot = expected.recovery_snapshot_bytes().unwrap();
+            app.capture_events_at(Some(time));
+            assert_ne!(app.combat_motion.glide_offset(id, time, false), Vec2::ZERO);
+            assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), snapshot);
+        }
+        assert_eq!(
+            app.game.player_position(),
+            Some(GridPos::new(start.x + 2, start.y))
+        );
+        assert_eq!(app.combat_motion.offset(id, 1.11, false), Vec2::ZERO);
+        app.capture_combat_visual(
+            &GameEvent::EntityMoved {
+                entity: id,
+                from: GridPos::new(-1, -1),
+                to: app.game.player_position().unwrap(),
+            },
+            &mut BTreeMap::new(),
+            1.03,
+        );
+        assert_eq!(app.combat_motion.glide_offset(id, 1.03, false), Vec2::ZERO);
     }
 
     fn reaction_fixture() -> AsciiApp {

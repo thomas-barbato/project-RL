@@ -15,6 +15,10 @@ pub enum GameCommand {
     SetCompanionBehavior {
         behavior: CompanionBehavior,
     },
+    SetCompanionBehaviorFor {
+        entity: EntityId,
+        behavior: CompanionBehavior,
+    },
     EndMaintainedEffect {
         effect: super::MaintainedEffectId,
     },
@@ -163,6 +167,7 @@ impl GameCommand {
                 | Self::LearnAgentSkill { .. }
                 | Self::AllocateAttribute { .. }
                 | Self::SetCompanionBehavior { .. }
+                | Self::SetCompanionBehaviorFor { .. }
                 | Self::AcceptQuest { .. }
                 | Self::ChooseDialogue { .. }
         )

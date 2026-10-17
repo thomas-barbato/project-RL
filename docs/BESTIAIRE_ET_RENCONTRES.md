@@ -1,5 +1,7 @@
 # Bestiaire et rencontres — catalogue de conception
 
+> **Statut au 16 octobre 2026 : référence du prototype antérieur.** Ce document conserve des systèmes, contenus ou essais existants ; son peuplement et son organisation du monde ne définissent pas la nouvelle campagne. Voir [l'histoire courante](HISTOIRE_CAMPAGNE.md) et le [cadrage de refonte](reviews/refonte-histoire-2026-10-16/CADRAGE.md). Une réutilisation artistique ou narrative reste à examiner.
+
 24 septembre 2026 — revue des noms ouverte le 26 septembre 2026.
 
 ## 1. Statut et ordre de travail
@@ -75,19 +77,16 @@ une intégration par ensembles cohérents, pas l'ajout automatique de la ligne s
   en place jusqu'à une migration explicite.
 - La surface garde une majorité d'habitants humanoïdes. Un grand catalogue
   animal ne signifie pas une forte densité animale sur chaque carte.
-- Les profondeurs changent les corps et les interactions selon une
-  [descente vers le numérique](DESCENTE_VERS_LE_NUMERIQUE.md) : d'abord des formes
-  familières, puis une vie liée aux infrastructures, aux réseaux et à leurs
-  rythmes, enfin des êtres dont les règles semblent devenir celles de la matière.
-  Les symbioses et organismes minéraux gardent leur place ; les robots restent
-  une catégorie parmi d'autres, pas la traduction automatique de « moins humain ».
-  Ce gradient concerne aussi les villes et les décors. La
-  [génération 117](REPARTITION_DES_PROFONDEURS.md) fait varier les proportions des
-  milieux par profondeur, sans changer les habitats ni les statistiques des espèces.
+- La répartition des profondeurs et des rencontres décrite ici appartient au
+  prototype antérieur. La [génération 117](REPARTITION_DES_PROFONDEURS.md) conserve
+  ses tables techniques ; le fil narratif numérique qui les accompagnait est
+  retiré. Le nouveau bestiaire sera conçu par secteur à partir de
+  [l'histoire courante](HISTOIRE_CAMPAGNE.md), avec revue séparée des familles,
+  silhouettes et comportements.
 - Une apparence étrange n'impose pas l'hostilité. Des habitants non humains
   restent possibles à toutes les profondeurs, indépendamment de ce catalogue.
-  Les [peuplades proposées](PROPOSITION_PEUPLADES_v0.1.md) ne sont pas validées
-  ni transformées en ennemis par ce document ; la réputation reste reportée.
+  Les anciennes propositions de peuplades sont retirées ; aucun nouvel habitant
+  n'est créé par ce document. La réputation reste à concevoir séparément.
 - Chaque danger doit offrir un indice lisible et une réponse praticable.
   Pas de perception du joueur à travers les murs sans règle explicite, ni
   d'annonce reposant uniquement sur une couleur ou une animation.

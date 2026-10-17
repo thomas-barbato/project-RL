@@ -1,0 +1,153 @@
+{
+  "user_statement": "tu peux meme faire des squelettes, des monstres enflammées etc )",
+  "records": [
+    {
+      "id": "SQUE-01",
+      "number": 128,
+      "revision": "r01",
+      "label": "Squelette de maintenance",
+      "family": "Squelettes",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 52,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/SQUE-01-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 160,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create ONE original ordinary SKELETON enemy for Project RL, using the attached player drawing ONLY for clean dark comic outlines, large flat shapes, two or three simple values and one main shadow plane. No copying player armor, helmet, sword or shield.\nAdult human-height skeleton in a plain torn charcoal industrial work jumpsuit with one broad dull rust-orange shoulder panel. The suit is open enough at forearms and shins to show simplified dry IVORY bones, with two broad bone groups per limb rather than tiny anatomical detail. One simple dry skull, two dark eye sockets, CLOSED blunt jaw with three broad teeth marks at most. Exactly TWO arms, TWO legs, broad bony dark-tipped hands and old charcoal boots, slumped hostile standing pose. No flesh, blood or graphic injury, no exposed organ, human face, armor suit, weapon, crown or regalia.\nOne complete nearly frontal slight-overhead static figure, all extremities in generous genuinely ALPHA transparent margins. Native body64px high, at most52px wide on a64px-per-cell reference. ONE figure only; no sheet, text, ground, scene, shadow, glow, magic or particles. Clear restrained game sprite source, not photo,3D, cute, chibi, tiny bones or noisy cracks. Appearance proposal only, no rules defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection"
+    },
+    {
+      "id": "SQUE-02",
+      "number": 129,
+      "revision": "r01",
+      "label": "Squelette entravé",
+      "family": "Squelettes",
+      "maximum_body_height64": 66,
+      "maximum_body_width64": 58,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/SQUE-02-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 190,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create ONE original ordinary SKELETON enemy for Project RL, matching the attached approved player's clean dark contours, broad flat masses, two or three values and one simple shadow plane. Reference is for graphic style only, not armor or pose.\nLean adult skeleton with simplified dry dull IVORY bones, small simple skull with two black eye cavities and CLOSED jaw, exactly TWO arms and TWO legs. ONE plain tattered charcoal-and-muted ochre cloth wrap covers hips and upper thighs. Each wrist retains ONE broad open dark iron restraint cuff, with just THREE large broken links between wrists, all links connected and visible. Shoulders bowed, long arms drooping, knees bent and broad bony feet planted apart. Each limb shown in a few thick bone shapes, no tiny ribs or finger forest. No flesh, blood, organs, armor, helmet, sword, crown, regal cape or glow.\nNative body66px high and at most58px wide on a64px cell. Complete single nearly frontal static figure, slight overhead view, all extremities within genuine alpha-transparent margins. No other figure, inset, label, background, ground, baked shadow, particles or spell. Dark adult fantasy design, no cute proportions, photorealism,3D or noisy cracks. No stats, new abilities or encounters defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection"
+    },
+    {
+      "id": "BRA-01",
+      "number": 130,
+      "revision": "r01",
+      "label": "Charbon ardent",
+      "family": "Créatures enflammées",
+      "maximum_body_height64": 64,
+      "maximum_body_width64": 62,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BRA-01-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 205,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create ONE original ordinary FLAMING DEMON source for Project RL. Match the attached approved player and weapons GRAPHIC STYLE only: clean dark contours, broad flat colors, two or three values per material, one strong shadow plane, sparse broad highlights. Do not copy its human armor, helmet, sword or shield.\nAdult stocky nonhuman TWO-LEGGED demon with TWO long thick arms, heavy charcoal-black coarse hide, small blunt eyeless head and CLOSED dark mouth. Broad hooked hands, wide dark claw feet, bent hostile posture. Exactly THREE broad attached flame tongues rise from its upper shoulders and back: simple CLEAR ORANGE shapes with YELLOW inner planes, visibly connected to the body, not a surrounding aura. A few broad ember-orange material planes on the chest, no many cracks. Body stays clear and mostly charcoal, static fire depicted as part of this single still concept, no animated system implied.\nNative TOTAL figure height including flame tips64px, width at most62px, on a64px cell reference. Whole nearly frontal slight-overhead game pose inside generous truly ALPHA transparent margins. One ordinary demon, no boss signs, crown, wings, bone clutter, equipment, human face, blood, organs, tiny sparks, smoke, light bloom, halo, cast-light effect or baked shadow. No text, scene, inset or other figure. No photo or3D, chibi or cute mascot. Static fire appearance is explicitly requested; no burning rules, damage or abilities defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection"
+    },
+    {
+      "id": "BRA-02",
+      "number": 131,
+      "revision": "r01",
+      "label": "Bête des braises",
+      "family": "Créatures enflammées",
+      "maximum_body_height64": 48,
+      "maximum_body_width64": 88,
+      "palette_limit": 24,
+      "native_body_reference": 64,
+      "canvas_cells": 2,
+      "ground_cell": 1.5,
+      "role": "Monstre ordinaire proposé",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/BRA-02-r01.png",
+      "lore_status": "proposal_not_canon",
+      "palette_transfer": {
+        "hue_min": 0,
+        "hue_max": 85,
+        "target_hue": 195,
+        "minimum_saturation": 0.14,
+        "minimum_value": 0.19,
+        "saturation_factor": 0.65,
+        "value_factor": 0.92
+      },
+      "prompt": "Create ONE original ordinary FOUR-LEGGED FLAMING BEAST for Project RL, drawn in the same clean dark-contour flat comic style as the attached player and weapon reference. Two or three large values per material, one main shadow plane, no fine texture, photorealism or3D. Reference is only style, not human anatomy or armor.\nBroad low adult infernal quadruped with a long dark charcoal-russet muscular body, low wedge head, two tiny dark eyes, CLOSED heavy jaw, exactly FOUR sturdy legs ending in broad black hooked claws, short thick tail. TWO large attached ORANGE flame crests with simple YELLOW inner planes grow directly from the upper back, one behind the shoulders and one at the rear. Flame shapes are broad, sparse and clearly separated, not a continuous aura or background. Underbelly a single dull ochre plane. Menacing stalking posture, all four feet visible.\nNative TOTAL figure including flames48px high, at most88px wide,64px-per-cell reference. Complete single nearly frontal slight-overhead static creature inside generous actual ALPHA transparent margins. No ground, environment, text, other figure, inset, baked shadow, smoke, sparks, particles, glow/bloom, halo, wings, machinery, collar, crown, many horns, skeleton, blood or gore. No cute or childlike face. Static visible flame design requested by user; no animation, fire damage, statuses or combat mechanics are defined.",
+      "references": [
+        {
+          "path": "assets/source-art/refonte-agent-2026-10-06/comic64-reference-review-04/images/BD-C01-comic-master.png",
+          "role": "Trait du joueur et des armes uniquement"
+        }
+      ],
+      "visual_approved": false,
+      "scale_approved": false,
+      "name_approved": false,
+      "rules_approved": false,
+      "status": "proposal_pending_later_individual_selection"
+    }
+  ]
+}

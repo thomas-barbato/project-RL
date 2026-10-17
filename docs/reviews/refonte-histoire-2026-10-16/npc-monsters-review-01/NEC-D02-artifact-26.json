@@ -1,0 +1,103 @@
+{
+  "review_id": "NEC-D02-ARTEFACT-26",
+  "date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "number": 137,
+  "id": "NEC-D02",
+  "revision": "r02",
+  "previous_revision": "r01",
+  "status": "proposal_pending_later_individual_selection",
+  "runtime_connected": false,
+  "user_request": "au lieu de lui faire tenir un livre, peut-être lui faire tenir une sorte d'artefact sordide ?",
+  "retention_statement": "sinon je valide les autres pour les mettres dans la liste :)",
+  "retained_other_numbers": [
+    132,
+    133,
+    134,
+    135,
+    136,
+    138,
+    139
+  ],
+  "retention_scope": "Accepted for inclusion in the candidate list; no runtime integration or final individual selection inferred.",
+  "changed_scope": "Held object and the supporting claw fingers only. Same proposed height, silhouette and insectoid character identity.",
+  "description": "Reliquaire de chair desséchée, retenu par des côtes de métal noirci et deux crochets d'os.",
+  "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NEC-D02-r02.png",
+  "source_generated": "C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-36013fa4-a9a6-493c-81f8-8504a835920f.png",
+  "prompt": "Use case: stylized-concept / localized original character edit.\nEdit ONLY the held book/tablet-like object and the immediate position of the two main supporting claws in this supplied original insectoid necromancer image. Candidate137, NEC-D02 r02. Preserve the existing adult insectoid body, head, antennae/horns, olive-brown chitin carapace, plum membrane cowl, chest and folded small thorax limbs, abdomen, TWO hooked hind legs/feet, nearly frontal slightly overhead pose and entire silhouette. Same clean dark outlines, large flat color masses, 2–3 values per material, one broad shadow plane. Do not add detail to the body. Native64px-per-cell readability, same max70px wide and72px high.\n\nRemove the whole dark rectangular BOOK/TABLET and its pale skull emblem. Replace it with ONE clearly three-dimensional SORDID NECROMANTIC RELIQUARY, compact and oblong/ovoid at the same waist position, NOT rectangular and NOT another book or shield. Main visual is a desiccated grey-beige FLESH POD shaped like a shrivelled heart or closed lump of dead tissue, with one broad bruised plum central seam and two simple large wrinkled folds, closed intact skin, no graphic wound, blood or visible organ interior. It is imprisoned inside THREE thick curved blackened iron ribs/clamps, with just TWO small dull-ivory BONE HOOKS gripping its upper end. Closed dark leather binding at the bottom. Small asymmetry and age suggest a stolen death relic. One fist-sized relic proportional to this character; not gigantic, no creature inside it, no extra severed parts, no skull pile, writing, gems, candles or chains.\n\nThe two main front claws naturally cradle the heavy relic from BOTH SIDES AND BELOW. Claw tips must visibly wrap around outer iron ribs, without going through the flesh or clipping the relic. Existing small thorax limbs stay folded and attached. Keep all body features and stance unchanged beyond adjusting the two supporting claw fingers for the new prop.\n\nUse broad readable material contrast: dull pale flesh core, black iron ribs, sparse ivory hook accents. No glowing aura, particles, spell, smoke, floor, baked shadow, added frame, labels, extra character, photographic rendering or tiny surface noise. Preserve genuinely transparent background and generous margins. This is appearance only; no new combat power or animation is being depicted.",
+  "references": [
+    {
+      "path": "C:/Users/User/AppData/Local/Temp/codex-clipboard-79ff60ef-cc58-4dc3-974f-a5bf673d645b.png",
+      "role": "Cible : remplacer le livre par un reliquaire, conserver le personnage"
+    }
+  ],
+  "visual_approved": false,
+  "scale_approved": false,
+  "name_approved": false,
+  "rules_approved": false,
+  "source_sha256": "e1864321108819b578498ddd4205a43ea845318a013d57693b08a02a9f93886a",
+  "variants": [
+    {
+      "variant": "A",
+      "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r02-A-native64.png",
+      "canvas": 128,
+      "cell": 64,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "occupied": [
+        42,
+        24,
+        86,
+        96
+      ],
+      "colors": 23,
+      "sha256": "28343d2c79bce788a6a03f0c3287d2523edea9e90ce5865828e3de1a9ae0fd24",
+      "visual_approved": false
+    },
+    {
+      "variant": "B",
+      "file": "artifacts/npc-monsters-review-01/necros-25/tiles/NEC-D02-r02-B-native64.png",
+      "canvas": 128,
+      "cell": 64,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "occupied": [
+        42,
+        24,
+        86,
+        96
+      ],
+      "colors": 23,
+      "sha256": "e3fa2b7fba517364a479669a2f739a1018d993d5cc61d2f20c4b2c619ddf310e",
+      "visual_approved": false
+    }
+  ],
+  "contact_shadow": {
+    "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/demons-shadows-25/NEC-D02-r02-shadow64.png",
+    "sha256": "e4a5719020a6019510cb5d9b56bd0dcbe175d1f4f22f9b11e5567fa9380b2ee9",
+    "foot_anchor": [
+      64,
+      96
+    ],
+    "contact": {
+      "center": [
+        63,
+        95
+      ],
+      "width": 44,
+      "band_height": 2,
+      "palette_origin": "src/game_art.rs::draw_contact_shadow"
+    },
+    "visual_approved": false
+  },
+  "native_body_size": [
+    44,
+    72
+  ],
+  "preview_scale": 1,
+  "preview": "artifacts/npc-monsters-review-01/necros-25/137-reliquaire-native64.png"
+}
