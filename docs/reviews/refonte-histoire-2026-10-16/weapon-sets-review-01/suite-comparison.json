@@ -1,0 +1,815 @@
+{
+  "baseline_commit": "83929fc1c45e3334c4e17d470e6e805204f75536",
+  "source_archive_sha256": "f1e9dbccb6cd2f70571e64870986e3e81aecc9d4492ae0aaec132ebfabbe305d",
+  "harness_change": "renamed bin and build link argument only",
+  "initial_general_client_suite": {
+    "passed": 926,
+    "failed": 64,
+    "ignored": 15,
+    "rerun_in_full_after_corrections": false
+  },
+  "comparison": {
+    "preexisting_failed_cases": 50,
+    "changed_cases_passed_on_baseline": 14
+  },
+  "cases": [
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::fluid::tests::rounded_current_crosses_a_gameplay_cell_edge_but_preserves_protected_centres",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::fluid::tests::rounded_current_crosses_a_gameplay_cell_edge_but_preserves_protected_centres' (32408) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "24e0e39d60d79d9b5e3549c2ebe93de50e7419850f284378443792568a23538b"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::expanded::tests::drawn_sides_are_visible_after_the_opening_but_never_on_corridor_walls",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::expanded::tests::drawn_sides_are_visible_after_the_opening_but_never_on_corridor_walls' (12488) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "5ac75516f9b940823400508d4f359cb4b2b393b5ffcd9f93ca074592bf761759"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::expanded::tests::room_wall_still_stops_the_reexpanded_drawing",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::expanded::tests::room_wall_still_stops_the_reexpanded_drawing' (32356) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "49fffc12400b24a7d6e5374d879545376dbd1ac2e1a4a8076a12574d4c5661c2"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::tests::long_corridor_preserves_range_and_stops_at_a_cross_wall",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::tests::long_corridor_preserves_range_and_stops_at_a_cross_wall' (19240) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "d7bc8772ae71a33d88ce94def4686d02d4b93240b239a1d06a5d78678a09e913"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::tests::partial_obstacle_stops_center_but_leaves_both_sides_open",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::tests::partial_obstacle_stops_center_but_leaves_both_sides_open' (11980) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "2bc60940c20c58e30908c686a85ce67ee2af18eea8c8c3561863929cfcc7bf6d"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::tests::physical_cloison_stops_all_rays_to_the_far_room",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::tests::physical_cloison_stops_all_rays_to_the_far_room' (33244) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "67909ab2270ed82f835660a5d2816cf08c18089ed569191a997a52dab213c2d0"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::tests::cloison_protects_targets_in_all_four_aiming_directions",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::overlay::tests::cloison_protects_targets_in_all_four_aiming_directions' (320) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "3ad56bdb22d7903d21305cece99a3806a3d89c14c99afe00b6dae2e58572bc30"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::particles::tests::all_flame_bounds_stay_outside_walls_on_every_path_and_direction",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::particles::tests::all_flame_bounds_stay_outside_walls_on_every_path_and_direction' (29712) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "dfd248071ba79645c3638bb1ce0c2d3e7c1b8484923d13ceb79375a3d6e65999"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::particles::tests::visual_routing_uses_only_the_unchanged_footprint",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::particles::tests::visual_routing_uses_only_the_unchanged_footprint' (19576) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "fdb6c72b88589da5e41205b7c5b3f3d944b774ed0ca02c3889c73cf616763d3e"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::tests::corridor_widens_after_opening_but_closed_corner_protects_target",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::tests::corridor_widens_after_opening_but_closed_corner_protects_target' (30448) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "7353341aebd7e642a7a5719c25e464f59e09f6500242e2c5ad1de68a325fe3e0"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::tests::full_cloison_stops_all_cells_behind_it",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::tests::full_cloison_stops_all_cells_behind_it' (1948) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "5cb01e3ac03c0b60e441f3b35f722e84f101f1160ea86323d7e66d6f2cb3f101"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::tests::partial_obstacle_leaves_two_sides_but_blocks_center",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'agent_skill_lab_review::fire_painted::obstacles::tests::partial_obstacle_leaves_two_sides_but_blocks_center' (7492) panicked at src\\agent_skill_lab_review.rs:46:73:"
+      ],
+      "baseline_log_sha256": "f4bc0cea20b7e71cf2da8daf3d82e26d9913750bc3e8ed68f17de75411aa1edb"
+    },
+    {
+      "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_refuses_a_falsified_state_hash_without_replaying",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::agent_resume_compat_tests::agent_v14_resume_refuses_a_falsified_state_hash_without_replaying' (23852) panicked at src\\agent_resume_compat_tests.rs:62:5:",
+        "assertion `left == right` failed: historical fixture must retain its exact engine rules and complete state",
+        "  left: 12634751269926162870",
+        " right: 1278044700764194019"
+      ],
+      "baseline_log_sha256": "20beb02d24317d524c26cd78753e9f88a45cff9ed6157d3caf10b251df1f1cec"
+    },
+    {
+      "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_refuses_a_modified_status_definition_in_current_content",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::agent_resume_compat_tests::agent_v14_resume_refuses_a_modified_status_definition_in_current_content' (26660) panicked at src\\agent_resume_compat_tests.rs:62:5:",
+        "assertion `left == right` failed: historical fixture must retain its exact engine rules and complete state",
+        "  left: 12634751269926162870",
+        " right: 1278044700764194019"
+      ],
+      "baseline_log_sha256": "0b6c3f0444909d45c64af528c8cc3c93b05d966530174424b24e600220b86a2f"
+    },
+    {
+      "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_requires_the_exact_old_engine_schema_and_a_snapshot",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::agent_resume_compat_tests::agent_v14_resume_requires_the_exact_old_engine_schema_and_a_snapshot' (7756) panicked at src\\agent_resume_compat_tests.rs:62:5:",
+        "assertion `left == right` failed: historical fixture must retain its exact engine rules and complete state",
+        "  left: 12634751269926162870",
+        " right: 1278044700764194019"
+      ],
+      "baseline_log_sha256": "1bf72cc7f9754edf094d8d0e659c6d4a56e7d3aaac0ffe92d1225c31e24f73f0"
+    },
+    {
+      "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_verifies_old_rules_and_state_then_adds_only_builtin_definitions",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::agent_resume_compat_tests::agent_v14_resume_verifies_old_rules_and_state_then_adds_only_builtin_definitions' (24552) panicked at src\\agent_resume_compat_tests.rs:62:5:",
+        "assertion `left == right` failed: historical fixture must retain its exact engine rules and complete state",
+        "  left: 12634751269926162870",
+        " right: 1278044700764194019"
+      ],
+      "baseline_log_sha256": "b27cce93738bcd40442fa20165caa6af395d4afcce041cbd15c93465b8ba6803"
+    },
+    {
+      "name": "ascii_app::agent_spell_trial::tests::mixed_weapon_out_of_ammunition_refuses_without_time_movement_or_melee_fallback",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::agent_spell_trial::tests::mixed_weapon_out_of_ammunition_refuses_without_time_movement_or_melee_fallback' (22024) panicked at src\\agent_spell_trial.rs:1056:9:",
+        "assertion `left == right` failed",
+        "  left: 5035596700854009951",
+        " right: 261473979202313012"
+      ],
+      "baseline_log_sha256": "9bff7b13c6ee62963b06b5e98cd182e372e2ba7467c2a366154915a6631a3b82"
+    },
+    {
+      "name": "ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses' (26472) panicked at src\\city_feedback_tests.rs:278:9:",
+        "assertion `left == right` failed: core:reinforced_armor",
+        "  left: 2",
+        " right: 3"
+      ],
+      "baseline_log_sha256": "deed1099f07423e39a2fcef5b80e3986a4be74d2fde560b016822a8878a41dff"
+    },
+    {
+      "name": "ascii_app::combat_visuals_app::tests::combat_recovery_tail_preserves_cached_zones_and_rejects_corruption",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "43b2f34a919004ac24cd9f22cda055fa92e0bef5a5479d65cedafc8ceb92c938"
+    },
+    {
+      "name": "ascii_app::combat_visuals_app::tests::damage_and_death_of_a_mechanical_actor_leave_only_a_persistent_dry_wreck",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "03a211a1853a9cd066e96552715d7298d5cdc866bbfa91771d5a16190c5195d2"
+    },
+    {
+      "name": "ascii_app::effects_lab::tests::catalytic_weapon_opens_preview_before_keyboard_confirmation_and_allows_cancel",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::effects_lab::tests::catalytic_weapon_opens_preview_before_keyboard_confirmation_and_allows_cancel' (28248) panicked at src\\effects_lab.rs:3501:34:"
+      ],
+      "baseline_log_sha256": "9a6962e3cc476b8981c74d0a0bd099486da0fc1c268d1f38d32d37fafadad37e"
+    },
+    {
+      "name": "ascii_app::effects_lab::tests::lab_parallax_keyboard_fire_chains_without_movement_or_waiting",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::effects_lab::tests::lab_parallax_keyboard_fire_chains_without_movement_or_waiting' (31364) panicked at src\\effects_lab.rs:2532:13:",
+        "assertion failed: app.game.actors().get(target).unwrap().integrity() < hp"
+      ],
+      "baseline_log_sha256": "af4482f76bc75cb996e95a0d73bcf00da5b6699f42da26a55f273fe6a71f4ba9"
+    },
+    {
+      "name": "ascii_app::effects_lab::tests::single_target_attack_is_direct_and_tab_still_changes_selection",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::effects_lab::tests::single_target_attack_is_direct_and_tab_still_changes_selection' (22872) panicked at src\\effects_lab.rs:3475:9:",
+        "assertion `left == right` failed",
+        "  left: 0",
+        " right: 1"
+      ],
+      "baseline_log_sha256": "99beadb9ccf327edcec5325434b05166888d48d877307e1d8b3f5825d3bb25c4"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::accessory_models_preserve_version_133",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::equipment_generation::tests::accessory_models_preserve_version_133' (23016) panicked at src\\equipment_generation.rs:588:9:",
+        "assertion `left == right` failed",
+        "  left: 1782011318931060307",
+        " right: 8547453497967341830"
+      ],
+      "baseline_log_sha256": "e8ef1e9d5719525bb0cbfd508dd87f1200f81feff2aec65823f3eee70bf42565"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::aviator_retirement_preserves_generation148_and_reversible_catalogs",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "1049d698bc96182529d70ed6e4e36cf1c6457dbd46941c1bffc0ca52cda033f2"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134' (11652) panicked at src\\equipment_generation.rs:513:9:",
+        "assertion `left == right` failed",
+        "  left: 10895948859345438833",
+        " right: 11827607781388651990"
+      ],
+      "baseline_log_sha256": "21ce6e012126e4e2f7338afc9cf691609ab8a99a92c30eeec1ba6c1eb01a2651"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::firearm_models_preserve_version_129",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::equipment_generation::tests::firearm_models_preserve_version_129' (23732) panicked at src\\equipment_generation.rs:528:9:",
+        "assertion `left == right` failed",
+        "  left: 12821491141838654528",
+        " right: 5015229487898651663"
+      ],
+      "baseline_log_sha256": "a5007745eb40bbf2547cfaeef3310795ef443022cebbf922e45c4c50aaa8b4d5"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::improvement_preserves_version_135",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::equipment_generation::tests::improvement_preserves_version_135' (2560) panicked at src\\equipment_generation.rs:486:9:",
+        "assertion `left == right` failed",
+        "  left: 17562185062364210838",
+        " right: 13575184762297074475"
+      ],
+      "baseline_log_sha256": "dd97a815f342b9cb2457b3911d73a8e6968b6a92c78763f94ed580618b2dcb5e"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::melee_models_preserve_version_130",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::equipment_generation::tests::melee_models_preserve_version_130' (6252) panicked at src\\equipment_generation.rs:541:9:",
+        "assertion `left == right` failed",
+        "  left: 1293324344745390349",
+        " right: 4364533401394836414"
+      ],
+      "baseline_log_sha256": "1a1269f94605ae285def77829d6e30915a71d8dd65dd7caa827a77771b939ebc"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132' (7160) panicked at src\\equipment_generation.rs:571:9:",
+        "assertion `left == right` failed",
+        "  left: 2546150270975769363",
+        " right: 7514443169048286002"
+      ],
+      "baseline_log_sha256": "b7a2db317325dd9a2636b876b4c6ab7e575c6bd632b8945c7cc29681664459a0"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::sword_models_preserve_version_131",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::equipment_generation::tests::sword_models_preserve_version_131' (21208) panicked at src\\equipment_generation.rs:554:9:",
+        "assertion `left == right` failed",
+        "  left: 5605329425965655092",
+        " right: 2731019285769788187"
+      ],
+      "baseline_log_sha256": "261d2f691ed7727594d522dddfe20133390da4a60bbbd3fe7997949d27a7a6a7"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume' (9724) panicked at src\\equipment_generation.rs:808:9:",
+        "assertion `left == right` failed",
+        "  left: 4332965440649476052",
+        " right: 14919163715656792865"
+      ],
+      "baseline_log_sha256": "c1b6dd2710919343eb3e385b0a48cdc3e6aaef4384c9f4ad781e58d4b11e9530"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume' (19436) panicked at src\\equipment_generation.rs:794:9:",
+        "assertion `left == right` failed",
+        "  left: 10178542183831598534",
+        " right: 7122100530405190243"
+      ],
+      "baseline_log_sha256": "848f8ee045ce3637e93a39bc536ae144571333cd632703fa2e807afd95970f88"
+    },
+    {
+      "name": "ascii_app::generated_survival_tests::generated_survival_records_every_map_and_mobile_contact_without_retry",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::generated_survival_tests::generated_survival_records_every_map_and_mobile_contact_without_retry' (27096) panicked at src\\generated_survival_tests.rs:324:13:"
+      ],
+      "baseline_log_sha256": "1c8dae51ef43fffdc3acc20a5ad6ccf8dd2b5d60ce7fe5e07e6273dab6d02ea1"
+    },
+    {
+      "name": "ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed' (22076) panicked at src\\hub_layout_tests.rs:15:53:",
+        "called `Result::unwrap()` on an `Err` value: \"Une partie peut être reprise ; confirmez son remplacement depuis le menu.\""
+      ],
+      "baseline_log_sha256": "51590ee2b2ff1e509e8baf6b57389011b97b99acee302c6ba071c7c71eeea8ad"
+    },
+    {
+      "name": "ascii_app::inventory_terminal::tests::body_appearance_slot_selects_owned_torso_and_preserves_real_loadout_and_weapon_pose",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "4ee5c4ab111d9b265873ef302429b9b26135e66bebf320070c80418401cf957e"
+    },
+    {
+      "name": "ascii_app::one_hand_firearms::tests::one_hand_firearms_have_six_tiers_art_names_and_one_hand_slots",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "ce77746adf54b8568012b6b3e5754869edab135610df0627c4bc4af7d227c550"
+    },
+    {
+      "name": "ascii_app::one_hand_firearms::tests::one_hand_firearms_real_equipment_pairs_and_two_hand_switch_survive_resume",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "e93844025d5d1e54aa143b5d57370b1e16f693764864c12632d2dd3c95028207"
+    },
+    {
+      "name": "ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot' (32604) panicked at src\\playable_trial_app.rs:229:57:",
+        "called `Result::unwrap()` on an `Err` value: \"Une partie peut être reprise ; confirmez son remplacement depuis le menu.\""
+      ],
+      "baseline_log_sha256": "cd4e1800474f9cf1450f5e56e24f5f334785024175f07b655cad0a9b3c75a3ee"
+    },
+    {
+      "name": "ascii_app::playable_trial::tests::playable_trial_keeps_normal_character_creation",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::playable_trial::tests::playable_trial_keeps_normal_character_creation' (21604) panicked at src\\playable_trial_app.rs:209:57:",
+        "called `Result::unwrap()` on an `Err` value: \"Une partie peut être reprise ; confirmez son remplacement depuis le menu.\""
+      ],
+      "baseline_log_sha256": "530950373fcb7f2b4ad2ee005ae12653a980b1313a1ac964937fea4c0ea92a8b"
+    },
+    {
+      "name": "ascii_app::surface_density::tests::version_108_surface_fingerprint",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::surface_density::tests::version_108_surface_fingerprint' (7060) panicked at src\\surface_density.rs:244:9:",
+        "assertion `left == right` failed",
+        "  left: 10178542183831598534",
+        " right: 7122100530405190243"
+      ],
+      "baseline_log_sha256": "58fd05ce5f49c702a52e1920a684bedbbb7c2c82d3f73e987f9265e98d2fb37f"
+    },
+    {
+      "name": "ascii_app::tests::a_click_resumes_an_older_build_only_after_an_identical_replay",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "47b1c71ddedb91092497ab132fbb8899fad73666aec6468d71b64af357ae3ece"
+    },
+    {
+      "name": "ascii_app::tests::a_new_run_equips_and_selects_the_flamethrower_on_channel_three",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "2000ba83959c49a5a04dc719a7c0edbac471796a98eeff7222efe76f706aaba3"
+    },
+    {
+      "name": "ascii_app::tests::borrowed_recovery_snapshot_preserves_legacy_bytes_and_fingerprints",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "a2d088e35c586cc21eb163c197c1bddc0823285ddf7aeb7f31e1ad033adc6092"
+    },
+    {
+      "name": "ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together' (3300) panicked at src\\ascii_app.rs:30519:9:",
+        "assertion `left == right` failed",
+        "  left: 41",
+        " right: 20"
+      ],
+      "baseline_log_sha256": "7210137e963f58a20c4d37d171ee52e750148a30d94dd1a91b2206197b80a539"
+    },
+    {
+      "name": "ascii_app::tests::expedition_round_trip_replays_every_zone_and_its_visual_memory",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::expedition_round_trip_replays_every_zone_and_its_visual_memory' (32280) panicked at src\\ascii_app.rs:31297:40:",
+        "called `Result::unwrap()` on an `Err` value: \"Return failed: Rejected(PreviousLayerUnavailable)\""
+      ],
+      "baseline_log_sha256": "43c9d8be8df58042d693015f58803754a37161edb708b8e4ab0ffe6ee34fac65"
+    },
+    {
+      "name": "ascii_app::tests::exploration_objective_uses_real_travel_progress_in_the_global_journal",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::exploration_objective_uses_real_travel_progress_in_the_global_journal' (26696) panicked at src\\ascii_app.rs:31017:9:",
+        "assertion `left == right` failed"
+      ],
+      "baseline_log_sha256": "c6af3d490ee39a1aed9f7e27ca2a7f3eb047e3db35d5f0dc916deea27def6d56"
+    },
+    {
+      "name": "ascii_app::tests::failed_window_close_keeps_run_open_and_can_retry_without_losing_progress",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "5fb2a5a661ed45fd7c883edf9100945669e8ca10f3fc9936b9d6a7a9e45c2b44"
+    },
+    {
+      "name": "ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay' (24476) panicked at src\\ascii_app.rs:31508:14:",
+        "called `Result::unwrap()` on an `Err` value: \"Trajet de contrôle introuvable\""
+      ],
+      "baseline_log_sha256": "1853a455d90b33ea48bf1d1ed27939b80d97f87724f5b3dfafa923258e192091"
+    },
+    {
+      "name": "ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states' (33708) panicked at src\\ascii_app.rs:30303:9:",
+        "assertion `left == right` failed",
+        "  left: 75",
+        " right: 76"
+      ],
+      "baseline_log_sha256": "b45fb17f666afec6e42afcef8eee824a798adaabcf544d6debfbd4e14ffcaa3d"
+    },
+    {
+      "name": "ascii_app::tests::normal_exit_saves_once_and_no_input_can_change_the_saved_snapshot",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "b4debe22f91dfbe3ca80eb42dcb5cf1dd404df839af1f6bfbd9ec6a120c0fd08"
+    },
+    {
+      "name": "ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention' (30560) panicked at src\\ascii_app.rs:27538:9:"
+      ],
+      "baseline_log_sha256": "dfb910ad374d1360d310591133263ba7bd5559758a7148bd14d1eee3f5812290"
+    },
+    {
+      "name": "ascii_app::tests::resume_animates_before_consuming_the_suspension",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "64bcaffe5bec5314f49ed91f648d38f03ba08804a72b5fd916436fcdabb2290e"
+    },
+    {
+      "name": "ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints' (23348) panicked at src\\ascii_app.rs:31989:9:",
+        "assertion `left == right` failed",
+        "  left: 14484299988026994332",
+        " right: 200606596581755117"
+      ],
+      "baseline_log_sha256": "10ba1873ff681de650eb5c783d81b73468467a2f08be8c1c1e3a7b9655d88721"
+    },
+    {
+      "name": "ascii_app::tests::suspension_rebuilds_the_selected_protocol_before_replay",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "154415f825a8deaf715dcb8bfbfe252119e200869f362ae20d0b23d92eb284a8"
+    },
+    {
+      "name": "ascii_app::tests::suspension_replays_active_r1_and_version_forty_strips_recovery_metadata",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::suspension_replays_active_r1_and_version_forty_strips_recovery_metadata' (16676) panicked at src\\ascii_app.rs:36295:9:",
+        "assertion failed: app.log.iter().any(|line| line.contains(\"Vous récupérez encore\"))"
+      ],
+      "baseline_log_sha256": "edec9beef3835a8a970c874d63756807eeef5b336df872f6fc293c7c146690b2"
+    },
+    {
+      "name": "ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble' (25872) panicked at src\\ascii_app.rs:27538:9:"
+      ],
+      "baseline_log_sha256": "2ec3ddd7fb31364fa52906529d59d1f3d5cbe637eeeecb1742dab8c5bdd94373"
+    },
+    {
+      "name": "ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn' (18852) panicked at src\\ux_tests.rs:213:38:",
+        "assertion `left == right` failed"
+      ],
+      "baseline_log_sha256": "56bd2bab115ba9e34bdc0d7b8eb161caa5e8892b47e23b534ddf16f4b24bda6e"
+    },
+    {
+      "name": "ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click' (3600) panicked at src\\ux_tests.rs:6:5:",
+        "assertion `left == right` failed"
+      ],
+      "baseline_log_sha256": "895af627554c2eacdec4dddb9eaa0244dad7e53f9f9ed69d4d688f01a8ec0955"
+    },
+    {
+      "name": "ascii_app::tests::ux_personalized_attributes_survive_back_and_forward",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::ux_personalized_attributes_survive_back_and_forward' (29040) panicked at src\\ux_tests.rs:224:83:",
+        "called `Option::unwrap()` on a `None` value"
+      ],
+      "baseline_log_sha256": "e1d044767e33c387547ec4a31b9e0384b4c4421336cc681c0d9e2ec114c5c060"
+    },
+    {
+      "name": "ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions' (33104) panicked at src\\ux_tests.rs:127:9:",
+        "assertion failed: rows.iter().all(|r|"
+      ],
+      "baseline_log_sha256": "641ddc49d9c54596c11175f06a6f04812cf8b0f29a94a3f60a264840252b46a4"
+    },
+    {
+      "name": "ascii_app::tests::voluntary_suspension_supersedes_recovery_and_resume_rearms_it",
+      "baseline_status": "passed",
+      "baseline_failure": [],
+      "baseline_log_sha256": "9d7e3cd56266890d104873d76a1bde0c37df55ee6ea24267ca345859f1a5c87f"
+    },
+    {
+      "name": "ascii_app::weapon_families_app::tests::weapon_families_lab_has_white_models_and_correct_inventory_icons",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::weapon_families_app::tests::weapon_families_lab_has_white_models_and_correct_inventory_icons' (23136) panicked at src\\weapon_families_app.rs:320:9:",
+        "assertion failed: app.attack_aim.is_none()"
+      ],
+      "baseline_log_sha256": "359bf498feca0df4180916521ec9f833c1b6e633c50095d7b64450d4162fb9e7"
+    },
+    {
+      "name": "ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview",
+      "baseline_status": "failed",
+      "baseline_failure": [
+        "thread 'ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview' (19664) panicked at src\\weapon_supplies_app.rs:170:14:",
+        "called `Option::unwrap()` on a `None` value"
+      ],
+      "baseline_log_sha256": "0c176260cd10ba5048bb5863af1ba8028d19d2fe0ae9bba6073ddd610b4751fb"
+    }
+  ],
+  "focused_rechecks": [
+    {
+      "name": "ascii_app::combat_visuals_app::tests::actual_combat_leaves_a_corpse_and_snapshot_preserves_it_without_changing_simulation",
+      "exit": 0,
+      "seconds": 3.45,
+      "log": "00.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::combat_visuals_app::tests::applied_status_reaction_affects_both_player_and_monster_without_changing_the_simulation",
+      "exit": 0,
+      "seconds": 4.74,
+      "log": "01.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::combat_visuals_app::tests::applied_status_reaction_does_not_reveal_hidden_targets",
+      "exit": 0,
+      "seconds": 3.42,
+      "log": "02.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::combat_visuals_app::tests::applied_status_reaction_ignores_rejected_existing_and_beneficial_effects",
+      "exit": 0,
+      "seconds": 3.49,
+      "log": "03.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::combat_visuals_app::tests::combat_recovery_tail_preserves_cached_zones_and_rejects_corruption",
+      "exit": 0,
+      "seconds": 3.1,
+      "log": "04.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::combat_visuals_app::tests::damage_and_death_of_a_mechanical_actor_leave_only_a_persistent_dry_wreck",
+      "exit": 0,
+      "seconds": 3.19,
+      "log": "05.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::combat_visuals_app::tests::equipped_pieces_reach_both_player_views_and_weapon_switch_keeps_them",
+      "exit": 0,
+      "seconds": 3.16,
+      "log": "06.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::combat_visuals_app::tests::real_steps_only_change_presentation_and_hidden_moves_do_not_leave_glides",
+      "exit": 0,
+      "seconds": 3.19,
+      "log": "07.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::aviator_retirement_preserves_generation148_and_reversible_catalogs",
+      "exit": 0,
+      "seconds": 6.52,
+      "log": "08.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::inventory_terminal::tests::body_appearance_slot_selects_owned_torso_and_preserves_real_loadout_and_weapon_pose",
+      "exit": 0,
+      "seconds": 3.21,
+      "log": "09.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::inventory_terminal::tests::equipment_and_tooltip_bounds_survive_compact_windows_and_large_interface_scale",
+      "exit": 0,
+      "seconds": 0.02,
+      "log": "10.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::inventory_terminal::tests::equipped_slots_remain_inspectable_under_another_filter_and_do_not_equip_on_click",
+      "exit": 0,
+      "seconds": 3.18,
+      "log": "11.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::inventory_terminal::tests::hovering_bag_and_equipped_slots_reads_the_exact_instance_without_changing_the_run",
+      "exit": 0,
+      "seconds": 3.22,
+      "log": "12.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::inventory_terminal::tests::inventory_gauges_keep_resource_colors_and_follow_all_interface_themes",
+      "exit": 0,
+      "seconds": 3.09,
+      "log": "13.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::inventory_terminal::tests::item_tooltip_uses_real_armor_and_mass_and_keyboard_navigation_updates_it",
+      "exit": 0,
+      "seconds": 3.06,
+      "log": "14.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::one_hand_firearms::tests::one_hand_firearms_are_in_monster_rewards_white_stock_and_enchanted_gambles",
+      "exit": 0,
+      "seconds": 0.58,
+      "log": "15.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::one_hand_firearms::tests::one_hand_firearms_fire_only_the_selected_weapon_and_pay_once_per_trigger",
+      "exit": 0,
+      "seconds": 11.12,
+      "log": "16.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::one_hand_firearms::tests::one_hand_firearms_have_six_tiers_art_names_and_one_hand_slots",
+      "exit": 0,
+      "seconds": 1.05,
+      "log": "17.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::one_hand_firearms::tests::one_hand_firearms_historical_saves_keep_the_pre_change_fingerprints",
+      "exit": 0,
+      "seconds": 19.7,
+      "log": "18.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::one_hand_firearms::tests::one_hand_firearms_real_equipment_pairs_and_two_hand_switch_survive_resume",
+      "exit": 0,
+      "seconds": 3.97,
+      "log": "19.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::one_hand_firearms::tests::one_hand_firearms_refuse_walls_and_missing_ammunition_without_mutation",
+      "exit": 0,
+      "seconds": 3.05,
+      "log": "20.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::tests::a_click_resumes_an_older_build_only_after_an_identical_replay",
+      "exit": 0,
+      "seconds": 30.95,
+      "log": "21.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::tests::borrowed_recovery_snapshot_preserves_legacy_bytes_and_fingerprints",
+      "exit": 0,
+      "seconds": 5.43,
+      "log": "22.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::tests::failed_window_close_keeps_run_open_and_can_retry_without_losing_progress",
+      "exit": 0,
+      "seconds": 17.53,
+      "log": "23.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::tests::legacy_three_slot_run_equips_and_selects_the_flamethrower_on_channel_three",
+      "exit": 0,
+      "seconds": 2.9,
+      "log": "24.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::tests::normal_exit_saves_once_and_no_input_can_change_the_saved_snapshot",
+      "exit": 0,
+      "seconds": 33.23,
+      "log": "25.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::tests::resume_animates_before_consuming_the_suspension",
+      "exit": 0,
+      "seconds": 7.14,
+      "log": "26.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::tests::suspension_rebuilds_the_selected_protocol_before_replay",
+      "exit": 0,
+      "seconds": 6.16,
+      "log": "27.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::tests::voluntary_suspension_supersedes_recovery_and_resume_rearms_it",
+      "exit": 0,
+      "seconds": 12.61,
+      "log": "28.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::weapon_hands_app::tests::equipment_colors_are_gated_and_carried_into_the_visible_configuration",
+      "exit": 0,
+      "seconds": 4.25,
+      "log": "29.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::weapon_hands_app::tests::weapon_hands_core_categories_match_the_carried_figures",
+      "exit": 0,
+      "seconds": 2.75,
+      "log": "30.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::weapon_hands_app::tests::weapon_hands_suspension_round_trip_keeps_the_active_configuration_and_legacy_resume",
+      "exit": 0,
+      "seconds": 10.37,
+      "log": "31.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::weapon_hands_app::tests::weapon_hands_switch_the_visible_set_without_unequipping_or_spending_a_turn",
+      "exit": 0,
+      "seconds": 2.77,
+      "log": "32.log",
+      "one_test_executed": true
+    },
+    {
+      "name": "ascii_app::weapon_hands_app::tests::weapon_hands_version_gate_preserves_old_rule_fingerprints",
+      "exit": 0,
+      "seconds": 0.52,
+      "log": "33.log",
+      "one_test_executed": true
+    }
+  ]
+}

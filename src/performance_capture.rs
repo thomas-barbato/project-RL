@@ -8,7 +8,7 @@ impl AsciiApp {
         let (rules, texts, loot, expeditions) = ascii_game_content()?;
         let mut rows = Vec::new();
         for moving in [true, false] {
-            let scene = if moving { "hub-walk" } else { "hub-wait" };
+            let scene = if moving { "camp-walk" } else { "camp-wait" };
             let mut results = Vec::new();
             for profiled in [false, true] {
                 let mut app = Self::from_seed(
@@ -22,8 +22,6 @@ impl AsciiApp {
                     "{scene}-{}.json",
                     if profiled { "profiled" } else { "normal" }
                 ));
-                app.walk_fixture_out_of_recycling()?;
-                app.walk_fixture_to(app.home_position(GridPos::new(65, 21)))?;
                 let origin = app.game.player_position().ok_or("Missing player")?;
                 let (outward, returning) = [
                     (Direction::East, Direction::West),
@@ -606,6 +604,8 @@ impl AsciiApp {
 
     pub async fn capture_performance(output: &std::path::Path) -> Result<(), String> {
         std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
+        let eager = std::env::args().any(|arg| arg == "--eager-effects");
+        crate::effect_geometry::diagnostic_asset_loading(eager);
         let (rules, texts, loot, expeditions) = ascii_game_content()?;
         let mut app = Self::from_seed(INITIAL_SEED, rules, texts, loot, expeditions)?;
         app.suspension_path = output.join("diagnostic-run.json");
@@ -671,7 +671,49 @@ impl AsciiApp {
             // Screenshots use the separate cold-UI diagnostics. A GPU readback
             // here can stall the first frame of the NEXT scene as well.
         }
-        let report = serde_json::json!({"build":"debug", "size":[screen_width(),screen_height()], "frames_per_scene":120,"scenes":rows});
+        // Exercise the actual agent window, including a full demonstration loop.
+        // The historical unclassified fixture above opens the older skill reader.
+        let mut agent = Self::new_skill_demo_review()?;
+        for (scene, skill, frames) in [
+            ("agent-skills", None, 120),
+            ("agent-demo-fire", Some("FE02"), 420),
+            ("agent-demo-cold", Some("FR02"), 420),
+            ("agent-demo-drone", Some("D58"), 420),
+        ] {
+            if let Some(id) = skill {
+                agent.select_agent_skill_for_capture(id)?;
+            }
+            agent.ux.skill_demo_request = skill.map(str::to_owned);
+            let before = agent.game.recovery_snapshot_bytes()?;
+            let mut cpu = Vec::new();
+            let stats_before = crate::effect_geometry::diagnostic_asset_stats();
+            for frame in 0..frames {
+                agent
+                    .ux
+                    .skill_demo
+                    .capture_time(Some(10. + f64::from(frame) * 0.01));
+                let started = Instant::now();
+                agent.draw();
+                cpu.push(started.elapsed().as_secs_f64() * 1000.);
+                if let Some(error) = agent.ux.skill_demo.failure() {
+                    return Err(error);
+                }
+                next_frame().await;
+            }
+            if agent.game.recovery_snapshot_bytes()? != before {
+                return Err(format!("{scene}: demo altered the host"));
+            }
+            let stats_after = crate::effect_geometry::diagnostic_asset_stats();
+            let row = serde_json::json!({"scene":scene,"frames":frames,"first_cpu_ms":cpu[0],
+                "cpu":timing_summary(&cpu),"host_unchanged":true,
+                "loaded_effect_textures":stats_after.0-stats_before.0,
+                "effect_texture_load_ms":stats_after.2-stats_before.2});
+            eprintln!("[PERF] {row}");
+            rows.push(row);
+        }
+        let report = serde_json::json!({"build":"debug", "size":[screen_width(),screen_height()],
+            "frames_per_legacy_scene":120,"effect_loading":if eager {"previous_eager_banks"}else{"per_texture"},
+            "asset_loads":crate::effect_geometry::diagnostic_asset_stats(),"scenes":rows});
         std::fs::write(
             output.join("timings.json"),
             serde_json::to_vec_pretty(&report).map_err(|e| e.to_string())?,

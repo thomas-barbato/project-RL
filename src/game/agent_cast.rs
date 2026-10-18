@@ -363,6 +363,7 @@ impl GameState {
         }
         self.player_equipment
             .iter()
+            .filter(|(slot, _)| self.equipment_slot_is_active(slot))
             .filter_map(|(_, instance)| self.player_inventory.get(instance))
             .filter_map(|entry| self.rules.equipment_agent_skills.get(entry.item()))
             .filter_map(|grants| grants.get(id).copied())

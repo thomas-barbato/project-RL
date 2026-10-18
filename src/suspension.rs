@@ -20,7 +20,7 @@ use std::{
 };
 
 pub const MAX_COMMANDS: usize = 50_000;
-pub const MAX_GENERATION_VERSION: u8 = 153;
+pub const MAX_GENERATION_VERSION: u8 = 154;
 const REPLAY_RECOVERY_SCHEMA: u8 = 1;
 pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
 const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;
@@ -360,6 +360,12 @@ impl RecordedCompanionBehavior {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "action", rename_all = "snake_case", deny_unknown_fields)]
 pub enum RecordedCommand {
+    UpgradeWeaponSets {
+        set: u8,
+    },
+    SelectWeaponSet {
+        set: u8,
+    },
     EndMaintainedEffect {
         effect: project_rl::game::MaintainedEffectId,
     },
@@ -553,6 +559,8 @@ impl RecordedCommand {
                 x: target.x,
                 y: target.y,
             },
+            GameCommand::UpgradeWeaponSets { set } => Self::UpgradeWeaponSets { set: *set },
+            GameCommand::SelectWeaponSet { set } => Self::SelectWeaponSet { set: *set },
             GameCommand::EquipWeapon { slot, item } => Self::Equip {
                 slot: *slot,
                 item: item.get(),
@@ -748,6 +756,8 @@ impl RecordedCommand {
                 slot: *slot,
                 target: GridPos::new(*x, *y),
             },
+            Self::UpgradeWeaponSets { set } => GameCommand::UpgradeWeaponSets { set: *set },
+            Self::SelectWeaponSet { set } => GameCommand::SelectWeaponSet { set: *set },
             Self::Equip { slot, item: value } => GameCommand::EquipWeapon {
                 slot: *slot,
                 item: item(*value)?,

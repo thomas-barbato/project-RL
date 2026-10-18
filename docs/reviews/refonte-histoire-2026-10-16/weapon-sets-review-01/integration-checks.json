@@ -1,0 +1,41 @@
+{
+  "review": "WEAPON-SETS-01",
+  "status": "accepted_and_integrated",
+  "debug_build": "passed",
+  "release_check": "passed",
+  "format_check": "passed",
+  "diff_check": "passed",
+  "engine_suite": {
+    "passed": 977,
+    "failed": 0
+  },
+  "client_feature_tests": {
+    "passed": 5,
+    "failed": 0
+  },
+  "client_focused_rechecks": {
+    "passed": 34,
+    "failed": 0
+  },
+  "native_captures": {
+    "count": 16,
+    "size": [
+      1920,
+      1080
+    ],
+    "game_state_preserved_by_drawing": true,
+    "no_review_save_written": true
+  },
+  "general_client_suite": "See suite-comparison.json and validation.md; 50 preexisting failures confirmed; full suite not rerun after corrections.",
+  "raw_log_hashes": {
+    "engine-tests-final.log": "01a9d8d29d36da5fd7719e3051d297e736b357943a759f18758b31a3ed273bd2",
+    "feature-tests.log": "feda80921c2023f6abb95338d6e0c861c317335cde961dc8f7e06150f1aace6a",
+    "client-tests.log": "5f667d88bd0d0cdb61f0c9cb7c89ffefda3e3a895c0d04f7bec7de55d3ae3698",
+    "release-check.log": "975d3a155547f5e58fbc88d61d88703c20fc846074193911af68067d386fd6d1"
+  },
+  "runtime_capture_mode": "--ui-cold-weapon-sets",
+  "runtime_capture_output": "artifacts/weapon-sets-review-01",
+  "visual_revision": "WEAPON-SETS-01-GHOST-02",
+  "visual_revision_checks": "ghost-hand-checks.json",
+  "cleanup": "pending_policy_blocked; see validation.md"
+}

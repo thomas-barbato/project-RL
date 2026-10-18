@@ -95,6 +95,27 @@ impl EquipmentLayout {
             .position(|slot| slot.contains(pointer.into()))
     }
 
+    pub(super) fn weapon_set_switch(&self) -> Rect {
+        let r = self.slots[4];
+        Rect::new(
+            self.panel.center().x - 18.,
+            r.y + (r.h - 36.) * 0.5,
+            36.,
+            36.,
+        )
+    }
+    pub(super) fn for_weapon_sets(mut self, enabled: bool) -> Self {
+        if enabled {
+            let w = (self.panel.w - 64.) * 0.5;
+            let y = self.slots[4].y;
+            let h = self.slots[4].h;
+            self.slots[4] = Rect::new(self.panel.right() - w, y, w, h);
+            self.slots[5] = Rect::new(self.panel.x, y, w, h);
+            self.slots[6] = Rect::new(-100., -100., 0., 0.);
+        }
+        self
+    }
+
     pub(super) fn appearance_clear(&self) -> Rect {
         let slot = self.slots[BODY_APPEARANCE_INDEX];
         Rect::new(slot.right() - 18.0, slot.y + 3.0, 15.0, 15.0)
@@ -150,6 +171,9 @@ impl AsciiApp {
         self.ux.inventory_tooltip_scroll.maximum.set(0.0);
     }
     pub(super) fn inventory_slot_instance(&self, index: usize) -> Option<ItemInstanceId> {
+        if index == 6 && self.game.rules().uses_weapon_sets() {
+            return None;
+        }
         if index == BODY_APPEARANCE_INDEX {
             self.game.player_equipment().body_appearance()
         } else if index < 4 {
@@ -164,10 +188,7 @@ impl AsciiApp {
             self.game.player_equipment().equipped(&id)
         } else {
             self.game
-                .rules()
-                .player_weapon_slots
-                .get(index - 4)
-                .and_then(|id| self.game.player_equipment().equipped(id))
+                .equipped_player_weapon_item(self.visible_hand_slot(index - 4))
         }
     }
 
@@ -230,7 +251,8 @@ impl AsciiApp {
     ) -> bool {
         let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
         let equipment = EquipmentLayout::new(layout, width, height)
-            .for_hands(self.game.rules().uses_weapon_hands());
+            .for_hands(self.game.rules().uses_weapon_hands())
+            .for_weapon_sets(self.game.rules().uses_weapon_sets());
         let previous = self.ux.inventory_tooltip;
         let pointer_changed = input.pointer != self.ux.inventory_pointer;
         self.ux.inventory_pointer = input.pointer;
@@ -298,6 +320,9 @@ impl AsciiApp {
             phosphor(),
         );
         for (index, rect) in equipment.slots.iter().copied().enumerate() {
+            if (4..=6).contains(&index) && self.game.rules().uses_weapon_sets() {
+                continue;
+            }
             let instance = self.inventory_slot_instance(index);
             let entry = instance.and_then(|id| self.game.player_inventory().get(id));
             let hovered = instance.is_some() && instance == self.ux.inventory_tooltip;
@@ -420,6 +445,7 @@ impl AsciiApp {
                 }
             }
         }
+        super::weapon_sets_app::draw_row(self, equipment);
     }
 
     pub(super) fn inventory_resource_gauges(&self) -> Vec<hud_resources::ResourceGauge> {

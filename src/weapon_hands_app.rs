@@ -3,6 +3,9 @@ use super::*;
 
 impl AsciiApp {
     pub(super) fn hand_slot_label(&self, index: usize) -> String {
+        if self.game.rules().uses_weapon_sets() {
+            return ["Main gauche", "Main droite"][index % 2].to_string();
+        }
         if self.game.rules().uses_weapon_hands() {
             ["Main gauche", "Main droite", "Deux mains"]
                 .get(index)
@@ -13,6 +16,9 @@ impl AsciiApp {
         }
     }
     pub(super) fn weapon_configuration_active(&self, index: usize) -> bool {
+        if self.game.rules().uses_weapon_sets() {
+            return index / 2 == self.game.player_active_weapon_set() as usize;
+        }
         if self.game.rules().uses_weapon_hands() {
             (index == 2) == (self.active_weapon_slot == 2)
         } else {
@@ -53,7 +59,9 @@ impl AsciiApp {
         item: ItemInstanceId,
         preferred: u8,
     ) -> CommandOutcome {
-        let slot = if self.game.rules().uses_weapon_hands() {
+        let slot = if self.game.rules().uses_weapon_sets() {
+            preferred.min(3)
+        } else if self.game.rules().uses_weapon_hands() {
             self.game
                 .player_item_weapon(item)
                 .map_or(preferred, |weapon| {
@@ -66,7 +74,7 @@ impl AsciiApp {
             preferred
         };
         if self.game.equipped_player_weapon_item(slot) == Some(item) {
-            self.active_weapon_slot = slot;
+            self.select_weapon_slot(slot);
             return CommandOutcome::AppliedWithoutTime;
         }
         let outcome = self.execute_command(GameCommand::EquipWeapon { slot, item });
@@ -74,7 +82,7 @@ impl AsciiApp {
             outcome,
             CommandOutcome::Applied | CommandOutcome::AppliedWithoutTime
         ) {
-            self.active_weapon_slot = slot;
+            self.select_weapon_slot(slot);
         }
         outcome
     }
@@ -85,7 +93,15 @@ mod tests {
     use super::*;
     fn fixture() -> AsciiApp {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap()
+        AsciiApp::from_seed_version(
+            INITIAL_SEED,
+            rules,
+            texts,
+            loot,
+            expeditions,
+            CRYOGENIC_CAMP_GENERATION_VERSION,
+        )
+        .unwrap()
     }
     #[test]
     fn equipment_colors_are_gated_and_carried_into_the_visible_configuration() {

@@ -830,9 +830,19 @@ impl WorldState {
             quests: self.quests.clone(),
             player_credits: self.player_credits,
         };
-        let payload = bincode::serialize(&snapshot)
-            .map_err(|error| format!("Impossible d'encoder l'instantané : {error}"))?;
-        let mut bytes = WORLD_SNAPSHOT_HEADER.to_vec();
+        let sets = self.rules().uses_weapon_sets();
+        let encode = || bincode::serialize(&snapshot);
+        let payload = if sets {
+            encode()
+        } else {
+            super::weapon_hands::set_codec::legacy(encode)
+        }
+        .map_err(|error| format!("Impossible d'encoder l'instantané : {error}"))?;
+        let mut bytes = if sets {
+            b"RLWS\x10".to_vec()
+        } else {
+            WORLD_SNAPSHOT_HEADER.to_vec()
+        };
         bytes.extend_from_slice(&payload);
         if bytes.len() > MAX_WORLD_SNAPSHOT_BYTES {
             return Err("Instantané moteur trop volumineux.".to_owned());
@@ -844,9 +854,13 @@ impl WorldState {
         if bytes.len() > MAX_WORLD_SNAPSHOT_BYTES {
             return Err("Instantané moteur trop volumineux.".to_owned());
         }
+        if bytes.starts_with(b"RLWS\x10") != rules.uses_weapon_sets() {
+            return Err("Emplacement d'équipement enregistré invalide.".to_owned());
+        }
         let legacy = bytes.starts_with(b"RLWS\x0c");
         let payload = bytes
-            .strip_prefix(WORLD_SNAPSHOT_HEADER)
+            .strip_prefix(b"RLWS\x10")
+            .or_else(|| bytes.strip_prefix(WORLD_SNAPSHOT_HEADER))
             .or_else(|| bytes.strip_prefix(b"RLWS\x0e"))
             .or_else(|| bytes.strip_prefix(b"RLWS\x0d"))
             .or_else(|| bytes.strip_prefix(b"RLWS\x0c"))
@@ -869,12 +883,20 @@ impl WorldState {
                 decode()
             }
         };
-        let snapshot: WorldStateSnapshot = if bytes.starts_with(WORLD_SNAPSHOT_HEADER) {
-            decode_version()
-        } else {
-            super::game_state::agent_runtime::with_legacy_encoding(decode_version)
-        }
-        .map_err(|error| format!("Instantané moteur incompatible : {error}"))?;
+        let decode_sets = || {
+            if bytes.starts_with(b"RLWS\x10") {
+                decode_version()
+            } else {
+                super::weapon_hands::set_codec::legacy(decode_version)
+            }
+        };
+        let snapshot: WorldStateSnapshot =
+            if bytes.starts_with(WORLD_SNAPSHOT_HEADER) || bytes.starts_with(b"RLWS\x10") {
+                decode_sets()
+            } else {
+                super::game_state::agent_runtime::with_legacy_encoding(decode_sets)
+            }
+            .map_err(|error| format!("Instantané moteur incompatible : {error}"))?;
         let world = Self {
             active: GameState::from_snapshot(snapshot.active, rules),
             narrative: snapshot.narrative,
@@ -891,6 +913,29 @@ impl WorldState {
             quests: snapshot.quests,
             player_credits: snapshot.player_credits,
         };
+        if world.rules().uses_weapon_sets() {
+            let mut instances = BTreeSet::new();
+            for set in 0..2 {
+                let pair = (set * 2..set * 2 + 2)
+                    .filter_map(|slot| {
+                        world
+                            .player_equipment()
+                            .equipped(&world.rules().player_weapon_slots[slot])
+                    })
+                    .collect::<Vec<_>>();
+                for &item in &pair {
+                    let weapon = world
+                        .player_item_weapon(item)
+                        .ok_or("Emplacement d'équipement enregistré invalide.")?;
+                    if !instances.insert(item)
+                        || pair.len() > 1
+                            && world.rules().weapon_hands(&weapon) == super::WeaponHands::Two
+                    {
+                        return Err("Emplacement d'équipement enregistré invalide.".to_owned());
+                    }
+                }
+            }
+        }
         let validate = |item: &ItemId, bonus: Option<MagicItemModifiers>| -> Result<(), String> {
             if let Some(effect) = bonus.as_ref().and_then(|bonus| bonus.effect_affix())
                 && world

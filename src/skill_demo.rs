@@ -29,9 +29,13 @@ impl Scene {
         let (mut app, template) = match reuse {
             Some(pair) => pair,
             None => {
-                let (mut template, texts, loot, expeditions) = ascii_game_content()?;
-                let classes = ascii_character_class_catalog()?;
-                let class = classes
+                // Reuse the loaded, unmodified rules/catalogues rather than
+                // reading and parsing all content/mod files on the first click.
+                // Apply the canonical class again: learned ranks and live
+                // equipment come from neither the host game nor its class.
+                let mut template = host.rules.clone();
+                let class = host
+                    .character_classes
                     .get(&"core:arcaniste".parse().unwrap())
                     .ok_or("Missing demo class")?;
                 class
@@ -40,9 +44,9 @@ impl Scene {
                 let app = Box::new(AsciiApp::from_seed(
                     724,
                     template.clone(),
-                    texts,
-                    loot,
-                    expeditions,
+                    host.texts.clone(),
+                    host.loot.clone(),
+                    host.expeditions.clone(),
                 )?);
                 (app, template)
             }

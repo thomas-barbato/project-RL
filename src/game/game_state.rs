@@ -424,6 +424,7 @@ pub struct GameState {
     player_skills: SkillProgressionState,
     player_inventory: Inventory,
     player_equipment: Equipment,
+    pub(super) active_weapon_set: u8,
     pub(super) ground_items: GroundItemRegistry,
     pub(super) movement_traces: MovementTraceMap,
     player_energy: EnergyReserve,
@@ -534,6 +535,8 @@ pub(super) struct GameStateSnapshot {
     threat_sources: Vec<ThreatSourceState>,
     #[serde(default, with = "agent_runtime::codec")]
     agent_runtime: agent_runtime::AgentRuntime,
+    #[serde(default, with = "super::weapon_hands::set_codec")]
+    active_weapon_set: u8,
 }
 
 impl GameState {
@@ -558,6 +561,7 @@ impl GameState {
             player_skills: self.player_skills.clone(),
             player_inventory: self.player_inventory.clone(),
             player_equipment: self.player_equipment.clone(),
+            active_weapon_set: self.active_weapon_set,
             ground_items: self.ground_items.clone(),
             last_monster_loot: self.last_monster_loot.clone(),
             movement_traces: self.movement_traces.clone(),
@@ -621,6 +625,7 @@ impl GameState {
             player_skills: snapshot.player_skills,
             player_inventory: snapshot.player_inventory,
             player_equipment: snapshot.player_equipment,
+            active_weapon_set: snapshot.active_weapon_set,
             ground_items: snapshot.ground_items,
             last_monster_loot: snapshot.last_monster_loot,
             movement_traces: snapshot.movement_traces,
@@ -820,6 +825,9 @@ impl Debug for GameState {
         }
         if let Some(rng) = self.cosmetic_rng {
             state.field("cosmetic_rng", &rng);
+        }
+        if self.active_weapon_set != 0 {
+            state.field("active_weapon_set", &self.active_weapon_set);
         }
         state.finish()
     }
@@ -1034,6 +1042,21 @@ impl GameState {
             let Some(weapon_id) = weapon_id else {
                 continue;
             };
+            if rules.uses_weapon_sets()
+                && rules
+                    .weapons
+                    .get(weapon_id)
+                    .is_some_and(|weapon| rules.weapon_hands(weapon) == super::WeaponHands::Two)
+                && rules
+                    .player_starting_equipment
+                    .get(index ^ 1)
+                    .is_some_and(Option::is_some)
+            {
+                return Err(GameInitError::StartingWeaponIncompatibleWithHands {
+                    slot: index as u8,
+                    weapon: weapon_id.clone(),
+                });
+            }
             if rules
                 .weapons
                 .get(weapon_id)
@@ -1168,6 +1191,7 @@ impl GameState {
             player_skills: starting_skills,
             player_inventory,
             player_equipment,
+            active_weapon_set: 0,
             ground_items: GroundItemRegistry::default(),
             last_monster_loot: None,
             movement_traces: MovementTraceMap::default(),
@@ -2042,6 +2066,7 @@ impl GameState {
         let equipment = if entity == self.player {
             self.player_equipment
                 .iter()
+                .filter(|(slot, _)| self.equipment_slot_is_active(slot))
                 .filter_map(|(_, item)| self.player_inventory.get(item))
                 .filter_map(|entry| {
                     self.rules
@@ -2111,6 +2136,7 @@ impl GameState {
     }
 
     pub fn equipped_player_weapon(&self, slot: u8) -> Option<&WeaponDefinition> {
+        let slot = self.player_weapon_slot_owner(slot);
         let slot_id = self.rules.player_weapon_slots.get(usize::from(slot))?;
         let item = self.player_equipment.equipped(slot_id)?;
         let entry = self.player_inventory.get(item)?;
@@ -2118,6 +2144,7 @@ impl GameState {
     }
 
     pub fn equipped_player_weapon_item(&self, slot: u8) -> Option<ItemInstanceId> {
+        let slot = self.player_weapon_slot_owner(slot);
         let slot_id = self.rules.player_weapon_slots.get(usize::from(slot))?;
         self.player_equipment.equipped(slot_id)
     }
@@ -2796,6 +2823,23 @@ impl GameState {
     }
 
     pub fn process_player_command(&mut self, command: GameCommand) -> CommandOutcome {
+        if self.rules.uses_weapon_sets() {
+            let slot = match &command {
+                GameCommand::Attack { slot, .. } | GameCommand::AttackAt { slot, .. } => {
+                    Some(*slot)
+                }
+                GameCommand::UseTechnique { weapon_slot, .. } => *weapon_slot,
+                GameCommand::UseTechniqueAt { weapon_slot, .. }
+                | GameCommand::UseTechniqueOnComponent { weapon_slot, .. } => Some(*weapon_slot),
+                _ => None,
+            };
+            if let Some(slot) =
+                slot.filter(|slot| *slot >= 4 || *slot / 2 != self.active_weapon_set)
+            {
+                return CommandOutcome::Rejected(CommandRejection::MissingEquipmentSlot(slot));
+            }
+        }
+
         let command = if let Some(technique) = self.agent_form_default_technique() {
             match command {
                 GameCommand::Attack { target, slot } => {
@@ -2825,7 +2869,14 @@ impl GameState {
             GameCommand::UseTechniqueAt { technique, .. } => Some(technique.clone()),
             _ => Some(crate::skills::agent::technique("cancel_channel")),
         };
-        if self.agent_weapon_stunned(self.player) && !matches!(command, GameCommand::Wait) {
+        if self.agent_weapon_stunned(self.player)
+            && !matches!(
+                command,
+                GameCommand::Wait
+                    | GameCommand::SelectWeaponSet { .. }
+                    | GameCommand::UpgradeWeaponSets { .. }
+            )
+        {
             return CommandOutcome::Rejected(CommandRejection::TechniqueHasNoActiveAction(
                 crate::skills::agent::technique("HL02"),
             ));
@@ -3037,6 +3088,41 @@ impl GameState {
                         CommandOutcome::Applied
                     }
                     Err(error) => CommandOutcome::Rejected(error.into()),
+                }
+            }
+            GameCommand::UpgradeWeaponSets { set } => {
+                if set > 1 || !self.rules.uses_legacy_weapon_hands() {
+                    CommandOutcome::Rejected(CommandRejection::MissingEquipmentSlot(
+                        set.saturating_mul(2),
+                    ))
+                } else {
+                    let heavy = self
+                        .player_equipment
+                        .unequip(&self.rules.player_weapon_slots[2]);
+                    self.rules.enable_weapon_sets();
+                    if let Some(item) = heavy {
+                        self.player_equipment
+                            .equip(
+                                self.rules.player_weapon_slots[2].clone(),
+                                item,
+                                &self.player_inventory,
+                            )
+                            .expect("previously equipped item remains owned");
+                    }
+                    self.active_weapon_set = set;
+                    self.refresh_equipment_resources();
+                    CommandOutcome::AppliedWithoutTime
+                }
+            }
+            GameCommand::SelectWeaponSet { set } => {
+                if !self.rules.uses_weapon_sets() || set > 1 {
+                    CommandOutcome::Rejected(CommandRejection::MissingEquipmentSlot(
+                        set.saturating_mul(2),
+                    ))
+                } else {
+                    self.active_weapon_set = set;
+                    self.refresh_equipment_resources();
+                    CommandOutcome::AppliedWithoutTime
                 }
             }
             GameCommand::EquipWeapon { slot, item } => match self.equip_player_weapon(slot, item) {
@@ -12852,6 +12938,31 @@ impl GameState {
         if !self.rules.weapon_fits_slot(weapon, usize::from(slot)) {
             return Err(EquipWeaponError::IncompatibleHands { slot, item });
         }
+        let double = self.rules.weapon_hands(weapon) == super::WeaponHands::Two;
+        let slot = if self.rules.uses_weapon_sets() && double {
+            slot & !1
+        } else {
+            slot
+        };
+        let equipment_slot = self.rules.player_weapon_slots[usize::from(slot)].clone();
+        if self.player_equipment.equipped(&equipment_slot) == Some(item) {
+            return Err(EquipWeaponError::AlreadyEquipped { slot, item });
+        }
+        let mut displaced_grip = None;
+        if self.rules.uses_weapon_sets() {
+            let partner = self.rules.player_weapon_slots[usize::from(slot ^ 1)].clone();
+            let partner_double = self
+                .player_equipment
+                .equipped(&partner)
+                .and_then(|id| self.player_item_weapon(id))
+                .is_some_and(|weapon| self.rules.weapon_hands(&weapon) == super::WeaponHands::Two);
+            if double || partner_double {
+                displaced_grip = self
+                    .player_equipment
+                    .unequip(&partner)
+                    .filter(|other| *other != item);
+            }
+        }
         let outcome = self
             .player_equipment
             .equip(equipment_slot.clone(), item, &self.player_inventory)
@@ -12863,7 +12974,7 @@ impl GameState {
             equipment_slot,
             item,
             weapon: weapon_id,
-            displaced: outcome.displaced,
+            displaced: outcome.displaced.or(displaced_grip),
         });
         Ok(())
     }
@@ -31093,6 +31204,7 @@ impl GameState {
         ]
         .into_iter()
         .map(|id| (id.into(), self.player_agent_skill_rank(id)))
+        .filter(|(_, rank)| !self.rules.uses_weapon_sets() || *rank > 0)
         .collect();
         let lost: Vec<String> = self
             .agent_runtime()

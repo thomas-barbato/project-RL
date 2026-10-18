@@ -1,0 +1,32 @@
+{
+  "review": "PERF-GLOBAL-01",
+  "date": "2026-10-18",
+  "request": "Optimisation générale du jeu ; la fenêtre de compétences en fait partie.",
+  "covered_by_diagnostics": [
+    "monde",
+    "pause et retour au monde",
+    "inventaire",
+    "ancien lecteur de compétences",
+    "aide",
+    "menu principal",
+    "feu persistant",
+    "fenêtre actuelle de compétences",
+    "exemples feu, froid et drone avec une boucle complète"
+  ],
+  "changes": [
+    "Chargement individuel des images dans les six banques d’effets ; la première utilisation ne charge plus toute la famille.",
+    "Premier exemple : copie des règles et catalogues déjà chargés, sans relecture des fichiers de contenu. Classe canonique réappliquée, règles du joueur non modifiées.",
+    "Wrapper d’inspection réservé aux captures compilé seulement en debug."
+  ],
+  "preserved": [
+    "dessins et filtres",
+    "géométrie et couleurs",
+    "timing et phases des animations",
+    "rangs et chiffres des compétences",
+    "état, RNG et historique de la partie hôte",
+    "formats de sauvegarde"
+  ],
+  "weapon_sets": "Deux ensembles main droite/main gauche restent une refonte fonctionnelle distincte ; ils ne sont pas implémentés dans ce lot de performances.",
+  "baseline_note": "Le diagnostic historique ouvrait le lecteur de compétences sans classe. Le diagnostic étendu couvre également la fenêtre de l’agent et ses vraies démonstrations.",
+  "validation_scope": "Mesures locales debug et contrôles ciblés ; aucune réussite de suite complète ou optimisation exhaustive de chaque sous-système n’est revendiquée."
+}

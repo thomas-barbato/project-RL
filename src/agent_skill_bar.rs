@@ -647,7 +647,7 @@ fn slots(panel: Rect) -> [Rect; 6] {
     })
 }
 
-fn bar_layout(panel: Rect, editing: bool) -> ([Rect; 6], Option<Rect>) {
+pub(super) fn bar_layout(panel: Rect, editing: bool) -> ([Rect; 6], Option<Rect>) {
     if editing {
         return (slots(Rect::new(panel.x, panel.y, panel.w, 52.)), None);
     }
@@ -665,6 +665,14 @@ pub(super) fn skill_window_close_rect(width: f32, height: f32) -> Rect {
 
 impl AsciiApp {
     fn next_bar_weapon_slot(&self) -> Option<u8> {
+        if self.game.rules().uses_weapon_sets() {
+            let first = (1 - self.game.player_active_weapon_set()) * 2;
+            return Some(
+                (first..first + 2)
+                    .find(|&slot| self.game.equipped_player_weapon(slot).is_some())
+                    .unwrap_or(first),
+            );
+        }
         let count = self.game.rules().player_weapon_slots.len().min(3);
         if count == 0 {
             return None;
@@ -714,7 +722,7 @@ impl AsciiApp {
         self.game.player_agent_skill_rank(id) > 0
             && project_rl::skills::agent::definition(id).is_some_and(|s| s.kind == "active")
     }
-    fn agent_skill_bar_panel(&self, editing: bool, w: f32, h: f32) -> Option<Rect> {
+    pub(super) fn agent_skill_bar_panel(&self, editing: bool, w: f32, h: f32) -> Option<Rect> {
         if editing {
             return Some(Rect::new(28., h - 124., w - 56., 96.));
         }
@@ -725,11 +733,26 @@ impl AsciiApp {
             self.navigation_signal_summary().is_some(),
         )
     }
+    pub(super) fn retains_agent_bar_skill(&self, id: &str) -> bool {
+        self.can_assign_agent_skill(id)
+            || self.game.rules().uses_weapon_sets()
+                && project_rl::skills::agent::definition(id)
+                    .is_some_and(|skill| skill.kind == "active")
+                && self.game.player_equipment().iter().any(|(_, instance)| {
+                    self.game
+                        .player_inventory()
+                        .get(instance)
+                        .and_then(|entry| {
+                            self.game.rules().equipment_agent_skills.get(entry.item())
+                        })
+                        .is_some_and(|grants| grants.get(id).is_some_and(|rank| *rank > 0))
+                })
+    }
     pub(super) fn sync_agent_skill_bar(&mut self) {
         for index in 0..self.ux.skill_bar.len() {
             if self.ux.skill_bar[index]
                 .as_deref()
-                .is_some_and(|id| !self.can_assign_agent_skill(id))
+                .is_some_and(|id| !self.retains_agent_bar_skill(id))
             {
                 self.ux.skill_bar[index] = None;
             }
@@ -1060,6 +1083,7 @@ impl AsciiApp {
                     UiTheme.text(),
                 );
             }
+            self.draw_weapon_set_badge(rect);
         }
         if let Some(drag) = &self.ux.skill_drag
             && drag.moved

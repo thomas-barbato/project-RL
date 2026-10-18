@@ -71,6 +71,8 @@ async fn main() {
             AsciiApp::capture_marker_pulse(&output).await
         } else if mode == "--ui-cold-skill-learn-buttons" {
             AsciiApp::capture_skill_learn_buttons(&output).await
+        } else if mode == "--ui-cold-weapon-sets" {
+            AsciiApp::capture_weapon_sets_review(&output).await
         } else if mode == "--ui-cold-skill-demo" {
             AsciiApp::capture_skill_demo(&output).await
         } else if matches!(

@@ -10,6 +10,7 @@ impl GameState {
         let penalty = if entity == self.player {
             self.player_equipment
                 .iter()
+                .filter(|(slot, _)| self.equipment_slot_is_active(slot))
                 .filter_map(|(_, item)| self.player_inventory.get(item))
                 .filter_map(|entry| self.rules.items.get(entry.item()))
                 .filter_map(|definition| definition.equipment())
@@ -461,6 +462,7 @@ impl GameState {
     ) -> u16 {
         self.player_equipment
             .iter()
+            .filter(|(slot, _)| self.equipment_slot_is_active(slot))
             .filter_map(|(_, item)| self.player_inventory.get(item))
             .filter_map(|entry| entry.magic_modifiers())
             .map(|bonus| value(&bonus))
@@ -494,6 +496,7 @@ impl GameState {
     pub fn player_attribute_bonus(&self, attribute: PrimaryAttribute) -> u16 {
         self.player_equipment
             .iter()
+            .filter(|(slot, _)| self.equipment_slot_is_active(slot))
             .filter_map(|(_, item)| self.player_inventory.get(item))
             .filter_map(|entry| entry.magic_modifiers())
             .map(|bonus| u16::from(bonus.attribute_bonus(attribute)))
@@ -548,7 +551,11 @@ impl GameState {
     pub fn player_item_attack_profile(&self, item: ItemInstanceId) -> Option<AttackProfile> {
         let entry = self.player_inventory.get(item)?;
         let attack = self.rules.weapons.get(entry.item())?.attack();
-        if self.player_equipment.slot_of(item).is_some() {
+        if self
+            .player_equipment
+            .slot_of(item)
+            .is_some_and(|slot| self.equipment_slot_is_active(slot))
+        {
             return Some(self.apply_equipped_attack_bonuses(attack));
         }
         Some(
@@ -562,6 +569,7 @@ impl GameState {
         let bonuses: Vec<_> = self
             .player_equipment
             .iter()
+            .filter(|(slot, _)| self.equipment_slot_is_active(slot))
             .filter_map(|(_, item)| self.player_inventory.get(item))
             .filter_map(|entry| entry.magic_modifiers())
             .collect();

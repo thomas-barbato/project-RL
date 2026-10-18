@@ -1,0 +1,31 @@
+{
+  "review": "WEAPON-SETS-01",
+  "date": "2026-10-18",
+  "visual_status": "accepted",
+  "visual_acceptance": "ok je valide ce visuel :)",
+  "reserved_hand_revision": {
+    "review": "WEAPON-SETS-01-GHOST-02",
+    "date": "2026-10-18",
+    "status": "accepted",
+    "request": "ou alors afficher exactement la meme image d'arme ... mais en transparent",
+    "summary_accepted": "Première main : image normale. Seconde main : exactement la même image semi-transparente, représentant une seule arme à deux mains.",
+    "acceptance": "oui c'est ca :)",
+    "implementation": "Existing item sprite, same size, orientation and palette; reserved hand opacity 0.3. No red fill, no new item instance, no equip-rule change."
+  },
+  "functional_scope_already_accepted": [
+    "Two free weapon sets with left and right hands",
+    "Only the active pair is shown",
+    "The inventory and skill-bar switches select the same set",
+    "A two-handed weapon occupies both hands as one inventory instance"
+  ],
+  "bonus_status": "accepted",
+  "bonus_question": "Pour les bonus des armes, je propose que seul l’ensemble actif apporte ses bonus et compétences accordées ; les armes en réserve restent équipées pour la permutation, mais sans effet sur le personnage. Valides-tu cette règle ?",
+  "bonus_acceptance": "Oui, bonus de l’ensemble actif uniquement",
+  "unchanged_rules": [
+    "Switching is timeless",
+    "Equipping retains its existing action cost",
+    "An ordinary attack uses one weapon",
+    "The active mixed pair selects melee at contact and ranged farther away",
+    "Weapon and actor art is reused"
+  ]
+}

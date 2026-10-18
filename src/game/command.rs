@@ -42,6 +42,12 @@ pub enum GameCommand {
         slot: u8,
         item: ItemInstanceId,
     },
+    SelectWeaponSet {
+        set: u8,
+    },
+    UpgradeWeaponSets {
+        set: u8,
+    },
     EquipItem {
         slot: EquipmentSlotId,
         item: ItemInstanceId,
@@ -162,6 +168,8 @@ impl GameCommand {
         !matches!(
             self,
             Self::SetAgentMineVariant { .. }
+                | Self::SelectWeaponSet { .. }
+                | Self::UpgradeWeaponSets { .. }
                 | Self::SetAgentGrenadeVariant { .. }
                 | Self::LearnTechnique { .. }
                 | Self::LearnAgentSkill { .. }

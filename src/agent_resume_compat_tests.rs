@@ -10,14 +10,17 @@ fn old_agent_v14_fixture() -> (Suspension, Vec<u8>) {
     class
         .apply_to_rules(&mut rules, class.recommended_attributes())
         .unwrap();
-    weapon_supplies_app::ensure_class_weapon_supplies(&mut rules, CURRENT_GENERATION_VERSION);
+    weapon_supplies_app::ensure_class_weapon_supplies(
+        &mut rules,
+        CRYOGENIC_CAMP_GENERATION_VERSION,
+    );
     let mut app = AsciiApp::from_seed_version(
         INITIAL_SEED,
         rules,
         texts,
         loot,
         expeditions,
-        CURRENT_GENERATION_VERSION,
+        CRYOGENIC_CAMP_GENERATION_VERSION,
     )
     .unwrap();
     app.character_class = Some(class_id);

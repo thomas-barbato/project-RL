@@ -412,10 +412,19 @@ pub(crate) fn draw_pistol_reference(rect: Rect, visual: Visual, side: u16) {
 }
 
 pub(crate) fn draw_item_variant(rect: Rect, id: &str, palette: EquipmentPalette) -> bool {
+    draw_item_variant_opacity(rect, id, palette, 1.)
+}
+
+pub(crate) fn draw_item_variant_opacity(
+    rect: Rect,
+    id: &str,
+    palette: EquipmentPalette,
+    opacity: f32,
+) -> bool {
     let Some(art) = item(id) else {
         return false;
     };
-    draw_portrait(rect, Visual::ColoredItem(art, palette));
+    palettes::draw_item(rect, art, palette, opacity);
     true
 }
 

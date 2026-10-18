@@ -1,4 +1,5 @@
 //! Accepted A01-A04 art and purple grading, driven only by presentation time.
+use crate::effect_geometry::LazyTexture;
 use macroquad::prelude::*;
 use project_rl::{entity::EntityId, world::GridPos};
 use std::cell::RefCell;
@@ -11,18 +12,17 @@ pub(super) struct SpellFlight {
     pub started: f64,
 }
 struct Art {
-    bolt: Texture2D,
-    burst: Texture2D,
+    bolt: LazyTexture,
+    burst: LazyTexture,
     purple: Material,
 }
 thread_local! { static ART: RefCell<Option<Art>> = const { RefCell::new(None) }; }
 impl Art {
     fn load() -> Self {
-        let bolt = crate::effect_geometry::texture(
+        let bolt = LazyTexture::fitted(
             include_bytes!("../assets/animations/agent/skill-animation-review-29/bolt-atlas.png"),
             FilterMode::Linear,
         );
-        bolt.set_filter(FilterMode::Linear);
         let purple = load_material(
             ShaderSource::Glsl {
                 vertex: r#"#version 100
@@ -55,11 +55,10 @@ colour.rgb=mix(colour.rgb,purple,violet*visible*0.96);gl_FragColor=colour;}"#,
             },
         )
         .expect("approved occult purple shader");
-        let burst = crate::effect_geometry::texture(
+        let burst = LazyTexture::fitted(
             include_bytes!("../assets/animations/agent/skill-animation-review-29/burst-atlas.png"),
             FilterMode::Linear,
         );
-        burst.set_filter(FilterMode::Linear);
         Self {
             bolt,
             burst,

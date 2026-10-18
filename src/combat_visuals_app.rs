@@ -385,6 +385,7 @@ mod tests {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
         app.prepare_cyberpunk_diagnostic("combat-review").unwrap();
+        app.select_weapon_slot(0); // These impact fixtures attack with the active knife.
         app
     }
 
@@ -644,7 +645,8 @@ mod tests {
                 .all(|cell| cell.blood == 0)
         );
         let encoded = app.encode_recovery_snapshot().unwrap();
-        let restored = AsciiApp::decode_recovery_snapshot(&encoded, app.rules.clone()).unwrap();
+        let restored =
+            AsciiApp::decode_recovery_snapshot(&encoded, app.game.rules().clone()).unwrap();
         assert_eq!(
             restored.presentation.terminal.combat_residue,
             app.terminal.combat_residue
@@ -656,7 +658,7 @@ mod tests {
         let mut app = fixture();
         app.capture_events_at(Some(0.0));
         let legacy = app.encode_recovery_snapshot().unwrap();
-        let old = AsciiApp::decode_recovery_snapshot(&legacy, app.rules.clone()).unwrap();
+        let old = AsciiApp::decode_recovery_snapshot(&legacy, app.game.rules().clone()).unwrap();
         assert!(old.presentation.terminal.combat_residue.cells.is_empty());
         app.terminal.combat_residue.cells.insert(
             GridPos::new(10, 9),
@@ -669,7 +671,8 @@ mod tests {
         let zone: ContentId = "core:combat_memory_test".parse().unwrap();
         app.zone_views.insert(zone.clone(), app.terminal.clone());
         let encoded = app.encode_recovery_snapshot().unwrap();
-        let restored = AsciiApp::decode_recovery_snapshot(&encoded, app.rules.clone()).unwrap();
+        let restored =
+            AsciiApp::decode_recovery_snapshot(&encoded, app.game.rules().clone()).unwrap();
         assert_eq!(
             restored.presentation.terminal.combat_residue,
             app.terminal.combat_residue
@@ -685,7 +688,7 @@ mod tests {
         assert!(
             AsciiApp::decode_recovery_snapshot(
                 &base64::engine::general_purpose::STANDARD.encode(bytes),
-                app.rules.clone()
+                app.game.rules().clone()
             )
             .is_err()
         );

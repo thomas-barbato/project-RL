@@ -346,11 +346,7 @@ impl GameState {
             f.rank = rank;
             f.expires = expires;
         } else {
-            let slots = if weapon_slot < 2 && self.rules.uses_weapon_hands() {
-                vec![0, 1]
-            } else {
-                vec![weapon_slot]
-            };
+            let slots = self.player_weapon_configuration_slots(weapon_slot);
             let mut types: BTreeMap<DamageType, u16> = BTreeMap::new();
             for slot in &slots {
                 if let Some(w) = self.resolved_equipped_player_weapon(*slot) {

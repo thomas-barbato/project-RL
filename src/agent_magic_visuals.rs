@@ -1,4 +1,5 @@
 //! Production adapters for approved painted spell atlases (no simulation state changes).
+use crate::effect_geometry::LazyTexture;
 use macroquad::miniquad::{UniformDesc, UniformType};
 use macroquad::prelude::*;
 use project_rl::{
@@ -17,30 +18,30 @@ pub(super) struct MagicFlight {
     pub cells: Option<Vec<GridPos>>,
 }
 struct Art {
-    flame: Texture2D,
-    nova: Texture2D,
-    wall: Texture2D,
-    wave: Texture2D,
-    storm: Texture2D,
-    shatter: Texture2D,
-    gel_rear: Texture2D,
-    gel_front: Texture2D,
-    spirit: Texture2D,
-    ray: Texture2D,
-    prison: Texture2D,
-    shot: Texture2D,
-    mutagen: Texture2D,
-    form_bolt: Texture2D,
-    form_pulse: Texture2D,
-    shadows: Texture2D,
-    tentacle: Texture2D,
+    flame: LazyTexture,
+    nova: LazyTexture,
+    wall: LazyTexture,
+    wave: LazyTexture,
+    storm: LazyTexture,
+    shatter: LazyTexture,
+    gel_rear: LazyTexture,
+    gel_front: LazyTexture,
+    spirit: LazyTexture,
+    ray: LazyTexture,
+    prison: LazyTexture,
+    shot: LazyTexture,
+    mutagen: LazyTexture,
+    form_bolt: LazyTexture,
+    form_pulse: LazyTexture,
+    shadows: LazyTexture,
+    tentacle: LazyTexture,
     clip: Material,
     masks: Vec<((GridPos, (i32, i32), u64, usize, usize, u64), Texture2D)>,
 }
 thread_local! {static ART:RefCell<Option<Art>>=const{RefCell::new(None)};}
 impl Art {
     fn load() -> Self {
-        let texture = |bytes: &[u8]| crate::effect_geometry::texture(bytes, FilterMode::Linear);
+        let texture = |bytes: &'static [u8]| LazyTexture::fitted(bytes, FilterMode::Linear);
         let clip=load_material(ShaderSource::Glsl{vertex:r#"#version 100
 attribute vec3 position;attribute vec2 texcoord;attribute vec4 color0;
 uniform mat4 Model;uniform mat4 Projection;varying highp vec2 point;varying highp vec2 uv;varying lowp vec4 tint;

@@ -139,6 +139,11 @@ mod recovery_worker;
 mod ux;
 #[path = "weapon_hands_app.rs"]
 mod weapon_hands_app;
+#[path = "weapon_sets_app.rs"]
+mod weapon_sets_app;
+#[cfg(debug_assertions)]
+#[path = "weapon_sets_review.rs"]
+mod weapon_sets_review;
 #[path = "world_context.rs"]
 mod world_context;
 
@@ -319,7 +324,8 @@ const MONSTER_MATERIAL_PALETTES_GENERATION_VERSION: u8 = CAMPAIGN_BESTIARY_GENER
 const MONSTER_BLUE_PALETTES_GENERATION_VERSION: u8 =
     MONSTER_MATERIAL_PALETTES_GENERATION_VERSION + 1;
 const CRYOGENIC_CAMP_GENERATION_VERSION: u8 = MONSTER_BLUE_PALETTES_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = CRYOGENIC_CAMP_GENERATION_VERSION;
+const WEAPON_SETS_GENERATION_VERSION: u8 = CRYOGENIC_CAMP_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = WEAPON_SETS_GENERATION_VERSION;
 
 #[cfg(test)]
 mod player_vision_revision_tests {
@@ -3328,7 +3334,8 @@ impl AsciiApp {
                     None,
                 );
                 let equipment = inventory_terminal::EquipmentLayout::new(&layout, w, h)
-                    .for_hands(app.game.rules().uses_weapon_hands());
+                    .for_hands(app.game.rules().uses_weapon_hands())
+                    .for_weapon_sets(app.game.rules().uses_weapon_sets());
                 let pointer = if scene.contains("-transmog") && !scene.ends_with("-empty") {
                     Some(equipment.slots[inventory_terminal::BODY_APPEARANCE_INDEX].center())
                 } else if scene.ends_with("equipped") {
@@ -7406,7 +7413,15 @@ impl AsciiApp {
         }
 
         if let Some(slot) = pressed_weapon_slot(&self.controls, input) {
-            self.select_weapon_slot(slot);
+            if self.game.rules().uses_weapon_sets() {
+                if slot == 2 {
+                    self.cycle_bar_weapon();
+                } else {
+                    self.select_weapon_slot(self.visible_hand_slot(slot as usize));
+                }
+            } else {
+                self.select_weapon_slot(slot);
+            }
             return;
         }
 
@@ -12770,9 +12785,20 @@ impl AsciiApp {
         let previous_zone = self.game.current_zone().map(|zone| zone.id.clone());
         let outcome = self.game.process_player_command(command);
         if !matches!(outcome, CommandOutcome::Rejected(_)) {
+            if self.game.rules().uses_weapon_sets()
+                && self.active_weapon_slot / 2 != self.game.player_active_weapon_set()
+            {
+                let first = self.game.player_active_weapon_set() * 2;
+                self.active_weapon_slot = (first..first + 2)
+                    .find(|&slot| self.game.equipped_player_weapon(slot).is_some())
+                    .unwrap_or(first);
+            }
             if self.game.rules().uses_weapon_hands()
-                && self.active_weapon_slot < 2
-                && let Some(slot) = used_weapon_slot.filter(|slot| *slot < 2)
+                && let Some(slot) = used_weapon_slot.filter(|slot| {
+                    self.game
+                        .player_weapon_configuration_slots(self.active_weapon_slot)
+                        .contains(slot)
+                })
             {
                 self.active_weapon_slot = slot;
             }
@@ -16357,11 +16383,11 @@ impl AsciiApp {
                 [("core:body_armor".to_owned(), entry.item().to_string())],
             );
         }
-        if self.game.rules().uses_weapon_hands() && self.active_weapon_slot < 2 {
+        if self.active_single_hand_pair() {
             if let crate::game_art::Visual::Player { hands, .. } = &mut visual {
                 *hands = Some(std::array::from_fn(|slot| {
                     self.game
-                        .equipped_player_weapon(slot as u8)
+                        .equipped_player_weapon(self.visible_hand_slot(slot))
                         .and_then(|weapon| crate::game_art::held_weapon(weapon.id().as_str()))
                 }));
             }
@@ -16389,9 +16415,9 @@ impl AsciiApp {
                     .map(|entry| entry.palette())
                     .unwrap_or_default()
             };
-            if self.game.rules().uses_weapon_hands() && self.active_weapon_slot < 2 {
-                palettes[1] = weapon_color(1);
-                palettes[2] = weapon_color(0);
+            if self.active_single_hand_pair() {
+                palettes[1] = weapon_color(self.visible_hand_slot(1) as usize);
+                palettes[2] = weapon_color(self.visible_hand_slot(0) as usize);
             } else {
                 palettes[1] = weapon_color(self.active_weapon_slot as usize);
                 palettes[2] = palettes[1];
@@ -16529,6 +16555,20 @@ impl AsciiApp {
     }
 
     fn select_weapon_slot(&mut self, slot: u8) {
+        if self.game.rules().uses_weapon_sets() {
+            if slot >= 4 {
+                return;
+            }
+            if slot / 2 != self.game.player_active_weapon_set() {
+                if self.execute_command(GameCommand::SelectWeaponSet { set: slot / 2 })
+                    != CommandOutcome::AppliedWithoutTime
+                {
+                    return;
+                }
+            }
+            self.active_weapon_slot = self.game.player_weapon_slot_owner(slot);
+            return;
+        }
         let Some(weapon) = self.game.equipped_player_weapon(slot) else {
             self.push_log(format!(
                 "{} : emplacement vide.",
@@ -18703,7 +18743,17 @@ impl AsciiApp {
         {
             return Some(format!(
                 "{}{}",
-                self.hand_slot_label(index),
+                if self.game.rules().uses_weapon_sets()
+                    && self.game.player_item_weapon(item).is_some_and(|weapon| self
+                        .game
+                        .rules()
+                        .weapon_hands(&weapon)
+                        == project_rl::game::WeaponHands::Two)
+                {
+                    "Deux mains".to_owned()
+                } else {
+                    self.hand_slot_label(index)
+                },
                 if self.weapon_configuration_active(index) {
                     if self.game.rules().uses_weapon_hands() {
                         " · actif"
@@ -19199,12 +19249,15 @@ impl AsciiApp {
                 .find(|(_, rect)| rect.contains(point.into()))
                 .map(|(index, _)| *index)
         });
-        let hovered_action = input.pointer.and_then(|point| {
-            layout
-                .actions
-                .iter()
-                .position(|rect| rect.contains(point.into()))
-        });
+        let hovered_action = input
+            .pointer
+            .and_then(|point| {
+                layout
+                    .actions
+                    .iter()
+                    .position(|rect| rect.contains(point.into()))
+            })
+            .filter(|index| *index != 2 || !self.game.rules().uses_weapon_sets());
         let hovered_filter = input.pointer.and_then(|point| {
             layout
                 .filters
@@ -19285,6 +19338,18 @@ impl AsciiApp {
             self.menu_focus.reset();
             return;
         }
+        let switch =
+            inventory_terminal::EquipmentLayout::new(&layout, width, height).weapon_set_switch();
+        if self.game.rules().uses_weapon_sets()
+            && (clicked
+                && input
+                    .pointer
+                    .is_some_and(|pointer| switch.contains(pointer.into()))
+                || self.controls.pressed(Action::Slot3, input))
+        {
+            self.cycle_bar_weapon();
+            return;
+        }
         if clicked && let Some(pointer) = input.pointer {
             let equipment = inventory_terminal::EquipmentLayout::new(&layout, width, height);
             if equipment.hit(pointer) == Some(inventory_terminal::BODY_APPEARANCE_INDEX) {
@@ -19311,6 +19376,7 @@ impl AsciiApp {
                 .and_then(|pointer| {
                     inventory_terminal::EquipmentLayout::new(&layout, width, height)
                         .for_hands(self.game.rules().uses_weapon_hands())
+                        .for_weapon_sets(self.game.rules().uses_weapon_sets())
                         .hit(pointer)
                 })
                 .and_then(|index| {
@@ -19319,7 +19385,7 @@ impl AsciiApp {
                 })
         {
             if index >= 4 {
-                self.select_weapon_slot((index - 4) as u8);
+                self.select_weapon_slot(self.visible_hand_slot(index - 4));
             }
             if !self
                 .inventory_entries()
@@ -19509,6 +19575,21 @@ impl AsciiApp {
         let Some(slot) = requested_slot else {
             return;
         };
+        let slot = if self.game.rules().uses_weapon_sets() {
+            self.visible_hand_slot(usize::from(slot).min(1))
+        } else {
+            slot
+        };
+        let slot = self
+            .game
+            .player_inventory()
+            .get(item)
+            .and_then(|entry| self.game.rules().weapons.get(entry.item()))
+            .filter(|weapon| {
+                self.game.rules().uses_weapon_sets()
+                    && self.game.rules().weapon_hands(weapon) == project_rl::game::WeaponHands::Two
+            })
+            .map_or(slot, |_| slot & !1);
         if self
             .game
             .rules()
@@ -19813,7 +19894,8 @@ impl AsciiApp {
         let selected = entries.get(self.inventory_selection).copied();
         let equipment =
             inventory_terminal::EquipmentLayout::new(&layout, self.ui_width(), self.ui_height())
-                .for_hands(self.game.rules().uses_weapon_hands());
+                .for_hands(self.game.rules().uses_weapon_hands())
+                .for_weapon_sets(self.game.rules().uses_weapon_sets());
         self.draw_inventory_equipment(&equipment);
         inventory_terminal::terminal_button(
             Rect::new(32.0 + layout.left_width + 12.0, 47.0, 145.0, 31.0),
@@ -19878,6 +19960,9 @@ impl AsciiApp {
                             }),
                 )
             } else {
+                if self.game.rules().uses_weapon_sets() && index == 2 {
+                    return (String::new(), false);
+                }
                 let action = [Action::Slot1, Action::Slot2, Action::Slot3][index];
                 (
                     format!(
@@ -19892,7 +19977,10 @@ impl AsciiApp {
                                 .weapons
                                 .get(entry.item())
                                 .is_some_and(|weapon| {
-                                    self.game.rules().weapon_fits_slot(weapon, index)
+                                    self.game.rules().weapon_fits_slot(
+                                        weapon,
+                                        self.visible_hand_slot(index) as usize,
+                                    )
                                 })
                         }),
                 )
@@ -21661,7 +21749,7 @@ impl AsciiApp {
             self.expeditions.clone(),
         )?;
         fresh.character_class = Some(class_id);
-        fresh.active_weapon_slot = fresh.preferred_starting_weapon_slot();
+        fresh.select_weapon_slot(fresh.preferred_starting_weapon_slot());
         self.poll_crash_recovery_worker(true);
         if !creation.replace_suspension && self.has_resume_data() {
             return Err(
@@ -21749,7 +21837,7 @@ impl AsciiApp {
                     return;
                 }
                 next_run.character_class = self.character_class.clone();
-                next_run.active_weapon_slot = next_run.preferred_starting_weapon_slot();
+                next_run.select_weapon_slot(next_run.preferred_starting_weapon_slot());
                 next_run.controls = self.controls.clone();
                 next_run.controls_path = self.controls_path.clone();
                 next_run.options_message = self.options_message.clone();
@@ -22885,11 +22973,18 @@ impl AsciiApp {
             )?
         };
         let mut restored_from_snapshot = false;
-        let snapshot_rules = if saved.version >= WEAPON_HANDS_GENERATION_VERSION {
+        let mut snapshot_rules = if saved.version >= WEAPON_HANDS_GENERATION_VERSION {
             restored.game.rules().clone()
         } else {
             restored.rules.clone()
         };
+        if saved
+            .commands
+            .iter()
+            .any(|command| matches!(command, RecordedCommand::UpgradeWeaponSets { .. }))
+        {
+            snapshot_rules.enable_weapon_sets();
+        }
         // Only the exact agent catalogue delta above can open an old-build
         // cache. The full legacy state is checked before installing additions.
         fn has_agent_v14_engine(source: &str) -> bool {
@@ -22987,6 +23082,11 @@ impl AsciiApp {
             return Err("Emplacement d'équipement enregistré invalide.".to_owned());
         }
         restored.active_weapon_slot = saved.active_weapon_slot;
+        if restored.game.rules().uses_weapon_sets()
+            && saved.active_weapon_slot / 2 != restored.game.player_active_weapon_set()
+        {
+            return Err("Emplacement d’équipement enregistré invalide.".to_owned());
+        }
         if let Some(target) = saved.selected_target {
             restored.selected_target = Some(
                 restored
@@ -23002,7 +23102,7 @@ impl AsciiApp {
         for (index, id) in saved.agent_skill_bar.iter().take(6).enumerate() {
             restored.ux.skill_bar[index] = id
                 .as_ref()
-                .filter(|id| restored.can_assign_agent_skill(id))
+                .filter(|id| restored.retains_agent_bar_skill(id))
                 .cloned();
         }
         let companions = restored.game.player_controlled_companions();
@@ -23195,6 +23295,7 @@ impl AsciiApp {
             ResumeSource::Suspension => 0,
             ResumeSource::CrashRecovery { sequence } => sequence,
         };
+        restored.migrate_weapon_sets()?;
         restored.last_crash_recovery_command_count = restored.history.len();
         restored.push_log(match source {
             ResumeSource::Suspension => "Partie reprise ; suspension consommée.".to_owned(),
@@ -23382,7 +23483,19 @@ impl AsciiApp {
                 )
             } else {
                 let action = actions[index - 1];
-                (action.name(), self.controls.label(action))
+                (
+                    if self.game.rules().uses_weapon_sets() {
+                        match action {
+                            Action::Slot1 => "Main gauche",
+                            Action::Slot2 => "Main droite",
+                            Action::Slot3 => "Changer d’arme",
+                            _ => action.name(),
+                        }
+                    } else {
+                        action.name()
+                    },
+                    self.controls.label(action),
+                )
             };
             if selected {
                 draw_rectangle(
@@ -24655,7 +24768,9 @@ fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules 
         rules.weapons = rules.weapons.without_id(&flamethrower);
         rules.statuses = rules.statuses.without_id(&burning);
     }
-    if version >= WEAPON_HANDS_GENERATION_VERSION {
+    if version >= WEAPON_SETS_GENERATION_VERSION {
+        rules.enable_weapon_sets();
+    } else if version >= WEAPON_HANDS_GENERATION_VERSION {
         rules.enable_weapon_hands();
     }
     rules
@@ -29290,7 +29405,7 @@ mod tests {
         assert_eq!(
             restored
                 .game
-                .equipped_player_weapon(2)
+                .equipped_player_weapon(0)
                 .map(|weapon| weapon.id().as_str()),
             Some("core:fusil_de_patrouille")
         );
@@ -29825,7 +29940,8 @@ mod tests {
                 .decode(&encoded)
                 .unwrap();
             assert_eq!(bytes, bincode::serialize(&legacy).unwrap());
-            let decoded = AsciiApp::decode_recovery_snapshot(&encoded, app.rules.clone()).unwrap();
+            let decoded =
+                AsciiApp::decode_recovery_snapshot(&encoded, app.game.rules().clone()).unwrap();
             assert_eq!(
                 decoded.game.recovery_snapshot_bytes().unwrap(),
                 legacy.engine
@@ -36589,10 +36705,10 @@ mod tests {
     }
 
     #[test]
-    fn a_new_run_equips_and_selects_the_flamethrower_on_channel_three() {
-        let mut app = app_with_test_controls_version(CURRENT_GENERATION_VERSION);
+    fn legacy_three_slot_run_equips_and_selects_the_flamethrower_on_channel_three() {
+        let mut app = app_with_test_controls_version(CRYOGENIC_CAMP_GENERATION_VERSION);
 
-        assert_eq!(app.generation_version, CURRENT_GENERATION_VERSION);
+        assert_eq!(app.generation_version, CRYOGENIC_CAMP_GENERATION_VERSION);
         assert_eq!(
             app.game
                 .equipped_player_weapon(2)

@@ -1,5 +1,6 @@
 //! Reviewed weapon drawings shared with the animation laboratory.
 //! Presentation time never changes skill counters or simulation state.
+use crate::effect_geometry::LazyTexture;
 use macroquad::prelude::*;
 use project_rl::{
     game::GameState,
@@ -9,21 +10,21 @@ use std::{cell::RefCell, collections::BTreeMap};
 
 const INK: Color = Color::new(0.025, 0.03, 0.035, 1.0);
 struct Art {
-    icons: BTreeMap<&'static str, Texture2D>,
-    jaw: Texture2D,
-    rocket: Texture2D,
-    blast: Texture2D,
-    claws: Texture2D,
-    impact: Texture2D,
-    plates: Texture2D,
-    reach: Texture2D,
-    line: Texture2D,
+    icons: BTreeMap<&'static str, LazyTexture>,
+    jaw: LazyTexture,
+    rocket: LazyTexture,
+    blast: LazyTexture,
+    claws: LazyTexture,
+    impact: LazyTexture,
+    plates: LazyTexture,
+    reach: LazyTexture,
+    line: LazyTexture,
 }
 thread_local! {static ART:RefCell<Option<Art>>=const {RefCell::new(None)};}
 impl Art {
     fn load() -> Self {
-        fn image(bytes: &[u8]) -> Texture2D {
-            crate::effect_geometry::texture(bytes, FilterMode::Linear)
+        fn image(bytes: &'static [u8]) -> LazyTexture {
+            LazyTexture::fitted(bytes, FilterMode::Linear)
         }
         Self {
             icons: [

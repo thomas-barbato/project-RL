@@ -9,7 +9,7 @@ mod rng;
 mod rules;
 mod weapon_hands;
 pub use equipment_upgrade::{EquipmentUpgradeQuote, EquipmentUpgradeRules};
-pub use weapon_hands::{WEAPON_HAND_SLOTS, WeaponHands};
+pub use weapon_hands::{WEAPON_HAND_SLOTS, WEAPON_SET_SLOTS, WeaponHands};
 mod threat;
 mod turn;
 

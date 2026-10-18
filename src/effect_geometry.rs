@@ -5,6 +5,73 @@ use project_rl::{combat::AttackPreview, world::GridPos};
 use std::cell::Cell;
 use std::{cell::RefCell, collections::HashMap};
 
+/// Decode and upload only when this particular drawing is actually used.
+/// Art banks can describe an entire skill family without loading every atlas.
+pub(crate) struct LazyTexture {
+    bytes: &'static [u8],
+    filter: FilterMode,
+    fitted: bool,
+    value: std::cell::OnceCell<Texture2D>,
+}
+impl LazyTexture {
+    pub(crate) fn fitted(bytes: &'static [u8], filter: FilterMode) -> Self {
+        Self::new(bytes, filter, true)
+    }
+    pub(crate) fn plain(bytes: &'static [u8], filter: FilterMode) -> Self {
+        Self::new(bytes, filter, false)
+    }
+    fn new(bytes: &'static [u8], filter: FilterMode, fitted: bool) -> Self {
+        let value = Self {
+            bytes,
+            filter,
+            fitted,
+            value: std::cell::OnceCell::new(),
+        };
+        #[cfg(debug_assertions)]
+        if EAGER_ASSETS.get() {
+            let _ = std::ops::Deref::deref(&value);
+        }
+        value
+    }
+}
+impl std::ops::Deref for LazyTexture {
+    type Target = Texture2D;
+    fn deref(&self) -> &Texture2D {
+        self.value.get_or_init(|| {
+            #[cfg(debug_assertions)]
+            let started = std::time::Instant::now();
+            let value = if self.fitted {
+                texture(self.bytes, self.filter)
+            } else {
+                let value = Texture2D::from_file_with_format(self.bytes, Some(ImageFormat::Png));
+                value.set_filter(self.filter);
+                value
+            };
+            #[cfg(debug_assertions)]
+            ASSET_LOADS.with_borrow_mut(|stats| {
+                stats.0 += 1;
+                stats.1 += self.bytes.len();
+                stats.2 += started.elapsed().as_secs_f64() * 1000.;
+            });
+            value
+        })
+    }
+}
+
+#[cfg(debug_assertions)]
+thread_local! {
+    static EAGER_ASSETS: Cell<bool> = const { Cell::new(false) };
+    static ASSET_LOADS: RefCell<(usize, usize, f64)> = const { RefCell::new((0, 0, 0.)) };
+}
+#[cfg(debug_assertions)]
+pub(crate) fn diagnostic_asset_loading(eager: bool) {
+    EAGER_ASSETS.set(eager);
+}
+#[cfg(debug_assertions)]
+pub(crate) fn diagnostic_asset_stats() -> (usize, usize, f64) {
+    ASSET_LOADS.with_borrow(|stats| *stats)
+}
+
 #[cfg(debug_assertions)]
 thread_local! { static FRAME_TIME: Cell<Option<f64>> = const { Cell::new(None) }; }
 pub fn presentation_time(now: f64) -> f64 {

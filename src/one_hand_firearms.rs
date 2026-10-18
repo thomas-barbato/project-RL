@@ -127,7 +127,7 @@ mod tests {
             assert!(visuals.get(&id).is_some());
             assert_eq!(rules.weapon_hands(weapon), WeaponHands::One);
             assert!(rules.weapon_fits_slot(weapon, 0) && rules.weapon_fits_slot(weapon, 1));
-            assert!(!rules.weapon_fits_slot(weapon, 2));
+            assert!(rules.weapon_fits_slot(weapon, 2) && rules.weapon_fits_slot(weapon, 3));
             let index = crate::game_art::held_weapon(id.as_str()).unwrap();
             assert_eq!(
                 crate::game_art::weapon_hold(index),
@@ -340,9 +340,12 @@ mod tests {
             ])
         );
         for slot in [0, 2] {
-            let before = app.game.recovery_snapshot_bytes().unwrap();
+            let before = app.game.turn();
+            let owned = app.game.player_inventory().clone();
             app.select_weapon_slot(slot);
-            assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), before);
+            assert_eq!(app.game.turn(), before);
+            assert_eq!(app.game.player_inventory(), &owned);
+            let engine = app.game.recovery_snapshot_bytes().unwrap();
             let saved = app.suspension().unwrap();
             let restored = AsciiApp::restore_suspension(
                 &saved,
@@ -353,7 +356,7 @@ mod tests {
             )
             .unwrap();
             assert_eq!(restored.front_player_visual(), app.front_player_visual());
-            assert_eq!(restored.game.recovery_snapshot_bytes().unwrap(), before);
+            assert_eq!(restored.game.recovery_snapshot_bytes().unwrap(), engine);
         }
     }
 

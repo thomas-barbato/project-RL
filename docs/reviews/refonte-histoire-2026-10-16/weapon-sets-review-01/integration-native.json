@@ -1,0 +1,167 @@
+{
+  "actual_engine_uses_two_sets": true,
+  "captures": [
+    {
+      "file": "metal-a-1-inventory.png",
+      "scenario": "a",
+      "screen": "inventory",
+      "set": 1,
+      "theme": "metal",
+      "two_handed": false,
+      "sha256": "7fe5729e7d9336df2c5ab3289ca3594e4d677e2933eedd111d88816ec0d525cb"
+    },
+    {
+      "file": "metal-a-1-hud.png",
+      "scenario": "a",
+      "screen": "hud",
+      "set": 1,
+      "theme": "metal",
+      "two_handed": false,
+      "sha256": "948c557242d37859b48d20de68ea41519053df4c5b17cf9a4d08664cc438979c"
+    },
+    {
+      "file": "metal-a-2-inventory.png",
+      "scenario": "a",
+      "screen": "inventory",
+      "set": 2,
+      "theme": "metal",
+      "two_handed": true,
+      "sha256": "b41cfe63aa694b2d38c3aa58fb24cf3200cf40fbf697c4b2f2013ca9ceb8545c"
+    },
+    {
+      "file": "metal-a-2-hud.png",
+      "scenario": "a",
+      "screen": "hud",
+      "set": 2,
+      "theme": "metal",
+      "two_handed": true,
+      "sha256": "1da19733438b70c9d4909c440bfd50d569914a16b75d4b5e47184e71f7b234ac"
+    },
+    {
+      "file": "metal-b-1-inventory.png",
+      "scenario": "b",
+      "screen": "inventory",
+      "set": 1,
+      "theme": "metal",
+      "two_handed": true,
+      "sha256": "4c57e8384087d99bd86fd13ce6f26b28ee17c4f3fcb158c2c5ef0b4e620c5c4d"
+    },
+    {
+      "file": "metal-b-1-hud.png",
+      "scenario": "b",
+      "screen": "hud",
+      "set": 1,
+      "theme": "metal",
+      "two_handed": true,
+      "sha256": "d1ae4864507e36082da5113ea1e2e7b5cd8cdbc212e626cd6485037ca08d592a"
+    },
+    {
+      "file": "metal-b-2-inventory.png",
+      "scenario": "b",
+      "screen": "inventory",
+      "set": 2,
+      "theme": "metal",
+      "two_handed": false,
+      "sha256": "261f4cc397bc5dcfe807c96776a804d5e216fc2e324b7b76338dc916eadc3e8c"
+    },
+    {
+      "file": "metal-b-2-hud.png",
+      "scenario": "b",
+      "screen": "hud",
+      "set": 2,
+      "theme": "metal",
+      "two_handed": false,
+      "sha256": "6406023557aa0ebb4ad5ca1d9b724ab159af1148536087e40505c06d6ba95a2f"
+    },
+    {
+      "file": "terminal-a-1-inventory.png",
+      "scenario": "a",
+      "screen": "inventory",
+      "set": 1,
+      "theme": "terminal",
+      "two_handed": false,
+      "sha256": "2e97d9c697359eb20e4ec4a33e1e5788d185021c38ddf56b247cc6943ed05d85"
+    },
+    {
+      "file": "terminal-a-1-hud.png",
+      "scenario": "a",
+      "screen": "hud",
+      "set": 1,
+      "theme": "terminal",
+      "two_handed": false,
+      "sha256": "4405e3a81d91917f4e267da7273cd199e3c2a9e1993c7f2624937fbb23c38049"
+    },
+    {
+      "file": "terminal-a-2-inventory.png",
+      "scenario": "a",
+      "screen": "inventory",
+      "set": 2,
+      "theme": "terminal",
+      "two_handed": true,
+      "sha256": "c24bd07f92aa05c1e2464e8353495faae4e057bf8b5b13ad5327832aee5749e7"
+    },
+    {
+      "file": "terminal-a-2-hud.png",
+      "scenario": "a",
+      "screen": "hud",
+      "set": 2,
+      "theme": "terminal",
+      "two_handed": true,
+      "sha256": "047628d0250a2e10eb33d369ff69e9db04e2f49e268d0ea5bdd963e3ec951a2c"
+    },
+    {
+      "file": "terminal-b-1-inventory.png",
+      "scenario": "b",
+      "screen": "inventory",
+      "set": 1,
+      "theme": "terminal",
+      "two_handed": true,
+      "sha256": "1b58f5ded642d604de890310c573718542757a89d8dac270972d09ec8a53cc1b"
+    },
+    {
+      "file": "terminal-b-1-hud.png",
+      "scenario": "b",
+      "screen": "hud",
+      "set": 1,
+      "theme": "terminal",
+      "two_handed": true,
+      "sha256": "b056051f16eb04f41dd4422d351efb4711f37f2975c7e67acd2d3a3c0b6064db"
+    },
+    {
+      "file": "terminal-b-2-inventory.png",
+      "scenario": "b",
+      "screen": "inventory",
+      "set": 2,
+      "theme": "terminal",
+      "two_handed": false,
+      "sha256": "719c9c9e150711a1dd82e6e6bdf03b386c387475bc768aaef95039a500802e62"
+    },
+    {
+      "file": "terminal-b-2-hud.png",
+      "scenario": "b",
+      "screen": "hud",
+      "set": 2,
+      "theme": "terminal",
+      "two_handed": false,
+      "sha256": "4712e396d8d6b90032a59aa127840bbc667af3fb691b5325ef323f847ed4e260"
+    }
+  ],
+  "draws_preserve_engine_snapshot": true,
+  "existing_art_only": true,
+  "history_commands_added": 21,
+  "inventory_instances_preserved": 6,
+  "native_size": [
+    1920,
+    1080
+  ],
+  "normal_game_changed": true,
+  "reserved_hand_opacity": 0.3,
+  "review": "WEAPON-SETS-01",
+  "status": "integrated",
+  "visual_revision": "WEAPON-SETS-01-GHOST-02",
+  "no_review_save_written": true,
+  "visually_inspected": [
+    "metal-a-2-inventory.png",
+    "terminal-b-1-inventory.png"
+  ]
+}

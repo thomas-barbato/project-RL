@@ -1,4 +1,5 @@
 //! Native rendering of the already approved mine, grenade and residue artwork.
+use crate::effect_geometry::LazyTexture;
 use macroquad::miniquad::{
     BlendFactor, BlendState, BlendValue, Equation, PipelineParams, UniformDesc, UniformType,
 };
@@ -14,22 +15,20 @@ struct Mask {
     texture: Texture2D,
 }
 struct Art {
-    mine: Texture2D,
-    flame: Texture2D,
-    ice: Texture2D,
-    gas: Texture2D,
-    bursts: [Texture2D; 3],
-    fragment: Texture2D,
-    grenades: Texture2D,
+    mine: LazyTexture,
+    flame: LazyTexture,
+    ice: LazyTexture,
+    gas: LazyTexture,
+    bursts: [LazyTexture; 3],
+    fragment: LazyTexture,
+    grenades: LazyTexture,
     clip: Material,
     lens: Material,
     masks: Vec<Mask>,
     born: std::collections::BTreeMap<u64, f64>,
 }
-fn load(bytes: &[u8]) -> Texture2D {
-    let t = Texture2D::from_file_with_format(bytes, Some(ImageFormat::Png));
-    t.set_filter(FilterMode::Linear);
-    t
+fn load(bytes: &'static [u8]) -> LazyTexture {
+    LazyTexture::plain(bytes, FilterMode::Linear)
 }
 const VERTEX: &str = r#"#version 100
 attribute vec3 position;attribute vec2 texcoord;attribute vec4 color0;uniform mat4 Model;uniform mat4 Projection;

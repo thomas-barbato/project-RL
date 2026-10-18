@@ -35,7 +35,7 @@ impl AsciiApp {
         }
         let rifle_slot = if rules.uses_weapon_hands() { 2 } else { 0 };
         rules.player_starting_equipment[rifle_slot] = Some(rifle.clone());
-        self.active_weapon_slot = rifle_slot as u8;
+
         rules.player_starting_items.push(StartingItemStack {
             item: "core:plastron_bastion".parse().unwrap(),
             quantity: 1,
@@ -170,7 +170,7 @@ impl AsciiApp {
         game.drain_events();
         self.game = WorldState::single(game);
         self.character_class = Some("core:breche".parse().unwrap());
-        self.active_weapon_slot = rifle_slot as u8;
+        self.select_weapon_slot(rifle_slot as u8);
         self.selected_world_cell = Some(GridPos::new(5, 8));
         self.selected_target = None;
         if scene == "cyberpunk-actor" {

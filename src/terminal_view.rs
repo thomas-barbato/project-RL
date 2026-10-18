@@ -2169,6 +2169,7 @@ pub(crate) fn capture_inspection_in_layout(
     Some(inspection)
 }
 
+#[cfg(debug_assertions)]
 pub(crate) fn draw_inspection_panel(inspection: Rect, target: Option<&TerminalTargetSummary>) {
     draw_inspection_panel_with_pointer(inspection, target, None);
 }

@@ -1,0 +1,79 @@
+{
+  "review": "WEAPON-SETS-01-GHOST-02",
+  "date": "2026-10-18",
+  "status": "accepted_and_integrated",
+  "reserved_hand_opacity": 0.3,
+  "single_inventory_instance": true,
+  "debug_build": "passed",
+  "release_check": "passed",
+  "feature_tests": {
+    "passed": 5,
+    "failed": 0
+  },
+  "format_check": "passed",
+  "diff_check": "passed",
+  "capture_count": 16,
+  "game_state_unchanged_by_draw": true,
+  "inventory_instances_preserved": 6,
+  "pixel_checks": [
+    {
+      "file": "metal-a-1-inventory.png",
+      "two_handed": false,
+      "primary_image_region_unchanged": true,
+      "whole_hand_row_unchanged": false
+    },
+    {
+      "file": "metal-a-2-inventory.png",
+      "two_handed": true,
+      "primary_image_region_unchanged": true,
+      "whole_hand_row_unchanged": false
+    },
+    {
+      "file": "metal-b-1-inventory.png",
+      "two_handed": true,
+      "primary_image_region_unchanged": true,
+      "whole_hand_row_unchanged": false
+    },
+    {
+      "file": "metal-b-2-inventory.png",
+      "two_handed": false,
+      "primary_image_region_unchanged": true,
+      "whole_hand_row_unchanged": false
+    },
+    {
+      "file": "terminal-a-1-inventory.png",
+      "two_handed": false,
+      "primary_image_region_unchanged": true,
+      "whole_hand_row_unchanged": true
+    },
+    {
+      "file": "terminal-a-2-inventory.png",
+      "two_handed": true,
+      "primary_image_region_unchanged": true,
+      "whole_hand_row_unchanged": false
+    },
+    {
+      "file": "terminal-b-1-inventory.png",
+      "two_handed": true,
+      "primary_image_region_unchanged": true,
+      "whole_hand_row_unchanged": false
+    },
+    {
+      "file": "terminal-b-2-inventory.png",
+      "two_handed": false,
+      "primary_image_region_unchanged": true,
+      "whole_hand_row_unchanged": true
+    }
+  ],
+  "pixel_check_limit": "All 8 primary item regions are identical. Both single-hand terminal rows are identical; metal row hashes differ. No claim of full-image pixel equivalence is made.",
+  "visually_inspected": [
+    "metal-a-2-inventory.png",
+    "terminal-b-1-inventory.png",
+    "metal-a-1-inventory.png"
+  ],
+  "full_engine_and_client_suites_rerun_for_tint_change": false,
+  "cleanup": {
+    "status": "pending",
+    "reason": "Previous temporary-validation deletion was rejected by automatic policy review: blocked by policy; no deletion performed."
+  }
+}

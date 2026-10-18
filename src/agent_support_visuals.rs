@@ -1,26 +1,23 @@
 //! Already approved protection, healing, spectral and curse presentation.
+use crate::effect_geometry::LazyTexture;
 use macroquad::prelude::*;
 use project_rl::{game::GameState, world::GridPos};
 use std::cell::RefCell;
 struct Art {
-    egide: Texture2D,
-    thorns: Texture2D,
-    regeneration: Texture2D,
-    purge: Texture2D,
-    wings: Texture2D,
-    reanimation: Texture2D,
-    icons: Vec<(&'static str, Texture2D)>,
+    egide: LazyTexture,
+    thorns: LazyTexture,
+    regeneration: LazyTexture,
+    purge: LazyTexture,
+    wings: LazyTexture,
+    reanimation: LazyTexture,
+    icons: Vec<(&'static str, LazyTexture)>,
     marker: Material,
     ghost: Material,
 }
 thread_local! {static ART:RefCell<Option<Art>>=const{RefCell::new(None)};}
 impl Art {
     fn load() -> Self {
-        let texture = |b: &[u8]| {
-            let t = Texture2D::from_file_with_format(b, Some(ImageFormat::Png));
-            t.set_filter(FilterMode::Linear);
-            t
-        };
+        let texture = |b: &'static [u8]| LazyTexture::plain(b, FilterMode::Linear);
         let shader = |fragment: &'static str| {
             load_material(ShaderSource::Glsl{vertex:r#"#version 100
 attribute vec3 position;attribute vec2 texcoord;attribute vec4 color0;uniform mat4 Model;uniform mat4 Projection;varying highp vec2 uv;varying lowp vec4 tint;void main(){uv=texcoord;tint=color0/255.0;gl_Position=Projection*Model*vec4(position,1.0);}"#,fragment},MaterialParams{pipeline_params:macroquad::miniquad::PipelineParams{color_blend:Some(macroquad::miniquad::BlendState::new(macroquad::miniquad::Equation::Add,macroquad::miniquad::BlendFactor::Value(macroquad::miniquad::BlendValue::SourceAlpha),macroquad::miniquad::BlendFactor::OneMinusValue(macroquad::miniquad::BlendValue::SourceAlpha))),..Default::default()},..Default::default()}).expect("approved support material")

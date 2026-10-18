@@ -1,4 +1,5 @@
 //! FE05-A07 projectile/explosion and approved ANIM-OVER02 body-attached Burn.
+use crate::effect_geometry::LazyTexture;
 use macroquad::prelude::*;
 use project_rl::world::{GridPos, Map, has_line_of_sight};
 use std::cell::RefCell;
@@ -11,14 +12,14 @@ pub(super) struct Fireball {
     pub cells: Option<Vec<GridPos>>,
 }
 struct Art {
-    ball: Texture2D,
-    blast: Texture2D,
-    flame: Texture2D,
+    ball: LazyTexture,
+    blast: LazyTexture,
+    flame: LazyTexture,
 }
 thread_local! {static ART:RefCell<Option<Art>>=const{RefCell::new(None)};}
 impl Art {
     fn load() -> Self {
-        let texture = |bytes: &[u8]| crate::effect_geometry::texture(bytes, FilterMode::Linear);
+        let texture = |bytes: &'static [u8]| LazyTexture::fitted(bytes, FilterMode::Linear);
         Self {
             ball: texture(include_bytes!(
                 "../assets/animations/agent/skill-animation-review-16/projectile-atlas.png"

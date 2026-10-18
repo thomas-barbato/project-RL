@@ -1,0 +1,50 @@
+{
+  "baseline": [
+    20,
+    7159591,
+    1193.0778
+  ],
+  "optimized": [
+    5,
+    1578725,
+    249.9415
+  ],
+  "textures_loaded": [
+    20,
+    5
+  ],
+  "diagnostic_scope": "three base examples: fire, cold, drone",
+  "note": "Local debug samples; rendering FPS is not claimed to improve globally. Texture loading costs decrease while frame timings vary. Legacy unclassified reader and actual agent reader are separate scenes.",
+  "checks": {
+    "debug_build": "passed",
+    "release_check": "passed_without_warnings",
+    "targeted_68_demo_isolation_test": "passed",
+    "format": "passed",
+    "diff_check": "passed",
+    "camp_turn_diagnostic": "passed: 80 moves and 80 waits, with/without profiling; 320 commands total; identical saved bytes",
+    "quiet_camp_command_medians_ms": {
+      "camp-walk": 0.4205,
+      "camp-wait": 0.1872
+    },
+    "full_suite": "not run; targeted validation only"
+  },
+  "initial_turn_diagnostic": "Legacy recycling route failed on the current camp; replaced by a walkable adjacent cell at the current spawn.",
+  "reproduce": {
+    "render": "target/debug/project-rl.exe --ui-cold-performance artifacts/performance-globale-2026-10-18/after",
+    "eager_effect_control": "target/debug/project-rl.exe --ui-cold-performance artifacts/performance-globale-2026-10-18/eager --eager-effects",
+    "turns": "target/debug/project-rl.exe --ui-cold-performance-turns artifacts/performance-globale-2026-10-18/turns",
+    "native": "target/debug/project-rl.exe --ui-cold-skill-demo artifacts/performance-globale-2026-10-18/native"
+  },
+  "cleanup": {
+    "native_raw_frames": 1632,
+    "bytes": 695623680,
+    "method": "Recycle Bin after pixel comparison",
+    "accepted_preview_retained": true,
+    "map_editor_untouched": true
+  },
+  "remaining_scope": [
+    "Difficult AI/pathfinding encounters and generation/save stalls require dedicated measurements; quiet camp timing does not represent combat.",
+    "Steady rendering times vary in these debug runs; no global FPS gain is claimed.",
+    "Two weapon sets remain a separate upcoming functional change."
+  ]
+}
