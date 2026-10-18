@@ -100,7 +100,8 @@ mod tests {
     #[test]
     fn tactical_projection_reuses_frames_and_tracks_emitter_expiry_without_mutation() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
+        let mut app =
+            AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
         app.enter_installation_annex().unwrap();
         let source = GridPos::new(10, 7);
         app.walk_fixture_to_unchecked(source.step(Direction::East))

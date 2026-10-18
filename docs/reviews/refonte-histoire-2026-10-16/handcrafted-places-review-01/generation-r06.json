@@ -1,0 +1,44 @@
+{
+  "place": "PLACE-CAMP-01",
+  "revision": "r06",
+  "tool": "built-in imagegen",
+  "new_extension_approved": false,
+  "jobs": [
+    {
+      "id": "architecture",
+      "prompt": "Use case: stylized-concept, production game environment extension.\nInput image 1: the approved game camp with native-sized characters and furnishings, scale/style reference only. Input image 2: its empty architecture, material and camera reference.\nCreate ONLY a new empty cryogenics room extension to attach on the LEFT of that approved camp. Do NOT redraw the existing camp.\nOutput one architectural module with an EXACT landscape aspect ratio 640:576. Intended final native size 640 by 576 pixels, with a 64-pixel game grid. Highest useful generation resolution. No border/margin outside the specified room.\nExact layout in final-native coordinates: the square room occupies x0..576,y0..576. Its charcoal steel perimeter walls have the same 40–55 px apparent thickness and camera/facing as the reference. Interior floor approximately x64..512,y64..512. The right wall has one visibly OPEN, unobstructed doorway centered at y288, spanning y256..320. A short horizontal floor corridor/stub continues from this opening to the right image edge, across x576..640,y256..320, so it will join the existing camp's left entrance. Everything outside room and corridor is the same nearly-black charcoal void as the reference. No other doors.\nThe room is UNFURNISHED: no pods yet, no people, no terminals or freestanding objects. Cryogenic pods will be placed separately at their native game scale. Preserve the reference's exact orthogonal slightly-top-down camera, illustrated charcoal steel wall volumes, heavy corner caps, cables, vents, muted grey/olive floor slabs and restrained warm amber wall lamps. Continuous floor throughout the doorway, no crossbar/lintel obscuring the opening, no floating door parts. Do not use an isometric perspective, photorealism, shiny 3D, fluorescent neon lighting, sci-fi circles, labels, text, numbers, furniture, symbols, UI or character art.\nThis is one original room module matching the supplied architecture, not an overview of the camp.",
+      "tool": "built-in imagegen",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r06/architecture-source-r06.png",
+      "transparent_background": false,
+      "sha256": "fc80c06dde63b8fe0aee7dab5aeca1e531fc487f45e6c208b155e0e72397844a",
+      "size": [
+        1322,
+        1190
+      ]
+    },
+    {
+      "id": "pods",
+      "prompt": "Use case: stylized-concept, production native game sprites.\nInput image 1: the approved camp at its true game scale. Input image 2: empty camp architecture. Both are style/camera/scale references.\nGenerate a small transparent-background source atlas with EXACTLY TWO original cryogenic containment pods side by side, separated widely with empty alpha margin. No floor, walls, UI, words, labels, numbers, cast shadow, haze or backdrop.\nLeft object: CLOSED upright human cryogenic tank. Industrial charcoal/olive steel frame, a tall rounded rectangular muted blue-green frosted glass window, heavy base and modest lid, one tiny amber status lamp. Through the heavily obscured glass, only an anonymous dark human head/torso silhouette suggests another candidate remains in stasis; no readable face, no detailed character illustration. Restrained dirty industrial look matching our camp.\nRight object: the SAME upright pod in OPEN EMPTY state after the player has left it. The glass panel is retracted into the housing or folded snug against the side, not a wide swinging glass door. An empty dark padded human-sized recess is clearly visible. No body, corpse or fluid spilling out. Keep its overall outer shape and width nearly the same as the closed pod.\nBoth full objects face the same front/slightly-top-down orthogonal camera as the reference's cabinets, not isometric. Strong dark outlines, broad painted/cel-shaded surfaces, simplified readable shapes, muted steel/olive/dirty ivory materials. Small cooled-glass accents are allowed; no glow cloud. Designed to be read at FINAL NATIVE dimensions: closed pod44x96 pixels, open pod48x96 pixels; native human sprite65px tall. The pod must be realistically large enough for a human, a little taller than the player, not a huge room-sized tank. Render source larger, keeping details coarse and readable when reduced. No wires or hoses outside its silhouette. Two source objects only on genuine alpha, uncut, with ample transparent spacing.",
+      "tool": "built-in imagegen",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r06/pods-source-r06.png",
+      "transparent_background": true,
+      "sha256": "f098383bb29dfaace18a55e46c7dcca9157c3f98872877478e569a8eb7dc7482",
+      "size": [
+        1774,
+        887
+      ]
+    },
+    {
+      "id": "architecture-open",
+      "prompt": "Use case: precise-object-edit. Edit ONLY the right-hand doorway in this original room image. Preserve all other room pixels, room shape, composition, walls, floor, lamps, materials and view. The vertical yellow-and-black stripe/panel currently runs through the doorway and makes it appear closed. Remove that entire stripe and any central standing panel between the upper and lower attached wall ends. The room floor must continue clearly and uninterrupted through the opening into the short corridor on the right. A subtle flat metal floor threshold is acceptable but no vertical bar, no column, no lintel, no obstacle in the passage, no detached hardware. Leave both wall ends attached to the perimeter. No furniture or characters. No other changes. Keep the same dimensions and framing.",
+      "tool": "built-in imagegen",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r06/architecture-open-source-r06.png",
+      "transparent_background": false,
+      "sha256": "68c4e7dc3d65e5e1eef262dae17c93667e195ae17dae6ec7fc98e86d61f5f177",
+      "size": [
+        1322,
+        1190
+      ]
+    }
+  ]
+}

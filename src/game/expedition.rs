@@ -1010,6 +1010,33 @@ impl WorldState {
         &self.active
     }
 
+    /// Rebuild immutable content obstacles after loading a binary cache.
+    /// Map intentionally omits this derived layer from legacy serialization.
+    /// Call before verifying the loaded world's fingerprint; no turn or RNG use.
+    pub fn restore_static_zone_obstructions(
+        &mut self,
+        zone: &ContentId,
+        obstacles: &[(GridPos, bool, bool)],
+    ) -> Result<(), String> {
+        let map = if self.current.as_ref() == Some(zone) {
+            &mut self.active.map
+        } else if let Some(state) = self.inactive.get_mut(zone) {
+            &mut state.map
+        } else if let Some(blueprint) = self.pending.get_mut(zone) {
+            &mut blueprint.map
+        } else {
+            return Err("Unknown zone for static obstacle reconstruction".into());
+        };
+        if obstacles.iter().any(|(at, _, _)| !map.contains(*at)) {
+            return Err("Static obstacle outside its zone".into());
+        }
+        for &(at, movement, vision) in obstacles {
+            map.set_obstruction(at, movement, vision)
+                .map_err(|e| e.to_string())?;
+        }
+        Ok(())
+    }
+
     pub fn player_may_take_property_of(&self, owner: &SocialGroupId) -> bool {
         self.active.player_may_take_property_of(owner)
     }
@@ -1040,10 +1067,27 @@ impl WorldState {
 
     fn layer_travel_allowed(&self, source: &ContentId, destination: &ContentId) -> bool {
         !self.rules().irreversible_layer_travel
+            // The new starting refuge remains accessible from its adjoining
+            // sector. Historical runs and deeper one-way passages retain their
+            // rules; no serialized state or generation identity changes.
+            || self.is_cryogenic_camp_access(source, destination)
             || self
                 .zone_info(source)
                 .zip(self.zone_info(destination))
                 .is_some_and(|(source, destination)| destination.depth >= source.depth)
+    }
+
+    fn is_cryogenic_camp_access(&self, source: &ContentId, destination: &ContentId) -> bool {
+        self.zone_info(source)
+            .zip(self.zone_info(destination))
+            .is_some_and(|(source, destination)| {
+                (source.id.as_str() == "core:cryogenic_camp"
+                    && source.depth == 0
+                    && destination.depth == 1)
+                    || (destination.id.as_str() == "core:cryogenic_camp"
+                        && destination.depth == 0
+                        && source.depth == 1)
+            })
     }
 
     pub fn passage_returns_to_previous_layer(&self, link: &ZoneLink) -> bool {
@@ -1057,7 +1101,10 @@ impl WorldState {
             && self
                 .current_zone()
                 .zip(self.zone_info(&link.destination))
-                .is_some_and(|(source, destination)| destination.depth > source.depth)
+                .is_some_and(|(source, destination)| {
+                    destination.depth > source.depth
+                        && !self.is_cryogenic_camp_access(&source.id, &destination.id)
+                })
     }
 
     /// Returns the first passage of a route that only crosses zones the player
@@ -1392,7 +1439,13 @@ impl WorldState {
                 quests: quests.clone(),
             });
         }
-        if !quests.is_empty() || self.narrative_character(provider).is_some() {
+        if !quests.is_empty()
+            || self.narrative_character(provider).is_some()
+            || actor
+                .tags()
+                .iter()
+                .any(|tag| tag.as_str() == "core:conversation_contact")
+        {
             return Some(NpcInteraction {
                 provider,
                 position,
@@ -5140,6 +5193,38 @@ mod tests {
             "#########\n#.......#\n#.......#\n#.......#\n#.......#\n#.......#\n#########",
         )
         .unwrap()
+    }
+
+    #[test]
+    fn cryogenic_camp_access_is_reversible_without_opening_deeper_or_legacy_layers() {
+        let rules = GameRules {
+            irreversible_layer_travel: true,
+            ..GameRules::default()
+        };
+        let game = GameState::new_with_rules(map(), GridPos::new(1, 1), 42, rules).unwrap();
+        let mut world = WorldState::single(game);
+        let camp: ContentId = "core:cryogenic_camp".parse().unwrap();
+        let mut camp_info = info("camp", 0);
+        camp_info.id = camp.clone();
+        world.enable(camp_info).unwrap();
+        for (name, depth) in [("first", 1), ("deep", 2), ("legacy", 0)] {
+            world
+                .add_zone(ZoneBlueprint {
+                    info: info(name, depth),
+                    map: map(),
+                    entrance: GridPos::new(1, 1),
+                    seed: 888,
+                    actors: vec![],
+                    loot: vec![],
+                    threat_sources: vec![],
+                })
+                .unwrap();
+        }
+        assert!(world.layer_travel_allowed(&id("first"), &camp));
+        assert!(world.layer_travel_allowed(&camp, &id("first")));
+        assert!(!world.layer_travel_allowed(&id("deep"), &camp));
+        assert!(!world.layer_travel_allowed(&id("deep"), &id("first")));
+        assert!(!world.layer_travel_allowed(&id("first"), &id("legacy")));
     }
 
     #[test]

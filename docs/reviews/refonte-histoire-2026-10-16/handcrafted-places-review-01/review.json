@@ -1,0 +1,103 @@
+{
+  "review_id": "HANDCRAFTED-PLACES-01",
+  "date": "2026-10-17",
+  "runtime_connected": false,
+  "preview_type": "Hand-authored circulation diagram with native player reference; not a screenshot of game terrain or a proposed final decor.",
+  "validation_scope": "Review layout and art separately. No concrete place is approved by a general campaign-design acceptance.",
+  "records": [
+    {
+      "id": "PLACE-CAMP-01",
+      "revision": "r01",
+      "label": "Premier camp",
+      "layout": "camp-01-r01.txt",
+      "layout_approved": false,
+      "art_approved": false,
+      "gameplay_effects_approved": false,
+      "player_facing_names_approved": false,
+      "width_cells": 28,
+      "height_cells": 18,
+      "dimensions_status": "Provisional candidate only; not an accepted size for the campaign.",
+      "cell_pixels": 64,
+      "start": [
+        1,
+        8
+      ],
+      "sector_connection": [
+        26,
+        8
+      ],
+      "player_at": [
+        12,
+        8
+      ],
+      "player_reference": {
+        "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+        "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+        "foot_anchor": [
+          64,
+          96
+        ]
+      },
+      "service_slots": [
+        {
+          "code": "S1",
+          "label": "Information / missions",
+          "at": [
+            7,
+            4
+          ],
+          "room_label_at": [
+            7,
+            3
+          ]
+        },
+        {
+          "code": "S2",
+          "label": "Commerce",
+          "at": [
+            20,
+            4
+          ],
+          "room_label_at": [
+            20,
+            3
+          ]
+        },
+        {
+          "code": "S3",
+          "label": "Soins",
+          "at": [
+            7,
+            13
+          ],
+          "room_label_at": [
+            7,
+            12
+          ]
+        },
+        {
+          "code": "S4",
+          "label": "Coffre",
+          "at": [
+            20,
+            13
+          ],
+          "room_label_at": [
+            20,
+            12
+          ]
+        }
+      ],
+      "travel_reserved_at": [
+        14,
+        9
+      ],
+      "notes": [
+        "Functional labels are review annotations, not new in-game text.",
+        "Service markers are reservations, not approved NPC sprites, interactions or merchant content.",
+        "New floor, wall, opening and furnishing art is still to be created and reviewed.",
+        "No enemy respawn, travel cost, new quest or combat rule is specified."
+      ]
+    }
+  ]
+}

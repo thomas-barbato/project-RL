@@ -262,7 +262,13 @@ fn interaction_hint(game: &WorldState, position: GridPos) -> Option<InteractionH
             });
         }
         use project_rl::facility::WorkerRole;
-        let title = if game.active_artisan(entity) {
+        let title = if let Some(index) = game
+            .actors()
+            .get(entity)
+            .and_then(crate::cryogenic_camp::actor_index)
+        {
+            Some(crate::cryogenic_camp::npc_name(index))
+        } else if game.active_artisan(entity) {
             Some("Artisan")
         } else if game.active_merchant(entity) {
             Some("Marchande")
@@ -586,6 +592,23 @@ fn sensor_actor_contact_kind(
             SensorContactKind::Neutral
         }
         _ => kind,
+    }
+}
+
+/// Hostile overhead rows are reserved for real effects/statuses. This also
+/// respects older runs whose hostility was expressed by their actor glyph.
+pub(crate) fn enemy_status_only(game: &WorldState, at: GridPos, symbol: char) -> bool {
+    let Some(id) = game.actors().entity_at(at) else {
+        return false;
+    };
+    if id == game.player_id() || game.is_player_controlled_companion(id) {
+        return false;
+    }
+    if game.rules().player_relation_targeting {
+        game.actors().get(id).unwrap().player_relation()
+            == project_rl::social::PlayerRelation::Hostile
+    } else {
+        sensor_contact_kind(symbol) == SensorContactKind::Hostile
     }
 }
 
@@ -1052,41 +1075,54 @@ impl TerminalView {
                 camera.viewport.h as i32,
             )));
         }
-        for row in 0..camera.rows {
-            for column in 0..camera.columns {
-                let position = GridPos::new(camera.first.x + column, camera.first.y + row);
-                let rect = camera.rect(position);
-                let known = known_at(position);
-                if known.is_none() {
-                    continue;
-                }
-                let visible = visibility.is_visible(position);
-                if let Some(tile) = known {
-                    let sidewalk = terminal_roads::sidewalk(position, tile.decor, street_decor);
-                    draw_tile_on_surface(
-                        rect,
-                        tile.decor,
-                        position
-                            .cardinal_neighbors()
-                            .map(|p| known_at(p).is_some_and(|t| t.terrain == Terrain::Wall)),
-                        visible,
-                        position,
-                        sidewalk,
-                    );
-                    if sidewalk {
-                        terminal_roads::draw_curb(rect, visible, position, street_decor);
+        let cryogenic_camp = crate::cryogenic_camp_render::active(game);
+        let outline_target = crate::target_outline::enabled()
+            .then(|| crate::target_outline::pointer(camera.hit(mouse_position())))
+            .flatten();
+        let ambience_time = if reduced_motion {
+            0.
+        } else {
+            combat_time as f32
+        };
+        if cryogenic_camp {
+            crate::cryogenic_camp_render::begin(&camera);
+        } else {
+            for row in 0..camera.rows {
+                for column in 0..camera.columns {
+                    let position = GridPos::new(camera.first.x + column, camera.first.y + row);
+                    let rect = camera.rect(position);
+                    let known = known_at(position);
+                    if known.is_none() {
+                        continue;
                     }
-                    terminal_roads::draw(rect, tile.decor, visible, position, |p| {
-                        known_at(p).map(|t| t.decor)
-                    });
-                } else {
-                    draw_rectangle(rect.x, rect.y, rect.w, rect.h, BLACK);
+                    let visible = visibility.is_visible(position);
+                    if let Some(tile) = known {
+                        let sidewalk = terminal_roads::sidewalk(position, tile.decor, street_decor);
+                        draw_tile_on_surface(
+                            rect,
+                            tile.decor,
+                            position
+                                .cardinal_neighbors()
+                                .map(|p| known_at(p).is_some_and(|t| t.terrain == Terrain::Wall)),
+                            visible,
+                            position,
+                            sidewalk,
+                        );
+                        if sidewalk {
+                            terminal_roads::draw_curb(rect, visible, position, street_decor);
+                        }
+                        terminal_roads::draw(rect, tile.decor, visible, position, |p| {
+                            known_at(p).map(|t| t.decor)
+                        });
+                    } else {
+                        draw_rectangle(rect.x, rect.y, rect.w, rect.h, BLACK);
+                    }
                 }
             }
+            terminal_lighting::draw(&camera, visibility, known_at, reduced_motion);
+            terminal_vision::draw(game, &camera, |at| known_at(at).is_some());
+            terminal_perception::draw_fields(game, &camera, observation_fields, sound_fields);
         }
-        terminal_lighting::draw(&camera, visibility, known_at, reduced_motion);
-        terminal_vision::draw(game, &camera, |at| known_at(at).is_some());
-        terminal_perception::draw_fields(game, &camera, observation_fields, sound_fields);
         for (position, cell) in &self.combat_residue.cells {
             if camera.contains(*position) && known_at(*position).is_some() {
                 crate::combat_visuals::draw_residue(
@@ -1113,10 +1149,28 @@ impl TerminalView {
         combat_motion.draw_taunts(game.map(), combat_time, reduced_motion, |at| {
             (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
         });
-        for position in visibility
-            .visible_positions()
-            .filter(|at| camera.contains(*at))
-        {
+        let mut actor_cells = Vec::new();
+        if cryogenic_camp {
+            actor_cells.extend(
+                visibility
+                    .visible_positions()
+                    .filter(|at| camera.contains(*at)),
+            );
+            actor_cells.sort_by_key(|p| (p.y, p.x));
+        }
+        for position in actor_cells.into_iter().chain(
+            visibility
+                .visible_positions()
+                .filter(|at| !cryogenic_camp && camera.contains(*at)),
+        ) {
+            if cryogenic_camp {
+                crate::cryogenic_camp_render::props_before(
+                    &camera,
+                    (position.y + 1, position.x),
+                    ambience_time,
+                    game,
+                );
+            }
             let rect = camera.rect(position);
             let visible = true;
             if visible
@@ -1170,7 +1224,7 @@ impl TerminalView {
                             cell.highlight_color,
                         ),
                         cell.selected,
-                        cell.alert.is_some(),
+                        cell.alert.is_some() && !enemy_status_only(game, position, cell.symbol),
                         cell.status_icon.filter(|icon| !icon.is_quest()),
                         cell.visual,
                         if cell.symbol == '@' {
@@ -1180,6 +1234,18 @@ impl TerminalView {
                         },
                         (!reduced_motion && offset == Vec2::ZERO).then_some(combat_time),
                     );
+                    if outline_target == Some(position)
+                        && let Some(tone) = crate::target_outline::tone_at(game, position)
+                        && let Some(visual) = cell.visual
+                    {
+                        crate::target_outline::draw(
+                            actor_rect,
+                            visual,
+                            (!reduced_motion && offset == Vec2::ZERO).then_some(combat_time),
+                            tone,
+                            (!cryogenic_camp).then_some(camera.viewport),
+                        );
+                    }
                     if let Some(id) = burning {
                         combat_motion.draw_burn(id, actor_rect, combat_time, reduced_motion, false);
                     }
@@ -1195,6 +1261,8 @@ impl TerminalView {
                 draw_selection_marker(rect);
             }
             if visible
+                && !overlay(position)
+                    .is_some_and(|cell| enemy_status_only(game, position, cell.symbol))
                 && game.active_facility().is_some_and(|facility| {
                     facility
                         .security_door_lockdown_at(position, game.turn())
@@ -1227,18 +1295,57 @@ impl TerminalView {
         combat_motion.draw_blasts(game.map(), combat_time, reduced_motion, false, |at| {
             (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
         });
+        if cryogenic_camp {
+            crate::cryogenic_camp_render::finish(
+                &camera,
+                camera.viewport,
+                game,
+                |at| known_at(at).is_some(),
+                ambience_time,
+            );
+            unsafe {
+                macroquad::window::get_internal_gl().quad_gl.scissor(Some((
+                    camera.viewport.x as i32,
+                    camera.viewport.y as i32,
+                    camera.viewport.w as i32,
+                    camera.viewport.h as i32,
+                )));
+            }
+            terminal_vision::draw(game, &camera, |at| known_at(at).is_some());
+            terminal_perception::draw_fields(game, &camera, observation_fields, sound_fields);
+        }
         // A second pass keeps overhead markers above neighbouring terrain and
         // supports installations even when no actor/item overlay occupies them.
         // A gentle 0–3 px float every 2.4 seconds uses presentation time only.
         let quest_marker_rise = if reduced_motion {
             0.0
         } else {
-            (1.5 * (1.0 - (get_time() * std::f64::consts::TAU / 2.4).cos())) as f32
+            (1.5 * (1.0
+                - (crate::camp_npc_review::animation_time(Some(combat_time))
+                    .unwrap_or(combat_time)
+                    * std::f64::consts::TAU
+                    / 2.4)
+                    .cos())) as f32
         };
         for position in visibility
             .visible_positions()
             .filter(|position| camera.contains(*position))
         {
+            let status_only = overlay(position)
+                .is_some_and(|cell| enemy_status_only(game, position, cell.symbol));
+            if !status_only
+                && let Some(index) = crate::camp_npc_review::marker_at(game, position)
+                && !crate::dialogue_bubble_review::notification_hidden(position, index == 1)
+            {
+                let entity = game.actors().entity_at(position).unwrap();
+                let rect = combat_motion.actor_rect(
+                    entity,
+                    camera.rect(position),
+                    combat_time,
+                    reduced_motion,
+                );
+                crate::camp_npc_review::draw_marker(rect, index, quest_marker_rise);
+            }
             if let Some(cell) = overlay(position) {
                 let mut badge_rect = camera.rect(position);
                 if let Some(entity) = game.actors().entity_at(position) {
@@ -1278,9 +1385,20 @@ impl TerminalView {
                 );
                 crate::guardian_taunt_visuals::marker(r.center() + vec2(0., -r.h * 0.72), 1.);
             }
-            let Some(marker) = game.quest_marker_at(position) else {
+            if status_only {
+                continue;
+            }
+            let camp_contact = crate::camp_npc_review::marker_at(game, position) == Some(1);
+            let Some(marker) = game
+                .quest_marker_at(position)
+                .or_else(|| crate::dialogue_bubble_review::reviewed_quest_marker(position))
+                .or_else(|| camp_contact.then_some(project_rl::game::QuestMarker::Available))
+            else {
                 continue;
             };
+            if crate::dialogue_bubble_review::quest_notification_hidden(position, marker) {
+                continue;
+            }
             let icon = match marker {
                 project_rl::game::QuestMarker::Available => TerminalStatusIcon::QuestAvailable,
                 project_rl::game::QuestMarker::ReadyToComplete => TerminalStatusIcon::QuestReady,
@@ -1289,7 +1407,7 @@ impl TerminalView {
             };
             let occupied_above = overlay(position.step(project_rl::world::Direction::North))
                 .is_some_and(|cell| cell.symbol != '\0');
-            let marker_rect =
+            let mut marker_rect =
                 game.actors()
                     .entity_at(position)
                     .map_or(camera.rect(position), |entity| {
@@ -1300,10 +1418,17 @@ impl TerminalView {
                             reduced_motion,
                         )
                     });
+            if camp_contact && !crate::dialogue_bubble_review::notification_hidden(position, true) {
+                marker_rect.x += 11. * marker_rect.w / 64.;
+            }
             draw_quest_badge(marker_rect, icon, quest_marker_rise, occupied_above);
         }
         for signal in perception_signals {
-            if visibility.is_visible(signal.position) && camera.contains(signal.position) {
+            if visibility.is_visible(signal.position)
+                && camera.contains(signal.position)
+                && !overlay(signal.position)
+                    .is_some_and(|cell| enemy_status_only(game, signal.position, cell.symbol))
+            {
                 let badge_rows =
                     overlay(signal.position).map_or(0, |cell| cell.effect_badges.len().div_ceil(4));
                 terminal_perception::draw_signal(
@@ -5104,6 +5229,44 @@ const MATERIAL: PixelGlyph = [
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn enemies_only_have_status_overheads_regardless_of_glyph() {
+        use project_rl::{
+            entity::Actor,
+            game::{GameRules, GameState},
+            social::PlayerRelation,
+            world::Map,
+        };
+        for legacy in [false, true] {
+            let map = Map::from_ascii("#####\n#...#\n#...#\n#####").unwrap();
+            let rules = GameRules {
+                player_relation_targeting: !legacy,
+                ..Default::default()
+            };
+            let mut game = WorldState::single(
+                GameState::new_with_rules(map, GridPos::new(1, 1), 1, rules).unwrap(),
+            );
+            game.spawn_actor(
+                Actor::new(GridPos::new(2, 1), 20)
+                    .unwrap()
+                    .with_player_relation(PlayerRelation::Hostile),
+            )
+            .unwrap();
+            game.spawn_actor(
+                Actor::new(GridPos::new(2, 2), 20)
+                    .unwrap()
+                    .with_player_relation(PlayerRelation::Allied),
+            )
+            .unwrap();
+            assert!(enemy_status_only(&game, GridPos::new(2, 1), 'Z'));
+            assert!(!enemy_status_only(&game, GridPos::new(1, 1), '@'));
+            if !legacy {
+                assert!(enemy_status_only(&game, GridPos::new(2, 1), '?'));
+                assert!(!enemy_status_only(&game, GridPos::new(2, 2), 'Z'));
+            }
+        }
+    }
 
     #[test]
     fn quest_badges_cannot_cover_a_character_in_the_cell_above() {

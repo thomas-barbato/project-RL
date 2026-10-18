@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-18",
+  "client_tests_passed": {
+    "enemy_overhead_policy": 1,
+    "generic_outline": 2,
+    "npc_breathing_and_capture_clock": 2,
+    "dialogue_text_preservation": 1,
+    "camp_start_services_travel_and_saves": 6
+  },
+  "total_targeted_tests_passed": 12,
+  "debug_build": true,
+  "release_check": true,
+  "format_check": true,
+  "diff_check": true,
+  "gpu_outline_alpha_comparison": true,
+  "gpu_outline_samples": 5,
+  "gpu_dialogue_candidates": 3,
+  "dialogue_words_preserved": true,
+  "normal_game_npc_presentation_enabled": true,
+  "normal_game_hostile_nonstatus_icons_removed": true,
+  "normal_game_hover_outline_enabled": false,
+  "normal_game_dialogue_bubbles_enabled": false,
+  "full_suite_rerun": false,
+  "known_preexisting_client_failures": 28,
+  "preexisting_failure_record": "../bestiary-integration-06/validation.json"
+}

@@ -1,0 +1,182 @@
+{
+  "place": "PLACE-CAMP-01",
+  "revision": "r03",
+  "review_only": true,
+  "method": "Existing source art, alpha fringe cleanup and nearest native conditioning; no generated room background.",
+  "source_sha256": "d34dcaf14ea3be1123027b50fc8971780b36165756caacc1421e561e651730b6",
+  "actor_body_reference_heights": {
+    "player": 65,
+    "npc": 60
+  },
+  "numerical_sizes_status": "Proposed visual calibration, not accepted game dimensions or new collision rules.",
+  "records": [
+    {
+      "id": "DEC-CAMP-01",
+      "label": "Établi",
+      "source": "assets/prototypes/surface64/furniture-source.png",
+      "source_cell": 0,
+      "source_cell_bounds": [
+        50,
+        129,
+        393,
+        414
+      ],
+      "file": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-01-r03.png",
+      "sha256": "7937b58bbd76488ef034e6089f2153a4e272acd7dde2472bcc2e6c3810cadebc",
+      "native_body_size": [
+        54,
+        38
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "screen_scale": 1,
+      "art_approved": false
+    },
+    {
+      "id": "DEC-CAMP-02",
+      "label": "Siège",
+      "source": "assets/prototypes/surface64/furniture-source.png",
+      "source_cell": 1,
+      "source_cell_bounds": [
+        129,
+        84,
+        316,
+        406
+      ],
+      "file": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-02-r03.png",
+      "sha256": "d641b5595d6e7bfd50f9ddb311b8f4d987dccd0eaba65b0dc32f0a793a0616ab",
+      "native_body_size": [
+        20,
+        28
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "screen_scale": 1,
+      "art_approved": false
+    },
+    {
+      "id": "DEC-CAMP-03",
+      "label": "Armoire",
+      "source": "assets/prototypes/surface64/furniture-source.png",
+      "source_cell": 2,
+      "source_cell_bounds": [
+        94,
+        50,
+        350,
+        422
+      ],
+      "file": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-03-r03.png",
+      "sha256": "c9b0855eda3bbb62c0d493eddfc8234fa51ab5b1177d71fe97e95779f695ce4d",
+      "native_body_size": [
+        32,
+        56
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "screen_scale": 1,
+      "art_approved": false
+    },
+    {
+      "id": "DEC-CAMP-04",
+      "label": "Étagère",
+      "source": "assets/prototypes/surface64/furniture-source.png",
+      "source_cell": 3,
+      "source_cell_bounds": [
+        80,
+        84,
+        364,
+        429
+      ],
+      "file": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-04-r03.png",
+      "sha256": "be6b7c051ccc6c684804a3df38b4c1cb55f42c07844897242f34c3c3a80d740b",
+      "native_body_size": [
+        40,
+        52
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "screen_scale": 1,
+      "art_approved": false
+    },
+    {
+      "id": "DEC-CAMP-05",
+      "label": "Lit",
+      "source": "assets/prototypes/surface64/furniture-source.png",
+      "source_cell": 5,
+      "source_cell_bounds": [
+        115,
+        25,
+        333,
+        422
+      ],
+      "file": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-05-r03.png",
+      "sha256": "cfe0933c90853f88f6867986b92eb8d36a847ea8d0f80a1c19c92d6d8c6e9335",
+      "native_body_size": [
+        34,
+        68
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "screen_scale": 1,
+      "art_approved": false
+    },
+    {
+      "id": "DEC-CAMP-06",
+      "label": "Banc",
+      "source": "assets/prototypes/surface64/furniture-source.png",
+      "source_cell": 6,
+      "source_cell_bounds": [
+        41,
+        132,
+        403,
+        364
+      ],
+      "file": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-06-r03.png",
+      "sha256": "588ae673c037a63ce8dd31bf48b57ca6de7a8b2a64ed11146f8e762631a69cd0",
+      "native_body_size": [
+        46,
+        24
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "screen_scale": 1,
+      "art_approved": false
+    }
+  ]
+}

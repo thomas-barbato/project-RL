@@ -1,0 +1,37 @@
+{
+  "review_id": "MONDE-PM02-01",
+  "accepted_base_record_verified": true,
+  "all_nodes_connected": true,
+  "ordered_main_routes_verified": 2,
+  "all_paths_cross_mandatory_roles": true,
+  "optional_branch_can_be_ignored": true,
+  "route_examples": [
+    [
+      "camp",
+      "access",
+      "course",
+      "detour",
+      "junction",
+      "landmark",
+      "boss_reservation",
+      "next_interface"
+    ],
+    [
+      "camp",
+      "access",
+      "course",
+      "junction",
+      "landmark",
+      "boss_reservation",
+      "next_interface"
+    ]
+  ],
+  "module_families": 7,
+  "decor_preparation_lots": 5,
+  "new_art_approved": false,
+  "numeric_map_dimensions_undefined": true,
+  "runtime_connected": false,
+  "local_document_links_verified": 20,
+  "geometric_module_collision_and_save_checks": "Not performed: no generated map or game integration in this design step.",
+  "validation_scope": "Functional topology and document consistency only; not a playable map, rendered decor review or engine test result."
+}

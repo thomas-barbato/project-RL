@@ -1,0 +1,164 @@
+{
+  "place": "PLACE-CAMP-01",
+  "revision": "r04",
+  "art_approved": false,
+  "runtime_campaign_connected": false,
+  "source_images": {
+    "doors-source-r04.png": "31b90e9ebca9c1dba8a67db47b527d4b5f7092758406e88375c00b1e674aefd0",
+    "floor-source-r04.png": "62c02ed7e7d9d4341a38b9c554f09b5ac979e242236985346dd1019bc887fe64",
+    "furniture-source-r04.png": "2bd6f9a7d77c30685ccf03daa4fb11d5b810e91fdd4d58a32019e00d51a13943",
+    "lamp-source-r04.png": "fb73e2360f4c6e135df0f7e0fee0428cb0bb7f1635c9a131dc884615cde23273",
+    "walls-source-r04.png": "e3b015f96e6b3f0a0384469b80e099ade169506d5860404023cfd703dbc600fe"
+  },
+  "method": "Built-in imagegen paintings; fixed slot sampling, native conditioning, footprint registration and common edge ports. Sources preserved.",
+  "cell": 64,
+  "wall_masks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "painted_T_masks": [
+    7,
+    11,
+    13,
+    14
+  ],
+  "wall_rotation_operations": 0,
+  "all_wall_ports_registered": true,
+  "open_door_center_transparent": true,
+  "furniture": [
+    {
+      "id": "DEC-CAMP-01",
+      "label": "Établi",
+      "file": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-01-r04.png",
+      "native_body_size": [
+        54,
+        38
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "sha256": "1b7de529ca11db0c2312f4d679137339893ed5258623d8a3b490bab512455029"
+    },
+    {
+      "id": "DEC-CAMP-02",
+      "label": "Siège",
+      "file": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-02-r04.png",
+      "native_body_size": [
+        20,
+        28
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "sha256": "b2608dbeebc6ff31041bbc1c3c40722e10aff1498ccd5efc65d67401c0223a01"
+    },
+    {
+      "id": "DEC-CAMP-03",
+      "label": "Armoire",
+      "file": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-03-r04.png",
+      "native_body_size": [
+        32,
+        56
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "sha256": "8b3ea9200b6a98a8b65e912875a04b81abf414dab224a8051a869c53dad23280"
+    },
+    {
+      "id": "DEC-CAMP-04",
+      "label": "Étagère",
+      "file": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-04-r04.png",
+      "native_body_size": [
+        40,
+        52
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "sha256": "bd84a839453700a47fc7fae3cdf043b5f25ee865b0a253fa83b0f00d270ae42c"
+    },
+    {
+      "id": "DEC-CAMP-05",
+      "label": "Lit",
+      "file": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-05-r04.png",
+      "native_body_size": [
+        34,
+        68
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "sha256": "c6514e83c8359c49ede6fa6c19c35eb0601927a9efa03f5d45ce66aa3b89dbf2"
+    },
+    {
+      "id": "DEC-CAMP-06",
+      "label": "Banc",
+      "file": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-06-r04.png",
+      "native_body_size": [
+        46,
+        24
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "sha256": "cf21a4902e1a47d100fbd0e200fcbcd1022c2ec7feb1d3161e6dc07b2a3c5a92"
+    }
+  ],
+  "outputs": {
+    "DEC-CAMP-01-r04.png": "1b7de529ca11db0c2312f4d679137339893ed5258623d8a3b490bab512455029",
+    "DEC-CAMP-02-r04.png": "b2608dbeebc6ff31041bbc1c3c40722e10aff1498ccd5efc65d67401c0223a01",
+    "DEC-CAMP-03-r04.png": "8b3ea9200b6a98a8b65e912875a04b81abf414dab224a8051a869c53dad23280",
+    "DEC-CAMP-04-r04.png": "bd84a839453700a47fc7fae3cdf043b5f25ee865b0a253fa83b0f00d270ae42c",
+    "DEC-CAMP-05-r04.png": "c6514e83c8359c49ede6fa6c19c35eb0601927a9efa03f5d45ce66aa3b89dbf2",
+    "DEC-CAMP-06-r04.png": "cf21a4902e1a47d100fbd0e200fcbcd1022c2ec7feb1d3161e6dc07b2a3c5a92",
+    "doors-native64.png": "35a0164aee304873d02e125238895f8b06ce9a50597c8598b31c3f4f07da3b93",
+    "floors-native64.png": "166d39f4ab1cbf573c19ffe34afca77266991c7b21fc75240570102f7bfdd93f",
+    "lamp-native.png": "708479cdd8b570532ef30cd2b336dc84b7e18e2f42b1d3907aa347263a3afc72",
+    "walls-native64.png": "a57f632de13b87338a2ccd460d00545be510f1b8cb521862a77916b026b8cc6f"
+  }
+}

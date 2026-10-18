@@ -268,7 +268,9 @@ fn upgrade_uses_base_tier_and_replaces_instead_of_stacking() {
 
 #[test]
 fn upgrade_surface_artisan_is_protected_and_does_not_duplicate() {
-    let mut app = app();
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let mut app =
+        AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
     app.walk_fixture_out_of_recycling().unwrap();
     app.ensure_local_artisan().unwrap();
     let artisans: Vec<_> = app
@@ -435,7 +437,9 @@ fn upgrade_without_fragments_is_rejected_before_any_reroll() {
 
 #[test]
 fn upgrade_campaign_purchase_and_result_replay_without_binary_cache() {
-    let mut app = app();
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let mut app =
+        AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
     app.walk_fixture_out_of_recycling().unwrap();
     while app.game.player_inventory().capacity() - app.game.player_inventory().len() < 2 {
         let item = app

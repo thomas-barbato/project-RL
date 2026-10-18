@@ -1,0 +1,25 @@
+{
+  "tool": "built-in imagegen",
+  "place": "PLACE-CAMP-01",
+  "revision": "r04",
+  "art_approved": false,
+  "jobs": [
+    {
+      "id": "doors",
+      "prompt": "Create ONE transparent 2 by 2 atlas of orthogonal industrial game DOOR tiles. Reference 1 is the exact silhouette layout; reference 2 is the wall material/style to match. Each equal slot is finally 64x64 px. Preserve the four slots and the see-through center of both open doors. Row 1: left OPEN door for movement left/right (steel jamb above and below, center completely empty), right CLOSED version of that same door (central metal sliding panel connects those jambs). Row 2: left OPEN door for movement up/down (jamb left and right, center completely empty), right CLOSED version. Open means the middle square of the tile is fully TRANSPARENT floor space, with no lintel, threshold beam, rails or panel crossing it. Only draw the gray template shapes, no ground. Chunky charcoal cel-shaded steel, dark bold outline, restrained muted warm-gray bevels, small amber indicators and a tiny hazard accent, upper-left light. Same global camera and lighting on all four pieces, no bitmap rotations or inverted relief. 2D orthogonal cutaway game assets, no isometric/3D. Slot footprints must reach cell edges where they connect into walls; no gutters. NO writing, labels, numbers, background haze or cast shadow. Square 1024x1024 output with genuine transparent background.",
+      "references": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/door-topology-reference.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/walls-source-r04.png"
+      ],
+      "transparent_background": true
+    },
+    {
+      "id": "lamp",
+      "prompt": "Create one isolated horizontal industrial WALL LAMP sprite on a truly transparent background. The supplied image is our own camp concept and is the style reference. Match the small amber wall lamps on its upper walls: chunky dark charcoal metal bracket, angular bevels, a long dirty-ivory warm yellow light panel with an amber rim. Broad crisp cel shading, black outline, 2D orthogonal front/slightly top-down game view, upper-left light. One lamp only, no wall or floor or surrounding scene, no cast shadow or haze outside the object, no cables hanging down, no text or numbers. Simple proportions about three units wide to one high. It will be conditioned to 36x12 native pixels, so strong simple silhouette and very few large shapes; avoid fine screws and noisy textures. Keep generous transparent margin.",
+      "references": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/PLACE-CAMP-01-r02-background.png"
+      ],
+      "transparent_background": true
+    }
+  ]
+}

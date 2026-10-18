@@ -1,0 +1,125 @@
+{
+  "lights": [
+    {
+      "at": [
+        1125,
+        122
+      ],
+      "lit_samples": 6724,
+      "blocked_samples_in_range": 1722
+    },
+    {
+      "at": [
+        1950,
+        122
+      ],
+      "lit_samples": 6730,
+      "blocked_samples_in_range": 1719
+    },
+    {
+      "at": [
+        233,
+        290
+      ],
+      "lit_samples": 5401,
+      "blocked_samples_in_range": 4034
+    },
+    {
+      "at": [
+        233,
+        761
+      ],
+      "lit_samples": 4676,
+      "blocked_samples_in_range": 4767
+    },
+    {
+      "at": [
+        35,
+        522
+      ],
+      "lit_samples": 4454,
+      "blocked_samples_in_range": 48
+    },
+    {
+      "at": [
+        512,
+        484
+      ],
+      "lit_samples": 2593,
+      "blocked_samples_in_range": 2078
+    },
+    {
+      "at": [
+        783,
+        435
+      ],
+      "lit_samples": 7028,
+      "blocked_samples_in_range": 8848
+    },
+    {
+      "at": [
+        1536,
+        435
+      ],
+      "lit_samples": 9540,
+      "blocked_samples_in_range": 6288
+    },
+    {
+      "at": [
+        2291,
+        435
+      ],
+      "lit_samples": 6981,
+      "blocked_samples_in_range": 5741
+    },
+    {
+      "at": [
+        694,
+        490
+      ],
+      "lit_samples": 3033,
+      "blocked_samples_in_range": 2564
+    },
+    {
+      "at": [
+        2377,
+        490
+      ],
+      "lit_samples": 1947,
+      "blocked_samples_in_range": 2000
+    },
+    {
+      "at": [
+        1200,
+        750
+      ],
+      "lit_samples": 5779,
+      "blocked_samples_in_range": 4540
+    },
+    {
+      "at": [
+        2030,
+        750
+      ],
+      "lit_samples": 5793,
+      "blocked_samples_in_range": 4533
+    }
+  ],
+  "wall_probe_blocked": true,
+  "same_room_probe_lit": true,
+  "lightmap_size": [
+    608,
+    288
+  ],
+  "source_art_modified": false,
+  "maps": [
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r09/illumination-correction.png",
+      "sha256": "683edf0211463ab1c265136c38a5f23433b6a7549999bf7fb77f7099d81ce553"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r09/irradiance.png",
+      "sha256": "330dbc00205d20c91da3bc7841a1529f79fb574aed2b1f52db3464d6393d8373"
+    }
+  ]
+}

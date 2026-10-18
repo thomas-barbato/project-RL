@@ -1,0 +1,25 @@
+{
+  "place": "PLACE-CAMP-01",
+  "revision": "r02",
+  "date": "2026-10-17",
+  "user_feedback": "alors c'est jolis mais la plupart des entrées sont murées visiblement. Et de plus, t'es sur de pouvoir faire ces décors en vrai ?",
+  "additional_user_feedback": "aussi, le mobilier et les personnages ne sont pas à la meme echelle :)",
+  "art_approved": false,
+  "layout_approved": false,
+  "runtime_connected": false,
+  "confirmed_issues": [
+    "The illustrated left and right hall ends are closed rather than visibly passable exits.",
+    "Doorway rims and apparent lintels cross some passage floors and make the open state ambiguous.",
+    "The background is one generated illustration, not a modular scenery bank or proof of rendering with engine collision and visibility.",
+    "Furniture is oversized relative to the accepted native actors. Exact actor pixels alone do not validate environmental scale."
+  ],
+  "implementation_findings": {
+    "existing_renderer": "src/terminal_view.rs::draw_tile_on_surface",
+    "terrain_textures": "src/terminal_materials.rs",
+    "door_states": "src/terminal_art.rs::draw_prop",
+    "native64_scenery_work_required": true,
+    "exact_visual_fidelity_proven": false
+  },
+  "scale_correction_direction": "Use the accepted adult actor body (about 60 px tall), not its transparent 128 px canvas, as the visual size reference. Review furniture dimensions and projection together before expanding the scene; preserve accepted actor scale. No new numerical furniture dimensions are approved yet.",
+  "recommended_next_review": "A small scene assembled in the actual renderer from separate native64 floor, wall, corner, door and furniture assets, showing clear passageways, an accepted NPC, furniture at the same world scale and movement through the door. Keep the full camp pending."
+}

@@ -129,7 +129,7 @@ fn random_home_services_quests_intro_and_resume_follow_the_physical_placement() 
         if !covered.insert(format!("{:?}", home.side)) {
             continue;
         }
-        let mut app = AsciiApp::from_seed(
+        let mut app = AsciiApp::from_legacy_city_seed(
             seed,
             rules.clone(),
             texts.clone(),

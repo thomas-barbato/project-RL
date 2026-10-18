@@ -9,6 +9,16 @@ l'acceptation artistique du joueur.
 
 ## 1. Statut des décisions
 
+### Production progressive des décors — 17 octobre 2026
+
+Le joueur demande de nouveaux décors tout au long du développement des cartes.
+La production accompagne donc les plans et modules, à commencer par les sols,
+murs, coins, seuils et portes du premier secteur. Chaque lot est montré à
+taille native sur la grille de 64 px, avec les acteurs et objets acceptés à
+leur échelle réelle, avant intégration des nouveaux dessins ou effets concernés.
+Le plan est conservé dans `docs/DECORS_CAMPAGNE.md`. Cette décision de méthode
+ne valide pas un dessin, une nouvelle collision, interaction ou zone d’effet.
+
 ### Décision courante du 17 octobre 2026 — rendu 64 px uniquement
 
 Le joueur annule explicitement la version du jeu en 32 px. Le seul rendu

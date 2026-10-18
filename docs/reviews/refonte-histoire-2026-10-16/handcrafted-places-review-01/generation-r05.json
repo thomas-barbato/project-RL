@@ -1,0 +1,34 @@
+{
+  "place": "PLACE-CAMP-01",
+  "revision": "r05",
+  "tool": "built-in imagegen",
+  "reference": "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r05/camp-reference-user-r05.png",
+  "reference_target_accepted": true,
+  "new_outputs_approved": false,
+  "jobs": [
+    {
+      "id": "architecture",
+      "transparent": false,
+      "prompt": "Edit the attached camp illustration precisely. This exact image has been selected by its creator as the required game map. Preserve its exact 4-room layout, dimensions, orthogonal camera, charcoal industrial wall shapes, corners, cables, wall lamps, warm pools of light, floor slabs, shadows and surrounding dark void. Do not redesign it or replace it with another style.\nONLY TWO CHANGES:\n1) Make all four rooms UNFURNISHED by removing their freestanding furniture, work desks, chairs, lockers, racks, boxes, medical cot, trolley and workshop equipment. Reconstruct the same floor where those props were. Keep wall lamps, ventilation grills and wall cables. The furnishings will be placed as separate native game sprites later.\n2) Make the four existing room-to-hall passages visibly OPEN, with continuous floor through their centers and the remaining wall ends physically connected. Remove any lintel or beam that crosses the floor opening. Also open one doorway in the left end of the central hall and one in the right end, aligned around the middle of the hall, keeping their side jambs attached to the walls. These are open exits, not closed luminous panels. No detached bars floating in the passage.\nEverything else must match the supplied illustration closely. No new rooms, topological changes, decorative motifs, people, NPCs, words or UI. Keep the same landscape aspect ratio, do not crop. Finished architectural game background only, at the highest useful detail, matching the original handmade illustrated finish. This is an edit preserving the given composition, not a new generated camp.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r05/architecture-source-r05.png",
+      "sha256": "e01cf0ca88fe8a21f2b6c44436c24103b0f3e46b44a677902fd59882850435a3",
+      "size": [
+        1565,
+        1005
+      ],
+      "generated_filename": "exec-84d62731-4e84-4ebd-84bd-bb9f09ba5209.png"
+    },
+    {
+      "id": "furniture",
+      "transparent": true,
+      "prompt": "Create one production furnishing ATLAS extracted from our own attached camp illustration, on a genuinely transparent background. Preserve the specific designs and painted style of the objects in this exact image. Do not substitute generic pixel props, redesign them, make 3D renders, or include floor/walls/shadows/lighting haze.\nExactly 8 isolated objects in a regular 4-column by 2-row atlas; each equal cell contains one full object centered with generous margin.\nTOP ROW:\n1) the top-left room's mission desk: dark olive steel drawers/legs, small beige computer screen and papers on the worktop, no chair.\n2) the top-right room's armorer workbench with its small wall-mounted tool-and-weapon board, one complete workstation, no chair.\n3) the upright gun rack from the top-right room, a small number of clearly shaped dark rifles in a charcoal frame.\n4) the bottom-left room's dirty-ivory medical cot with pillow and simple steel frame.\nBOTTOM ROW:\n5) the bottom-left room's narrow olive medical cabinet.\n6) the small medical trolley next to it with bottles and red/charcoal drawers.\n7) the bottom-right room's technician workbench with a few large tools and a red tool box.\n8) the closed olive storage chest at the right side of the workshop.\nMatch the illustration's broad illustrated shapes, dark outlines, muted charcoal/olive/rust/dirty ivory materials, soft angular cel shading and upper-left light. Same front/slightly top-down orthogonal game view, not isometric.\nFinal native target sizes are approximately: mission desk90x50, armorer station90x64, gun rack28x64, cot34x72, cabinet30x56, trolley26x40, tech bench82x48, chest42x34. Maintain coherent relative scale; no dimension labels. Clean silhouettes readable at those sizes, avoid tiny noisy embellishments. No actors, ground, cast shadow, labels, text or numerals. Landscape 2048x1024 if possible. Eight source objects in one coherent atlas, not a room scene.",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r05/furniture-source-r05.png",
+      "sha256": "577ee05b4112d641783fdfc51d2120bcf4e4d79089e54bf9b1e7b2161389a659",
+      "size": [
+        1774,
+        887
+      ],
+      "generated_filename": "exec-df0306e9-4beb-442f-9480-04d8818729d0.png"
+    }
+  ]
+}

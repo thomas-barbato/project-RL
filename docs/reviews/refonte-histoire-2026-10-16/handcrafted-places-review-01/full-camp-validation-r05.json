@@ -1,0 +1,469 @@
+{
+  "review_id": "HANDCRAFTED-PLACES-01",
+  "revision": "r05",
+  "reference_target_selected": true,
+  "native_adaptation_approved": false,
+  "campaign_connected": false,
+  "runtime_checks": {
+    "actor_count": 5,
+    "actual_gpu_capture": true,
+    "campaign_connected": false,
+    "captures": [
+      {
+        "engine_steps": 0,
+        "name": "camp",
+        "player_at": [
+          12,
+          8
+        ]
+      },
+      {
+        "engine_steps": 9,
+        "name": "missions",
+        "player_at": [
+          7,
+          4
+        ]
+      },
+      {
+        "engine_steps": 10,
+        "name": "soins",
+        "player_at": [
+          7,
+          13
+        ]
+      }
+    ],
+    "cell": 64,
+    "door_overlays_added": false,
+    "new_service_rules": false,
+    "open_passages": true,
+    "prop_count": 17,
+    "renderer": "selected architecture sampled into floor/structure layers; separate native furnishings and actors",
+    "revision": "r05",
+    "size": [
+      1792,
+      1152
+    ]
+  },
+  "captures": [
+    {
+      "state": "camp",
+      "file": "artifacts/handcrafted-places-review-01/engine-r05/r05-camp-native.png",
+      "sha256": "9666b723f35d819fc7c6626e9967d41e66535ed585bacddcd451ac1f9d8287e1",
+      "actors": [
+        {
+          "id": "PLAYER",
+          "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+          "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+          "opaque_pixels_verified": 188,
+          "scale": 1,
+          "placement": [
+            736,
+            480
+          ]
+        },
+        {
+          "id": "NPC-01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+          "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+          "opaque_pixels_verified": 978,
+          "scale": 1,
+          "placement": [
+            480,
+            224
+          ]
+        },
+        {
+          "id": "NPC-02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+          "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+          "opaque_pixels_verified": 1088,
+          "scale": 1,
+          "placement": [
+            1312,
+            224
+          ]
+        },
+        {
+          "id": "NPC-03",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+          "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+          "opaque_pixels_verified": 909,
+          "scale": 1,
+          "placement": [
+            480,
+            800
+          ]
+        },
+        {
+          "id": "NPC-04",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+          "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac",
+          "opaque_pixels_verified": 874,
+          "scale": 1,
+          "placement": [
+            1312,
+            800
+          ]
+        }
+      ]
+    },
+    {
+      "state": "missions",
+      "file": "artifacts/handcrafted-places-review-01/engine-r05/r05-missions-native.png",
+      "sha256": "b7d53366559bd134596e5828a9b70c85d8f6e1deff08ed3fe375384f19d2485f",
+      "actors": [
+        {
+          "id": "PLAYER",
+          "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+          "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+          "opaque_pixels_verified": 188,
+          "scale": 1,
+          "placement": [
+            416,
+            224
+          ]
+        },
+        {
+          "id": "NPC-01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+          "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+          "opaque_pixels_verified": 978,
+          "scale": 1,
+          "placement": [
+            480,
+            224
+          ]
+        },
+        {
+          "id": "NPC-02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+          "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+          "opaque_pixels_verified": 1088,
+          "scale": 1,
+          "placement": [
+            1312,
+            224
+          ]
+        },
+        {
+          "id": "NPC-03",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+          "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+          "opaque_pixels_verified": 909,
+          "scale": 1,
+          "placement": [
+            480,
+            800
+          ]
+        },
+        {
+          "id": "NPC-04",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+          "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac",
+          "opaque_pixels_verified": 874,
+          "scale": 1,
+          "placement": [
+            1312,
+            800
+          ]
+        }
+      ]
+    },
+    {
+      "state": "soins",
+      "file": "artifacts/handcrafted-places-review-01/engine-r05/r05-soins-native.png",
+      "sha256": "6f086b952781088641413901286e33c959ad43f93be5f49dcf0c7d64e112b41c",
+      "actors": [
+        {
+          "id": "PLAYER",
+          "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+          "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+          "opaque_pixels_verified": 188,
+          "scale": 1,
+          "placement": [
+            416,
+            800
+          ]
+        },
+        {
+          "id": "NPC-01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+          "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+          "opaque_pixels_verified": 978,
+          "scale": 1,
+          "placement": [
+            480,
+            224
+          ]
+        },
+        {
+          "id": "NPC-02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+          "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+          "opaque_pixels_verified": 1088,
+          "scale": 1,
+          "placement": [
+            1312,
+            224
+          ]
+        },
+        {
+          "id": "NPC-03",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+          "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+          "opaque_pixels_verified": 909,
+          "scale": 1,
+          "placement": [
+            480,
+            800
+          ]
+        },
+        {
+          "id": "NPC-04",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+          "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac",
+          "opaque_pixels_verified": 874,
+          "scale": 1,
+          "placement": [
+            1312,
+            800
+          ]
+        }
+      ]
+    }
+  ],
+  "corrected_door_fixture_checks": {
+    "actor_opaque_gpu_pixels_exact": true,
+    "actor_resize_operations": 0,
+    "actual_gpu_capture": true,
+    "campaign_connected": false,
+    "capture_size": [
+      1440,
+      900
+    ],
+    "cell_pixels": 64,
+    "corrected_door_jambs": true,
+    "door_closed_blocks": true,
+    "door_open_walkable": true,
+    "map_origin": [
+      240.0,
+      128.0
+    ],
+    "map_size_cells": [
+      15,
+      8
+    ],
+    "npc_ai": false,
+    "npc_count": 2,
+    "painted_T_masks": [
+      7,
+      11,
+      13,
+      14
+    ],
+    "place": "PLACE-CAMP-01",
+    "player_crossed_door": true,
+    "renderer": "illustrated native64 kit; painted T pieces and zero wall rotations",
+    "revision": "r05-door-fixture",
+    "simulation": "project_rl::game::GameState",
+    "wall_rotation_operations": 0
+  },
+  "door_captures": [
+    {
+      "state": "open",
+      "sha256": "dccf6107a53da85122c31fe2ef468f9d1383cbb326ba32fe158239c2946dc6a7",
+      "actors": [
+        {
+          "id": "PLAYER",
+          "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+          "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+          "opaque_pixels_verified": 188,
+          "scale": 1,
+          "placement": [
+            528,
+            352
+          ]
+        },
+        {
+          "id": "NPC-02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+          "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+          "opaque_pixels_verified": 1088,
+          "scale": 1,
+          "placement": [
+            464,
+            288
+          ]
+        },
+        {
+          "id": "NPC-03",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+          "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+          "opaque_pixels_verified": 909,
+          "scale": 1,
+          "placement": [
+            912,
+            352
+          ]
+        }
+      ]
+    },
+    {
+      "state": "closed",
+      "sha256": "5a0968ba10df5203cb77caff697d6f6838ab3be3409ed8c5bfc062d3f3f4fad6",
+      "actors": [
+        {
+          "id": "PLAYER",
+          "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+          "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+          "opaque_pixels_verified": 188,
+          "scale": 1,
+          "placement": [
+            592,
+            352
+          ]
+        },
+        {
+          "id": "NPC-02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+          "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+          "opaque_pixels_verified": 1088,
+          "scale": 1,
+          "placement": [
+            464,
+            288
+          ]
+        },
+        {
+          "id": "NPC-03",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+          "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+          "opaque_pixels_verified": 909,
+          "scale": 1,
+          "placement": [
+            912,
+            352
+          ]
+        }
+      ]
+    },
+    {
+      "state": "crossed",
+      "sha256": "740b34200b6a1e52236ecd6aaf0d0deb4d74336b6948ca15ea61c3915f9997dd",
+      "actors": [
+        {
+          "id": "PLAYER",
+          "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+          "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+          "opaque_pixels_verified": 188,
+          "scale": 1,
+          "placement": [
+            720,
+            352
+          ]
+        },
+        {
+          "id": "NPC-02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+          "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+          "opaque_pixels_verified": 1088,
+          "scale": 1,
+          "placement": [
+            464,
+            288
+          ]
+        },
+        {
+          "id": "NPC-03",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+          "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+          "opaque_pixels_verified": 909,
+          "scale": 1,
+          "placement": [
+            912,
+            352
+          ]
+        }
+      ]
+    }
+  ],
+  "source_art": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r05",
+  "architecture_layers_separate": true,
+  "furnishings_separate": true,
+  "actor_resize_operations": 0,
+  "all_opaque_actor_pixels_equal": true,
+  "verification_commands": {
+    "tests": {
+      "command": "cargo test --locked --example handcrafted_camp_review --example handcrafted_camp_full_review",
+      "passed": 31,
+      "failed": 0
+    },
+    "builds": {
+      "examples": [
+        "handcrafted_camp_full_review",
+        "handcrafted_camp_review"
+      ],
+      "passed": true
+    },
+    "format": {
+      "command": "cargo fmt --all -- --check",
+      "passed": true
+    }
+  },
+  "native_assets": [
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/camp-floor-native.png",
+      "sha256": "866f24b7fff3e50f0c1e8a00c6ebb38c4be907cbe748f31c7a05b7284ec66c02"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/camp-layout.txt",
+      "sha256": "be6cf252af4e01f97c3b46570eb0d5433d8ddca73e402e598b008541d10ad19e"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/camp-structure-native.png",
+      "sha256": "1764b7c75eb6800df559f0bbd7a38d55120f417e2bd1472a8d393729931ec61b"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/camp.json",
+      "sha256": "12c5c5ca546660927633759418ba1ec40a7835d6b9ff5b65087795f3a5467c8b"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-07-r05.png",
+      "sha256": "5f7d865ebc6bc2a5b5a85173feea8d015399eff56d7cdb8cf487de78211fab90"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-08-r05.png",
+      "sha256": "42c7fc4f5445386934f6bad7a5ba5abaa3029e02abe3ef62330df9b867a96c2d"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-09-r05.png",
+      "sha256": "83fb6e5b655e7779b74bc1a32478cc5696126a46c0e507caa1324d5081d448f0"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-10-r05.png",
+      "sha256": "ccaa9cc89c12d48ed7d59a6ccc704d7245ba0917b5b0a782f231652b1e21da84"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-11-r05.png",
+      "sha256": "926bcdea4933c7b061ed820b4f15fecda264abbd4f0491c2e0424323bcee83fc"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-12-r05.png",
+      "sha256": "4da640eca68eb16ec79a2592b59714272d42c7353142c33bc55a267a39fb87d3"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-13-r05.png",
+      "sha256": "04aff43b90d3424d651001e1b67a42cdf123f37560edf27abb4a78eaf79cc474"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-14-r05.png",
+      "sha256": "6efe0714d8244393af57d066a71e7c0d860affd2f025cdd53730e3292c2a0499"
+    },
+    {
+      "file": "assets/prototypes/handcrafted-camp-01/r05/doors-native64.png",
+      "sha256": "bd5a872a40c7cb735e5a3ac087edcfc6b0d5a24cf79f35cb2f07b66dc6b4061b"
+    }
+  ]
+}

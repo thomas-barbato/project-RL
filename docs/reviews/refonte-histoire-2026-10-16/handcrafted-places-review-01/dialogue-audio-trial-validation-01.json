@@ -1,0 +1,44 @@
+{
+  "review_id": "DIALOGUE-AUDIO-01-03",
+  "date": "2026-10-18",
+  "status": "provisional_playable_trial_ready",
+  "final_listening_approval": false,
+  "checks": {
+    "audibility": "Native playback requested; final listening judgement belongs to player",
+    "audio_feature": true,
+    "audio_loaded": true,
+    "closures_stop_audio": [
+      "inside",
+      "outside",
+      "escape"
+    ],
+    "embedded_asset": "assets/audio/ui/dialogue-writing-03.wav",
+    "ends_with_writing": true,
+    "game_fingerprint_preserved": true,
+    "normal_runs_changed": false,
+    "reduced_motion_silent": true,
+    "review": "DIALOGUE-AUDIO-01-03",
+    "save_path": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\handcrafted-places-review-01\\dialogue-bubbles-01\\playable-03\\isolated-run.json",
+    "selection": "provisional_in_game_trial",
+    "starts": 4,
+    "stops": 4
+  },
+  "native_header_matches_review_pixels": true,
+  "audio_sha256": "75611dcb0381a75ed87b84f71116aefb99984552a95ad99d2681d4e3bec79ad1",
+  "build": "cargo build --locked --bin project-rl --features dialogue-audio-trial: passed",
+  "default_release_check": "passed",
+  "focused_tests": {
+    "audio_playback": 2,
+    "bubble": 4,
+    "cryogenic_camp": 6,
+    "total_passed": 12
+  },
+  "full_suite": "not rerun",
+  "format": "passed",
+  "diff_whitespace": "passed",
+  "captures_sha256": {
+    "closed.png": "27bc8e3a224c7a6f5295c617e5d7c805acf6a16c44af59c83257589418e8ca84",
+    "complete.png": "8f73fccc20eac73994e85aa7ad73c1df5db241a90547a232aca872c24958ea73",
+    "typing.png": "e74b946da6146470530ef893aee8c4f9926f8e25397dfe2a2d83c0d7a214a25d"
+  }
+}

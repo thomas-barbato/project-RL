@@ -426,7 +426,7 @@ mod tests {
         let original = drops.loot.clone();
         app(147).remove_retired_test_drops(&mut drops);
         assert_eq!(drops.loot, original);
-        let current = app(CURRENT_GENERATION_VERSION);
+        let current = app(MONSTER_BLUE_PALETTES_GENERATION_VERSION);
         current.remove_retired_test_drops(&mut drops);
         assert_eq!(drops.loot, original[8..]);
         assert!(

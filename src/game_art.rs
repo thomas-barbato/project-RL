@@ -34,6 +34,7 @@ pub(crate) enum Visual {
         hands: Option<[Option<u16>; 2]>,
     },
     Actor(u8),
+    CampNpc(u8),
     DroneScout,
     DroneTracker,
     DroneGunner,
@@ -277,6 +278,9 @@ fn draw_actor_shadow(rect: Rect, index: u8, opacity: f32) {
 }
 
 fn draw_contact_shadow(rect: Rect, contact: [u8; 3], side: u16, opacity: f32) {
+    if crate::target_outline::capturing_body_mask() {
+        return;
+    }
     let [x, y, width] = contact;
     let scale = rect.w.min(rect.h) / f32::from(side);
     for (dy, w) in [
@@ -341,6 +345,9 @@ pub(crate) fn draw_world_animated(
             player_layers::draw_npc(rect, index, None, 32, opacity, idle_time);
         }
         Visual::Actor(index) => draw_actor(art, rect, index, opacity),
+        Visual::CampNpc(index) => {
+            crate::cryogenic_camp_render::draw_npc(rect, index, opacity, true, idle_time)
+        }
         Visual::ArmedActor { body, weapon } => {
             draw_actor_shadow(rect, body, opacity);
             player_layers::draw_npc(rect, body, Some(weapon), 32, opacity, idle_time);
@@ -377,6 +384,9 @@ pub(crate) fn draw_portrait(rect: Rect, visual: Visual) {
         }
         Visual::ColoredItem(item, palette) => palettes::draw_item(rect, item, palette, 1.0),
         Visual::Actor(index) => art.portraits.draw(rect, u16::from(index), 1.0),
+        Visual::CampNpc(index) => {
+            crate::cryogenic_camp_render::draw_npc(rect, index, 1., false, None)
+        }
         Visual::ArmedActor { body, weapon } => {
             player_layers::draw_npc(rect, body, Some(weapon), 128, 1.0, None)
         }

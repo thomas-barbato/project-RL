@@ -1913,6 +1913,7 @@ impl AsciiApp {
                 || self.game.active_clinic(id)
                 || self.game.active_resident(id)
                 || self.game.active_quest_provider(id)
+                || self.camp_npc_name(id).is_some()
                 || self.game.dialogue_view(id).is_some()
                 || self.game.npc_interaction(id).is_some()
         })

@@ -1,0 +1,43 @@
+{
+  "review": "DIALOGUE-BUBBLE-01",
+  "revision": "r02",
+  "date": "2026-10-18",
+  "production_enabled": false,
+  "debug_build": "passed",
+  "targeted_tests": {
+    "filter": "dialogue_bubble_review::tests",
+    "passed": 4,
+    "failed": 0
+  },
+  "release_check": "passed",
+  "format_check": "passed",
+  "diff_check": "passed",
+  "gpu": {
+    "progressive_frames": 347,
+    "final_frame_matches_static": true,
+    "tail_joint_blend_verified": true,
+    "antialiased_border_one_pixel_coverage_verified": true,
+    "quest_read_icon_stays_hidden": true,
+    "ready_marker_question_mark": true,
+    "closing_preserves_game_fingerprint": true
+  },
+  "gallery_script_harness": {
+    "syntax": "passed",
+    "dismiss_reopen": "passed",
+    "reduced_motion": "passed",
+    "listening_controls_excluded_from_dismissal": true
+  },
+  "browser_ui_check": "Unavailable: file URL observation blocked by browser policy; no workaround used",
+  "audio_files": {
+    "count": 3,
+    "format": "PCM WAV 48000 Hz mono 16-bit",
+    "duration_seconds": 8.625,
+    "peak_limit": 0.14,
+    "checks": "passed"
+  },
+  "full_suite": "Not rerun; this is targeted validation",
+  "warnings": [
+    "Two unused historical bubble review rendering helpers",
+    "Existing unused draw_inspection_panel release helper"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "review_id": "HANDCRAFTED-PLACES-01",
+  "revision": "r08",
+  "date": "2026-10-17",
+  "changes_requested": [
+    "Conserver le dialogue aimé, remplacer la mention du sort des détenus précédents par l’absence de choix du joueur.",
+    "Retirer les chaises des salles et ajouter des lits dans l’infirmerie.",
+    "Corriger les deux accès du bas qui présentent une lumière en guise de porte.",
+    "Expliquer la possibilité d’un éclairage calculé et proposer de petites animations avant de les activer."
+  ],
+  "dialogue": {
+    "id": "DIAL-CRYO-01",
+    "revision": "r02",
+    "previous_revision": "cryo-officer-placement-01.json",
+    "approval": "Les parties inchangées sont aimées par le joueur. La nouvelle dernière phrase correspond à sa correction et est présentée dans cette revue.",
+    "unchanged_blocks_approved": [0, 1],
+    "unchanged_block_2_prefix_approved": "Vous réussissez, votre peine sera commuée. Vous serez libre.",
+    "replacement_requested": "Vous n’avez de toute façon pas le choix.",
+    "blocks": [
+      "Debout, détenu. Les démons ravagent la ville. Nous n’avons plus assez d’hommes à envoyer sous terre.",
+      "Le passage qu’ils empruntent est maintenu ouvert par un dispositif : le Puits. Vous allez le rejoindre et couper ce qui alimente l’invasion.",
+      "Vous réussissez, votre peine sera commuée. Vous serez libre. Vous n’avez de toute façon pas le choix."
+    ],
+    "connected_to_game": false,
+    "story_scope": "Seul le texte dit par cet officier est révisé. Le passé des autres détenus dans le document de scénario n’est pas réécrit."
+  },
+  "furniture": {
+    "chairs_removed": 3,
+    "bed_id_reused": "DEC-CAMP-10-r05",
+    "bed_total": 3,
+    "bed_positions": [[14, 13], [16, 13], [20, 13]],
+    "actors_changed": false,
+    "new_art": false
+  },
+  "lower_doorways": {
+    "clear_openings": [[17, 11], [30, 11]],
+    "drawn_lamps_moved_onto_side_walls": true,
+    "collision_changes": false,
+    "new_light_system": false,
+    "generation_record": "generation-r08.json"
+  },
+  "lighting_proposal": {
+    "id": "LUM-CAMP-01",
+    "title": "Éclairage calculé par le moteur",
+    "status": "proposal_only",
+    "description": "Garder les boîtiers de lampes, retirer les halos peints dans le décor et calculer un éclairage 2D ambré sur le sol, les murs, le mobilier et les personnages. Les murs arrêtent la lumière. Garder assez de lumière ambiante pour lire les silhouettes.",
+    "scope": "Effet visuel proposé ; aucune modification de la vision tactique, de la détection ou des tours.",
+    "technical_basis": "Macroquad permet des matériaux et shaders ; examples/surface_preview/animation.rs contient déjà des variations lumineuses cosmétiques. Le prototype courant ne possède pas encore cette nouvelle passe d’éclairage.",
+    "preparation_required": "Séparer la lumière déjà peinte dans les textures avant la passe moteur, pour éviter le double éclairage.",
+    "implemented": false,
+    "approved": false
+  },
+  "animation_proposals": [
+    {
+      "id": "ANIM-CAMP-01",
+      "title": "Voyants des cuves",
+      "description": "Une très faible pulsation lente des petits voyants, avec des rythmes décalés entre les cuves. Les vitres et silhouettes restent bien lisibles.",
+      "recommended_first": true,
+      "approved": false,
+      "implemented": false
+    },
+    {
+      "id": "ANIM-CAMP-02",
+      "title": "Écrans des bureaux",
+      "description": "Un curseur lent ou une ligne de balayage discrète sur les écrans. Le mobilier reste immobile.",
+      "recommended_first": true,
+      "approved": false,
+      "implemented": false
+    },
+    {
+      "id": "ANIM-CAMP-03",
+      "title": "Ventilation de la cryogénie",
+      "description": "Une petite bouffée de vapeur occasionnelle près de la cuve ouverte, courte et transparente, sans voiler le passage ou les personnages.",
+      "recommended_first": false,
+      "approved": false,
+      "implemented": false
+    }
+  ],
+  "animation_scope": "Animations d’ambiance indépendantes des tours. Aucune case, collision, visibilité ou action de jeu n’est modifiée.",
+  "campaign_connected": false
+}

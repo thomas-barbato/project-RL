@@ -31,7 +31,7 @@ foreach ($pair in $archives) {
   try {
     $out = Join-Path $destination $pair[0]
     [IO.Directory]::CreateDirectory($out) | Out-Null
-    foreach ($name in @('Levels','MonStats','MonStats2','MonPreset','SuperUniques','LvlPrest','LvlMaze','LvlTypes','LvlSub','MonUMod','Levels.bin','MonStats.bin')) {
+    foreach ($name in @('Levels','MonStats','MonStats2','MonPreset','SuperUniques','LvlPrest','LvlMaze','LvlTypes','LvlSub','MonUMod','Levels.bin','MonStats.bin','LevelDefs','LevelDefs.bin','LvlMaze.bin','LvlPrest.bin','LvlTypes.bin','LvlSub.bin')) {
       $leaf = if ($name.Contains('.')) { $name } else { "$name.txt" }
       $file = [IntPtr]::Zero
       if (-not [MpqStudyRead]::SFileOpenFileEx($archive, "data\global\excel\$leaf", 0, [ref]$file)) { Write-Output "Missing $($pair[0]) $name"; continue }

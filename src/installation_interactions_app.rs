@@ -967,7 +967,7 @@ mod tests {
     fn installations_new_generation_is_optional_and_old_runs_keep_their_map() {
         let old = app(IRREVERSIBLE_LAYERS_GENERATION_VERSION);
         assert!(old.game.zone_info(&cid("core:transit_annex")).is_none());
-        let mut new = app(CURRENT_GENERATION_VERSION);
+        let mut new = app(MONSTER_BLUE_PALETTES_GENERATION_VERSION);
         assert!(new.game.zone_info(&cid("core:transit_annex")).is_some());
         new.enter_installation_annex().unwrap();
         assert!(

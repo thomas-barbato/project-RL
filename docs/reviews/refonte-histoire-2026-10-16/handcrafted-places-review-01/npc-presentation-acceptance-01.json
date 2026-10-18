@@ -1,0 +1,41 @@
+{
+  "review_id": "CAMP-NPC-01",
+  "date": "2026-10-18",
+  "status": "approved_and_integrated",
+  "user_quote": "alors j'aime (et il faut garder les ajouts), mais je voulais dire qu'il manque un symbole au dessus de la tête du pnj de quete :) .",
+  "additional_user_quote": "et les symboles au dessus des pnj doivent être un peu animées aussi, comme avant :)",
+  "approved_revision": "r01",
+  "production_enabled": true,
+  "source_images_unchanged": {
+    "NPC-01": {
+      "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+      "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f"
+    },
+    "NPC-02": {
+      "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+      "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6"
+    },
+    "NPC-03": {
+      "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+      "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7"
+    },
+    "NPC-04": {
+      "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+      "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac"
+    }
+  },
+  "approved_preview_sha256": {
+    "npc-1-native.webp": "b109c489d10e5377aeba22231699f57cf60f37200a7567914dc1bd339888f769",
+    "npc-2-native.webp": "63e38fbc56c862aff1e71d7ceec8e91bc9798bc9b53ec6328c446e3866343159",
+    "npc-3-native.webp": "f366dfe5ab7049639d0d5a391b3b4361b1326db0a4bf4f1e3e353dc6556af195",
+    "npc-4-native.webp": "4538af10bb5a756ec2eac9791da836d9692f0488470ca6cccad4cf31ce63e4ed"
+  },
+  "requested_completions": {
+    "officer_quest_symbol": "existing ! beside the retained dialogue bubble; no new quest state",
+    "floating_markers": "existing quest float: 0-3 native pixels, 2.4 second cycle",
+    "reduced_motion": "static markers remain visible; breathing disabled"
+  },
+  "hover_outline_approval": false,
+  "save_format_unchanged": true,
+  "generation_version_unchanged": 153
+}

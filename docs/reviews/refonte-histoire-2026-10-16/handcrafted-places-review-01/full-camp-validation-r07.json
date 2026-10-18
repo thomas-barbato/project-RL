@@ -1,0 +1,274 @@
+{
+  "review_id": "HANDCRAFTED-PLACES-01",
+  "revision": "r07",
+  "actor_count": 5,
+  "reused_actor": "NPC-01-r03",
+  "actor_sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+  "native_actor_pixels_exact": true,
+  "captures": [
+    {
+      "state": "camp",
+      "file": "artifacts/handcrafted-places-review-01/engine-r07/r07-camp-native.png",
+      "sha256": "c759d17fc169144e4aa797de9cd5a916ccfca00a1220ff23e9b7dc9a3f723384",
+      "actors": [
+        {
+          "id": "PLAYER",
+          "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+          "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+          "opaque_pixels_verified": 188,
+          "scale": 1,
+          "placement": [
+            96,
+            480
+          ]
+        },
+        {
+          "id": "NPC-01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+          "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+          "opaque_pixels_verified": 978,
+          "scale": 1,
+          "placement": [
+            352,
+            416
+          ]
+        },
+        {
+          "id": "NPC-02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+          "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+          "opaque_pixels_verified": 1088,
+          "scale": 1,
+          "placement": [
+            1952,
+            224
+          ]
+        },
+        {
+          "id": "NPC-03",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+          "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+          "opaque_pixels_verified": 909,
+          "scale": 1,
+          "placement": [
+            1120,
+            800
+          ]
+        },
+        {
+          "id": "NPC-04",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+          "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac",
+          "opaque_pixels_verified": 874,
+          "scale": 1,
+          "placement": [
+            1952,
+            800
+          ]
+        }
+      ]
+    },
+    {
+      "state": "officier",
+      "file": "artifacts/handcrafted-places-review-01/engine-r07/r07-officier-native.png",
+      "sha256": "11269053dc44fadd0affc2727b25442d9780e1c8a780fd8a85f0dca5ecfd470d",
+      "actors": [
+        {
+          "id": "PLAYER",
+          "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+          "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+          "opaque_pixels_verified": 188,
+          "scale": 1,
+          "placement": [
+            352,
+            480
+          ]
+        },
+        {
+          "id": "NPC-01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+          "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+          "opaque_pixels_verified": 978,
+          "scale": 1,
+          "placement": [
+            352,
+            416
+          ]
+        },
+        {
+          "id": "NPC-02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+          "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+          "opaque_pixels_verified": 1088,
+          "scale": 1,
+          "placement": [
+            1952,
+            224
+          ]
+        },
+        {
+          "id": "NPC-03",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+          "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+          "opaque_pixels_verified": 909,
+          "scale": 1,
+          "placement": [
+            1120,
+            800
+          ]
+        },
+        {
+          "id": "NPC-04",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+          "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac",
+          "opaque_pixels_verified": 874,
+          "scale": 1,
+          "placement": [
+            1952,
+            800
+          ]
+        }
+      ]
+    },
+    {
+      "state": "hall",
+      "file": "artifacts/handcrafted-places-review-01/engine-r07/r07-hall-native.png",
+      "sha256": "47e7ea8dd360bdbf3578572d67b8bd778917b4067ff800a5cabd0d4153949c79",
+      "actors": [
+        {
+          "id": "PLAYER",
+          "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+          "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+          "opaque_pixels_verified": 188,
+          "scale": 1,
+          "placement": [
+            1376,
+            480
+          ]
+        },
+        {
+          "id": "NPC-01",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+          "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+          "opaque_pixels_verified": 978,
+          "scale": 1,
+          "placement": [
+            352,
+            416
+          ]
+        },
+        {
+          "id": "NPC-02",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+          "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+          "opaque_pixels_verified": 1088,
+          "scale": 1,
+          "placement": [
+            1952,
+            224
+          ]
+        },
+        {
+          "id": "NPC-03",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+          "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+          "opaque_pixels_verified": 909,
+          "scale": 1,
+          "placement": [
+            1120,
+            800
+          ]
+        },
+        {
+          "id": "NPC-04",
+          "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+          "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac",
+          "opaque_pixels_verified": 874,
+          "scale": 1,
+          "placement": [
+            1952,
+            800
+          ]
+        }
+      ]
+    }
+  ],
+  "runtime_checks": {
+    "actor_count": 5,
+    "actual_gpu_capture": true,
+    "campaign_connected": false,
+    "captures": [
+      {
+        "engine_steps": 0,
+        "name": "camp",
+        "player_at": [
+          2,
+          8
+        ]
+      },
+      {
+        "engine_steps": 4,
+        "name": "officier",
+        "player_at": [
+          6,
+          8
+        ]
+      },
+      {
+        "engine_steps": 20,
+        "name": "hall",
+        "player_at": [
+          22,
+          8
+        ]
+      }
+    ],
+    "cell": 64,
+    "door_overlays_added": false,
+    "exits_reached": [
+      [
+        37,
+        8
+      ]
+    ],
+    "new_service_rules": false,
+    "open_passages": true,
+    "prop_count": 24,
+    "renderer": "painted architecture layers; separate native furnishings and actors",
+    "revision": "r07",
+    "size": [
+      2432,
+      1152
+    ],
+    "spawn": [
+      2,
+      8
+    ]
+  },
+  "environment_assets_unchanged": true,
+  "furniture_unchanged": true,
+  "gpu_changes_only_at_old_and_new_officer_pixels": true,
+  "duplicate_officer": false,
+  "dialogue_connected": false,
+  "decision": "cryo-officer-placement-01.json",
+  "campaign_connected": false,
+  "verification_commands": {
+    "tests": {
+      "command": "cargo test --locked --example handcrafted_camp_full_review",
+      "passed": 1,
+      "failed": 0
+    },
+    "build": {
+      "command": "cargo build --locked --example handcrafted_camp_full_review",
+      "passed": true
+    },
+    "format": {
+      "command": "cargo fmt --all -- --check",
+      "passed": true
+    },
+    "diff_check": {
+      "command": "git diff --check",
+      "passed": true
+    }
+  }
+}

@@ -50,7 +50,7 @@ pub(super) fn draw_portrait(rect: Rect, visual: Visual) {
 
 fn draw_world(rect: Rect, visual: Visual, opacity: f32) {
     with_source(visual, |source| {
-        if visual == Visual::DroneScout {
+        if visual == Visual::DroneScout && !crate::target_outline::capturing_body_mask() {
             draw_ellipse(
                 rect.center().x,
                 rect.center().y + rect.h * 30. / 64.,

@@ -1,0 +1,1826 @@
+{
+  "review_id": "MONDE-PM01-01",
+  "date": "2026-10-17",
+  "scope": "131 campaign table rows per archive, Ids 1..132 except bonus Cow Level 39; not all playable map layouts.",
+  "archives_unchanged_from_encounter_study": true,
+  "archive_hashes": [
+    {
+      "path": "D:\\JEUX\\Diablo 2 old\\Diablo II\\ProjectD2\\pd2data.mpq",
+      "size": 2157546,
+      "sha256": "196f9da7f5a7eead7bc000137514e6b564e50e893ca89bb4711359d03c29ce63"
+    },
+    {
+      "path": "D:\\JEUX\\Diablo 2 old\\Diablo II\\patch_d2.mpq",
+      "size": 3915305,
+      "sha256": "81470b762c497a8fcaf9a09990c0e869a4175395ef1fae13bd85cfec7b688ddc"
+    }
+  ],
+  "input_tables": [
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/LevelDefs.bin",
+      "sha256": "eeb6a9a485cdb217007c3aee1c20a7974466f2966f5b2a6ff210e5555e18e77c"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/Levels.bin",
+      "sha256": "4af188176b8830afa78ee5f31558e6fd3b6c4a6c77fd9b4016490611a18e0cba"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/Levels.txt",
+      "sha256": "34add892965a7b38f08c7346ffe7a41ede6668b9d5b28277493ddf157e55da0b"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/LvlMaze.bin",
+      "sha256": "4da089a98d38235ab2b66bcfffde11f1a7e179c84f796e36a7f37db0b29fc80a"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/LvlMaze.txt",
+      "sha256": "b9e04882f357b20ecfc0f166d7699c93119d1aed545503f2f85866c0a89b4dc3"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/LvlPrest.bin",
+      "sha256": "bdb6b98a648de5fde9cf1e587a28140786960d7fceba4b8064ef5584ec199c30"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/LvlPrest.txt",
+      "sha256": "c2f6a891f07145fcffd8755b6fd163f86b6c3363fc45e9c6fe133436f7ae3f9e"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/LvlSub.bin",
+      "sha256": "de461fd72b8b72ecce452587e408d9aef84eb679c53f2c78a398cb55b17a0247"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/LvlSub.txt",
+      "sha256": "d3dc9dc70066f819ff9e0c1b433b327952789ed7ad3e5eadccf7160280ddc64f"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/LvlTypes.bin",
+      "sha256": "9399f78364f96ef4bbd3971f808ada15af810dde65c76e9b9132128c8e2c3ece"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/LoD/LvlTypes.txt",
+      "sha256": "4d8a6cc08afd6c66a493b677b1601182695a437dcc0ab5fedecc379537e5c84c"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/LevelDefs.bin",
+      "sha256": "b502cb671fe395ee37fb129d891ff015b69cdcd898e516239c0f5093a34057f4"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/Levels.bin",
+      "sha256": "2577b0ad41ffd8becb230790d74ae37560e79c3f1ffaec0ecc26d1227902c169"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/Levels.txt",
+      "sha256": "fcac65007e75698981312927c4539e494e098083dfdc5564735f26108189b712"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/LvlMaze.bin",
+      "sha256": "725c39f3673946e8777ead89ec45ebcf42ab01859d4973e3c192abf170a7bd8d"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/LvlMaze.txt",
+      "sha256": "83ed16bfc245b536e7d6005c11551454109c76e0e7e8d88ac41405d9b7072784"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/LvlPrest.bin",
+      "sha256": "0a2483b40c64a1e9e62f7e63ab31d229bca293bb6401748477443996dbbcdfd2"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/LvlPrest.txt",
+      "sha256": "3e0d3b7fffc6d22e48d5fd4d271e347b70337294bea0e15e89b181b36b21a801"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/LvlSub.bin",
+      "sha256": "de461fd72b8b72ecce452587e408d9aef84eb679c53f2c78a398cb55b17a0247"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/LvlSub.txt",
+      "sha256": "d3dc9dc70066f819ff9e0c1b433b327952789ed7ad3e5eadccf7160280ddc64f"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/LvlTypes.bin",
+      "sha256": "013e955427fba2a02506e6ebc791774bbb21fd6267e894c794f5587a149c453e"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/tables/PD2/LvlTypes.txt",
+      "sha256": "bb317366621d45cc71f5ab7f8547d144e94be42078eec1362d71d31404e50cac"
+    }
+  ],
+  "lod": {
+    "campaign_rows": 131,
+    "compiled_definition_rows": 137,
+    "generator_modes": {
+      "maze": 68,
+      "outdoor": 29,
+      "preset": 34
+    },
+    "waypoint_rows": 39,
+    "structural_field_comparisons_against_bin": 4192,
+    "maze_parameter_rows_verified": 81,
+    "preset_definition_rows_verified": 1091,
+    "level_type_rows": 36,
+    "examples": [
+      {
+        "Id": "1",
+        "Name": "Act 1 - Town",
+        "LevelName": "Rogue Encampment",
+        "DrlgType": "2",
+        "Waypoint": "0",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            56,
+            40
+          ],
+          [
+            56,
+            40
+          ],
+          [
+            56,
+            40
+          ]
+        ],
+        "declared_passages": [],
+        "preset_definitions": [
+          {
+            "definition": 1,
+            "files": 0
+          }
+        ]
+      },
+      {
+        "Id": "2",
+        "Name": "Act 1 - Wilderness 1",
+        "LevelName": "Blood Moor",
+        "DrlgType": "3",
+        "Waypoint": "255",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 3,
+            "visible_level": 8,
+            "warp": 0
+          },
+          {
+            "slot": 4,
+            "visible_level": 8,
+            "warp": 1
+          },
+          {
+            "slot": 5,
+            "visible_level": 8,
+            "warp": 2
+          },
+          {
+            "slot": 6,
+            "visible_level": 8,
+            "warp": 3
+          }
+        ]
+      },
+      {
+        "Id": "3",
+        "Name": "Act 1 - Wilderness 2",
+        "LevelName": "Cold Plains",
+        "DrlgType": "3",
+        "Waypoint": "1",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 3,
+            "visible_level": 9,
+            "warp": 0
+          },
+          {
+            "slot": 4,
+            "visible_level": 9,
+            "warp": 1
+          },
+          {
+            "slot": 5,
+            "visible_level": 9,
+            "warp": 2
+          },
+          {
+            "slot": 6,
+            "visible_level": 9,
+            "warp": 3
+          }
+        ]
+      },
+      {
+        "Id": "8",
+        "Name": "Act 1 - Cave 1",
+        "LevelName": "Den of Evil",
+        "DrlgType": "1",
+        "Waypoint": "255",
+        "generator": "maze",
+        "sizes_by_difficulty": [
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 2,
+            "warp": 4
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 1,
+          "Rooms(N)": 1,
+          "Rooms(H)": 1,
+          "SizeX": 24,
+          "SizeY": 24,
+          "Merge": 500
+        }
+      },
+      {
+        "Id": "25",
+        "Name": "Act 1 - Crypt 3 E",
+        "LevelName": "Tower Cellar Level 5",
+        "DrlgType": "2",
+        "Waypoint": "255",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            30,
+            30
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            30,
+            30
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 24,
+            "warp": 8
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 6,
+          "Rooms(N)": 6,
+          "Rooms(H)": 6,
+          "SizeX": 8,
+          "SizeY": 8,
+          "Merge": 500
+        },
+        "preset_definitions": [
+          {
+            "definition": 159,
+            "files": 2
+          }
+        ]
+      },
+      {
+        "Id": "28",
+        "Name": "Act 1 - Barracks",
+        "LevelName": "Barracks",
+        "DrlgType": "1",
+        "Waypoint": "255",
+        "generator": "maze",
+        "sizes_by_difficulty": [
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 27,
+            "warp": -1
+          },
+          {
+            "slot": 1,
+            "visible_level": 29,
+            "warp": 14
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 10,
+          "Rooms(N)": 10,
+          "Rooms(H)": 10,
+          "SizeX": 10,
+          "SizeY": 14,
+          "Merge": 500
+        }
+      },
+      {
+        "Id": "35",
+        "Name": "Act 1 - Catacombs 2",
+        "LevelName": "Catacombs Level 2",
+        "DrlgType": "1",
+        "Waypoint": "8",
+        "generator": "maze",
+        "sizes_by_difficulty": [
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 34,
+            "warp": 17
+          },
+          {
+            "slot": 1,
+            "visible_level": 36,
+            "warp": 18
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 14,
+          "Rooms(N)": 14,
+          "Rooms(H)": 14,
+          "SizeX": 12,
+          "SizeY": 12,
+          "Merge": 500
+        }
+      },
+      {
+        "Id": "37",
+        "Name": "Act 1 - Catacombs 4",
+        "LevelName": "Catacombs Level 4",
+        "DrlgType": "2",
+        "Waypoint": "255",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            22,
+            31
+          ],
+          [
+            22,
+            31
+          ],
+          [
+            22,
+            31
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 36,
+            "warp": 17
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 18,
+          "Rooms(N)": 18,
+          "Rooms(H)": 18,
+          "SizeX": 12,
+          "SizeY": 12,
+          "Merge": 500
+        },
+        "preset_definitions": [
+          {
+            "definition": 299,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "40",
+        "Name": "Act 2 - Town",
+        "LevelName": "Lut Gholein",
+        "DrlgType": "2",
+        "Waypoint": "9",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            56,
+            56
+          ],
+          [
+            56,
+            56
+          ],
+          [
+            56,
+            56
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 2,
+            "visible_level": 47,
+            "warp": 19
+          },
+          {
+            "slot": 3,
+            "visible_level": 47,
+            "warp": 20
+          },
+          {
+            "slot": 4,
+            "visible_level": 50,
+            "warp": 24
+          }
+        ],
+        "preset_definitions": [
+          {
+            "definition": 301,
+            "files": 0
+          }
+        ]
+      },
+      {
+        "Id": "46",
+        "Name": "Act 2 - Valley of the Kings",
+        "LevelName": "Canyon of the Magi",
+        "DrlgType": "3",
+        "Waypoint": "17",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 1,
+            "visible_level": 66,
+            "warp": 38
+          },
+          {
+            "slot": 2,
+            "visible_level": 67,
+            "warp": 39
+          },
+          {
+            "slot": 3,
+            "visible_level": 68,
+            "warp": 40
+          },
+          {
+            "slot": 4,
+            "visible_level": 69,
+            "warp": 41
+          },
+          {
+            "slot": 5,
+            "visible_level": 70,
+            "warp": 42
+          },
+          {
+            "slot": 6,
+            "visible_level": 71,
+            "warp": 43
+          },
+          {
+            "slot": 7,
+            "visible_level": 72,
+            "warp": 44
+          }
+        ]
+      },
+      {
+        "Id": "67",
+        "Name": "Act 2 - Tomb Tal 2",
+        "LevelName": "Tal Rasha's Tomb",
+        "DrlgType": "1",
+        "Waypoint": "255",
+        "generator": "maze",
+        "sizes_by_difficulty": [
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 46,
+            "warp": 45
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 6,
+          "Rooms(N)": 6,
+          "Rooms(H)": 6,
+          "SizeX": 16,
+          "SizeY": 16,
+          "Merge": 500
+        }
+      },
+      {
+        "Id": "75",
+        "Name": "Act 3 - Town",
+        "LevelName": "Kurast Docktown",
+        "DrlgType": "2",
+        "Waypoint": "18",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            64,
+            48
+          ],
+          [
+            64,
+            48
+          ],
+          [
+            64,
+            48
+          ]
+        ],
+        "declared_passages": [],
+        "preset_definitions": [
+          {
+            "definition": 529,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "83",
+        "Name": "Act 3 - Travincal",
+        "LevelName": "Travincal",
+        "DrlgType": "3",
+        "Waypoint": "25",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            64,
+            64
+          ],
+          [
+            64,
+            64
+          ],
+          [
+            64,
+            64
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 100,
+            "warp": 64
+          }
+        ]
+      },
+      {
+        "Id": "102",
+        "Name": "Act 3 - Mephisto 3",
+        "LevelName": "Durance of Hate Level 3",
+        "DrlgType": "2",
+        "Waypoint": "255",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            41,
+            29
+          ],
+          [
+            41,
+            29
+          ],
+          [
+            41,
+            29
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 2,
+            "visible_level": 101,
+            "warp": 65
+          },
+          {
+            "slot": 3,
+            "visible_level": 101,
+            "warp": 66
+          }
+        ],
+        "preset_definitions": [
+          {
+            "definition": 796,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "103",
+        "Name": "Act 4 - Town",
+        "LevelName": "The Pandemonium Fortress",
+        "DrlgType": "2",
+        "Waypoint": "27",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            24
+          ]
+        ],
+        "declared_passages": [],
+        "preset_definitions": [
+          {
+            "definition": 797,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "108",
+        "Name": "Act 4 - Diablo 1",
+        "LevelName": "Chaos Sanctum",
+        "DrlgType": "3",
+        "Waypoint": "255",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            120,
+            120
+          ],
+          [
+            120,
+            120
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 107,
+            "warp": -1
+          }
+        ]
+      },
+      {
+        "Id": "109",
+        "Name": "Act 5 - Town",
+        "LevelName": "Harrogath",
+        "DrlgType": "2",
+        "Waypoint": "30",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            40,
+            40
+          ],
+          [
+            40,
+            40
+          ],
+          [
+            40,
+            40
+          ]
+        ],
+        "declared_passages": [],
+        "preset_definitions": [
+          {
+            "definition": 863,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "110",
+        "Name": "Act 5 - Siege 1",
+        "LevelName": "Bloody Foothills",
+        "DrlgType": "3",
+        "Waypoint": "255",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            240,
+            48
+          ],
+          [
+            240,
+            48
+          ],
+          [
+            240,
+            48
+          ]
+        ],
+        "declared_passages": []
+      },
+      {
+        "Id": "129",
+        "Name": "Act 5 - Baal Temple 2",
+        "LevelName": "The Worldstone Keep Level 2",
+        "DrlgType": "1",
+        "Waypoint": "38",
+        "generator": "maze",
+        "sizes_by_difficulty": [
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 128,
+            "warp": 81
+          },
+          {
+            "slot": 1,
+            "visible_level": 130,
+            "warp": 82
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 9,
+          "Rooms(N)": 9,
+          "Rooms(H)": 9,
+          "SizeX": 16,
+          "SizeY": 16,
+          "Merge": 500
+        }
+      },
+      {
+        "Id": "131",
+        "Name": "Act 5 - Throne Room",
+        "LevelName": "Throne of Destruction",
+        "DrlgType": "2",
+        "Waypoint": "255",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            40,
+            52
+          ],
+          [
+            40,
+            52
+          ],
+          [
+            40,
+            52
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 130,
+            "warp": 81
+          },
+          {
+            "slot": 1,
+            "visible_level": 132,
+            "warp": 82
+          }
+        ],
+        "preset_definitions": [
+          {
+            "definition": 1086,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "132",
+        "Name": "Act 5 - World Stone",
+        "LevelName": "The Worldstone Chamber",
+        "DrlgType": "2",
+        "Waypoint": "255",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            55,
+            55
+          ],
+          [
+            55,
+            55
+          ],
+          [
+            55,
+            55
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 131,
+            "warp": 81
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 9,
+          "Rooms(N)": 9,
+          "Rooms(H)": 9,
+          "SizeX": 16,
+          "SizeY": 16,
+          "Merge": 500
+        },
+        "preset_definitions": [
+          {
+            "definition": 1087,
+            "files": 1
+          }
+        ]
+      }
+    ]
+  },
+  "pd2": {
+    "campaign_rows": 131,
+    "compiled_definition_rows": 202,
+    "generator_modes": {
+      "maze": 68,
+      "outdoor": 29,
+      "preset": 34
+    },
+    "waypoint_rows": 39,
+    "structural_field_comparisons_against_bin": 4192,
+    "maze_parameter_rows_verified": 81,
+    "preset_definition_rows_verified": 1157,
+    "level_type_rows": 46,
+    "examples": [
+      {
+        "Id": "1",
+        "Name": "Act 1 - Town",
+        "LevelName": "Rogue Encampment",
+        "DrlgType": "2",
+        "Waypoint": "0",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            56,
+            40
+          ],
+          [
+            56,
+            40
+          ],
+          [
+            56,
+            40
+          ]
+        ],
+        "declared_passages": [],
+        "preset_definitions": [
+          {
+            "definition": 1,
+            "files": 0
+          }
+        ]
+      },
+      {
+        "Id": "2",
+        "Name": "Act 1 - Wilderness 1",
+        "LevelName": "Blood Moor",
+        "DrlgType": "3",
+        "Waypoint": "255",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 3,
+            "visible_level": 8,
+            "warp": 0
+          },
+          {
+            "slot": 4,
+            "visible_level": 8,
+            "warp": 1
+          },
+          {
+            "slot": 5,
+            "visible_level": 8,
+            "warp": 2
+          },
+          {
+            "slot": 6,
+            "visible_level": 8,
+            "warp": 3
+          }
+        ]
+      },
+      {
+        "Id": "3",
+        "Name": "Act 1 - Wilderness 2",
+        "LevelName": "Cold Plains",
+        "DrlgType": "3",
+        "Waypoint": "1",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 3,
+            "visible_level": 9,
+            "warp": 0
+          },
+          {
+            "slot": 4,
+            "visible_level": 9,
+            "warp": 1
+          },
+          {
+            "slot": 5,
+            "visible_level": 9,
+            "warp": 2
+          },
+          {
+            "slot": 6,
+            "visible_level": 9,
+            "warp": 3
+          }
+        ]
+      },
+      {
+        "Id": "8",
+        "Name": "Act 1 - Cave 1",
+        "LevelName": "Den of Evil",
+        "DrlgType": "1",
+        "Waypoint": "255",
+        "generator": "maze",
+        "sizes_by_difficulty": [
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 2,
+            "warp": 4
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 1,
+          "Rooms(N)": 1,
+          "Rooms(H)": 1,
+          "SizeX": 24,
+          "SizeY": 24,
+          "Merge": 500
+        }
+      },
+      {
+        "Id": "25",
+        "Name": "Act 1 - Crypt 3 E",
+        "LevelName": "Tower Cellar Level 5",
+        "DrlgType": "2",
+        "Waypoint": "255",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            30,
+            30
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            30,
+            30
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 24,
+            "warp": 8
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 6,
+          "Rooms(N)": 6,
+          "Rooms(H)": 6,
+          "SizeX": 8,
+          "SizeY": 8,
+          "Merge": 500
+        },
+        "preset_definitions": [
+          {
+            "definition": 159,
+            "files": 2
+          }
+        ]
+      },
+      {
+        "Id": "28",
+        "Name": "Act 1 - Barracks",
+        "LevelName": "Barracks",
+        "DrlgType": "1",
+        "Waypoint": "255",
+        "generator": "maze",
+        "sizes_by_difficulty": [
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 27,
+            "warp": -1
+          },
+          {
+            "slot": 1,
+            "visible_level": 29,
+            "warp": 14
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 10,
+          "Rooms(N)": 10,
+          "Rooms(H)": 10,
+          "SizeX": 10,
+          "SizeY": 14,
+          "Merge": 500
+        }
+      },
+      {
+        "Id": "35",
+        "Name": "Act 1 - Catacombs 2",
+        "LevelName": "Catacombs Level 2",
+        "DrlgType": "1",
+        "Waypoint": "8",
+        "generator": "maze",
+        "sizes_by_difficulty": [
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 34,
+            "warp": 17
+          },
+          {
+            "slot": 1,
+            "visible_level": 36,
+            "warp": 18
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 14,
+          "Rooms(N)": 14,
+          "Rooms(H)": 14,
+          "SizeX": 12,
+          "SizeY": 12,
+          "Merge": 500
+        }
+      },
+      {
+        "Id": "37",
+        "Name": "Act 1 - Catacombs 4",
+        "LevelName": "Catacombs Level 4",
+        "DrlgType": "2",
+        "Waypoint": "255",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            22,
+            31
+          ],
+          [
+            22,
+            31
+          ],
+          [
+            22,
+            31
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 36,
+            "warp": 17
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 18,
+          "Rooms(N)": 18,
+          "Rooms(H)": 18,
+          "SizeX": 12,
+          "SizeY": 12,
+          "Merge": 500
+        },
+        "preset_definitions": [
+          {
+            "definition": 299,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "40",
+        "Name": "Act 2 - Town",
+        "LevelName": "Lut Gholein",
+        "DrlgType": "2",
+        "Waypoint": "9",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            56,
+            56
+          ],
+          [
+            56,
+            56
+          ],
+          [
+            56,
+            56
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 2,
+            "visible_level": 47,
+            "warp": 19
+          },
+          {
+            "slot": 3,
+            "visible_level": 47,
+            "warp": 20
+          },
+          {
+            "slot": 4,
+            "visible_level": 50,
+            "warp": 24
+          }
+        ],
+        "preset_definitions": [
+          {
+            "definition": 301,
+            "files": 0
+          }
+        ]
+      },
+      {
+        "Id": "46",
+        "Name": "Act 2 - Valley of the Kings",
+        "LevelName": "Canyon of the Magi",
+        "DrlgType": "3",
+        "Waypoint": "17",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ],
+          [
+            80,
+            80
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 1,
+            "visible_level": 66,
+            "warp": 38
+          },
+          {
+            "slot": 2,
+            "visible_level": 67,
+            "warp": 39
+          },
+          {
+            "slot": 3,
+            "visible_level": 68,
+            "warp": 40
+          },
+          {
+            "slot": 4,
+            "visible_level": 69,
+            "warp": 41
+          },
+          {
+            "slot": 5,
+            "visible_level": 70,
+            "warp": 42
+          },
+          {
+            "slot": 6,
+            "visible_level": 71,
+            "warp": 43
+          },
+          {
+            "slot": 7,
+            "visible_level": 72,
+            "warp": 44
+          }
+        ]
+      },
+      {
+        "Id": "67",
+        "Name": "Act 2 - Tomb Tal 2",
+        "LevelName": "Tal Rasha's Tomb",
+        "DrlgType": "1",
+        "Waypoint": "255",
+        "generator": "maze",
+        "sizes_by_difficulty": [
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 46,
+            "warp": 45
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 6,
+          "Rooms(N)": 6,
+          "Rooms(H)": 6,
+          "SizeX": 16,
+          "SizeY": 16,
+          "Merge": 500
+        }
+      },
+      {
+        "Id": "75",
+        "Name": "Act 3 - Town",
+        "LevelName": "Kurast Docktown",
+        "DrlgType": "2",
+        "Waypoint": "18",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            64,
+            48
+          ],
+          [
+            64,
+            48
+          ],
+          [
+            64,
+            48
+          ]
+        ],
+        "declared_passages": [],
+        "preset_definitions": [
+          {
+            "definition": 529,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "83",
+        "Name": "Act 3 - Travincal",
+        "LevelName": "Travincal",
+        "DrlgType": "3",
+        "Waypoint": "25",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            64,
+            64
+          ],
+          [
+            64,
+            64
+          ],
+          [
+            64,
+            64
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 100,
+            "warp": 64
+          }
+        ]
+      },
+      {
+        "Id": "102",
+        "Name": "Act 3 - Mephisto 3",
+        "LevelName": "Durance of Hate Level 3",
+        "DrlgType": "2",
+        "Waypoint": "255",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            41,
+            29
+          ],
+          [
+            41,
+            29
+          ],
+          [
+            41,
+            29
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 2,
+            "visible_level": 101,
+            "warp": 65
+          },
+          {
+            "slot": 3,
+            "visible_level": 101,
+            "warp": 66
+          }
+        ],
+        "preset_definitions": [
+          {
+            "definition": 796,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "103",
+        "Name": "Act 4 - Town",
+        "LevelName": "The Pandemonium Fortress",
+        "DrlgType": "2",
+        "Waypoint": "27",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            24
+          ]
+        ],
+        "declared_passages": [],
+        "preset_definitions": [
+          {
+            "definition": 797,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "108",
+        "Name": "Act 4 - Diablo 1",
+        "LevelName": "Chaos Sanctum",
+        "DrlgType": "3",
+        "Waypoint": "255",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            120,
+            120
+          ],
+          [
+            120,
+            120
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 107,
+            "warp": -1
+          }
+        ]
+      },
+      {
+        "Id": "109",
+        "Name": "Act 5 - Town",
+        "LevelName": "Harrogath",
+        "DrlgType": "2",
+        "Waypoint": "30",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            40,
+            40
+          ],
+          [
+            40,
+            40
+          ],
+          [
+            40,
+            40
+          ]
+        ],
+        "declared_passages": [],
+        "preset_definitions": [
+          {
+            "definition": 863,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "110",
+        "Name": "Act 5 - Siege 1",
+        "LevelName": "Bloody Foothills",
+        "DrlgType": "3",
+        "Waypoint": "255",
+        "generator": "outdoor",
+        "sizes_by_difficulty": [
+          [
+            240,
+            48
+          ],
+          [
+            240,
+            48
+          ],
+          [
+            240,
+            48
+          ]
+        ],
+        "declared_passages": []
+      },
+      {
+        "Id": "129",
+        "Name": "Act 5 - Baal Temple 2",
+        "LevelName": "The Worldstone Keep Level 2",
+        "DrlgType": "1",
+        "Waypoint": "38",
+        "generator": "maze",
+        "sizes_by_difficulty": [
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ],
+          [
+            200,
+            200
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 128,
+            "warp": 81
+          },
+          {
+            "slot": 1,
+            "visible_level": 130,
+            "warp": 82
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 9,
+          "Rooms(N)": 9,
+          "Rooms(H)": 9,
+          "SizeX": 16,
+          "SizeY": 16,
+          "Merge": 500
+        }
+      },
+      {
+        "Id": "131",
+        "Name": "Act 5 - Throne Room",
+        "LevelName": "Throne of Destruction",
+        "DrlgType": "2",
+        "Waypoint": "255",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            40,
+            52
+          ],
+          [
+            40,
+            52
+          ],
+          [
+            40,
+            52
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 130,
+            "warp": 81
+          },
+          {
+            "slot": 1,
+            "visible_level": 132,
+            "warp": 82
+          }
+        ],
+        "preset_definitions": [
+          {
+            "definition": 1086,
+            "files": 1
+          }
+        ]
+      },
+      {
+        "Id": "132",
+        "Name": "Act 5 - World Stone",
+        "LevelName": "The Worldstone Chamber",
+        "DrlgType": "2",
+        "Waypoint": "255",
+        "generator": "preset",
+        "sizes_by_difficulty": [
+          [
+            55,
+            55
+          ],
+          [
+            55,
+            55
+          ],
+          [
+            55,
+            55
+          ]
+        ],
+        "declared_passages": [
+          {
+            "slot": 0,
+            "visible_level": 131,
+            "warp": 81
+          }
+        ],
+        "maze_parameters": {
+          "Rooms": 9,
+          "Rooms(N)": 9,
+          "Rooms(H)": 9,
+          "SizeX": 16,
+          "SizeY": 16,
+          "Merge": 500
+        },
+        "preset_definitions": [
+          {
+            "definition": 1087,
+            "files": 1
+          }
+        ]
+      }
+    ]
+  },
+  "compared_structural_fields": [
+    "DrlgType",
+    "LevelType",
+    "SubType",
+    "SubTheme",
+    "SubWaypoint",
+    "SubShrine",
+    "Waypoint",
+    "Depend",
+    "OffsetX",
+    "OffsetY",
+    "SizeX",
+    "SizeY",
+    "SizeX(N)",
+    "SizeY(N)",
+    "SizeX(H)",
+    "SizeY(H)",
+    "Vis0",
+    "Vis1",
+    "Vis2",
+    "Vis3",
+    "Vis4",
+    "Vis5",
+    "Vis6",
+    "Vis7",
+    "Warp0",
+    "Warp1",
+    "Warp2",
+    "Warp3",
+    "Warp4",
+    "Warp5",
+    "Warp6",
+    "Warp7"
+  ],
+  "campaign_field_differences": [],
+  "reference_revision": "0c0bbd1e6bef9181a3da1c046523af622a925416",
+  "reference_sources": [
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/world-code/DrlgDrlg.cpp",
+      "sha256": "cab5838e883521b974417a509b57e82c09c694d5fa3d669650e76019e9d3a43e",
+      "url": "https://github.com/ThePhrozenKeep/D2MOO/blob/0c0bbd1e6bef9181a3da1c046523af622a925416/source/D2Common/src/Drlg/DrlgDrlg.cpp"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/world-code/DrlgMaze.cpp",
+      "sha256": "04cc3d0ab13832deea302ba9a7d4d3270c2dc7c2a52c51320b3ee655bafca877",
+      "url": "https://github.com/ThePhrozenKeep/D2MOO/blob/0c0bbd1e6bef9181a3da1c046523af622a925416/source/D2Common/src/Drlg/DrlgMaze.cpp"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/world-code/DrlgPreset.cpp",
+      "sha256": "d99ffce69c589969d11863862c4c6d3d104444780a024cddd566de917bbdce8d",
+      "url": "https://github.com/ThePhrozenKeep/D2MOO/blob/0c0bbd1e6bef9181a3da1c046523af622a925416/source/D2Common/src/Drlg/DrlgPreset.cpp"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/world-code/DrlgOutdoors.cpp",
+      "sha256": "00905922560a26b4683172cb678566c5286e99a6f4bd2a4b401aa79690069920",
+      "url": "https://github.com/ThePhrozenKeep/D2MOO/blob/0c0bbd1e6bef9181a3da1c046523af622a925416/source/D2Common/src/Drlg/DrlgOutdoors.cpp"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/world-code/DrlgOutRoom.cpp",
+      "sha256": "f90e8c3c030990f7cc816efa17e1d75070bdfcf51617a1b898c1e61ff6c7889b",
+      "url": "https://github.com/ThePhrozenKeep/D2MOO/blob/0c0bbd1e6bef9181a3da1c046523af622a925416/source/D2Common/src/Drlg/DrlgOutRoom.cpp"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/world-code/DrlgDrlgWarp.cpp",
+      "sha256": "1022766ec582382297db11e0f471cc60cc48a6c1a2ea47b7c3980472599d459a",
+      "url": "https://github.com/ThePhrozenKeep/D2MOO/blob/0c0bbd1e6bef9181a3da1c046523af622a925416/source/D2Common/src/Drlg/DrlgDrlgWarp.cpp"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/world-code/D2DrlgDrlg.h",
+      "sha256": "266bbcb7240ac52f0d80861ed0a72b910a12b27201bee2f02a859c7baf6f6249",
+      "url": "https://github.com/ThePhrozenKeep/D2MOO/blob/0c0bbd1e6bef9181a3da1c046523af622a925416/source/D2Common/include/Drlg/D2DrlgDrlg.h"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/world-code/LevelsTbls.h",
+      "sha256": "80bdcb96229f91f56572f73cb3fdac5eb62352b03d128f8da923695a19bbe191",
+      "url": "https://github.com/ThePhrozenKeep/D2MOO/blob/0c0bbd1e6bef9181a3da1c046523af622a925416/source/D2Common/include/DataTbls/LevelsTbls.h"
+    },
+    {
+      "file": "artifacts/diablo2-study-2026-10-17/world-code/LevelsTbls.cpp",
+      "sha256": "e8776432ecb1348e9b031152720ee08ef1c9fd9b87e3d37cc5afc5dba740c9e4",
+      "url": "https://github.com/ThePhrozenKeep/D2MOO/blob/0c0bbd1e6bef9181a3da1c046523af622a925416/source/D2Common/src/DataTbls/LevelsTbls.cpp"
+    }
+  ],
+  "caveats": [
+    "D2MOO is a 1.10f reverse-engineered reference, not PD2 closed engine source.",
+    "Equal structural fields do not prove identical maps, DS1 assets, quest scripts or generation algorithms.",
+    "Room parameters are declarations; special cases add, reshape or multiply rooms.",
+    "Preset definition count is not a count of distinct playable maps.",
+    "Vis/Warp table entries do not fully describe all hardcoded outdoor links or quest transitions."
+  ]
+}

@@ -1,8 +1,13 @@
 #[cfg(debug_assertions)]
 mod agent_skill_lab_review;
 mod ascii_app;
+mod camp_atmosphere;
+mod camp_npc_review;
 mod combat_visuals;
 mod controls;
+mod cryogenic_camp;
+mod cryogenic_camp_render;
+mod dialogue_bubble_review;
 mod game_art;
 mod graphics;
 mod guardian_taunt_visuals;
@@ -11,6 +16,7 @@ mod melee_strike_visuals;
 mod pause_menu;
 mod surface_layout;
 mod suspension;
+mod target_outline;
 mod terminal_chrome;
 mod terminal_view;
 mod test_expedition;
@@ -23,7 +29,7 @@ mod ui_theme;
 mod visual_effects;
 mod watcher_signals;
 
-use ascii_app::AsciiApp;
+use ascii_app::{AsciiApp, TerminalDialogue};
 use macroquad::prelude::*;
 
 fn window_conf() -> Conf {
@@ -52,7 +58,17 @@ async fn main() {
     #[cfg(debug_assertions)]
     if let Some(output) = graphics::ui_smoke_output() {
         let mode = std::env::args().nth(1).unwrap_or_default();
-        let result = if mode == "--ui-cold-campaign-bestiary" {
+        let result = if mode == "--ui-cold-dialogue-bubbles" {
+            AsciiApp::capture_dialogue_bubbles(&output).await
+        } else if mode == "--ui-cold-dialogue-trial" {
+            AsciiApp::capture_dialogue_trial(&output).await
+        } else if mode == "--ui-cold-hover-outline" {
+            AsciiApp::capture_target_outline(&output).await
+        } else if mode == "--ui-cold-camp-npc-review" {
+            AsciiApp::capture_camp_npc_review(&output).await
+        } else if mode == "--ui-cold-cryogenic-camp" {
+            AsciiApp::capture_cryogenic_camp(&output).await
+        } else if mode == "--ui-cold-campaign-bestiary" {
             AsciiApp::capture_campaign_monsters(&output, false, false).await
         } else if mode == "--ui-cold-monster-palettes" {
             AsciiApp::capture_campaign_monsters(&output, true, false).await
@@ -118,6 +134,13 @@ async fn main() {
         }
         return;
     }
+    #[cfg(debug_assertions)]
+    if std::env::args().any(|arg| arg == "--essai-dialogue-terminal") {
+        if let Err(error) = AsciiApp::run_dialogue_trial().await {
+            run_error_screen(&error).await;
+        }
+        return;
+    }
     let trial = std::env::args().any(|arg| arg == "--essai-expedition");
     let installation_trial = std::env::args().any(|arg| arg == "--essai-interactions");
     let mut app = match (|| {
@@ -171,9 +194,19 @@ async fn main() {
         }
     };
 
+    let mut dialogue = match TerminalDialogue::load().await {
+        Ok(dialogue) => dialogue,
+        Err(error) => {
+            eprintln!("[DIALOGUE AUDIO] {error}");
+            TerminalDialogue::silent()
+        }
+    };
     loop {
         if is_quit_requested() {
             app.request_quit();
+        } else if TerminalDialogue::officer(&app).is_some() {
+            let mut input = controls::InputFrame::capture();
+            dialogue.dismiss(&mut app, &mut input, get_time());
         } else {
             // Do not let input from the close frame dismiss a save error or
             // change the run after its suspension has been written.
@@ -182,7 +215,11 @@ async fn main() {
         if app.should_quit() {
             break;
         }
-        app.draw();
+        if let Err(error) = dialogue.draw(&mut app, get_time()) {
+            eprintln!("[DIALOGUE] {error}");
+            dialogue.stop();
+            app.draw();
+        }
         next_frame().await;
     }
 }

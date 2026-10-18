@@ -671,7 +671,7 @@ mod tests {
     fn irreversible_layers_resolve_both_investigation_paths_on_site_and_replay() {
         for by_dialogue in [false, true] {
             let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-            let mut app = AsciiApp::from_seed(
+            let mut app = AsciiApp::from_legacy_city_seed(
                 INITIAL_SEED,
                 rules.clone(),
                 texts.clone(),
@@ -918,7 +918,7 @@ mod tests {
             (NARRATIVE_REWARD_GENERATION_VERSION, 12),
             (STATIONARY_QUEST_CONTACT_GENERATION_VERSION, 12),
             (ORME_DIRECTION_BOARD_GENERATION_VERSION, 12),
-            (CURRENT_GENERATION_VERSION, 12),
+            (MONSTER_BLUE_PALETTES_GENERATION_VERSION, 12),
         ] {
             let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
             let app = AsciiApp::from_seed_version(
@@ -995,7 +995,8 @@ mod tests {
     #[test]
     fn accepted_investigation_points_to_the_authored_entrance_without_discovering_it() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
+        let mut app =
+            AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
         assert!(app.narrative_navigation_signal_summary().is_none());
         app.prepare_narrative_directions_diagnostic().unwrap();
         let entrance = app

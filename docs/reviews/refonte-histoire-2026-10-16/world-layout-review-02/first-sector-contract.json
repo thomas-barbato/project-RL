@@ -1,0 +1,226 @@
+{
+  "review_id": "MONDE-PM02-01",
+  "date": "2026-10-17",
+  "status": "technical_preparation_from_accepted_direction",
+  "base_acceptance": "../world-generation-study-01/design-acceptance-01.json",
+  "player_facing_names_approved": false,
+  "runtime_connected": false,
+  "logical_map_count": null,
+  "logical_dimensions": null,
+  "reference_cell_pixels": 64,
+  "geometry_retained_within_campaign": true,
+  "enemy_and_reward_respawn_policy": null,
+  "family_ids": [
+    "MAP-CAMP",
+    "MAP-ACCESS",
+    "MAP-INTERIOR",
+    "MAP-OPEN",
+    "MAP-DETOUR",
+    "MAP-LANDMARK",
+    "MAP-ARENA"
+  ],
+  "topology": {
+    "note": "Functional roles, not a fixed count of playable maps; only a graph proposal, not generated walkable terrain.",
+    "start": "camp",
+    "exit": "next_interface",
+    "nodes": [
+      {
+        "id": "camp",
+        "role": "refuge",
+        "families": [
+          "MAP-CAMP"
+        ]
+      },
+      {
+        "id": "access",
+        "role": "approach",
+        "families": [
+          "MAP-ACCESS"
+        ]
+      },
+      {
+        "id": "course",
+        "role": "variable_course",
+        "families": [
+          "MAP-INTERIOR",
+          "MAP-OPEN"
+        ]
+      },
+      {
+        "id": "junction",
+        "role": "merge_before_mandatory_place",
+        "families": []
+      },
+      {
+        "id": "detour",
+        "role": "optional_branch",
+        "families": [
+          "MAP-DETOUR"
+        ]
+      },
+      {
+        "id": "landmark",
+        "role": "mandatory_place",
+        "families": [
+          "MAP-LANDMARK"
+        ]
+      },
+      {
+        "id": "boss_reservation",
+        "role": "future_boss_space",
+        "families": [
+          "MAP-ARENA"
+        ]
+      },
+      {
+        "id": "next_interface",
+        "role": "campaign_connection",
+        "families": []
+      }
+    ],
+    "undirected_edges": [
+      [
+        "camp",
+        "access"
+      ],
+      [
+        "access",
+        "course"
+      ],
+      [
+        "course",
+        "junction"
+      ],
+      [
+        "course",
+        "detour"
+      ],
+      [
+        "detour",
+        "junction"
+      ],
+      [
+        "junction",
+        "landmark"
+      ],
+      [
+        "landmark",
+        "boss_reservation"
+      ],
+      [
+        "boss_reservation",
+        "next_interface"
+      ]
+    ],
+    "mandatory_cut_roles": [
+      "landmark",
+      "boss_reservation"
+    ],
+    "optional_roles": [
+      "detour"
+    ],
+    "ordered_roles": [
+      "camp",
+      "landmark",
+      "boss_reservation",
+      "next_interface"
+    ],
+    "mandatory_place_action": null,
+    "boss_patterns": null,
+    "combat_and_loot_values": null
+  },
+  "required_module_fields": [
+    "stable_id",
+    "version",
+    "family",
+    "floor_mask",
+    "blocking_mask",
+    "sockets",
+    "supported_orientations",
+    "reserved_slots",
+    "required_routes",
+    "decor_layers"
+  ],
+  "socket_fields": [
+    "side",
+    "position",
+    "opening_profile",
+    "clear_landing_cells",
+    "compatible_profile"
+  ],
+  "socket_dimensions": null,
+  "accepted_geometry_policy": {
+    "key_components": [
+      "campaign_seed",
+      "stable_map_id",
+      "generation_version"
+    ],
+    "visitation_order_independent": true,
+    "base_layout_retained": true,
+    "state_overlays_persist": true,
+    "cosmetic_rng_separate": true,
+    "changed_blocking_or_occlusion_data_requires_validation_and_versioning": true
+  },
+  "decor_lots": [
+    {
+      "id": "DEC-01",
+      "need": "sols, murs, coins, extrémités, seuils",
+      "for_families": [
+        "MAP-ACCESS",
+        "MAP-INTERIOR",
+        "MAP-OPEN"
+      ],
+      "art_approved": false
+    },
+    {
+      "id": "DEC-02",
+      "need": "portes et encadrements",
+      "for_families": [
+        "MAP-ACCESS",
+        "MAP-INTERIOR"
+      ],
+      "art_approved": false
+    },
+    {
+      "id": "DEC-03",
+      "need": "mobilier et équipement de sécurité selon modules",
+      "for_families": [
+        "MAP-INTERIOR",
+        "MAP-OPEN"
+      ],
+      "art_approved": false
+    },
+    {
+      "id": "DEC-04",
+      "need": "repères du parcours et du lieu obligatoire",
+      "for_families": [
+        "MAP-ACCESS",
+        "MAP-LANDMARK"
+      ],
+      "art_approved": false
+    },
+    {
+      "id": "DEC-05",
+      "need": "habillage du camp et des services",
+      "for_families": [
+        "MAP-CAMP"
+      ],
+      "art_approved": false
+    }
+  ],
+  "deferred": [
+    "Exact card partition and module dimensions",
+    "Final art, collision and occlusion footprints",
+    "Quest actions and player-facing text",
+    "Bosses, new powers and numeric balance",
+    "Travel command, restrictions and costs",
+    "World reset and respawn policies"
+  ],
+  "activation_prerequisite": "Resolve critical PM00 save/resume issues and review concrete maps and new art/effects before enabling the campaign generator.",
+  "design_acceptance": "design-acceptance-02.json",
+  "handcrafted_place_review_required": true,
+  "handcrafted_place_review": "../handcrafted-places-review-01/review.json",
+  "design_direction_status": "accepted",
+  "concrete_handcrafted_layouts_approved": [],
+  "concrete_handcrafted_art_approved": []
+}

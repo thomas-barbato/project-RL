@@ -1,0 +1,372 @@
+{
+  "place": "PLACE-CAMP-01",
+  "revision": "r05",
+  "width": 28,
+  "height": 18,
+  "cell": 64,
+  "floor": "assets/prototypes/handcrafted-camp-01/r05/camp-floor-native.png",
+  "structure": "assets/prototypes/handcrafted-camp-01/r05/camp-structure-native.png",
+  "actors": [
+    {
+      "id": "PLAYER",
+      "file": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+      "at": [
+        12,
+        8
+      ],
+      "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "scale": 1
+    },
+    {
+      "id": "NPC-01",
+      "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+      "at": [
+        8,
+        4
+      ],
+      "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "scale": 1
+    },
+    {
+      "id": "NPC-02",
+      "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+      "at": [
+        21,
+        4
+      ],
+      "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "scale": 1
+    },
+    {
+      "id": "NPC-03",
+      "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+      "at": [
+        8,
+        13
+      ],
+      "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "scale": 1
+    },
+    {
+      "id": "NPC-04",
+      "file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+      "at": [
+        21,
+        13
+      ],
+      "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac",
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "scale": 1
+    }
+  ],
+  "props": [
+    {
+      "id": "DEC-CAMP-07",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-07-r05.png",
+      "at": [
+        7,
+        2
+      ],
+      "width": 2,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-09",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-09-r05.png",
+      "at": [
+        4,
+        2
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-11",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-11-r05.png",
+      "at": [
+        5,
+        2
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-14",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-14-r05.png",
+      "at": [
+        4,
+        4
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-08",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-08-r05.png",
+      "at": [
+        19,
+        2
+      ],
+      "width": 2,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-09",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-09-r05.png",
+      "at": [
+        23,
+        2
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-11",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-11-r05.png",
+      "at": [
+        17,
+        2
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-14",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-14-r05.png",
+      "at": [
+        23,
+        4
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-10",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-10-r05.png",
+      "at": [
+        4,
+        13
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-11",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-11-r05.png",
+      "at": [
+        9,
+        12
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-12",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-12-r05.png",
+      "at": [
+        9,
+        13
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-13",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-13-r05.png",
+      "at": [
+        18,
+        12
+      ],
+      "width": 2,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-14",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-14-r05.png",
+      "at": [
+        23,
+        13
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-11",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-11-r05.png",
+      "at": [
+        17,
+        12
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-02",
+      "file": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-02-r04.png",
+      "at": [
+        7,
+        3
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-02",
+      "file": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-02-r04.png",
+      "at": [
+        20,
+        3
+      ],
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "DEC-CAMP-02",
+      "file": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-02-r04.png",
+      "at": [
+        20,
+        13
+      ],
+      "width": 1,
+      "height": 1
+    }
+  ],
+  "prop_sources": [
+    {
+      "id": "DEC-CAMP-07",
+      "label": "Bureau de missions",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-07-r05.png",
+      "native_size": [
+        90,
+        50
+      ],
+      "sha256": "5f7d865ebc6bc2a5b5a85173feea8d015399eff56d7cdb8cf487de78211fab90"
+    },
+    {
+      "id": "DEC-CAMP-08",
+      "label": "Établi d’armurier",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-08-r05.png",
+      "native_size": [
+        90,
+        64
+      ],
+      "sha256": "42c7fc4f5445386934f6bad7a5ba5abaa3029e02abe3ef62330df9b867a96c2d"
+    },
+    {
+      "id": "DEC-CAMP-09",
+      "label": "Râtelier",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-09-r05.png",
+      "native_size": [
+        28,
+        64
+      ],
+      "sha256": "83fb6e5b655e7779b74bc1a32478cc5696126a46c0e507caa1324d5081d448f0"
+    },
+    {
+      "id": "DEC-CAMP-10",
+      "label": "Lit médical",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-10-r05.png",
+      "native_size": [
+        34,
+        72
+      ],
+      "sha256": "ccaa9cc89c12d48ed7d59a6ccc704d7245ba0917b5b0a782f231652b1e21da84"
+    },
+    {
+      "id": "DEC-CAMP-11",
+      "label": "Armoire médicale",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-11-r05.png",
+      "native_size": [
+        30,
+        56
+      ],
+      "sha256": "926bcdea4933c7b061ed820b4f15fecda264abbd4f0491c2e0424323bcee83fc"
+    },
+    {
+      "id": "DEC-CAMP-12",
+      "label": "Chariot médical",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-12-r05.png",
+      "native_size": [
+        26,
+        40
+      ],
+      "sha256": "4da640eca68eb16ec79a2592b59714272d42c7353142c33bc55a267a39fb87d3"
+    },
+    {
+      "id": "DEC-CAMP-13",
+      "label": "Établi technique",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-13-r05.png",
+      "native_size": [
+        82,
+        48
+      ],
+      "sha256": "04aff43b90d3424d651001e1b67a42cdf123f37560edf27abb4a78eaf79cc474"
+    },
+    {
+      "id": "DEC-CAMP-14",
+      "label": "Coffre",
+      "file": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-14-r05.png",
+      "native_size": [
+        42,
+        34
+      ],
+      "sha256": "6efe0714d8244393af57d066a71e7c0d860affd2f025cdd53730e3292c2a0499"
+    }
+  ],
+  "passages": [
+    [
+      7,
+      5
+    ],
+    [
+      20,
+      5
+    ],
+    [
+      7,
+      11
+    ],
+    [
+      20,
+      11
+    ]
+  ],
+  "exits": [
+    [
+      0,
+      8
+    ],
+    [
+      27,
+      8
+    ]
+  ],
+  "passage_type": "Open architectural passages from the selected reference; no additional door bars painted over them.",
+  "movable_door_fixture": "Existing two-room test uses the corrected r05 jamb atlas; separate from these open architectural passages.",
+  "art_approved": false,
+  "layout_approved": false,
+  "campaign_connected": false,
+  "reachable_floor_cells": 135,
+  "all_npcs_approachable": true,
+  "door_components_anchored": true,
+  "selected_reference": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r05/camp-reference-user-r05.png"
+}

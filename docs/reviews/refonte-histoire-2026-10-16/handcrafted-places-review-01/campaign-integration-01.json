@@ -1,0 +1,253 @@
+{
+  "integration_id": "CAMP-START-01",
+  "review_id": "HANDCRAFTED-PLACES-01",
+  "date": "2026-10-18",
+  "user_quote": "oui on va faire ca :) , ca sera le point de départ du personnage :)",
+  "status": "integrated_and_verified",
+  "visual_acceptance": "acceptance-r09b.json",
+  "campaign_connected": true,
+  "generation_version": 153,
+  "spawn": [
+    2,
+    8
+  ],
+  "native_cell": 64,
+  "visual_revision": "r09b",
+  "source_art_unchanged": true,
+  "shader_sources_match_accepted_review": true,
+  "native_sources_sha256": {
+    "assets/maps/cryogenic-camp-01/floor.png": "ccfeb28cbdad5ceb2083ce9a41ff44d7d5d62ad395b2df76d6b4b9d806bb72f7",
+    "assets/maps/cryogenic-camp-01/structure.png": "1aaa53acde69204dff95f72592d1b932a33e83ca8af4752932a85d0236c6e597",
+    "assets/maps/cryogenic-camp-01/layout.txt": "81382d32b6ee9b28681c6243ef7e09456e78e54f35aa9da5d9191d0a2f86a441",
+    "assets/maps/cryogenic-camp-01/illumination-correction.png": "683edf0211463ab1c265136c38a5f23433b6a7549999bf7fb77f7099d81ce553",
+    "assets/maps/cryogenic-camp-01/irradiance.png": "330dbc00205d20c91da3bc7841a1529f79fb574aed2b1f52db3464d6393d8373",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-07-r05.png": "5f7d865ebc6bc2a5b5a85173feea8d015399eff56d7cdb8cf487de78211fab90",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-09-r05.png": "83fb6e5b655e7779b74bc1a32478cc5696126a46c0e507caa1324d5081d448f0",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-11-r05.png": "926bcdea4933c7b061ed820b4f15fecda264abbd4f0491c2e0424323bcee83fc",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-14-r05.png": "6efe0714d8244393af57d066a71e7c0d860affd2f025cdd53730e3292c2a0499",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-08-r05.png": "42c7fc4f5445386934f6bad7a5ba5abaa3029e02abe3ef62330df9b867a96c2d",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-10-r05.png": "ccaa9cc89c12d48ed7d59a6ccc704d7245ba0917b5b0a782f231652b1e21da84",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-12-r05.png": "4da640eca68eb16ec79a2592b59714272d42c7353142c33bc55a267a39fb87d3",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-13-r05.png": "04aff43b90d3424d651001e1b67a42cdf123f37560edf27abb4a78eaf79cc474",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-15-r06.png": "fa04a7e1d7101d1cd017200fe5adc0abe692db955f64a4b173a0af42fa54e562",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-16-r06.png": "f4a04f19675338e192c53a5d4e466d011cbd1225f72c88a61866a8549d862328",
+    "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+    "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+    "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+    "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac"
+  },
+  "gpu_capture_checks": {
+    "character_class": "core:bastion",
+    "generation_version": 153,
+    "isolated_save_path": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\handcrafted-places-review-01\\campaign-integration-01\\isolated-run.json",
+    "native_cell": 64,
+    "scenes": [
+      {
+        "hud_clip_checked": true,
+        "name": "start",
+        "native_cell": 64.0,
+        "position": [
+          2,
+          8
+        ],
+        "render_is_read_only": true,
+        "size": [
+          1600,
+          1000
+        ],
+        "turn": 0
+      },
+      {
+        "hud_clip_checked": false,
+        "name": "officer",
+        "native_cell": null,
+        "position": [
+          5,
+          7
+        ],
+        "render_is_read_only": true,
+        "size": [
+          1600,
+          1000
+        ],
+        "turn": 4
+      },
+      {
+        "hud_clip_checked": true,
+        "name": "hall",
+        "native_cell": 64.0,
+        "position": [
+          22,
+          8
+        ],
+        "render_is_read_only": true,
+        "size": [
+          1600,
+          1000
+        ],
+        "turn": 22
+      },
+      {
+        "hud_clip_checked": true,
+        "name": "medical",
+        "native_cell": 64.0,
+        "position": [
+          18,
+          12
+        ],
+        "render_is_read_only": true,
+        "size": [
+          1600,
+          1000
+        ],
+        "turn": 32
+      },
+      {
+        "hud_clip_checked": false,
+        "name": "armorer",
+        "native_cell": null,
+        "position": [
+          30,
+          4
+        ],
+        "render_is_read_only": true,
+        "size": [
+          1600,
+          1000
+        ],
+        "turn": 54
+      },
+      {
+        "hud_clip_checked": false,
+        "name": "technician",
+        "native_cell": null,
+        "position": [
+          30,
+          13
+        ],
+        "render_is_read_only": true,
+        "size": [
+          1600,
+          1000
+        ],
+        "turn": 63
+      }
+    ],
+    "zone": "core:cryogenic_camp"
+  },
+  "preliminary_sector": "core:industrial_sector",
+  "picture_dimensions": [
+    38,
+    18
+  ],
+  "logical_dimensions": [
+    39,
+    18
+  ],
+  "padding": "One unpainted right wall column; reviewed positions unchanged.",
+  "dialogue": {
+    "id": "DIAL-CRYO-01",
+    "revision": "r02",
+    "source": "camp-adjustments-r08.json",
+    "requested_replacement": "Vous n’avez de toute façon pas le choix.",
+    "connected": true
+  },
+  "existing_service_rules_reused": true,
+  "new_quests_or_skill_rules": false,
+  "old_generation_range_preserved": [
+    1,
+    152
+  ],
+  "saved_map_layout_unchanged": true,
+  "snapshot_format_unchanged": true,
+  "static_collisions_reconstructed_before_snapshot_verification": true,
+  "validation": {
+    "engine_tests": {
+      "passed": 966,
+      "failed": 0
+    },
+    "camp_tests": {
+      "passed": 5,
+      "failed": 0,
+      "log": "camp-tests-final.log"
+    },
+    "affected_regression_tests": {
+      "passed": 28,
+      "failed": 0,
+      "log": "client-affected-tests.log"
+    },
+    "initial_full_client_suite": {
+      "passed": 887,
+      "failed": 56,
+      "ignored": 15,
+      "log": "client-tests.log"
+    },
+    "remaining_previously_recorded_failures": [
+      "ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses",
+      "ascii_app::equipment_generation::tests::accessory_models_preserve_version_133",
+      "ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134",
+      "ascii_app::equipment_generation::tests::firearm_models_preserve_version_129",
+      "ascii_app::equipment_generation::tests::improvement_preserves_version_135",
+      "ascii_app::equipment_generation::tests::melee_models_preserve_version_130",
+      "ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132",
+      "ascii_app::equipment_generation::tests::sword_models_preserve_version_131",
+      "ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume",
+      "ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume",
+      "ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed",
+      "ascii_app::generated_survival_tests::generated_survival_records_every_map_and_mobile_contact_without_retry",
+      "ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot",
+      "ascii_app::playable_trial::tests::playable_trial_keeps_normal_character_creation",
+      "ascii_app::surface_density::tests::version_108_surface_fingerprint",
+      "ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together",
+      "ascii_app::tests::exploration_objective_uses_real_travel_progress_in_the_global_journal",
+      "ascii_app::tests::expedition_round_trip_replays_every_zone_and_its_visual_memory",
+      "ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay",
+      "ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states",
+      "ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention",
+      "ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints",
+      "ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble",
+      "ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn",
+      "ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click",
+      "ascii_app::tests::ux_personalized_attributes_survive_back_and_forward",
+      "ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions",
+      "ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview"
+    ],
+    "global_suite_clean": false,
+    "global_suite_note": "Initial full suite had 28 previously recorded failures plus 28 affected scenarios; all 28 affected scenarios were corrected and retested. Full suite was not repeated after those targeted fixes.",
+    "debug_build": true,
+    "release_check": true,
+    "format_check": true,
+    "diff_check": true,
+    "real_gpu_scenes": 6,
+    "actual_capture_resolution": [
+      1600,
+      1000
+    ],
+    "four_k_validation": false
+  },
+  "integrated_source_sha256": {
+    "src/cryogenic_camp.rs": "cb5de9658c7d9e5c57acfb492c396113ad548db274cc214ffe29548c2f2ac889",
+    "src/cryogenic_camp_app.rs": "fd7c2d8f403ad89091c85c46d915ab1aefdefa41a8e538742bec103a431558c9",
+    "src/cryogenic_camp_render.rs": "2f324ff7e3f0b8eedb661ae037fb847cfeefd03d5367efca62f6d940c5e88d79",
+    "src/camp_atmosphere.rs": "53b4683eac3880611a88e83d57c5ae75500584e039916315b544f6c70ddbb6a5",
+    "src/cryogenic_camp_capture.rs": "2b98822c778745984e9ea6e95cf9ec73fd46303b7df59ca8939f8a203b92fc2c",
+    "src/cryogenic_camp_tests.rs": "c0e5d6cda5ba964090dc811bba07ed4043b9474fd489b4d21056720ce94ccd49",
+    "src/game/expedition.rs": "4f5d73a1d28b099189f1916a6e65dd93078ab6957bc010c326dae69241e4ec93",
+    "src/ascii_app.rs": "15acc68287b9723cd6d41f8246bb70974809ae77953377cc6820ca7b5fa643df",
+    "src/terminal_view.rs": "0cd2aad17e5e0052f09a68d196f9a2c8cb70ea2dd6ab4e4522c7701d4651ccc5",
+    "src/world_context.rs": "ec71c5cb8819551eb410c7a4eb799421d7c5cecb2519ae1c290f01ecd96f46cd",
+    "src/suspension.rs": "0efb1d7bc7250ee9146d988e14f25bd577af99d7395cab336f3aaa562d8a6aac",
+    "src/game_art.rs": "bcd5c11ed91e8fdf28a8b3ad77fd023d2a08a8ef5048250cda39b955fbd5b4ea",
+    "src/main.rs": "61816af0532c4221b4e0059335808b7104bfe1bef4fd68d32c2d452ba028d10e",
+    "assets/maps/cryogenic-camp-01/camp.json": "923da891f74b7d2b27e896d53b91ea98006fe62eb3e01b777fc9c407611bcead",
+    "Jouer.cmd": "58cb9c02e59731affccf4bf9459830abdf7a447795c4deef8f4d7746737a9310"
+  },
+  "gpu_capture_sha256": {
+    "camp-armorer.png": "dbd7f20d4af9b5bfeaeb2e5527c23df59277daf3ffc3e1e31a83e8c03335b063",
+    "camp-hall.png": "78b3da6caa469d42d1f19321377d713a6ca14795851f9a65b97f084b3ba31a74",
+    "camp-medical.png": "a5e007481ce31524b56bb2ed350dbf181d969fb4113964571430c31e30bb9511",
+    "camp-officer.png": "e0305b392ca2782bcf7d6836d4ca66fdca47cfcd05d2236e73dafb15012ea3d7",
+    "camp-start.png": "e16ebf1ccbfee5a4a6e8f7841388328880d953544c3afde90a9a18e3716c4a90",
+    "camp-technician.png": "e9190cb0c1a46436323b3fdf857bcbf214e4644ec27daa083e486020f18f3a03"
+  }
+}

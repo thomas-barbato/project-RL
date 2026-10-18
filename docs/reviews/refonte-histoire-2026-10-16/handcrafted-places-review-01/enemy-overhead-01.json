@@ -1,0 +1,23 @@
+{
+  "decision_id": "ENEMY-OVERHEAD-01",
+  "date": "2026-10-18",
+  "status": "requested_and_integrated",
+  "user_request": "les seules icones qui doivent apparaitre au dessus des ennemis c’est lié aux status",
+  "user_reason": "les icones liées à la perception des monstres (le fait d’être repéré) ne correspond plus vraiment à l’orientation rogue-like / hack’n slash",
+  "removed_from_hostile_overheads": [
+    "alert exclamation",
+    "sight/hearing perception pictograms",
+    "quest markers"
+  ],
+  "preserved": [
+    "actual effect/status icons",
+    "NPC dialogue, quest and service pictograms",
+    "engine vision and hearing",
+    "F2 tactical fields",
+    "sensor data"
+  ],
+  "save_format_changed": false,
+  "mechanics_changed": false,
+  "supersedes": "Earlier always-visible hostile eye/ear presentation, not engine perception.",
+  "validation_record": "npc-ui-validation-02.json"
+}

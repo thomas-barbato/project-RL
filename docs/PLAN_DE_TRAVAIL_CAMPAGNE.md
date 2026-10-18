@@ -5,6 +5,30 @@ de suivi : **PLAN-CAMPAGNE-02**. Ce plan organise la réalisation ; il n'autoris
 aucune nouvelle valeur de dégâts, règle de voyage, compétence ou appellation.
 Ces propositions suivront leur revue habituelle avant intégration.
 
+## État au 17 octobre 2026
+
+Le socle graphique inclut les variantes validées des revues 07 et 08 ; les
+problèmes techniques de PM00 restent suivis séparément. L’étude PM01 du terrain
+est disponible dans [MONDE-PM01-01](reviews/refonte-histoire-2026-10-16/world-generation-study-01/ETUDE.md),
+avec vérification des tables compilées LoD/PD2 et limites de la référence moteur.
+La [base MONDE-01 à MONDE-04](reviews/refonte-histoire-2026-10-16/world-generation-study-01/PROPOSITION.md)
+est désormais acceptée, avec production des décors tout au long du développement
+des cartes. Le [cahier de génération](GENERATION_CAMPAGNE.md) précise PM02 et
+le [plan des décors](DECORS_CAMPAGNE.md) prépare les premiers lots. Le contrat
+du premier secteur reste une préparation technique, avec dimensions et contenu
+détaillé à examiner sur prototype. Le joueur confirme cette organisation en
+exigeant une présentation de chaque lieu fait à la main avant validation.
+Le premier lieu, **PLACE-CAMP-01 r09b**, est désormais validé visuellement :
+plan, décors à l’échelle native, cryogénie, mobilier, PNJ, éclairage et animations.
+L’accord et les ressources exactes sont conservés dans
+[acceptance-r09b.json](reviews/refonte-histoire-2026-10-16/handcrafted-places-review-01/acceptance-r09b.json).
+La génération 153 raccorde ce camp au client comme point de départ des nouveaux
+personnages, avec les services existants et le dialogue corrigé de l’officier.
+Les anciennes générations conservent leur carte à la reprise. La sortie utilise
+provisoirement le secteur industriel existant ; le travail suivant porte sur
+le nouveau premier secteur. Les nouvelles règles suivent leur revue.
+Aucun nouveau générateur de campagne n’est activé par cette documentation.
+
 Références : [histoire courante](HISTOIRE_CAMPAGNE.md),
 [monde et progression](MONDE_EXPLORATION_ET_PROGRESSION.md),
 [décisions de refonte](reviews/refonte-histoire-2026-10-16/CADRAGE.md),
@@ -92,8 +116,10 @@ facultatives et leur retour dans la réflexion sur les connexions.
 
 Choisir la place des morceaux de carte dessinés à la main et des parties
 générées. Définir les objectifs de circulation, les espaces requis par les
-combats et les points narratifs indispensables. Les décors définitifs pourront
-être produits après vérification de ces besoins.
+combats et les points narratifs indispensables. Produire les décors au fil
+du développement des cartes : les premiers lots accompagnent les premiers
+modules, puis les besoins du parcours guident les ajouts et corrections.
+Les dessins sont présentés en contexte avant leur intégration.
 
 **Livrable :** schéma de campagne et cahier de génération, avec décisions
 validées et questions encore ouvertes clairement distinguées.
@@ -106,6 +132,9 @@ compréhensibles et une place dans la progression.
 **But :** produire une zone intéressante à parcourir, avec des décors simples.
 
 Construire le terrain et ses connexions sur les cases carrées de 64 px.
+Préparer en parallèle les premiers sols, murs, coins et ouvertures nécessaires,
+puis le mobilier propre aux modules utilisés. Réviser les compositions sur
+les cartes de revue et faire valider les nouveaux dessins et effets concernés.
 Ajouter un outil de lecture des graines et des points d'intérêt, en réutilisant
 l'éditeur et les diagnostics existants lorsque cela convient. Préparer les
 emplacements des accès, objectifs, groupes et récompenses.

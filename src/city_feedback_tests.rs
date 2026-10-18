@@ -108,7 +108,7 @@ fn city_feedback_resident_and_clinic_move_on_all_four_edges() {
         )) {
             continue;
         }
-        let mut app = AsciiApp::from_seed(
+        let mut app = AsciiApp::from_legacy_city_seed(
             seed,
             rules.clone(),
             texts.clone(),
@@ -156,7 +156,7 @@ fn city_feedback_new_starts_see_elias_inside_the_randomly_placed_town() {
         )) {
             continue;
         }
-        let mut app = AsciiApp::from_seed(
+        let mut app = AsciiApp::from_legacy_city_seed(
             seed,
             rules.clone(),
             texts.clone(),

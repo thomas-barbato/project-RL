@@ -1,0 +1,50 @@
+{
+  "review_id": "HANDCRAFTED-PLACES-01",
+  "place": "PLACE-CAMP-01",
+  "revision": "r01",
+  "hand_authored_layout_sha256": "99eb6fdddae3ee425808b3a5a2b4fd815c989b5d7aa8fb4dd505b094b1aa42e5",
+  "walkable_cells": 192,
+  "all_floor_connected": true,
+  "all_reserved_positions_reachable": true,
+  "player_native_pixels_verified": true,
+  "player_placement": {
+    "position": [
+      760,
+      588
+    ],
+    "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "source_sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+    "actor_resize_operations": 0,
+    "scale": 1
+  },
+  "proposed_dimensions": [
+    28,
+    18
+  ],
+  "dimensions_approved": false,
+  "layout_approved": false,
+  "art_approved": false,
+  "runtime_connected": false,
+  "new_gameplay_effects": false,
+  "outputs": [
+    {
+      "file": "artifacts/handcrafted-places-review-01/camp-01-overview.png",
+      "sha256": "cc687122a668d3f9fb7bcefd28beb3f19e969f4314d5a5992de2cce2da29c294",
+      "size": [
+        608,
+        614
+      ],
+      "diagram_only": true
+    },
+    {
+      "file": "artifacts/handcrafted-places-review-01/camp-01-native64.png",
+      "sha256": "695293ef420fff887372544e1f26c5b392d181b3526b52bb901add01d6a0771b",
+      "size": [
+        1840,
+        1406
+      ],
+      "diagram_only": false
+    }
+  ],
+  "scope": "Schematic review only: no game renderer, NPC behavior, generated campaign map or final art validated."
+}

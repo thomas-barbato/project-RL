@@ -1,0 +1,36 @@
+{
+  "review_id": "HANDCRAFTED-PLACES-01",
+  "revision": "r09b",
+  "user_request": "un peu trop discretes les animations :) .",
+  "scope": "Renforcer les trois animations d’ambiance déjà proposées et mises en place dans le prototype de revue.",
+  "effects": [
+    {
+      "id": "ANIM-CAMP-01",
+      "change": "Voyants de cuves : deux rangées au lieu d’une, ambre plus lumineux, pulsation de 30 à 100 % au lieu de 72 à 100 %.",
+      "period_seconds": 3.49066
+    },
+    {
+      "id": "ANIM-CAMP-02",
+      "change": "Balayage des écrans plus large, plus lumineux et plus rapide : 2 pixels/seconde au lieu de 0,8."
+    },
+    {
+      "id": "ANIM-CAMP-03",
+      "change": "Vapeur : six particules au lieu de quatre, opacité maximale par particule de 25 % au lieu de 12 %, bouffée plus ample toutes les six secondes au lieu de 7,5.",
+      "particle_lifetime_seconds": 2.2
+    }
+  ],
+  "prior_capture_metrics": {
+    "animated_indicator_pixels": 6,
+    "animated_steam_pixels": 343,
+    "screen_unique_frames": 6
+  },
+  "native_scale_preserved": true,
+  "lighting_layout_collision_gameplay_unchanged": true,
+  "campaign_connected": false,
+  "current_capture_metrics": {
+    "animated_indicator_pixels": 12,
+    "animated_steam_pixels": 852,
+    "screen_unique_frames": 6
+  },
+  "gpu_capture_and_lossless_export_verified": true
+}

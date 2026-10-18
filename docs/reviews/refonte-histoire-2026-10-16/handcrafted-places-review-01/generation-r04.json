@@ -1,0 +1,35 @@
+{
+  "place": "PLACE-CAMP-01",
+  "revision": "r04",
+  "tool": "built-in imagegen",
+  "additional_prompt_records": ["generation-additions-r04.json"],
+  "art_approved": false,
+  "jobs": [
+    {
+      "id": "walls",
+      "prompt": "Use case: sketch-to-render. Create ONE production wall-autotile ATLAS, exactly 4 columns by 4 rows, square 1024x1024 canvas. Reference 1 is the exact layout and footprint mask of all 16 tiles; reference 2 supplies the required visual style and wall materials from our own prior concept. This is a modular game sprite atlas, NOT a room illustration. Preserve the row-major slot positions 0 through 15 and the gray shape in each slot. Magenta grid and cyan digits are guides only: REMOVE them completely from the result.\nPaint the gray shapes as the same chunky charcoal industrial walls as reference 2: broad angular cel-shaded dark steel caps, restrained warm-gray bevels, black outlines, simple bolts and lower dark vertical faces. Orthogonal overhead cutaway game view, no isometric projection, no vanishing point, no photorealism, no noisy dithering. Light always from global upper left. All 16 pieces are viewed in the SAME global camera and lighting; do not rotate painted highlights or wall reliefs.\nImportant: these include genuine unified T-junction pieces in slots 7,11,13,14, with a continuous cap at their center and all three branches intact. They must not look like disconnected stacked beams.\nBranch width exactly half the cell (128 at source resolution). Each connected branch MUST reach exactly its cell boundary, with no padding, gap, frame or end-cap at that boundary. Background everywhere outside the shapes truly transparent, no ground or shadows outside silhouettes. Adjacent cells must remain separate assets, not connected into a giant room.\nSlots row-major: 0 isolated square post, 1 branch north only, 2 east only, 3 north+east corner; 4 south only, 5 north+south straight, 6 east+south corner, 7 north+east+south T; 8 west only, 9 north+west corner, 10 east+west straight, 11 north+east+west T; 12 south+west corner, 13 north+south+west T, 14 east+south+west T, 15 all-four cross. Keep the silhouette mask and slot ordering exact. No text, numbers or UI. Native intended size is 64 px per slot, simplify for that.",
+      "references": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/wall-topology-reference.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/PLACE-CAMP-01-r02-background.png"
+      ],
+      "transparent_background": true
+    },
+    {
+      "id": "floor",
+      "prompt": "Use case: stylized-concept. Create ONE game floor material atlas, exactly 2 columns by 2 rows, square 1024x1024. The attached image is the required style reference from our own camp concept. Recreate only its quiet muted warm-gray stone/concrete industrial floor slabs, broad cel-shaded shapes, dark thin slab joints and extremely sparse worn patches. Four subtly varied seamless square tiles, same edge colors, same scale, matching each other. One square slab approximately one final 64px game tile. It should give the same subdued olive-brown gray floor as the concept, without a checkerboard appearance when repeated. Low contrast so characters stand out. Light from upper left, flat orthogonal board view. NO perspective or isometric, no objects, walls, props, shadows from objects, characters, signs, writing or labels; no atlas separators or outer frame. Avoid realistic fine noise, little speckle fields, repeated large cracks, busy decorative grids, chrome, bloom or neon. This is four equally sized usable material tiles filling the canvas edge to edge, not an illustrated scene. At final 64px per tile the floor should read as quiet broad material areas.",
+      "references": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/PLACE-CAMP-01-r02-background.png"
+      ],
+      "transparent_background": false
+    },
+    {
+      "id": "furniture",
+      "prompt": "Use case: style-transfer. Create ONE coherent transparent game furniture sprite ATLAS, exactly 3 columns by 2 rows on a 1536x1024 landscape canvas. Reference 1 is the EXACT layout and relative silhouettes for six furniture objects; reference 2 is our own prior camp art and supplies the required new visual style. Replace the old noisy pixel rendering with the bold dark outlines, broad clean angular cel shading, muted olive steel, dirty ivory cloth, brown work surfaces and charcoal frames of reference 2. These must visibly belong to that camp.\nEXACT slots: top row left a small steel-and-brown armorer workbench with a few large tools, middle a small olive work chair, right a slim olive/charcoal locker; bottom row left a short equipment shelf with simple crates, middle a dirty-ivory medical cot with pillow and olive blanket, right a low metal bench with brown slats. One complete object per slot, no duplicated or extra objects.\nPreserve relative scale and front/slightly-top-down orthogonal game viewpoint of reference 1. Do not grow the chair to the same height as the locker or turn the bed into a huge room-sized object. The 60px adult reference means final intended artwork sizes: workbench54x38, chair20x28, locker32x56, shelf40x52, cot34x68, bench46x24. These are relative native sizes, not a request to put written dimensions on the sheet.\nGlobal upper-left light, simple 2-3 shade values per material, continuous strong dark outline, no microtexture or pixel checker dithering, no photo realism, no 3D/isometric projection. Each object isolated in its own equal cell, fully visible, feet aligned to the same lower baseline within each row. No floor, room, frame, cast shadow, people, writing, labels or digits. Background must be truly transparent. Keep objects separated and centered in their cells.",
+      "references": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/furniture-layout-reference.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/PLACE-CAMP-01-r02-background.png"
+      ],
+      "transparent_background": true
+    }
+  ]
+}

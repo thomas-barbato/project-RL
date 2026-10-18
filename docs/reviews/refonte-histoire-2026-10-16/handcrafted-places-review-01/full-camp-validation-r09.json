@@ -1,0 +1,188 @@
+{
+  "review_id": "HANDCRAFTED-PLACES-01",
+  "revision": "r09b",
+  "runtime_checks": {
+    "actor_count": 5,
+    "actual_gpu_capture": true,
+    "ambient_animations": true,
+    "animation_frames": 24,
+    "campaign_connected": false,
+    "captures": [
+      {
+        "engine_steps": 0,
+        "name": "camp",
+        "player_at": [
+          2,
+          8
+        ]
+      },
+      {
+        "engine_steps": 20,
+        "name": "hall",
+        "player_at": [
+          22,
+          8
+        ]
+      },
+      {
+        "engine_steps": 20,
+        "name": "infirmerie",
+        "player_at": [
+          17,
+          13
+        ]
+      }
+    ],
+    "cell": 64,
+    "computed_lighting": true,
+    "door_overlays_added": false,
+    "effects_borrow_game_state_immutably": true,
+    "exits_reached": [
+      [
+        37,
+        8
+      ]
+    ],
+    "new_service_rules": false,
+    "open_passages": true,
+    "prop_count": 23,
+    "renderer": "native architecture and actors, optional approved GPU atmosphere pass",
+    "revision": "r09",
+    "size": [
+      2432,
+      1152
+    ],
+    "spawn": [
+      2,
+      8
+    ]
+  },
+  "raw_reference_matches_r08_exactly": true,
+  "native_actor_reference_checks": [
+    {
+      "id": "PLAYER",
+      "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+      "sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+      "opaque_pixels_verified": 188,
+      "scale": 1,
+      "placement": [
+        96,
+        480
+      ]
+    },
+    {
+      "id": "NPC-01",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+      "sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+      "opaque_pixels_verified": 978,
+      "scale": 1,
+      "placement": [
+        352,
+        416
+      ]
+    },
+    {
+      "id": "NPC-02",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+      "sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+      "opaque_pixels_verified": 1088,
+      "scale": 1,
+      "placement": [
+        1952,
+        224
+      ]
+    },
+    {
+      "id": "NPC-03",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+      "sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+      "opaque_pixels_verified": 909,
+      "scale": 1,
+      "placement": [
+        1120,
+        800
+      ]
+    },
+    {
+      "id": "NPC-04",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+      "sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac",
+      "opaque_pixels_verified": 874,
+      "scale": 1,
+      "placement": [
+        1952,
+        800
+      ]
+    }
+  ],
+  "actor_source_art_unchanged": true,
+  "actor_resize_operations": 0,
+  "layout_props_actors_unchanged": true,
+  "gpu_blocked_receiver_max_delta": 1,
+  "gpu_lit_receiver_red_delta": 46.4375,
+  "player_lit_pixels_changed": 166,
+  "animated_indicator_pixels": 12,
+  "animated_steam_pixels": 852,
+  "screen_unique_frames": 6,
+  "lossless_animation_export_verified": true,
+  "performance": [
+    {
+      "computed_lighting": true,
+      "cpu_and_present_time": true,
+      "frames": 110,
+      "median_frame_ms": 9.9969,
+      "p95_frame_ms": 10.065100000000001,
+      "per_frame_light_raycasts": 0,
+      "per_frame_texture_uploads": 0,
+      "window": [
+        1600.0,
+        1000.0
+      ],
+      "requested": "1600x1000"
+    },
+    {
+      "computed_lighting": true,
+      "cpu_and_present_time": true,
+      "frames": 110,
+      "median_frame_ms": 10.0001,
+      "p95_frame_ms": 10.0595,
+      "per_frame_light_raycasts": 0,
+      "per_frame_texture_uploads": 0,
+      "window": [
+        1924.0,
+        1061.0
+      ],
+      "requested": "3840x2160"
+    }
+  ],
+  "performance_baseline_revision": "r09",
+  "performance_remeasured_for_visibility": false,
+  "performance_limit": "Baseline measured before r09b visibility tuning. Requested 4K window may be clamped by the desktop; use reported actual window sizes.",
+  "lighting_scope": "Static occlusion data for this fixed camp, GPU lighting on all surfaces; no dynamic furniture shadows.",
+  "campaign_connected": false,
+  "verification_commands": {
+    "tests": {
+      "command": "cargo test --locked --example handcrafted_camp_full_review",
+      "passed": 1,
+      "failed": 0
+    },
+    "build": {
+      "command": "cargo build --locked --example handcrafted_camp_full_review",
+      "passed": true
+    },
+    "format": {
+      "command": "cargo fmt --all -- --check",
+      "passed": true
+    },
+    "diff_check": {
+      "command": "git diff --check",
+      "passed": true
+    }
+  },
+  "renderer_sources_sha256": {
+    "examples\\handcrafted_camp_full_review.rs": "5c45ad11009afd2c1ecbc86d3b0e37872eadd30e07c013fca5744f52a673abde",
+    "examples\\handcrafted_camp\\atmosphere.rs": "72db756d3873cf3243c00891c657488bc0bc9fc3b2835085abde0e6f6fa2a9a7"
+  },
+  "visibility_revision": "r09b",
+  "visual_acceptance": "acceptance-r09b.json"
+}

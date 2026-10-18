@@ -144,7 +144,9 @@ fn actual_kill_feedback_and_pickup_show_the_same_generated_weapon() {
 
 #[test]
 fn regional_carriers_survive_real_travel_snapshot_and_journal_replay() {
-    let mut app = app();
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let mut app =
+        AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
     let passage = app
         .home_regional_passages()
         .into_iter()

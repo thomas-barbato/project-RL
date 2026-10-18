@@ -1,0 +1,39 @@
+{
+  "review_id": "DIALOGUE-AUDIO-01",
+  "date": "2026-10-18",
+  "status": "proposals_awaiting_listening",
+  "production_enabled": false,
+  "source": "Original procedural synthesis; no external recording",
+  "sample_rate": 48000,
+  "channels": 1,
+  "bits": 16,
+  "candidates": [
+    {
+      "code": "DIALOGUE-AUDIO-01-01",
+      "name": "Terminal feutré",
+      "file": "dialogue-audio-01.wav",
+      "duration_seconds": 8.625,
+      "events": 137,
+      "peak": 0.14,
+      "sha256": "efbfbd53e46717c14044813ee10148d8bbd10e13c893f2fd45e7d31750b5d544"
+    },
+    {
+      "code": "DIALOGUE-AUDIO-01-02",
+      "name": "Relais mécanique",
+      "file": "dialogue-audio-02.wav",
+      "duration_seconds": 8.625,
+      "events": 137,
+      "peak": 0.14,
+      "sha256": "4599743cc09cbe27d4b7bff4bc61b4a99f231d62b5072850361a2e72e00428e0"
+    },
+    {
+      "code": "DIALOGUE-AUDIO-01-03",
+      "name": "Impulsions numériques",
+      "file": "dialogue-audio-03.wav",
+      "duration_seconds": 8.625,
+      "events": 137,
+      "peak": 0.14,
+      "sha256": "75611dcb0381a75ed87b84f71116aefb99984552a95ad99d2681d4e3bec79ad1"
+    }
+  ]
+}

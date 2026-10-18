@@ -1,0 +1,69 @@
+{
+  "review_id": "DIALOGUE-BUBBLE-01",
+  "date": "2026-10-18",
+  "status": "awaiting_visual_choice",
+  "production_enabled": false,
+  "checks": {
+    "candidates": [
+      {
+        "bounds": [
+          551.0,
+          74.0,
+          660.0,
+          269.0
+        ],
+        "full_existing_text": true,
+        "id": "DIALOGUE-BUBBLE-01",
+        "speaker_visible": true
+      },
+      {
+        "bounds": [
+          415.0,
+          474.0,
+          820.0,
+          269.0
+        ],
+        "full_existing_text": true,
+        "id": "DIALOGUE-BUBBLE-02",
+        "speaker_visible": true
+      },
+      {
+        "bounds": [
+          336.0,
+          74.0,
+          660.0,
+          269.0
+        ],
+        "full_existing_text": true,
+        "id": "DIALOGUE-BUBBLE-03",
+        "speaker_visible": true
+      }
+    ],
+    "native_cell": 64,
+    "production_enabled": false,
+    "render_is_read_only": true,
+    "review": "DIALOGUE-BUBBLE-01",
+    "speaker": [
+      849.0,
+      373.0,
+      64.0,
+      64.0
+    ],
+    "text": "Debout, détenu. Les démons ravagent la ville. Nous n’avons plus assez d’hommes à envoyer sous terre.\n\nLe passage qu’ils empruntent est maintenu ouvert par un dispositif : le Puits. Vous allez le rejoindre et couper ce qui alimente l’invasion.\n\nVous réussissez, votre peine sera commuée. Vous serez libre. Vous n’avez de toute façon pas le choix.",
+    "viewport": [
+      317.5,
+      50.75,
+      935.5,
+      710.25
+    ]
+  },
+  "captures_sha256": {
+    "bubble-1-native.png": "aaa3d5346bcf4cc13f42cec312d3eb8e88769006e32ecaa7f0a881b57e54c7c5",
+    "bubble-1.png": "912efaacb74d6fc42f10d16481ce545cdbcc7b40a3b6e6685739cdc8181c6e42",
+    "bubble-2-native.png": "06721cb63aa2b8838d20cd67c1038647f4a4b94dc571cae18c36464ffd0b0f01",
+    "bubble-2.png": "2c51e7b6af1de816ad61732707ac9b486d99cf789ca9c426dc1ed73d527ef9ed",
+    "bubble-3-native.png": "21526ccd0efe0e39589140c073c802d7f05d7b130b61985da7b58f4459c9693c",
+    "bubble-3.png": "b95c4fe7766cc7451d7a63386308313b06b4792cb5f9d068eb3d4daa166b32ec"
+  },
+  "validation_record": "npc-ui-validation-02.json"
+}

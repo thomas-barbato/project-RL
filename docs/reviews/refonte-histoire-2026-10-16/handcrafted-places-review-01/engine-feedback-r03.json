@@ -1,0 +1,17 @@
+{
+  "place": "PLACE-CAMP-01",
+  "revision": "r03",
+  "user_feedback": "déjà rien que sur le screen je vois bien que ca va pas: il n'y a pas de morceau de mur qui forme un T , et les murs au centre sont à l'envers. Aussi en terme de visuel ca n'a rien à voir avec ce que tu m'as montré.",
+  "visual_status": "Rejected as the visual continuation of the r02 illustration.",
+  "art_approved": false,
+  "campaign_connected": false,
+  "technical_checks_do_not_validate_art": true,
+  "confirmed_causes": [
+    "T masks assembled from straight pieces instead of dedicated painted T art.",
+    "Automatic straight-wall facing can rotate painted faces by 180 degrees, reversing relief and lighting.",
+    "Old editor scenery was used instead of producing a kit matching r02."
+  ],
+  "correction_review": "r04: sixteen painted wall masks including four T pieces, fixed global camera without wall rotations, new warm-gray slabs, matching furniture and static amber wall lamps.",
+  "retained_approvals": "Player and NPC sprites remain unchanged; no prior art approval outside this camp review is revoked.",
+  "new_kit_approved": false
+}

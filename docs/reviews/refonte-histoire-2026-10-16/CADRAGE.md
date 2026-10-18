@@ -209,6 +209,15 @@ par le joueur n'est supprimé par ce cadrage.
 
 ## REV-01 — Suite et limites
 
+**MONDE-01 à MONDE-04 — accord du 17 octobre :** le joueur valide la base
+hybride, les camps stables, les parcours assemblés avec lieux importants
+préparés, les détours et boucles, et la conservation des plans pendant la partie.
+Il demande ensuite la création des décors au fil du développement des cartes.
+L’accord et ses limites sont dans `world-generation-study-01/design-acceptance-01.json`.
+Le cahier `docs/GENERATION_CAMPAGNE.md` et le plan `docs/DECORS_CAMPAGNE.md`
+préparent le premier secteur. Nombre de cartes, dessins, effets, quêtes,
+voyage et renouvellement des rencontres gardent leurs validations séparées.
+
 Restent à préciser : volume des actes, lien entre pouvoirs acceptés et condition
 de détenu, mort et renouvellement, modalités du voyage rapide, sortie du royaume
 et éventuelle exploration après la fin.

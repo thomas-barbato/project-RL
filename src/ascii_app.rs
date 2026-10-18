@@ -296,7 +296,8 @@ const CAMPAIGN_BESTIARY_GENERATION_VERSION: u8 = RETIRED_AVIATOR_GENERATION_VERS
 const MONSTER_MATERIAL_PALETTES_GENERATION_VERSION: u8 = CAMPAIGN_BESTIARY_GENERATION_VERSION + 1;
 const MONSTER_BLUE_PALETTES_GENERATION_VERSION: u8 =
     MONSTER_MATERIAL_PALETTES_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = MONSTER_BLUE_PALETTES_GENERATION_VERSION;
+const CRYOGENIC_CAMP_GENERATION_VERSION: u8 = MONSTER_BLUE_PALETTES_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = CRYOGENIC_CAMP_GENERATION_VERSION;
 
 #[cfg(test)]
 mod player_vision_revision_tests {
@@ -380,6 +381,8 @@ mod continuous_expedition_tests;
 #[cfg(debug_assertions)]
 #[path = "crawl_art_capture.rs"]
 mod crawl_art_capture;
+#[path = "cryogenic_camp_app.rs"]
+mod cryogenic_camp_app;
 #[cfg(debug_assertions)]
 #[path = "cyberpunk_capture.rs"]
 mod cyberpunk_capture;
@@ -388,6 +391,9 @@ mod deep_encounters;
 #[cfg(test)]
 #[path = "depth_distribution_tests.rs"]
 mod depth_distribution_tests;
+#[path = "dialogue_trial_app.rs"]
+mod dialogue_trial_app;
+pub use dialogue_trial_app::DialogueTrial as TerminalDialogue;
 #[cfg(test)]
 #[path = "expedition_decisions_tests.rs"]
 mod expedition_decisions_tests;
@@ -7564,7 +7570,8 @@ impl AsciiApp {
                 legend_label: &self.controls.label(Action::Legend),
                 observation_label: &self.controls.label(Action::NpcVision),
                 legend_open: false,
-                hide_interaction_tooltip: self.world_context.is_some(),
+                hide_interaction_tooltip: self.world_context.is_some()
+                    || crate::dialogue_bubble_review::active(),
                 attack_preview,
                 navigation_signal: navigation_signal.as_deref(),
                 target_summary: target_summary.as_ref(),
@@ -8612,6 +8619,7 @@ impl AsciiApp {
             narrative
                 .as_ref()
                 .and_then(|dialogue| self.texts.resolve(DISPLAY_LOCALE, &dialogue.name_key))
+                .or_else(|| self.camp_npc_name(interaction.provider))
                 .unwrap_or_else(|| self.npc_name(interaction.role)),
             x,
             layout.panel.y + 66.0,
@@ -9281,6 +9289,15 @@ impl AsciiApp {
     }
 
     fn npc_dialogue(&self, interaction: &NpcInteraction) -> String {
+        if self
+            .game
+            .actors()
+            .get(interaction.provider)
+            .and_then(crate::cryogenic_camp::actor_index)
+            == Some(1)
+        {
+            return crate::cryogenic_camp::OFFICER_DIALOGUE.to_owned();
+        }
         let alert = interaction.locally_alerted.then_some(
             "Je vous ai vu près de nos réserves. Je poursuis mon travail, mais l'incident reste dans ma mémoire. ",
         );
@@ -9902,6 +9919,7 @@ impl AsciiApp {
                             || self.game.active_clinic(entity)
                             || self.game.active_resident(entity)
                             || self.game.active_quest_provider(entity)
+                            || self.camp_npc_name(entity).is_some()
                             || self.game.dialogue_view(entity).is_some()
                             || self
                                 .game
@@ -10474,6 +10492,11 @@ impl AsciiApp {
             app.rules.player_weapon_slots = original_weapon_slots;
             app.rules.player_starting_equipment = original_starting_equipment;
         }
+        if version >= CRYOGENIC_CAMP_GENERATION_VERSION {
+            app.enable_cryogenic_camp()?;
+            app.game.drain_events();
+            return Ok(app);
+        }
         app.enable_expedition()?;
         if version >= REGIONAL_TRAVEL_GENERATION_VERSION {
             app.enable_regional_world()?;
@@ -11027,41 +11050,46 @@ impl AsciiApp {
         regional_world_catalog: RegionalWorldCatalog,
         generation_version: u8,
     ) -> Result<Self, String> {
-        let sector = TestSector::build_for_generation(
-            seed,
-            generation_version >= EXPANDED_WORLD_GENERATION_VERSION,
-            generation_version >= REGIONAL_TRAVEL_GENERATION_VERSION,
-            generation_version >= CLINIC_GENERATION_VERSION,
-            generation_version >= QUEST_WORLD_EFFECT_GENERATION_VERSION,
-            generation_version >= RECYCLING_INTRO_GENERATION_VERSION,
-        )?;
-        let sector = if generation_version >= SURFACE_CAST_GENERATION_VERSION {
-            sector.with_surface_contacts()?
+        let sector = if generation_version >= CRYOGENIC_CAMP_GENERATION_VERSION {
+            crate::cryogenic_camp::sector()?
         } else {
+            let sector = TestSector::build_for_generation(
+                seed,
+                generation_version >= EXPANDED_WORLD_GENERATION_VERSION,
+                generation_version >= REGIONAL_TRAVEL_GENERATION_VERSION,
+                generation_version >= CLINIC_GENERATION_VERSION,
+                generation_version >= QUEST_WORLD_EFFECT_GENERATION_VERSION,
+                generation_version >= RECYCLING_INTRO_GENERATION_VERSION,
+            )?;
+            let sector = if generation_version >= SURFACE_CAST_GENERATION_VERSION {
+                sector.with_surface_contacts()?
+            } else {
+                sector
+            };
+            let mut sector = if generation_version >= CITY_DECOR_GENERATION_VERSION {
+                crate::surface_layout::densify_hub_with_city_decor(sector, seed)?
+            } else if generation_version >= RANDOM_HOME_GENERATION_VERSION {
+                crate::surface_layout::densify_hub_at_random_edge(sector, seed)?
+            } else if generation_version >= DENSE_SURFACE_GENERATION_VERSION {
+                crate::surface_layout::densify_hub(sector, seed)?
+            } else {
+                sector
+            };
+            if generation_version >= CITY_LIFE_AND_LOOT_GENERATION_VERSION {
+                let start = crate::hub_layout::HomePlacement::for_seed(seed)
+                    .position(TestSector::HABITED_START);
+                let required: Vec<_> = sector.enemies.iter().chain(&sector.loot).copied().collect();
+                sector.level = project_rl::world::generation::GeneratedMap::from_layout(
+                    sector.level.map().clone(),
+                    start,
+                    sector.level.exit(),
+                    &required,
+                    project_rl::world::generation::MapValidationRules::default(),
+                )
+                .map_err(|error| format!("Départ en ville inaccessible : {error}"))?;
+            }
             sector
         };
-        let mut sector = if generation_version >= CITY_DECOR_GENERATION_VERSION {
-            crate::surface_layout::densify_hub_with_city_decor(sector, seed)?
-        } else if generation_version >= RANDOM_HOME_GENERATION_VERSION {
-            crate::surface_layout::densify_hub_at_random_edge(sector, seed)?
-        } else if generation_version >= DENSE_SURFACE_GENERATION_VERSION {
-            crate::surface_layout::densify_hub(sector, seed)?
-        } else {
-            sector
-        };
-        if generation_version >= CITY_LIFE_AND_LOOT_GENERATION_VERSION {
-            let start = crate::hub_layout::HomePlacement::for_seed(seed)
-                .position(TestSector::HABITED_START);
-            let required: Vec<_> = sector.enemies.iter().chain(&sector.loot).copied().collect();
-            sector.level = project_rl::world::generation::GeneratedMap::from_layout(
-                sector.level.map().clone(),
-                start,
-                sector.level.exit(),
-                &required,
-                project_rl::world::generation::MapValidationRules::default(),
-            )
-            .map_err(|error| format!("Départ en ville inaccessible : {error}"))?;
-        }
         let exit = sector.level.exit();
         let mut game = GameState::from_generated(sector.level, seed, rules.clone())
             .map_err(|error| error.to_string())?;
@@ -11365,7 +11393,9 @@ impl AsciiApp {
             floating_messages: Vec::new(),
             trace_cells: BTreeMap::new(),
             traces_visible_until: 0.0,
-            log: if generation_version >= CITY_LIFE_AND_LOOT_GENERATION_VERSION {
+            log: if generation_version >= CRYOGENIC_CAMP_GENERATION_VERSION {
+                Vec::new()
+            } else if generation_version >= CITY_LIFE_AND_LOOT_GENERATION_VERSION {
                 vec![
                     "Tu arrives dans le quartier habité. Elias se trouve à quelques pas."
                         .to_owned(),
@@ -11488,7 +11518,8 @@ impl AsciiApp {
                 let merchant = self.game.active_merchant(entity);
                 let artisan = self.game.active_artisan(entity);
                 let clinic = self.game.active_clinic(entity);
-                let resident = self.game.active_resident(entity)
+                let resident = self.camp_npc_name(entity).is_some()
+                    || self.game.active_resident(entity)
                     || self.game.current_zone().is_some_and(|zone| {
                         self.game.narrative_name_key_in(&zone.id, entity).is_some()
                     });
@@ -11752,6 +11783,9 @@ impl AsciiApp {
             return Some(name.to_owned());
         }
         let entity = self.game.actors().entity_at(position)?;
+        if let Some(name) = self.camp_npc_name(entity) {
+            return Some(name.to_owned());
+        }
         if self
             .game
             .actors()
@@ -11933,7 +11967,7 @@ impl AsciiApp {
                 self.quest_objective_text(&entry.quest.objective)
             ));
         }
-        if journal.is_empty() {
+        if journal.is_empty() && self.generation_version < CRYOGENIC_CAMP_GENERATION_VERSION {
             return Some("OBJECTIF · PARLER À L'HABITANT DE LA PLACE".to_owned());
         }
         None
@@ -16230,6 +16264,14 @@ impl AsciiApp {
         if entity == self.game.player_id() {
             return Some(self.front_player_visual());
         }
+        if let Some(index) = self
+            .game
+            .actors()
+            .get(entity)
+            .and_then(crate::cryogenic_camp::actor_index)
+        {
+            return Some(crate::game_art::Visual::CampNpc(index));
+        }
         if self.game.actors().get(entity).is_some_and(|actor| {
             actor
                 .tags()
@@ -17906,6 +17948,9 @@ impl AsciiApp {
         .to_owned();
         if let Some(campaign_name) = project_rl::monster_art::display_name(actor) {
             name = campaign_name.to_owned();
+        }
+        if let Some(camp_name) = self.camp_npc_name(target) {
+            name = camp_name.to_owned();
         }
         if let Some(level) = actor
             .tags()
@@ -22560,7 +22605,8 @@ impl AsciiApp {
                 .map_err(|error| format!("Traces de combat de reprise illisibles : {error}"))?;
             combat.restore(&mut snapshot.presentation)?;
         }
-        let game = WorldState::from_recovery_snapshot_bytes(&snapshot.engine, rules)?;
+        let mut game = WorldState::from_recovery_snapshot_bytes(&snapshot.engine, rules)?;
+        crate::cryogenic_camp::restore_obstructions(&mut game)?;
         Ok(DecodedAppRecoverySnapshot {
             game,
             presentation: snapshot.presentation,
@@ -26133,7 +26179,9 @@ mod tests {
     }
 
     fn app_with_test_controls() -> AsciiApp {
-        app_with_test_controls_version(CURRENT_GENERATION_VERSION)
+        // These historical city fixtures exercise the previous authored town.
+        // The cryogenic-camp tests cover current creation and its own services.
+        app_with_test_controls_version(MONSTER_BLUE_PALETTES_GENERATION_VERSION)
     }
 
     fn app_with_test_controls_version(version: u8) -> AsciiApp {
@@ -26364,7 +26412,7 @@ mod tests {
         for version in [
             SURFACE_CAST_GENERATION_VERSION,
             HEAVY_FAUNA_GENERATION_VERSION,
-            CURRENT_GENERATION_VERSION,
+            MONSTER_BLUE_PALETTES_GENERATION_VERSION,
         ] {
             let mut original = AsciiApp::from_seed_version(
                 INITIAL_SEED,
@@ -28183,7 +28231,7 @@ mod tests {
 
     #[test]
     fn pause_buttons_options_and_abandon_confirmation_are_modal_and_clickable() {
-        let mut app = app_with_test_controls();
+        let mut app = app_with_test_controls_version(CURRENT_GENERATION_VERSION);
         assert_eq!(
             MenuScreen::ConfirmAbandon.buttons(),
             &["Annuler", "Abandonner la partie"]
@@ -31679,7 +31727,7 @@ mod tests {
         for seed in 0..64 {
             // Construction validates the finished map, both passage anchors,
             // actor placements and loot before the first accepted command.
-            let a = AsciiApp::from_seed(
+            let a = AsciiApp::from_legacy_city_seed(
                 seed,
                 rules.clone(),
                 texts.clone(),
@@ -31687,7 +31735,7 @@ mod tests {
                 expeditions.clone(),
             )
             .unwrap();
-            let b = AsciiApp::from_seed(
+            let b = AsciiApp::from_legacy_city_seed(
                 seed,
                 rules.clone(),
                 texts.clone(),
@@ -31901,7 +31949,10 @@ mod tests {
             .into_iter()
             .find_map(|(direction, passage)| (direction == Direction::West).then_some(passage))
             .unwrap();
-        assert_eq!(app.generation_version, CURRENT_GENERATION_VERSION);
+        assert_eq!(
+            app.generation_version,
+            MONSTER_BLUE_PALETTES_GENERATION_VERSION
+        );
 
         app.walk_fixture_to(west_hub_passage.step(Direction::East))
             .unwrap();
@@ -33901,7 +33952,8 @@ mod tests {
     #[test]
     fn current_east_region_exposes_an_approximate_site_navigation_signal() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
-        let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
+        let mut app =
+            AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
         let (_, passage) = TestSector::EXPANDED_REGIONAL_PASSAGES
             .into_iter()
             .find(|(direction, _)| *direction == Direction::East)
@@ -33938,7 +33990,8 @@ mod tests {
             .iter()
             .map(|group| usize::from(group.count()))
             .sum();
-        let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
+        let mut app =
+            AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
         app.walk_fixture_to(TestSector::EXPANDED_EXPEDITION_PASSAGE.step(Direction::West))
             .unwrap();
         apply(
@@ -34114,7 +34167,8 @@ mod tests {
                 .any(|(entity, _)| previous.game.active_resident(entity))
         );
 
-        let current = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
+        let current =
+            AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
         assert_eq!(
             current
                 .game
@@ -34146,7 +34200,8 @@ mod tests {
             .expect("v64 must retain its resident");
         assert!(!previous.game.active_quest_provider(resident));
 
-        let current = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
+        let current =
+            AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
         let resident = current
             .game
             .actors()
@@ -34424,7 +34479,8 @@ mod tests {
         )
         .unwrap();
         let current =
-            AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions.clone()).unwrap();
+            AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions.clone())
+                .unwrap();
 
         assert!(!format!("{:?}", previous.game).contains("property_report_profile"));
         assert!(format!("{:?}", current.game).contains("property_report_profile"));
@@ -34492,7 +34548,8 @@ mod tests {
         )
         .unwrap();
         let current =
-            AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions.clone()).unwrap();
+            AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions.clone())
+                .unwrap();
 
         assert!(format!("{:?}", previous.game).contains("property_report_profile"));
         assert!(!format!("{:?}", previous.game).contains("reported_incident_response"));
@@ -34558,7 +34615,8 @@ mod tests {
         )
         .unwrap();
         let current =
-            AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions.clone()).unwrap();
+            AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions.clone())
+                .unwrap();
 
         assert!(format!("{:?}", previous.game).contains("reported_incident_response"));
         assert!(!format!("{:?}", previous.game).contains("installed_property_reports"));
@@ -36068,7 +36126,7 @@ mod tests {
             None
         );
 
-        let mut app = AsciiApp::from_seed(
+        let mut app = AsciiApp::from_legacy_city_seed(
             INITIAL_SEED,
             rules.clone(),
             texts.clone(),
@@ -36121,7 +36179,7 @@ mod tests {
         );
 
         let saved = app.suspension().unwrap();
-        assert_eq!(saved.version, CURRENT_GENERATION_VERSION);
+        assert_eq!(saved.version, MONSTER_BLUE_PALETTES_GENERATION_VERSION);
         let restored =
             AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
         assert_eq!(suspension::fingerprint(&restored.game), saved.state);
@@ -36297,7 +36355,8 @@ mod tests {
         .unwrap();
         assert_eq!(suspension::fingerprint(&restored.game), saved.state);
 
-        let current = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
+        let current =
+            AsciiApp::from_legacy_city_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
         let current_sentinel_armor = current
             .actor_glyphs
             .iter()
@@ -36411,7 +36470,7 @@ mod tests {
 
     #[test]
     fn a_new_run_equips_and_selects_the_flamethrower_on_channel_three() {
-        let mut app = app_with_test_controls();
+        let mut app = app_with_test_controls_version(CURRENT_GENERATION_VERSION);
 
         assert_eq!(app.generation_version, CURRENT_GENERATION_VERSION);
         assert_eq!(

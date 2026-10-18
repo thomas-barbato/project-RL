@@ -3,6 +3,11 @@ name = "project-rl"
 version = "0.1.0"
 edition = "2024"
 
+[features]
+default = ["dialogue-audio"]
+dialogue-audio = ["macroquad/audio"]
+dialogue-audio-trial = ["dialogue-audio"]
+
 [dependencies]
 base64 = "0.22"
 bincode = "1.3"

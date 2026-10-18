@@ -1,0 +1,117 @@
+{
+  "review_id": "DIALOGUE-BUBBLE-01",
+  "revision": "r02",
+  "date": "2026-10-18",
+  "selected_style": "03-terminal",
+  "status": "awaiting_revised_visual_approval",
+  "production_enabled": false,
+  "checks": {
+    "animation_crop": [
+      334.0,
+      113.0,
+      664.0,
+      267.0
+    ],
+    "animation_frames": 347,
+    "bounds": [
+      336.0,
+      115.0,
+      660.0,
+      228.0
+    ],
+    "characters": 345,
+    "characters_per_second": 40.0,
+    "close_click_consumed": true,
+    "closures_checked": [
+      "inside",
+      "outside",
+      "escape"
+    ],
+    "cursor": [
+      554.0,
+      303.0,
+      9.0,
+      17.0
+    ],
+    "cursor_blink_seconds": 0.5,
+    "fill_rgba": [
+      10,
+      25,
+      19,
+      224
+    ],
+    "full_existing_text": true,
+    "native_cell": 64,
+    "no_close_button": true,
+    "notification_hidden_while_open": true,
+    "production_enabled": false,
+    "quest_notification_stays_read_after_closing": true,
+    "quest_state_unchanged": true,
+    "reduced_motion": "full_text_and_static_cursor",
+    "render_is_read_only": true,
+    "review": "DIALOGUE-BUBBLE-01",
+    "revision": "r02",
+    "selected_candidate": "03-terminal",
+    "speaker": [
+      849.0,
+      373.0,
+      64.0,
+      64.0
+    ],
+    "speaker_visible": true,
+    "tail_root": [
+      881.0,
+      343.0,
+      378.0
+    ],
+    "text": "Debout, détenu. Les démons ravagent la ville. Nous n’avons plus assez d’hommes à envoyer sous terre.\n\nLe passage qu’ils empruntent est maintenu ouvert par un dispositif : le Puits. Vous allez le rejoindre et couper ce qui alimente l’invasion.\n\nVous réussissez, votre peine sera commuée. Vous serez libre. Vous n’avez de toute façon pas le choix.",
+    "viewport": [
+      317.5,
+      50.75,
+      935.5,
+      710.25
+    ]
+  },
+  "gpu_verification": {
+    "review": "DIALOGUE-BUBBLE-01",
+    "revision": "r02",
+    "tail_joint_no_separator": true,
+    "single_alpha_layer": true,
+    "maximum_joint_blend_error": 0.4352941176470573,
+    "fill_alpha": 0.8784313725490196,
+    "uniform_thin_corners": true,
+    "no_close_button": true,
+    "closures_without_game_action": [
+      "inside",
+      "outside",
+      "escape"
+    ],
+    "progressive_writing": true,
+    "characters_per_second": 40.0,
+    "source_animation_frames": 347,
+    "playback_ms": 9625,
+    "final_text_matches_static": true,
+    "blinking_block_verified": true,
+    "quest_notification_stays_read_after_closing": true,
+    "quest_state_unchanged": true,
+    "ready_to_turn_in_symbol": "?",
+    "ready_symbol_distinct": true,
+    "animation_sha256": "419428ac3c5c5dec1f8d17896364de0110b86dbcafaf325dc57f0d54f6137b27"
+  },
+  "captures_sha256": {
+    "terminal-r02-background-native.png": "21106bbb9840b6b3ae4fc2ad9fe52f8b974f4864fd4f664a981c0e786d8cfb29",
+    "terminal-r02-background.png": "4e50ed0f09e1424780958eaefddf670fdaa60e3899c9ae30f28abe3d72044971",
+    "terminal-r02-closed-native.png": "9e0f3d7c48fe7ad54a88c01b255f5677d889fe9403b380763daf5113f9a7e5ba",
+    "terminal-r02-closed.png": "57e5f7a9c4ef5273aa659efde02c7c166b1eaa2ba3114ee7caa948c43e6baba6",
+    "terminal-r02-dialogue-static.png": "d2b781bd3d42b7e4af43a67a7f972b2020d615d88754fe309696f7010c05e370",
+    "terminal-r02-mid.png": "4661b48614b5b53c37d84742c6ecda97d5a9314d8f314f3aa0a935c0967043cb",
+    "terminal-r02-native.png": "2ea950fd836d35de5c4fc47dcd888de198dcb5f61f5116260174e0b89d57d34d",
+    "terminal-r02-notification-read.png": "2f5af7e9305cfb03284d5799d4ae9f5b600c1253bac713604985fa40fc3694ed",
+    "terminal-r02-notification-ready.png": "6fcdb6651b68c42bee97e54c166d21a8503ab65120236700f38186f63ab9ec45",
+    "terminal-r02-notification-unread.png": "57b41fc802044f42becf5f66585111bc389ca31edef565785f9f67e1f2fb8b6f",
+    "terminal-r02-ready.png": "0610a34021b66bb1c0d1838363a8ebc27c311ab6080305c845204c273a33f04c",
+    "terminal-r02-unread-native.png": "eb0611bea8c7f713f94e6b2d5440eb6ea94b0bf67a271671c5efad9c6998a06f",
+    "terminal-r02-unread.png": "b0e8621fa766d662f0533351e9094a2e0f47fd9f8b953f9fd9fdac51e12001d2",
+    "terminal-r02.png": "69514e40ab2f8721d58912f588ae496eef729e251ee2dceb3d00ebba9eb6cf83"
+  }
+}

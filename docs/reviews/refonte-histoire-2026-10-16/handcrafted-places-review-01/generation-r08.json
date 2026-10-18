@@ -1,0 +1,30 @@
+{
+  "review": "HANDCRAFTED-PLACES-01",
+  "revision": "r08",
+  "tool": "built-in imagegen",
+  "purpose": "Correct the two lower doorway details; preserve the rest of the camp.",
+  "prompt": "Use case: precise-object-edit.\nEdit this exact original 512x256 game-art atlas. It contains TWO 256x256 native detail panels SIDE BY SIDE, with no separator. They show the entrances of two lower rooms in the same industrial camp.\nProblem to fix, IN BOTH PANELS: the existing bright amber wall lamp and its horizontal metal bar cross the center of a north-south doorway, so the passage looks closed by a glowing barrier.\nWithin each 256px-wide panel, the open passage is centered at x128 and runs from the top edge down into the room. Its clear floor span is x96..160. Reconstruct continuous grey slab floor through y80..144 within this central passage: REMOVE the lamp and every crossbeam crossing the walkable opening. Keep the left and right wall ends attached and coherent. No lintel or horizontal beam over the floor.\nMove that small amber lamp about64pixels to the RIGHT of the doorway, onto the existing solid horizontal north wall (approximately panel-local x192,y108). It should be a normal wall fixture on that solid wall, never in the passage. Keep the warm lighting subtle.\nPreserve everything else: exact two-panel composition and dimensions, placement of the corridor and walls, charcoal corner caps and wall thicknesses, cables, floor slab pattern, orthogonal camera, original illustrated style, muted palette. Do not redesign the rooms. No doors, furniture, people, text, numbers, labels, added props or different camera.\nKeep changes concentrated in each panel-local rectangle x80..224, y80..144. Outside these areas, the original game-art must match as closely as possible. Return the same 2:1 aspect ratio. This is a surgical correction of two doorway details, not a new camp scene.",
+  "reference": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r08/doorways-edit-source-r08.png",
+  "source": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r08/doorways-edited-source-r08.png",
+  "native_panel_size": [
+    256,
+    256
+  ],
+  "local_patch": [
+    80,
+    80,
+    224,
+    144
+  ],
+  "new_lighting_system_implemented": false,
+  "reference_sha256": "ea7d877125ac7a32e425c7bd0544fbcd59f9f5fa5ecee099d5a376158ac6bff5",
+  "reference_size": [
+    512,
+    256
+  ],
+  "source_sha256": "4c387a5a010469afac50a02b2211b381a10cc1f7e8654b80b20374f6e3ddca80",
+  "source_size": [
+    1774,
+    887
+  ]
+}

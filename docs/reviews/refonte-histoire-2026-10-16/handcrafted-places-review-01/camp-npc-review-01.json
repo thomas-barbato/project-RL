@@ -1,0 +1,166 @@
+{
+  "review_id": "CAMP-NPC-01",
+  "revision": "r01",
+  "date": "2026-10-18",
+  "request": "Pictogrammes au-dessus des PNJ, retour au camp, animations idle.",
+  "return_fix": {
+    "status": "integrated_and_verified",
+    "generation_version": 153,
+    "save_format_changed": false,
+    "scope": "core:cryogenic_camp depth 0 <-> adjacent depth 1",
+    "preserves_existing_camp_and_npc_identities": true,
+    "legacy_and_deeper_irreversibility_preserved": true
+  },
+  "npc_presentation": {
+    "status": "awaiting_explicit_visual_approval",
+    "production_enabled": false,
+    "source_art_unchanged": true,
+    "native_cell": 64,
+    "pictogram_px": 18,
+    "breath_px": 2,
+    "cycle_seconds": 3,
+    "portraits_static": true,
+    "reduced_motion_supported": true,
+    "candidates": [
+      "CAMP-NPC-01:Officier",
+      "CAMP-NPC-02:Armurier",
+      "CAMP-NPC-03:Médecin",
+      "CAMP-NPC-04:Technicien"
+    ]
+  },
+  "validation": {
+    "camp_client_tests_passed": 6,
+    "presentation_tests_passed": 2,
+    "new_engine_access_test_passed": 1,
+    "legacy_irreversibility_tests_passed": 2,
+    "debug_build": true,
+    "release_check": true,
+    "format_check": true,
+    "diff_check": true,
+    "gpu_capture": {
+      "native_cell": 64,
+      "offset_px": 2,
+      "pose_seconds": 1.5,
+      "production_enabled": false,
+      "review": "CAMP-NPC-01",
+      "revision": "r01",
+      "scenes": [
+        {
+          "at": [
+            6,
+            7
+          ],
+          "cell": [
+            849.0,
+            373.0,
+            64.0,
+            64.0
+          ],
+          "index": 1,
+          "render_is_read_only": true
+        },
+        {
+          "at": [
+            31,
+            4
+          ],
+          "cell": [
+            849.0,
+            373.0,
+            64.0,
+            64.0
+          ],
+          "index": 2,
+          "render_is_read_only": true
+        },
+        {
+          "at": [
+            18,
+            13
+          ],
+          "cell": [
+            785.0,
+            437.0,
+            64.0,
+            64.0
+          ],
+          "index": 3,
+          "render_is_read_only": true
+        },
+        {
+          "at": [
+            31,
+            13
+          ],
+          "cell": [
+            849.0,
+            373.0,
+            64.0,
+            64.0
+          ],
+          "index": 4,
+          "render_is_read_only": true
+        }
+      ]
+    },
+    "gpu_pixel_verification": {
+      "review": "CAMP-NPC-01",
+      "revision": "r01",
+      "gpu_verified": true,
+      "source_art_unchanged": true,
+      "simulation_read_only": true,
+      "candidates": [
+        {
+          "index": 1,
+          "upper_body_changed": true,
+          "fixed_feet_and_shadow": true,
+          "fixed_portrait": true,
+          "fixed_marker": true,
+          "reduced_motion_exact_rest_pose": true
+        },
+        {
+          "index": 2,
+          "upper_body_changed": true,
+          "fixed_feet_and_shadow": true,
+          "fixed_portrait": true,
+          "fixed_marker": true,
+          "reduced_motion_exact_rest_pose": true
+        },
+        {
+          "index": 3,
+          "upper_body_changed": true,
+          "fixed_feet_and_shadow": true,
+          "fixed_portrait": true,
+          "fixed_marker": true,
+          "reduced_motion_exact_rest_pose": true
+        },
+        {
+          "index": 4,
+          "upper_body_changed": true,
+          "fixed_feet_and_shadow": true,
+          "fixed_portrait": true,
+          "fixed_marker": true,
+          "reduced_motion_exact_rest_pose": true
+        }
+      ]
+    },
+    "full_client_suite_rerun": false,
+    "preexisting_failures": 28,
+    "preexisting_failure_record": "../bestiary-integration-06/validation.json"
+  },
+  "gallery": "artifacts/handcrafted-places-review-01/index.html?review=camp-npc01#pnj-r01",
+  "captures_sha256": {
+    "npc-1-scene-0.png": "967e0654417c9315005d5c4437d9502944ad3a55bfed0640da60368ddc27424d",
+    "npc-1-scene-1.png": "8bd1e9fd83a569e2d88c1b16c646b49219d546ba7f5423b64eef2430f275eecd",
+    "npc-2-scene-0.png": "d5c368248a56f46e1af07bab15fbba3c435be3dfc8897549e4029ffe646667d2",
+    "npc-2-scene-1.png": "0a7e96cd486783e4ebe7054b7831fc5e4663b2926a52efd85dcfb89299850bdd",
+    "npc-3-scene-0.png": "56a5cfa79b49f41409ce7342557fc79f36faad9d5d99d00b4e33bce260750ed9",
+    "npc-3-scene-1.png": "bc77c4b5eaeddcad71b412aef0e62215810c94ed361924ce6655107e117b9b07",
+    "npc-4-scene-0.png": "54960bbc629dad0b0418224de9c7aba9517e2a9f5a27bfff18b372217ab699bd",
+    "npc-4-scene-1.png": "0c76f8c7bee0e43fbc79cd15f464b38032d4e5105a943b7bd119aa9e21e437b6",
+    "npc-poses-0.png": "ab88498434a4bd7fce602388cacf148baa8e62a56997f621fc62cf4c1782348f",
+    "npc-poses-1.png": "0bc94d90217b6bd32d4be256d76a2b4488e33e501980f4d3ff7d2601add0095f",
+    "npc-poses-2.png": "ab88498434a4bd7fce602388cacf148baa8e62a56997f621fc62cf4c1782348f",
+    "npc-reduced-motion.png": "c3d8f6056f1cd3d92e8b32532b587f3571d8e64bb0c76ebe8739716b19c7cb7b"
+  }
+}

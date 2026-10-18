@@ -1,0 +1,33 @@
+{
+  "review_id": "HANDCRAFTED-PLACES-01",
+  "revision": "r07",
+  "date": "2026-10-17",
+  "user_quote": "ok, il faudrait aussi le militaire à l'entrée de la piece qui nous expliquera le pourquoi on a été reveillé :) nous l'avions designé plus tot dans la journée",
+  "actor_id": "NPC-01",
+  "accepted_art_revision": "NPC-01-r03",
+  "accepted_art_proof": "../npc-monsters-review-01/visual-acceptance-01.json",
+  "native_file": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+  "native_sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+  "previous_at": [18, 4],
+  "new_at": [6, 7],
+  "placement_authorized": true,
+  "placement_note": "L’officier quitte son ancien emplacement de bureau et se tient juste au nord du passage, dans la cryogénie. L’acteur est déplacé, sans doublon. Il reste approchable depuis la case [6,8] et laisse le passage libre.",
+  "role_authorized": "Expliquer au détenu, au réveil, pourquoi il a été sorti de cryogénie et lui présenter la mission.",
+  "new_art": false,
+  "new_dialogue_connected": false,
+  "dialogue_proposal": {
+    "id": "DIAL-CRYO-01",
+    "revision": "r01",
+    "status": "proposed_for_review_only",
+    "text_approved": false,
+    "blocks": [
+      "Debout, détenu. Les démons ravagent la ville. Nous n’avons plus assez d’hommes à envoyer sous terre.",
+      "Le passage qu’ils empruntent est maintenu ouvert par un dispositif : le Puits. Vous allez le rejoindre et couper ce qui alimente l’invasion.",
+      "Vous réussissez, votre peine sera commuée. Vous serez libre. Les détenus envoyés avant vous ne sont pas revenus."
+    ],
+    "source": "docs/HISTOIRE_CAMPAGNE.md, section 2 : Le prisonnier et sa mission",
+    "mechanics_added": false,
+    "note": "Proposition d’accueil cohérente avec le récit, pas une annonce que le Puits ou sa fermeture sont déjà implémentés. La réplique exacte n’a pas encore reçu de validation. Aucun déclenchement automatique, choix de réponse, récompense, objectif chiffré ou verrou de passage n’est ajouté."
+  },
+  "campaign_connected": false
+}

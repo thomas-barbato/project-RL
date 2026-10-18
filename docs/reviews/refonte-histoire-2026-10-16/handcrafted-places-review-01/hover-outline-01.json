@@ -1,0 +1,207 @@
+{
+  "review_id": "HOVER-OUTLINE-01",
+  "revision": "r01",
+  "date": "2026-10-18",
+  "status": "awaiting_visual_approval",
+  "production_enabled": false,
+  "gpu_checks": {
+    "border_px": 2,
+    "large_demon": 20,
+    "masks": [
+      {
+        "index": 0,
+        "placement": [
+          32.0,
+          272.0,
+          256.0
+        ],
+        "tone": "Friendly"
+      },
+      {
+        "index": 1,
+        "placement": [
+          320.0,
+          272.0,
+          256.0
+        ],
+        "tone": "Friendly"
+      },
+      {
+        "index": 2,
+        "placement": [
+          608.0,
+          272.0,
+          256.0
+        ],
+        "tone": "Friendly"
+      },
+      {
+        "index": 3,
+        "placement": [
+          956.0,
+          364.0,
+          256.0
+        ],
+        "tone": "Hostile"
+      },
+      {
+        "index": 4,
+        "placement": [
+          1212.0,
+          332.0,
+          256.0
+        ],
+        "tone": "Hostile"
+      }
+    ],
+    "native_cell": 64,
+    "npc_presentation_production_enabled": true,
+    "outline_production_enabled": false,
+    "review": "HOVER-OUTLINE-01",
+    "revision": "r01",
+    "scenes": [
+      {
+        "at": [
+          6,
+          7
+        ],
+        "cell": [
+          849.0,
+          373.0,
+          64.0,
+          64.0
+        ],
+        "name": "officer",
+        "render_is_read_only": true,
+        "tone": "Friendly"
+      },
+      {
+        "at": [
+          18,
+          13
+        ],
+        "cell": [
+          785.0,
+          437.0,
+          64.0,
+          64.0
+        ],
+        "name": "medical",
+        "render_is_read_only": true,
+        "tone": "Friendly"
+      },
+      {
+        "at": [
+          22,
+          8
+        ],
+        "cell": [
+          849.0,
+          373.0,
+          64.0,
+          64.0
+        ],
+        "name": "cultist",
+        "render_is_read_only": true,
+        "tone": "Hostile"
+      },
+      {
+        "at": [
+          24,
+          8
+        ],
+        "cell": [
+          849.0,
+          373.0,
+          64.0,
+          64.0
+        ],
+        "name": "ally",
+        "render_is_read_only": true,
+        "tone": "Friendly"
+      },
+      {
+        "at": [
+          26,
+          8
+        ],
+        "cell": [
+          849.0,
+          373.0,
+          64.0,
+          64.0
+        ],
+        "name": "large-demon",
+        "render_is_read_only": true,
+        "tone": "Hostile"
+      }
+    ]
+  },
+  "gpu_verification": {
+    "review": "HOVER-OUTLINE-01",
+    "revision": "r01",
+    "gpu_verified": true,
+    "exact_two_pixel_alpha_outline": true,
+    "body_pixels_unchanged": true,
+    "shadows_and_transparent_canvas_excluded": true,
+    "colors_verified": true,
+    "native_cell": 64,
+    "samples": [
+      {
+        "index": 0,
+        "stroke_pixels": 487,
+        "complete_mask": true
+      },
+      {
+        "index": 1,
+        "stroke_pixels": 708,
+        "complete_mask": true
+      },
+      {
+        "index": 2,
+        "stroke_pixels": 542,
+        "complete_mask": true
+      },
+      {
+        "index": 3,
+        "stroke_pixels": 542,
+        "complete_mask": true
+      },
+      {
+        "index": 4,
+        "stroke_pixels": 969,
+        "complete_mask": true
+      }
+    ]
+  },
+  "capture_sha256": {
+    "ally-0.png": "bfe416efafa5c2d8c22cec173d019d7c9e2f894a433114fb1dd74187de2c269e",
+    "ally-1.png": "fce9ce80343080b70a628de3e361cea3aa8b34138dde7b6a1a5b2a66f3da6af5",
+    "ally-2.png": "b733f7ef418ad844e4619ad4148600d2a6015e80a484df32c0699972e3c3fbbc",
+    "ally-without.png": "6a3c98bc3a3dd96af748e1623b2a1546ae879c720cd1cdee3cbbe4829f811d55",
+    "cultist-0.png": "b302b39a5ee5093eab22b6298261f341609bc44b7407627ee46e9289a96bf5ba",
+    "cultist-1.png": "cb675ccd818ff9b8a37ffdca0d0ebeaa096539f622a5876e125dba0f9e6baf7c",
+    "cultist-2.png": "5fe630c635a39d9663ce5bfbd9430463d95371ff9e3755ccecd76ecf9a531a1e",
+    "cultist-without.png": "bcfc469c34d2f412ecda78f491138f700684e828a247d58f48c30414479e8be1",
+    "large-demon-0.png": "7c1d1877955a0744d1d970c61c2906744a666f97e7384f9a05f62666a2197ca7",
+    "large-demon-1.png": "fe493bc8101e693e98290ea7e16296f84df835e446737bbaa58c0bfdac6388dd",
+    "large-demon-2.png": "97a6784462c4e43d9e0fcf78787f733e8f6e56908a6d4b41747164297c25b165",
+    "large-demon-without.png": "134fe0acf9a8bce3c30d1850e7fdd7663b47c28422e308e014465da7708f64a4",
+    "mask-0.png": "ffa9ad04b0c8532cc7f3d6e6c6c0263a70f5cf306834d33e5c771d50d5354514",
+    "mask-1.png": "3407ea2fb77fb81a6ee002aaf1eb045a433c9203293be234c7b89baf0b70d4bf",
+    "mask-2.png": "04717ac623e48b0fbee75a2c713f42412930818470253faf7d56d5a08d3ba93a",
+    "mask-3.png": "a50486a0423e3d9e6e1a7ca7e576b45185258135cc50df805c3638dcf1574d09",
+    "mask-4.png": "e8ad2802b96a24a0f738631edb238262ae7070c179dc987e211f9d6c9107bdaa",
+    "medical-0.png": "f1ae2d8214ae84b61397774276294f06eeb4faef0f197fa0ab0c133f4e813998",
+    "medical-1.png": "8c10088ad195400c1f6b4c8d76d3a45a2f3ffc5328532827cbf4cd305356db8e",
+    "medical-2.png": "e1530c44e5f5ac1ad9aafdeaf1c9be9799cb2340b5a83b267190c64ed5f3b259",
+    "medical-without.png": "c14eb6d289ab5e0fc944cb0d7a1d191431e663fa8a1eaa4b2506688e15e87de0",
+    "officer-0.png": "c66bf8e7aa24990cdbaa056e13da364c30a38315af38421aa765ae25df99a01b",
+    "officer-1.png": "b46691a66ab5f01639fa4e3d60971a61d650c57d06f3ab8c90d44e32ddcd338f",
+    "officer-2.png": "abb3787aa6c86015af619045708f39a8ce5f592ebffd6cbeed3c3edb1fcfdb9e",
+    "officer-without.png": "593cdad5fd0f09569576bc9f661d3b3692fc7c0064b7177dfe198321b92ccc6f",
+    "silhouettes-0.png": "84377216655d667cac88ad1437f4a8349a057fe044e7b07c07562b934e3a2533",
+    "silhouettes-1.png": "5e7b27f17138758137d6d0adce857599e454d778edf908ff5a7bf2453816062d"
+  },
+  "validation_record": "npc-ui-validation-02.json"
+}

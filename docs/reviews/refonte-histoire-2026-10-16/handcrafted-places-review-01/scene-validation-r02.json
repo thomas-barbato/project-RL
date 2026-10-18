@@ -1,0 +1,242 @@
+{
+  "place": "PLACE-CAMP-01",
+  "revision": "r02",
+  "source_background": {
+    "file": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/PLACE-CAMP-01-r02-background.png",
+    "sha256": "942084169ab8f56f4348cf89e26a66948f6d623a0e35b1228e35592fbdea201d",
+    "original_canvas": [
+      1564,
+      1006
+    ],
+    "conditioned_canvas": [
+      1792,
+      1152
+    ],
+    "resampling": "LANCZOS, environment only"
+  },
+  "actors": [
+    {
+      "id": "NPC-01",
+      "revision": "r03",
+      "label": "Responsable des missions",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-01-r03/NPC-01-r03-native64.png",
+      "expected_sha256": "9d2152fa364d40175cfed7f767ffabc6c445daa917a7d79db9288152534ae22f",
+      "foot": [
+        64,
+        96
+      ],
+      "at": [
+        7,
+        4
+      ],
+      "position": [
+        416,
+        224
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "body_bounds": [
+        49,
+        36,
+        79,
+        96
+      ],
+      "scale": 1,
+      "resize_operations": 0,
+      "contact_shadow": {
+        "center": [
+          66,
+          95
+        ],
+        "width": 28,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "opaque_pixels_verified": 978
+    },
+    {
+      "id": "NPC-02",
+      "revision": "r02",
+      "label": "Armurier",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-02-r02/NPC-02-r02-native64.png",
+      "expected_sha256": "c5aac19aa21aea164e9fc67cd173730a7935c55bf4cd8b333b03036034c79df6",
+      "foot": [
+        64,
+        96
+      ],
+      "at": [
+        20,
+        4
+      ],
+      "position": [
+        1248,
+        224
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "body_bounds": [
+        49,
+        36,
+        80,
+        96
+      ],
+      "scale": 1,
+      "resize_operations": 0,
+      "contact_shadow": {
+        "center": [
+          65,
+          95
+        ],
+        "width": 34,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "opaque_pixels_verified": 1088
+    },
+    {
+      "id": "NPC-03",
+      "revision": "r02",
+      "label": "Secouriste",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-03-r02/NPC-03-r02-native64.png",
+      "expected_sha256": "0311aada7866a4a363e19f88e5172e5c762361e7d6472fe7e0c73057e5e9dfd7",
+      "foot": [
+        64,
+        96
+      ],
+      "at": [
+        7,
+        13
+      ],
+      "position": [
+        416,
+        800
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "body_bounds": [
+        50,
+        36,
+        78,
+        96
+      ],
+      "scale": 1,
+      "resize_operations": 0,
+      "contact_shadow": {
+        "center": [
+          66,
+          95
+        ],
+        "width": 28,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "opaque_pixels_verified": 909
+    },
+    {
+      "id": "NPC-04",
+      "revision": "r02",
+      "label": "Technicien",
+      "source": "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/accepted/NPC-04-r02/NPC-04-r02-native64.png",
+      "expected_sha256": "4ba2dc8ab377e23ceac45e9efc884e520e7f698d4324bf65d511b1f004a4a3ac",
+      "foot": [
+        64,
+        96
+      ],
+      "at": [
+        20,
+        13
+      ],
+      "position": [
+        1248,
+        800
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "body_bounds": [
+        50,
+        36,
+        79,
+        96
+      ],
+      "scale": 1,
+      "resize_operations": 0,
+      "contact_shadow": {
+        "center": [
+          64,
+          95
+        ],
+        "width": 33,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "opaque_pixels_verified": 874
+    },
+    {
+      "id": "PLAYER",
+      "revision": "AR-N07-0-00",
+      "label": "Joueur",
+      "source": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+      "expected_sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+      "foot": [
+        64,
+        96
+      ],
+      "at": [
+        12,
+        8
+      ],
+      "position": [
+        736,
+        480
+      ],
+      "canvas": [
+        128,
+        128
+      ],
+      "body_bounds": [
+        37,
+        33,
+        92,
+        98
+      ],
+      "scale": 1,
+      "resize_operations": 0,
+      "contact_shadow": {
+        "center": [
+          64,
+          95
+        ],
+        "width": 35,
+        "band_height": 2,
+        "palette_origin": "src/game_art.rs::draw_contact_shadow"
+      },
+      "opaque_pixels_verified": 188
+    }
+  ],
+  "actor_count": 5,
+  "actor_resize_operations": 0,
+  "all_actor_opaque_pixels_match_sources": true,
+  "contact_shadows_separate": true,
+  "layout_approved": false,
+  "art_approved": false,
+  "player_texts_approved": false,
+  "runtime_connected": false,
+  "new_gameplay_effects": false,
+  "geometry_scope": "Visual illustration only; original logical room arrangement retained, exact generated wall coordinates differ. No tile collision proof.",
+  "output": {
+    "file": "artifacts/handcrafted-places-review-01/camp-01-r02-native64.png",
+    "size": [
+      1792,
+      1152
+    ],
+    "sha256": "7288323bf9bd22374850c14c23e6437d23e3f3ab3df0af5f9241ff8d972bad62"
+  }
+}
