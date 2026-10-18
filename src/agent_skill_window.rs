@@ -16,6 +16,8 @@ struct Skill {
     branch: String,
     kind: String,
     roleplay: String,
+    #[serde(default)]
+    common_rules: Vec<String>,
     learned_cap: u8,
     requires: Option<String>,
     parameters: BTreeMap<String, serde_json::Value>,
@@ -150,11 +152,22 @@ struct Layout {
     detail: Rect,
     branch_rows: Vec<(usize, Rect)>,
     tiles: Vec<(usize, Rect)>,
-    actions: [Rect; 3],
+    close: Rect,
     columns: usize,
+    demo: Option<Rect>,
 }
 impl Layout {
     fn new(width: f32, height: f32, branch: usize, selected: usize, count: usize) -> Self {
+        Self::with_demo(width, height, branch, selected, count, 0.)
+    }
+    fn with_demo(
+        width: f32,
+        height: f32,
+        branch: usize,
+        selected: usize,
+        count: usize,
+        demo_height: f32,
+    ) -> Self {
         let panel = Rect::new(16.0, 16.0, width - 32.0, height - 32.0);
         let body = Rect::new(
             panel.x + 12.0,
@@ -189,13 +202,15 @@ impl Layout {
                 )
             })
             .collect();
-        let columns = ((grid.w - 12.0) / 124.0).floor().max(1.0) as usize;
-        let visible_rows = ((grid.h - 42.0) / 148.0).floor().max(1.0) as usize;
+        // Leave room for the rightmost purchase button without moving the icons
+        // or changing the centering of their existing captions.
+        let columns = ((grid.w - 24.0) / 124.0).floor().max(1.0) as usize;
+        let visible_rows = ((grid.h - 42.0 - demo_height) / 148.0).floor().max(1.0) as usize;
         let selected_row = selected / columns;
         let first_row = selected_row.saturating_sub(visible_rows.saturating_sub(1));
         let first = first_row * columns;
-        let stride = (grid.w - 12.0) / columns as f32;
-        let tiles = (first..(first + visible_rows * columns).min(count))
+        let stride = (grid.w - 24.0) / columns as f32;
+        let tiles: Vec<_> = (first..(first + visible_rows * columns).min(count))
             .enumerate()
             .map(|(visible, index)| {
                 (
@@ -209,13 +224,15 @@ impl Layout {
                 )
             })
             .collect();
-        let button_width = (detail.right() - grid.x - 16.0) / 3.0;
-        let actions = std::array::from_fn(|index| {
+        let close = super::agent_skill_bar::skill_window_close_rect(width, height);
+        let demo = (demo_height > 0.).then(|| {
+            let w = (grid.w - 20.).min(480.);
+            let rows = tiles.len().div_ceil(columns);
             Rect::new(
-                grid.x + index as f32 * (button_width + 8.0),
-                panel.bottom() - 108.0,
-                button_width,
-                32.0,
+                grid.x + (grid.w - w) * 0.5,
+                grid.y + 36. + rows as f32 * 148. + 8.,
+                w,
+                demo_height - 14.,
             )
         });
         Self {
@@ -225,12 +242,17 @@ impl Layout {
             detail,
             branch_rows,
             tiles,
-            actions,
+            close,
             columns,
+            demo,
         }
     }
     fn icon(tile: Rect) -> Rect {
         Rect::new(tile.x + (tile.w - 64.0) * 0.5, tile.y, 64.0, 64.0)
+    }
+    fn learn_button(tile: Rect) -> Rect {
+        let icon = Self::icon(tile);
+        Rect::new(icon.right() + 8., icon.y + 16., 32., 32.)
     }
 }
 
@@ -287,6 +309,31 @@ pub(super) fn art(id: &str, category: &str, rect: Rect, clip: Option<Rect>) -> b
 }
 
 impl AsciiApp {
+    fn agent_skills_layout(
+        &self,
+        width: f32,
+        height: f32,
+        branch: usize,
+        selected: usize,
+        count: usize,
+    ) -> Layout {
+        if self.ux.skill_demo_request.is_some() && height >= 600. {
+            let reserve = (height - 32. - 194. - 190.).clamp(0., 236.);
+            return Layout::with_demo(width, height, branch, selected, count, reserve);
+        }
+        Layout::new(width, height, branch, selected, count)
+    }
+    #[cfg(debug_assertions)]
+    pub(super) fn agent_skill_demo_rect(&self) -> Option<Rect> {
+        self.agent_skills_layout(
+            self.ui_width(),
+            self.ui_height(),
+            self.skill_discipline_selection,
+            self.skill_technique_selection,
+            skills(self.skill_discipline_selection).len(),
+        )
+        .demo
+    }
     pub(super) fn agent_skill_use_profile(
         &self,
         id: &str,
@@ -320,6 +367,7 @@ impl AsciiApp {
         self.attack_aim_technique = None;
         self.attack_aim_pointer = None;
         self.skill_message.clear();
+        self.ux.skill_demo_request = None;
         self.menu_focus.reset();
         if let Some(first) = self
             .game
@@ -413,13 +461,15 @@ impl AsciiApp {
     }
 
     pub(super) fn update_agent_skills(&mut self, input: &InputFrame) {
+        self.ux.skill_learn_pointer = input.pointer;
+        self.ux.skill_learn_down = input.mouse_left_down;
         self.skill_discipline_selection = self.skill_discipline_selection.min(16);
         let entries = skills(self.skill_discipline_selection);
         self.skill_technique_selection = self
             .skill_technique_selection
             .min(entries.len().saturating_sub(1));
         let (width, height) = input.viewport.unwrap_or((1280.0, 800.0));
-        let layout = Layout::new(
+        let layout = self.agent_skills_layout(
             width,
             height,
             self.skill_discipline_selection,
@@ -427,6 +477,29 @@ impl AsciiApp {
             entries.len(),
         );
         let click = input.pressed.contains(&controls::Binding::MouseLeft);
+        // Resolve purchase controls before the tile hit area: the button can
+        // extend into the gutter, and one press must issue at most one purchase.
+        if click
+            && let Some((index, _)) = layout.tiles.iter().find(|(_, r)| {
+                input
+                    .pointer
+                    .is_some_and(|p| Layout::learn_button(*r).contains(p.into()))
+            })
+        {
+            if let Some(skill) = entries.get(*index) {
+                self.skill_technique_selection = *index;
+                if self.ux.skill_demo_request.as_deref() != Some(skill.id.as_str()) {
+                    self.ux.skill_demo_request = None;
+                }
+                self.ux.skill_scroll.offset = 0.;
+                if self.game.agent_skill_next_rank(&skill.id).is_ok() {
+                    self.execute_command(GameCommand::LearnAgentSkill {
+                        skill: skill.id.clone(),
+                    });
+                }
+            }
+            return;
+        }
         if click && let Some(skill) = entries.get(self.skill_technique_selection) {
             for (index, (_, enabled, _, command)) in self
                 .agent_device_variant_choices(&skill.id)
@@ -454,14 +527,11 @@ impl AsciiApp {
             && self.can_assign_agent_skill(&skill.id)
         {
             self.skill_technique_selection = *index;
+            self.ux.skill_demo_request = Some(skill.id.clone());
             self.begin_agent_skill_drag(&skill.id, None, input.pointer.unwrap());
             return;
         }
-        if (self.controls.pressed(Action::Use, input)
-            || click
-                && input
-                    .pointer
-                    .is_some_and(|p| layout.actions[1].contains(p.into())))
+        if self.controls.pressed(Action::Use, input)
             && let Some(skill) = entries.get(self.skill_technique_selection)
         {
             if let Some(reason) = self
@@ -478,15 +548,11 @@ impl AsciiApp {
             }
             return;
         }
-        let mut learn_clicked = click
-            && input
-                .pointer
-                .is_some_and(|p| layout.actions[0].contains(p.into()));
         if self.controls.pressed(Action::QuickTechniques, input)
             || click
                 && input
                     .pointer
-                    .is_some_and(|p| layout.actions[2].contains(p.into()))
+                    .is_some_and(|p| layout.close.contains(p.into()))
         {
             self.skills_open = false;
             self.level_up_notice = None;
@@ -511,9 +577,15 @@ impl AsciiApp {
                 .find(|(_, r)| input.pointer.is_some_and(|p| r.contains(p.into())))
         {
             self.skill_technique_selection = *index;
-            learn_clicked = input
-                .pointer
-                .is_some_and(|p| Layout::icon(*tile).contains(p.into()));
+            self.ux.skill_demo_request = if entries[*index].kind == "active"
+                && input
+                    .pointer
+                    .is_some_and(|p| Layout::icon(*tile).contains(p.into()))
+            {
+                Some(entries[*index].id.clone())
+            } else {
+                None
+            };
         } else if self.controls.pressed(Action::MenuLeft, input) {
             self.skill_discipline_selection = self.skill_discipline_selection.saturating_sub(1);
             self.skill_technique_selection = 0;
@@ -564,8 +636,14 @@ impl AsciiApp {
             )
         {
             self.ux.skill_scroll.offset = 0.0;
+            let selected = skills(self.skill_discipline_selection)
+                .get(self.skill_technique_selection)
+                .map(|s| s.id.as_str());
+            if self.ux.skill_demo_request.as_deref() != selected {
+                self.ux.skill_demo_request = None;
+            }
         }
-        if (learn_clicked || self.controls.pressed(Action::Learn, input))
+        if self.controls.pressed(Action::Learn, input)
             && let Some(skill) =
                 skills(self.skill_discipline_selection).get(self.skill_technique_selection)
             && self.game.agent_skill_next_rank(&skill.id).is_ok()
@@ -582,7 +660,7 @@ impl AsciiApp {
         let selected = self
             .skill_technique_selection
             .min(entries.len().saturating_sub(1));
-        let layout = Layout::new(
+        let layout = self.agent_skills_layout(
             self.ui_width(),
             self.ui_height(),
             branch,
@@ -697,11 +775,30 @@ impl AsciiApp {
                 );
             }
             let rank = self.game.player_agent_skill_rank(&skill.id);
-            draw_text_bold(
-                rank.to_string(),
-                icon.right() + 6.0,
-                icon.y + 38.0,
-                17.0,
+            let learn = Layout::learn_button(*tile);
+            let enabled = self.game.agent_skill_next_rank(&skill.id).is_ok();
+            let hovered = self
+                .ux
+                .skill_learn_pointer
+                .is_some_and(|p| learn.contains(p.into()));
+            use crate::skill_learn_button::State;
+            let state =
+                if self.game.player_skills().agent_skill_rank(&skill.id) >= skill.learned_cap {
+                    State::Capped
+                } else if !enabled {
+                    State::Disabled
+                } else if hovered && self.ux.skill_learn_down {
+                    State::Pressed
+                } else if hovered {
+                    State::Hover
+                } else {
+                    State::Ready
+                };
+            crate::skill_learn_button::draw(learn, state);
+            draw_text_bold_centered(
+                &rank.to_string(),
+                Rect::new(learn.x, icon.y + 51., learn.w, 14.),
+                12,
                 if rank > 0 { text } else { muted },
             );
             // The name is centered on the icon, without underlining or selection color.
@@ -732,7 +829,9 @@ impl AsciiApp {
                 layout.grid.right() - 3.0,
                 layout.grid.y + 36.0,
                 2.0,
-                layout.grid.h - 44.0,
+                layout
+                    .demo
+                    .map_or(layout.grid.h - 44., |r| r.y - layout.grid.y - 44.),
             );
             draw_rectangle(track.x, track.y, track.w, track.h, UiTheme.surface_raised());
             let total_rows = entries.len().div_ceil(layout.columns);
@@ -754,28 +853,10 @@ impl AsciiApp {
         if let Some(skill) = entries.get(selected) {
             self.draw_agent_skill_detail(skill, layout.detail);
         }
-        for (index, label) in ["Apprendre · 1 point", "Utiliser", "Fermer"]
-            .iter()
-            .enumerate()
-        {
-            UiTheme.button(
-                layout.actions[index],
-                label,
-                false,
-                false,
-                index == 2
-                    || index == 1
-                        && entries
-                            .get(selected)
-                            .is_some_and(|s| self.agent_skill_use_profile(&s.id).is_ok())
-                    || index == 0
-                        && entries
-                            .get(selected)
-                            .is_some_and(|s| self.game.agent_skill_next_rank(&s.id).is_ok()),
-                ButtonTone::Secondary,
-            );
-        }
         self.draw_agent_skill_bar(true);
+        if let Some(rect) = layout.demo {
+            self.ux.skill_demo.draw(self, rect);
+        }
     }
 
     fn draw_agent_skill_detail(&self, skill: &Skill, panel: Rect) {
@@ -825,6 +906,9 @@ impl AsciiApp {
             UiTheme.muted(),
         );
         y = draw_wrapped_text(&skill.roleplay, x, y + 42.0, width, 16, 15, UiTheme.text());
+        for rule in &skill.common_rules {
+            y = draw_wrapped_text(rule, x, y + 7., width, 4, 14, UiTheme.text());
+        }
         if let Some(required) = skill
             .requires
             .as_ref()
@@ -1003,7 +1087,9 @@ impl AsciiApp {
             let label = if p["selection"] == "up_to_maximum" {
                 "Déplacement maximum"
             } else {
-                &catalogue().labels[key]
+                p["display_label"]
+                    .as_str()
+                    .unwrap_or(&catalogue().labels[key])
             };
             if skill.id == "SG00" && key == "radius_cells" {
                 let side = (value.floor() as u32).saturating_mul(2).saturating_add(1);
@@ -1051,7 +1137,84 @@ mod tests {
     use super::*;
 
     #[test]
-    fn clicking_learned_contagion_learns_its_next_rank_without_starting_an_active_skill_drag() {
+    fn icon_press_and_release_are_free_and_one_button_press_buys_only_one_rank() {
+        let mut app = AsciiApp::new_agent_skill_laboratory().unwrap();
+        app.open_agent_skill_window();
+        app.select_agent_skill_for_capture("FE01").unwrap();
+        let layout = Layout::new(
+            1280.,
+            800.,
+            app.skill_discipline_selection,
+            app.skill_technique_selection,
+            skills(app.skill_discipline_selection).len(),
+        );
+        let tile = layout
+            .tiles
+            .iter()
+            .find(|(i, _)| *i == app.skill_technique_selection)
+            .unwrap()
+            .1;
+        let frame = |point: Vec2, down, press| InputFrame {
+            pointer: Some(point.into()),
+            mouse_left_down: down,
+            pressed: if press {
+                [controls::Binding::MouseLeft].into()
+            } else {
+                Default::default()
+            },
+            viewport: Some((1280., 800.)),
+            ..Default::default()
+        };
+        let history = app.history.len();
+        let before = suspension::fingerprint(&app.game);
+        let icon = Layout::icon(tile).center();
+        app.update_input(&frame(icon, true, true));
+        app.update_input(&frame(icon, false, false));
+        assert!(app.ux.skill_drag.is_none());
+        assert_eq!(app.ux.skill_demo_request.as_deref(), Some("FE01"));
+        assert_eq!(suspension::fingerprint(&app.game), before);
+        assert_eq!(app.history.len(), history);
+
+        let rank = app.game.player_skills().agent_skill_rank("FE01");
+        let points = app.game.player_progression().unspent_skill_points();
+        let turn = app.game.turn();
+        let button = Layout::learn_button(tile).center();
+        app.update_input(&frame(button, true, true));
+        app.update_input(&frame(button, true, false));
+        app.update_input(&frame(button, false, false));
+        assert_eq!(app.game.player_skills().agent_skill_rank("FE01"), rank + 1);
+        assert_eq!(
+            app.game.player_progression().unspent_skill_points(),
+            points - 1
+        );
+        assert_eq!(app.game.turn(), turn);
+        assert_eq!(app.history.len(), history + 1);
+
+        app.select_agent_skill_for_capture("AF06").unwrap();
+        let layout = Layout::new(
+            1280.,
+            800.,
+            app.skill_discipline_selection,
+            app.skill_technique_selection,
+            skills(app.skill_discipline_selection).len(),
+        );
+        let tile = layout
+            .tiles
+            .iter()
+            .find(|(i, _)| *i == app.skill_technique_selection)
+            .unwrap()
+            .1;
+        let before = suspension::fingerprint(&app.game);
+        let icon = Layout::icon(tile).center();
+        app.update_input(&frame(icon, true, true));
+        app.update_input(&frame(icon, false, false));
+        assert!(app.ux.skill_demo_request.is_none());
+        assert!(app.ux.skill_drag.is_none());
+        assert_eq!(suspension::fingerprint(&app.game), before);
+    }
+
+    #[test]
+    fn dedicated_button_upgrades_passive_without_starting_an_active_skill_drag() {
         let mut app = AsciiApp::new_agent_skill_laboratory().unwrap();
         app.open_agent_skill_window();
         app.select_agent_skill_for_capture("AF06").unwrap();
@@ -1068,7 +1231,7 @@ mod tests {
             .find(|(index, _)| *index == app.skill_technique_selection)
             .unwrap()
             .1;
-        let icon = Layout::icon(tile).center();
+        let icon = Layout::learn_button(tile).center();
         let slots = app.ux.skill_bar.clone();
         let points = app.game.player_progression().unspent_skill_points();
         let turn = app.game.turn();
@@ -1112,7 +1275,7 @@ mod tests {
         }
     }
     #[test]
-    fn ember_use_button_and_card_share_cast_values_and_apply_immediate_burn() {
+    fn ember_keyboard_action_and_card_share_cast_values_and_apply_immediate_burn() {
         let mut app = AsciiApp::new_agent_ember_trial().unwrap();
         app.open_agent_skill_window();
         app.select_agent_skill_for_capture("FE01").unwrap();
@@ -1133,17 +1296,9 @@ mod tests {
                 f64::from(profile.energy)
             );
         }
-        let layout = Layout::new(
-            1280.,
-            800.,
-            app.skill_discipline_selection,
-            app.skill_technique_selection,
-            skills(app.skill_discipline_selection).len(),
-        );
         let before = suspension::fingerprint(&app.game);
         app.update_input(&InputFrame {
-            pointer: Some(layout.actions[1].center().into()),
-            pressed: [controls::Binding::MouseLeft].into(),
+            pressed: [app.controls.binding(Action::Use).clone()].into(),
             viewport: Some((1280., 800.)),
             ..Default::default()
         });
@@ -1170,21 +1325,13 @@ mod tests {
     }
 
     #[test]
-    fn fireball_use_button_previews_a_real_area_then_hits_multiple_targets() {
+    fn fireball_keyboard_action_previews_a_real_area_then_hits_multiple_targets() {
         let mut app = AsciiApp::new_agent_fireball_trial().unwrap();
         app.open_agent_skill_window();
         app.select_agent_skill_for_capture("FE05").unwrap();
-        let layout = Layout::new(
-            1280.,
-            800.,
-            app.skill_discipline_selection,
-            app.skill_technique_selection,
-            skills(app.skill_discipline_selection).len(),
-        );
         let before = suspension::fingerprint(&app.game);
         app.update_input(&InputFrame {
-            pointer: Some(layout.actions[1].center().into()),
-            pressed: [controls::Binding::MouseLeft].into(),
+            pressed: [app.controls.binding(Action::Use).clone()].into(),
             viewport: Some((1280., 800.)),
             ..Default::default()
         });
@@ -1213,21 +1360,13 @@ mod tests {
         );
     }
     #[test]
-    fn occult_blast_use_button_previews_a_real_area_then_hits_multiple_targets() {
+    fn occult_blast_keyboard_action_previews_a_real_area_then_hits_multiple_targets() {
         let mut app = AsciiApp::new_agent_blast_trial().unwrap();
         app.open_agent_skill_window();
         app.select_agent_skill_for_capture("A02").unwrap();
-        let layout = Layout::new(
-            1280.,
-            800.,
-            app.skill_discipline_selection,
-            app.skill_technique_selection,
-            skills(app.skill_discipline_selection).len(),
-        );
         let before = suspension::fingerprint(&app.game);
         app.update_input(&InputFrame {
-            pointer: Some(layout.actions[1].center().into()),
-            pressed: [controls::Binding::MouseLeft].into(),
+            pressed: [app.controls.binding(Action::Use).clone()].into(),
             viewport: Some((1280., 800.)),
             ..Default::default()
         });
@@ -1256,22 +1395,14 @@ mod tests {
         );
     }
     #[test]
-    fn drone_use_buttons_prepare_free_placement_then_create_real_companions() {
+    fn drone_keyboard_actions_prepare_free_placement_then_create_real_companions() {
         for id in ["D58", "D59", "D66"] {
             let mut app = AsciiApp::new_agent_drone_trial().unwrap();
             app.open_agent_skill_window();
             app.select_agent_skill_for_capture(id).unwrap();
-            let layout = Layout::new(
-                1280.,
-                800.,
-                app.skill_discipline_selection,
-                app.skill_technique_selection,
-                skills(app.skill_discipline_selection).len(),
-            );
             let before = suspension::fingerprint(&app.game);
             app.update_input(&InputFrame {
-                pointer: Some(layout.actions[1].center().into()),
-                pressed: [controls::Binding::MouseLeft].into(),
+                pressed: [app.controls.binding(Action::Use).clone()].into(),
                 viewport: Some((1280., 800.)),
                 ..Default::default()
             });
@@ -1294,21 +1425,13 @@ mod tests {
     }
 
     #[test]
-    fn rupture_use_button_opens_free_aim_with_the_melee_hand_and_confirmation_attacks() {
+    fn rupture_keyboard_action_opens_free_aim_with_the_melee_hand_and_confirmation_attacks() {
         let mut app = AsciiApp::new_agent_melee_trial().unwrap();
         app.open_agent_skill_window();
         app.select_agent_skill_for_capture("B01").unwrap();
-        let layout = Layout::new(
-            1280.,
-            800.,
-            app.skill_discipline_selection,
-            app.skill_technique_selection,
-            skills(app.skill_discipline_selection).len(),
-        );
         let before = suspension::fingerprint(&app.game);
         app.update_input(&InputFrame {
-            pointer: Some(layout.actions[1].center().into()),
-            pressed: [controls::Binding::MouseLeft].into(),
+            pressed: [app.controls.binding(Action::Use).clone()].into(),
             viewport: Some((1280., 800.)),
             ..Default::default()
         });
@@ -1332,7 +1455,7 @@ mod tests {
     }
 
     #[test]
-    fn clicking_icon_buys_one_rank_and_clicking_description_only_selects() {
+    fn only_dedicated_button_buys_ranks_and_purchases_survive_suspension() {
         let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
         let mut app = AsciiApp::from_seed(INITIAL_SEED, rules, texts, loot, expeditions).unwrap();
         app.suspension_path = std::env::temp_dir().join(format!(
@@ -1379,13 +1502,22 @@ mod tests {
         app.update_agent_skills(&click((tile.x + tile.w * 0.5, tile.y + 90.0)));
         assert_eq!(app.game.player_progression().unspent_skill_points(), 2);
         let icon = Layout::icon(tile);
+        let before = suspension::fingerprint(&app.game);
         app.update_agent_skills(&click((icon.x + 32.0, icon.y + 32.0)));
+        assert_eq!(suspension::fingerprint(&app.game), before);
+        assert_eq!(app.ux.skill_demo_request.as_deref(), Some("FE01"));
+        let button = Layout::learn_button(tile).center();
+        app.update_agent_skills(&click(button.into()));
         assert_eq!(app.game.player_skills().agent_skill_rank("FE01"), 1);
-        app.update_agent_skills(&click((icon.x + 32.0, icon.y + 32.0)));
+        app.update_agent_skills(&click(button.into()));
         assert_eq!(app.game.player_skills().agent_skill_rank("FE01"), 2);
         assert_eq!(app.game.player_progression().unspent_skill_points(), 0);
         assert_eq!(app.history.len(), history + 2);
         assert_eq!(app.game.turn(), turn);
+        let before = suspension::fingerprint(&app.game);
+        app.update_agent_skills(&click(button.into()));
+        assert_eq!(suspension::fingerprint(&app.game), before);
+        assert_eq!(app.history.len(), history + 2);
         app.skills_open = false;
         app.character_open = true;
         let plus = CharacterLayout::new(1280.0, 800.0).attribute_increases[0];
@@ -1476,6 +1608,30 @@ mod tests {
         }
     }
     #[test]
+    fn review_demonstration_fits_below_cards_without_covering_actions_or_native_icons() {
+        for (width, height) in [(1280., 960.), (1920., 1080.)] {
+            for selection in 0..skills(6).len() {
+                let layout = Layout::with_demo(width, height, 6, selection, skills(6).len(), 236.);
+                let demo = layout.demo.unwrap();
+                assert_eq!(demo.size(), vec2(480., 222.));
+                assert!(demo.y > layout.tiles.last().unwrap().1.bottom());
+                assert!(demo.bottom() <= layout.grid.bottom());
+                assert!(demo.right() < layout.detail.x);
+                let ordinary = Layout::new(width, height, 6, selection, skills(6).len());
+                assert_eq!(layout.detail, ordinary.detail);
+                assert_eq!(layout.branches, ordinary.branches);
+                assert!(demo.bottom() < layout.close.y);
+                assert!(demo.right() <= layout.panel.right());
+                for (_, tile) in &layout.tiles {
+                    assert_eq!(Layout::icon(*tile).size(), vec2(64., 64.));
+                    assert!(tile.bottom() <= layout.grid.bottom());
+                    assert!(Layout::learn_button(*tile).right() <= layout.grid.right());
+                }
+            }
+        }
+    }
+
+    #[test]
     fn native_skill_layout_keeps_selected_branch_tile_and_buttons_inside_panels() {
         let contains = |outer: Rect, inner: Rect| {
             inner.x >= outer.x
@@ -1488,6 +1644,8 @@ mod tests {
             (960.0, 540.0),
             (1280.0, 800.0),
             (1920.0, 1080.0),
+            (2560.0, 1440.0),
+            (3840.0, 2160.0),
         ] {
             for branch in 0..BRANCHES.len() {
                 for selection in 0..skills(branch).len() {
@@ -1504,10 +1662,15 @@ mod tests {
                     }
                     for (_, tile) in &layout.tiles {
                         assert!(contains(layout.grid, *tile));
+                        let button = Layout::learn_button(*tile);
+                        assert!(
+                            contains(layout.grid, button),
+                            "{width}x{height}: {button:?} / {:?}",
+                            layout.grid
+                        );
+                        assert!(!Layout::icon(*tile).overlaps(&button));
                     }
-                    for button in layout.actions {
-                        assert!(contains(layout.panel, button));
-                    }
+                    assert!(contains(layout.panel, layout.close));
                 }
             }
         }
@@ -1531,10 +1694,11 @@ mod tests {
             app.skill_technique_selection,
             skills(app.skill_discipline_selection).len(),
         );
-        for button in &layout.actions[..2] {
+        for button in [Layout::learn_button(layout.tiles[0].1)] {
             app.update_agent_skills(&InputFrame {
                 pointer: Some((button.x + 5.0, button.y + 5.0)),
                 pressed: [controls::Binding::MouseLeft].into(),
+                viewport: Some((1280., 800.)),
                 ..Default::default()
             });
         }

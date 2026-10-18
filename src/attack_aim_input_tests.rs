@@ -27,6 +27,15 @@ fn skill_fixture(id: &str) -> AsciiApp {
         "A02" => AsciiApp::new_agent_blast_trial(),
         "B01" => AsciiApp::new_agent_melee_trial(),
         "FE01" => AsciiApp::new_agent_ember_trial(),
+        "FE02" => AsciiApp::new_agent_blast_trial().map(|mut app| {
+            assert_eq!(
+                app.execute_command(GameCommand::LearnAgentSkill {
+                    skill: "FE02".into()
+                }),
+                CommandOutcome::AppliedWithoutTime
+            );
+            app
+        }),
         "FE05" => AsciiApp::new_agent_fireball_trial(),
         _ => AsciiApp::new_agent_drone_trial(),
     }
@@ -37,7 +46,9 @@ fn skill_fixture(id: &str) -> AsciiApp {
 
 #[test]
 fn hover_moves_all_connected_skill_previews_without_click_or_simulation_change() {
-    for id in ["A01", "A02", "B01", "D58", "D59", "D66", "FE01", "FE05"] {
+    for id in [
+        "A01", "A02", "B01", "D58", "D59", "D66", "FE01", "FE02", "FE05",
+    ] {
         let mut app = skill_fixture(id);
         app.begin_technique_attack_aim(project_rl::skills::agent::technique(id));
         let before = app.game.recovery_snapshot_bytes().unwrap();
@@ -189,6 +200,7 @@ fn left_click_confirms_each_connected_skill_once_at_the_hovered_cell() {
         ("D59", GridPos::new(5, 3)),
         ("D66", GridPos::new(5, 3)),
         ("FE01", GridPos::new(5, 4)),
+        ("FE02", GridPos::new(5, 4)),
         ("FE05", GridPos::new(8, 4)),
     ] {
         let mut app = skill_fixture(id);
@@ -241,6 +253,64 @@ fn invalid_map_click_does_not_fire_previous_target_and_a_valid_click_can_retarge
 }
 
 #[test]
+fn empty_left_click_previews_movement_with_any_weapon_and_never_selects_a_skill() {
+    for slot in 0..3 {
+        for keep_enemy_selected in [false, true] {
+            let mut app = skill_fixture("FE05");
+            app.active_weapon_slot = slot;
+            assert!(app.game.player_agent_skill_rank("A02") > 0);
+            assert!(app.game.player_agent_skill_rank("FE05") > 0);
+            app.select_world_target(keep_enemy_selected.then_some(GridPos::new(5, 4)));
+            let before = app.game.recovery_snapshot_bytes().unwrap();
+            let history = app.history.len();
+            for at in [GridPos::new(6, 5), GridPos::new(7, 5)] {
+                let mut click = pointer_frame(&app, at, (1280., 800.));
+                click.pressed.insert(controls::Binding::MouseLeft);
+                app.update_input(&click);
+                assert!(app.attack_aim.is_none(), "slot {slot}");
+                assert!(app.attack_aim_technique.is_none());
+                assert!(app.mouse_walk.is_none());
+                assert_eq!(app.walk_preview.as_ref().unwrap().cells.last(), Some(&at));
+                assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), before);
+                assert_eq!(app.history.len(), history);
+            }
+        }
+    }
+}
+
+#[test]
+fn explicitly_aimed_area_weapon_still_fires_on_empty_ground() {
+    let mut app = skill_fixture("FE05");
+    app.active_weapon_slot = 2;
+    let at = GridPos::new(6, 5);
+    let before = app.game.recovery_snapshot_bytes().unwrap();
+    let turn = app.game.turn();
+    let history = app.history.len();
+    app.update_input(&InputFrame {
+        pressed: [app.controls.binding(Action::AimGround).clone()].into(),
+        ..Default::default()
+    });
+    assert!(app.attack_aim.is_some());
+    assert!(app.attack_aim_technique.is_none());
+    assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), before);
+    let mut click = pointer_frame(&app, at, (1280., 800.));
+    click.pressed.insert(controls::Binding::MouseLeft);
+    app.update_input(&click);
+    assert!(app.attack_aim.is_none());
+    assert!(app.walk_preview.is_none());
+    assert_eq!(app.game.turn(), turn + 1);
+    assert_eq!(app.history.len(), history + 1);
+    assert!(matches!(
+        app.history.last(),
+        Some(RecordedCommand::AttackAt {
+            slot: 2,
+            x: 6,
+            y: 5
+        })
+    ));
+}
+
+#[test]
 fn left_click_also_confirms_an_aimed_area_weapon_instead_of_deselecting_it() {
     let mut app = AsciiApp::new_mixed_weapon_trial().unwrap();
     app.active_weapon_slot = 2;
@@ -253,4 +323,62 @@ fn left_click_also_confirms_an_aimed_area_weapon_instead_of_deselecting_it() {
     app.update_input(&click);
     assert_eq!(app.game.turn(), 1);
     assert!(app.attack_aim.is_none());
+}
+
+#[test]
+fn single_configurable_context_key_confirms_skills_and_f_does_nothing() {
+    for (id, at) in [
+        ("A01", GridPos::new(7, 4)),
+        ("D58", GridPos::new(5, 3)),
+        ("FE05", GridPos::new(8, 4)),
+    ] {
+        for key in ["E", "F6"] {
+            let mut app = skill_fixture(id);
+            app.controls
+                .rebind(Action::Interact, controls::Binding::key(key))
+                .unwrap();
+            let technique = project_rl::skills::agent::technique(id);
+            app.begin_technique_attack_aim(technique.clone());
+            app.update_input(&pointer_frame(&app, at, (1280., 800.)));
+            let before = suspension::fingerprint(&app.game);
+            app.update_input(&InputFrame {
+                pressed: [controls::Binding::key("F")].into(),
+                ..Default::default()
+            });
+            assert_eq!(suspension::fingerprint(&app.game), before);
+            assert!(app.attack_aim.is_some());
+            app.update_input(&InputFrame {
+                pressed: [controls::Binding::key(key)].into(),
+                ..Default::default()
+            });
+            assert!(app.attack_aim.is_none(), "{id} {key}");
+            assert_eq!(app.game.turn(), 1, "{id} {key}");
+            assert!(
+                matches!(app.history.last(), Some(RecordedCommand::TechniqueAt { technique: used, x, y, .. })
+                if *used == technique.to_string() && *x == at.x && *y == at.y)
+            );
+        }
+    }
+}
+
+#[test]
+fn right_click_cancels_preview_like_escape_without_opening_a_context_menu() {
+    for pointer in [Some(GridPos::new(6, 4)), None] {
+        let mut app = skill_fixture("A02");
+        app.begin_technique_attack_aim(project_rl::skills::agent::technique("A02"));
+        let before = suspension::fingerprint(&app.game);
+        let history = app.history.len();
+        let mut frame = pointer.map_or_else(InputFrame::default, |at| {
+            pointer_frame(&app, at, (1280., 800.))
+        });
+        frame.pressed.insert(controls::Binding::MouseRight);
+        app.update_input(&frame);
+        assert!(app.attack_aim.is_none());
+        assert!(app.attack_aim_technique.is_none());
+        assert!(app.attack_aim_pointer.is_none());
+        assert!(app.world_context.is_none());
+        assert_eq!(app.menu, MenuScreen::Hidden);
+        assert_eq!(suspension::fingerprint(&app.game), before);
+        assert_eq!(app.history.len(), history);
+    }
 }

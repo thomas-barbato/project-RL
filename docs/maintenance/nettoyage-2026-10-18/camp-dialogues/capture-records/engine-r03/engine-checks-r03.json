@@ -1,0 +1,28 @@
+{
+  "actor_opaque_gpu_pixels_exact": true,
+  "actor_resize_operations": 0,
+  "actual_gpu_capture": true,
+  "campaign_connected": false,
+  "capture_size": [
+    1440,
+    900
+  ],
+  "cell_pixels": 64,
+  "door_closed_blocks": true,
+  "door_open_walkable": true,
+  "map_origin": [
+    240.0,
+    128.0
+  ],
+  "map_size_cells": [
+    15,
+    8
+  ],
+  "npc_ai": false,
+  "npc_count": 2,
+  "place": "PLACE-CAMP-01",
+  "player_crossed_door": true,
+  "renderer": "shared surface_preview modules",
+  "revision": "r03",
+  "simulation": "project_rl::game::GameState"
+}

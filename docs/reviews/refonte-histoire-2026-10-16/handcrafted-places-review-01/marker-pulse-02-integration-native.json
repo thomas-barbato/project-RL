@@ -1,0 +1,290 @@
+{
+  "contours_and_numbers_fixed": true,
+  "cycle_ms": 1100,
+  "draw_preserved_game": true,
+  "fill_reaches_inner_contour": true,
+  "frame_count": 12,
+  "frame_pixels": [
+    1280,
+    400
+  ],
+  "normal_games_changed": true,
+  "numbered_steps_and_circles": "static WALK-VIS-03-E rendering",
+  "production_capture_with_debug_fill_override": true,
+  "review": "MARKER-PULSE-02",
+  "rhythm": "progressive; explicitly accepted by player",
+  "runtime_checks": [
+    {
+      "kind": "valid_skill_area",
+      "numbered_steps_static": false,
+      "reduced_motion_static": true,
+      "review_override": false,
+      "rgb_variation": 169,
+      "runtime_clock_pulse": true,
+      "samples": [
+        [
+          89,
+          197,
+          189
+        ],
+        [
+          74,
+          162,
+          157
+        ],
+        [
+          57,
+          123,
+          121
+        ],
+        [
+          43,
+          89,
+          90
+        ],
+        [
+          32,
+          65,
+          67
+        ],
+        [
+          28,
+          56,
+          59
+        ],
+        [
+          32,
+          64,
+          67
+        ],
+        [
+          43,
+          88,
+          89
+        ],
+        [
+          57,
+          123,
+          121
+        ],
+        [
+          76,
+          166,
+          160
+        ],
+        [
+          89,
+          196,
+          188
+        ],
+        [
+          98,
+          218,
+          209
+        ],
+        [
+          101,
+          225,
+          215
+        ],
+        [
+          97,
+          214,
+          205
+        ],
+        [
+          85,
+          188,
+          181
+        ],
+        [
+          70,
+          153,
+          149
+        ]
+      ]
+    },
+    {
+      "kind": "destination",
+      "numbered_steps_static": true,
+      "reduced_motion_static": true,
+      "review_override": false,
+      "rgb_variation": 157,
+      "runtime_clock_pulse": true,
+      "samples": [
+        [
+          104,
+          151,
+          182
+        ],
+        [
+          125,
+          179,
+          214
+        ],
+        [
+          135,
+          193,
+          230
+        ],
+        [
+          135,
+          193,
+          230
+        ],
+        [
+          125,
+          179,
+          214
+        ],
+        [
+          107,
+          155,
+          186
+        ],
+        [
+          85,
+          124,
+          151
+        ],
+        [
+          63,
+          94,
+          116
+        ],
+        [
+          45,
+          70,
+          88
+        ],
+        [
+          36,
+          58,
+          73
+        ],
+        [
+          37,
+          59,
+          75
+        ],
+        [
+          48,
+          74,
+          93
+        ],
+        [
+          67,
+          100,
+          123
+        ],
+        [
+          90,
+          131,
+          159
+        ],
+        [
+          112,
+          161,
+          194
+        ],
+        [
+          128,
+          183,
+          219
+        ]
+      ]
+    }
+  ],
+  "shared_hole_fill_outline_center_and_geometry": true,
+  "status": "approved_and_integrated",
+  "tile_pixels": 64,
+  "visual_checks": {
+    "lossless_apng": "12 decoded frames identical to native engine captures",
+    "numbered_step_regions": "all six complete number/circle regions identical across all 12 frames",
+    "native_visual": "pulse-06.png inspected upright; only small skill and arrival markers pulse; path gap and numbers preserved"
+  },
+  "approval": {
+    "date": "2026-10-18",
+    "centering": "explicitly accepted by player",
+    "numbered_steps": "retained previously approved static WALK-VIS-03-E appearance after user questioned the value of blinking numbers"
+  },
+  "validation": {
+    "debug_build": "passed",
+    "release_check": "passed with existing unused draw_inspection_panel warning",
+    "formatting": "passed",
+    "diff_check": "passed",
+    "input_tests": "20 passed; no failures",
+    "full_suite": "not rerun for this rendering-only change"
+  },
+  "runtime_notes": "numbered_steps_static is checked for the destination case; false in the skill-area case means there is no route there",
+  "cleanup": [
+    {
+      "file": "pulse-00.png",
+      "bytes": 361107,
+      "sha256": "5806A2FD148582FDD85051F914A7138E29BAE0017E6D37BDAF9D8EB28DF3FA8B",
+      "action": "sent_to_recycle_bin"
+    },
+    {
+      "file": "pulse-01.png",
+      "bytes": 361081,
+      "sha256": "C3AC0B9F032DB873BCA2677AB4A833F68758D4D609E13D4739E212198DC886F7",
+      "action": "sent_to_recycle_bin"
+    },
+    {
+      "file": "pulse-02.png",
+      "bytes": 361024,
+      "sha256": "77208A61A4AA37329804894C2F01E0BFD99010C8F7EAE79288B39C5B80670F16",
+      "action": "sent_to_recycle_bin"
+    },
+    {
+      "file": "pulse-03.png",
+      "bytes": 360887,
+      "sha256": "ACB472A15903A04DF1836658F1A50BE5D835AF08913220ABA4B5851464EEA49E",
+      "action": "sent_to_recycle_bin"
+    },
+    {
+      "file": "pulse-04.png",
+      "bytes": 360772,
+      "sha256": "912CEAF6DF876795173E16B289AE9E276CFB45E9523BA559625B8D60E72816AB",
+      "action": "sent_to_recycle_bin"
+    },
+    {
+      "file": "pulse-05.png",
+      "bytes": 360444,
+      "sha256": "D0052A4584338F378A569BBAFA1DF4452DC82B3BE45D603A16173C7828C8390D",
+      "action": "sent_to_recycle_bin"
+    },
+    {
+      "file": "pulse-07.png",
+      "bytes": 360444,
+      "sha256": "D0052A4584338F378A569BBAFA1DF4452DC82B3BE45D603A16173C7828C8390D",
+      "action": "sent_to_recycle_bin"
+    },
+    {
+      "file": "pulse-08.png",
+      "bytes": 360772,
+      "sha256": "912CEAF6DF876795173E16B289AE9E276CFB45E9523BA559625B8D60E72816AB",
+      "action": "sent_to_recycle_bin"
+    },
+    {
+      "file": "pulse-09.png",
+      "bytes": 360887,
+      "sha256": "ACB472A15903A04DF1836658F1A50BE5D835AF08913220ABA4B5851464EEA49E",
+      "action": "sent_to_recycle_bin"
+    },
+    {
+      "file": "pulse-10.png",
+      "bytes": 361024,
+      "sha256": "77208A61A4AA37329804894C2F01E0BFD99010C8F7EAE79288B39C5B80670F16",
+      "action": "sent_to_recycle_bin"
+    },
+    {
+      "file": "pulse-11.png",
+      "bytes": 361081,
+      "sha256": "C3AC0B9F032DB873BCA2677AB4A833F68758D4D609E13D4739E212198DC886F7",
+      "action": "sent_to_recycle_bin"
+    }
+  ],
+  "runtime_assets": "none; no dependency on files under artifacts",
+  "preview_file": "artifacts/walk-preview-review-01/marker-pulse/cercles-integres.png"
+}

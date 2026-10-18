@@ -3519,7 +3519,7 @@ mod tests {
     }
 
     #[test]
-    fn catalytic_pointer_aim_can_preview_empty_ground_but_cannot_attack_it() {
+    fn catalytic_explicit_aim_can_preview_empty_ground_but_cannot_attack_it() {
         let mut app = main_menu();
         app.enter_legacy_equipment_lab().unwrap();
         let item = app
@@ -3532,27 +3532,18 @@ mod tests {
         app.equip_diagnostic_weapon(item, 0);
         let before = suspension::fingerprint(&app.game);
         let at = GridPos::new(8, 11);
-        assert!(app.begin_pointer_attack_aim(at, None));
+        app.begin_attack_aim_at(Some(at), None, None);
         let aim = app.attack_aim.unwrap();
         assert!(app.aimed_attack_footprint(aim).unwrap().cells().len() > 1);
         assert_eq!(
             app.aimed_attack_preview(aim),
             Err(CommandRejection::AttackTargetHasNoActor(at))
         );
-        app.update_input(&key("F"));
+        app.update_input(&InputFrame {
+            pressed: [app.controls.binding(Action::Interact).clone()].into(),
+            ..Default::default()
+        });
         assert!(app.attack_aim.is_some());
-        assert_eq!(suspension::fingerprint(&app.game), before);
-    }
-
-    #[test]
-    fn single_target_weapon_does_not_open_free_tile_aim() {
-        let mut app = main_menu();
-        app.enter_legacy_equipment_lab().unwrap();
-        let before = suspension::fingerprint(&app.game);
-        for at in [GridPos::new(8, 11), GridPos::new(8, 12)] {
-            assert!(!app.begin_pointer_attack_aim(at, Some((400.0, 300.0))));
-            assert!(app.attack_aim.is_none());
-        }
         assert_eq!(suspension::fingerprint(&app.game), before);
     }
 

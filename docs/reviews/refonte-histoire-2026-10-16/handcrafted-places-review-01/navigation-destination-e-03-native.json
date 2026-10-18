@@ -1,0 +1,94 @@
+{
+  "candidates": [
+    {
+      "id": "WALK-VIS-02-A",
+      "name": "Balise"
+    },
+    {
+      "id": "WALK-VIS-02-B",
+      "name": "Losange"
+    },
+    {
+      "id": "WALK-VIS-02-C",
+      "name": "Angles ouverts"
+    },
+    {
+      "id": "WALK-VIS-02-D",
+      "name": "Anneau segmenté"
+    },
+    {
+      "id": "WALK-VIS-02-E",
+      "name": "Dalle lumineuse"
+    },
+    {
+      "id": "WALK-VIS-02-F",
+      "name": "Empreintes"
+    }
+  ],
+  "comparison_pixels": [
+    1040,
+    720
+  ],
+  "destination_E": "line and chevron stop at the arrival cell boundary; no path inside",
+  "draw_preserved_game_and_history": true,
+  "frame_pixels": [
+    1280,
+    800
+  ],
+  "normal_games_changed": false,
+  "path": [
+    [
+      4,
+      4
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      5,
+      5
+    ],
+    [
+      6,
+      5
+    ],
+    [
+      7,
+      5
+    ],
+    [
+      7,
+      4
+    ],
+    [
+      8,
+      4
+    ]
+  ],
+  "review": "WALK-VIS-03-E",
+  "revision": "WALK-VIS-03-E",
+  "same_path_and_palette": true,
+  "selected_detail_pixels": [
+    640,
+    400
+  ],
+  "selected_direction": "WALK-VIS-02-E",
+  "source_crop": [
+    680,
+    252,
+    304,
+    240
+  ],
+  "source_pixels_per_display_pixel": 1,
+  "status": "awaiting_visual_approval",
+  "steps": 6,
+  "tile_pixels": 64,
+  "validation": {
+    "debug_build": "passed",
+    "diff_check": "passed",
+    "native_visual": "destination-e-detail.png inspected upright at 640 x 400; final segment and chevron end outside arrival tile; no stroke to central 6",
+    "scope": "E destination only in isolated preview; no movement or gameplay change",
+    "tests": "not rerun for a cosmetic clipping adjustment"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "confirmed_route_one_turn_per_step": true,
+  "controller": "AsciiApp::update_input_at",
+  "frames": [
+    {
+      "file": "trajet.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "requested_pixels": [
+        1280,
+        800
+      ]
+    },
+    {
+      "file": "trajet-2k.png",
+      "pixels": [
+        1924,
+        1061
+      ],
+      "requested_pixels": [
+        2560,
+        1440
+      ]
+    },
+    {
+      "file": "trajet-4k.png",
+      "pixels": [
+        1924,
+        1061
+      ],
+      "requested_pixels": [
+        3840,
+        2160
+      ]
+    }
+  ],
+  "last_segment_clipped_to_destination_cell": true,
+  "normal_games_changed": true,
+  "path": [
+    [
+      4,
+      4
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      5,
+      5
+    ],
+    [
+      6,
+      5
+    ],
+    [
+      7,
+      5
+    ],
+    [
+      7,
+      4
+    ],
+    [
+      8,
+      4
+    ]
+  ],
+  "pathfinder": "existing deterministic A*",
+  "preview_free": true,
+  "renderer": "AsciiApp::draw",
+  "review": "WALK-VIS-03-E",
+  "right_click_clears_preview_without_menu_or_turn": true,
+  "status": "approved_and_integrated",
+  "steps": 6,
+  "tile_pixels": 64,
+  "approval": {
+    "date": "2026-10-18",
+    "user_text": "ok on peut donc valider et ajouter au jeu tout ca :)"
+  },
+  "validation": {
+    "debug_build": "passed",
+    "release_check": "passed; existing unused draw_inspection_panel warning",
+    "tests": "106 targeted tests passed cumulatively: 105 in grouped run and corrected camera-scale fixture separately",
+    "full_suite": "not run for this change",
+    "native_visual": "1280x800 inspected upright at native 64 px; final E segment stops outside arrival cell",
+    "display_limit": "Windows constrained 2560x1440 and 3840x2160 window requests to 1924x1061; those requested sizes and 75/100/150 percent scales were validated by coordinate/input tests, not native 2K/4K screenshots",
+    "runtime_assets": "none; no dependency on artifacts",
+    "new_marker_animation": "MARKER-PULSE-01 remains a separate unapproved visual review"
+  }
+}

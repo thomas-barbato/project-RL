@@ -18,9 +18,9 @@ struct Art {
 thread_local! { static ART: RefCell<Option<Art>> = const { RefCell::new(None) }; }
 impl Art {
     fn load() -> Self {
-        let bolt = Texture2D::from_file_with_format(
+        let bolt = crate::effect_geometry::texture(
             include_bytes!("../assets/animations/agent/skill-animation-review-29/bolt-atlas.png"),
-            Some(ImageFormat::Png),
+            FilterMode::Linear,
         );
         bolt.set_filter(FilterMode::Linear);
         let purple = load_material(
@@ -55,9 +55,9 @@ colour.rgb=mix(colour.rgb,purple,violet*visible*0.96);gl_FragColor=colour;}"#,
             },
         )
         .expect("approved occult purple shader");
-        let burst = Texture2D::from_file_with_format(
+        let burst = crate::effect_geometry::texture(
             include_bytes!("../assets/animations/agent/skill-animation-review-29/burst-atlas.png"),
-            Some(ImageFormat::Png),
+            FilterMode::Linear,
         );
         burst.set_filter(FilterMode::Linear);
         Self {
@@ -111,6 +111,16 @@ pub(super) fn draw(
                 )
             };
             let size = size * scale;
+            if crate::effect_geometry::enabled() && frame >= 3 {
+                crate::effect_geometry::fitted_cells(
+                    &art.bolt,
+                    frame,
+                    &[flight.target],
+                    &rect,
+                    opacity,
+                );
+                continue;
+            }
             draw_texture_ex(
                 &art.bolt,
                 at.x - anchor.x * size / 256.,
@@ -134,6 +144,7 @@ pub(super) struct SpellBlast {
     pub centre: GridPos,
     pub radius: u16,
     pub started: f64,
+    pub cells: Option<Vec<GridPos>>,
 }
 /// Floor/obstacle clipping only: the painted image can spill beyond nominal area edges.
 pub(super) fn draw_blasts(
@@ -164,6 +175,30 @@ pub(super) fn draw_blasts(
             let Some(cell) = rect(blast.centre) else {
                 continue;
             };
+            if crate::effect_geometry::enabled() {
+                let fallback;
+                let cells = if let Some(cells) = &blast.cells {
+                    cells.as_slice()
+                } else {
+                    fallback = project_rl::skills::spatial::affected_cells(
+                        map,
+                        blast.centre,
+                        project_rl::skills::spatial::Area::Square {
+                            radius: blast.radius,
+                        },
+                        (1, 0),
+                    );
+                    &fallback
+                };
+                crate::effect_geometry::fitted_cells(
+                    &art.burst,
+                    frame,
+                    cells,
+                    &rect,
+                    0.83 * ((0.55 - age) / 0.10).clamp(0., 1.),
+                );
+                continue;
+            }
             let size = 224. * cell.w / 64.
                 * f32::from(blast.radius.saturating_mul(2).saturating_add(1))
                 / 3.;

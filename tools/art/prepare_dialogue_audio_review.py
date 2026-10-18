@@ -7,13 +7,14 @@ import wave
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "artifacts/handcrafted-places-review-01/dialogue-bubbles-01"
+OUT = ROOT / "artifacts/handcrafted-places-review-01/current"
 DOC = ROOT / "docs/reviews/refonte-histoire-2026-10-16/handcrafted-places-review-01"
 RATE = 48000
 
 
 def prepare():
-    checks = json.loads((OUT / "checks-r02.json").read_text(encoding="utf-8"))
+    OUT.mkdir(parents=True, exist_ok=True)
+    checks = json.loads((DOC / "dialogue-bubbles-02.json").read_text(encoding="utf-8"))["checks"]
     duration = checks["characters"] / checks["characters_per_second"]
     text = checks["text"]
     results = []

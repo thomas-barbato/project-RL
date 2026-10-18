@@ -6,7 +6,6 @@ edition = "2024"
 [features]
 default = ["dialogue-audio"]
 dialogue-audio = ["macroquad/audio"]
-dialogue-audio-trial = ["dialogue-audio"]
 
 [dependencies]
 base64 = "0.22"

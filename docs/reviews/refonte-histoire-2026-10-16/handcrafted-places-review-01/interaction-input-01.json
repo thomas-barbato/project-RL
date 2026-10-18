@@ -1,0 +1,33 @@
+{
+  "review_id": "INTERACTION-INPUT-01",
+  "date": "2026-10-18",
+  "acceptance": "explicit user request and clarification",
+  "user_requests": [
+    "si je me trouve devant / sur un element qui me demande d'appuyer sur E [...] je dois toujours passer ma souris sur l'element en question",
+    "j'aimerais aussi que si le fais un click gauche et bien ca fonctionne aussi, comme-ci que j'avais appuyé sur E",
+    "devant lui ou autour de lui, si l'action se trouve sur la case derrière, au dessus, en bas du personnage ca doit fonctionner aussi"
+  ],
+  "behavior": {
+    "keyboard": "local interaction first, independently of mouse hover",
+    "local_priority": [
+      "loot or passage on the player's cell",
+      "existing interaction facing preference",
+      "single interaction among all four cardinal neighbors",
+      "existing choice menu when nearby interactions remain ambiguous"
+    ],
+    "remote_keyboard_fallback": "existing visible actionable pointer or selection, only when there are no local choices; empty hovered cells no longer mask a selected interaction",
+    "left_click": "same interaction action as E for visible local NPCs, doors, passages, facilities and underfoot loot",
+    "distant_left_click": "existing selection behavior",
+    "cost_and_reach": "existing engine validation and costs",
+    "hud_focus": "matches underfoot loot priority",
+    "quest_progression": "not added; world development remains the next priority"
+  },
+  "validation": {
+    "debug_build": "passed",
+    "world_context_tests": { "passed": 58, "failed": 0 },
+    "terminal_dialogue_tests": { "passed": 7, "failed": 0 },
+    "camp_passage_test": "passed using E with the pointer outside the map, then left-click interaction on the reciprocal passage",
+    "native_report": "interaction-input-01-native.json",
+    "full_suite": "not rerun"
+  }
+}

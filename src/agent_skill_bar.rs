@@ -22,10 +22,68 @@ mod tests {
     use super::*;
 
     #[test]
+    fn skill_window_close_is_below_the_slots_and_closes_without_a_game_action() {
+        let mut app = AsciiApp::new_agent_blast_trial().unwrap();
+        app.open_agent_skill_window();
+        let before = suspension::fingerprint(&app.game);
+        let bar = app.ux.skill_bar.clone();
+        for (width, height) in [
+            (1280., 800.),
+            (1920., 1080.),
+            (2560., 1440.),
+            (3840., 2160.),
+        ] {
+            let panel = app.agent_skill_bar_panel(true, width, height).unwrap();
+            let (slots, switch) = bar_layout(panel, true);
+            let close = skill_window_close_rect(width, height);
+            assert!(switch.is_none());
+            assert_eq!(close.center().x, (slots[0].x + slots[5].right()) * 0.5);
+            assert!(slots.iter().all(|slot| slot.bottom() < close.y));
+            assert!(close.bottom() <= panel.bottom());
+        }
+        app.update_input(&InputFrame {
+            pointer: Some(skill_window_close_rect(1280., 800.).center().into()),
+            pressed: [controls::Binding::MouseLeft].into(),
+            viewport: Some((1280., 800.)),
+            ..Default::default()
+        });
+        assert!(!app.skills_open);
+        assert_eq!(app.ux.skill_bar, bar);
+        assert_eq!(suspension::fingerprint(&app.game), before);
+    }
+
+    #[test]
+    fn right_click_over_the_skill_bar_cancels_preview_without_unassigning_a_skill() {
+        let mut app = AsciiApp::new_agent_blast_trial().unwrap();
+        app.skills_open = false;
+        app.activate_agent_skill_bar(0, false);
+        assert!(app.attack_aim.is_some());
+        let bar = app.ux.skill_bar.clone();
+        let before = suspension::fingerprint(&app.game);
+        let panel = app.agent_skill_bar_panel(false, 1280., 800.).unwrap();
+        let point = bar_layout(panel, false).0[0].center();
+        app.update_input(&InputFrame {
+            pointer: Some(point.into()),
+            viewport: Some((1280., 800.)),
+            pressed: [controls::Binding::MouseRight].into(),
+            ..Default::default()
+        });
+        assert!(app.attack_aim.is_none());
+        assert!(app.world_context.is_none());
+        assert_eq!(app.ux.skill_bar, bar);
+        assert_eq!(suspension::fingerprint(&app.game), before);
+    }
+
+    #[test]
     fn every_learned_active_accepts_a_bar_drop_but_contagion_and_other_passives_do_not() {
         let mut app = AsciiApp::new_agent_skill_laboratory().unwrap();
         app.open_agent_skill_window();
-        let target = slots(app.agent_skill_bar_panel(true, 1280.0, 800.0).unwrap())[5].center();
+        let target = bar_layout(
+            app.agent_skill_bar_panel(true, 1280.0, 800.0).unwrap(),
+            true,
+        )
+        .0[5]
+            .center();
         let before = suspension::fingerprint(&app.game);
         let history = app.history.len();
         let mut actives = 0;
@@ -509,7 +567,7 @@ mod tests {
         });
         assert!(app.ux.skill_drag.is_some());
         let panel = app.agent_skill_bar_panel(true, 1280., 800.).unwrap();
-        let at = slots(panel)[2].center();
+        let at = bar_layout(panel, true).0[2].center();
         app.update_input(&InputFrame {
             pointer: Some((at.x, at.y)),
             mouse_left_down: true,
@@ -591,7 +649,7 @@ fn slots(panel: Rect) -> [Rect; 6] {
 
 fn bar_layout(panel: Rect, editing: bool) -> ([Rect; 6], Option<Rect>) {
     if editing {
-        return (slots(panel), None);
+        return (slots(Rect::new(panel.x, panel.y, panel.w, 52.)), None);
     }
     let skills = slots(Rect::new(panel.x + 60., panel.y, panel.w - 60., panel.h));
     let first = skills[0];
@@ -599,6 +657,10 @@ fn bar_layout(panel: Rect, editing: bool) -> ([Rect; 6], Option<Rect>) {
         skills,
         Some(Rect::new(first.x - 60., first.y, 48., first.h)),
     )
+}
+
+pub(super) fn skill_window_close_rect(width: f32, height: f32) -> Rect {
+    Rect::new((width - 160.) * 0.5, height - 60., 160., 28.)
 }
 
 impl AsciiApp {
@@ -654,7 +716,7 @@ impl AsciiApp {
     }
     fn agent_skill_bar_panel(&self, editing: bool, w: f32, h: f32) -> Option<Rect> {
         if editing {
-            return Some(Rect::new(28., h - 80., w - 56., 52.));
+            return Some(Rect::new(28., h - 124., w - 56., 96.));
         }
         crate::terminal_view::terminal_skill_bar_panel(
             &self.game,
@@ -796,8 +858,6 @@ impl AsciiApp {
             } else if !drag.moved {
                 if let Some(index) = drag.from {
                     self.activate_agent_skill_bar(index, editing);
-                } else if editing && self.game.agent_skill_next_rank(&drag.id).is_ok() {
-                    self.execute_command(GameCommand::LearnAgentSkill { skill: drag.id });
                 }
             }
             return true;
@@ -861,6 +921,19 @@ impl AsciiApp {
             return;
         };
         let (rects, weapon_switch) = bar_layout(panel, editing);
+        if editing {
+            let close = skill_window_close_rect(self.ui_width(), self.ui_height());
+            UiTheme.button(
+                close,
+                "Fermer",
+                self.ux
+                    .skill_bar_pointer
+                    .is_some_and(|p| close.contains(p.into())),
+                false,
+                true,
+                ButtonTone::Secondary,
+            );
+        }
         for (index, r) in rects.iter().copied().enumerate() {
             let hover = self
                 .ux

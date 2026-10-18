@@ -1,0 +1,52 @@
+{
+  "frame_pixels": [
+    1280,
+    800
+  ],
+  "normal_games_changed": false,
+  "path": [
+    [
+      4,
+      4
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      5,
+      5
+    ],
+    [
+      6,
+      5
+    ],
+    [
+      7,
+      5
+    ],
+    [
+      7,
+      4
+    ],
+    [
+      8,
+      4
+    ]
+  ],
+  "pathfinder": "existing deterministic A*",
+  "preview_free": true,
+  "review": "WALK-VIS-01",
+  "right_click_clears_preview_without_menu_or_turn": true,
+  "status": "awaiting_visual_approval",
+  "steps": 6,
+  "tile_pixels": 64,
+  "validation": {
+    "debug_build": "passed",
+    "release_check": "passed with existing unused draw_inspection_panel warning",
+    "diff_check": "passed",
+    "tests": "4 navigation tests passed; corrected existing fixture passed; 97 other controls, context and aiming tests passed",
+    "native_visual": "trajet.png and annule.png inspected upright at 1280 x 800, 64 px tiles",
+    "activation": "isolated prototype only; awaiting visual acceptance"
+  }
+}

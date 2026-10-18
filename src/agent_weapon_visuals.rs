@@ -23,9 +23,7 @@ thread_local! {static ART:RefCell<Option<Art>>=const {RefCell::new(None)};}
 impl Art {
     fn load() -> Self {
         fn image(bytes: &[u8]) -> Texture2D {
-            let texture = Texture2D::from_file_with_format(bytes, Some(ImageFormat::Png));
-            texture.set_filter(FilterMode::Linear);
-            texture
+            crate::effect_geometry::texture(bytes, FilterMode::Linear)
         }
         Self {
             icons: [
@@ -249,6 +247,7 @@ pub(super) fn burst(
     background: bool,
     rect: impl Fn(GridPos) -> Option<Rect>,
     clip: Rect,
+    cells: Option<&[GridPos]>,
 ) {
     if !(0.0..0.8).contains(&age) {
         return;
@@ -410,6 +409,7 @@ pub(super) fn burst(
                     &rect,
                     from,
                     clip,
+                    cells,
                 );
             }
         });
@@ -577,6 +577,12 @@ pub(super) fn burst(
                     return;
                 }
                 let frame = ((t / 0.55 * 6.0) as usize).min(5);
+                if crate::effect_geometry::enabled()
+                    && let Some(cells) = cells
+                {
+                    crate::effect_geometry::fitted_cells(&art.blast, frame, cells, &rect, 0.9);
+                    return;
+                }
                 let size = 134.0 * scale * (f32::from(radius.max(1)) + 0.5) / 1.5;
                 let dest = Rect::new(
                     impact.x - size * 132.0 / 256.0,
@@ -666,7 +672,27 @@ fn masked_sheet(
     rect: &impl Fn(GridPos) -> Option<Rect>,
     origin_rect: Rect,
     clip: Rect,
+    cells: Option<&[GridPos]>,
 ) {
+    if crate::effect_geometry::enabled()
+        && let Some(cells) = cells
+    {
+        for at in cells {
+            if let Some(cell) = rect(*at) {
+                crate::effect_geometry::clipped(cell, clip, || {
+                    crate::effect_geometry::fitted_sheet(
+                        texture,
+                        frame.min(5),
+                        cells,
+                        rect,
+                        rotation,
+                        opacity,
+                    );
+                });
+            }
+        }
+        return;
+    }
     let radius = size.length() * 0.5;
     let extent = vec2(
         size.x * rotation.cos().abs() + size.y * rotation.sin().abs(),

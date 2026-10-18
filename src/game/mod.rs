@@ -29,7 +29,7 @@ pub use expedition::{
     WorldState, ZoneBlueprint, ZoneConnectionBlueprint, ZoneInfo, ZoneLink,
 };
 pub use game_state::{
-    ActorObservationField, AgentSkillUseProfile, AgentSpellProfile, CommandOutcome,
+    ActorObservationField, AgentSkillDemo, AgentSkillUseProfile, AgentSpellProfile, CommandOutcome,
     CommandRejection, DroneSpawnError, GameInitError, GameState, GroundItemSpawnError,
     MaintainedEffectId, MaintainedEnergyReservation, RunStatus, SoundObservationSource, SpawnError,
 };

@@ -1,0 +1,43 @@
+{
+  "review": "SKILL-DEMO-FRAME-01",
+  "comparisons": [
+    {
+      "theme": "metal",
+      "scene_interior_unchanged": true,
+      "title_unchanged": true,
+      "footer_unchanged": true,
+      "description_unchanged": true,
+      "border_bounds": [
+        285,
+        453,
+        763,
+        647
+      ],
+      "other_changed_pixels": 48,
+      "maximum_channel_delta_outside_border": 29
+    },
+    {
+      "theme": "terminal",
+      "scene_interior_unchanged": true,
+      "title_unchanged": true,
+      "footer_unchanged": true,
+      "description_unchanged": true,
+      "border_bounds": [
+        285,
+        453,
+        763,
+        647
+      ],
+      "other_changed_pixels": 0,
+      "maximum_channel_delta_outside_border": 0
+    }
+  ],
+  "debug_build": "passed",
+  "format": "passed",
+  "diff_check": "passed",
+  "native_animation_pixel_checks": {
+    "actives": 68,
+    "frames": 1632,
+    "status": "passed"
+  }
+}

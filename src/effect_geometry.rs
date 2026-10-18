@@ -1,0 +1,360 @@
+//! FX-FOOTPRINT-01: accepted animation geometry and preview transparency. No simulation mutations.
+use macroquad::prelude::*;
+use project_rl::{combat::AttackPreview, world::GridPos};
+#[cfg(debug_assertions)]
+use std::cell::Cell;
+use std::{cell::RefCell, collections::HashMap};
+
+#[cfg(debug_assertions)]
+thread_local! { static FRAME_TIME: Cell<Option<f64>> = const { Cell::new(None) }; }
+pub fn presentation_time(now: f64) -> f64 {
+    #[cfg(debug_assertions)]
+    {
+        return FRAME_TIME.with(Cell::get).unwrap_or(now);
+    }
+    #[cfg(not(debug_assertions))]
+    {
+        now
+    }
+}
+#[cfg(debug_assertions)]
+pub struct FrameGuard(Option<f64>);
+#[cfg(debug_assertions)]
+impl Drop for FrameGuard {
+    fn drop(&mut self) {
+        FRAME_TIME.with(|t| t.set(self.0));
+    }
+}
+#[cfg(debug_assertions)]
+pub fn frame_time(now: f64) -> FrameGuard {
+    FrameGuard(FRAME_TIME.with(|t| t.replace(Some(now))))
+}
+pub fn enabled() -> bool {
+    true
+}
+
+pub fn stroke(mut color: Color) -> Color {
+    if enabled() {
+        color.a *= 0.82;
+    }
+    color
+}
+pub fn underlay(mut color: Color) -> Color {
+    if enabled() {
+        color.a *= 0.45;
+    }
+    color
+}
+
+#[derive(Clone, Debug)]
+pub struct PreparedCast {
+    pub skill: String,
+    pub origin: GridPos,
+    pub target: GridPos,
+    pub cells: Vec<GridPos>,
+}
+impl PreparedCast {
+    pub fn new(skill: String, preview: AttackPreview) -> Self {
+        Self {
+            skill,
+            origin: preview.origin(),
+            target: preview.target(),
+            cells: preview.cells().iter().map(|c| c.position).collect(),
+        }
+    }
+    pub fn cells_for(
+        &self,
+        skill: &str,
+        origin: Option<GridPos>,
+        target: GridPos,
+    ) -> Option<Vec<GridPos>> {
+        (self
+            .skill
+            .eq_ignore_ascii_case(skill.trim_end_matches("-BLAST"))
+            && origin.is_none_or(|origin| origin == self.origin)
+            && self.target == target)
+            .then(|| self.cells.clone())
+    }
+}
+
+pub fn projectile(player: Vec2, target: Vec2, tile: f32) -> (Vec2, Vec2, Vec2) {
+    let mut axis = (target - player).normalize_or_zero();
+    if axis == Vec2::ZERO {
+        axis = vec2(1., 0.);
+    }
+    (player + axis * tile * 0.29, target, axis)
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct Placement {
+    pub center: Vec2,
+    pub size: Vec2,
+    pub angle: f32,
+}
+pub fn placement(
+    cells: &[GridPos],
+    rect: &impl Fn(GridPos) -> Option<Rect>,
+    angle: f32,
+) -> Option<Placement> {
+    let (anchor, first) = cells.iter().find_map(|p| rect(*p).map(|r| (*p, r)))?;
+    let axis = vec2(angle.cos(), angle.sin());
+    let side = vec2(-axis.y, axis.x);
+    let mut low = vec2(f32::INFINITY, f32::INFINITY);
+    let mut high = vec2(f32::NEG_INFINITY, f32::NEG_INFINITY);
+    for at in cells {
+        // Include offscreen parts of the captured footprint in the layout.
+        // Panning the camera must not resize an already cast animation.
+        let r = Rect::new(
+            first.x + (at.x - anchor.x) as f32 * first.w,
+            first.y + (at.y - anchor.y) as f32 * first.h,
+            first.w,
+            first.h,
+        );
+        for p in [
+            vec2(r.x, r.y),
+            vec2(r.right(), r.y),
+            vec2(r.x, r.bottom()),
+            vec2(r.right(), r.bottom()),
+        ] {
+            let p = vec2(p.dot(axis), p.dot(side));
+            low = low.min(p);
+            high = high.max(p);
+        }
+    }
+    let middle = (low + high) * 0.5;
+    Some(Placement {
+        center: axis * middle.x + side * middle.y,
+        size: high - low,
+        angle,
+    })
+}
+
+#[derive(Clone, Copy)]
+struct Atlas {
+    side: f32,
+    painted: Rect,
+}
+thread_local! { static ATLASES:RefCell<HashMap<macroquad::miniquad::TextureId,Atlas>>=RefCell::new(HashMap::new()); }
+// Decode once on the CPU, upload once; fitting never reads a texture back mid-frame.
+pub fn texture(bytes: &[u8], filter: FilterMode) -> Texture2D {
+    let image = Image::from_file_with_format(bytes, Some(ImageFormat::Png))
+        .expect("packaged animation PNG");
+    let side = usize::from(image.height);
+    let mut low = (side, side);
+    let mut high = (0, 0);
+    let mut any = false;
+    for y in 0..side {
+        for x in 0..usize::from(image.width) {
+            if image.bytes[(y * usize::from(image.width) + x) * 4 + 3] >= 16 {
+                let x = x % side;
+                low = (low.0.min(x), low.1.min(y));
+                high = (high.0.max(x), high.1.max(y));
+                any = true;
+            }
+        }
+    }
+    let painted = if any {
+        Rect::new(
+            low.0 as f32,
+            low.1 as f32,
+            (high.0 - low.0 + 1) as f32,
+            (high.1 - low.1 + 1) as f32,
+        )
+    } else {
+        Rect::new(0., 0., side as f32, side as f32)
+    };
+    let texture = Texture2D::from_image(&image);
+    texture.set_filter(filter);
+    ATLASES.with_borrow_mut(|cache| {
+        cache.insert(
+            texture.raw_miniquad_id(),
+            Atlas {
+                side: side as f32,
+                painted,
+            },
+        )
+    });
+    texture
+}
+fn atlas(texture: &Texture2D) -> Atlas {
+    ATLASES.with_borrow(|cache| {
+        *cache
+            .get(&texture.raw_miniquad_id())
+            .expect("registered animation atlas")
+    })
+}
+pub fn fitted_sheet(
+    texture: &Texture2D,
+    frame: usize,
+    cells: &[GridPos],
+    rect: &impl Fn(GridPos) -> Option<Rect>,
+    angle: f32,
+    opacity: f32,
+) {
+    let Some(place) = placement(cells, rect, angle) else {
+        return;
+    };
+    let atlas = atlas(texture);
+    let mut source = atlas.painted;
+    source.x += frame as f32 * atlas.side;
+    draw_texture_ex(
+        texture,
+        place.center.x - place.size.x * 0.5,
+        place.center.y - place.size.y * 0.5,
+        Color::new(1., 1., 1., opacity),
+        DrawTextureParams {
+            source: Some(source),
+            dest_size: Some(place.size),
+            rotation: place.angle,
+            pivot: Some(place.center),
+            ..Default::default()
+        },
+    );
+}
+pub fn fitted_cells(
+    texture: &Texture2D,
+    frame: usize,
+    cells: &[GridPos],
+    rect: &impl Fn(GridPos) -> Option<Rect>,
+    opacity: f32,
+) {
+    let Some(place) = placement(cells, rect, 0.) else {
+        return;
+    };
+    let whole = Rect::new(
+        place.center.x - place.size.x * 0.5,
+        place.center.y - place.size.y * 0.5,
+        place.size.x,
+        place.size.y,
+    );
+    let atlas = atlas(texture);
+    for at in cells {
+        let Some(cell) = rect(*at) else { continue };
+        let Some(crop) = whole.intersect(cell) else {
+            continue;
+        };
+        if crop.w <= 0. || crop.h <= 0. {
+            continue;
+        }
+        draw_texture_ex(
+            texture,
+            crop.x,
+            crop.y,
+            Color::new(1., 1., 1., opacity),
+            DrawTextureParams {
+                source: Some(Rect::new(
+                    frame as f32 * atlas.side
+                        + atlas.painted.x
+                        + (crop.x - whole.x) * atlas.painted.w / whole.w,
+                    atlas.painted.y + (crop.y - whole.y) * atlas.painted.h / whole.h,
+                    crop.w * atlas.painted.w / whole.w,
+                    crop.h * atlas.painted.h / whole.h,
+                )),
+                dest_size: Some(crop.size()),
+                ..Default::default()
+            },
+        );
+    }
+}
+pub fn clipped(bounds: Rect, parent: Rect, draw: impl FnOnce()) {
+    let Some(r) = bounds.intersect(parent) else {
+        return;
+    };
+    if r.w <= 0. || r.h <= 0. {
+        return;
+    }
+    unsafe {
+        macroquad::window::get_internal_gl().quad_gl.scissor(Some((
+            r.x.ceil() as i32,
+            r.y.ceil() as i32,
+            r.w.floor() as i32,
+            r.h.floor() as i32,
+        )));
+    }
+    draw();
+    unsafe {
+        macroquad::window::get_internal_gl().quad_gl.scissor(Some((
+            parent.x as i32,
+            parent.y as i32,
+            parent.w as i32,
+            parent.h as i32,
+        )));
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn projectile_launch_and_heading_follow_all_eight_targets() {
+        for (x, y) in [
+            (1, 0),
+            (-1, 0),
+            (0, 1),
+            (0, -1),
+            (1, 1),
+            (-1, 1),
+            (1, -1),
+            (-1, -1),
+        ] {
+            let p = vec2(256., 256.);
+            let target = p + vec2(x as f32, y as f32) * 128.;
+            let (from, hit, axis) = projectile(p, target, 64.);
+            assert_eq!(hit, target);
+            assert!((from - p).dot(axis) > 0.);
+            assert!((target - from).normalize().distance(axis) < 0.0001);
+            let degree_angle = axis.y.atan2(axis.x).to_degrees();
+            assert!(
+                vec2(
+                    degree_angle.to_radians().cos(),
+                    degree_angle.to_radians().sin()
+                )
+                .distance(axis)
+                    < 0.0001
+            );
+        }
+    }
+    #[test]
+    fn fitting_keeps_the_cast_size_when_the_camera_crops_a_larger_area() {
+        let cells: Vec<_> = (0..7)
+            .flat_map(|y| (0..7).map(move |x| GridPos::new(x, y)))
+            .collect();
+        let rect = |p: GridPos| Some(Rect::new(p.x as f32 * 64., p.y as f32 * 64., 64., 64.));
+        let all = placement(&cells, &rect, 0.).unwrap();
+        let cropped = placement(&cells, &|p| if p.x < 2 { rect(p) } else { None }, 0.).unwrap();
+        assert_eq!(all.size, vec2(448., 448.));
+        assert_eq!(all.size, cropped.size);
+        assert_eq!(all.center, cropped.center);
+    }
+    #[test]
+    fn a_vertical_wave_uses_the_same_cells_with_swapped_local_axes() {
+        let cells = (0..5).map(|y| GridPos::new(2, y)).collect::<Vec<_>>();
+        let p = placement(
+            &cells,
+            &|p| Some(Rect::new(p.x as f32 * 64., p.y as f32 * 64., 64., 64.)),
+            std::f32::consts::FRAC_PI_2,
+        )
+        .unwrap();
+        assert!(p.size.distance(vec2(320., 64.)) < 0.001);
+        assert!(p.center.distance(vec2(160., 160.)) < 0.001);
+    }
+    #[test]
+    fn captured_cells_cannot_leak_to_a_different_cast_or_another_shatter_source() {
+        let cast = PreparedCast {
+            skill: "fe05".into(),
+            origin: GridPos::new(2, 3),
+            target: GridPos::new(5, 3),
+            cells: vec![GridPos::new(4, 3), GridPos::new(5, 3)],
+        };
+        assert_eq!(
+            cast.cells_for("FE05", Some(cast.origin), cast.target),
+            Some(cast.cells.clone())
+        );
+        assert!(cast.cells_for("FR02", None, cast.target).is_none());
+        assert!(
+            cast.cells_for("FE05", Some(GridPos::new(1, 1)), cast.target)
+                .is_none()
+        );
+        assert!(cast.cells_for("FE05", None, GridPos::new(4, 3)).is_none());
+    }
+}

@@ -31,9 +31,31 @@ mod agent_skill_bar;
 #[cfg(any(debug_assertions, test))]
 #[path = "agent_spell_trial.rs"]
 mod agent_spell_trial;
+#[cfg(debug_assertions)]
+#[path = "aim_preview_review_app.rs"]
+mod aim_preview_review_app;
 #[cfg(test)]
 #[path = "attack_aim_input_tests.rs"]
 mod attack_aim_input_tests;
+#[cfg(debug_assertions)]
+#[path = "effect_footprint_review.rs"]
+mod effect_footprint_review;
+#[path = "mouse_navigation.rs"]
+mod mouse_navigation;
+#[cfg(debug_assertions)]
+#[path = "preview_marker_review.rs"]
+pub(crate) mod preview_marker_review;
+#[path = "skill_demo.rs"]
+mod skill_demo;
+#[cfg(debug_assertions)]
+#[path = "skill_demo_review.rs"]
+mod skill_demo_review;
+#[cfg(debug_assertions)]
+#[path = "skill_learn_button_review.rs"]
+mod skill_learn_button_review;
+#[cfg(debug_assertions)]
+#[path = "walk_preview_review.rs"]
+mod walk_preview_review;
 use project_rl::combat::{
     ArmorProfile, ArmorRules, AttackArea, AttackDelivery, AttackProfile, DamageImpact, DamageRules,
     DamageType, HitRules, MeleeImpactProfile,
@@ -391,9 +413,9 @@ mod deep_encounters;
 #[cfg(test)]
 #[path = "depth_distribution_tests.rs"]
 mod depth_distribution_tests;
-#[path = "dialogue_trial_app.rs"]
-mod dialogue_trial_app;
-pub use dialogue_trial_app::DialogueTrial as TerminalDialogue;
+#[path = "terminal_dialogue_app.rs"]
+mod terminal_dialogue_app;
+pub use terminal_dialogue_app::TerminalDialogue;
 #[cfg(test)]
 #[path = "expedition_decisions_tests.rs"]
 mod expedition_decisions_tests;
@@ -1490,6 +1512,7 @@ struct NpcArtState {
 pub struct AsciiApp {
     world_context: Option<world_context::WorldContextMenu>,
     mouse_walk: Option<world_context::MouseWalk>,
+    walk_preview: Option<mouse_navigation::PlannedRoute>,
     world_cursor: Option<GridPos>,
     keyboard_target_pointer: Option<(f32, f32)>,
     ux: ux::UxState,
@@ -5247,7 +5270,7 @@ impl AsciiApp {
                 });
                 let turn = app.game.turn();
                 app.update_input(&InputFrame {
-                    pressed: [controls::Binding::key("F")].into(),
+                    pressed: [app.controls.binding(Action::Interact).clone()].into(),
                     ..Default::default()
                 });
                 if app.attack_aim.is_some()
@@ -6687,6 +6710,29 @@ impl AsciiApp {
         self.sync_agent_skill_bar();
         self.update_crash_recovery();
         self.close_finished_run_overlays();
+        // Cancel before the generic walk interruption or context menu routing:
+        // the same right-click must never stop a walk and open a menu.
+        if self.menu_navigation_context().is_none()
+            && (self.walk_preview.is_some() || self.mouse_walk.is_some())
+            && (input.pause || input.pressed.contains(&controls::Binding::MouseRight))
+        {
+            self.walk_preview = None;
+            self.mouse_walk = None;
+            self.movement_repeat.clear();
+            return;
+        }
+        if self.menu_navigation_context().is_some()
+            || self.attack_aim.is_some()
+            || input.pause
+            || input
+                .pressed
+                .iter()
+                .chain(&input.held)
+                .any(|binding| matches!(binding, controls::Binding::Key(_)))
+            || input.wheel_y != 0.0
+        {
+            self.walk_preview = None;
+        }
         if !self.inventory_open || !input.mouse_left_down {
             self.inventory_scroll_drag = None;
         }
@@ -6733,6 +6779,9 @@ impl AsciiApp {
             self.dispatch_input_at(&repeated_input, captured_at);
         } else {
             self.dispatch_input_at(input, captured_at);
+        }
+        if self.menu_navigation_context().is_some() || self.attack_aim.is_some() {
+            self.walk_preview = None;
         }
         if let Some(now) = captured_at {
             self.tick_mouse_walk(now);
@@ -6828,6 +6877,17 @@ impl AsciiApp {
         // In particular, input captured alongside an OS close cannot take a turn.
         if self.quit_requested {
             self.movement_repeat.clear();
+            return;
+        }
+        // A preview owns right-click before the HUD or world context menu can
+        // interpret it. Other open modal panels retain their normal priority.
+        if !input.pause
+            && self.attack_aim.is_some()
+            && self.menu_navigation_context().is_none()
+            && input.pressed.contains(&controls::Binding::MouseRight)
+        {
+            self.movement_repeat.clear();
+            self.update_attack_aim(input);
             return;
         }
         if self.world_context.is_some() {
@@ -7313,17 +7373,7 @@ impl AsciiApp {
         }
 
         if self.attack_aim.is_some() {
-            if self.controls.pressed(Action::Interact, input) {
-                if let Some(at) = self.keyboard_action_cell(input) {
-                    self.run_keyboard_world_action(
-                        Action::Interact,
-                        at,
-                        captured_at.unwrap_or(0.0),
-                    );
-                }
-            } else {
-                self.update_attack_aim(input);
-            }
+            self.update_attack_aim(input);
             return;
         }
 
@@ -7343,14 +7393,15 @@ impl AsciiApp {
             return;
         }
 
-        if input.pressed.contains(&controls::Binding::MouseLeft)
-            && let Some(target) = self
+        if input.pressed.contains(&controls::Binding::MouseLeft) {
+            if let Some(target) = self
                 .attack_pointer_cell(input)
                 .filter(|position| self.game.player_visibility().is_visible(*position))
-        {
-            self.select_pointer_world_cell(target, input.pointer);
-            // Consume even an unsupported ground selection: a mouse-bound
-            // Attack must never fall through and fire at the previous actor.
+            {
+                self.select_pointer_world_cell(target, input.pointer);
+            }
+            // An invalid click must not fall through to a mouse-bound action
+            // and attack a previously selected actor.
             return;
         }
 
@@ -7386,7 +7437,7 @@ impl AsciiApp {
             self.set_facing(direction);
         }
         let command = if self.controls.pressed(Action::Interact, input) {
-            if let Some(at) = self.keyboard_action_cell(input) {
+            if let Some(at) = self.interaction_action_cell(input) {
                 self.run_keyboard_world_action(Action::Interact, at, captured_at.unwrap_or(0.0));
                 return;
             }
@@ -7464,7 +7515,12 @@ impl AsciiApp {
     }
 
     pub fn draw(&self) {
-        self.world_presentation_time.set(get_time());
+        self.world_presentation_time
+            .set(crate::effect_geometry::presentation_time(get_time()));
+        crate::preview_markers::begin_frame(
+            self.world_presentation_time.get(),
+            self.graphics.active.reduced_motion,
+        );
         crate::ui_theme::set_high_contrast(self.graphics.active.high_contrast);
         crate::ui_theme::set_interface_theme(self.graphics.active.interface_theme);
         crate::ui_theme::set_interface_style(self.graphics.active.interface_style);
@@ -7571,7 +7627,7 @@ impl AsciiApp {
                 observation_label: &self.controls.label(Action::NpcVision),
                 legend_open: false,
                 hide_interaction_tooltip: self.world_context.is_some()
-                    || crate::dialogue_bubble_review::active(),
+                    || crate::terminal_dialogue::active(),
                 attack_preview,
                 navigation_signal: navigation_signal.as_deref(),
                 target_summary: target_summary.as_ref(),
@@ -7636,6 +7692,7 @@ impl AsciiApp {
             |position| self.interaction_display_name(position),
         );
         drop(tactical_cache);
+        self.draw_walk_preview();
 
         if self.menu == MenuScreen::Hidden
             && !self.legend_open
@@ -9873,7 +9930,8 @@ impl AsciiApp {
             return (None, 0);
         };
         let candidates = self.interaction_candidates();
-        let target = if candidates.contains(&origin) {
+        let pickup = self.game.ground_items().item_at(origin).is_some();
+        let target = if pickup || candidates.contains(&origin) {
             Some(origin)
         } else if candidates.contains(&origin.step(self.facing)) {
             Some(origin.step(self.facing))
@@ -9882,7 +9940,7 @@ impl AsciiApp {
         } else {
             None
         };
-        (target, candidates.len())
+        (target, candidates.len() + usize::from(pickup))
     }
 
     fn interaction_candidates(&self) -> Vec<GridPos> {
@@ -9943,7 +10001,13 @@ impl AsciiApp {
     fn interaction_command(&mut self) -> Option<GameCommand> {
         let (target, count) = self.interaction_choice();
         if let Some(target) = target {
-            self.interaction_command_at(target)
+            if self.game.player_position() == Some(target)
+                && self.game.ground_items().item_at(target).is_some()
+            {
+                Some(GameCommand::PickUp)
+            } else {
+                self.interaction_command_at(target)
+            }
         } else {
             self.push_log(
                 if count == 0 {
@@ -11350,6 +11414,7 @@ impl AsciiApp {
             test_lab: false,
             world_context: None,
             mouse_walk: None,
+            walk_preview: None,
             world_cursor: None,
             keyboard_target_pointer: None,
             lab_bonus_seed: 0,
@@ -12006,7 +12071,7 @@ impl AsciiApp {
                 && !self.visible_targets().is_empty()
             {
                 Some(format!(
-                    "{} ou clic : choisir une cible · {} : attaquer",
+                    "{} : choisir une cible · {} ou clic : attaquer",
                     self.controls.label(Action::CycleTarget),
                     self.controls.label(Action::Attack)
                 ))
@@ -12622,6 +12687,65 @@ impl AsciiApp {
     }
 
     fn execute_command(&mut self, command: GameCommand) -> CommandOutcome {
+        self.walk_preview = None;
+        let prepared = if crate::effect_geometry::enabled() {
+            let aim = match &command {
+                GameCommand::UseTechniqueAt {
+                    technique,
+                    target,
+                    weapon_slot,
+                } => Some((technique, *target, *weapon_slot)),
+                GameCommand::UseTechnique {
+                    technique,
+                    targets,
+                    weapon_slot,
+                } => targets
+                    .first()
+                    .and_then(|id| self.game.actors().get(*id))
+                    .map(|a| {
+                        (
+                            technique,
+                            a.position(),
+                            weapon_slot.unwrap_or(self.active_weapon_slot),
+                        )
+                    })
+                    .or_else(|| {
+                        self.game
+                            .player_position()
+                            .map(|p| (technique, p, weapon_slot.unwrap_or(self.active_weapon_slot)))
+                    }),
+                GameCommand::UseTechniqueOnComponent {
+                    technique,
+                    target,
+                    weapon_slot,
+                    ..
+                } => self
+                    .game
+                    .actors()
+                    .get(*target)
+                    .map(|a| (technique, a.position(), *weapon_slot)),
+                _ => None,
+            };
+            aim.and_then(|(technique, target, slot)| {
+                self.game
+                    .player_weapon_technique_footprint(technique, slot, target)
+                    .ok()
+                    .map(|p| {
+                        crate::effect_geometry::PreparedCast::new(
+                            technique
+                                .as_str()
+                                .split(':')
+                                .next_back()
+                                .unwrap()
+                                .to_owned(),
+                            p,
+                        )
+                    })
+            })
+        } else {
+            None
+        };
+        self.combat_motion.prepare_cast(prepared);
         // Mouse paths also use this entry point. Turn only the drawing here;
         // the existing interaction/aim direction remains unchanged.
         if let GameCommand::Move(direction) = &command {
@@ -16113,13 +16237,29 @@ impl AsciiApp {
     fn select_pointer_world_cell(&mut self, at: GridPos, pointer: Option<(f32, f32)>) {
         self.world_cursor = None;
         self.keyboard_target_pointer = pointer;
+        // Hostile clicks attack; nearby world elements keep their interaction.
+        // All commands still use the common keyboard approach/validation path.
+        let hostile = self.hostile_target_at(at);
+        if hostile || self.local_interaction_at(at) {
+            self.walk_preview = None;
+            self.select_world_target(Some(at));
+            self.run_keyboard_world_action(
+                if hostile {
+                    Action::Attack
+                } else {
+                    Action::Interact
+                },
+                at,
+                self.world_presentation_time.get(),
+            );
+            return;
+        }
         if self.toggle_pointer_target_at(at) {
+            self.walk_preview = None;
             return;
         }
         self.select_world_target(None);
-        if !self.begin_pointer_attack_aim(at, pointer) {
-            self.push_log("Cette arme doit viser une cible.".to_owned());
-        }
+        self.preview_or_walk_to(at, self.world_presentation_time.get());
     }
 
     fn update_player_art_facing(&mut self, direction: Direction) {
@@ -16484,28 +16624,8 @@ impl AsciiApp {
         self.begin_attack_aim_at(None, pointer, None);
     }
 
-    fn begin_pointer_attack_aim(&mut self, target: GridPos, pointer: Option<(f32, f32)>) -> bool {
-        if let Some(technique) = self.game.agent_form_default_technique() {
-            self.begin_attack_aim_at(Some(target), pointer, Some(technique));
-            return self.attack_aim.is_some();
-        }
-        let slot = self
-            .game
-            .player_default_attack_slot(self.active_weapon_slot, target);
-        let Some(weapon) = self.game.resolved_equipped_player_weapon(slot) else {
-            return false;
-        };
-        if !weapon.requires_area_aim() {
-            return false;
-        }
-        self.begin_attack_aim_at(Some(target), pointer, None);
-        if self.attack_aim.is_some() {
-            self.selected_target = None;
-        }
-        self.attack_aim.is_some()
-    }
-
     fn begin_technique_attack_aim(&mut self, technique: TechniqueId) {
+        self.walk_preview = None;
         if project_rl::skills::agent::from_technique(&technique)
             .is_some_and(|s| self.game.agent_skill_is_self_targeted(&s.id))
         {
@@ -16524,6 +16644,7 @@ impl AsciiApp {
         pointer: Option<(f32, f32)>,
         technique: Option<TechniqueId>,
     ) {
+        self.walk_preview = None;
         if let Some(remaining_actions) = self
             .game
             .actors()
@@ -16732,7 +16853,8 @@ impl AsciiApp {
 
         // A map click confirms its visible cell. Clicking outside the map must
         // never fire at the last cursor, even if Attack is bound to MouseLeft.
-        let confirmed = (self.controls.pressed(Action::Attack, input)
+        let confirmed = ((self.controls.pressed(Action::Attack, input)
+            || self.controls.pressed(Action::Interact, input))
             && (!clicked || input.pointer.is_none()))
             || (clicked && (confirm_hovered || hovered_cell.is_some()));
         if !confirmed {
@@ -17814,10 +17936,7 @@ impl AsciiApp {
             self.component_selection = Some(selection);
             return;
         }
-        if !self.controls.pressed(Action::Attack, input)
-            && !self.controls.pressed(Action::Use, input)
-            && !(clicked && confirm_hovered)
-        {
+        if !self.controls.pressed(Action::Interact, input) && !(clicked && confirm_hovered) {
             return;
         }
 
@@ -21646,6 +21765,7 @@ impl AsciiApp {
     }
 
     fn open_menu(&mut self, menu: MenuScreen) {
+        self.walk_preview = None;
         self.world_context = None;
         self.mouse_walk = None;
         self.world_cursor = None;
@@ -36169,7 +36289,7 @@ mod tests {
         );
         app.active_weapon_slot = 2;
         let turn_before_blocked_preview = app.game.turn();
-        app.update_input(&input("F"));
+        app.update_input(&input("E"));
         assert!(app.attack_aim.is_none());
         assert_eq!(app.game.turn(), turn_before_blocked_preview);
         assert!(
@@ -36510,7 +36630,7 @@ mod tests {
         let turn_before_aiming = app.game.turn();
         let history_before_aiming = app.history.len();
 
-        app.update_input(&input("F"));
+        app.update_input(&input("T"));
 
         let initial = app.attack_aim.expect("area weapon should enter aim mode");
         assert_eq!(initial.slot, 2);
@@ -36559,7 +36679,7 @@ mod tests {
         // edge. Keep this empty frame in the regression test so confirmation
         // exercises the same sequence as live input.
         app.update_input(&InputFrame::default());
-        app.update_input(&input("F"));
+        app.update_input(&input("E"));
 
         assert!(app.attack_aim.is_none());
         assert_eq!(app.game.turn(), turn_before_aiming + 1);
@@ -36627,7 +36747,7 @@ mod tests {
         assert_eq!(app.game.turn(), turn_before);
 
         app.update_input(&InputFrame::default());
-        app.update_input(&input("F"));
+        app.update_input(&input("E"));
 
         assert!(app.attack_aim.is_none());
         assert!(app.attack_aim_technique.is_none());
@@ -36718,7 +36838,7 @@ mod tests {
     }
 
     #[test]
-    fn pointer_attack_starts_area_aim_on_the_clicked_empty_cell_without_time() {
+    fn pointer_empty_cell_with_zone_weapon_previews_movement_without_time() {
         let mut app = app_with_test_controls();
         let home = app.home_layout();
         app.walk_fixture_to(home.position(GridPos::new(65, 21)))
@@ -36730,15 +36850,13 @@ mod tests {
         assert!(app.game.player_visibility().is_visible(clicked));
         assert_eq!(app.game.actors().entity_at(clicked), None);
 
-        assert!(app.begin_pointer_attack_aim(clicked, Some((400.0, 300.0))));
-
+        app.select_pointer_world_cell(clicked, Some((400.0, 300.0)));
+        assert!(app.attack_aim.is_none());
         assert_eq!(
-            app.attack_aim,
-            Some(AttackAim {
-                slot: 2,
-                cursor: clicked,
-            })
+            app.walk_preview.as_ref().unwrap().cells.last(),
+            Some(&clicked)
         );
+        assert!(app.attack_aim_technique.is_none());
         assert_eq!(app.game.turn(), turn_before);
         assert_eq!(app.history.len(), history_before);
     }
@@ -36749,7 +36867,7 @@ mod tests {
         app.active_weapon_slot = 2;
         let before = suspension::fingerprint(&app.game);
 
-        app.update_input(&input("F"));
+        app.update_input(&input("T"));
         assert!(app.attack_aim.is_some());
         app.update_input(&input("Escape"));
 

@@ -36,33 +36,11 @@ impl AsciiApp {
         });
         if self.selected_target != Some(target)
             || self.attack_aim.is_some()
-            || self.game.turn() != turn
-        {
-            return Err("Le clic n'a pas sélectionné la cible sans tirer".into());
-        }
-        let button = if self.attack_aim.is_some() {
-            Self::attack_aim_confirm_rect(self.ui_width(), self.ui_height())
-        } else {
-            Self::hud_shortcuts(self.ui_width(), self.ui_height())
-                .into_iter()
-                .find(|(_, action, _, _)| *action == Some(Action::Attack))
-                .unwrap()
-                .0
-        };
-        self.update_input(&InputFrame {
-            pressed: [controls::Binding::MouseLeft].into(),
-            pointer: Some((button.x + button.w * 0.5, button.y + button.h * 0.5)),
-            viewport: Some((self.ui_width(), self.ui_height())),
-            ..Default::default()
-        });
-        if self.attack_aim.is_some()
             || self.game.turn() != turn + 1
             || self.game.player_matter() != Some(ammo - 4)
             || self.game.explosive_devices().at(at).next().is_none()
         {
-            return Err(
-                "Le bouton Attaquer n'a pas lancé la grenade sur la cible sélectionnée".into(),
-            );
+            return Err("Le clic gauche n'a pas lancé une seule grenade sur l'ennemi".into());
         }
         Ok(())
     }

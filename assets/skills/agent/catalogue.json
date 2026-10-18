@@ -2009,22 +2009,23 @@
           "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
           "benefit": true
         },
-        "cone_range_cells": {
-          "kind": "stepped",
-          "base": 3,
-          "every_ranks": 3,
-          "gain_per_step": 1,
-          "rank_offset": 0,
+        "range_cells": {
+          "kind": "linear",
+          "base": 2,
+          "gain_per_rank": 1,
           "direction": "increase",
           "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
           "benefit": true,
-          "spatial_review": "ZONE-GROWTH02"
+          "spatial_review": "SOUFFLE-COULOIR-01",
+          "display_label": "Longueur"
         },
-        "cone_angle_degrees": {
+        "line_width_cells": {
           "kind": "constant",
-          "value": 90,
+          "value": 3,
           "value_scope": "rank_component_only;apply_current_accepted_attributes_equipment_and_target_rules_separately",
-          "benefit": true
+          "benefit": true,
+          "spatial_review": "SOUFFLE-COULOIR-01",
+          "display_label": "Largeur"
         },
         "maximum_duration_turns": {
           "kind": "constant",
@@ -2052,8 +2053,8 @@
         }
       },
       "source": {
-        "reference": "docs/reviews/refonte-agent-2026-10-06/review-individual-description-FE02-05.json",
-        "reference_sha256": "f58fabfe1984e6e6ae63513eb3d8af0df03cd238dfe5330b52fbd80c03ec63fa"
+        "reference": "docs/reviews/refonte-histoire-2026-10-16/handcrafted-places-review-01/souffle-couloir-01-acceptance.json",
+        "reference_sha256": "0a71472d4955229317184339cdc9805b0ed9e0ffe49ee749a832985a11367de1"
       }
     },
     {
@@ -5852,6 +5853,7 @@
     }
   ],
   "labels": {
+    "line_width_cells": "Largeur",
     "damage_coefficient_percent": "Dégâts de l’arme",
     "damage_coefficient_per_projectile_percent": "Dégâts par projectile",
     "energy": "Énergie",

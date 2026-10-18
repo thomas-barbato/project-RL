@@ -1,0 +1,43 @@
+{
+  "contours_and_numbers_fixed": true,
+  "cycle_ms": 1100,
+  "draw_preserved_game": true,
+  "frame_count": 12,
+  "frame_pixels": [
+    1280,
+    400
+  ],
+  "normal_games_changed": false,
+  "production_capture_with_debug_fill_override": true,
+  "review": "MARKER-PULSE-01",
+  "status": "awaiting_visual_approval",
+  "tile_pixels": 64,
+  "animation_encoding": "lossless APNG; every decoded frame equals native engine PNG pixels",
+  "progressive_frame_durations_ms": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    110
+  ],
+  "sharp_frame_durations_ms": [
+    550,
+    550
+  ],
+  "changed_pixels_between_min_and_max": 2042,
+  "changed_pixels_outside_marker_neighborhoods": 0,
+  "native_visual": "pulse-06.png inspected upright; native 64 px; blue/red filled markers and legible route numbers; final route gap preserved",
+  "validation": {
+    "debug_build": "passed",
+    "release_check": "passed with existing draw_inspection_panel warning",
+    "formatting": "passed"
+  },
+  "browser_validation": "file URL blocked by browser policy; native engine captures delivered directly instead"
+}

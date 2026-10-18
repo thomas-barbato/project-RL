@@ -532,7 +532,20 @@ impl GameState {
         if super::agent_magic_cast::is_agent_magic_skill(id) {
             return self.agent_magic_preview(id, target);
         }
-        let profile = self.agent_skill_ready(id)?;
+        // A temporary inability to cast must not erase the visible footprint.
+        // The executable preview below still requires readiness, and casts
+        // still pay through the same validated path.
+        let profile = match self.agent_skill_ready(id) {
+            Ok(profile) => profile,
+            Err(
+                reason @ (CommandRejection::InsufficientEnergy { .. }
+                | CommandRejection::TechniqueOnCooldown { .. }
+                | CommandRejection::OffensiveActionBlockedByRecovery { .. }),
+            ) => self
+                .agent_spell_profile(id, self.player_agent_skill_rank(id))
+                .ok_or(reason)?,
+            Err(reason) => return Err(reason),
+        };
         let origin = self
             .player_position()
             .ok_or(CommandRejection::AgentProgressionUnavailable)?;
@@ -598,6 +611,7 @@ impl GameState {
         if super::agent_magic_cast::is_agent_magic_skill(id) {
             return self.agent_magic_preview(id, target);
         }
+        self.agent_skill_ready(id)?;
         let preview = self.agent_spell_footprint(id, target)?;
         if matches!(id, "A02" | "FE05") {
             return Ok(preview);

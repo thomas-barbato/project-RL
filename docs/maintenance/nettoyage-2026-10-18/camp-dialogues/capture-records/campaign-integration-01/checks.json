@@ -1,0 +1,99 @@
+{
+  "character_class": "core:bastion",
+  "generation_version": 153,
+  "isolated_save_path": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\handcrafted-places-review-01\\campaign-integration-01\\isolated-run.json",
+  "native_cell": 64,
+  "scenes": [
+    {
+      "hud_clip_checked": true,
+      "name": "start",
+      "native_cell": 64.0,
+      "position": [
+        2,
+        8
+      ],
+      "render_is_read_only": true,
+      "size": [
+        1600,
+        1000
+      ],
+      "turn": 0
+    },
+    {
+      "hud_clip_checked": false,
+      "name": "officer",
+      "native_cell": null,
+      "position": [
+        5,
+        7
+      ],
+      "render_is_read_only": true,
+      "size": [
+        1600,
+        1000
+      ],
+      "turn": 4
+    },
+    {
+      "hud_clip_checked": true,
+      "name": "hall",
+      "native_cell": 64.0,
+      "position": [
+        22,
+        8
+      ],
+      "render_is_read_only": true,
+      "size": [
+        1600,
+        1000
+      ],
+      "turn": 22
+    },
+    {
+      "hud_clip_checked": true,
+      "name": "medical",
+      "native_cell": 64.0,
+      "position": [
+        18,
+        12
+      ],
+      "render_is_read_only": true,
+      "size": [
+        1600,
+        1000
+      ],
+      "turn": 32
+    },
+    {
+      "hud_clip_checked": false,
+      "name": "armorer",
+      "native_cell": null,
+      "position": [
+        30,
+        4
+      ],
+      "render_is_read_only": true,
+      "size": [
+        1600,
+        1000
+      ],
+      "turn": 54
+    },
+    {
+      "hud_clip_checked": false,
+      "name": "technician",
+      "native_cell": null,
+      "position": [
+        30,
+        13
+      ],
+      "render_is_read_only": true,
+      "size": [
+        1600,
+        1000
+      ],
+      "turn": 63
+    }
+  ],
+  "zone": "core:cryogenic_camp"
+}

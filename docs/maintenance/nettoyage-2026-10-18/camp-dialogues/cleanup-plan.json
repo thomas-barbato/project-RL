@@ -1,0 +1,1956 @@
+{
+  "date": "2026-10-18",
+  "authorization": "ca marche bien, je pense que tu peux faire le ménage dans ce qu'on a plus besoin et ensuite on pourra continuer :=)",
+  "baseline_commit": "4ef862f88335fe8276be13bcd02b48d8e9759a1c",
+  "scope": "Only the completed camp/dialogue prototype workflow and its generated outputs",
+  "archived": [
+    {
+      "source": "tools/art/prepare_camp_adjustments_r08.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/prepare_camp_adjustments_r08.py",
+      "sha256": "d21ea374ae347572d1ddce7a48cb301df8965d0e1ffcbbcd638b77a0b301c1e6",
+      "bytes": 4488
+    },
+    {
+      "source": "tools/art/prepare_camp_atmosphere_r09.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/prepare_camp_atmosphere_r09.py",
+      "sha256": "fef1fd9e1b2dce1d5330625220791039ce818b7e22a9ec6053b5d6cbff762b81",
+      "bytes": 9232
+    },
+    {
+      "source": "tools/art/prepare_camp_cryo_r06.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/prepare_camp_cryo_r06.py",
+      "sha256": "ff5602a4a1acef58698af385a6bab14690fcb10e7edb6723092e02afdf571bef",
+      "bytes": 6135
+    },
+    {
+      "source": "tools/art/prepare_camp_officer_r07.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/prepare_camp_officer_r07.py",
+      "sha256": "f9ebd4d24ea0304fce51e838b9b5558baf883ab81c88c323fb06bbccf9365604",
+      "bytes": 2567
+    },
+    {
+      "source": "tools/art/prepare_camp_reference_r05.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/prepare_camp_reference_r05.py",
+      "sha256": "2007e128bbf38bc9dfff739fdd341c60234707b063a6da6486ff0fdf4ad189f5",
+      "bytes": 8724
+    },
+    {
+      "source": "tools/art/prepare_handcrafted_camp_fixture.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/prepare_handcrafted_camp_fixture.py",
+      "sha256": "1e808e265df9a3b251b55b02bad67d310d2e76f4fb3971b5f67cd20b160f68eb",
+      "bytes": 2938
+    },
+    {
+      "source": "tools/art/prepare_handcrafted_camp_kit.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/prepare_handcrafted_camp_kit.py",
+      "sha256": "6a2f413f25e146a651142dbb8e7792ce901af55c99cc6da4b952a4e3f0d5c060",
+      "bytes": 7893
+    },
+    {
+      "source": "tools/art/show_camp_adjustments_r08.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_camp_adjustments_r08.py",
+      "sha256": "e83fc5a88e89f203af50c6835526a64b4c2fd8a87cefe422ef909b034ee08ca3",
+      "bytes": 9643
+    },
+    {
+      "source": "tools/art/show_camp_atmosphere_r09.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_camp_atmosphere_r09.py",
+      "sha256": "98ece6f3396e9674831e3be6a6b3c10f5b602480dad85c0b59bbeedb4c54d659",
+      "bytes": 12887
+    },
+    {
+      "source": "tools/art/show_camp_cryo_r06.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_camp_cryo_r06.py",
+      "sha256": "acb1aaa65053c95930a863641f0e359cd8bb58afc9cebb005778ac6147df5424",
+      "bytes": 8218
+    },
+    {
+      "source": "tools/art/show_camp_npc_review.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_camp_npc_review.py",
+      "sha256": "885dbc3cf3d45141af9ea5c3027bccbec1e127b36a112b7c6a642ad17cb0fc6e",
+      "bytes": 4810
+    },
+    {
+      "source": "tools/art/show_camp_officer_r07.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_camp_officer_r07.py",
+      "sha256": "dbdcec3a12efb40d551392a6be58caaedc42cf7e5ef821cf06813b46a327c2de",
+      "bytes": 8484
+    },
+    {
+      "source": "tools/art/show_camp_reference_r05.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_camp_reference_r05.py",
+      "sha256": "11531a0bd85e616868baa699d51c977c65e25d88f169c5b564bf57946bf360f7",
+      "bytes": 11424
+    },
+    {
+      "source": "tools/art/show_cryogenic_camp_integration.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_cryogenic_camp_integration.py",
+      "sha256": "0a13b49304f9f4f4b72c9cba4cbdb66c9ff728ff635573f716b907f5cd0a6d3c",
+      "bytes": 4690
+    },
+    {
+      "source": "tools/art/show_dialogue_audio_review.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_dialogue_audio_review.py",
+      "sha256": "665936b1656418bd99599f43af19bd736fa7361d9facdfa7c5e62227ea0135dd",
+      "bytes": 3288
+    },
+    {
+      "source": "tools/art/show_dialogue_bubble_review.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_dialogue_bubble_review.py",
+      "sha256": "fe15842097425eaee3325bb4012da2cd31ae65175543450a819a399a1802f10b",
+      "bytes": 3819
+    },
+    {
+      "source": "tools/art/show_handcrafted_camp_engine_review.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_handcrafted_camp_engine_review.py",
+      "sha256": "c846da025688db8ffefca27990cdcbf001ae4d56f27fae7c4e19657ebffd4877",
+      "bytes": 12071
+    },
+    {
+      "source": "tools/art/show_handcrafted_camp_scene.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_handcrafted_camp_scene.py",
+      "sha256": "c6bd2167ee96287694b3520ee6f97c91e412dbfd1ee3bee3ffc40d1fb875e3b0",
+      "bytes": 7766
+    },
+    {
+      "source": "tools/art/show_handcrafted_places_review.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_handcrafted_places_review.py",
+      "sha256": "c7f08351e971eb0035f443005b97ae158e7716aae2f66b8a21f06b0db35a4df9",
+      "bytes": 8198
+    },
+    {
+      "source": "tools/art/show_terminal_bubble_r02.py",
+      "destination": "tools/archive/handcrafted-places-review-01/tools/show_terminal_bubble_r02.py",
+      "sha256": "9646685f17e19aeeb837a4568fd28ad9cf9a50433511988a9b8e6a80571f1c32",
+      "bytes": 10190
+    },
+    {
+      "source": "examples/handcrafted_camp_review.rs",
+      "destination": "tools/archive/handcrafted-places-review-01/examples/handcrafted_camp_review.rs",
+      "sha256": "44aa04175819085e8595dbdcfd2095870de89a5d1d0e16fdff3fbebd2d2fd5f3",
+      "bytes": 17845
+    },
+    {
+      "source": "examples/handcrafted_camp_full_review.rs",
+      "destination": "tools/archive/handcrafted-places-review-01/examples/handcrafted_camp_full_review.rs",
+      "sha256": "5c45ad11009afd2c1ecbc86d3b0e37872eadd30e07c013fca5744f52a673abde",
+      "bytes": 20919
+    },
+    {
+      "source": "examples/handcrafted_camp/atmosphere.rs",
+      "destination": "tools/archive/handcrafted-places-review-01/examples/handcrafted_camp/atmosphere.rs",
+      "sha256": "72db756d3873cf3243c00891c657488bc0bc9fc3b2835085abde0e6f6fa2a9a7",
+      "bytes": 8746
+    },
+    {
+      "source": "examples/handcrafted_camp/scenery.rs",
+      "destination": "tools/archive/handcrafted-places-review-01/examples/handcrafted_camp/scenery.rs",
+      "sha256": "a5b2cced33d82d4c947bbb9489732442a17b01c9039833a8b197855f83d5f61c",
+      "bytes": 8289
+    },
+    {
+      "source": "Tester_dialogue_terminal.cmd",
+      "destination": "tools/archive/handcrafted-places-review-01/launchers/Tester_dialogue_terminal.cmd",
+      "sha256": "415ccc82ab079aa69aa634b7dfefb64061817ff22657951eddc1812f11bef350",
+      "bytes": 243
+    },
+    {
+      "source": "Voir_camp_prototype.cmd",
+      "destination": "tools/archive/handcrafted-places-review-01/launchers/Voir_camp_prototype.cmd",
+      "sha256": "92bc6a63f618c0242bca0bf2c1cbb1296fa48799883b7e911bd24a168941d349",
+      "bytes": 288
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-01-r03.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/DEC-CAMP-01-r03.png",
+      "sha256": "7937b58bbd76488ef034e6089f2153a4e272acd7dde2472bcc2e6c3810cadebc",
+      "bytes": 4682
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-02-r03.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/DEC-CAMP-02-r03.png",
+      "sha256": "d641b5595d6e7bfd50f9ddb311b8f4d987dccd0eaba65b0dc32f0a793a0616ab",
+      "bytes": 1264
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-03-r03.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/DEC-CAMP-03-r03.png",
+      "sha256": "c9b0855eda3bbb62c0d493eddfc8234fa51ab5b1177d71fe97e95779f695ce4d",
+      "bytes": 4021
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-04-r03.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/DEC-CAMP-04-r03.png",
+      "sha256": "be6b7c051ccc6c684804a3df38b4c1cb55f42c07844897242f34c3c3a80d740b",
+      "bytes": 4893
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-05-r03.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/DEC-CAMP-05-r03.png",
+      "sha256": "cfe0933c90853f88f6867986b92eb8d36a847ea8d0f80a1c19c92d6d8c6e9335",
+      "bytes": 5005
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/DEC-CAMP-06-r03.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/DEC-CAMP-06-r03.png",
+      "sha256": "588ae673c037a63ce8dd31bf48b57ca6de7a8b2a64ed11146f8e762631a69cd0",
+      "bytes": 2339
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-01-r04.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r04/DEC-CAMP-01-r04.png",
+      "sha256": "1b7de529ca11db0c2312f4d679137339893ed5258623d8a3b490bab512455029",
+      "bytes": 3427
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-02-r04.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r04/DEC-CAMP-02-r04.png",
+      "sha256": "b2608dbeebc6ff31041bbc1c3c40722e10aff1498ccd5efc65d67401c0223a01",
+      "bytes": 1071
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-03-r04.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r04/DEC-CAMP-03-r04.png",
+      "sha256": "8b3ea9200b6a98a8b65e912875a04b81abf414dab224a8051a869c53dad23280",
+      "bytes": 2856
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-04-r04.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r04/DEC-CAMP-04-r04.png",
+      "sha256": "bd84a839453700a47fc7fae3cdf043b5f25ee865b0a253fa83b0f00d270ae42c",
+      "bytes": 3281
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-05-r04.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r04/DEC-CAMP-05-r04.png",
+      "sha256": "c6514e83c8359c49ede6fa6c19c35eb0601927a9efa03f5d45ce66aa3b89dbf2",
+      "bytes": 3271
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r04/DEC-CAMP-06-r04.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r04/DEC-CAMP-06-r04.png",
+      "sha256": "cf21a4902e1a47d100fbd0e200fcbcd1022c2ec7feb1d3161e6dc07b2a3c5a92",
+      "bytes": 1572
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r04/doors-native64.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r04/doors-native64.png",
+      "sha256": "35a0164aee304873d02e125238895f8b06ce9a50597c8598b31c3f4f07da3b93",
+      "bytes": 7397
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r04/floors-native64.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r04/floors-native64.png",
+      "sha256": "166d39f4ab1cbf573c19ffe34afca77266991c7b21fc75240570102f7bfdd93f",
+      "bytes": 15245
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r04/lamp-native.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r04/lamp-native.png",
+      "sha256": "708479cdd8b570532ef30cd2b336dc84b7e18e2f42b1d3907aa347263a3afc72",
+      "bytes": 658
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r04/walls-native64.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r04/walls-native64.png",
+      "sha256": "a57f632de13b87338a2ccd460d00545be510f1b8cb521862a77916b026b8cc6f",
+      "bytes": 41191
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/camp-floor-native.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/camp-floor-native.png",
+      "sha256": "866f24b7fff3e50f0c1e8a00c6ebb38c4be907cbe748f31c7a05b7284ec66c02",
+      "bytes": 967010
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/camp-layout.txt",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/camp-layout.txt",
+      "sha256": "be6cf252af4e01f97c3b46570eb0d5433d8ddca73e402e598b008541d10ad19e",
+      "bytes": 540
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/camp-structure-native.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/camp-structure-native.png",
+      "sha256": "1764b7c75eb6800df559f0bbd7a38d55120f417e2bd1472a8d393729931ec61b",
+      "bytes": 1236263
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/camp.json",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/camp.json",
+      "sha256": "12c5c5ca546660927633759418ba1ec40a7835d6b9ff5b65087795f3a5467c8b",
+      "bytes": 9024
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-07-r05.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/DEC-CAMP-07-r05.png",
+      "sha256": "5f7d865ebc6bc2a5b5a85173feea8d015399eff56d7cdb8cf487de78211fab90",
+      "bytes": 6267
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-08-r05.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/DEC-CAMP-08-r05.png",
+      "sha256": "42c7fc4f5445386934f6bad7a5ba5abaa3029e02abe3ef62330df9b867a96c2d",
+      "bytes": 8369
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-09-r05.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/DEC-CAMP-09-r05.png",
+      "sha256": "83fb6e5b655e7779b74bc1a32478cc5696126a46c0e507caa1324d5081d448f0",
+      "bytes": 3193
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-10-r05.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/DEC-CAMP-10-r05.png",
+      "sha256": "ccaa9cc89c12d48ed7d59a6ccc704d7245ba0917b5b0a782f231652b1e21da84",
+      "bytes": 4327
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-11-r05.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/DEC-CAMP-11-r05.png",
+      "sha256": "926bcdea4933c7b061ed820b4f15fecda264abbd4f0491c2e0424323bcee83fc",
+      "bytes": 2728
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-12-r05.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/DEC-CAMP-12-r05.png",
+      "sha256": "4da640eca68eb16ec79a2592b59714272d42c7353142c33bc55a267a39fb87d3",
+      "bytes": 2165
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-13-r05.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/DEC-CAMP-13-r05.png",
+      "sha256": "04aff43b90d3424d651001e1b67a42cdf123f37560edf27abb4a78eaf79cc474",
+      "bytes": 5616
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/DEC-CAMP-14-r05.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/DEC-CAMP-14-r05.png",
+      "sha256": "6efe0714d8244393af57d066a71e7c0d860affd2f025cdd53730e3292c2a0499",
+      "bytes": 2441
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r05/doors-native64.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r05/doors-native64.png",
+      "sha256": "bd5a872a40c7cb735e5a3ac087edcfc6b0d5a24cf79f35cb2f07b66dc6b4061b",
+      "bytes": 5785
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r06/camp-floor-native.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r06/camp-floor-native.png",
+      "sha256": "6c19a4a8dfe9979d4adb8aa0cc2fb08ebdcf7eb20c544bdcb2965905b29bcf13",
+      "bytes": 1191671
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r06/camp-layout.txt",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r06/camp-layout.txt",
+      "sha256": "81382d32b6ee9b28681c6243ef7e09456e78e54f35aa9da5d9191d0a2f86a441",
+      "bytes": 720
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r06/camp-structure-native.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r06/camp-structure-native.png",
+      "sha256": "34f551323aa836951b793743f980fb6238d52975b7ffdc43e43755d0846e699a",
+      "bytes": 1543384
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r06/camp.json",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r06/camp.json",
+      "sha256": "a743405132146ddd64054f583b6ef90d1716d0ce4cc2fccc59f8202055a1b28c",
+      "bytes": 12112
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r06/DEC-CAMP-15-r06.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r06/DEC-CAMP-15-r06.png",
+      "sha256": "fa04a7e1d7101d1cd017200fe5adc0abe692db955f64a4b173a0af42fa54e562",
+      "bytes": 5136
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r06/DEC-CAMP-16-r06.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r06/DEC-CAMP-16-r06.png",
+      "sha256": "f4a04f19675338e192c53a5d4e466d011cbd1225f72c88a61866a8549d862328",
+      "bytes": 6806
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r07/camp.json",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r07/camp.json",
+      "sha256": "eeb4a34f679927bc1798c349fe839a0045dae7ac55a7e9933b6b51041e9b6d57",
+      "bytes": 12422
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r08/camp-floor-native.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r08/camp-floor-native.png",
+      "sha256": "ccfeb28cbdad5ceb2083ce9a41ff44d7d5d62ad395b2df76d6b4b9d806bb72f7",
+      "bytes": 1189031
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r08/camp-structure-native.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r08/camp-structure-native.png",
+      "sha256": "1aaa53acde69204dff95f72592d1b932a33e83ca8af4752932a85d0236c6e597",
+      "bytes": 1543402
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r08/camp.json",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r08/camp.json",
+      "sha256": "df02b75c1aa7a3ddf0b4dac36e305399682119b4103815694b65feae4803a702",
+      "bytes": 12564
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r09/camp.json",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r09/camp.json",
+      "sha256": "0cf9e0b7220b46386e02d52ce503b2fa60007aac068a7c9976bc86ddd924c0b2",
+      "bytes": 18028
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r09/illumination-correction.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r09/illumination-correction.png",
+      "sha256": "683edf0211463ab1c265136c38a5f23433b6a7549999bf7fb77f7099d81ce553",
+      "bytes": 607950
+    },
+    {
+      "source": "assets/prototypes/handcrafted-camp-01/r09/irradiance.png",
+      "destination": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/prototype-history/r09/irradiance.png",
+      "sha256": "330dbc00205d20c91da3bc7841a1529f79fb574aed2b1f52db3464d6393d8373",
+      "bytes": 35200
+    }
+  ],
+  "retired_runtime": [
+    {
+      "path": "src/dialogue_bubble_review.rs",
+      "bytes": 17940,
+      "sha256": "2f7e63f3aa4a484e7ffe4c5bc63333516523fd2fe4c17cada9fb8215f45fcaba"
+    },
+    {
+      "path": "src/dialogue_trial_app.rs",
+      "bytes": 14050,
+      "sha256": "f8f62ac2d475999d65bef6585fd3273f253d76649a18466d3b860f6be0e96d31"
+    }
+  ],
+  "obsolete_outputs": [
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-layout-reference.png",
+      "bytes": 22452,
+      "sha256": "6ed158a3604afe6d8ccd0e395846fb10ebe5aa97a26fa1fb9506c4c9f74fede0"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-native64.png",
+      "bytes": 50293,
+      "sha256": "695293ef420fff887372544e1f26c5b392d181b3526b52bb901add01d6a0771b"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-overview.png",
+      "bytes": 23498,
+      "sha256": "cc687122a668d3f9fb7bcefd28beb3f19e969f4314d5a5992de2cce2da29c294"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r02-decor.png",
+      "bytes": 2116759,
+      "sha256": "11778f22889520e2ba081438150e0b21ffcb97becd98f4de046bfdee11134bb6"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r02-native64.png",
+      "bytes": 1897050,
+      "sha256": "7288323bf9bd22374850c14c23e6437d23e3f3ab3df0af5f9241ff8d972bad62"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r02-s1.png",
+      "bytes": 242197,
+      "sha256": "cadd4d4d73372341d0bc2ea8bdc930f43b745ae639194b55196b4ef41b9da175"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r02-s2.png",
+      "bytes": 248856,
+      "sha256": "40ad59e92e747341d31da0069e2774f998b929841bfc88da468fe0ecefef33c3"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r02-s3.png",
+      "bytes": 220086,
+      "sha256": "9613b90f30a987f24c3e8bd535bd5259d1dfc79e7721b0929fe43eb974bd8d15"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r02-s4.png",
+      "bytes": 228062,
+      "sha256": "657a36b16100929920026c16edffa663609675995803c947f3fc9272cd09b35a"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r03-closed-native.png",
+      "bytes": 192177,
+      "sha256": "624313eb4e2de63d1d6ca9a762d13e5eb648f616933b14b733bf8e61649d44e1"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r03-crossed-native.png",
+      "bytes": 191349,
+      "sha256": "2d34421112bf3e11e22d1e2592d6e4025d80722afc625c109864bed7a8e20015"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r03-open-native.png",
+      "bytes": 190935,
+      "sha256": "af81b9322e2657ffa6fae21a969d2f577553c375b080db79882499c889ebf5bc"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r03-scale-native.png",
+      "bytes": 35402,
+      "sha256": "c026ff2a3a6eb61767836510fd8d1e7410d38d7b32caae1e0bfd63c2b970b3ae"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r04-bottom-T-native.png",
+      "bytes": 19770,
+      "sha256": "6815c772b631998fb0352ae57d60184f83c94948ea73e7e189927e7cf7aff8ae"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r04-closed-native.png",
+      "bytes": 282455,
+      "sha256": "eb64eec0741353c2015c0d6d5db47029163a239aa931e97bcbd0801ef232e6c7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r04-crossed-native.png",
+      "bytes": 280806,
+      "sha256": "f03365e6095e7ac2290816292a4c5395a7646a98795a1b6bde1d7f49af27060d"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r04-open-native.png",
+      "bytes": 282072,
+      "sha256": "ce02721841b2d66b3077af5cf1a954eb3bd11ed1133c2ddab3fec504622ecab7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r04-painted-T-native.png",
+      "bytes": 13514,
+      "sha256": "53f498375f1d1d4d4a020b713fc3409383e0c8db0b3c2f5b9e9a412f6d17c4e5"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r04-scale-native.png",
+      "bytes": 30897,
+      "sha256": "59eae83a748d8fd255195f773828745cd3d32b67df4323be97861359efef6ef6"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r04-top-T-native.png",
+      "bytes": 21451,
+      "sha256": "2317bfe9da877e1c20732011a75049bf9c92f413acb82e97186714a2cab842a4"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r05-armurerie-detail-native.png",
+      "bytes": 230690,
+      "sha256": "571016a006a7da924c63f402a94cdc7c90e366e71894882b0b3b7dd593a5474c"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r05-atelier-detail-native.png",
+      "bytes": 216337,
+      "sha256": "f445aca9ec7488f9321ff979be8ea6a1c095fe06dc50863fc19f76b2c70815df"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r05-door-closed-native.png",
+      "bytes": 42248,
+      "sha256": "6b6c463925e0d25b784e0e7075df589368fc568cabcf141fcf00bf6f23456664"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r05-door-crossed-native.png",
+      "bytes": 41493,
+      "sha256": "5f9afc6a1df0bc1f8c88f569df414cdc2e19c78cac71819f959129dcea6a5956"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r05-door-open-native.png",
+      "bytes": 38091,
+      "sha256": "b4463276fc4a1cccb82335ff25f695416259d42a36ec0996eaeb529af929cd1f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r05-missions-detail-native.png",
+      "bytes": 231973,
+      "sha256": "ed9ff2763e3ddace1fa8c5de2279962068668af5f9c0f1c3e0ade7f1c113708f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r05-proportions-native.png",
+      "bytes": 56871,
+      "sha256": "55ed3a1cd5a0cc8508efd148a063712b7eb4e35ab08d4fc0311b1f47bab39efe"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r05-soins-detail-native.png",
+      "bytes": 217620,
+      "sha256": "96b4b11ba0af56cf9b754b798605b83ecb39aa2734d286b45809a63d9e1dec34"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r06-connection-native.png",
+      "bytes": 85476,
+      "sha256": "623d959815e9c70c0f81bf636f454893e420dba178ef00e5e8c31f51360a8316"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r06-cryo-native.png",
+      "bytes": 404435,
+      "sha256": "157424f961187329da477201cd116ba5481062af4a3c6018d9c0f8b4e2839845"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r06-pods-native.png",
+      "bytes": 20859,
+      "sha256": "b7a0d661db194176e7800360754cc54d63c51b82a72a2dbc3ba4b206b8b8b2c7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r07-conversation-native.png",
+      "bytes": 159963,
+      "sha256": "494a7198ba1046828b58694a20da296b4f0df814432a2b799fd8e967fb318642"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r07-cryo-native.png",
+      "bytes": 487839,
+      "sha256": "39770e279240c6bb47e509b82336dd03c814738eba1c88bb32900b0303232c84"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r07-entrance-native.png",
+      "bytes": 138568,
+      "sha256": "1192aed970df86e3c98ee8a44875672edf07b969da103f00b34b1951f8722efe"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r08-door-medical-native.png",
+      "bytes": 94230,
+      "sha256": "8e9d0290bebad13e2de6aa9eec80a69efffe8cc1c044c4cbe88c40caad340373"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r08-door-workshop-native.png",
+      "bytes": 91988,
+      "sha256": "c0cb396b4990b245f8cb7d07410ab144599178e601e398660a5c4f1f3ae0dc7c"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r08-infirmerie-native.png",
+      "bytes": 233061,
+      "sha256": "1da0af43651b6842948963ee7a6979f7af88948ce8a7dd4fe9b18d67466dc717"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r09-cryo-animated.webp",
+      "bytes": 1132876,
+      "sha256": "afc53f49fcb2c88d4a472fe75c00ed794d74ebb968d9cca3a27bf50fb4b22295"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r09-cryo-off-native.png",
+      "bytes": 448945,
+      "sha256": "1f6b23faea495480c8560a32b847ba89c37d8c61244fea6404e14a067d81a835"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r09-cryo-on-native.png",
+      "bytes": 500695,
+      "sha256": "5819ef3ef50e195bcc1e2a7e945dfa96a17fef652b64f46145a01ef228fd205c"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r09-medical-native.png",
+      "bytes": 239256,
+      "sha256": "e76ef5d4425c3b0b99a1148120e1667ac6336547c5e09ddaf71c38931cbba9fa"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r09-screen-animated.webp",
+      "bytes": 17692,
+      "sha256": "a3d855a04ef6f11a57d60752f386e6b15d69d4031c62b8211c620e4fd6a08af0"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r09b-cryo-animated.webp",
+      "bytes": 1301162,
+      "sha256": "9920ac1c86e912604d14cff2aabc21368c67d78727eaf24e917b01c3bf2ae7c9"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-01-r09b-screen-animated.webp",
+      "bytes": 35600,
+      "sha256": "85263ef5b624f0d912bb434fa195f112e6b373ce5ef84ec5a33889d5dc690617"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/checks.json",
+      "bytes": 930,
+      "sha256": "75ccec1719cacbec69f140c187ba2698ad6bc8374f93e5578abf178a624f27c2"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-1-native.webp",
+      "bytes": 2282,
+      "sha256": "b109c489d10e5377aeba22231699f57cf60f37200a7567914dc1bd339888f769"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-1-scene-0.png",
+      "bytes": 1132271,
+      "sha256": "967e0654417c9315005d5c4437d9502944ad3a55bfed0640da60368ddc27424d"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-1-scene-1.png",
+      "bytes": 1132091,
+      "sha256": "8bd1e9fd83a569e2d88c1b16c646b49219d546ba7f5423b64eef2430f275eecd"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-1-scene.webp",
+      "bytes": 50266,
+      "sha256": "d893b8ba1c544b0c95038ede00dc80516952a00922e8792b73455485270831d8"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-2-native.webp",
+      "bytes": 2212,
+      "sha256": "63e38fbc56c862aff1e71d7ceec8e91bc9798bc9b53ec6328c446e3866343159"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-2-scene-0.png",
+      "bytes": 1154481,
+      "sha256": "d5c368248a56f46e1af07bab15fbba3c435be3dfc8897549e4029ffe646667d2"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-2-scene-1.png",
+      "bytes": 1154372,
+      "sha256": "0a7e96cd486783e4ebe7054b7831fc5e4663b2926a52efd85dcfb89299850bdd"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-2-scene.webp",
+      "bytes": 53172,
+      "sha256": "f95c8243bff23f3ef19be8584d897ad6710461413d180dfe38584b64e74047ef"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-3-native.webp",
+      "bytes": 2212,
+      "sha256": "f366dfe5ab7049639d0d5a391b3b4361b1326db0a4bf4f1e3e353dc6556af195"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-3-scene-0.png",
+      "bytes": 1171321,
+      "sha256": "56a5cfa79b49f41409ce7342557fc79f36faad9d5d99d00b4e33bce260750ed9"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-3-scene-1.png",
+      "bytes": 1171350,
+      "sha256": "bc77c4b5eaeddcad71b412aef0e62215810c94ed361924ce6655107e117b9b07"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-3-scene.webp",
+      "bytes": 56972,
+      "sha256": "40d6e2e5063eacaa55db8820bd7b8b34f88f2cdae22053f6afc89c9e49837885"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-4-native.webp",
+      "bytes": 2138,
+      "sha256": "4538af10bb5a756ec2eac9791da836d9692f0488470ca6cccad4cf31ce63e4ed"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-4-scene-0.png",
+      "bytes": 1137009,
+      "sha256": "54960bbc629dad0b0418224de9c7aba9517e2a9f5a27bfff18b372217ab699bd"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-4-scene-1.png",
+      "bytes": 1137183,
+      "sha256": "0c76f8c7bee0e43fbc79cd15f464b38032d4e5105a943b7bd119aa9e21e437b6"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-4-scene.webp",
+      "bytes": 63090,
+      "sha256": "cb207a055afb16d256121cddf4e59c44d52aecba7c299b0a16e319d3247ee437"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-poses-0.png",
+      "bytes": 58622,
+      "sha256": "ab88498434a4bd7fce602388cacf148baa8e62a56997f621fc62cf4c1782348f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-poses-1.png",
+      "bytes": 58349,
+      "sha256": "0bc94d90217b6bd32d4be256d76a2b4488e33e501980f4d3ff7d2601add0095f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-poses-2.png",
+      "bytes": 58622,
+      "sha256": "ab88498434a4bd7fce602388cacf148baa8e62a56997f621fc62cf4c1782348f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/npc-reduced-motion.png",
+      "bytes": 1136976,
+      "sha256": "c3d8f6056f1cd3d92e8b32532b587f3571d8e64bb0c76ebe8739716b19c7cb7b"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-npc-review-01/verification.json",
+      "bytes": 1020,
+      "sha256": "143c872cb1e63e1cd397e867107372f74bf6316d8f34f9d48d898e9bbc4b34c5"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-r05.html",
+      "bytes": 5966,
+      "sha256": "990abd8f4f1492bbd01bdf6cb1b1882c60af048b540d5e715b4c0c4cb83a2352"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-r06.html",
+      "bytes": 4360,
+      "sha256": "11ffae6f662c5cd44027d0ed8580f4919354ca2930cc625dfb63c110a4b4ce33"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-r07.html",
+      "bytes": 4710,
+      "sha256": "c316ae5c455669e394bdb8882e7cc7f9c85976a160fb39e69075d109691dd8ac"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/camp-r08.html",
+      "bytes": 6671,
+      "sha256": "c6f37106368111ad18cbfbf98e29ea6c001ee98cc4cac79bfa5d1ab5a58f304c"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/camp-armorer.png",
+      "bytes": 347659,
+      "sha256": "dbd7f20d4af9b5bfeaeb2e5527c23df59277daf3ffc3e1e31a83e8c03335b063"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/camp-hall.png",
+      "bytes": 1166573,
+      "sha256": "78b3da6caa469d42d1f19321377d713a6ca14795851f9a65b97f084b3ba31a74"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/camp-medical.png",
+      "bytes": 1166475,
+      "sha256": "a5e007481ce31524b56bb2ed350dbf181d969fb4113964571430c31e30bb9511"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/camp-officer.png",
+      "bytes": 329118,
+      "sha256": "e0305b392ca2782bcf7d6836d4ca66fdca47cfcd05d2236e73dafb15012ea3d7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/camp-start.png",
+      "bytes": 1123886,
+      "sha256": "e16ebf1ccbfee5a4a6e8f7841388328880d953544c3afde90a9a18e3716c4a90"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/camp-technician.png",
+      "bytes": 201280,
+      "sha256": "e9190cb0c1a46436323b3fdf857bcbf214e4644ec27daa083e486020f18f3a03"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/camp-tests-final.log",
+      "bytes": 894,
+      "sha256": "c64cf128f7d121c3bc78080cb8c614c22a610de4331f30d7e2f30f8886682e41"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/checks.json",
+      "bytes": 1800,
+      "sha256": "9346e55ecbd79cd0db474bc2b44152d44d8298e1a5baa0ec0a29886e57746356"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/client-affected-tests.log",
+      "bytes": 3284,
+      "sha256": "e7638f3dbd7a996526ad72b7d95801c7181be3973b7dc5ec14d75d16fffc2552"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/client-tests.log",
+      "bytes": 134642,
+      "sha256": "74c5f3f76bd6dc473499564881114cc870a5851d08fd9b8b3726d754e00550fe"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/integration-evidence.json",
+      "bytes": 5246,
+      "sha256": "4778b9166807d0f5c307840929d64f7da9c636432f6bc5bd86540a6ad3a406f5"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/legacy-fixture-updates.json",
+      "bytes": 4145,
+      "sha256": "1957fc17a97679450a50906e1b980d740e24f5dd578c469aa1d78b78e850be1d"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/campaign-integration-01/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/bubble-1-native.png",
+      "bytes": 346016,
+      "sha256": "aaa3d5346bcf4cc13f42cec312d3eb8e88769006e32ecaa7f0a881b57e54c7c5"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/bubble-1.png",
+      "bytes": 1103493,
+      "sha256": "912efaacb74d6fc42f10d16481ce545cdbcc7b40a3b6e6685739cdc8181c6e42"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/bubble-2-native.png",
+      "bytes": 348034,
+      "sha256": "06721cb63aa2b8838d20cd67c1038647f4a4b94dc571cae18c36464ffd0b0f01"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/bubble-2.png",
+      "bytes": 1425089,
+      "sha256": "2c51e7b6af1de816ad61732707ac9b486d99cf789ca9c426dc1ed73d527ef9ed"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/bubble-3-native.png",
+      "bytes": 350818,
+      "sha256": "21526ccd0efe0e39589140c073c802d7f05d7b130b61985da7b58f4459c9693c"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/bubble-3.png",
+      "bytes": 1110393,
+      "sha256": "b95c4fe7766cc7451d7a63386308313b06b4792cb5f9d068eb3d4daa166b32ec"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/checks-r02.json",
+      "bytes": 1463,
+      "sha256": "90d5d6b72d50105a9b5398e1641509137573ba2389e9014e2e08e53d2423e95b"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/checks.json",
+      "bytes": 1235,
+      "sha256": "4b28baf0119e9d197caa0434bbeb40d6756846b62bf894860ce669f7b7b04a90"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/dialogue-audio-01.wav",
+      "bytes": 828044,
+      "sha256": "efbfbd53e46717c14044813ee10148d8bbd10e13c893f2fd45e7d31750b5d544"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/dialogue-audio-02.wav",
+      "bytes": 828044,
+      "sha256": "4599743cc09cbe27d4b7bff4bc61b4a99f231d62b5072850361a2e72e00428e0"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/dialogue-audio-03.wav",
+      "bytes": 828044,
+      "sha256": "75611dcb0381a75ed87b84f71116aefb99984552a95ad99d2681d4e3bec79ad1"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/playable-03/checks.json",
+      "bytes": 667,
+      "sha256": "310d30500233cf28e9d9f94bea41a8709689c7da220ecbd4de864493db231aa9"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/playable-03/closed.png",
+      "bytes": 1132576,
+      "sha256": "5370ea18c84e09df6cbed0a181bb34637cbb532648d0ccfbe29b3dbad6926f50"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/playable-03/complete.png",
+      "bytes": 1149791,
+      "sha256": "0906ef85bf715be58a42c00d0348b5c30dd1eb38c50eaa285223e4e28938bbfc"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/playable-03/isolated-run.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/playable-03/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/playable-03/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/playable-03/typing.png",
+      "bytes": 1099435,
+      "sha256": "c0956087d709c154c6205c0da1f1e9a9457ebe5d66e6920faef93131da6a1d1e"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-background-native.png",
+      "bytes": 346242,
+      "sha256": "21106bbb9840b6b3ae4fc2ad9fe52f8b974f4864fd4f664a981c0e786d8cfb29"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-background.png",
+      "bytes": 1134361,
+      "sha256": "4e50ed0f09e1424780958eaefddf670fdaa60e3899c9ae30f28abe3d72044971"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-closed-native.png",
+      "bytes": 344179,
+      "sha256": "9e0f3d7c48fe7ad54a88c01b255f5677d889fe9403b380763daf5113f9a7e5ba"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-closed.png",
+      "bytes": 1132051,
+      "sha256": "57e5f7a9c4ef5273aa659efde02c7c166b1eaa2ba3114ee7caa948c43e6baba6"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-dialogue-static.png",
+      "bytes": 128534,
+      "sha256": "d2b781bd3d42b7e4af43a67a7f972b2020d615d88754fe309696f7010c05e370"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-mid.png",
+      "bytes": 103878,
+      "sha256": "4661b48614b5b53c37d84742c6ecda97d5a9314d8f314f3aa0a935c0967043cb"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-native.png",
+      "bytes": 349587,
+      "sha256": "2ea950fd836d35de5c4fc47dcd888de198dcb5f61f5116260174e0b89d57d34d"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-notification-read.png",
+      "bytes": 15103,
+      "sha256": "2f5af7e9305cfb03284d5799d4ae9f5b600c1253bac713604985fa40fc3694ed"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-notification-ready.png",
+      "bytes": 15490,
+      "sha256": "6fcdb6651b68c42bee97e54c166d21a8503ab65120236700f38186f63ab9ec45"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-notification-unread.png",
+      "bytes": 15288,
+      "sha256": "57b41fc802044f42becf5f66585111bc389ca31edef565785f9f67e1f2fb8b6f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-ready.png",
+      "bytes": 1132465,
+      "sha256": "0610a34021b66bb1c0d1838363a8ebc27c311ab6080305c845204c273a33f04c"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-unread-native.png",
+      "bytes": 344394,
+      "sha256": "eb0611bea8c7f713f94e6b2d5440eb6ea94b0bf67a271671c5efad9c6998a06f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-unread.png",
+      "bytes": 1132037,
+      "sha256": "b0e8621fa766d662f0533351e9094a2e0f47fd9f8b953f9fd9fdac51e12001d2"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02-writing.webp",
+      "bytes": 1591278,
+      "sha256": "419428ac3c5c5dec1f8d17896364de0110b86dbcafaf325dc57f0d54f6137b27"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/terminal-r02.png",
+      "bytes": 1149248,
+      "sha256": "69514e40ab2f8721d58912f588ae496eef729e251ee2dceb3d00ebba9eb6cf83"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/dialogue-bubbles-01/verification-r02.json",
+      "bytes": 816,
+      "sha256": "74bad0f4ba67f341e481ddd255bfccb7956fd8f20f08f30e2d1c58f85ae74357"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/door-fixture-r05/engine-checks-r05-door-fixture.json",
+      "bytes": 729,
+      "sha256": "7ef60a24a22ffb4197674311702ce2d0e0908e8fe636dde6a80401aed45d82ae"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/door-fixture-r05/r05-door-fixture-native-closed.png",
+      "bytes": 682729,
+      "sha256": "5a0968ba10df5203cb77caff697d6f6838ab3be3409ed8c5bfc062d3f3f4fad6"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/door-fixture-r05/r05-door-fixture-native-crossed.png",
+      "bytes": 682245,
+      "sha256": "740b34200b6a1e52236ecd6aaf0d0deb4d74336b6948ca15ea61c3915f9997dd"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/door-fixture-r05/r05-door-fixture-native-open.png",
+      "bytes": 682248,
+      "sha256": "dccf6107a53da85122c31fe2ef468f9d1383cbb326ba32fe158239c2946dc6a7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/door-fixture-r05/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/door-fixture-r05/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r03/engine-checks-r03.json",
+      "bytes": 557,
+      "sha256": "e7253e8cfa741aad3ac8f8a1330da7356dc1d9b98ed6308390d30e51c5d58e19"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r03/r03-native-closed.png",
+      "bytes": 878457,
+      "sha256": "8e5777426caa061c450ed749ce3efab3d31bbedb708cf127d2dc3670e7668bf2"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r03/r03-native-crossed.png",
+      "bytes": 879062,
+      "sha256": "bf6382a223eaba704de64dc2ce2b5e3fe2c92c6e6780797e8fa1e1d19254aecf"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r03/r03-native-open.png",
+      "bytes": 879339,
+      "sha256": "598f63c197b97458edeeefcc429de6f32677423f9e4b776f743bda84a820d770"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r03/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r03/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r03.html",
+      "bytes": 4770,
+      "sha256": "ccea3bd7b947110c1dd9ddd3c06cca8d8916884709eaf72160006d4b202634c3"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r04/engine-checks-r04.json",
+      "bytes": 684,
+      "sha256": "02c4eb76c51d70aae505c4d53f6d128aa7bcb638cd795d1fddbd83d48ee9cdb7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r04/r04-native-closed.png",
+      "bytes": 682722,
+      "sha256": "e242fc3f86477715b55b8aa9132c9ab16051dbc4f3c219662fcd5a0bc968ec7b"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r04/r04-native-crossed.png",
+      "bytes": 682133,
+      "sha256": "3c29b8d96ef228af5cb17d0ebbded86f72150d3c2aac5267ff880889294331a7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r04/r04-native-open.png",
+      "bytes": 682130,
+      "sha256": "c3979c923a7d151064a6c220b3ced9e617fdeb0492aabf7c37096af4d222ba3e"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r04/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r04/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r04.html",
+      "bytes": 5766,
+      "sha256": "284a3da5b0c151646995c9b0fdbee7a6cce47b1ebc39fb3a383bbec0393a6f58"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r05/full-engine-checks-r05.json",
+      "bytes": 734,
+      "sha256": "892ccb86fdff1579e63215a27cfa9eafe31ba978ee9618e56258fbc765727dd7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r05/r05-camp-native.png",
+      "bytes": 2628318,
+      "sha256": "9666b723f35d819fc7c6626e9967d41e66535ed585bacddcd451ac1f9d8287e1"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r05/r05-missions-native.png",
+      "bytes": 2628224,
+      "sha256": "b7d53366559bd134596e5828a9b70c85d8f6e1deff08ed3fe375384f19d2485f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r05/r05-soins-native.png",
+      "bytes": 2628117,
+      "sha256": "6f086b952781088641413901286e33c959ad43f93be5f49dcf0c7d64e112b41c"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r05/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r05/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r06/full-engine-checks-r06.json",
+      "bytes": 791,
+      "sha256": "27eaef4d4b593b0c35e2d701b9245fed7a8b26b787b99f321cfebb5b8604e1fc"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r06/r06-camp-native.png",
+      "bytes": 3164309,
+      "sha256": "5e397675c708e503ec9692caee6e20eeee949a86bdb7e4b6cbfe956d003aa128"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r06/r06-hall-native.png",
+      "bytes": 3164366,
+      "sha256": "26198e9d422209e94d790cad77ede531ced1fb04a31038690c24bbbf1591c216"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r06/r06-missions-native.png",
+      "bytes": 3164266,
+      "sha256": "dc88798d313318cce0a32bda5623d6531ccf84dcf494f17690d21eb9b15f7ff1"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r06/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r06/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r07/full-engine-checks-r07.json",
+      "bytes": 789,
+      "sha256": "03f65b29d14e3db9c47bdcbd673c2b808f81694d2788516a0af2997ecb34415c"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r07/r07-camp-native.png",
+      "bytes": 3164381,
+      "sha256": "c759d17fc169144e4aa797de9cd5a916ccfca00a1220ff23e9b7dc9a3f723384"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r07/r07-hall-native.png",
+      "bytes": 3164438,
+      "sha256": "47e7ea8dd360bdbf3578572d67b8bd778917b4067ff800a5cabd0d4153949c79"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r07/r07-officier-native.png",
+      "bytes": 3164364,
+      "sha256": "11269053dc44fadd0affc2727b25442d9780e1c8a780fd8a85f0dca5ecfd470d"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r07/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r07/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r08/full-engine-checks-r08.json",
+      "bytes": 794,
+      "sha256": "a2020f7b039d31a4f44ab92f2a606635c30f871a8e5661b8360f3fad58967fac"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r08/r08-camp-native.png",
+      "bytes": 3166848,
+      "sha256": "7fa5d9a16d06ab5d7451a7159239b2ca8914605a3c1af1b99fe6c46f96839368"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r08/r08-hall-native.png",
+      "bytes": 3166905,
+      "sha256": "0d21c71438ff7c53908b2d87bc20bb4ea140a357d07abd895aacaebe211009ad"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r08/r08-infirmerie-native.png",
+      "bytes": 3166683,
+      "sha256": "6439377e33e2443a41a4a9d4f039512b2c3c3578e0217ada6e4d93caee9b9d83"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r08/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r08/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-00.png",
+      "bytes": 631268,
+      "sha256": "a5d9e1645527e648ad759ad44c757c2e8a73b9eb95ff6b7234e928a176d82eab"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-01.png",
+      "bytes": 631355,
+      "sha256": "f90aa1e1ded668d732e1413fe66e27616741a0cd9e13b33eb14a898ea1ff46e1"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-02.png",
+      "bytes": 631432,
+      "sha256": "cf2fbae0c1a5d1e45ac3408f12200f7b8f5edee456d817233e7d2483388e7c6a"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-03.png",
+      "bytes": 631576,
+      "sha256": "1418848e484f8301d4820dfc5b69fd5570f899d979e604cf12d9d914ff6080f5"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-04.png",
+      "bytes": 631628,
+      "sha256": "a39becb75a2a499ef6468dd79e657df5bbf8b6a604188c66add7d92959266f38"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-05.png",
+      "bytes": 631639,
+      "sha256": "08853bbc8928d9ff1b15a4047da2f21f65bdc845b9ddcba8782d0f70ed7771ae"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-06.png",
+      "bytes": 631755,
+      "sha256": "41a0c8ea155006d37da4d128d9487007383f11120f84ec6a2daf701a625f9415"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-07.png",
+      "bytes": 631742,
+      "sha256": "b443e65cf3c388906ba94e66e34b7de2c382876edb32ab84deb9cbc15a438cd3"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-08.png",
+      "bytes": 631652,
+      "sha256": "80a153c9be4e4f86d3e3f83dd953beb99712afcd572bbc5fdb24bc062df821bf"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-09.png",
+      "bytes": 631453,
+      "sha256": "2ba04fc9b4edb267f923d31f9601f8ab571d00400396892b0bd0011c8090f395"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-10.png",
+      "bytes": 631264,
+      "sha256": "0d54fc28270b8c7680f3135657ced1a4a6e5e659779d566927f8c514d1bc40a2"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-11.png",
+      "bytes": 631269,
+      "sha256": "4b7d6db420844e5983bb3bf002957cd3592d1b2aee6a87993771f5402262f767"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-12.png",
+      "bytes": 631266,
+      "sha256": "5b88cf17657cec8f031590ba2750f1c08025de2a6c6825638a8887b74d310dd5"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-13.png",
+      "bytes": 631264,
+      "sha256": "5a6ccad296e5fefb85dc045af28e3d71671959b65421c24dace5ccb6e4dde93c"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-14.png",
+      "bytes": 631271,
+      "sha256": "c585817da04384b4567f5ea75283ce77e7067ffd9fc3e03f1b0b9a5710f15541"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-15.png",
+      "bytes": 631275,
+      "sha256": "125c0e9da7a427e7e300a751e7753609be3f5da8e552de5477857467ffdf3178"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-16.png",
+      "bytes": 631277,
+      "sha256": "50ed9f451cf502329bbc606a1ae0a29e86a12c9d29d4238282efb57f984ef31f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-17.png",
+      "bytes": 631271,
+      "sha256": "ef89971d51d73d7080aea6cfa3bf909044c90a5ad7a3f88ed21216bae3146a9f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-18.png",
+      "bytes": 631276,
+      "sha256": "edffd19450a1b086b09b37593b345e69f13a5eafcf8fb1b208fcc4b44f8b4096"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-19.png",
+      "bytes": 631317,
+      "sha256": "767e9b59bbc5720ef6fab77220f59e5a0e31e4b4d28895b7da0b8b5c4f0d99c0"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-20.png",
+      "bytes": 631384,
+      "sha256": "c3c0f353539641c7a115d600e0ad409a2d5b593415a3b1d9bbf6fb766483fc76"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-21.png",
+      "bytes": 631457,
+      "sha256": "61cff125bdb5d2ef05129f05525ff3391ef2da470706770a4ab6cff8d7a5367d"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-22.png",
+      "bytes": 631609,
+      "sha256": "66380370c8b7d3061cef692797b47fd5836200c3819991922eda5e8c317de66f"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/cryo-23.png",
+      "bytes": 631640,
+      "sha256": "eb16841b1c05a4604d522623e1d8d1b9717784ce0f6f41ac5eeebc906ddd2314"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-00.png",
+      "bytes": 22481,
+      "sha256": "14ffd39afb4574b4eb547c7d18092d451ec8239758d63130543806376f20b1f7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-01.png",
+      "bytes": 22481,
+      "sha256": "14ffd39afb4574b4eb547c7d18092d451ec8239758d63130543806376f20b1f7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-02.png",
+      "bytes": 22482,
+      "sha256": "a9adda4e3cad4e1ad5c03dbb340873dd62b3ebcbb2d756dce48a375419fbf3fd"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-03.png",
+      "bytes": 22482,
+      "sha256": "a9adda4e3cad4e1ad5c03dbb340873dd62b3ebcbb2d756dce48a375419fbf3fd"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-04.png",
+      "bytes": 22495,
+      "sha256": "c017dfe99fc26ce8c13d9a3c4af8d0d2e79d0300af880dbd26fbc26115f7e0ea"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-05.png",
+      "bytes": 22495,
+      "sha256": "655e912434a581debff37e57fe90019f739f39b52feda501aa8e1a49644fa198"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-06.png",
+      "bytes": 22495,
+      "sha256": "655e912434a581debff37e57fe90019f739f39b52feda501aa8e1a49644fa198"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-07.png",
+      "bytes": 22504,
+      "sha256": "abef7fa2f0a0e49936665ef21dc42a7d36c6915d8c314dc44ad7f98ff8163718"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-08.png",
+      "bytes": 22501,
+      "sha256": "9f4958201196f39412263722ef01a0374a7680681adba0fc590de7fc65aa58b9"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-09.png",
+      "bytes": 22501,
+      "sha256": "9f4958201196f39412263722ef01a0374a7680681adba0fc590de7fc65aa58b9"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-10.png",
+      "bytes": 22481,
+      "sha256": "14ffd39afb4574b4eb547c7d18092d451ec8239758d63130543806376f20b1f7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-11.png",
+      "bytes": 22482,
+      "sha256": "a9adda4e3cad4e1ad5c03dbb340873dd62b3ebcbb2d756dce48a375419fbf3fd"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-12.png",
+      "bytes": 22482,
+      "sha256": "a9adda4e3cad4e1ad5c03dbb340873dd62b3ebcbb2d756dce48a375419fbf3fd"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-13.png",
+      "bytes": 22495,
+      "sha256": "c017dfe99fc26ce8c13d9a3c4af8d0d2e79d0300af880dbd26fbc26115f7e0ea"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-14.png",
+      "bytes": 22495,
+      "sha256": "655e912434a581debff37e57fe90019f739f39b52feda501aa8e1a49644fa198"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-15.png",
+      "bytes": 22495,
+      "sha256": "655e912434a581debff37e57fe90019f739f39b52feda501aa8e1a49644fa198"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-16.png",
+      "bytes": 22504,
+      "sha256": "abef7fa2f0a0e49936665ef21dc42a7d36c6915d8c314dc44ad7f98ff8163718"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-17.png",
+      "bytes": 22504,
+      "sha256": "abef7fa2f0a0e49936665ef21dc42a7d36c6915d8c314dc44ad7f98ff8163718"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-18.png",
+      "bytes": 22501,
+      "sha256": "9f4958201196f39412263722ef01a0374a7680681adba0fc590de7fc65aa58b9"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-19.png",
+      "bytes": 22481,
+      "sha256": "14ffd39afb4574b4eb547c7d18092d451ec8239758d63130543806376f20b1f7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-20.png",
+      "bytes": 22481,
+      "sha256": "14ffd39afb4574b4eb547c7d18092d451ec8239758d63130543806376f20b1f7"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-21.png",
+      "bytes": 22482,
+      "sha256": "a9adda4e3cad4e1ad5c03dbb340873dd62b3ebcbb2d756dce48a375419fbf3fd"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-22.png",
+      "bytes": 22495,
+      "sha256": "c017dfe99fc26ce8c13d9a3c4af8d0d2e79d0300af880dbd26fbc26115f7e0ea"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/animation/screen-23.png",
+      "bytes": 22495,
+      "sha256": "c017dfe99fc26ce8c13d9a3c4af8d0d2e79d0300af880dbd26fbc26115f7e0ea"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/full-engine-checks-r09.json",
+      "bytes": 928,
+      "sha256": "cf307ceeb862944e4275c25e330c8800ec208e42bd5592c4cfbbcbd206d20854"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/perf-1600x1000-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/perf-1600x1000-stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/perf-3840x2160-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/perf-3840x2160-stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/performance-1600x1000.json",
+      "bytes": 256,
+      "sha256": "b60a0f94a6af0c12d3e06c311981150cabac293f542c0a5ea5255856d352d814"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/performance-3840x2160.json",
+      "bytes": 246,
+      "sha256": "3a13b0b70044f07ef4b0f36280d2e9d150220fcd25551118a0b84795dad12cbb"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/performance-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/performance-stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/r09-camp-native.png",
+      "bytes": 3072604,
+      "sha256": "2dc1c81f6702c4bccdb353c3092a42c0475e67f9e19b268819f0a8311c91ca63"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/r09-hall-native.png",
+      "bytes": 3072590,
+      "sha256": "61f271277b103496c74844e13f43f730feb5c015e8a56fa2eb3b0f6dd8562862"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/r09-infirmerie-native.png",
+      "bytes": 3072472,
+      "sha256": "720be66a3fa9312ca1627088f06c2b53a7714a614b3fac3e5eda98392131c597"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/r09-lights-off-native.png",
+      "bytes": 2980218,
+      "sha256": "d7bdd8aadc6970388683bb114de5d5f3502e86c7a15f17772ca1607d652b5fe4"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/r09-reference-native.png",
+      "bytes": 3166848,
+      "sha256": "7fa5d9a16d06ab5d7451a7159239b2ca8914605a3c1af1b99fe6c46f96839368"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/engine-r09/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/scene-r02.html",
+      "bytes": 2884,
+      "sha256": "45325d646116b24e8393873e57964da88efb00c659130e07ea276054efaa4a13"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/cleanup-validation/checks.json",
+      "bytes": 658,
+      "sha256": "1e0e8835a1f90d64dbf3eeca058b32c66092c42a1789091a79ea57a77bfd9524"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/cleanup-validation/closed.png",
+      "bytes": 1131702,
+      "sha256": "391e0a605ae88e5e13df484cbc4a692a2f3b520bf24899396f67711c4f007bad"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/cleanup-validation/complete.png",
+      "bytes": 1148774,
+      "sha256": "ebefd12aaf795a49a15dd9de44a9795858233c4601196425f69d04480d71b0d4"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/cleanup-validation/isolated-run.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/cleanup-validation/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/cleanup-validation/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/handcrafted-places-review-01/cleanup-validation/typing.png",
+      "bytes": 1097305,
+      "sha256": "48eaee6b424f8a85da8fbf596f689fc67cef44f6656afe458b862f35567a7956"
+    }
+  ],
+  "obsolete_example_binaries": [
+    {
+      "path": "target/debug/examples/handcrafted_camp_full_review-8a4cbf9695a8fea4.d",
+      "bytes": 529,
+      "sha256": "8c8f043ddf2aa5e4a3304456ecdb7a5b4db8c7dc429c4184959e4cccce53a32b"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_full_review-a9a4149148ddd8f0.d",
+      "bytes": 524,
+      "sha256": "35da7f44b2272d4cd382e72e961bf5d31fc617fb97595f172c85fb3cae55af61"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_full_review-a9a4149148ddd8f0.exe",
+      "bytes": 8432640,
+      "sha256": "5c12c26881f331943b89f85234dfd824d7ec0a6ab428ff6a885957387477712d"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_full_review-a9a4149148ddd8f0.pdb",
+      "bytes": 10407936,
+      "sha256": "0d00aecd487f36510b92ffbbb7c8c1ebfe3628369867488228bd3f52813f9b2e"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_full_review-f876832a1cf24e41.d",
+      "bytes": 529,
+      "sha256": "fc57b85e7624d4808225d3db5c92bf0b76baf304c5cd762a1870dcf1c86ce240"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_full_review.d",
+      "bytes": 490,
+      "sha256": "9f1dd58a415f34de1638acc86468184822c078eefd602a9d17cd7801df7bc675"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_full_review.exe",
+      "bytes": 10221056,
+      "sha256": "291aa7f965e75503d0b17c79bc86f24a63caf5b6c8cdfc22e90e58e306277846"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_full_review.pdb",
+      "bytes": 10850304,
+      "sha256": "da0cfe2c4b45f3093d41d096430b6c5e9f0b488fae62a2878bdb42670d8bcb2c"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_review-88d7b139267ad625.d",
+      "bytes": 7355,
+      "sha256": "14ef4e5c694f3535044df3663c1696d879393be41f6f0fc76fa75a7a1349209e"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_review-a01f5e639d2c437c.d",
+      "bytes": 7350,
+      "sha256": "d17705fe6ba9a5044aeb9929b0c32c4a22a3c7b3f631467d7510ee61612a07b2"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_review-a01f5e639d2c437c.exe",
+      "bytes": 35851264,
+      "sha256": "66a275738048f2e5b7af94ac288f596d9fc983fd7ee7c35b3c41cccdf9dc2c33"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_review-a01f5e639d2c437c.pdb",
+      "bytes": 11890688,
+      "sha256": "99815a93cef991e76036b621cd4007798ede062ddccf53891aef19dd963ac606"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_review-dac066cf2e9c6eff.d",
+      "bytes": 7355,
+      "sha256": "19b01d0d6f7c2b7587d3cfe31ca0b623e88303ee3aa36f0df1a6ddc8aa1f3084"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_review.d",
+      "bytes": 7316,
+      "sha256": "76dd4247b896bb0bff0ad1a418ad62549eab299ac1638432b37c4fafaab8cede"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_review.exe",
+      "bytes": 35998208,
+      "sha256": "2eb835e4cabe9874324c57cbda48c75a410da27732b0c53021b68fe1318103db"
+    },
+    {
+      "path": "target/debug/examples/handcrafted_camp_review.pdb",
+      "bytes": 11063296,
+      "sha256": "3ce477ee16460392a6b4f88bb4a87b7cc3f36cc40a16c5697911888bbc3580c9"
+    },
+    {
+      "path": "target/debug/examples/libhandcrafted_camp_full_review-8a4cbf9695a8fea4.rmeta",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "target/debug/examples/libhandcrafted_camp_full_review-f876832a1cf24e41.rmeta",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "target/debug/examples/libhandcrafted_camp_review-88d7b139267ad625.rmeta",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "target/debug/examples/libhandcrafted_camp_review-dac066cf2e9c6eff.rmeta",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "protected": [
+    {
+      "path": "assets/maps/cryogenic-camp-01/camp.json",
+      "bytes": 17690,
+      "sha256": "923da891f74b7d2b27e896d53b91ea98006fe62eb3e01b777fc9c407611bcead"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/DEC-CAMP-07-r05.png",
+      "bytes": 6267,
+      "sha256": "5f7d865ebc6bc2a5b5a85173feea8d015399eff56d7cdb8cf487de78211fab90"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/DEC-CAMP-08-r05.png",
+      "bytes": 8369,
+      "sha256": "42c7fc4f5445386934f6bad7a5ba5abaa3029e02abe3ef62330df9b867a96c2d"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/DEC-CAMP-09-r05.png",
+      "bytes": 3193,
+      "sha256": "83fb6e5b655e7779b74bc1a32478cc5696126a46c0e507caa1324d5081d448f0"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/DEC-CAMP-10-r05.png",
+      "bytes": 4327,
+      "sha256": "ccaa9cc89c12d48ed7d59a6ccc704d7245ba0917b5b0a782f231652b1e21da84"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/DEC-CAMP-11-r05.png",
+      "bytes": 2728,
+      "sha256": "926bcdea4933c7b061ed820b4f15fecda264abbd4f0491c2e0424323bcee83fc"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/DEC-CAMP-12-r05.png",
+      "bytes": 2165,
+      "sha256": "4da640eca68eb16ec79a2592b59714272d42c7353142c33bc55a267a39fb87d3"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/DEC-CAMP-13-r05.png",
+      "bytes": 5616,
+      "sha256": "04aff43b90d3424d651001e1b67a42cdf123f37560edf27abb4a78eaf79cc474"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/DEC-CAMP-14-r05.png",
+      "bytes": 2441,
+      "sha256": "6efe0714d8244393af57d066a71e7c0d860affd2f025cdd53730e3292c2a0499"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/DEC-CAMP-15-r06.png",
+      "bytes": 5136,
+      "sha256": "fa04a7e1d7101d1cd017200fe5adc0abe692db955f64a4b173a0af42fa54e562"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/DEC-CAMP-16-r06.png",
+      "bytes": 6806,
+      "sha256": "f4a04f19675338e192c53a5d4e466d011cbd1225f72c88a61866a8549d862328"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/floor.png",
+      "bytes": 1189031,
+      "sha256": "ccfeb28cbdad5ceb2083ce9a41ff44d7d5d62ad395b2df76d6b4b9d806bb72f7"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/illumination-correction.png",
+      "bytes": 607950,
+      "sha256": "683edf0211463ab1c265136c38a5f23433b6a7549999bf7fb77f7099d81ce553"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/irradiance.png",
+      "bytes": 35200,
+      "sha256": "330dbc00205d20c91da3bc7841a1529f79fb574aed2b1f52db3464d6393d8373"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/layout.txt",
+      "bytes": 720,
+      "sha256": "81382d32b6ee9b28681c6243ef7e09456e78e54f35aa9da5d9191d0a2f86a441"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/structure.png",
+      "bytes": 1543402,
+      "sha256": "1aaa53acde69204dff95f72592d1b932a33e83ca8af4752932a85d0236c6e597"
+    },
+    {
+      "path": "assets/audio/ui/dialogue-writing-03.wav",
+      "bytes": 828044,
+      "sha256": "75611dcb0381a75ed87b84f71116aefb99984552a95ad99d2681d4e3bec79ad1"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/PLACE-CAMP-01-r02-background.png",
+      "bytes": 1755875,
+      "sha256": "942084169ab8f56f4348cf89e26a66948f6d623a0e35b1228e35592fbdea201d"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/door-topology-reference.png",
+      "bytes": 1987,
+      "sha256": "a15578813c56de9ea0f099e6ccea80f6242248d4a32460c5a03f1acfd2be82b7"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/doors-source-r04.png",
+      "bytes": 1416819,
+      "sha256": "31b90e9ebca9c1dba8a67db47b527d4b5f7092758406e88375c00b1e674aefd0"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/floor-source-r04.png",
+      "bytes": 1679269,
+      "sha256": "62c02ed7e7d9d4341a38b9c554f09b5ac979e242236985346dd1019bc887fe64"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/furniture-layout-reference.png",
+      "bytes": 34154,
+      "sha256": "ffdc5eb5384817035223e438c99307b18db7e4b3e6d47784f9285de91fdbf220"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/furniture-source-r04.png",
+      "bytes": 1291046,
+      "sha256": "2bd6f9a7d77c30685ccf03daa4fb11d5b810e91fdd4d58a32019e00d51a13943"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/lamp-source-r04.png",
+      "bytes": 680931,
+      "sha256": "fb73e2360f4c6e135df0f7e0fee0428cb0bb7f1635c9a131dc884615cde23273"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/wall-topology-mask.png",
+      "bytes": 6388,
+      "sha256": "af1504676ff93b249c72d1aea21f864c5cae79cfd045693c8293605cb1174879"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/wall-topology-reference.png",
+      "bytes": 12133,
+      "sha256": "f9012a62224e2475fb59c8c6bd5015809854a9d98056d42d0e6f8984c243093e"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r04/walls-source-r04.png",
+      "bytes": 927774,
+      "sha256": "e3b015f96e6b3f0a0384469b80e099ade169506d5860404023cfd703dbc600fe"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r05/architecture-source-r05.png",
+      "bytes": 1776071,
+      "sha256": "e01cf0ca88fe8a21f2b6c44436c24103b0f3e46b44a677902fd59882850435a3"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r05/camp-reference-user-r05.png",
+      "bytes": 2206019,
+      "sha256": "2f1854a7a089ff7a1d15a65aa2029131e6d78845dc850d34bad78e8b35432df6"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r05/furniture-source-r05.png",
+      "bytes": 1162424,
+      "sha256": "577ee05b4112d641783fdfc51d2120bcf4e4d79089e54bf9b1e7b2161389a659"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r06/architecture-open-source-r06.png",
+      "bytes": 1605592,
+      "sha256": "68c4e7dc3d65e5e1eef262dae17c93667e195ae17dae6ec7fc98e86d61f5f177"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r06/architecture-source-r06.png",
+      "bytes": 1685855,
+      "sha256": "fc80c06dde63b8fe0aee7dab5aeca1e531fc487f45e6c208b155e0e72397844a"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r06/pods-source-r06.png",
+      "bytes": 742915,
+      "sha256": "f098383bb29dfaace18a55e46c7dcca9157c3f98872877478e569a8eb7dc7482"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r08/doorways-edit-source-r08.png",
+      "bytes": 184216,
+      "sha256": "ea7d877125ac7a32e425c7bd0544fbcd59f9f5fa5ecee099d5a376158ac6bff5"
+    },
+    {
+      "path": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r08/doorways-edited-source-r08.png",
+      "bytes": 1606985,
+      "sha256": "4c387a5a010469afac50a02b2211b381a10cc1f7e8654b80b20374f6e3ddca80"
+    },
+    {
+      "path": "artifacts/map-editor/derniere-erreur.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/map-editor/ensembles/ensemble-salle-technique-demo-2026-10-01.json",
+      "bytes": 10128,
+      "sha256": "ae23c9c6fef828ba34fe1ed410775ae53bdd0004698ecf69906698fdd65d04ab"
+    },
+    {
+      "path": "artifacts/map-editor/maps/demo-outils-editeur-2026-10-01.json",
+      "bytes": 14271,
+      "sha256": "edde1d34ed99ce894e9a6fa236ea847d87b828c5660daaebded5bbaf16a60740"
+    },
+    {
+      "path": "artifacts/map-editor/maps/grande-ville-et-nature-2026-10-02.json",
+      "bytes": 922695,
+      "sha256": "b39d3b3b98f76b3958b394e6a0538ea1fb858cd854a2b528815ca0b8779d150c"
+    },
+    {
+      "path": "artifacts/map-editor/preferences.json",
+      "bytes": 396,
+      "sha256": "678a9f76f9f5958cc2eb519f3a56ac53a32055eaad939434cc3e9fb2fb19ccf9"
+    },
+    {
+      "path": "artifacts/map-editor/recovery/derniere-session.json",
+      "bytes": 980338,
+      "sha256": "1dd0857e83795acf56882cefd7b6ef3d972de35887bee32939940cd47326f286"
+    },
+    {
+      "path": "artifacts/map-editor/recovery/session-ignoree-1790923810204610500.json",
+      "bytes": 12098,
+      "sha256": "5229e2481a927d3df0bda55a0a7d5ccf87a2f44ebe734c5f1cf14190ad5b4089"
+    },
+    {
+      "path": "artifacts/map-editor/recovery/session-ignoree-1790926534510826000.json",
+      "bytes": 9053,
+      "sha256": "ef49367d3f406729454aa81fbb964576985ad225d2e093180a398411750e6b28"
+    },
+    {
+      "path": "artifacts/map-editor/recovery/session-ignoree-1790933868992093900.json",
+      "bytes": 988474,
+      "sha256": "a9da9607affa138fc29ea73b4dde715e28881ba374d3047050d023be933ab8a1"
+    },
+    {
+      "path": "Jouer.cmd",
+      "bytes": 156,
+      "sha256": "58cb9c02e59731affccf4bf9459830abdf7a447795c4deef8f4d7746737a9310"
+    }
+  ],
+  "preserved_pending": [
+    "HOVER-OUTLINE-01 awaiting visual approval",
+    "DIALOGUE-AUDIO-01-03 remains provisional",
+    "Quest-ready question-mark proposal retained at native size"
+  ],
+  "archive_root": "tools/archive/handcrafted-places-review-01",
+  "removal_method": "Send to Windows Recycle Bin; grouped permanent deletion rejected by automatic review: blocked by policy"
+}

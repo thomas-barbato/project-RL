@@ -1177,7 +1177,21 @@ impl TerminalView {
                 && let Some(preview) = attack_preview
                 && let Some(cell) = preview.cells.iter().find(|cell| cell.position == position)
             {
-                draw_attack_preview_area(rect, preview.valid, cell.step);
+                if crate::attack_preview_visuals::active() {
+                    let edge = [
+                        GridPos::new(position.x, position.y - 1),
+                        GridPos::new(position.x + 1, position.y),
+                        GridPos::new(position.x, position.y + 1),
+                        GridPos::new(position.x - 1, position.y),
+                    ]
+                    .map(|next| {
+                        !visibility.is_visible(next)
+                            || !preview.cells.iter().any(|cell| cell.position == next)
+                    });
+                    crate::attack_preview_visuals::area(rect, preview.valid, edge);
+                } else {
+                    draw_attack_preview_area(rect, preview.valid, cell.step);
+                }
             }
             // Even a buggy caller cannot render a live actor/effect in memory.
             if visible && let Some(cell) = overlay(position) {
@@ -1275,7 +1289,11 @@ impl TerminalView {
                 && let Some(preview) = attack_preview
                 && preview.cursor == position
             {
-                draw_attack_preview_cursor(rect, preview.valid);
+                if crate::attack_preview_visuals::active() {
+                    crate::attack_preview_visuals::cursor(rect, preview.valid);
+                } else {
+                    draw_attack_preview_cursor(rect, preview.valid);
+                }
             }
         }
         combat_motion.draw_fireballs(game.map(), combat_time, reduced_motion, false, |at| {
@@ -1289,7 +1307,7 @@ impl TerminalView {
             camera.viewport,
             |at| (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at)),
         );
-        combat_motion.draw_spells(combat_time, reduced_motion, |at| {
+        combat_motion.draw_spells(combat_time, reduced_motion, camera.viewport, |at| {
             (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
         });
         combat_motion.draw_blasts(game.map(), combat_time, reduced_motion, false, |at| {
@@ -1335,7 +1353,7 @@ impl TerminalView {
                 .is_some_and(|cell| enemy_status_only(game, position, cell.symbol));
             if !status_only
                 && let Some(index) = crate::camp_npc_review::marker_at(game, position)
-                && !crate::dialogue_bubble_review::notification_hidden(position, index == 1)
+                && !crate::terminal_dialogue::notification_hidden(position, index == 1)
             {
                 let entity = game.actors().entity_at(position).unwrap();
                 let rect = combat_motion.actor_rect(
@@ -1391,12 +1409,11 @@ impl TerminalView {
             let camp_contact = crate::camp_npc_review::marker_at(game, position) == Some(1);
             let Some(marker) = game
                 .quest_marker_at(position)
-                .or_else(|| crate::dialogue_bubble_review::reviewed_quest_marker(position))
                 .or_else(|| camp_contact.then_some(project_rl::game::QuestMarker::Available))
             else {
                 continue;
             };
-            if crate::dialogue_bubble_review::quest_notification_hidden(position, marker) {
+            if crate::terminal_dialogue::quest_notification_hidden(position, marker) {
                 continue;
             }
             let icon = match marker {
@@ -1418,7 +1435,7 @@ impl TerminalView {
                             reduced_motion,
                         )
                     });
-            if camp_contact && !crate::dialogue_bubble_review::notification_hidden(position, true) {
+            if camp_contact && !crate::terminal_dialogue::notification_hidden(position, true) {
                 marker_rect.x += 11. * marker_rect.w / 64.;
             }
             draw_quest_badge(marker_rect, icon, quest_marker_rise, occupied_above);
@@ -2922,7 +2939,7 @@ fn remembered_bounds(
     )
 }
 
-fn draw_hud_progress(rect: Rect, value: u16, maximum: u16, color: Color) {
+pub(crate) fn draw_hud_progress(rect: Rect, value: u16, maximum: u16, color: Color) {
     draw_rectangle(
         rect.x,
         rect.y,
@@ -3600,9 +3617,9 @@ fn draw_legend_overlay(game: &GameState, bounds: Rect, legend_label: &str) {
     {
         let y = top + (terrain_rows + offset) as f32 * row_height;
         let rect = Rect::new(columns[2], y - icon_size * 0.75, icon_size, icon_size);
-        draw_attack_preview_area(rect, true, 0);
+        crate::attack_preview_visuals::area(rect, true, [true; 4]);
         if cursor {
-            draw_attack_preview_cursor(rect, true);
+            crate::attack_preview_visuals::cursor(rect, true);
         }
         draw_bounded_text(
             label,

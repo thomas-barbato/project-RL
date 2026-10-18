@@ -19,7 +19,12 @@ macro_rules! actions {
     ($( $id:ident, $label:literal, $key:literal, $contexts:expr; )*) => {
         #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
         #[serde(rename_all = "snake_case")]
-        pub enum Action { $($id,)* }
+        pub enum Action {
+            // Internal combat intent retained for callers and legacy decoding.
+            // It is not a separate configurable input action.
+            Attack,
+            $($id,)*
+        }
         impl Action {
             pub const ALL: &'static [Self] = &[$(Self::$id,)*];
             pub const NAVIGATION: &'static [Self] = &[
@@ -31,9 +36,9 @@ macro_rules! actions {
                 Self::MoveSouth,
                 Self::MoveWest,
             ];
-            pub fn name(self) -> &'static str { match self { $(Self::$id => $label,)* } }
-            fn default_key(self) -> &'static str { match self { $(Self::$id => $key,)* } }
-            fn contexts(self) -> u8 { match self { $(Self::$id => $contexts,)* } }
+            pub fn name(self) -> &'static str { match self { Self::Attack => Self::Interact.name(), $(Self::$id => $label,)* } }
+            fn default_key(self) -> &'static str { match self { Self::Attack => Self::Interact.default_key(), $(Self::$id => $key,)* } }
+            fn contexts(self) -> u8 { match self { Self::Attack => GAME, $(Self::$id => $contexts,)* } }
         }
     };
 }
@@ -44,11 +49,10 @@ actions! {
     MoveWest, "Se déplacer vers l'ouest", "A", GAME;
     MoveEast, "Se déplacer vers l'est", "D", GAME;
     Wait, "Attendre un tour", "Space", GAME;
-    Attack, "Attaquer la cible", "F", GAME;
     AimGround, "Viser une case", "T", GAME;
     WorldActions, "Choisir une case / actions au clavier", "X", GAME;
     CycleTarget, "Cible suivante", "Tab", GAME;
-    Interact, "Interagir / ramasser", "E", GAME;
+    Interact, "Action contextuelle", "E", GAME;
     Inventory, "Ouvrir / fermer l'inventaire", "I", ALL;
     Character, "Ouvrir / fermer le personnage", "J", ALL;
     Skills, "Ouvrir / fermer les compétences", "K", ALL;
@@ -335,7 +339,7 @@ impl Controls {
             })
             .collect();
         Self {
-            version: 4,
+            version: 5,
             layout,
             semantics,
             bindings,
@@ -343,7 +347,14 @@ impl Controls {
     }
 
     pub fn binding(&self, action: Action) -> &Binding {
-        &self.bindings[&action]
+        &self.bindings[&Self::configurable_action(action)]
+    }
+    fn configurable_action(action: Action) -> Action {
+        if action == Action::Attack {
+            Action::Interact
+        } else {
+            action
+        }
     }
     pub fn label(&self, action: Action) -> String {
         self.binding(action).label(self.layout, self.semantics)
@@ -372,6 +383,7 @@ impl Controls {
         frame.held.contains(self.binding(action))
     }
     pub fn rebind(&mut self, action: Action, binding: Binding) -> Result<(), String> {
+        let action = Self::configurable_action(action);
         if !binding.valid() {
             return Err(
                 "Touche non prise en charge (Échap reste réservé au menu pause).".to_owned(),
@@ -390,7 +402,7 @@ impl Controls {
         Ok(())
     }
     fn validate(&self) -> Result<(), String> {
-        if self.version != 4 {
+        if self.version != 5 {
             return Err("Version des commandes incompatible.".to_owned());
         }
         if self.bindings.len() != Action::ALL.len() {
@@ -435,6 +447,14 @@ impl Controls {
         let migrate_skill_bar = document["version"] == 3;
         if migrate_skill_bar {
             document["version"] = serde_json::json!(4);
+        }
+        // The user's interaction key now owns every contextual action. Retire
+        // the separate attack binding without rewriting the source file.
+        if document["version"] == 4 {
+            document["version"] = serde_json::json!(5);
+        }
+        if let Some(bindings) = document["bindings"].as_object_mut() {
+            bindings.remove("attack");
         }
         let mut result: Self =
             serde_json::from_value(document).map_err(|error| error.to_string())?;
@@ -744,6 +764,47 @@ mod tests {
     use super::*;
 
     #[test]
+    fn contextual_action_has_one_configurable_binding_and_no_default_f_alias() {
+        let mut controls = Controls::preset(Layout::Qwerty, KeySemantics::Physical);
+        assert!(!Action::ALL.contains(&Action::Attack));
+        assert_eq!(controls.binding(Action::Interact), &Binding::key("E"));
+        assert_eq!(
+            controls.binding(Action::Attack),
+            controls.binding(Action::Interact)
+        );
+        assert!(!controls.pressed(
+            Action::Attack,
+            &InputFrame {
+                pressed: [Binding::key("F")].into(),
+                ..Default::default()
+            }
+        ));
+        controls
+            .rebind(Action::Interact, Binding::key("F6"))
+            .unwrap();
+        assert_eq!(controls.binding(Action::Attack), &Binding::key("F6"));
+        let encoded = serde_json::to_value(&controls).unwrap();
+        assert!(encoded["bindings"].get("attack").is_none());
+        assert_eq!(Controls::decode(&encoded.to_string()).unwrap(), controls);
+    }
+
+    #[test]
+    fn v4_attack_binding_is_retired_while_the_custom_interaction_key_is_preserved() {
+        let mut source =
+            serde_json::to_value(Controls::preset(Layout::Qwerty, KeySemantics::Physical)).unwrap();
+        source["version"] = serde_json::json!(4);
+        source["bindings"]["attack"] = serde_json::json!({"type":"key","value":"F6"});
+        for key in ["E", "F7"] {
+            source["bindings"]["interact"] = serde_json::json!({"type":"key","value":key});
+            let migrated = Controls::decode(&source.to_string()).unwrap();
+            assert_eq!(migrated.binding(Action::Interact), &Binding::key(key));
+            assert_eq!(migrated.binding(Action::Attack), &Binding::key(key));
+            assert!(!migrated.bindings.contains_key(&Action::Attack));
+            assert_eq!(migrated.version, 5);
+        }
+    }
+
+    #[test]
     fn skill_bar_migrates_old_weapon_defaults_and_keeps_personal_bindings() {
         let preset = Controls::preset(Layout::Qwerty, KeySemantics::Physical);
         let mut old = serde_json::to_value(preset).unwrap();
@@ -787,7 +848,7 @@ mod tests {
             document["bindings"]["use"] = serde_json::json!({"type":"key", "value":"U"});
             let migrated = Controls::decode(&document.to_string()).unwrap();
             assert_eq!(migrated.binding(Action::Use), &Binding::key("E"));
-            assert_eq!(migrated.version, 4);
+            assert_eq!(migrated.version, 5);
 
             document["bindings"]["drop"] = serde_json::json!({"type":"key", "value":"E"});
             let migrated = Controls::decode(&document.to_string()).unwrap();
@@ -1148,7 +1209,7 @@ mod tests {
             .as_object_mut()
             .unwrap()
             .remove("aim_ground");
-        document["bindings"]["attack"] = serde_json::json!({"type":"key", "value":"T"});
+        document["bindings"]["interact"] = serde_json::json!({"type":"key", "value":"T"});
         let migrated = Controls::decode(&document.to_string()).unwrap();
         assert_eq!(migrated.binding(Action::Attack), &Binding::key("T"));
         assert_ne!(migrated.binding(Action::AimGround), &Binding::key("T"));
@@ -1208,7 +1269,7 @@ mod tests {
             .as_object_mut()
             .unwrap()
             .remove("quick_techniques");
-        document["bindings"]["attack"] = serde_json::json!({"type":"key", "value":"U"});
+        document["bindings"]["interact"] = serde_json::json!({"type":"key", "value":"U"});
         let migrated = Controls::decode(&document.to_string()).unwrap();
         assert_eq!(migrated.binding(Action::Attack), &Binding::key("U"));
         assert_ne!(

@@ -330,6 +330,7 @@ pub(super) fn burst(
     map: &Map,
     background: bool,
     rect: impl Fn(GridPos) -> Option<Rect>,
+    footprint: Option<&[GridPos]>,
 ) {
     if matches!(skill, "DR01" | "DP01") {
         if let Some(target) = rect(to) {
@@ -396,9 +397,20 @@ pub(super) fn burst(
             },
             (1, 0),
         );
-        if art.mask(&cells, &rect).is_none() {
+        let cells = if crate::effect_geometry::enabled() {
+            footprint.unwrap_or(&cells)
+        } else {
+            &cells
+        };
+        if art.mask(cells, &rect).is_none() {
             return;
         }
+        let scale = if crate::effect_geometry::enabled() {
+            crate::effect_geometry::placement(cells, &rect, 0.)
+                .map_or(scale, |p| p.size.x.min(p.size.y) / 168.)
+        } else {
+            scale
+        };
         if skill == "SG01" && age < 0.32 {
             let u = age / 0.32;
             let opacity = (1. - u).powf(1.2);
@@ -446,6 +458,9 @@ pub(super) fn burst(
             };
             if age < duration {
                 let frame = ((age / duration * 6.) as usize).min(5);
+                let place = crate::effect_geometry::enabled()
+                    .then(|| crate::effect_geometry::placement(cells, &rect, 0.))
+                    .flatten();
                 let size = (radius as f32 * 2. + 1.) * 60. * scale;
                 let (texture, source) = if skill == "SG00" {
                     (
@@ -465,12 +480,14 @@ pub(super) fn burst(
                 };
                 draw_texture_ex(
                     texture,
-                    p.x - size * 0.5,
-                    p.y - size * 0.5 - 4. * scale,
+                    place.map_or(p.x - size * 0.5, |p| p.center.x - p.size.x * 0.5),
+                    place.map_or(p.y - size * 0.5 - 4. * scale, |p| {
+                        p.center.y - p.size.y * 0.5
+                    }),
                     tint(WHITE, 0.88),
                     DrawTextureParams {
                         source: Some(source),
-                        dest_size: Some(vec2(size, size)),
+                        dest_size: Some(place.map_or(vec2(size, size), |p| p.size)),
                         ..Default::default()
                     },
                 );

@@ -2,62 +2,24 @@
 
 Lire `docs/DIRECTION_ARTISTIQUE_TILES.md` avant tout ajout.
 
-La revue courante **PLACE-CAMP-01 r09** active les lumières et les trois
-animations d’ambiance autorisées. `prepare_camp_atmosphere_r09.py` génère des
-données d’irradiance occultées par la grille des murs et de compensation des
-halos ; les dessins originaux restent intacts. Le module de rendu
-`examples/handcrafted_camp/atmosphere.rs` applique les lumières sur le décor et
-les acteurs. `show_camp_atmosphere_r09.py` contrôle les captures, les témoins
-d’occultation et les boucles WebP natives sans perte, puis publie la même page.
-L’exemple démarre en r09 ; L coupe les lampes, P fige l’ambiance et
-`--legacy-r08` reproduit l’étape à éclairage peint.
+Le camp **PLACE-CAMP-01 r09b** accepté est intégré au lancement normal.
+Ses ressources utilisées sont dans `assets/maps/cryogenic-camp-01/`, ses dessins
+sources et les anciens conditionnements dans `assets/source-art/`.
+Le rendu actif est `src/cryogenic_camp_render.rs` avec `src/camp_atmosphere.rs`.
+Le dialogue terminal et son 03 provisoire sont partagés par le jeu et le
+contrôle `--ui-cold-dialogue-terminal <dossier>`.
 
-La revue **PLACE-CAMP-01 r08** retire les chaises, porte l’infirmerie
-à trois lits et corrige les lampes traversant les deux accès du bas.
-`prepare_camp_adjustments_r08.py` conditionne les deux détails imagegen et
-préserve le reste du décor. `show_camp_adjustments_r08.py` contrôle les captures
-et publie la même page, avec les propositions de lumière et d’animations non
-activées. L’exemple démarre en r08 ; `--legacy-r07` reproduit l’étape précédente.
+`show_camp_review.py` publie l’aperçu compact courant : une vue du camp,
+le dialogue intégré, les trois essais sonores et les contours encore en revue.
+`prepare_dialogue_audio_review.py` reproduit les sons depuis la trace durable
+de revue ; `show_target_outline_review.py` vérifie les captures des contours.
+Aucune ressource utilisée par le jeu ne dépend de cette page ou de ses captures.
 
-La revue **PLACE-CAMP-01 r07** place l’officier NPC-01 r03 déjà accepté
-à l’entrée de la cryogénie. `prepare_camp_officer_r07.py` déplace son unique
-acteur sans nouveau dessin ; `show_camp_officer_r07.py` contrôle ses pixels,
-la préservation du décor et publie les captures dans la même page. L’exemple
-accepte `--legacy-r06` et `--legacy-r05` pour reproduire les étapes précédentes.
-
-Le camp **PLACE-CAMP-01 r05** est validé. La revue **r06** ajoute à
-gauche la cryogénie demandée, six cuves fermées et une ouverte près du joueur.
-`prepare_camp_cryo_r06.py` conditionne ces nouveaux dessins sans modifier les
-pixels du camp accepté. `show_camp_cryo_r06.py` vérifie les captures natives,
-les acteurs et l’identité pixel par pixel du camp existant, puis réutilise
-la page courante lors de sa reproduction historique.
-
-La revue **PLACE-CAMP-01 r05** reprend l’image précise choisie par le
-joueur. `prepare_camp_reference_r05.py` conditionne l’architecture et les huit
-meubles séparés produits avec imagegen, sans redimensionner les acteurs acceptés.
-`handcrafted_camp_full_review` ouvre le camp complet dans la simulation du jeu ;
-`show_camp_reference_r05.py` vérifie les captures GPU puis publie le même aperçu
-avec des détails à taille native. `Voir_camp_prototype.cmd` lance ce camp.
-L’ancien exemple à deux pièces accepte `--corrected-doors` pour vérifier les
-montants de porte r05, tout en conservant la reproduction des anciens dessins.
-Les commandes complètes et validations sont dans la revue du lieu.
-
-`prepare_handcrafted_camp_fixture.py` calibre six meubles de la bibliothèque
-de prototype existante pour **PLACE-CAMP-01 r03**, sans modifier les sprites
-acceptés des personnages. L’exemple `handcrafted_camp_review` utilise le moteur
-de simulation et le rendu partagé de l’éditeur pour vérifier une porte et deux
-pièces à taille native. `show_handcrafted_camp_engine_review.py` publie les
-captures GPU et contrôle les pixels des acteurs ; il rétablit la page courante
-après reproduction des anciennes maquettes. Cette revue ne raccorde pas le
-camp à la campagne et ne valide pas de nouveau décor automatiquement.
-
-La correction **r04** utilise `prepare_handcrafted_camp_kit.py` : nouveau kit
-imagegen dans l’ambiance de r02, seize murs dont quatre T peints, sols, portes,
-six meubles et une lampe. Le module `examples/handcrafted_camp/scenery.rs`
-affiche ces pièces sans rotation des reliefs. Le prototype et la galerie
-ouvrent r04 par défaut lorsqu’ils sont exécutés directement ; `--legacy-r03`
-et `--revision r03` reproduisent r03. Pour rétablir la page courante r05 après
-une reproduction historique, exécuter `show_camp_atmosphere_r09.py` en dernier.
+Les anciens générateurs, maquettes, exemples et lanceurs du camp sont conservés
+pour traçabilité sous `tools/archive/handcrafted-places-review-01/`.
+Ils ne font plus partie des exemples compilés ni du pipeline actif. Leur README
+précise les anciens chemins et les conditions d’une reproduction historique.
+Le registre de nettoyage est dans `docs/maintenance/nettoyage-2026-10-18/camp-dialogues/`.
 
 L’étude du monde `study_diablo2_world.py` réutilise les tables de l’installation
 locale extraites en lecture seule. `--check` vérifie les résultats dérivés de

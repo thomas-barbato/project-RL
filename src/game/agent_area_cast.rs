@@ -207,6 +207,26 @@ mod tests {
         );
     }
     #[test]
+    fn occult_blast_footprint_survives_energy_rejection_without_allowing_a_cast() {
+        let mut g = arena();
+        let target = GridPos::new(5, 3);
+        let expected = g.agent_spell_footprint("A02", target).unwrap();
+        g.player_energy.spend(g.player_energy.available()).unwrap();
+        let before = format!("{g:?}");
+        let actual = g.agent_spell_footprint("A02", target).unwrap();
+        assert_eq!(actual.cells(), expected.cells());
+        assert!(matches!(
+            g.agent_spell_preview("A02", target),
+            Err(CommandRejection::InsufficientEnergy { .. })
+        ));
+        assert!(matches!(
+            g.process_player_command(cast(target)),
+            CommandOutcome::Rejected(CommandRejection::InsufficientEnergy { .. })
+        ));
+        assert_eq!(format!("{g:?}"), before);
+    }
+
+    #[test]
     fn occult_blast_can_target_empty_floor_and_rejects_invalid_aim_without_spending_anything() {
         let mut g = arena();
         let target = GridPos::new(5, 3);

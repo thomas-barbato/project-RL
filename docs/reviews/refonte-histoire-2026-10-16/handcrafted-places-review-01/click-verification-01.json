@@ -1,0 +1,20 @@
+{
+  "review": "INPUT-CLICK-03",
+  "date": "2026-10-18",
+  "observation": "An empty left click opened a flamethrower area preview; a second click could fire.",
+  "clarification": "The user explicitly allows ordinary area weapons to aim and fire at empty ground.",
+  "conclusion": "The reproduced flamethrower case is expected. No unintended skill cast was reproduced with single-target weapons.",
+  "normal_game": {
+    "single_target_melee_and_ranged": "empty clicks do not arm or fire, spend resources, advance turns or reuse another selected enemy",
+    "ordinary_area_weapon": "empty click opens ordinary preview; confirmation records AttackAt, never an unselected TechniqueAt",
+    "selected_skill": "left click still confirms; right click cancels",
+    "controls_changed": false
+  },
+  "new_navigation": "WALK-VIS-01 is a separate isolated review: free-ground clicks plan movement, while explicitly opened weapon or skill previews keep priority.",
+  "tests": [
+    "empty_left_click_with_single_target_weapons_never_arms_or_casts_an_unselected_skill",
+    "empty_left_click_with_an_area_weapon_uses_ordinary_fire_and_never_an_unselected_skill",
+    "left_click_confirms_each_connected_skill_once_at_the_hovered_cell"
+  ],
+  "status": "verified"
+}

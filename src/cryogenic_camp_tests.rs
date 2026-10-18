@@ -142,11 +142,16 @@ fn cryogenic_exit_uses_the_existing_lazy_sector_provider() {
             .passage_is_irreversible(app.game.passage(exit).unwrap())
     );
     assert_eq!(app.game.status(), RunStatus::Active);
-    assert_eq!(
-        app.execute_command(GameCommand::Interact { target: exit }),
-        CommandOutcome::Applied
+    app.crash_recovery_enabled = false;
+    app.update_input_at(
+        &InputFrame {
+            pressed: [app.controls.binding(Action::Interact).clone()].into(),
+            pointer: Some((1., 1.)),
+            viewport: Some((1600., 1000.)),
+            ..Default::default()
+        },
+        Some(0.),
     );
-    app.capture_events_at(Some(0.));
     assert_eq!(
         app.game.current_zone().unwrap().id.as_str(),
         "core:industrial_sector"
@@ -171,11 +176,10 @@ fn cryogenic_exit_uses_the_existing_lazy_sector_provider() {
             .next_visited_passage_towards(&camp::ZONE_ID.parse().unwrap()),
         Some(entrance)
     );
-    assert_eq!(
-        restored.execute_command(GameCommand::Interact { target: entrance }),
-        CommandOutcome::Applied
-    );
-    restored.capture_events_at(Some(0.));
+    restored.crash_recovery_enabled = false;
+    // The reciprocal passage uses the same generic left-click path, on the
+    // player's cell, as NPCs and other nearby interactables.
+    restored.select_pointer_world_cell(entrance, None);
     assert_eq!(
         restored.game.current_zone().unwrap().id.as_str(),
         camp::ZONE_ID

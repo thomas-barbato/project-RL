@@ -1,0 +1,161 @@
+{
+  "review": "SKILL-LEARN-BUTTONS-01",
+  "date": "2026-10-18",
+  "status": "LEARN-BTN-01_and_SKILL-DEMO-01_accepted_and_integrated",
+  "request": "Plusieurs propositions de petit bouton stylisé pour apprendre ou améliorer une compétence.",
+  "functional_context": "Bouton dédié à l’achat de rang ; clic sur l’image réservé à une démonstration pour les compétences actives. Cette revue concerne seulement la forme du bouton.",
+  "candidates": [
+    {
+      "id": "LEARN-BTN-01",
+      "name": "Plaque biseautée"
+    },
+    {
+      "id": "LEARN-BTN-02",
+      "name": "Sceau hexagonal"
+    },
+    {
+      "id": "LEARN-BTN-03",
+      "name": "Relais circulaire"
+    },
+    {
+      "id": "LEARN-BTN-04",
+      "name": "Languette intégrée"
+    }
+  ],
+  "shown_states": [
+    "repos",
+    "survol",
+    "appui",
+    "sans point",
+    "plafond"
+  ],
+  "themes": [
+    "metal par défaut",
+    "vieux terminal"
+  ],
+  "native_capture": {
+    "button_pixels": [
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        32,
+        32
+      ],
+      [
+        36,
+        32
+      ]
+    ],
+    "candidates": [
+      {
+        "id": "LEARN-BTN-01",
+        "name": "Plaque biseautée"
+      },
+      {
+        "id": "LEARN-BTN-02",
+        "name": "Sceau hexagonal"
+      },
+      {
+        "id": "LEARN-BTN-03",
+        "name": "Relais circulaire"
+      },
+      {
+        "id": "LEARN-BTN-04",
+        "name": "Languette intégrée"
+      }
+    ],
+    "engine_commands": 0,
+    "game_instance_created": false,
+    "normal_ui_changed": false,
+    "review": "SKILL-LEARN-BUTTONS-01",
+    "skill_icon_pixels": 64,
+    "status": "proposals_only",
+    "styles": [
+      "metal",
+      "terminal"
+    ],
+    "surface": [
+      1280,
+      960
+    ]
+  },
+  "images": [
+    {
+      "file": "boutons-metal.png",
+      "pixels": [
+        1280,
+        960
+      ],
+      "sha256": "46856c625f5aaff8b037d89fb278a4d6a85395b4af286bf2de3e9c8d71836ecb"
+    },
+    {
+      "file": "boutons-terminal.png",
+      "pixels": [
+        1280,
+        960
+      ],
+      "sha256": "98c12103b557e178e182fd2a3c4f10be876000c4338d62e206fb0161bc84d9a7"
+    }
+  ],
+  "source": "src/skill_learn_button_review.rs",
+  "capture_command": "target/visual-review/project-rl.exe --ui-cold-skill-learn-buttons artifacts/skill-learn-buttons-review-01",
+  "interactive_command": "cargo run --locked -- --apercu-boutons-competences",
+  "current_page": "artifacts/skill-learn-buttons-review-01/index.html",
+  "acceptance": {
+    "id": "LEARN-BTN-01",
+    "quote": "je crois que la premiere est la plus simple et efficasse",
+    "date": "2026-10-18",
+    "scope": "Plaque biseautée et états déjà présentés, deux habillages. Achat dédié sans modification des coûts."
+  },
+  "proposal_validation": {
+    "review_build": "passed",
+    "native_capture": "passed",
+    "format": "passed",
+    "diff_check": "passed",
+    "art_uses_accepted_icons_at_native_64px": true,
+    "normal_skill_input_and_layout_unchanged": true,
+    "simulation_or_save_loaded": false,
+    "runtime_assets_added": false
+  },
+  "demo": {
+    "id": "SKILL-DEMO-01",
+    "revision": 3,
+    "status": "accepted_and_integrated",
+    "panel_pixels": [
+      480,
+      222
+    ],
+    "example_rank": 1,
+    "independent_of_learned_rank": true,
+    "normal_game_enabled": true,
+    "active_count": 68,
+    "passives_excluded": 26,
+    "layout": "inside_central_skill_grid_directly_below_icons_without_extra_panel",
+    "title": "centered_skill_name_only",
+    "use_button_removed": true,
+    "close_button": "centered_below_six_shortcuts_inside_skill_window_dock",
+    "acceptance": [
+      "oui ca me convient, tu dois le faire pour toutes les compétences actives :)",
+      "parcontre il n'est pas necessaire de marquer \"DEMONSTRATION\" l'utilisateur s'en rendra bien compte par lui meme, le titre du skill devra etre centré cependant :)",
+      "aussi j'aimerais que la \"fenetre de démonstration\" se trouve dans la zone directe sous les compétences, pas dans une div dédiée",
+      "tu peux aussi supprimer le bouton \"utiliser\" et placer le bouton \"fermer\" sous la barre de compétence (dans la barre de skill)"
+    ],
+    "frame": {
+      "id": "SKILL-DEMO-FRAME-01",
+      "status": "requested_and_integrated",
+      "quote": "tu pourrais ajouter une bordure autour de la \"scene\" de demonstration ?",
+      "thickness_ui_pixels": 1,
+      "color": "interface accent",
+      "opacity": 0.65,
+      "around": "scene only; centered title remains outside",
+      "no_layout_or_gameplay_change": true
+    }
+  },
+  "integration_record": "integration.md"
+}

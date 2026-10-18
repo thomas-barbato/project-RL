@@ -225,6 +225,7 @@ impl AsciiApp {
         std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
         let mut app = Self::new_agent_blast_trial()?;
         app.suspension_path = output.join("isolated-run.json");
+        app.crash_recovery_enabled = false;
         request_new_screen_size(1280., 800.);
         for _ in 0..5 {
             app.draw();
@@ -263,11 +264,38 @@ impl AsciiApp {
         if cells != 9 {
             return Err("La zone de base doit couvrir 3 × 3 cases".into());
         }
-        frame(&app, output, "blast-aim.png").await?;
-        app.update_input(&InputFrame {
-            pressed: [app.controls.binding(Action::Attack).clone()].into(),
+        let cell = app
+            .terminal
+            .world_cell_rect(
+                &app.game,
+                app.terminal_bounds(),
+                app.ui_scale(),
+                app.graphics.active.world_cell_px,
+                app.navigation_signal_summary().is_some(),
+                aim.cursor,
+                app.camera_glide_offset(),
+            )
+            .ok_or("Case de visée hors caméra")?;
+        let mut pointer = app.graphics.active.transform_input(InputFrame {
+            pointer: Some(cell.center().into()),
+            viewport: Some((1280., 800.)),
             ..Default::default()
         });
+        pointer.pressed.insert(controls::Binding::MouseRight);
+        app.update_input(&pointer);
+        if app.attack_aim.is_some()
+            || app.world_context.is_some()
+            || suspension::fingerprint(&app.game) != before
+        {
+            return Err("Le clic droit n'a pas annulé librement l'aperçu".into());
+        }
+        app.update_input(&InputFrame {
+            pressed: [app.controls.binding(Action::Skill1).clone()].into(),
+            ..Default::default()
+        });
+        frame(&app, output, "blast-aim.png").await?;
+        pointer.pressed = [controls::Binding::MouseLeft].into();
+        app.update_input(&pointer);
         if app.game.turn() != 1 || app.attack_aim.is_some() {
             return Err("Explosion non exécutée".into());
         }
@@ -311,10 +339,34 @@ impl AsciiApp {
             .iter()
             .map(|(_, at, amount)| serde_json::json!({"at":[at.x,at.y],"damage":amount}))
             .collect();
+        let mut keyboard = Self::new_agent_blast_trial()?;
+        keyboard.suspension_path = output.join("isolated-keyboard-run.json");
+        keyboard.crash_recovery_enabled = false;
+        keyboard.update_input(&InputFrame {
+            pressed: [keyboard.controls.binding(Action::Skill1).clone()].into(),
+            ..Default::default()
+        });
+        let preview = suspension::fingerprint(&keyboard.game);
+        keyboard.update_input(&InputFrame {
+            pressed: [controls::Binding::key("F")].into(),
+            ..Default::default()
+        });
+        if suspension::fingerprint(&keyboard.game) != preview || keyboard.attack_aim.is_none() {
+            return Err("L'ancienne touche F est encore active".into());
+        }
+        keyboard.update_input(&InputFrame {
+            pressed: [keyboard.controls.binding(Action::Interact).clone()].into(),
+            ..Default::default()
+        });
+        if suspension::fingerprint(&keyboard.game) != suspension::fingerprint(&app.game) {
+            return Err("Clavier et clic n'ont pas produit la même action".into());
+        }
         write_agent_review_json(
             &output.join("blast-checks.json"),
             serde_json::json!({"review":"AGENT-PLAY04","skill":"A02","cells":cells,"damage":damage,
-            "preview_free":true,"preview_hidden_after_confirmation":true,"caster_unharmed":true,"saves_untouched":true,"turns":app.game.turn(),"viewport":[1280,800],"tile_pixels":64}),
+            "preview_free":true,"preview_hidden_after_confirmation":true,"caster_unharmed":true,"saves_untouched":true,"turns":app.game.turn(),"viewport":[1280,800],"tile_pixels":64,
+            "input_review":"INPUT-CONTEXT-02","one_configurable_action":true,"retired_f_inactive":true,
+            "right_click_cancels_without_context_menu":true,"left_click_matches_contextual_key":true}),
         )?;
         Ok(())
     }

@@ -1,0 +1,152 @@
+{
+  "button": "LEARN-BTN-01",
+  "button_pixels": 32,
+  "demo_enabled_in_normal_game": false,
+  "demo_rank": 1,
+  "host_state_rng_history_unchanged": true,
+  "miniature_camera": "fit_base_footprint",
+  "panel_pixels": [
+    480,
+    222
+  ],
+  "persistent_writes": 0,
+  "prototype_supported_actives": [
+    "FE01",
+    "FE02",
+    "FE03",
+    "FE04",
+    "FE05",
+    "FE06",
+    "FR01",
+    "FR02"
+  ],
+  "real_engine_casts": true,
+  "review": "SKILL-DEMO-01",
+  "sample_coverage": [
+    {
+      "frames": 52,
+      "rank": 1,
+      "skill": "FE01"
+    },
+    {
+      "frames": 52,
+      "rank": 1,
+      "skill": "FE02"
+    },
+    {
+      "frames": 52,
+      "rank": 1,
+      "skill": "FE05"
+    }
+  ],
+  "skill_icon_pixels": 64,
+  "status": "demo_panel_awaiting_visual_approval",
+  "surface": [
+    1280,
+    960
+  ],
+  "world_tile_source_pixels": 64,
+  "accepted_button_pixels_unchanged": {
+    "metal": true,
+    "terminal": true
+  },
+  "animations": [
+    {
+      "file": "demo-braise.png",
+      "pixels": [
+        1280,
+        960
+      ],
+      "frames": 25,
+      "captured_frames": 52,
+      "captured_pixels_preserved": true,
+      "sha256": "83795109ddedb324ee32e3a4493a4f0d8373b1bc7f93e6a675064d1f938a3e9b"
+    },
+    {
+      "file": "scene-braise.png",
+      "pixels": [
+        480,
+        222
+      ],
+      "frames": 25,
+      "captured_frames": 52,
+      "captured_pixels_preserved": true,
+      "sha256": "20562c36740c08dcb66ca653d577b73ce7c8e5d0ebcb0fbe5217b992a7826677"
+    },
+    {
+      "file": "demo-souffle.png",
+      "pixels": [
+        1280,
+        960
+      ],
+      "frames": 43,
+      "captured_frames": 52,
+      "captured_pixels_preserved": true,
+      "sha256": "c387bc0fdfbafdf4fc30cadc761d545bd353b6973e94c0506027a88ac5182f80"
+    },
+    {
+      "file": "scene-souffle.png",
+      "pixels": [
+        480,
+        222
+      ],
+      "frames": 43,
+      "captured_frames": 52,
+      "captured_pixels_preserved": true,
+      "sha256": "49f8e277a6b530637e59e7082ba4995b6f5bf5ec7c42489de113f135a0fc8913"
+    },
+    {
+      "file": "demo-boule.png",
+      "pixels": [
+        1280,
+        960
+      ],
+      "frames": 27,
+      "captured_frames": 52,
+      "captured_pixels_preserved": true,
+      "sha256": "603a31204d7a695a16d3398ec8e511422c8e226951e5a55c4e771c0813b815f7"
+    },
+    {
+      "file": "scene-boule.png",
+      "pixels": [
+        480,
+        222
+      ],
+      "frames": 27,
+      "captured_frames": 52,
+      "captured_pixels_preserved": true,
+      "sha256": "79e2bc61b77a47cd7b72f355ce106a60238998d1db105e6845a0cb574bda9bdc"
+    }
+  ],
+  "revision": 2,
+  "base_example_independent_of_learned_rank": true,
+  "validation": {
+    "targeted_skill_window_and_bar_tests": {
+      "passed": 30,
+      "failed": 0
+    },
+    "isolated_demo_base_rank_loop_and_host_state_test": {
+      "passed": 1,
+      "failed": 0
+    },
+    "debug_build": "passed",
+    "release_check": "passed_with_existing_draw_inspection_panel_warning",
+    "format": "passed",
+    "diff_check": "passed",
+    "broader_skill_filter": {
+      "passed": 210,
+      "failed": 12,
+      "failure_area": "old fire-cone proposal fixtures still reading removed FE02.cone_range_cells"
+    }
+  },
+  "capture_executable": "target/debug/project-rl.exe",
+  "executable_sha256": "07837a12f12b8be7471118b3249eeccac9aa8bf336c01f2fee5e6166f5a0777b",
+  "capture_format": "raw bottom-up RGBA framebuffer staged temporarily; packed losslessly to APNG",
+  "intermediate_cleanup": {
+    "files": 312,
+    "bytes": 945321479.0,
+    "method": "Recycle Bin",
+    "scope": "Only three-digit PNG and RGBA frames in the three reviewed scene directories",
+    "packed_animations_and_sources_preserved": true
+  }
+}

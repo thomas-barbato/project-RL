@@ -1,0 +1,40 @@
+{
+  "review_id": "INPUT-CONTEXT-02",
+  "date": "2026-10-18",
+  "acceptance": "explicit final user instruction",
+  "user_quote": "je préfère n'avoir qu'une seule touche pour déclancher les actions, E (enfin une touche configurable)",
+  "primary_input": {
+    "settings_entry": "Action contextuelle",
+    "default_key": "E",
+    "configurable_bindings": 1,
+    "uses": ["interact", "pick up", "ordinary attack", "confirm selected skill"],
+    "independent_attack_key": false,
+    "default_f_alias": false,
+    "nearby_interaction_priority": "preserved from INTERACTION-INPUT-01",
+    "hostile_targeting": "visible hovered or selected hostile, otherwise nearest visible hostile when no local interaction applies"
+  },
+  "pointer": {
+    "hostile_left_click": "ordinary attack through the existing command and approach path",
+    "local_interactable_left_click": "interaction",
+    "skill_preview_left_click": "confirm the visible aimed cell",
+    "preview_right_click": "cancel before world menu or skill-bar reassignment",
+    "escape": "existing hierarchical cancellation",
+    "held_click": "never repeats an action"
+  },
+  "preferences": {
+    "version": 5,
+    "legacy_attack_binding": "retired",
+    "existing_custom_interaction_binding": "preserved",
+    "load_rewrites_user_file": false,
+    "internal_attack_intent": "aliases the single contextual binding; absent from configurable actions and serialized preferences"
+  },
+  "validation": {
+    "build": "passed",
+    "all_targets_check": "passed",
+    "targeted_tests": "117 input, controls, skill-bar, interaction, dialogue and camp tests passed after fixture updates; five additional area-aiming tests checked separately",
+    "fixture_updates": "free custom test keys F6/F7, explicit hostile attack targets, and a viewport for pointer hit testing",
+    "native_report": "contextual-action-02-native.json",
+    "native_visual": "preview inspected at 1280 x 800, with the current key displayed as Attaquer [E]",
+    "full_suite": "not rerun"
+  }
+}

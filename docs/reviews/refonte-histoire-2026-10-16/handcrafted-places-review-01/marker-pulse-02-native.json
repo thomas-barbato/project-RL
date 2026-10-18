@@ -1,0 +1,45 @@
+{
+  "contours_and_numbers_fixed": true,
+  "cycle_ms": 1100,
+  "draw_preserved_game": true,
+  "fill_reaches_inner_contour": true,
+  "frame_count": 12,
+  "frame_pixels": [
+    1280,
+    400
+  ],
+  "normal_games_changed": false,
+  "production_capture_with_debug_fill_override": true,
+  "review": "MARKER-PULSE-02",
+  "rhythm": "progressive; explicitly accepted by player",
+  "shared_hole_fill_outline_center_and_geometry": true,
+  "status": "centering_revision_awaiting_visual_approval",
+  "tile_pixels": 64,
+  "player_decision": {
+    "accepted": "progressive pulse rhythm",
+    "correction_requested": "fill not centered on the hole",
+    "centering": "revised render awaiting visual acceptance"
+  },
+  "geometry": {
+    "circle_sides": 64,
+    "invalid_diamond_sides": 4,
+    "hole_and_fill_radius": "identical",
+    "center": "one shared center, snapped as a whole to half-pixel",
+    "animation_changes": "opacity only; no radius or center movement"
+  },
+  "animation_encoding": "lossless APNG; all 12 decoded frames byte-identical to native engine PNGs",
+  "native_visual": "pulse-06.png inspected upright at 1280x400; holes fully filled, shared centers, legible numbers and final route gap retained",
+  "validation": {
+    "debug_build": "passed",
+    "release_check": "passed with existing draw_inspection_panel warning",
+    "formatting": "passed",
+    "diff_check": "passed",
+    "gameplay_tests": "not rerun for this debug-only visual review"
+  },
+  "preview_file": "artifacts/walk-preview-review-01/marker-pulse/cercles-progressifs-centres.png",
+  "raster_center_check": {
+    "circular_zone_marker_fill_y": 100.0,
+    "outline_y": 100.0,
+    "vertical_center_error_pixels": 0.0
+  }
+}

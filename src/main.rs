@@ -1,23 +1,27 @@
 #[cfg(debug_assertions)]
 mod agent_skill_lab_review;
 mod ascii_app;
+mod attack_preview_visuals;
 mod camp_atmosphere;
 mod camp_npc_review;
 mod combat_visuals;
 mod controls;
 mod cryogenic_camp;
 mod cryogenic_camp_render;
-mod dialogue_bubble_review;
+mod effect_geometry;
 mod game_art;
 mod graphics;
 mod guardian_taunt_visuals;
 mod hub_layout;
 mod melee_strike_visuals;
 mod pause_menu;
+mod preview_markers;
+mod skill_learn_button;
 mod surface_layout;
 mod suspension;
 mod target_outline;
 mod terminal_chrome;
+mod terminal_dialogue;
 mod terminal_view;
 mod test_expedition;
 mod test_regional;
@@ -58,10 +62,31 @@ async fn main() {
     #[cfg(debug_assertions)]
     if let Some(output) = graphics::ui_smoke_output() {
         let mode = std::env::args().nth(1).unwrap_or_default();
-        let result = if mode == "--ui-cold-dialogue-bubbles" {
-            AsciiApp::capture_dialogue_bubbles(&output).await
-        } else if mode == "--ui-cold-dialogue-trial" {
-            AsciiApp::capture_dialogue_trial(&output).await
+        let result = if matches!(
+            mode.as_str(),
+            "--ui-cold-aim-styles" | "--ui-cold-aim-choice"
+        ) {
+            AsciiApp::capture_aim_styles(&output, mode == "--ui-cold-aim-choice").await
+        } else if mode == "--ui-cold-marker-pulse" {
+            AsciiApp::capture_marker_pulse(&output).await
+        } else if mode == "--ui-cold-skill-learn-buttons" {
+            AsciiApp::capture_skill_learn_buttons(&output).await
+        } else if mode == "--ui-cold-skill-demo" {
+            AsciiApp::capture_skill_demo(&output).await
+        } else if matches!(
+            mode.as_str(),
+            "--ui-cold-effect-footprints"
+                | "--ui-cold-effect-footprints-fire"
+                | "--ui-cold-souffle-corridor"
+        ) {
+            AsciiApp::capture_effect_footprints(&output).await
+        } else if matches!(
+            mode.as_str(),
+            "--ui-cold-walk-destinations" | "--ui-cold-walk-preview"
+        ) {
+            AsciiApp::capture_walk_preview(&output).await
+        } else if mode == "--ui-cold-dialogue-terminal" {
+            AsciiApp::capture_terminal_dialogue(&output).await
         } else if mode == "--ui-cold-hover-outline" {
             AsciiApp::capture_target_outline(&output).await
         } else if mode == "--ui-cold-camp-npc-review" {
@@ -123,6 +148,25 @@ async fn main() {
         return;
     }
     #[cfg(debug_assertions)]
+    if std::env::args().any(|arg| arg == "--apercu-demonstrations-competences") {
+        if let Err(error) = AsciiApp::run_skill_demo_review().await {
+            run_error_screen(&error).await;
+        }
+        return;
+    }
+    #[cfg(debug_assertions)]
+    if std::env::args().any(|arg| arg == "--apercu-boutons-competences") {
+        AsciiApp::run_skill_learn_buttons_review().await;
+        return;
+    }
+    #[cfg(debug_assertions)]
+    if std::env::args().any(|arg| arg == "--apercu-deplacement-souris") {
+        if let Err(error) = AsciiApp::run_walk_preview_review().await {
+            run_error_screen(&error).await;
+        }
+        return;
+    }
+    #[cfg(debug_assertions)]
     if std::env::args().any(|arg| arg == "--apercu-laboratoire-competences") {
         agent_skill_lab_review::run().await;
         return;
@@ -130,13 +174,6 @@ async fn main() {
     #[cfg(debug_assertions)]
     if std::env::args().any(|arg| arg == "--apercu-lecture-tactique") {
         if let Err(error) = AsciiApp::run_tactical_reading_proposal().await {
-            run_error_screen(&error).await;
-        }
-        return;
-    }
-    #[cfg(debug_assertions)]
-    if std::env::args().any(|arg| arg == "--essai-dialogue-terminal") {
-        if let Err(error) = AsciiApp::run_dialogue_trial().await {
             run_error_screen(&error).await;
         }
         return;

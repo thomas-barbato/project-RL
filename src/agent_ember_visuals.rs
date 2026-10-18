@@ -1,4 +1,4 @@
-//! FE01-A02 renderer shared with the accepted laboratory; no gameplay RNG.
+//! Shared elemental drawing primitives and the accepted laboratory; no gameplay RNG.
 use macroquad::prelude::*;
 use project_rl::world::GridPos;
 
@@ -14,6 +14,7 @@ pub(super) fn draw(
     flights: &[Flight],
     now: f64,
     reduced: bool,
+    clip: Rect,
     rect: impl Fn(GridPos) -> Option<Rect>,
 ) {
     for flight in flights {
@@ -27,14 +28,21 @@ pub(super) fn draw(
         // Keep FE01-A02's shapes and deterministic sparks; common fast cadence
         // shortens presentation only. Body-attached Burn is drawn separately.
         let age = if reduced { 0.20 } else { age };
-        elemental_projectile(
-            1,
-            from.center(),
-            to.center(),
-            to.w,
-            (age * 0.55 / FLIGHT_SECONDS) as f32,
-            0,
-        );
+        let draw = || {
+            elemental_projectile(
+                1,
+                from.center(),
+                to.center(),
+                to.w,
+                (age * 0.55 / FLIGHT_SECONDS) as f32,
+                0,
+            )
+        };
+        if age >= FLIGHT_SECONDS {
+            crate::effect_geometry::clipped(to, clip, draw);
+        } else {
+            draw();
+        }
     }
 }
 pub(crate) fn alpha(mut c: Color, a: f32) -> Color {
@@ -120,9 +128,13 @@ pub(crate) fn elemental_projectile(
     } else {
         Color::new(0.90, 0.99, 1.0, 1.0)
     };
-    let start = player + vec2(tile * 0.29, -tile * 0.06);
-    let hit = target + vec2(0.0, -tile * 0.05);
-    let direction = (hit - start).normalize();
+    let (start, hit, direction) = if crate::effect_geometry::enabled() {
+        crate::effect_geometry::projectile(player, target, tile)
+    } else {
+        let start = player + vec2(tile * 0.29, -tile * 0.06);
+        let hit = target + vec2(0., -tile * 0.05);
+        (start, hit, (hit - start).normalize_or_zero())
+    };
     let normal = vec2(-direction.y, direction.x);
     let flight = 0.55;
     if time < 0.28 {
@@ -183,13 +195,23 @@ pub(crate) fn elemental_projectile(
         }
         glow(at, tile * 0.24, color, 1.0);
         if fire {
-            draw_ellipse(at.x, at.y, tile * 0.18, tile * 0.09, -1.0, color);
+            let angle = if crate::effect_geometry::enabled() {
+                direction.y.atan2(direction.x).to_degrees()
+            } else {
+                -1.
+            };
+            draw_ellipse(at.x, at.y, tile * 0.18, tile * 0.09, angle, color);
+            let core_at = if crate::effect_geometry::enabled() {
+                at + direction * tile * 0.035
+            } else {
+                vec2(at.x + direction.x * tile * 0.035, at.y)
+            };
             draw_ellipse(
-                at.x + direction.x * tile * 0.035,
-                at.y,
+                core_at.x,
+                core_at.y,
                 tile * 0.125,
                 tile * 0.045,
-                -1.0,
+                angle,
                 core,
             );
         } else {

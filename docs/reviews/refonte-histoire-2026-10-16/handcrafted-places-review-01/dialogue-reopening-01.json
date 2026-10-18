@@ -1,0 +1,23 @@
+{
+  "review_id": "DIALOGUE-REOPEN-01",
+  "date": "2026-10-18",
+  "user_quote": "quand on a déjà lu une conversation , on doit pouvoir la relire en recliquant sur le pnj :)",
+  "acceptance": "explicit interaction request",
+  "behavior": {
+    "nearby_npc_left_click": "opens dialogue or services, including after reading and closing",
+    "read_notification": "remains hidden",
+    "interaction_range": "unchanged",
+    "distant_npc_click": "selection only, no automatic movement",
+    "turn_cost": 0,
+    "dialogue_text_and_presentation": "unchanged"
+  },
+  "validation": {
+    "debug_build": "passed",
+    "dialogue_tests": { "passed": 15, "failed": 0 },
+    "world_context_tests": { "passed": 54, "failed": 0 },
+    "native_capture": "passed with real pointer dispatch through the normal game input path",
+    "native_report": "dialogue-reopening-01-native.json",
+    "native_images": "inspected at 1600 x 1000; bubble opens and the read notification remains absent after closing",
+    "isolated_game_fingerprint": "unchanged"
+  }
+}

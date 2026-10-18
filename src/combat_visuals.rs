@@ -136,6 +136,7 @@ pub(crate) struct CombatMotion {
     blasts: Vec<agent_spells::SpellBlast>,
     fireballs: Vec<agent_fire::Fireball>,
     embers: Vec<agent_ember::Flight>,
+    prepared_cast: Option<crate::effect_geometry::PreparedCast>,
     magic: Vec<agent_magic::MagicFlight>,
     projectile_impacts: BTreeMap<EntityId, f64>,
     strikes: Vec<RuptureStrike>,
@@ -226,7 +227,21 @@ impl CombatMotion {
             target,
             radius,
             started: now,
+            cells: self.cast_cells(skill, Some(origin), target),
         });
+    }
+    pub fn prepare_cast(&mut self, cast: Option<crate::effect_geometry::PreparedCast>) {
+        self.prepared_cast = cast;
+    }
+    fn cast_cells(
+        &self,
+        skill: &str,
+        origin: Option<GridPos>,
+        target: GridPos,
+    ) -> Option<Vec<GridPos>> {
+        self.prepared_cast
+            .as_ref()
+            .and_then(|p| p.cells_for(skill, origin, target))
     }
     pub fn draw_agent_world(
         &self,
@@ -261,6 +276,7 @@ impl CombatMotion {
                 background,
                 &rect,
                 clip,
+                flight.cells.as_deref(),
             );
             if matches!(
                 flight.skill.as_str(),
@@ -275,6 +291,7 @@ impl CombatMotion {
                     game.map(),
                     background,
                     &rect,
+                    flight.cells.as_deref(),
                 );
             }
         }
@@ -310,6 +327,7 @@ impl CombatMotion {
             target,
             radius,
             started: now,
+            cells: self.cast_cells("FE05", Some(origin), target),
         });
     }
     pub fn begin_event_batch(&mut self) {
@@ -360,6 +378,7 @@ impl CombatMotion {
             centre,
             radius,
             started: now,
+            cells: self.cast_cells("A02", None, centre),
         });
     }
     pub fn draw_blasts(
@@ -428,9 +447,15 @@ impl CombatMotion {
             })
             .unwrap_or(now)
     }
-    pub fn draw_spells(&self, now: f64, reduced: bool, rect: impl Fn(GridPos) -> Option<Rect>) {
+    pub fn draw_spells(
+        &self,
+        now: f64,
+        reduced: bool,
+        clip: Rect,
+        rect: impl Fn(GridPos) -> Option<Rect>,
+    ) {
         agent_spells::draw(&self.spells, now, reduced, &rect);
-        agent_ember::draw(&self.embers, now, reduced, &rect);
+        agent_ember::draw(&self.embers, now, reduced, clip, &rect);
         for strike in &self.strikes {
             let age = (now - strike.started) as f32;
             if !(0.0..0.84).contains(&age) {
@@ -523,6 +548,7 @@ impl CombatMotion {
         self.motions.retain(|_, motion| now - motion.started < 0.18);
     }
     pub fn clear(&mut self) {
+        self.prepared_cast = None;
         self.glides.clear();
         self.fireballs.clear();
         self.embers.clear();
@@ -534,6 +560,24 @@ impl CombatMotion {
         self.spells.clear();
         self.motions.clear();
         self.travels.clear();
+    }
+    #[cfg(debug_assertions)]
+    pub fn review_age(&mut self, started: f64) {
+        for e in &mut self.embers {
+            e.started = started;
+        }
+        for e in &mut self.fireballs {
+            e.started = started;
+        }
+        for e in &mut self.blasts {
+            e.started = started;
+        }
+        for e in &mut self.spells {
+            e.started = started;
+        }
+        for e in &mut self.magic {
+            e.started = started;
+        }
     }
 }
 

@@ -1,0 +1,63 @@
+{
+  "comparison_pixels": [
+    960,
+    480
+  ],
+  "crop": [
+    520,
+    232,
+    384,
+    288
+  ],
+  "frame_pixels": [
+    1280,
+    800
+  ],
+  "invalid_rgb": [
+    255,
+    48,
+    38
+  ],
+  "normal_runs_changed": true,
+  "normal_runtime_renderer": true,
+  "orientation": "upright, native framebuffer texture Y corrected",
+  "review": "AIM-VIS-02",
+  "review_override": false,
+  "selected_skill_left_click": "confirmed, exactly one turn",
+  "selection": {
+    "invalid": "B unchanged",
+    "valid": "A hologram with small circular contour markers inspired by B"
+  },
+  "single_target_weapon_empty_click_twice_without_skill": "no aim, turn, resource or history change",
+  "source_pixels_per_display_pixel": 1,
+  "states": [
+    {
+      "actual_validity": true,
+      "cells": 9,
+      "draw_preserved_game": true,
+      "energy": 36,
+      "footprint_computed_by_engine": true,
+      "rejection": null,
+      "state": "valide"
+    },
+    {
+      "actual_validity": false,
+      "cells": 9,
+      "draw_preserved_game": true,
+      "energy": 6,
+      "footprint_computed_by_engine": true,
+      "rejection": "InsufficientEnergy { required: 7, available: 6 }",
+      "state": "invalide"
+    }
+  ],
+  "status": "integrated_after_explicit_approval",
+  "tile_pixels": 64,
+  "validation": {
+    "debug_build": "passed",
+    "release_check": "passed with existing unused draw_inspection_panel warning",
+    "diff_check": "passed",
+    "engine_tests": "13 core spell and area spell tests passed, including energy rejection footprint and atomic cast refusal",
+    "native_visual": "integrated blue circles and red B invalid inspected at 1:1",
+    "full_suite": "not rerun"
+  }
+}

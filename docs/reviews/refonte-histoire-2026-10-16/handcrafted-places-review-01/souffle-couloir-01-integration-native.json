@@ -1,0 +1,995 @@
+{
+  "review": "SOUFFLE-COULOIR-01",
+  "date": "2026-10-18",
+  "status": "integrated_after_explicit_clarification",
+  "approval": "oui !",
+  "previous_assignment": "BRAISE-COULOIR-01 superseded: FE01 is a single-target projectile",
+  "acceptance_sha256": "0a71472d4955229317184339cdc9805b0ed9e0ffe49ee749a832985a11367de1",
+  "catalogue_checks": {
+    "FE01_identical_to_original_definition": true,
+    "FE02_only_geometry_and_review_reference_changed": true,
+    "FE02_damage_burn_energy_duration_text_preserved": true
+  },
+  "tests": [
+    {
+      "filter": "souffle_corridor_tests",
+      "passed": 4
+    },
+    {
+      "filter": "agent_ember_tests",
+      "passed": 5
+    },
+    {
+      "filter": "agent_magic_cast::tests",
+      "passed": 19
+    },
+    {
+      "filter": "attack_aim_input_tests",
+      "passed": 12
+    },
+    {
+      "filter": "agent_skill_window::tests",
+      "passed": 13
+    },
+    {
+      "filter": "effect_geometry::tests",
+      "passed": 4
+    }
+  ],
+  "total_targeted_tests_passed": 57,
+  "full_suite_run": false,
+  "build": {
+    "debug_normal_binary": "passed",
+    "release_check": "passed",
+    "format": "passed",
+    "diff_check": "passed",
+    "existing_release_warning": "unused draw_inspection_panel"
+  },
+  "native": {
+    "core_opacity": 0.82,
+    "production_enabled": true,
+    "review": "FX-FOOTPRINT-01",
+    "scenes": [
+      {
+        "cast_matches_reference_events_state_rng": true,
+        "cells": [
+          [
+            14,
+            15
+          ],
+          [
+            14,
+            16
+          ],
+          [
+            14,
+            17
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            15,
+            17
+          ]
+        ],
+        "geometry_prototype_only": false,
+        "rank": 1,
+        "rendering_state_rng_unchanged": true,
+        "sheet": "souffle-couloir-1",
+        "skill": "FE02"
+      },
+      {
+        "cast_matches_reference_events_state_rng": true,
+        "cells": [
+          [
+            15,
+            14
+          ],
+          [
+            15,
+            15
+          ],
+          [
+            16,
+            14
+          ],
+          [
+            16,
+            15
+          ],
+          [
+            17,
+            14
+          ],
+          [
+            17,
+            15
+          ]
+        ],
+        "geometry_prototype_only": false,
+        "rank": 1,
+        "rendering_state_rng_unchanged": true,
+        "sheet": "souffle-couloir-1",
+        "skill": "FE02"
+      },
+      {
+        "cast_matches_reference_events_state_rng": true,
+        "cells": [
+          [
+            17,
+            15
+          ],
+          [
+            17,
+            16
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            18,
+            15
+          ],
+          [
+            18,
+            16
+          ],
+          [
+            18,
+            17
+          ],
+          [
+            19,
+            15
+          ],
+          [
+            19,
+            16
+          ],
+          [
+            19,
+            17
+          ],
+          [
+            20,
+            15
+          ],
+          [
+            20,
+            16
+          ],
+          [
+            20,
+            17
+          ],
+          [
+            21,
+            15
+          ],
+          [
+            21,
+            16
+          ],
+          [
+            21,
+            17
+          ]
+        ],
+        "geometry_prototype_only": false,
+        "rank": 4,
+        "rendering_state_rng_unchanged": true,
+        "sheet": "souffle-couloir-4",
+        "skill": "FE02"
+      },
+      {
+        "cast_matches_reference_events_state_rng": true,
+        "cells": [
+          [
+            15,
+            17
+          ],
+          [
+            15,
+            18
+          ],
+          [
+            15,
+            19
+          ],
+          [
+            15,
+            20
+          ],
+          [
+            15,
+            21
+          ],
+          [
+            16,
+            17
+          ],
+          [
+            16,
+            18
+          ],
+          [
+            16,
+            19
+          ],
+          [
+            16,
+            20
+          ],
+          [
+            16,
+            21
+          ],
+          [
+            17,
+            17
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            17,
+            19
+          ],
+          [
+            17,
+            20
+          ],
+          [
+            17,
+            21
+          ]
+        ],
+        "geometry_prototype_only": false,
+        "rank": 4,
+        "rendering_state_rng_unchanged": true,
+        "sheet": "souffle-couloir-4",
+        "skill": "FE02"
+      },
+      {
+        "cast_matches_reference_events_state_rng": true,
+        "cells": [
+          [
+            14,
+            16
+          ]
+        ],
+        "geometry_prototype_only": false,
+        "rank": 1,
+        "rendering_state_rng_unchanged": true,
+        "sheet": "braise",
+        "skill": "FE01"
+      },
+      {
+        "cast_matches_reference_events_state_rng": true,
+        "cells": [
+          [
+            16,
+            14
+          ]
+        ],
+        "geometry_prototype_only": false,
+        "rank": 1,
+        "rendering_state_rng_unchanged": true,
+        "sheet": "braise",
+        "skill": "FE01"
+      },
+      {
+        "cast_matches_reference_events_state_rng": true,
+        "cells": [
+          [
+            18,
+            16
+          ]
+        ],
+        "geometry_prototype_only": false,
+        "rank": 1,
+        "rendering_state_rng_unchanged": true,
+        "sheet": "braise",
+        "skill": "FE01"
+      },
+      {
+        "cast_matches_reference_events_state_rng": true,
+        "cells": [
+          [
+            16,
+            18
+          ]
+        ],
+        "geometry_prototype_only": false,
+        "rank": 1,
+        "rendering_state_rng_unchanged": true,
+        "sheet": "braise",
+        "skill": "FE01"
+      }
+    ],
+    "tile_pixels": 64,
+    "underlay_opacity_multiplier": 0.45
+  },
+  "preview_disappearance": [
+    {
+      "sheet": "souffle-couloir-1",
+      "preview_disappears_after_confirmation": true,
+      "remaining_cyan_pixels_by_animation_frame": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "sheet": "souffle-couloir-4",
+      "preview_disappears_after_confirmation": true,
+      "remaining_cyan_pixels_by_animation_frame": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "packing": [
+    {
+      "file": "souffle-couloir-1.png",
+      "frames": 10,
+      "captured_frames": 16,
+      "dimensions": [
+        1280,
+        632
+      ],
+      "native_frame_pixels_equal": true
+    },
+    {
+      "file": "souffle-couloir-4.png",
+      "frames": 10,
+      "captured_frames": 16,
+      "dimensions": [
+        1280,
+        632
+      ],
+      "native_frame_pixels_equal": true
+    },
+    {
+      "file": "braise.png",
+      "frames": 15,
+      "captured_frames": 16,
+      "dimensions": [
+        1280,
+        416
+      ],
+      "native_frame_pixels_equal": true
+    },
+    {
+      "file": "occulte.png",
+      "frames": 16,
+      "captured_frames": 16,
+      "dimensions": [
+        1728,
+        928
+      ],
+      "native_frame_pixels_equal": true
+    },
+    {
+      "file": "boule-feu.png",
+      "frames": 16,
+      "captured_frames": 16,
+      "dimensions": [
+        1728,
+        928
+      ],
+      "native_frame_pixels_equal": true
+    },
+    {
+      "file": "nova.png",
+      "frames": 16,
+      "captured_frames": 16,
+      "dimensions": [
+        1728,
+        928
+      ],
+      "native_frame_pixels_equal": true
+    },
+    {
+      "file": "blizzard.png",
+      "frames": 15,
+      "captured_frames": 16,
+      "dimensions": [
+        1728,
+        928
+      ],
+      "native_frame_pixels_equal": true
+    },
+    {
+      "file": "vague.png",
+      "frames": 15,
+      "captured_frames": 16,
+      "dimensions": [
+        1728,
+        928
+      ],
+      "native_frame_pixels_equal": true
+    },
+    {
+      "file": "aiguille.png",
+      "frames": 15,
+      "captured_frames": 16,
+      "dimensions": [
+        1280,
+        736
+      ],
+      "native_frame_pixels_equal": true
+    },
+    {
+      "file": "fleche.png",
+      "frames": 15,
+      "captured_frames": 16,
+      "dimensions": [
+        1280,
+        736
+      ],
+      "native_frame_pixels_equal": true
+    },
+    {
+      "file": "transparence.png",
+      "frames": 12,
+      "captured_frames": 12,
+      "dimensions": [
+        1280,
+        400
+      ],
+      "native_frame_pixels_equal": true
+    }
+  ],
+  "other_diagnostic_images": "Previously accepted images unchanged and repacked without resizing",
+  "preview_page": "artifacts/walk-preview-review-01/effets-zones.html",
+  "all_preview_image_references_exist": true,
+  "game_resources": "assets/ only; no game dependency on review captures",
+  "cleanup": {
+    "destination": "Windows Recycle Bin, not emptied",
+    "file_count": 508,
+    "bytes": 418772013.0,
+    "paths": [
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/aiguille-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/blizzard-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/boule-feu-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1-pause.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-1.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4-pause.png",
+      "artifacts/walk-preview-review-01/effect-footprints/braise-couloir-4.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/fleche-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/nova-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/occulte-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-1-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-couloir-4-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-pause.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/vague-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/markers/pulse-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/aiguille-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/blizzard-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/boule-feu-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-1-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/braise-couloir-4-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/capture.stderr.log",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/capture.stdout.log",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fire-native-checks.json",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/fleche-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/native-checks.json",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/nova-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/occulte-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/preview-checks.json",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/souffle-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/vague-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/wide.stderr.log",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/wide.stdout.log",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-corridor-native-checks.json",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-1-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/braise-couloir-4-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/stderr.log",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/final/stdout.log",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/checks.json",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/integration/markers/pulse-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/braise-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/preview-checks.json",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-corridor-native-checks.json",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-1-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-00.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-01.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-02.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-03.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-04.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-05.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-06.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-07.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-08.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-09.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-10.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-11.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-12.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-13.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-14.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/souffle-couloir-4-15.png",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/stderr.log",
+      "artifacts/walk-preview-review-01/effect-footprints/souffle-correction/stdout.log"
+    ],
+    "preserved": "Current APNGs and pause images, marker pause frame, source drawings, game assets, code, acceptance records and map-editor data"
+  }
+}

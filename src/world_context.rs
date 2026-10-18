@@ -158,16 +158,54 @@ impl AsciiApp {
                 }
             }
             self.select_world_target(None);
+            if self.hostile_target_at(at) {
+                let turn = self.game.turn();
+                let arrival = self.attack_arrival(at).ok_or("Attaque indisponible")?;
+                let direct = self
+                    .approach_attack_preview(&arrival, self.game.player_position().unwrap())
+                    .is_ok()
+                    && !self.context_attack_needs_aim(
+                        self.active_weapon_slot,
+                        self.game.actors().entity_at(at),
+                    );
+                self.update_input(&InputFrame {
+                    pressed: [controls::Binding::MouseLeft].into(),
+                    pointer,
+                    ..Default::default()
+                });
+                if direct && self.game.turn() != turn + 1 {
+                    return Err("Le clic n'a pas attaqué une seule fois l'ennemi".into());
+                }
+                if !direct
+                    && self.mouse_walk.is_none()
+                    && self.attack_aim.is_none()
+                    && suspension::fingerprint(&self.game) == before
+                    && self.log.is_empty()
+                {
+                    return Err("Le clic hostile n'a ni lancé ni refusé l'action".into());
+                }
+                return Ok(());
+            }
+            let talks_on_click = self.interaction_candidates().contains(&at)
+                && self
+                    .game
+                    .actors()
+                    .entity_at(at)
+                    .is_some_and(|id| self.game.npc_interaction(id).is_some());
             for expected in [Some(at), None, Some(at)] {
                 self.update_input(&InputFrame {
                     pressed: [controls::Binding::MouseLeft].into(),
                     pointer,
                     ..Default::default()
                 });
-                if self.selected_visible_cell() != expected
+                if self.selected_visible_cell() != if talks_on_click { Some(at) } else { expected }
+                    || talks_on_click && self.npc_interaction != self.game.actors().entity_at(at)
                     || suspension::fingerprint(&self.game) != before
                 {
                     return Err("Clic de sélection incorrect ou consommant un tour".into());
+                }
+                if talks_on_click {
+                    self.npc_interaction = None;
                 }
             }
             if self.terminal_target_summary().is_none() {
@@ -1276,8 +1314,251 @@ mod tests {
         );
     }
 
+    fn world_pointer(app: &AsciiApp, at: GridPos) -> InputFrame {
+        let scale = 1.5;
+        let cell = app
+            .terminal
+            .world_cell_rect(
+                &app.game,
+                app.terminal_bounds_for(1600., 1000., scale),
+                scale,
+                app.graphics.active.world_cell_px,
+                app.navigation_signal_summary().is_some(),
+                at,
+                app.camera_glide_offset(),
+            )
+            .unwrap();
+        InputFrame {
+            pointer: Some((
+                (cell.x + cell.w * 0.5) / scale,
+                (cell.y + cell.h * 0.5) / scale,
+            )),
+            viewport: Some((1600. / scale, 1000. / scale)),
+            ui_scale: Some(scale),
+            ..Default::default()
+        }
+    }
+
     #[test]
-    fn world_context_interact_can_leave_attack_preview_and_collect_selected_ground_item() {
+    fn world_context_click_and_single_context_key_attack_hostiles_once_with_no_f_alias() {
+        let mut results = Vec::new();
+        for key in [None, Some("E"), Some("F6")] {
+            let mut app = app("lance");
+            if let Some(key) = key {
+                app.controls
+                    .rebind(Action::Interact, controls::Binding::key(key))
+                    .unwrap();
+            }
+            let at = GridPos::new(6, 6);
+            let target = app
+                .game
+                .spawn_actor(
+                    Actor::new(at, 100)
+                        .unwrap()
+                        .with_evasion_disabled()
+                        .with_player_relation(PlayerRelation::Hostile),
+                )
+                .unwrap();
+            let before = suspension::fingerprint(&app.game);
+            app.update_input(&InputFrame {
+                pressed: [controls::Binding::key("F")].into(),
+                ..Default::default()
+            });
+            assert_eq!(suspension::fingerprint(&app.game), before);
+            let mut input = world_pointer(&app, at);
+            input
+                .pressed
+                .insert(key.map_or(controls::Binding::MouseLeft, controls::Binding::key));
+            app.update_input_at(&input, Some(0.));
+            assert!(app.game.actors().get(target).unwrap().integrity() < 100);
+            assert_eq!(app.game.turn(), 1);
+            assert!(app.mouse_walk.is_none());
+            let history = app.history.len();
+            input.pressed.clear();
+            input.mouse_left_down = key.is_none();
+            app.update_input_at(&input, Some(1.));
+            assert_eq!(app.history.len(), history);
+            assert_eq!(app.game.turn(), 1);
+            results.push(suspension::fingerprint(&app.game));
+        }
+        assert_eq!(results[0], results[1]);
+        assert_eq!(results[1], results[2]);
+    }
+
+    #[test]
+    fn world_context_held_context_key_approaches_a_hostile_and_attacks_once() {
+        let mut app = app("lance");
+        let target = app
+            .game
+            .spawn_actor(
+                Actor::new(GridPos::new(9, 6), 100)
+                    .unwrap()
+                    .with_evasion_disabled()
+                    .with_player_relation(PlayerRelation::Hostile),
+            )
+            .unwrap();
+        let binding = app.controls.binding(Action::Interact).clone();
+        let mut input = InputFrame {
+            pressed: [binding.clone()].into(),
+            held: [binding].into(),
+            ..Default::default()
+        };
+        app.update_input_at(&input, Some(0.));
+        input.pressed.clear();
+        for tick in 1..=6 {
+            app.update_input_at(&input, Some(tick as f64));
+        }
+        assert!(app.game.actors().get(target).unwrap().integrity() < 100);
+        assert!(app.mouse_walk.is_none());
+        assert_eq!(app.game.player_position(), Some(GridPos::new(7, 6)));
+        assert_eq!(app.game.turn(), 3);
+    }
+
+    #[test]
+    fn world_context_nearby_doors_use_keyboard_without_hover_and_equivalent_left_click() {
+        for (direction, facing) in [
+            (Direction::North, Direction::South),
+            (Direction::East, Direction::West),
+            (Direction::South, Direction::North),
+            (Direction::West, Direction::East),
+        ] {
+            let mut results = Vec::new();
+            for clicked in [false, true] {
+                let mut app = app("lance");
+                let origin = app.game.player_position().unwrap();
+                let door = origin.step(direction);
+                let mut map = app.game.map().clone();
+                map.set_terrain(door, Terrain::Door(project_rl::world::DoorState::Closed))
+                    .unwrap();
+                app.game = WorldState::single(
+                    GameState::new_with_rules(map, origin, 129, app.game.rules().clone()).unwrap(),
+                );
+                app.set_facing(facing);
+                let other = GridPos::new(9, 8);
+                app.game
+                    .spawn_actor(Actor::new(other, 100).unwrap())
+                    .unwrap();
+                app.select_world_target(Some(other));
+                let mut input = world_pointer(&app, if clicked { door } else { other });
+                input.pressed.insert(if clicked {
+                    controls::Binding::MouseLeft
+                } else {
+                    app.controls.binding(Action::Interact).clone()
+                });
+                let turn = app.game.turn();
+                app.update_input_at(&input, Some(0.));
+                assert_eq!(
+                    app.game.map().tile(door).unwrap().terrain,
+                    Terrain::Door(project_rl::world::DoorState::Open)
+                );
+                assert_eq!(app.game.player_position(), Some(origin));
+                assert_eq!(app.game.turn(), turn + 1);
+                assert!(app.attack_aim.is_none());
+                assert!(app.mouse_walk.is_none());
+                results.push(suspension::fingerprint(&app.game));
+            }
+            assert_eq!(results[0], results[1]);
+        }
+    }
+
+    #[test]
+    fn world_context_underfoot_loot_uses_keyboard_without_hover_and_equivalent_left_click() {
+        let mut results = Vec::new();
+        for clicked in [false, true] {
+            let mut app = app("lance");
+            let origin = app.game.player_position().unwrap();
+            app.game
+                .spawn_ground_item(origin, "core:weapon_matter".parse().unwrap(), 3)
+                .unwrap();
+            assert_eq!(app.interaction_choice().0, Some(origin));
+            let other = GridPos::new(9, 8);
+            app.game
+                .spawn_actor(Actor::new(other, 100).unwrap())
+                .unwrap();
+            app.select_world_target(Some(other));
+            let mut input = world_pointer(&app, if clicked { origin } else { other });
+            input.pressed.insert(if clicked {
+                controls::Binding::MouseLeft
+            } else {
+                app.controls.binding(Action::Interact).clone()
+            });
+            let turn = app.game.turn();
+            app.update_input_at(&input, Some(0.));
+            assert!(app.game.ground_items().item_at(origin).is_none());
+            assert_eq!(app.game.player_position(), Some(origin));
+            assert_eq!(app.game.turn(), turn + 1);
+            assert!(app.mouse_walk.is_none());
+            results.push(suspension::fingerprint(&app.game));
+        }
+        assert_eq!(results[0], results[1]);
+    }
+
+    #[test]
+    fn world_context_unusable_mouse_cell_does_not_mask_a_selected_interaction() {
+        let mut app = door_app(false);
+        let door = GridPos::new(8, 6);
+        app.select_world_target(Some(door));
+        let mut input = world_pointer(&app, GridPos::new(5, 8));
+        input
+            .pressed
+            .insert(app.controls.binding(Action::Interact).clone());
+        app.update_input_at(&input, Some(0.));
+        for tick in 1..=5 {
+            app.tick_mouse_walk(tick as f64);
+        }
+        assert_eq!(
+            app.game.map().tile(door).unwrap().terrain,
+            Terrain::Door(project_rl::world::DoorState::Open)
+        );
+    }
+
+    #[test]
+    fn world_context_nearby_ambiguous_or_locked_interactions_do_not_spend_a_turn() {
+        for locked in [false, true] {
+            let mut app = app("lance");
+            let origin = app.game.player_position().unwrap();
+            let door = origin.step(Direction::East);
+            let mut map = app.game.map().clone();
+            map.set_terrain(
+                door,
+                Terrain::Door(if locked {
+                    project_rl::world::DoorState::Locked
+                } else {
+                    project_rl::world::DoorState::Closed
+                }),
+            )
+            .unwrap();
+            if !locked {
+                map.set_terrain(
+                    origin.step(Direction::West),
+                    Terrain::Door(project_rl::world::DoorState::Closed),
+                )
+                .unwrap();
+            }
+            app.game = WorldState::single(
+                GameState::new_with_rules(map, origin, 129, app.game.rules().clone()).unwrap(),
+            );
+            app.set_facing(Direction::North);
+            let before = suspension::fingerprint(&app.game);
+            let mut input = world_pointer(&app, GridPos::new(5, 8));
+            input
+                .pressed
+                .insert(app.controls.binding(Action::Interact).clone());
+            app.update_input_at(&input, Some(0.));
+            assert_eq!(app.context_menu.is_some(), !locked);
+            assert_eq!(suspension::fingerprint(&app.game), before);
+            if locked {
+                let mut input = world_pointer(&app, door);
+                input.pressed.insert(controls::Binding::MouseLeft);
+                app.update_input_at(&input, Some(1.));
+                assert_eq!(suspension::fingerprint(&app.game), before);
+                assert!(app.mouse_walk.is_none());
+            }
+        }
+    }
+
+    #[test]
+    fn world_context_cancel_preview_then_interact_collects_selected_ground_item() {
         let mut app = app("lance_grenades");
         let at = GridPos::new(8, 6);
         app.game
@@ -1287,6 +1568,14 @@ mod tests {
             slot: 0,
             cursor: at,
         });
+        let before = suspension::fingerprint(&app.game);
+        app.update_input(&InputFrame {
+            pressed: [controls::Binding::MouseRight].into(),
+            ..Default::default()
+        });
+        assert!(app.attack_aim.is_none());
+        assert_eq!(suspension::fingerprint(&app.game), before);
+        app.select_world_target(Some(at));
         press(&mut app, Action::Interact);
         assert!(app.attack_aim.is_none());
         for tick in 1..=8 {
@@ -1381,18 +1670,20 @@ mod tests {
             .spawn_actor(
                 Actor::new(GridPos::new(13, 6), 100)
                     .unwrap()
-                    .with_evasion_disabled(),
+                    .with_evasion_disabled()
+                    .with_player_relation(PlayerRelation::Hostile),
             )
             .unwrap();
         press(&mut app, Action::WorldActions);
         press(&mut app, Action::CycleTarget);
         assert!(app.world_cursor.is_none());
         assert_eq!(app.selected_target, Some(target));
-        // A stale pointer must not be queried or replace the explicit target.
+        // An idle pointer over the HUD must not replace the explicit target.
         app.update_input_at(
             &InputFrame {
                 pressed: [app.controls.binding(Action::Attack).clone()].into(),
                 pointer: Some((1.0, 1.0)),
+                viewport: Some((1280.0, 800.0)),
                 ..Default::default()
             },
             Some(0.0),
@@ -1562,10 +1853,34 @@ mod tests {
         assert!(summary.analysis.is_none());
         assert_eq!(suspension::fingerprint(&app.game), before);
         app.select_pointer_world_cell(at, None);
-        assert!(app.selected_visible_cell().is_none());
-        app.select_pointer_world_cell(at, None);
-        press(&mut app, Action::Interact);
         assert_eq!(app.npc_interaction, app.game.actors().entity_at(at));
+        app.update_input(&InputFrame {
+            pause: true,
+            ..Default::default()
+        });
+        assert!(app.npc_interaction.is_none());
+        app.select_pointer_world_cell(at, None);
+        assert_eq!(app.npc_interaction, app.game.actors().entity_at(at));
+        assert_eq!(suspension::fingerprint(&app.game), before);
+    }
+
+    #[test]
+    fn world_context_distant_npc_click_only_selects_without_moving_or_talking() {
+        let mut app = app("lance");
+        app.prepare_clinic_diagnostic().unwrap();
+        app.npc_interaction = None;
+        assert_eq!(
+            app.execute_command(GameCommand::Move(Direction::West)),
+            CommandOutcome::Applied
+        );
+        let at = GridPos::new(5, 3);
+        assert!(!app.interaction_candidates().contains(&at));
+        let before = suspension::fingerprint(&app.game);
+        app.select_pointer_world_cell(at, None);
+        assert_eq!(app.selected_visible_cell(), Some(at));
+        assert!(app.npc_interaction.is_none());
+        assert!(app.mouse_walk.is_none());
+        assert_eq!(suspension::fingerprint(&app.game), before);
     }
 
     #[test]
@@ -1576,11 +1891,16 @@ mod tests {
             .spawn_actor(Actor::new(GridPos::new(6, 7), 100).unwrap())
             .unwrap();
         app.select_world_target(Some(GridPos::new(8, 6)));
-        let before = suspension::fingerprint(&app.game);
         press(&mut app, Action::Attack);
+        for tick in 1..=5 {
+            app.tick_mouse_walk(tick as f64);
+        }
         assert!(app.mouse_walk.is_none());
         assert_eq!(app.game.actors().get(target).unwrap().integrity(), 100);
-        assert_eq!(suspension::fingerprint(&app.game), before);
+        assert_eq!(
+            app.game.map().tile(GridPos::new(8, 6)).unwrap().terrain,
+            Terrain::Door(project_rl::world::DoorState::Open)
+        );
     }
 
     #[test]
@@ -1591,7 +1911,8 @@ mod tests {
             .spawn_actor(
                 Actor::new(GridPos::new(13, 6), 100)
                     .unwrap()
-                    .with_evasion_disabled(),
+                    .with_evasion_disabled()
+                    .with_player_relation(PlayerRelation::Hostile),
             )
             .unwrap();
         app.selected_target = Some(target);
@@ -1703,7 +2024,8 @@ mod tests {
             .spawn_actor(
                 Actor::new(GridPos::new(7, 6), 100)
                     .unwrap()
-                    .with_evasion_disabled(),
+                    .with_evasion_disabled()
+                    .with_player_relation(PlayerRelation::Hostile),
             )
             .unwrap();
         app.selected_target = Some(target);
@@ -1992,8 +2314,58 @@ impl AsciiApp {
             .or_else(|| self.attack_aim.map(|aim| aim.cursor))
     }
 
+    pub(super) fn local_interaction_at(&self, at: GridPos) -> bool {
+        (self.game.player_position() == Some(at) && self.game.ground_items().item_at(at).is_some())
+            || self.interaction_candidates().contains(&at)
+    }
+
+    pub(super) fn hostile_target_at(&self, at: GridPos) -> bool {
+        self.game.player_visibility().is_visible(at)
+            && self.game.actors().entity_at(at).is_some_and(|id| {
+                id != self.game.player_id()
+                    && self.game.actors().get(id).is_some_and(|actor| {
+                        actor.is_alive()
+                            && (actor.player_relation() == PlayerRelation::Hostile
+                                || (self.generation_version < PLAYER_RELATIONS_GENERATION_VERSION
+                                    && ModuleKind::for_symbol(self.hostile_glyph(id))
+                                        == Some(ModuleKind::Hostile)))
+                    })
+            })
+    }
+
+    pub(super) fn interaction_action_cell(&self, input: &InputFrame) -> Option<GridPos> {
+        // Match the nearby HUD prompt before considering the mouse. An idle
+        // pointer over empty ground must not swallow a keyboard interaction.
+        let (nearby, count) = self.interaction_choice();
+        if count > 0 {
+            // Ambiguous nearby choices belong to the context menu, rather
+            // than an unrelated remote target under the mouse.
+            return nearby;
+        }
+        let actionable = |at: &GridPos| {
+            self.game.player_visibility().is_visible(*at)
+                && (self.context_interactive_at(*at)
+                    || self.game.ground_items().item_at(*at).is_some()
+                    || self.hostile_target_at(*at))
+        };
+        self.keyboard_action_cell(input)
+            .filter(actionable)
+            .or_else(|| self.selected_visible_cell().filter(actionable))
+            .or_else(|| {
+                self.visible_targets()
+                    .into_iter()
+                    .filter_map(|id| self.game.actors().get(id).map(Actor::position))
+                    .find(|at| self.hostile_target_at(*at))
+            })
+    }
+
     pub(super) fn run_keyboard_world_action(&mut self, action: Action, at: GridPos, now: f64) {
-        if !self.keyboard_world_action(action, at, now) {
+        let resolved = if action == Action::Interact && self.hostile_target_at(at) {
+            Action::Attack
+        } else {
+            action
+        };
+        if !self.keyboard_world_action(resolved, at, now) {
             self.push_log("Aucune action correspondante sur cette case.".into());
         }
         if let Some(walk) = self.mouse_walk.as_mut() {
@@ -2102,7 +2474,7 @@ impl AsciiApp {
             }
         }
         self.world_cursor = Some(at);
-        for action in [Action::Attack, Action::Interact, Action::Inspect] {
+        for action in [Action::Interact, Action::Inspect] {
             if self.controls.pressed(action, input) {
                 self.run_keyboard_world_action(action, at, now);
                 return;
@@ -2158,9 +2530,8 @@ impl AsciiApp {
         UiTheme.context_surface(rect);
         draw_wrapped_text(
             &format!(
-                "Flèches : choisir une case · {} : actions · {} : attaquer · {} : interagir · Échap : annuler",
+                "Flèches : choisir une case · {} : actions · {} : agir · Échap : annuler",
                 self.controls.label(Action::Learn),
-                self.controls.label(Action::Attack),
                 self.controls.label(Action::Interact)
             ),
             rect.x + 14.0,
@@ -2310,7 +2681,7 @@ impl AsciiApp {
                 .any(|d| d.is_identified() && !d.is_neutralized())
     }
 
-    fn context_path(&self, at: GridPos) -> Option<Vec<GridPos>> {
+    pub(super) fn context_path(&self, at: GridPos) -> Option<Vec<GridPos>> {
         let origin = self.game.player_position()?;
         if !self.context_safe_cell(at) {
             return None;
@@ -2780,11 +3151,17 @@ impl AsciiApp {
             || input.wheel_y != 0.0;
         self.menu_focus
             .update(hovered, &mut menu.selected, clicked, keyboard);
-        let shortcut = menu.rows.iter().position(|row| {
-            row.choice
-                .shortcut()
-                .is_some_and(|action| self.controls.pressed(action, input))
-        });
+        let shortcut = if self.controls.pressed(Action::Interact, input) {
+            // One action key confirms the highlighted choice, rather than
+            // competing attack/interaction shortcuts on the same binding.
+            Some(menu.selected)
+        } else {
+            menu.rows.iter().position(|row| {
+                row.choice
+                    .shortcut()
+                    .is_some_and(|action| self.controls.pressed(action, input))
+            })
+        };
         if let Some(index) = shortcut {
             menu.selected = index;
         }
@@ -3063,7 +3440,8 @@ impl AsciiApp {
         draw_text_bold_centered("Échap", key, 10, theme.muted());
     }
 
-    fn start_mouse_walk(&mut self, at: GridPos, now: f64) {
+    pub(super) fn start_mouse_walk(&mut self, at: GridPos, now: f64) {
+        self.walk_preview = None;
         let Some(path) = self.context_path(at) else {
             return;
         };

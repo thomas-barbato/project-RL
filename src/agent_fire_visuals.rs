@@ -8,6 +8,7 @@ pub(super) struct Fireball {
     pub target: GridPos,
     pub radius: u16,
     pub started: f64,
+    pub cells: Option<Vec<GridPos>>,
 }
 struct Art {
     ball: Texture2D,
@@ -17,11 +18,7 @@ struct Art {
 thread_local! {static ART:RefCell<Option<Art>>=const{RefCell::new(None)};}
 impl Art {
     fn load() -> Self {
-        let texture = |bytes: &[u8]| {
-            let t = Texture2D::from_file_with_format(bytes, Some(ImageFormat::Png));
-            t.set_filter(FilterMode::Linear);
-            t
-        };
+        let texture = |bytes: &[u8]| crate::effect_geometry::texture(bytes, FilterMode::Linear);
         Self {
             ball: texture(include_bytes!(
                 "../assets/animations/agent/skill-animation-review-16/projectile-atlas.png"
@@ -86,6 +83,30 @@ pub(super) fn draw(
             } else if background {
                 let t = age - 0.35;
                 let frame = ((t / 0.55 * 6.) as usize).min(5);
+                if crate::effect_geometry::enabled() {
+                    let fallback;
+                    let cells = if let Some(cells) = &flight.cells {
+                        cells.as_slice()
+                    } else {
+                        fallback = project_rl::skills::spatial::affected_cells(
+                            map,
+                            flight.target,
+                            project_rl::skills::spatial::Area::Disc {
+                                radius: flight.radius,
+                            },
+                            (1, 0),
+                        );
+                        &fallback
+                    };
+                    crate::effect_geometry::fitted_cells(
+                        &art.blast,
+                        frame,
+                        cells,
+                        &rect,
+                        0.95 * ((0.90 - age) / 0.16).clamp(0., 1.),
+                    );
+                    continue;
+                }
                 let size =
                     320. * scale * f32::from(flight.radius.saturating_mul(2).saturating_add(1))
                         / 7.;

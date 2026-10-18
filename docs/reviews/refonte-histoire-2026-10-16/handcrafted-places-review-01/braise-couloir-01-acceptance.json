@@ -1,0 +1,21 @@
+{
+  "review": "BRAISE-COULOIR-01",
+  "date": "2026-10-18",
+  "status": "superseded_by_explicit_user_clarification",
+  "approval": "oui ca me convient",
+  "text": "Projette des flammes en ligne droite et brûle tous les ennemis traversés.",
+  "common_rules": [
+    "Bloqué par les murs."
+  ],
+  "width_cells": 3,
+  "rank_one_length_cells": 2,
+  "length_gain_per_rank": 1,
+  "all_enemies_in_corridor": true,
+  "visual": "Three parallel flame bands; preview disappears on confirmation",
+  "other_accepted_visuals": [
+    "FX-FOOTPRINT-01 opacity, direction and footprint fitting"
+  ],
+  "damage_burn_energy_and_cooldown": "Keep existing values and caster modifiers",
+  "superseded_by": "souffle-couloir-01-acceptance.json",
+  "clarification": "Le joueur confirme que Braise reste un projectile monocible ; le couloir concerne Souffle de feu."
+}

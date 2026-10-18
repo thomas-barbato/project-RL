@@ -77,7 +77,6 @@ impl GameState {
     pub(super) fn agent_magic_range(&self, id: &str, rank: u8) -> u16 {
         let s = agent::definition(id).unwrap();
         let key = match id {
-            "FE02" => "cone_range_cells",
             "FE03" => "placement_range_cells",
             "FR04" => "maximum_wave_travel_cells",
             "OC04" => "center_range_cells",
@@ -236,7 +235,15 @@ impl GameState {
         if !self.map.contains(target) {
             return Err(CommandRejection::AbilityTargetOutsideMap(target));
         }
-        if !spatial::in_cast_range(origin, target, profile.range) {
+        let in_range = if id == "FE02" {
+            (target.x - origin.x)
+                .unsigned_abs()
+                .max((target.y - origin.y).unsigned_abs())
+                <= u32::from(profile.range)
+        } else {
+            spatial::in_cast_range(origin, target, profile.range)
+        };
+        if !in_range {
             return Err(CommandRejection::AbilityTargetOutOfRange(target));
         }
         if !self.player_visibility.is_visible(target)
@@ -252,8 +259,9 @@ impl GameState {
         }
         let dir = direction(origin, target);
         let area = match id {
-            "FE02" => Area::Cone {
-                length: s.value("cone_range_cells", rank),
+            "FE02" => Area::Line {
+                length: s.value("range_cells", rank),
+                width: s.value("line_width_cells", rank),
             },
             "FE03" | "FR03" => Area::Wall {
                 length: s.value("maximum_wall_length_cells", rank),
@@ -273,7 +281,7 @@ impl GameState {
             _ => Area::Point,
         };
         let centre = match id {
-            "FE02" => origin,
+            "FE02" => GridPos::new(origin.x + dir.0, origin.y + dir.1),
             "FR04" => GridPos::new(origin.x + dir.0, origin.y + dir.1),
             _ => target,
         };
@@ -332,10 +340,17 @@ impl GameState {
                 }
             }
         }
-        cells.retain(|p| self.player_visibility.is_visible(*p) && !self.map.is_protected(*p));
+        cells.retain(|p| {
+            self.player_visibility.is_visible(*p)
+                && !self.map.is_protected(*p)
+                && (id != "FE02" || has_line_of_sight(&self.map, origin, *p, true))
+        });
+        if id == "FE02" && (target == origin || !cells.contains(&target)) {
+            return Err(CommandRejection::AbilityTargetBlocked(target));
+        }
         Ok(AttackPreview::new(
             origin,
-            centre,
+            if id == "FE02" { target } else { centre },
             cells
                 .into_iter()
                 .map(|position| AttackAreaCell {

@@ -36,6 +36,9 @@ mod agent_magic_cast;
 mod agent_magic_runtime;
 #[path = "agent_progression.rs"]
 mod agent_progression;
+#[path = "agent_skill_demo.rs"]
+mod agent_skill_demo;
+pub use agent_skill_demo::AgentSkillDemo;
 #[path = "agent_runtime.rs"]
 pub(crate) mod agent_runtime;
 #[path = "agent_stealth_cast.rs"]
@@ -51,6 +54,9 @@ pub(crate) mod agent_transform_cast;
 mod agent_weapon_cast;
 #[path = "agent_weapon_effects.rs"]
 mod agent_weapon_effects;
+#[cfg(test)]
+#[path = "souffle_corridor_tests.rs"]
+mod souffle_corridor_tests;
 pub use agent_cast::AgentSpellProfile;
 pub use agent_weapon_cast::AgentSkillUseProfile;
 use agent_weapon_effects::AgentWeaponHit;

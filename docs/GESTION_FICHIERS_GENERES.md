@@ -36,3 +36,15 @@ Le registre de cette opération est dans
 `docs/maintenance/nettoyage-2026-10-16/`. Il contient les correspondances de
 chemins, les empreintes des sources préservées et le résultat réel du nettoyage.
 L’historique Git et les sauvegardes du joueur ne font pas partie du nettoyage.
+
+## Camp et dialogues — rangement du 18 octobre 2026
+
+Le camp et la bulle terminal fonctionnent dans le lancement normal. Les anciens
+générateurs, exemples et lanceurs de cette phase sont rangés sous
+`tools/archive/handcrafted-places-review-01/` ; les anciennes ressources de
+prototype restent sous `assets/source-art/`. Les captures intermédiaires et
+anciens exécutables sont envoyés dans la Corbeille, sans vidage.
+L’aperçu courant est réduit aux références utiles et propositions encore en
+attente. Les contrôles et correspondances sont dans
+`docs/maintenance/nettoyage-2026-10-18/camp-dialogues/`. Les modules actifs de
+dialogue sont `src/terminal_dialogue.rs` et `src/terminal_dialogue_app.rs`.

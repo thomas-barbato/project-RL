@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-18",
+  "status": "complete",
+  "method": "Windows Recycle Bin; preserved source archives",
+  "obsolete_files_retired": 328,
+  "bytes_sent_to_recycle_bin": 268866257,
+  "bin_emptied": false,
+  "archived_sources": 68,
+  "protected_files_verified": 44,
+  "runtime_rust_lines_removed": 390,
+  "debug_build": "passed",
+  "all_targets_check_after_retirement": "passed",
+  "release_check": "passed; existing unused inspection helper warning",
+  "focused_dialogue_tests": {
+    "passed": 14,
+    "failed": 0
+  },
+  "full_suite": "not rerun",
+  "native_after_cleanup": {
+    "audibility": "Native playback requested; final listening judgement belongs to player",
+    "audio_feature": true,
+    "audio_loaded": true,
+    "closures_stop_audio": [
+      "inside",
+      "outside",
+      "escape"
+    ],
+    "embedded_asset": "assets/audio/ui/dialogue-writing-03.wav",
+    "ends_with_writing": true,
+    "game_fingerprint_preserved": true,
+    "normal_runs_changed": true,
+    "reduced_motion_silent": true,
+    "review": "DIALOGUE-AUDIO-01-03",
+    "save_path": "C:\\Users\\User\\AppData\\Local\\Temp\\project-rl-camp-cleanup-dda35255bd584a178f31262b9ba0655e\\isolated-run.json",
+    "selection": "normal_launch_shared_presenter",
+    "starts": 4,
+    "stops": 4
+  },
+  "native_header_matches_previous": true,
+  "format_check": "passed",
+  "diff_whitespace": "passed",
+  "preview_links_verified": 26,
+  "source_assets_preserved": true,
+  "editor_data_and_saves_preserved": true,
+  "audio_03": "still provisional",
+  "hover_outline": "still pending",
+  "automatic_review": {
+    "action": "grouped permanent deletion",
+    "result": "rejected",
+    "stated_reason": "blocked by policy",
+    "alternative": "recoverable SendToRecycleBin; succeeded"
+  }
+}

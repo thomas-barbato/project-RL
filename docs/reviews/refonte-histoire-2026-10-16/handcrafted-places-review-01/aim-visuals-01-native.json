@@ -1,0 +1,57 @@
+{
+  "candidates": [
+    "A · Hologramme",
+    "B · Sceau occulte",
+    "C · Gravure"
+  ],
+  "crop": [
+    520,
+    232,
+    384,
+    288
+  ],
+  "frame_pixels": [
+    1280,
+    800
+  ],
+  "normal_runs_changed": false,
+  "review": "AIM-VIS-01",
+  "source_pixels_per_display_pixel": 1,
+  "states": [
+    {
+      "actual_validity": true,
+      "cells": 9,
+      "draw_preserved_game": true,
+      "energy": 36,
+      "proposal_keeps_pre_rejection_shape_visible": false,
+      "rejection": null,
+      "state": "valide"
+    },
+    {
+      "actual_validity": false,
+      "cells": 9,
+      "draw_preserved_game": true,
+      "energy": 6,
+      "proposal_keeps_pre_rejection_shape_visible": true,
+      "rejection": "InsufficientEnergy { required: 7, available: 6 }",
+      "state": "invalide"
+    }
+  ],
+  "status": "awaiting_visual_approval",
+  "tile_pixels": 64,
+  "validation": {
+    "debug_build": "passed",
+    "release_check": "passed, existing unused draw_inspection_panel warning",
+    "diff_check": "passed",
+    "visual_review": "six native crops inspected; orientation corrected; full A valid and invalid frames inspected",
+    "invalid_rgb": [
+      255,
+      48,
+      38
+    ],
+    "framebuffer_texture_crop_y": 280,
+    "framebuffer_texture_flip_y": true,
+    "runtime_integration": "awaiting explicit visual approval",
+    "tests": "not rerun for isolated renderer prototype"
+  }
+}

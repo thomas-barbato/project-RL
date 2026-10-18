@@ -1,3 +1,34 @@
+# État courant après rangement — 18 octobre 2026
+
+Le joueur confirme que le dialogue fonctionne en jeu et autorise le nettoyage.
+Le camp, les PNJ, leurs notifications et la bulle terminal sont conservés dans
+le client normal. Le son 03 reste provisoire. Les contours de silhouette et le
+symbole proposé pour une quête à rendre restent disponibles dans l’aperçu
+courant ; aucune validation supplémentaire n’est déduite du nettoyage.
+
+Aperçu compact : `artifacts/handcrafted-places-review-01/index.html`.
+Commandes : `cargo run`, `Jouer.cmd`. Diagnostic :
+`cargo run --locked -- --ui-cold-dialogue-terminal <dossier>`.
+Le rendu actif est dans `src/terminal_dialogue.rs` et son adaptateur dans
+`src/terminal_dialogue_app.rs`. Les anciens lanceurs et exemples du camp sont
+archivés ; les commandes et chemins historiques ci-dessous décrivent leurs
+étapes respectives et ne sont plus le pipeline courant. Le registre de
+rangement est `docs/maintenance/nettoyage-2026-10-18/camp-dialogues/`.
+
+## Visée et animations intégrées — 18 octobre
+
+FX-FOOTPRINT-01 est validé ; l’attribution du couloir est corrigée par « oui ! ».
+Le lancement normal utilise les contours et chemins légèrement transparents,
+les impacts ajustés à leur véritable emprise et Souffle de feu en couloir de 3 cases
+sur 2 au rang 1, avec une case de longueur supplémentaire par rang.
+La prévisualisation disparaît après confirmation. Les petits repères pulsent ;
+les chiffres de déplacement et leurs cercles restent fixes.
+
+Braise reste un projectile monocible.
+Décisions : `fx-footprint-01.md`, `souffle-couloir-01.md` et son accord JSON.
+Contrôles : `souffle-couloir-01-integration-native.json`.
+Aperçu courant : `artifacts/walk-preview-review-01/effets-zones.html`.
+
 # Lieux préparés à la main — premier aperçu
 
 ## Corrections après essai du camp — 18 octobre

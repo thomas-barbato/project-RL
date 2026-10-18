@@ -14,10 +14,10 @@ pub(super) struct MagicFlight {
     pub target: GridPos,
     pub radius: u16,
     pub started: f64,
+    pub cells: Option<Vec<GridPos>>,
 }
 struct Art {
     flame: Texture2D,
-    cone: Texture2D,
     nova: Texture2D,
     wall: Texture2D,
     wave: Texture2D,
@@ -35,16 +35,12 @@ struct Art {
     shadows: Texture2D,
     tentacle: Texture2D,
     clip: Material,
-    masks: Vec<((GridPos, (i32, i32), u64, usize, usize), Texture2D)>,
+    masks: Vec<((GridPos, (i32, i32), u64, usize, usize, u64), Texture2D)>,
 }
 thread_local! {static ART:RefCell<Option<Art>>=const{RefCell::new(None)};}
 impl Art {
     fn load() -> Self {
-        let texture = |bytes: &[u8]| {
-            let t = Texture2D::from_file_with_format(bytes, Some(ImageFormat::Png));
-            t.set_filter(FilterMode::Linear);
-            t
-        };
+        let texture = |bytes: &[u8]| crate::effect_geometry::texture(bytes, FilterMode::Linear);
         let clip=load_material(ShaderSource::Glsl{vertex:r#"#version 100
 attribute vec3 position;attribute vec2 texcoord;attribute vec4 color0;
 uniform mat4 Model;uniform mat4 Projection;varying highp vec2 point;varying highp vec2 uv;varying lowp vec4 tint;
@@ -60,9 +56,6 @@ gl_FragColor=vec4(colour.rgb,colour.a*visibility);}"#},MaterialParams{uniforms:v
         Self {
             flame: texture(include_bytes!(
                 "../assets/animations/agent/skill-animation-review-06/flame-atlas.png"
-            )),
-            cone: texture(include_bytes!(
-                "../assets/animations/agent/skill-animation-review-06/cone-atlas.png"
             )),
             nova: texture(include_bytes!(
                 "../assets/animations/agent/skill-animation-review-23/nova-atlas.png"
@@ -124,9 +117,20 @@ gl_FragColor=vec4(colour.rgb,colour.a*visibility);}"#},MaterialParams{uniforms:v
         anchor: GridPos,
         r: Rect,
         grade: f32,
+        cells: Option<&[GridPos]>,
     ) {
         let map = game.map();
-        let key = (source, direction, game.turn(), map.width(), map.height());
+        use std::hash::{Hash, Hasher};
+        let mut hasher = std::collections::hash_map::DefaultHasher::new();
+        cells.hash(&mut hasher);
+        let key = (
+            source,
+            direction,
+            game.turn(),
+            map.width(),
+            map.height(),
+            hasher.finish(),
+        );
         if self
             .masks
             .first()
@@ -144,7 +148,12 @@ gl_FragColor=vec4(colour.rgb,colour.a*visibility);}"#},MaterialParams{uniforms:v
                     let f = (at.x - exit.x) * direction.0 + (at.y - exit.y) * direction.1;
                     f >= 0 && has_line_of_sight(map, exit, at, true)
                 });
-                if map.is_walkable(at) && (has_line_of_sight(map, source, at, true) || from_exit) {
+                if map.is_walkable(at)
+                    && cells.map_or_else(
+                        || has_line_of_sight(map, source, at, true) || from_exit,
+                        |cells| cells.contains(&at),
+                    )
+                {
                     mask.set_pixel(at.x as u32, at.y as u32, WHITE);
                 }
             }
@@ -257,6 +266,26 @@ pub(super) fn draw_gel(rect: Rect, now: f64, seed: u64, reduced: bool, backgroun
         }
     });
 }
+fn fire_corridor(
+    art: &Art,
+    cells: &[GridPos],
+    source: GridPos,
+    direction: (i32, i32),
+    clock: f32,
+    opacity: f32,
+    rect: &impl Fn(GridPos) -> Option<Rect>,
+) {
+    let angle = (direction.1 as f32).atan2(direction.0 as f32) + std::f32::consts::FRAC_PI_2;
+    for side in -1..=1 {
+        let lane = cells
+            .iter()
+            .copied()
+            .filter(|at| -(at.x - source.x) * direction.1 + (at.y - source.y) * direction.0 == side)
+            .collect::<Vec<_>>();
+        let frame = ((clock * 16.) as usize + (side + 1) as usize * 3) % 8;
+        crate::effect_geometry::fitted_sheet(&art.flame, frame, &lane, rect, angle, opacity);
+    }
+}
 pub(super) fn draw(
     game: &GameState,
     flights: &[MagicFlight],
@@ -297,33 +326,42 @@ pub(super) fn draw(
                 anchor,
                 r,
                 if e.skill == "OC05" { 3. } else { 0. },
+                (crate::effect_geometry::enabled() && e.skill != "OC05")
+                    .then_some(e.cells.as_slice()),
             );
-            match e.skill.as_str() {
-                "FE02" if background => {
-                    if let Some(from) = rect(e.origin) {
-                        let at = from.center()
-                            + vec2(e.direction.0 as f32, e.direction.1 as f32) * 18. * scale;
-                        let range = project_rl::skills::agent::definition("FE02")
-                            .unwrap()
-                            .value("cone_range_cells", e.rank);
-                        let size = (f32::from(range) + 1.) * r.w * 1.10;
-                        let frame = 1 + (clock * 8.) as usize % 7;
-                        let angle = (e.direction.1 as f32).atan2(e.direction.0 as f32);
-                        draw_texture_ex(
-                            &art.cone,
-                            at.x - 24. * size / 384.,
-                            at.y - size / 2.,
-                            Color::new(1., 1., 1., 0.94),
-                            DrawTextureParams {
-                                source: Some(Rect::new(frame as f32 * 384., 0., 384., 384.)),
-                                dest_size: Some(vec2(size, size)),
-                                rotation: angle,
-                                pivot: Some(at),
-                                ..Default::default()
-                            },
-                        );
-                    }
+            if e.skill == "FE02" {
+                if background {
+                    fire_corridor(art, &e.cells, e.origin, e.direction, clock, 0.94, &rect);
                 }
+                gl_use_default_material();
+                continue;
+            }
+            if crate::effect_geometry::enabled() && background {
+                let fitted = match e.skill.as_str() {
+                    "FR04" => Some((
+                        &art.wave,
+                        (clock * 6.) as usize % 6,
+                        (e.direction.1 as f32).atan2(e.direction.0 as f32)
+                            + std::f32::consts::FRAC_PI_2,
+                        0.92,
+                    )),
+                    "FR05" => Some((
+                        &art.storm,
+                        (clock * 6.) as usize % 6,
+                        0.,
+                        if e.stage == 0 { 0.28 } else { 0.68 },
+                    )),
+                    _ => None,
+                };
+                if let Some((texture, frame, angle, opacity)) = fitted {
+                    crate::effect_geometry::fitted_sheet(
+                        texture, frame, &e.cells, &rect, angle, opacity,
+                    );
+                    gl_use_default_material();
+                    continue;
+                }
+            }
+            match e.skill.as_str() {
                 "FE03" if background => {
                     for (i, at) in e.cells.iter().enumerate() {
                         if let Some(cell) = rect(*at) {
@@ -433,7 +471,7 @@ pub(super) fn draw(
                     0.94,
                 );
             } else if skill == "OC04" && background {
-                art.bind(game, centre, (0, 0), actor.position(), r, 5.);
+                art.bind(game, centre, (0, 0), actor.position(), r, 5., None);
                 let delta = vec2(
                     (actor.position().x - centre.x) as f32,
                     (actor.position().y - centre.y) as f32,
@@ -464,6 +502,31 @@ pub(super) fn draw(
             let target = r.center();
             let origin = rect(flight.origin).map_or(target, |r| r.center());
             let age = if reduced { 0.20 } else { age };
+            let fallback;
+            let cells = if let Some(cells) = &flight.cells {
+                cells.as_slice()
+            } else {
+                use project_rl::skills::spatial::{Area, affected_cells};
+                let area = match flight.skill.as_str() {
+                    "FR02" => Area::Disc {
+                        radius: flight.radius,
+                    },
+                    "FR06" => Area::Diamond {
+                        radius: flight.radius,
+                    },
+                    "FE04" | "TR64_pulse" => Area::Square {
+                        radius: flight.radius,
+                    },
+                    _ => Area::Point,
+                };
+                fallback = affected_cells(game.map(), flight.target, area, (1, 0));
+                &fallback
+            };
+            let transit = matches!(
+                flight.skill.as_str(),
+                "HY05" | "OC05" | "AF06" | "TR64_drain" | "TR65_shadow_step"
+            ) || (matches!(flight.skill.as_str(), "FR01" | "M02" | "TR64_bolt")
+                && age < 0.18);
             art.bind(
                 game,
                 if matches!(
@@ -485,7 +548,43 @@ pub(super) fn draw(
                 } else {
                     0.
                 },
+                (crate::effect_geometry::enabled() && !transit).then_some(cells),
             );
+            if crate::effect_geometry::enabled() {
+                let fitted = match flight.skill.as_str() {
+                    "FR02" if background && age < 0.45 => Some((
+                        &art.nova,
+                        ((age / 0.45 * 6.) as usize).min(5),
+                        0.88 * ((0.45 - age) / 0.12).clamp(0., 1.),
+                    )),
+                    "FR06" if background && age < 0.42 => Some((
+                        &art.shatter,
+                        ((age / 0.42 * 6.) as usize).min(5),
+                        0.88 * ((0.42 - age) / 0.12).clamp(0., 1.),
+                    )),
+                    "TR64_pulse" if background && age < 0.41 => Some((
+                        &art.form_pulse,
+                        (((age - 0.01).max(0.) / 0.40 * 6.) as usize).min(5),
+                        1.,
+                    )),
+                    "M02" if !background && (0.18..0.46).contains(&age) => Some((
+                        &art.mutagen,
+                        (((age - 0.18) / 0.28 * 6.) as usize).min(5),
+                        0.94,
+                    )),
+                    "TR64_bolt" if !background && (0.16..0.36).contains(&age) => Some((
+                        &art.form_bolt,
+                        3 + (((age - 0.16) / 0.20 * 3.) as usize).min(2),
+                        1.,
+                    )),
+                    _ => None,
+                };
+                if let Some((texture, frame, opacity)) = fitted {
+                    crate::effect_geometry::fitted_sheet(texture, frame, cells, &rect, 0., opacity);
+                    gl_use_default_material();
+                    continue;
+                }
+            }
             match flight.skill.as_str() {
                 "AF06" if !background => {
                     draw_contagion(&art.tentacle, game, flight, origin, target, r, age, scale);

@@ -8,6 +8,10 @@ pub(super) struct UxState {
     pub skill_bar: [Option<String>; 6],
     pub skill_drag: Option<super::agent_skill_bar::Drag>,
     pub skill_bar_pointer: Option<(f32, f32)>,
+    pub skill_learn_pointer: Option<(f32, f32)>,
+    pub skill_learn_down: bool,
+    pub skill_demo_request: Option<String>,
+    pub skill_demo: super::skill_demo::State,
     pub inventory_tooltip: Option<ItemInstanceId>,
     pub inventory_tooltip_scroll: ScrollState,
     pub inventory_keyboard_preview: bool,
@@ -1101,8 +1105,7 @@ impl AsciiApp {
         height: f32,
     ) -> Vec<(Rect, Option<Action>, &'static str, UiIcon)> {
         [
-            (Some(Action::Interact), "Interagir", UiIcon::Interact),
-            (Some(Action::Attack), "Attaquer", UiIcon::Attack),
+            (Some(Action::Interact), "Action", UiIcon::Interact),
             (
                 Some(Action::QuickTechniques),
                 "Techniques",
@@ -1259,11 +1262,11 @@ impl AsciiApp {
     pub(super) fn help_command_lines(&self) -> Vec<String> {
         let mut lines=vec![
                 format!("Déplacement · {} {} {} {}. Un déplacement réussi fait avancer le temps.",self.controls.label(Action::MoveNorth),self.controls.label(Action::MoveWest),self.controls.label(Action::MoveSouth),self.controls.label(Action::MoveEast)),
-                "Clic droit sur une case : actions et approche automatique. Le clic gauche conserve le ciblage. Le trajet s'arrête en cas de blessure, de nouvel ennemi visible ou de nouvelle commande.".to_owned(),
-                format!("Interagir · survolez une installation, un objet ou un habitant puis appuyez sur {} : le personnage s'approche et agit. Sans case survolée ni cible sélectionnée, les interactions proches restent disponibles.",self.controls.label(Action::Interact)),
-                format!("Sélectionner · {} ou clic sur un personnage, objet ou élément interactif visible. Attaquer · {}. Une attaque de zone présente sa zone avant confirmation ; Échap l'annule.",self.controls.label(Action::CycleTarget),self.controls.label(Action::Attack)),
-                format!("Actions au clavier · {} ouvre un curseur de case. Flèches pour le déplacer, Entrée pour les actions. {} attaque, {} interagit ou ramasse, {} examine : votre personnage s'approche automatiquement si nécessaire.", self.controls.label(Action::WorldActions), self.controls.label(Action::Attack), self.controls.label(Action::Interact), self.controls.label(Action::Inspect)),
-                format!("Changer de cible · clic sur un personnage ou une case vide. Le clic ne tire jamais ; {} ou le bouton Attaquer confirme. Au clavier, {} ouvre la visée d'une case, puis les touches de déplacement la déplacent.", self.controls.label(Action::Attack), self.controls.label(Action::AimGround)),
+                "Clic gauche sur un ennemi : attaquer. Sur un élément interactif à portée : interagir. Clic droit hors aperçu : menu des actions. Le trajet s'arrête en cas de blessure, de nouvel ennemi visible ou de nouvelle commande.".to_owned(),
+                format!("Action contextuelle · {} pour interagir, ramasser ou attaquer. Les interactions sous le personnage et sur les quatre cases voisines fonctionnent sans survol.",self.controls.label(Action::Interact)),
+                format!("Sélectionner · {}. Attaquer · {} ou clic gauche sur un ennemi. Une attaque de zone présente sa zone avant confirmation.",self.controls.label(Action::CycleTarget),self.controls.label(Action::Interact)),
+                format!("Actions au clavier · {} ouvre un curseur de case. Flèches pour le déplacer, Entrée pour les actions. {} déclenche l'action, {} examine : votre personnage s'approche automatiquement si nécessaire.", self.controls.label(Action::WorldActions), self.controls.label(Action::Interact), self.controls.label(Action::Inspect)),
+                format!("Aperçu · souris ou clavier pour viser, clic gauche ou {} pour confirmer, clic droit ou Échap pour annuler. {} ouvre la visée d'une case.", self.controls.label(Action::Interact), self.controls.label(Action::AimGround)),
                 format!("Patienter · {}. Techniques actives · {}. Les coûts et conditions de chaque technique figurent dans les compétences.",self.controls.label(Action::Wait),self.controls.label(Action::QuickTechniques)),
                 format!("Inventaire · {}. Personnage · {}. Compétences · {}. Ouvrir ces écrans ne dépense pas de tour.",self.controls.label(Action::Inventory),self.controls.label(Action::Character),self.controls.label(Action::Skills)),
                 format!("Quêtes · {}. Archives découvertes · {}. Historique des tours · {}.",self.controls.label(Action::QuestJournal),self.controls.label(Action::Report),self.controls.label(Action::EventHistory)),
