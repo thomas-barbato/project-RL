@@ -1,0 +1,545 @@
+{
+  "date": "2026-10-18",
+  "scope": "Triage of 50 preexisting client failures before first-map review, with compatibility fixes and no campaign-map activation.",
+  "original_50_failures": {
+    "resolved": 29,
+    "still_failing": 21
+  },
+  "engine_suite": {
+    "passed": 977,
+    "failed": 0
+  },
+  "complete_client_run_before_final_fixture_adjustments": {
+    "passed": 967,
+    "failed": 24,
+    "ignored": 15,
+    "seconds": 981.84
+  },
+  "final_focused_run": {
+    "passed": 19,
+    "failed": 21,
+    "total": 40,
+    "includes": "All 24 failed cases from full run plus current camp, weapon sets and five historical-cache checks."
+  },
+  "full_client_suite_rerun_after_final_fixture_adjustments": false,
+  "cases": [
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::fluid::tests::rounded_current_crosses_a_gameplay_cell_edge_but_preserves_protected_centres",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::expanded::tests::drawn_sides_are_visible_after_the_opening_but_never_on_corridor_walls",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::expanded::tests::room_wall_still_stops_the_reexpanded_drawing",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::tests::long_corridor_preserves_range_and_stops_at_a_cross_wall",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::tests::partial_obstacle_stops_center_but_leaves_both_sides_open",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::stopped::tests::physical_cloison_stops_all_rays_to_the_far_room",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::overlay::tests::cloison_protects_targets_in_all_four_aiming_directions",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::particles::tests::all_flame_bounds_stay_outside_walls_on_every_path_and_direction",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::particles::tests::visual_routing_uses_only_the_unchanged_footprint",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::tests::corridor_widens_after_opening_but_closed_corner_protects_target",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::tests::full_cloison_stops_all_cells_behind_it",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "agent_skill_lab_review::fire_painted::obstacles::tests::partial_obstacle_leaves_two_sides_but_blocks_center",
+      "category": "frozen_fire_review_parameter",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_refuses_a_falsified_state_hash_without_replaying",
+      "category": "legacy_agent_cache_integrity",
+      "latest_result": "passed",
+      "evidence": "final focused recheck"
+    },
+    {
+      "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_refuses_a_modified_status_definition_in_current_content",
+      "category": "legacy_agent_cache_integrity",
+      "latest_result": "passed",
+      "evidence": "final focused recheck"
+    },
+    {
+      "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_requires_the_exact_old_engine_schema_and_a_snapshot",
+      "category": "legacy_agent_cache_integrity",
+      "latest_result": "passed",
+      "evidence": "final focused recheck"
+    },
+    {
+      "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_verifies_old_rules_and_state_then_adds_only_builtin_definitions",
+      "category": "legacy_agent_cache_integrity",
+      "latest_result": "passed",
+      "evidence": "final focused recheck"
+    },
+    {
+      "name": "ascii_app::agent_spell_trial::tests::mixed_weapon_out_of_ammunition_refuses_without_time_movement_or_melee_fallback",
+      "category": "context_action_vs_explicit_attack_fixture",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::agent_spell_trial::tests::mixed_weapon_out_of_ammunition_refuses_without_time_movement_or_melee_fallback' (12608) panicked at src\\agent_spell_trial.rs:1056:9:",
+        "assertion `left == right` failed",
+        "  left: 13043276068536738674",
+        " right: 1776849250197899651",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::agent_spell_trial::tests::mixed_weapon_out_of_ammunition_refuses_without_time_movement_or_melee_fallback ... FAILED",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses",
+      "category": "loot_model_count_assumption",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses' (29092) panicked at src\\city_feedback_tests.rs:278:9:",
+        "assertion `left == right` failed: core:reinforced_armor",
+        "  left: 2",
+        " right: 3",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses ... FAILED",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::effects_lab::tests::catalytic_weapon_opens_preview_before_keyboard_confirmation_and_allows_cancel",
+      "category": "obsolete_attack_binding_in_fixture",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::effects_lab::tests::catalytic_weapon_opens_preview_before_keyboard_confirmation_and_allows_cancel' (31984) panicked at src\\effects_lab.rs:3501:34:",
+        "cone must preview before firing",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::effects_lab::tests::catalytic_weapon_opens_preview_before_keyboard_confirmation_and_allows_cancel ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::effects_lab::tests::lab_parallax_keyboard_fire_chains_without_movement_or_waiting",
+      "category": "obsolete_attack_binding_in_fixture",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::effects_lab::tests::lab_parallax_keyboard_fire_chains_without_movement_or_waiting' (22044) panicked at src\\effects_lab.rs:2532:13:",
+        "assertion failed: app.game.actors().get(target).unwrap().integrity() < hp",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::effects_lab::tests::lab_parallax_keyboard_fire_chains_without_movement_or_waiting ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::effects_lab::tests::single_target_attack_is_direct_and_tab_still_changes_selection",
+      "category": "obsolete_attack_binding_in_fixture",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::effects_lab::tests::single_target_attack_is_direct_and_tab_still_changes_selection' (28004) panicked at src\\effects_lab.rs:3475:9:",
+        "assertion `left == right` failed",
+        "  left: 0",
+        " right: 1",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::effects_lab::tests::single_target_attack_is_direct_and_tab_still_changes_selection ... FAILED",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::accessory_models_preserve_version_133",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::bonus_rarity_preserves_version_134",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::firearm_models_preserve_version_129",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::improvement_preserves_version_135",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::melee_models_preserve_version_130",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::reinforced_armor_preserves_version_132",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::sword_models_preserve_version_131",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::version_106_keeps_its_original_merchants_and_can_resume",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::equipment_generation::tests::version_107_keeps_its_original_equipment_and_can_resume",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::generated_survival_tests::generated_survival_records_every_map_and_mobile_contact_without_retry",
+      "category": "survival_driver_route_loop",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::generated_survival_tests::generated_survival_records_every_map_and_mobile_contact_without_retry' (21848) panicked at src\\generated_survival_tests.rs:324:13:",
+        "pilot failure on seed 0 must be investigated, not counted as a safe return",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::generated_survival_tests::generated_survival_records_every_map_and_mobile_contact_without_retry ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed",
+      "category": "test_profile_isolation",
+      "latest_result": "passed",
+      "evidence": "final focused recheck"
+    },
+    {
+      "name": "ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot",
+      "category": "guided_trial_still_uses_old_city_route",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot' (31492) panicked at src\\playable_trial_app.rs:231:14:",
+        "called `Result::unwrap()` on an `Err` value: \"Trajet de contrôle introuvable\"",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::playable_trial::tests::playable_trial_keeps_normal_character_creation",
+      "category": "test_profile_isolation",
+      "latest_result": "passed",
+      "evidence": "final focused recheck"
+    },
+    {
+      "name": "ascii_app::surface_density::tests::version_108_surface_fingerprint",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together' (21004) panicked at src\\ascii_app.rs:30659:9:",
+        "assertion `left == right` failed",
+        "  left: 41",
+        " right: 20",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together ... FAILED",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::expedition_round_trip_replays_every_zone_and_its_visual_memory",
+      "category": "legacy_irreversible_travel_fixture",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::expedition_round_trip_replays_every_zone_and_its_visual_memory' (9368) panicked at src\\ascii_app.rs:31437:40:",
+        "called `Result::unwrap()` on an `Err` value: \"Return failed: Rejected(PreviousLayerUnavailable)\"",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::expedition_round_trip_replays_every_zone_and_its_visual_memory ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::exploration_objective_uses_real_travel_progress_in_the_global_journal",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::exploration_objective_uses_real_travel_progress_in_the_global_journal' (30320) panicked at src\\ascii_app.rs:31157:9:",
+        "assertion `left == right` failed",
+        "  left: None",
+        " right: Some(\"RETOURNER PARLER À Contact local · SUR PLACE\")",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::exploration_objective_uses_real_travel_progress_in_the_global_journal ... FAILED",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay' (20552) panicked at src\\ascii_app.rs:31648:14:",
+        "called `Result::unwrap()` on an `Err` value: \"Trajet de contrôle introuvable\"",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states' (31468) panicked at src\\ascii_app.rs:30443:9:",
+        "assertion `left == right` failed",
+        "  left: 75",
+        " right: 76",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states ... FAILED",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention' (26724) panicked at src\\ascii_app.rs:27677:9:",
+        "Rejected(NoItemToPickUp)",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::stored_version_fifteen_zero_command_run_keeps_its_exact_fingerprints",
+      "category": "historical_empty_map_debug",
+      "latest_result": "passed",
+      "evidence": "complete client suite"
+    },
+    {
+      "name": "ascii_app::tests::suspension_replays_active_r1_and_version_forty_strips_recovery_metadata",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::suspension_replays_active_r1_and_version_forty_strips_recovery_metadata' (32872) panicked at src\\ascii_app.rs:36435:9:",
+        "assertion failed: app.log.iter().any(|line| line.contains(\"Vous récupérez encore\"))",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::suspension_replays_active_r1_and_version_forty_strips_recovery_metadata ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble' (32976) panicked at src\\ascii_app.rs:27677:9:",
+        "Rejected(MerchantOfferUnavailable)",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn' (12080) panicked at src\\ux_tests.rs:213:38:",
+        "assertion `left == right` failed",
+        "  left: None",
+        " right: Some(1)",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn ... FAILED",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click' (15148) panicked at src\\ux_tests.rs:6:5:",
+        "assertion `left == right` failed",
+        "  left: Some(\"PARLER À ELIAS DANS LA VILLE INTÉRIEURE\")",
+        " right: Some(\"Rejoindre le secteur habité.\")",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click ... FAILED",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::ux_personalized_attributes_survive_back_and_forward",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::ux_personalized_attributes_survive_back_and_forward' (4300) panicked at src\\ux_tests.rs:224:83:",
+        "called `Option::unwrap()` on a `None` value",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::ux_personalized_attributes_survive_back_and_forward ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions",
+      "category": "legacy_ui_or_city_scenario_needs_investigation",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions' (1568) panicked at src\\ux_tests.rs:127:9:",
+        "assertion failed: rows.iter().all(|r|",
+        "        r.x >= 0.0 && r.right() <= width && r.bottom() < 69.0 && r.w > 120.0)",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions ... FAILED",
+        "",
+        "failures:"
+      ]
+    },
+    {
+      "name": "ascii_app::weapon_families_app::tests::weapon_families_lab_has_white_models_and_correct_inventory_icons",
+      "category": "obsolete_attack_binding_in_fixture",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::weapon_families_app::tests::weapon_families_lab_has_white_models_and_correct_inventory_icons' (26700) panicked at src\\weapon_families_app.rs:320:9:",
+        "assertion failed: app.attack_aim.is_none()",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::weapon_families_app::tests::weapon_families_lab_has_white_models_and_correct_inventory_icons ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    },
+    {
+      "name": "ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview",
+      "category": "historical_class_fixture",
+      "latest_result": "failed",
+      "evidence": "final focused recheck",
+      "failure_excerpt": [
+        "thread 'ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview' (31364) panicked at src\\weapon_supplies_app.rs:170:14:",
+        "called `Option::unwrap()` on a `None` value",
+        "note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+        "test ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview ... FAILED",
+        "",
+        "failures:",
+        ""
+      ]
+    }
+  ],
+  "remaining_groups": {
+    "context_action_vs_explicit_attack_fixture": 1,
+    "loot_model_count_assumption": 1,
+    "obsolete_attack_binding_in_fixture": 4,
+    "survival_driver_route_loop": 1,
+    "guided_trial_still_uses_old_city_route": 1,
+    "legacy_ui_or_city_scenario_needs_investigation": 11,
+    "legacy_irreversible_travel_fixture": 1,
+    "historical_class_fixture": 1
+  },
+  "debug_build": "passed_without_warnings",
+  "release_check": "passed_without_warnings",
+  "format_check": "passed",
+  "diff_check": "passed",
+  "native_runtime_capture": {
+    "passed": true,
+    "mode": "--ui-cold-weapon-sets",
+    "count": 16,
+    "engine_unchanged_by_draw": true,
+    "inventory_instances": 6
+  },
+  "no_expected_numeric_fingerprints_replaced": true,
+  "raw_log_sha256": {
+    "client-after.log": "c0a0309c369f56cbd4e1eafea18d736b081b89b4ef741bc52c190077605a1116",
+    "engine-after.log": "7a7887fe78b3909f3f345dec6b2266125a8bf43531df2845812caf5dd08e05b5",
+    "final-rechecks.json": "6bb8ea795ed03689c4d106f7b9bd58624e600fddbe5ce31dd16b94c07a521762",
+    "debug-build.log": "4f75d8b24865f7589a93e9e4d13b494de7a6d9fa5e6628df031507eabd7cf23e",
+    "release-check.log": "35be8ace2dd46c9cdf9c79bc7dd44fd6e797cf770722e2b33168ee9eadfeab32"
+  }
+}

@@ -62,6 +62,14 @@ fn with_sheet(number: u16, variant: u8, draw: impl FnOnce(&super::portrait::Shee
     };
     BANK.with(|bank| {
         let mut bank = bank.borrow_mut();
+        if !bank.cells.contains_key(&(number, variant))
+            && let Some(image) = super::finish::campaign_image(number, variant)
+        {
+            bank.cells.insert(
+                (number, variant),
+                super::portrait::Sheet::from_image(&image, entry.side),
+            );
+        }
         if !bank.cells.contains_key(&(number, variant)) {
             let Some((_, source)) = bank.sources.iter().find(|(side, _)| *side == entry.side)
             else {

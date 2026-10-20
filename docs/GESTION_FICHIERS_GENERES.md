@@ -48,3 +48,22 @@ L’aperçu courant est réduit aux références utiles et propositions encore e
 attente. Les contrôles et correspondances sont dans
 `docs/maintenance/nettoyage-2026-10-18/camp-dialogues/`. Les modules actifs de
 dialogue sont `src/terminal_dialogue.rs` et `src/terminal_dialogue_app.rs`.
+
+## Animations — nettoyage du 20 octobre 2026
+
+Les doublons des anciennes comparaisons, les captures individuelles des 68
+compétences et les exécutables de test sont retirés du projet. L’aperçu courant,
+ses données, les sources, les accords et le bilan de validation sont conservés.
+Quatre comparaisons natives suffisent au bilan visuel. Les anciens caches de
+compilation liés à la configuration audio abandonnée sont également retirés.
+
+Les captures et rapports automatiques sous `docs/reviews/` et
+`docs/maintenance/` sont maintenant ignorés par Git ; les décisions, règles,
+accords et synthèses de validation restent versionnables. Le registre local est
+`docs/maintenance/nettoyage-2026-10-20/cleanup-result.json`.
+
+La suppression groupée ayant été refusée par le contrôle automatique, les 262
+fichiers sont archivés de façon réversible dans
+`C:\Users\User\.codex\archives\project-RL\cleanup-2026-10-20`, avec leurs
+empreintes et chemins d’origine. Cet archivage allège le projet, sans prétendre
+libérer cette place sur le disque.

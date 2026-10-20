@@ -64,7 +64,7 @@ impl Stage {
         let map_text = rows.join("\n");
         let map = Map::from_ascii(&map_text).unwrap();
         // Keep the accepted five-cell range; distant actors demonstrate its limit.
-        let range = i32::from(parameter_for("FE02", "cone_range_cells", 11));
+        let range = REVIEW_CONE_RANGE;
         let affected = (1..13)
             .map(|x| GridPos::new(x, 3))
             .filter(|&at| {

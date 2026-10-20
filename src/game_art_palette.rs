@@ -16,7 +16,9 @@ pub(super) fn cell(source: &Image, index: u16, side: u16) -> Image {
 fn secondary(palette: EquipmentPalette) -> EquipmentPalette {
     use EquipmentPalette::*;
     match palette {
-        Original | ReviewedVariant1 | ReviewedVariant2 => Original,
+        Original | ReviewedVariant1 | ReviewedVariant2 | SlateBlue | MossGreen | Rust | DeepRed => {
+            Original
+        }
         Red => Turquoise,
         Blue => Yellow,
         Violet => Turquoise,
@@ -31,6 +33,57 @@ pub(super) fn recolor(image: &mut Image, mask: &Image, palette: EquipmentPalette
         return;
     }
     recolor_ramps(image, mask, palette.ramp(), secondary(palette).ramp());
+}
+/// Finished cloth/paint keeps some of its original worn pigment. The material
+/// label still protects skin, steel, secondary cloth and transparent edges.
+pub(super) fn recolor_finished(image: &mut Image, mask: &Image, palette: EquipmentPalette) {
+    if palette == EquipmentPalette::Original {
+        return;
+    }
+    if palette.is_torso_finish() {
+        recolor_torso_finish(image, mask, palette);
+        return;
+    }
+    let original = image.bytes.clone();
+    recolor(image, mask, palette);
+    for ((pixel, before), label) in image
+        .bytes
+        .chunks_exact_mut(4)
+        .zip(original.chunks_exact(4))
+        .zip(mask.bytes.chunks_exact(4))
+    {
+        if label[0] != 1 {
+            continue;
+        }
+        for c in 0..3 {
+            pixel[c] = ((u16::from(pixel[c]) * 7 + u16::from(before[c]) * 3 + 5) / 10) as u8;
+        }
+    }
+}
+/// Match the accepted authoring ramps exactly. Only primary material labels
+/// change; neutral fastenings, secondary cloth and alpha retain source pixels.
+fn recolor_torso_finish(image: &mut Image, mask: &Image, palette: EquipmentPalette) {
+    assert_eq!((image.width, image.height), (mask.width, mask.height));
+    let ramp = palette.ramp().expect("torso finish ramp");
+    for (pixel, label) in image
+        .bytes
+        .chunks_exact_mut(4)
+        .zip(mask.bytes.chunks_exact(4))
+    {
+        if label[0] != 1 {
+            continue;
+        }
+        let value = f64::from(pixel[0].max(pixel[1]).max(pixel[2])) / 255.;
+        let (low, high, t) = if value < 0.53 {
+            (ramp[0], ramp[1], ((value - 0.12) / 0.41).clamp(0., 1.))
+        } else {
+            (ramp[1], ramp[2], ((value - 0.53) / 0.47).clamp(0., 1.))
+        };
+        for c in 0..3 {
+            let mapped = (f64::from(low[c]) * (1. - t) + f64::from(high[c]) * t).round() as u16;
+            pixel[c] = ((mapped * 9 + u16::from(pixel[c]) + 5) / 10) as u8;
+        }
+    }
 }
 fn recolor_ramps(
     image: &mut Image,
@@ -111,6 +164,11 @@ impl NativeItems {
         palette: EquipmentPalette,
         resolution: u16,
     ) -> Option<Image> {
+        if resolution == 64
+            && let Some(image) = super::finish::item_image(illustration, palette)
+        {
+            return Some(image);
+        }
         let &(_, index, variants) = NATIVE_ITEMS.iter().find(|(i, _, _)| *i == illustration)?;
         let index = index
             + if variants {
@@ -159,7 +217,15 @@ pub(super) fn prewarm() {
     ITEMS.with(|_| {});
 }
 pub(super) fn draw_item(rect: Rect, art: ItemArt, palette: EquipmentPalette, opacity: f32) {
-    let resolution = item_resolution(rect);
+    // Even compact UI slots sample the approved native icon, rather than
+    // switching back to its historical small painting.
+    let resolution = if super::finish::has_torso_icon(art.illustration)
+        || (palette == EquipmentPalette::Original && matches!(art.illustration, 2 | 150))
+    {
+        64
+    } else {
+        item_resolution(rect)
+    };
     ITEMS.with(|sources| {
         let mut sources = sources.borrow_mut();
         let key = (art.illustration, palette, resolution);
@@ -340,12 +406,44 @@ mod tests {
         let bank = NativeItems::load();
         for &(illustration, index, variants) in NATIVE_ITEMS.iter().filter(|(_, _, v)| !v) {
             assert!(!variants);
+            // The pilot revises only the original icon. Other equipment paints
+            // retain their separately accepted source, checked against that bank.
+            let revised =
+                super::super::finish::item_image(illustration, EquipmentPalette::Original);
             let original = bank
                 .image(illustration, EquipmentPalette::Original, 64)
                 .unwrap();
             let mask = cell(&bank.large_maps, index, 64);
             for palette in EquipmentPalette::ALL {
                 let image = bank.image(illustration, palette, 64).unwrap();
+                if (101..=114).contains(&illustration) {
+                    let material =
+                        super::super::finish::image(&format!("TOR-{illustration}-material"))
+                            .unwrap();
+                    assert!(
+                        original
+                            .bytes
+                            .chunks_exact(4)
+                            .zip(image.bytes.chunks_exact(4))
+                            .zip(material.bytes.chunks_exact(4))
+                            .all(|((a, b), m)| a[3] == b[3] && (m[0] == 1 || a == b)),
+                        "torso material {illustration}/{palette:?}"
+                    );
+                    continue;
+                }
+                if let Some(ref accepted) = revised {
+                    if palette == EquipmentPalette::Original {
+                        assert_eq!(image.bytes, accepted.bytes);
+                    } else {
+                        let mut unchanged = cell(&bank.large, index, 64);
+                        recolor(&mut unchanged, &mask, palette);
+                        assert_eq!(
+                            image.bytes, unchanged.bytes,
+                            "unreviewed paint changed: {illustration}/{palette:?}"
+                        );
+                    }
+                    continue;
+                }
                 for ((a, b), label) in original
                     .bytes
                     .chunks_exact(4)

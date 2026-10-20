@@ -1,0 +1,129 @@
+{
+  "review": "PAV-U01-06",
+  "status": "candidate_not_integrated",
+  "native_cell": 64,
+  "world_pixels": [
+    1664,
+    4224
+  ],
+  "baseline_reconstruction_identical": true,
+  "revision": "joints-irreguliers",
+  "changes": [
+    "one slab per cell; no internal joints",
+    "mostly faint, interrupted or erased joints with static coordinate-based variation",
+    "grass removed from repeated tile; sparse independent tufts"
+  ],
+  "joint_mix": {
+    "intact": 1,
+    "fragmented": 6,
+    "nearly_erased": 5
+  },
+  "joint_rotation_degrees": [
+    0,
+    90,
+    180,
+    270
+  ],
+  "joint_selection": "offline coordinate hash; fixed across frames and visits; no gameplay RNG",
+  "grass_at_px": [
+    [
+      116,
+      531
+    ],
+    [
+      123,
+      544
+    ],
+    [
+      819,
+      554
+    ],
+    [
+      827,
+      559
+    ],
+    [
+      1118,
+      1174
+    ],
+    [
+      1122,
+      1185
+    ],
+    [
+      1031,
+      2054
+    ],
+    [
+      1037,
+      2060
+    ],
+    [
+      100,
+      2298
+    ],
+    [
+      106,
+      2312
+    ],
+    [
+      598,
+      2700
+    ],
+    [
+      1583,
+      2607
+    ],
+    [
+      1578,
+      2621
+    ],
+    [
+      837,
+      3005
+    ],
+    [
+      844,
+      3014
+    ],
+    [
+      1081,
+      3069
+    ]
+  ],
+  "grass_native_size": [
+    12,
+    10
+  ],
+  "accepted_surface_style": "STYLE-MAP-U01-04",
+  "active_assets_unchanged": true,
+  "active_sha256": {
+    "collision-repairs.json": "37deaa578c4340b11a05fdb65a8b2117c185f0a8422d6ac14471668b8eec00d6",
+    "correction.png": "9e123019902ebe12e4af71808702ab1359151e35ef4dfca45e3c51d631720b8c",
+    "irradiance.png": "038907d83c985d849b6ad59b1c9ab992c7708116ea7677c7d57a32fb9e5b9481",
+    "layout.txt": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
+    "roof-0.png": "daa333e2a8fef5fe7ee7de620dd69139b7377d2c82c7d883d5e34feb9599bfdf",
+    "roof-1.png": "95e279966252b32d21c11575b53404eb7398de334a256a970754dcb1b285ea50",
+    "roof-2.png": "2381e0b8139249ddefaf77b70ad14912556036df46900021a808ebc2a3efd37b",
+    "roof-3.png": "36f55710f3341eaed78d0a24b11a5a1a365d8d3e55b012e21f1bf74d43f0e636",
+    "room-vision.json": "5ab0623db4985bd0613bda0fb58c506a138c63f21191aff6df8aa25d472b31b7",
+    "street.json": "d0b0e7161c51a9c49cff6a317062e2bd2bfc6c8779689111e1aa1c64763dc2d6",
+    "street.png": "9f3afcee8e6ecc58f8c16f7078ab614f6a49c63ee7df0a8d69409c47a8f23c21",
+    "decor/CORP-U01-01.png": "6a016733564e23e4d8d2f85458db3f5d7f71e52b078520c2e1abdf8099fce956",
+    "decor/CORP-U01-02.png": "0b10f5554c5e12c91f8868d280d57c5a2d466aac9ce23ba9374edd680edccdcb",
+    "decor/CORP-U01-03.png": "0f08bcd7be6558b69fa31cf5fbc554f9ab449374eff0d779d3a77bfc6a719de3",
+    "decor/GRIM-U01-01.png": "2c84fecd9ceb2a794594f8ccb1f09d6653aa6ffd38379a20e4e4dfc7baef71f6",
+    "decor/surface-wear.png": "16cb67557ae6b56fa7ee32035470100a83650f721cd43545d385eecd09632b36"
+  },
+  "candidate_sha256": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+  "preserved": [
+    "module geometry",
+    "south arrival",
+    "roads",
+    "doors",
+    "roofs",
+    "lighting",
+    "collisions",
+    "actors"
+  ]
+}

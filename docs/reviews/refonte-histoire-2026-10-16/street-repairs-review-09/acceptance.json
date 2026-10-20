@@ -1,0 +1,107 @@
+{
+  "review": "U01-REPAIRS-09",
+  "date": "2026-10-20",
+  "status": "accepted_and_integrated",
+  "question": "Valides-tu le lot visuel U01-REPAIRS-09 présenté dans la revue : entrepôt moins vif, trait noir retiré de la route et jonction sud recomposée avec une annexe entière, des haies complètes et le corps replacé au sol ?",
+  "answer": "1 cependant il faudrait supprimer à coté du bâtiment en \"L\" la petite caisse en bois, le baril bleu et la poubelle verte que tu as mis .",
+  "accepted": [
+    "STYLE-U01-09",
+    "ROAD-U01-09",
+    "JONC-U01-09"
+  ],
+  "amendment": {
+    "removed_modules": [
+      {
+        "id": "warehouse-crate",
+        "at_px": [
+          630,
+          488
+        ],
+        "size": [
+          46,
+          40
+        ]
+      },
+      {
+        "id": "warehouse-cabinet",
+        "at_px": [
+          714,
+          480
+        ],
+        "size": [
+          40,
+          48
+        ]
+      },
+      {
+        "id": "warehouse-barrel",
+        "at_px": [
+          774,
+          496
+        ],
+        "size": [
+          24,
+          32
+        ]
+      }
+    ],
+    "paving_request": "il faut que tu applique la meme politique de semi-effacement des rebords des cases ou se trouvaient ces 3 objets :) comme partout ailleurs .",
+    "paving_cells": [
+      [
+        9,
+        7
+      ],
+      [
+        10,
+        7
+      ],
+      [
+        11,
+        7
+      ],
+      [
+        12,
+        7
+      ],
+      [
+        9,
+        8
+      ],
+      [
+        10,
+        8
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        12,
+        8
+      ]
+    ],
+    "paving_sources": [
+      "PAV-U01-06B-native.png",
+      "PAV-U01-06C-native.png"
+    ],
+    "delta_confined_to_removed_props_and_their_floor": true,
+    "extra_clear_cells": [
+      [
+        11,
+        7
+      ]
+    ],
+    "generation": 161
+  },
+  "native_cell": 64,
+  "reviewed_candidate_sha256": "3b546be7890baab4355059ba37cb76bfec8c0c73411e5bb42be5c64d0031c482",
+  "runtime_sha256": {
+    "street.png": "d87bc87c6e7f59ef3af6808f7abe56ef54a491f69e883446771c9b98b6e4af22",
+    "street.json": "8fe39f0c235c7ce80ece1695812f7e2ef37afc05ae48347fa0d5fc5738ff97b6",
+    "correction.png": "ab4b9037589866359cb20c6d9bc650b7bcbb54cc92fbd5d92db51e16e6cc641d",
+    "irradiance.png": "19c4157c479dbae87de50052f3a38beae2c8070d7baccd24ea7398d7f8525d98",
+    "warehouse-clearance-r09.json": "f1a9c70ed08ba184bfe4b091ed66d68f6c6d250342bc79d1b14e599a89598192"
+  },
+  "historical_geometry_unchanged": true,
+  "normal_runtime_uses_assets_maps": true
+}

@@ -1,0 +1,22 @@
+{
+  "review": "GRIM-U01-01",
+  "tool": "built-in imagegen",
+  "transparent_background": true,
+  "reference_roles": [
+    "player style and scale",
+    "warehouse projection and materials"
+  ],
+  "references": [
+    "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "assets/source-art/first-sector-review-01/u01-expansion-r06/warehouse-native.png"
+  ],
+  "prompt": "Use case: stylized-concept. NEW isolated scenery candidate GRIM-U01-01 for a French cyberpunk grimdark roguelike. Input 1 is a STYLE AND HUMAN SCALE reference only: an adult game character at native64; do not redraw or alter the player. Input 2 is a PROJECTION, linework and material reference only: orthogonal overhead environment with short front faces, no isometric diamonds. Create ONE single self-contained scenery prop, transparent cutout: a collapsed military quarantine barricade after a brutal demonic assault. A complete fallen dark olive ballistic shield and bent metal barrier, two completely clothed adult human casualties with obscured helmeted faces crumpled beside and partly beneath it, torn muted charcoal uniforms, a clear dark crimson blood pool and short dragged blood streak wholly contained inside the prop silhouette, a few broken cables. Tragic, oppressive, violent aftermath, no heroic pose, no comedy, no chibi, no glowing magic. Original designs only, no branding or lettering. Whole object and all accessories complete with clear transparent margin on ALL sides; no crop, no surrounding road/tile rectangle, no buildings, no decorative objects elsewhere. Designed to export into a 128 x 64 native-pixel sprite footprint (two 64px cells wide and one deep), adult lying body length roughly 50-60 native pixels matching the reference player standing height. Orthographic overhead with parallel horizontal/vertical axes and only short front-facing thickness, matching reference 2. Simplified hard painted shading in 3-4 tones per material, bold restrained dark outlines, readable coarse silhouette like the reference player and Crawl tiles, calm large masses, no photorealistic microtexture or smooth 3D rendering, not overly polished vector cartoon art. Muted rust, charcoal, gray olive, dark dried red; no dominant bright neon. Separate transparent contact shadow only immediately under the prop. This is a concept for review, not a full scene. Output a single wide transparent image; preserve complete outer silhouette.",
+  "source": "assets/source-art/first-sector-review-01/u01-corrections-r01/GRIM-U01-01-source.png",
+  "native": "assets/source-art/first-sector-review-01/u01-corrections-r01/GRIM-U01-01-native.png",
+  "native_size": [
+    128,
+    64
+  ],
+  "integrated": false,
+  "conditioning": "Crop to alpha >10 bounding box plus 8px padding; preserve source alpha; fit without distortion into 128x64 native canvas."
+}

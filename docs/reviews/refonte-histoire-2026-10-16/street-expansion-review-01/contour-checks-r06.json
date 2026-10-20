@@ -1,0 +1,48 @@
+{
+  "review": "CONTOURS-U01-06",
+  "status": "visual_review_pending",
+  "architectural_replacements": [
+    "warehouse",
+    "ROOF-U01-02A-body",
+    "ROOF-U01-02B-body"
+  ],
+  "conduit_palettes": {
+    "warehouse": "aged copper",
+    "west-garage": "rust brown",
+    "east-long": "blue grey steel"
+  },
+  "new_separate_props": [
+    {
+      "id": "warehouse-crate",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/crate-native.png",
+      "at": [
+        630,
+        488
+      ]
+    },
+    {
+      "id": "warehouse-cabinet",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/cabinet-native.png",
+      "at": [
+        714,
+        480
+      ]
+    },
+    {
+      "id": "warehouse-barrel",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at": [
+        774,
+        496
+      ]
+    }
+  ],
+  "render_only_candidate": true,
+  "warehouse_south_wall": "MUR-SUD-03: full-height south facade matches the garage facade; footprint retained; terminal corner pillars aligned; useless rubble removed",
+  "warehouse_native_size": [
+    651,
+    403
+  ],
+  "previous_sources_preserved": true,
+  "unchanged_sources_reused": true
+}

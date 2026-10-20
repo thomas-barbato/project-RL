@@ -33,6 +33,7 @@ fn old_agent_v14_fixture() -> (Suspension, Vec<u8>) {
         project_rl::skills::agent::legacy_v14_status_definitions(&app.rules.statuses);
     let engine = project_rl::skills::agent::legacy_v14_fixture_bytes(&app.game).unwrap();
     app.game = WorldState::from_recovery_snapshot_bytes(&engine, old_engine_rules.clone()).unwrap();
+    crate::cryogenic_camp::restore_obstructions(&mut app.game).unwrap();
     let mut saved = app.suspension().unwrap();
     let bytes = base64::engine::general_purpose::STANDARD
         .decode(saved.recovery.as_ref().unwrap().snapshot_state().unwrap())
@@ -62,10 +63,18 @@ fn old_agent_v14_fixture() -> (Suspension, Vec<u8>) {
         old_engine_rules,
     )
     .unwrap();
+    let expected_debug = format!("{:#?}", app.game);
+    let decoded_debug = format!("{:#?}", decoded.game);
+    let first_difference = expected_debug
+        .lines()
+        .zip(decoded_debug.lines())
+        .enumerate()
+        .find(|(_, (expected, actual))| expected != actual);
     assert_eq!(
         suspension::fingerprint(&decoded.game),
         saved.state,
-        "historical fixture must retain its exact engine rules and complete state"
+        "historical fixture must retain its exact engine rules and complete state; first difference: {first_difference:?}; live fingerprint: {}",
+        suspension::fingerprint(&app.game)
     );
     (saved, engine)
 }
@@ -73,6 +82,32 @@ fn old_agent_v14_fixture() -> (Suspension, Vec<u8>) {
 fn restore(saved: &Suspension, rules: GameRules) -> Result<AsciiApp, String> {
     let (_, texts, loot, expeditions) = ascii_game_content().unwrap();
     AsciiApp::restore_suspension(saved, rules, texts, loot, expeditions)
+}
+
+#[test]
+fn interim_empty_obstruction_hash_is_verified_for_snapshot_and_replay() {
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let app =
+        AsciiApp::from_seed_version(INITIAL_SEED, rules, texts, loot, expeditions, 108).unwrap();
+    let saved = project_rl::world::with_explicit_empty_obstructions(|| app.suspension().unwrap());
+    assert_ne!(saved.state, suspension::fingerprint(&app.game));
+    let original = serde_json::to_vec(&saved).unwrap();
+    for replay in [false, true] {
+        let mut candidate = saved.clone();
+        if replay {
+            candidate.build = "0000000000000000".into();
+        }
+        let (rules, _, _, _) = ascii_game_content().unwrap();
+        let restored = restore(&candidate, rules).unwrap();
+        assert_eq!(
+            restored.game.recovery_snapshot_bytes().unwrap(),
+            app.game.recovery_snapshot_bytes().unwrap()
+        );
+        candidate.state ^= 1;
+        let (rules, _, _, _) = ascii_game_content().unwrap();
+        assert!(restore(&candidate, rules).is_err());
+    }
+    assert_eq!(serde_json::to_vec(&saved).unwrap(), original);
 }
 
 #[test]

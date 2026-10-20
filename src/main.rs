@@ -1,5 +1,10 @@
 #[cfg(debug_assertions)]
 mod agent_skill_lab_review;
+mod animation_policy;
+#[cfg(debug_assertions)]
+mod animation_readability_review;
+#[cfg(debug_assertions)]
+mod art_quality_capture;
 mod ascii_app;
 mod attack_preview_visuals;
 mod camp_atmosphere;
@@ -14,14 +19,25 @@ mod graphics;
 mod guardian_taunt_visuals;
 mod hub_layout;
 mod melee_strike_visuals;
+mod natural_effect;
 mod pause_menu;
 mod preview_markers;
+mod prison_street;
+mod prison_street_render;
+mod sewer;
+mod sewer_ambience;
+#[cfg(debug_assertions)]
+mod sewer_review;
 mod skill_learn_button;
+#[cfg(debug_assertions)]
+mod street_defense_review;
+mod street_population;
 mod surface_layout;
 mod suspension;
 mod target_outline;
 mod terminal_chrome;
 mod terminal_dialogue;
+mod terminal_fire;
 mod terminal_view;
 mod test_expedition;
 mod test_regional;
@@ -62,7 +78,75 @@ async fn main() {
     #[cfg(debug_assertions)]
     if let Some(output) = graphics::ui_smoke_output() {
         let mode = std::env::args().nth(1).unwrap_or_default();
-        let result = if matches!(
+        let result = if mode == "--ui-cold-animation-readability" {
+            animation_readability_review::capture(&output).await
+        } else if mode == "--ui-cold-animation-shape" {
+            animation_readability_review::shape::capture(&output).await
+        } else if mode == "--ui-cold-blizzard-readability" {
+            animation_readability_review::blizzard::capture(&output).await
+        } else if mode == "--ui-cold-combat-fixes-review" {
+            AsciiApp::capture_combat_fixes_review(&output).await
+        } else if mode == "--ui-cold-sewer-integration" {
+            AsciiApp::capture_sewer_integration(&output).await
+        } else if matches!(
+            mode.as_str(),
+            "--ui-cold-sewer-review"
+                | "--ui-cold-sewer-decor-review"
+                | "--ui-cold-sewer-habitat-review"
+                | "--ui-cold-sewer-composition-review"
+        ) {
+            sewer_review::configure_review(match mode.as_str() {
+                "--ui-cold-sewer-composition-review" => 4,
+                "--ui-cold-sewer-habitat-review" => 3,
+                "--ui-cold-sewer-decor-review" => 2,
+                _ => 1,
+            });
+            AsciiApp::capture_sewer_review(&output).await
+        } else if mode == "--ui-cold-street-population" {
+            AsciiApp::capture_street_population(&output).await
+        } else if mode == "--ui-cold-street-defense-10" {
+            AsciiApp::capture_street_defense(&output).await
+        } else if mode == "--ui-cold-street-repairs-09" {
+            AsciiApp::capture_street_repairs(&output).await
+        } else if mode == "--ui-cold-torso-icons-integration" {
+            AsciiApp::capture_torso_icons(&output).await
+        } else if mode == "--ui-cold-art-finish-completion" {
+            AsciiApp::capture_art_finish_completion(&output).await
+        } else if mode == "--ui-cold-art-finish-05-review" {
+            AsciiApp::capture_art_finish_05(&output).await
+        } else if mode == "--ui-cold-art-finish-05-integration" {
+            AsciiApp::capture_art_finish_05_integration(&output).await
+        } else if mode == "--ui-cold-art-finish-04-review" {
+            AsciiApp::capture_art_finish_04(&output).await
+        } else if mode == "--ui-cold-art-finish-04-integration" {
+            AsciiApp::capture_art_finish_04_integration(&output).await
+        } else if mode == "--ui-cold-art-finish-03-review" {
+            AsciiApp::capture_art_finish_03(&output).await
+        } else if mode == "--ui-cold-art-finish-03-integration" {
+            AsciiApp::capture_art_finish_03_integration(&output).await
+        } else if mode == "--ui-cold-art-finish-02-review" {
+            AsciiApp::capture_art_finish_02(&output).await
+        } else if mode == "--ui-cold-art-finish-02-integration" {
+            AsciiApp::capture_art_finish_02_integration(&output).await
+        } else if matches!(
+            mode.as_str(),
+            "--ui-cold-art-finish-review" | "--ui-cold-art-finish-integration"
+        ) {
+            AsciiApp::capture_art_finish(&output).await
+        } else if mode == "--ui-cold-art-quality-audit" {
+            art_quality_capture::capture(&output).await
+        } else if mode == "--ui-cold-street-civilians-integration" {
+            AsciiApp::capture_street_civilians(&output).await
+        } else if matches!(
+            mode.as_str(),
+            "--ui-cold-street-style"
+                | "--ui-cold-street-style-integration"
+                | "--ui-cold-street-paving-integration"
+        ) {
+            AsciiApp::capture_street_style(&output).await
+        } else if mode == "--ui-cold-world-fixes" {
+            AsciiApp::capture_world_fixes(&output).await
+        } else if matches!(
             mode.as_str(),
             "--ui-cold-aim-styles" | "--ui-cold-aim-choice"
         ) {
@@ -95,6 +179,17 @@ async fn main() {
             AsciiApp::capture_camp_npc_review(&output).await
         } else if mode == "--ui-cold-cryogenic-camp" {
             AsciiApp::capture_cryogenic_camp(&output).await
+        } else if matches!(
+            mode.as_str(),
+            "--ui-cold-prison-street"
+                | "--ui-cold-prison-street-lighting"
+                | "--ui-cold-street-roofs"
+                | "--ui-cold-street-roofs-integration"
+                | "--ui-cold-street-expansion"
+                | "--ui-cold-street-integration"
+                | "--ui-cold-street-defects"
+        ) {
+            AsciiApp::capture_prison_street(&output).await
         } else if mode == "--ui-cold-campaign-bestiary" {
             AsciiApp::capture_campaign_monsters(&output, false, false).await
         } else if mode == "--ui-cold-monster-palettes" {
@@ -183,6 +278,14 @@ async fn main() {
     let trial = std::env::args().any(|arg| arg == "--essai-expedition");
     let installation_trial = std::env::args().any(|arg| arg == "--essai-interactions");
     let mut app = match (|| {
+        #[cfg(debug_assertions)]
+        if std::env::args().any(|arg| arg == "--essai-egouts") {
+            return AsciiApp::new_sewer_trial();
+        }
+        #[cfg(debug_assertions)]
+        if std::env::args().any(|arg| arg == "--essai-population-prison") {
+            return AsciiApp::new_street_population_trial();
+        }
         if std::env::args().any(|arg| arg == "--laboratoire-competences") {
             return AsciiApp::new_agent_skill_laboratory();
         }

@@ -1,0 +1,182 @@
+{
+  "review": "U01-POP-01",
+  "date": "2026-10-20",
+  "user_reply": "on va essayer :)",
+  "scope": "isolated_playable_trial",
+  "composition": {
+    "review": "U01-POP-01",
+    "status": "isolated_playable_trial",
+    "safe_arrival_radius": 6,
+    "groups": [
+      {
+        "id": 1,
+        "level": 1,
+        "members": [
+          {
+            "at": [
+              13,
+              54
+            ],
+            "number": 22,
+            "variant": 0
+          },
+          {
+            "at": [
+              14,
+              55
+            ],
+            "number": 22,
+            "variant": 1
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "level": 1,
+        "members": [
+          {
+            "at": [
+              3,
+              55
+            ],
+            "number": 120,
+            "variant": 0
+          },
+          {
+            "at": [
+              4,
+              55
+            ],
+            "number": 121,
+            "variant": 0
+          },
+          {
+            "at": [
+              5,
+              55
+            ],
+            "number": 120,
+            "variant": 1
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "level": 1,
+        "members": [
+          {
+            "at": [
+              17,
+              37
+            ],
+            "number": 22,
+            "variant": 1
+          },
+          {
+            "at": [
+              19,
+              37
+            ],
+            "number": 22,
+            "variant": 0
+          },
+          {
+            "at": [
+              19,
+              35
+            ],
+            "number": 24,
+            "variant": 0
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "level": 2,
+        "members": [
+          {
+            "at": [
+              17,
+              24
+            ],
+            "number": 121,
+            "variant": 0
+          },
+          {
+            "at": [
+              19,
+              24
+            ],
+            "number": 120,
+            "variant": 0
+          },
+          {
+            "at": [
+              18,
+              23
+            ],
+            "number": 121,
+            "variant": 1
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "level": 2,
+        "members": [
+          {
+            "at": [
+              18,
+              7
+            ],
+            "number": 22,
+            "variant": 0
+          },
+          {
+            "at": [
+              20,
+              7
+            ],
+            "number": 22,
+            "variant": 1
+          },
+          {
+            "at": [
+              17,
+              8
+            ],
+            "number": 22,
+            "variant": 0
+          },
+          {
+            "at": [
+              19,
+              5
+            ],
+            "number": 24,
+            "variant": 1
+          }
+        ]
+      }
+    ]
+  },
+  "new_art": false,
+  "new_powers": false,
+  "normal_campaign_activated": false,
+  "combat_profiles": "existing simulation_overworld human_habitat and surface_wilds ordinary rules; unchanged",
+  "new_final_balance_approved": false,
+  "guard_combat_implemented": false,
+  "player_profile": {
+    "class": "core:bastion",
+    "starting_equipment_unchanged": true
+  },
+  "normal_map_sha256_unchanged": true,
+  "references": {
+    "arrival.png": "2543a48d409b4c66e14a9ba8bca58a0307572295831ac81e4875b43d286fb28a",
+    "central-cultists.png": "3583b0cb14c8eccceb019dd7c17a40030e50108794a4f65344349cf5f86f17ea",
+    "first-cultists.png": "37f01c56494e36a5cd88fca2fe6ba902498dcc331dd07d59091bc9a2e49548f6",
+    "last-cultists.png": "d66a03765ca1ff648b5fd871a92375ba77b6aeb7610cffa1d3b651306d95703f",
+    "north-zombies.png": "34458ddd363b961fe5298d5132138c836d3c8759e0c8c37f116dc285b8e0ec84",
+    "west-zombies.png": "20b3574e9ff9720ac4afbe7bd656c6e8a257590ec958cce12833637cc84734c3"
+  }
+}

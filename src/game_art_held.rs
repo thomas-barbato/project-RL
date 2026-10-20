@@ -1,7 +1,6 @@
 //! Accepted scale and horizontal grips. Source art and item identities stay fixed.
+use super::super::held_geometry as geometry;
 use super::*;
-#[path = "game_art_held_geometry.rs"]
-mod geometry;
 
 pub(super) struct Grip {
     pub model: u16,
@@ -26,6 +25,10 @@ impl HeldPoses {
             .iter()
             .enumerate()
             .find(|(_, grip)| grip.model == model)
+    }
+    pub(super) fn weapon(&self, model: u16) -> Option<Image> {
+        let (index, _) = Self::grip(model)?;
+        Some(palettes::cell(&self.weapons, index as u16, 128))
     }
     pub(super) fn compose(
         &self,

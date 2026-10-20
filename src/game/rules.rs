@@ -37,6 +37,8 @@ pub struct GameRules {
     pub weighted_equipment_bonuses: bool,
     pub equipment_color_variants: bool,
     pub player_field_of_view: FieldOfViewRules,
+    /// The player's circular perception ignores walls; attacks and NPC sight do not.
+    pub circular_player_vision: bool,
     /// Explicit ordinary NPC sight; None retains the legacy shared fallback.
     pub ordinary_actor_field_of_view: Option<FieldOfViewRules>,
     pub damage: DamageRules,
@@ -155,6 +157,9 @@ impl Debug for GameRules {
         }
         if self.weighted_equipment_bonuses {
             rules.field("weighted_equipment_bonuses", &true);
+        }
+        if self.circular_player_vision {
+            rules.field("circular_player_vision", &true);
         }
         if self.player_full_heal_on_level_up {
             rules.field("player_full_heal_on_level_up", &true);
@@ -307,6 +312,21 @@ impl StartingItemStack {
     }
 }
 
+impl GameRules {
+    pub(crate) fn update_player_visibility(
+        &self,
+        visibility: &mut crate::world::VisibilityState,
+        map: &crate::world::Map,
+        origin: crate::world::GridPos,
+    ) {
+        if self.circular_player_vision {
+            visibility.recompute_ignoring_walls(map, origin, self.player_field_of_view);
+        } else {
+            visibility.recompute(map, origin, self.player_field_of_view);
+        }
+    }
+}
+
 impl Default for GameRules {
     fn default() -> Self {
         Self {
@@ -318,6 +338,7 @@ impl Default for GameRules {
             weighted_equipment_bonuses: false,
             equipment_color_variants: false,
             player_field_of_view: FieldOfViewRules::default(),
+            circular_player_vision: false,
             ordinary_actor_field_of_view: None,
             damage: DamageRules::default(),
             armor_rules: None,

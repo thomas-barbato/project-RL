@@ -1,0 +1,37 @@
+{
+  "review_ids": [
+    "MAP-U01-01-r03",
+    "DEC-U01-03-r01",
+    "FX-U01-CAR-01-r02"
+  ],
+  "projection_visual_check": "Roof-dominant overhead sprites inspected; no tall front elevations in current board.",
+  "images_visually_inspected": [
+    "u01-buildings-native-r02.png",
+    "u01-car-fire-native-r04.png",
+    "u01-arrival-native-r03.png"
+  ],
+  "same_walkability_as_r02": true,
+  "same_paths_as_r02": true,
+  "source_original_preserved": true,
+  "car_canvas": [
+    128,
+    64
+  ],
+  "gif_frames": 8,
+  "gif_cycle_ms": 1000,
+  "animation_changes_only_inside_car_canvas": true,
+  "current_page_image_links": 7,
+  "old_front_elevation_board_absent_from_current_page": true,
+  "engine_integration": "Not performed; proposal only.",
+  "browser_ui_check": "Not performed; local file protocol rejected earlier, no workaround used.",
+  "output_hashes": {
+    "u01-map-native-r03.png": "b64173788b560a49a8937bfb161be40be52c6d4ab19f7778d2d668715474cae7",
+    "u01-arrival-native-r03.png": "e8129fda66335574d42b681b7c5e8bb0adbda3e963daa50c5b607221924e46a9",
+    "u01-junction-native-r03.png": "685bdba0b3231666158841d5094201c38d22db98f5e24027b9c5baf6b3764dda",
+    "u01-layout-overview-r03.png": "5bf7e880590e58071a8e817b60be095781eb357f485c46d79330ff7760aa6011",
+    "u01-decor-board-native-r03.png": "62a5bc39ecb921883224be70c2ef6a5b163b6bc7db4791b6a985a67df32756db",
+    "u01-buildings-native-r02.png": "e30e2a10272f4fdf8a1eefd8fda4a65f45a3a9a70f924718e9203eee1738e9f6",
+    "u01-car-fire-native-r04.gif": "cae44e56db5ada8b809b458a8c1d94de718030df28ad0c4da989ad2d4f31b0c1",
+    "u01-car-fire-native-r04.png": "f7e02a22dc0a683010f29677ece71126f7e641a9df6e93779aecd011e6699a03"
+  }
+}

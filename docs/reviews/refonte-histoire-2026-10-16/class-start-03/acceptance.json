@@ -1,0 +1,54 @@
+{
+  "review": "CLASS-START-03",
+  "date": "2026-10-20",
+  "generation": 165,
+  "status": "accepted_and_integrated",
+  "approval": "ok alors on fait ca :)",
+  "source_of_approval": "The user approved the combined synthesis before requesting implementation.",
+  "classes": [
+    {
+      "character_class": "core:bastion",
+      "starting_weapon": "core:melee_hachette",
+      "first_bar_slot": "B01",
+      "armor_item": null
+    },
+    {
+      "character_class": "core:technomancien",
+      "starting_weapon": "core:modele_cogneur_p01",
+      "first_bar_slot": "D59",
+      "armor_item": null
+    },
+    {
+      "character_class": "core:traqueur",
+      "starting_weapon": "core:fusil_de_patrouille",
+      "first_bar_slot": "T01",
+      "armor_item": null
+    },
+    {
+      "character_class": "core:arcaniste",
+      "starting_weapon": "core:melee_couteau_de_camp",
+      "first_bar_slot": "FE01",
+      "armor_item": null
+    },
+    {
+      "character_class": "core:metamorphe",
+      "starting_weapon": "core:melee_couteau_de_camp",
+      "first_bar_slot": "M01",
+      "armor_item": null
+    }
+  ],
+  "new_artwork": false,
+  "class_drawings_preserved": true,
+  "weapon_bonuses_added": false,
+  "starting_active_assigned_once": true,
+  "empty_bar_preserved_after_resume": true,
+  "historical_loadouts_preserved": true,
+  "previous_step": "STARTER-SKIN-02",
+  "source_sha256": {
+    "content/core/classes/bastion.json5": "d8c5c951bceafe5b9248778540ef3ba3a4c3c4f611012db7afca7e01fd30dca0",
+    "content/core/classes/technomancien.json5": "80f6d233639f1acb79dfa15d6c0c9af56f69471cf171186ddbbc91ef1298f8e4",
+    "content/core/classes/traqueur.json5": "64015f3abaecb1b58d54fb72a9b183635f5a9a90c82729607ca4e48fe74aa3f2",
+    "content/core/classes/arcaniste.json5": "56ca891019a84d6171111ef6c238e643b3516c28011e98ff15e5aa04587ba829",
+    "content/core/classes/metamorphe.json5": "e8b3d8eddc0b3af38279dfa9ff6309be4a7393386f3a753fed61f2d089d9c1b9"
+  }
+}

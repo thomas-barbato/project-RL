@@ -1,0 +1,347 @@
+{
+  "review": "ART-FINISH-03",
+  "status": "accepted_and_integrated",
+  "native_cell": 64,
+  "drawings": 4,
+  "configuration_samples": 12,
+  "entries": [
+    {
+      "code": "FIN-22",
+      "label": "Tablier de cuir",
+      "identity": "core:patched_plating",
+      "outfit": 208,
+      "torso": 108,
+      "source_sha256": "76f2e6cf0ec8cb64fbc054b9368a8654ce897d95b90b1fe5610caa139129014d",
+      "native_sha256": "9ae55b652b79bd09da51441eb198a1248bb5bcbfa9219035766d16dbf77515b3",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        41,
+        33,
+        87,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-22-single-body.png",
+            "FIN-22-single-weapon.png",
+            "FIN-22-single-fingers.png"
+          ],
+          "hand_anchors": [
+            84,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-22-rifle-body.png",
+            "FIN-22-rifle-weapon.png",
+            "FIN-22-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-23",
+      "label": "Tenue de membranes",
+      "identity": "core:veste_de_membranes",
+      "outfit": 209,
+      "torso": 110,
+      "source_sha256": "59821549d18fda9ba43ceae24c8b13bb3bbc6987d776135404ccfe6bb2f1d628",
+      "native_sha256": "af60d8bebc1f00f7a8c399a1fcc0b934f4d5f3ec3844d02ae57c9602f4feb085",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        43,
+        33,
+        85,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-23-single-body.png",
+            "FIN-23-single-weapon.png",
+            "FIN-23-single-fingers.png"
+          ],
+          "hand_anchors": [
+            84,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-23-rifle-body.png",
+            "FIN-23-rifle-weapon.png",
+            "FIN-23-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-24",
+      "label": "Combinaison Peau-Seconde",
+      "identity": "core:veste_de_peau_seconde",
+      "outfit": 210,
+      "torso": 111,
+      "source_sha256": "3368f385fba29c239d5463129c57a1f4d9cb79a277b1f1447349a29a346e4aad",
+      "native_sha256": "7d118113a11876675835d45190d40895b13731e12961142113bb1273c23eb4a7",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        41,
+        33,
+        87,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-24-single-body.png",
+            "FIN-24-single-weapon.png",
+            "FIN-24-single-fingers.png"
+          ],
+          "hand_anchors": [
+            84,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-24-rifle-body.png",
+            "FIN-24-rifle-weapon.png",
+            "FIN-24-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-25",
+      "label": "Tenue du technicien",
+      "identity": "core:veste_de_veille",
+      "outfit": 211,
+      "torso": 112,
+      "source_sha256": "b6210d9ecb4a4a96096f4667d45117b185d75ff5cca6c8675ae96c2b6cfb72a2",
+      "native_sha256": "2434376d8f72481d1fbaa86ed37ea20ecc0e40a1424d8f9156fc1a4dfd60f0ca",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        42,
+        33,
+        86,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-25-single-body.png",
+            "FIN-25-single-weapon.png",
+            "FIN-25-single-fingers.png"
+          ],
+          "hand_anchors": [
+            84,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-25-rifle-body.png",
+            "FIN-25-rifle-weapon.png",
+            "FIN-25-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "ordinary_runtime_unchanged_at_preparation": true,
+  "runtime_assets": "assets/sprites/art-finish-03"
+}

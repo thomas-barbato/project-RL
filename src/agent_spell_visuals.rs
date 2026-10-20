@@ -1,4 +1,8 @@
 //! Accepted A01-A04 art and purple grading, driven only by presentation time.
+use crate::animation_policy::{
+    material as load_material, restore_material as gl_use_default_material,
+    use_material as gl_use_material,
+};
 use crate::effect_geometry::LazyTexture;
 use macroquad::prelude::*;
 use project_rl::{entity::EntityId, world::GridPos};
@@ -68,6 +72,7 @@ colour.rgb=mix(colour.rgb,purple,violet*visible*0.96);gl_FragColor=colour;}"#,
 }
 pub(super) fn draw(
     flights: &[SpellFlight],
+    map: &project_rl::world::Map,
     now: f64,
     reduced: bool,
     rect: impl Fn(GridPos) -> Option<Rect>,
@@ -80,7 +85,7 @@ pub(super) fn draw(
         let art = cache.get_or_insert_with(Art::load);
         gl_use_material(&art.purple);
         for flight in flights {
-            let age = (now - flight.started) as f32;
+            let age = crate::animation_policy::age("A01", now, flight.started) as f32;
             if !(0.0..0.4).contains(&age) {
                 continue;
             }
@@ -111,13 +116,19 @@ pub(super) fn draw(
             };
             let size = size * scale;
             if crate::effect_geometry::enabled() && frame >= 3 {
-                crate::effect_geometry::fitted_cells(
-                    &art.bolt,
-                    frame,
-                    &[flight.target],
-                    &rect,
-                    opacity,
-                );
+                crate::natural_effect::occult(|| {
+                    crate::natural_effect::sheet(
+                        &art.bolt,
+                        frame,
+                        flight.target,
+                        0,
+                        opacity,
+                        false,
+                        map,
+                        &rect,
+                    )
+                });
+                gl_use_material(&art.purple);
                 continue;
             }
             draw_texture_ex(
@@ -143,7 +154,6 @@ pub(super) struct SpellBlast {
     pub centre: GridPos,
     pub radius: u16,
     pub started: f64,
-    pub cells: Option<Vec<GridPos>>,
 }
 /// Floor/obstacle clipping only: the painted image can spill beyond nominal area edges.
 pub(super) fn draw_blasts(
@@ -162,7 +172,7 @@ pub(super) fn draw_blasts(
         let art = cache.get_or_insert_with(Art::load);
         gl_use_material(&art.purple);
         for blast in blasts {
-            let age = (now - blast.started) as f32;
+            let age = crate::animation_policy::age("A02", now, blast.started) as f32;
             if !(0.0..0.55).contains(&age) {
                 continue;
             }
@@ -175,27 +185,19 @@ pub(super) fn draw_blasts(
                 continue;
             };
             if crate::effect_geometry::enabled() {
-                let fallback;
-                let cells = if let Some(cells) = &blast.cells {
-                    cells.as_slice()
-                } else {
-                    fallback = project_rl::skills::spatial::affected_cells(
-                        map,
+                crate::natural_effect::occult(|| {
+                    crate::natural_effect::sheet(
+                        &art.burst,
+                        frame,
                         blast.centre,
-                        project_rl::skills::spatial::Area::Square {
-                            radius: blast.radius,
-                        },
-                        (1, 0),
-                    );
-                    &fallback
-                };
-                crate::effect_geometry::fitted_cells(
-                    &art.burst,
-                    frame,
-                    cells,
-                    &rect,
-                    0.83 * ((0.55 - age) / 0.10).clamp(0., 1.),
-                );
+                        blast.radius,
+                        0.83 * ((0.55 - age) / 0.10).clamp(0., 1.),
+                        false,
+                        map,
+                        &rect,
+                    )
+                });
+                gl_use_material(&art.purple);
                 continue;
             }
             let size = 224. * cell.w / 64.

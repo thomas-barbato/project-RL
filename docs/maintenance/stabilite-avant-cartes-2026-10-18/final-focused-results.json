@@ -1,0 +1,242 @@
+[
+  {
+    "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_refuses_a_falsified_state_hash_without_replaying",
+    "exit": 0,
+    "seconds": 4.71,
+    "log": "final-00.log"
+  },
+  {
+    "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_refuses_a_modified_status_definition_in_current_content",
+    "exit": 0,
+    "seconds": 4.32,
+    "log": "final-01.log"
+  },
+  {
+    "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_requires_the_exact_old_engine_schema_and_a_snapshot",
+    "exit": 0,
+    "seconds": 5.55,
+    "log": "final-02.log"
+  },
+  {
+    "name": "ascii_app::agent_resume_compat_tests::agent_v14_resume_verifies_old_rules_and_state_then_adds_only_builtin_definitions",
+    "exit": 0,
+    "seconds": 4.77,
+    "log": "final-03.log"
+  },
+  {
+    "name": "ascii_app::agent_resume_compat_tests::interim_empty_obstruction_hash_is_verified_for_snapshot_and_replay",
+    "exit": 0,
+    "seconds": 15.12,
+    "log": "final-04.log"
+  },
+  {
+    "name": "ascii_app::agent_spell_trial::tests::mixed_weapon_out_of_ammunition_refuses_without_time_movement_or_melee_fallback",
+    "exit": 101,
+    "seconds": 3.49,
+    "log": "final-05.log"
+  },
+  {
+    "name": "ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses",
+    "exit": 101,
+    "seconds": 4.91,
+    "log": "final-06.log"
+  },
+  {
+    "name": "ascii_app::cryogenic_camp_app::tests::cryogenic_all_protocols_begin_in_the_accepted_camp",
+    "exit": 0,
+    "seconds": 6.98,
+    "log": "final-07.log"
+  },
+  {
+    "name": "ascii_app::cryogenic_camp_app::tests::cryogenic_exit_uses_the_existing_lazy_sector_provider",
+    "exit": 0,
+    "seconds": 5.64,
+    "log": "final-08.log"
+  },
+  {
+    "name": "ascii_app::cryogenic_camp_app::tests::cryogenic_npc_markers_are_integrated_and_require_actual_visibility",
+    "exit": 0,
+    "seconds": 2.71,
+    "log": "final-09.log"
+  },
+  {
+    "name": "ascii_app::cryogenic_camp_app::tests::cryogenic_previous_generation_keeps_its_old_start_on_resume",
+    "exit": 0,
+    "seconds": 7.4,
+    "log": "final-10.log"
+  },
+  {
+    "name": "ascii_app::cryogenic_camp_app::tests::cryogenic_services_and_officer_can_be_reached_and_browsed_without_a_turn",
+    "exit": 0,
+    "seconds": 2.82,
+    "log": "final-11.log"
+  },
+  {
+    "name": "ascii_app::cryogenic_camp_app::tests::cryogenic_suspension_restores_the_same_camp_and_service_state",
+    "exit": 0,
+    "seconds": 3.88,
+    "log": "final-12.log"
+  },
+  {
+    "name": "ascii_app::effects_lab::tests::catalytic_weapon_opens_preview_before_keyboard_confirmation_and_allows_cancel",
+    "exit": 101,
+    "seconds": 3.36,
+    "log": "final-13.log"
+  },
+  {
+    "name": "ascii_app::effects_lab::tests::lab_parallax_keyboard_fire_chains_without_movement_or_waiting",
+    "exit": 101,
+    "seconds": 3.34,
+    "log": "final-14.log"
+  },
+  {
+    "name": "ascii_app::effects_lab::tests::single_target_attack_is_direct_and_tab_still_changes_selection",
+    "exit": 101,
+    "seconds": 3.42,
+    "log": "final-15.log"
+  },
+  {
+    "name": "ascii_app::generated_survival_tests::generated_survival_records_every_map_and_mobile_contact_without_retry",
+    "exit": 101,
+    "seconds": 19.85,
+    "log": "final-16.log"
+  },
+  {
+    "name": "ascii_app::hub_layout_tests::random_home_new_game_samples_once_and_rebuilds_with_the_chosen_seed",
+    "exit": 0,
+    "seconds": 3.19,
+    "log": "final-17.log"
+  },
+  {
+    "name": "ascii_app::one_hand_firearms::tests::one_hand_firearms_historical_saves_keep_the_pre_change_fingerprints",
+    "exit": 0,
+    "seconds": 20.8,
+    "log": "final-18.log"
+  },
+  {
+    "name": "ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot",
+    "exit": 101,
+    "seconds": 3.32,
+    "log": "final-19.log"
+  },
+  {
+    "name": "ascii_app::playable_trial::tests::playable_trial_keeps_normal_character_creation",
+    "exit": 0,
+    "seconds": 3.35,
+    "log": "final-20.log"
+  },
+  {
+    "name": "ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together",
+    "exit": 101,
+    "seconds": 5.23,
+    "log": "final-21.log"
+  },
+  {
+    "name": "ascii_app::tests::expedition_round_trip_replays_every_zone_and_its_visual_memory",
+    "exit": 101,
+    "seconds": 12.81,
+    "log": "final-22.log"
+  },
+  {
+    "name": "ascii_app::tests::exploration_objective_uses_real_travel_progress_in_the_global_journal",
+    "exit": 101,
+    "seconds": 6.62,
+    "log": "final-23.log"
+  },
+  {
+    "name": "ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay",
+    "exit": 101,
+    "seconds": 2.95,
+    "log": "final-24.log"
+  },
+  {
+    "name": "ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states",
+    "exit": 101,
+    "seconds": 5.5,
+    "log": "final-25.log"
+  },
+  {
+    "name": "ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention",
+    "exit": 101,
+    "seconds": 7.17,
+    "log": "final-26.log"
+  },
+  {
+    "name": "ascii_app::tests::suspension_replays_active_r1_and_version_forty_strips_recovery_metadata",
+    "exit": 101,
+    "seconds": 14.14,
+    "log": "final-27.log"
+  },
+  {
+    "name": "ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble",
+    "exit": 101,
+    "seconds": 9.4,
+    "log": "final-28.log"
+  },
+  {
+    "name": "ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn",
+    "exit": 101,
+    "seconds": 6.29,
+    "log": "final-29.log"
+  },
+  {
+    "name": "ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click",
+    "exit": 101,
+    "seconds": 5.5,
+    "log": "final-30.log"
+  },
+  {
+    "name": "ascii_app::tests::ux_personalized_attributes_survive_back_and_forward",
+    "exit": 101,
+    "seconds": 5.18,
+    "log": "final-31.log"
+  },
+  {
+    "name": "ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions",
+    "exit": 101,
+    "seconds": 5.67,
+    "log": "final-32.log"
+  },
+  {
+    "name": "ascii_app::weapon_families_app::tests::weapon_families_lab_has_white_models_and_correct_inventory_icons",
+    "exit": 101,
+    "seconds": 3.78,
+    "log": "final-33.log"
+  },
+  {
+    "name": "ascii_app::weapon_sets_app::tests::weapon_sets_inventory_and_bar_switch_the_same_real_set_without_spending_a_turn",
+    "exit": 0,
+    "seconds": 3.39,
+    "log": "final-34.log"
+  },
+  {
+    "name": "ascii_app::weapon_sets_app::tests::weapon_sets_keyboard_selects_hands_in_visible_set_and_switches_the_pair",
+    "exit": 0,
+    "seconds": 2.91,
+    "log": "final-35.log"
+  },
+  {
+    "name": "ascii_app::weapon_sets_app::tests::weapon_sets_migrate_existing_hands_once_and_replay_the_migration_after_old_commands",
+    "exit": 0,
+    "seconds": 8.58,
+    "log": "final-36.log"
+  },
+  {
+    "name": "ascii_app::weapon_sets_app::tests::weapon_sets_removed_third_equip_button_has_no_invisible_click_action",
+    "exit": 0,
+    "seconds": 2.88,
+    "log": "final-37.log"
+  },
+  {
+    "name": "ascii_app::weapon_sets_app::tests::weapon_sets_resume_and_replay_keep_the_selected_configuration_and_old_saves",
+    "exit": 0,
+    "seconds": 7.04,
+    "log": "final-38.log"
+  },
+  {
+    "name": "ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview",
+    "exit": 101,
+    "seconds": 2.79,
+    "log": "final-39.log"
+  }
+]

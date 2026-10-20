@@ -5,6 +5,34 @@ de suivi : **PLAN-CAMPAGNE-02**. Ce plan organise la réalisation ; il n'autoris
 aucune nouvelle valeur de dégâts, règle de voyage, compétence ou appellation.
 Ces propositions suivront leur revue habituelle avant intégration.
 
+## Mise à jour du 19 octobre 2026 — audit du mobilier après la refonte des acteurs
+
+Le joueur signale que le lit du logement de la rue paraît beaucoup plus grand
+qu'un humain dans la comparaison ART-FINISH-03. Une fois la refonte des visuels
+des personnages, armures et autres acteurs achevée, vérifier l'échelle du
+mobilier sur les cartes existantes : lits, tables, sièges, rangements, postes
+de travail et portes. Le lit signalé est prioritaire.
+
+Comparer les objets à des références humaines debout et allongées dans la
+projection du jeu, à taille native, en tenant compte des surfaces au sol et
+des faces verticales. Une longueur dessinée au sol ne se déduit pas seulement
+de la hauteur à l'écran d'un personnage debout. Revoir aussi l'emprise réelle,
+les collisions, les accès et la cohérence entre intérieur et extérieur.
+
+Présenter les écarts et les corrections avant activation des dessins révisés.
+Cette demande programme l'audit ; elle ne valide aucune nouvelle dimension
+de mobilier et ne déclenche pas de redimensionnement pendant le lot courant.
+
+## Mise à jour du 19 octobre 2026 — toits de la rue
+
+Les dessins ROOF-U01-01A/B et le masquage à l’ouverture de la porte sont
+acceptés. Leur intégration accompagne la génération 156, avec maintien de
+la pénombre et des lumières validées. Le toit reste masqué à l’intérieur,
+même si la porte est fermée. Les générations antérieures gardent leur entrée
+ouverte à la reprise. Voir la [revue des toits](reviews/refonte-histoire-2026-10-16/street-roofs-review-01/README.md).
+La prochaine zone reste le quartier résidentiel U02, plus grand, à présenter
+avant activation de son plan et de ses nouveaux décors.
+
 ## État au 17 octobre 2026
 
 Le socle graphique inclut les variantes validées des revues 07 et 08 ; les
@@ -35,6 +63,48 @@ Références : [histoire courante](HISTOIRE_CAMPAGNE.md),
 [intégration graphique du bestiaire](reviews/refonte-histoire-2026-10-16/bestiary-integration-06/README.md).
 
 ## Ordre recommandé
+
+### Point d’avancement du 18 octobre 2026
+
+Le style final de la rue, ses lumières de moteur et son ambiance légèrement
+nocturne sont validés dans SCENE-U01-07 / LUM-U01-07. Le joueur demande de
+consigner le style exact et la caméra, puis précise que les prochaines cartes
+seront plus grandes. Ces décisions sont dans
+[STYLE_VISUEL_REFERENCE.md](STYLE_VISUEL_REFERENCE.md).
+
+La première rue fixe SCENE-U01-06-r01 est acceptée après correction de caméra
+sur le camp. La génération 155 raccorde le portail sud au camp et rend la
+première maison de gauche accessible. Les quartiers suivants, les rencontres
+et les quêtes restent dans leurs étapes respectives. Voir
+[U01-INTEGRATION-06](reviews/refonte-histoire-2026-10-16/first-sector-review-01/U01-INTEGRATION-06.md).
+
+Les deux ensembles de mains et leurs bonus actifs sont intégrés ; la seconde
+main d’une arme à deux mains reprend l’image à 30 % d’opacité. La première
+passe de performance couvre les chargements d’effets et les démonstrations,
+avec des mesures distinctes des combats chargés encore à profiler.
+
+Le nettoyage avant cartes retire 1 309 fichiers générés (1,23 Gio logiques),
+en conservant sources, ressources, sauvegardes, aperçus et données de l’éditeur.
+Voir `maintenance/nettoyage-2026-10-18/pre-cartes/completion.json`.
+
+La stabilisation corrige les empreintes historiques des cartes sans obstacle
+temporaire et vérifie aussi l’encodage intermédiaire, sans supprimer les
+contrôles d’intégrité. Le tri des échecs d’application et ses limites sont
+conservés dans `maintenance/stabilite-avant-cartes-2026-10-18/`.
+
+La revue [FIRST-SECTOR-01](reviews/refonte-histoire-2026-10-16/first-sector-review-01/README.md)
+conserve MAP-ACCESS-01-r01 (44 × 30 cases) et DEC-ACCESS-01-r01 (seize pièces
+64 px) comme essai industriel non validé. La précision ACT1-CITY-01 du joueur
+recadre le premier chapitre autour d'une ville futuriste en pleine apocalypse,
+avec des lieux détruits, abîmés et abandonnés. La revue
+[ACT1-LAYOUT-01-r01](reviews/refonte-histoire-2026-10-16/first-sector-review-01/ACT1-LAYOUT-01.md)
+présente l'agencement des zones, accepté le 18 octobre par le joueur.
+La revue [U01-REVIEW-03](reviews/refonte-histoire-2026-10-16/first-sector-review-01/U01-REVIEW-03.md)
+présente son plan détaillé avec l'épave réduite à 2 × 1 cases, ses flammes
+proposées et les bâtiments corrigés en vue de dessus, encore candidats.
+Les élévations frontales précédentes sont refusées. Le camp accepté
+reste le point de départ ; aucune nouvelle
+carte n'est activée ici.
 
 Étudier la construction du monde, concevoir notre propre génération, puis
 répartir les monstres est cohérent. Deux ajustements réduisent les reprises :

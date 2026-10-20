@@ -1,0 +1,39 @@
+{
+  "review": "FIRST-SECTOR-01",
+  "status": "proposal_only",
+  "all_walkable_cells_reachable": 496,
+  "start_to_exit_steps": 38,
+  "return_to_camp_path": true,
+  "mandatory_module_cannot_be_bypassed": true,
+  "optional_maintenance_loop_has_two_connections": true,
+  "optional_detour_not_required_for_exit": true,
+  "native_map_size": [
+    2816,
+    1920
+  ],
+  "player_canvas": [
+    128,
+    128
+  ],
+  "player_source_scale": 1,
+  "player_foot_anchor": [
+    64,
+    96
+  ],
+  "player_visible_bounds": [
+    37,
+    33,
+    92,
+    98
+  ],
+  "numbered_decor_tiles": 16,
+  "normal_game_changed": false,
+  "map_editor_untouched": true,
+  "limits": [
+    "Fixed review layout, not the procedural generator.",
+    "No actors or rewards are spawned.",
+    "Image conditioning only; strips/caps in this composition are candidates too.",
+    "Lighting, collision/render overlap and integration require native engine verification after acceptance."
+  ],
+  "layout_sha256": "b3aad821c27266a856645d089b97a3d9d60297a3155c10a4570962b5ea59aef2"
+}

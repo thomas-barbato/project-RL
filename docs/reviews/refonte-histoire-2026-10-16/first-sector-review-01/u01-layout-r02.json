@@ -1,0 +1,276 @@
+{
+  "review_id": "MAP-U01-01-r02",
+  "chapter_layout": "ACT1-LAYOUT-01-r01",
+  "status": "proposal_not_integrated",
+  "size": [
+    40,
+    28
+  ],
+  "cell_px": 64,
+  "road_rect": [
+    1,
+    11,
+    38,
+    8
+  ],
+  "sidewalk_rects": [
+    [
+      1,
+      9,
+      38,
+      2
+    ],
+    [
+      1,
+      19,
+      38,
+      2
+    ]
+  ],
+  "plaza_rects": [
+    [
+      13,
+      7,
+      12,
+      4
+    ],
+    [
+      16,
+      20,
+      6,
+      6
+    ]
+  ],
+  "refuge_access_rect": [
+    17,
+    0,
+    4,
+    11
+  ],
+  "portals": [
+    {
+      "id": "P00",
+      "target": "Camp de cryogénie",
+      "opening": [
+        0,
+        14,
+        1,
+        3
+      ],
+      "at": [
+        1,
+        15
+      ],
+      "destination_existing_point": [
+        37,
+        8
+      ]
+    },
+    {
+      "id": "F00",
+      "target": "Refuge local de l’acte",
+      "opening": [
+        17,
+        0,
+        4,
+        1
+      ],
+      "at": [
+        18,
+        1
+      ]
+    },
+    {
+      "id": "U02",
+      "target": "Quartier résidentiel",
+      "opening": [
+        39,
+        12,
+        1,
+        4
+      ],
+      "at": [
+        38,
+        14
+      ]
+    }
+  ],
+  "start": [
+    3,
+    15
+  ],
+  "buildings": [
+    {
+      "id": "B01",
+      "rect": [
+        1,
+        1,
+        12,
+        8
+      ],
+      "role": "Bâtiment pénitentiaire · volume extérieur"
+    },
+    {
+      "id": "B02",
+      "rect": [
+        25,
+        1,
+        14,
+        8
+      ],
+      "role": "Façades urbaines abîmées · volume extérieur"
+    },
+    {
+      "id": "B03",
+      "rect": [
+        1,
+        21,
+        14,
+        6
+      ],
+      "role": "Bâtiment fermé · volume extérieur"
+    },
+    {
+      "id": "B04",
+      "rect": [
+        24,
+        21,
+        15,
+        6
+      ],
+      "role": "Bâtiment endommagé · volume extérieur"
+    }
+  ],
+  "props": [
+    {
+      "id": "O01",
+      "tile": 13,
+      "rect": [
+        9,
+        12,
+        3,
+        1
+      ],
+      "role": "Restes de barricade"
+    },
+    {
+      "id": "O02",
+      "tile": 17,
+      "rect": [
+        21,
+        14,
+        2,
+        1
+      ],
+      "role": "Voiture abandonnée",
+      "visual_id": "DEC-U01-17-r03",
+      "effect_id": "FX-U01-CAR-01-r01"
+    },
+    {
+      "id": "O03",
+      "tile": 14,
+      "rect": [
+        31,
+        16,
+        2,
+        1
+      ],
+      "role": "Débris de façade"
+    },
+    {
+      "id": "O04",
+      "tile": 13,
+      "rect": [
+        18,
+        24,
+        2,
+        1
+      ],
+      "role": "Blocs dans le renfoncement"
+    }
+  ],
+  "scale_actor": {
+    "file": "assets/source-art/refonte-agent-2026-10-06/actor-resolution-review-01/native64/AR-N07-0-00.png",
+    "scale": 1,
+    "foot_anchor": [
+      64,
+      96
+    ],
+    "note": "Référence d’échelle uniquement ; aucun nouvel acteur ou placement de rencontre."
+  },
+  "notes": [
+    "Plan fixe de revue, pas un résultat du générateur de campagne.",
+    "Toits et façades modulaires candidats ; les portes de ce premier lot sont fermées ou condamnées. Les intérieurs ouverts seront préparés séparément.",
+    "Les obstacles, largeurs et raccords sont soumis au joueur avec ce plan.",
+    "Raccord P00 prévu sur la sortie existante du camp ; ni cette liaison ni F00 ou U02 ne sont activés par la revue.",
+    "Aucune porte fermée, lumière transversale ou condition de quête n’est ajoutée aux ouvertures."
+  ],
+  "user_constraint": {
+    "car_max_cells": [
+      2,
+      1
+    ],
+    "car_canvas_px": [
+      128,
+      64
+    ],
+    "car_fire": "Animation décorative proposée sur la voiture, sans nouvelle règle de combat."
+  },
+  "facade_placements": [
+    {
+      "building": "B01",
+      "id": 18,
+      "x": 1
+    },
+    {
+      "building": "B01",
+      "id": 18,
+      "x": 5
+    },
+    {
+      "building": "B01",
+      "id": 20,
+      "x": 9
+    },
+    {
+      "building": "B02",
+      "id": 18,
+      "x": 25
+    },
+    {
+      "building": "B02",
+      "id": 20,
+      "x": 30
+    },
+    {
+      "building": "B02",
+      "id": 18,
+      "x": 35
+    },
+    {
+      "building": "B03",
+      "id": 19,
+      "x": 2
+    },
+    {
+      "building": "B03",
+      "id": 19,
+      "x": 7
+    },
+    {
+      "building": "B04",
+      "id": 20,
+      "x": 25
+    },
+    {
+      "building": "B04",
+      "id": 19,
+      "x": 30
+    },
+    {
+      "building": "B04",
+      "id": 18,
+      "x": 35
+    }
+  ]
+}

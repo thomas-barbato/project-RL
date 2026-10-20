@@ -1,0 +1,33 @@
+{
+  "review": "ART-FINISH-01",
+  "mode": "built-in imagegen",
+  "assets": [
+    {
+      "id": "FIN-01-RIFLE",
+      "prompt": "Use case: precise-object-edit. The input is the exact base character to preserve. Make ONE isolated complete full-body pose of this SAME character with ONLY the two arms repositioned for a separate two-handed rifle layer. Keep helmet/head, torso, outfit, material colors, finish, waist, legs, feet, stance and body proportions unchanged. This is a technical empty-handed pose: NO weapon or other object may be added. Bend both elbows naturally and bring both gloved hands in front of the chest/upper abdomen, ready to grip one straight horizontal rifle across the body. The hand on screen-LEFT is close to the sternum at abdomen level, the hand on screen-RIGHT is a little farther out and a little higher. Both palms closed enough to grip, fingers visible and anatomically coherent. Hands are separated by roughly the width of the torso, wrists not crossed. No tiny extra arms or duplicated fingers. Preserve the same natural worn matte hand-painted finish. Same framing, same closed face cover, same neutral illumination. Complete feet and hands within clear transparent margins, TRUE transparent background, no shadow, ground, text, gun or glow. This will be separated into authored sleeve and glove layers, so show the whole character and its coherent arm anatomy.",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/art-finish-review-01/FIN-01-source.png"
+      ],
+      "transparent_background": true,
+      "file": "exec-0712cb19-683e-48a5-8ae1-5bb941047631.png"
+    },
+    {
+      "id": "FIN-02-RIFLE",
+      "prompt": "Use case: precise-object-edit. The input is the exact base character to preserve. Make ONE isolated complete full-body pose of this SAME character with ONLY the two arms repositioned for a separate two-handed rifle layer. Keep helmet/head, torso, outfit, material colors, finish, waist, legs, feet, stance and body proportions unchanged. This is a technical empty-handed pose: NO weapon or other object may be added. Bend both elbows naturally and bring both gloved hands in front of the chest/upper abdomen, ready to grip one straight horizontal rifle across the body. The hand on screen-LEFT is close to the sternum at abdomen level, the hand on screen-RIGHT is a little farther out and a little higher. Both palms closed enough to grip, fingers visible and anatomically coherent. Hands are separated by roughly the width of the torso, wrists not crossed. No tiny extra arms or duplicated fingers. Preserve the same natural worn matte hand-painted finish. Same framing, same closed face cover, same neutral illumination. Complete feet and hands within clear transparent margins, TRUE transparent background, no shadow, ground, text, gun or glow. This will be separated into authored sleeve and glove layers, so show the whole character and its coherent arm anatomy.",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/art-finish-review-01/FIN-02-source.png"
+      ],
+      "transparent_background": true,
+      "file": "exec-e518eacb-add6-44df-b254-c1e3459f7c7b.png"
+    },
+    {
+      "id": "FIN-11-r02",
+      "prompt": "Use case: style-transfer. Create ONE complete isolated compact support DRONE based on the attached tiny robot reference. This is a MACHINE ONLY. Compact squat four-wheeled chassis with two rounded ivory armored shell panels on top, dark mechanical undercarriage, four small rubber wheels, small restrained amber mechanical indicator. Repaint as matte hand-painted game art for a grimdark cyberpunk overhead roguelike: chipped ivory paint, dark worn steel, controlled irregular outlines, readable broad shadows. Retain the reference's squat machine silhouette, shell layout and small support-drone proportions; do not add a turret or gun, face, walking limbs or new function. Slightly elevated frontal view matching reference. Designed to occupy about 54x28 game pixels beside a 60px human. Center the whole machine alone with generous transparent margins. TRUE TRANSPARENT BACKGROUND. Absolutely NO human, person, corpse, body, civilian, flesh, floor, scene, scenery, extra object, text, colored background, vignette or glow. Output just the single complete small robot with all four wheels, in isolation.",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/art-finish-review-01/FIN-11-reference.png"
+      ],
+      "transparent_background": true,
+      "file": "exec-f47b1d71-6f33-4ec2-9408-39b56e545d75.png"
+    }
+  ]
+}

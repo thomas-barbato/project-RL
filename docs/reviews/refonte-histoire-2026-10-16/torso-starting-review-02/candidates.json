@@ -1,0 +1,273 @@
+{
+  "review": "TORSO-STARTING-02",
+  "status": "awaiting_human_approval",
+  "models": 5,
+  "appearances": 24,
+  "entries": [
+    {
+      "id": "TOR-200",
+      "illustration": 200,
+      "outfit": 200,
+      "finish_number": 1,
+      "label": "Tenue d’assaut",
+      "identity": "core:tenue_assaut",
+      "source": "assets/source-art/torso-starting-review-02/TOR-200-source.png",
+      "source_sha256": "bd850378017a40a927d2850409190c0e33955ad664db45c1cbee91364a2c54f0",
+      "material_mask": "assets/source-art/torso-starting-review-02/native/TOR-200-material.png",
+      "new_palette_mask_overrides": {
+        "base": "assets/source-art/torso-starting-review-02/native/FIN-01-base-torso-material.png",
+        "core": "assets/source-art/torso-starting-review-02/native/FIN-01-core-torso-material.png"
+      },
+      "variants": [
+        {
+          "code": "TOR-200-A",
+          "label": "Origine",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-200-A.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-200-A-worn.png",
+          "icon_sha256": "a18a4398568f24af3edb8ee0075d32be00ac16662c10094e7487cc8072e4b63d",
+          "worn_sha256": "db0199be3507e91f58ab645f60c56501c79759cc054ccd27f0b8dc1e45e65b17"
+        },
+        {
+          "code": "TOR-200-B",
+          "label": "Bleu ardoise",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-200-B.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-200-B-worn.png",
+          "icon_sha256": "a2431130ccb82ca8d0c2832238c16decdbf47b9fbe9067734a64762e309ce43d",
+          "worn_sha256": "4ff0960c429db99786adb1edbb11f4247dcfb1b3e454857b9fae74a0c92014bc"
+        },
+        {
+          "code": "TOR-200-C",
+          "label": "Vert mousse",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-200-C.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-200-C-worn.png",
+          "icon_sha256": "037225965f54dcaeccd8c976610d22dec70ed12b6b173fa3386fefae98dea387",
+          "worn_sha256": "ddcedbf09efe09f968ed98ada45905b755c6fe12c0de6917096ec02c31d1f23e"
+        },
+        {
+          "code": "TOR-200-D",
+          "label": "Rouille",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-200-D.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-200-D-worn.png",
+          "icon_sha256": "8f2d785e3b33a3b1ad0a2ce89215d8a3bad9f4d2de19e6a07b70384059e102e4",
+          "worn_sha256": "c18c366aa9249cd994ec5710c96c6a279f12844af5d62358039f3c4717943c7b"
+        },
+        {
+          "code": "TOR-200-E",
+          "label": "Rouge sombre",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-200-E.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-200-E-worn.png",
+          "icon_sha256": "b42f719191e0ff6c1cd4f572ac1257a5751d4bc50d82e0f2585013377e2011a4",
+          "worn_sha256": "417f65a9228a2f623de231199d15036b8ab90889d66cd4fdf3344c3f7488c5e9"
+        }
+      ]
+    },
+    {
+      "id": "TOR-201",
+      "illustration": 201,
+      "outfit": 201,
+      "finish_number": 14,
+      "label": "Tenue technique",
+      "identity": "core:tenue_technique",
+      "source": "assets/source-art/torso-starting-review-02/TOR-201-source.png",
+      "source_sha256": "e9172e10a8f03d97b4d1b6c844bf129aaeb23dbb0805656058cf47c2edc3360a",
+      "material_mask": "assets/source-art/torso-starting-review-02/native/TOR-201-material.png",
+      "new_palette_mask_overrides": {},
+      "variants": [
+        {
+          "code": "TOR-201-A",
+          "label": "Origine",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-201-A.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-201-A-worn.png",
+          "icon_sha256": "25c2230b9aa702da330cf02c6a279c298c5c2c566a8709c68916f9f8a6171c76",
+          "worn_sha256": "3b832f850a15f127582d47c9f3c94e31f235a283342a064f3613be99fc0e1f5b"
+        },
+        {
+          "code": "TOR-201-B",
+          "label": "Bleu ardoise",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-201-B.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-201-B-worn.png",
+          "icon_sha256": "225097b40319dd11e8e81214da83383619754c83b7fcbaf3cc271a655b9ec7df",
+          "worn_sha256": "a07a15ae39810b7bd0c31cd2be4faebcbfd8466c9e98eb7f8af388566f46dffa"
+        },
+        {
+          "code": "TOR-201-C",
+          "label": "Vert mousse",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-201-C.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-201-C-worn.png",
+          "icon_sha256": "1757521be46fbac1beb8ade25924594b67eed25aa0ae41546dc3dc9e1d20b5d8",
+          "worn_sha256": "fabc2a093fcf0bf3e405c087f466e72a6bc6d2b49d377c58f745312a47dcf0b4"
+        },
+        {
+          "code": "TOR-201-D",
+          "label": "Rouille",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-201-D.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-201-D-worn.png",
+          "icon_sha256": "07a20fc7f121ba734e52c2b4ab9c552dd5b4a7f639dbf748c4c0e9b62ff781b8",
+          "worn_sha256": "c6d91774caa489efc0959d005fad64ebe576cf87998c361aa8b49a315b5d5151"
+        },
+        {
+          "code": "TOR-201-E",
+          "label": "Rouge sombre",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-201-E.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-201-E-worn.png",
+          "icon_sha256": "400fe88b4697e6017b26ddf1ff55e68c067e9b1481dedde6c89e314435633923",
+          "worn_sha256": "7a24e94abdb224406810f60e4a7a81845cdba997d728a25400b7bbf0a483da05"
+        }
+      ]
+    },
+    {
+      "id": "TOR-202",
+      "illustration": 202,
+      "outfit": 202,
+      "finish_number": 15,
+      "label": "Tenue de traque",
+      "identity": "core:tenue_traque",
+      "source": "assets/source-art/torso-starting-review-02/TOR-202-source.png",
+      "source_sha256": "70d3ef6b7bc96cc7770ccb5e2a50a8c79e352f5b3622e89bfae09b31e4bcc380",
+      "material_mask": "assets/source-art/torso-starting-review-02/native/TOR-202-material.png",
+      "new_palette_mask_overrides": {},
+      "variants": [
+        {
+          "code": "TOR-202-A",
+          "label": "Origine",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-202-A.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-202-A-worn.png",
+          "icon_sha256": "5cfc72d1487bbaaed862275bd25cfcb197f9b92d87637864037c159b8c0dd84b",
+          "worn_sha256": "f13bb34bb61ff954323056e01c13d8633aeb39080458fc6fe5ebcb1984170e8e"
+        },
+        {
+          "code": "TOR-202-B",
+          "label": "Bleu ardoise",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-202-B.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-202-B-worn.png",
+          "icon_sha256": "3d893eecf120a1e513a50e89814b0155073de51dfa9a58b6ad60d75f3fd8b931",
+          "worn_sha256": "6d87c50461e0e488c67a882577d91bfa32bd22336875fea3870bb841026fd4d4"
+        },
+        {
+          "code": "TOR-202-C",
+          "label": "Vert mousse",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-202-C.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-202-C-worn.png",
+          "icon_sha256": "718618be5fb493799fd851ede70b5a6bb6a189fdb39b7fe29db0e108d4fbb044",
+          "worn_sha256": "d0390c5c0e44d8d858e20a8265d2418fed8d21ca6eab5580d94712f8ad064e7f"
+        },
+        {
+          "code": "TOR-202-D",
+          "label": "Rouille",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-202-D.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-202-D-worn.png",
+          "icon_sha256": "3aa160b329f32bb55df2703fa3706af4c7ff7dabb6200cbb183143ec1ecefe11",
+          "worn_sha256": "6f977c78e5ab9de12737e067fa393f59890bbdd140a4a9e5c75e022b940c58cb"
+        },
+        {
+          "code": "TOR-202-E",
+          "label": "Rouge sombre",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-202-E.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-202-E-worn.png",
+          "icon_sha256": "f4eb2cb46db536db84eabcc5003348def019ac14fd87d77eb633873950794322",
+          "worn_sha256": "7764f081dedef52437dfcb06413cd53fce8c2b438071c9366f613f1bb79cd1cb"
+        }
+      ]
+    },
+    {
+      "id": "TOR-203",
+      "illustration": 203,
+      "outfit": 203,
+      "finish_number": 16,
+      "label": "Tenue rituelle",
+      "identity": "core:tenue_rituelle",
+      "source": "assets/source-art/torso-starting-review-02/TOR-203-source.png",
+      "source_sha256": "2c073f51f79df068245c142be3b86e37641370c581e7fab432dc98cfea3b3afd",
+      "material_mask": "assets/source-art/torso-starting-review-02/native/TOR-203-material.png",
+      "new_palette_mask_overrides": {},
+      "variants": [
+        {
+          "code": "TOR-203-A",
+          "label": "Origine",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-203-A.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-203-A-worn.png",
+          "icon_sha256": "495ebd7b20a61d8b959b1601f09a558be9126851d3d680880fa5fc0d9f7b6e4a",
+          "worn_sha256": "75f4dd38edf1eef5950d1942dc50b096c2f2a35264cab4936aab7b328bfbcba1"
+        },
+        {
+          "code": "TOR-203-B",
+          "label": "Bleu ardoise",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-203-B.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-203-B-worn.png",
+          "icon_sha256": "e64797a39df6940fec764af3ce9babb1fd1572d6d1e33325bde85d0ddd8a27b7",
+          "worn_sha256": "aee94c68616bd9ea27846200f54038a8dae92460c9b8d4415b258b7bfb1291df"
+        },
+        {
+          "code": "TOR-203-C",
+          "label": "Vert mousse",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-203-C.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-203-C-worn.png",
+          "icon_sha256": "5fb899edd90f27294b18e0e2636c29e8d6a295694fc15194f19e990aa8176a46",
+          "worn_sha256": "1f53b3bc27e77a001af249eabb7f58fb3e4656a77f1d047f097a4d8aee6a3046"
+        },
+        {
+          "code": "TOR-203-D",
+          "label": "Rouille",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-203-D.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-203-D-worn.png",
+          "icon_sha256": "1bfafceda188097e260d1c4d96471cbe3cf7ae53c988623a5b4998de3057e6ab",
+          "worn_sha256": "3e2bc39d87ee262b1aa22e2953714ae4a748c9353cc619c7bf3216f20fd8b54b"
+        }
+      ]
+    },
+    {
+      "id": "TOR-204",
+      "illustration": 204,
+      "outfit": 204,
+      "finish_number": 17,
+      "label": "Tenue métamorphe",
+      "identity": "core:tenue_metamorphe",
+      "source": "assets/source-art/torso-starting-review-02/TOR-204-source.png",
+      "source_sha256": "e69a6d65c3450932a899c4e8168beac82e01272dc3b0bc9c4949db2359d5d628",
+      "material_mask": "assets/source-art/torso-starting-review-02/native/TOR-204-material.png",
+      "new_palette_mask_overrides": {},
+      "variants": [
+        {
+          "code": "TOR-204-A",
+          "label": "Origine",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-204-A.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-204-A-worn.png",
+          "icon_sha256": "430147b8ac5d0017b3228c51b56de1a3e0b5611d9cff7622dd6c2f4b701477b1",
+          "worn_sha256": "f78b8b28b823848c46603b9220d49b2e1e079b05ce812aceccb7e7aa751ba3c1"
+        },
+        {
+          "code": "TOR-204-B",
+          "label": "Bleu ardoise",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-204-B.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-204-B-worn.png",
+          "icon_sha256": "c20f0c1f623b87ae6d24d413ad79d34558a7a9b7ff657949e3d6d642109997e5",
+          "worn_sha256": "18e4f304879d14ce470c4d3c97979890f2bf5a9ecb6db3b6cce098900d444e3f"
+        },
+        {
+          "code": "TOR-204-C",
+          "label": "Vert mousse",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-204-C.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-204-C-worn.png",
+          "icon_sha256": "11028a8cb1afbb656c2f664af22bcc55f98998a9e5dac260d4bd9981d5a830e6",
+          "worn_sha256": "24cf02e52e656556d2882e3d298878e881456827855b9b663323c5776ccc4a04"
+        },
+        {
+          "code": "TOR-204-D",
+          "label": "Rouille",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-204-D.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-204-D-worn.png",
+          "icon_sha256": "418ca7d093c9084a4b4a32158101a9e27c19d2d318a00b4ad73b3186c35e8a12",
+          "worn_sha256": "346130bf3a7960422e281e9a275dba0c91e4d314e2250dc9356d73047c28aa5e"
+        },
+        {
+          "code": "TOR-204-E",
+          "label": "Rouge sombre",
+          "icon": "assets/source-art/torso-starting-review-02/native/TOR-204-E.png",
+          "worn": "assets/source-art/torso-starting-review-02/native/TOR-204-E-worn.png",
+          "icon_sha256": "0508228057a15563336ad05578a75ff27ec9ad064f2f22cda689d08f3425ee2a",
+          "worn_sha256": "c7d575cdb6152367db9f1609be6c275e060ab7a0eca652b6f9f78fb929c998e8"
+        }
+      ]
+    }
+  ]
+}

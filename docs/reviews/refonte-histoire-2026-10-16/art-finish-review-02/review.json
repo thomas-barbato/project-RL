@@ -1,0 +1,683 @@
+{
+  "review": "ART-FINISH-02",
+  "status": "accepted_and_integrated",
+  "native_cell": 64,
+  "drawings": 8,
+  "configuration_samples": 24,
+  "entries": [
+    {
+      "code": "FIN-14",
+      "label": "Technomancien",
+      "identity": "core:technomancien",
+      "outfit": 201,
+      "torso": null,
+      "source_sha256": "be67120a1e8180324eb6675985fbfc2ca48a178846b0ecc1ab1d10d824fa158f",
+      "native_sha256": "3b832f850a15f127582d47c9f3c94e31f235a283342a064f3613be99fc0e1f5b",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        42,
+        33,
+        86,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-14-single-body.png",
+            "FIN-14-single-weapon.png",
+            "FIN-14-single-fingers.png"
+          ],
+          "hand_anchors": [
+            83,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-14-rifle-body.png",
+            "FIN-14-rifle-weapon.png",
+            "FIN-14-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-15",
+      "label": "Traqueur",
+      "identity": "core:traqueur",
+      "outfit": 202,
+      "torso": null,
+      "source_sha256": "1ead349d697a3f92cf20122408e08cc1fc716a8f2db1ada43e7cd659cb16da56",
+      "native_sha256": "f13bb34bb61ff954323056e01c13d8633aeb39080458fc6fe5ebcb1984170e8e",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        43,
+        33,
+        85,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-15-single-body.png",
+            "FIN-15-single-weapon.png",
+            "FIN-15-single-fingers.png"
+          ],
+          "hand_anchors": [
+            84,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-15-rifle-body.png",
+            "FIN-15-rifle-weapon.png",
+            "FIN-15-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-16",
+      "label": "Arcaniste",
+      "identity": "core:arcaniste",
+      "outfit": 203,
+      "torso": null,
+      "source_sha256": "6c81317aa1138b1d9c75396e6433f6d681b6416701b74d4329e57369c3f26c57",
+      "native_sha256": "75f4dd38edf1eef5950d1942dc50b096c2f2a35264cab4936aab7b328bfbcba1",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        41,
+        33,
+        87,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-16-single-body.png",
+            "FIN-16-single-weapon.png",
+            "FIN-16-single-fingers.png"
+          ],
+          "hand_anchors": [
+            84,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-16-rifle-body.png",
+            "FIN-16-rifle-weapon.png",
+            "FIN-16-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-17",
+      "label": "Métamorphe",
+      "identity": "core:metamorphe",
+      "outfit": 204,
+      "torso": null,
+      "source_sha256": "20c96a1c7376afe06b589d3d48b08ca276ac9ff560d9534ec00e4088824cd8a9",
+      "native_sha256": "f78b8b28b823848c46603b9220d49b2e1e079b05ce812aceccb7e7aa751ba3c1",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        42,
+        33,
+        86,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-17-single-body.png",
+            "FIN-17-single-weapon.png",
+            "FIN-17-single-fingers.png"
+          ],
+          "hand_anchors": [
+            83,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-17-rifle-body.png",
+            "FIN-17-rifle-weapon.png",
+            "FIN-17-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-18",
+      "label": "Carapace Chrysalide",
+      "identity": "core:carapace_chrysalide",
+      "outfit": 213,
+      "torso": 103,
+      "source_sha256": "35a1381f83b8ab4757893bdc2173b869c2060e49cfa305ff6e3babcaecf1f028",
+      "native_sha256": "f8bc6b8849d34c8b990002e9e6492b38da026b84ba1b84c5f99fab30794fa4e3",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        42,
+        33,
+        86,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-18-single-body.png",
+            "FIN-18-single-weapon.png",
+            "FIN-18-single-fingers.png"
+          ],
+          "hand_anchors": [
+            84,
+            63
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-18-rifle-body.png",
+            "FIN-18-rifle-weapon.png",
+            "FIN-18-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-19",
+      "label": "Combinaison fantôme",
+      "identity": "core:combinaison_fantome",
+      "outfit": 214,
+      "torso": 105,
+      "source_sha256": "7f786bf244690603b20d419a03414b92f30988bacf1e675d67e59ad15e521e46",
+      "native_sha256": "64dac56b39bddb3f7da0f3b6250c7ebee4758dd56e3919b185c779e6ad15359b",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        42,
+        33,
+        86,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-19-single-body.png",
+            "FIN-19-single-weapon.png",
+            "FIN-19-single-fingers.png"
+          ],
+          "hand_anchors": [
+            83,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-19-rifle-body.png",
+            "FIN-19-rifle-weapon.png",
+            "FIN-19-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-20",
+      "label": "Manteau de mue",
+      "identity": "core:manteau_de_mue",
+      "outfit": 215,
+      "torso": 106,
+      "source_sha256": "aecf38796c127287bb48e1f327b9bb32e484ac72171bf7b6754a33cad8980897",
+      "native_sha256": "ef5b8834b7cac3e7a77c931313bf8a43e3ad25389f539507c1eff77874b559a0",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        41,
+        33,
+        87,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-20-single-body.png",
+            "FIN-20-single-weapon.png",
+            "FIN-20-single-fingers.png"
+          ],
+          "hand_anchors": [
+            83,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-20-rifle-body.png",
+            "FIN-20-rifle-weapon.png",
+            "FIN-20-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-21",
+      "label": "Plastron Bastion",
+      "identity": "core:plastron_bastion",
+      "outfit": 216,
+      "torso": 107,
+      "source_sha256": "458b991f1001848020848434fa61f8316d8d3246a17f7926c8645f3b3d79a79a",
+      "native_sha256": "97165e3efd36bf86a5140ff2352a258c67da5781fbec3fa91af37a384c15a0d3",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        41,
+        33,
+        88,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-21-single-body.png",
+            "FIN-21-single-weapon.png",
+            "FIN-21-single-fingers.png"
+          ],
+          "hand_anchors": [
+            83,
+            63
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-21-rifle-body.png",
+            "FIN-21-rifle-weapon.png",
+            "FIN-21-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "ordinary_runtime_unchanged_at_preparation": true,
+  "runtime_assets": "assets/sprites/art-finish-02"
+}

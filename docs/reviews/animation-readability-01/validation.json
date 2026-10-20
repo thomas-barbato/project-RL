@@ -1,0 +1,199 @@
+{
+  "review": "ANIM-READ-01",
+  "date": "2026-10-20",
+  "status": "awaiting_player_visual_validation",
+  "normal_game_activation": false,
+  "build": {
+    "command": "cargo build --locked",
+    "result": "passed"
+  },
+  "existing_motion_tests": {
+    "command": "cargo test --locked --bin project-rl combat_visuals::tests -- --quiet",
+    "passed": 8,
+    "failed": 0,
+    "scope": "existing production movement tests; full suite not run"
+  },
+  "format": {
+    "cargo_fmt_all_check": "passed",
+    "git_diff_check": "passed",
+    "python_compile": "passed",
+    "javascript_node_check": "passed"
+  },
+  "native_capture": {
+    "cases": 8,
+    "lighting_scenarios": 2,
+    "phases_per_case_and_light": 72,
+    "source_fps": 60,
+    "native_cell": 64,
+    "game_state_unchanged": true,
+    "canvas_size": [
+      448,
+      320
+    ]
+  },
+  "pixels": {
+    "comparisons": 16,
+    "unchanged_scene_pixel_errors": 0,
+    "all_rest_images_identical": true,
+    "details": [
+      {
+        "id": "A01",
+        "light": "sombre",
+        "animated_phases": 24,
+        "contrast_changed_phases": 24,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "A01",
+        "light": "clair",
+        "animated_phases": 24,
+        "contrast_changed_phases": 24,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "OC05",
+        "light": "sombre",
+        "animated_phases": 17,
+        "contrast_changed_phases": 17,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "OC05",
+        "light": "clair",
+        "animated_phases": 17,
+        "contrast_changed_phases": 17,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "FR06",
+        "light": "sombre",
+        "animated_phases": 26,
+        "contrast_changed_phases": 25,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "FR06",
+        "light": "clair",
+        "animated_phases": 26,
+        "contrast_changed_phases": 25,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "SM02",
+        "light": "sombre",
+        "animated_phases": 28,
+        "contrast_changed_phases": 28,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "SM02",
+        "light": "clair",
+        "animated_phases": 28,
+        "contrast_changed_phases": 28,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "B01",
+        "light": "sombre",
+        "animated_phases": 47,
+        "contrast_changed_phases": 46,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "B01",
+        "light": "clair",
+        "animated_phases": 47,
+        "contrast_changed_phases": 46,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "FE05",
+        "light": "sombre",
+        "animated_phases": 54,
+        "contrast_changed_phases": 0,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "FE05",
+        "light": "clair",
+        "animated_phases": 54,
+        "contrast_changed_phases": 0,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "glide",
+        "light": "sombre",
+        "animated_phases": 5,
+        "contrast_changed_phases": 0,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "glide",
+        "light": "clair",
+        "animated_phases": 5,
+        "contrast_changed_phases": 0,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "reaction",
+        "light": "sombre",
+        "animated_phases": 9,
+        "contrast_changed_phases": 0,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      },
+      {
+        "id": "reaction",
+        "light": "clair",
+        "animated_phases": 9,
+        "contrast_changed_phases": 0,
+        "unchanged_scene_pixel_errors": 0,
+        "rest_identical": true
+      }
+    ]
+  },
+  "browser": {
+    "url": "http://127.0.0.1:8765/apercu-animations.html",
+    "rendered": "passed",
+    "pause_and_scrub": "passed",
+    "same_phase_toggle": "passed",
+    "contrast_toggle": "passed",
+    "case_selection": "passed",
+    "lighting_selection": "passed",
+    "visible_examples": [
+      "A01 dark",
+      "SM02 brighter",
+      "FR06 dark"
+    ],
+    "css_canvas_sizes": [
+      [
+        448,
+        320
+      ],
+      [
+        448,
+        320
+      ]
+    ],
+    "console_warnings_or_errors": 0
+  },
+  "repair": "The first draft composited render-target alpha twice in the current column. Both columns now use the same opaque composition. Regenerated captures pass exact pixel isolation and rest comparisons.",
+  "sources": {
+    "src/animation_readability_review.rs": "e98461280290b49ff4139f4929ccc6b0383ae9d5fd9a77aa8d1aa2a46aaae81e",
+    "tools/reviews/build_animation_readability_review.py": "14c41afd4131db2193ab4059fdbb3d660e952c8dc0b08821c9171ea485229a90"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "review": "VISION-U01-02",
+  "status": "visual_review_pending",
+  "native_cell": 64,
+  "candidate_only": true,
+  "normal_game_enabled": false,
+  "world_state_unchanged": true,
+  "comparison_same_positions": true,
+  "vision_algorithm_unchanged": true,
+  "movement_unchanged": true,
+  "unknown_cell_gate": "existing opaque mask retained",
+  "corrected_cells": 14,
+  "scenes": [
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        12,
+        20
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "scene": "house-a-open",
+      "title": "Intérieur du logement",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 55318
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        12,
+        28
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "scene": "house-b-open",
+      "title": "Intérieur de la boutique",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 57049
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        11,
+        23
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "scene": "house-a-closed",
+      "title": "Porte fermée et toit",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 1258
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        18,
+        33
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "scene": "join-middle",
+      "title": "Rue et angle de bâtiment",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 1250
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        7,
+        62
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "scene": "gate",
+      "title": "Sortie de prison",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 0
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        2,
+        2
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "scene": "west-corner",
+      "title": "Angle de l’enceinte",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 0
+    }
+  ]
+}

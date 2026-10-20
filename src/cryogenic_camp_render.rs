@@ -135,6 +135,18 @@ pub fn finish(
     time: f32,
 ) {
     props_before(camera, (i32::MAX, i32::MAX), time, game);
+    if crate::terminal_view::scenery_circle_enabled() {
+        with_scene(|s| s.atmosphere.finish(world_rect(camera), clip, true));
+        return;
+    }
+    #[cfg(debug_assertions)]
+    if crate::terminal_view::world_visibility_review::enabled() {
+        if !crate::terminal_view::world_visibility_review::scenery_circle() {
+            crate::terminal_view::world_visibility_review::draw(game, camera, known);
+        }
+        with_scene(|s| s.atmosphere.finish(world_rect(camera), clip, true));
+        return;
+    }
     let c = camp::scene();
     for y in 0..c.height as i32 {
         for x in 0..c.width as i32 {

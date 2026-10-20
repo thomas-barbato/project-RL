@@ -1,0 +1,9 @@
+{
+  "tool": "built-in imagegen",
+  "review": "STYLE-MAP-U01-04",
+  "prompt": "Asset type: one seamless square surface-wear mask for the scenery material of a native-64 overhead grimdark cyberpunk game. This is a technical flat texture, not a scene, not a building. Hand-painted irregular plaster chips, old rubbed paint, greasy smudges, soot and oxidation islands. Grayscale only on a neutral medium-gray base, sparse pale angular chips and sparse soft dark grime islands, wide quiet areas between them. Mixture of broad 40-100 pixel stains and grouped 4-16 pixel chips at 512px texture scale. Natural asymmetric placement, different cluster sizes, no uniform stippling, no regular scratches, no repeating grids, no square tiles, no borders, no objects, no text, no baked lights or shadows. All four edges must tile seamlessly. The overall texture stays middle gray, with only localized light and dark marks; avoid pure white and black. Crisp readable shapes, restrained painterly imperfection suitable for compositing on existing colored metal and masonry while retaining original outlines.",
+  "source": "STYLE-U01-04-wear-source.png",
+  "export": "STYLE-U01-04-wear.png",
+  "conditioning": "Proportional reduction to 512 square. No scripted painting.",
+  "normal_integration": false
+}

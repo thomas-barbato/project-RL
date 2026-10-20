@@ -1,0 +1,1820 @@
+{
+  "review": "TORSO-ICONS-01",
+  "status": "awaiting_human_visual_approval",
+  "native_cell": 64,
+  "models": 14,
+  "appearances": 69,
+  "new_palette_proposals": [
+    "Bleu ardoise",
+    "Vert mousse",
+    "Rouille",
+    "Rouge sombre"
+  ],
+  "primary_ramp_mix": [
+    9,
+    1
+  ],
+  "existing_palettes_unchanged": true,
+  "entries": [
+    {
+      "id": "TOR-101",
+      "illustration": 101,
+      "outfit": 212,
+      "finish_number": 2,
+      "batch": 1,
+      "label": "Armure Cerbère",
+      "identity": "core:armure_cerbere",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-101-source.png",
+      "source_sha256": "0b4427874082e85e823a4189a82a48c171ce24f9be222fa5fbdccca4720de9ec",
+      "source_bounds": [
+        79,
+        167,
+        1175,
+        1097
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-101-material.png",
+      "variants": [
+        {
+          "code": "TOR-101-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-101-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-101-A-worn.png",
+          "icon_sha256": "e7ce8eb454d0fe51028ae41a80fe440943e0dc365b1e8d1e2e063b9817ebc313",
+          "worn_sha256": "6b7052fdac6793afa64642e1be0d15b8b1b788e9519311d13b4ad42fc3388ee2"
+        },
+        {
+          "code": "TOR-101-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-101-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-101-B-worn.png",
+          "icon_sha256": "88bffe43d288dfaddcf104cc7d3370b36adbccba21dda2c3a5c3f461f629356a",
+          "worn_sha256": "3a8e9d17837339e432eb0c611b3f521e3090ccb0248dca02846b4c5eeeebcaf5"
+        },
+        {
+          "code": "TOR-101-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-101-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-101-C-worn.png",
+          "icon_sha256": "7a9639a469f8108741378abc768b9fbbc01f6907f9ee8d660eb07f7743473d1c",
+          "worn_sha256": "dd414e15b8e3b778eada76cb420f29050b952f65635a02d93969e7bb218094eb"
+        },
+        {
+          "code": "TOR-101-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-101-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-101-D-worn.png",
+          "icon_sha256": "982b3efe2cd2b5ff74264d9400264b5dfdccd9565b92a44cc1ff3a61e8187ffd",
+          "worn_sha256": "7ab22394f45005b14db1c2b4af2da390046216d54ad66a2ab120edce447e4f18"
+        },
+        {
+          "code": "TOR-101-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-101-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-101-E-worn.png",
+          "icon_sha256": "6d27e4a1b939c5a93c9fefe002ab4e63dcebc637db3f5385b2ef2858617166c3",
+          "worn_sha256": "0bd7fae92953f9175d8265e39e5eee2c6936b9396a2aa0639ed7134946a5541d"
+        }
+      ]
+    },
+    {
+      "id": "TOR-102",
+      "illustration": 102,
+      "outfit": 4,
+      "finish_number": 3,
+      "batch": 1,
+      "label": "Brigandine Cognefer",
+      "identity": "core:brigandine_cognefer",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-102-source.png",
+      "source_sha256": "3ed2fef02cd99d08c24eec1ba70c813e032fe0e076e73ac4c08e1c887235a019",
+      "source_bounds": [
+        131,
+        186,
+        1123,
+        1068
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-102-material.png",
+      "variants": [
+        {
+          "code": "TOR-102-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-102-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-102-A-worn.png",
+          "icon_sha256": "a266b4533e7d694d6267af4bf7b7a362e9237a7a5d6b614d2deae35f4bbbcf3c",
+          "worn_sha256": "d749c3c5d492a7b990ef9d4842e14be599ee0e57379e25895f4770a2255398f2"
+        },
+        {
+          "code": "TOR-102-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-102-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-102-B-worn.png",
+          "icon_sha256": "c5bcf04955f16f9631e0f3906a63f2fd1e02d50c852965896aa38467143cf654",
+          "worn_sha256": "690753c421663cc237e238062f203f6e40a19e42c96d0e55ebeaf1bc26ddb12b"
+        },
+        {
+          "code": "TOR-102-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-102-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-102-C-worn.png",
+          "icon_sha256": "8f7055f3b19882d2e90ebf4837daa6fa34a4c05bb6d9548e20ae360707e058c6",
+          "worn_sha256": "d33584cddafb9479622039053b5cbbd00d4ba140aa4b2109b42c758d19704809"
+        },
+        {
+          "code": "TOR-102-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-102-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-102-D-worn.png",
+          "icon_sha256": "cea79f2c759fc9f32e2ca53169ab3a0d2ac8102073ff90a4a68d5561272485e3",
+          "worn_sha256": "ffe1793340207f10841823a742b1b4cd3a797a29c9ff4872845522589c95e0f3"
+        },
+        {
+          "code": "TOR-102-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-102-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-102-E-worn.png",
+          "icon_sha256": "d4ad6e461fcd495065c436c3d7fb65363ba132c9c333082f0086a7f5f89b12d9",
+          "worn_sha256": "e089f13545afcb46eaae6b0f6371101c9dcff71ac3cde058e64ac44f9be7d9ce"
+        }
+      ]
+    },
+    {
+      "id": "TOR-103",
+      "illustration": 103,
+      "outfit": 213,
+      "finish_number": 18,
+      "batch": 2,
+      "label": "Carapace Chrysalide",
+      "identity": "core:carapace_chrysalide",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-103-source.png",
+      "source_sha256": "6cb3c0c3f0f9aa983bec753e19eeb6104b1218986be402dd1b04f0995f06e206",
+      "source_bounds": [
+        84,
+        155,
+        1171,
+        1116
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-103-material.png",
+      "variants": [
+        {
+          "code": "TOR-103-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-103-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-103-A-worn.png",
+          "icon_sha256": "3227149d62eda550a0535a41835e3cd2d8672e626a5dd92bfd62a57212109fef",
+          "worn_sha256": "f8bc6b8849d34c8b990002e9e6492b38da026b84ba1b84c5f99fab30794fa4e3"
+        },
+        {
+          "code": "TOR-103-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-103-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-103-B-worn.png",
+          "icon_sha256": "6e3487c8ced8eb31f98c8df06e4e6d946ef25ecd9aba1aad1b718e7baf051843",
+          "worn_sha256": "f99622e600ad4c2cbc66dc4d0cf80b41ba42d87cca9f0940cbfe31d806d46f0b"
+        },
+        {
+          "code": "TOR-103-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-103-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-103-C-worn.png",
+          "icon_sha256": "cc6b7e1f571eca7e42e2a30b39ed427e3fb0706b09cb505b0b059bbb7a0fdc1d",
+          "worn_sha256": "c09d3a9ba1d0871ac2078417a99aef4e3b924bd050a4a02566cc8a71c0d2353a"
+        },
+        {
+          "code": "TOR-103-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-103-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-103-D-worn.png",
+          "icon_sha256": "1bfa6f436791d7962f7537b817e8b9fd4f527554a26273f96c13dd386c463cb7",
+          "worn_sha256": "7970c85e14e72f6eb5326594ab3b2bcdcf6af324b54a099c1676a5166494beff"
+        },
+        {
+          "code": "TOR-103-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-103-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-103-E-worn.png",
+          "icon_sha256": "303eccef14c0188920adcde1ba45ecc44a4f0bf21a0d9ec0be3ffb1b9157d421",
+          "worn_sha256": "5c957133ecf9769577e641e749e1d03c9e6a8949d50f50f54964d3c67e3a2341"
+        }
+      ]
+    },
+    {
+      "id": "TOR-104",
+      "illustration": 104,
+      "outfit": 6,
+      "finish_number": 4,
+      "batch": 1,
+      "label": "Carapace composite",
+      "identity": "core:composite_carapace",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-104-source.png",
+      "source_sha256": "118dd3adc46cd27afae45205555778a995627384ede92c84c0a47635aa8cd729",
+      "source_bounds": [
+        144,
+        193,
+        1107,
+        1053
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-104-material.png",
+      "variants": [
+        {
+          "code": "TOR-104-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-104-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-104-A-worn.png",
+          "icon_sha256": "145d718a7fefbdf979d1aa047401350bc408108cb5c27ae27b58a187ecae0888",
+          "worn_sha256": "ed362c445dffe9792e8160e00f21f5a967e3cab584c17f3f19d47301ff00f16e"
+        },
+        {
+          "code": "TOR-104-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-104-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-104-B-worn.png",
+          "icon_sha256": "ff8f8bd4c020258b5d687158c1cae87f8d2c2510b85eeb02943e9316faae5cd8",
+          "worn_sha256": "d414378cd3d17c9d3c25d0dfdddb279efe1cc1e4260cab13b2982493f80e0a89"
+        },
+        {
+          "code": "TOR-104-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-104-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-104-C-worn.png",
+          "icon_sha256": "8ba88e06132523b1610dfb131a694864ad3965410eeeaf26ea1acd333a490aab",
+          "worn_sha256": "701678e3e1bbdde8a5e14a7aa7af6adb830ee1aa3c138f0c580279b8c2e05f45"
+        },
+        {
+          "code": "TOR-104-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-104-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-104-D-worn.png",
+          "icon_sha256": "0cbb464eee5781dbddf22d4ccab45b728cadb6f81e2ca62d57733017452d774b",
+          "worn_sha256": "aac1d79ec5570f0c9d0f37f6582bcd19485c9c143362c5910b6d58a18a580686"
+        },
+        {
+          "code": "TOR-104-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-104-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-104-E-worn.png",
+          "icon_sha256": "f0d387bd02e05519351bbb5341383e1f26c73674b5a524ace1a33aa62cb237cf",
+          "worn_sha256": "b8196d0a543168ea7df9fe0954247b843d9af6f914d8bd61e8b78f3729642e38"
+        }
+      ]
+    },
+    {
+      "id": "TOR-105",
+      "illustration": 105,
+      "outfit": 214,
+      "finish_number": 19,
+      "batch": 2,
+      "label": "Combinaison fantôme",
+      "identity": "core:combinaison_fantome",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-105-source.png",
+      "source_sha256": "8ff751b7467fb1cc6207b478960924549b2fba01b0b4d8dbe5855eb5751b3fbb",
+      "source_bounds": [
+        148,
+        185,
+        1106,
+        1074
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-105-material.png",
+      "variants": [
+        {
+          "code": "TOR-105-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-105-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-105-A-worn.png",
+          "icon_sha256": "dc60260c6073789e58b47df65f2c0911ee98f01ce0cdf708069176e74f15d450",
+          "worn_sha256": "64dac56b39bddb3f7da0f3b6250c7ebee4758dd56e3919b185c779e6ad15359b"
+        },
+        {
+          "code": "TOR-105-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-105-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-105-B-worn.png",
+          "icon_sha256": "3a6b2f47c617b51d75769aec617e28d8bc7b3354af0a93ae6a31a6e34262a69f",
+          "worn_sha256": "5ca67979b64ff941ff004740fe70846ecfa413a9e99b2b185fb88e927f296849"
+        },
+        {
+          "code": "TOR-105-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-105-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-105-C-worn.png",
+          "icon_sha256": "1144884832dedbc1a66f0296417eba8911e8546a52155cc31a3fd9c6d51aa64c",
+          "worn_sha256": "c869a75b20ea8ae758ad681d03208eda62ad62e7242b5957e4d5af0654027c27"
+        },
+        {
+          "code": "TOR-105-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-105-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-105-D-worn.png",
+          "icon_sha256": "a7a7b0354d996037e2a5e80a15a270266e8446138ae4c2aa4a27f7a36886d6b6",
+          "worn_sha256": "4de0443c78686db1f6e4664ce032d4fad5ac3613825c04449aec332f4285a025"
+        },
+        {
+          "code": "TOR-105-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-105-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-105-E-worn.png",
+          "icon_sha256": "8d914b57ec6f93f88183920cc9b60bd5c204541977926e022e39ea21e37f97d3",
+          "worn_sha256": "ff1ef3d30805e745ff43fce10061f1e5a7994cf7f808ceb0f944bc9a7debc0c8"
+        }
+      ]
+    },
+    {
+      "id": "TOR-106",
+      "illustration": 106,
+      "outfit": 215,
+      "finish_number": 20,
+      "batch": 2,
+      "label": "Manteau de mue",
+      "identity": "core:manteau_de_mue",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-106-source.png",
+      "source_sha256": "9a02a7a3edde2ca91d49fc23af07f2e7d81ba216d81fc3149f19cb6aa781e139",
+      "source_bounds": [
+        188,
+        150,
+        1067,
+        1126
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-106-material.png",
+      "variants": [
+        {
+          "code": "TOR-106-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-106-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-106-A-worn.png",
+          "icon_sha256": "bc5c9edd00debb364583b4ae0be5bdecc7564638d63a75bb9e02069be8288300",
+          "worn_sha256": "ef5b8834b7cac3e7a77c931313bf8a43e3ad25389f539507c1eff77874b559a0"
+        },
+        {
+          "code": "TOR-106-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-106-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-106-B-worn.png",
+          "icon_sha256": "2230eabcd4a204984949fca68b6db65a3494e4bff23d36c62c4bfdac292fcf23",
+          "worn_sha256": "f98a20f212bfdc77bad06ccd5b94c14de00a1a991768c1346364e5eb78fdd2b8"
+        },
+        {
+          "code": "TOR-106-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-106-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-106-C-worn.png",
+          "icon_sha256": "7c1ba6a19f9499a3e49e326acd83c7661bbbfc127530f0c248fdfe4d53a7c392",
+          "worn_sha256": "ea64cd2168442d0ba3adc077c7d0585055f623959411bc48427196a9861adf99"
+        },
+        {
+          "code": "TOR-106-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-106-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-106-D-worn.png",
+          "icon_sha256": "39f8dd027de281448165831cf52f15700d8d207348d445020d163a4bfc5445e1",
+          "worn_sha256": "dcc199e9164d98c6fea47d07f1ce6215b705c82642b31c316f1160b501aaa2d7"
+        },
+        {
+          "code": "TOR-106-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-106-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-106-E-worn.png",
+          "icon_sha256": "3feb6fcaeea069603eb28a8c5bc0ca66ccb1eec0e6b53982437cedf04c92649c",
+          "worn_sha256": "667ae4b9bb7f7f7ab230667fe20ff518fb2fa757953a9ce57db02c6f914e51bc"
+        }
+      ]
+    },
+    {
+      "id": "TOR-107",
+      "illustration": 107,
+      "outfit": 216,
+      "finish_number": 21,
+      "batch": 2,
+      "label": "Plastron Bastion",
+      "identity": "core:plastron_bastion",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-107-source.png",
+      "source_sha256": "4fd7c079cc567fa0ec95fdda7754870c202c94bab8f01235b6a09e3e0b1dfcac",
+      "source_bounds": [
+        110,
+        174,
+        1144,
+        1089
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-107-material.png",
+      "variants": [
+        {
+          "code": "TOR-107-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-107-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-107-A-worn.png",
+          "icon_sha256": "4daeda62742a8e04e84223e96518722c22d229679770c0d06ab9b6223b2422f6",
+          "worn_sha256": "97165e3efd36bf86a5140ff2352a258c67da5781fbec3fa91af37a384c15a0d3"
+        },
+        {
+          "code": "TOR-107-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-107-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-107-B-worn.png",
+          "icon_sha256": "01c5b93163ca33a0171ceeef31ea18bc81320531a3a3da08eee0f01a23ad84cc",
+          "worn_sha256": "415381cedae305da7c42dbddab8710411585f76fa44cb86295b03f672186575e"
+        },
+        {
+          "code": "TOR-107-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-107-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-107-C-worn.png",
+          "icon_sha256": "11d47eb11eed6c931bf812d4e3f2549bc93dcc7d676fd7992ba98715bd4eaabe",
+          "worn_sha256": "63f6e90f6be940ea9af2cde31784b11eb8a7ac4bb574923e2b1bc4bb659d4748"
+        },
+        {
+          "code": "TOR-107-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-107-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-107-D-worn.png",
+          "icon_sha256": "2a1b53c30c3ad71097a8d56b2d10a9593ecbe8cb0854c7ad1a158f813924f64a",
+          "worn_sha256": "86e068a9fcc3d955d12937b71804941eb2228820f455183932050eace5a11501"
+        },
+        {
+          "code": "TOR-107-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-107-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-107-E-worn.png",
+          "icon_sha256": "f432c0f36dc9a7a70ee27464d5104ad549923999c564cc0ed33b9e6ca6dac129",
+          "worn_sha256": "06f1200c0635f783395373c766cd393bea7c8fa97d34b0098051de23ecf58961"
+        }
+      ]
+    },
+    {
+      "id": "TOR-108",
+      "illustration": 108,
+      "outfit": 208,
+      "finish_number": 22,
+      "batch": 3,
+      "label": "Tablier de cuir",
+      "identity": "core:patched_plating",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-108-source.png",
+      "source_sha256": "38bb5897d292cca9a860a2e186eff215d3543667dcfa714087797078409aa1e1",
+      "source_bounds": [
+        81,
+        126,
+        1174,
+        1106
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-108-material.png",
+      "variants": [
+        {
+          "code": "TOR-108-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-108-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-108-A-worn.png",
+          "icon_sha256": "3432faefe65d9544bcd551cb7f1f25deae4bff957d9499125581433114504cc8",
+          "worn_sha256": "9ae55b652b79bd09da51441eb198a1248bb5bcbfa9219035766d16dbf77515b3"
+        },
+        {
+          "code": "TOR-108-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-108-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-108-B-worn.png",
+          "icon_sha256": "e33db864ece5418b15174eb606cf07f3b726f7a517e03160966ad13be47e8e3b",
+          "worn_sha256": "9163e90a1b89dfb79165b5af3bdb42207989f4def70c0af51206c1f9bca4cfa7"
+        },
+        {
+          "code": "TOR-108-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-108-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-108-C-worn.png",
+          "icon_sha256": "570803e61300d1590957b4a2dfb088e06ed10fc6fcf7a0f13c20dd5cd2177db6",
+          "worn_sha256": "97a55e4b5fbfbce53f7ccc28ef7eee894b5ee1dc7a9089487d25608a003f2b89"
+        },
+        {
+          "code": "TOR-108-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-108-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-108-D-worn.png",
+          "icon_sha256": "952ce0e833226ec92a6d256d20393db29a38fe90927ecd7c09e148d084053987",
+          "worn_sha256": "384699e230fbdeda42a4331ff927654f8a4d1e53398253339eac6f95d694af5d"
+        },
+        {
+          "code": "TOR-108-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-108-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-108-E-worn.png",
+          "icon_sha256": "68ac09b3ef7a6aba8926e938a05aa266e3b0ad744bd4d57a96548172a8cc2ee4",
+          "worn_sha256": "22252211fb6f73ce5e812e98ccd9e55ce812a423c890f0b85dac5856540820aa"
+        }
+      ]
+    },
+    {
+      "id": "TOR-109",
+      "illustration": 109,
+      "outfit": 217,
+      "finish_number": 26,
+      "batch": 4,
+      "label": "Robe de la Seconde Ombre",
+      "identity": "core:veste_de_la_seconde_ombre",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-109-source.png",
+      "source_sha256": "3d6730ba4c11dc5b70cf2c12cc047f8d976c405f25971cf251958253c4196546",
+      "source_bounds": [
+        106,
+        129,
+        1148,
+        1115
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-109-material.png",
+      "variants": [
+        {
+          "code": "TOR-109-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-109-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-109-A-worn.png",
+          "icon_sha256": "a2f2a0937d9d9bb51ec77f8a866bf63aefaa74669f37f3160cd85dd441153179",
+          "worn_sha256": "f86c14e6ed6e661b2e2872d8a79cad166de42dd15934d6d5f5eb375de3b52758"
+        },
+        {
+          "code": "TOR-109-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-109-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-109-B-worn.png",
+          "icon_sha256": "75abb7645c3faea5bf4e8300d151d32d412865c19f5a4bb9c7a636d572e244b1",
+          "worn_sha256": "9891cec377a751e6e358d5c8030969943bbde572cec86a8c33998d2244204b62"
+        },
+        {
+          "code": "TOR-109-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-109-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-109-C-worn.png",
+          "icon_sha256": "3fd256bc99befc750e0847e306cf99b0e0fdbadd7011c79f6d14f46662b0941e",
+          "worn_sha256": "dfd6525af4ba95b7fc993c50d999299fda6c566767783babf5b8c41eb85248e3"
+        },
+        {
+          "code": "TOR-109-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-109-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-109-D-worn.png",
+          "icon_sha256": "67736829e80ed9375f71060ba4daad61b2f91b06df95f85c7969bd70f3ed40c1",
+          "worn_sha256": "cfa23fdbbe7658797fa0cffda245e4c7c37b7e52ab03cb885f58aac181816440"
+        }
+      ]
+    },
+    {
+      "id": "TOR-110",
+      "illustration": 110,
+      "outfit": 209,
+      "finish_number": 23,
+      "batch": 3,
+      "label": "Tenue de membranes",
+      "identity": "core:veste_de_membranes",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-110-source.png",
+      "source_sha256": "ed4b07c2d1774e3a7635fd284d4fbc13be7e09ecc07ffd3d318121ce1a8052d0",
+      "source_bounds": [
+        159,
+        106,
+        1096,
+        1129
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-110-material.png",
+      "variants": [
+        {
+          "code": "TOR-110-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-110-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-110-A-worn.png",
+          "icon_sha256": "b6a34f7ddaefd51167ea16f2372f110248249a43e4799b1b2aaef2a5879eab1f",
+          "worn_sha256": "af60d8bebc1f00f7a8c399a1fcc0b934f4d5f3ec3844d02ae57c9602f4feb085"
+        },
+        {
+          "code": "TOR-110-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-110-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-110-B-worn.png",
+          "icon_sha256": "1ca16369bf5d473bf41ef7e564cb623b769dd256a45c27118549d7f98665fcd1",
+          "worn_sha256": "62b55782d28dbfc61335989f466e1ba75b305f67789081c9c4a9787a4fcfd2b4"
+        },
+        {
+          "code": "TOR-110-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-110-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-110-C-worn.png",
+          "icon_sha256": "3ea59badd0c3ae0982bf209708a737da29de1d16547cfb9ca4bb37d90c494fd4",
+          "worn_sha256": "f66e5c800b7ba5fb9e83b66e95584391f3e54f28dd8f8e08b175ab5684a8e4ba"
+        },
+        {
+          "code": "TOR-110-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-110-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-110-D-worn.png",
+          "icon_sha256": "7cd3eff363cffa08d41b0295a31f09473e71247d696bcfba4d581253b74c9eff",
+          "worn_sha256": "503abe8d5a055b54ba0c96f3844b9209d477191ea0a13991dc75f59092fb7541"
+        },
+        {
+          "code": "TOR-110-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-110-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-110-E-worn.png",
+          "icon_sha256": "8bdbcaa2d1c3a3a56cb49830a3bc07c87b98294fb7b67be2ce4e11e54a720306",
+          "worn_sha256": "69f000ce1454cc4a036b8be00c3da56b30103281c6061ee6115f303d99bf5dcd"
+        }
+      ]
+    },
+    {
+      "id": "TOR-111",
+      "illustration": 111,
+      "outfit": 210,
+      "finish_number": 24,
+      "batch": 3,
+      "label": "Combinaison Peau-Seconde",
+      "identity": "core:veste_de_peau_seconde",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-111-source.png",
+      "source_sha256": "ae514a6be1c4ac7cff6233dd597b02d34a1715abddce5fc05604f82399e603fc",
+      "source_bounds": [
+        131,
+        213,
+        1124,
+        1050
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-111-material.png",
+      "variants": [
+        {
+          "code": "TOR-111-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-111-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-111-A-worn.png",
+          "icon_sha256": "8c2ff3e02f12b86068b8fb602060839aa13da8b1916ce136752424c77ce1af33",
+          "worn_sha256": "7d118113a11876675835d45190d40895b13731e12961142113bb1273c23eb4a7"
+        },
+        {
+          "code": "TOR-111-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-111-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-111-B-worn.png",
+          "icon_sha256": "cc46c98dbc6c11f80427c92b1f447210a88eb70de5b79401e916205074388868",
+          "worn_sha256": "f7d35b816947195d34ea434df0f0362a8def96b6232a79c30a0a16e199d1ae5c"
+        },
+        {
+          "code": "TOR-111-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-111-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-111-C-worn.png",
+          "icon_sha256": "4104b479da114965a4a9d4c3d6c8148298dcdd2ba23a841f100f09c99b64b69c",
+          "worn_sha256": "861678b8b650294cc2b9b68cf346d739e6bb5391b3b377e0d96fa0fb2b23c373"
+        },
+        {
+          "code": "TOR-111-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-111-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-111-D-worn.png",
+          "icon_sha256": "be9cfd1d5bcdcdcd47d028e7c185e7d5bc67352a1179f1812aaf2656a6082fd3",
+          "worn_sha256": "136b19ff43d5007ec419a7f2d30f9e2e295c1d75b4859ed6729862dd3a939fc2"
+        },
+        {
+          "code": "TOR-111-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-111-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-111-E-worn.png",
+          "icon_sha256": "a5eb1c495444fc5d7bff8aae327923c7befdd2d16aabe5ebaaffa155aed0843c",
+          "worn_sha256": "dab041f08ea029cc09a866f9c2a22001f04eb6b20051f678194e9ad5b80f0c3f"
+        }
+      ]
+    },
+    {
+      "id": "TOR-112",
+      "illustration": 112,
+      "outfit": 211,
+      "finish_number": 25,
+      "batch": 3,
+      "label": "Tenue du technicien",
+      "identity": "core:veste_de_veille",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-112-source.png",
+      "source_sha256": "0c6d0675b727b2a091ad9e5f4e69d511a5ed8299d1a835c1c87fcff93aa3cab7",
+      "source_bounds": [
+        141,
+        138,
+        1113,
+        1102
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-112-material.png",
+      "variants": [
+        {
+          "code": "TOR-112-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-112-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-112-A-worn.png",
+          "icon_sha256": "08e51c30037447ca49d50d5288f6ee5f71c7a67f0b4e6e4ce1fc3bdcf06f9272",
+          "worn_sha256": "2434376d8f72481d1fbaa86ed37ea20ecc0e40a1424d8f9156fc1a4dfd60f0ca"
+        },
+        {
+          "code": "TOR-112-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-112-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-112-B-worn.png",
+          "icon_sha256": "90fc40de9967b11264ed384ea525b4eee55dc2278cccb1b2ac967c64fa7c3b18",
+          "worn_sha256": "73000811dcfdedff001c07665f6901b6e75c82d4b5232d6cd51092b8a7baf815"
+        },
+        {
+          "code": "TOR-112-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-112-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-112-C-worn.png",
+          "icon_sha256": "26f5fe866bf8dcc9807523d00ea0ef076a2a245cb38dca05cfa6571e90eef025",
+          "worn_sha256": "a665e4175b581da6641ddfeb94dd08030c0309e230e2c3b4400a61ec4d83c368"
+        },
+        {
+          "code": "TOR-112-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-112-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-112-D-worn.png",
+          "icon_sha256": "9c3ba5e3121e54e06913498c30c5bb0f87f1534551fe5cb78c60bad32d008c5a",
+          "worn_sha256": "cd9940912640f33e5abc18e3e16fd6a2c10150967d2bdd3d7e32c9f3bffbb8f4"
+        },
+        {
+          "code": "TOR-112-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-112-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-112-E-worn.png",
+          "icon_sha256": "8c1e5524eb3935c006f55f565b0058253448b8751f32181bbedac301090e7126",
+          "worn_sha256": "2f2179fd26f9d6f2f3731414c358b8a28a58f164e56597e87ea685248fb33a2e"
+        }
+      ]
+    },
+    {
+      "id": "TOR-113",
+      "illustration": 113,
+      "outfit": 15,
+      "finish_number": 5,
+      "batch": 1,
+      "label": "Tenue d’aviateur",
+      "identity": "core:veste_matelassee",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-113-source.png",
+      "source_sha256": "1b42cdd0a5296c627c5fdd534959abe6a6a483300fdbc826e41d148c188a0ac8",
+      "source_bounds": [
+        102,
+        144,
+        1171,
+        1100
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-113-material.png",
+      "variants": [
+        {
+          "code": "TOR-113-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-113-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-113-A-worn.png",
+          "icon_sha256": "8437bf1c9e21cf3188f950ec87ddce474bf79a95c40479489be3fe5a46f2fe8f",
+          "worn_sha256": "f400cbd38f032f90159e5b0ccca5a65fe2df2a59e9ccee07066e9b3ea23a064e"
+        },
+        {
+          "code": "TOR-113-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-113-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-113-B-worn.png",
+          "icon_sha256": "c43d6ab8481c2482dad2447924e502659307446fd9a66a29b962abbc84e0da4c",
+          "worn_sha256": "69c21c71cf94020ef787714000c467d3cd621da543a2a747fb4d8833ab82c6d3"
+        },
+        {
+          "code": "TOR-113-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-113-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-113-C-worn.png",
+          "icon_sha256": "ea34ae981bdfe5acaf9a4dca9944b38195096a8148a0da98e3bb6f644e827031",
+          "worn_sha256": "10f2f6133a13768565954a26821bdea8564ec741d1971b414acbb4b543b0fece"
+        },
+        {
+          "code": "TOR-113-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-113-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-113-D-worn.png",
+          "icon_sha256": "0845fe24130f7f849f1d9bb5874ac68fff2868b0c42e7fd086145c28ac64a5c1",
+          "worn_sha256": "c8c3903bb06af69e92539b0a1463ac0a8eb511497a08263768ebd2a965b184c2"
+        },
+        {
+          "code": "TOR-113-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-113-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-113-E-worn.png",
+          "icon_sha256": "9e33f965ae7722d2d40c6d0d9eb8185585a03c1399737d6ddde2d238031f4c4a",
+          "worn_sha256": "8d132854866ed27bebcb42cd959aa868e45a3d6cf1bffab9e51d32914b54ffad"
+        }
+      ]
+    },
+    {
+      "id": "TOR-114",
+      "illustration": 114,
+      "outfit": 218,
+      "finish_number": 27,
+      "batch": 4,
+      "label": "Tenue du nomade",
+      "identity": "core:veste_a_fibres_croisees",
+      "transparent_background": true,
+      "output": "C:/Users/User/Desktop/project-RL/assets/source-art/torso-icons-review-01/TOR-114-source.png",
+      "source_sha256": "43bd31719533685ffa66b5650ccc45991c43ba84f63caa1b90e80d49388d962e",
+      "source_bounds": [
+        205,
+        176,
+        1049,
+        1113
+      ],
+      "material_mask": "assets/source-art/torso-icons-review-01/native/TOR-114-material.png",
+      "variants": [
+        {
+          "code": "TOR-114-A",
+          "label": "Origine",
+          "ramp": null,
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-114-A.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-114-A-worn.png",
+          "icon_sha256": "0b142dd05c060eab69bb465bd9a6e3b7b91af8a36fe867b2d286caca10755afe",
+          "worn_sha256": "b11569a73daa69d4889dec237e159c92e1be04b9bb347060c6a34261a6671e07"
+        },
+        {
+          "code": "TOR-114-B",
+          "label": "Bleu ardoise",
+          "ramp": [
+            [
+              14,
+              30,
+              49
+            ],
+            [
+              49,
+              87,
+              124
+            ],
+            [
+              145,
+              180,
+              205
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-114-B.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-114-B-worn.png",
+          "icon_sha256": "c637392afba841fd8ce97dbd87bc33d35afb26b2de92e0b0dc8ed55be7a8db89",
+          "worn_sha256": "3b9b1f05bfcfc5d344169888ab258f822f630f170159a9796a5b2c7db0ec0fdb"
+        },
+        {
+          "code": "TOR-114-C",
+          "label": "Vert mousse",
+          "ramp": [
+            [
+              24,
+              39,
+              26
+            ],
+            [
+              72,
+              112,
+              62
+            ],
+            [
+              160,
+              184,
+              130
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-114-C.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-114-C-worn.png",
+          "icon_sha256": "d216d8d24e6140d61b50e1dcb176e6b94bf1f5d7dccf99e866c82e8ad5359224",
+          "worn_sha256": "e88bceb2af6e646525d432d18b5594d176b296bc9b9b096e92cf93f068d78166"
+        },
+        {
+          "code": "TOR-114-D",
+          "label": "Rouille",
+          "ramp": [
+            [
+              66,
+              30,
+              19
+            ],
+            [
+              160,
+              77,
+              36
+            ],
+            [
+              223,
+              158,
+              94
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-114-D.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-114-D-worn.png",
+          "icon_sha256": "2da10ad778519b41d674a58e468e523f1296413c041aefbc08b4d05e9408d6a9",
+          "worn_sha256": "3272a2b0e850730505dd22a04925d14b884cfd2cfa0e97cc982f3f1e32c5253b"
+        },
+        {
+          "code": "TOR-114-E",
+          "label": "Rouge sombre",
+          "ramp": [
+            [
+              62,
+              10,
+              16
+            ],
+            [
+              163,
+              27,
+              35
+            ],
+            [
+              228,
+              104,
+              100
+            ]
+          ],
+          "icon": "assets/source-art/torso-icons-review-01/native/TOR-114-E.png",
+          "worn": "assets/source-art/torso-icons-review-01/native/TOR-114-E-worn.png",
+          "icon_sha256": "cdedde76c1ed1cce591cb3c19c16d5487567636f331990c333f27e9e7b96d933",
+          "worn_sha256": "9707ed05b347b35f2e102c46c321843ede0713eb9bb6d91cb5949054f9ad2e17"
+        }
+      ]
+    }
+  ],
+  "revision": "r02-red",
+  "red_additions": 13,
+  "red_already_present": [
+    "TOR-109-A"
+  ]
+}

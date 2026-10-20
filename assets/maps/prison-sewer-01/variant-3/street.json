@@ -1,0 +1,1425 @@
+{
+  "id": "EG01",
+  "width": 47,
+  "height": 44,
+  "cell": 64,
+  "image_origin": [
+    0,
+    0
+  ],
+  "image_offset_px": [
+    0,
+    0
+  ],
+  "image_size": [
+    47,
+    44
+  ],
+  "background": "assets/maps/prison-sewer-01/art/background-50199e5b6f37.png",
+  "entrance": [
+    23,
+    38
+  ],
+  "home_entry": [
+    23,
+    38
+  ],
+  "home_inside": [
+    23,
+    38
+  ],
+  "car_at": [
+    -100,
+    -100
+  ],
+  "car_file": "assets/maps/prison-sewer-01/art/car-c5725e480e80.png",
+  "car_size": [
+    0,
+    0
+  ],
+  "obstructions": [
+    [
+      2,
+      14
+    ],
+    [
+      2,
+      17
+    ],
+    [
+      2,
+      18
+    ],
+    [
+      2,
+      34
+    ],
+    [
+      2,
+      38
+    ],
+    [
+      2,
+      39
+    ],
+    [
+      3,
+      14
+    ],
+    [
+      3,
+      17
+    ],
+    [
+      3,
+      18
+    ],
+    [
+      3,
+      34
+    ],
+    [
+      3,
+      38
+    ],
+    [
+      3,
+      39
+    ],
+    [
+      4,
+      14
+    ],
+    [
+      4,
+      17
+    ],
+    [
+      4,
+      28
+    ],
+    [
+      4,
+      38
+    ],
+    [
+      5,
+      28
+    ],
+    [
+      6,
+      24
+    ],
+    [
+      8,
+      13
+    ],
+    [
+      9,
+      13
+    ],
+    [
+      10,
+      17
+    ],
+    [
+      10,
+      29
+    ],
+    [
+      11,
+      17
+    ],
+    [
+      11,
+      29
+    ],
+    [
+      12,
+      29
+    ],
+    [
+      19,
+      5
+    ],
+    [
+      19,
+      8
+    ],
+    [
+      19,
+      39
+    ],
+    [
+      20,
+      2
+    ],
+    [
+      20,
+      5
+    ],
+    [
+      20,
+      8
+    ],
+    [
+      20,
+      11
+    ],
+    [
+      20,
+      14
+    ],
+    [
+      20,
+      16
+    ],
+    [
+      20,
+      17
+    ],
+    [
+      20,
+      22
+    ],
+    [
+      20,
+      34
+    ],
+    [
+      20,
+      39
+    ],
+    [
+      21,
+      2
+    ],
+    [
+      21,
+      5
+    ],
+    [
+      21,
+      14
+    ],
+    [
+      21,
+      16
+    ],
+    [
+      21,
+      17
+    ],
+    [
+      21,
+      22
+    ],
+    [
+      21,
+      28
+    ],
+    [
+      21,
+      39
+    ],
+    [
+      22,
+      2
+    ],
+    [
+      22,
+      5
+    ],
+    [
+      22,
+      8
+    ],
+    [
+      22,
+      14
+    ],
+    [
+      22,
+      16
+    ],
+    [
+      23,
+      2
+    ],
+    [
+      24,
+      33
+    ],
+    [
+      26,
+      7
+    ],
+    [
+      26,
+      21
+    ],
+    [
+      26,
+      22
+    ],
+    [
+      27,
+      7
+    ],
+    [
+      27,
+      21
+    ],
+    [
+      34,
+      33
+    ],
+    [
+      34,
+      34
+    ],
+    [
+      35,
+      33
+    ],
+    [
+      38,
+      12
+    ],
+    [
+      39,
+      12
+    ],
+    [
+      39,
+      29
+    ],
+    [
+      40,
+      13
+    ],
+    [
+      40,
+      17
+    ],
+    [
+      40,
+      24
+    ],
+    [
+      40,
+      29
+    ],
+    [
+      40,
+      33
+    ],
+    [
+      41,
+      24
+    ],
+    [
+      41,
+      29
+    ],
+    [
+      41,
+      33
+    ],
+    [
+      41,
+      37
+    ],
+    [
+      42,
+      33
+    ],
+    [
+      42,
+      37
+    ],
+    [
+      43,
+      37
+    ]
+  ],
+  "source": "assets/maps/prison-sewer-01/art/SCENE-U01-07-r01-1dd459073106.png",
+  "background_sha256": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+  "layout_sha256": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
+  "walkable_cells": 695,
+  "all_walkable_connected": true,
+  "doorway": null,
+  "doorway_fix": "DOOR-U01-FIX-01",
+  "visual_review": "SCENE-U01-08-r06",
+  "lighting_review": "LUM-U01-08-r06",
+  "style": "STYLE-RL-2026-10-18-r01",
+  "atmosphere": {
+    "ambient": [
+      0.48,
+      0.54,
+      0.57
+    ],
+    "colored_emitters": true,
+    "procedural_emitters": false,
+    "lights": [
+      {
+        "id": "bulkhead-0",
+        "at": [
+          1370,
+          2097
+        ],
+        "origin": [
+          21,
+          33
+        ],
+        "box": [
+          1365,
+          2093,
+          1375,
+          2101
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-1",
+        "at": [
+          1434,
+          1329
+        ],
+        "origin": [
+          22,
+          21
+        ],
+        "box": [
+          1429,
+          1325,
+          1439,
+          1333
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-2",
+        "at": [
+          2778,
+          2097
+        ],
+        "origin": [
+          43,
+          33
+        ],
+        "box": [
+          2773,
+          2093,
+          2783,
+          2101
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-3",
+        "at": [
+          1370,
+          689
+        ],
+        "origin": [
+          21,
+          11
+        ],
+        "box": [
+          1365,
+          685,
+          1375,
+          693
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-4",
+        "at": [
+          2650,
+          1521
+        ],
+        "origin": [
+          41,
+          24
+        ],
+        "box": [
+          2645,
+          1517,
+          2655,
+          1525
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-8",
+        "at": [
+          2650,
+          753
+        ],
+        "origin": [
+          41,
+          12
+        ],
+        "box": [
+          2645,
+          749,
+          2655,
+          757
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-9",
+        "at": [
+          346,
+          2161
+        ],
+        "origin": [
+          5,
+          34
+        ],
+        "box": [
+          341,
+          2157,
+          351,
+          2165
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      }
+    ],
+    "correction": "assets/maps/prison-sewer-01/art/correction-6169695841df.png",
+    "irradiance": "assets/maps/prison-sewer-01/art/irradiance-120a448e9cf0.png"
+  },
+  "roofs": [],
+  "roof_review": "ROOF-U01-01-r01",
+  "next_exit": [
+    18,
+    1
+  ],
+  "candidate": true,
+  "extra_doorways": [],
+  "ambience": null,
+  "review_views": [
+    [
+      "gate",
+      [
+        7,
+        62
+      ]
+    ],
+    [
+      "red-door",
+      [
+        13,
+        54
+      ]
+    ],
+    [
+      "yellow-door",
+      [
+        4,
+        54
+      ]
+    ],
+    [
+      "garage",
+      [
+        22,
+        58
+      ]
+    ],
+    [
+      "courtyard",
+      [
+        16,
+        41
+      ]
+    ],
+    [
+      "north-yard",
+      [
+        17,
+        8
+      ]
+    ],
+    [
+      "exit",
+      [
+        18,
+        1
+      ]
+    ],
+    [
+      "join-north",
+      [
+        18,
+        17
+      ]
+    ],
+    [
+      "join-middle",
+      [
+        18,
+        33
+      ]
+    ],
+    [
+      "join-south",
+      [
+        18,
+        49
+      ]
+    ],
+    [
+      "house-a-closed",
+      [
+        11,
+        23
+      ]
+    ],
+    [
+      "house-a-open",
+      [
+        12,
+        20
+      ]
+    ],
+    [
+      "house-b-closed",
+      [
+        11,
+        31
+      ]
+    ],
+    [
+      "house-b-open",
+      [
+        12,
+        28
+      ]
+    ],
+    [
+      "war-houses",
+      [
+        6,
+        24
+      ]
+    ],
+    [
+      "war-annex",
+      [
+        15,
+        13
+      ]
+    ],
+    [
+      "war-blast",
+      [
+        16,
+        42
+      ]
+    ],
+    [
+      "lighting-off",
+      [
+        17,
+        11
+      ]
+    ],
+    [
+      "court-clean",
+      [
+        15,
+        41
+      ]
+    ],
+    [
+      "west-corner",
+      [
+        2,
+        2
+      ]
+    ],
+    [
+      "east-corner",
+      [
+        23,
+        2
+      ]
+    ]
+  ],
+  "review_animations": [
+    [
+      "fan",
+      [
+        24,
+        53
+      ]
+    ],
+    [
+      "steam",
+      [
+        12,
+        55
+      ]
+    ],
+    [
+      "embers",
+      [
+        15,
+        57
+      ]
+    ]
+  ],
+  "south_visible_edge": 4064,
+  "integration_generation": 157,
+  "scenery_props": [
+    {
+      "file": "assets/maps/prison-sewer-01/art/cabinet-native-70433ff523b4.png",
+      "at_px": [
+        1292,
+        2186
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrel-native-c943fd17e8f5.png",
+      "at_px": [
+        1684,
+        1436
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/cabinet-native-70433ff523b4.png",
+      "at_px": [
+        2188,
+        2186
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/court-machines-native-9df811695fac.png",
+      "at_px": [
+        2615,
+        2293
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/cabinet-native-70433ff523b4.png",
+      "at_px": [
+        1292,
+        138
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/court-machines-native-9df811695fac.png",
+      "at_px": [
+        1655,
+        373
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrel-native-c943fd17e8f5.png",
+      "at_px": [
+        2580,
+        860
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        1596,
+        2117
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r90-native-56e151b8f1dc.png",
+      "at_px": [
+        1225,
+        2115
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-r180-native-637b9f09b366.png",
+      "at_px": [
+        1724,
+        2110
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrel-native-c943fd17e8f5.png",
+      "at_px": [
+        1556,
+        2140
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/pump-native-2d9d5aa1efca.png",
+      "at_px": [
+        1664,
+        1312
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        1276,
+        1362
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r90-native-56e151b8f1dc.png",
+      "at_px": [
+        1292,
+        1790
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-r180-native-637b9f09b366.png",
+      "at_px": [
+        1724,
+        1793
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r270-native-5c7c0f35c6ea.png",
+      "at_px": [
+        1729,
+        1421
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        1596,
+        1798
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrel-native-c943fd17e8f5.png",
+      "at_px": [
+        1364,
+        1820
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/workbench-native-9b0a70414e59.png",
+      "at_px": [
+        2176,
+        2096
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        2300,
+        2442
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r90-native-56e151b8f1dc.png",
+      "at_px": [
+        2707,
+        2433
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-r180-native-637b9f09b366.png",
+      "at_px": [
+        2748,
+        2109
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r270-native-5c7c0f35c6ea.png",
+      "at_px": [
+        2524,
+        2114
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrel-native-c943fd17e8f5.png",
+      "at_px": [
+        2772,
+        2396
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        1724,
+        1152
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r90-native-56e151b8f1dc.png",
+      "at_px": [
+        1306,
+        1170
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-r180-native-637b9f09b366.png",
+      "at_px": [
+        1276,
+        777
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r270-native-5c7c0f35c6ea.png",
+      "at_px": [
+        1758,
+        719
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrel-native-c943fd17e8f5.png",
+      "at_px": [
+        1300,
+        732
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/workbench-native-9b0a70414e59.png",
+      "at_px": [
+        2560,
+        1520
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        2620,
+        1727
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r90-native-56e151b8f1dc.png",
+      "at_px": [
+        2647,
+        1611
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-r180-native-637b9f09b366.png",
+      "at_px": [
+        2108,
+        1791
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/workbench-native-9b0a70414e59.png",
+      "at_px": [
+        1216,
+        496
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        1788,
+        273
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r90-native-56e151b8f1dc.png",
+      "at_px": [
+        1249,
+        391
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-r180-native-637b9f09b366.png",
+      "at_px": [
+        1788,
+        146
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrel-native-c943fd17e8f5.png",
+      "at_px": [
+        1428,
+        540
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        252,
+        1534
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r90-native-56e151b8f1dc.png",
+      "at_px": [
+        785,
+        1790
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-r180-native-637b9f09b366.png",
+      "at_px": [
+        252,
+        1739
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r270-native-5c7c0f35c6ea.png",
+      "at_px": [
+        335,
+        1858
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrel-native-c943fd17e8f5.png",
+      "at_px": [
+        404,
+        1564
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/pump-native-2d9d5aa1efca.png",
+      "at_px": [
+        512,
+        800
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        700,
+        1152
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r90-native-56e151b8f1dc.png",
+      "at_px": [
+        730,
+        900
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-r180-native-637b9f09b366.png",
+      "at_px": [
+        124,
+        962
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r270-native-5c7c0f35c6ea.png",
+      "at_px": [
+        319,
+        1150
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/pump-native-2d9d5aa1efca.png",
+      "at_px": [
+        2432,
+        736
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        2428,
+        1087
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r90-native-56e151b8f1dc.png",
+      "at_px": [
+        2652,
+        772
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-r180-native-637b9f09b366.png",
+      "at_px": [
+        2620,
+        901
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrel-native-c943fd17e8f5.png",
+      "at_px": [
+        2580,
+        1116
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/pump-native-2d9d5aa1efca.png",
+      "at_px": [
+        128,
+        2144
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-native-d3e37d534b38.png",
+      "at_px": [
+        508,
+        2497
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r90-native-56e151b8f1dc.png",
+      "at_px": [
+        136,
+        2317
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/trash-r180-native-637b9f09b366.png",
+      "at_px": [
+        316,
+        2496
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/litter-r270-native-5c7c0f35c6ea.png",
+      "at_px": [
+        332,
+        2181
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/shelf-native-3f5e0d061c89.png",
+      "at_px": [
+        1208,
+        2456
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        1336,
+        2492
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        1272,
+        1404
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        1336,
+        1404
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/pallet-native-40fe95960ee6.png",
+      "at_px": [
+        2552,
+        2072
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        2680,
+        2108
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/shelf-native-3f5e0d061c89.png",
+      "at_px": [
+        1272,
+        856
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        1400,
+        892
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/pallet-native-40fe95960ee6.png",
+      "at_px": [
+        1272,
+        984
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        1400,
+        1020
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        1272,
+        1084
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        1336,
+        1084
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/shelf-native-3f5e0d061c89.png",
+      "at_px": [
+        2488,
+        1816
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/belongings-native-0e36e5e4a235.png",
+      "at_px": [
+        2616,
+        1856
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/shelf-native-3f5e0d061c89.png",
+      "at_px": [
+        1208,
+        280
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/pallet-native-40fe95960ee6.png",
+      "at_px": [
+        1336,
+        280
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/pallet-native-40fe95960ee6.png",
+      "at_px": [
+        1336,
+        88
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        1464,
+        124
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/shelf-native-3f5e0d061c89.png",
+      "at_px": [
+        632,
+        1816
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        760,
+        1852
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        248,
+        1788
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        312,
+        1788
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/shelf-native-3f5e0d061c89.png",
+      "at_px": [
+        120,
+        1048
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        248,
+        1084
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/pallet-native-40fe95960ee6.png",
+      "at_px": [
+        120,
+        856
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        248,
+        892
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        120,
+        1148
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        184,
+        1148
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/shelf-native-3f5e0d061c89.png",
+      "at_px": [
+        632,
+        1048
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/shelf-native-3f5e0d061c89.png",
+      "at_px": [
+        120,
+        2392
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        248,
+        2428
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        120,
+        2492
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/barrels-native-ff2926cb6f30.png",
+      "at_px": [
+        184,
+        2492
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/stairs-native-d82fca489582.png",
+      "at_px": [
+        1464,
+        2288
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-06-r90-native-1362c0bc63fd.png",
+      "at_px": [
+        1541,
+        1612
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-06-r90-native-1362c0bc63fd.png",
+      "at_px": [
+        261,
+        1676
+      ]
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-06-r90-native-1362c0bc63fd.png",
+      "at_px": [
+        2053,
+        1036
+      ]
+    }
+  ],
+  "surface_style": "STYLE-MAP-U01-04",
+  "paving_review": "PAV-U01-06",
+  "civilians_review": "CIVILS-U01-08"
+}

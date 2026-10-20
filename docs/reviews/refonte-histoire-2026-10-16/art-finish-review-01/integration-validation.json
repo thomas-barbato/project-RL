@@ -1,0 +1,52 @@
+{
+  "review": "ART-FINISH-01",
+  "status": "accepted_and_integrated",
+  "date": "2026-10-19",
+  "commands": [
+    {
+      "command": "cargo test --locked --bin project-rl game_art:: -- --test-threads=1",
+      "passed": 43,
+      "failed": 0
+    },
+    {
+      "command": "cargo build --locked",
+      "result": "passed"
+    },
+    {
+      "command": "cargo check --locked --release",
+      "result": "passed; compilation check, not a linked release executable"
+    },
+    {
+      "command": "cargo fmt --all -- --check",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "--ui-cold-art-finish-integration + verify_art_finish_integration.py",
+      "result": "26 samples and 2 scene viewports exactly equal to accepted reference"
+    },
+    {
+      "command": "--ui-cold-performance",
+      "result": "14 scenes completed; no host-state mutation"
+    }
+  ],
+  "visual_inspection": [
+    "native board",
+    "integrated house and street at native scale"
+  ],
+  "packaged_exports": 30,
+  "unchanged_previous_asset_files": 48,
+  "runtime_dependency": "embedded assets/sprites/art-finish-01 only",
+  "full_suite_run": false,
+  "browser_validation": "Static local links verified; no browser automation",
+  "performance": {
+    "report": "performance-debug.json",
+    "comparative_baseline": false,
+    "note": "Debug diagnostic only; first-use costs remain visible, no speedup claim",
+    "world_first_cpu_ms": 1538.0456
+  },
+  "cleanup": "integration-cleanup.json: two redundant reference captures removed; sources, map-editor work and accepted references retained"
+}

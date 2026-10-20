@@ -183,6 +183,15 @@ Les cinq premiers secteurs appartiennent au monde humain. Ils montrent des infra
 
 ### Acte I — Les accès fortifiés
 
+**Précision du joueur, 18 octobre 2026 — ACT1-CITY-01 :** le premier chapitre
+prend place dans une ville futuriste en pleine apocalypse, avec des lieux
+détruits, abîmés et abandonnés. Ce choix donne une forme urbaine au début de
+l'expédition dans la mégapole condamnée. Les accès fortifiés décrits ci-dessous
+peuvent en faire partie ; ils ne limitent plus l'acte à des dépôts et tunnels.
+Le camp de cryogénie accepté reste le point de départ. Le parcours précis entre
+les quartiers et les accès souterrains reste à proposer, ainsi que leurs noms,
+plans et décors. Cette précision n'ajoute aucune quête ni rencontre au jeu.
+
 **Boss : le Maréchal des Chaînes**
 
 Ce secteur comprend les points de contrôle, les dépôts de sécurité et les tunnels d’accès au complexe.

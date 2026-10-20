@@ -1,0 +1,2982 @@
+{
+  "id": "MAP-U01-EXP-01-r06",
+  "width": 26,
+  "height": 66,
+  "cell": 64,
+  "image_origin": [
+    0,
+    0
+  ],
+  "image_offset_px": [
+    0,
+    0
+  ],
+  "image_size": [
+    26,
+    66
+  ],
+  "background": "assets/maps/prison-sewer-01/art/background-afe7b21dff4c.png",
+  "entrance": [
+    7,
+    62
+  ],
+  "home_entry": [
+    4,
+    53
+  ],
+  "home_inside": [
+    6,
+    52
+  ],
+  "car_at": [
+    15,
+    56
+  ],
+  "car_file": "assets/maps/prison-sewer-01/art/car-c5725e480e80.png",
+  "car_size": [
+    2,
+    1
+  ],
+  "obstructions": [
+    [
+      2,
+      22
+    ],
+    [
+      2,
+      23
+    ],
+    [
+      2,
+      30
+    ],
+    [
+      2,
+      31
+    ],
+    [
+      3,
+      22
+    ],
+    [
+      3,
+      23
+    ],
+    [
+      3,
+      30
+    ],
+    [
+      3,
+      31
+    ],
+    [
+      3,
+      33
+    ],
+    [
+      4,
+      22
+    ],
+    [
+      4,
+      23
+    ],
+    [
+      4,
+      30
+    ],
+    [
+      4,
+      31
+    ],
+    [
+      4,
+      33
+    ],
+    [
+      5,
+      33
+    ],
+    [
+      5,
+      54
+    ],
+    [
+      6,
+      33
+    ],
+    [
+      6,
+      34
+    ],
+    [
+      6,
+      45
+    ],
+    [
+      7,
+      33
+    ],
+    [
+      7,
+      34
+    ],
+    [
+      7,
+      45
+    ],
+    [
+      8,
+      34
+    ],
+    [
+      8,
+      45
+    ],
+    [
+      9,
+      54
+    ],
+    [
+      10,
+      14
+    ],
+    [
+      10,
+      41
+    ],
+    [
+      10,
+      42
+    ],
+    [
+      10,
+      48
+    ],
+    [
+      10,
+      54
+    ],
+    [
+      11,
+      14
+    ],
+    [
+      11,
+      39
+    ],
+    [
+      11,
+      40
+    ],
+    [
+      11,
+      41
+    ],
+    [
+      11,
+      42
+    ],
+    [
+      12,
+      12
+    ],
+    [
+      12,
+      14
+    ],
+    [
+      12,
+      39
+    ],
+    [
+      12,
+      40
+    ],
+    [
+      13,
+      8
+    ],
+    [
+      13,
+      12
+    ],
+    [
+      13,
+      48
+    ],
+    [
+      14,
+      8
+    ],
+    [
+      14,
+      12
+    ],
+    [
+      14,
+      13
+    ],
+    [
+      14,
+      16
+    ],
+    [
+      14,
+      47
+    ],
+    [
+      14,
+      48
+    ],
+    [
+      15,
+      8
+    ],
+    [
+      15,
+      9
+    ],
+    [
+      15,
+      15
+    ],
+    [
+      15,
+      16
+    ],
+    [
+      15,
+      32
+    ],
+    [
+      15,
+      36
+    ],
+    [
+      15,
+      37
+    ],
+    [
+      15,
+      38
+    ],
+    [
+      15,
+      39
+    ],
+    [
+      15,
+      40
+    ],
+    [
+      15,
+      48
+    ],
+    [
+      15,
+      54
+    ],
+    [
+      15,
+      56
+    ],
+    [
+      16,
+      15
+    ],
+    [
+      16,
+      16
+    ],
+    [
+      16,
+      32
+    ],
+    [
+      16,
+      33
+    ],
+    [
+      16,
+      38
+    ],
+    [
+      16,
+      39
+    ],
+    [
+      16,
+      56
+    ],
+    [
+      17,
+      32
+    ],
+    [
+      17,
+      39
+    ],
+    [
+      18,
+      58
+    ],
+    [
+      9,
+      19
+    ],
+    [
+      10,
+      19
+    ],
+    [
+      11,
+      19
+    ],
+    [
+      14,
+      19
+    ],
+    [
+      10,
+      20
+    ],
+    [
+      14,
+      20
+    ],
+    [
+      13,
+      21
+    ],
+    [
+      14,
+      21
+    ],
+    [
+      9,
+      28
+    ],
+    [
+      9,
+      29
+    ],
+    [
+      13,
+      27
+    ],
+    [
+      13,
+      28
+    ],
+    [
+      13,
+      29
+    ],
+    [
+      14,
+      29
+    ]
+  ],
+  "source": "assets/maps/prison-sewer-01/art/SCENE-U01-07-r01-1dd459073106.png",
+  "background_sha256": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+  "layout_sha256": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
+  "walkable_cells": 695,
+  "all_walkable_connected": true,
+  "doorway": {
+    "review": "DOOR-U01-FIX-01",
+    "floor_source": [
+      256,
+      3384,
+      64,
+      40
+    ],
+    "opening_at": [
+      256,
+      3432
+    ],
+    "lamp_source": [
+      261,
+      3434,
+      51,
+      20
+    ],
+    "lamp_at": [
+      382,
+      3439
+    ],
+    "closed_source": [
+      820,
+      3431,
+      64,
+      40
+    ],
+    "closed_at": [
+      256,
+      3432
+    ],
+    "lamp_lens_center_in_source": [
+      190,
+      307
+    ],
+    "light_origin": [
+      6,
+      6
+    ]
+  },
+  "doorway_fix": "DOOR-U01-FIX-01",
+  "lighting_review": "LUM-U01-08-r06",
+  "style": "STYLE-RL-2026-10-18-r01",
+  "atmosphere": {
+    "correction": "assets/maps/prison-sewer-01/art/correction-ab4b90375898.png",
+    "irradiance": "assets/maps/prison-sewer-01/art/irradiance-19c4157c479d.png",
+    "ambient": [
+      0.56,
+      0.61,
+      0.72
+    ],
+    "lights": [
+      {
+        "id": "home",
+        "at": [
+          482,
+          3201
+        ],
+        "origin": [
+          7,
+          51
+        ],
+        "box": [
+          464,
+          3194,
+          504,
+          3206
+        ],
+        "radius": 230,
+        "power": 0.9359999999999999,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "home-door",
+        "at": [
+          407,
+          3448
+        ],
+        "origin": [
+          6,
+          54
+        ],
+        "box": [
+          265,
+          3438,
+          307,
+          3449
+        ],
+        "radius": 225,
+        "power": 0.9099999999999999,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "shop-door",
+        "at": [
+          845,
+          3424
+        ],
+        "origin": [
+          13,
+          54
+        ],
+        "box": [
+          826,
+          3418,
+          866,
+          3430
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "west",
+        "at": [
+          154,
+          3573
+        ],
+        "origin": [
+          2,
+          56
+        ],
+        "box": [
+          149,
+          3554,
+          160,
+          3592
+        ],
+        "radius": 230,
+        "power": 0.0,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          0.065,
+          0.07,
+          0.065
+        ],
+        "state": "off"
+      },
+      {
+        "id": "north-west",
+        "at": [
+          1074,
+          3309
+        ],
+        "origin": [
+          18,
+          51
+        ],
+        "box": [
+          1069,
+          3293,
+          1080,
+          3332
+        ],
+        "radius": 230,
+        "power": 0.8450000000000001,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "garage-west",
+        "at": [
+          1274,
+          3559
+        ],
+        "origin": [
+          19,
+          56
+        ],
+        "box": [
+          1268,
+          3544,
+          1280,
+          3575
+        ],
+        "radius": 230,
+        "power": 0.0,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          0.065,
+          0.07,
+          0.065
+        ],
+        "state": "off"
+      },
+      {
+        "id": "garage",
+        "at": [
+          1376,
+          3679
+        ],
+        "origin": [
+          22,
+          58
+        ],
+        "box": [
+          1355,
+          3673,
+          1398,
+          3684
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "gate-left",
+        "at": [
+          375,
+          4006
+        ],
+        "origin": [
+          7,
+          62
+        ],
+        "box": [
+          369,
+          3987,
+          381,
+          4023
+        ],
+        "radius": 215,
+        "power": 0.8840000000000001,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "gate-right",
+        "at": [
+          634,
+          4006
+        ],
+        "origin": [
+          8,
+          62
+        ],
+        "box": [
+          628,
+          3987,
+          640,
+          4023
+        ],
+        "radius": 215,
+        "power": 0.8840000000000001,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "ruin-west",
+        "at": [
+          924,
+          3977
+        ],
+        "origin": [
+          14,
+          58
+        ],
+        "box": [
+          904,
+          3971,
+          945,
+          3983
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "ruin-east",
+        "at": [
+          1388,
+          3978
+        ],
+        "origin": [
+          21,
+          58
+        ],
+        "box": [
+          1368,
+          3972,
+          1407,
+          3984
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "car",
+        "at": [
+          1060,
+          3610
+        ],
+        "origin": [
+          16,
+          55
+        ],
+        "box": null,
+        "radius": 170,
+        "power": 0.546,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "gate-west",
+        "at": [
+          1108.5,
+          84.5
+        ],
+        "origin": [
+          18,
+          1
+        ],
+        "box": [
+          1095,
+          55,
+          1122,
+          114
+        ],
+        "radius": 230,
+        "power": 0.8,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "gate-east",
+        "at": [
+          1304.5,
+          84.5
+        ],
+        "origin": [
+          19,
+          1
+        ],
+        "box": [
+          1291,
+          55,
+          1318,
+          114
+        ],
+        "radius": 230,
+        "power": 0.0,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          0.065,
+          0.07,
+          0.065
+        ],
+        "state": "off"
+      },
+      {
+        "id": "post-0",
+        "at": [
+          1053,
+          711
+        ],
+        "origin": [
+          16,
+          11
+        ],
+        "box": [
+          1050,
+          704,
+          1056,
+          718
+        ],
+        "radius": 220,
+        "power": 0.0,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          0.065,
+          0.07,
+          0.065
+        ],
+        "state": "off"
+      },
+      {
+        "id": "post-3",
+        "at": [
+          1363,
+          2015
+        ],
+        "origin": [
+          21,
+          31
+        ],
+        "box": [
+          1360,
+          2008,
+          1366,
+          2022
+        ],
+        "radius": 220,
+        "power": 0.65,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "post-5",
+        "at": [
+          1363,
+          3039
+        ],
+        "origin": [
+          20,
+          47
+        ],
+        "box": [
+          1360,
+          3032,
+          1366,
+          3046
+        ],
+        "radius": 220,
+        "power": 0.0,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          0.065,
+          0.07,
+          0.065
+        ],
+        "state": "off"
+      },
+      {
+        "id": "ROOF-U01-02A-door",
+        "at": [
+          893,
+          1467
+        ],
+        "origin": [
+          13,
+          24
+        ],
+        "box": null,
+        "radius": 230,
+        "power": 0.8,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "ROOF-U01-02A-inside",
+        "at": [
+          800,
+          1312
+        ],
+        "origin": [
+          12,
+          20
+        ],
+        "box": null,
+        "radius": 230,
+        "power": 0.8,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "ROOF-U01-02B-door",
+        "at": [
+          889,
+          1967
+        ],
+        "origin": [
+          13,
+          32
+        ],
+        "box": null,
+        "radius": 230,
+        "power": 0.8,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "ROOF-U01-02B-inside",
+        "at": [
+          800,
+          1824
+        ],
+        "origin": [
+          12,
+          28
+        ],
+        "box": null,
+        "radius": 230,
+        "power": 0.8,
+        "color": [
+          1.0,
+          0.67,
+          0.28
+        ],
+        "lens_color": [
+          1.0,
+          0.82,
+          0.46
+        ],
+        "state": "on"
+      },
+      {
+        "id": "BLDG-U01-01-106",
+        "at": [
+          244.5,
+          1336.0
+        ],
+        "origin": [
+          5,
+          22
+        ],
+        "box": [
+          234,
+          1335,
+          255,
+          1337
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "BLDG-U01-02-114",
+        "at": [
+          250.0,
+          1808.0
+        ],
+        "origin": [
+          3,
+          29
+        ],
+        "box": [
+          242,
+          1807,
+          258,
+          1809
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "BLDG-U01-03-117",
+        "at": [
+          959.5,
+          450.0
+        ],
+        "origin": [
+          16,
+          8
+        ],
+        "box": [
+          949,
+          449,
+          970,
+          451
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "BLDG-U01-04-214",
+        "at": [
+          670.5,
+          700.5
+        ],
+        "origin": [
+          10,
+          12
+        ],
+        "box": [
+          662,
+          700,
+          679,
+          701
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "BLDG-U01-04-387",
+        "at": [
+          843.5,
+          707.0
+        ],
+        "origin": [
+          11,
+          12
+        ],
+        "box": [
+          835,
+          706,
+          852,
+          708
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "BLDG-U01-05-153",
+        "at": [
+          738.5,
+          2402.5
+        ],
+        "origin": [
+          13,
+          39
+        ],
+        "box": [
+          729,
+          2401,
+          748,
+          2404
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "BLDG-U01-06-96",
+        "at": [
+          1450.0,
+          958.5
+        ],
+        "origin": [
+          22,
+          16
+        ],
+        "box": [
+          1440,
+          957,
+          1460,
+          960
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "east-small-door",
+        "at": [
+          1420.0,
+          565.5
+        ],
+        "origin": [
+          22,
+          10
+        ],
+        "box": [
+          1407,
+          564,
+          1433,
+          567
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "east-long-door",
+        "at": [
+          1429.5,
+          1612.5
+        ],
+        "origin": [
+          20,
+          26
+        ],
+        "box": [
+          1413,
+          1610,
+          1446,
+          1615
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "east-blue-door",
+        "at": [
+          1453.5,
+          2585.0
+        ],
+        "origin": [
+          20,
+          40
+        ],
+        "box": [
+          1440,
+          2584,
+          1467,
+          2586
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "west-garage-door",
+        "at": [
+          289.5,
+          2625.0
+        ],
+        "origin": [
+          4,
+          42
+        ],
+        "box": [
+          275,
+          2623,
+          304,
+          2627
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "east-south-door",
+        "at": [
+          1461.5,
+          3044.5
+        ],
+        "origin": [
+          20,
+          47
+        ],
+        "box": [
+          1448,
+          3042,
+          1475,
+          3047
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      },
+      {
+        "id": "join-closed-door",
+        "at": [
+          1429.9877300613498,
+          3290.368932038835
+        ],
+        "origin": [
+          21,
+          53
+        ],
+        "box": [
+          1420,
+          3289,
+          1440,
+          3292
+        ],
+        "radius": 105,
+        "power": 0.28,
+        "color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "lens_color": [
+          1.0,
+          0.055,
+          0.025
+        ],
+        "state": "on"
+      }
+    ],
+    "lightmap_scale": 8,
+    "procedural_emitters": true,
+    "colored_emitters": true,
+    "fan": [
+      0.9350961538461539,
+      0.8290719696969697,
+      0.007211538461538462,
+      0.002840909090909091
+    ],
+    "surface_wear": "assets/maps/prison-sewer-01/art/surface-wear-16cb67557ae6.png"
+  },
+  "roofs": [
+    {
+      "id": "ROOF-U01-01A",
+      "file": "assets/maps/prison-sewer-01/art/roof-0-daa333e2a8fe.png",
+      "at_px": [
+        140,
+        3168
+      ],
+      "door": [
+        4,
+        53
+      ],
+      "interior": [
+        [
+          4,
+          51
+        ],
+        [
+          5,
+          51
+        ],
+        [
+          6,
+          51
+        ],
+        [
+          7,
+          51
+        ],
+        [
+          4,
+          52
+        ],
+        [
+          5,
+          52
+        ],
+        [
+          6,
+          52
+        ],
+        [
+          7,
+          52
+        ]
+      ],
+      "exterior": [
+        [
+          5,
+          49
+        ],
+        [
+          6,
+          49
+        ],
+        [
+          7,
+          49
+        ],
+        [
+          8,
+          49
+        ],
+        [
+          9,
+          49
+        ],
+        [
+          2,
+          50
+        ],
+        [
+          3,
+          50
+        ],
+        [
+          4,
+          50
+        ],
+        [
+          5,
+          50
+        ],
+        [
+          6,
+          50
+        ],
+        [
+          7,
+          50
+        ],
+        [
+          8,
+          50
+        ],
+        [
+          9,
+          50
+        ],
+        [
+          2,
+          51
+        ],
+        [
+          3,
+          51
+        ],
+        [
+          8,
+          51
+        ],
+        [
+          9,
+          51
+        ],
+        [
+          2,
+          52
+        ],
+        [
+          3,
+          52
+        ],
+        [
+          8,
+          52
+        ],
+        [
+          9,
+          52
+        ],
+        [
+          2,
+          53
+        ],
+        [
+          3,
+          53
+        ],
+        [
+          4,
+          53
+        ],
+        [
+          5,
+          53
+        ],
+        [
+          6,
+          53
+        ],
+        [
+          7,
+          53
+        ],
+        [
+          8,
+          53
+        ],
+        [
+          9,
+          53
+        ]
+      ],
+      "sha256": "cae2668d04aa12f92f56ab6af8571aa080a96d233ab54856e1bcfd0611f9aae4"
+    },
+    {
+      "id": "ROOF-U01-01B",
+      "file": "assets/maps/prison-sewer-01/art/roof-1-95e279966252.png",
+      "at_px": [
+        711,
+        3208
+      ],
+      "door": null,
+      "interior": [],
+      "exterior": [
+        [
+          11,
+          50
+        ],
+        [
+          12,
+          50
+        ],
+        [
+          13,
+          50
+        ],
+        [
+          14,
+          50
+        ],
+        [
+          15,
+          50
+        ],
+        [
+          16,
+          50
+        ],
+        [
+          11,
+          51
+        ],
+        [
+          12,
+          51
+        ],
+        [
+          13,
+          51
+        ],
+        [
+          14,
+          51
+        ],
+        [
+          15,
+          51
+        ],
+        [
+          16,
+          51
+        ],
+        [
+          11,
+          52
+        ],
+        [
+          12,
+          52
+        ],
+        [
+          13,
+          52
+        ],
+        [
+          14,
+          52
+        ],
+        [
+          15,
+          52
+        ],
+        [
+          16,
+          52
+        ],
+        [
+          11,
+          53
+        ],
+        [
+          12,
+          53
+        ],
+        [
+          13,
+          53
+        ],
+        [
+          14,
+          53
+        ],
+        [
+          15,
+          53
+        ],
+        [
+          16,
+          53
+        ]
+      ],
+      "sha256": "9cda1857682b21c53a257f645478459aedba018bc51ea5a39a11f2ca94e30e3d"
+    },
+    {
+      "id": "ROOF-U01-02A",
+      "file": "assets/maps/prison-sewer-01/art/roof-2-2381e0b81392.png",
+      "at_px": [
+        448,
+        1152
+      ],
+      "door": [
+        11,
+        22
+      ],
+      "interior": [
+        [
+          9,
+          20
+        ],
+        [
+          11,
+          20
+        ],
+        [
+          12,
+          20
+        ],
+        [
+          9,
+          21
+        ],
+        [
+          10,
+          21
+        ],
+        [
+          11,
+          21
+        ],
+        [
+          12,
+          21
+        ]
+      ],
+      "exterior": [
+        [
+          7,
+          18
+        ],
+        [
+          8,
+          18
+        ],
+        [
+          9,
+          18
+        ],
+        [
+          10,
+          18
+        ],
+        [
+          11,
+          18
+        ],
+        [
+          12,
+          18
+        ],
+        [
+          13,
+          18
+        ],
+        [
+          14,
+          18
+        ],
+        [
+          7,
+          19
+        ],
+        [
+          8,
+          19
+        ],
+        [
+          9,
+          19
+        ],
+        [
+          10,
+          19
+        ],
+        [
+          11,
+          19
+        ],
+        [
+          12,
+          19
+        ],
+        [
+          13,
+          19
+        ],
+        [
+          14,
+          19
+        ],
+        [
+          7,
+          20
+        ],
+        [
+          8,
+          20
+        ],
+        [
+          10,
+          20
+        ],
+        [
+          13,
+          20
+        ],
+        [
+          14,
+          20
+        ],
+        [
+          7,
+          21
+        ],
+        [
+          8,
+          21
+        ],
+        [
+          13,
+          21
+        ],
+        [
+          14,
+          21
+        ]
+      ]
+    },
+    {
+      "id": "ROOF-U01-02B",
+      "file": "assets/maps/prison-sewer-01/art/roof-3-36f55710f334.png",
+      "at_px": [
+        464,
+        1648
+      ],
+      "door": [
+        11,
+        30
+      ],
+      "interior": [
+        [
+          10,
+          27
+        ],
+        [
+          11,
+          27
+        ],
+        [
+          12,
+          27
+        ],
+        [
+          10,
+          28
+        ],
+        [
+          11,
+          28
+        ],
+        [
+          12,
+          28
+        ],
+        [
+          10,
+          29
+        ],
+        [
+          11,
+          29
+        ],
+        [
+          12,
+          29
+        ]
+      ],
+      "exterior": [
+        [
+          7,
+          26
+        ],
+        [
+          8,
+          26
+        ],
+        [
+          9,
+          26
+        ],
+        [
+          10,
+          26
+        ],
+        [
+          11,
+          26
+        ],
+        [
+          12,
+          26
+        ],
+        [
+          13,
+          26
+        ],
+        [
+          14,
+          26
+        ],
+        [
+          7,
+          27
+        ],
+        [
+          8,
+          27
+        ],
+        [
+          9,
+          27
+        ],
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          7,
+          28
+        ],
+        [
+          8,
+          28
+        ],
+        [
+          9,
+          28
+        ],
+        [
+          13,
+          28
+        ],
+        [
+          14,
+          28
+        ],
+        [
+          7,
+          29
+        ],
+        [
+          8,
+          29
+        ],
+        [
+          9,
+          29
+        ],
+        [
+          13,
+          29
+        ],
+        [
+          14,
+          29
+        ]
+      ]
+    }
+  ],
+  "roof_review": "ROOF-U01-01-r01",
+  "next_exit": [
+    18,
+    1
+  ],
+  "candidate": true,
+  "extra_doorways": [
+    {
+      "door": [
+        11,
+        22
+      ],
+      "floor_source": [
+        784,
+        1312,
+        64,
+        48
+      ],
+      "opening_at": [
+        704,
+        1440
+      ],
+      "lamp_source": [
+        261,
+        3434,
+        51,
+        20
+      ],
+      "lamp_at": [
+        868,
+        1458
+      ],
+      "closed_source": [
+        820,
+        3431,
+        64,
+        40
+      ],
+      "closed_at": [
+        704,
+        1440
+      ]
+    },
+    {
+      "door": [
+        11,
+        30
+      ],
+      "floor_source": [
+        736,
+        1808,
+        64,
+        48
+      ],
+      "opening_at": [
+        704,
+        1944
+      ],
+      "lamp_source": [
+        261,
+        3434,
+        51,
+        20
+      ],
+      "lamp_at": [
+        864,
+        1958
+      ],
+      "closed_source": [
+        820,
+        3431,
+        64,
+        40
+      ],
+      "closed_at": [
+        704,
+        1944
+      ]
+    }
+  ],
+  "ambience": {
+    "steam": [
+      842,
+      3554
+    ],
+    "embers": true
+  },
+  "review_views": [
+    [
+      "gate",
+      [
+        7,
+        62
+      ]
+    ],
+    [
+      "red-door",
+      [
+        13,
+        54
+      ]
+    ],
+    [
+      "yellow-door",
+      [
+        4,
+        54
+      ]
+    ],
+    [
+      "garage",
+      [
+        22,
+        58
+      ]
+    ],
+    [
+      "courtyard",
+      [
+        16,
+        41
+      ]
+    ],
+    [
+      "north-yard",
+      [
+        17,
+        8
+      ]
+    ],
+    [
+      "exit",
+      [
+        18,
+        1
+      ]
+    ],
+    [
+      "join-north",
+      [
+        18,
+        17
+      ]
+    ],
+    [
+      "join-middle",
+      [
+        18,
+        33
+      ]
+    ],
+    [
+      "join-south",
+      [
+        18,
+        49
+      ]
+    ],
+    [
+      "house-a-closed",
+      [
+        11,
+        23
+      ]
+    ],
+    [
+      "house-a-open",
+      [
+        12,
+        20
+      ]
+    ],
+    [
+      "house-b-closed",
+      [
+        11,
+        31
+      ]
+    ],
+    [
+      "house-b-open",
+      [
+        12,
+        28
+      ]
+    ],
+    [
+      "war-houses",
+      [
+        6,
+        24
+      ]
+    ],
+    [
+      "war-annex",
+      [
+        15,
+        13
+      ]
+    ],
+    [
+      "war-blast",
+      [
+        16,
+        42
+      ]
+    ],
+    [
+      "lighting-off",
+      [
+        17,
+        11
+      ]
+    ],
+    [
+      "court-clean",
+      [
+        15,
+        41
+      ]
+    ],
+    [
+      "west-corner",
+      [
+        2,
+        2
+      ]
+    ],
+    [
+      "east-corner",
+      [
+        23,
+        2
+      ]
+    ]
+  ],
+  "review_animations": [
+    [
+      "fan",
+      [
+        24,
+        53
+      ]
+    ],
+    [
+      "steam",
+      [
+        12,
+        55
+      ]
+    ],
+    [
+      "embers",
+      [
+        15,
+        57
+      ]
+    ]
+  ],
+  "south_visible_edge": 4064,
+  "integration_generation": 157,
+  "scenery_props": [
+    {
+      "id": "GRIM-U01-01",
+      "file": "assets/maps/prison-sewer-01/art/GRIM-U01-01-2c84fecd9ceb.png",
+      "at_px": [
+        256,
+        3584
+      ]
+    },
+    {
+      "id": "CORP-U01-01",
+      "file": "assets/maps/prison-sewer-01/art/CORP-U01-01-6a016733564e.png",
+      "at_px": [
+        192,
+        3776
+      ]
+    },
+    {
+      "id": "CORP-U01-02",
+      "file": "assets/maps/prison-sewer-01/art/CORP-U01-02-0b10f5554c5e.png",
+      "at_px": [
+        576,
+        3648
+      ]
+    },
+    {
+      "id": "CORP-U01-03",
+      "file": "assets/maps/prison-sewer-01/art/CORP-U01-03-0f08bcd7be65.png",
+      "at_px": [
+        384,
+        3520
+      ]
+    },
+    {
+      "id": "SANG-U01-04-01",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        532,
+        3865
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-02",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-r180-native-e08f15b06a28.png",
+      "at_px": [
+        418,
+        3467
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-03",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        290,
+        3299
+      ],
+      "interior_roof": "ROOF-U01-01A"
+    },
+    {
+      "id": "SANG-U01-04-04",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-r180-native-e08f15b06a28.png",
+      "at_px": [
+        584,
+        1305
+      ],
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "SANG-U01-04-05",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        760,
+        1349
+      ],
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "SANG-U01-04-06",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-r180-native-e08f15b06a28.png",
+      "at_px": [
+        606,
+        1867
+      ],
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "SANG-U01-04-07",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        748,
+        1787
+      ],
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "SANG-U01-04-08",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        1382,
+        653
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-09",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        332,
+        2077
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-10",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-r180-native-e08f15b06a28.png",
+      "at_px": [
+        538,
+        2647
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-11",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        1232,
+        3169
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-12",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-r180-native-e08f15b06a28.png",
+      "at_px": [
+        700,
+        2955
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-13",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-05-native-3808ad4818d4.png",
+      "at_px": [
+        470,
+        3872
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-14",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-05-r180-native-6f93be844998.png",
+      "at_px": [
+        388,
+        3488
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-15",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-05-r180-native-6f93be844998.png",
+      "at_px": [
+        704,
+        1370
+      ],
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "SANG-U01-05-16",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-05-native-3808ad4818d4.png",
+      "at_px": [
+        650,
+        1880
+      ],
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "SANG-U01-05-17",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-05-r180-native-6f93be844998.png",
+      "at_px": [
+        400,
+        2082
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-18",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-05-native-3808ad4818d4.png",
+      "at_px": [
+        764,
+        2960
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-19",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-05-r90-native-0247b2619b5f.png",
+      "at_px": [
+        1234,
+        3194
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-04-20",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-04-native-c4b994bbf665.png",
+      "at_px": [
+        528,
+        3856
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-05-21",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-05-r180-native-04c24e010985.png",
+      "at_px": [
+        414,
+        3458
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-08-22",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-08-native-b798680ebbc9.png",
+      "at_px": [
+        1020,
+        3658
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-06-23",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-06-r180-native-5830fb991d79.png",
+      "at_px": [
+        1244,
+        3710
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-05-24",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-05-native-49dc4c963c37.png",
+      "at_px": [
+        286,
+        3290
+      ],
+      "interior_roof": "ROOF-U01-01A"
+    },
+    {
+      "id": "CIV-U01-04-25",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-04-native-c4b994bbf665.png",
+      "at_px": [
+        580,
+        1296
+      ],
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "CIV-U01-05-26",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-05-r180-native-04c24e010985.png",
+      "at_px": [
+        756,
+        1340
+      ],
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "CIV-U01-07-27",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-07-native-214792ce11a9.png",
+      "at_px": [
+        602,
+        1858
+      ],
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "CIV-U01-04-28",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-04-r180-native-f16a0b02a2b8.png",
+      "at_px": [
+        744,
+        1778
+      ],
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "CIV-U01-06-29",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-06-native-c61b0e4bf127.png",
+      "at_px": [
+        842,
+        540
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-04-30",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-04-r180-native-f16a0b02a2b8.png",
+      "at_px": [
+        1378,
+        644
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-06-31",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-06-r90-native-1362c0bc63fd.png",
+      "at_px": [
+        520,
+        918
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-07-32",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-07-r180-native-a91b6c98c451.png",
+      "at_px": [
+        328,
+        2068
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-08-33",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-08-r180-native-a206672f7acc.png",
+      "at_px": [
+        812,
+        2142
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-06-34",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-06-native-c61b0e4bf127.png",
+      "at_px": [
+        736,
+        2456
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-04-35",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-04-r90-native-524956b4d740.png",
+      "at_px": [
+        534,
+        2638
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-05-36",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-05-native-49dc4c963c37.png",
+      "at_px": [
+        1228,
+        3160
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-07-37",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-07-native-214792ce11a9.png",
+      "at_px": [
+        696,
+        2946
+      ],
+      "interior_roof": null
+    },
+    {
+      "file": "assets/maps/prison-sewer-01/art/entry-native-21b88f117056.png",
+      "at_px": [
+        112,
+        836
+      ]
+    },
+    {
+      "id": "SANG-U01-04-01",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        556,
+        3761
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-13",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-05-native-3808ad4818d4.png",
+      "at_px": [
+        494,
+        3768
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-04-20",
+      "file": "assets/maps/prison-sewer-01/art/CIV-U01-04-native-c4b994bbf665.png",
+      "at_px": [
+        552,
+        3752
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SACS-U01-02-ouest",
+      "file": "assets/maps/prison-sewer-01/art/SACS-U01-02-r03-native-de2bd3a16aac.png",
+      "at_px": [
+        416,
+        3864
+      ],
+      "context": "barricade en L avec retour contre le montant du portail"
+    },
+    {
+      "id": "SACS-U01-02-est",
+      "file": "assets/maps/prison-sewer-01/art/SACS-U01-02-r03-east-native-c3ecdf9b363e.png",
+      "at_px": [
+        560,
+        3864
+      ],
+      "context": "barricade en L avec retour contre le montant du portail"
+    },
+    {
+      "id": "MORT-U01-10-01",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-01-0b10f5554c5e.png",
+      "at_px": [
+        466,
+        3690
+      ],
+      "context": "attaque contre le poste de garde"
+    },
+    {
+      "id": "SANG-U01-10-01",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        472,
+        3704
+      ],
+      "context": "sang associé au corps 1"
+    },
+    {
+      "id": "MORT-U01-10-02",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-02-09d64f2d310f.png",
+      "at_px": [
+        702,
+        3446
+      ],
+      "context": "repli après le carrefour sud"
+    },
+    {
+      "id": "MORT-U01-10-03",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-03-a8e9a8129c5c.png",
+      "at_px": [
+        1156,
+        2248
+      ],
+      "context": "approche du véhicule détruit"
+    },
+    {
+      "id": "SANG-U01-10-03",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        1162,
+        2278
+      ],
+      "context": "sang associé au corps 3"
+    },
+    {
+      "id": "MORT-U01-10-04",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-04-be99547eda93.png",
+      "at_px": [
+        1124,
+        870
+      ],
+      "context": "combat sur l’avenue nord"
+    },
+    {
+      "id": "MORT-U01-10-05",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-05-e1efce9ef5f2.png",
+      "at_px": [
+        370,
+        3616
+      ],
+      "context": "flanc du dernier point de défense"
+    },
+    {
+      "id": "SANG-U01-10-05",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        376,
+        3630
+      ],
+      "context": "sang associé au corps 5"
+    },
+    {
+      "id": "MORT-U01-10-06",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-06-7a17655dd974.png",
+      "at_px": [
+        1164,
+        2810
+      ],
+      "context": "repli au carrefour sud"
+    },
+    {
+      "id": "MORT-U01-10-07",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-07-0f08bcd7be65.png",
+      "at_px": [
+        618,
+        2530
+      ],
+      "context": "près de la cour dévastée"
+    },
+    {
+      "id": "SANG-U01-10-07",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        624,
+        2544
+      ],
+      "context": "sang associé au corps 7"
+    },
+    {
+      "id": "MORT-U01-10-08",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-08-a9ce7517a876.png",
+      "at_px": [
+        1210,
+        1504
+      ],
+      "context": "défense de l’avenue centrale"
+    },
+    {
+      "id": "MORT-U01-10-09",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-09-f16a0b02a2b8.png",
+      "at_px": [
+        1156,
+        3360
+      ],
+      "context": "fuite depuis les logements sud"
+    },
+    {
+      "id": "SANG-U01-10-09",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        1162,
+        3374
+      ],
+      "context": "sang associé au corps 9"
+    },
+    {
+      "id": "MORT-U01-10-10",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-10-1362c0bc63fd.png",
+      "at_px": [
+        1420,
+        2040
+      ],
+      "context": "trottoir près des bâtiments endommagés"
+    },
+    {
+      "id": "MORT-U01-10-11",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-11-214792ce11a9.png",
+      "at_px": [
+        302,
+        2750
+      ],
+      "context": "sortie de l’atelier abandonné"
+    },
+    {
+      "id": "MORT-U01-10-12",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-12-04c24e010985.png",
+      "at_px": [
+        930,
+        642
+      ],
+      "context": "fuite près de la façade nord détruite"
+    },
+    {
+      "id": "SANG-U01-10-12",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        936,
+        656
+      ],
+      "context": "sang associé au corps 12"
+    },
+    {
+      "id": "MORT-U01-10-13",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-13-09d64f2d310f.png",
+      "at_px": [
+        642,
+        3730
+      ],
+      "context": "assaut brisé en avant du garde est"
+    },
+    {
+      "id": "SANG-U01-10-13",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        648,
+        3744
+      ],
+      "context": "sang associé au corps 13"
+    },
+    {
+      "id": "MORT-U01-10-14",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-14-a8e9a8129c5c.png",
+      "at_px": [
+        472,
+        3552
+      ],
+      "context": "attaquant tombé dans l’approche de la prison"
+    },
+    {
+      "id": "SANG-U01-10-14",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        478,
+        3582
+      ],
+      "context": "sang associé au corps 14"
+    },
+    {
+      "id": "MORT-U01-10-15",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-15-be99547eda93.png",
+      "at_px": [
+        544,
+        3464
+      ],
+      "context": "progression interrompue vers la prison"
+    },
+    {
+      "id": "MORT-U01-10-16",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-16-0f08bcd7be65.png",
+      "at_px": [
+        234,
+        3698
+      ],
+      "context": "défenseur au flanc ouest de l’approche"
+    },
+    {
+      "id": "SANG-U01-10-16",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        240,
+        3712
+      ],
+      "context": "sang associé au corps 16"
+    },
+    {
+      "id": "MORT-U01-10-17",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-17-e1efce9ef5f2.png",
+      "at_px": [
+        1144,
+        3176
+      ],
+      "context": "position perdue au débouché sud"
+    },
+    {
+      "id": "MORT-U01-10-18",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-18-7a17655dd974.png",
+      "at_px": [
+        536,
+        2350
+      ],
+      "context": "repli sur le trottoir central"
+    },
+    {
+      "id": "MORT-U01-10-19",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-19-49dc4c963c37.png",
+      "at_px": [
+        722,
+        3626
+      ],
+      "context": "civil abattu à proximité de la clôture est"
+    },
+    {
+      "id": "SANG-U01-10-19",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        728,
+        3640
+      ],
+      "context": "sang associé au corps 19"
+    },
+    {
+      "id": "MORT-U01-10-20",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-20-a91b6c98c451.png",
+      "at_px": [
+        1330,
+        2706
+      ],
+      "context": "sortie du logement près de la cour"
+    },
+    {
+      "id": "MORT-U01-10-21",
+      "file": "assets/maps/prison-sewer-01/art/MORT-U01-10-21-b68b1f03a0d4.png",
+      "at_px": [
+        1240,
+        1190
+      ],
+      "context": "fuite depuis les habitations de l’avenue"
+    },
+    {
+      "id": "SANG-U01-10-21",
+      "file": "assets/maps/prison-sewer-01/art/SANG-U01-04-native-c26fb8f0d245.png",
+      "at_px": [
+        1246,
+        1220
+      ],
+      "context": "sang associé au corps 21"
+    }
+  ],
+  "surface_style": "STYLE-MAP-U01-04",
+  "paving_review": "PAV-U01-06",
+  "civilians_review": "CIVILS-U01-08"
+}

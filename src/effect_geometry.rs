@@ -250,6 +250,10 @@ fn atlas(texture: &Texture2D) -> Atlas {
             .expect("registered animation atlas")
     })
 }
+pub(crate) fn atlas_bounds(texture: &Texture2D) -> (f32, Rect) {
+    let atlas = atlas(texture);
+    (atlas.side, atlas.painted)
+}
 pub fn fitted_sheet(
     texture: &Texture2D,
     frame: usize,
@@ -262,67 +266,28 @@ pub fn fitted_sheet(
         return;
     };
     let atlas = atlas(texture);
-    let mut source = atlas.painted;
-    source.x += frame as f32 * atlas.side;
+    let scale = place.size.x.max(place.size.y) * 1.12 / atlas.painted.w.max(atlas.painted.h);
+    let origin = place.center - atlas.painted.center() * scale;
     draw_texture_ex(
         texture,
-        place.center.x - place.size.x * 0.5,
-        place.center.y - place.size.y * 0.5,
+        origin.x,
+        origin.y,
         Color::new(1., 1., 1., opacity),
         DrawTextureParams {
-            source: Some(source),
-            dest_size: Some(place.size),
+            source: Some(Rect::new(
+                frame as f32 * atlas.side,
+                0.,
+                atlas.side,
+                atlas.side,
+            )),
+            dest_size: Some(vec2(atlas.side, atlas.side) * scale),
             rotation: place.angle,
             pivot: Some(place.center),
             ..Default::default()
         },
     );
 }
-pub fn fitted_cells(
-    texture: &Texture2D,
-    frame: usize,
-    cells: &[GridPos],
-    rect: &impl Fn(GridPos) -> Option<Rect>,
-    opacity: f32,
-) {
-    let Some(place) = placement(cells, rect, 0.) else {
-        return;
-    };
-    let whole = Rect::new(
-        place.center.x - place.size.x * 0.5,
-        place.center.y - place.size.y * 0.5,
-        place.size.x,
-        place.size.y,
-    );
-    let atlas = atlas(texture);
-    for at in cells {
-        let Some(cell) = rect(*at) else { continue };
-        let Some(crop) = whole.intersect(cell) else {
-            continue;
-        };
-        if crop.w <= 0. || crop.h <= 0. {
-            continue;
-        }
-        draw_texture_ex(
-            texture,
-            crop.x,
-            crop.y,
-            Color::new(1., 1., 1., opacity),
-            DrawTextureParams {
-                source: Some(Rect::new(
-                    frame as f32 * atlas.side
-                        + atlas.painted.x
-                        + (crop.x - whole.x) * atlas.painted.w / whole.w,
-                    atlas.painted.y + (crop.y - whole.y) * atlas.painted.h / whole.h,
-                    crop.w * atlas.painted.w / whole.w,
-                    crop.h * atlas.painted.h / whole.h,
-                )),
-                dest_size: Some(crop.size()),
-                ..Default::default()
-            },
-        );
-    }
-}
+
 pub fn clipped(bounds: Rect, parent: Rect, draw: impl FnOnce()) {
     let Some(r) = bounds.intersect(parent) else {
         return;

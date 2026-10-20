@@ -1,0 +1,88 @@
+{
+  "review": "MAP-U01-EXP-01-r06 / VISION-U01-04 integrated",
+  "generation": 157,
+  "new_game_dimensions": [
+    26,
+    66
+  ],
+  "native_cell": 64,
+  "scenes": 21,
+  "camp_round_trip": true,
+  "world_state_unchanged_by_render": true,
+  "comparison_with_approved_preview": [
+    {
+      "scene": "gate",
+      "pixels_changed_over_2": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "scene": "join-middle",
+      "pixels_changed_over_2": 252,
+      "max_channel_delta": 148,
+      "changed_bounds": [
+        464,
+        398,
+        527,
+        461
+      ],
+      "difference": "one 64px hover-cell border; scenery unchanged"
+    },
+    {
+      "scene": "court-clean",
+      "pixels_changed_over_2": 252,
+      "max_channel_delta": 132,
+      "changed_bounds": [
+        464,
+        398,
+        527,
+        461
+      ],
+      "difference": "one 64px hover-cell border; scenery unchanged"
+    },
+    {
+      "scene": "house-a-closed",
+      "pixels_changed_over_2": 252,
+      "max_channel_delta": 172,
+      "changed_bounds": [
+        464,
+        398,
+        527,
+        461
+      ],
+      "difference": "one 64px hover-cell border; scenery unchanged"
+    },
+    {
+      "scene": "house-a-open",
+      "pixels_changed_over_2": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "scene": "house-b-open",
+      "pixels_changed_over_2": 252,
+      "max_channel_delta": 142,
+      "changed_bounds": [
+        464,
+        398,
+        527,
+        461
+      ],
+      "difference": "one 64px hover-cell border; scenery unchanged"
+    },
+    {
+      "scene": "west-corner",
+      "pixels_changed_over_2": 0,
+      "max_channel_delta": 0
+    }
+  ],
+  "validation": {
+    "street_tests_passed": 11,
+    "street_tests_failed": 0,
+    "debug_build": true,
+    "release_check": true,
+    "diff_check": true,
+    "legacy_155_156_snapshot_compatibility": true
+  },
+  "user_saves_touched": false,
+  "runtime_asset_directory": "assets/maps/prison-street-expanded-01",
+  "next_map_connected": false
+}

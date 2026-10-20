@@ -1,0 +1,48 @@
+{
+  "review": "ART-FINISH-02",
+  "status": "accepted_and_integrated",
+  "date": "2026-10-19",
+  "commands": [
+    {
+      "command": "cargo test --locked --bin project-rl game_art:: -- --test-threads=1",
+      "passed": 43,
+      "failed": 0
+    },
+    {
+      "command": "cargo build --locked",
+      "result": "passed"
+    },
+    {
+      "command": "cargo check --locked --release",
+      "result": "passed; compilation check, not a linked release executable"
+    },
+    {
+      "command": "cargo fmt --all -- --check",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "--ui-cold-art-finish-02-integration + verify_art_finish_integration_02.py",
+      "result": "32 sample panels and 4 lit scene viewports exactly equal to frozen accepted references"
+    }
+  ],
+  "visual_inspection": [
+    "native outfit board",
+    "armor hand configurations board",
+    "integrated class-house viewport",
+    "integrated classes-street viewport",
+    "integrated armor-house viewport",
+    "integrated armors-street viewport"
+  ],
+  "packaged_exports": 56,
+  "unchanged_previous_asset_files": 528,
+  "runtime_dependency": "embedded assets/sprites/art-finish-02 only",
+  "full_suite_run": false,
+  "performance_benchmark_run": false,
+  "browser_validation": "Static local links verified; no browser automation",
+  "inspection_validation": "Shared image provider and composition; native source resolution and fixed core covered by graphical unit tests",
+  "cleanup": "integration-cleanup.json: four redundant reference captures removed, 7330989 bytes; sources and accepted references retained"
+}

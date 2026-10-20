@@ -1,0 +1,71 @@
+{
+  "review": "ROOF-U01-01-r01",
+  "status": "accepted_integrated",
+  "source": "assets/source-art/first-sector-review-01/street-roofs-r01/ROOF-U01-01-source-r01.png",
+  "source_sha256": "58d7082be5cffaab469f69aecacfe31c8dd7f46e0861ef5817adadf501290742",
+  "style": "STYLE-RL-2026-10-18-r01",
+  "cell": 64,
+  "layers": [
+    {
+      "id": "ROOF-U01-01A",
+      "file": "assets/source-art/first-sector-review-01/street-roofs-r01/ROOF-U01-01A-r01.png",
+      "polygon": [
+        [
+          44,
+          65
+        ],
+        [
+          240,
+          65
+        ],
+        [
+          240,
+          32
+        ],
+        [
+          511,
+          32
+        ],
+        [
+          511,
+          299
+        ],
+        [
+          44,
+          299
+        ]
+      ],
+      "sha256": "7459233ec6db758b0d67c03735e6b4c4331da5bcde5fc32ef9583f734fc882b4",
+      "source_pixel_scale": 1
+    },
+    {
+      "id": "ROOF-U01-01B",
+      "file": "assets/source-art/first-sector-review-01/street-roofs-r01/ROOF-U01-01B-r01.png",
+      "polygon": [
+        [
+          615,
+          72
+        ],
+        [
+          949,
+          72
+        ],
+        [
+          949,
+          278
+        ],
+        [
+          615,
+          278
+        ]
+      ],
+      "sha256": "327bfbe73794ff132f572f566700d46071917bd8c23066f6deed6f6b1d8dbc02",
+      "source_pixel_scale": 1
+    }
+  ],
+  "approved_background_unchanged": true,
+  "behavior": "Hide when door open OR player inside; otherwise show",
+  "real_door_gameplay_active": true,
+  "generation": 156,
+  "acceptance": "acceptance-r01.json"
+}

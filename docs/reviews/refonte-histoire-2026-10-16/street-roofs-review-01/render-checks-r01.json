@@ -1,0 +1,33 @@
+{
+  "camera_first": [
+    0,
+    0
+  ],
+  "full_scene_review_only": true,
+  "image_origin_px": [
+    96.0,
+    64.0
+  ],
+  "lighting_production_enabled": true,
+  "native_cell": 64,
+  "real_door_gameplay_active": false,
+  "render_read_only": true,
+  "review": "ROOF-U01-01-r01",
+  "roof_lighting": "exterior_ambient_no_indoor_light_leak",
+  "source_pixel_scale": 1,
+  "states": [
+    "closed",
+    "open",
+    "inside"
+  ],
+  "outside_roof_pixels_identical": true,
+  "framebuffer_size": [
+    1800,
+    1061
+  ],
+  "captures": {
+    "roof-closed.png": "81b2146e31a9a4eaa240c213d32e05053f3355850b3e34060a798eafe0acc805",
+    "roof-inside.png": "348e12fb270ab2044423955d8caf9d946a46a092e8f8fd682471093c7bf32752",
+    "roof-open.png": "b01a9aa5b4b589246e1fb095f190b2cab0fb4d8b0498db5cc7b9feb375dacddd"
+  }
+}

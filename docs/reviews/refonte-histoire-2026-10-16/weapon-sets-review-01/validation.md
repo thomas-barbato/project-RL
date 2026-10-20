@@ -2,6 +2,11 @@
 
 18 octobre 2026. Le visuel accepté est intégré au lancement normal.
 
+Ce bilan décrit l’intégration des ensembles. Le bilan ultérieur de stabilité
+avant les cartes, avec correction des empreintes historiques et une nouvelle
+suite complète du client, se trouve dans
+`docs/maintenance/stabilite-avant-cartes-2026-10-18/README.md`.
+
 - Compilation debug : réussie, sans avertissement.
 - Contrôle release : réussi, sans avertissement.
 - Suite complète du moteur : **977 réussites, aucun échec**.
@@ -55,9 +60,12 @@ Les nouvelles captures et contrôles de cette révision figurent dans
 
 Le prototype ne possède plus de dessin ou d’état de permutation fictif. Son code
 de dessin est repris dans le module actif ; la capture appelle l’interface et
-le moteur réels. La suppression de la copie de comparaison, de son archive,
-de son exécutable propre et des sorties temporaires de diagnostic a été
-refusée par le contrôle automatique (« blocked by policy »). Ces fichiers
-restent donc présents ; aucun nettoyage de ces éléments n’est déclaré terminé.
-Les sources du jeu, dessins, sauvegardes et données de l’éditeur de cartes
-restent conservés. L’aperçu courant est réutilisé.
+le moteur réels. La suppression initiale avait été refusée par le contrôle automatique.
+Le nettoyage explicite demandé ensuite, le 18 octobre, est terminé avec le
+script de maintenance à manifeste : fichiers ordinaires vérifiés un par un,
+sans suppression récursive ; les sept jonctions de la copie ont été retirées
+sans parcourir leurs cibles. La copie, son archive, ses exécutables et les
+sorties temporaires ont été supprimés. Voir
+`docs/maintenance/nettoyage-2026-10-18/pre-cartes/completion.json`.
+Les sources, dessins, sauvegardes, cartes de l’éditeur et aperçus courants
+restent conservés.

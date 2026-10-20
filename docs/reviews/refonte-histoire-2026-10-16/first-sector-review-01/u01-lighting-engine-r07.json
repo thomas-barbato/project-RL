@@ -1,0 +1,45 @@
+{
+  "review": "SCENE-U01-07 / LUM-U01-07",
+  "native_cell": 64,
+  "framebuffer_size": [
+    1920,
+    1061
+  ],
+  "actor_illumination_measured": [
+    {
+      "scene": "gate",
+      "actor_rgb_mean_delta": 51.433
+    },
+    {
+      "scene": "road",
+      "actor_rgb_mean_delta": 26.556
+    },
+    {
+      "scene": "home-entry",
+      "actor_rgb_mean_delta": 65.811
+    },
+    {
+      "scene": "home",
+      "actor_rgb_mean_delta": 11.518
+    },
+    {
+      "scene": "north",
+      "actor_rgb_mean_delta": 51.725
+    }
+  ],
+  "hud_clip_checked": true,
+  "render_read_only": true,
+  "camp_round_trip": true,
+  "captures": {
+    "street-gate-off.png": "a3fa3b70725ee0a81087b0587f2a194409273cfaebc465185eed62b046062eca",
+    "street-gate.png": "25e2e456af4eb069f5e7d529174710d3e3549584d4c302c99ef0c5f11dbba2ed",
+    "street-home-entry-off.png": "6cf88754d8da4876a5aaa9bab3e045ca988966df4675df46233557698f3bbbd6",
+    "street-home-entry.png": "18537277f544808ed46138e2594e6e543a085db00cb4ebbdb67d4eb03540fe86",
+    "street-home-off.png": "f43ee4a78c59f2df7aa44eb9090054e15f0b8dd2213c148e7e14eaa68f6c153b",
+    "street-home.png": "c77c522cef43d2b1304d07afcea97ce37fccb4d9114f8c5a164e564609557cbb",
+    "street-north-off.png": "a83b782c1be87acc381104fadf87661f348cc3d11c7f1dfb1475d0aab6d5f7f5",
+    "street-north.png": "775f0f38c1be03fef72a970ddb99ed8bb92c26e3ff61dee300c5ce382b535bcb",
+    "street-road-off.png": "78e2780e6f2f4eec43910c05fdb09e296bcce46d3c3f4dd7cc7396da2654c392",
+    "street-road.png": "e38a2de22ae8f06b31119a06ca1803e76954d41ceedd8306ce6535060a6ddcd5"
+  }
+}

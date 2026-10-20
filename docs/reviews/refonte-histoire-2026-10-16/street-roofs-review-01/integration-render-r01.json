@@ -1,0 +1,132 @@
+{
+  "camp_round_trip": true,
+  "generation": 156,
+  "integrated": true,
+  "isolated_save": "artifacts/street-roofs-review-01/engine-integrated-r01\\isolated-run.json",
+  "keyboard_without_hover": true,
+  "left_click_interaction": true,
+  "lighting_production_enabled": true,
+  "native_cell": 64,
+  "review": "ROOF-U01-01-r01",
+  "scenes": [
+    {
+      "door": "Door(Closed)",
+      "door_cell": null,
+      "home_floor_visible": false,
+      "player": [
+        7,
+        14
+      ],
+      "render_read_only": true,
+      "roof_exposure": 1.0,
+      "roof_hidden": false,
+      "scene": "unknown"
+    },
+    {
+      "door": "Door(Closed)",
+      "door_cell": [
+        912.0,
+        334.0,
+        64.0,
+        64.0
+      ],
+      "home_floor_visible": false,
+      "player": [
+        4,
+        6
+      ],
+      "render_read_only": true,
+      "roof_exposure": 1.0,
+      "roof_hidden": false,
+      "scene": "closed"
+    },
+    {
+      "door": "Door(Open)",
+      "door_cell": [
+        912.0,
+        334.0,
+        64.0,
+        64.0
+      ],
+      "home_floor_visible": false,
+      "player": [
+        4,
+        6
+      ],
+      "render_read_only": true,
+      "roof_exposure": 1.0,
+      "roof_hidden": true,
+      "scene": "open"
+    },
+    {
+      "door": "Door(Open)",
+      "door_cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "home_floor_visible": true,
+      "player": [
+        4,
+        5
+      ],
+      "render_read_only": true,
+      "roof_exposure": 1.0,
+      "roof_hidden": true,
+      "scene": "threshold"
+    },
+    {
+      "door": "Door(Closed)",
+      "door_cell": [
+        912.0,
+        462.0,
+        64.0,
+        64.0
+      ],
+      "home_floor_visible": true,
+      "player": [
+        4,
+        4
+      ],
+      "render_read_only": true,
+      "roof_exposure": 1.0,
+      "roof_hidden": true,
+      "scene": "inside-closed"
+    },
+    {
+      "door": "Door(Closed)",
+      "door_cell": [
+        912.0,
+        334.0,
+        64.0,
+        64.0
+      ],
+      "home_floor_visible": false,
+      "player": [
+        4,
+        6
+      ],
+      "render_read_only": true,
+      "roof_exposure": 1.0,
+      "roof_hidden": false,
+      "scene": "reclosed"
+    }
+  ],
+  "accepted_sources_intact": true,
+  "street_light_patch_identical": true,
+  "doorway_fix": "DOOR-U01-FIX-01",
+  "native_crop_size": [
+    512,
+    416
+  ],
+  "normal_visibility": true,
+  "capture_sha256": {
+    "roof-closed.png": "01f40a9861713b3b09323f6743434059c55abd15898c29136dcf1d66a3cba41f",
+    "roof-inside-closed.png": "adff8e7f6050b23c9e4bc40e015453e02f45acbadebb5e6f90c794fb5dea3878",
+    "roof-open.png": "ff5222a522e6dc52cf479f68af3911b6572bcc6fe0e3895cdf4d5f0a592f003e",
+    "roof-reclosed.png": "1f94ac8611c5dfac3dc7fe991a1a5d3cfefa5e44da7376a60830b23b3a31754a",
+    "roof-threshold.png": "93fa91efe7f11ff3d3b1ae2d02d674773380c113e5766f63a48cd79b3f67c7b8",
+    "roof-unknown.png": "f258612487e3f364fbf855524232a3f367385559a1f31c364e9cd8fc3c1cd381"
+  }
+}

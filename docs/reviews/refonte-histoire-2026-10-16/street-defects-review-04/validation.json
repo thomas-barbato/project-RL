@@ -1,0 +1,27 @@
+{
+  "review": "STYLE-MAP-U01-04",
+  "cargo_build_locked": "passed",
+  "cargo_check_locked_release": "passed",
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "gpu_capture_exit": 0,
+  "native_map": [
+    1664,
+    4224
+  ],
+  "game_views": 9,
+  "captures": 20,
+  "render_read_only": true,
+  "camp_round_trip": true,
+  "same_light_data": true,
+  "animation_clock_fixed": 1.0,
+  "red_actor_pixels_checked": 3236,
+  "checked_actor_pixel_changes": 0,
+  "native_cell": 64,
+  "browser_js_syntax": "passed with node --check",
+  "interactive_browser_qa": false,
+  "normal_integration": false,
+  "new_material_approval": "pending",
+  "old_local_patch_enabled_in_whole_map": false,
+  "full_game_test_suite_rerun": false
+}

@@ -1,0 +1,41 @@
+{
+  "review": "ART-FINISH-02 / creation menu",
+  "date": "2026-10-19",
+  "status": "integrated",
+  "classes": [
+    {
+      "identity": "core:bastion",
+      "drawing": "FIN-01",
+      "capture": "artifacts\\art-quality-audit-01\\creation-finish02\\bastion\\cold-start.png"
+    },
+    {
+      "identity": "core:technomancien",
+      "drawing": "FIN-14",
+      "capture": "artifacts\\art-quality-audit-01\\creation-finish02\\technomancien\\cold-start.png"
+    },
+    {
+      "identity": "core:traqueur",
+      "drawing": "FIN-15",
+      "capture": "artifacts\\art-quality-audit-01\\creation-finish02\\traqueur\\cold-start.png"
+    },
+    {
+      "identity": "core:arcaniste",
+      "drawing": "FIN-16",
+      "capture": "artifacts\\art-quality-audit-01\\creation-finish02\\arcaniste\\cold-start.png"
+    },
+    {
+      "identity": "core:metamorphe",
+      "drawing": "FIN-17",
+      "capture": "artifacts\\art-quality-audit-01\\creation-finish02\\metamorphe\\cold-start.png"
+    }
+  ],
+  "ui_paths": [
+    "five selection thumbnails",
+    "selected class large portrait"
+  ],
+  "source": "same accepted unarmed player compositions as the world and inspection",
+  "starting_loadout_unchanged": true,
+  "content_and_rules_unchanged": true,
+  "cold_capture_text_probes": "passed for all five classes",
+  "save_path": "isolated diagnostic-run.json under each capture directory"
+}

@@ -43,6 +43,16 @@ impl VisibilityState {
         self.explored.extend(self.visible.iter().copied());
     }
 
+    pub(crate) fn recompute_ignoring_walls(
+        &mut self,
+        map: &Map,
+        origin: GridPos,
+        rules: FieldOfViewRules,
+    ) {
+        self.visible = compute_field(map, origin, rules, false);
+        self.explored.extend(self.visible.iter().copied());
+    }
+
     /// Merge a live allied sensor field into both current sight and map memory.
     pub(crate) fn merge_visible(&mut self, positions: impl IntoIterator<Item = GridPos>) {
         for position in positions {
@@ -80,6 +90,15 @@ pub fn compute_visible_tiles(
     origin: GridPos,
     rules: FieldOfViewRules,
 ) -> BTreeSet<GridPos> {
+    compute_field(map, origin, rules, true)
+}
+
+fn compute_field(
+    map: &Map,
+    origin: GridPos,
+    rules: FieldOfViewRules,
+    occluded: bool,
+) -> BTreeSet<GridPos> {
     let mut visible = BTreeSet::new();
     if !map.contains(origin) {
         return visible;
@@ -96,7 +115,7 @@ pub fn compute_visible_tiles(
             let target = GridPos::new(x, y);
             if map.contains(target)
                 && is_within_radius(origin, target, radius, rules.distance_metric)
-                && has_line_of_sight(map, origin, target, rules.block_closed_corners)
+                && (!occluded || has_line_of_sight(map, origin, target, rules.block_closed_corners))
             {
                 visible.insert(target);
             }

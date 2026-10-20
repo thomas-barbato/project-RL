@@ -1,0 +1,74 @@
+[
+  {
+    "path": "Essayer_egouts.cmd",
+    "bytes": 199,
+    "sha256": "2b9bf8980de636212979acaa4dfe8578ff2bb534d05e0f5ac0207b979718efc0",
+    "content": "@echo off\nsetlocal\ncd /d \"%~dp0\"\nif not exist \"target\\debug\\project-rl.exe\" (\n  echo Compilez d'abord avec cargo build --locked.\n  pause\n  exit /b 1\n)\n\"target\\debug\\project-rl.exe\" --essai-egouts %*\n"
+  },
+  {
+    "path": "Essayer_population_U01.cmd",
+    "bytes": 207,
+    "sha256": "9d980af2119200831968c43e90e3bacf413c64903f056418490ec591c28dfbd3",
+    "content": "@echo off\nsetlocal\ncd /d \"%~dp0\"\nif not exist \"target\\debug\\project-rl.exe\" (\n  echo Compilez d'abord avec cargo build --locked.\n  pause\n  exit /b 1\n)\n\"target\\debug\\project-rl.exe\" --essai-population-prison\n"
+  },
+  {
+    "path": "tools/archive/handcrafted-places-review-01/launchers/Tester_dialogue_terminal.cmd",
+    "bytes": 243,
+    "sha256": "415ccc82ab079aa69aa634b7dfefb64061817ff22657951eddc1812f11bef350",
+    "content": "@echo off\ncd /d \"%~dp0\"\ncargo build --locked --bin project-rl --features dialogue-audio-trial\nif errorlevel 1 (\n  pause\n  exit /b 1\n)\nstart \"Project RL - Essai dialogue terminal 03\" \"%~dp0target\\debug\\project-rl.exe\" --essai-dialogue-terminal\n"
+  },
+  {
+    "path": "tools/archive/handcrafted-places-review-01/launchers/Voir_camp_prototype.cmd",
+    "bytes": 288,
+    "sha256": "92bc6a63f618c0242bca0bf2c1cbb1296fa48799883b7e911bd24a168941d349",
+    "content": "@echo off\nsetlocal\ncd /d \"%~dp0\"\nif not exist \"target\\debug\\examples\\handcrafted_camp_full_review.exe\" (\n    cargo build --locked --example handcrafted_camp_full_review\n    if errorlevel 1 (\n        pause\n        exit /b 1\n    )\n)\n\"target\\debug\\examples\\handcrafted_camp_full_review.exe\"\n"
+  },
+  {
+    "path": "tools/archive/refonte-agent-2026-10-06/skill-animation-review-87/ouvrir-laboratoire.cmd",
+    "bytes": 287,
+    "sha256": "59716273f3c79ee48be31a3e4050943d88d5ec73349d4829090646edf3e69832",
+    "content": "@echo off\nsetlocal\npushd \"%~dp0..\\..\\..\"\nif not exist \"target\\debug\\project-rl.exe\" (\n  echo Compiler le projet en mode debug avant cet apercu.\n  pause\n  popd\n  exit /b 1\n)\nstart \"\" \"target\\debug\\project-rl.exe\" --apercu-laboratoire-competences --lot-affaiblissements-zone\npopd\nendlocal\n"
+  },
+  {
+    "path": "tools/archive/refonte-agent-2026-10-06/skill-animation-review-88/ouvrir-laboratoire.cmd",
+    "bytes": 287,
+    "sha256": "59716273f3c79ee48be31a3e4050943d88d5ec73349d4829090646edf3e69832",
+    "content": "@echo off\nsetlocal\npushd \"%~dp0..\\..\\..\"\nif not exist \"target\\debug\\project-rl.exe\" (\n  echo Compiler le projet en mode debug avant cet apercu.\n  pause\n  popd\n  exit /b 1\n)\nstart \"\" \"target\\debug\\project-rl.exe\" --apercu-laboratoire-competences --lot-affaiblissements-zone\npopd\nendlocal\n"
+  },
+  {
+    "path": "tools/archive/refonte-agent-2026-10-06/skill-animation-review-89/ouvrir-laboratoire.cmd",
+    "bytes": 298,
+    "sha256": "58a95ce607714cd5f5dc28fa191d05b26c9b0b61a3567c09cb43104170fee32e",
+    "content": "@echo off\r\nsetlocal\r\npushd \"%~dp0..\\..\\..\"\r\nif not exist \"target\\debug\\project-rl.exe\" (\r\n  echo Compiler le projet en mode debug avant cet apercu.\r\n  pause\r\n  popd\r\n  exit /b 1\r\n)\r\nstart \"\" \"target\\debug\\project-rl.exe\" --apercu-laboratoire-competences --lot-silence-regeneration\r\npopd\r\nendlocal\r\n"
+  },
+  {
+    "path": "tools/archive/refonte-agent-2026-10-06/skill-animation-review-90/ouvrir-laboratoire.cmd",
+    "bytes": 302,
+    "sha256": "80c042d76585775c267b4a159dda6deaf24e77ee07dbcfb86fd1d0eb00718180",
+    "content": "@echo off\r\nsetlocal\r\npushd \"%~dp0..\\..\\..\"\r\nif not exist \"target\\debug\\project-rl.exe\" (\r\n  echo Compiler le projet en mode debug avant cet apercu.\r\n  pause\r\n  popd\r\n  exit /b 1\r\n)\r\nstart \"\" \"target\\debug\\project-rl.exe\" --apercu-laboratoire-competences --lot-desorientation-contagion\r\npopd\r\nendlocal\r\n"
+  },
+  {
+    "path": "tools/archive/refonte-agent-2026-10-06/skill-animation-review-91/ouvrir-laboratoire.cmd",
+    "bytes": 292,
+    "sha256": "dcea58117870eb8878291d0fba01d00c317a5afdd5077195e3b2cfae3408cba8",
+    "content": "@echo off\r\nsetlocal\r\npushd \"%~dp0..\\..\\..\"\r\nif not exist \"target\\debug\\project-rl.exe\" (\r\n  echo Compiler le projet en mode debug avant cet apercu.\r\n  pause\r\n  popd\r\n  exit /b 1\r\n)\r\nstart \"\" \"target\\debug\\project-rl.exe\" --apercu-laboratoire-competences --lot-drones-soutien\r\npopd\r\nendlocal\r\n"
+  },
+  {
+    "path": "tools/archive/refonte-agent-2026-10-06/skill-animation-review-92/ouvrir-laboratoire.cmd",
+    "bytes": 291,
+    "sha256": "190bdfbfea2fcba08224fab93314c2e9542a169b033a1f9b347dc425917c5f0f",
+    "content": "@echo off\r\nsetlocal\r\npushd \"%~dp0..\\..\\..\"\r\nif not exist \"target\\debug\\project-rl.exe\" (\r\n  echo Compiler le projet en mode debug avant cet apercu.\r\n  pause\r\n  popd\r\n  exit /b 1\r\n)\r\nstart \"\" \"target\\debug\\project-rl.exe\" --apercu-laboratoire-competences --lot-drones-combat\r\npopd\r\nendlocal\r\n"
+  },
+  {
+    "path": "tools/archive/refonte-agent-2026-10-06/skill-animation-review-93/ouvrir-laboratoire.cmd",
+    "bytes": 122,
+    "sha256": "09c86756f1abf1a07302d313cfd20afd5730b60f6f61e5dea4036fe43f96f848",
+    "content": "@echo off\r\ncd /d \"%~dp0..\\..\\..\"\r\ntarget\\debug\\project-rl.exe --apercu-laboratoire-competences --lot-gardien-algorithmes\r\n"
+  },
+  {
+    "path": "tools/archive/refonte-agent-2026-10-06/skill-spatial-review-01/Voir_portees_zones_vision.cmd",
+    "bytes": 268,
+    "sha256": "0328aeeac68d7b3cb62028ca8f5a5e0d8909cd37320b354c7c2198de48304940",
+    "content": "@echo off\nsetlocal\npushd \"%~dp0..\\..\\..\"\nif not exist \"target\\debug\\project-rl.exe\" (\n  echo Compiler le projet en mode debug avant cet apercu.\n  pause\n  popd\n  exit /b 1\n)\n\"target\\debug\\project-rl.exe\" --apercu-laboratoire-competences --lot-portees-zones-vision\npopd\n"
+  }
+]

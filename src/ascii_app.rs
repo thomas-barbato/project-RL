@@ -37,6 +37,12 @@ mod aim_preview_review_app;
 #[cfg(test)]
 #[path = "attack_aim_input_tests.rs"]
 mod attack_aim_input_tests;
+#[cfg(test)]
+#[path = "campaign_aggression_tests.rs"]
+mod campaign_aggression_tests;
+#[cfg(test)]
+#[path = "class_start_tests.rs"]
+mod class_start_tests;
 #[cfg(debug_assertions)]
 #[path = "effect_footprint_review.rs"]
 mod effect_footprint_review;
@@ -325,7 +331,31 @@ const MONSTER_BLUE_PALETTES_GENERATION_VERSION: u8 =
     MONSTER_MATERIAL_PALETTES_GENERATION_VERSION + 1;
 const CRYOGENIC_CAMP_GENERATION_VERSION: u8 = MONSTER_BLUE_PALETTES_GENERATION_VERSION + 1;
 const WEAPON_SETS_GENERATION_VERSION: u8 = CRYOGENIC_CAMP_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = WEAPON_SETS_GENERATION_VERSION;
+const PRISON_STREET_GENERATION_VERSION: u8 = WEAPON_SETS_GENERATION_VERSION + 1;
+const STREET_ROOFS_GENERATION_VERSION: u8 = PRISON_STREET_GENERATION_VERSION + 1;
+const STREET_EXPANSION_GENERATION_VERSION: u8 = STREET_ROOFS_GENERATION_VERSION + 1;
+const SIX_CELL_VISION_GENERATION_VERSION: u8 = STREET_EXPANSION_GENERATION_VERSION + 1;
+const CIRCULAR_VISION_REPAIRS_GENERATION_VERSION: u8 = SIX_CELL_VISION_GENERATION_VERSION + 1;
+const STREET_CONTACT_REPAIRS_GENERATION_VERSION: u8 =
+    CIRCULAR_VISION_REPAIRS_GENERATION_VERSION + 1;
+const STREET_WAREHOUSE_CLEARANCE_GENERATION_VERSION: u8 =
+    STREET_CONTACT_REPAIRS_GENERATION_VERSION + 1;
+const SEWER_GENERATION_VERSION: u8 = STREET_WAREHOUSE_CLEARANCE_GENERATION_VERSION + 1;
+const CITY_POPULATION_GENERATION_VERSION: u8 = SEWER_GENERATION_VERSION + 1;
+const COSMETIC_STARTING_OUTFITS_GENERATION_VERSION: u8 = CITY_POPULATION_GENERATION_VERSION + 1;
+const CLASS_BASE_APPEARANCE_GENERATION_VERSION: u8 =
+    COSMETIC_STARTING_OUTFITS_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = CLASS_BASE_APPEARANCE_GENERATION_VERSION;
+
+#[cfg(any(test, debug_assertions))]
+#[path = "combat_fixes_review.rs"]
+mod combat_fixes_review;
+#[cfg(any(test, debug_assertions))]
+#[path = "sewer_app.rs"]
+mod sewer_app;
+
+#[path = "player_vision_app.rs"]
+mod player_vision_app;
 
 #[cfg(test)]
 mod player_vision_revision_tests {
@@ -333,9 +363,9 @@ mod player_vision_revision_tests {
     use project_rl::world::Map;
 
     #[test]
-    fn accepted_player_vision_is_twelve_without_increasing_ordinary_npc_sight() {
+    fn accepted_player_vision_is_six_without_changing_ordinary_npc_sight() {
         let (current, _, _, _) = ascii_game_content().unwrap();
-        assert_eq!(current.player_field_of_view.radius, 12);
+        assert_eq!(current.player_field_of_view.radius, 6);
         assert_eq!(current.ordinary_actor_field_of_view.unwrap().radius, 8);
         let rules = GameRules {
             player_field_of_view: current.player_field_of_view,
@@ -344,8 +374,8 @@ mod player_vision_revision_tests {
         };
         let map = Map::from_ascii(&vec!["..............................."; 25].join("\n")).unwrap();
         let mut game = GameState::new_with_rules(map, GridPos::new(12, 12), 42, rules).unwrap();
-        assert!(game.player_visibility().is_visible(GridPos::new(24, 12)));
-        assert!(!game.player_visibility().is_visible(GridPos::new(25, 12)));
+        assert!(game.player_visibility().is_visible(GridPos::new(18, 12)));
+        assert!(!game.player_visibility().is_visible(GridPos::new(19, 12)));
         let npc = game
             .spawn_actor(
                 Actor::new(GridPos::new(10, 12), 10)
@@ -1543,6 +1573,9 @@ pub struct AsciiApp {
     active_packages: Vec<SavedPackage>,
     regional_zones: BTreeMap<ContentId, RegionCoord>,
     generation_version: u8,
+    // Enabled only after verified restoration, never during historical replay.
+    // A deferred street is repaired and journalled on its first real entry.
+    street_collision_adoption_enabled: bool,
     seed: u64,
     home_placement: crate::hub_layout::HomePlacement,
     actor_glyphs: BTreeMap<EntityId, char>,
@@ -10574,6 +10607,9 @@ impl AsciiApp {
         if version >= CRYOGENIC_CAMP_GENERATION_VERSION {
             app.enable_cryogenic_camp()?;
             app.game.drain_events();
+            if version >= CLASS_BASE_APPEARANCE_GENERATION_VERSION {
+                app.initialize_class_skill_bar();
+            }
             return Ok(app);
         }
         app.enable_expedition()?;
@@ -11452,6 +11488,7 @@ impl AsciiApp {
             active_packages: ascii_active_packages()?,
             regional_zones: BTreeMap::new(),
             generation_version,
+            street_collision_adoption_enabled: false,
             seed,
             home_placement: if generation_version >= RANDOM_HOME_GENERATION_VERSION {
                 crate::hub_layout::HomePlacement::for_seed(seed)
@@ -11556,7 +11593,27 @@ impl AsciiApp {
             rebinding: false,
             options_message: String::new(),
             history: Vec::new(),
-            suspension_path: controls::config_path().with_file_name("city-test-run.json"),
+            suspension_path: {
+                #[cfg(not(test))]
+                {
+                    controls::config_path().with_file_name("city-test-run.json")
+                }
+                #[cfg(test)]
+                {
+                    // Fixtures must never discover a real player's pending run,
+                    // or another test's profile, while opening character creation.
+                    std::env::temp_dir()
+                        .join(format!(
+                            "project-rl-test-{}-{}",
+                            std::process::id(),
+                            std::time::SystemTime::now()
+                                .duration_since(std::time::UNIX_EPOCH)
+                                .unwrap()
+                                .as_nanos()
+                        ))
+                        .join("city-test-run.json")
+                }
+            },
             crash_recovery_enabled: false,
             crash_recovery_sequence: 0,
             last_crash_recovery_command_count: 0,
@@ -12382,6 +12439,64 @@ impl AsciiApp {
             .unmaterialized_passage_destination(*target)
             .cloned()
             .ok_or("Destination régionale différée absente.")?;
+        if self.generation_version >= PRISON_STREET_GENERATION_VERSION
+            && destination.as_str() == crate::prison_street::ZONE_ID
+        {
+            let info = self
+                .game
+                .zone_info(&destination)
+                .cloned()
+                .ok_or("Street metadata absent")?;
+            let mut generated = crate::prison_street::blueprint(
+                info,
+                self.seed,
+                self.generation_version >= STREET_ROOFS_GENERATION_VERSION,
+                self.generation_version >= STREET_EXPANSION_GENERATION_VERSION,
+                self.game.rules().circular_player_vision,
+                self.generation_version >= STREET_CONTACT_REPAIRS_GENERATION_VERSION,
+                self.generation_version >= STREET_WAREHOUSE_CLEARANCE_GENERATION_VERSION,
+            )?;
+            let decor = SectorDecor {
+                fallback_name: Some(crate::prison_street::NAME.into()),
+                ..Default::default()
+            };
+            if self.generation_version >= CITY_POPULATION_GENERATION_VERSION {
+                generated.actors =
+                    crate::street_population::actors(&self.regional_worlds, &generated.map)?;
+            }
+            if self.generation_version >= SEWER_GENERATION_VERSION {
+                crate::sewer::prepare_street(&mut generated.map)?;
+                let connection = crate::sewer::connection(self.seed, generated.info.depth);
+                self.game.materialize_passage_destination_with_connections(
+                    *target,
+                    generated,
+                    &[connection],
+                )?;
+            } else {
+                self.game
+                    .materialize_passage_destination(*target, generated)?;
+            }
+            self.zone_decor.insert(destination, decor);
+            return Ok(());
+        }
+        if crate::sewer::index_for_id(destination.as_str()).is_some() {
+            let info = self
+                .game
+                .zone_info(&destination)
+                .cloned()
+                .ok_or("Sewer metadata absent")?;
+            let generated = crate::sewer::blueprint(info, self.seed, &self.regional_worlds)?;
+            self.game
+                .materialize_passage_destination(*target, generated)?;
+            self.zone_decor.insert(
+                destination,
+                SectorDecor {
+                    fallback_name: Some(crate::sewer::NAME.into()),
+                    ..Default::default()
+                },
+            );
+            return Ok(());
+        }
         if let Some(coordinate) = self.regional_zones.get(&destination).copied() {
             return self.materialize_regional_destination(*target, destination, coordinate);
         }
@@ -12832,6 +12947,15 @@ impl AsciiApp {
                 self.trace_cells.clear();
                 self.observation_report.clear();
                 self.report_open = false;
+                if self.street_collision_adoption_enabled
+                    && self
+                        .game
+                        .current_zone()
+                        .is_some_and(|z| z.id.as_str() == crate::prison_street::ZONE_ID)
+                    && let Err(error) = self.migrate_street_collisions()
+                {
+                    eprintln!("[street collision adoption] {error}");
+                }
             }
             self.sync_facility_presentation();
             self.terminal
@@ -20034,6 +20158,11 @@ impl AsciiApp {
     ) -> crate::game_art::Visual {
         let mut visual =
             crate::game_art::player(Some(class.id().as_str()), PlayerWeaponPose::Unarmed, None);
+        // The five agent portraits use the exact accepted unarmed class drawings.
+        // Starter weapon grips are reviewed separately from class selection art.
+        if class.agent_start().is_some() {
+            return visual;
+        }
         if let crate::game_art::Visual::Player { weapon, hands, .. } = &mut visual {
             *weapon = class
                 .starting_weapons()
@@ -22815,6 +22944,8 @@ impl AsciiApp {
         }
         let mut game = WorldState::from_recovery_snapshot_bytes(&snapshot.engine, rules)?;
         crate::cryogenic_camp::restore_obstructions(&mut game)?;
+        crate::prison_street::restore_obstructions(&mut game)?;
+        crate::sewer::restore_obstructions(&mut game)?;
         Ok(DecodedAppRecoverySnapshot {
             game,
             presentation: snapshot.presentation,
@@ -22856,7 +22987,9 @@ impl AsciiApp {
             observed_events: self.ux.history.clone(),
             tracked_quest: self.ux.tracked_quest.as_ref().map(ToString::to_string),
             familiar_order: self.ux.familiars.order.iter().map(|id| id.get()).collect(),
-            agent_skill_bar: if self.ux.skill_bar.iter().any(Option::is_some) {
+            agent_skill_bar: if self.generation_version >= CLASS_BASE_APPEARANCE_GENERATION_VERSION
+                || self.ux.skill_bar.iter().any(Option::is_some)
+            {
                 self.ux.skill_bar.to_vec()
             } else {
                 Vec::new()
@@ -22973,6 +23106,19 @@ impl AsciiApp {
             )?
         };
         let mut restored_from_snapshot = false;
+        // Empty editor obstacles were briefly included in Debug even though
+        // they add no map state. Verify both complete historical encodings.
+        let matches_saved_state = |game: &WorldState| {
+            let fingerprint = || {
+                if saved.version == 1 {
+                    suspension::fingerprint(game.active_game())
+                } else {
+                    suspension::fingerprint(game)
+                }
+            };
+            fingerprint() == saved.state
+                || project_rl::world::with_explicit_empty_obstructions(fingerprint) == saved.state
+        };
         let mut snapshot_rules = if saved.version >= WEAPON_HANDS_GENERATION_VERSION {
             restored.game.rules().clone()
         } else {
@@ -22984,6 +23130,18 @@ impl AsciiApp {
             .any(|command| matches!(command, RecordedCommand::UpgradeWeaponSets { .. }))
         {
             snapshot_rules.enable_weapon_sets();
+        }
+        if saved
+            .commands
+            .contains(&RecordedCommand::UpgradePlayerVision)
+        {
+            snapshot_rules.player_field_of_view.radius = 6;
+        }
+        if saved
+            .commands
+            .contains(&RecordedCommand::EnableCircularPlayerVision)
+        {
+            snapshot_rules.circular_player_vision = true;
         }
         // Only the exact agent catalogue delta above can open an old-build
         // cache. The full legacy state is checked before installing additions.
@@ -23024,12 +23182,7 @@ impl AsciiApp {
             && let Ok(mut snapshot) =
                 Self::decode_recovery_snapshot(snapshot_source, verification_rules)
         {
-            let state = if saved.version == 1 {
-                suspension::fingerprint(snapshot.game.active_game())
-            } else {
-                suspension::fingerprint(&snapshot.game)
-            };
-            if snapshot.game.status() == RunStatus::Active && state == saved.state {
+            if snapshot.game.status() == RunStatus::Active && matches_saved_state(&snapshot.game) {
                 if legacy_agent_rules_match {
                     // Engine bytes carry no rules. This round-trip changes only
                     // the verified catalogue, without replay, refresh or RNG use.
@@ -23037,6 +23190,9 @@ impl AsciiApp {
                         &snapshot.game.recovery_snapshot_bytes()?,
                         snapshot_rules.clone(),
                     )?;
+                    crate::cryogenic_camp::restore_obstructions(&mut snapshot.game)?;
+                    crate::prison_street::restore_obstructions(&mut snapshot.game)?;
+                    crate::sewer::restore_obstructions(&mut snapshot.game)?;
                 }
                 restored.game = snapshot.game;
                 restored.terminal = snapshot.presentation.terminal;
@@ -23065,12 +23221,7 @@ impl AsciiApp {
                 }
                 restored.capture_events_at(Some(0.0));
             }
-            let state = if saved.version == 1 {
-                suspension::fingerprint(restored.game.active_game())
-            } else {
-                suspension::fingerprint(&restored.game)
-            };
-            if restored.game.status() != RunStatus::Active || state != saved.state {
+            if restored.game.status() != RunStatus::Active || !matches_saved_state(&restored.game) {
                 return Err(
                     "L'état reconstruit ne correspond pas à la suspension ; fichier conservé."
                         .to_owned(),
@@ -23099,6 +23250,9 @@ impl AsciiApp {
             );
         }
         restored.observation_report = saved.report.clone();
+        // Restore the user's layout, including six deliberately empty slots.
+        // The creation default must never overwrite a removed shortcut.
+        restored.ux.skill_bar = Default::default();
         for (index, id) in saved.agent_skill_bar.iter().take(6).enumerate() {
             restored.ux.skill_bar[index] = id
                 .as_ref()
@@ -23296,6 +23450,9 @@ impl AsciiApp {
             ResumeSource::CrashRecovery { sequence } => sequence,
         };
         restored.migrate_weapon_sets()?;
+        restored.migrate_player_vision()?;
+        restored.migrate_circular_player_vision()?;
+        restored.migrate_street_collisions()?;
         restored.last_crash_recovery_command_count = restored.history.len();
         restored.push_log(match source {
             ResumeSource::Suspension => "Partie reprise ; suspension consommée.".to_owned(),
@@ -24249,6 +24406,36 @@ const fn prototype_enemy_base_armor(index: usize, generation_version: u8) -> u16
 }
 
 fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules {
+    if version < CLASS_BASE_APPEARANCE_GENERATION_VERSION
+        && let Some(outfit) = rules
+            .agent_class_start
+            .as_ref()
+            .and_then(project_rl::agent_class::historical_outfit)
+        && !rules
+            .player_starting_items
+            .iter()
+            .any(|item| item.item.as_str() == outfit)
+    {
+        // Keep the original item order, instance identities and cosmetic RNG
+        // stream when reconstructing a historical campaign or its journal.
+        rules
+            .player_starting_items
+            .insert(0, StartingItemStack::new(outfit.parse().unwrap(), 1));
+    }
+    if version < COSMETIC_STARTING_OUTFITS_GENERATION_VERSION {
+        let previous = [
+            ("core:tenue_assaut", 3, 5),
+            ("core:tenue_technique", 2, 0),
+            ("core:tenue_rituelle", 1, 0),
+            ("core:tenue_metamorphe", 2, 0),
+            ("core:tenue_traque", 1, 0),
+        ]
+        .map(|(id, armor, penalty)| (id.parse().unwrap(), armor, penalty));
+        rules.items = rules.items.with_equipment_values(&previous);
+    }
+    if version < CIRCULAR_VISION_REPAIRS_GENERATION_VERSION {
+        rules.circular_player_vision = false;
+    }
     {
         let models: Vec<_> = equipment_generation::RETIRED_CORE_ITEMS
             .iter()
@@ -24295,6 +24482,8 @@ fn rules_for_generation_version(mut rules: GameRules, version: u8) -> GameRules 
     if version < PLAYER_VISION_GENERATION_VERSION {
         rules.player_field_of_view.radius = 8;
         rules.ordinary_actor_field_of_view = None;
+    } else if version < SIX_CELL_VISION_GENERATION_VERSION {
+        rules.player_field_of_view.radius = 12;
     }
     if version < ONE_HAND_FIREARMS_GENERATION_VERSION {
         let excluded = one_hand_firearms::model_ids();
@@ -24961,9 +25150,10 @@ fn ascii_game_content() -> Result<(GameRules, TextCatalog, LootCatalog, Expediti
     let (statuses, weapons, items, skills) = loaded.into_registries();
     let mut rules = GameRules {
         player_field_of_view: project_rl::world::FieldOfViewRules {
-            radius: 12,
+            radius: 6,
             ..Default::default()
         },
+        circular_player_vision: true,
         ordinary_actor_field_of_view: Some(project_rl::world::FieldOfViewRules::default()),
         damage: DamageRules::specialized(),
         armor_rules: Some(ArmorRules::default()),

@@ -1,0 +1,32 @@
+{
+  "review": "MAP-U01-EXP-01-r02",
+  "native_cell": 64,
+  "north_only": true,
+  "old_departure_preserved": true,
+  "active_map_unchanged": true,
+  "focused_tests_passed": 8,
+  "debug_build": true,
+  "release_check": true,
+  "normal_map_gpu_regression": true,
+  "normal_map_scenes": 6,
+  "animation_pixel_differences": {
+    "fan": [
+      328,
+      257,
+      386,
+      378
+    ],
+    "steam": [
+      331,
+      229,
+      631,
+      373
+    ],
+    "embers": [
+      193,
+      101,
+      439,
+      308
+    ]
+  }
+}

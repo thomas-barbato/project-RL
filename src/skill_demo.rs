@@ -151,7 +151,7 @@ impl Scene {
         let motion = &self.app.combat_motion;
         let world = &self.app.game;
         motion.draw_blasts(world.map(), now, reduced, true, rect);
-        motion.draw_fireballs(world.map(), now, reduced, true, rect);
+        motion.draw_fireballs(world, now, reduced, true, rect);
         motion.draw_agent_world(world, now, reduced, true, stage, rect);
         for (id, actor) in world.actors().iter() {
             let Some(mut r) = rect(actor.position()) else {
@@ -201,10 +201,10 @@ impl Scene {
             }
         }
         motion.draw_blasts(world.map(), now, reduced, false, rect);
-        motion.draw_fireballs(world.map(), now, reduced, false, rect);
+        motion.draw_fireballs(world, now, reduced, false, rect);
         motion.draw_agent_world(world, now, reduced, false, stage, rect);
         motion.draw_taunts(world.map(), now, reduced, rect);
-        motion.draw_spells(now, reduced, stage, rect);
+        motion.draw_spells(world, now, reduced, stage, rect);
     }
 }
 impl State {

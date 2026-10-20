@@ -2,12 +2,27 @@
 use macroquad::{miniquad as mq, prelude::*};
 use serde::Deserialize;
 use std::path::PathBuf;
+mod surface_wear;
 
 #[derive(Deserialize)]
 pub struct Config {
     correction: String,
     irradiance: String,
     ambient: [f32; 3],
+    #[serde(default)]
+    procedural_emitters: bool,
+    #[serde(default)]
+    colored_emitters: bool,
+    #[serde(default)]
+    fan: Option<[f32; 4]>,
+    #[serde(default)]
+    surface_wear: Option<String>,
+}
+
+impl Config {
+    pub fn ambient_tint(&self) -> Color {
+        Color::new(self.ambient[0], self.ambient[1], self.ambient[2], 1.)
+    }
 }
 
 pub struct Atmosphere {
@@ -19,6 +34,9 @@ pub struct Atmosphere {
     // Material::set_texture retains the raw GPU handle, not its owner.
     _correction: Texture2D,
     _irradiance: Texture2D,
+    surface: Option<surface_wear::Surface>,
+    #[cfg(debug_assertions)]
+    surface_override: std::cell::Cell<Option<bool>>,
 }
 
 fn load(path: &str, filter: FilterMode) -> Texture2D {
@@ -62,10 +80,35 @@ impl Atmosphere {
         let background = material(
             BACKGROUND,
             &["Correction"],
-            &[("LightOn", mq::UniformType::Float1)],
+            &[
+                ("LightOn", mq::UniformType::Float1),
+                ("ProceduralEmitters", mq::UniformType::Float1),
+                ("ColoredEmitters", mq::UniformType::Float1),
+                ("Fan", mq::UniformType::Float4),
+                ("Clock", mq::UniformType::Float1),
+            ],
         );
         let correction = load(&config.correction, FilterMode::Nearest);
         background.set_texture("Correction", correction.clone());
+        background.set_uniform(
+            "ColoredEmitters",
+            if config.colored_emitters {
+                1.0_f32
+            } else {
+                0.0_f32
+            },
+        );
+        let fan = config.fan.unwrap_or([0.; 4]);
+        background.set_uniform("Fan", (fan[0], fan[1], fan[2], fan[3]));
+        background.set_uniform("Clock", 0.0_f32);
+        background.set_uniform(
+            "ProceduralEmitters",
+            if config.procedural_emitters {
+                1.0_f32
+            } else {
+                0.0_f32
+            },
+        );
         let composite = material(
             COMPOSITE,
             &["Irradiance"],
@@ -101,6 +144,18 @@ impl Atmosphere {
         }
         let steam = Texture2D::from_image(&plume);
         steam.set_filter(FilterMode::Linear);
+        let surface = config.surface_wear.as_deref().map(|path| {
+            surface_wear::Surface::new(
+                correction.clone(),
+                frame.texture.size(),
+                surface_wear::Settings {
+                    procedural: if config.procedural_emitters { 1. } else { 0. },
+                    colored: if config.colored_emitters { 1. } else { 0. },
+                    fan,
+                },
+                path,
+            )
+        });
         Self {
             frame,
             background,
@@ -109,6 +164,9 @@ impl Atmosphere {
             steam,
             _correction: correction,
             _irradiance: irradiance,
+            surface,
+            #[cfg(debug_assertions)]
+            surface_override: std::cell::Cell::new(None),
         }
     }
 
@@ -121,13 +179,96 @@ impl Atmosphere {
     }
 
     pub fn begin_background(&self, lights: bool) {
+        if let Some(surface) = self.active_surface() {
+            surface
+                .background
+                .set_uniform("LightOn", if lights { 1.0_f32 } else { 0.0_f32 });
+            gl_use_material(&surface.background);
+            return;
+        }
         self.background
             .set_uniform("LightOn", if lights { 1.0_f32 } else { 0.0_f32 });
         gl_use_material(&self.background);
     }
 
+    pub fn background_time(&self, time: f32) {
+        self.background.set_uniform("Clock", time);
+        if let Some(surface) = &self.surface {
+            surface.background.set_uniform("Clock", time);
+        }
+    }
+
+    #[cfg(debug_assertions)]
+    pub fn review_surface(&self, enabled: Option<bool>) {
+        self.surface_override.set(enabled);
+    }
+
+    fn active_surface(&self) -> Option<&surface_wear::Surface> {
+        #[cfg(debug_assertions)]
+        if self.surface_override.get() == Some(false) {
+            return None;
+        }
+        self.surface.as_ref()
+    }
+
+    pub fn begin_surface(&self, size: Vec2) {
+        if let Some(surface) = self.active_surface() {
+            surface.isolated.set_uniform("ReviewSize", (size.x, size.y));
+            gl_use_material(&surface.isolated);
+        }
+    }
+
+    /// A native-size overview from the same world framebuffer, before the UI's
+    /// six-cell crop. Actors and simulation visibility are never expanded.
+    #[cfg(debug_assertions)]
+    pub fn export_review_world(
+        &self,
+        path: &std::path::Path,
+        draw_exteriors: impl FnOnce(),
+    ) -> Result<(), String> {
+        let size = self.frame.texture.size();
+        let target = render_target(size.x as u32, size.y as u32);
+        target.texture.set_filter(FilterMode::Nearest);
+        unsafe {
+            macroquad::window::get_internal_gl().quad_gl.scissor(None);
+        }
+        push_camera_state();
+        let mut camera = Camera2D::from_display_rect(Rect::new(0., 0., size.x, size.y));
+        camera.render_target = Some(target.clone());
+        set_camera(&camera);
+        clear_background(BLACK);
+        self.composite.set_uniform("LightOn", 1.0_f32);
+        gl_use_material(&self.composite);
+        draw_texture_ex(
+            &self.frame.texture,
+            0.,
+            0.,
+            WHITE,
+            DrawTextureParams {
+                flip_y: true,
+                ..Default::default()
+            },
+        );
+        gl_use_default_material();
+        draw_exteriors();
+        unsafe {
+            macroquad::window::get_internal_gl().flush();
+        }
+        let mut image = target.texture.get_texture_data();
+        for pixel in image.bytes.as_chunks_mut::<4>().0 {
+            pixel[3] = 255;
+        }
+        image.export_png(path.to_str().ok_or("Invalid overview path")?);
+        pop_camera_state();
+        Ok(())
+    }
+
     pub fn end_material(&self) {
         gl_use_default_material();
+    }
+    #[cfg(debug_assertions)]
+    pub fn review_ambient(&self, color: [f32; 3]) {
+        self.composite.set_uniform("Ambient", color);
     }
 
     pub fn begin_prop(&self, id: &str, time: f32, phase: f32) {
@@ -216,11 +357,28 @@ varying lowp vec4 tint;
 uniform sampler2D Texture;
 uniform sampler2D Correction;
 uniform float LightOn;
+uniform float ProceduralEmitters;
+uniform float ColoredEmitters;
+uniform vec4 Fan;
+uniform float Clock;
 void main() {
-    vec4 ink=texture2D(Texture,uv);
+    vec2 sample_uv=uv;
+    if(Fan.z>0.0&&Fan.w>0.0) {
+        vec2 p=(uv-Fan.xy)/Fan.zw;
+        if(dot(p,p)<1.0) {
+            float a=Clock*0.45;
+            p=mat2(cos(a),-sin(a),sin(a),cos(a))*p;
+            sample_uv=Fan.xy+p*Fan.zw;
+        }
+    }
+    vec4 ink=texture2D(Texture,sample_uv);
     vec4 data=texture2D(Correction,uv);
     vec3 neutral=ink.rgb*(data.rgb*2.0);
     vec3 filament=mix(ink.rgb*0.13,ink.rgb,LightOn);
+    if(ProceduralEmitters>0.5) {
+        filament=mix(ink.rgb*0.13,vec3(1.0,0.82,0.46),LightOn);
+        if(ColoredEmitters>0.5) filament=mix(ink.rgb*0.13,data.rgb,LightOn);
+    }
     ink.rgb=mix(neutral,filament,data.a);
     gl_FragColor=ink*tint;
 }"#;

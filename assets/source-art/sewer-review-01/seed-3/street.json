@@ -1,0 +1,569 @@
+{
+  "id": "EG01",
+  "width": 47,
+  "height": 44,
+  "cell": 64,
+  "image_origin": [
+    0,
+    0
+  ],
+  "image_offset_px": [
+    0,
+    0
+  ],
+  "image_size": [
+    47,
+    44
+  ],
+  "background": "assets/source-art/sewer-review-01/seed-3/background.png",
+  "entrance": [
+    23,
+    38
+  ],
+  "home_entry": [
+    23,
+    38
+  ],
+  "home_inside": [
+    23,
+    38
+  ],
+  "car_at": [
+    -100,
+    -100
+  ],
+  "car_file": "assets/maps/prison-street-01/car.png",
+  "car_size": [
+    0,
+    0
+  ],
+  "obstructions": [
+    [
+      20,
+      2
+    ],
+    [
+      20,
+      34
+    ],
+    [
+      26,
+      7
+    ],
+    [
+      26,
+      22
+    ],
+    [
+      27,
+      7
+    ],
+    [
+      34,
+      34
+    ],
+    [
+      40,
+      13
+    ],
+    [
+      41,
+      37
+    ],
+    [
+      42,
+      37
+    ]
+  ],
+  "source": "assets/source-art/first-sector-review-01/u01-style-r07/SCENE-U01-07-r01.png",
+  "background_sha256": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+  "layout_sha256": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
+  "walkable_cells": 695,
+  "all_walkable_connected": true,
+  "doorway": null,
+  "doorway_fix": "DOOR-U01-FIX-01",
+  "visual_review": "SCENE-U01-08-r06",
+  "lighting_review": "LUM-U01-08-r06",
+  "style": "STYLE-RL-2026-10-18-r01",
+  "atmosphere": {
+    "ambient": [
+      0.48,
+      0.54,
+      0.57
+    ],
+    "colored_emitters": true,
+    "procedural_emitters": false,
+    "lights": [
+      {
+        "id": "bulkhead-0",
+        "at": [
+          1370,
+          2097
+        ],
+        "origin": [
+          21,
+          33
+        ],
+        "box": [
+          1365,
+          2093,
+          1375,
+          2101
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-1",
+        "at": [
+          1434,
+          1329
+        ],
+        "origin": [
+          22,
+          21
+        ],
+        "box": [
+          1429,
+          1325,
+          1439,
+          1333
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-2",
+        "at": [
+          2778,
+          2097
+        ],
+        "origin": [
+          43,
+          33
+        ],
+        "box": [
+          2773,
+          2093,
+          2783,
+          2101
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-3",
+        "at": [
+          1370,
+          689
+        ],
+        "origin": [
+          21,
+          11
+        ],
+        "box": [
+          1365,
+          685,
+          1375,
+          693
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-4",
+        "at": [
+          2650,
+          1521
+        ],
+        "origin": [
+          41,
+          24
+        ],
+        "box": [
+          2645,
+          1517,
+          2655,
+          1525
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-8",
+        "at": [
+          2650,
+          753
+        ],
+        "origin": [
+          41,
+          12
+        ],
+        "box": [
+          2645,
+          749,
+          2655,
+          757
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-9",
+        "at": [
+          346,
+          2161
+        ],
+        "origin": [
+          5,
+          34
+        ],
+        "box": [
+          341,
+          2157,
+          351,
+          2165
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      }
+    ],
+    "correction": "assets/source-art/sewer-review-01/seed-3/correction.png",
+    "irradiance": "assets/source-art/sewer-review-01/seed-3/irradiance.png"
+  },
+  "roofs": [],
+  "roof_review": "ROOF-U01-01-r01",
+  "next_exit": [
+    18,
+    1
+  ],
+  "candidate": true,
+  "extra_doorways": [],
+  "ambience": null,
+  "review_views": [
+    [
+      "gate",
+      [
+        7,
+        62
+      ]
+    ],
+    [
+      "red-door",
+      [
+        13,
+        54
+      ]
+    ],
+    [
+      "yellow-door",
+      [
+        4,
+        54
+      ]
+    ],
+    [
+      "garage",
+      [
+        22,
+        58
+      ]
+    ],
+    [
+      "courtyard",
+      [
+        16,
+        41
+      ]
+    ],
+    [
+      "north-yard",
+      [
+        17,
+        8
+      ]
+    ],
+    [
+      "exit",
+      [
+        18,
+        1
+      ]
+    ],
+    [
+      "join-north",
+      [
+        18,
+        17
+      ]
+    ],
+    [
+      "join-middle",
+      [
+        18,
+        33
+      ]
+    ],
+    [
+      "join-south",
+      [
+        18,
+        49
+      ]
+    ],
+    [
+      "house-a-closed",
+      [
+        11,
+        23
+      ]
+    ],
+    [
+      "house-a-open",
+      [
+        12,
+        20
+      ]
+    ],
+    [
+      "house-b-closed",
+      [
+        11,
+        31
+      ]
+    ],
+    [
+      "house-b-open",
+      [
+        12,
+        28
+      ]
+    ],
+    [
+      "war-houses",
+      [
+        6,
+        24
+      ]
+    ],
+    [
+      "war-annex",
+      [
+        15,
+        13
+      ]
+    ],
+    [
+      "war-blast",
+      [
+        16,
+        42
+      ]
+    ],
+    [
+      "lighting-off",
+      [
+        17,
+        11
+      ]
+    ],
+    [
+      "court-clean",
+      [
+        15,
+        41
+      ]
+    ],
+    [
+      "west-corner",
+      [
+        2,
+        2
+      ]
+    ],
+    [
+      "east-corner",
+      [
+        23,
+        2
+      ]
+    ]
+  ],
+  "review_animations": [
+    [
+      "fan",
+      [
+        24,
+        53
+      ]
+    ],
+    [
+      "steam",
+      [
+        12,
+        55
+      ]
+    ],
+    [
+      "embers",
+      [
+        15,
+        57
+      ]
+    ]
+  ],
+  "south_visible_edge": 4064,
+  "integration_generation": 157,
+  "scenery_props": [
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/cabinet-native.png",
+      "at_px": [
+        1292,
+        2186
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1684,
+        1436
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/cabinet-native.png",
+      "at_px": [
+        2188,
+        2186
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r05/court-machines-native.png",
+      "at_px": [
+        2615,
+        2293
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/cabinet-native.png",
+      "at_px": [
+        1292,
+        138
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r05/court-machines-native.png",
+      "at_px": [
+        1655,
+        373
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        2580,
+        860
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/stairs-native.png",
+      "at_px": [
+        1464,
+        2288
+      ]
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        1541,
+        1612
+      ]
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        261,
+        1676
+      ]
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        2053,
+        1036
+      ]
+    }
+  ],
+  "surface_style": "STYLE-MAP-U01-04",
+  "paving_review": "PAV-U01-06",
+  "civilians_review": "CIVILS-U01-08"
+}

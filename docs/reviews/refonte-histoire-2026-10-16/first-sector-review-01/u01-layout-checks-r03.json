@@ -1,0 +1,48 @@
+{
+  "review_id": "MAP-U01-01-r03",
+  "scope": "Fixed Python review grid only; not the game generator",
+  "walkable_cells": 536,
+  "all_walkable_cells_connected": true,
+  "portal_paths_steps": {
+    "P00": 2,
+    "F00": 29,
+    "U02": 36
+  },
+  "continuous_three_cell_wide_street_path": true,
+  "continuous_three_cell_wide_refuge_approach": true,
+  "player_scale": 1,
+  "player_source_sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24",
+  "native_cell_px": 64,
+  "native_map_size": [
+    2560,
+    1792
+  ],
+  "obstacle_cells": 9,
+  "game_or_map_editor_modified": false,
+  "car_canvas_size": [
+    128,
+    64
+  ],
+  "car_max_cells": [
+    2,
+    1
+  ],
+  "fire_effect": "Decorative proposal only, no combat rule",
+  "facade_source_scale": "Whole overhead buildings; door openings indicated in plan view",
+  "limits": [
+    "Building interiors not created by this facade review",
+    "Collision/render interaction not exercised in the engine",
+    "New art and concrete street layout are not yet accepted"
+  ],
+  "layout_source_sha256": "bfb3459325e297da79fe9e6537ddb6b7e01190e0e99ada6c26ab97b96a2d6a99",
+  "outputs": {
+    "u01-map-native-r03.png": "b64173788b560a49a8937bfb161be40be52c6d4ab19f7778d2d668715474cae7",
+    "u01-arrival-native-r03.png": "e8129fda66335574d42b681b7c5e8bb0adbda3e963daa50c5b607221924e46a9",
+    "u01-junction-native-r03.png": "685bdba0b3231666158841d5094201c38d22db98f5e24027b9c5baf6b3764dda",
+    "u01-layout-overview-r03.png": "5bf7e880590e58071a8e817b60be095781eb357f485c46d79330ff7760aa6011",
+    "u01-decor-board-native-r03.png": "62a5bc39ecb921883224be70c2ef6a5b163b6bc7db4791b6a985a67df32756db",
+    "u01-buildings-native-r02.png": "e30e2a10272f4fdf8a1eefd8fda4a65f45a3a9a70f924718e9203eee1738e9f6",
+    "u01-car-fire-native-r04.gif": "cae44e56db5ada8b809b458a8c1d94de718030df28ad0c4da989ad2d4f31b0c1",
+    "u01-car-fire-native-r04.png": "f7e02a22dc0a683010f29677ece71126f7e641a9df6e93779aecd011e6699a03"
+  }
+}

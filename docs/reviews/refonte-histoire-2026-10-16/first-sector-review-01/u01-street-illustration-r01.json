@@ -1,0 +1,46 @@
+{
+  "review_id": "SCENE-U01-04-r01",
+  "date": "2026-10-18",
+  "status": "proposal_not_integrated",
+  "kind": "illustration_not_native_game_capture",
+  "source": "assets/source-art/first-sector-review-01/u01-scene-r01/SCENE-U01-04-r01.png",
+  "source_sha256": "bc16e66384f3c17a203080f722fe39d8ca8612cf4cc4cd07e4e80b8c1ad63ee6",
+  "size_px": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "original_preserved_byte_for_byte": true,
+  "generator": "imagegen integrated",
+  "prompt_file": "u01-street-illustration-prompt-r01.txt",
+  "prompt_sha256": "99c5036097724ef7be7fa6d4ee1e108c70c848e5875bada80f4e26584f3af5d6",
+  "references": [
+    {
+      "file": "assets/source-art/refonte-histoire-2026-10-16/handcrafted-places-review-01/r05/camp-reference-user-r05.png",
+      "sha256": "2f1854a7a089ff7a1d15a65aa2029131e6d78845dc850d34bad78e8b35432df6"
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-r03/DEC-U01-topdown-source-r01.png",
+      "sha256": "b2f8d81f65476a5a01c83ff67aa8654e1c5e7dc4ba2b14afd068cb10cc10f40a"
+    }
+  ],
+  "user_constraints": [
+    "Vue de dessus",
+    "Nouvelle disposition",
+    "Limiter les repetitions",
+    "Voiture prevue sur au plus 2 x 1 cases dans le jeu"
+  ],
+  "native_cell_px_for_future_exports": 64,
+  "layout_accepted": false,
+  "runtime_changed": false,
+  "visual_inspection": [
+    "Asymmetric street junction",
+    "Distinct building footprints and roof treatments",
+    "Contextual prop clusters",
+    "No characters, labels or HUD"
+  ],
+  "limits": [
+    "Illustration has no verified grid or collision mapping",
+    "Access positions are indicative"
+  ]
+}

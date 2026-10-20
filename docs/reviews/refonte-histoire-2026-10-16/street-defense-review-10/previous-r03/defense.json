@@ -1,0 +1,641 @@
+{
+  "review": "DEFENSE-U01-10-r03",
+  "native_cell": 64,
+  "status": "preview_only",
+  "guards": [
+    {
+      "id": "GARD-U01-01",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/GARD-U01-01-r03-native.png",
+      "cell": [
+        7,
+        61
+      ],
+      "pixel_offset": [
+        -12,
+        -37
+      ],
+      "foot_anchor": [
+        32,
+        63
+      ],
+      "phase": 0.0
+    },
+    {
+      "id": "GARD-U01-02",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/GARD-U01-02-r03-native.png",
+      "cell": [
+        9,
+        61
+      ],
+      "pixel_offset": [
+        -22,
+        -37
+      ],
+      "foot_anchor": [
+        32,
+        63
+      ],
+      "phase": 1.8
+    }
+  ],
+  "fires": [
+    {
+      "id": "FEU-U01-10-01",
+      "foot": [
+        1110,
+        3910
+      ],
+      "size": [
+        64,
+        80
+      ],
+      "phase": 0,
+      "context": "bois de la ruine près du portail"
+    },
+    {
+      "id": "FEU-U01-10-02",
+      "foot": [
+        1072,
+        2134
+      ],
+      "size": [
+        64,
+        76
+      ],
+      "phase": 3,
+      "context": "moteur de la camionnette détruite"
+    },
+    {
+      "id": "FEU-U01-10-03",
+      "foot": [
+        222,
+        1482
+      ],
+      "size": [
+        56,
+        72
+      ],
+      "phase": 5,
+      "context": "débris de la façade effondrée ouest"
+    },
+    {
+      "id": "FEU-U01-10-04",
+      "foot": [
+        1020,
+        2526
+      ],
+      "size": [
+        56,
+        72
+      ],
+      "phase": 2,
+      "context": "poutres dans les gravats de la cour"
+    }
+  ],
+  "covers": [
+    {
+      "at_px": [
+        416,
+        3864
+      ],
+      "mirror": false,
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/SACS-U01-02-r03-native.png",
+      "native_size": [
+        80,
+        72
+      ]
+    },
+    {
+      "at_px": [
+        560,
+        3864
+      ],
+      "mirror": true,
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/SACS-U01-02-r03-east-native.png",
+      "native_size": [
+        80,
+        72
+      ]
+    }
+  ],
+  "proposed_solid_cells": [
+    [
+      7,
+      60
+    ],
+    [
+      9,
+      60
+    ],
+    [
+      7,
+      61
+    ],
+    [
+      9,
+      61
+    ]
+  ],
+  "central_free_cells": [
+    [
+      8,
+      56
+    ],
+    [
+      8,
+      57
+    ],
+    [
+      8,
+      58
+    ],
+    [
+      8,
+      59
+    ],
+    [
+      8,
+      60
+    ],
+    [
+      8,
+      61
+    ],
+    [
+      8,
+      62
+    ]
+  ],
+  "new_corpses": [
+    {
+      "id": "MORT-U01-10-01",
+      "kind": "cultiste",
+      "source": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+      "rotation": 0,
+      "at_px": [
+        466,
+        3690
+      ],
+      "context": "attaque contre le poste de garde"
+    },
+    {
+      "id": "MORT-U01-10-02",
+      "kind": "cultiste",
+      "source": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+      "rotation": 180,
+      "at_px": [
+        702,
+        3446
+      ],
+      "context": "repli après le carrefour sud"
+    },
+    {
+      "id": "MORT-U01-10-03",
+      "kind": "cultiste",
+      "source": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+      "rotation": 90,
+      "at_px": [
+        1156,
+        2248
+      ],
+      "context": "approche du véhicule détruit"
+    },
+    {
+      "id": "MORT-U01-10-04",
+      "kind": "cultiste",
+      "source": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+      "rotation": 270,
+      "at_px": [
+        1124,
+        870
+      ],
+      "context": "combat sur l’avenue nord"
+    },
+    {
+      "id": "MORT-U01-10-05",
+      "kind": "militaire",
+      "source": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+      "rotation": 180,
+      "at_px": [
+        370,
+        3616
+      ],
+      "context": "flanc du dernier point de défense"
+    },
+    {
+      "id": "MORT-U01-10-06",
+      "kind": "militaire",
+      "source": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+      "rotation": 90,
+      "at_px": [
+        1164,
+        2810
+      ],
+      "context": "repli au carrefour sud"
+    },
+    {
+      "id": "MORT-U01-10-07",
+      "kind": "militaire",
+      "source": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+      "rotation": 0,
+      "at_px": [
+        618,
+        2530
+      ],
+      "context": "près de la cour dévastée"
+    },
+    {
+      "id": "MORT-U01-10-08",
+      "kind": "militaire",
+      "source": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+      "rotation": 270,
+      "at_px": [
+        1210,
+        1504
+      ],
+      "context": "défense de l’avenue centrale"
+    },
+    {
+      "id": "MORT-U01-10-09",
+      "kind": "civil",
+      "source": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png",
+      "rotation": 180,
+      "at_px": [
+        1156,
+        3360
+      ],
+      "context": "fuite depuis les logements sud"
+    },
+    {
+      "id": "MORT-U01-10-10",
+      "kind": "civil",
+      "source": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+      "rotation": 90,
+      "at_px": [
+        1420,
+        2040
+      ],
+      "context": "trottoir près des bâtiments endommagés"
+    },
+    {
+      "id": "MORT-U01-10-11",
+      "kind": "civil",
+      "source": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+      "rotation": 0,
+      "at_px": [
+        302,
+        2750
+      ],
+      "context": "sortie de l’atelier abandonné"
+    },
+    {
+      "id": "MORT-U01-10-12",
+      "kind": "civil",
+      "source": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+      "rotation": 180,
+      "at_px": [
+        930,
+        642
+      ],
+      "context": "fuite près de la façade nord détruite"
+    }
+  ],
+  "new_scenery": [
+    {
+      "id": "SACS-U01-02-ouest",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/SACS-U01-02-r03-native.png",
+      "at_px": [
+        416,
+        3864
+      ],
+      "context": "barricade en L avec retour contre le montant du portail"
+    },
+    {
+      "id": "SACS-U01-02-est",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/SACS-U01-02-r03-east-native.png",
+      "at_px": [
+        560,
+        3864
+      ],
+      "context": "barricade en L avec retour contre le montant du portail"
+    },
+    {
+      "id": "MORT-U01-10-01",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-01.png",
+      "at_px": [
+        466,
+        3690
+      ],
+      "context": "attaque contre le poste de garde"
+    },
+    {
+      "id": "SANG-U01-10-01",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        472,
+        3704
+      ],
+      "context": "sang associé au corps 1"
+    },
+    {
+      "id": "MORT-U01-10-02",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-02.png",
+      "at_px": [
+        702,
+        3446
+      ],
+      "context": "repli après le carrefour sud"
+    },
+    {
+      "id": "MORT-U01-10-03",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-03.png",
+      "at_px": [
+        1156,
+        2248
+      ],
+      "context": "approche du véhicule détruit"
+    },
+    {
+      "id": "SANG-U01-10-03",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        1162,
+        2278
+      ],
+      "context": "sang associé au corps 3"
+    },
+    {
+      "id": "MORT-U01-10-04",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-04.png",
+      "at_px": [
+        1124,
+        870
+      ],
+      "context": "combat sur l’avenue nord"
+    },
+    {
+      "id": "MORT-U01-10-05",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-05.png",
+      "at_px": [
+        370,
+        3616
+      ],
+      "context": "flanc du dernier point de défense"
+    },
+    {
+      "id": "SANG-U01-10-05",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        376,
+        3630
+      ],
+      "context": "sang associé au corps 5"
+    },
+    {
+      "id": "MORT-U01-10-06",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-06.png",
+      "at_px": [
+        1164,
+        2810
+      ],
+      "context": "repli au carrefour sud"
+    },
+    {
+      "id": "MORT-U01-10-07",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-07.png",
+      "at_px": [
+        618,
+        2530
+      ],
+      "context": "près de la cour dévastée"
+    },
+    {
+      "id": "SANG-U01-10-07",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        624,
+        2544
+      ],
+      "context": "sang associé au corps 7"
+    },
+    {
+      "id": "MORT-U01-10-08",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-08.png",
+      "at_px": [
+        1210,
+        1504
+      ],
+      "context": "défense de l’avenue centrale"
+    },
+    {
+      "id": "MORT-U01-10-09",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-09.png",
+      "at_px": [
+        1156,
+        3360
+      ],
+      "context": "fuite depuis les logements sud"
+    },
+    {
+      "id": "SANG-U01-10-09",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        1162,
+        3374
+      ],
+      "context": "sang associé au corps 9"
+    },
+    {
+      "id": "MORT-U01-10-10",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-10.png",
+      "at_px": [
+        1420,
+        2040
+      ],
+      "context": "trottoir près des bâtiments endommagés"
+    },
+    {
+      "id": "MORT-U01-10-11",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-11.png",
+      "at_px": [
+        302,
+        2750
+      ],
+      "context": "sortie de l’atelier abandonné"
+    },
+    {
+      "id": "MORT-U01-10-12",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/MORT-U01-10-12.png",
+      "at_px": [
+        930,
+        642
+      ],
+      "context": "fuite près de la façade nord détruite"
+    },
+    {
+      "id": "SANG-U01-10-12",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        936,
+        656
+      ],
+      "context": "sang associé au corps 12"
+    }
+  ],
+  "assets": [
+    {
+      "id": "GARD-U01-01",
+      "canvas": [
+        64,
+        64
+      ],
+      "drawn_size": [
+        41,
+        62
+      ],
+      "source_box": [
+        129,
+        161,
+        954,
+        1406
+      ],
+      "revision": "-r03",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/GARD-U01-01-r03-native.png",
+      "source": "assets/source-art/first-sector-review-01/u01-defense-r10/GARD-U01-01-r03-source.png",
+      "foot_anchor": [
+        32,
+        63
+      ],
+      "native_sha256": "695aeda9725954107745fe0c4f82821fbbe32aaa5bda3334232f12900e212d12",
+      "source_sha256": "1f354723c19a8fab75fd4450f2d3063b21706844f82b241941bba3fae478de0f"
+    },
+    {
+      "id": "GARD-U01-02",
+      "canvas": [
+        64,
+        64
+      ],
+      "drawn_size": [
+        44,
+        62
+      ],
+      "source_box": [
+        215,
+        71,
+        1097,
+        1327
+      ],
+      "revision": "-r03",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/GARD-U01-02-r03-native.png",
+      "source": "assets/source-art/first-sector-review-01/u01-defense-r10/GARD-U01-02-r03-source.png",
+      "foot_anchor": [
+        32,
+        63
+      ],
+      "native_sha256": "b7306b31e0f9d027ac35904fba19d58da10a53a0a6ec33a5f2dbcae3579c82f0",
+      "source_sha256": "69bd030de45669aff7e7d8b0c6a4703d27c046853fba029723eabe58849b1cf1"
+    },
+    {
+      "id": "SACS-U01-02",
+      "canvas": [
+        80,
+        72
+      ],
+      "drawn_size": [
+        76,
+        61
+      ],
+      "source_box": [
+        67,
+        129,
+        1297,
+        1110
+      ],
+      "revision": "-r03",
+      "file": "assets/source-art/first-sector-review-01/u01-defense-r10/SACS-U01-02-r03-native.png",
+      "source": "assets/source-art/first-sector-review-01/u01-defense-r10/SACS-U01-02-r03-source.png",
+      "foot_anchor": [
+        40,
+        70
+      ],
+      "native_sha256": "de2bd3a16aacfec3b7f637e3b17b49b5b83e8bc10d480b8d6478ebc02ac9de0e",
+      "source_sha256": "c066ffcb5ce542de7bd3751f745cf3fc7c664de218360f74cea50fb916a58641"
+    }
+  ],
+  "repositioned_existing_scenery": [
+    {
+      "id": "SANG-U01-04-01",
+      "before": [
+        532,
+        3865
+      ],
+      "after": [
+        556,
+        3761
+      ],
+      "reason": "clear the interior of the defensive post; keep body and blood ahead of cover"
+    },
+    {
+      "id": "SANG-U01-05-13",
+      "before": [
+        470,
+        3872
+      ],
+      "after": [
+        494,
+        3768
+      ],
+      "reason": "clear the interior of the defensive post; keep body and blood ahead of cover"
+    },
+    {
+      "id": "CIV-U01-04-20",
+      "before": [
+        528,
+        3856
+      ],
+      "after": [
+        552,
+        3752
+      ],
+      "reason": "clear the interior of the defensive post; keep body and blood ahead of cover"
+    }
+  ],
+  "behavior": "visual demonstration only; no damage, AI, turn, quest or live actor additions",
+  "production_sha256": {
+    "assets/maps/prison-street-expanded-01/collision-repairs-r09.json": "26d5b219de11fdf9c558e394621183f339556fbea084bb62c8dae023fdd0857e",
+    "assets/maps/prison-street-expanded-01/collision-repairs.json": "37deaa578c4340b11a05fdb65a8b2117c185f0a8422d6ac14471668b8eec00d6",
+    "assets/maps/prison-street-expanded-01/correction.png": "ab4b9037589866359cb20c6d9bc650b7bcbb54cc92fbd5d92db51e16e6cc641d",
+    "assets/maps/prison-street-expanded-01/irradiance.png": "19c4157c479dbae87de50052f3a38beae2c8070d7baccd24ea7398d7f8525d98",
+    "assets/maps/prison-street-expanded-01/layout.txt": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
+    "assets/maps/prison-street-expanded-01/roof-0.png": "daa333e2a8fef5fe7ee7de620dd69139b7377d2c82c7d883d5e34feb9599bfdf",
+    "assets/maps/prison-street-expanded-01/roof-1.png": "95e279966252b32d21c11575b53404eb7398de334a256a970754dcb1b285ea50",
+    "assets/maps/prison-street-expanded-01/roof-2.png": "2381e0b8139249ddefaf77b70ad14912556036df46900021a808ebc2a3efd37b",
+    "assets/maps/prison-street-expanded-01/roof-3.png": "36f55710f3341eaed78d0a24b11a5a1a365d8d3e55b012e21f1bf74d43f0e636",
+    "assets/maps/prison-street-expanded-01/room-vision.json": "5ab0623db4985bd0613bda0fb58c506a138c63f21191aff6df8aa25d472b31b7",
+    "assets/maps/prison-street-expanded-01/street.json": "8fe39f0c235c7ce80ece1695812f7e2ef37afc05ae48347fa0d5fc5738ff97b6",
+    "assets/maps/prison-street-expanded-01/street.png": "d87bc87c6e7f59ef3af6808f7abe56ef54a491f69e883446771c9b98b6e4af22",
+    "assets/maps/prison-street-expanded-01/warehouse-clearance-r09.json": "f1a9c70ed08ba184bfe4b091ed66d68f6c6d250342bc79d1b14e599a89598192",
+    "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png": "6a016733564e23e4d8d2f85458db3f5d7f71e52b078520c2e1abdf8099fce956",
+    "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png": "0b10f5554c5e12c91f8868d280d57c5a2d466aac9ce23ba9374edd680edccdcb",
+    "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png": "0f08bcd7be6558b69fa31cf5fbc554f9ab449374eff0d779d3a77bfc6a719de3",
+    "assets/maps/prison-street-expanded-01/decor/GRIM-U01-01.png": "2c84fecd9ceb2a794594f8ccb1f09d6653aa6ffd38379a20e4e4dfc7baef71f6",
+    "assets/maps/prison-street-expanded-01/decor/surface-wear.png": "16cb67557ae6b56fa7ee32035470100a83650f721cd43545d385eecd09632b36",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png": "c4b994bbf66595cd52105d10aa77ea13aece8312dabb910a0152bf83d0cd874f",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-r180-native.png": "f16a0b02a2b80d6ec0ecbede29800b99e4b2952e5e3dd4d1cf0f1f6e0575af61",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-r90-native.png": "524956b4d7400009ba026a939227f1d5656bf4f17d4761c04280e0bfa80c3cee",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png": "49dc4c963c378bf395cee860e74afdec81b80beedc3239ec66a16ec9572ff6a2",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-r180-native.png": "04c24e010985d18869880144529882189d0100f8de356c9e675b2cb03914a711",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png": "c61b0e4bf127d5783ef1ee297dc9fe76deb9fa5e3a7f6d69e762b5fc91364a15",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r180-native.png": "5830fb991d79fdb630279db5868fedb96f3028eb9f2305d246cb86f2016e7f4a",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png": "1362c0bc63fd04a2d4756b90b7fac393d6d63a7c13a72af91bc3e9b6fd261d15",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png": "214792ce11a97b7ed315a73184e34e0cb3ee1754064b8c52db904825922d3dfa",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-r180-native.png": "a91b6c98c451840b37a22a3c7c7b65d7a55937b27efb93d869a5a8a163cc19dc",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png": "b798680ebbc9be3bc15648d3530867aba8401f52693658f57689fed93b8335ba",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-r180-native.png": "a206672f7acc87fe93bdcbaee053aef0d7f17b63ca04f5db9876b24f8b46cf8d",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png": "c26fb8f0d2455a06a1a9f8595203c673f6ca107716465fafb2e99782f8724680",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-r180-native.png": "e08f15b06a28355eba13474e184b35ce31a6273f805d967835e2c9a2bd7b214f",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png": "3808ad4818d4561f77b21f2b49ffbcb6a461e6c90255d1222f406d564894d86c",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-r180-native.png": "6f93be844998bf03391a55cb328be302da623b98ab83424073f2eb34c57b8aa9",
+    "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-r90-native.png": "0247b2619b5f71358fb3466c02afbf0d155916d538fc55acdc211b4869646711"
+  }
+}

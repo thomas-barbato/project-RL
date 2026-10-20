@@ -1,0 +1,126 @@
+{
+  "review": "U01-REPAIRS-09",
+  "date": "2026-10-20",
+  "generation": 161,
+  "status": "integrated",
+  "removed_props": 3,
+  "former_prop_cells_walkable": true,
+  "paving": "PAV-U01-06B/C; fragmented and almost erased joints; cells (9..12,7..8)",
+  "old_geometry_preserved": true,
+  "user_saves_touched": false,
+  "targeted_tests": [
+    {
+      "command": "cargo test --locked --bin project-rl prison_street",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "command": "cargo test --locked --bin project-rl player_vision_app",
+      "passed": 4,
+      "failed": 0
+    }
+  ],
+  "full_suite_run": false,
+  "commands_passed": [
+    "cargo build --locked",
+    "cargo check --locked --release",
+    "cargo fmt --all -- --check",
+    "git -c core.whitespace=cr-at-eol diff --check"
+  ],
+  "engine": {
+    "additional_clearance_cells": 1,
+    "camp_round_trip": true,
+    "collision_repairs": 63,
+    "former_prop_ground_clear": true,
+    "generation": 161,
+    "native_cell": 64,
+    "normal_art_integrated": true,
+    "note": "Collision status checked before return; full maps omit living actors and vision mask for review only",
+    "removed_props": 3,
+    "reported_contacts_clear": true,
+    "review": "U01-REPAIRS-09",
+    "scenes": [
+      {
+        "id": "warehouse",
+        "player": [
+          8,
+          8
+        ],
+        "render_read_only": true
+      },
+      {
+        "id": "warehouse-cleared",
+        "player": [
+          11,
+          7
+        ],
+        "render_read_only": true
+      },
+      {
+        "id": "road14",
+        "player": [
+          14,
+          14
+        ],
+        "render_read_only": true
+      },
+      {
+        "id": "crater16",
+        "player": [
+          14,
+          16
+        ],
+        "render_read_only": true
+      },
+      {
+        "id": "van32",
+        "player": [
+          16,
+          32
+        ],
+        "render_read_only": true
+      },
+      {
+        "id": "rubble-west",
+        "player": [
+          2,
+          30
+        ],
+        "render_read_only": true
+      },
+      {
+        "id": "rubble40",
+        "player": [
+          15,
+          40
+        ],
+        "render_read_only": true
+      },
+      {
+        "id": "junction",
+        "player": [
+          18,
+          49
+        ],
+        "render_read_only": true
+      },
+      {
+        "id": "gate",
+        "player": [
+          8,
+          59
+        ],
+        "render_read_only": true
+      }
+    ],
+    "user_saves_touched": false,
+    "vehicle_body_still_solid": true,
+    "world_render_read_only": true
+  },
+  "runtime_references_checked": 51,
+  "page_references_checked": 40,
+  "normal_engine_native_scenes": 9,
+  "normal_engine_and_review_frames": 20,
+  "release_check": true,
+  "reviewed_pixel_changes_limited_to_requested_props_and_floor": true
+}

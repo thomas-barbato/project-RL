@@ -1,0 +1,691 @@
+{
+  "revision": "r03",
+  "coordinate_system": "single native world pixel grid",
+  "road_axis": 1212,
+  "road_width": 160,
+  "branches": [
+    [
+      256,
+      1212,
+      900
+    ],
+    [
+      288,
+      1212,
+      2100
+    ],
+    [
+      256,
+      1212,
+      2870
+    ]
+  ],
+  "old_at": [
+    96,
+    3136
+  ],
+  "modules": [
+    {
+      "id": "warehouse",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/warehouse.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r02/north-source-r02.png",
+      "source_box": [
+        52,
+        78,
+        703,
+        481
+      ],
+      "at": [
+        160,
+        256
+      ],
+      "polygon": [
+        [
+          160,
+          256
+        ],
+        [
+          810,
+          256
+        ],
+        [
+          810,
+          460
+        ],
+        [
+          367,
+          460
+        ],
+        [
+          367,
+          658
+        ],
+        [
+          189,
+          658
+        ],
+        [
+          189,
+          512
+        ],
+        [
+          160,
+          512
+        ]
+      ]
+    },
+    {
+      "id": "east-small",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/east-small.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r01/east-panel-r01.png",
+      "source_box": [
+        1287,
+        17,
+        1521,
+        317
+      ],
+      "at": [
+        1350,
+        320
+      ],
+      "polygon": [
+        [
+          1350,
+          320
+        ],
+        [
+          1583,
+          320
+        ],
+        [
+          1583,
+          542
+        ],
+        [
+          1561,
+          542
+        ],
+        [
+          1561,
+          619
+        ],
+        [
+          1350,
+          619
+        ]
+      ]
+    },
+    {
+      "id": "east-long",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/east-long.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r02/north-source-r02.png",
+      "source_box": [
+        1188,
+        125,
+        1453,
+        688
+      ],
+      "at": [
+        1320,
+        1120
+      ],
+      "polygon": [
+        [
+          1320,
+          1120
+        ],
+        [
+          1584,
+          1120
+        ],
+        [
+          1584,
+          1682
+        ],
+        [
+          1320,
+          1682
+        ]
+      ]
+    },
+    {
+      "id": "east-blue",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/east-blue.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r02/middle-source-r02.png",
+      "source_box": [
+        1283,
+        385,
+        1516,
+        869
+      ],
+      "at": [
+        1340,
+        2176
+      ],
+      "polygon": [
+        [
+          1340,
+          2176
+        ],
+        [
+          1572,
+          2176
+        ],
+        [
+          1572,
+          2659
+        ],
+        [
+          1340,
+          2659
+        ]
+      ]
+    },
+    {
+      "id": "west-garage",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/west-garage.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r01/east-panel-r01.png",
+      "source_box": [
+        38,
+        314,
+        364,
+        623
+      ],
+      "at": [
+        176,
+        2400
+      ],
+      "polygon": [
+        [
+          176,
+          2400
+        ],
+        [
+          501,
+          2400
+        ],
+        [
+          501,
+          2708
+        ],
+        [
+          176,
+          2708
+        ]
+      ]
+    },
+    {
+      "id": "east-south",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/east-south.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r01/east-panel-r01.png",
+      "source_box": [
+        1297,
+        386,
+        1517,
+        745
+      ],
+      "at": [
+        1350,
+        2740
+      ],
+      "polygon": [
+        [
+          1350,
+          2740
+        ],
+        [
+          1569,
+          2740
+        ],
+        [
+          1569,
+          3098
+        ],
+        [
+          1350,
+          3098
+        ]
+      ]
+    },
+    {
+      "id": "ROOF-U01-02A-body",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/ROOF-U01-02A-body.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r01/house-a-source.png",
+      "source_box": [
+        10,
+        10,
+        537,
+        349
+      ],
+      "at": [
+        458,
+        1162
+      ],
+      "polygon": [
+        [
+          458,
+          1162
+        ],
+        [
+          984,
+          1162
+        ],
+        [
+          984,
+          1436
+        ],
+        [
+          982,
+          1500
+        ],
+        [
+          928,
+          1500
+        ],
+        [
+          928,
+          1480
+        ],
+        [
+          512,
+          1480
+        ],
+        [
+          512,
+          1500
+        ],
+        [
+          458,
+          1500
+        ]
+      ]
+    },
+    {
+      "id": "ROOF-U01-02B-body",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/ROOF-U01-02B-body.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r01/house-b-source.png",
+      "source_box": [
+        10,
+        10,
+        505,
+        357
+      ],
+      "at": [
+        474,
+        1658
+      ],
+      "polygon": [
+        [
+          474,
+          1658
+        ],
+        [
+          968,
+          1658
+        ],
+        [
+          968,
+          1932
+        ],
+        [
+          966,
+          2004
+        ],
+        [
+          912,
+          2004
+        ],
+        [
+          912,
+          1976
+        ],
+        [
+          528,
+          1976
+        ],
+        [
+          528,
+          2004
+        ],
+        [
+          474,
+          2004
+        ]
+      ]
+    },
+    {
+      "id": "collapsed-wall",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/collapsed-wall.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r02/north-source-r02.png",
+      "source_box": [
+        77,
+        614,
+        285,
+        741
+      ],
+      "at": [
+        256,
+        780
+      ],
+      "polygon": [
+        [
+          286,
+          780
+        ],
+        [
+          344,
+          792
+        ],
+        [
+          413,
+          848
+        ],
+        [
+          449,
+          881
+        ],
+        [
+          463,
+          906
+        ],
+        [
+          282,
+          906
+        ],
+        [
+          256,
+          882
+        ]
+      ]
+    },
+    {
+      "id": "court-machines",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/court-machines.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r01/east-panel-r01.png",
+      "source_box": [
+        554,
+        274,
+        697,
+        411
+      ],
+      "at": [
+        688,
+        2500
+      ],
+      "polygon": [
+        [
+          692,
+          2500
+        ],
+        [
+          795,
+          2500
+        ],
+        [
+          795,
+          2552
+        ],
+        [
+          830,
+          2552
+        ],
+        [
+          830,
+          2636
+        ],
+        [
+          688,
+          2636
+        ]
+      ]
+    },
+    {
+      "id": "court-bin",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/court-bin.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r01/east-panel-r01.png",
+      "source_box": [
+        901,
+        340,
+        1039,
+        477
+      ],
+      "at": [
+        784,
+        2720
+      ],
+      "polygon": [
+        [
+          795,
+          2720
+        ],
+        [
+          887,
+          2734
+        ],
+        [
+          921,
+          2786
+        ],
+        [
+          921,
+          2838
+        ],
+        [
+          832,
+          2856
+        ],
+        [
+          784,
+          2805
+        ]
+      ]
+    },
+    {
+      "id": "hedge-0",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/hedge-0.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r02/north-source-r02.png",
+      "source_box": [
+        15,
+        337,
+        102,
+        458
+      ],
+      "at": [
+        128,
+        700
+      ],
+      "polygon": [
+        [
+          133,
+          709
+        ],
+        [
+          190,
+          700
+        ],
+        [
+          214,
+          755
+        ],
+        [
+          204,
+          813
+        ],
+        [
+          143,
+          820
+        ],
+        [
+          128,
+          777
+        ]
+      ]
+    },
+    {
+      "id": "hedge-1",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/hedge-1.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r02/north-source-r02.png",
+      "source_box": [
+        15,
+        337,
+        102,
+        458
+      ],
+      "at": [
+        832,
+        672
+      ],
+      "polygon": [
+        [
+          837,
+          681
+        ],
+        [
+          894,
+          672
+        ],
+        [
+          918,
+          727
+        ],
+        [
+          908,
+          785
+        ],
+        [
+          847,
+          792
+        ],
+        [
+          832,
+          749
+        ]
+      ]
+    },
+    {
+      "id": "hedge-2",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/hedge-2.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r02/north-source-r02.png",
+      "source_box": [
+        15,
+        337,
+        102,
+        458
+      ],
+      "at": [
+        128,
+        1024
+      ],
+      "polygon": [
+        [
+          133,
+          1033
+        ],
+        [
+          190,
+          1024
+        ],
+        [
+          214,
+          1079
+        ],
+        [
+          204,
+          1137
+        ],
+        [
+          143,
+          1144
+        ],
+        [
+          128,
+          1101
+        ]
+      ]
+    },
+    {
+      "id": "hedge-3",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/hedge-3.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r02/north-source-r02.png",
+      "source_box": [
+        15,
+        337,
+        102,
+        458
+      ],
+      "at": [
+        960,
+        2304
+      ],
+      "polygon": [
+        [
+          965,
+          2313
+        ],
+        [
+          1022,
+          2304
+        ],
+        [
+          1046,
+          2359
+        ],
+        [
+          1036,
+          2417
+        ],
+        [
+          975,
+          2424
+        ],
+        [
+          960,
+          2381
+        ]
+      ]
+    },
+    {
+      "id": "hedge-4",
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r03/hedge-4.png",
+      "source": "assets/source-art/first-sector-review-01/u01-expansion-r02/north-source-r02.png",
+      "source_box": [
+        15,
+        337,
+        102,
+        458
+      ],
+      "at": [
+        896,
+        3024
+      ],
+      "polygon": [
+        [
+          901,
+          3033
+        ],
+        [
+          958,
+          3024
+        ],
+        [
+          982,
+          3079
+        ],
+        [
+          972,
+          3137
+        ],
+        [
+          911,
+          3144
+        ],
+        [
+          896,
+          3101
+        ]
+      ]
+    }
+  ],
+  "complete_map_panels_used": 0,
+  "accepted_departure_used_once": true
+}

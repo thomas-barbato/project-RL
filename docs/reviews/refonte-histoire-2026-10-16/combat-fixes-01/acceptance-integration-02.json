@@ -1,0 +1,66 @@
+{
+  "generation": 164,
+  "normal_launcher": "Jouer.cmd",
+  "native_gpu_capture": {
+    "atlas_frame": 128,
+    "directions": 4,
+    "frames_per_direction": 16,
+    "gameplay_unchanged": true,
+    "native_cell": 64,
+    "normal_activation": true,
+    "review": "FIRE-NATIVE-01"
+  },
+  "decisions": [
+    {
+      "id": "STARTER-SKIN-02",
+      "status": "accepted_and_integrated",
+      "user_request": "mettre les armures de base du joueur à 0 ; elles serviront que de skin au départ",
+      "armor": 0,
+      "evasion_penalty": 0,
+      "outfit_count": 5,
+      "bastion_class_armor": 1,
+      "historical_generation_values_preserved": true
+    },
+    {
+      "id": "FIRE-NATIVE-01",
+      "status": "accepted_and_integrated",
+      "user_answer": "Valider les flammes détaillées",
+      "runtime_family": "Flame",
+      "cell_px": 64,
+      "source_frame_px": 128,
+      "range_and_damage_unchanged": true
+    },
+    {
+      "id": "COMBAT-START-01",
+      "status": "superseded_before_activation",
+      "replacement": "STARTER-SKIN-02",
+      "enemy_damage_unchanged": true
+    },
+    {
+      "id": "U01-POP-01",
+      "status": "integrated_since_generation_163",
+      "monsters": 15,
+      "groups": 5,
+      "no_respawn_on_return": true
+    },
+    {
+      "id": "OFFENSE-START-02",
+      "status": "diagnostic_only",
+      "player_damage_unchanged": true,
+      "enemy_hp_unchanged": true,
+      "xp_unchanged": true
+    }
+  ],
+  "source_sha256": {
+    "assets/animations/agent/skill-animation-review-06/flame-atlas.png": "2ef54f2b5a41fc272ab1cd1e753316ac713407e017ff2e4b0d02e1fee1bbb855",
+    "content/core/items/tenue_assaut.json5": "2b4e8bf0cad1d7d7372786c6783db252630c48f33a19fbca430430b5ab08b956",
+    "content/core/items/tenue_technique.json5": "518cd7cea5aebad1e040316afce50113bf232474d0241d8f3e24d6cfc3296b20",
+    "content/core/items/tenue_rituelle.json5": "65f3d8c7549259d5404197b0852d3eee43fdfb3e2646a2183d592778ac96fe69",
+    "content/core/items/tenue_metamorphe.json5": "34ac93d4d24cbbb8d0a0bf280bec2ea4b3c9d220222d7d9a97179b4f35809772",
+    "content/core/items/tenue_traque.json5": "ac1047d29cfdbc73f4691e9bf16d1a7a2c138ef28ed08cc7805178e68d3f742d",
+    "docs/reviews/refonte-histoire-2026-10-16/combat-fixes-01/droite-native.png": "05c79abfb4553e0c9002e29c15ff50a4dfff3cecc6f6e9361715c8d1ca755f36",
+    "docs/reviews/refonte-histoire-2026-10-16/combat-fixes-01/gauche-native.png": "b3166a09ac368bece8af664cf9e7ef686b1497ea623499ebc86a25d9ee86d7bc",
+    "docs/reviews/refonte-histoire-2026-10-16/combat-fixes-01/haut-native.png": "00b0965b362d17a9d65e0048bed8d823c291d51df687a34d48c03e0dca19244b",
+    "docs/reviews/refonte-histoire-2026-10-16/combat-fixes-01/bas-native.png": "7626b999cd760e5f4932d142eebdafb8c5eadb9e22d5acd6c1d78aa809015e61"
+  }
+}

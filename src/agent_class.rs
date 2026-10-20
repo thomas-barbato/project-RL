@@ -41,6 +41,19 @@ pub fn percent(value: u16, percentage: u16) -> u16 {
     (u32::from(value) * u32::from(percentage) / 100).min(u32::from(u16::MAX)) as u16
 }
 
+/// The five historical starts were identified by their initial active skill.
+/// Only the campaign's pre-165 compatibility adapter grants these old items.
+pub fn historical_outfit(start: &AgentClassStart) -> Option<&'static str> {
+    match start.skills.first()?.as_str() {
+        "B01" => Some("core:tenue_assaut"),
+        "D59" => Some("core:tenue_technique"),
+        "T01" => Some("core:tenue_traque"),
+        "FE01" => Some("core:tenue_rituelle"),
+        "M01" => Some("core:tenue_metamorphe"),
+        _ => None,
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -50,7 +63,7 @@ mod tests {
     use semver::Version;
 
     #[test]
-    fn five_agent_starts_have_fixed_attributes_equipped_outfit_and_full_resources() {
+    fn five_agent_starts_have_fixed_attributes_no_armor_and_full_resources() {
         let loaded = ContentLoader::load(
             &[std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content")],
             &Version::new(0, 1, 0),
@@ -109,17 +122,11 @@ mod tests {
             );
             assert_eq!(game.player_effective_primary_attributes(), Some(attributes));
             let body: ContentId = "core:body_armor".parse().unwrap();
-            let torso = game
-                .player_equipment()
-                .equipped(&body)
-                .expect("starter torso equipped");
+            assert_eq!(game.player_equipment().equipped(&body), None);
             assert!(
                 game.player_inventory()
-                    .get(torso)
-                    .unwrap()
-                    .item()
-                    .as_str()
-                    .starts_with("core:tenue_")
+                    .iter()
+                    .all(|entry| { !entry.item().as_str().starts_with("core:tenue_") })
             );
             assert_eq!(game.player_skills().agent_skills().count(), 2);
             assert_eq!(game.player_progression().unspent_skill_points(), 0);

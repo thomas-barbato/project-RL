@@ -1,0 +1,420 @@
+{
+  "count": 15,
+  "guard_combat_added": false,
+  "mode": "isolated_playable_trial",
+  "native_cell": 64,
+  "new_powers_added": false,
+  "normal_generation_unchanged": true,
+  "normal_map_unchanged": true,
+  "player_profile": {
+    "class": "core:bastion",
+    "starting_equipment_unchanged": true
+  },
+  "profiles": [
+    {
+      "ai": "Hunter",
+      "hp": 7,
+      "id": 6,
+      "name": "Cultiste",
+      "number": 22,
+      "position": [
+        13,
+        54
+      ],
+      "range": 1,
+      "raw_damage": 2,
+      "reward": {
+        "level": 1,
+        "xp": 4
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_22_0",
+        "core:street_group_1",
+        "core:street_population_01"
+      ],
+      "variant": 0
+    },
+    {
+      "ai": "Hunter",
+      "hp": 7,
+      "id": 7,
+      "name": "Cultiste",
+      "number": 22,
+      "position": [
+        14,
+        55
+      ],
+      "range": 1,
+      "raw_damage": 2,
+      "reward": {
+        "level": 1,
+        "xp": 4
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_22_1",
+        "core:street_group_1",
+        "core:street_population_01"
+      ],
+      "variant": 1
+    },
+    {
+      "ai": "Hunter",
+      "hp": 7,
+      "id": 8,
+      "name": "Zombie",
+      "number": 120,
+      "position": [
+        3,
+        55
+      ],
+      "range": 1,
+      "raw_damage": 2,
+      "reward": {
+        "level": 1,
+        "xp": 4
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_120_0",
+        "core:street_group_2",
+        "core:street_population_01"
+      ],
+      "variant": 0
+    },
+    {
+      "ai": "Hunter",
+      "hp": 7,
+      "id": 9,
+      "name": "Zombie",
+      "number": 121,
+      "position": [
+        4,
+        55
+      ],
+      "range": 1,
+      "raw_damage": 2,
+      "reward": {
+        "level": 1,
+        "xp": 4
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_121_0",
+        "core:street_group_2",
+        "core:street_population_01"
+      ],
+      "variant": 0
+    },
+    {
+      "ai": "Hunter",
+      "hp": 7,
+      "id": 10,
+      "name": "Zombie",
+      "number": 120,
+      "position": [
+        5,
+        55
+      ],
+      "range": 1,
+      "raw_damage": 2,
+      "reward": {
+        "level": 1,
+        "xp": 4
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_120_1",
+        "core:street_group_2",
+        "core:street_population_01"
+      ],
+      "variant": 1
+    },
+    {
+      "ai": "Hunter",
+      "hp": 7,
+      "id": 11,
+      "name": "Cultiste",
+      "number": 22,
+      "position": [
+        17,
+        37
+      ],
+      "range": 1,
+      "raw_damage": 2,
+      "reward": {
+        "level": 1,
+        "xp": 4
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_22_1",
+        "core:street_group_3",
+        "core:street_population_01"
+      ],
+      "variant": 1
+    },
+    {
+      "ai": "Hunter",
+      "hp": 7,
+      "id": 12,
+      "name": "Cultiste",
+      "number": 22,
+      "position": [
+        19,
+        37
+      ],
+      "range": 1,
+      "raw_damage": 2,
+      "reward": {
+        "level": 1,
+        "xp": 4
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_22_0",
+        "core:street_group_3",
+        "core:street_population_01"
+      ],
+      "variant": 0
+    },
+    {
+      "ai": "Skirmisher",
+      "hp": 4,
+      "id": 13,
+      "name": "Cultiste",
+      "number": 24,
+      "position": [
+        19,
+        35
+      ],
+      "range": 4,
+      "raw_damage": 1,
+      "reward": {
+        "level": 1,
+        "xp": 5
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_24_0",
+        "core:street_group_3",
+        "core:street_population_01"
+      ],
+      "variant": 0
+    },
+    {
+      "ai": "Hunter",
+      "hp": 12,
+      "id": 14,
+      "name": "Zombie",
+      "number": 121,
+      "position": [
+        17,
+        24
+      ],
+      "range": 1,
+      "raw_damage": 3,
+      "reward": {
+        "level": 2,
+        "xp": 5
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_121_0",
+        "core:street_group_4",
+        "core:street_population_01"
+      ],
+      "variant": 0
+    },
+    {
+      "ai": "Hunter",
+      "hp": 12,
+      "id": 15,
+      "name": "Zombie",
+      "number": 120,
+      "position": [
+        19,
+        24
+      ],
+      "range": 1,
+      "raw_damage": 3,
+      "reward": {
+        "level": 2,
+        "xp": 5
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_120_0",
+        "core:street_group_4",
+        "core:street_population_01"
+      ],
+      "variant": 0
+    },
+    {
+      "ai": "Hunter",
+      "hp": 12,
+      "id": 16,
+      "name": "Zombie",
+      "number": 121,
+      "position": [
+        18,
+        23
+      ],
+      "range": 1,
+      "raw_damage": 3,
+      "reward": {
+        "level": 2,
+        "xp": 5
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_121_1",
+        "core:street_group_4",
+        "core:street_population_01"
+      ],
+      "variant": 1
+    },
+    {
+      "ai": "Hunter",
+      "hp": 12,
+      "id": 17,
+      "name": "Cultiste",
+      "number": 22,
+      "position": [
+        18,
+        7
+      ],
+      "range": 1,
+      "raw_damage": 3,
+      "reward": {
+        "level": 2,
+        "xp": 5
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_22_0",
+        "core:street_group_5",
+        "core:street_population_01"
+      ],
+      "variant": 0
+    },
+    {
+      "ai": "Hunter",
+      "hp": 12,
+      "id": 18,
+      "name": "Cultiste",
+      "number": 22,
+      "position": [
+        20,
+        7
+      ],
+      "range": 1,
+      "raw_damage": 3,
+      "reward": {
+        "level": 2,
+        "xp": 5
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_22_1",
+        "core:street_group_5",
+        "core:street_population_01"
+      ],
+      "variant": 1
+    },
+    {
+      "ai": "Hunter",
+      "hp": 12,
+      "id": 19,
+      "name": "Cultiste",
+      "number": 22,
+      "position": [
+        17,
+        8
+      ],
+      "range": 1,
+      "raw_damage": 3,
+      "reward": {
+        "level": 2,
+        "xp": 5
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_22_0",
+        "core:street_group_5",
+        "core:street_population_01"
+      ],
+      "variant": 0
+    },
+    {
+      "ai": "Skirmisher",
+      "hp": 9,
+      "id": 20,
+      "name": "Cultiste",
+      "number": 24,
+      "position": [
+        19,
+        5
+      ],
+      "range": 5,
+      "raw_damage": 2,
+      "reward": {
+        "level": 2,
+        "xp": 7
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_24_1",
+        "core:street_group_5",
+        "core:street_population_01"
+      ],
+      "variant": 1
+    }
+  ],
+  "review": "U01-POP-01",
+  "scenes": [
+    {
+      "id": "arrival",
+      "player": [
+        7,
+        62
+      ]
+    },
+    {
+      "id": "first-cultists",
+      "player": [
+        12,
+        56
+      ]
+    },
+    {
+      "id": "west-zombies",
+      "player": [
+        6,
+        55
+      ]
+    },
+    {
+      "id": "central-cultists",
+      "player": [
+        18,
+        39
+      ]
+    },
+    {
+      "id": "north-zombies",
+      "player": [
+        18,
+        26
+      ]
+    },
+    {
+      "id": "last-cultists",
+      "player": [
+        18,
+        10
+      ]
+    }
+  ]
+}

@@ -2,11 +2,47 @@
 use super::*;
 use crate::cryogenic_camp::{self as camp, pos};
 #[cfg(debug_assertions)]
+#[path = "art_finish_capture.rs"]
+mod art_finish_capture;
+#[cfg(debug_assertions)]
+#[path = "art_finish_capture_02.rs"]
+mod art_finish_capture_02;
+#[cfg(debug_assertions)]
+#[path = "art_finish_capture_03.rs"]
+mod art_finish_capture_03;
+#[cfg(debug_assertions)]
+#[path = "art_finish_capture_04.rs"]
+mod art_finish_capture_04;
+#[cfg(debug_assertions)]
+#[path = "art_finish_capture_05.rs"]
+mod art_finish_capture_05;
+#[cfg(debug_assertions)]
+#[path = "art_finish_completion_capture.rs"]
+mod art_finish_completion_capture;
+#[cfg(debug_assertions)]
 #[path = "cryogenic_camp_capture.rs"]
 mod capture;
+#[cfg(debug_assertions)]
+#[path = "sewer_review_capture.rs"]
+mod sewer_review_capture;
+#[cfg(debug_assertions)]
+#[path = "street_defense_capture.rs"]
+mod street_defense_capture;
+#[cfg(debug_assertions)]
+#[path = "street_population_app.rs"]
+mod street_population_app;
+#[cfg(debug_assertions)]
+#[path = "street_repairs_capture.rs"]
+mod street_repairs_capture;
 #[cfg(test)]
 #[path = "cryogenic_camp_tests.rs"]
 mod tests;
+#[cfg(debug_assertions)]
+#[path = "torso_icons_capture.rs"]
+mod torso_icons_capture;
+#[cfg(debug_assertions)]
+#[path = "world_fixes_capture.rs"]
+mod world_fixes_capture;
 
 impl AsciiApp {
     /// City-specific regression fixtures must keep testing their original map.
@@ -42,17 +78,20 @@ impl AsciiApp {
             kind: definition.hub.kind.clone(),
             depth: 0,
         })?;
-        // Keep the existing destination provider until the first new sector is ready.
-        self.game.declare_deferred_connection(
-            zone.clone(),
-            pos(scene.exits[0]),
-            project_rl::game::ZoneInfo {
-                id: definition.destination.zone.id.clone(),
-                name: definition.destination.zone.name.clone(),
-                kind: definition.destination.zone.kind.clone(),
-                depth: definition.destination.zone.depth,
-            },
-        )?;
+        let destination = project_rl::game::ZoneInfo {
+            id: definition.destination.zone.id.clone(),
+            name: definition.destination.zone.name.clone(),
+            kind: definition.destination.zone.kind.clone(),
+            depth: definition.destination.zone.depth,
+        };
+        // Generation 154 and older keep their exact deferred destination.
+        let destination = if self.generation_version >= PRISON_STREET_GENERATION_VERSION {
+            crate::prison_street::info(destination)
+        } else {
+            destination
+        };
+        self.game
+            .declare_deferred_connection(zone.clone(), pos(scene.exits[0]), destination)?;
         let mut merchant = definition
             .hub_merchant
             .clone()

@@ -1,0 +1,50 @@
+{
+  "review": "AGGRO-START-01",
+  "date": "2026-10-20",
+  "integrated": true,
+  "generation_unchanged": 165,
+  "existing_campaigns_supported": true,
+  "new_save_format": false,
+  "combat_stats_changed": false,
+  "baseline_reproduced": {
+    "unhidden_traqueur_at_six_cells": [
+      { "monster": 22, "level": 1, "detected": false, "attacks_in_eight_waits": 0 },
+      { "monster": 24, "level": 1, "detected": false, "attacks_in_eight_waits": 0 },
+      { "monster": 22, "level": 2, "detected": false, "attacks_in_eight_waits": 0 }
+    ],
+    "stationary_ranged_enemy_first_idle_turn": 11
+  },
+  "verification": [
+    {
+      "command": "cargo test --locked --lib campaign_aggression -- --nocapture",
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "command": "target/debug/deps/project_rl-f01558a79c50b56b.exe ai:: game::game_state::perception:: pursuit_lifecycle lost_target_is_searched active_camouflage agent_stealth stealth:: jamming_and_purge --nocapture",
+      "passed": 75,
+      "failed": 0,
+      "overlap_with_first_command": 1
+    },
+    {
+      "command": "cargo test --locked --bin project-rl campaign_aggression -- --nocapture",
+      "passed": 3,
+      "failed": 0,
+      "class_profile_distance_cases": 60,
+      "actual_city_actors_tested": 15,
+      "consecutive_ranged_attack_turns": 24
+    },
+    {
+      "command": "cargo test --locked --bin project-rl -- street_population_app::tests sewer_app::tests class_start_tests agent_resume_compat_tests",
+      "passed": 20,
+      "failed": 0
+    }
+  ],
+  "unique_targeted_tests_passed": 101,
+  "debug_build": { "command": "cargo build --locked --bin project-rl", "passed": true },
+  "release_build": { "command": "cargo build --locked --release --bin project-rl", "passed": true },
+  "format_check": "passed",
+  "git_diff_check": "passed",
+  "manual_interactive_playthrough": false,
+  "player_save_files_modified": false
+}

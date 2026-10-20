@@ -1,0 +1,73 @@
+{
+  "review": "STYLE-MAP-U01-04",
+  "accepted": true,
+  "normal_integration": true,
+  "native_cell": 64,
+  "map_pixels": [
+    1664,
+    4224
+  ],
+  "native_views": 9,
+  "comparison": "accepted review versus normal renderer, without review overrides",
+  "changed_pixels": {
+    "gate": 0,
+    "south-street": 0,
+    "courtyard": 0,
+    "middle-street": 0,
+    "house-closed": 0,
+    "north-street": 0,
+    "warehouse": 0,
+    "north-exit": 0,
+    "house-open": 0,
+    "whole-map": 0
+  },
+  "raw_changed_pixels": {
+    "gate": 0,
+    "south-street": 0,
+    "courtyard": 0,
+    "middle-street": 0,
+    "house-closed": 0,
+    "north-street": 0,
+    "warehouse": 0,
+    "north-exit": 0,
+    "house-open": 252
+  },
+  "external_ui_hover_pixels": {
+    "house-open": 252
+  },
+  "runtime_asset_hashes_match": true,
+  "render_read_only": true,
+  "camp_round_trip": true,
+  "world_generation": 159,
+  "captures": "artifacts/street-defects-review-01/engine05",
+  "production_assets": [
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/surface-wear.png",
+      "sha256": "16cb67557ae6b56fa7ee32035470100a83650f721cd43545d385eecd09632b36"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/GRIM-U01-01.png",
+      "sha256": "2c84fecd9ceb2a794594f8ccb1f09d6653aa6ffd38379a20e4e4dfc7baef71f6"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+      "sha256": "6a016733564e23e4d8d2f85458db3f5d7f71e52b078520c2e1abdf8099fce956"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+      "sha256": "0b10f5554c5e12c91f8868d280d57c5a2d466aac9ce23ba9374edd680edccdcb"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+      "sha256": "0f08bcd7be6558b69fa31cf5fbc554f9ab449374eff0d779d3a77bfc6a719de3"
+    }
+  ],
+  "cargo_build_locked": "passed",
+  "cargo_check_locked_release": "passed",
+  "prison_street_tests": {
+    "passed": 12,
+    "failed": 0
+  },
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed"
+}

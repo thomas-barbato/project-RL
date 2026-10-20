@@ -1,0 +1,32 @@
+{
+  "review": "EG-NEC-02",
+  "status": "numbers_and_implementation_pending_user_review",
+  "approved_concept": "Un cultiste accompagne les zombies et relève des monstres tombés.",
+  "appearance": {
+    "existing_monster": 132,
+    "variant": 0,
+    "player_visible_name": "Cultiste",
+    "art_redesign": false
+  },
+  "proposed_placement": "Un réanimateur accompagne certaines meutes, en retrait, sans remplacer un zombie. Deux groupes au maximum dans les trois exemples de ce premier donjon ; les autres meutes restent simples.",
+  "proposed_rules": [
+    "Il peut relever un zombie mort pendant le combat, à quatre cases au maximum, sans mur entre lui et le corps.",
+    "La réanimation demande un tour de préparation. Elle échoue si le cultiste meurt, est étourdi, perd la ligne de vue ou si la case du corps est occupée.",
+    "Il relève un seul zombie à la fois, avec 50 % des PV maximum correspondant à son niveau.",
+    "Après une réanimation réussie, il attend quatre tours avant de recommencer.",
+    "Un même zombie ne peut être relevé qu’une seule fois, même par un autre cultiste.",
+    "Un zombie relevé ne donne ni XP ni butin supplémentaires. Son premier gain d’XP et son premier butin restent acquis.",
+    "Les cadavres décoratifs, les cultistes, les autres familles et les boss ne sont pas des cibles de cette première version."
+  ],
+  "values": {
+    "range_cells": 4,
+    "preparation_turns": 1,
+    "cooldown_turns": 4,
+    "restored_hp_percent": 50,
+    "max_raises_per_zombie": 1,
+    "additional_xp": false,
+    "additional_loot": false
+  },
+  "numeric_stats_and_active_ability_implemented": false,
+  "visual_cast_effect_pending": true
+}

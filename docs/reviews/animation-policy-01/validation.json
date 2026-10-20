@@ -1,0 +1,61 @@
+{
+  "review": "ANIM-POLICY-01",
+  "date": "2026-10-20",
+  "status": "targeted_validation_passed",
+  "normal_game_activation": true,
+  "build": {
+    "debug": "passed",
+    "release_check": "passed"
+  },
+  "focused_tests": {
+    "combat_visuals_and_event_reactions": 19,
+    "visual_effects": 19,
+    "natural_offscreen_anchor": 1,
+    "effect_geometry": 4,
+    "all_active_demo_state_isolation": 1,
+    "engine_blizzard": 3,
+    "total_passed": 47
+  },
+  "pixels": {
+    "native_tile": 64,
+    "comparisons": 15,
+    "lighting_cases": 30,
+    "phases_each": 72,
+    "protected_cell_leaks": 0,
+    "blizzard_rgb_error": 0,
+    "blizzard_comparison": "Compare each production phase to its accepted source phase, accounting for the approved 1.30 cycle duration."
+  },
+  "active_skills": {
+    "count": 68,
+    "native_frames": 816,
+    "normal_and_reduced": true,
+    "state_rng_history_unchanged": true,
+    "persistent_writes": 0
+  },
+  "browser": {
+    "page": "http://127.0.0.1:8765/apercu-animations.html",
+    "native_comparisons": 15,
+    "dark_and_bright_available": true,
+    "pause_and_scrub": "passed",
+    "replay": "passed",
+    "double_slowdown_disabled": true
+  },
+  "performance": {
+    "cold_ui_diagnostic": "passed",
+    "evidence": "performance.json",
+    "scope": "World/menu/fire and skill demo fire/cold/drone; no before/after performance comparison. Cold upload costs are reported separately and remain visible in these measurements."
+  },
+  "global_suite": {
+    "status": "exploratory_run_interrupted_after_failures",
+    "completed": false,
+    "note": "The broad run was stopped after about 498 of 1062 tests. Old timing expectations in presentation tests were updated and all targeted presentation checks then passed. Other observed failures were not investigated in this visual change; no claim that the full suite passes.",
+    "other_observed_failure_areas": [
+      "mixed_weapon_out_of_ammunition_refuses_without_time_movement_or_melee_fallback",
+      "city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses",
+      "effects_lab: catalytic preview / keyboard chaining / equipment",
+      "current_classes_start_with_real_equipment_without_generic_test_inventory",
+      "narrative: markers and relay coordinates",
+      "playable_trial_guidance_uses_real_travel_and_keeps_returned_loot"
+    ]
+  }
+}

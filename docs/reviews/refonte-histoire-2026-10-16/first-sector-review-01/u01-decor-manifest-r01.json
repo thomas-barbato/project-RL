@@ -1,0 +1,297 @@
+{
+  "review_id": "DEC-U01-01-r01",
+  "tool": "built-in image_gen",
+  "conditioning": "Crop atlas cells and resize to 64px; contain car in 192x128 without stretching. Original sources preserved.",
+  "source_atlas_sha256": "82276b1715628d9eef070f2b46bd8b61f53d422901bf1509410540d586ec9f5d",
+  "source_car_sha256": "deb4dafb952a454cc75adbdf9364e90abf368c23f56cdb3fab57d23e3d6a987e",
+  "items": [
+    {
+      "id": "DEC-U01-01-r01",
+      "name": "Asphalte",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-01-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        3,
+        3,
+        320,
+        297
+      ],
+      "sha256": "b9e7d1b6eb73c829c62c339fcf53847601c3d9ec6fe47f055cc403274bfdd32e",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-02-r01",
+      "name": "Asphalte fissuré",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-02-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        329,
+        3,
+        643,
+        297
+      ],
+      "sha256": "d9d7d693f07e94bbdc81121096f660712cd2d2b0ec07cace5865c8df534c2c50",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-03-r01",
+      "name": "Trottoir",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-03-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        652,
+        3,
+        966,
+        297
+      ],
+      "sha256": "61efd66d2cc621d80cb5e975073bc11f2c67874cf42df9c74a67553d9d3700c7",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-04-r01",
+      "name": "Trottoir abîmé",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-04-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        975,
+        3,
+        1292,
+        297
+      ],
+      "sha256": "47faee31878767a7670f3901ab73dfa9fa7dfd26b11121df7d2adde8e06503b2",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-05-r01",
+      "name": "Marquage horizontal",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-05-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        3,
+        304,
+        320,
+        599
+      ],
+      "sha256": "a90950255eccde67d32407cb87cb81ee355e9f6b0f8c9832d0b06f9e25e0a187",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-06-r01",
+      "name": "Marquage vertical",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-06-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        329,
+        304,
+        643,
+        599
+      ],
+      "sha256": "7b0dd5542f16df2bd55a1ff6e4ff9627efcb4729f7cd116ed82ca069257caf5f",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-07-r01",
+      "name": "Bordure horizontale",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-07-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        652,
+        304,
+        966,
+        599
+      ],
+      "sha256": "f2c234b40ca8b769d6d900cfc462b887c4fd346ed38a361e60caa8b1510b7849",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-08-r01",
+      "name": "Bordure verticale",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-08-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        975,
+        304,
+        1292,
+        599
+      ],
+      "sha256": "83101b74a566d572c5da70c1f5cb8bbfba0dc6158b9ea5e389cb5eb5166963cc",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-09-r01",
+      "name": "Façade nord",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-09-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        3,
+        607,
+        320,
+        887
+      ],
+      "sha256": "f8ccad6b730cfea63cf15acc445f1c297b81f810c9f06f868b390324fc742a30",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-10-r01",
+      "name": "Façade sud",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-10-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        329,
+        607,
+        643,
+        887
+      ],
+      "sha256": "9daf0f491927600429ac34d0e3ebe90b0ab3a43c9a198b97f9cf16ef09d77b73",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-11-r01",
+      "name": "Façade ouest",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-11-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        652,
+        607,
+        966,
+        887
+      ],
+      "sha256": "677ab5e11f38fe82d28131d7ab2d03013f21deca86ff075381a447c73f5228f8",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-12-r01",
+      "name": "Façade est",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-12-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        975,
+        607,
+        1292,
+        887
+      ],
+      "sha256": "128c1c2df7e75c2d991b6c3e331b5b551335f68021c3c13dca500fbc546295ee",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-13-r01",
+      "name": "Bloc de barricade",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-13-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        3,
+        895,
+        320,
+        1211
+      ],
+      "sha256": "a1314e773b8b3eef746d2ec67fa9173dc51e6e1cd5ef7af25d88db3f6ff91d75",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-14-r01",
+      "name": "Débris de béton",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-14-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        329,
+        895,
+        643,
+        1211
+      ],
+      "sha256": "734ea1497ba5c326a65f35e5070cb9c98238aa74a584d677fdaa12e3fd7792b0",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-15-r01",
+      "name": "Grille de drainage",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-15-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        652,
+        895,
+        966,
+        1211
+      ],
+      "sha256": "b217ffb485ffa36c864594df69a45eb571011ac9e99270e18e7c3f9d42b85f4e",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-16-r01",
+      "name": "Seuil ouvert",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-16-r01.png",
+      "size": [
+        64,
+        64
+      ],
+      "crop_box": [
+        975,
+        895,
+        1292,
+        1211
+      ],
+      "sha256": "20737eba0ec2b0983493d0bac7f70537934b72da76ab2bc5ffbe196fa0badbc0",
+      "status": "candidate_not_accepted"
+    },
+    {
+      "id": "DEC-U01-17-r02",
+      "name": "Voiture abandonnée",
+      "file": "assets/source-art/first-sector-review-01/u01-r01/DEC-U01-17-r02.png",
+      "size": [
+        192,
+        128
+      ],
+      "source": "DEC-U01-car-source-r02.png",
+      "footprint_proposal": [
+        3,
+        2
+      ],
+      "sha256": "b526bb0cec3c8d5d7a1f53e0aee1332571709110faf7663413aea15c1e537b2d",
+      "status": "candidate_not_accepted"
+    }
+  ]
+}

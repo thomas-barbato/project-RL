@@ -1,0 +1,30 @@
+{
+  "review": "ART-FINISH-04",
+  "date": "2026-10-19",
+  "status": "accepted_and_integrated",
+  "commands": [
+    {"command": "cargo test --locked --bin project-rl game_art:: -- --test-threads=1", "passed": 43, "failed": 0, "filtered_out": 983},
+    {"command": "cargo build --locked", "result": "passed"},
+    {"command": "cargo check --locked --release", "result": "passed; compilation check only, not a linked release executable"},
+    {"command": "cargo fmt --all -- --check", "result": "passed"},
+    {"command": "git diff --check", "result": "passed"},
+    {"command": "--ui-cold-art-finish-04-integration + verify_art_finish_integration_04.py", "result": "8 sample panels and 2 lit scene viewports exactly equal to frozen accepted references"},
+    {"command": "python -m py_compile integrate_art_finish_review_04.py verify_art_finish_integration_04.py show_art_finish_review_04.py", "result": "passed; scripts in tools/reviews"}
+  ],
+  "packaged_exports": 14,
+  "previous_asset_files_unchanged": 612,
+  "runtime_dependency": "embedded assets/sprites/art-finish-04 only",
+  "inspection": "Shared image provider and composition; native canvases, fixed body/feet and unsupported pose/palette fallback covered by graphical unit tests",
+  "visual_inspection": ["integrated house", "integrated street"],
+  "full_suite_run": false,
+  "performance_benchmark_run": false,
+  "browser_validation": "Static local links verified by accepted-page generator; no browser automation",
+  "known_prior_failure": {
+    "test": "suspension_rebuilds_the_selected_protocol_before_replay",
+    "evidence": "../art-finish-review-02/creation-menu-baseline-test.json",
+    "baseline": "Already confirmed without the prior portrait-menu change; not rerun for this visual-only integration",
+    "production_save_rules_modified": false
+  },
+  "cleanup": "integration-cleanup.json: redundant raw captures removed; source masters, frozen accepted references and current integrated captures retained",
+  "furniture_audit": "Remains scheduled after the actor visual overhaul, beginning with the reported bed"
+}

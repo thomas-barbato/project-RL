@@ -1,4 +1,8 @@
 //! Native rendering of the already approved mine, grenade and residue artwork.
+use crate::animation_policy::{
+    material as load_material, restore_material as gl_use_default_material,
+    use_material as gl_use_material,
+};
 use crate::effect_geometry::LazyTexture;
 use macroquad::miniquad::{
     BlendFactor, BlendState, BlendValue, Equation, PipelineParams, UniformDesc, UniformType,
@@ -28,7 +32,7 @@ struct Art {
     born: std::collections::BTreeMap<u64, f64>,
 }
 fn load(bytes: &'static [u8]) -> LazyTexture {
-    LazyTexture::plain(bytes, FilterMode::Linear)
+    LazyTexture::fitted(bytes, FilterMode::Linear)
 }
 const VERTEX: &str = r#"#version 100
 attribute vec3 position;attribute vec2 texcoord;attribute vec4 color0;uniform mat4 Model;uniform mat4 Projection;
@@ -199,7 +203,11 @@ pub(super) fn draw(
     ART.with(|cache| {
         let mut cache = cache.borrow_mut();
         let art = cache.get_or_insert_with(Art::load);
-        let time = if reduced { 0.0 } else { now as f32 };
+        let time = if reduced {
+            0.0
+        } else {
+            crate::animation_policy::clock(now) as f32
+        };
         art.born.retain(|serial, _| {
             game.player_agent_mine_residues()
                 .iter()
@@ -207,71 +215,100 @@ pub(super) fn draw(
         });
         for zone in game.player_agent_mine_residues() {
             let born = *art.born.entry(zone.serial).or_insert(now);
-            if now - born < 0.46 {
+            if crate::animation_policy::age("SM02", now, born) < 0.46 {
                 continue;
             }
             let Some((bounds, scale)) = art.mask(&zone.cells, &rect) else {
                 continue;
             };
-            if zone.variant == AgentMineVariant::Cold {
-                draw_texture_ex(
-                    &art.ice,
-                    bounds.x,
-                    bounds.y,
-                    tint(WHITE, 0.72 + (time * 0.65).sin() * 0.025),
-                    DrawTextureParams {
-                        dest_size: Some(bounds.size()),
-                        ..Default::default()
-                    },
-                );
-            } else {
-                for (i, at) in zone.cells.iter().copied().enumerate() {
-                    let Some(r) = rect(at) else {
-                        continue;
-                    };
-                    let p = r.center();
-                    if zone.variant == AgentMineVariant::Fire {
-                        for (dx, dy) in [(-18., 6.), (15., 14.), (0., -13.)] {
-                            let frame = ((time * 8.) as usize + i) % 8;
-                            draw_texture_ex(
-                                &art.flame,
-                                p.x + (dx - 30.) * scale,
-                                p.y + (dy - 38.) * scale,
-                                tint(WHITE, 0.79),
-                                DrawTextureParams {
-                                    source: Some(Rect::new(frame as f32 * 128., 0., 128., 128.)),
-                                    dest_size: Some(vec2(60., 48.) * scale),
-                                    ..Default::default()
-                                },
-                            );
-                        }
+            let Some(anchor) = crate::natural_effect::anchor(zone.center, 2, &rect) else {
+                continue;
+            };
+            let visual_bounds = Rect::new(
+                bounds.x - 64. * scale,
+                bounds.y - 64. * scale,
+                bounds.w + 128. * scale,
+                bounds.h + 128. * scale,
+            );
+            crate::natural_effect::on_floor(
+                visual_bounds,
+                zone.center,
+                anchor,
+                game.map(),
+                &rect,
+                false,
+                || {
+                    if zone.variant == AgentMineVariant::Cold {
+                        draw_texture_ex(
+                            &art.ice,
+                            bounds.x,
+                            bounds.y,
+                            tint(WHITE, 0.72 + (time * 0.65).sin() * 0.025),
+                            DrawTextureParams {
+                                dest_size: Some(bounds.size()),
+                                ..Default::default()
+                            },
+                        );
                     } else {
-                        let n = seed(at);
-                        let phase = unit(n ^ 31) * std::f32::consts::TAU;
-                        let dx = (time * (0.7 + unit(n ^ 47)) + phase).sin() * 5.
-                            + (time * 1.7 + phase * 2.3).sin() * 2.;
-                        let dy = (time * (0.5 + unit(n ^ 61)) + phase * 1.9).sin() * 4.;
-                        let w = 94. + (time * 0.8 + phase).sin() * 5.;
-                        let h = 84. + (time * 1.1 + phase * 0.7).sin() * 3.;
-                        let (from, to, mix) = gas_states(at, time);
-                        for (frame, opacity) in [(from, 1. - mix), (to, mix)] {
-                            draw_texture_ex(
-                                &art.gas,
-                                p.x + (-w * 0.5 + dx) * scale,
-                                p.y + (-h * 0.5 + dy) * scale,
-                                tint(WHITE, 0.62 * opacity),
-                                DrawTextureParams {
-                                    source: Some(Rect::new(frame as f32 * 256., 0., 256., 256.)),
-                                    dest_size: Some(vec2(w, h) * scale),
-                                    flip_x: n & 1 != 0,
-                                    flip_y: n & 2 != 0,
-                                    ..Default::default()
-                                },
-                            );
+                        for (i, at) in zone.cells.iter().copied().enumerate() {
+                            let Some(r) = rect(at) else {
+                                continue;
+                            };
+                            let p = r.center();
+                            if zone.variant == AgentMineVariant::Fire {
+                                for (dx, dy) in [(-18., 6.), (15., 14.), (0., -13.)] {
+                                    let frame = ((time * 8.) as usize + i) % 8;
+                                    draw_texture_ex(
+                                        &art.flame,
+                                        p.x + (dx - 30.) * scale,
+                                        p.y + (dy - 38.) * scale,
+                                        tint(WHITE, 0.79),
+                                        DrawTextureParams {
+                                            source: Some(Rect::new(
+                                                frame as f32 * 128.,
+                                                0.,
+                                                128.,
+                                                128.,
+                                            )),
+                                            dest_size: Some(vec2(60., 48.) * scale),
+                                            ..Default::default()
+                                        },
+                                    );
+                                }
+                            } else {
+                                let n = seed(at);
+                                let phase = unit(n ^ 31) * std::f32::consts::TAU;
+                                let dx = (time * (0.7 + unit(n ^ 47)) + phase).sin() * 5.
+                                    + (time * 1.7 + phase * 2.3).sin() * 2.;
+                                let dy = (time * (0.5 + unit(n ^ 61)) + phase * 1.9).sin() * 4.;
+                                let w = 94. + (time * 0.8 + phase).sin() * 5.;
+                                let h = 84. + (time * 1.1 + phase * 0.7).sin() * 3.;
+                                let (from, to, mix) = gas_states(at, time);
+                                for (frame, opacity) in [(from, 1. - mix), (to, mix)] {
+                                    draw_texture_ex(
+                                        &art.gas,
+                                        p.x + (-w * 0.5 + dx) * scale,
+                                        p.y + (-h * 0.5 + dy) * scale,
+                                        tint(WHITE, 0.62 * opacity),
+                                        DrawTextureParams {
+                                            source: Some(Rect::new(
+                                                frame as f32 * 256.,
+                                                0.,
+                                                256.,
+                                                256.,
+                                            )),
+                                            dest_size: Some(vec2(w, h) * scale),
+                                            flip_x: n & 1 != 0,
+                                            flip_y: n & 2 != 0,
+                                            ..Default::default()
+                                        },
+                                    );
+                                }
+                            }
                         }
                     }
-                }
-            }
+                },
+            );
             gl_use_default_material();
         }
         for mine in game.player_agent_mines() {
@@ -280,7 +317,7 @@ pub(super) fn draw(
             };
             let scale = r.w / 64.;
             let p = r.center();
-            let blink = reduced || (now * 24.) as usize % 18 < 7;
+            let blink = reduced || (crate::animation_policy::clock(now) * 24.) as usize % 18 < 7;
             let color = elemental(mine.variant);
             let light = if blink { 1.0 } else { 0.13 };
             art.lens.set_uniform(
@@ -401,6 +438,60 @@ pub(super) fn burst(
         } else {
             &cells
         };
+        if matches!(skill, "SM00" | "SM02" | "SM03" | "HY07" | "SG00") {
+            let index = match skill {
+                "SM02" => 1,
+                "SM03" => 2,
+                _ => 0,
+            };
+            let duration = if index == 1 {
+                0.46
+            } else if index == 2 {
+                0.40
+            } else {
+                0.44
+            };
+            if (0.0..duration).contains(&age) {
+                let frame = ((age / duration * 6.) as usize).min(5);
+                if skill == "SG00" {
+                    let diameter = (f32::from(radius) * 2. + 1.) * target.w * 1.12;
+                    crate::natural_effect::draw(
+                        &art.fragment,
+                        Rect::new(
+                            (frame % 3) as f32 * 512.,
+                            (frame / 3) as f32 * 512.,
+                            512.,
+                            512.,
+                        ),
+                        Rect::new(
+                            p.x - diameter * 0.5,
+                            p.y - diameter * 0.5,
+                            diameter,
+                            diameter,
+                        ),
+                        0.,
+                        0.88,
+                        false,
+                        to,
+                        target,
+                        map,
+                        &rect,
+                    );
+                } else {
+                    crate::natural_effect::sheet(
+                        &art.bursts[index],
+                        frame,
+                        to,
+                        radius,
+                        0.88,
+                        false,
+                        map,
+                        &rect,
+                    );
+                }
+            }
+            return;
+        }
         if art.mask(cells, &rect).is_none() {
             return;
         }

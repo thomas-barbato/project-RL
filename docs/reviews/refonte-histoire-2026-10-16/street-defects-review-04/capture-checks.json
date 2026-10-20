@@ -1,0 +1,123 @@
+{
+  "camp_round_trip": true,
+  "living_actor_assets_unchanged": true,
+  "map_cells": [
+    26,
+    66
+  ],
+  "method": "complete retained scenery modules plus generated surface material; actors excluded",
+  "native_cell": 64,
+  "normal_integration": false,
+  "overview_only_bypasses_scenery_circle": true,
+  "real_vision_radius": 6,
+  "render_read_only": true,
+  "review": "STYLE-MAP-U01-04",
+  "same_lighting": true,
+  "scenes": [
+    {
+      "cell": 64,
+      "id": "gate",
+      "player": [
+        8,
+        59
+      ],
+      "render_read_only": true
+    },
+    {
+      "cell": 64,
+      "id": "south-street",
+      "player": [
+        18,
+        49
+      ],
+      "render_read_only": true
+    },
+    {
+      "cell": 64,
+      "id": "courtyard",
+      "player": [
+        15,
+        41
+      ],
+      "render_read_only": true
+    },
+    {
+      "cell": 64,
+      "id": "middle-street",
+      "player": [
+        18,
+        33
+      ],
+      "render_read_only": true
+    },
+    {
+      "cell": 64,
+      "id": "house-closed",
+      "player": [
+        11,
+        23
+      ],
+      "render_read_only": true
+    },
+    {
+      "cell": 64,
+      "id": "north-street",
+      "player": [
+        18,
+        17
+      ],
+      "render_read_only": true
+    },
+    {
+      "cell": 64,
+      "id": "warehouse",
+      "player": [
+        6,
+        8
+      ],
+      "render_read_only": true
+    },
+    {
+      "cell": 64,
+      "id": "north-exit",
+      "player": [
+        18,
+        2
+      ],
+      "render_read_only": true
+    },
+    {
+      "cell": 64,
+      "id": "house-open",
+      "player": [
+        12,
+        20
+      ],
+      "render_read_only": true
+    }
+  ],
+  "surface_scope": [
+    "street",
+    "walls",
+    "buildings",
+    "interiors",
+    "roofs",
+    "car"
+  ],
+  "world_pixels": [
+    1664,
+    4224
+  ],
+  "changed_pixels": {
+    "gate": 363573,
+    "south-street": 397834,
+    "courtyard": 410154,
+    "middle-street": 420687,
+    "house-closed": 412043,
+    "north-street": 411846,
+    "warehouse": 393393,
+    "north-exit": 259521,
+    "house-open": 413173
+  },
+  "review_page": "artifacts/street-defects-review-01/index.html"
+}

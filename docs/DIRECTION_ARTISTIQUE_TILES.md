@@ -2,12 +2,239 @@
 
 Version 1 — 5 octobre 2026.
 
+### Référence de finition CIVILS-U01-08 — accord du 19 octobre 2026
+
+Le joueur valide les cinq dessins de corps civils, leurs dix-huit placements
+(dont cinq en intérieur) et les dix-neuf décors de sang. L'accord et les pixels
+exacts sont dans `reviews/refonte-histoire-2026-10-16/street-civilians-review-08/`.
+Il juge cette finition supérieure à celle des personnages, armures, armes et
+monstres actuels et demande un audit avant toute refonte de ces catégories.
+
+Règles à conserver pour les prochains lots, avec comparaison à taille native :
+
+- La case reste de 64 px et la projection demeure celle du camp accepté.
+  Définir l'emprise de l'objet avant fabrication. Les corps de ce lot utilisent
+  une toile de 80 × 48 px avec marges ; leur silhouette garde l'échelle humaine.
+- Dessiner chaque objet entier sur un vrai fond transparent. Aucune coupe
+  d'illustration de carte, aucun sol ou voisin collé au contour. Conserver les
+  sources et conditionner le dessin complet sans étirement.
+- Travailler une finition de jeu lisible : volumes nets, ombres par masses,
+  matières mates et usées, plis et ruptures placés selon l'objet. Le détail doit
+  rester utile à la taille de jeu ; un grand original ne suffit pas à le prouver.
+- Conserver les contours sombres lisibles sans transformer tous les petits
+  volumes en bordures épaisses uniformes. Préserver les transitions de bord
+  des exports natifs ; ne pas obtenir le rendu 64 px en agrandissant un ancien
+  petit sprite.
+- Varier sobrement les vêtements et leurs teintes pour distinguer les corps.
+  Le sang utilise des rouges sombres, bordeaux et bruns, avec quelques accents
+  plus frais. Garder le sol et les silhouettes lisibles dans l'éclairage réel.
+- Fabriquer les flaques et traînées comme décors séparés. Les blessures propres
+  au corps peuvent faire partie de son dessin. Une mutilation dessinée et voulue
+  ne justifie pas une silhouette coupée accidentellement lors de l'export.
+- Composer des scènes liées aux lieux et aux dégâts, avec poses et orientations
+  variées, sans quadrillage de copies ni placements systématiques. Préserver les
+  seuils et passages ; la boîte d'image ne définit pas une collision.
+- Placer les corps et le sang sous les acteurs. Un décor intérieur rattaché à
+  son toit ne se dessine que lorsque la pièce est dévoilée. Les sources de
+  lumière et l'usure commune restent celles du moteur.
+- Revoir les ressources numérotées et leur composition avec les acteurs à taille
+  réelle, sur la carte éclairée. L'accord sur cette finition ne valide pas
+  d'avance de nouvelles silhouettes, animations, morts de combat ou règles.
+
+Ces règles décrivent le lot effectivement montré et accepté ; elles ne fixent
+ni angle numérique de caméra ni nouvelle palette chiffrée. L'audit demandé doit
+séparer défaut de source, changement d'échelle, filtrage et choix de style.
+
+Le conditionnement accepté réduit l'original isolé avec Lanczos, conserve les
+transitions d'alpha utiles et place l'objet entier dans sa toile native. Le
+filtre de dessin du moteur reste `Nearest`. Cela n'impose ni palette réduite
+ni contours crénelés : ne pas confondre ce filtre avec une obligation de pixel
+art grossier. Les orientations de placement du lot sont des rotations à angle
+droit sans rééchantillonnage.
+
+L'audit ART-QUALITY-01 est conservé dans
+`reviews/refonte-histoire-2026-10-16/art-quality-audit-01/AUDIT.md`, avec une
+planche du rendu actuel à échelle constante. Il confirme des écarts de finition
+et certains chemins historiques encore agrandis. Ses recommandations de lot
+pilote ne constituent pas une autorisation de refaire les acteurs existants.
+
+Le joueur demande ensuite d'appliquer ces recommandations et de montrer le
+résultat ensemble avant décision. **ART-FINISH-01** prépare donc un lot pilote
+complet de treize candidats, avec prises à une/deux mains, palettes et scènes
+éclairées. La revue est dans
+`reviews/refonte-histoire-2026-10-16/art-finish-review-01/`. Le 19 octobre,
+le joueur répond **« Valider le lot complet »** : les treize dessins, les six
+configurations de mains, les sept palettes et les deux comparaisons en carte
+sont acceptés. `acceptance.json` conserve les empreintes exactes. Les exports
+embarqués vont dans `assets/sprites/art-finish-01/` et servent au plateau
+comme à l'inspection. Le PNJ du camp et les corps civils restent les références.
+
+Conserver pour la suite les matières mates, l'usure située, les volumes par
+masses et les contours plus nuancés montrés dans ce lot, en vérifiant toujours
+le résultat à taille native avec l'éclairage réel. Bastion et Cerbère gardent
+la même tête et les mêmes jambes entre leurs trois configurations ; l'arme et
+les doigts restent des couches séparées. L'accord porte sur les configurations
+et palettes effectivement présentées. Les autres poses et coloris gardent leur
+dessin existant en attendant leurs propres lots ; il ne s'étend pas aux autres
+monstres ni à une nouvelle mort ou animation de combat.
+
+À la demande suivante du joueur, **ART-FINISH-02** poursuit cette finition
+sur les quatre autres tenues de classe et quatre armures : FIN-14 à FIN-21,
+avec vingt-quatre configurations de mains et quatre comparaisons en carte.
+Le 19 octobre, le joueur répond **« Valider le lot complet »** pour ce lot.
+L'accord et les empreintes exactes des 56 exports sont conservés dans
+`reviews/refonte-histoire-2026-10-16/art-finish-review-02/acceptance.json`.
+Ces ressources vont dans `assets/sprites/art-finish-02/` pour le plateau et
+l'inspection. Les vingt-quatre configurations acceptées conservent les couches
+corps/arme/doigts et les points d'attache montrés ; tête et bas du corps restent
+identiques entre les prises. Les autres armes, prises et peintures attendent
+leurs propres lots. Les contrôles du rendu normal sont conservés dans cette
+revue ; ses planches et références acceptées ne sont pas régénérées.
+
+Le menu de création utilise aussi les cinq dessins de classe acceptés,
+FIN-01 et FIN-14 à FIN-17, dans ses vignettes et son grand portrait. La fiche
+conserve les armes de départ réelles ; leur prise ne force plus l'ancien
+assemblage dans ces portraits de sélection. Les captures des cinq classes
+sont conservées dans le complément `creation-menu-checks.json` du lot 02.
+
+**CLASS-START-03**, accepté le 20 octobre, fait de ces cinq modèles l'apparence
+de base sans objet d'armure équipé. Les tenues de départ ne sont plus accordées
+dans l'inventaire. Une armure réelle remplace ce modèle ; une fois retirée,
+le modèle de classe revient pour le plateau et l'inspection. Cette règle
+réutilise FIN-01 et FIN-14 à FIN-17 sans nouveau dessin ni changement d'échelle.
+L'accord et la compatibilité des anciens objets sont conservés dans
+`reviews/refonte-histoire-2026-10-16/class-start-03/`.
+
+**ART-FINISH-03** poursuit la finition sur quatre équipements existants :
+Tablier de cuir, Tenue de membranes, Combinaison Peau-Seconde et Tenue du
+technicien, sous les codes FIN-22 à FIN-25. Le joueur répond ensuite
+**« Valider le lot complet »** pour ces quatre dessins, leurs douze configurations
+et les deux comparaisons éclairées. L'accord et les empreintes des 28 exports
+sont conservés dans `reviews/refonte-histoire-2026-10-16/art-finish-review-03/`.
+Les images embarquées vont dans `assets/sprites/art-finish-03/` pour le plateau
+et l'inspection, avec les mêmes couches et points d'attache. Les planches et
+références acceptées restent figées. Cet accord porte sur les prises et
+palettes présentées ; il ne valide pas les autres ressources par extension.
+
+**ART-FINISH-04** poursuit avec la Robe de la Seconde Ombre et la Tenue du
+nomade, codes FIN-26 et FIN-27. Le 19 octobre, le joueur répond
+**« Valider le lot complet »** pour les deux dessins, leurs six configurations
+et les deux comparaisons éclairées. L'accord et les empreintes des 14 exports
+sont conservés dans `reviews/refonte-histoire-2026-10-16/art-finish-review-04/`.
+Les images embarquées vont dans `assets/sprites/art-finish-04/` pour le plateau
+et l'inspection, avec les identités, couleurs, échelles et points d'attache
+présentés. Les planches et références acceptées restent figées ; les autres
+prises et palettes conservent leurs ressources précédentes.
+
+Suite aux quatre lots intégrés, **ART-FINISH-05** prépare quatre ennemis existants
+sous les codes FIN-28 à FIN-31 : Cultiste 014 A, Cultiste 016 A, Possédé 006 A
+et Zombie 120 A. Le 19 octobre, le joueur répond **« Valider le lot complet »**
+pour ces quatre dessins, avec trois fonds et deux scènes éclairées. L'accord,
+les empreintes exactes et les références figées sont dans
+`reviews/refonte-histoire-2026-10-16/art-finish-review-05/`. Les quatre images
+embarquées vont dans `assets/sprites/art-finish-05/` pour le plateau et
+l'inspection. Leurs identités, règles et répartition sont conservées. Les
+autres variantes de couleur gardent leurs dessins précédents ; les boss
+de secteur restent un chantier distinct.
+
+### Orientation globale demandée le 19 octobre 2026 — grimdark et glauque
+
+Le 19 octobre, après FIN-28 à FIN-31, le joueur demande « je te laisse tous les
+finires » puis « et les valider ». **ART-FINISH-COMPLETE-06** conserve cette
+délégation : Codex peut terminer, contrôler et accepter visuellement les
+ressources restantes du chantier dans le style déjà accepté, sans demander
+un nouvel accord pour chaque lot. Cela n'autorise ni nouvelle règle de jeu,
+ni nouveaux noms, ni boss de secteur. Les contrôles natifs, prises, matériaux,
+références et preuves d'intégration restent requis. Voir
+`reviews/refonte-histoire-2026-10-16/art-finish-completion-06/delegation.json`.
+
+Le joueur confirme cette intention pour l'ensemble du jeu. La première ville
+doit montrer un monde déjà brutal, dévasté par l'assaut et l'invasion : défenses
+militaires brisées, morts, sang, quarantaine abandonnée et détournement inquiétant
+des machines. La corruption organique et les horreurs du culte prennent davantage
+de place dans les secteurs suivants. Cette progression garde la diversité des
+démons et la distinction entre humains, possédés et hybrides.
+
+La direction repose sur les formes, les usages et les traces de violence autant
+que sur la pénombre. Garder des matériaux froids et salis, quelques lumières
+réelles localisées et une circulation lisible. Les couleurs fonctionnelles des
+portes et la lisibilité des acteurs restent utiles. Éviter de recouvrir les
+passages par des accessoires ou d'utiliser du noir pour cacher les défauts.
+
+L'angle, les contours et l'échelle de STYLE-RL-2026-10-18-r01 restent la référence.
+Les éléments sont fabriqués entiers et séparés, avec leur emprise propre. Cette
+orientation générale ne valide pas les pixels d'un lot. La revue FIXES-U01-03
+succède au premier essai FIXES-U01-02.
+
+Précision du joueur : travailler **les décors dans leur ensemble en premier**,
+leur dessin étant jugé trop propre, parfait et reconnaissable comme généré.
+Conserver les personnages actuels comme comparaison ; leur révision éventuelle
+dépendra du résultat des décors. L'essai STYLE-U01-01/02 propose du béton terne,
+de la peinture écaillée et une usure plus irrégulière. Il reste candidat ; il ne
+remplace pas la référence approuvée de projection ni les ressources normales.
+
+Le dessin des deux victimes de GRIM-U01-01 est apprécié, mais son ancien placement
+est jugé arbitraire. Sa nouvelle disposition près de la défense de la prison
+reste à revoir. GRIM-U01-02, la station médicale de contrainte, est **refusée pour
+cette rue** et retirée de l'aperçu courant. Le joueur demande des corps de civils,
+cultistes et militaires au sol. CORP-U01-01/02/03 répondent à cette demande sous
+forme de candidats séparés, entiers, présentés à taille native avant activation.
+L'éclairage GRIM-L02 du premier essai n'est pas considéré comme validé par ces
+retours ; la nouvelle comparaison garde l'éclairage actuel identique avant/après.
+
+Le joueur demande ensuite de voir **la carte entière avec cette direction avant
+de pouvoir valider**. STYLE-MAP-U01-04 étend une finition de surface commune aux
+décors existants, avec vue d'ensemble et neuf vues natives dans le moteur. Le
+petit patch de sol de l'essai local est retiré de ce mode pour éviter une rupture
+de matière. Cette demande ne valide pas encore le style ; les personnages et
+la géométrie de production sont conservés. Voir la revue `street-defects-review-04`.
+
+Après consultation de la carte complète, le joueur confirme : **« oui je valide »**.
+STYLE-MAP-U01-04 est donc accepté et activé sur la rue étendue, avec les quatre
+décors au sol visibles près de la prison. L'accord exact et les empreintes sont
+conservés dans `street-defects-review-04/acceptance.json`. Les paragraphes ci-dessus
+conservent les étapes de proposition et leurs limites ; les autres variantes
+locales et l'ancienne proposition d'ambiance ne sont pas validées par extension.
+
 Référence de travail pour la création, la modification, le conditionnement et
 la revue des personnages, équipements et monstres. Lire ce document avant tout
 nouvel ajout dans ces catégories. Une conformité technique ne remplace pas
 l'acceptation artistique du joueur.
 
 ## 1. Statut des décisions
+
+### Référence exacte de style — 18 octobre 2026
+
+Le joueur valide **SCENE-U01-07-r01 / LUM-U01-07-r01** : textures simplifiées,
+contours plus affirmés, projection conservée depuis le camp, pénombre et
+éclairage des luminaires calculé par le moteur. Il demande de noter ce style
+exact, notamment l’angle. Lire [STYLE_VISUEL_REFERENCE.md](STYLE_VISUEL_REFERENCE.md)
+et comparer ses images sources avant les prochains décors. Le même document
+conserve les réglages validés, l’échelle de 64 px et la demande de cartes
+suivantes plus grandes, sans inventer leurs dimensions.
+
+### Vue de dessus des décors — correction du 18 octobre 2026
+
+Précision suivante : la rue SCENE-U01-04/05 conserve un angle refusé par le
+joueur malgré la première correction. La caméra doit être comparée directement
+au camp accepté : axes du sol parallèles et orthogonaux, cases carrées,
+hauteurs apparentes de murs et de mobilier cohérentes avec ce camp. Le terme
+« vue de dessus » seul ne suffit pas ; éviter toute dérive en vue aérienne
+ou en volumes obliques à points de fuite. Voir
+`docs/reviews/refonte-histoire-2026-10-16/first-sector-review-01/U01-PROJECTION-06.md`.
+SCENE-U01-06-r01, redessiné depuis le camp, est ensuite accepté dans
+`visual-acceptance-r06.json` de cette revue. Le joueur insiste pour rester
+au maximum proche de la salle de départ lors des dessins suivants.
+
+Le joueur refuse les bâtiments présentés en élévation frontale. Les nouveaux
+décors doivent respecter la vue de dessus sur grille orthogonale du camp
+accepté : toitures ou intérieurs vus en coupe dominants, murs de faible hauteur
+apparente. La largeur des ouvertures et l'emprise au sol servent de repères
+d'échelle ; la hauteur d'une porte sur une élévation ne convient pas à cette vue.
+Les véhicules respectent aussi la projection du monde. Cette correction ne
+modifie pas les dessins d'acteurs acceptés. Les nouveaux modèles sont soumis
+dans `docs/reviews/refonte-histoire-2026-10-16/first-sector-review-01/U01-REVIEW-03.md`.
+La demande de correction ne valide pas leurs pixels avant présentation.
 
 ### Production progressive des décors — 17 octobre 2026
 
@@ -3772,3 +3999,68 @@ La génération 152 active ce complément ; les affectations des générations
 150 et 151 restent identiques. L’accord est conservé dans
 `monster-blue-palettes-08/review.json`. Les futurs dégâts de gel restent
 distincts de cette validation visuelle.
+
+### ART-FINISH-COMPLETE-06 — contrôle délégué des contenus existants
+
+Le joueur délègue la finition et la validation des dessins restants par
+« je te laisse tous les finires » puis « et les valider ». Cette délégation
+concerne la refonte en cours des contenus existants ; elle n’active ni nouveaux
+boss, ni pouvoirs, ni textes, ni règles chiffrées. Les preuves et le bilan
+sont conservés dans `docs/reviews/refonte-histoire-2026-10-16/art-finish-completion-06/`.
+
+Les variations d’un même monstre partagent désormais une même géométrie,
+un même alpha et les mêmes appuis, y compris les variantes originales A/B.
+Les couleurs sont compilées par matériau ; les vêtements, os, objets et
+pièces métalliques protégés ne deviennent pas une peau colorée. Les nuances
+portent une identité visuelle et ne créent aucun pouvoir de combat.
+
+Les tenues utilisent leur dessin terminé pour les deux mains, les paires,
+les armes lourdes et les armes à deux mains. Reprendre les membres peints
+comme couches séparées avec leurs attaches ; conserver la tête, les jambes
+et les pieds. Ne jamais retourner la tenue pour retourner une arme.
+Les masques de palette distinguent le matériau principal, les tissus
+secondaires, la peau et les métaux. Conserver une part du pigment d’origine
+sur les nouvelles peintures pour éviter l’aplat saturé. Le visage et les bras
+nus de Bastion restent protégés. La règle historique des icônes reprenant la
+silhouette entière est remplacée pour les objets de torse par TORSO-ICONS-01
+et TORSO-STARTING-02 ci-dessous ; les portraits de création déjà acceptés
+restent conservés.
+
+Valider au gabarit réellement utilisé, puis dans les lumières du moteur.
+Une grande source détaillée n’autorise aucun agrandissement en jeu.
+L’audit séparé du mobilier confirme le surdimensionnement des lits de la rue ;
+leur remplacement n’est pas inclus dans cette activation des acteurs.
+
+### TORSO-ICONS-01 / TORSO-STARTING-02 — icônes de torse et couleurs acceptées
+
+Le joueur valide les quatorze premiers modèles par « ok , on peut les
+integrer :) », puis les cinq tenues de départ par « Valider les cinq et
+leurs couleurs ». Les preuves et accords sont conservés dans les deux
+dossiers de revue correspondants sous `docs/reviews/refonte-histoire-2026-10-16/`.
+
+Les 19 objets de torse, illustrations 101–114 et 200–204, ont une icône
+représentant seulement la protection ou le haut du vêtement : buste isolé,
+sans tête, mannequin, corps, jambes ni arme. Les robes et manteaux utilisent
+un haut compact avec manches et ourlet. Le même objet apparaît au sol,
+dans l’inventaire, les emplacements d’équipement et les fiches. Toujours
+réduire la source native64 dans les petits emplacements ; ne pas reprendre
+un ancien personnage entier ni agrandir une source 32 px.
+
+L’équipement de torse continue à sélectionner la tenue entière portée.
+Les 93 associations acceptées comprennent A (origine), B (bleu ardoise),
+C (vert mousse), D (rouille) et E (rouge sombre). TOR-109 et TOR-203 sont
+déjà rouges en A et ne reçoivent pas de doublon E. Une icône bleue doit
+correspondre à une tenue bleue, avec la même famille de matériau.
+
+Pour ces quatre nouvelles palettes seulement, appliquer la rampe acceptée
+à 90 % et conserver 10 % du pigment source sur le matériau principal.
+Les masques explicites protègent les panneaux secondaires, la peau et les
+autres matières ; la recoloration s’applique aux couches portées séparées
+sans teinter l’arme. Les nouveaux masques base/core de FIN-01 incluent le
+tissu du torse de Bastion, avec le visage et les bras nus protégés.
+Les anciennes palettes, leurs indices sérialisés, les identités d’objet,
+les bonus et les portraits restent conservés. Les couleurs sont cosmétiques.
+
+Comparer les pixels acceptés, puis contrôler dans le moteur l’objet au sol,
+l’inventaire, la fiche, la tenue éclairée et les configurations de mains.
+La galerie conserve les planches historiques et les captures actives.

@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-19",
+  "phase": "candidate_review_preparation",
+  "commands": [
+    {"command": "cargo build --locked", "result": "passed"},
+    {"command": "cargo check --locked --release", "result": "passed; compilation check only"},
+    {"command": "cargo fmt --all -- --check", "result": "passed"},
+    {"command": "git diff --check", "result": "passed"},
+    {"command": "--ui-cold-art-finish-05-review", "result": "12 paired native background samples and two lit scene comparisons with four draw-only figures each"},
+    {"command": "--ui-cold-art-finish-04-integration -> finish05-normal-check", "result": "ordinary renderer matches 8 approved samples and two approved scene viewports exactly"},
+    {"command": "validate_art_finish_review_05.py", "result": "4 complete sources, 24 exact native panels, 626 unchanged production resources; JavaScript syntax and local links valid"},
+    {"command": "python -m py_compile", "result": "passed for the three ART-FINISH-05 scripts"},
+    {"command": "show_art_finish_review.py", "result": "current preview dispatches to ART-FINISH-05 after redundant normal-reference capture cleanup"}
+  ],
+  "full_test_suite_run": false,
+  "performance_benchmark_run": false,
+  "browser_automation": false,
+  "new_candidates_integrated": false,
+  "source_master_count": 4,
+  "rejected_source_count": 1,
+  "mode": "built-in imagegen",
+  "native_cell": 64,
+  "visual_inspection": ["four masters", "repaired complete mechanical gripper", "native enemy board", "three background board", "accepted reference board", "lit street", "lit northern street"],
+  "furniture_audit": "Remains scheduled after the actor visual overhaul, beginning with the reported bed"
+}

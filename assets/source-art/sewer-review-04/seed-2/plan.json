@@ -1,0 +1,7221 @@
+{
+  "review": "EG-COMP-04",
+  "seed": 206027,
+  "width": 47,
+  "height": 44,
+  "cell": 64,
+  "spawn": [
+    23,
+    38
+  ],
+  "target": [
+    2,
+    2
+  ],
+  "layout": [
+    "###############################################",
+    "###############################################",
+    "##..........#####################.........#####",
+    "##..........#####################.........#####",
+    "##..........#######........######.........#####",
+    "##..........#######.......................#####",
+    "##..........#######...~~..................#####",
+    "##..........#######...==...~~~=~~~~~......#####",
+    "##.......~..#######...~~..................#####",
+    "##.......~..#######.....................#######",
+    "#######..~..#######...~....#########...########",
+    "#######..~..########..~..###########...########",
+    "#######..~..########..~..###########...########",
+    "####.....=....###...........########...########",
+    "####......................................#####",
+    "####......................................#####",
+    "####........~~~~=~~.......~~~=~~~~~.......#####",
+    "####......................................#####",
+    "####....................~.................#####",
+    "####..........########..~..######.........#####",
+    "####..........########..~..######.........#####",
+    "######################..~..#####...........####",
+    "####################.........###...........####",
+    "####################................~~~....####",
+    "####################...~~~..........~~~....####",
+    "####################...===..~~~=~~..===....####",
+    "####################...~~~..........~~~....####",
+    "####################.......................####",
+    "####################...~.....###...........####",
+    "#####################..~..#####################",
+    "#####################..~..#####################",
+    "#####################..~..#####################",
+    "#####################..=..#######..........####",
+    "###################.........#####..........####",
+    "###################.........#####....~~....####",
+    "###################..................~~....####",
+    "###################..................==....####",
+    "###################..................~~....####",
+    "###################.........#####..........####",
+    "###################.........#####..........####",
+    "###############################################",
+    "###############################################",
+    "###############################################",
+    "###############################################"
+  ],
+  "rooms": [
+    {
+      "id": 0,
+      "kind": "access",
+      "centre": [
+        23,
+        36
+      ],
+      "bounds": [
+        19,
+        33,
+        9,
+        7
+      ]
+    },
+    {
+      "id": 1,
+      "kind": "basin",
+      "centre": [
+        24,
+        25
+      ],
+      "bounds": [
+        20,
+        22,
+        9,
+        7
+      ]
+    },
+    {
+      "id": 2,
+      "kind": "junction",
+      "centre": [
+        22,
+        16
+      ],
+      "bounds": [
+        17,
+        13,
+        11,
+        6
+      ]
+    },
+    {
+      "id": 3,
+      "kind": "collector",
+      "centre": [
+        38,
+        36
+      ],
+      "bounds": [
+        33,
+        32,
+        10,
+        8
+      ]
+    },
+    {
+      "id": 4,
+      "kind": "basin",
+      "centre": [
+        37,
+        25
+      ],
+      "bounds": [
+        32,
+        21,
+        11,
+        8
+      ]
+    },
+    {
+      "id": 5,
+      "kind": "alcove",
+      "centre": [
+        37,
+        17
+      ],
+      "bounds": [
+        33,
+        14,
+        9,
+        7
+      ]
+    },
+    {
+      "id": 6,
+      "kind": "collector",
+      "centre": [
+        23,
+        7
+      ],
+      "bounds": [
+        19,
+        4,
+        8,
+        7
+      ]
+    },
+    {
+      "id": 7,
+      "kind": "junction",
+      "centre": [
+        9,
+        17
+      ],
+      "bounds": [
+        4,
+        13,
+        10,
+        8
+      ]
+    },
+    {
+      "id": 8,
+      "kind": "maintenance",
+      "centre": [
+        37,
+        5
+      ],
+      "bounds": [
+        33,
+        2,
+        9,
+        7
+      ]
+    },
+    {
+      "id": 9,
+      "kind": "maintenance",
+      "centre": [
+        7,
+        6
+      ],
+      "bounds": [
+        2,
+        2,
+        10,
+        8
+      ]
+    }
+  ],
+  "corridors": [
+    {
+      "a": 0,
+      "b": 1,
+      "width": 5,
+      "line": [
+        [
+          23,
+          25
+        ],
+        [
+          23,
+          26
+        ],
+        [
+          23,
+          27
+        ],
+        [
+          23,
+          28
+        ],
+        [
+          23,
+          29
+        ],
+        [
+          23,
+          30
+        ],
+        [
+          23,
+          31
+        ],
+        [
+          23,
+          32
+        ],
+        [
+          23,
+          33
+        ],
+        [
+          23,
+          34
+        ],
+        [
+          23,
+          35
+        ],
+        [
+          23,
+          36
+        ],
+        [
+          23,
+          25
+        ],
+        [
+          24,
+          25
+        ]
+      ]
+    },
+    {
+      "a": 1,
+      "b": 2,
+      "width": 5,
+      "line": [
+        [
+          24,
+          16
+        ],
+        [
+          24,
+          17
+        ],
+        [
+          24,
+          18
+        ],
+        [
+          24,
+          19
+        ],
+        [
+          24,
+          20
+        ],
+        [
+          24,
+          21
+        ],
+        [
+          24,
+          22
+        ],
+        [
+          24,
+          23
+        ],
+        [
+          24,
+          24
+        ],
+        [
+          24,
+          25
+        ],
+        [
+          22,
+          16
+        ],
+        [
+          23,
+          16
+        ],
+        [
+          24,
+          16
+        ]
+      ]
+    },
+    {
+      "a": 0,
+      "b": 3,
+      "width": 3,
+      "line": [
+        [
+          23,
+          36
+        ],
+        [
+          24,
+          36
+        ],
+        [
+          25,
+          36
+        ],
+        [
+          26,
+          36
+        ],
+        [
+          27,
+          36
+        ],
+        [
+          28,
+          36
+        ],
+        [
+          29,
+          36
+        ],
+        [
+          30,
+          36
+        ],
+        [
+          31,
+          36
+        ],
+        [
+          32,
+          36
+        ],
+        [
+          33,
+          36
+        ],
+        [
+          34,
+          36
+        ],
+        [
+          35,
+          36
+        ],
+        [
+          36,
+          36
+        ],
+        [
+          37,
+          36
+        ],
+        [
+          38,
+          36
+        ],
+        [
+          38,
+          36
+        ]
+      ]
+    },
+    {
+      "a": 1,
+      "b": 4,
+      "width": 5,
+      "line": [
+        [
+          24,
+          25
+        ],
+        [
+          25,
+          25
+        ],
+        [
+          26,
+          25
+        ],
+        [
+          27,
+          25
+        ],
+        [
+          28,
+          25
+        ],
+        [
+          29,
+          25
+        ],
+        [
+          30,
+          25
+        ],
+        [
+          31,
+          25
+        ],
+        [
+          32,
+          25
+        ],
+        [
+          33,
+          25
+        ],
+        [
+          34,
+          25
+        ],
+        [
+          35,
+          25
+        ],
+        [
+          36,
+          25
+        ],
+        [
+          37,
+          25
+        ],
+        [
+          37,
+          25
+        ]
+      ]
+    },
+    {
+      "a": 2,
+      "b": 5,
+      "width": 5,
+      "line": [
+        [
+          22,
+          16
+        ],
+        [
+          23,
+          16
+        ],
+        [
+          24,
+          16
+        ],
+        [
+          25,
+          16
+        ],
+        [
+          26,
+          16
+        ],
+        [
+          27,
+          16
+        ],
+        [
+          28,
+          16
+        ],
+        [
+          29,
+          16
+        ],
+        [
+          30,
+          16
+        ],
+        [
+          31,
+          16
+        ],
+        [
+          32,
+          16
+        ],
+        [
+          33,
+          16
+        ],
+        [
+          34,
+          16
+        ],
+        [
+          35,
+          16
+        ],
+        [
+          36,
+          16
+        ],
+        [
+          37,
+          16
+        ],
+        [
+          37,
+          16
+        ],
+        [
+          37,
+          17
+        ]
+      ]
+    },
+    {
+      "a": 2,
+      "b": 6,
+      "width": 5,
+      "line": [
+        [
+          22,
+          7
+        ],
+        [
+          22,
+          8
+        ],
+        [
+          22,
+          9
+        ],
+        [
+          22,
+          10
+        ],
+        [
+          22,
+          11
+        ],
+        [
+          22,
+          12
+        ],
+        [
+          22,
+          13
+        ],
+        [
+          22,
+          14
+        ],
+        [
+          22,
+          15
+        ],
+        [
+          22,
+          16
+        ],
+        [
+          22,
+          7
+        ],
+        [
+          23,
+          7
+        ]
+      ]
+    },
+    {
+      "a": 2,
+      "b": 7,
+      "width": 5,
+      "line": [
+        [
+          9,
+          16
+        ],
+        [
+          10,
+          16
+        ],
+        [
+          11,
+          16
+        ],
+        [
+          12,
+          16
+        ],
+        [
+          13,
+          16
+        ],
+        [
+          14,
+          16
+        ],
+        [
+          15,
+          16
+        ],
+        [
+          16,
+          16
+        ],
+        [
+          17,
+          16
+        ],
+        [
+          18,
+          16
+        ],
+        [
+          19,
+          16
+        ],
+        [
+          20,
+          16
+        ],
+        [
+          21,
+          16
+        ],
+        [
+          22,
+          16
+        ],
+        [
+          9,
+          16
+        ],
+        [
+          9,
+          17
+        ]
+      ]
+    },
+    {
+      "a": 6,
+      "b": 8,
+      "width": 5,
+      "line": [
+        [
+          23,
+          7
+        ],
+        [
+          24,
+          7
+        ],
+        [
+          25,
+          7
+        ],
+        [
+          26,
+          7
+        ],
+        [
+          27,
+          7
+        ],
+        [
+          28,
+          7
+        ],
+        [
+          29,
+          7
+        ],
+        [
+          30,
+          7
+        ],
+        [
+          31,
+          7
+        ],
+        [
+          32,
+          7
+        ],
+        [
+          33,
+          7
+        ],
+        [
+          34,
+          7
+        ],
+        [
+          35,
+          7
+        ],
+        [
+          36,
+          7
+        ],
+        [
+          37,
+          7
+        ],
+        [
+          37,
+          5
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          37,
+          7
+        ]
+      ]
+    },
+    {
+      "a": 7,
+      "b": 9,
+      "width": 5,
+      "line": [
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          7
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          9,
+          12
+        ],
+        [
+          9,
+          13
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          9,
+          15
+        ],
+        [
+          9,
+          16
+        ],
+        [
+          9,
+          17
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          8,
+          6
+        ],
+        [
+          9,
+          6
+        ]
+      ]
+    },
+    {
+      "a": 8,
+      "b": 5,
+      "width": 3,
+      "line": [
+        [
+          37,
+          5
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          37,
+          7
+        ],
+        [
+          37,
+          8
+        ],
+        [
+          37,
+          9
+        ],
+        [
+          37,
+          10
+        ],
+        [
+          37,
+          11
+        ],
+        [
+          37,
+          12
+        ],
+        [
+          37,
+          13
+        ],
+        [
+          37,
+          14
+        ],
+        [
+          37,
+          15
+        ],
+        [
+          37,
+          16
+        ],
+        [
+          37,
+          17
+        ],
+        [
+          37,
+          17
+        ]
+      ]
+    },
+    {
+      "a": 5,
+      "b": 4,
+      "width": 3,
+      "line": [
+        [
+          37,
+          17
+        ],
+        [
+          37,
+          18
+        ],
+        [
+          37,
+          19
+        ],
+        [
+          37,
+          20
+        ],
+        [
+          37,
+          21
+        ],
+        [
+          37,
+          22
+        ],
+        [
+          37,
+          23
+        ],
+        [
+          37,
+          24
+        ],
+        [
+          37,
+          25
+        ],
+        [
+          37,
+          25
+        ]
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "family": "zombie",
+      "centre": [
+        27,
+        27
+      ],
+      "members": [
+        {
+          "at": [
+            27,
+            27
+          ],
+          "number": 120,
+          "variant": 0
+        },
+        {
+          "at": [
+            27,
+            26
+          ],
+          "number": 120,
+          "variant": 0
+        },
+        {
+          "at": [
+            28,
+            27
+          ],
+          "number": 120,
+          "variant": 0
+        },
+        {
+          "at": [
+            28,
+            24
+          ],
+          "number": 132,
+          "variant": 0,
+          "level": 1,
+          "role": "reanimator_candidate"
+        },
+        {
+          "at": [
+            27,
+            28
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            26,
+            27
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            27,
+            25
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            28,
+            28
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            28,
+            26
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "family": "zombie",
+      "centre": [
+        26,
+        18
+      ],
+      "members": [
+        {
+          "at": [
+            26,
+            18
+          ],
+          "number": 121,
+          "variant": 0
+        },
+        {
+          "at": [
+            26,
+            17
+          ],
+          "number": 120,
+          "variant": 0
+        },
+        {
+          "at": [
+            27,
+            18
+          ],
+          "number": 120,
+          "variant": 0
+        },
+        {
+          "at": [
+            25,
+            18
+          ],
+          "number": 121,
+          "variant": 1
+        },
+        {
+          "at": [
+            25,
+            17
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            27,
+            17
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            25,
+            16
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            24,
+            17
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            24,
+            16
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "family": "zombie",
+      "centre": [
+        38,
+        22
+      ],
+      "members": [
+        {
+          "at": [
+            38,
+            22
+          ],
+          "number": 120,
+          "variant": 0
+        },
+        {
+          "at": [
+            38,
+            21
+          ],
+          "number": 121,
+          "variant": 0
+        },
+        {
+          "at": [
+            39,
+            22
+          ],
+          "number": 121,
+          "variant": 1
+        },
+        {
+          "at": [
+            37,
+            22
+          ],
+          "number": 121,
+          "variant": 0
+        },
+        {
+          "at": [
+            39,
+            21
+          ],
+          "number": 120,
+          "variant": 1
+        },
+        {
+          "at": [
+            38,
+            18
+          ],
+          "number": 132,
+          "variant": 0,
+          "level": 1,
+          "role": "reanimator_candidate"
+        },
+        {
+          "at": [
+            37,
+            21
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            40,
+            22
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            39,
+            23
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            36,
+            22
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "family": "cultist",
+      "centre": [
+        39,
+        17
+      ],
+      "members": [
+        {
+          "at": [
+            39,
+            17
+          ],
+          "number": 22,
+          "variant": 0
+        },
+        {
+          "at": [
+            40,
+            17
+          ],
+          "number": 22,
+          "variant": 0
+        },
+        {
+          "at": [
+            39,
+            16
+          ],
+          "number": 24,
+          "variant": 1
+        },
+        {
+          "at": [
+            39,
+            18
+          ],
+          "number": 22,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            38,
+            17
+          ],
+          "number": 22,
+          "variant": 1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "family": "cultist",
+      "centre": [
+        23,
+        9
+      ],
+      "members": [
+        {
+          "at": [
+            23,
+            9
+          ],
+          "number": 22,
+          "variant": 1
+        },
+        {
+          "at": [
+            23,
+            10
+          ],
+          "number": 24,
+          "variant": 0
+        },
+        {
+          "at": [
+            24,
+            9
+          ],
+          "number": 22,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            22,
+            9
+          ],
+          "number": 24,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            24,
+            10
+          ],
+          "number": 22,
+          "variant": 0,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "family": "zombie",
+      "centre": [
+        5,
+        17
+      ],
+      "members": [
+        {
+          "at": [
+            5,
+            17
+          ],
+          "number": 121,
+          "variant": 0
+        },
+        {
+          "at": [
+            5,
+            16
+          ],
+          "number": 120,
+          "variant": 1
+        },
+        {
+          "at": [
+            4,
+            17
+          ],
+          "number": 120,
+          "variant": 0
+        },
+        {
+          "at": [
+            6,
+            17
+          ],
+          "number": 120,
+          "variant": 0
+        },
+        {
+          "at": [
+            5,
+            18
+          ],
+          "number": 121,
+          "variant": 1
+        },
+        {
+          "at": [
+            6,
+            18
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            6,
+            16
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            4,
+            16
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            7,
+            17
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "family": "zombie",
+      "centre": [
+        37,
+        8
+      ],
+      "members": [
+        {
+          "at": [
+            37,
+            8
+          ],
+          "number": 120,
+          "variant": 1
+        },
+        {
+          "at": [
+            38,
+            8
+          ],
+          "number": 120,
+          "variant": 0
+        },
+        {
+          "at": [
+            36,
+            8
+          ],
+          "number": 120,
+          "variant": 1
+        },
+        {
+          "at": [
+            37,
+            7
+          ],
+          "number": 120,
+          "variant": 1
+        },
+        {
+          "at": [
+            35,
+            8
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            36,
+            7
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            39,
+            8
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            38,
+            7
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            37,
+            6
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "family": "cultist",
+      "centre": [
+        9,
+        2
+      ],
+      "members": [
+        {
+          "at": [
+            9,
+            2
+          ],
+          "number": 22,
+          "variant": 1
+        },
+        {
+          "at": [
+            9,
+            3
+          ],
+          "number": 24,
+          "variant": 1
+        },
+        {
+          "at": [
+            10,
+            2
+          ],
+          "number": 22,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            8,
+            2
+          ],
+          "number": 24,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            10,
+            3
+          ],
+          "number": 22,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            8,
+            3
+          ],
+          "number": 22,
+          "variant": 1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "family": "zombie",
+      "centre": [
+        34,
+        35
+      ],
+      "members": [
+        {
+          "at": [
+            34,
+            35
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            33,
+            35
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            34,
+            34
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            35,
+            35
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            34,
+            36
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            35,
+            34
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            33,
+            34
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "family": "zombie",
+      "centre": [
+        36,
+        39
+      ],
+      "members": [
+        {
+          "at": [
+            36,
+            39
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            36,
+            38
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            35,
+            39
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            37,
+            39
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            38,
+            39
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            37,
+            38
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            35,
+            38
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            36,
+            37
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "family": "zombie",
+      "centre": [
+        22,
+        15
+      ],
+      "members": [
+        {
+          "at": [
+            22,
+            15
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            22,
+            16
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            23,
+            15
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            22,
+            14
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            21,
+            15
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            24,
+            15
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "family": "zombie",
+      "centre": [
+        36,
+        28
+      ],
+      "members": [
+        {
+          "at": [
+            36,
+            28
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            36,
+            27
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            35,
+            28
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            35,
+            27
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            38,
+            28
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            37,
+            27
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "family": "zombie",
+      "centre": [
+        10,
+        14
+      ],
+      "members": [
+        {
+          "at": [
+            10,
+            14
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            10,
+            15
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            9,
+            14
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            11,
+            14
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            10,
+            13
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            9,
+            15
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            12,
+            14
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "family": "zombie",
+      "centre": [
+        10,
+        6
+      ],
+      "members": [
+        {
+          "at": [
+            10,
+            6
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            10,
+            7
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            11,
+            6
+          ],
+          "number": 120,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            9,
+            6
+          ],
+          "number": 120,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            10,
+            8
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            9,
+            7
+          ],
+          "number": 121,
+          "variant": 1,
+          "level": 1
+        },
+        {
+          "at": [
+            11,
+            7
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        },
+        {
+          "at": [
+            8,
+            6
+          ],
+          "number": 121,
+          "variant": 0,
+          "level": 1
+        }
+      ]
+    }
+  ],
+  "views": [
+    {
+      "id": "access",
+      "at": [
+        23,
+        38
+      ]
+    },
+    {
+      "id": "refuge",
+      "at": [
+        41,
+        16
+      ]
+    },
+    {
+      "id": "workshop",
+      "at": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "store",
+      "at": [
+        7,
+        16
+      ]
+    },
+    {
+      "id": "collector",
+      "at": [
+        37,
+        33
+      ]
+    },
+    {
+      "id": "encounter",
+      "at": [
+        35,
+        21
+      ]
+    }
+  ],
+  "props": [
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/cabinet-native.png",
+      "at_px": [
+        1292,
+        2186
+      ],
+      "blocked_cells": [
+        [
+          20,
+          34
+        ]
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1748,
+        1500
+      ],
+      "blocked_cells": [
+        [
+          27,
+          23
+        ]
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        2644,
+        1436
+      ],
+      "blocked_cells": [
+        [
+          41,
+          22
+        ]
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/cabinet-native.png",
+      "at_px": [
+        2188,
+        202
+      ],
+      "blocked_cells": [
+        [
+          34,
+          3
+        ]
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r05/court-machines-native.png",
+      "at_px": [
+        2487,
+        373
+      ],
+      "blocked_cells": [
+        [
+          39,
+          7
+        ],
+        [
+          40,
+          7
+        ]
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/cabinet-native.png",
+      "at_px": [
+        204,
+        202
+      ],
+      "blocked_cells": [
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1212,
+        2122
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1693,
+        2504
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1212,
+        2495
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1556,
+        2140
+      ],
+      "blocked_cells": [
+        [
+          24,
+          33
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/pump-native.png",
+      "at_px": [
+        1280,
+        1376
+      ],
+      "blocked_cells": [
+        [
+          20,
+          22
+        ],
+        [
+          21,
+          22
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "pump",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1276,
+        1670
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1295,
+        1487
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1276,
+        1799
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1300,
+        1500
+      ],
+      "blocked_cells": [
+        [
+          20,
+          23
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        1096,
+        774
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1340,
+        1153
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1730,
+        832
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1148,
+        1151
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        1164,
+        834
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r270",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1364,
+        860
+      ],
+      "blocked_cells": [
+        [
+          21,
+          13
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/pump-native.png",
+      "at_px": [
+        2368,
+        2016
+      ],
+      "blocked_cells": [
+        [
+          37,
+          32
+        ],
+        [
+          38,
+          32
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "pump",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        2248,
+        1990
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2108,
+        2059
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2707,
+        2111
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2172,
+        2498
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        2240,
+        2062
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r270",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2364,
+        1795
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2693,
+        1803
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2684,
+        1673
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        2196,
+        1820
+      ],
+      "blocked_cells": [
+        [
+          34,
+          28
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        2496,
+        880
+      ],
+      "blocked_cells": [
+        [
+          39,
+          14
+        ],
+        [
+          40,
+          14
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "workbench",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        2120,
+        838
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2620,
+        1231
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2126,
+        1280
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2620,
+        963
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/pump-native.png",
+      "at_px": [
+        1344,
+        224
+      ],
+      "blocked_cells": [
+        [
+          21,
+          4
+        ],
+        [
+          22,
+          4
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "pump",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        1352,
+        198
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1596,
+        659
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1631,
+        274
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1212,
+        264
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        264,
+        774
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        252,
+        1231
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        408,
+        1297
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        508,
+        1282
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        404,
+        1308
+      ],
+      "blocked_cells": [
+        [
+          6,
+          20
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        2240,
+        112
+      ],
+      "blocked_cells": [
+        [
+          35,
+          2
+        ],
+        [
+          36,
+          2
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "workbench",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        2120,
+        70
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2556,
+        136
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2584,
+        519
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2428,
+        138
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        2639,
+        334
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r270",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        2644,
+        412
+      ],
+      "blocked_cells": [
+        [
+          41,
+          6
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        128,
+        112
+      ],
+      "blocked_cells": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "workbench",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        136,
+        70
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        252,
+        591
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        134,
+        263
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        700,
+        275
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        734,
+        136
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r270",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        276,
+        604
+      ],
+      "blocked_cells": [
+        [
+          4,
+          9
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        1208,
+        2264
+      ],
+      "blocked_cells": [
+        [
+          19,
+          36
+        ],
+        [
+          20,
+          36
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "access",
+      "room": 0
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1336,
+        2300
+      ],
+      "blocked_cells": [
+        [
+          21,
+          36
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "access",
+      "room": 0
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1720,
+        1404
+      ],
+      "blocked_cells": [
+        [
+          27,
+          22
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1784,
+        1404
+      ],
+      "blocked_cells": [
+        [
+          28,
+          22
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        1272,
+        1560
+      ],
+      "blocked_cells": [
+        [
+          20,
+          25
+        ],
+        [
+          21,
+          25
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1592,
+        828
+      ],
+      "blocked_cells": [
+        [
+          25,
+          13
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 2
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1656,
+        828
+      ],
+      "blocked_cells": [
+        [
+          26,
+          13
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 2
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2488,
+        2008
+      ],
+      "blocked_cells": [
+        [
+          39,
+          32
+        ],
+        [
+          40,
+          32
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2616,
+        2044
+      ],
+      "blocked_cells": [
+        [
+          41,
+          32
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        2552,
+        2136
+      ],
+      "blocked_cells": [
+        [
+          40,
+          34
+        ],
+        [
+          41,
+          34
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2680,
+        2172
+      ],
+      "blocked_cells": [
+        [
+          42,
+          34
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2616,
+        2236
+      ],
+      "blocked_cells": [
+        [
+          41,
+          35
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2680,
+        2236
+      ],
+      "blocked_cells": [
+        [
+          42,
+          35
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2616,
+        2328
+      ],
+      "blocked_cells": [
+        [
+          41,
+          37
+        ],
+        [
+          42,
+          37
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2040,
+        1368
+      ],
+      "blocked_cells": [
+        [
+          32,
+          22
+        ],
+        [
+          33,
+          22
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 4
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2168,
+        1404
+      ],
+      "blocked_cells": [
+        [
+          34,
+          22
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 4
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2040,
+        1788
+      ],
+      "blocked_cells": [
+        [
+          32,
+          28
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 4
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2104,
+        1788
+      ],
+      "blocked_cells": [
+        [
+          33,
+          28
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 4
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/bedroll-native.png",
+      "at_px": [
+        2568,
+        1152
+      ],
+      "blocked_cells": [
+        [
+          40,
+          18
+        ],
+        [
+          40,
+          19
+        ]
+      ],
+      "kind": "bedroll",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/bedroll-native.png",
+      "at_px": [
+        2632,
+        1152
+      ],
+      "blocked_cells": [
+        [
+          41,
+          18
+        ],
+        [
+          41,
+          19
+        ]
+      ],
+      "kind": "bedroll",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+      "at_px": [
+        2552,
+        1280
+      ],
+      "blocked_cells": [
+        [
+          40,
+          20
+        ]
+      ],
+      "kind": "belongings",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2616,
+        1276
+      ],
+      "blocked_cells": [
+        [
+          41,
+          20
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2104,
+        1176
+      ],
+      "blocked_cells": [
+        [
+          33,
+          19
+        ],
+        [
+          34,
+          19
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+      "at_px": [
+        2232,
+        1216
+      ],
+      "blocked_cells": [
+        [
+          35,
+          19
+        ]
+      ],
+      "kind": "belongings",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        1208,
+        600
+      ],
+      "blocked_cells": [
+        [
+          19,
+          10
+        ],
+        [
+          20,
+          10
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1336,
+        636
+      ],
+      "blocked_cells": [
+        [
+          21,
+          10
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        1208,
+        472
+      ],
+      "blocked_cells": [
+        [
+          19,
+          8
+        ],
+        [
+          20,
+          8
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1336,
+        508
+      ],
+      "blocked_cells": [
+        [
+          21,
+          8
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1208,
+        380
+      ],
+      "blocked_cells": [
+        [
+          19,
+          6
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1272,
+        380
+      ],
+      "blocked_cells": [
+        [
+          20,
+          6
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        1464,
+        216
+      ],
+      "blocked_cells": [
+        [
+          23,
+          4
+        ],
+        [
+          24,
+          4
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        248,
+        856
+      ],
+      "blocked_cells": [
+        [
+          4,
+          14
+        ],
+        [
+          5,
+          14
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        376,
+        856
+      ],
+      "blocked_cells": [
+        [
+          6,
+          14
+        ],
+        [
+          7,
+          14
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        696,
+        1176
+      ],
+      "blocked_cells": [
+        [
+          11,
+          19
+        ],
+        [
+          12,
+          19
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        824,
+        1212
+      ],
+      "blocked_cells": [
+        [
+          13,
+          19
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        248,
+        956
+      ],
+      "blocked_cells": [
+        [
+          4,
+          15
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        312,
+        956
+      ],
+      "blocked_cells": [
+        [
+          5,
+          15
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2424,
+        216
+      ],
+      "blocked_cells": [
+        [
+          38,
+          4
+        ],
+        [
+          39,
+          4
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 8
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        2552,
+        216
+      ],
+      "blocked_cells": [
+        [
+          40,
+          4
+        ],
+        [
+          41,
+          4
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 8
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2104,
+        88
+      ],
+      "blocked_cells": [
+        [
+          33,
+          2
+        ],
+        [
+          34,
+          2
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 8
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        248,
+        88
+      ],
+      "blocked_cells": [
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        376,
+        88
+      ],
+      "blocked_cells": [
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        120,
+        344
+      ],
+      "blocked_cells": [
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        248,
+        380
+      ],
+      "blocked_cells": [
+        [
+          4,
+          6
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        576,
+        304
+      ],
+      "blocked_cells": [
+        [
+          9,
+          5
+        ],
+        [
+          10,
+          5
+        ]
+      ],
+      "kind": "workbench",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+      "at_px": [
+        696,
+        320
+      ],
+      "blocked_cells": [
+        [
+          11,
+          5
+        ]
+      ],
+      "kind": "belongings",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/runoff-native.png",
+      "at_px": [
+        1472,
+        1384
+      ],
+      "blocked_cells": [],
+      "kind": "runoff",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/runoff-native.png",
+      "at_px": [
+        2304,
+        2408
+      ],
+      "blocked_cells": [],
+      "kind": "runoff",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/runoff-native.png",
+      "at_px": [
+        2176,
+        1704
+      ],
+      "blocked_cells": [],
+      "kind": "runoff",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 4
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/runoff-native.png",
+      "at_px": [
+        1536,
+        488
+      ],
+      "blocked_cells": [],
+      "kind": "runoff",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        1344,
+        1728
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        1408,
+        1728
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        2176,
+        2432
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        2240,
+        2432
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        1536,
+        320
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        1600,
+        320
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        192,
+        512
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        256,
+        512
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 9
+    }
+  ],
+  "blocked": [
+    [
+      2,
+      2
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      3,
+      6
+    ],
+    [
+      4,
+      2
+    ],
+    [
+      4,
+      6
+    ],
+    [
+      4,
+      9
+    ],
+    [
+      4,
+      14
+    ],
+    [
+      4,
+      15
+    ],
+    [
+      5,
+      2
+    ],
+    [
+      5,
+      14
+    ],
+    [
+      5,
+      15
+    ],
+    [
+      6,
+      2
+    ],
+    [
+      6,
+      14
+    ],
+    [
+      6,
+      20
+    ],
+    [
+      7,
+      2
+    ],
+    [
+      7,
+      14
+    ],
+    [
+      9,
+      5
+    ],
+    [
+      10,
+      5
+    ],
+    [
+      11,
+      5
+    ],
+    [
+      11,
+      19
+    ],
+    [
+      12,
+      19
+    ],
+    [
+      13,
+      19
+    ],
+    [
+      19,
+      6
+    ],
+    [
+      19,
+      8
+    ],
+    [
+      19,
+      10
+    ],
+    [
+      19,
+      36
+    ],
+    [
+      20,
+      6
+    ],
+    [
+      20,
+      8
+    ],
+    [
+      20,
+      10
+    ],
+    [
+      20,
+      22
+    ],
+    [
+      20,
+      23
+    ],
+    [
+      20,
+      25
+    ],
+    [
+      20,
+      34
+    ],
+    [
+      20,
+      36
+    ],
+    [
+      21,
+      4
+    ],
+    [
+      21,
+      8
+    ],
+    [
+      21,
+      10
+    ],
+    [
+      21,
+      13
+    ],
+    [
+      21,
+      22
+    ],
+    [
+      21,
+      25
+    ],
+    [
+      21,
+      36
+    ],
+    [
+      22,
+      4
+    ],
+    [
+      23,
+      4
+    ],
+    [
+      24,
+      4
+    ],
+    [
+      24,
+      33
+    ],
+    [
+      25,
+      13
+    ],
+    [
+      26,
+      13
+    ],
+    [
+      27,
+      22
+    ],
+    [
+      27,
+      23
+    ],
+    [
+      28,
+      22
+    ],
+    [
+      32,
+      22
+    ],
+    [
+      32,
+      28
+    ],
+    [
+      33,
+      2
+    ],
+    [
+      33,
+      19
+    ],
+    [
+      33,
+      22
+    ],
+    [
+      33,
+      28
+    ],
+    [
+      34,
+      2
+    ],
+    [
+      34,
+      3
+    ],
+    [
+      34,
+      19
+    ],
+    [
+      34,
+      22
+    ],
+    [
+      34,
+      28
+    ],
+    [
+      35,
+      2
+    ],
+    [
+      35,
+      19
+    ],
+    [
+      36,
+      2
+    ],
+    [
+      37,
+      32
+    ],
+    [
+      38,
+      4
+    ],
+    [
+      38,
+      32
+    ],
+    [
+      39,
+      4
+    ],
+    [
+      39,
+      7
+    ],
+    [
+      39,
+      14
+    ],
+    [
+      39,
+      32
+    ],
+    [
+      40,
+      4
+    ],
+    [
+      40,
+      7
+    ],
+    [
+      40,
+      14
+    ],
+    [
+      40,
+      18
+    ],
+    [
+      40,
+      19
+    ],
+    [
+      40,
+      20
+    ],
+    [
+      40,
+      32
+    ],
+    [
+      40,
+      34
+    ],
+    [
+      41,
+      4
+    ],
+    [
+      41,
+      6
+    ],
+    [
+      41,
+      18
+    ],
+    [
+      41,
+      19
+    ],
+    [
+      41,
+      20
+    ],
+    [
+      41,
+      22
+    ],
+    [
+      41,
+      32
+    ],
+    [
+      41,
+      34
+    ],
+    [
+      41,
+      35
+    ],
+    [
+      41,
+      37
+    ],
+    [
+      42,
+      34
+    ],
+    [
+      42,
+      35
+    ],
+    [
+      42,
+      37
+    ]
+  ],
+  "rats": [
+    {
+      "path": [
+        [
+          1432,
+          1448
+        ],
+        [
+          1496,
+          1448
+        ],
+        [
+          1560,
+          1448
+        ],
+        [
+          1624,
+          1448
+        ],
+        [
+          1688,
+          1448
+        ],
+        [
+          1688,
+          1512
+        ],
+        [
+          1688,
+          1576
+        ],
+        [
+          1752,
+          1576
+        ],
+        [
+          1752,
+          1640
+        ],
+        [
+          1752,
+          1704
+        ],
+        [
+          1816,
+          1704
+        ],
+        [
+          1816,
+          1768
+        ],
+        [
+          1816,
+          1832
+        ]
+      ],
+      "speed": 52.0,
+      "phase": 41.0
+    },
+    {
+      "path": [
+        [
+          2136,
+          2088
+        ],
+        [
+          2200,
+          2088
+        ],
+        [
+          2264,
+          2088
+        ],
+        [
+          2328,
+          2088
+        ]
+      ],
+      "speed": 52.0,
+      "phase": 123.0
+    },
+    {
+      "path": [
+        [
+          2072,
+          1384
+        ],
+        [
+          2136,
+          1384
+        ],
+        [
+          2200,
+          1384
+        ],
+        [
+          2264,
+          1384
+        ],
+        [
+          2328,
+          1384
+        ],
+        [
+          2392,
+          1384
+        ],
+        [
+          2456,
+          1384
+        ],
+        [
+          2520,
+          1384
+        ],
+        [
+          2584,
+          1384
+        ],
+        [
+          2648,
+          1384
+        ],
+        [
+          2712,
+          1384
+        ],
+        [
+          2712,
+          1448
+        ],
+        [
+          2712,
+          1512
+        ],
+        [
+          2712,
+          1576
+        ],
+        [
+          2712,
+          1640
+        ],
+        [
+          2712,
+          1704
+        ],
+        [
+          2712,
+          1768
+        ],
+        [
+          2712,
+          1832
+        ]
+      ],
+      "speed": 52.0,
+      "phase": 164.0
+    },
+    {
+      "path": [
+        [
+          1240,
+          296
+        ],
+        [
+          1304,
+          296
+        ]
+      ],
+      "speed": 52.0,
+      "phase": 246.0
+    }
+  ],
+  "floor_count": 719,
+  "water_count": 68,
+  "all_walkable_connected": true,
+  "roster": [
+    22,
+    24,
+    120,
+    121,
+    132
+  ],
+  "normal_activation": false,
+  "added_scenery": [
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1212,
+        2122
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1693,
+        2504
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1212,
+        2495
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1556,
+        2140
+      ],
+      "blocked_cells": [
+        [
+          24,
+          33
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/pump-native.png",
+      "at_px": [
+        1280,
+        1376
+      ],
+      "blocked_cells": [
+        [
+          20,
+          22
+        ],
+        [
+          21,
+          22
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "pump",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1276,
+        1670
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1295,
+        1487
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1276,
+        1799
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1300,
+        1500
+      ],
+      "blocked_cells": [
+        [
+          20,
+          23
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        1096,
+        774
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1340,
+        1153
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1730,
+        832
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1148,
+        1151
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        1164,
+        834
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r270",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1364,
+        860
+      ],
+      "blocked_cells": [
+        [
+          21,
+          13
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/pump-native.png",
+      "at_px": [
+        2368,
+        2016
+      ],
+      "blocked_cells": [
+        [
+          37,
+          32
+        ],
+        [
+          38,
+          32
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "pump",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        2248,
+        1990
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2108,
+        2059
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2707,
+        2111
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2172,
+        2498
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        2240,
+        2062
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r270",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2364,
+        1795
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2693,
+        1803
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2684,
+        1673
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        2196,
+        1820
+      ],
+      "blocked_cells": [
+        [
+          34,
+          28
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        2496,
+        880
+      ],
+      "blocked_cells": [
+        [
+          39,
+          14
+        ],
+        [
+          40,
+          14
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "workbench",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        2120,
+        838
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2620,
+        1231
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2126,
+        1280
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2620,
+        963
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/pump-native.png",
+      "at_px": [
+        1344,
+        224
+      ],
+      "blocked_cells": [
+        [
+          21,
+          4
+        ],
+        [
+          22,
+          4
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "pump",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        1352,
+        198
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1596,
+        659
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1631,
+        274
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1212,
+        264
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        264,
+        774
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        252,
+        1231
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        408,
+        1297
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        508,
+        1282
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        404,
+        1308
+      ],
+      "blocked_cells": [
+        [
+          6,
+          20
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        2240,
+        112
+      ],
+      "blocked_cells": [
+        [
+          35,
+          2
+        ],
+        [
+          36,
+          2
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "workbench",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        2120,
+        70
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2556,
+        136
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2584,
+        519
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2428,
+        138
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        2639,
+        334
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r270",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        2644,
+        412
+      ],
+      "blocked_cells": [
+        [
+          41,
+          6
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        128,
+        112
+      ],
+      "blocked_cells": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "workbench",
+      "against_wall": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/manifold-native.png",
+      "at_px": [
+        136,
+        70
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "manifold",
+      "wall_attached": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        252,
+        591
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        134,
+        263
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r90",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        700,
+        275
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "trash-r180",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        734,
+        136
+      ],
+      "blocked_cells": [],
+      "review": "EG-DEC-02",
+      "kind": "litter-r270",
+      "walkable_low_debris": true
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        276,
+        604
+      ],
+      "blocked_cells": [
+        [
+          4,
+          9
+        ]
+      ],
+      "review": "EG-DEC-02",
+      "kind": "old-barrel"
+    }
+  ],
+  "resurrection_ai_active": false,
+  "integrated_wall_pipes": true,
+  "decorative_bodies": [
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        1541,
+        1740
+      ]
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        2309,
+        1100
+      ]
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        2181,
+        524
+      ]
+    }
+  ],
+  "ensembles": [
+    {
+      "room": 0,
+      "theme": "access",
+      "anchor": [
+        19,
+        36
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            1208,
+            2264
+          ],
+          "blocked_cells": [
+            [
+              19,
+              36
+            ],
+            [
+              20,
+              36
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "access",
+          "room": 0
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            1336,
+            2300
+          ],
+          "blocked_cells": [
+            [
+              21,
+              36
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "access",
+          "room": 0
+        }
+      ]
+    },
+    {
+      "room": 1,
+      "theme": "hydraulic",
+      "anchor": [
+        27,
+        22
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            1720,
+            1404
+          ],
+          "blocked_cells": [
+            [
+              27,
+              22
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 1
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            1784,
+            1404
+          ],
+          "blocked_cells": [
+            [
+              28,
+              22
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 1
+        }
+      ]
+    },
+    {
+      "room": 1,
+      "theme": "hydraulic",
+      "anchor": [
+        20,
+        25
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            1272,
+            1560
+          ],
+          "blocked_cells": [
+            [
+              20,
+              25
+            ],
+            [
+              21,
+              25
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 1
+        }
+      ]
+    },
+    {
+      "room": 2,
+      "theme": "store",
+      "anchor": [
+        25,
+        13
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            1592,
+            828
+          ],
+          "blocked_cells": [
+            [
+              25,
+              13
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "store",
+          "room": 2
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            1656,
+            828
+          ],
+          "blocked_cells": [
+            [
+              26,
+              13
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "store",
+          "room": 2
+        }
+      ]
+    },
+    {
+      "room": 3,
+      "theme": "hydraulic",
+      "anchor": [
+        39,
+        32
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            2488,
+            2008
+          ],
+          "blocked_cells": [
+            [
+              39,
+              32
+            ],
+            [
+              40,
+              32
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 3
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            2616,
+            2044
+          ],
+          "blocked_cells": [
+            [
+              41,
+              32
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 3
+        }
+      ]
+    },
+    {
+      "room": 3,
+      "theme": "hydraulic",
+      "anchor": [
+        40,
+        34
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+          "at_px": [
+            2552,
+            2136
+          ],
+          "blocked_cells": [
+            [
+              40,
+              34
+            ],
+            [
+              41,
+              34
+            ]
+          ],
+          "kind": "pallet",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 3
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            2680,
+            2172
+          ],
+          "blocked_cells": [
+            [
+              42,
+              34
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 3
+        }
+      ]
+    },
+    {
+      "room": 3,
+      "theme": "hydraulic",
+      "anchor": [
+        41,
+        35
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            2616,
+            2236
+          ],
+          "blocked_cells": [
+            [
+              41,
+              35
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 3
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            2680,
+            2236
+          ],
+          "blocked_cells": [
+            [
+              42,
+              35
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 3
+        }
+      ]
+    },
+    {
+      "room": 3,
+      "theme": "hydraulic",
+      "anchor": [
+        41,
+        37
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            2616,
+            2328
+          ],
+          "blocked_cells": [
+            [
+              41,
+              37
+            ],
+            [
+              42,
+              37
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 3
+        }
+      ]
+    },
+    {
+      "room": 4,
+      "theme": "hydraulic",
+      "anchor": [
+        32,
+        22
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            2040,
+            1368
+          ],
+          "blocked_cells": [
+            [
+              32,
+              22
+            ],
+            [
+              33,
+              22
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 4
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            2168,
+            1404
+          ],
+          "blocked_cells": [
+            [
+              34,
+              22
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 4
+        }
+      ]
+    },
+    {
+      "room": 4,
+      "theme": "hydraulic",
+      "anchor": [
+        32,
+        28
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            2040,
+            1788
+          ],
+          "blocked_cells": [
+            [
+              32,
+              28
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 4
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            2104,
+            1788
+          ],
+          "blocked_cells": [
+            [
+              33,
+              28
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 4
+        }
+      ]
+    },
+    {
+      "room": 5,
+      "theme": "refuge",
+      "anchor": [
+        40,
+        18
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-03/kit/bedroll-native.png",
+          "at_px": [
+            2568,
+            1152
+          ],
+          "blocked_cells": [
+            [
+              40,
+              18
+            ],
+            [
+              40,
+              19
+            ]
+          ],
+          "kind": "bedroll",
+          "review": "EG-COMP-04",
+          "theme": "refuge",
+          "room": 5
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/bedroll-native.png",
+          "at_px": [
+            2632,
+            1152
+          ],
+          "blocked_cells": [
+            [
+              41,
+              18
+            ],
+            [
+              41,
+              19
+            ]
+          ],
+          "kind": "bedroll",
+          "review": "EG-COMP-04",
+          "theme": "refuge",
+          "room": 5
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+          "at_px": [
+            2552,
+            1280
+          ],
+          "blocked_cells": [
+            [
+              40,
+              20
+            ]
+          ],
+          "kind": "belongings",
+          "review": "EG-COMP-04",
+          "theme": "refuge",
+          "room": 5
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            2616,
+            1276
+          ],
+          "blocked_cells": [
+            [
+              41,
+              20
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "refuge",
+          "room": 5
+        }
+      ]
+    },
+    {
+      "room": 5,
+      "theme": "refuge",
+      "anchor": [
+        33,
+        19
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            2104,
+            1176
+          ],
+          "blocked_cells": [
+            [
+              33,
+              19
+            ],
+            [
+              34,
+              19
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "refuge",
+          "room": 5
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+          "at_px": [
+            2232,
+            1216
+          ],
+          "blocked_cells": [
+            [
+              35,
+              19
+            ]
+          ],
+          "kind": "belongings",
+          "review": "EG-COMP-04",
+          "theme": "refuge",
+          "room": 5
+        }
+      ]
+    },
+    {
+      "room": 6,
+      "theme": "hydraulic",
+      "anchor": [
+        19,
+        10
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            1208,
+            600
+          ],
+          "blocked_cells": [
+            [
+              19,
+              10
+            ],
+            [
+              20,
+              10
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 6
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            1336,
+            636
+          ],
+          "blocked_cells": [
+            [
+              21,
+              10
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 6
+        }
+      ]
+    },
+    {
+      "room": 6,
+      "theme": "hydraulic",
+      "anchor": [
+        19,
+        8
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+          "at_px": [
+            1208,
+            472
+          ],
+          "blocked_cells": [
+            [
+              19,
+              8
+            ],
+            [
+              20,
+              8
+            ]
+          ],
+          "kind": "pallet",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 6
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            1336,
+            508
+          ],
+          "blocked_cells": [
+            [
+              21,
+              8
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 6
+        }
+      ]
+    },
+    {
+      "room": 6,
+      "theme": "hydraulic",
+      "anchor": [
+        19,
+        6
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            1208,
+            380
+          ],
+          "blocked_cells": [
+            [
+              19,
+              6
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 6
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            1272,
+            380
+          ],
+          "blocked_cells": [
+            [
+              20,
+              6
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 6
+        }
+      ]
+    },
+    {
+      "room": 6,
+      "theme": "hydraulic",
+      "anchor": [
+        23,
+        4
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            1464,
+            216
+          ],
+          "blocked_cells": [
+            [
+              23,
+              4
+            ],
+            [
+              24,
+              4
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "hydraulic",
+          "room": 6
+        }
+      ]
+    },
+    {
+      "room": 7,
+      "theme": "store",
+      "anchor": [
+        4,
+        14
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+          "at_px": [
+            248,
+            856
+          ],
+          "blocked_cells": [
+            [
+              4,
+              14
+            ],
+            [
+              5,
+              14
+            ]
+          ],
+          "kind": "pallet",
+          "review": "EG-COMP-04",
+          "theme": "store",
+          "room": 7
+        },
+        {
+          "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+          "at_px": [
+            376,
+            856
+          ],
+          "blocked_cells": [
+            [
+              6,
+              14
+            ],
+            [
+              7,
+              14
+            ]
+          ],
+          "kind": "pallet",
+          "review": "EG-COMP-04",
+          "theme": "store",
+          "room": 7
+        }
+      ]
+    },
+    {
+      "room": 7,
+      "theme": "store",
+      "anchor": [
+        11,
+        19
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            696,
+            1176
+          ],
+          "blocked_cells": [
+            [
+              11,
+              19
+            ],
+            [
+              12,
+              19
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "store",
+          "room": 7
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            824,
+            1212
+          ],
+          "blocked_cells": [
+            [
+              13,
+              19
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "store",
+          "room": 7
+        }
+      ]
+    },
+    {
+      "room": 7,
+      "theme": "store",
+      "anchor": [
+        4,
+        15
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            248,
+            956
+          ],
+          "blocked_cells": [
+            [
+              4,
+              15
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "store",
+          "room": 7
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            312,
+            956
+          ],
+          "blocked_cells": [
+            [
+              5,
+              15
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "store",
+          "room": 7
+        }
+      ]
+    },
+    {
+      "room": 8,
+      "theme": "workshop",
+      "anchor": [
+        38,
+        4
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            2424,
+            216
+          ],
+          "blocked_cells": [
+            [
+              38,
+              4
+            ],
+            [
+              39,
+              4
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "workshop",
+          "room": 8
+        },
+        {
+          "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+          "at_px": [
+            2552,
+            216
+          ],
+          "blocked_cells": [
+            [
+              40,
+              4
+            ],
+            [
+              41,
+              4
+            ]
+          ],
+          "kind": "pallet",
+          "review": "EG-COMP-04",
+          "theme": "workshop",
+          "room": 8
+        }
+      ]
+    },
+    {
+      "room": 8,
+      "theme": "workshop",
+      "anchor": [
+        33,
+        2
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            2104,
+            88
+          ],
+          "blocked_cells": [
+            [
+              33,
+              2
+            ],
+            [
+              34,
+              2
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "workshop",
+          "room": 8
+        }
+      ]
+    },
+    {
+      "room": 9,
+      "theme": "workshop",
+      "anchor": [
+        4,
+        2
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+          "at_px": [
+            248,
+            88
+          ],
+          "blocked_cells": [
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          "kind": "shelf",
+          "review": "EG-COMP-04",
+          "theme": "workshop",
+          "room": 9
+        },
+        {
+          "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+          "at_px": [
+            376,
+            88
+          ],
+          "blocked_cells": [
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ]
+          ],
+          "kind": "pallet",
+          "review": "EG-COMP-04",
+          "theme": "workshop",
+          "room": 9
+        }
+      ]
+    },
+    {
+      "room": 9,
+      "theme": "workshop",
+      "anchor": [
+        2,
+        6
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+          "at_px": [
+            120,
+            344
+          ],
+          "blocked_cells": [
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              6
+            ]
+          ],
+          "kind": "pallet",
+          "review": "EG-COMP-04",
+          "theme": "workshop",
+          "room": 9
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+          "at_px": [
+            248,
+            380
+          ],
+          "blocked_cells": [
+            [
+              4,
+              6
+            ]
+          ],
+          "kind": "barrels",
+          "review": "EG-COMP-04",
+          "theme": "workshop",
+          "room": 9
+        }
+      ]
+    },
+    {
+      "room": 9,
+      "theme": "workshop",
+      "anchor": [
+        9,
+        5
+      ],
+      "parts": [
+        {
+          "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+          "at_px": [
+            576,
+            304
+          ],
+          "blocked_cells": [
+            [
+              9,
+              5
+            ],
+            [
+              10,
+              5
+            ]
+          ],
+          "kind": "workbench",
+          "review": "EG-COMP-04",
+          "theme": "workshop",
+          "room": 9
+        },
+        {
+          "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+          "at_px": [
+            696,
+            320
+          ],
+          "blocked_cells": [
+            [
+              11,
+              5
+            ]
+          ],
+          "kind": "belongings",
+          "review": "EG-COMP-04",
+          "theme": "workshop",
+          "room": 9
+        }
+      ]
+    }
+  ],
+  "composition_props": [
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        1208,
+        2264
+      ],
+      "blocked_cells": [
+        [
+          19,
+          36
+        ],
+        [
+          20,
+          36
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "access",
+      "room": 0
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1336,
+        2300
+      ],
+      "blocked_cells": [
+        [
+          21,
+          36
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "access",
+      "room": 0
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1720,
+        1404
+      ],
+      "blocked_cells": [
+        [
+          27,
+          22
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1784,
+        1404
+      ],
+      "blocked_cells": [
+        [
+          28,
+          22
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        1272,
+        1560
+      ],
+      "blocked_cells": [
+        [
+          20,
+          25
+        ],
+        [
+          21,
+          25
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1592,
+        828
+      ],
+      "blocked_cells": [
+        [
+          25,
+          13
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 2
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1656,
+        828
+      ],
+      "blocked_cells": [
+        [
+          26,
+          13
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 2
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2488,
+        2008
+      ],
+      "blocked_cells": [
+        [
+          39,
+          32
+        ],
+        [
+          40,
+          32
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2616,
+        2044
+      ],
+      "blocked_cells": [
+        [
+          41,
+          32
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        2552,
+        2136
+      ],
+      "blocked_cells": [
+        [
+          40,
+          34
+        ],
+        [
+          41,
+          34
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2680,
+        2172
+      ],
+      "blocked_cells": [
+        [
+          42,
+          34
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2616,
+        2236
+      ],
+      "blocked_cells": [
+        [
+          41,
+          35
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2680,
+        2236
+      ],
+      "blocked_cells": [
+        [
+          42,
+          35
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2616,
+        2328
+      ],
+      "blocked_cells": [
+        [
+          41,
+          37
+        ],
+        [
+          42,
+          37
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2040,
+        1368
+      ],
+      "blocked_cells": [
+        [
+          32,
+          22
+        ],
+        [
+          33,
+          22
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 4
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2168,
+        1404
+      ],
+      "blocked_cells": [
+        [
+          34,
+          22
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 4
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2040,
+        1788
+      ],
+      "blocked_cells": [
+        [
+          32,
+          28
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 4
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2104,
+        1788
+      ],
+      "blocked_cells": [
+        [
+          33,
+          28
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 4
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/bedroll-native.png",
+      "at_px": [
+        2568,
+        1152
+      ],
+      "blocked_cells": [
+        [
+          40,
+          18
+        ],
+        [
+          40,
+          19
+        ]
+      ],
+      "kind": "bedroll",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/bedroll-native.png",
+      "at_px": [
+        2632,
+        1152
+      ],
+      "blocked_cells": [
+        [
+          41,
+          18
+        ],
+        [
+          41,
+          19
+        ]
+      ],
+      "kind": "bedroll",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+      "at_px": [
+        2552,
+        1280
+      ],
+      "blocked_cells": [
+        [
+          40,
+          20
+        ]
+      ],
+      "kind": "belongings",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2616,
+        1276
+      ],
+      "blocked_cells": [
+        [
+          41,
+          20
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2104,
+        1176
+      ],
+      "blocked_cells": [
+        [
+          33,
+          19
+        ],
+        [
+          34,
+          19
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+      "at_px": [
+        2232,
+        1216
+      ],
+      "blocked_cells": [
+        [
+          35,
+          19
+        ]
+      ],
+      "kind": "belongings",
+      "review": "EG-COMP-04",
+      "theme": "refuge",
+      "room": 5
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        1208,
+        600
+      ],
+      "blocked_cells": [
+        [
+          19,
+          10
+        ],
+        [
+          20,
+          10
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1336,
+        636
+      ],
+      "blocked_cells": [
+        [
+          21,
+          10
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        1208,
+        472
+      ],
+      "blocked_cells": [
+        [
+          19,
+          8
+        ],
+        [
+          20,
+          8
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1336,
+        508
+      ],
+      "blocked_cells": [
+        [
+          21,
+          8
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1208,
+        380
+      ],
+      "blocked_cells": [
+        [
+          19,
+          6
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1272,
+        380
+      ],
+      "blocked_cells": [
+        [
+          20,
+          6
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        1464,
+        216
+      ],
+      "blocked_cells": [
+        [
+          23,
+          4
+        ],
+        [
+          24,
+          4
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "hydraulic",
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        248,
+        856
+      ],
+      "blocked_cells": [
+        [
+          4,
+          14
+        ],
+        [
+          5,
+          14
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        376,
+        856
+      ],
+      "blocked_cells": [
+        [
+          6,
+          14
+        ],
+        [
+          7,
+          14
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        696,
+        1176
+      ],
+      "blocked_cells": [
+        [
+          11,
+          19
+        ],
+        [
+          12,
+          19
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        824,
+        1212
+      ],
+      "blocked_cells": [
+        [
+          13,
+          19
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        248,
+        956
+      ],
+      "blocked_cells": [
+        [
+          4,
+          15
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        312,
+        956
+      ],
+      "blocked_cells": [
+        [
+          5,
+          15
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "store",
+      "room": 7
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2424,
+        216
+      ],
+      "blocked_cells": [
+        [
+          38,
+          4
+        ],
+        [
+          39,
+          4
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 8
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        2552,
+        216
+      ],
+      "blocked_cells": [
+        [
+          40,
+          4
+        ],
+        [
+          41,
+          4
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 8
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        2104,
+        88
+      ],
+      "blocked_cells": [
+        [
+          33,
+          2
+        ],
+        [
+          34,
+          2
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 8
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/shelf-native.png",
+      "at_px": [
+        248,
+        88
+      ],
+      "blocked_cells": [
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "kind": "shelf",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        376,
+        88
+      ],
+      "blocked_cells": [
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/pallet-native.png",
+      "at_px": [
+        120,
+        344
+      ],
+      "blocked_cells": [
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "kind": "pallet",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        248,
+        380
+      ],
+      "blocked_cells": [
+        [
+          4,
+          6
+        ]
+      ],
+      "kind": "barrels",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        576,
+        304
+      ],
+      "blocked_cells": [
+        [
+          9,
+          5
+        ],
+        [
+          10,
+          5
+        ]
+      ],
+      "kind": "workbench",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+      "at_px": [
+        696,
+        320
+      ],
+      "blocked_cells": [
+        [
+          11,
+          5
+        ]
+      ],
+      "kind": "belongings",
+      "review": "EG-COMP-04",
+      "theme": "workshop",
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/runoff-native.png",
+      "at_px": [
+        1472,
+        1384
+      ],
+      "blocked_cells": [],
+      "kind": "runoff",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/runoff-native.png",
+      "at_px": [
+        2304,
+        2408
+      ],
+      "blocked_cells": [],
+      "kind": "runoff",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/runoff-native.png",
+      "at_px": [
+        2176,
+        1704
+      ],
+      "blocked_cells": [],
+      "kind": "runoff",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 4
+    },
+    {
+      "file": "assets/source-art/sewer-review-04/kit/runoff-native.png",
+      "at_px": [
+        1536,
+        488
+      ],
+      "blocked_cells": [],
+      "kind": "runoff",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        1344,
+        1728
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        1408,
+        1728
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 1
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        2176,
+        2432
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        2240,
+        2432
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 3
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        1536,
+        320
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        1600,
+        320
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 6
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        192,
+        512
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 9
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/grate-native.png",
+      "at_px": [
+        256,
+        512
+      ],
+      "blocked_cells": [],
+      "kind": "drain",
+      "review": "EG-COMP-04",
+      "ground_decal": true,
+      "room": 9
+    }
+  ],
+  "population_proposal": {
+    "review": "EG-POP-04",
+    "original_count": 30,
+    "proposed_count": 104,
+    "groups": 14,
+    "supports": 2,
+    "unchanged_combat_profiles": true,
+    "damage_or_xp_rebalance": false,
+    "resurrection_active": false
+  },
+  "composition_checks": {
+    "all_walkable_connected": true,
+    "no_solid_prop_overlap": true,
+    "accepted_wall_network_preserved": true,
+    "no_main_pipe_on_floor": true,
+    "original_members_retained": true,
+    "entrance_safe_radius": 6,
+    "arrival_minimum_path_distance": 8,
+    "existing_body_placements_preserved": true
+  },
+  "wall_module_checks": {
+    "boundary_segments": 306,
+    "joined_corners": 72,
+    "corner_orientations_preserved": true,
+    "pipes_integrated_in_wall_surface": true,
+    "no_main_pipe_in_walkable_floor": true
+  }
+}

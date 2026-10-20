@@ -1,0 +1,135 @@
+{
+  "review": "BLIZZARD-VIS-01",
+  "date": "2026-10-20",
+  "status": "awaiting_player_visual_validation",
+  "normal_game_activation": false,
+  "build": {
+    "command": "cargo build --locked",
+    "result": "passed"
+  },
+  "targeted_mechanical_regressions": {
+    "command": "cargo test --locked --lib agent_magic_blizzard -- --quiet",
+    "passed": 3,
+    "failed": 0,
+    "full_suite_run": false
+  },
+  "format": {
+    "cargo_fmt_all_check": "passed",
+    "git_diff_check": "passed",
+    "python_compile": "passed",
+    "javascript_node_check": "passed"
+  },
+  "native_capture": {
+    "cases": 3,
+    "lighting_scenarios": 2,
+    "source_phases": 72,
+    "source_fps": 60,
+    "native_cell": 64,
+    "canvas_size": [
+      448,
+      320
+    ],
+    "real_FR05_cast": true,
+    "game_state_unchanged_during_capture": true,
+    "persistent_visual_loop_without_advancing_game_turns": true
+  },
+  "pixels": {
+    "comparisons": 6,
+    "excluded_cell_leaks": 0,
+    "all_cases_show_visual_overhang": true,
+    "all_cases_show_more_effect_contrast": true,
+    "persistent_animation_varies": true,
+    "details": [
+      {
+        "number": 1,
+        "light": "sombre",
+        "changed_phases": 72,
+        "visual_overhang_pixel_samples": 2432554,
+        "excluded_cell_leaks": 0,
+        "effect_contrast_ratio": 2.934,
+        "persistent_animation_varies": true
+      },
+      {
+        "number": 1,
+        "light": "clair",
+        "changed_phases": 72,
+        "visual_overhang_pixel_samples": 2348146,
+        "excluded_cell_leaks": 0,
+        "effect_contrast_ratio": 3.171,
+        "persistent_animation_varies": true
+      },
+      {
+        "number": 2,
+        "light": "sombre",
+        "changed_phases": 72,
+        "visual_overhang_pixel_samples": 2803424,
+        "excluded_cell_leaks": 0,
+        "effect_contrast_ratio": 2.687,
+        "persistent_animation_varies": true
+      },
+      {
+        "number": 2,
+        "light": "clair",
+        "changed_phases": 72,
+        "visual_overhang_pixel_samples": 2808404,
+        "excluded_cell_leaks": 0,
+        "effect_contrast_ratio": 2.896,
+        "persistent_animation_varies": true
+      },
+      {
+        "number": 3,
+        "light": "sombre",
+        "changed_phases": 72,
+        "visual_overhang_pixel_samples": 1866744,
+        "excluded_cell_leaks": 0,
+        "effect_contrast_ratio": 2.2,
+        "persistent_animation_varies": true
+      },
+      {
+        "number": 3,
+        "light": "clair",
+        "changed_phases": 72,
+        "visual_overhang_pixel_samples": 1857714,
+        "excluded_cell_leaks": 0,
+        "effect_contrast_ratio": 2.338,
+        "persistent_animation_varies": true
+      }
+    ],
+    "contrast_metric_scope": "Summed absolute RGB differences versus clean scene, including natural overhang; not a perceptual brightness multiple."
+  },
+  "browser": {
+    "url": "http://127.0.0.1:8765/apercu-animations.html",
+    "default_case": "06 Blizzard active on dark floor",
+    "active_blizzard": "passed",
+    "warning_selection": "passed",
+    "earlier_shape_example_preserved": "passed",
+    "pause_and_scrub": "passed",
+    "slowdown_toggle": "passed",
+    "css_canvas_sizes": [
+      [
+        448,
+        320
+      ],
+      [
+        448,
+        320
+      ]
+    ],
+    "console_warnings_or_errors": 0
+  },
+  "unchanged": [
+    "impact chance per cell per turn 50 percent",
+    "damage",
+    "freeze rules",
+    "warning turn",
+    "duration and area",
+    "range and cost",
+    "campaign saves",
+    "normal-game rendering"
+  ],
+  "sources": {
+    "src/blizzard_readability_review.rs": "bb0c59de23caeb36d7aad38ac4d649014ed03033954406c9c98bddf2e013f25b",
+    "tools/reviews/build_blizzard_visibility_review.py": "7f5166fa78243d715ce16930a42f3b12ca16c4e904d4b844e88eea2c22a71645",
+    "tools/reviews/build_animation_shape_review.py": "d82228ea79fc8abe97d8fae37733ad877ebb6c64ae7604f69a94655f438e0138"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "review": "ART-FINISH-01",
+  "code": "FIN-01",
+  "fixed_core_source": "FIN-01-source.png",
+  "arms_source": "FIN-01-RIFLE-source.png",
+  "arm_selection": [
+    [
+      [
+        27,
+        46
+      ],
+      [
+        53,
+        46
+      ],
+      [
+        57,
+        51
+      ],
+      [
+        55,
+        57
+      ],
+      [
+        53,
+        69
+      ],
+      [
+        27,
+        69
+      ]
+    ],
+    [
+      [
+        75,
+        46
+      ],
+      [
+        101,
+        46
+      ],
+      [
+        101,
+        69
+      ],
+      [
+        76,
+        69
+      ],
+      [
+        73,
+        57
+      ],
+      [
+        71,
+        51
+      ]
+    ]
+  ],
+  "rifle_selection": [
+    [
+      [
+        40,
+        46
+      ],
+      [
+        55,
+        46
+      ],
+      [
+        59,
+        53
+      ],
+      [
+        65,
+        57
+      ],
+      [
+        64,
+        68
+      ],
+      [
+        43,
+        68
+      ]
+    ],
+    [
+      [
+        72,
+        46
+      ],
+      [
+        88,
+        46
+      ],
+      [
+        88,
+        69
+      ],
+      [
+        66,
+        69
+      ],
+      [
+        64,
+        59
+      ],
+      [
+        70,
+        53
+      ]
+    ]
+  ],
+  "configurations": {
+    "single": {
+      "layers": [
+        "FIN-01-single-body.png",
+        "FIN-01-single-weapon.png",
+        "FIN-01-single-fingers.png"
+      ],
+      "anchor": [
+        81,
+        61
+      ],
+      "held_length": 17
+    },
+    "rifle": {
+      "layers": [
+        "FIN-01-rifle-body.png",
+        "FIN-01-rifle-weapon.png",
+        "FIN-01-rifle-fingers.png"
+      ],
+      "anchor": [
+        [
+          59,
+          64
+        ],
+        [
+          73,
+          61
+        ]
+      ],
+      "held_length": 34
+    }
+  },
+  "body_weapon_and_fingers_separate": true
+}

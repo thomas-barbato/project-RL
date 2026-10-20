@@ -1,0 +1,32 @@
+{
+  "review": "U01-POP-01",
+  "status": "isolated_playable_trial",
+  "safe_arrival_radius": 6,
+  "groups": [
+    {"id":1,"level":1,"members":[
+      {"at":[13,54],"number":22,"variant":0},
+      {"at":[14,55],"number":22,"variant":1}
+    ]},
+    {"id":2,"level":1,"members":[
+      {"at":[3,55],"number":120,"variant":0},
+      {"at":[4,55],"number":121,"variant":0},
+      {"at":[5,55],"number":120,"variant":1}
+    ]},
+    {"id":3,"level":1,"members":[
+      {"at":[17,37],"number":22,"variant":1},
+      {"at":[19,37],"number":22,"variant":0},
+      {"at":[19,35],"number":24,"variant":0}
+    ]},
+    {"id":4,"level":2,"members":[
+      {"at":[17,24],"number":121,"variant":0},
+      {"at":[19,24],"number":120,"variant":0},
+      {"at":[18,23],"number":121,"variant":1}
+    ]},
+    {"id":5,"level":2,"members":[
+      {"at":[18,7],"number":22,"variant":0},
+      {"at":[20,7],"number":22,"variant":1},
+      {"at":[17,8],"number":22,"variant":0},
+      {"at":[19,5],"number":24,"variant":1}
+    ]}
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "correction": "assets/source-art/first-sector-review-01/u01-doorway-fix-r01/illumination-correction.png",
+  "irradiance": "assets/source-art/first-sector-review-01/u01-doorway-fix-r01/irradiance.png",
+  "ambient": [
+    0.56,
+    0.61,
+    0.72
+  ],
+  "lights": [
+    {
+      "id": "home",
+      "at": [
+        482,
+        129
+      ],
+      "origin": [
+        7,
+        3
+      ],
+      "box": [
+        368,
+        58,
+        408,
+        70
+      ],
+      "radius": 230,
+      "power": 0.9359999999999999
+    },
+    {
+      "id": "home-door",
+      "at": [
+        407,
+        376
+      ],
+      "origin": [
+        6,
+        6
+      ],
+      "box": [
+        169,
+        302,
+        211,
+        313
+      ],
+      "radius": 225,
+      "power": 0.9099999999999999
+    },
+    {
+      "id": "shop-door",
+      "at": [
+        845,
+        352
+      ],
+      "origin": [
+        13,
+        6
+      ],
+      "box": [
+        730,
+        282,
+        770,
+        294
+      ],
+      "radius": 225,
+      "power": 0.9099999999999999
+    },
+    {
+      "id": "west",
+      "at": [
+        154,
+        501
+      ],
+      "origin": [
+        2,
+        8
+      ],
+      "box": [
+        53,
+        418,
+        64,
+        456
+      ],
+      "radius": 230,
+      "power": 0.8450000000000001
+    },
+    {
+      "id": "north-west",
+      "at": [
+        1074,
+        237
+      ],
+      "origin": [
+        18,
+        3
+      ],
+      "box": [
+        973,
+        157,
+        984,
+        196
+      ],
+      "radius": 230,
+      "power": 0.8450000000000001
+    },
+    {
+      "id": "north-east",
+      "at": [
+        1347,
+        157
+      ],
+      "origin": [
+        19,
+        2
+      ],
+      "box": [
+        1245,
+        78,
+        1258,
+        115
+      ],
+      "radius": 235,
+      "power": 0.8450000000000001
+    },
+    {
+      "id": "north-east-upper",
+      "at": [
+        1339,
+        91
+      ],
+      "origin": [
+        19,
+        1
+      ],
+      "box": [
+        1237,
+        13,
+        1249,
+        46
+      ],
+      "radius": 185,
+      "power": 0.65
+    },
+    {
+      "id": "garage-west",
+      "at": [
+        1274,
+        487
+      ],
+      "origin": [
+        19,
+        8
+      ],
+      "box": [
+        1172,
+        408,
+        1184,
+        439
+      ],
+      "radius": 230,
+      "power": 0.8580000000000001
+    },
+    {
+      "id": "garage",
+      "at": [
+        1376,
+        607
+      ],
+      "origin": [
+        22,
+        10
+      ],
+      "box": [
+        1259,
+        537,
+        1302,
+        548
+      ],
+      "radius": 240,
+      "power": 0.9099999999999999
+    },
+    {
+      "id": "gate-left",
+      "at": [
+        375,
+        934
+      ],
+      "origin": [
+        7,
+        14
+      ],
+      "box": [
+        273,
+        851,
+        285,
+        887
+      ],
+      "radius": 215,
+      "power": 0.8840000000000001
+    },
+    {
+      "id": "gate-right",
+      "at": [
+        634,
+        934
+      ],
+      "origin": [
+        8,
+        14
+      ],
+      "box": [
+        532,
+        851,
+        544,
+        887
+      ],
+      "radius": 215,
+      "power": 0.8840000000000001
+    },
+    {
+      "id": "ruin-west",
+      "at": [
+        924,
+        905
+      ],
+      "origin": [
+        14,
+        15
+      ],
+      "box": [
+        808,
+        835,
+        849,
+        847
+      ],
+      "radius": 225,
+      "power": 0.8840000000000001
+    },
+    {
+      "id": "ruin-east",
+      "at": [
+        1388,
+        906
+      ],
+      "origin": [
+        21,
+        15
+      ],
+      "box": [
+        1272,
+        836,
+        1311,
+        848
+      ],
+      "radius": 225,
+      "power": 0.8840000000000001
+    },
+    {
+      "id": "car",
+      "at": [
+        1060,
+        538
+      ],
+      "origin": [
+        16,
+        8
+      ],
+      "box": null,
+      "radius": 170,
+      "power": 0.546
+    }
+  ],
+  "lightmap_scale": 8,
+  "procedural_emitters": true
+}

@@ -1,0 +1,1130 @@
+{
+  "id": "EG01",
+  "width": 47,
+  "height": 44,
+  "cell": 64,
+  "image_origin": [
+    0,
+    0
+  ],
+  "image_offset_px": [
+    0,
+    0
+  ],
+  "image_size": [
+    47,
+    44
+  ],
+  "background": "assets/source-art/sewer-review-02/seed-1/background.png",
+  "entrance": [
+    23,
+    38
+  ],
+  "home_entry": [
+    23,
+    38
+  ],
+  "home_inside": [
+    23,
+    38
+  ],
+  "car_at": [
+    -100,
+    -100
+  ],
+  "car_file": "assets/maps/prison-street-01/car.png",
+  "car_size": [
+    0,
+    0
+  ],
+  "obstructions": [
+    [
+      3,
+      22
+    ],
+    [
+      4,
+      12
+    ],
+    [
+      4,
+      22
+    ],
+    [
+      5,
+      12
+    ],
+    [
+      6,
+      12
+    ],
+    [
+      6,
+      27
+    ],
+    [
+      10,
+      13
+    ],
+    [
+      10,
+      23
+    ],
+    [
+      20,
+      24
+    ],
+    [
+      20,
+      34
+    ],
+    [
+      22,
+      2
+    ],
+    [
+      25,
+      14
+    ],
+    [
+      25,
+      23
+    ],
+    [
+      26,
+      14
+    ],
+    [
+      26,
+      23
+    ],
+    [
+      26,
+      33
+    ],
+    [
+      27,
+      28
+    ],
+    [
+      28,
+      24
+    ],
+    [
+      28,
+      25
+    ],
+    [
+      28,
+      28
+    ],
+    [
+      29,
+      23
+    ],
+    [
+      29,
+      24
+    ],
+    [
+      29,
+      25
+    ],
+    [
+      33,
+      29
+    ],
+    [
+      36,
+      14
+    ],
+    [
+      37,
+      40
+    ],
+    [
+      38,
+      40
+    ],
+    [
+      39,
+      36
+    ],
+    [
+      39,
+      37
+    ],
+    [
+      40,
+      13
+    ],
+    [
+      40,
+      19
+    ],
+    [
+      40,
+      20
+    ],
+    [
+      40,
+      36
+    ],
+    [
+      40,
+      37
+    ],
+    [
+      41,
+      13
+    ],
+    [
+      41,
+      19
+    ],
+    [
+      41,
+      28
+    ],
+    [
+      41,
+      29
+    ],
+    [
+      41,
+      36
+    ],
+    [
+      41,
+      37
+    ],
+    [
+      42,
+      28
+    ],
+    [
+      42,
+      29
+    ],
+    [
+      43,
+      28
+    ],
+    [
+      43,
+      29
+    ]
+  ],
+  "source": "assets/source-art/first-sector-review-01/u01-style-r07/SCENE-U01-07-r01.png",
+  "background_sha256": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+  "layout_sha256": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
+  "walkable_cells": 695,
+  "all_walkable_connected": true,
+  "doorway": null,
+  "doorway_fix": "DOOR-U01-FIX-01",
+  "visual_review": "SCENE-U01-08-r06",
+  "lighting_review": "LUM-U01-08-r06",
+  "style": "STYLE-RL-2026-10-18-r01",
+  "atmosphere": {
+    "ambient": [
+      0.48,
+      0.54,
+      0.57
+    ],
+    "colored_emitters": true,
+    "procedural_emitters": false,
+    "lights": [
+      {
+        "id": "bulkhead-0",
+        "at": [
+          1306,
+          2097
+        ],
+        "origin": [
+          20,
+          33
+        ],
+        "box": [
+          1301,
+          2093,
+          1311,
+          2101
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-1",
+        "at": [
+          2650,
+          2097
+        ],
+        "origin": [
+          41,
+          33
+        ],
+        "box": [
+          2645,
+          2093,
+          2655,
+          2101
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-2",
+        "at": [
+          2266,
+          1393
+        ],
+        "origin": [
+          35,
+          22
+        ],
+        "box": [
+          2261,
+          1389,
+          2271,
+          1397
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-3",
+        "at": [
+          346,
+          2097
+        ],
+        "origin": [
+          5,
+          33
+        ],
+        "box": [
+          341,
+          2093,
+          351,
+          2101
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-5",
+        "at": [
+          1882,
+          1457
+        ],
+        "origin": [
+          29,
+          23
+        ],
+        "box": [
+          1877,
+          1453,
+          1887,
+          1461
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-7",
+        "at": [
+          1370,
+          881
+        ],
+        "origin": [
+          21,
+          14
+        ],
+        "box": [
+          1365,
+          877,
+          1375,
+          885
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-8",
+        "at": [
+          1818,
+          113
+        ],
+        "origin": [
+          28,
+          2
+        ],
+        "box": [
+          1813,
+          109,
+          1823,
+          117
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      },
+      {
+        "id": "bulkhead-9",
+        "at": [
+          730,
+          753
+        ],
+        "origin": [
+          11,
+          12
+        ],
+        "box": [
+          725,
+          749,
+          735,
+          757
+        ],
+        "radius": 260,
+        "power": 0.72,
+        "color": [
+          0.95,
+          0.72,
+          0.39
+        ],
+        "lens_color": [
+          1.0,
+          0.85,
+          0.52
+        ]
+      }
+    ],
+    "correction": "assets/source-art/sewer-review-02/seed-1/correction.png",
+    "irradiance": "assets/source-art/sewer-review-02/seed-1/irradiance.png"
+  },
+  "roofs": [],
+  "roof_review": "ROOF-U01-01-r01",
+  "next_exit": [
+    18,
+    1
+  ],
+  "candidate": true,
+  "extra_doorways": [],
+  "ambience": null,
+  "review_views": [
+    [
+      "gate",
+      [
+        7,
+        62
+      ]
+    ],
+    [
+      "red-door",
+      [
+        13,
+        54
+      ]
+    ],
+    [
+      "yellow-door",
+      [
+        4,
+        54
+      ]
+    ],
+    [
+      "garage",
+      [
+        22,
+        58
+      ]
+    ],
+    [
+      "courtyard",
+      [
+        16,
+        41
+      ]
+    ],
+    [
+      "north-yard",
+      [
+        17,
+        8
+      ]
+    ],
+    [
+      "exit",
+      [
+        18,
+        1
+      ]
+    ],
+    [
+      "join-north",
+      [
+        18,
+        17
+      ]
+    ],
+    [
+      "join-middle",
+      [
+        18,
+        33
+      ]
+    ],
+    [
+      "join-south",
+      [
+        18,
+        49
+      ]
+    ],
+    [
+      "house-a-closed",
+      [
+        11,
+        23
+      ]
+    ],
+    [
+      "house-a-open",
+      [
+        12,
+        20
+      ]
+    ],
+    [
+      "house-b-closed",
+      [
+        11,
+        31
+      ]
+    ],
+    [
+      "house-b-open",
+      [
+        12,
+        28
+      ]
+    ],
+    [
+      "war-houses",
+      [
+        6,
+        24
+      ]
+    ],
+    [
+      "war-annex",
+      [
+        15,
+        13
+      ]
+    ],
+    [
+      "war-blast",
+      [
+        16,
+        42
+      ]
+    ],
+    [
+      "lighting-off",
+      [
+        17,
+        11
+      ]
+    ],
+    [
+      "court-clean",
+      [
+        15,
+        41
+      ]
+    ],
+    [
+      "west-corner",
+      [
+        2,
+        2
+      ]
+    ],
+    [
+      "east-corner",
+      [
+        23,
+        2
+      ]
+    ]
+  ],
+  "review_animations": [
+    [
+      "fan",
+      [
+        24,
+        53
+      ]
+    ],
+    [
+      "steam",
+      [
+        12,
+        55
+      ]
+    ],
+    [
+      "embers",
+      [
+        15,
+        57
+      ]
+    ]
+  ],
+  "south_visible_edge": 4064,
+  "integration_generation": 157,
+  "scenery_props": [
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/cabinet-native.png",
+      "at_px": [
+        1292,
+        2186
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        660,
+        1500
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/cabinet-native.png",
+      "at_px": [
+        1292,
+        1546
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r05/court-machines-native.png",
+      "at_px": [
+        1719,
+        1717
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/cabinet-native.png",
+      "at_px": [
+        2316,
+        906
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r05/court-machines-native.png",
+      "at_px": [
+        2551,
+        1141
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        660,
+        860
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1660,
+        2501
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1352,
+        2498
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1212,
+        2515
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1684,
+        2140
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        2368,
+        2544
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2300,
+        2576
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2638,
+        2255
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2620,
+        2505
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        2587,
+        2121
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2172,
+        1427
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2564,
+        1874
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2748,
+        1605
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        2132,
+        1884
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        380,
+        2510
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        524,
+        2509
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        252,
+        2445
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        716,
+        2124
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/pump-native.png",
+      "at_px": [
+        192,
+        1376
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        316,
+        1419
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        278,
+        1726
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        188,
+        1487
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        404,
+        1756
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        1600,
+        1456
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1788,
+        1469
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1362,
+        1480
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1852,
+        1666
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        1223,
+        1855
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1876,
+        1500
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/workbench-native.png",
+      "at_px": [
+        2560,
+        816
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        2620,
+        1295
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        2524,
+        845
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        2300,
+        844
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        2580,
+        1308
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/pump-native.png",
+      "at_px": [
+        1600,
+        864
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1212,
+        901
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1350,
+        1229
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1212,
+        1227
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        1681,
+        1231
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        1468,
+        147
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        1295,
+        142
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        1788,
+        257
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r270-native.png",
+      "at_px": [
+        1687,
+        145
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        1428,
+        156
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/pump-native.png",
+      "at_px": [
+        320,
+        736
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-native.png",
+      "at_px": [
+        636,
+        773
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/litter-r90-native.png",
+      "at_px": [
+        213,
+        1150
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-02/kit/trash-r180-native.png",
+      "at_px": [
+        700,
+        979
+      ]
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/barrel-native.png",
+      "at_px": [
+        276,
+        796
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/shelter-native.png",
+      "at_px": [
+        2488,
+        2304
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+      "at_px": [
+        2616,
+        2304
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        2616,
+        2364
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/canopy-native.png",
+      "at_px": [
+        2616,
+        1792
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/bedroll-native.png",
+      "at_px": [
+        2760,
+        1792
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/bedroll-native.png",
+      "at_px": [
+        1800,
+        1536
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/belongings-native.png",
+      "at_px": [
+        1848,
+        1536
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-03/kit/barrels-native.png",
+      "at_px": [
+        1848,
+        1596
+      ]
+    },
+    {
+      "file": "assets/source-art/sewer-review-01/kit/stairs-native.png",
+      "at_px": [
+        1464,
+        2288
+      ]
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        1349,
+        1676
+      ]
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        389,
+        1420
+      ]
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        325,
+        844
+      ]
+    }
+  ],
+  "surface_style": "STYLE-MAP-U01-04",
+  "paving_review": "PAV-U01-06",
+  "civilians_review": "CIVILS-U01-08"
+}

@@ -1,4 +1,8 @@
 //! Already approved protection, healing, spectral and curse presentation.
+use crate::animation_policy::{
+    material as load_material, restore_material as gl_use_default_material,
+    use_material as gl_use_material,
+};
 use crate::effect_geometry::LazyTexture;
 use macroquad::prelude::*;
 use project_rl::{game::GameState, world::GridPos};
@@ -166,7 +170,11 @@ pub(super) fn draw(
     }
     ART.with_borrow_mut(|cache| {
         let art = cache.get_or_insert_with(Art::load);
-        let clock = if reduced { 0.2 } else { now as f32 };
+        let clock = if reduced {
+            0.2
+        } else {
+            crate::animation_policy::clock(now) as f32
+        };
         for (entity, actor) in game.actors().iter() {
             let Some(r) = actor_rect(entity, actor.position()) else {
                 continue;
@@ -253,7 +261,7 @@ pub(super) fn draw(
             ) {
                 continue;
             }
-            let age = (now - flight.started) as f32;
+            let age = crate::animation_policy::age(&flight.skill, now, flight.started) as f32;
             let attached = matches!(
                 flight.skill.as_str(),
                 "B02" | "SU03" | "SU04" | "SU05" | "SU06"

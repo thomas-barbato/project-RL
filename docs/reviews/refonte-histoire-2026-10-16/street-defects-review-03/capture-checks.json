@@ -1,0 +1,71 @@
+{
+  "camp_round_trip": true,
+  "circular_player_vision": true,
+  "corrected_cells": 61,
+  "grim_art_integrated": false,
+  "grim_candidate": {
+    "gate_player": [
+      8,
+      59
+    ],
+    "ground_layer": true,
+    "living_actors_unchanged": true,
+    "materials": [
+      "STYLE-U01-01",
+      "STYLE-U01-02"
+    ],
+    "props": [
+      "GRIM-U01-01",
+      "CORP-U01-01",
+      "CORP-U01-02",
+      "CORP-U01-03"
+    ],
+    "rejected_for_street": [
+      "GRIM-U01-02"
+    ],
+    "same_lighting": true,
+    "style_player": [
+      6,
+      8
+    ]
+  },
+  "grim_lighting_integrated": false,
+  "movement_end": [
+    7,
+    31
+  ],
+  "movement_start": [
+    16,
+    31
+  ],
+  "movement_turns": 9,
+  "native_cell": 64,
+  "normal_generation": 159,
+  "npc": [
+    6,
+    7
+  ],
+  "npc_occluded_by_wall": true,
+  "npc_rect": [
+    784.0,
+    374.0,
+    64.0,
+    64.0
+  ],
+  "npc_visible_after": true,
+  "npc_visible_before": false,
+  "old_run_generation": 158,
+  "player_for_npc": [
+    8,
+    8
+  ],
+  "real_radius": 6,
+  "render_read_only": true,
+  "review": "FIXES-U01-03",
+  "changed_pixels": {
+    "gate": 8945,
+    "style": 281988
+  },
+  "review_page": "artifacts/street-defects-review-01/index.html",
+  "source_conditioning": "assets/source-art/first-sector-review-01/u01-corrections-r03/conditioning.json"
+}

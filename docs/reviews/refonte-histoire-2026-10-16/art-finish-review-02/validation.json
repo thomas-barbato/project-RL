@@ -1,0 +1,133 @@
+{
+  "review": "ART-FINISH-02",
+  "status": "pending_visual_review",
+  "native_cell": 64,
+  "drawings": 8,
+  "configuration_samples": 24,
+  "scene_pairs": 4,
+  "production_files_unchanged": 528,
+  "normal_renderer_changed_pixels": {
+    "native-1": 0,
+    "native-2": 0,
+    "native-3": 0,
+    "native-4": 0,
+    "native-5": 0,
+    "native-6": 0,
+    "native-7": 0,
+    "native-8": 0,
+    "native-9": 0,
+    "native-10": 0,
+    "native-11": 0,
+    "native-12": 0,
+    "native-13": 0,
+    "hands-1": 0,
+    "hands-2": 0,
+    "hands-3": 0,
+    "hands-4": 0,
+    "hands-5": 0,
+    "hands-6": 0,
+    "palettes-1": 0,
+    "palettes-2": 0,
+    "palettes-3": 0,
+    "palettes-4": 0,
+    "palettes-5": 0,
+    "palettes-6": 0,
+    "palettes-7": 0,
+    "house": 0,
+    "street": 0
+  },
+  "hand_contacts": {
+    "FIN-14-single": [
+      26
+    ],
+    "FIN-14-rifle": [
+      29,
+      15
+    ],
+    "FIN-15-single": [
+      11
+    ],
+    "FIN-15-rifle": [
+      29,
+      9
+    ],
+    "FIN-16-single": [
+      23
+    ],
+    "FIN-16-rifle": [
+      30,
+      22
+    ],
+    "FIN-17-single": [
+      25
+    ],
+    "FIN-17-rifle": [
+      30,
+      10
+    ],
+    "FIN-18-single": [
+      21
+    ],
+    "FIN-18-rifle": [
+      28,
+      3
+    ],
+    "FIN-19-single": [
+      26
+    ],
+    "FIN-19-rifle": [
+      28,
+      7
+    ],
+    "FIN-20-single": [
+      30
+    ],
+    "FIN-20-rifle": [
+      30,
+      21
+    ],
+    "FIN-21-single": [
+      32
+    ],
+    "FIN-21-rifle": [
+      30,
+      19
+    ]
+  },
+  "fixed_head_and_lower_body": true,
+  "gameplay_fingerprints_unchanged": true,
+  "commands": [
+    {
+      "command": "cargo build --locked",
+      "result": "passed"
+    },
+    {
+      "command": "cargo check --locked --release",
+      "result": "passed"
+    },
+    {
+      "command": "cargo fmt --all -- --check",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "--ui-cold-art-finish-02-review",
+      "result": "passed"
+    },
+    {
+      "command": "--ui-cold-art-finish-integration",
+      "result": "passed"
+    },
+    {
+      "command": "validate_art_finish_review_02.py / node --check",
+      "result": "passed"
+    }
+  ],
+  "full_test_suite_run": false,
+  "visual_inspection": "Three native boards and four actual-engine scene comparisons",
+  "mode": "built-in imagegen",
+  "runtime_candidates_enabled": false
+}

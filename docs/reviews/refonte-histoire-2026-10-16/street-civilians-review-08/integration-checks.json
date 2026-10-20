@@ -1,0 +1,130 @@
+{
+  "review": "CIVILS-U01-08",
+  "status": "integrated",
+  "date": "2026-10-19",
+  "native_cell": 64,
+  "native_views": 10,
+  "normal_runtime_matches_accepted": true,
+  "changed_pixels": {
+    "gate": 0,
+    "burned-car": 0,
+    "courtyard": 0,
+    "middle-street": 0,
+    "warehouse": 0,
+    "north-crossroad": 0,
+    "house-closed": 0,
+    "house-open": 0,
+    "shop-open": 0,
+    "first-house-open": 0,
+    "whole-map": 0
+  },
+  "raw_changed_pixels": {
+    "gate": 0,
+    "burned-car": 0,
+    "courtyard": 0,
+    "middle-street": 0,
+    "warehouse": 0,
+    "north-crossroad": 0,
+    "house-closed": 0,
+    "house-open": 0,
+    "shop-open": 0,
+    "first-house-open": 0
+  },
+  "external_ui_hover_pixels": {},
+  "render_read_only": true,
+  "camp_round_trip": true,
+  "background_unchanged": true,
+  "scene_changes": [
+    "scenery_props append",
+    "civilians_review"
+  ],
+  "collision_lighting_doors_and_other_scene_data_unchanged": true,
+  "runtime_assets": [
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "sha256": "c26fb8f0d2455a06a1a9f8595203c673f6ca107716465fafb2e99782f8724680",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-r180-native.png",
+      "sha256": "e08f15b06a28355eba13474e184b35ce31a6273f805d967835e2c9a2bd7b214f",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+      "sha256": "3808ad4818d4561f77b21f2b49ffbcb6a461e6c90255d1222f406d564894d86c",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-r180-native.png",
+      "sha256": "6f93be844998bf03391a55cb328be302da623b98ab83424073f2eb34c57b8aa9",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-r90-native.png",
+      "sha256": "0247b2619b5f71358fb3466c02afbf0d155916d538fc55acdc211b4869646711",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-r90-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png",
+      "sha256": "c4b994bbf66595cd52105d10aa77ea13aece8312dabb910a0152bf83d0cd874f",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-r180-native.png",
+      "sha256": "04c24e010985d18869880144529882189d0100f8de356c9e675b2cb03914a711",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-05-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+      "sha256": "b798680ebbc9be3bc15648d3530867aba8401f52693658f57689fed93b8335ba",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-08-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r180-native.png",
+      "sha256": "5830fb991d79fdb630279db5868fedb96f3028eb9f2305d246cb86f2016e7f4a",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-06-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+      "sha256": "49dc4c963c378bf395cee860e74afdec81b80beedc3239ec66a16ec9572ff6a2",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-05-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+      "sha256": "214792ce11a97b7ed315a73184e34e0cb3ee1754064b8c52db904825922d3dfa",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-07-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-r180-native.png",
+      "sha256": "f16a0b02a2b80d6ec0ecbede29800b99e4b2952e5e3dd4d1cf0f1f6e0575af61",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+      "sha256": "c61b0e4bf127d5783ef1ee297dc9fe76deb9fa5e3a7f6d69e762b5fc91364a15",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-06-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "sha256": "1362c0bc63fd04a2d4756b90b7fac393d6d63a7c13a72af91bc3e9b6fd261d15",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-06-r90-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-r180-native.png",
+      "sha256": "a91b6c98c451840b37a22a3c7c7b65d7a55937b27efb93d869a5a8a163cc19dc",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-07-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-r180-native.png",
+      "sha256": "a206672f7acc87fe93bdcbaee053aef0d7f17b63ca04f5db9876b24f8b46cf8d",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-08-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-r90-native.png",
+      "sha256": "524956b4d7400009ba026a939227f1d5656bf4f17d4761c04280e0bfa80c3cee",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-r90-native.png"
+    }
+  ],
+  "captures": "artifacts/street-defects-review-01/engine09"
+}

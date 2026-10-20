@@ -1,0 +1,780 @@
+{
+  "review": "CIVILS-U01-08",
+  "status": "candidate_not_integrated",
+  "native_cell": 64,
+  "body_drawings": 5,
+  "new_body_placements": 18,
+  "blood_drawings": 2,
+  "blood_placements": 19,
+  "no_new_collisions": true,
+  "new_live_actors": 0,
+  "production_assets_unchanged": true,
+  "production_sha256": {
+    "collision-repairs.json": "37deaa578c4340b11a05fdb65a8b2117c185f0a8422d6ac14471668b8eec00d6",
+    "correction.png": "9e123019902ebe12e4af71808702ab1359151e35ef4dfca45e3c51d631720b8c",
+    "irradiance.png": "038907d83c985d849b6ad59b1c9ab992c7708116ea7677c7d57a32fb9e5b9481",
+    "layout.txt": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
+    "roof-0.png": "daa333e2a8fef5fe7ee7de620dd69139b7377d2c82c7d883d5e34feb9599bfdf",
+    "roof-1.png": "95e279966252b32d21c11575b53404eb7398de334a256a970754dcb1b285ea50",
+    "roof-2.png": "2381e0b8139249ddefaf77b70ad14912556036df46900021a808ebc2a3efd37b",
+    "roof-3.png": "36f55710f3341eaed78d0a24b11a5a1a365d8d3e55b012e21f1bf74d43f0e636",
+    "room-vision.json": "5ab0623db4985bd0613bda0fb58c506a138c63f21191aff6df8aa25d472b31b7",
+    "street.json": "dfb33613327f5e30a1896cdd3d0f522d679961c96f95669f5c665dad641523d7",
+    "street.png": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+    "decor/CORP-U01-01.png": "6a016733564e23e4d8d2f85458db3f5d7f71e52b078520c2e1abdf8099fce956",
+    "decor/CORP-U01-02.png": "0b10f5554c5e12c91f8868d280d57c5a2d466aac9ce23ba9374edd680edccdcb",
+    "decor/CORP-U01-03.png": "0f08bcd7be6558b69fa31cf5fbc554f9ab449374eff0d779d3a77bfc6a719de3",
+    "decor/GRIM-U01-01.png": "2c84fecd9ceb2a794594f8ccb1f09d6653aa6ffd38379a20e4e4dfc7baef71f6",
+    "decor/surface-wear.png": "16cb67557ae6b56fa7ee32035470100a83650f721cd43545d385eecd09632b36"
+  },
+  "assets": [
+    {
+      "id": "CIV-U01-04",
+      "name": "Civil abattu",
+      "size": [
+        80,
+        48
+      ],
+      "source_box": [
+        69,
+        106,
+        1481,
+        963
+      ],
+      "source_sha256": "5cd236333d00bd66791aece6b141f7177d8dc680bbcd141f07d447992626a1cd",
+      "native_sha256": "c4b994bbf66595cd52105d10aa77ea13aece8312dabb910a0152bf83d0cd874f"
+    },
+    {
+      "id": "CIV-U01-05",
+      "name": "Civile lacérée",
+      "size": [
+        80,
+        48
+      ],
+      "source_box": [
+        114,
+        178,
+        1504,
+        857
+      ],
+      "source_sha256": "13b55e760490c99135590b8797aafa7810e766374e675885c84eb256390be213",
+      "native_sha256": "49dc4c963c378bf395cee860e74afdec81b80beedc3239ec66a16ec9572ff6a2"
+    },
+    {
+      "id": "CIV-U01-06",
+      "name": "Ouvrier écrasé",
+      "size": [
+        80,
+        48
+      ],
+      "source_box": [
+        98,
+        79,
+        1586,
+        889
+      ],
+      "source_sha256": "c884fc88c47f35251da0f08ad9a9e63e424d3534e53bd63d728436421381bb56",
+      "native_sha256": "c61b0e4bf127d5783ef1ee297dc9fe76deb9fa5e3a7f6d69e762b5fc91364a15"
+    },
+    {
+      "id": "CIV-U01-07",
+      "name": "Civil démembré",
+      "size": [
+        80,
+        48
+      ],
+      "source_box": [
+        82,
+        167,
+        1551,
+        878
+      ],
+      "source_sha256": "f02ef41fb25d788a13abfd53f3a5a42a98fd272622b90ed9484bdd1787541656",
+      "native_sha256": "214792ce11a97b7ed315a73184e34e0cb3ee1754064b8c52db904825922d3dfa"
+    },
+    {
+      "id": "CIV-U01-08",
+      "name": "Civil carbonisé",
+      "size": [
+        80,
+        48
+      ],
+      "source_box": [
+        50,
+        57,
+        1579,
+        906
+      ],
+      "source_sha256": "37eedf021a445fc526862d300108e0634fa475c913d9c3169859a9a22c43f05c",
+      "native_sha256": "b798680ebbc9be3bc15648d3530867aba8401f52693658f57689fed93b8335ba"
+    },
+    {
+      "id": "SANG-U01-04",
+      "name": "Flaque irrégulière",
+      "size": [
+        64,
+        48
+      ],
+      "source_box": [
+        130,
+        206,
+        1331,
+        881
+      ],
+      "source_sha256": "7ae1222c63012103c422488c82d33d00583fbc5886bda17d703c04402e946a75",
+      "native_sha256": "c26fb8f0d2455a06a1a9f8595203c673f6ca107716465fafb2e99782f8724680"
+    },
+    {
+      "id": "SANG-U01-05",
+      "name": "Traînée de sang",
+      "size": [
+        96,
+        32
+      ],
+      "source_box": [
+        56,
+        161,
+        2116,
+        561
+      ],
+      "source_sha256": "1e5066da905199e6859fcdd2f4f8ded744ccb42cd2c1a654e03901a2b8a464f4",
+      "native_sha256": "3808ad4818d4561f77b21f2b49ffbcb6a461e6c90255d1222f406d564894d86c"
+    }
+  ],
+  "placements": [
+    {
+      "id": "SANG-U01-04-01",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-native.png",
+      "at_px": [
+        532,
+        3865
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 0,
+      "context": "fuite vers la prison",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-02",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-r180-native.png",
+      "at_px": [
+        418,
+        3467
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 180,
+      "context": "abords du premier logement",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-03",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-native.png",
+      "at_px": [
+        290,
+        3299
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 0,
+      "context": "premier logement · intérieur",
+      "interior_roof": "ROOF-U01-01A"
+    },
+    {
+      "id": "SANG-U01-04-04",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-r180-native.png",
+      "at_px": [
+        584,
+        1305
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 180,
+      "context": "logement nord · intérieur",
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "SANG-U01-04-05",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-native.png",
+      "at_px": [
+        760,
+        1349
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 0,
+      "context": "logement nord · intérieur",
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "SANG-U01-04-06",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-r180-native.png",
+      "at_px": [
+        606,
+        1867
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 180,
+      "context": "boutique · intérieur",
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "SANG-U01-04-07",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-native.png",
+      "at_px": [
+        748,
+        1787
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 0,
+      "context": "boutique · intérieur",
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "SANG-U01-04-08",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-native.png",
+      "at_px": [
+        1382,
+        653
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 0,
+      "context": "porte condamnée au nord",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-09",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-native.png",
+      "at_px": [
+        332,
+        2077
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 0,
+      "context": "sortie des ruines près de la boutique",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-10",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-r180-native.png",
+      "at_px": [
+        538,
+        2647
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 180,
+      "context": "abords du local technique",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-11",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-native.png",
+      "at_px": [
+        1376,
+        3137
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 0,
+      "context": "immeuble fermé au sud",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-12",
+      "asset": "SANG-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-r180-native.png",
+      "at_px": [
+        700,
+        2955
+      ],
+      "size": [
+        64,
+        48
+      ],
+      "layer": "blood",
+      "orientation_degrees": 180,
+      "context": "carrefour sud et traces de violence",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-13",
+      "asset": "SANG-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-native.png",
+      "at_px": [
+        470,
+        3872
+      ],
+      "size": [
+        96,
+        32
+      ],
+      "layer": "blood",
+      "orientation_degrees": 0,
+      "context": "fuite vers la prison",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-14",
+      "asset": "SANG-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-r180-native.png",
+      "at_px": [
+        388,
+        3488
+      ],
+      "size": [
+        96,
+        32
+      ],
+      "layer": "blood",
+      "orientation_degrees": 180,
+      "context": "abords du premier logement",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-15",
+      "asset": "SANG-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-r180-native.png",
+      "at_px": [
+        704,
+        1370
+      ],
+      "size": [
+        96,
+        32
+      ],
+      "layer": "blood",
+      "orientation_degrees": 180,
+      "context": "logement nord · intérieur",
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "SANG-U01-05-16",
+      "asset": "SANG-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-native.png",
+      "at_px": [
+        650,
+        1880
+      ],
+      "size": [
+        96,
+        32
+      ],
+      "layer": "blood",
+      "orientation_degrees": 0,
+      "context": "boutique · intérieur",
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "SANG-U01-05-17",
+      "asset": "SANG-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-r180-native.png",
+      "at_px": [
+        400,
+        2082
+      ],
+      "size": [
+        96,
+        32
+      ],
+      "layer": "blood",
+      "orientation_degrees": 180,
+      "context": "ruines près de la boutique",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-18",
+      "asset": "SANG-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-native.png",
+      "at_px": [
+        764,
+        2960
+      ],
+      "size": [
+        96,
+        32
+      ],
+      "layer": "blood",
+      "orientation_degrees": 0,
+      "context": "carrefour sud",
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-19",
+      "asset": "SANG-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-r90-native.png",
+      "at_px": [
+        1378,
+        3162
+      ],
+      "size": [
+        32,
+        96
+      ],
+      "layer": "blood",
+      "orientation_degrees": 90,
+      "context": "immeuble fermé au sud",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-04-20",
+      "asset": "CIV-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-native.png",
+      "at_px": [
+        528,
+        3856
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 0,
+      "context": "fuite vers la prison",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-05-21",
+      "asset": "CIV-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-05-r180-native.png",
+      "at_px": [
+        414,
+        3458
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 180,
+      "context": "abords du premier logement",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-08-22",
+      "asset": "CIV-U01-08",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-08-native.png",
+      "at_px": [
+        1020,
+        3658
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 0,
+      "context": "véhicule incendié",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-06-23",
+      "asset": "CIV-U01-06",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-06-r180-native.png",
+      "at_px": [
+        1244,
+        3710
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 180,
+      "context": "ruines près du portail",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-05-24",
+      "asset": "CIV-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-05-native.png",
+      "at_px": [
+        286,
+        3290
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 0,
+      "context": "premier logement · intérieur",
+      "interior_roof": "ROOF-U01-01A"
+    },
+    {
+      "id": "CIV-U01-04-25",
+      "asset": "CIV-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-native.png",
+      "at_px": [
+        580,
+        1296
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 0,
+      "context": "logement nord · intérieur",
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "CIV-U01-05-26",
+      "asset": "CIV-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-05-r180-native.png",
+      "at_px": [
+        756,
+        1340
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 180,
+      "context": "logement nord · intérieur",
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "CIV-U01-07-27",
+      "asset": "CIV-U01-07",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-07-native.png",
+      "at_px": [
+        602,
+        1858
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 0,
+      "context": "boutique · intérieur",
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "CIV-U01-04-28",
+      "asset": "CIV-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-r180-native.png",
+      "at_px": [
+        744,
+        1778
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 180,
+      "context": "boutique · intérieur",
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "CIV-U01-06-29",
+      "asset": "CIV-U01-06",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-06-native.png",
+      "at_px": [
+        842,
+        540
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 0,
+      "context": "façade détruite près de l’entrepôt",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-04-30",
+      "asset": "CIV-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-r180-native.png",
+      "at_px": [
+        1378,
+        644
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 180,
+      "context": "porte condamnée au nord",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-06-31",
+      "asset": "CIV-U01-06",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        378,
+        926
+      ],
+      "size": [
+        48,
+        80
+      ],
+      "layer": "body",
+      "orientation_degrees": 90,
+      "context": "carrefour et effondrement nord",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-07-32",
+      "asset": "CIV-U01-07",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-07-r180-native.png",
+      "at_px": [
+        328,
+        2068
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 180,
+      "context": "sortie des ruines près de la boutique",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-08-33",
+      "asset": "CIV-U01-08",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-08-r180-native.png",
+      "at_px": [
+        812,
+        2142
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 180,
+      "context": "épave du carrefour central",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-06-34",
+      "asset": "CIV-U01-06",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-06-native.png",
+      "at_px": [
+        736,
+        2456
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 0,
+      "context": "cour et bâtiment effondré",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-04-35",
+      "asset": "CIV-U01-04",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-r90-native.png",
+      "at_px": [
+        534,
+        2638
+      ],
+      "size": [
+        48,
+        80
+      ],
+      "layer": "body",
+      "orientation_degrees": 90,
+      "context": "abords du local technique",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-05-36",
+      "asset": "CIV-U01-05",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-05-native.png",
+      "at_px": [
+        1372,
+        3128
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 0,
+      "context": "immeuble fermé au sud",
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-07-37",
+      "asset": "CIV-U01-07",
+      "file": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-07-native.png",
+      "at_px": [
+        696,
+        2946
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "layer": "body",
+      "orientation_degrees": 0,
+      "context": "carrefour sud et traces de violence",
+      "interior_roof": null
+    }
+  ],
+  "absent_asset": {
+    "id": "CIV-U01-09",
+    "reason": "generation service output rejected; no image produced, no retry"
+  },
+  "source_directory": "assets/source-art/first-sector-review-01/u01-civilians-r08"
+}

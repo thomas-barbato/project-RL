@@ -1,0 +1,20 @@
+{
+  "review": "FIXES-U01-03",
+  "normal_integration": false,
+  "cargo_build_locked": "passed",
+  "cargo_check_locked_release": "passed",
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed with repository CRLF configuration",
+  "gpu_capture_exit": 0,
+  "native_cell": 64,
+  "capture_count": 9,
+  "read_only_rendering": true,
+  "same_lighting": true,
+  "living_actor_assets_unchanged": true,
+  "complete_modules": true,
+  "ruined_neighbor_untouched": true,
+  "runtime_depends_on_artifacts": false,
+  "full_test_suite_rerun": false,
+  "capture_checks": "capture-checks.json",
+  "candidate_appearance_approval_pending": true
+}

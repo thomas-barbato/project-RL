@@ -1,0 +1,144 @@
+{
+  "review": "ANIM-POLICY-01",
+  "date": "2026-10-20",
+  "status": "accepted_and_integrated",
+  "player_quotes": [
+    "oui je préfère largement la version \"plus visible :)",
+    "les autres skills aussi d'ailleurs en \"plus visible\" :)",
+    "1 et globalement il faut adapter cette politique à toutes les compétences :)"
+  ],
+  "scope": {
+    "visuals": "All reviewed candidates: clearer Blizzard, natural ice/fire/poison, occult bolt/drain and rupture visibility. Explicit extension of the same policy to every skill.",
+    "presentation_timing": "Accepted proposed slower timing, including footsteps and hit reactions. General transient duration scale 1.50; fireball 1.30; rupture 1.35; hit reaction 1.40; sustained cycles 1.30.",
+    "mechanics": "No changes to simulation turns, costs, damage, affected cells, RNG, statuses, cooldowns or saves.",
+    "texts": "No player-facing skill description changes."
+  },
+  "accepted_references": [
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-readability-01/01-reference.png",
+      "sha256": "bc6ccf3a87ab54e85f188b629c02a00821d31e496eef6031f5cf33f8f4d821d3"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-readability-01/02-reference.png",
+      "sha256": "3949196f4878299bc9b3fc7c3256821cedb40204cec7415ced62243c5dc0ddd1"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-readability-01/03-reference.png",
+      "sha256": "311f112882e276d991e93cea0568e497f13e2d1779e4b1bdf3a3beecaf4df6ba"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-readability-01/04-reference.png",
+      "sha256": "889fb69a3c459c20d1b0936a9ef03d5384fef7b73bb13ccc0686a685e4043869"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-readability-01/05-reference.png",
+      "sha256": "3c8da2fb6385899dae7524dfb2c0dd00290586cb51321ed41fcc12199dce1c43"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-readability-01/06-reference.png",
+      "sha256": "de239a70ff0308240a501c1d2faaac48a45d4b4085d4fa3096f5aa4fb3eba676"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-readability-01/07-reference.png",
+      "sha256": "4cd66d4dd5841575874c61c7fd780b8708916708ee0be6fd65875d9625ae56af"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-readability-01/08-reference.png",
+      "sha256": "e47528f82e31a5a1eaa8144b54e23394ee703fd9657426ffbbcfc96b63b26cd4"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-shape-01/01-reference.png",
+      "sha256": "574270ae7b19b8c36ac6de683994f006137cb0ae1ee8e84d3154a8558d2181b3"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-shape-01/02-reference.png",
+      "sha256": "1971ff62589b523bdedc0c06348fa7146a387063aa7feb28dc36fa77f2d64aa0"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-shape-01/03-reference.png",
+      "sha256": "25637e71aa91a58aef057d285209d82b749fae61e9c63ce92678c7bd2407ad7e"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/animation-shape-01/04-reference.png",
+      "sha256": "bab675c1e22454b8868ef254d4424d9da3c4fade3859e03ab0ef96a7f942678b"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/blizzard-visibility-01/01-reference.png",
+      "sha256": "2f1fa78d0c2f8ec7f0e6580c6bce9c272864deb8f96ace3dd1f99791adf2d88a"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/blizzard-visibility-01/02-reference.png",
+      "sha256": "3d907f0ce7f62844494ccd07736d8e41f46a34aae5041f955e1fb7e4544a4b1d"
+    },
+    {
+      "path": "docs/reviews/animation-policy-01/accepted-references/blizzard-visibility-01/03-reference.png",
+      "sha256": "28e2d950c0e1cb915dea2dcca8d0d1e6f31263aa5ef7957969ed25146def4092"
+    }
+  ],
+  "production_sources": [
+    {
+      "path": "src/animation_policy.rs",
+      "sha256": "6d6d9335a79e45c8124be97174034ad9c544b70f3b7781d36524e4152da2fa36"
+    },
+    {
+      "path": "src/natural_effect.rs",
+      "sha256": "e5326b0c7c95119c660d330c0f4d517acee1a1d198c112a85b6dd97f91307672"
+    },
+    {
+      "path": "src/agent_magic_visuals.rs",
+      "sha256": "e7ddac06e29a755ad9a1d7889c657051799232f1bec3ad435284694f1f8b355c"
+    },
+    {
+      "path": "src/agent_fire_visuals.rs",
+      "sha256": "1dfc96287f7291da58aaea3cb65bbc2323d3fe7d05a1a6a1fd7ab86a7de9ef18"
+    },
+    {
+      "path": "src/agent_spell_visuals.rs",
+      "sha256": "86618b655796bdc4347fd7128b9ff19976639d279e993e8918f08c316c49800e"
+    },
+    {
+      "path": "src/agent_device_visuals.rs",
+      "sha256": "9de47c94322db8a1d2d3d16203b06abfe840ae9586611d145012a8f259b09f45"
+    },
+    {
+      "path": "src/agent_support_visuals.rs",
+      "sha256": "760b6747399b6a0b20d5f4009b8d8def5cd37f6477df0b6f700c1763de145e00"
+    },
+    {
+      "path": "src/agent_weapon_visuals.rs",
+      "sha256": "a76fb2ffa97e0aec175231a6f36461a0ba29c7dd8b53ef507c9a5f6ba8091f2d"
+    },
+    {
+      "path": "src/agent_ember_visuals.rs",
+      "sha256": "8f4298c6d652102d4667fe85e280adf55334c723211efcb490da8032dd043005"
+    },
+    {
+      "path": "src/combat_visuals.rs",
+      "sha256": "413606271d773e9ec30c3e30edcd8682e16e809dd2b50212d5b725c36bb0391b"
+    },
+    {
+      "path": "src/combat_visuals_app.rs",
+      "sha256": "58766ebb251280611862843f335a8ffea573196b5762a74fb932fb83d4b6c4b9"
+    },
+    {
+      "path": "src/effect_geometry.rs",
+      "sha256": "fb81c925adf6fc440bbb912f86f0a15612ded9bd2d11274fbdffe6a77c542d6b"
+    },
+    {
+      "path": "src/visual_effects.rs",
+      "sha256": "aa9b6471de13eaa6d751fa8ff708ba1dd3db7ac7cd76fda842af16ec32348a92"
+    },
+    {
+      "path": "src/skill_demo.rs",
+      "sha256": "94444c9f29813b19af544ed72a5e1df93ebad073c04b7c06890e0292fe22a93d"
+    },
+    {
+      "path": "src/skill_demo_review.rs",
+      "sha256": "4bd9b32c94a2741a78b1e2f348492579886c5be6a34263436039a93d9ecf03f0"
+    }
+  ],
+  "binary": {
+    "path": "target/debug/project-rl.exe",
+    "sha256": "061d3c5575d475fc86820d920b7cd000f0c84dd35c7ecf121626595048826baf"
+  }
+}

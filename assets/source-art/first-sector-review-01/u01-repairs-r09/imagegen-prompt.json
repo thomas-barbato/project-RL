@@ -1,0 +1,12 @@
+{
+  "review": "STYLE-U01-09",
+  "mode": "built-in imagegen edit",
+  "request": {
+    "prompt": "EDIT TARGET: image 1, the complete isolated L-shaped warehouse with a blue corrugated metal roof. STYLE REFERENCE ONLY: image 2, the smaller worn garage from the same game. Produce one revised complete warehouse asset on a truly transparent background. Preserve the exact L-shaped architectural plan, relative proportions, the short frontal wall height, all outer and concave corners, the full-height short south end of the left leg, garage shutter position, roof hole and the number and positions of rooftop vents. The top horizontal wing is long; the left wing descends to a closed brick facade. Orthogonal top-down 2D game scenery, square parallel horizontal/vertical axes, same modest wall-front visibility as the inputs. Do not change the camera, do not make it isometric, do not rotate. Harmonize only the finish: desaturated dusty blue-grey slate roofing, weathered low-saturation red-brown brick and aged brown/copper conduits, matte dirty grey stone wall caps; the current bright cyan roof and orange brick must become much less vivid. Replace the thick uniform near-black cartoon outlines with thinner irregular dark material-colored edges and subtle worn shading, matching image 2's quieter finish. Keep sharp legible volumes, no blur, no added microdetail, no glow. Keep the readable jagged roof damage with dark timber visible through the hole. No exterior rubble, furniture, bins, crates, barrels, vegetation, ground plane, people, signs, text or new objects around the asset. The whole architectural object must be intact and inside the image, with transparent margin on every outer side and inside the open bottom-right recess of the L. This is a material/linework harmonization of this exact asset, not a new building design.",
+    "referenced_image_paths": [
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\first-sector-review-01\\u01-expansion-r06\\warehouse-native.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\first-sector-review-01\\u01-expansion-r06\\west-garage-native.png"
+    ],
+    "transparent_background": true
+  }
+}

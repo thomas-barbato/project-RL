@@ -1,0 +1,87 @@
+{
+  "review_id": "DOOR-U01-FIX-01",
+  "status": "authorized_bug_fix",
+  "source_sha256": "1dd45907310699da19977f8e86ebaa79f374dcc8df1086b6d5a456e30562346a",
+  "source_art_unchanged": true,
+  "light_count": 14,
+  "lightmap_size": [
+    208,
+    144
+  ],
+  "shadows": "Static occlusion by the actual wall grid; same model as the camp",
+  "actors_receive_light_in_composite": true,
+  "stats": [
+    {
+      "id": "home",
+      "lit_samples": 889,
+      "blocked_samples": 1284
+    },
+    {
+      "id": "home-door",
+      "lit_samples": 1561,
+      "blocked_samples": 925
+    },
+    {
+      "id": "shop-door",
+      "lit_samples": 1465,
+      "blocked_samples": 1017
+    },
+    {
+      "id": "west",
+      "lit_samples": 1547,
+      "blocked_samples": 769
+    },
+    {
+      "id": "north-west",
+      "lit_samples": 1071,
+      "blocked_samples": 1522
+    },
+    {
+      "id": "north-east",
+      "lit_samples": 992,
+      "blocked_samples": 1426
+    },
+    {
+      "id": "north-east-upper",
+      "lit_samples": 614,
+      "blocked_samples": 726
+    },
+    {
+      "id": "garage-west",
+      "lit_samples": 1603,
+      "blocked_samples": 993
+    },
+    {
+      "id": "garage",
+      "lit_samples": 1184,
+      "blocked_samples": 1648
+    },
+    {
+      "id": "gate-left",
+      "lit_samples": 896,
+      "blocked_samples": 1378
+    },
+    {
+      "id": "gate-right",
+      "lit_samples": 823,
+      "blocked_samples": 1447
+    },
+    {
+      "id": "ruin-west",
+      "lit_samples": 1311,
+      "blocked_samples": 1185
+    },
+    {
+      "id": "ruin-east",
+      "lit_samples": 1301,
+      "blocked_samples": 1183
+    },
+    {
+      "id": "car",
+      "lit_samples": 1414,
+      "blocked_samples": 0
+    }
+  ],
+  "wall_probe_blocked": true,
+  "door_approach_lit": true
+}

@@ -1,0 +1,80 @@
+{
+  "backgrounds": "Controlled dim and brighter review illumination on native game floor and actors",
+  "cases": [
+    {
+      "contrast_gain": 1.2999999523162842,
+      "duration_scale": 1.5,
+      "id": "A01",
+      "number": 1,
+      "seconds": 0.4,
+      "title": "Projectile occulte"
+    },
+    {
+      "contrast_gain": 1.399999976158142,
+      "duration_scale": 1.5,
+      "id": "OC05",
+      "number": 2,
+      "seconds": 0.3,
+      "title": "Drain occulte"
+    },
+    {
+      "contrast_gain": 1.1200000047683716,
+      "duration_scale": 1.5,
+      "id": "FR06",
+      "number": 3,
+      "seconds": 0.42,
+      "title": "Éclatement de glace"
+    },
+    {
+      "contrast_gain": 1.1799999475479126,
+      "duration_scale": 1.5,
+      "id": "SM02",
+      "number": 4,
+      "seconds": 0.46,
+      "title": "Explosion de poison"
+    },
+    {
+      "contrast_gain": 1.1799999475479126,
+      "duration_scale": 1.35,
+      "id": "B01",
+      "number": 5,
+      "seconds": 0.84,
+      "title": "Frappe de rupture"
+    },
+    {
+      "contrast_gain": 1.0,
+      "duration_scale": 1.3,
+      "id": "FE05",
+      "number": 6,
+      "seconds": 0.9,
+      "title": "Boule de feu"
+    },
+    {
+      "contrast_gain": 1.0,
+      "duration_scale": 1.5,
+      "id": "glide",
+      "number": 7,
+      "seconds": 0.08,
+      "title": "Déplacement entre cases"
+    },
+    {
+      "contrast_gain": 1.0,
+      "duration_scale": 1.4,
+      "id": "reaction",
+      "number": 8,
+      "seconds": 0.18,
+      "title": "Réaction à un coup"
+    }
+  ],
+  "columns": 8,
+  "fps": 60.0,
+  "frame_height": 320,
+  "frame_width": 448,
+  "frames": 72,
+  "game_state_unchanged": true,
+  "native_tile": 64,
+  "normal_game_activation": false,
+  "review": "ANIM-READ-01",
+  "source_phases_identical_in_columns": true,
+  "status": "proposal_pending_player_review"
+}

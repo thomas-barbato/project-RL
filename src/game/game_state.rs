@@ -198,6 +198,8 @@ use super::{
 #[path = "perception.rs"]
 mod perception;
 pub use perception::SoundObservationSource;
+#[path = "campaign_aggression.rs"]
+mod campaign_aggression;
 
 /// One live visual field from an actor in the active zone.
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -1142,7 +1144,7 @@ impl GameState {
             .spawn(player_actor)
             .map_err(GameInitError::Registry)?;
         let mut player_visibility = VisibilityState::default();
-        player_visibility.recompute(&map, player_start, rules.player_field_of_view);
+        rules.update_player_visibility(&mut player_visibility, &map, player_start);
         let player_progression =
             RunProgression::with_starting_skill_points(rules.progression.starting_skill_points);
         let engineering_feature = "core:engineering"
@@ -2823,6 +2825,24 @@ impl GameState {
     }
 
     pub fn process_player_command(&mut self, command: GameCommand) -> CommandOutcome {
+        // Recovery verifies the historical world before recording this timeless
+        // rules update. It must not interrupt a channel or tick any actor/status.
+        if matches!(
+            command,
+            GameCommand::UpgradePlayerVision | GameCommand::EnableCircularPlayerVision
+        ) {
+            if matches!(command, GameCommand::UpgradePlayerVision) {
+                self.rules.player_field_of_view.radius = 6;
+            } else {
+                self.rules.circular_player_vision = true;
+            }
+            if let Some(origin) = self.player_position() {
+                self.rules
+                    .update_player_visibility(&mut self.player_visibility, &self.map, origin);
+                self.extend_agent_scout_visibility();
+            }
+            return CommandOutcome::AppliedWithoutTime;
+        }
         if self.rules.uses_weapon_sets() {
             let slot = match &command {
                 GameCommand::Attack { slot, .. } | GameCommand::AttackAt { slot, .. } => {
@@ -3032,10 +3052,10 @@ impl GameState {
                                 time_units: applied_time_units,
                             });
                         }
-                        self.player_visibility.recompute(
+                        self.rules.update_player_visibility(
+                            &mut self.player_visibility,
                             &self.map,
                             destination,
-                            self.rules.player_field_of_view,
                         );
                         self.extend_agent_scout_visibility();
                         self.events.push(GameEvent::VisibilityUpdated {
@@ -3113,6 +3133,12 @@ impl GameState {
                     self.refresh_equipment_resources();
                     CommandOutcome::AppliedWithoutTime
                 }
+            }
+            GameCommand::UpgradePlayerVision | GameCommand::EnableCircularPlayerVision => {
+                unreachable!("handled before action dispatch")
+            }
+            GameCommand::RepairStaticZoneFloors { .. } => {
+                CommandOutcome::Rejected(CommandRejection::FacilityUnavailable)
             }
             GameCommand::SelectWeaponSet { set } => {
                 if !self.rules.uses_weapon_sets() || set > 1 {
@@ -3925,8 +3951,8 @@ impl GameState {
             at: target,
             terrain: next,
         });
-        self.player_visibility
-            .recompute(&self.map, origin, self.rules.player_field_of_view);
+        self.rules
+            .update_player_visibility(&mut self.player_visibility, &self.map, origin);
         self.extend_agent_scout_visibility();
         self.events.push(GameEvent::VisibilityUpdated {
             observer: self.player,
@@ -7012,8 +7038,8 @@ impl GameState {
 
     fn refresh_player_visibility(&mut self) {
         if let Some(origin) = self.player_position() {
-            self.player_visibility
-                .recompute(&self.map, origin, self.rules.player_field_of_view);
+            self.rules
+                .update_player_visibility(&mut self.player_visibility, &self.map, origin);
             self.extend_agent_scout_visibility();
             self.events.push(GameEvent::VisibilityUpdated {
                 observer: self.player,
@@ -8057,8 +8083,8 @@ impl GameState {
             if let Some(active) = self.player_active_charge.as_mut() {
                 active.completed_advances = completed_advances;
             }
-            self.player_visibility
-                .recompute(&self.map, moved_to, self.rules.player_field_of_view);
+            self.rules
+                .update_player_visibility(&mut self.player_visibility, &self.map, moved_to);
             self.extend_agent_scout_visibility();
             self.events.push(GameEvent::VisibilityUpdated {
                 observer: self.player,
@@ -8221,8 +8247,8 @@ impl GameState {
             self.resolve_status_trigger_for(self.player, StatusTrigger::Movement);
             if self.actors.get(self.player).is_some() {
                 self.resolve_ranged_overwatch_entries(self.player, from);
-                self.player_visibility
-                    .recompute(&self.map, from, self.rules.player_field_of_view);
+                self.rules
+                    .update_player_visibility(&mut self.player_visibility, &self.map, from);
                 self.extend_agent_scout_visibility();
                 self.events.push(GameEvent::VisibilityUpdated {
                     observer: self.player,
@@ -8349,8 +8375,8 @@ impl GameState {
                 ally_to: moved_ally,
             });
         }
-        self.player_visibility
-            .recompute(&self.map, moved_player, self.rules.player_field_of_view);
+        self.rules
+            .update_player_visibility(&mut self.player_visibility, &self.map, moved_player);
         self.extend_agent_scout_visibility();
         self.events.push(GameEvent::VisibilityUpdated {
             observer: self.player,
@@ -9439,8 +9465,8 @@ impl GameState {
             return Ok(());
         }
         if let Some(position) = self.player_position() {
-            self.player_visibility
-                .recompute(&self.map, position, self.rules.player_field_of_view);
+            self.rules
+                .update_player_visibility(&mut self.player_visibility, &self.map, position);
             self.extend_agent_scout_visibility();
             self.events.push(GameEvent::VisibilityUpdated {
                 observer: self.player,
@@ -10523,6 +10549,17 @@ impl GameState {
             crate::electronic_warfare::ElectronicChannel::OpticalSensor,
             actor.position(),
         );
+        // Ordinary class attributes and merely standing beside a wall must
+        // not make an exposed campaign player permanently invisible. Explicit
+        // concealment and sensor interference still use their existing rules.
+        if self.campaign_monster_is_aggressive(observer)
+            && movement_bonus == 0
+            && posture_bonus == 0
+            && active_bonus == 0
+            && optical_jamming == 0
+        {
+            return true;
+        }
         let detection = rules.optical_detection_score(
             actor.primary_attributes(),
             distance,
@@ -12166,10 +12203,10 @@ impl GameState {
                     .expect("evasive destination was preflighted");
                 if reactor == self.player {
                     self.end_player_anchor();
-                    self.player_visibility.recompute(
+                    self.rules.update_player_visibility(
+                        &mut self.player_visibility,
                         &self.map,
                         *destination,
-                        self.rules.player_field_of_view,
                     );
                     self.extend_agent_scout_visibility();
                     self.events.push(GameEvent::VisibilityUpdated {
@@ -12373,10 +12410,10 @@ impl GameState {
             && target == self.player
             && self.actors.get(target).is_some()
         {
-            self.player_visibility.recompute(
+            self.rules.update_player_visibility(
+                &mut self.player_visibility,
                 &self.map,
                 destination,
-                self.rules.player_field_of_view,
             );
             self.extend_agent_scout_visibility();
             self.events.push(GameEvent::VisibilityUpdated {
@@ -14317,8 +14354,8 @@ impl GameState {
         if self.rules.agent_class_start.is_some()
             && let Some(origin) = self.player_position()
         {
-            self.player_visibility
-                .recompute(&self.map, origin, self.rules.player_field_of_view);
+            self.rules
+                .update_player_visibility(&mut self.player_visibility, &self.map, origin);
             self.extend_agent_scout_visibility();
         }
         self.turn = self.turn.saturating_add(1);
@@ -15144,6 +15181,10 @@ impl GameState {
                 }
                 continue;
             }
+            let aggressive = self.campaign_monster_is_aggressive(entity);
+            if aggressive {
+                profile = profile.without_pursuit_limit();
+            }
             let hologram = self.agent_hologram_target(entity);
             let visible_target = if support_target.is_some() {
                 support_target
@@ -15212,7 +15253,30 @@ impl GameState {
                     },
                 };
                 if let Some(lifecycle) = profile.pursuit_lifecycle() {
-                    decide_lifecycle_action(&actor, situation, lifecycle, target_visible)
+                    if aggressive
+                        && target_visible
+                        && matches!(
+                            actor.ai_state(),
+                            AiState::Unaware
+                                | AiState::Pursuing { .. }
+                                | AiState::Searching { .. }
+                                | AiState::Responding { .. }
+                                | AiState::Returning
+                                | AiState::Cooldown { .. }
+                        )
+                    {
+                        // A visible opponent refreshes the pursuit, including
+                        // actors restored in the old return/cooldown states.
+                        (
+                            decide_known_action(situation),
+                            AiState::Pursuing {
+                                remaining_turns: lifecycle.maximum_pursuit_turns(),
+                                last_seen: target_position,
+                            },
+                        )
+                    } else {
+                        decide_lifecycle_action(&actor, situation, lifecycle, target_visible)
+                    }
                 } else {
                     let action = if target_visible {
                         decide_known_action(situation)
@@ -16535,8 +16599,8 @@ impl GameState {
         if !breached.is_empty()
             && let Some(origin) = self.player_position()
         {
-            self.player_visibility
-                .recompute(&self.map, origin, self.rules.player_field_of_view);
+            self.rules
+                .update_player_visibility(&mut self.player_visibility, &self.map, origin);
             self.extend_agent_scout_visibility();
         }
         breached

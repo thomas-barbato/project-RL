@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-19",
+  "phase": "review_preparation_before_acceptance",
+  "commands": [
+    {"command": "cargo build --locked", "result": "passed"},
+    {"command": "cargo check --locked --release", "result": "passed; compilation check only"},
+    {"command": "cargo fmt --all -- --check", "result": "passed"},
+    {"command": "git diff --check", "result": "passed"},
+    {"command": "--ui-cold-agent-class-<class>", "result": "all five normal creation menus captured; text probes passed"},
+    {"command": "cargo test --locked --bin project-rl protocol -- --test-threads=1", "passed": 2, "failed": 1},
+    {"command": "cargo test --locked --bin project-rl menu_repeat_resets_on_escape_rebinding_and_creation_stage_changes -- --test-threads=1", "passed": 1, "failed": 0},
+    {"command": "--ui-cold-art-finish-03-review + show_art_finish_review_03.py + validate_art_finish_review_03.py", "result": "passed: four drawings, twelve configurations, two real lit scene pairs, 584 unchanged previous asset files"},
+    {"command": "--ui-cold-art-finish-02-integration -> finish03-normal-check", "result": "passed: ordinary world renderer still matches 32 approved samples and 4 approved scene viewports exactly"},
+    {"command": "node --check", "result": "passed for current review page interaction script"}
+  ],
+  "known_failure": {
+    "test": "suspension_rebuilds_the_selected_protocol_before_replay",
+    "error": "Les règles ou les mods ont changé ; suspension conservée.",
+    "baseline_without_portrait_change": "same isolated failure confirmed",
+    "evidence": "../art-finish-review-02/creation-menu-baseline-test.json",
+    "production_save_rules_modified": false
+  },
+  "full_suite_run": false,
+  "browser_automation": false,
+  "visual_inspection": ["four source masters", "native board", "twelve hand configurations", "lit house", "lit street", "five current creation portraits"],
+  "new_candidates_integrated": false,
+  "pending_followup": "Furniture scale audit after actor visual overhaul, including the reported oversized bed"
+}

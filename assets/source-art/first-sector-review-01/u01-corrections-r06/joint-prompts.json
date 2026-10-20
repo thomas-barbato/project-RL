@@ -1,0 +1,18 @@
+{
+  "review": "PAV-U01-06",
+  "revision": "joints-irreguliers",
+  "status": "candidate_not_integrated",
+  "reference": "PAV-U01-06-source.png",
+  "variants": [
+    {
+      "id": "PAV-U01-06B",
+      "prompt": "Edit this one overhead square concrete paving game tile, changing ONLY its boundary joint. Keep the grey-olive concrete color and central material unchanged. Remove the black continuous frame AND its bright inner bevel. Paint a worn shallow grey separation directly along the outermost canvas edge, roughly ONE pixel wide at native 64x64 size, visibly weaker than the original. Make it irregular: moderately visible on the left edge with several rubbed-out gaps, barely visible for half of the top edge, interrupted small fragments along the bottom, almost entirely absent on the right. Uneven fading and interruptions should look physically weathered, not dashed or a decorative pattern. No inset line, no bright rim, no full continuous square outline, no corner ornament. Single complete full-bleed tile, opaque square. No grass or plants, objects, inner lines, interior cracks or any subdivision. This will mix with a much more erased version in a static native64 urban game pavement, so retain the same lighting, flat overhead view, muted hue and concrete surface.",
+      "generated": "exec-18657b37-40f3-40f7-8445-5ce61db7ea87.png"
+    },
+    {
+      "id": "PAV-U01-06C",
+      "prompt": "Edit ONLY the outer boundary of this single square pavement slab game texture. Keep the grey-olive concrete color, central material, overhead view and square full-bleed composition unchanged. The current dark continuous black beveled border is too sharp and too uniform. Remove the continuous outline and its bright inner bevel entirely. Replace it with a VERY FAINT weathered outer separation: irregular short grey recessed traces on only about 30 percent of the perimeter, with long stretches where it fades completely into the same flat concrete. Unequal strengths along different sides; some small clearer patches, most edges almost erased. No black frame and no bright rim. Avoid a line inset from the edge. The boundary stays exactly at the outermost edge so a repeated 64x64 game tile has just ONE subdued interrupted joint per slab edge. Make it feel worn flat, old, unpolished, readable at native64 without prominent checkerboard outlines. Absolutely no grass, plants, objects, diagonals, internal joints, interior cracks, lines or extra divisions; retain broad quiet concrete. Opaque square, no text, no labels, no grid of multiple tiles.",
+      "generated": "exec-83894771-a2ba-45be-a5e2-4ce0699ee2ea.png"
+    }
+  ]
+}

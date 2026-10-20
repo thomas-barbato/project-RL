@@ -1,0 +1,175 @@
+[
+  {
+    "class": "core:bastion",
+    "damaging_commands": 32,
+    "energy_spent": 0,
+    "learned_at_start": true,
+    "name": "Attaque ordinaire",
+    "observed_damage": [
+      12,
+      24
+    ],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "ordinary",
+    "weapon": "core:melee_hachette"
+  },
+  {
+    "class": "core:bastion",
+    "damaging_commands": 32,
+    "energy_spent": 5,
+    "learned_at_start": true,
+    "name": "Frappe de rupture",
+    "observed_damage": [
+      17,
+      34
+    ],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "B01",
+    "weapon": "core:melee_hachette"
+  },
+  {
+    "class": "core:technomancien",
+    "damaging_commands": 32,
+    "energy_spent": 0,
+    "learned_at_start": true,
+    "name": "Attaque ordinaire",
+    "observed_damage": [
+      3,
+      6
+    ],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "ordinary",
+    "weapon": "core:modele_cogneur_p01"
+  },
+  {
+    "class": "core:traqueur",
+    "damaging_commands": 32,
+    "energy_spent": 0,
+    "learned_at_start": true,
+    "name": "Attaque ordinaire",
+    "observed_damage": [
+      6,
+      12
+    ],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "ordinary",
+    "weapon": "core:fusil_de_patrouille"
+  },
+  {
+    "class": "core:traqueur",
+    "damaging_commands": 0,
+    "energy_spent": 5,
+    "learned_at_start": true,
+    "name": "Marquage balistique",
+    "observed_damage": [],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "T01",
+    "weapon": "core:fusil_de_patrouille"
+  },
+  {
+    "class": "core:arcaniste",
+    "damaging_commands": 32,
+    "energy_spent": 0,
+    "learned_at_start": true,
+    "name": "Attaque ordinaire",
+    "observed_damage": [
+      1,
+      2
+    ],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "ordinary",
+    "weapon": "core:melee_couteau_de_camp"
+  },
+  {
+    "class": "core:arcaniste",
+    "damaging_commands": 32,
+    "energy_spent": 5,
+    "learned_at_start": true,
+    "name": "Braise",
+    "observed_damage": [
+      11,
+      20
+    ],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "FE01",
+    "weapon": "core:melee_couteau_de_camp"
+  },
+  {
+    "class": "core:arcaniste",
+    "damaging_commands": 32,
+    "energy_spent": 3,
+    "learned_at_start": false,
+    "name": "Trait arcanique",
+    "observed_damage": [
+      9,
+      18
+    ],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "A01",
+    "weapon": "core:melee_couteau_de_camp"
+  },
+  {
+    "class": "core:arcaniste",
+    "damaging_commands": 32,
+    "energy_spent": 3,
+    "learned_at_start": false,
+    "name": "Souffle de feu",
+    "observed_damage": [
+      7,
+      8
+    ],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "FE02",
+    "weapon": "core:melee_couteau_de_camp"
+  },
+  {
+    "class": "core:arcaniste",
+    "damaging_commands": 32,
+    "energy_spent": 3,
+    "learned_at_start": false,
+    "name": "Aiguille de givre",
+    "observed_damage": [
+      8,
+      16
+    ],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "FR01",
+    "weapon": "core:melee_couteau_de_camp"
+  },
+  {
+    "class": "core:metamorphe",
+    "damaging_commands": 32,
+    "energy_spent": 0,
+    "learned_at_start": true,
+    "name": "Attaque ordinaire",
+    "observed_damage": [
+      3,
+      6
+    ],
+    "player_level": 1,
+    "rank": 1,
+    "sample_seeds": 32,
+    "skill": "ordinary",
+    "weapon": "core:melee_couteau_de_camp"
+  }
+]

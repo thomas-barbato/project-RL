@@ -4,8 +4,12 @@ use super::*;
 use std::collections::BTreeMap;
 #[path = "game_art_agent_rigs.rs"]
 mod agent_rigs;
+#[path = "game_art_finish_worn.rs"]
+mod finish_worn;
 #[path = "game_art_flat.rs"]
 mod flat_agents;
+#[path = "game_art_held_geometry.rs"]
+mod held_geometry;
 pub(super) fn outfit_index(body: u8, equipment: [Option<u16>; 4]) -> u16 {
     if let Some(outfit) = equipment[0].and_then(palettes::reviewed_outfit) {
         return outfit;
@@ -150,6 +154,11 @@ fn compose_pose(source: &Sources, key: Key, breath: u8) -> Image {
     compose_pose_at_resolution(source, key, breath, 32)
 }
 fn compose_pose_at_resolution(source: &Sources, key: Key, breath: u8, resolution: u16) -> Image {
+    if resolution == 64
+        && let Some(image) = finish_worn::compose(key, breath)
+    {
+        return image;
+    }
     if let Some(image) = source.flat.compose_pose(key, resolution, breath) {
         return image;
     }
@@ -213,6 +222,9 @@ pub(super) fn prewarm() {
     SOURCES.with(|_| {});
 }
 fn source_resolution(key: Key, rect: Rect, side: u16) -> u16 {
+    if finish_worn::supports(key) {
+        return 64;
+    }
     if (200..200 + palettes::FLAT_OUTFIT_COUNT).contains(&key.0)
         && (side == 128 || rect.w.max(rect.h) > 32.0)
     {
@@ -222,6 +234,9 @@ fn source_resolution(key: Key, rect: Rect, side: u16) -> u16 {
     }
 }
 fn draw_key(rect: Rect, key: Key, side: u16, opacity: f32, idle_time: Option<f64>) {
+    if finish_worn::draw(rect, key, side, opacity, idle_offset(idle_time)) {
+        return;
+    }
     let resolution = source_resolution(key, rect, side);
     let cache_key = (key, idle_offset(idle_time), resolution);
     CACHE.with(|cache| {
@@ -265,7 +280,7 @@ fn draw_key(rect: Rect, key: Key, side: u16, opacity: f32, idle_time: Option<f64
 #[cfg(debug_assertions)]
 pub(super) fn cache_stats() -> (usize, usize) {
     (
-        CACHE.with(|c| c.borrow().len()),
+        CACHE.with(|c| c.borrow().len()) + finish_worn::cache_len(),
         CREATIONS.with(|c| c.get()),
     )
 }
@@ -336,6 +351,16 @@ pub(super) fn draw_grip_review(
     hands: Option<[Option<u16>; 2]>,
 ) {
     draw_grip_review_at_time(rect, body, weapon, hands, None);
+}
+#[cfg(debug_assertions)]
+pub(super) fn draw_finish_review(
+    rect: Rect,
+    body: u16,
+    weapon: Option<u16>,
+    hands: Option<[Option<u16>; 2]>,
+    colors: [EquipmentPalette; 3],
+) {
+    draw_key(rect, (body, selection(weapon, hands), colors), 32, 1., None);
 }
 #[cfg(debug_assertions)]
 pub(super) fn draw_grip_review_at_time(
@@ -454,7 +479,7 @@ mod tests {
             );
             assert_eq!(
                 source_resolution(key, Rect::new(0.0, 0.0, 32.0, 32.0), 32),
-                32
+                if finish_worn::supports(key) { 64 } else { 32 }
             );
         }
     }

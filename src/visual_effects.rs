@@ -102,6 +102,7 @@ impl VisualCuePlayer {
         to: GridPos,
     ) -> f64 {
         flight_seconds(terminal_style(&self.styles, id).family(), from, to)
+            * crate::animation_policy::duration_scale("fallback")
     }
     pub const fn with_catalog(styles: VisualCueCatalog) -> Self {
         Self {
@@ -179,6 +180,7 @@ impl VisualCuePlayer {
             .iter()
             .rev()
             .find_map(|active| active.sample_world(position, now, &self.styles))
+            .map(brighter_sample)
     }
 
     pub fn clear_world(&mut self) {
@@ -204,7 +206,11 @@ impl VisualCuePlayer {
             return None;
         }
         self.active.iter().rev().find_map(|active| {
-            if !(0.0..0.35).contains(&(now - active.started_at)) {
+            if !(0.0..0.35).contains(&crate::animation_policy::age(
+                "fallback",
+                now,
+                active.started_at,
+            )) {
                 return None;
             }
             let style = terminal_style(&self.styles, active.cue.id());
@@ -213,9 +219,11 @@ impl VisualCuePlayer {
                     position,
                     active.started_at
                         + if is_ordnance(style.family()) {
-                            active.flight_duration(style.family()) * 0.55
+                            active.flight_duration(style.family())
+                                * 0.55
+                                * crate::animation_policy::duration_scale("fallback")
                         } else {
-                            0.18
+                            0.18 * crate::animation_policy::duration_scale("fallback")
                         },
                     &self.styles,
                 );
@@ -232,10 +240,12 @@ impl VisualCuePlayer {
                 .sample_world(
                     position,
                     active.started_at
-                        + f64::from(sampled_step) * style.step_seconds()
-                        + style.frame_seconds() * 0.5,
+                        + (f64::from(sampled_step) * style.step_seconds()
+                            + style.frame_seconds() * 0.5)
+                            * crate::animation_policy::duration_scale("fallback"),
                     &self.styles,
                 )
+                .map(brighter_sample)
                 .map(|mut sample| {
                     sample.motion_progress = 0.42;
                     sample
@@ -295,12 +305,13 @@ impl VisualCuePlayer {
         let progress = if reduced {
             0.42
         } else {
-            (now / duration + f64::from(variant) / 256.0).rem_euclid(1.0) as f32
+            (crate::animation_policy::clock(now) / duration + f64::from(variant) / 256.0)
+                .rem_euclid(1.0) as f32
         };
         let frame =
             ((progress * style.frames().len() as f32) as usize).min(style.frames().len() - 1);
         let palette = self.palette_for(id);
-        TerminalEffectSample {
+        brighter_sample(TerminalEffectSample {
             symbol: terminal_symbol(style.frames()[frame]),
             color: palette.color,
             accent_color: palette.accent_color,
@@ -315,7 +326,7 @@ impl VisualCuePlayer {
             direction: (0.0, 0.0),
             anchor: None,
             radius: 0.0,
-        }
+        })
     }
 
     #[cfg(any(test, debug_assertions))]
@@ -402,7 +413,7 @@ impl ActiveVisualCue {
         styles: &VisualCueCatalog,
     ) -> Option<TerminalEffectSample> {
         let style = terminal_style(styles, self.cue.id());
-        let elapsed = now - self.started_at;
+        let elapsed = crate::animation_policy::age("fallback", now, self.started_at);
         if is_ordnance(style.family()) {
             return self.sample_ordnance(position, elapsed, &style);
         }
@@ -468,7 +479,8 @@ impl ActiveVisualCue {
             motion_progress: {
                 let variant = (position.x.wrapping_mul(31) ^ position.y.wrapping_mul(17)) as u8;
                 let duration = animation_duration.max(0.8);
-                (now / duration + f64::from(variant) / 256.0).rem_euclid(1.0) as f32
+                (crate::animation_policy::clock(now) / duration + f64::from(variant) / 256.0)
+                    .rem_euclid(1.0) as f32
             },
             sustained: false,
             variant: (position.x.wrapping_mul(31) ^ position.y.wrapping_mul(17)) as u8,
@@ -545,7 +557,12 @@ impl ActiveVisualCue {
     }
 
     fn expired(&self, now: f64) -> bool {
-        now - self.started_at >= self.lifetime
+        let scale = if matches!(self.cue.target(), VisualCueTarget::World { .. }) {
+            crate::animation_policy::duration_scale("fallback")
+        } else {
+            1.0
+        };
+        now - self.started_at >= self.lifetime * scale
     }
 }
 
@@ -869,7 +886,7 @@ mod tests {
                 .sample_world(GridPos::new(5, 6), true, 0.18)
                 .is_none()
         );
-        assert!(player.sample_world(origin, true, 0.85).is_none());
+        assert!(player.sample_world(origin, true, 1.276).is_none());
     }
 
     #[test]
@@ -1005,13 +1022,13 @@ mod tests {
             0.0,
         );
         assert!(player.sample_world(at, true, 0.1).is_none());
-        let sample = player.sample_world(at, true, 0.3).unwrap();
+        let sample = player.sample_world(at, true, 0.45).unwrap();
         assert_eq!(sample.family, TerminalEffectFamily::Resonance);
         assert_eq!(sample.direction, (1.0, -0.5));
         assert_eq!(sample.links, 0);
-        assert!(player.sample_world(at, false, 0.3).is_none());
-        assert!(player.sample_world(origin, true, 0.3).is_none());
-        assert!(player.sample_world(at, true, 0.8).is_none());
+        assert!(player.sample_world(at, false, 0.45).is_none());
+        assert!(player.sample_world(origin, true, 0.45).is_none());
+        assert!(player.sample_world(at, true, 1.2).is_none());
         assert_eq!(
             player.sample_world_with_motion(at, true, 0.1, true),
             player.sample_world_with_motion(at, true, 0.2, true)
@@ -1199,30 +1216,30 @@ mod tests {
             .unwrap(),
             10.0,
         );
-        assert!(player.sample_world(origin, true, 10.2).is_none());
+        assert!(player.sample_world(origin, true, 10.3).is_none());
         assert!(
             player
                 .sample_world(GridPos::new(4, 3), true, 10.01)
                 .is_none()
         );
-        let first = player.sample_world(GridPos::new(4, 3), true, 10.2).unwrap();
+        let first = player.sample_world(GridPos::new(4, 3), true, 10.3).unwrap();
         assert_eq!(first.family, TerminalEffectFamily::Piercing);
         assert_eq!(first.direction, (1.0, 0.0));
         assert_eq!(
             player
-                .sample_world(GridPos::new(5, 4), true, 10.2)
+                .sample_world(GridPos::new(5, 4), true, 10.3)
                 .unwrap()
                 .direction,
             (1.0, 1.0)
         );
         assert!(
             player
-                .sample_world(GridPos::new(5, 4), false, 10.2)
+                .sample_world(GridPos::new(5, 4), false, 10.3)
                 .is_none()
         );
         assert!(
             player
-                .sample_world(GridPos::new(6, 4), true, 10.2)
+                .sample_world(GridPos::new(6, 4), true, 10.3)
                 .is_none()
         );
     }
@@ -1314,12 +1331,15 @@ mod tests {
             .sample_world(GridPos::new(2, 2), true, 5.05)
             .expect("loaded cue should be visible");
         assert_eq!(sample.symbol, '~');
-        assert_eq!(sample.color, Color::from_rgba(12, 34, 56, 255));
+        assert!((sample.color.r - 0.055529412).abs() < 1e-6);
+        assert!((sample.color.g - 0.15733333).abs() < 1e-6);
+        assert!((sample.color.b - 0.25913724).abs() < 1e-6);
+        assert_eq!(sample.color.a, 1.0);
         assert_eq!(sample.accent_color, None);
         assert_eq!(sample.highlight_color, None);
         assert!(
             player
-                .sample_world(GridPos::new(2, 2), true, 5.11)
+                .sample_world(GridPos::new(2, 2), true, 5.166)
                 .is_none()
         );
     }
@@ -1345,14 +1365,22 @@ mod tests {
         let sample = player
             .sample_world(GridPos::new(2, 2), true, 5.05)
             .expect("loaded cue should be visible");
-        assert_eq!(sample.color, Color::from_rgba(180, 35, 18, 220));
+        assert!((sample.color.r - 0.8329412).abs() < 1e-6);
+        assert!((sample.color.g - 0.16196078).abs() < 1e-6);
+        assert!((sample.color.b - 0.083294116).abs() < 1e-6);
+        assert_eq!(sample.color.a, 220. / 255.);
         assert_eq!(
             sample.accent_color,
-            Some(Color::from_rgba(255, 112, 24, 235))
+            Some(Color::new(
+                1.,
+                112f32 / 255. * 1.18,
+                24f32 / 255. * 1.18,
+                235. / 255.
+            ))
         );
         assert_eq!(
             sample.highlight_color,
-            Some(Color::from_rgba(255, 232, 96, 255))
+            Some(Color::new(1., 1., 96f32 / 255. * 1.18, 1.))
         );
     }
 
@@ -1393,12 +1421,12 @@ mod tests {
         let mut player = VisualCuePlayer::with_catalog(catalog);
         player.play(VisualCue::point(id, at), 0.0);
         assert_ne!(
-            player.sample_world(at, true, 0.02).unwrap().symbol,
-            player.sample_world(at, true, 0.12).unwrap().symbol
+            player.sample_world(at, true, 0.03).unwrap().symbol,
+            player.sample_world(at, true, 0.18).unwrap().symbol
         );
-        assert!(player.sample_world(at, true, 0.28).unwrap().color.a < 0.3);
+        assert!(player.sample_world(at, true, 0.42).unwrap().color.a < 0.3);
         assert!(player.sample_world(at, false, 0.02).is_none());
-        assert!(player.sample_world(at, true, 0.31).is_none());
+        assert!(player.sample_world(at, true, 0.466).is_none());
     }
 
     #[test]
@@ -1537,7 +1565,7 @@ mod tests {
             );
             assert!(
                 player
-                    .sample_world_with_motion(at, true, 10.36, true)
+                    .sample_world_with_motion(at, true, 10.526, true)
                     .is_none()
             );
             assert!(player.sample_world(at, false, 10.2).is_none());
@@ -1585,19 +1613,19 @@ mod tests {
                 .outline,
             Some(15)
         );
-        let interior = player.sample_world(GridPos::new(0, 0), true, 0.12).unwrap();
+        let interior = player.sample_world(GridPos::new(0, 0), true, 0.18).unwrap();
         assert_eq!(interior.outline, Some(0));
         assert_ne!(interior.links, 0);
         assert_eq!(
             player
-                .sample_world(GridPos::new(1, 0), true, 0.12)
+                .sample_world(GridPos::new(1, 0), true, 0.18)
                 .unwrap()
                 .outline,
             Some(2)
         );
         assert!(
             player
-                .sample_world(GridPos::new(1, 0), false, 0.12)
+                .sample_world(GridPos::new(1, 0), false, 0.18)
                 .is_none()
         );
         assert_eq!(
@@ -1606,8 +1634,21 @@ mod tests {
         );
         assert!(
             player
-                .sample_world_with_motion(GridPos::new(1, 0), true, 0.36, true)
+                .sample_world_with_motion(GridPos::new(1, 0), true, 0.526, true)
                 .is_none()
         );
     }
+}
+
+fn brighter_sample(mut sample: TerminalEffectSample) -> TerminalEffectSample {
+    fn brighter(mut c: Color) -> Color {
+        c.r = (c.r * 1.18).min(1.);
+        c.g = (c.g * 1.18).min(1.);
+        c.b = (c.b * 1.18).min(1.);
+        c
+    }
+    sample.color = brighter(sample.color);
+    sample.accent_color = sample.accent_color.map(brighter);
+    sample.highlight_color = sample.highlight_color.map(brighter);
+    sample
 }

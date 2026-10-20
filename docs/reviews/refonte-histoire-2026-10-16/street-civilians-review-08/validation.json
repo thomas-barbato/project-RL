@@ -1,0 +1,45 @@
+{
+  "review": "CIVILS-U01-08",
+  "date": "2026-10-19",
+  "generation": 159,
+  "commands": [
+    {
+      "command": "cargo test --locked --bin project-rl prison_street",
+      "result": "passed",
+      "passed_tests": 12,
+      "failed_tests": 0
+    },
+    {
+      "command": "cargo build --locked",
+      "result": "passed"
+    },
+    {
+      "command": "cargo check --locked --release",
+      "result": "passed"
+    },
+    {
+      "command": "cargo fmt --all -- --check",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "gpu_integration": {
+    "normal_runtime": true,
+    "native_views": 10,
+    "whole_map": true,
+    "differing_game_pixels": 0,
+    "roof_closed_hides_interior_props": true,
+    "camp_round_trip": true,
+    "gameplay_fingerprint_unchanged": true
+  },
+  "audit": {
+    "review": "ART-QUALITY-01",
+    "gpu_capture": "passed",
+    "native_samples": 20,
+    "source_files_unchanged": 44
+  },
+  "scope": "Targeted validation only; no claim about the complete test suite."
+}

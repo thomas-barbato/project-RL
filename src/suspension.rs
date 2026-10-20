@@ -20,7 +20,7 @@ use std::{
 };
 
 pub const MAX_COMMANDS: usize = 50_000;
-pub const MAX_GENERATION_VERSION: u8 = 154;
+pub const MAX_GENERATION_VERSION: u8 = 165;
 const REPLAY_RECOVERY_SCHEMA: u8 = 1;
 pub const CURRENT_RECOVERY_SCHEMA: u8 = 2;
 const CURRENT_CRASH_RECOVERY_SCHEMA: u8 = 1;
@@ -506,11 +506,23 @@ pub enum RecordedCommand {
     AgentGrenadeVariant {
         variant: project_rl::game::AgentGrenadeVariant,
     },
+    UpgradePlayerVision,
+    EnableCircularPlayerVision,
+    RepairStaticZoneFloors {
+        zone: String,
+        cells: Vec<[i32; 2]>,
+    },
 }
 
 impl RecordedCommand {
     pub fn record(command: &GameCommand) -> Self {
         match command {
+            GameCommand::UpgradePlayerVision => Self::UpgradePlayerVision,
+            GameCommand::EnableCircularPlayerVision => Self::EnableCircularPlayerVision,
+            GameCommand::RepairStaticZoneFloors { zone, cells } => Self::RepairStaticZoneFloors {
+                zone: zone.to_string(),
+                cells: cells.iter().map(|at| [at.x, at.y]).collect(),
+            },
             GameCommand::SetAgentMineVariant { variant } => {
                 Self::AgentMineVariant { variant: *variant }
             }
@@ -757,6 +769,19 @@ impl RecordedCommand {
                 target: GridPos::new(*x, *y),
             },
             Self::UpgradeWeaponSets { set } => GameCommand::UpgradeWeaponSets { set: *set },
+            Self::UpgradePlayerVision => GameCommand::UpgradePlayerVision,
+            Self::EnableCircularPlayerVision => GameCommand::EnableCircularPlayerVision,
+            Self::RepairStaticZoneFloors { zone, cells } => {
+                if cells.is_empty() || cells.len() > 256 {
+                    return Err("Invalid static floor repair".into());
+                }
+                GameCommand::RepairStaticZoneFloors {
+                    zone: zone
+                        .parse()
+                        .map_err(|e| format!("Invalid repair zone: {e}"))?,
+                    cells: cells.iter().map(|at| GridPos::new(at[0], at[1])).collect(),
+                }
+            }
             Self::SelectWeaponSet { set } => GameCommand::SelectWeaponSet { set: *set },
             Self::Equip { slot, item: value } => GameCommand::EquipWeapon {
                 slot: *slot,

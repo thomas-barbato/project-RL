@@ -1,0 +1,66 @@
+{
+  "review": "MAP-U01-EXP-01-r02 / LUM-U01-08-r02 / AMB-U01-08-r02",
+  "status": "superseded_continuity_rejected",
+  "superseded_by": "MAP-U01-EXP-01-r03",
+  "user_feedback": "Four separate parts, unnatural cuts and inconsistent road widths; source modules retained for a unified layout.",
+  "supersedes": "MAP-U01-EXP-01-r01: direction corrected by user",
+  "extension_direction": "north only",
+  "old_dimensions": [
+    26,
+    18
+  ],
+  "dimensions": [
+    26,
+    66
+  ],
+  "area_ratio": 3.6666666666666665,
+  "native_cell": 64,
+  "old_walkable": 173,
+  "walkable": 597,
+  "connected": true,
+  "outer_boundary_sealed": true,
+  "perimeter_gate": {
+    "at": [
+      15,
+      1
+    ],
+    "width": 2
+  },
+  "old_departure": [
+    7,
+    14
+  ],
+  "departure": [
+    7,
+    62
+  ],
+  "old_area_offset_cells": [
+    0,
+    48
+  ],
+  "departure_gate_pixels_preserved": true,
+  "next_exit": [
+    15,
+    1
+  ],
+  "next_zone_not_generated": true,
+  "visitable_buildings": 3,
+  "active_map_unchanged": true,
+  "active_hashes": {
+    "car.png": "c5725e480e808ff5940184bc4555900ada360b27a21a0bcab926ef7302056929",
+    "home-roof.png": "cae2668d04aa12f92f56ab6af8571aa080a96d233ab54856e1bcfd0611f9aae4",
+    "illumination-correction.png": "78768677931a438cda79151de2a3e980f3431ac0f9a483b71dcd6d36b404142c",
+    "irradiance.png": "484145530f007fa71400c36ac854422c2653f3481092c2fdb97efca2884778e6",
+    "layout.txt": "dbdeac0482a1c61d017e5f28a63ea91b2f244bf0cb121bba2c431dcaf66abbb0",
+    "shop-roof.png": "9cda1857682b21c53a257f645478459aedba018bc51ea5a39a11f2ca94e30e3d",
+    "street.json": "22c76a6708783044d267f40d8f6407f2bf3b5a80310a26b710ae4875c5a3e93e",
+    "street.png": "1dd45907310699da19977f8e86ebaa79f374dcc8df1086b6d5a456e30562346a"
+  },
+  "source_sha256": {
+    "assets/source-art/first-sector-review-01/u01-expansion-r02/correction.png": "8d4228f8b366a4ac902ea7d731c59008256278f13b453d9d94f0cd6f8466bee7",
+    "assets/source-art/first-sector-review-01/u01-expansion-r02/irradiance.png": "a6a0c6a14097e392a6ba650448558305c19bf72e17e6a76bbad735a3e4a2f773",
+    "assets/source-art/first-sector-review-01/u01-expansion-r02/middle-source-r02.png": "8906a09995ce9b580bdf75a6e3e516ae9d8a215e3a8fb3f6814d8ed2e866cd31",
+    "assets/source-art/first-sector-review-01/u01-expansion-r02/north-source-r02.png": "3da4a1ce8bd6d6f034e72a4103bba6397cbcb4233efefe6e478572d00957095a",
+    "assets/source-art/first-sector-review-01/u01-expansion-r02/street-candidate.png": "43e9c23bd9c973f3ccad1915ff2d5ca466ce9f0e56a5b75f5ab6d74bf8cb4a5e"
+  }
+}

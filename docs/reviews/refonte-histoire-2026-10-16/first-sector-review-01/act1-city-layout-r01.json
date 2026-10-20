@@ -1,0 +1,44 @@
+{
+  "review_id": "ACT1-LAYOUT-01-r01",
+  "date": "2026-10-18",
+  "status": "layout_accepted_not_integrated",
+  "accepted_direction": "ACT1-CITY-01",
+  "title": "Chapitre I · la mégapole ravagée",
+  "subtitle": "Proposition d’enchaînement des zones · noms de travail · pas un plan à l’échelle",
+  "main_route": ["P00", "U01", "U02", "U03", "U04", "X00"],
+  "canvas": [1440, 1100],
+  "nodes": [
+    {"id": "P00", "kind": "accepted", "rect": [550, 132, 340, 92], "title": "Camp de cryogénie", "detail": ["Point de départ déjà accepté"]},
+    {"id": "U01", "kind": "main", "rect": [550, 280, 340, 112], "title": "Abords de la prison", "detail": ["Rue d’accès · barricades", "Premières traces de destruction"]},
+    {"id": "U02", "kind": "main", "rect": [550, 428, 340, 112], "title": "Quartier résidentiel", "detail": ["Immeubles abandonnés", "Cours et rues partiellement détruites"]},
+    {"id": "U03", "kind": "main", "rect": [550, 576, 340, 112], "title": "Avenue commerçante", "detail": ["Vitrines brisées · boutiques pillées", "Carrefours plus ouverts"]},
+    {"id": "U04", "kind": "landmark", "rect": [550, 724, 340, 132], "title": "Transit fortifié", "detail": ["Accès vers les profondeurs", "Place réservée au futur chef", "Plan et rencontre à concevoir plus tard"]},
+    {"id": "X00", "kind": "next", "rect": [550, 888, 340, 94], "title": "Suite de la descente", "detail": ["Installations sous la mégapole"]},
+    {"id": "F00", "kind": "refuge", "rect": [90, 280, 340, 132], "title": "Refuge local de l’acte", "detail": ["Accessible dès le début du chapitre", "Lieu sûr · services", "Emplacement et plan à proposer"]},
+    {"id": "D01", "kind": "optional", "rect": [1030, 428, 320, 132], "title": "Cours d’immeubles", "detail": ["Détour facultatif à deux accès", "Rejoint l’avenue commerçante", "avant le transit fortifié"]},
+    {"id": "D02", "kind": "optional", "rect": [90, 576, 340, 112], "title": "Intérieurs accessibles", "detail": ["Exemples : boutique, garage", "Exploration facultative avec retour"]}
+  ],
+  "edges": [
+    {"from": "P00", "to": "U01", "kind": "main", "points": [[720, 224], [720, 280]]},
+    {"from": "U01", "to": "U02", "kind": "main", "points": [[720, 392], [720, 428]]},
+    {"from": "U02", "to": "U03", "kind": "main", "points": [[720, 540], [720, 576]]},
+    {"from": "U03", "to": "U04", "kind": "main", "points": [[720, 688], [720, 724]]},
+    {"from": "U04", "to": "X00", "kind": "main", "points": [[720, 856], [720, 888]]},
+    {"from": "U01", "to": "F00", "kind": "refuge", "points": [[550, 329], [430, 329]]},
+    {"from": "U02", "to": "D01", "kind": "optional", "points": [[890, 477], [1030, 477]]},
+    {"from": "D01", "to": "U03", "kind": "optional", "points": [[1190, 560], [1190, 625], [890, 625]]},
+    {"from": "U03", "to": "D02", "kind": "optional", "points": [[550, 625], [430, 625]]}
+  ],
+  "notes": [
+    "Une zone représente un rôle dans le parcours, pas nécessairement une carte distincte.",
+    "Les liaisons sont réversibles ; les flèches indiquent seulement le sens de progression.",
+    "Le refuge reste une branche sûre. Aucun détour ne contourne U04.",
+    "Ni dimensions de cartes, ni quête, ni récompense ou règle de voyage nouvelle ne sont intégrées."
+  ],
+  "sources": [
+    "docs/HISTOIRE_CAMPAGNE.md",
+    "docs/GENERATION_CAMPAGNE.md",
+    "docs/reviews/refonte-histoire-2026-10-16/world-generation-study-01/ETUDE.md",
+    "https://classic.battle.net/diablo2exp/maps/"
+  ]
+}

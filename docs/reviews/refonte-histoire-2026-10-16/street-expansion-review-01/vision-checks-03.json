@@ -1,0 +1,236 @@
+{
+  "review": "VISION-U01-03",
+  "status": "visual_review_pending",
+  "native_cell": 64,
+  "candidate_only": true,
+  "normal_game_enabled": false,
+  "comparison_same_state": true,
+  "shared_camp_and_street": true,
+  "world_state_unchanged_by_render": true,
+  "memory_brightness": 0.45,
+  "scenes": [
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        18,
+        33
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "scene": "join-middle",
+      "title": "Rue · champ de vision et décors",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 97821
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        15,
+        41
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "scene": "court-clean",
+      "title": "Cour · contour de portée",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 76930
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        37,
+        8
+      ],
+      "render_read_only": true,
+      "scene": "camp",
+      "title": "Camp · même traitement des décors",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 52842
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        12,
+        20
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "scene": "house-a-open",
+      "title": "Logement · intérieur",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 260181
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        12,
+        28
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "scene": "house-b-open",
+      "title": "Boutique · intérieur",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 272452
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        11,
+        23
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "scene": "house-a-closed",
+      "title": "Porte fermée et toit",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 287794
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        7,
+        62
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "scene": "gate",
+      "title": "Sortie de prison",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 25984
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        2,
+        2
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "scene": "west-corner",
+      "title": "Angle de l’enceinte",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 51282
+    }
+  ],
+  "complete_static_scenery_surfaces": true,
+  "surface_indexes": {
+    "street": 66,
+    "camp": 23
+  }
+}

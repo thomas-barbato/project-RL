@@ -376,7 +376,10 @@ mod tests {
                 version,
             )
             .unwrap();
-            let saved = app.suspension().unwrap();
+            // These checked-in fixtures were written during the interim Map
+            // Debug format. Preserve their exact stored hashes as well.
+            let saved =
+                project_rl::world::with_explicit_empty_obstructions(|| app.suspension().unwrap());
             assert_eq!(
                 (saved.rules, saved.loot_rules, saved.state),
                 (baseline.rules, baseline.loot_rules, baseline.state),
@@ -384,7 +387,12 @@ mod tests {
             );
             let restored =
                 AsciiApp::restore_suspension(&baseline, rules, texts, loot, expeditions).unwrap();
-            assert_eq!(suspension::fingerprint(&restored.game), baseline.state);
+            assert_eq!(
+                project_rl::world::with_explicit_empty_obstructions(|| {
+                    suspension::fingerprint(&restored.game)
+                }),
+                baseline.state
+            );
             for id in model_ids() {
                 assert!(app.game.rules().weapons.get(&id).is_none());
                 assert!(app.loot.equipment().family(&id).is_none());

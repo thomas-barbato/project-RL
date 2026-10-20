@@ -1,0 +1,338 @@
+{
+  "art_modified": false,
+  "date": "2026-10-19",
+  "gameplay_loaded": false,
+  "native_cell": 64,
+  "render": "game_art::draw_world, native corpse textures",
+  "review": "ART-QUALITY-01",
+  "samples": [
+    {
+      "cell": [
+        108.0,
+        148.0,
+        64,
+        64
+      ],
+      "code": "CIV-U01-04 / 80 × 48",
+      "label": "Civil mort · 4",
+      "panel": [
+        20.0,
+        80.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        348.0,
+        148.0,
+        64,
+        64
+      ],
+      "code": "CIV-U01-05 / 80 × 48",
+      "label": "Civil mort · 5",
+      "panel": [
+        260.0,
+        80.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        588.0,
+        148.0,
+        64,
+        64
+      ],
+      "code": "CIV-U01-06 / 80 × 48",
+      "label": "Civil mort · 6",
+      "panel": [
+        500.0,
+        80.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        828.0,
+        148.0,
+        64,
+        64
+      ],
+      "code": "CIV-U01-07 / 80 × 48",
+      "label": "Civil mort · 7",
+      "panel": [
+        740.0,
+        80.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        1068.0,
+        148.0,
+        64,
+        64
+      ],
+      "code": "CIV-U01-08 / 80 × 48",
+      "label": "Civil mort · 8",
+      "panel": [
+        980.0,
+        80.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        108.0,
+        348.0,
+        64,
+        64
+      ],
+      "code": "tenue de classe / arme portée",
+      "label": "Bastion · pistolet",
+      "panel": [
+        20.0,
+        280.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        348.0,
+        348.0,
+        64,
+        64
+      ],
+      "code": "tenue de classe / arme portée",
+      "label": "Technomancien · fusil",
+      "panel": [
+        260.0,
+        280.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        588.0,
+        348.0,
+        64,
+        64
+      ],
+      "code": "core:armure_cerbere",
+      "label": "Armure Cerbère · fusil",
+      "panel": [
+        500.0,
+        280.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        828.0,
+        348.0,
+        64,
+        64
+      ],
+      "code": "core:patched_plating",
+      "label": "Plaques rapiécées · lame",
+      "panel": [
+        740.0,
+        280.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        1068.0,
+        348.0,
+        64,
+        64
+      ],
+      "code": "CampNpc(1)",
+      "label": "PNJ du camp",
+      "panel": [
+        980.0,
+        280.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        108.0,
+        548.0,
+        64,
+        64
+      ],
+      "code": "164 A",
+      "label": "Cultiste · fusil",
+      "panel": [
+        20.0,
+        480.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        348.0,
+        548.0,
+        64,
+        64
+      ],
+      "code": "165 A",
+      "label": "Cultiste · hache",
+      "panel": [
+        260.0,
+        480.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        588.0,
+        548.0,
+        64,
+        64
+      ],
+      "code": "005 A",
+      "label": "Possédé",
+      "panel": [
+        500.0,
+        480.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        828.0,
+        548.0,
+        64,
+        64
+      ],
+      "code": "144 A",
+      "label": "Écorcheur écarlate",
+      "panel": [
+        740.0,
+        480.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        1068.0,
+        548.0,
+        64,
+        64
+      ],
+      "code": "145 A",
+      "label": "Ailé d'obsidienne",
+      "panel": [
+        980.0,
+        480.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        108.0,
+        748.0,
+        64,
+        64
+      ],
+      "code": "core:fusil_d_assaut / case 64",
+      "label": "Icône du fusil",
+      "panel": [
+        20.0,
+        680.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        348.0,
+        748.0,
+        64,
+        64
+      ],
+      "code": "core:modele_cogneur_p01 / case 64",
+      "label": "Icône du pistolet",
+      "panel": [
+        260.0,
+        680.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        588.0,
+        748.0,
+        64,
+        64
+      ],
+      "code": "core:armure_cerbere / case 64",
+      "label": "Icône de l'armure",
+      "panel": [
+        500.0,
+        680.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        828.0,
+        748.0,
+        64,
+        64
+      ],
+      "code": "core:brigandine_cognefer / ancien rig",
+      "label": "Brigandine Cognefer",
+      "panel": [
+        740.0,
+        680.0,
+        240,
+        200
+      ]
+    },
+    {
+      "cell": [
+        1068.0,
+        748.0,
+        64,
+        64
+      ],
+      "code": "Bestiary 57 / drone",
+      "label": "Invocation historique",
+      "panel": [
+        980.0,
+        680.0,
+        240,
+        200
+      ]
+    }
+  ],
+  "world_lighting": false,
+  "checked_source_files": 44,
+  "source_hashes_unchanged": true,
+  "unchanged_image_panels": 20,
+  "raw_capture_sha256": "647ae55f0880ef369a5a9901008ffcc4737fdbccae27cb7067457d09e6bd6551",
+  "native_board_sha256": "fb4eb0d27268c77a3a16046a98633d33587813a01aee8164647bc0ce89080d88",
+  "presentation_changes": "labels only, no sprite scaling or retouch",
+  "visual_review": "native board and normal integrated house view inspected"
+}

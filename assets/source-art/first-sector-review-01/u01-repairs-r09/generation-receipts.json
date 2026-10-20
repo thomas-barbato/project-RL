@@ -1,0 +1,16 @@
+{
+  "mode": "built-in imagegen",
+  "warehouse": {
+    "file": "warehouse-source.png",
+    "output_hint": "Generated images are saved to C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd as C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-c9f3b6c8-314a-4824-9569-dbff1ebb3a85.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  },
+  "road": {
+    "file": "ROAD-U01-09-source.png",
+    "prompt": "Create a single seamless square ASPHALT GROUND TILE for the top-down 2D game in reference image 1. Match only the muted dusty cool slate-blue/grey asphalt visible in the street, with matte stylized hand-painted game shading, irregular restrained hairline cracks and patches of worn aggregate. No curb, sidewalk, edge, border, trench, gutter, road lane markings, black straight line, object, debris, vegetation, cast shadow, vignette, text, glow or perspective. Fill the entire square uniformly with asphalt material; left/right and top/bottom edges must tile seamlessly. No dominant crack spanning the full width or height. Keep large quiet readable surface areas and sparse organic wear suitable for downsampling to a native 64x64 game tile. Orthographic view directly down onto the flat surface, diffuse neutral illumination, opaque background. This tile replaces a faulty extracted texture that carried a black road-edge line into the middle of the street. Reuse the existing muted blue-grey family, no brighter colours and no new visual theme.",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/assets/maps/prison-street-01/street.png"
+    ],
+    "transparent_background": false,
+    "output_hint": "Generated images are saved to C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd as C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-07fd9fa2-9573-401e-9df0-8b88437d9bb4.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  }
+}

@@ -12,13 +12,14 @@ pub(super) const FLIGHT_SECONDS: f64 = 0.18;
 pub(super) const LIFETIME_SECONDS: f64 = 0.42;
 pub(super) fn draw(
     flights: &[Flight],
+    map: &project_rl::world::Map,
     now: f64,
     reduced: bool,
     clip: Rect,
     rect: impl Fn(GridPos) -> Option<Rect>,
 ) {
     for flight in flights {
-        let age = now - flight.started;
+        let age = crate::animation_policy::age("FE01", now, flight.started);
         if !(0.0..LIFETIME_SECONDS).contains(&age) {
             continue;
         }
@@ -39,7 +40,17 @@ pub(super) fn draw(
             )
         };
         if age >= FLIGHT_SECONDS {
-            crate::effect_geometry::clipped(to, clip, draw);
+            crate::effect_geometry::clipped(clip, clip, || {
+                crate::natural_effect::on_floor(
+                    Rect::new(to.x - to.w, to.y - to.h, to.w * 3., to.h * 3.),
+                    flight.target,
+                    to,
+                    map,
+                    &rect,
+                    false,
+                    draw,
+                )
+            });
         } else {
             draw();
         }

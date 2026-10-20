@@ -1,0 +1,128 @@
+{
+  "review": "PAV-U01-06",
+  "status": "integrated",
+  "date": "2026-10-19",
+  "native_cell": 64,
+  "native_views": 9,
+  "map_pixels": [
+    1664,
+    4224
+  ],
+  "normal_runtime_matches_accepted": true,
+  "changed_pixels": {
+    "gate": 0,
+    "south-street": 0,
+    "courtyard": 0,
+    "middle-street": 0,
+    "house-closed": 0,
+    "north-street": 0,
+    "warehouse": 0,
+    "north-exit": 0,
+    "house-open": 0,
+    "whole-map": 0
+  },
+  "raw_changed_pixels": {
+    "gate": 0,
+    "south-street": 0,
+    "courtyard": 0,
+    "middle-street": 0,
+    "house-closed": 0,
+    "north-street": 0,
+    "warehouse": 0,
+    "north-exit": 0,
+    "house-open": 0
+  },
+  "external_ui_hover_pixels": {},
+  "render_read_only": true,
+  "camp_round_trip": true,
+  "unchanged_runtime_assets": {
+    "collision-repairs.json": true,
+    "correction.png": true,
+    "irradiance.png": true,
+    "layout.txt": true,
+    "roof-0.png": true,
+    "roof-1.png": true,
+    "roof-2.png": true,
+    "roof-3.png": true,
+    "room-vision.json": true,
+    "decor/CORP-U01-01.png": true,
+    "decor/CORP-U01-02.png": true,
+    "decor/CORP-U01-03.png": true,
+    "decor/GRIM-U01-01.png": true,
+    "decor/surface-wear.png": true
+  },
+  "scene_changes": [
+    "background_sha256",
+    "paving_review"
+  ],
+  "runtime_background": {
+    "file": "assets/maps/prison-street-expanded-01/street.png",
+    "sha256": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+    "previous_sha256": "9f3afcee8e6ecc58f8c16f7078ab614f6a49c63ee7df0a8d69409c47a8f23c21"
+  },
+  "captures": "artifacts/street-defects-review-01/engine07",
+  "cargo_build_locked": true,
+  "cargo_check_locked_release": true,
+  "cargo_fmt_check": true,
+  "git_diff_check": true,
+  "prison_street_tests": {
+    "passed": 12,
+    "failed": 0
+  },
+  "review_js_syntax_check": true,
+  "redundant_captures_removed": true,
+  "removed_capture_sha256": [
+    {
+      "file": "artifacts/street-defects-review-01/engine07/gate-normal.png",
+      "sha256": "c411e9f32a1311639c68dc9e9c31d58eee8b3a0d11143b33c6101baff566fcf2",
+      "bytes": 1661343
+    },
+    {
+      "file": "artifacts/street-defects-review-01/engine07/south-street-normal.png",
+      "sha256": "26ce7a6c7b2d561dcf99fc1e7fac81d39c159d71db5b769c363610ba947820f2",
+      "bytes": 1793544
+    },
+    {
+      "file": "artifacts/street-defects-review-01/engine07/courtyard-normal.png",
+      "sha256": "62ab760cf57d8447fdf37edd585f479c75f5da8628445aeb03f38b26ae306a94",
+      "bytes": 1806713
+    },
+    {
+      "file": "artifacts/street-defects-review-01/engine07/middle-street-normal.png",
+      "sha256": "fb12c0ce205632825ff8d504e0109f03523ccd0e13b873747e09b5541b8e39fc",
+      "bytes": 1803453
+    },
+    {
+      "file": "artifacts/street-defects-review-01/engine07/house-closed-normal.png",
+      "sha256": "03e85a62894dc74e78b587bebf079a1731589600534a89c99c7d951bcfa0722c",
+      "bytes": 1814262
+    },
+    {
+      "file": "artifacts/street-defects-review-01/engine07/north-street-normal.png",
+      "sha256": "615a348b58b4645fd2cf50595556f3a96c3cb7109740fec8c8fc6ff30a529c20",
+      "bytes": 1776774
+    },
+    {
+      "file": "artifacts/street-defects-review-01/engine07/warehouse-normal.png",
+      "sha256": "d3b26e70cef267ca88c6b115fb2f0d176b8db4700bc1f643a0552e3d3ea59ff2",
+      "bytes": 1816147
+    },
+    {
+      "file": "artifacts/street-defects-review-01/engine07/north-exit-normal.png",
+      "sha256": "79c45177471f22e904e8133fdb73e28b18091251602c3151c5062c4c4cda65db",
+      "bytes": 1463777
+    },
+    {
+      "file": "artifacts/street-defects-review-01/engine07/house-open-normal.png",
+      "sha256": "9ec13cefc0d6f840ab6bc5236f3dfc6ec0f4915ca173f1b6966b778f226ef12b",
+      "bytes": 1847094
+    },
+    {
+      "file": "artifacts/street-defects-review-01/engine07/map-normal.png",
+      "sha256": "7a37f3acd5424217c3e6dd2baea256e58657b962ace7af5e790fb54bd4f87bf3",
+      "bytes": 11909891
+    }
+  ],
+  "freed_bytes": 27692998,
+  "retained_runtime_reference": "docs/reviews/refonte-histoire-2026-10-16/street-paving-review-06/integrated-native.png"
+}

@@ -1,0 +1,66 @@
+{
+  "review": "MAP-U01-EXP-01-r01 / LUM-U01-08 / AMB-U01-08",
+  "status": "superseded_layout_direction",
+  "date": "2026-10-19",
+  "old_dimensions": [
+    26,
+    18
+  ],
+  "dimensions": [
+    48,
+    36
+  ],
+  "native_cell": 64,
+  "area_ratio": 3.6923076923076925,
+  "old_walkable_cells": 173,
+  "walkable_cells": 605,
+  "connected": true,
+  "inaccessible_fragments_removed": 0,
+  "perimeter_openings": [
+    [
+      39,
+      0
+    ],
+    [
+      40,
+      0
+    ]
+  ],
+  "next_exit": [
+    39,
+    0
+  ],
+  "next_zone": "U02",
+  "next_zone_not_generated": true,
+  "entrance": [
+    8,
+    15
+  ],
+  "visitable_buildings": 3,
+  "roofs_and_door_rules": "Door open or player inside hides the roof",
+  "yellow": "Openable, including when the door is closed",
+  "red": "Permanently inaccessible",
+  "animations": [
+    "slow fan",
+    "brief drain steam",
+    "car embers"
+  ],
+  "active_map_unchanged": true,
+  "sources": {
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/correction.png": "813667dee46f85046bc1fdadb9ceccfdcc07d18db28857b1aee86e174cf3bb19",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/east-panel-r01.png": "757ae5b0a6f62693a0a484b1ee3fb5cc74fd8f7cbabf5986f44c4427055fd727",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/house-a-source.png": "752706b228d37406fe862a294594fed9536d5352ba67bd22ffe555a902547a24",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/house-b-source.png": "92d960cd416c4782d77b1d73b6cb623f4f29e234d245c2565a1c360b4b3bfb37",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/irradiance.png": "1b41558598585dddb1eae9afe2884936d02c09346015a2f70bdae945f621baa9",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/ROOF-U01-02A-native.png": "e6c059b8ea813eb27fc43ce544d58f526b56e324bfb7d0a224096d58243c971e",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/ROOF-U01-02A-source.png": "f8fddc6157cde8f9ae66667897b438925a991f65dc8f51cfa45086bef19ebd89",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/ROOF-U01-02B-native.png": "2e8fe90a1a4116a05bbfb74b3d65b42dce6b747d6ccaf63e78fda24c925048bd",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/ROOF-U01-02B-source.png": "db8834f82561173c6c1acf894d82c37fb1b5cd4e9799831fe6bce27e594de502",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/SCENE-U01-08-r01.png": "7229ca3efee2ad6fbf1329af8560678f26a2038495719001427af0fbbd66fcd4",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/south-panel-native-r01.png": "23e69cd7756dd4df179f33082322ddbe48e2c4759d2fd18de29e4dc1cb3091db",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/south-panel-source-r01.png": "ea607adf1b2ee18f0d5a462551c7a620c0dd69dcdc89318da6415bfcbedc50ab",
+    "assets/source-art/first-sector-review-01/u01-expansion-r01/street-candidate.png": "3db8a32baf8456ad76c05a013bb53ee7ec21a1be1478505b3a19b62e4cfa1775"
+  },
+  "superseded_by": "MAP-U01-EXP-01-r02",
+  "reason": "User requires original departure at the south and extension to the north only; source drawings remain candidates"
+}

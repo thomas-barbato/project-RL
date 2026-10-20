@@ -1,0 +1,48 @@
+{
+  "review": "SCENE-U01-07 / LUM-U01-07",
+  "style": "STYLE-RL-2026-10-18-r01",
+  "generation": 155,
+  "normal_startup_verified": true,
+  "production_lighting_enabled": true,
+  "native_cell": 64,
+  "camp_round_trip": true,
+  "lighting_review_comparison": [
+    {
+      "scene": "gate",
+      "static_lighting_mean_delta_from_accepted_review": 0.0
+    },
+    {
+      "scene": "road",
+      "static_lighting_mean_delta_from_accepted_review": 0.0
+    },
+    {
+      "scene": "home-entry",
+      "static_lighting_mean_delta_from_accepted_review": 0.0
+    },
+    {
+      "scene": "home",
+      "static_lighting_mean_delta_from_accepted_review": 0.0
+    },
+    {
+      "scene": "north",
+      "static_lighting_mean_delta_from_accepted_review": 0.0
+    }
+  ],
+  "focused_tests": {
+    "passed": 8,
+    "failed": 0
+  },
+  "camp_gpu_regression_scenes": 6,
+  "debug_build": true,
+  "release_check": true,
+  "format_check": true,
+  "diff_check": true,
+  "source_sha256": "1dd45907310699da19977f8e86ebaa79f374dcc8df1086b6d5a456e30562346a",
+  "captures": {
+    "street-gate.png": "0985547bd610c76308319723a47ad4fc7fad2b17cad63b670132b4f667071425",
+    "street-home-entry.png": "0b6c698555a807e26b9094b0d3b7a0ea494454baca56b7fc6b46c30a87c3c014",
+    "street-home.png": "d1ee448474c586599961b4a4482723e6fff295f5a8e5053e74b1ee38b2b57316",
+    "street-north.png": "8dc516919ae2ea0b04339b473cdba346f6feba459f2e3208d8ca1d56a88e0c09",
+    "street-road.png": "27f1301c097c883026c20c26582a2d072cf9c304962696200b1cb4c58f358471"
+  }
+}

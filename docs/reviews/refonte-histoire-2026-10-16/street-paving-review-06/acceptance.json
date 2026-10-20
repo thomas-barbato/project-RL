@@ -1,0 +1,57 @@
+{
+  "review": "PAV-U01-06",
+  "revision": "joints-irreguliers",
+  "status": "accepted",
+  "date": "2026-10-19",
+  "user_reply": "Valider et intégrer ce sol",
+  "native_cell": 64,
+  "accepted_surface_style": "STYLE-MAP-U01-04",
+  "runtime_background": {
+    "file": "assets/maps/prison-street-expanded-01/street.png",
+    "sha256": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+    "previous_sha256": "9f3afcee8e6ecc58f8c16f7078ab614f6a49c63ee7df0a8d69409c47a8f23c21"
+  },
+  "approved_references": {
+    "courtyard-candidate.png": "0384cd433abb5298ae5d9439935dcc58f68f6a4ab9c0497df0b84a0830c33ca0",
+    "gate-candidate.png": "4590fd228e345d9e2b9c8cc27fd4599dfdf996456b0756c51ad6d533170e4ad8",
+    "house-closed-candidate.png": "6fbefd61ae06d9e17866a97a11388c762a75cf81e6703d8b35689818403d041b",
+    "house-open-candidate.png": "6302c85217a3eaf593d639b4a64539e0d1ea8c7258228c0f1a35d1f688826f86",
+    "map-candidate.png": "7a37f3acd5424217c3e6dd2baea256e58657b962ace7af5e790fb54bd4f87bf3",
+    "middle-street-candidate.png": "5de33987cfb3f0095888e09b112377e88ac58fecaa363850eb41945858722dbc",
+    "north-exit-candidate.png": "69a2f6c608b87ec45d6330c83e4e6b3c044a96ba0f4d2fdf42ffec870f9cb6be",
+    "north-street-candidate.png": "ba4941c20679b3c109cc5bdf84ab0fab74aef10d9e9d718fbb0bb48f3dd4db36",
+    "south-street-candidate.png": "226be68a4ec855e0f20e2e788ceb70a2db177fcfb09c857ada77b901a877213e",
+    "warehouse-candidate.png": "df0e53811d6563ee093eaea71652340c21f3d30ae8e24e0394697d7c54bc36b4"
+  },
+  "previous_runtime_assets": {
+    "collision-repairs.json": "37deaa578c4340b11a05fdb65a8b2117c185f0a8422d6ac14471668b8eec00d6",
+    "correction.png": "9e123019902ebe12e4af71808702ab1359151e35ef4dfca45e3c51d631720b8c",
+    "irradiance.png": "038907d83c985d849b6ad59b1c9ab992c7708116ea7677c7d57a32fb9e5b9481",
+    "layout.txt": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
+    "roof-0.png": "daa333e2a8fef5fe7ee7de620dd69139b7377d2c82c7d883d5e34feb9599bfdf",
+    "roof-1.png": "95e279966252b32d21c11575b53404eb7398de334a256a970754dcb1b285ea50",
+    "roof-2.png": "2381e0b8139249ddefaf77b70ad14912556036df46900021a808ebc2a3efd37b",
+    "roof-3.png": "36f55710f3341eaed78d0a24b11a5a1a365d8d3e55b012e21f1bf74d43f0e636",
+    "room-vision.json": "5ab0623db4985bd0613bda0fb58c506a138c63f21191aff6df8aa25d472b31b7",
+    "street.json": "d0b0e7161c51a9c49cff6a317062e2bd2bfc6c8779689111e1aa1c64763dc2d6",
+    "street.png": "9f3afcee8e6ecc58f8c16f7078ab614f6a49c63ee7df0a8d69409c47a8f23c21",
+    "decor/CORP-U01-01.png": "6a016733564e23e4d8d2f85458db3f5d7f71e52b078520c2e1abdf8099fce956",
+    "decor/CORP-U01-02.png": "0b10f5554c5e12c91f8868d280d57c5a2d466aac9ce23ba9374edd680edccdcb",
+    "decor/CORP-U01-03.png": "0f08bcd7be6558b69fa31cf5fbc554f9ab449374eff0d779d3a77bfc6a719de3",
+    "decor/GRIM-U01-01.png": "2c84fecd9ceb2a794594f8ccb1f09d6653aa6ffd38379a20e4e4dfc7baef71f6",
+    "decor/surface-wear.png": "16cb67557ae6b56fa7ee32035470100a83650f721cd43545d385eecd09632b36"
+  },
+  "source_directory": "assets/source-art/first-sector-review-01/u01-corrections-r06",
+  "preserved": [
+    "lighting",
+    "collisions",
+    "doors",
+    "roofs",
+    "actors",
+    "roads",
+    "gameplay",
+    "native cell size",
+    "south arrival composition",
+    "interior floors"
+  ]
+}

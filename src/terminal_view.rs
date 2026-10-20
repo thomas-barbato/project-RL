@@ -66,12 +66,45 @@ pub(crate) fn burning_actor(
 
 use crate::test_sector::{Decor, SectorDecor, TestSector};
 
+#[path = "painted_scene_visibility.rs"]
+pub(crate) mod painted_scene_visibility;
 #[path = "terminal_lighting.rs"]
 mod terminal_lighting;
 #[path = "terminal_perception.rs"]
 mod terminal_perception;
 #[path = "terminal_vision.rs"]
 mod terminal_vision;
+#[cfg(debug_assertions)]
+#[path = "world_visibility_review.rs"]
+pub(crate) mod world_visibility_review;
+
+pub(crate) fn scenery_circle_enabled() -> bool {
+    #[cfg(debug_assertions)]
+    {
+        static COMPARISON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+        if *COMPARISON.get_or_init(|| {
+            std::env::args().nth(1).as_deref() == Some("--ui-cold-street-expansion")
+        }) {
+            return world_visibility_review::scenery_circle();
+        }
+    }
+    true
+}
+
+fn painted_scene_vision(game: &WorldState, camera: &GridCamera, known: impl Fn(GridPos) -> bool) {
+    if scenery_circle_enabled() {
+        painted_scene_visibility::draw(game, camera, known);
+        return;
+    }
+    #[cfg(debug_assertions)]
+    if crate::terminal_view::world_visibility_review::enabled() {
+        if world_visibility_review::scenery_circle() {
+            world_visibility_review::draw(game, camera, known);
+        }
+        return;
+    }
+    terminal_vision::draw(game, camera, known);
+}
 
 const CITY_DECOR_KINDS: [Decor; 19] = [
     Decor::UrbanTree,
@@ -128,6 +161,10 @@ mod terminal_city_preview;
 mod terminal_floor;
 #[path = "terminal_fx.rs"]
 mod terminal_fx;
+#[cfg(debug_assertions)]
+pub(crate) fn legacy_fire_review(rect: Rect, effect: crate::visual_effects::TerminalEffectSample) {
+    terminal_fx::draw_legacy(rect, effect, false);
+}
 #[path = "terminal_roads.rs"]
 mod terminal_roads;
 #[path = "terminal_scenery.rs"]
@@ -1076,6 +1113,7 @@ impl TerminalView {
             )));
         }
         let cryogenic_camp = crate::cryogenic_camp_render::active(game);
+        let prison_street = crate::prison_street_render::active(game);
         let outline_target = crate::target_outline::enabled()
             .then(|| crate::target_outline::pointer(camera.hit(mouse_position())))
             .flatten();
@@ -1086,6 +1124,13 @@ impl TerminalView {
         };
         if cryogenic_camp {
             crate::cryogenic_camp_render::begin(&camera);
+        } else if prison_street {
+            crate::prison_street_render::draw(
+                &camera,
+                game,
+                |at| known_at(at).is_some(),
+                ambience_time,
+            );
         } else {
             for row in 0..camera.rows {
                 for column in 0..camera.columns {
@@ -1135,7 +1180,7 @@ impl TerminalView {
         combat_motion.draw_blasts(game.map(), combat_time, reduced_motion, true, |at| {
             (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
         });
-        combat_motion.draw_fireballs(game.map(), combat_time, reduced_motion, true, |at| {
+        combat_motion.draw_fireballs(game, combat_time, reduced_motion, true, |at| {
             (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
         });
         combat_motion.draw_agent_world(
@@ -1296,7 +1341,7 @@ impl TerminalView {
                 }
             }
         }
-        combat_motion.draw_fireballs(game.map(), combat_time, reduced_motion, false, |at| {
+        combat_motion.draw_fireballs(game, combat_time, reduced_motion, false, |at| {
             (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
         });
         combat_motion.draw_agent_world(
@@ -1307,12 +1352,31 @@ impl TerminalView {
             camera.viewport,
             |at| (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at)),
         );
-        combat_motion.draw_spells(combat_time, reduced_motion, camera.viewport, |at| {
+        combat_motion.draw_spells(game, combat_time, reduced_motion, camera.viewport, |at| {
             (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
         });
         combat_motion.draw_blasts(game.map(), combat_time, reduced_motion, false, |at| {
             (visibility.is_visible(at) && camera.contains(at)).then(|| camera.rect(at))
         });
+        if prison_street {
+            #[cfg(debug_assertions)]
+            crate::game_art::finish_review::scene_actors(&camera, game);
+            #[cfg(debug_assertions)]
+            crate::game_art::finish_review_02::scene_actors(&camera, game);
+            #[cfg(debug_assertions)]
+            crate::game_art::finish_review_03::scene_actors(&camera, game);
+            #[cfg(debug_assertions)]
+            crate::game_art::finish_review_04::scene_actors(&camera, game);
+            #[cfg(debug_assertions)]
+            crate::game_art::finish_review_05::scene_actors(&camera, game);
+            #[cfg(debug_assertions)]
+            crate::game_art::finish_completion::scene_actors(&camera, game);
+            crate::prison_street_render::foreground(&camera, game);
+            crate::prison_street_render::finish(&camera, camera.viewport, game);
+            crate::prison_street_render::roofs(&camera, game, |at| known_at(at).is_some());
+            painted_scene_vision(game, &camera, |at| known_at(at).is_some());
+            terminal_perception::draw_fields(game, &camera, observation_fields, sound_fields);
+        }
         if cryogenic_camp {
             crate::cryogenic_camp_render::finish(
                 &camera,
@@ -1329,7 +1393,7 @@ impl TerminalView {
                     camera.viewport.h as i32,
                 )));
             }
-            terminal_vision::draw(game, &camera, |at| known_at(at).is_some());
+            painted_scene_vision(game, &camera, |at| known_at(at).is_some());
             terminal_perception::draw_fields(game, &camera, observation_fields, sound_fields);
         }
         // A second pass keeps overhead markers above neighbouring terrain and

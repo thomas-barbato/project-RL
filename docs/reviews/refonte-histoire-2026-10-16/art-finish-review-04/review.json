@@ -1,0 +1,179 @@
+{
+  "review": "ART-FINISH-04",
+  "status": "accepted_and_integrated",
+  "native_cell": 64,
+  "drawings": 2,
+  "configuration_samples": 6,
+  "entries": [
+    {
+      "code": "FIN-26",
+      "label": "Robe de la Seconde Ombre",
+      "identity": "core:veste_de_la_seconde_ombre",
+      "outfit": 217,
+      "torso": 109,
+      "source_sha256": "7fd9542a00b1072ffa967d8f30e7839be188a05670402923555606a31ec323ff",
+      "native_sha256": "f86c14e6ed6e661b2e2872d8a79cad166de42dd15934d6d5f5eb375de3b52758",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        42,
+        33,
+        86,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-26-single-body.png",
+            "FIN-26-single-weapon.png",
+            "FIN-26-single-fingers.png"
+          ],
+          "hand_anchors": [
+            84,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-26-rifle-body.png",
+            "FIN-26-rifle-weapon.png",
+            "FIN-26-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "code": "FIN-27",
+      "label": "Tenue du nomade",
+      "identity": "core:veste_a_fibres_croisees",
+      "outfit": 218,
+      "torso": 114,
+      "source_sha256": "57a744463aa8c91ff86a616f1f42bfa96e60220f36c1372f0f851fa00851f7d1",
+      "native_sha256": "b11569a73daa69d4889dec237e159c92e1be04b9bb347060c6a34261a6671e07",
+      "size": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "bounds": [
+        43,
+        33,
+        85,
+        99
+      ],
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-27-single-body.png",
+            "FIN-27-single-weapon.png",
+            "FIN-27-single-fingers.png"
+          ],
+          "hand_anchors": [
+            84,
+            62
+          ],
+          "held_length": 17,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        },
+        "rifle": {
+          "layers": [
+            "FIN-27-rifle-body.png",
+            "FIN-27-rifle-weapon.png",
+            "FIN-27-rifle-fingers.png"
+          ],
+          "hand_anchors": [
+            [
+              59,
+              61
+            ],
+            [
+              73,
+              64
+            ]
+          ],
+          "held_length": 34,
+          "fixed_regions": [
+            [
+              0,
+              0,
+              128,
+              44
+            ],
+            [
+              0,
+              80,
+              128,
+              128
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "ordinary_runtime_unchanged_at_preparation": true,
+  "runtime_assets": "assets/sprites/art-finish-04"
+}

@@ -1,0 +1,51 @@
+{
+  "review": "ART-FINISH-04",
+  "status": "pending_visual_review",
+  "native_cell": 64,
+  "drawings": 2,
+  "configuration_samples": 6,
+  "scene_pairs": 2,
+  "production_files_unchanged": 612,
+  "normal_renderer_changed_pixels": {
+    "native-1": 0,
+    "native-2": 0,
+    "native-3": 0,
+    "native-4": 0,
+    "hands-1": 0,
+    "hands-2": 0,
+    "hands-3": 0,
+    "hands-4": 0,
+    "hands-5": 0,
+    "hands-6": 0,
+    "hands-7": 0,
+    "hands-8": 0,
+    "hands-9": 0,
+    "hands-10": 0,
+    "hands-11": 0,
+    "hands-12": 0,
+    "house": 0,
+    "street": 0
+  },
+  "hand_contacts": {
+    "FIN-26-single": [
+      19
+    ],
+    "FIN-26-rifle": [
+      30,
+      23
+    ],
+    "FIN-27-single": [
+      2
+    ],
+    "FIN-27-rifle": [
+      30,
+      18
+    ]
+  },
+  "fixed_head_and_lower_body": true,
+  "gameplay_fingerprints_unchanged": true,
+  "full_test_suite_run": false,
+  "mode": "built-in imagegen",
+  "runtime_candidates_enabled": false,
+  "browser_check": "Static local links and node --check; no browser automation"
+}

@@ -5,6 +5,76 @@ fn current(seed: u64) -> AsciiApp {
     AsciiApp::from_seed(seed, rules, texts, loot, expeditions).unwrap()
 }
 
+// Geometry and door regressions retain the accepted pre-population fixture;
+// the live campaign's actors and movement are checked in street_population_tests.
+fn street_geometry(seed: u64) -> AsciiApp {
+    let (r, t, l, e) = ascii_game_content().unwrap();
+    AsciiApp::from_seed_version(seed, r, t, l, e, SEWER_GENERATION_VERSION).unwrap()
+}
+
+#[test]
+fn normal_character_creation_enables_validated_outfits_city_and_sewer_without_trial_mode() {
+    assert!(!crate::street_population::enabled());
+    assert!(crate::terminal_fire::enabled());
+    for selected in 0..5 {
+        let mut app = current(1872);
+        app.crash_recovery_enabled = false;
+        app.suspension_path = std::env::temp_dir().join(format!(
+            "project-rl-normal-campaign-{}-{selected}.json",
+            std::process::id()
+        ));
+        // The same creation/rebuild path used by the ordinary main menu.
+        app.begin_character_creation_with_seed(false, 1872).unwrap();
+        let attributes = app
+            .character_classes
+            .iter()
+            .nth(selected)
+            .unwrap()
+            .1
+            .recommended_attributes();
+        let creation = app.character_creation.as_mut().unwrap();
+        creation.selected_class = selected;
+        creation.attributes = attributes;
+        let creation = app.character_creation.take().unwrap();
+        app.rebuild_run_with_character_class(&creation).unwrap();
+        assert_eq!(app.generation_version, CURRENT_GENERATION_VERSION);
+        assert!(!app.test_lab);
+        assert_eq!(app.game.current_zone().unwrap().id.as_str(), camp::ZONE_ID);
+        let torso = app
+            .game
+            .player_equipment()
+            .equipped(&"core:body_armor".parse().unwrap());
+        assert_eq!(torso, None);
+        assert!(
+            app.game
+                .player_inventory()
+                .iter()
+                .all(|e| !e.item().as_str().starts_with("core:tenue_"))
+        );
+        assert_eq!(
+            app.ux.skill_bar[0].as_deref(),
+            Some(["B01", "D59", "T01", "FE01", "M01"][selected])
+        );
+        let exit = pos(camp::scene().exits[0]);
+        app.walk_fixture_to_unchecked(exit).unwrap();
+        assert_eq!(
+            app.execute_command(GameCommand::Interact { target: exit }),
+            CommandOutcome::Applied
+        );
+        assert_eq!(
+            app.game.current_zone().unwrap().id.as_str(),
+            crate::prison_street::ZONE_ID
+        );
+        assert_eq!(app.game.actors().iter().count(), 16); // player + approved fifteen enemies
+        let passage = app
+            .game
+            .passage(crate::sewer::ENTRY)
+            .expect("sewer entry in the normal city");
+        assert!(!app.game.passage_is_irreversible(passage));
+        assert!(crate::sewer::has_street_entry(&app.game));
+    }
+}
+
 #[test]
 fn cryogenic_all_protocols_begin_in_the_accepted_camp() {
     let catalog = ascii_character_class_catalog().unwrap();
@@ -130,7 +200,16 @@ fn cryogenic_suspension_restores_the_same_camp_and_service_state() {
 
 #[test]
 fn cryogenic_exit_uses_the_existing_lazy_sector_provider() {
-    let mut app = current(147);
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let mut app = AsciiApp::from_seed_version(
+        147,
+        rules,
+        texts,
+        loot,
+        expeditions,
+        WEAPON_SETS_GENERATION_VERSION,
+    )
+    .unwrap();
     let exit = pos(camp::scene().exits[0]);
     let npc_ids: Vec<_> = camp::scene().actors[1..]
         .iter()
@@ -210,6 +289,108 @@ fn cryogenic_exit_uses_the_existing_lazy_sector_provider() {
 }
 
 #[test]
+fn prison_street_camp_exit_arrives_at_the_south_gate_and_returns_to_the_same_camp() {
+    let mut app = current(1818);
+    app.crash_recovery_enabled = false;
+    let exit = pos(camp::scene().exits[0]);
+    let officer = app
+        .game
+        .actors()
+        .entity_at(pos(camp::scene().actors[1].at))
+        .unwrap();
+    app.walk_fixture_to_unchecked(exit).unwrap();
+    let street_id: ContentId = crate::prison_street::ZONE_ID.parse().unwrap();
+    assert_eq!(
+        app.game.unmaterialized_passage_destination(exit),
+        Some(&street_id)
+    );
+    assert_eq!(
+        app.execute_command(GameCommand::Interact { target: exit }),
+        CommandOutcome::Applied
+    );
+    assert_eq!(app.game.current_zone().unwrap().id, street_id);
+    let entrance =
+        crate::prison_street::pos(crate::prison_street::scene_for_game(&app.game).entrance);
+    assert_eq!(app.game.player_position(), Some(entrance));
+    assert_eq!(app.game.actors().iter().count(), 16);
+    assert!(app.game.quest_journal().is_empty());
+    assert_eq!(
+        app.game.passage(entrance).unwrap().destination.as_str(),
+        camp::ZONE_ID
+    );
+    assert!(
+        !app.game
+            .passage_is_irreversible(app.game.passage(entrance).unwrap())
+    );
+    assert_eq!(
+        app.execute_command(GameCommand::Interact { target: entrance }),
+        CommandOutcome::Applied
+    );
+    assert_eq!(app.game.current_zone().unwrap().id.as_str(), camp::ZONE_ID);
+    assert_eq!(app.game.player_position(), Some(exit));
+    assert_eq!(
+        app.game.actors().entity_at(pos(camp::scene().actors[1].at)),
+        Some(officer)
+    );
+}
+
+#[test]
+fn prison_street_home_route_obstacles_and_snapshot_are_playable() {
+    let mut app = street_geometry(1819);
+    app.crash_recovery_enabled = false;
+    let exit = pos(camp::scene().exits[0]);
+    app.walk_fixture_to_unchecked(exit).unwrap();
+    assert_eq!(
+        app.execute_command(GameCommand::Interact { target: exit }),
+        CommandOutcome::Applied
+    );
+    let s = crate::prison_street::scene_for_game(&app.game);
+    let entrance = crate::prison_street::pos(s.entrance);
+    let home = crate::prison_street::pos(s.home_inside);
+    let turn = app.game.turn();
+    app.walk_fixture_to_unchecked(home)
+        .expect("real cardinal route through the home doorway");
+    assert!(app.game.turn() > turn);
+    let mut cleared = crate::prison_street::contact_repair_cells().unwrap();
+    cleared.extend(crate::prison_street::warehouse_clearance_cells().unwrap());
+    for &at in &s.obstructions {
+        let at = crate::prison_street::pos(at);
+        assert_eq!(app.game.map().is_walkable(at), cleared.contains(&at));
+    }
+    let saved = app.suspension().unwrap();
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let mut restored =
+        AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
+    restored.crash_recovery_enabled = false;
+    assert_eq!(
+        suspension::fingerprint(&app.game),
+        suspension::fingerprint(&restored.game)
+    );
+    assert_eq!(restored.game.player_position(), Some(home));
+    for &at in &s.obstructions {
+        let at = crate::prison_street::pos(at);
+        assert_eq!(restored.game.map().is_walkable(at), cleared.contains(&at));
+    }
+    restored.walk_fixture_to_unchecked(entrance).unwrap();
+    assert_eq!(
+        restored.execute_command(GameCommand::Interact { target: entrance }),
+        CommandOutcome::Applied
+    );
+    restored.capture_events_at(Some(0.));
+    assert_eq!(
+        restored.game.current_zone().unwrap().id.as_str(),
+        camp::ZONE_ID
+    );
+    let saved = restored.suspension().unwrap();
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let resumed = AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
+    assert_eq!(
+        suspension::fingerprint(&restored.game),
+        suspension::fingerprint(&resumed.game)
+    );
+}
+
+#[test]
 fn cryogenic_previous_generation_keeps_its_old_start_on_resume() {
     let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
     let app = AsciiApp::from_seed_version(
@@ -229,6 +410,246 @@ fn cryogenic_previous_generation_keeps_its_old_start_on_resume() {
         suspension::fingerprint(&restored.game)
     );
     assert_eq!(app.game.player_position(), restored.game.player_position());
+}
+
+#[test]
+fn prison_street_roof_uses_keyboard_and_click_door_and_survives_resume() {
+    use project_rl::world::DoorState;
+    let mut app = street_geometry(1820);
+    app.crash_recovery_enabled = false;
+    let exit = pos(camp::scene().exits[0]);
+    app.walk_fixture_to_unchecked(exit).unwrap();
+    assert_eq!(
+        app.execute_command(GameCommand::Interact { target: exit }),
+        CommandOutcome::Applied
+    );
+    let s = crate::prison_street::scene_for_game(&app.game);
+    let door = crate::prison_street::pos(s.home_entry);
+    let roof = &s.roofs[0];
+    app.walk_fixture_to_unchecked(GridPos::new(door.x, door.y + 1))
+        .unwrap();
+    assert_eq!(
+        app.game.map().tile(door).unwrap().terrain,
+        Terrain::Door(DoorState::Closed)
+    );
+    assert!(!roof.hidden(&app.game));
+    assert!(
+        app.game
+            .player_visibility()
+            .is_visible(crate::prison_street::pos(s.home_inside)),
+        "Circular perception includes the interior; the closed roof still covers its pixels"
+    );
+    let turn = app.game.turn();
+    app.select_world_target(None);
+    app.update_input_at(
+        &InputFrame {
+            pressed: [app.controls.binding(Action::Interact).clone()].into(),
+            pointer: Some((1., 1.)),
+            viewport: Some((1600., 1000.)),
+            ..Default::default()
+        },
+        Some(0.),
+    );
+    assert_eq!(
+        app.game.map().tile(door).unwrap().terrain,
+        Terrain::Door(DoorState::Open)
+    );
+    assert!(app.game.turn() > turn);
+    assert!(roof.hidden(&app.game));
+    app.walk_fixture_to_unchecked(GridPos::new(door.x, door.y - 1))
+        .unwrap();
+    app.select_pointer_world_cell(door, None);
+    assert_eq!(
+        app.game.map().tile(door).unwrap().terrain,
+        Terrain::Door(DoorState::Closed)
+    );
+    assert!(
+        roof.hidden(&app.game),
+        "Closing inside must not hide the player"
+    );
+    app.capture_events_at(Some(0.));
+    let saved = app.suspension().unwrap();
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let mut restored =
+        AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
+    restored.crash_recovery_enabled = false;
+    assert_eq!(
+        suspension::fingerprint(&app.game),
+        suspension::fingerprint(&restored.game)
+    );
+    assert!(roof.hidden(&restored.game));
+    assert_eq!(
+        restored.execute_command(GameCommand::Interact { target: door }),
+        CommandOutcome::Applied
+    );
+    restored
+        .walk_fixture_to_unchecked(GridPos::new(door.x, door.y + 1))
+        .unwrap();
+    restored.select_pointer_world_cell(door, None);
+    assert!(!roof.hidden(&restored.game));
+    restored
+        .walk_fixture_to_unchecked(crate::prison_street::pos(s.entrance))
+        .unwrap();
+    assert_eq!(
+        restored.execute_command(GameCommand::Interact {
+            target: crate::prison_street::pos(s.entrance)
+        }),
+        CommandOutcome::Applied
+    );
+    assert_eq!(
+        restored.execute_command(GameCommand::Interact { target: exit }),
+        CommandOutcome::Applied
+    );
+    assert_eq!(
+        restored.game.map().tile(door).unwrap().terrain,
+        Terrain::Door(DoorState::Closed)
+    );
+    assert!(!roof.hidden(&restored.game));
+}
+
+#[test]
+fn prison_street_generation_155_keeps_its_existing_open_entrance() {
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let mut app = AsciiApp::from_seed_version(1821, rules, texts, loot, expeditions, 155).unwrap();
+    app.crash_recovery_enabled = false;
+    let exit = pos(camp::scene().exits[0]);
+    app.walk_fixture_to_unchecked(exit).unwrap();
+    assert_eq!(
+        app.execute_command(GameCommand::Interact { target: exit }),
+        CommandOutcome::Applied
+    );
+    let s = crate::prison_street::scene_for_game(&app.game);
+    let door = crate::prison_street::pos(s.home_entry);
+    assert_eq!(app.game.map().tile(door).unwrap().terrain, Terrain::Floor);
+    assert!(s.roofs[0].hidden(&app.game));
+    app.walk_fixture_to_unchecked(crate::prison_street::pos(s.home_inside))
+        .unwrap();
+    let saved = app.suspension().unwrap();
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let restored = AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
+    assert_eq!(
+        suspension::fingerprint(&app.game),
+        suspension::fingerprint(&restored.game)
+    );
+    assert_eq!(
+        restored.game.map().tile(door).unwrap().terrain,
+        Terrain::Floor
+    );
+}
+
+#[test]
+fn prison_street_expanded_rooms_north_route_and_recovery_use_the_integrated_map() {
+    let mut app = street_geometry(1872);
+    app.crash_recovery_enabled = false;
+    let exit = pos(camp::scene().exits[0]);
+    app.walk_fixture_to_unchecked(exit).unwrap();
+    assert_eq!(
+        app.execute_command(GameCommand::Interact { target: exit }),
+        CommandOutcome::Applied
+    );
+    assert_eq!(app.generation_version, SEWER_GENERATION_VERSION);
+    assert_eq!((app.game.map().width(), app.game.map().height()), (26, 66));
+    let s = crate::prison_street::scene_for_game(&app.game);
+    assert_eq!(s.entrance, [7, 62]);
+    for roof in &s.roofs {
+        let Some(door) = roof.door.map(crate::prison_street::pos) else {
+            continue;
+        };
+        app.walk_fixture_to_unchecked(GridPos::new(door.x, door.y + 1))
+            .unwrap();
+        if app.game.map().tile(door).unwrap().terrain
+            != Terrain::Door(project_rl::world::DoorState::Open)
+        {
+            assert_eq!(
+                app.execute_command(GameCommand::Interact { target: door }),
+                CommandOutcome::Applied
+            );
+        }
+        let inside = roof
+            .interior
+            .iter()
+            .copied()
+            .map(crate::prison_street::pos)
+            .find(|at| app.game.map().is_walkable(*at))
+            .unwrap();
+        app.walk_fixture_to_unchecked(inside).unwrap();
+        assert!(roof.hidden(&app.game));
+    }
+    let saved = app.suspension().unwrap();
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let mut restored =
+        AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
+    restored.crash_recovery_enabled = false;
+    assert_eq!(
+        suspension::fingerprint(&app.game),
+        suspension::fingerprint(&restored.game)
+    );
+    assert!(!restored.game.map().blocks_vision(GridPos::new(10, 20)));
+    assert!(!restored.game.map().is_walkable(GridPos::new(10, 20)));
+    let north = GridPos::new(18, 1);
+    restored.walk_fixture_to_unchecked(north).unwrap();
+    assert!(
+        restored.game.passage(north).is_none(),
+        "U02 is not connected yet"
+    );
+    let entrance = crate::prison_street::pos(s.entrance);
+    restored.walk_fixture_to_unchecked(entrance).unwrap();
+    assert_eq!(
+        restored.execute_command(GameCommand::Interact { target: entrance }),
+        CommandOutcome::Applied
+    );
+    assert_eq!(
+        restored.game.current_zone().unwrap().id.as_str(),
+        camp::ZONE_ID
+    );
+}
+
+#[test]
+fn prison_street_previous_roof_generation_keeps_small_map_before_and_after_resume() {
+    for visited in [false, true] {
+        let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+        let mut app = AsciiApp::from_seed_version(
+            1873,
+            rules.clone(),
+            texts.clone(),
+            loot.clone(),
+            expeditions.clone(),
+            156,
+        )
+        .unwrap();
+        app.crash_recovery_enabled = false;
+        let exit = pos(camp::scene().exits[0]);
+        app.walk_fixture_to_unchecked(exit).unwrap();
+        if visited {
+            assert_eq!(
+                app.execute_command(GameCommand::Interact { target: exit }),
+                CommandOutcome::Applied
+            );
+        }
+        app.capture_events_at(Some(0.));
+        let saved = app.suspension().unwrap();
+        let mut resumed =
+            AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
+        resumed.crash_recovery_enabled = false;
+        assert_eq!(
+            suspension::fingerprint(&app.game),
+            suspension::fingerprint(&resumed.game)
+        );
+        if !visited {
+            assert_eq!(
+                resumed.execute_command(GameCommand::Interact { target: exit }),
+                CommandOutcome::Applied
+            );
+        }
+        assert_eq!(
+            (resumed.game.map().width(), resumed.game.map().height()),
+            (26, 18)
+        );
+        assert_eq!(
+            crate::prison_street::scene_for_game(&resumed.game).entrance,
+            [7, 14]
+        );
+    }
 }
 
 #[test]

@@ -1,0 +1,30 @@
+{
+  "review": "DEFENSE-U01-10-r04",
+  "tool": "built-in imagegen",
+  "status": "visual_preview_not_integrated",
+  "request": "obstacles supplémentaires et cadavres, en conservant une circulation facile depuis la prison",
+  "assets": [
+    {
+      "id": "BARR-U01-01-r04",
+      "prompt": "Use case: stylized-concept. Generate ONE complete standalone low military concrete road barrier for Project RL. The input image is a STYLE AND CAMERA REFERENCE ONLY: retain the approved mildly overhead 2D game projection with parallel horizontal/vertical ground axes, short front faces, no isometric diamond or perspective vanishing points. Do not reproduce the street or any neighboring object. The isolated object is a horizontal squat Jersey-style concrete barricade: very broad at its base, sloping shoulders and flat narrow top, supported directly on the ground without separate legs. It is waist-high relative to a 60-pixel-tall game human; final native canvas will be 120x64 pixels with actual whole barrier about112px wide and44px tall. Draw its LONG AXIS EXACTLY HORIZONTAL across the image, top face and short south-facing front face visible. Complete left AND right end caps, no cut ends. Worn ash-grey concrete with a few large chips, restrained cracks, one faded ochre paint band and a small dark steel lifting loop on top; matte, dirty, grimdark, not shiny, no luminous elements. Match the reference's readable painted game volumes, simple large shadows and restrained thin dark contours. No dense microtexture or thick uniform black outline. Center ONE entire object with plenty of true transparent margin on every side. TRANSPARENT background. No floor, no ground shadow, debris, loose stones, corpses, wall, road markings, labels or text. We will place this as one whole object beside a prison's defensive approach and compute contact shadows separately.",
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/first-sector-review-01/u01-style-r07/SCENE-U01-07-r01.png"
+      ],
+      "output_hint": "Generated images are saved to C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd as C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-10ae1e83-bd97-4999-ae5b-27a46c14d224.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "workspace_source": "assets/source-art/first-sector-review-01/u01-defense-r10/BARR-U01-01-r04-source.png",
+      "workspace_native": "assets/source-art/first-sector-review-01/u01-defense-r10/BARR-U01-01-r04-native.png"
+    },
+    {
+      "id": "BARR-U01-02-r04",
+      "prompt": "Use case: stylized-concept. Generate ONE complete standalone military steel anti-vehicle obstacle (Czech hedgehog), a compact assembly of three heavy intersecting I-beams with a bolted central joint, for Project RL. The input image is STYLE AND CAMERA REFERENCE ONLY: match its mildly overhead drawn 2D game camera, short apparent heights, visible top and south-facing surfaces, square ground axes without isometric diamond or vanishing-point perspective. No street backdrop or surrounding items. The object must read as a heavy deployed metal obstruction, with visibly planted lower beam ends, and all SIX beam tips complete, not cropped. The crossing beams may angle naturally through the object, but do not tilt the ground plane or invent an isometric camera. Final native canvas will be64x64 pixels and whole obstacle about56px wide by54px tall; a standing game human is60px tall. Use three clear large beam masses, a readable center connector and only a few rivets, broad matte charcoal steel with uneven dark rust-brown patches, blunt chipped edges, no bright red paint or shiny silver armor. Restrained painted game art and simple shadow masses, worn grimdark materials, dark edge accents without thick black stickers or tiny noisy scratches. ONE entire obstacle centered inside ample TRUE TRANSPARENT margins. No floor, ground tile, ground shadow, other obstacles, barbed wire, loose debris, sandbags, people, weapons, symbols, text, glow or backdrop. It will be reused as two separate flanking obstacles on an open street, never stretched.",
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/first-sector-review-01/u01-style-r07/SCENE-U01-07-r01.png"
+      ],
+      "output_hint": "Generated images are saved to C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd as C:\\Users\\User\\.codex\\generated_images\\01a145b1-fd86-78f3-bee1-e0d66af002bd\\exec-2d91ce1b-7e6a-4e81-bb66-3123966fb4a2.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+      "workspace_source": "assets/source-art/first-sector-review-01/u01-defense-r10/BARR-U01-02-r04-source.png",
+      "workspace_native": "assets/source-art/first-sector-review-01/u01-defense-r10/BARR-U01-02-r04-native.png"
+    }
+  ]
+}

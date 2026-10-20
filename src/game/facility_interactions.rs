@@ -90,10 +90,10 @@ impl WorldState {
                 }
                 *facility = next;
                 self.active.map = map;
-                self.active.player_visibility.recompute(
+                self.active.rules.update_player_visibility(
+                    &mut self.active.player_visibility,
                     &self.active.map,
                     origin,
-                    self.active.rules.player_field_of_view,
                 );
             }
             InstallationAction::ActivateDiversion => {

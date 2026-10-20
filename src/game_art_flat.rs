@@ -17,6 +17,20 @@ pub(super) struct FlatAgents {
     extended_fingers: Image,
 }
 impl FlatAgents {
+    pub(super) fn held_source(&self, model: u16, left: bool) -> Option<Image> {
+        if let Some(image) = self.held.weapon(model) {
+            return Some(image);
+        }
+        let &(_, _, _, index) = COMIC_WEAPONS
+            .iter()
+            .find(|(m, l, _, _)| *m == model && *l == left)
+            .or_else(|| {
+                COMIC_WEAPONS
+                    .iter()
+                    .find(|(m, _, pose, _)| *m == model && *pose != 0)
+            })?;
+        Some(palettes::cell(&self.weapons, index, 128))
+    }
     pub(super) fn load() -> Self {
         Self {
             held: revised_hands::HeldPoses::load(),
@@ -249,7 +263,7 @@ fn breathe(still: &Image, lower: &Image, foreground: &Image, resolution: u16) ->
     alpha_over(&mut result, &moving);
     result
 }
-fn alpha_over(dest: &mut Image, source: &Image) {
+pub(super) fn alpha_over(dest: &mut Image, source: &Image) {
     for (d, s) in dest
         .bytes
         .chunks_exact_mut(4)

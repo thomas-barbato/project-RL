@@ -1,0 +1,83 @@
+{
+  "review": "ART-FINISH-03",
+  "status": "pending_visual_review",
+  "native_cell": 64,
+  "drawings": 4,
+  "configuration_samples": 12,
+  "scene_pairs": 2,
+  "production_files_unchanged": 584,
+  "normal_renderer_changed_pixels": {
+    "native-1": 0,
+    "native-2": 0,
+    "native-3": 0,
+    "native-4": 0,
+    "native-5": 0,
+    "native-6": 0,
+    "native-7": 0,
+    "native-8": 0,
+    "classes-hands-1": 0,
+    "classes-hands-2": 0,
+    "classes-hands-3": 0,
+    "classes-hands-4": 0,
+    "classes-hands-5": 0,
+    "classes-hands-6": 0,
+    "classes-hands-7": 0,
+    "classes-hands-8": 0,
+    "classes-hands-9": 0,
+    "classes-hands-10": 0,
+    "classes-hands-11": 0,
+    "classes-hands-12": 0,
+    "armors-hands-1": 0,
+    "armors-hands-2": 0,
+    "armors-hands-3": 0,
+    "armors-hands-4": 0,
+    "armors-hands-5": 0,
+    "armors-hands-6": 0,
+    "armors-hands-7": 0,
+    "armors-hands-8": 0,
+    "armors-hands-9": 0,
+    "armors-hands-10": 0,
+    "armors-hands-11": 0,
+    "armors-hands-12": 0,
+    "class-house": 0,
+    "classes-street": 0,
+    "armor-house": 0,
+    "armors-street": 0
+  },
+  "hand_contacts": {
+    "FIN-22-single": [
+      27
+    ],
+    "FIN-22-rifle": [
+      30,
+      22
+    ],
+    "FIN-23-single": [
+      4
+    ],
+    "FIN-23-rifle": [
+      29,
+      18
+    ],
+    "FIN-24-single": [
+      28
+    ],
+    "FIN-24-rifle": [
+      29,
+      19
+    ],
+    "FIN-25-single": [
+      20
+    ],
+    "FIN-25-rifle": [
+      30,
+      19
+    ]
+  },
+  "fixed_head_and_lower_body": true,
+  "gameplay_fingerprints_unchanged": true,
+  "full_test_suite_run": false,
+  "mode": "built-in imagegen",
+  "runtime_candidates_enabled": false,
+  "browser_check": "Static local links and node --check; no browser automation"
+}

@@ -53,7 +53,7 @@ impl GameState {
 }
 
 fn cosmetic_palette(id: &str, roll: u64) -> EquipmentPalette {
-    if matches!(
+    let authored = matches!(
         id,
         "core:tenue_assaut"
             | "core:tenue_technique"
@@ -64,14 +64,54 @@ fn cosmetic_palette(id: &str, roll: u64) -> EquipmentPalette {
             | "core:veste_de_membranes"
             | "core:veste_de_peau_seconde"
             | "core:veste_de_veille"
-    ) {
-        [
-            EquipmentPalette::Original,
-            EquipmentPalette::ReviewedVariant1,
-            EquipmentPalette::ReviewedVariant2,
-        ][(roll % 3) as usize]
+    );
+    let authored_palettes = [
+        EquipmentPalette::Original,
+        EquipmentPalette::ReviewedVariant1,
+        EquipmentPalette::ReviewedVariant2,
+    ];
+    let previous = if authored {
+        &authored_palettes[..]
     } else {
-        EquipmentPalette::ALL[(roll % 7) as usize]
+        &EquipmentPalette::ALL[..]
+    };
+    if matches!(
+        id,
+        "core:armure_cerbere"
+            | "core:brigandine_cognefer"
+            | "core:carapace_chrysalide"
+            | "core:composite_carapace"
+            | "core:combinaison_fantome"
+            | "core:manteau_de_mue"
+            | "core:plastron_bastion"
+            | "core:patched_plating"
+            | "core:veste_de_la_seconde_ombre"
+            | "core:veste_de_membranes"
+            | "core:veste_de_peau_seconde"
+            | "core:veste_de_veille"
+            | "core:veste_matelassee"
+            | "core:veste_a_fibres_croisees"
+            | "core:tenue_assaut"
+            | "core:tenue_technique"
+            | "core:tenue_traque"
+            | "core:tenue_rituelle"
+            | "core:tenue_metamorphe"
+    ) {
+        // All previously available paints stay in the pool. The red robe
+        // already has a red original; do not draw a duplicate DeepRed entry.
+        let added = if matches!(id, "core:veste_de_la_seconde_ombre" | "core:tenue_rituelle") {
+            3
+        } else {
+            4
+        };
+        let index = (roll % (previous.len() + added) as u64) as usize;
+        if index < previous.len() {
+            previous[index]
+        } else {
+            EquipmentPalette::TORSO_FINISH[index - previous.len()]
+        }
+    } else {
+        previous[(roll % previous.len() as u64) as usize]
     }
 }
 
@@ -127,6 +167,129 @@ mod tests {
             rules(enabled),
         )
         .unwrap()
+    }
+
+    #[test]
+    fn torso_palette_pool_adds_only_approved_colors_without_changing_other_equipment() {
+        let ids = [
+            "armure_cerbere",
+            "brigandine_cognefer",
+            "carapace_chrysalide",
+            "composite_carapace",
+            "combinaison_fantome",
+            "manteau_de_mue",
+            "plastron_bastion",
+            "patched_plating",
+            "veste_de_la_seconde_ombre",
+            "veste_de_membranes",
+            "veste_de_peau_seconde",
+            "veste_de_veille",
+            "veste_matelassee",
+            "veste_a_fibres_croisees",
+            "tenue_assaut",
+            "tenue_technique",
+            "tenue_traque",
+            "tenue_rituelle",
+            "tenue_metamorphe",
+        ];
+        for item in ids {
+            let colors: BTreeSet<_> = (0..77)
+                .map(|roll| cosmetic_palette(&format!("core:{item}"), roll))
+                .collect();
+            for palette in EquipmentPalette::TORSO_FINISH {
+                assert_eq!(
+                    colors.contains(&palette),
+                    !matches!(item, "veste_de_la_seconde_ombre" | "tenue_rituelle")
+                        || palette != EquipmentPalette::DeepRed,
+                    "{item}/{palette:?}"
+                );
+            }
+            if item.starts_with("tenue_") {
+                for palette in [
+                    EquipmentPalette::Original,
+                    EquipmentPalette::ReviewedVariant1,
+                    EquipmentPalette::ReviewedVariant2,
+                ] {
+                    assert!(colors.contains(&palette), "legacy {item}/{palette:?}");
+                }
+            }
+        }
+        for roll in 0..150 {
+            for item in ["fusil_d_assaut", "bottines_fantome", "gantelets_bastion"] {
+                assert_eq!(
+                    cosmetic_palette(&format!("core:{item}"), roll),
+                    EquipmentPalette::ALL[(roll % 7) as usize]
+                );
+            }
+        }
+    }
+
+    #[test]
+    fn new_torso_palettes_survive_pickup_equip_save_drop_and_restore() {
+        for item in ["manteau_de_mue", "tenue_assaut"] {
+            for palette in EquipmentPalette::TORSO_FINISH {
+                let mut rules = rules(true);
+                rules.player_armor_slots = vec![id("body_armor")];
+                let mut world = WorldState::single(
+                    GameState::new_with_rules(
+                        Map::filled(8, 8, Terrain::Floor).unwrap(),
+                        GridPos::new(2, 2),
+                        145,
+                        rules,
+                    )
+                    .unwrap(),
+                );
+                let stack = world
+                    .spawn_ground_item(GridPos::new(2, 2), id(item), 1)
+                    .unwrap();
+                world.ground_items.set_palette(stack, palette);
+                let stream = world.cosmetic_rng;
+                assert_eq!(
+                    world.process_player_command(GameCommand::PickUp),
+                    CommandOutcome::Applied
+                );
+                let instance = world
+                    .player_inventory()
+                    .iter()
+                    .find(|e| e.item() == &id(item))
+                    .unwrap()
+                    .instance();
+                assert!(matches!(
+                    world.process_player_command(GameCommand::EquipItem {
+                        slot: id("body_armor"),
+                        item: instance
+                    }),
+                    CommandOutcome::Applied | CommandOutcome::AppliedWithoutTime
+                ));
+                assert_eq!(world.player_visible_body_item(), Some(instance));
+                world.drain_events();
+                let bytes = world.recovery_snapshot_bytes().unwrap();
+                let mut restored =
+                    WorldState::from_recovery_snapshot_bytes(&bytes, world.rules().clone())
+                        .unwrap();
+                assert_eq!(
+                    restored.player_inventory().get(instance).unwrap().palette(),
+                    palette
+                );
+                assert_eq!(restored.player_visible_body_item(), Some(instance));
+                assert_eq!(bytes, restored.recovery_snapshot_bytes().unwrap());
+                assert_eq!(
+                    restored.process_player_command(GameCommand::DropItem { item: instance }),
+                    CommandOutcome::Applied
+                );
+                assert_eq!(
+                    restored
+                        .ground_items()
+                        .iter()
+                        .find(|(_, e)| e.item() == &id(item))
+                        .unwrap()
+                        .1
+                        .palette(),
+                    palette
+                );
+                assert_eq!(restored.cosmetic_rng, stream);
+            }
+        }
     }
 
     #[test]
@@ -214,16 +377,21 @@ mod tests {
             .iter()
             .map(|(_, e)| e.palette())
             .collect();
-        assert_eq!(
-            colors,
-            EquipmentPalette::ALL
-                .into_iter()
-                .chain([
-                    EquipmentPalette::ReviewedVariant1,
-                    EquipmentPalette::ReviewedVariant2
-                ])
-                .collect()
-        );
+        let legacy: BTreeSet<_> = EquipmentPalette::ALL
+            .into_iter()
+            .chain([
+                EquipmentPalette::ReviewedVariant1,
+                EquipmentPalette::ReviewedVariant2,
+            ])
+            .collect();
+        assert!(legacy.is_subset(&colors));
+        let allowed: BTreeSet<_> = legacy
+            .into_iter()
+            .chain(EquipmentPalette::TORSO_FINISH)
+            .collect();
+        assert!(colors.is_subset(&allowed));
+        // A finite random loot sample need not contain every new color. The
+        // deterministic per-model pool test above verifies complete coverage.
     }
 
     #[test]

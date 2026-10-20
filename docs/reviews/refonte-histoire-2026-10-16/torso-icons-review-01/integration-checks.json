@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-20",
+  "status": "integrated_and_verified",
+  "reviews": [
+    "TORSO-ICONS-01 r02-red",
+    "TORSO-STARTING-02"
+  ],
+  "models": 19,
+  "approved_icon_outfit_pairs": 93,
+  "new_worn_palette_comparisons": 74,
+  "runtime_pngs": 114,
+  "native_cell": 64,
+  "real_icon_sizes": [
+    64,
+    40,
+    28
+  ],
+  "worn_poses_per_pair": 6,
+  "engine_native_pages": 19,
+  "engine_ground_scenes": 6,
+  "engine_inventory_scenes": 6,
+  "rendering_preserves_world_fingerprint": true,
+  "fixture_saves_isolated": true,
+  "normal_inventory_capacity_unchanged": true,
+  "accepted_pixels_and_sources_unchanged": true,
+  "legacy_palette_discriminants_unchanged": true,
+  "legacy_palettes_retained": true,
+  "full_equipped_outfit_mapping_preserved": true,
+  "new_palettes_cosmetic_only": true,
+  "combat_rng_and_equipment_bonus_rules_unchanged": true,
+  "tests": [
+    {
+      "command": "cargo test --locked --bin project-rl game_art",
+      "passed": 48,
+      "failed": 0
+    },
+    {
+      "command": "cargo test --locked --lib equipment_colors",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "command": "cargo test --locked --lib palette_compatibility_tests",
+      "passed": 2,
+      "failed": 0
+    }
+  ],
+  "targeted_tests_passed": 59,
+  "full_suite_run": false,
+  "checks": [
+    {
+      "command": "cargo build --locked",
+      "status": "passed"
+    },
+    {
+      "command": "cargo check --locked --release",
+      "status": "passed"
+    },
+    {
+      "command": "cargo fmt --all -- --check",
+      "status": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed"
+    },
+    {
+      "command": "target/debug/project-rl.exe --ui-cold-torso-icons-integration artifacts/torso-icons-review-01/engine",
+      "status": "passed"
+    },
+    {
+      "command": "python tools/reviews/integrate_torso_icons_01.py --verify",
+      "status": "passed"
+    }
+  ],
+  "gpu_pixels": {
+    "approved_pairs": 93,
+    "opaque_source_pixels": 10932,
+    "max_rgb_error": 0,
+    "pixels_over_tolerance": 0,
+    "alpha_blended_pixels": 181878,
+    "alpha_blended_max_rgb_error": 0,
+    "alpha_blended_pixels_over_tolerance": 0
+  },
+  "asset_integrity": "asset-integrity-checks.json",
+  "runtime_hashes": "runtime-assets.json",
+  "engine_proof_hashes": "engine-proof-hashes.json",
+  "rule_document": "docs/DIRECTION_ARTISTIQUE_TILES.md",
+  "gallery": "artifacts/torso-icons-review-01/index.html#integration",
+  "local_gallery_references_checked": 252,
+  "native_image_dimensions_preserved": true,
+  "actual_world_capture_viewport": [
+    1920,
+    1061
+  ],
+  "actual_native_page_viewport": [
+    1280,
+    900
+  ]
+}

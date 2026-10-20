@@ -11,6 +11,9 @@ pub(crate) mod overlay;
 pub(crate) mod particles;
 
 const ORIGIN: GridPos = GridPos::new(1, 3);
+// Frozen ANIM-OCC01 geometry: FE02 was still a cone at effective rank 11.
+// Keep the old proposal reproducible independently of today's corridor skill.
+const REVIEW_CONE_RANGE: i32 = 6;
 const SCENARIOS: [(&str, &str, &str); 3] = [
     (
         "FE02-A03-COULOIR",
@@ -82,7 +85,7 @@ struct Fixture {
 impl Fixture {
     fn new(scenario: usize) -> Self {
         let map = Map::from_ascii(MAPS[scenario]).unwrap();
-        let range = i32::from(parameter_for("FE02", "cone_range_cells", 11));
+        let range = REVIEW_CONE_RANGE;
         let affected = (0..7)
             .flat_map(|y| (0..7).map(move |x| GridPos::new(x, y)))
             .filter(|&at| {

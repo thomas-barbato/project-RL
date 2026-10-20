@@ -1,0 +1,47 @@
+{
+  "review": "ART-FINISH-COMPLETE-06",
+  "date": "2026-10-20",
+  "status": "accepted_and_integrated",
+  "authority": "Codex visual review under explicit user delegation",
+  "user_statements": [
+    "je te laisse tous les finires",
+    "et les valider"
+  ],
+  "native_cell": 64,
+  "new_monster_drawings": 119,
+  "retained_existing_model": 113,
+  "total_existing_models": 129,
+  "appearances": 471,
+  "worn_outfits": 19,
+  "new_arm_pose_drawings": 3,
+  "weapon_models": 113,
+  "outfit_icons": 19,
+  "camp_npcs_reviewed_and_retained": 4,
+  "reserved_casters_not_activated": 13,
+  "gameplay_and_content_ids_unchanged": true,
+  "visual_review": [
+    "native master comparisons",
+    "all current palette appearances",
+    "19 outfit material comparisons",
+    "left/right and two-handed equipment",
+    "eight real-engine street-lighting scenes",
+    "camp NPC comparison"
+  ],
+  "tests": {
+    "graphics_passed": 46,
+    "graphics_failed": 0,
+    "full_suite_not_run": true,
+    "debug_build": "passed",
+    "release_check": "passed",
+    "format_check": "passed",
+    "git_diff_check": "passed",
+    "native_gpu_opaque_pixels": 109126,
+    "native_gpu_rgb_error": 0,
+    "gameplay_fingerprints_unchanged": true
+  },
+  "furniture": "Audit complete; two oversized street beds reported separately, no scenery/collision change in this batch",
+  "generation_exception": "113 retained after two built-in generator refusals; no further retries",
+  "source_mode": "built-in imagegen",
+  "assets_manifest": "accepted-assets.json",
+  "proofs": "proof-hashes.json"
+}

@@ -1,0 +1,22 @@
+{
+  "review": "ROOF-U01-01-r01",
+  "date": "2026-10-19",
+  "user_answer": "Valider les toits et ce fonctionnement",
+  "visual_accepted": [
+    "ROOF-U01-01A",
+    "ROOF-U01-01B"
+  ],
+  "behavior_accepted": {
+    "door_open": "hide_roof",
+    "player_inside": "hide_roof_even_if_door_closed",
+    "outside_and_door_closed": "show_roof"
+  },
+  "source_sha256": {
+    "assets/source-art/first-sector-review-01/street-roofs-r01/ROOF-U01-01-source-r01.png": "58d7082be5cffaab469f69aecacfe31c8dd7f46e0861ef5817adadf501290742",
+    "assets/source-art/first-sector-review-01/street-roofs-r01/ROOF-U01-01A-r01.png": "7459233ec6db758b0d67c03735e6b4c4331da5bcde5fc32ef9583f734fc882b4",
+    "assets/source-art/first-sector-review-01/street-roofs-r01/ROOF-U01-01B-r01.png": "327bfbe73794ff132f572f566700d46071917bd8c23066f6deed6f6b1d8dbc02"
+  },
+  "reference_sha256": {
+    "assets/source-art/first-sector-review-01/street-roofs-r01/references/accepted-roof-comparison-native.png": "7b7fe96d565bb8dc4c6e4843a8db0eb76cdeb064317288e8ad36c33fd296a584"
+  }
+}

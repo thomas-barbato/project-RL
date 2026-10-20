@@ -1,0 +1,37 @@
+{
+  "review": "ROOF-U01-01-r01",
+  "status": "proposed_not_integrated",
+  "debug_build_locked": "passed",
+  "release_check_locked": "passed",
+  "normal_street_scenes": 5,
+  "normal_lighting_enabled": true,
+  "normal_render_read_only": true,
+  "native_cell": 64,
+  "camp_round_trip": true,
+  "accepted_sources_unchanged": true,
+  "normal_static_patch_equality": {
+    "street-gate.png": [
+      true,
+      true
+    ],
+    "street-road.png": [
+      true,
+      true
+    ],
+    "street-home-entry.png": [
+      true,
+      true
+    ],
+    "street-home.png": [
+      true,
+      true
+    ],
+    "street-north.png": [
+      true,
+      true
+    ]
+  },
+  "format_check": "passed",
+  "diff_check": "passed",
+  "scope": "Two roof drawings and isolated debug visual comparison; no production roof or door behavior enabled"
+}

@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-20",
+  "generation": 164,
+  "targeted_tests_unique_passed": 35,
+  "manual_gpu_test_ignored_by_test_runner": 1,
+  "test_groups": {
+    "cosmetic_starting_outfits": 1,
+    "starter_offense_audit": 1,
+    "sewer": 9,
+    "street_population": 5,
+    "cryogenic_including_street_population": 17,
+    "flame_source": 1,
+    "agent_resume_compat": 5,
+    "library_item_equipment_profile": 1,
+    "library_five_agent_starts": 1,
+    "note": "street_population is included in cryogenic; one sewer launcher test belongs to both groups"
+  },
+  "commands_passed": [
+    "cargo build --locked",
+    "cargo check --locked --release",
+    "cargo fmt --all --check",
+    "git diff --check"
+  ],
+  "runtime_capture": {
+    "command": "target/debug/project-rl.exe --ui-cold-combat-fixes-review artifacts/combat-fixes-01/engine",
+    "exit_code": 0,
+    "directions": 4,
+    "frames_per_direction": 16,
+    "native_cell_px": 64,
+    "normal_flame_renderer_enabled": true,
+    "inspection": "native stills plus nonempty pixel checks for all 64 frames"
+  },
+  "scope": "Targeted validation only; full application and library suites were not rerun."
+}

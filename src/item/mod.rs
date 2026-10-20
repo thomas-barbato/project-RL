@@ -45,9 +45,8 @@ impl Debug for EquipmentProfile {
 
 impl EquipmentProfile {
     pub fn new(slot: ContentId, armor: u16) -> Result<Self, ItemDefinitionError> {
-        if armor == 0 {
-            return Err(ItemDefinitionError::ZeroArmor);
-        }
+        // Zero-protection garments are valid equipment: starter outfits can
+        // retain their worn appearance without providing defensive statistics.
         Ok(Self {
             slot,
             armor,
@@ -226,7 +225,6 @@ pub enum ItemDefinitionError {
     ArmorEquipmentMismatch,
     ArmorMustNotStack,
     ArmorWithConsumableEffects,
-    ZeroArmor,
     ZeroEffectAmount,
     ZeroMass,
 }
@@ -252,7 +250,6 @@ impl Display for ItemDefinitionError {
             Self::ArmorWithConsumableEffects => {
                 write!(formatter, "armor cannot define consumable effects")
             }
-            Self::ZeroArmor => write!(formatter, "equipment armor must be positive"),
             Self::ZeroEffectAmount => write!(formatter, "item effect amount must be positive"),
             Self::ZeroMass => write!(formatter, "item mass_grams must be positive when declared"),
         }
@@ -298,6 +295,23 @@ impl ItemCatalog {
     pub fn without_id(&self, excluded: &ItemId) -> Self {
         let mut catalog = self.clone();
         catalog.definitions.remove(excluded);
+        catalog
+    }
+
+    /// Restore authored equipment values for historical campaign rules.
+    /// Item identity, visuals, mass, slots and all unrelated profiles survive.
+    pub fn with_equipment_values(&self, values: &[(ItemId, u16, u16)]) -> Self {
+        let mut catalog = self.clone();
+        for (id, armor, evasion_penalty) in values {
+            if let Some(profile) = catalog
+                .definitions
+                .get_mut(id)
+                .and_then(|item| item.equipment.as_mut())
+            {
+                profile.armor = *armor;
+                profile.evasion_penalty = *evasion_penalty;
+            }
+        }
         catalog
     }
 }
@@ -421,10 +435,7 @@ mod tests {
 
         assert_eq!(armor.equipment().map(EquipmentProfile::slot), Some(&slot));
         assert_eq!(armor.equipment().map(EquipmentProfile::armor), Some(2));
-        assert_eq!(
-            EquipmentProfile::new(slot.clone(), 0),
-            Err(ItemDefinitionError::ZeroArmor)
-        );
+        assert_eq!(EquipmentProfile::new(slot.clone(), 0).unwrap().armor(), 0);
         assert_eq!(
             ItemDefinition::new(
                 "core:stacked_armor".parse().unwrap(),

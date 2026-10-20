@@ -1,0 +1,476 @@
+{
+  "review": "CIVILS-U01-08",
+  "status": "accepted",
+  "date": "2026-10-19",
+  "user_reply": "Valider et intégrer le lot",
+  "native_cell": 64,
+  "body_drawings": 5,
+  "body_placements": 18,
+  "interior_body_placements": 5,
+  "blood_drawings": 2,
+  "blood_placements": 19,
+  "previous_runtime_assets": {
+    "collision-repairs.json": "37deaa578c4340b11a05fdb65a8b2117c185f0a8422d6ac14471668b8eec00d6",
+    "correction.png": "9e123019902ebe12e4af71808702ab1359151e35ef4dfca45e3c51d631720b8c",
+    "irradiance.png": "038907d83c985d849b6ad59b1c9ab992c7708116ea7677c7d57a32fb9e5b9481",
+    "layout.txt": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
+    "roof-0.png": "daa333e2a8fef5fe7ee7de620dd69139b7377d2c82c7d883d5e34feb9599bfdf",
+    "roof-1.png": "95e279966252b32d21c11575b53404eb7398de334a256a970754dcb1b285ea50",
+    "roof-2.png": "2381e0b8139249ddefaf77b70ad14912556036df46900021a808ebc2a3efd37b",
+    "roof-3.png": "36f55710f3341eaed78d0a24b11a5a1a365d8d3e55b012e21f1bf74d43f0e636",
+    "room-vision.json": "5ab0623db4985bd0613bda0fb58c506a138c63f21191aff6df8aa25d472b31b7",
+    "street.json": "dfb33613327f5e30a1896cdd3d0f522d679961c96f95669f5c665dad641523d7",
+    "street.png": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+    "decor/CORP-U01-01.png": "6a016733564e23e4d8d2f85458db3f5d7f71e52b078520c2e1abdf8099fce956",
+    "decor/CORP-U01-02.png": "0b10f5554c5e12c91f8868d280d57c5a2d466aac9ce23ba9374edd680edccdcb",
+    "decor/CORP-U01-03.png": "0f08bcd7be6558b69fa31cf5fbc554f9ab449374eff0d779d3a77bfc6a719de3",
+    "decor/GRIM-U01-01.png": "2c84fecd9ceb2a794594f8ccb1f09d6653aa6ffd38379a20e4e4dfc7baef71f6",
+    "decor/surface-wear.png": "16cb67557ae6b56fa7ee32035470100a83650f721cd43545d385eecd09632b36"
+  },
+  "runtime_assets": [
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "sha256": "c26fb8f0d2455a06a1a9f8595203c673f6ca107716465fafb2e99782f8724680",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-r180-native.png",
+      "sha256": "e08f15b06a28355eba13474e184b35ce31a6273f805d967835e2c9a2bd7b214f",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-04-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+      "sha256": "3808ad4818d4561f77b21f2b49ffbcb6a461e6c90255d1222f406d564894d86c",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-r180-native.png",
+      "sha256": "6f93be844998bf03391a55cb328be302da623b98ab83424073f2eb34c57b8aa9",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-r90-native.png",
+      "sha256": "0247b2619b5f71358fb3466c02afbf0d155916d538fc55acdc211b4869646711",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/SANG-U01-05-r90-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png",
+      "sha256": "c4b994bbf66595cd52105d10aa77ea13aece8312dabb910a0152bf83d0cd874f",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-r180-native.png",
+      "sha256": "04c24e010985d18869880144529882189d0100f8de356c9e675b2cb03914a711",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-05-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+      "sha256": "b798680ebbc9be3bc15648d3530867aba8401f52693658f57689fed93b8335ba",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-08-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r180-native.png",
+      "sha256": "5830fb991d79fdb630279db5868fedb96f3028eb9f2305d246cb86f2016e7f4a",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-06-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+      "sha256": "49dc4c963c378bf395cee860e74afdec81b80beedc3239ec66a16ec9572ff6a2",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-05-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+      "sha256": "214792ce11a97b7ed315a73184e34e0cb3ee1754064b8c52db904825922d3dfa",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-07-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-r180-native.png",
+      "sha256": "f16a0b02a2b80d6ec0ecbede29800b99e4b2952e5e3dd4d1cf0f1f6e0575af61",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+      "sha256": "c61b0e4bf127d5783ef1ee297dc9fe76deb9fa5e3a7f6d69e762b5fc91364a15",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-06-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "sha256": "1362c0bc63fd04a2d4756b90b7fac393d6d63a7c13a72af91bc3e9b6fd261d15",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-06-r90-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-r180-native.png",
+      "sha256": "a91b6c98c451840b37a22a3c7c7b65d7a55937b27efb93d869a5a8a163cc19dc",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-07-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-r180-native.png",
+      "sha256": "a206672f7acc87fe93bdcbaee053aef0d7f17b63ca04f5db9876b24f8b46cf8d",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-08-r180-native.png"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-r90-native.png",
+      "sha256": "524956b4d7400009ba026a939227f1d5656bf4f17d4761c04280e0bfa80c3cee",
+      "source": "assets/source-art/first-sector-review-01/u01-civilians-r08/CIV-U01-04-r90-native.png"
+    }
+  ],
+  "runtime_placements": [
+    {
+      "id": "SANG-U01-04-01",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        532,
+        3865
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-02",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-r180-native.png",
+      "at_px": [
+        418,
+        3467
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-03",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        290,
+        3299
+      ],
+      "interior_roof": "ROOF-U01-01A"
+    },
+    {
+      "id": "SANG-U01-04-04",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-r180-native.png",
+      "at_px": [
+        584,
+        1305
+      ],
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "SANG-U01-04-05",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        760,
+        1349
+      ],
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "SANG-U01-04-06",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-r180-native.png",
+      "at_px": [
+        606,
+        1867
+      ],
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "SANG-U01-04-07",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        748,
+        1787
+      ],
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "SANG-U01-04-08",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        1382,
+        653
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-09",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        332,
+        2077
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-10",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-r180-native.png",
+      "at_px": [
+        538,
+        2647
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-11",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+      "at_px": [
+        1376,
+        3137
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-04-12",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-r180-native.png",
+      "at_px": [
+        700,
+        2955
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-13",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+      "at_px": [
+        470,
+        3872
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-14",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-r180-native.png",
+      "at_px": [
+        388,
+        3488
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-15",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-r180-native.png",
+      "at_px": [
+        704,
+        1370
+      ],
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "SANG-U01-05-16",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+      "at_px": [
+        650,
+        1880
+      ],
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "SANG-U01-05-17",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-r180-native.png",
+      "at_px": [
+        400,
+        2082
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-18",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+      "at_px": [
+        764,
+        2960
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "SANG-U01-05-19",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-r90-native.png",
+      "at_px": [
+        1378,
+        3162
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-04-20",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png",
+      "at_px": [
+        528,
+        3856
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-05-21",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-r180-native.png",
+      "at_px": [
+        414,
+        3458
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-08-22",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+      "at_px": [
+        1020,
+        3658
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-06-23",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r180-native.png",
+      "at_px": [
+        1244,
+        3710
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-05-24",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+      "at_px": [
+        286,
+        3290
+      ],
+      "interior_roof": "ROOF-U01-01A"
+    },
+    {
+      "id": "CIV-U01-04-25",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png",
+      "at_px": [
+        580,
+        1296
+      ],
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "CIV-U01-05-26",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-r180-native.png",
+      "at_px": [
+        756,
+        1340
+      ],
+      "interior_roof": "ROOF-U01-02A"
+    },
+    {
+      "id": "CIV-U01-07-27",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+      "at_px": [
+        602,
+        1858
+      ],
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "CIV-U01-04-28",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-r180-native.png",
+      "at_px": [
+        744,
+        1778
+      ],
+      "interior_roof": "ROOF-U01-02B"
+    },
+    {
+      "id": "CIV-U01-06-29",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+      "at_px": [
+        842,
+        540
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-04-30",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-r180-native.png",
+      "at_px": [
+        1378,
+        644
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-06-31",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-r90-native.png",
+      "at_px": [
+        378,
+        926
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-07-32",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-r180-native.png",
+      "at_px": [
+        328,
+        2068
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-08-33",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-r180-native.png",
+      "at_px": [
+        812,
+        2142
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-06-34",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+      "at_px": [
+        736,
+        2456
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-04-35",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-r90-native.png",
+      "at_px": [
+        534,
+        2638
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-05-36",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+      "at_px": [
+        1372,
+        3128
+      ],
+      "interior_roof": null
+    },
+    {
+      "id": "CIV-U01-07-37",
+      "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+      "at_px": [
+        696,
+        2946
+      ],
+      "interior_roof": null
+    }
+  ],
+  "approved_references": {
+    "burned-car-candidate.png": "682146e481abff5cf88a499be953c94d0d13e0d8d5540d1658a4129b245a7e94",
+    "courtyard-candidate.png": "2cb5d895d87ae834187f7590a5ec575240e4bff0aeac16d5bb17ba77e0692515",
+    "first-house-open-candidate.png": "89de5215e41aed35714420c97847391e5346cb5f8b8f5665599b82552f2995db",
+    "gate-candidate.png": "22fad94b3c55e3597eb75351730b6297b6862184dac5d54e969e1baf9bd15c6d",
+    "house-closed-candidate.png": "d2d0d88a00e671157a552dbdb73b214dee14e8f136a2d77b6abe7d8e69afb819",
+    "house-open-candidate.png": "afcbded86959f368065d8ede87541b8c5bf457fe8da35046c428c4488e4bd62c",
+    "map-candidate.png": "66eaae277d5cce80276be4bb61f3f95d1a388db4efcf8b3972f2eb4e0d0941fa",
+    "middle-street-candidate.png": "edaefc7a81e34ad628e938251ea5582750e9849f554a688e6f8c27de624f2521",
+    "north-crossroad-candidate.png": "57262db376dd3ef0199b05d87c9dbd021d1e27f1895d238577c8c3b9884623e3",
+    "shop-open-candidate.png": "de6a98cff5d546eb343c39c55e1d17dc50d993a72fff4d5cc5b7cda32e4ec4da",
+    "warehouse-candidate.png": "43078aa7628f2fd4d3cf6bf2e1a975f92a11c172940a49257d9544a5dd272ec2"
+  },
+  "preserved": [
+    "background and paving",
+    "lighting",
+    "collisions",
+    "doors",
+    "roofs",
+    "living actors",
+    "combat rules",
+    "native scale"
+  ],
+  "absent_asset": "CIV-U01-09"
+}

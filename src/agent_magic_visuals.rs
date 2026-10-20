@@ -1,4 +1,8 @@
 //! Production adapters for approved painted spell atlases (no simulation state changes).
+use crate::animation_policy::{
+    material as load_material, restore_material as gl_use_default_material,
+    use_material as gl_use_material,
+};
 use crate::effect_geometry::LazyTexture;
 use macroquad::miniquad::{UniformDesc, UniformType};
 use macroquad::prelude::*;
@@ -241,7 +245,7 @@ pub(super) fn draw_gel(rect: Rect, now: f64, seed: u64, reduced: bool, backgroun
         let p = if reduced {
             seed as f32
         } else {
-            now as f32 * 3. + seed as f32
+            crate::animation_policy::clock(now) as f32 * 3. + seed as f32
         };
         let f = p.floor() as usize % 6;
         let blend = p.fract();
@@ -302,7 +306,11 @@ pub(super) fn draw(
     }
     ART.with_borrow_mut(|cache| {
         let art = cache.get_or_insert_with(Art::load);
-        let clock = if reduced { 0.2 } else { now as f32 };
+        let clock = if reduced {
+            0.2
+        } else {
+            crate::animation_policy::clock(now) as f32
+        };
         for e in &effects {
             let anchor = e
                 .cells
@@ -312,6 +320,26 @@ pub(super) fn draw(
                 .find_map(|p| rect(p).map(|r| (p, r)));
             let Some((anchor, r)) = anchor else { continue };
             let scale = r.w / 64.;
+            if e.skill == "FR05" {
+                if background {
+                    let radius = project_rl::skills::agent::definition("FR05")
+                        .unwrap()
+                        .value("radius_cells", e.rank);
+                    crate::animation_policy::with_gain(1.0, || {
+                        crate::natural_effect::sheet(
+                            &art.storm,
+                            (clock * 6.) as usize % 6,
+                            e.target,
+                            radius,
+                            if e.stage == 0 { 0.42 } else { 0.94 },
+                            true,
+                            game.map(),
+                            &rect,
+                        )
+                    });
+                }
+                continue;
+            }
             art.bind(
                 game,
                 if e.skill == "FE02" {
@@ -327,8 +355,7 @@ pub(super) fn draw(
                 anchor,
                 r,
                 if e.skill == "OC05" { 3. } else { 0. },
-                (crate::effect_geometry::enabled() && e.skill != "OC05")
-                    .then_some(e.cells.as_slice()),
+                None,
             );
             if e.skill == "FE02" {
                 if background {
@@ -345,12 +372,6 @@ pub(super) fn draw(
                         (e.direction.1 as f32).atan2(e.direction.0 as f32)
                             + std::f32::consts::FRAC_PI_2,
                         0.92,
-                    )),
-                    "FR05" => Some((
-                        &art.storm,
-                        (clock * 6.) as usize % 6,
-                        0.,
-                        if e.stage == 0 { 0.28 } else { 0.68 },
                     )),
                     _ => None,
                 };
@@ -418,22 +439,6 @@ pub(super) fn draw(
                         );
                     }
                 }
-                "FR05" if background => {
-                    if let Some(cell) = rect(e.target) {
-                        let radius = project_rl::skills::agent::definition("FR05")
-                            .unwrap()
-                            .value("radius_cells", e.rank);
-                        let size = f32::from(radius * 2 + 1) * r.w * 1.10;
-                        Art::sheet(
-                            &art.storm,
-                            (clock * 6.) as usize % 6,
-                            cell.center(),
-                            vec2(size, size),
-                            0.,
-                            if e.stage == 0 { 0.28 } else { 0.68 },
-                        );
-                    }
-                }
                 "OC05" if !background => {
                     if let (Some(a), Some(b)) = (rect(e.origin), rect(e.target)) {
                         draw_ray(
@@ -492,7 +497,7 @@ pub(super) fn draw(
             }
         }
         for flight in flights {
-            let age = (now - flight.started) as f32;
+            let age = crate::animation_policy::age(&flight.skill, now, flight.started) as f32;
             if !(0.0..0.85).contains(&age) {
                 continue;
             }
@@ -503,31 +508,6 @@ pub(super) fn draw(
             let target = r.center();
             let origin = rect(flight.origin).map_or(target, |r| r.center());
             let age = if reduced { 0.20 } else { age };
-            let fallback;
-            let cells = if let Some(cells) = &flight.cells {
-                cells.as_slice()
-            } else {
-                use project_rl::skills::spatial::{Area, affected_cells};
-                let area = match flight.skill.as_str() {
-                    "FR02" => Area::Disc {
-                        radius: flight.radius,
-                    },
-                    "FR06" => Area::Diamond {
-                        radius: flight.radius,
-                    },
-                    "FE04" | "TR64_pulse" => Area::Square {
-                        radius: flight.radius,
-                    },
-                    _ => Area::Point,
-                };
-                fallback = affected_cells(game.map(), flight.target, area, (1, 0));
-                &fallback
-            };
-            let transit = matches!(
-                flight.skill.as_str(),
-                "HY05" | "OC05" | "AF06" | "TR64_drain" | "TR65_shadow_step"
-            ) || (matches!(flight.skill.as_str(), "FR01" | "M02" | "TR64_bolt")
-                && age < 0.18);
             art.bind(
                 game,
                 if matches!(
@@ -549,7 +529,11 @@ pub(super) fn draw(
                 } else {
                     0.
                 },
-                (crate::effect_geometry::enabled() && !transit).then_some(cells),
+                None,
+            );
+            art.clip.set_uniform(
+                "readabilityGain",
+                crate::animation_policy::gain(&flight.skill),
             );
             if crate::effect_geometry::enabled() {
                 let fitted = match flight.skill.as_str() {
@@ -581,7 +565,21 @@ pub(super) fn draw(
                     _ => None,
                 };
                 if let Some((texture, frame, opacity)) = fitted {
-                    crate::effect_geometry::fitted_sheet(texture, frame, cells, &rect, 0., opacity);
+                    crate::animation_policy::with_gain(
+                        crate::animation_policy::gain(&flight.skill),
+                        || {
+                            crate::natural_effect::sheet(
+                                texture,
+                                frame,
+                                flight.target,
+                                flight.radius,
+                                opacity,
+                                false,
+                                game.map(),
+                                &rect,
+                            )
+                        },
+                    );
                     gl_use_default_material();
                     continue;
                 }

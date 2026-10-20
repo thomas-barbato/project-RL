@@ -1,0 +1,61 @@
+{
+  "generation": 165,
+  "targeted_tests_unique_passed": 54,
+  "ignored_manual_gpu_test": 1,
+  "groups": {
+    "class_start": 4,
+    "initial_character_creation": 1,
+    "legacy_cosmetic_outfits": 1,
+    "core_class_starts": 1,
+    "skill_bar": 16,
+    "cryogenic": 18,
+    "sewer": 10,
+    "legacy_resume": 5,
+    "native_outfits": 1
+  },
+  "overlaps": "initial_character_creation is in cryogenic and sewer; the normal street/sewer launcher test is also in both groups",
+  "commands_passed": [
+    "cargo test --locked --bin project-rl class_start_ -- --nocapture",
+    "cargo test --locked --bin project-rl normal_character_creation_enables -- --nocapture",
+    "cargo test --locked --bin project-rl cosmetic_starting_outfits -- --nocapture",
+    "cargo test --locked --lib five_agent_starts -- --nocapture",
+    "cargo test --locked --bin project-rl agent_skill_bar::tests -- --nocapture",
+    "cargo test --locked --bin project-rl cryogenic_ -- --nocapture",
+    "cargo test --locked --bin project-rl sewer_ -- --nocapture",
+    "cargo test --locked --bin project-rl agent_resume_compat -- --nocapture",
+    "cargo test --locked --bin project-rl all_reviewed_worn_outfits_select_native64 -- --nocapture",
+    "cargo build --locked",
+    "cargo build --locked --release",
+    "cargo fmt --all --check",
+    "git diff --check"
+  ],
+  "native_engine_captures": [
+    {
+      "file": "bastion-inventory.png",
+      "size": [
+        1920,
+        1061
+      ],
+      "sha256": "b81349c70adfdcba8936cc0183b6424bf95b25680c8aeabe0c12213827991c1d"
+    },
+    {
+      "file": "metamorphe-world.png",
+      "size": [
+        1920,
+        1061
+      ],
+      "sha256": "14b909d3461dc9ec550ab27736d2246bc20c32eed28e9da3dd5b2a421f50acdb"
+    }
+  ],
+  "capture_commands": [
+    "target/debug/project-rl.exe --ui-cold-agent-inventory-bastion-wide artifacts/class-start-03/bastion-inventory",
+    "target/debug/project-rl.exe --ui-cold-agent-world-metamorphe-wide artifacts/class-start-03/metamorphe-world"
+  ],
+  "capture_exit_codes": [
+    0,
+    0
+  ],
+  "saved_campaigns_modified": false,
+  "review_required_again": false,
+  "note": "Targeted checks only; no full-suite certification. Reuses the already accepted class art and approved starting rules."
+}

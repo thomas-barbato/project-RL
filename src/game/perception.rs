@@ -55,6 +55,99 @@ mod tests {
     use std::num::NonZeroU16;
 
     #[test]
+    fn circular_player_vision_sees_actors_behind_walls_without_changing_npc_sight_or_trajectories()
+    {
+        let rules = GameRules {
+            player_field_of_view: crate::world::FieldOfViewRules {
+                radius: 6,
+                ..Default::default()
+            },
+            ordinary_actor_field_of_view: Some(crate::world::FieldOfViewRules::default()),
+            ..Default::default()
+        };
+        let mut map = Map::from_ascii(&vec!["................"; 13].join("\n")).unwrap();
+        for y in 0..13 {
+            map.set_terrain(GridPos::new(7, y), crate::world::Terrain::Wall)
+                .unwrap();
+        }
+        let origin = GridPos::new(5, 6);
+        let behind = GridPos::new(9, 6);
+        let mut game = GameState::new_with_rules(map, origin, 42, rules).unwrap();
+        let npc = game
+            .spawn_actor(Actor::new(behind, 10).unwrap().with_ai(AiProfile::idle()))
+            .unwrap();
+        assert!(!game.player_visibility().is_visible(behind));
+        let turn = game.turn();
+        assert_eq!(
+            game.process_player_command(GameCommand::EnableCircularPlayerVision),
+            CommandOutcome::AppliedWithoutTime
+        );
+        assert_eq!(game.turn(), turn);
+        assert!(game.player_visibility().is_visible(behind));
+        assert!(game.player_visibility().is_visible(GridPos::new(11, 6)));
+        assert!(!game.player_visibility().is_visible(GridPos::new(12, 6)));
+        assert!(game.player_visibility().is_visible(GridPos::new(9, 10)));
+        assert!(!game.player_visibility().is_visible(GridPos::new(10, 10)));
+        assert!(!crate::world::has_line_of_sight(
+            game.map(),
+            origin,
+            behind,
+            true
+        ));
+        let fields = game.actor_observation_fields();
+        let field = fields.iter().find(|field| field.observer() == npc).unwrap();
+        assert_eq!(field.radius(), 8);
+        assert!(!field.contains(origin));
+    }
+
+    #[test]
+    fn six_cell_vision_adoption_hides_distant_actors_preserves_memory_and_spends_nothing() {
+        let rules = GameRules {
+            player_field_of_view: crate::world::FieldOfViewRules {
+                radius: 12,
+                ..Default::default()
+            },
+            ordinary_actor_field_of_view: Some(crate::world::FieldOfViewRules::default()),
+            ..Default::default()
+        };
+        let map = Map::from_ascii(&vec!["..............................."; 25].join("\n")).unwrap();
+        let mut game = GameState::new_with_rules(map, GridPos::new(12, 12), 42, rules).unwrap();
+        let edge = GridPos::new(18, 12);
+        let distant = GridPos::new(19, 12);
+        for at in [edge, distant] {
+            game.spawn_actor(Actor::new(at, 10).unwrap().with_ai(AiProfile::idle()))
+                .unwrap();
+        }
+        assert!(game.player_visibility.is_visible(distant));
+        let before = (
+            game.turn,
+            game.phase,
+            format!("{:?}", game.rng),
+            format!("{:?}", game.actors),
+            format!("{:?}", game.events),
+        );
+        assert!(!GameCommand::UpgradePlayerVision.consumes_time_on_success());
+        assert_eq!(
+            game.process_player_command(GameCommand::UpgradePlayerVision),
+            CommandOutcome::AppliedWithoutTime
+        );
+        assert!(game.player_visibility.is_visible(edge));
+        assert!(!game.player_visibility.is_visible(distant));
+        assert!(game.player_visibility.is_explored(distant));
+        assert_eq!(game.rules.ordinary_actor_field_of_view.unwrap().radius, 8);
+        assert_eq!(
+            before,
+            (
+                game.turn,
+                game.phase,
+                format!("{:?}", game.rng),
+                format!("{:?}", game.actors),
+                format!("{:?}", game.events)
+            )
+        );
+    }
+
+    #[test]
     fn brief_sound_presentation_tracks_real_hearing_then_clears_without_changing_saves() {
         let mut rules = GameRules::default();
         rules.stealth_rules = Some(StealthRules {

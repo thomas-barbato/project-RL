@@ -1,0 +1,39 @@
+{
+  "review": "ROOF-U01-01-r01",
+  "date": "2026-10-19",
+  "integrated": true,
+  "generation": 156,
+  "targeted_tests_unique": 12,
+  "test_runs": [
+    {
+      "filter": "prison_street",
+      "passed": 6
+    },
+    {
+      "filter": "cryogenic_camp_app::tests",
+      "passed": 10
+    }
+  ],
+  "overlapping_tests": 4,
+  "debug_build_locked": "passed",
+  "release_check_locked": "passed",
+  "format_check": "passed",
+  "diff_check": "passed",
+  "production_roof_scenes": 5,
+  "additional_street_scenes": 5,
+  "accepted_source_hashes_intact": true,
+  "lighting_source_hashes_intact": true,
+  "legacy_155_open_entry_roundtrip": "passed",
+  "closed_door_inside_resume": "passed",
+  "camp_roundtrip": "passed",
+  "render_read_only": true,
+  "runtime_assets": "assets/maps/prison-street-01",
+  "old_full_scene_rust_prototype_removed": true,
+  "full_suite_run": false,
+  "cleanup": {
+    "obsolete_generated_files_removed": 5,
+    "bytes_removed": 7057632,
+    "accepted_native_reference_preserved": true,
+    "obsolete_rust_review_removed": true
+  }
+}

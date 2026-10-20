@@ -1321,6 +1321,37 @@ impl WorldState {
             .map_err(|error| error.to_string())
     }
 
+    /// Accepted-art fixtures need an exact cosmetic instance. Kept out of
+    /// release; ordinary acquisition and palette assignment use recorded play.
+    #[cfg(any(test, debug_assertions))]
+    pub fn grant_colored_equipment_for_diagnostic(
+        &mut self,
+        item: ItemId,
+        palette: crate::entity::EquipmentPalette,
+    ) -> Result<crate::entity::ItemInstanceId, String> {
+        if self.active.rules().weapons.get(&item).is_none()
+            && self
+                .active
+                .rules()
+                .items
+                .get(&item)
+                .and_then(|d| d.equipment())
+                .is_none()
+        {
+            return Err("Diagnostic cosmetic target must be equipment".into());
+        }
+        let instance = self
+            .active
+            .player_inventory_mut()
+            .add(item, 1, 1)
+            .map_err(|e| e.to_string())?[0];
+        self.active
+            .player_inventory_mut()
+            .set_palette(instance, palette)
+            .map_err(|e| e.to_string())?;
+        Ok(instance)
+    }
+
     /// Returns only information the adjacent player can currently obtain by
     /// talking to this NPC. It is a query, not a command, so browsing a
     /// conversation cannot mutate or advance the deterministic simulation.
@@ -2488,6 +2519,17 @@ impl WorldState {
         Ok(())
     }
 
+    /// Read-only access to a materialized local map, including inactive areas.
+    pub fn map_in_zone(&self, id: &ContentId) -> Option<&Map> {
+        if self.current.as_ref() == Some(id) {
+            return Some(&self.active.map);
+        }
+        self.pending
+            .get(id)
+            .map(|b| &b.map)
+            .or_else(|| self.inactive.get(id).map(|s| &s.map))
+    }
+
     fn map_for(&self, id: &ContentId) -> Option<(&Map, GridPos)> {
         if self.current.as_ref() == Some(id) {
             return self.active.player_position().map(|p| (&self.active.map, p));
@@ -3079,6 +3121,47 @@ impl WorldState {
     pub fn process_player_command(&mut self, command: GameCommand) -> CommandOutcome {
         #[cfg(debug_assertions)]
         let _profile = crate::action_profile::Scope::new("world.command");
+        if let GameCommand::RepairStaticZoneFloors { zone, cells } = &command {
+            let map = if self.current.as_ref() == Some(zone) {
+                Some(&mut self.active.map)
+            } else if let Some(state) = self.inactive.get_mut(zone) {
+                Some(&mut state.map)
+            } else {
+                self.pending
+                    .get_mut(zone)
+                    .map(|blueprint| &mut blueprint.map)
+            };
+            let Some(map) = map else {
+                return CommandOutcome::Rejected(CommandRejection::FacilityUnavailable);
+            };
+            // Validate every cell before touching the map.
+            if cells.is_empty()
+                || cells.len() > 256
+                || cells.iter().any(|at| {
+                    map.tile(*at)
+                        .is_none_or(|tile| !matches!(tile.terrain, Terrain::Wall | Terrain::Floor))
+                })
+            {
+                return CommandOutcome::Rejected(CommandRejection::FacilityUnavailable);
+            }
+            for &at in cells {
+                map.set_terrain(at, Terrain::Floor)
+                    .expect("validated repair cell");
+                map.set_obstruction(at, false, false)
+                    .expect("validated repair cell");
+            }
+            if self.current.as_ref() == Some(zone) {
+                if let Some(origin) = self.active.player_position() {
+                    self.active.rules.update_player_visibility(
+                        &mut self.active.player_visibility,
+                        &self.active.map,
+                        origin,
+                    );
+                    self.active.extend_agent_scout_visibility();
+                }
+            }
+            return CommandOutcome::AppliedWithoutTime;
+        }
         self.sync_away_companions();
         let previous_turn = self.active.turn;
         let event_checkpoint = self.active.events.len();
@@ -3296,10 +3379,10 @@ impl WorldState {
                         Ok::<_, crate::facility::FacilityRuntimeError>(events)
                     })();
                     if let Some(origin) = self.active.player_position() {
-                        self.active.player_visibility.recompute(
+                        self.active.rules.update_player_visibility(
+                            &mut self.active.player_visibility,
                             &self.active.map,
                             origin,
-                            self.active.rules.player_field_of_view,
                         );
                     }
                     let events = result.unwrap_or_else(|error| {
@@ -4660,10 +4743,10 @@ impl WorldState {
         }
         self.inactive.insert(from.clone(), next);
         self.sync_away_companions();
-        self.active.player_visibility.recompute(
+        self.active.rules.update_player_visibility(
+            &mut self.active.player_visibility,
             &self.active.map,
             arrival,
-            self.active.rules.player_field_of_view,
         );
         self.active.extend_agent_scout_visibility();
         self.active.events.push(GameEvent::ZoneChanged {

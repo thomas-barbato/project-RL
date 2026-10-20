@@ -4,6 +4,20 @@
 
 ## Base acceptée
 
+Le 19 octobre, pour agrandir U01, le joueur précise de conserver son ancien
+départ au sud et de développer le quartier **vers le haut de cette même carte**.
+L’enceinte doit être fermée par des murs ou bâtiments, avec un passage vers
+la prochaine carte et le retour à la prison conservé. La revue
+`reviews/refonte-histoire-2026-10-16/street-expansion-review-01/` présente la
+disposition concrète ; ce principe ne valide pas automatiquement les nouveaux
+dessins, leurs dimensions proposées ou les animations.
+
+Le joueur précise le 18 octobre que les cartes suivantes seront plus grandes
+que la rue de sortie du camp. Leur surface augmente en conservant les cases
+de 64 px, les proportions des acteurs et la
+[référence de style validée](STYLE_VISUEL_REFERENCE.md). Cette demande ne
+fixe pas de nouvelles dimensions : chaque quartier suit sa revue de plan.
+
 L’[accord MONDE-01 à MONDE-04](reviews/refonte-histoire-2026-10-16/world-generation-study-01/design-acceptance-01.json)
 retient la génération hybride : camps stables, parcours assemblés, lieux
 importants préparés à la main, trajet principal avec détours et quelques boucles.
@@ -48,8 +62,25 @@ pas automatiquement des ennemis, du butin ou un effet de terrain.
 
 ## Organisation proposée du premier secteur
 
-Le point de départ de travail est le secteur des accès fortifiés du manuscrit.
-Les noms et quêtes proposés dans ce manuscrit gardent leur statut propre.
+Depuis la précision ACT1-CITY-01 du 18 octobre, le premier chapitre prend
+place dans une ville futuriste en pleine apocalypse, avec des lieux détruits,
+abîmés et abandonnés. Le camp de cryogénie accepté reste le point de départ.
+Les accès fortifiés du manuscrit peuvent être des lieux de ce chapitre, sans
+réduire son agencement à un ensemble de corridors industriels. Le lien précis
+entre les quartiers urbains et la descente reste à proposer. Les noms et
+quêtes proposés dans le manuscrit gardent leur statut propre.
+
+La revue [ACT1-LAYOUT-01-r01](reviews/refonte-histoire-2026-10-16/first-sector-review-01/ACT1-LAYOUT-01.md)
+propose maintenant les abords de la prison, un quartier résidentiel, une avenue
+commerçante et un transit fortifié vers les profondeurs, avec un refuge proche
+du début et des branches facultatives. Le joueur accepte cet agencement
+le 18 octobre (« oui ca me va bien :) »). Plans détaillés et décors restent
+à présenter. [U01-REVIEW-03](reviews/refonte-histoire-2026-10-16/first-sector-review-01/U01-REVIEW-03.md)
+soumet le plan de rues avec la voiture réduite à 2 × 1 cases, sa proposition
+de flammes et les bâtiments corrigés en vue de dessus après le refus des
+élévations frontales. Le schéma générique ci-dessous conserve
+seulement les rôles du parcours.
+
 Le schéma précise la boucle déjà acceptée : le détour rejoint le parcours
 **avant** le lieu obligatoire, pour éviter d’en offrir un contournement.
 
@@ -156,6 +187,53 @@ l’occupation physique des cases. Le prototype testera plusieurs graines avant
 de servir de base aux cartes supplémentaires.
 
 ## État et passage à PM03
+
+La génération 163 ajoute les cinq groupes U01-POP-01 déjà essayés à la rue
+normale : quinze monstres, une arrivée libre de six cases et des identités
+persistantes lors des retours. Le joueur demande explicitement leur activation
+en ville le 20 octobre. Le changement n'ajoute ni pouvoir ni règle d'XP. Le
+diagnostic COMBAT-START-01 distingue les coups réussis entièrement absorbés par
+l'armure des esquives. Le joueur remplace ensuite la hausse proposée des dégâts
+par STARTER-SKIN-02 : génération 164, cinq tenues de départ à 0 protection et
+sans malus d'esquive. Les bonus propres aux classes restent applicables ; les
+anciennes campagnes conservent leurs valeurs. FIRE-NATIVE-01 est accepté et
+activé séparément, sans changement de portée ni de dégâts. OFFENSE-START-02
+mesure les dégâts du joueur avant une nouvelle proposition d'équilibrage.
+
+Le joueur remplace ensuite l'objet de tenue par **CLASS-START-03** : génération
+165, aucun objet d'armure initial et le modèle de classe comme apparence de
+base. Une armure équipée le remplace ; son retrait rétablit cette apparence.
+Chaque classe garde une arme ordinaire adaptée, sans bonus d'objet. Son active
+initiale occupe le premier raccourci, que le joueur peut retirer ou déplacer.
+Une barre vidée reste vide après reprise ; ce raccourci n'est installé qu'à la
+création. Les anciennes générations conservent leur objet et leur barre.
+
+Le 20 octobre, la génération 162 raccorde les égouts aux Abords de la prison,
+par la trappe en X 2, Y 14. La composition EG-COMP-04 et le peuplement EG-POP-04
+sont acceptés pour un essai en jeu. Ce premier raccordement choisit l'un des
+trois plans validés selon la graine de partie ; le générateur procédural complet
+reste à transposer. Le retour rejoint la même rue et conserve l'état du donjon.
+Les anciens mondes ne reçoivent pas de nouveau passage à leur chargement.
+Le [bilan des égouts](reviews/refonte-histoire-2026-10-16/sewer-review-04/README.md)
+détaille le lanceur isolé, les ressources livrées et les limites de cet essai.
+
+Après la revue de projection SCENE-U01-06-r01, la génération 155 raccorde
+la première rue fixe au camp : portail sud réciproque et habitation de gauche
+visitable, sur une grille de 64 px. Le camp reste la référence de dessin.
+Le [bilan U01](reviews/refonte-histoire-2026-10-16/first-sector-review-01/U01-INTEGRATION-06.md)
+distingue cette première carte des futurs quartiers et du générateur de campagne.
+Les anciennes générations conservent leurs cartes et passages.
+
+Mise à jour du 18 octobre : le camp de départ est accepté et raccordé depuis
+la génération 153. [FIRST-SECTOR-01](reviews/refonte-histoire-2026-10-16/first-sector-review-01/README.md)
+conserve un essai industriel et un kit candidat de seize pièces à 64 px,
+non validés. ACT1-CITY-01 recadre le premier chapitre autour de la ville
+futuriste ravagée ; ACT1-LAYOUT-01-r01 en fixe l'organisation urbaine acceptée.
+Les plans détaillés et décors restent à présenter. Les anciens paragraphes
+préparatoires ci-dessous conservent leur
+contexte du 17 octobre ; le camp ne nécessite pas une nouvelle validation.
+Les plans des nouvelles zones, leur art et leur assemblage restent à examiner
+avant leur import dans le prototype moteur.
 
 La direction MONDE-01 à MONDE-04 et la production progressive des décors sont
 acceptées. Ce cahier détaille leur préparation technique ; le découpage exact

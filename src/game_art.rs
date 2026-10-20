@@ -3,6 +3,26 @@
 use macroquad::prelude::*;
 use project_rl::entity::EquipmentPalette;
 use project_rl::world::GridPos;
+#[path = "game_art_finish.rs"]
+mod finish;
+#[cfg(debug_assertions)]
+#[path = "art_finish_completion_review.rs"]
+pub(crate) mod finish_completion;
+#[cfg(debug_assertions)]
+#[path = "art_finish_review.rs"]
+pub(crate) mod finish_review;
+#[cfg(debug_assertions)]
+#[path = "art_finish_review_02.rs"]
+pub(crate) mod finish_review_02;
+#[cfg(debug_assertions)]
+#[path = "art_finish_review_03.rs"]
+pub(crate) mod finish_review_03;
+#[cfg(debug_assertions)]
+#[path = "art_finish_review_04.rs"]
+pub(crate) mod finish_review_04;
+#[cfg(debug_assertions)]
+#[path = "art_finish_review_05.rs"]
+pub(crate) mod finish_review_05;
 #[path = "game_art_palette.rs"]
 mod palettes;
 
@@ -321,6 +341,38 @@ pub(crate) fn draw_world_animated(
     opacity: f32,
     idle_time: Option<f64>,
 ) {
+    #[cfg(debug_assertions)]
+    let visual = finish_completion::normalized_visual(visual);
+    #[cfg(debug_assertions)]
+    let visual = finish_review::normalized_visual(visual);
+    #[cfg(debug_assertions)]
+    let visual = finish_review_02::normalized_visual(visual);
+    #[cfg(debug_assertions)]
+    let visual = finish_review_03::normalized_visual(visual);
+    #[cfg(debug_assertions)]
+    let visual = finish_review_04::normalized_visual(visual);
+    #[cfg(debug_assertions)]
+    let visual = finish_review_05::normalized_visual(visual);
+    #[cfg(debug_assertions)]
+    if finish_review_05::draw_replacement(rect, visual, opacity) {
+        return;
+    }
+    #[cfg(debug_assertions)]
+    if finish_review_04::draw_replacement(rect, visual, opacity) {
+        return;
+    }
+    #[cfg(debug_assertions)]
+    if finish_review_03::draw_replacement(rect, visual, opacity) {
+        return;
+    }
+    #[cfg(debug_assertions)]
+    if finish_review_02::draw_replacement(rect, visual, opacity) {
+        return;
+    }
+    #[cfg(debug_assertions)]
+    if finish_review::draw_replacement(rect, visual, opacity) {
+        return;
+    }
     TEXTURES.with(|art| match visual {
         Visual::AgentForm(index) => draw_agent_form(rect, index, opacity),
         Visual::DroneScout => drones::draw_scout(rect, opacity),

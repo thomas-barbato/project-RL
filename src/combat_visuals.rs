@@ -26,7 +26,7 @@ pub(crate) fn has_agent_status_icon(id: &str) -> bool {
 
 /// Shared presentation curve. A reaction returns to its anchor after 180 ms.
 fn motion_offset(direction: Vec2, age: f64, recoil: bool) -> Vec2 {
-    let t = (age / 0.18) as f32;
+    let t = (age / (0.18 * crate::animation_policy::duration_scale("reaction"))) as f32;
     let pulse = if !(0.0..1.0).contains(&t) {
         0.0
     } else if t < 0.28 {
@@ -112,7 +112,7 @@ struct TileGlide {
 }
 
 impl TileGlide {
-    const SECONDS: f64 = 0.080;
+    const SECONDS: f64 = 0.120;
 
     fn offset(&self, now: f64) -> Vec2 {
         let remaining = (1.0 - (now - self.started) / Self::SECONDS).clamp(0.0, 1.0) as f32;
@@ -149,10 +149,9 @@ impl CombatMotion {
         // Long transfers and skills with their own travel retain that presentation.
         if delta == Vec2::ZERO
             || delta.abs().max_element() > 1.0
-            || self
-                .travels
-                .get(&entity)
-                .is_some_and(|(_, started)| now - started < 0.18)
+            || self.travels.get(&entity).is_some_and(|(_, started)| {
+                crate::animation_policy::age("travel", now, *started) < 0.18
+            })
         {
             self.glides.remove(&entity);
             return;
@@ -252,49 +251,67 @@ impl CombatMotion {
         clip: Rect,
         rect: impl Fn(GridPos) -> Option<Rect>,
     ) {
-        agent_magic::draw(game, &self.magic, now, reduced, background, &rect);
-        agent_devices::draw(game, now, reduced, background, &rect);
-        let actor_rect = |entity, at| rect(at).map(|r| self.actor_rect(entity, r, now, reduced));
-        agent_weapons::draw(game, now, reduced, background, &actor_rect);
-        agent_support::draw(
-            game,
-            &self.magic,
-            now,
-            reduced,
-            background,
-            &rect,
-            &actor_rect,
-        );
-        for flight in &self.magic {
-            agent_weapons::burst(
-                &flight.skill,
-                flight.origin,
-                flight.target,
-                flight.radius,
-                (now - flight.started) as f32,
-                game.map(),
+        let visible_rect = |at| {
+            game.player_visibility()
+                .is_visible(at)
+                .then(|| rect(at))
+                .flatten()
+        };
+        let rect = &visible_rect;
+        crate::animation_policy::with_gain(1.18, || {
+            agent_magic::draw(game, &self.magic, now, reduced, background, &rect);
+            agent_devices::draw(game, now, reduced, background, &rect);
+            let actor_rect =
+                |entity, at| rect(at).map(|r| self.actor_rect(entity, r, now, reduced));
+            agent_weapons::draw(game, now, reduced, background, &actor_rect);
+            agent_support::draw(
+                game,
+                &self.magic,
+                now,
+                reduced,
                 background,
                 &rect,
-                clip,
-                flight.cells.as_deref(),
+                &actor_rect,
             );
-            if matches!(
-                flight.skill.as_str(),
-                "SG00" | "SG01" | "SG02" | "SM00" | "SM02" | "SM03" | "HY07" | "DR01" | "DP01"
-            ) {
-                agent_devices::burst(
+            for flight in &self.magic {
+                agent_weapons::burst(
                     &flight.skill,
                     flight.origin,
                     flight.target,
                     flight.radius,
-                    (now - flight.started) as f32,
+                    if reduced {
+                        0.20
+                    } else {
+                        crate::animation_policy::age(&flight.skill, now, flight.started) as f32
+                    },
                     game.map(),
                     background,
                     &rect,
+                    clip,
                     flight.cells.as_deref(),
                 );
+                if matches!(
+                    flight.skill.as_str(),
+                    "SG00" | "SG01" | "SG02" | "SM00" | "SM02" | "SM03" | "HY07" | "DR01" | "DP01"
+                ) {
+                    agent_devices::burst(
+                        &flight.skill,
+                        flight.origin,
+                        flight.target,
+                        flight.radius,
+                        if reduced {
+                            0.20
+                        } else {
+                            crate::animation_policy::age(&flight.skill, now, flight.started) as f32
+                        },
+                        game.map(),
+                        background,
+                        &rect,
+                        flight.cells.as_deref(),
+                    );
+                }
             }
-        }
+        });
     }
     pub fn draw_gel(
         &self,
@@ -304,7 +321,9 @@ impl CombatMotion {
         reduced: bool,
         background: bool,
     ) {
-        agent_magic::draw_gel(rect, now, entity.get(), reduced, background);
+        crate::animation_policy::with_gain(1.18, || {
+            agent_magic::draw_gel(rect, now, entity.get(), reduced, background)
+        });
     }
     pub fn play_ember(&mut self, victim: EntityId, origin: GridPos, target: GridPos, now: f64) {
         if self.embers.len() == 32 {
@@ -315,8 +334,10 @@ impl CombatMotion {
             target,
             started: now,
         });
-        self.projectile_impacts
-            .insert(victim, now + agent_ember::FLIGHT_SECONDS);
+        self.projectile_impacts.insert(
+            victim,
+            now + agent_ember::FLIGHT_SECONDS * crate::animation_policy::duration_scale("FE01"),
+        );
     }
     pub fn play_fireball(&mut self, origin: GridPos, target: GridPos, radius: u16, now: f64) {
         if self.fireballs.len() == 32 {
@@ -327,7 +348,6 @@ impl CombatMotion {
             target,
             radius,
             started: now,
-            cells: self.cast_cells("FE05", Some(origin), target),
         });
     }
     pub fn begin_event_batch(&mut self) {
@@ -341,17 +361,35 @@ impl CombatMotion {
             .max(now)
     }
     pub fn fireball_hit_after_flight(&mut self, target: EntityId, now: f64) {
-        self.projectile_impacts.insert(target, now + 0.35);
+        self.projectile_impacts.insert(
+            target,
+            now + 0.35 * crate::animation_policy::duration_scale("FE05"),
+        );
     }
     pub fn draw_fireballs(
         &self,
-        map: &Map,
+        game: &project_rl::game::GameState,
         now: f64,
         reduced: bool,
         background: bool,
         rect: impl Fn(GridPos) -> Option<Rect>,
     ) {
-        agent_fire::draw(&self.fireballs, map, now, reduced, background, rect);
+        let visible_rect = |at| {
+            game.player_visibility()
+                .is_visible(at)
+                .then(|| rect(at))
+                .flatten()
+        };
+        crate::animation_policy::with_gain(crate::animation_policy::gain("FE05"), || {
+            agent_fire::draw(
+                &self.fireballs,
+                game.map(),
+                now,
+                reduced,
+                background,
+                visible_rect,
+            )
+        });
     }
     pub fn draw_burn(
         &self,
@@ -367,7 +405,9 @@ impl CombatMotion {
                 .get(&entity)
                 .is_none_or(|at| now >= *at)
         {
-            agent_fire::burn(rect, now, entity.get(), reduced, background);
+            crate::animation_policy::with_gain(1.18, || {
+                agent_fire::burn(rect, now, entity.get(), reduced, background)
+            });
         }
     }
     pub fn play_blast(&mut self, centre: GridPos, radius: u16, now: f64) {
@@ -378,7 +418,6 @@ impl CombatMotion {
             centre,
             radius,
             started: now,
-            cells: self.cast_cells("A02", None, centre),
         });
     }
     pub fn draw_blasts(
@@ -389,7 +428,9 @@ impl CombatMotion {
         background: bool,
         rect: impl Fn(GridPos) -> Option<Rect>,
     ) {
-        agent_spells::draw_blasts(&self.blasts, map, now, reduced, background, rect);
+        crate::animation_policy::with_gain(crate::animation_policy::gain("A02"), || {
+            agent_spells::draw_blasts(&self.blasts, map, now, reduced, background, rect)
+        });
     }
     pub fn play_taunt(&mut self, origin: GridPos, now: f64) {
         if self.taunts.len() == 32 {
@@ -408,7 +449,12 @@ impl CombatMotion {
             return;
         }
         for &(at, started) in &self.taunts {
-            crate::guardian_taunt_visuals::pulse(map, at, (now - started) as f32, &rect);
+            crate::guardian_taunt_visuals::pulse(
+                map,
+                at,
+                crate::animation_policy::age("taunt", now, started) as f32,
+                &rect,
+            );
         }
     }
     pub fn play_rupture(&mut self, origin: GridPos, target: GridPos, started: f64) {
@@ -436,53 +482,77 @@ impl CombatMotion {
         self.spells
             .iter()
             .rev()
-            .find(|s| s.victim == victim && now - s.started <= 0.18)
-            .map(|s| s.started + 0.18)
+            .find(|s| {
+                s.victim == victim && crate::animation_policy::age("A01", now, s.started) <= 0.18
+            })
+            .map(|s| s.started + 0.18 * crate::animation_policy::duration_scale("A01"))
             .or_else(|| {
                 self.strikes
                     .iter()
                     .rev()
-                    .find(|s| s.target == at && now - s.started <= 0.22)
-                    .map(|s| s.started + 0.22)
+                    .find(|s| {
+                        s.target == at
+                            && crate::animation_policy::age("B01", now, s.started) <= 0.22
+                    })
+                    .map(|s| s.started + 0.22 * crate::animation_policy::duration_scale("B01"))
             })
             .unwrap_or(now)
     }
     pub fn draw_spells(
         &self,
+        game: &project_rl::game::GameState,
         now: f64,
         reduced: bool,
         clip: Rect,
         rect: impl Fn(GridPos) -> Option<Rect>,
     ) {
-        agent_spells::draw(&self.spells, now, reduced, &rect);
-        agent_ember::draw(&self.embers, now, reduced, clip, &rect);
-        for strike in &self.strikes {
-            let age = (now - strike.started) as f32;
-            if !(0.0..0.84).contains(&age) {
-                continue;
+        let visible_rect = |at| {
+            game.player_visibility()
+                .is_visible(at)
+                .then(|| rect(at))
+                .flatten()
+        };
+        let rect = &visible_rect;
+        crate::animation_policy::with_gain(crate::animation_policy::gain("A01"), || {
+            agent_spells::draw(&self.spells, game.map(), now, reduced, &rect)
+        });
+        crate::animation_policy::with_gain(crate::animation_policy::gain("FE01"), || {
+            agent_ember::draw(&self.embers, game.map(), now, reduced, clip, &rect)
+        });
+        crate::animation_policy::with_gain(crate::animation_policy::gain("B01"), || {
+            for strike in &self.strikes {
+                let age = crate::animation_policy::age("B01", now, strike.started) as f32;
+                if !(0.0..0.84).contains(&age) {
+                    continue;
+                }
+                let (Some(from), Some(to)) = (rect(strike.origin), rect(strike.target)) else {
+                    continue;
+                };
+                let d = (to.center() - from.center()).normalize_or_zero();
+                let normal = vec2(-d.y, d.x);
+                let tile = from.w;
+                if !reduced && (0.05..0.57).contains(&age) {
+                    let t = ((age - 0.05) / 0.20).clamp(0., 1.);
+                    let phase = t * t * (3. - 2. * t);
+                    let start = from.center() + d * (tile * 0.34) - normal * (tile * 0.62);
+                    let end = to.center() + d * (tile * 0.36) + normal * (tile * 0.42);
+                    let life = (1. - (age - 0.22).max(0.) / 0.35).clamp(0., 1.);
+                    crate::melee_strike_visuals::cut(
+                        start,
+                        start.lerp(end, phase),
+                        tile * 0.28,
+                        life,
+                    );
+                }
+                crate::melee_strike_visuals::impact(
+                    to.center(),
+                    if reduced { 0.10 } else { age - 0.22 },
+                    1.15,
+                    false,
+                    tile,
+                );
             }
-            let (Some(from), Some(to)) = (rect(strike.origin), rect(strike.target)) else {
-                continue;
-            };
-            let d = (to.center() - from.center()).normalize_or_zero();
-            let normal = vec2(-d.y, d.x);
-            let tile = from.w;
-            if !reduced && (0.05..0.57).contains(&age) {
-                let t = ((age - 0.05) / 0.20).clamp(0., 1.);
-                let phase = t * t * (3. - 2. * t);
-                let start = from.center() + d * (tile * 0.34) - normal * (tile * 0.62);
-                let end = to.center() + d * (tile * 0.36) + normal * (tile * 0.42);
-                let life = (1. - (age - 0.22).max(0.) / 0.35).clamp(0., 1.);
-                crate::melee_strike_visuals::cut(start, start.lerp(end, phase), tile * 0.28, life);
-            }
-            crate::melee_strike_visuals::impact(
-                to.center(),
-                if reduced { 0.10 } else { age - 0.22 },
-                1.15,
-                false,
-                tile,
-            );
-        }
+        });
     }
     pub fn play(
         &mut self,
@@ -528,24 +598,37 @@ impl CombatMotion {
                 .travels
                 .get(&entity)
                 .map_or(Vec2::ZERO, |(offset, started)| {
-                    *offset * (1. - ((now - *started) / 0.18).clamp(0., 1.) as f32)
+                    *offset
+                        * (1.
+                            - (crate::animation_policy::age("travel", now, *started) / 0.18)
+                                .clamp(0., 1.) as f32)
                 })
     }
 
     pub fn prune(&mut self, now: f64) {
         self.glides
             .retain(|_, glide| now - glide.started < TileGlide::SECONDS);
-        self.travels.retain(|_, (_, started)| now - *started < 0.18);
-        self.fireballs.retain(|s| now - s.started < 0.90);
-        self.magic.retain(|s| now - s.started < 1.2);
-        self.embers
-            .retain(|s| now - s.started < agent_ember::LIFETIME_SECONDS);
+        self.travels
+            .retain(|_, (_, started)| crate::animation_policy::age("travel", now, *started) < 0.18);
+        self.fireballs
+            .retain(|s| crate::animation_policy::age("FE05", now, s.started) < 0.90);
+        self.magic
+            .retain(|s| crate::animation_policy::age(&s.skill, now, s.started) < 2.2);
+        self.embers.retain(|s| {
+            crate::animation_policy::age("FE01", now, s.started) < agent_ember::LIFETIME_SECONDS
+        });
         self.projectile_impacts.retain(|_, at| now - *at < 0.30);
-        self.taunts.retain(|(_, started)| now - started < 0.48);
-        self.blasts.retain(|s| now - s.started < 0.55);
-        self.strikes.retain(|s| now - s.started < 0.84);
-        self.spells.retain(|s| now - s.started < 0.4);
-        self.motions.retain(|_, motion| now - motion.started < 0.18);
+        self.taunts
+            .retain(|(_, started)| crate::animation_policy::age("taunt", now, *started) < 0.48);
+        self.blasts
+            .retain(|s| crate::animation_policy::age("A02", now, s.started) < 0.55);
+        self.strikes
+            .retain(|s| crate::animation_policy::age("B01", now, s.started) < 0.84);
+        self.spells
+            .retain(|s| crate::animation_policy::age("A01", now, s.started) < 0.4);
+        self.motions.retain(|_, motion| {
+            crate::animation_policy::age("reaction", now, motion.started) < 0.18
+        });
     }
     pub fn clear(&mut self) {
         self.prepared_cast = None;
@@ -814,14 +897,14 @@ mod tests {
             vec2(0.0, -64.0),
             Vec2::ZERO,
         ] {
-            let peak = hit_reaction_offset(Vec2::ZERO, source, 0.0504, 64.0);
+            let peak = hit_reaction_offset(Vec2::ZERO, source, 0.07056, 64.0);
             assert!((peak.length() - 10.88).abs() < 0.01);
             assert_eq!(
                 hit_reaction_offset(Vec2::ZERO, source, -0.01, 64.0),
                 Vec2::ZERO
             );
             assert_eq!(
-                hit_reaction_offset(Vec2::ZERO, source, 0.18, 64.0),
+                hit_reaction_offset(Vec2::ZERO, source, 0.252, 64.0),
                 Vec2::ZERO
             );
         }
@@ -832,15 +915,45 @@ mod tests {
         let id: EntityId = serde_json::from_str("1").unwrap();
         let mut motion = CombatMotion::default();
         motion.play(id, GridPos::new(2, 2), GridPos::new(3, 2), false, 1.0);
-        assert!(motion.offset(id, 1.05, false).x > 0.2);
-        assert_eq!(motion.offset(id, 1.2, false), Vec2::ZERO);
+        assert!(motion.offset(id, 1.07, false).x > 0.2);
+        assert_eq!(motion.offset(id, 1.3, false), Vec2::ZERO);
         motion.play(id, GridPos::new(2, 2), GridPos::new(3, 2), true, 2.0);
-        assert!(motion.offset(id, 2.05, false).x < -0.15);
+        assert!(motion.offset(id, 2.07, false).x < -0.15);
         assert_eq!(motion.offset(id, 2.05, true), Vec2::ZERO);
     }
 
     #[test]
-    fn tile_glide_moves_the_whole_actor_and_rests_after_eighty_milliseconds() {
+    fn slower_projectiles_delay_reactions_and_survive_until_their_last_frame() {
+        let id: EntityId = serde_json::from_str("1").unwrap();
+        let a = GridPos::new(1, 2);
+        let b = GridPos::new(4, 2);
+        let mut motion = CombatMotion::default();
+        motion.play_spell(id, a, b, 10.0);
+        let impact = motion.impact_time_for(id, b, 10.0);
+        assert!((impact - 10.27).abs() < 1e-9);
+        motion.play(id, b, a, true, impact);
+        assert_eq!(motion.offset(id, 10.269, false), Vec2::ZERO);
+        assert_ne!(motion.offset(id, 10.34, false), Vec2::ZERO);
+        motion.prune(10.59);
+        assert_eq!(motion.spells.len(), 1);
+        motion.prune(10.61);
+        assert!(motion.spells.is_empty());
+        motion.play_fireball(a, b, 1, 20.0);
+        motion.fireball_hit_after_flight(id, 20.0);
+        assert!((motion.impact_time(id, 20.0) - 20.455).abs() < 1e-9);
+        motion.prune(21.16);
+        assert_eq!(motion.fireballs.len(), 1);
+        motion.prune(21.18);
+        assert!(motion.fireballs.is_empty());
+        motion.play_agent_magic("SG02", a, b, 1, 30.0);
+        motion.prune(32.84);
+        assert_eq!(motion.magic.len(), 1);
+        motion.prune(33.31);
+        assert!(motion.magic.is_empty());
+    }
+
+    #[test]
+    fn tile_glide_moves_the_whole_actor_and_rests_after_one_hundred_twenty_milliseconds() {
         let id: EntityId = serde_json::from_str("1").unwrap();
         let from = GridPos::new(10, 10);
         for to in [
@@ -853,7 +966,7 @@ mod tests {
             motion.glide(id, from, to, 1.0);
             let delta = vec2((from.x - to.x) as f32, (from.y - to.y) as f32);
             assert_eq!(motion.offset(id, 1.0, false), delta);
-            assert!((motion.offset(id, 1.04, false) - delta * 0.25).length() < 0.0001);
+            assert!((motion.offset(id, 1.06, false) - delta * 0.25).length() < 0.0001);
             for tile in [32., 64.] {
                 let destination = Rect::new(to.x as f32 * tile, to.y as f32 * tile, tile, tile);
                 let start = motion.actor_rect(id, destination, 1.0, false);
@@ -861,10 +974,13 @@ mod tests {
                     start.point(),
                     vec2(from.x as f32 * tile, from.y as f32 * tile)
                 );
-                assert_eq!(motion.actor_rect(id, destination, 1.08, false), destination);
+                assert_eq!(
+                    motion.actor_rect(id, destination, 1.121, false),
+                    destination
+                );
                 assert_eq!(motion.actor_rect(id, destination, 1.02, true), destination);
             }
-            motion.prune(1.08);
+            motion.prune(1.121);
             assert!(motion.glides.is_empty());
         }
     }
@@ -883,7 +999,7 @@ mod tests {
             (vec2(c.x as f32, c.y as f32) + motion.offset(id, 1.02, false) - shown).length()
                 < 0.0001
         );
-        assert_eq!(motion.offset(id, 1.11, false), Vec2::ZERO);
+        assert_eq!(motion.offset(id, 1.141, false), Vec2::ZERO);
         assert_eq!(motion.glides.len(), 1);
         motion.play(id, c, b, true, 1.02);
         assert_ne!(

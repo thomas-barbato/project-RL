@@ -1,0 +1,35 @@
+{
+  "review": "U01-POP-01",
+  "date": "2026-10-20",
+  "cargo_test_locked_bin_street_population": {
+    "passed": 4,
+    "failed": 0,
+    "other_tests_not_run": 1034
+  },
+  "cargo_build_locked": "passed",
+  "cargo_check_locked_release": "passed",
+  "cargo_fmt_all_check": "passed",
+  "git_diff_check": "passed",
+  "native_engine_scenes_inspected": 6,
+  "live_player_profile": "core:bastion",
+  "starting_loadout_or_stats_boosted": false,
+  "trial_snapshot_and_camp_round_trip": "passed",
+  "normal_campaign_actors_unchanged": "passed",
+  "normal_map_hashes_before_after_equal": true,
+  "limitations": [
+    "No guard combat or warning dialogue yet",
+    "No sector bosses, new powers, affixes or final reward balancing",
+    "Trial restarts at each launch; normal campaign population is unchanged"
+  ],
+  "sources_sha256": {
+    "src/street_population.rs": "a29ee27ab2dcbb6f42bcdd34b0e644f68e99bdbda188c4d031beebe43a80f4ec",
+    "src/street_population_app.rs": "637011e75150f830c38402ee6aab09feec7cb198c1989ee0721757192379e870",
+    "src/street_population_tests.rs": "d4f52ffd7ebb698bd218859189bc1f81fb82e0e6c2020a6c989c2410894d7110",
+    "src/prison_street.rs": "e56e121aac6330f7ea43399c67cb19b52a6f8f86d03bc557b01671f752c7eefb",
+    "src/main.rs": "08d39e56493c81f1d4bb9c72fc79957bc9604f4a10693310c194caff8e95cecb",
+    "src/cryogenic_camp_app.rs": "1a2bff5e2b9af2d1c0586029bf82a75fec149c41ffae27a91aa64fbc22a5ad97",
+    "assets/trials/street-population-01/population.json": "8045362f51aac7ecacaf73f7c11dba48d31ff05a656a12648d6e400b08af9813",
+    "Essayer_population_U01.cmd": "9d980af2119200831968c43e90e3bacf413c64903f056418490ec591c28dfbd3",
+    "tools/reviews/show_street_population_01.py": "ede82568b5819a8df86b2e1adb46b4d9515b9f5624d64581e83c9fd22317e9d8"
+  }
+}

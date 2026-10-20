@@ -1,0 +1,193 @@
+{
+  "cases": [
+    {
+      "affected_cells": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "duration_scale": 1.5,
+      "excluded_visual_cells": [],
+      "id": "FR06",
+      "number": 1,
+      "physical_wall": false,
+      "seconds": 0.42,
+      "title": "Glace · sol libre"
+    },
+    {
+      "affected_cells": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "duration_scale": 1.3,
+      "excluded_visual_cells": [],
+      "id": "FE05",
+      "number": 2,
+      "physical_wall": false,
+      "seconds": 0.9,
+      "title": "Feu · sol libre"
+    },
+    {
+      "affected_cells": [
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "duration_scale": 1.5,
+      "excluded_visual_cells": [],
+      "id": "SM02",
+      "number": 3,
+      "physical_wall": false,
+      "seconds": 0.46,
+      "title": "Poison · sol libre"
+    },
+    {
+      "affected_cells": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "duration_scale": 1.5,
+      "excluded_visual_cells": [
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "id": "FR06",
+      "number": 4,
+      "physical_wall": true,
+      "seconds": 0.42,
+      "title": "Glace · contre une cloison"
+    }
+  ],
+  "columns": 8,
+  "fps": 60.0,
+  "frame_height": 320,
+  "frame_width": 448,
+  "frames": 72,
+  "game_state_unchanged": true,
+  "native_tile": 64,
+  "normal_game_activation": false,
+  "review": "ANIM-FLOW-01",
+  "same_phase_and_intensity": true,
+  "status": "proposal_pending_player_review",
+  "visual_overhang_factor": 1.12
+}

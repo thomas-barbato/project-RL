@@ -12,6 +12,8 @@ pub use fov::{
     is_tile_visible,
 };
 pub use grid::{Direction, GridPos};
+#[doc(hidden)]
+pub use map::with_explicit_empty_obstructions;
 pub use map::{Map, MapBuildError, MapParseError};
 pub use pathfinding::{find_path, find_path_with};
 pub use propagation::{

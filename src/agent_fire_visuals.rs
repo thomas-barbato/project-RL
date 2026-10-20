@@ -9,7 +9,6 @@ pub(super) struct Fireball {
     pub target: GridPos,
     pub radius: u16,
     pub started: f64,
-    pub cells: Option<Vec<GridPos>>,
 }
 struct Art {
     ball: LazyTexture,
@@ -47,7 +46,7 @@ pub(super) fn draw(
     ART.with_borrow_mut(|cache| {
         let art = cache.get_or_insert_with(Art::load);
         for flight in flights {
-            let age = (now - flight.started) as f32;
+            let age = crate::animation_policy::age("FE05", now, flight.started) as f32;
             if !(0.0..0.90).contains(&age) {
                 continue;
             }
@@ -85,26 +84,15 @@ pub(super) fn draw(
                 let t = age - 0.35;
                 let frame = ((t / 0.55 * 6.) as usize).min(5);
                 if crate::effect_geometry::enabled() {
-                    let fallback;
-                    let cells = if let Some(cells) = &flight.cells {
-                        cells.as_slice()
-                    } else {
-                        fallback = project_rl::skills::spatial::affected_cells(
-                            map,
-                            flight.target,
-                            project_rl::skills::spatial::Area::Disc {
-                                radius: flight.radius,
-                            },
-                            (1, 0),
-                        );
-                        &fallback
-                    };
-                    crate::effect_geometry::fitted_cells(
+                    crate::natural_effect::sheet(
                         &art.blast,
                         frame,
-                        cells,
-                        &rect,
+                        flight.target,
+                        flight.radius,
                         0.95 * ((0.90 - age) / 0.16).clamp(0., 1.),
+                        false,
+                        map,
+                        &rect,
                     );
                     continue;
                 }
@@ -165,7 +153,11 @@ pub(super) fn burn(rect: Rect, now: f64, seed: u64, reduced: bool, background: b
         let art = cache.get_or_insert_with(Art::load);
         let at = rect.center();
         let tile = rect.w / 64.;
-        let clock = if reduced { 0.2 } else { now as f32 * (2. / 3.) };
+        let clock = if reduced {
+            0.2
+        } else {
+            crate::animation_policy::clock(now) as f32 * (2. / 3.)
+        };
         let plumes = if background {
             [(-9., 19., 0.33, 0.90, 0u64), (10., 19., 0.27, 0.90, 3)]
         } else {

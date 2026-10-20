@@ -154,6 +154,14 @@ pub enum GameCommand {
     SetAgentGrenadeVariant {
         variant: super::AgentGrenadeVariant,
     },
+    /// Internal, replayable adoption of the accepted six-cell player sight.
+    UpgradePlayerVision,
+    EnableCircularPlayerVision,
+    /// Internal journalled correction of false static collision cells.
+    RepairStaticZoneFloors {
+        zone: crate::content::ContentId,
+        cells: Vec<GridPos>,
+    },
 }
 
 impl GameCommand {
@@ -170,6 +178,9 @@ impl GameCommand {
             Self::SetAgentMineVariant { .. }
                 | Self::SelectWeaponSet { .. }
                 | Self::UpgradeWeaponSets { .. }
+                | Self::UpgradePlayerVision
+                | Self::EnableCircularPlayerVision
+                | Self::RepairStaticZoneFloors { .. }
                 | Self::SetAgentGrenadeVariant { .. }
                 | Self::LearnTechnique { .. }
                 | Self::LearnAgentSkill { .. }

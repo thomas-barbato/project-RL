@@ -1,0 +1,158 @@
+{
+  "combat_review": "COMBAT-START-01",
+  "visual_review": "FIRE-NATIVE-01",
+  "status": "awaiting_numeric_and_visual_approval",
+  "generation_with_city_population": 163,
+  "city_groups": 5,
+  "city_monsters": 15,
+  "source_population": "U01-POP-01",
+  "city_activation_authorized_by": "il faudra aussi ajouter comme prévu les monstres dans la ville :)",
+  "raw_damage_candidates": {
+    "level_1_melee": [
+      2,
+      4
+    ],
+    "level_1_ranged": [
+      1,
+      5
+    ],
+    "level_2_melee": [
+      3,
+      5
+    ],
+    "level_2_ranged": [
+      2,
+      6
+    ]
+  },
+  "limits": [
+    "Only these early city/sewer profiles",
+    "No XP change",
+    "No accuracy change",
+    "No global armor change",
+    "No resurrection activation"
+  ],
+  "diagnostic": [
+    {
+      "armor_absorbed": 60,
+      "attempts": 24,
+      "chance_percent": [
+        79
+      ],
+      "damage_sum": 0,
+      "hits": 20,
+      "hp_lost": 0,
+      "level": 1,
+      "monster": 22,
+      "proposed": false,
+      "raw_damage": 2
+    },
+    {
+      "armor_absorbed": 9,
+      "attempts": 9,
+      "chance_percent": [
+        87
+      ],
+      "damage_sum": 0,
+      "hits": 9,
+      "hp_lost": 0,
+      "level": 1,
+      "monster": 24,
+      "proposed": false,
+      "raw_damage": 1
+    },
+    {
+      "armor_absorbed": 84,
+      "attempts": 25,
+      "chance_percent": [
+        83
+      ],
+      "damage_sum": 21,
+      "hits": 21,
+      "hp_lost": 21,
+      "level": 2,
+      "monster": 22,
+      "proposed": false,
+      "raw_damage": 3
+    },
+    {
+      "armor_absorbed": 20,
+      "attempts": 10,
+      "chance_percent": [
+        89
+      ],
+      "damage_sum": 0,
+      "hits": 10,
+      "hp_lost": 0,
+      "level": 2,
+      "monster": 24,
+      "proposed": false,
+      "raw_damage": 2
+    },
+    {
+      "armor_absorbed": 80,
+      "attempts": 24,
+      "chance_percent": [
+        79
+      ],
+      "damage_sum": 20,
+      "hits": 20,
+      "hp_lost": 20,
+      "level": 1,
+      "monster": 22,
+      "proposed": true,
+      "raw_damage": 4
+    },
+    {
+      "armor_absorbed": 36,
+      "attempts": 9,
+      "chance_percent": [
+        87
+      ],
+      "damage_sum": 9,
+      "hits": 9,
+      "hp_lost": 9,
+      "level": 1,
+      "monster": 24,
+      "proposed": true,
+      "raw_damage": 5
+    },
+    {
+      "armor_absorbed": 60,
+      "attempts": 17,
+      "chance_percent": [
+        83
+      ],
+      "damage_sum": 45,
+      "hits": 15,
+      "hp_lost": 45,
+      "level": 2,
+      "monster": 22,
+      "proposed": true,
+      "raw_damage": 5
+    },
+    {
+      "armor_absorbed": 30,
+      "attempts": 10,
+      "chance_percent": [
+        89
+      ],
+      "damage_sum": 30,
+      "hits": 10,
+      "hp_lost": 30,
+      "level": 2,
+      "monster": 24,
+      "proposed": true,
+      "raw_damage": 6
+    }
+  ],
+  "native_fire": {
+    "atlas_frame": 128,
+    "directions": 4,
+    "frames_per_direction": 16,
+    "gameplay_unchanged": true,
+    "native_cell": 64,
+    "normal_activation": false,
+    "review": "FIRE-NATIVE-01"
+  }
+}

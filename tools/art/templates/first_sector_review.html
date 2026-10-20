@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FIRST-SECTOR-01 · Première zone après le camp</title>
+<style>
+:root{color-scheme:dark;font:15px/1.55 system-ui;background:#101619;color:#d8dddb;--gold:#d7bd87;--line:#34454b;--muted:#a4b2b6}
+*{box-sizing:border-box}body{max-width:1540px;margin:28px auto;padding:0 24px 60px}h1,h2{font-weight:650;color:var(--gold);line-height:1.3}h1{font-size:27px;margin:0 0 8px}h2{font-size:20px;margin:30px 0 12px}p{max-width:1000px;margin:8px 0 14px}small,.muted{color:var(--muted)}a{color:#a8c8d1}button{font:inherit;background:#202e34;color:#dce3e1;border:1px solid #52666d;padding:7px 13px;cursor:pointer;border-radius:3px}button:hover,button[aria-pressed=true]{background:#3b4543;border-color:var(--gold);color:#fff1d5}button:focus-visible,a:focus-visible{outline:2px solid #dfc895;outline-offset:3px}
+.tag{display:inline-block;font:12px/1.6 monospace;letter-spacing:1px;color:#e6c598;border-bottom:1px solid #6d5f48;padding-bottom:3px;margin-bottom:10px}.lead{color:#b6c3c6}.facts,.toolbar{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center}.facts span{border-left:2px solid #617b82;padding-left:10px}.overview{display:grid;grid-template-columns:minmax(460px,848px) minmax(230px,1fr);gap:28px;align-items:start}.overview img{display:block;width:100%;height:auto;border:1px solid var(--line)}ol{padding-left:25px;margin-top:6px}li{padding:6px 0}.module-code{font-family:monospace;color:var(--gold)}.toolbar{margin:12px 0}.stage-wrap{overflow:auto;background:#0c1114;border:1px solid var(--line);max-width:100%}canvas{display:block;cursor:grab;touch-action:none;width:1280px;height:768px}canvas.dragging{cursor:grabbing}.caption{color:#9fadb3;font-size:13px;margin-top:7px}.tiles{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px;max-width:1040px}.tile{display:flex;gap:13px;align-items:center;min-height:100px;padding:12px;background:#19242a;border:1px solid #33464f}.tile img{flex-shrink:0;width:64px;height:64px;object-fit:contain;background-color:#0b1013;background-image:linear-gradient(45deg,#192126 25%,transparent 25%),linear-gradient(-45deg,#192126 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#192126 75%),linear-gradient(-45deg,transparent 75%,#192126 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}.tile b{display:block;font:13px/1.5 monospace;color:var(--gold)}.tile span{display:block;font-size:13px;line-height:1.4}.scale{display:flex;gap:18px;align-items:center;margin-top:12px}.scale img{width:128px;height:128px;object-fit:contain;border-bottom:1px solid #52666d}.check{border-left:3px solid #6e9b85;background:#192923;padding:13px 17px;max-width:1040px}.footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:13px;color:var(--muted)}
+@media(max-width:1000px){.overview{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,minmax(140px,1fr))}}
+</style>
+<span class="tag">FIRST-SECTOR-01 · PLAN ET DÉCORS R01 · PROPOSITION À EXAMINER</span>
+<h1>Après le camp : les accès de sécurité</h1>
+<p class="lead">Un premier gabarit pour tester les trajets, les raccords et les espaces de combat. Le camp validé reste le point de départ. Ce plan et ces nouveaux décors attendent ton choix avant leur raccordement au jeu.</p>
+<div class="facts"><span>44 × 30 cases</span><span>64 px par case</span><span>Couloirs principaux : 3 cases</span><span id="distance"></span></div>
+
+<h2>1 · Le parcours proposé</h2>
+<div class="overview">
+ <img src="layout-overview-r01.png" alt="Plan de la première zone : arrivée à gauche, jonction centrale, détour au nord, alcôve au sud et poste de contrôle à droite.">
+ <div><ol>
+  <li><span class="module-code">M01</span> · <b>Arrivée du camp.</b> Un espace dégagé pour découvrir la zone et revenir au refuge.</li>
+  <li><span class="module-code">M02</span> · <b>Jonction.</b> Une pièce plus large avec deux massifs de mur pour casser les lignes de tir.</li>
+  <li><span class="module-code">M03</span> · <b>Maintenance.</b> Le détour forme une boucle et rejoint la jonction avant le poste de contrôle.</li>
+  <li><span class="module-code">M04</span> · <b>Alcôve.</b> Une branche courte facultative. Son contenu sera décidé avec les rencontres et les récompenses.</li>
+  <li><span class="module-code">M05</span> · <b>Poste de contrôle.</b> Le passage principal vers la suite, avec un espace plus large pour combattre.</li>
+ </ol><p class="muted">Le trait doré indique le trajet le plus court. Il s’agit d’une carte représentative, pas de tout le premier secteur. Aucun verrou de quête, boss, pouvoir ou butin nouveau n’est fixé ici.</p></div>
+</div>
+
+<h2>2 · L’assemblage à taille réelle</h2>
+<p>Pièces du nouveau kit assemblées, joueur et mobilier existants à leur échelle native. Les orientations des murs gardent la même lumière. Cette composition de revue précède le contrôle dans le moteur ; l’éclairage et l’habillage final viendront avec la carte.</p>
+<div class="toolbar" id="focus"></div>
+<div class="toolbar"><label><input id="grid" type="checkbox"> Grille logique</label><label><input id="path" type="checkbox"> Chemin principal</label><button id="reset">Revenir à l’arrivée</button></div>
+<div class="stage-wrap"><canvas id="stage" width="1280" height="768" aria-label="Vue native de la carte, déplacer la vue en maintenant le clic gauche."></canvas></div>
+<p class="caption">Affichage 1:1 : 64 pixels d’image par case. Fais glisser la vue ou choisis une pièce. <a href="map-native-r01.png" target="_blank" rel="noopener">Carte complète à taille native</a>.</p>
+<div class="scale"><img id="player" alt="Joueur existant à son échelle native"><p>Référence : le corps du joueur mesure environ 64 px de haut.<br><small>Son canevas transparent déborde sur 128 px ; il conserve son ancrage réel, sans agrandissement ni réduction.</small></p></div>
+
+<h2>3 · Les seize pièces candidates</h2>
+<p>Chaque dessin ci-dessous est affiché à <b>64 × 64 px</b>, avec un code pour le désigner. Le kit est une proposition : sols, quatre orientations de mur, quatre angles et quatre jonctions en T.</p>
+<div class="tiles" id="tiles"></div>
+
+<h2>Contrôles du plan</h2>
+<div class="check" id="checks"></div>
+<p class="muted">La génération aléatoire, les rencontres, les quêtes, les boss et les règles de réapparition ne sont pas activés par cet aperçu. Les murs composés par bandes et points de raccord font eux aussi partie du rendu à examiner.</p>
+<p class="footer">Revue du 18 octobre 2026 · Sources et plan conservés dans le projet · Production du kit avec le générateur d’images intégré, à partir du camp accepté · Le plan et les dessins ont des validations distinctes.</p>
+<script src="review-data.js"></script>
+<script>
+const R=window.REVIEW,canvas=document.querySelector('#stage'),ctx=canvas.getContext('2d');
+const source=new Image();source.src='map-native-r01.png';
+const camera={x:0,y:576},state={grid:false,path:false,focus:'M01'};
+function draw(){
+ ctx.fillStyle='#0c1114';ctx.fillRect(0,0,1280,768);if(!source.complete||!source.naturalWidth)return;
+ ctx.imageSmoothingEnabled=false;ctx.drawImage(source,camera.x,camera.y,1280,768,0,0,1280,768);
+ if(state.grid){ctx.strokeStyle='#b5d3dc44';ctx.lineWidth=1;ctx.beginPath();for(let x=64-camera.x%64;x<1280;x+=64){ctx.moveTo(x+.5,0);ctx.lineTo(x+.5,768)}for(let y=64-camera.y%64;y<768;y+=64){ctx.moveTo(0,y+.5);ctx.lineTo(1280,y+.5)}ctx.stroke()}
+ if(state.path){ctx.strokeStyle='#dfb975b8';ctx.lineWidth=3;ctx.setLineDash([5,7]);ctx.beginPath();R.layout.route.forEach((p,i)=>{const x=p[0]*64+32-camera.x,y=p[1]*64+32-camera.y;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();ctx.setLineDash([])}
+ document.querySelectorAll('#focus button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.code===state.focus)));
+}
+function clamp(){camera.x=Math.round(Math.max(0,Math.min(R.checks.native_map_size[0]-1280,camera.x)));camera.y=Math.round(Math.max(0,Math.min(R.checks.native_map_size[1]-768,camera.y)))}
+function focus(m){state.focus=m.code;camera.x=m.focus[0]*64+32-640;camera.y=m.focus[1]*64+32-384;clamp();draw()}
+R.layout.modules.forEach(m=>{const b=document.createElement('button');b.textContent=m.code+' · '+m.name.split(' · ')[0];b.dataset.code=m.code;b.onclick=()=>focus(m);document.querySelector('#focus').append(b)});
+document.querySelector('#grid').onchange=e=>{state.grid=e.target.checked;draw()};document.querySelector('#path').onchange=e=>{state.path=e.target.checked;draw()};document.querySelector('#reset').onclick=()=>focus(R.layout.modules[0]);
+let drag=null;canvas.onpointerdown=e=>{drag={x:e.clientX,y:e.clientY,cx:camera.x,cy:camera.y};canvas.setPointerCapture(e.pointerId);canvas.classList.add('dragging')};canvas.onpointermove=e=>{if(!drag)return;camera.x=drag.cx-(e.clientX-drag.x);camera.y=drag.cy-(e.clientY-drag.y);state.focus='';clamp();draw()};canvas.onpointerup=canvas.onpointercancel=()=>{drag=null;canvas.classList.remove('dragging')};
+source.onload=draw;
+document.querySelector('#player').src='../../'+R.player;
+document.querySelector('#distance').textContent=R.checks.start_to_exit_steps+' cases du départ à la sortie au plus court';
+R.decor.items.forEach(t=>{const article=document.createElement('article');article.className='tile';const img=document.createElement('img');img.src='../../assets/source-art/first-sector-review-01/'+t.file;img.alt=t.name;const text=document.createElement('div'),b=document.createElement('b'),name=document.createElement('span');b.textContent=t.code;name.textContent=t.name;text.append(b,name);article.append(img,text);document.querySelector('#tiles').append(article)});
+document.querySelector('#checks').textContent=R.checks.all_walkable_cells_reachable+' cases praticables reliées ; retour vers le camp accessible ; détour relié par deux accès ; sortie accessible sans ce détour ; poste de contrôle impossible à contourner dans ce plan.';
+draw();
+</script></html>

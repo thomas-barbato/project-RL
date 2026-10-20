@@ -1,0 +1,36 @@
+{
+  "review": "GRIP-FIX-01",
+  "date": "2026-10-20",
+  "integrated": true,
+  "source_raster_assets_modified": false,
+  "save_format_changed": false,
+  "gameplay_changed": false,
+  "renderer_exports": {
+    "native_cell": 64,
+    "compared": 40,
+    "unchanged_unarmed_and_pistol": 20,
+    "corrected_two_handed": 20,
+    "head_and_lower_legs_identical": 40,
+    "patrol_rifle_phantom_region_empty_after": 10,
+    "comparison": "comparison-native.png",
+    "pixel_checks": "pixel-checks.json"
+  },
+  "tests": {
+    "regression_command": "cargo test --locked --bin project-rl -- game_art::player_layers::worn game_art::tests class_start_tests",
+    "passed": 37,
+    "failed": 0,
+    "ignored_manual_export": 1,
+    "manual_export_command": "cargo test --locked --bin project-rl ranged_grip_native_diagnostic -- --ignored",
+    "manual_export_before_passed": true,
+    "manual_export_after_passed": true,
+    "source_mask_rigs_checked": 16,
+    "source_mask_palettes_checked": 3
+  },
+  "builds": {
+    "cargo build --locked --bin project-rl": "passed",
+    "cargo build --locked --release --bin project-rl": "passed"
+  },
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "manual_interactive_playthrough": false
+}

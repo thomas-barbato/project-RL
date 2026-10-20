@@ -2,6 +2,16 @@
 use super::*;
 #[path = "game_art_worn.rs"]
 mod worn;
+#[cfg(debug_assertions)]
+pub(super) fn draw_finish_review(
+    rect: Rect,
+    body: u16,
+    weapon: Option<u16>,
+    hands: Option<[Option<u16>; 2]>,
+    colors: [EquipmentPalette; 3],
+) {
+    worn::draw_finish_review(rect, body, weapon, hands, colors);
+}
 
 pub(super) fn prewarm() {
     worn::prewarm();

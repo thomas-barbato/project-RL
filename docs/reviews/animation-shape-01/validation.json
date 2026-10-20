@@ -1,0 +1,148 @@
+{
+  "review": "ANIM-FLOW-01",
+  "date": "2026-10-20",
+  "status": "awaiting_player_visual_validation",
+  "normal_game_activation": false,
+  "build": {
+    "command": "cargo build --locked",
+    "result": "passed"
+  },
+  "existing_geometry_tests": {
+    "command": "cargo test --locked --bin project-rl effect_geometry::tests -- --quiet",
+    "passed": 4,
+    "failed": 0,
+    "full_suite_run": false
+  },
+  "format": {
+    "cargo_fmt_all_check": "passed",
+    "git_diff_check": "passed",
+    "python_compile": "passed",
+    "javascript_node_check": "passed"
+  },
+  "native_capture": {
+    "cases": 4,
+    "lighting_scenarios": 2,
+    "phases_per_case_and_light": 72,
+    "source_fps": 60,
+    "native_cell": 64,
+    "game_state_unchanged": true,
+    "canvas_size": [
+      448,
+      320
+    ],
+    "same_phase_and_intensity": true
+  },
+  "pixels": {
+    "comparisons": 8,
+    "all_cases_show_overhang": true,
+    "excluded_cell_leaks": 0,
+    "all_rest_images_identical": true,
+    "details": [
+      {
+        "number": 1,
+        "light": "sombre",
+        "changed_phases": 26,
+        "animated_phases": 26,
+        "visual_overhang_pixel_samples": 357770,
+        "excluded_cell_leaks": 0,
+        "rest_identical": true
+      },
+      {
+        "number": 1,
+        "light": "clair",
+        "changed_phases": 26,
+        "animated_phases": 26,
+        "visual_overhang_pixel_samples": 371781,
+        "excluded_cell_leaks": 0,
+        "rest_identical": true
+      },
+      {
+        "number": 2,
+        "light": "sombre",
+        "changed_phases": 33,
+        "animated_phases": 54,
+        "visual_overhang_pixel_samples": 90655,
+        "excluded_cell_leaks": 0,
+        "rest_identical": true
+      },
+      {
+        "number": 2,
+        "light": "clair",
+        "changed_phases": 33,
+        "animated_phases": 54,
+        "visual_overhang_pixel_samples": 94641,
+        "excluded_cell_leaks": 0,
+        "rest_identical": true
+      },
+      {
+        "number": 3,
+        "light": "sombre",
+        "changed_phases": 28,
+        "animated_phases": 28,
+        "visual_overhang_pixel_samples": 8564,
+        "excluded_cell_leaks": 0,
+        "rest_identical": true
+      },
+      {
+        "number": 3,
+        "light": "clair",
+        "changed_phases": 28,
+        "animated_phases": 28,
+        "visual_overhang_pixel_samples": 8452,
+        "excluded_cell_leaks": 0,
+        "rest_identical": true
+      },
+      {
+        "number": 4,
+        "light": "sombre",
+        "changed_phases": 26,
+        "animated_phases": 26,
+        "visual_overhang_pixel_samples": 186806,
+        "excluded_cell_leaks": 0,
+        "rest_identical": true
+      },
+      {
+        "number": 4,
+        "light": "clair",
+        "changed_phases": 26,
+        "animated_phases": 26,
+        "visual_overhang_pixel_samples": 194205,
+        "excluded_cell_leaks": 0,
+        "rest_identical": true
+      }
+    ]
+  },
+  "browser": {
+    "url": "http://127.0.0.1:8765/apercu-animations.html",
+    "rendered": "passed",
+    "pause_and_scrub": "passed",
+    "damage_cell_overlay": "passed",
+    "slowdown_toggle": "passed",
+    "case_selection": "passed",
+    "lighting_selection": "passed",
+    "visible_examples": [
+      "FR06 dark",
+      "FR06 brighter",
+      "FR06 physical wall"
+    ],
+    "css_canvas_sizes": [
+      [
+        448,
+        320
+      ],
+      [
+        448,
+        320
+      ]
+    ],
+    "narrow_window_layout": "stacked native panels",
+    "console_warnings_or_errors": 0
+  },
+  "repair": "The draft released its floor-mask texture too early; the material retained only its GPU handle. Keeping the texture owner alive for the capture removes the accidental reuse of a production damage mask. The regenerated sequences demonstrate actual overhang and no obstacle or hidden-cell leaks.",
+  "scope": "Review only. Production rendering, damage areas, rules and campaign saves unchanged. Earlier timing and contrast proposals remain unapproved.",
+  "sources": {
+    "src/animation_readability_review.rs": "48aaea037614966ce089b841bfd4a1a5b17063e3312925b7b6c0e00e29527e1b",
+    "src/animation_shape_review.rs": "0d220ada203e16ffe0833107aef3a46db694e4d93a65c96b338100ccd6122ac3",
+    "tools/reviews/build_animation_shape_review.py": "3881153ff5fc8c0f2e2ef5fe1955cb47b64b6a64b30c7f18cd6061f4ad8542e8"
+  }
+}

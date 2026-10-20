@@ -1,0 +1,182 @@
+{
+  "review": "VISION-U01-01",
+  "status": "discarded",
+  "native_cell": 64,
+  "candidate_only": true,
+  "normal_game_enabled": false,
+  "world_state_unchanged": true,
+  "comparison_same_state": true,
+  "unknown_cell_gate": "existing opaque mask retained",
+  "feather_native_px": 11.52,
+  "scenes": [
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        7,
+        62
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "scene": "gate",
+      "title": "Sortie de prison",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 15931
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        18,
+        33
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "scene": "join-middle",
+      "title": "Rue et angle de bÃ¢timent",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 25391
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        11,
+        23
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "scene": "house-a-closed",
+      "title": "Porte fermÃ©e et toit",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 53376
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        12,
+        20
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "scene": "house-a-open",
+      "title": "IntÃ©rieur du logement",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 29720
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        12,
+        28
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "scene": "house-b-open",
+      "title": "IntÃ©rieur de la boutique",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 28285
+    },
+    {
+      "cell": [
+        912.0,
+        398.0,
+        64.0,
+        64.0
+      ],
+      "player": [
+        2,
+        2
+      ],
+      "render_read_only": true,
+      "roofs_hidden": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "scene": "west-corner",
+      "title": "Angle de lâ€™enceinte",
+      "crop": [
+        560,
+        78,
+        1328,
+        590
+      ],
+      "changed_pixels": 26950
+    }
+  ],
+  "reason": "Narrowing the fringe did not fix false interior wall cells; shader experiment removed. Superseded by VISION-U01-02."
+}

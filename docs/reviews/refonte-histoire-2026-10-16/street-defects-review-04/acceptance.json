@@ -1,0 +1,71 @@
+{
+  "review": "STYLE-MAP-U01-04",
+  "status": "accepted",
+  "date": "2026-10-19",
+  "user_confirmation": "oui je valide",
+  "context": "Revue actuelle de la carte entière et neuf vues natives, après demande explicite de voir la carte avant validation.",
+  "scope": {
+    "surface_material": true,
+    "visible_scenery_props": [
+      "GRIM-U01-01",
+      "CORP-U01-01",
+      "CORP-U01-02",
+      "CORP-U01-03"
+    ],
+    "placements_as_shown": true,
+    "living_actor_changes": false,
+    "new_gameplay_effects": false,
+    "lighting_data_changes": false,
+    "local_STYLE_U01_03_patch": false,
+    "GRIM_U01_02_medical_station": false,
+    "GRIM_L02_ambient": false
+  },
+  "approved_references": {
+    "courtyard-candidate.png": "c913c11863ab9a06b00e08622afd482aa74212fc62a4a46caf43527d65227a7b",
+    "gate-candidate.png": "4070adf35c2009152d0a8eb403d5e004a7dcf8192a618571451498cf3f1c4a44",
+    "house-closed-candidate.png": "828b3a632617b48c36a4986dfcd5ef07e33c5c96e2db8d4fbca6fb18954a8d9a",
+    "house-open-candidate.png": "7167f36e21089d582f64517ba516481a97142a0097a57f88febf22efac5226e0",
+    "map-candidate.png": "4836ea4e65d9cf8e0386a40902bf520e407dc8ff3499c04da7d1e8ac53d4c9f8",
+    "middle-street-candidate.png": "768ae0ee497be9b907d08f3dfe39e55a486ba654043426ab205fa19fa7f5c3ab",
+    "north-exit-candidate.png": "6b9e679bd30bc014ba9235fa83b9e0d0712137f95f5e88f461ac854a51bf694c",
+    "north-street-candidate.png": "55b96f2fe1ea10ebe0d00c086bb0c1a05a857c738103eb808a5a13ac3b9dc626",
+    "south-street-candidate.png": "b9d4a7689e3d21a71b136f2f6d66b247b5e92926edcaf54d1b8d8225cc4aceb0",
+    "warehouse-candidate.png": "4343ed2d644c1df3964309767d526133412b94a8e7e05a3ab470365606b07612"
+  },
+  "runtime_assets": [
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/surface-wear.png",
+      "sha256": "16cb67557ae6b56fa7ee32035470100a83650f721cd43545d385eecd09632b36"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/GRIM-U01-01.png",
+      "sha256": "2c84fecd9ceb2a794594f8ccb1f09d6653aa6ffd38379a20e4e4dfc7baef71f6"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+      "sha256": "6a016733564e23e4d8d2f85458db3f5d7f71e52b078520c2e1abdf8099fce956"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+      "sha256": "0b10f5554c5e12c91f8868d280d57c5a2d466aac9ce23ba9374edd680edccdcb"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+      "sha256": "0f08bcd7be6558b69fa31cf5fbc554f9ab449374eff0d779d3a77bfc6a719de3"
+    }
+  ],
+  "durable_references": [
+    {
+      "file": "docs/reviews/refonte-histoire-2026-10-16/street-defects-review-04/references/interior-native.png",
+      "sha256": "a7af46089106adc63ed6c6fa151ee6f189486657e45438d6eed70c726c68ffc3"
+    },
+    {
+      "file": "docs/reviews/refonte-histoire-2026-10-16/street-defects-review-04/references/map-native-lighting.png",
+      "sha256": "4836ea4e65d9cf8e0386a40902bf520e407dc8ff3499c04da7d1e8ac53d4c9f8"
+    },
+    {
+      "file": "docs/reviews/refonte-histoire-2026-10-16/street-defects-review-04/references/prison-native.png",
+      "sha256": "1abf4a9aabb07cb1300478ed688dfaf36dc3fc63d89ea1bc2552a863ec72ab17"
+    }
+  ]
+}

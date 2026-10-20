@@ -1,0 +1,29 @@
+{
+  "review_ids": [
+    "MAP-U01-01-r01",
+    "DEC-U01-01-r01"
+  ],
+  "visual_inspection": [
+    "u01-layout-overview-r01.png",
+    "u01-arrival-native-r01.png",
+    "u01-junction-native-r01.png",
+    "u01-decor-board-native-r01.png"
+  ],
+  "source_files_match_original_tool_outputs": true,
+  "car_export_alpha_bounds_at_32": [
+    9,
+    21,
+    185,
+    108
+  ],
+  "html_image_links_verified": 5,
+  "output_hashes": {
+    "u01-map-native-r01.png": "09a1f7ddc1042d38d9bf05a1195cfe2c262f64795e113ac6ad090e39ffe6d88d",
+    "u01-arrival-native-r01.png": "bb69d128e24fb5ce7cadfd2b21d2b56436c1391f0aa3ea11452f08007981c0f0",
+    "u01-junction-native-r01.png": "89f065be924cbb5e0a668e931b772198ae3677c5a0d680819eeee45baf4afff0",
+    "u01-layout-overview-r01.png": "ced1e010ed06af97aa2011e9bd402f6df8b7c6135ce5dfda0eca9fb70eec9d55",
+    "u01-decor-board-native-r01.png": "c6a523aee1184cfc503f99dcc8eb367f28b64046d838fe3dbc08a13c2ac50785"
+  },
+  "browser_ui_check": "Not performed; local file protocol rejected earlier, no workaround used.",
+  "engine_integration_check": "Not performed; detailed plan and art remain candidates."
+}

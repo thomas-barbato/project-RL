@@ -9,6 +9,20 @@
 # Disposable captures, prototypes and diagnostics. Durable artwork belongs in
 # assets/; decisions and validation records belong in docs/reviews/.
 /artifacts/**
+
+# Generated review evidence and maintenance reports; keep decisions, rules,
+# acceptance records and concise validation summaries versioned.
+/docs/reviews/**/integration-native/
+/docs/reviews/**/integration-all-skills/
+/docs/reviews/**/captures/
+/docs/reviews/**/proofs/
+/docs/reviews/**/pixel-checks.json
+/docs/reviews/**/production-captures.json
+/docs/reviews/**/performance.json
+/docs/reviews/**/all-skills-checks.json
+/docs/reviews/**/all-skills-native.json
+/docs/maintenance/**/capture-records/
+/docs/maintenance/**/cleanup-*.json
 !/artifacts/map-editor/
 !/artifacts/map-editor/maps/
 !/artifacts/map-editor/maps/**

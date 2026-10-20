@@ -1,0 +1,30 @@
+{
+  "review": "ART-FINISH-05",
+  "date": "2026-10-19",
+  "status": "accepted_and_integrated",
+  "commands": [
+    {"command": "cargo test --locked --bin project-rl game_art:: -- --test-threads=1", "passed": 43, "failed": 0, "filtered_out": 983},
+    {"command": "cargo build --locked", "result": "passed"},
+    {"command": "cargo check --locked --release", "result": "passed; compilation check only, not a linked release executable"},
+    {"command": "cargo fmt --all -- --check", "result": "passed"},
+    {"command": "git diff --check", "result": "passed"},
+    {"command": "--ui-cold-art-finish-05-integration + verify_art_finish_integration_05.py", "result": "12 sample panels and 2 lit scene viewports exactly equal to frozen accepted references"},
+    {"command": "python -m py_compile", "result": "passed for integration, verification and viewer scripts"}
+  ],
+  "packaged_exports": 4,
+  "previous_asset_files_unchanged": 626,
+  "runtime_dependency": "embedded assets/sprites/art-finish-05 only",
+  "inspection": "Shared campaign image provider and native bounds; accepted image bindings, unsupported variants and native canvases covered by graphical tests",
+  "visual_inspection": ["integrated street", "integrated northern street"],
+  "full_suite_run": false,
+  "performance_benchmark_run": false,
+  "browser_validation": "Static local links verified; no browser automation; preview opening queued by the app",
+  "known_prior_failure": {
+    "test": "suspension_rebuilds_the_selected_protocol_before_replay",
+    "evidence": "../art-finish-review-02/creation-menu-baseline-test.json",
+    "baseline": "Previously confirmed without the portrait-menu change; not rerun for this visual-only integration",
+    "production_save_rules_modified": false
+  },
+  "cleanup": "integration-cleanup.json: redundant raw captures removed; source masters, frozen accepted references and current integrated captures retained",
+  "furniture_audit": "Remains scheduled after the actor visual overhaul, beginning with the reported bed"
+}

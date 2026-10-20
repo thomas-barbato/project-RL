@@ -1,0 +1,54 @@
+{
+  "id": "MAP-U01-05-r01",
+  "width": 26,
+  "height": 18,
+  "cell": 64,
+  "image_origin": [
+    1,
+    1
+  ],
+  "image_size": [
+    24,
+    16
+  ],
+  "background": "assets/maps/prison-street-01/street.png",
+  "entrance": [
+    6,
+    16
+  ],
+  "home_entry": [
+    3,
+    8
+  ],
+  "home_inside": [
+    5,
+    4
+  ],
+  "car_at": [
+    14,
+    8
+  ],
+  "car_file": "assets/maps/prison-street-01/car.png",
+  "car_size": [
+    2,
+    1
+  ],
+  "obstructions": [
+    [
+      14,
+      8
+    ],
+    [
+      15,
+      8
+    ]
+  ],
+  "source": "assets/source-art/first-sector-review-01/u01-scene-r02/SCENE-U01-05-r01.png",
+  "background_sha256": "48936900d63d06ae51e122fc3ac4ca986ebc51e563710940efe1c00f579324a1",
+  "layout_sha256": "bd3458fcf4dca69d9daca6d07a4fcc73ff807073aed112ebe718c7d264243a03",
+  "walkable_cells": 106,
+  "all_walkable_connected": true,
+  "status": "visual_review_pending",
+  "player_scale": 1,
+  "player_source_sha256": "39fc854b865dac6a20d4dabc8b7a06d942aa7b99cb4b0a019022568594836c24"
+}

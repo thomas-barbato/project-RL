@@ -1,0 +1,72 @@
+{
+  "review": "U01-REPAIRS-09",
+  "date": "2026-10-20",
+  "collision_status": "integrated",
+  "visual_status": "approval_pending",
+  "generation": 160,
+  "additional_floor_repairs": 63,
+  "reported_cases_walkable": true,
+  "real_vehicle_body_still_solid": true,
+  "legacy_collision_manifest_unchanged": true,
+  "old_generation_replay_verified_before_adoption": true,
+  "deferred_street_adoption_recorded_after_real_entry": true,
+  "migration_without_turn": true,
+  "migration_idempotent": true,
+  "tests": [
+    {
+      "command": "cargo test --locked --bin project-rl prison_street",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "command": "cargo test --locked --bin project-rl player_vision_app",
+      "passed": 4,
+      "failed": 0
+    }
+  ],
+  "targeted_tests_passed": 17,
+  "full_suite_run": false,
+  "commands_passed": [
+    "cargo build --locked",
+    "cargo check --locked --release",
+    "cargo fmt --all -- --check",
+    "git diff --check",
+    "target/debug/project-rl.exe --ui-cold-street-repairs-09 artifacts/street-repairs-review-09/engine"
+  ],
+  "engine_scenes": 8,
+  "engine_frame_count": 18,
+  "engine_frames_native": true,
+  "normal_art_assets_identical_to_pre_review": true,
+  "user_saves_touched": false,
+  "actor": "accepted Tenue d’assaut / original palette",
+  "fixture_inventory_capacity": 96,
+  "normal_inventory_capacity_unchanged": true,
+  "runtime_collision_manifest_sha256": "26d5b219de11fdf9c558e394621183f339556fbea084bb62c8dae023fdd0857e",
+  "old_collision_manifest_sha256": "37deaa578c4340b11a05fdb65a8b2117c185f0a8422d6ac14471668b8eec00d6",
+  "visual_sources_sha256": {
+    "correction.png": "ab4b9037589866359cb20c6d9bc650b7bcbb54cc92fbd5d92db51e16e6cc641d",
+    "irradiance.png": "19c4157c479dbae87de50052f3a38beae2c8070d7baccd24ea7398d7f8525d98",
+    "ROAD-U01-09-conditioned.png": "b30ce6488ae636a5d894c6cbfc6b5a9915e347df4b721a9fdc1e7dc752f479d5",
+    "ROAD-U01-09-native.png": "c70c720cf8b18af5f0de214aaa153e3ef7caaf88056ac04a4cee136d098da000",
+    "ROAD-U01-09-source.png": "447a802ee614ed1510e07fb714a3f672e5cef03690fcd5bafb16664720f3a5d4",
+    "street-candidate.png": "3b546be7890baab4355059ba37cb76bfec8c0c73411e5bb42be5c64d0031c482",
+    "warehouse-native.png": "e2511513633d8bb82d48c5bfb4b6cd259cb0f6ecdc51e023543008e560bb4714",
+    "warehouse-source.png": "915b197273dea6583343df5a281072a1e4d7790c6ec4348d0be18ea11f306e37"
+  },
+  "road_line_check": {
+    "source_box": [
+      320,
+      956,
+      1080,
+      962
+    ],
+    "dark_pixels_before": 3365,
+    "dark_pixels_after": 0,
+    "threshold": "max RGB <45"
+  },
+  "approval_required_for": [
+    "STYLE-U01-09",
+    "ROAD-U01-09",
+    "JONC-U01-09"
+  ]
+}

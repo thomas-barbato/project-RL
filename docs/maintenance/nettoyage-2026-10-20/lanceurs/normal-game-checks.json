@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-20",
+  "generation": 164,
+  "normal_creation_test": {
+    "name": "normal_character_creation_enables_validated_outfits_city_and_sewer_without_trial_mode",
+    "passed": true,
+    "classes_checked": 5,
+    "trial_flags_enabled": false,
+    "starting_outfit_armor": 0,
+    "starting_outfit_evasion_penalty": 0,
+    "city_monsters": 15,
+    "reversible_sewer_entry": [
+      2,
+      14
+    ]
+  },
+  "commands_passed": [
+    "cargo test --locked --bin project-rl normal_character_creation_enables -- --nocapture",
+    "cargo build --locked",
+    "cargo build --locked --release",
+    "cargo fmt --all --check",
+    "git diff --check"
+  ],
+  "launchers_remaining": [
+    "Jouer.cmd",
+    "Editeur_de_cartes.cmd"
+  ],
+  "launchers_deleted": 12,
+  "saved_campaigns_modified": false,
+  "damage_hp_rebalance_applied": false,
+  "executables": {
+    "target\\debug\\project-rl.exe": {
+      "bytes": 128798720,
+      "sha256": "d293e865cb0a0e55ecc7455505a086eebc909be6408f1bd9a0b885554ae78ce7"
+    },
+    "target\\release\\project-rl.exe": {
+      "bytes": 56692736,
+      "sha256": "0d800cc3dcbf80cb1a186fb70ed467916b9f74fb4e31142fc8e4803782c619dc"
+    }
+  }
+}

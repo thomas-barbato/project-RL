@@ -163,13 +163,9 @@ impl Scene {
             self.app
                 .combat_motion
                 .draw_blasts(self.app.game.map(), now, false, background, rect);
-            self.app.combat_motion.draw_fireballs(
-                self.app.game.map(),
-                now,
-                false,
-                background,
-                rect,
-            );
+            self.app
+                .combat_motion
+                .draw_fireballs(&self.app.game, now, false, background, rect);
             self.app.combat_motion.draw_agent_world(
                 &self.app.game,
                 now,
@@ -179,7 +175,9 @@ impl Scene {
                 rect,
             );
         }
-        self.app.combat_motion.draw_spells(now, false, clip, rect);
+        self.app
+            .combat_motion
+            .draw_spells(&self.app.game, now, false, clip, rect);
         unsafe {
             macroquad::window::get_internal_gl().quad_gl.scissor(None);
         }

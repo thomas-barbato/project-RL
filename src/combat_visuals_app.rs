@@ -77,8 +77,10 @@ impl AsciiApp {
                     }
 
                     if matches!(skill.as_str(), "FR01" | "M02" | "TR64_bolt") {
-                        self.combat_motion
-                            .delay_agent_magic_impact(*victim, now + 0.18);
+                        self.combat_motion.delay_agent_magic_impact(
+                            *victim,
+                            now + 0.18 * crate::animation_policy::duration_scale(skill),
+                        );
                     }
                 }
             }
@@ -411,7 +413,7 @@ mod tests {
             app.game.player_position(),
             Some(GridPos::new(start.x + 2, start.y))
         );
-        assert_eq!(app.combat_motion.offset(id, 1.11, false), Vec2::ZERO);
+        assert_eq!(app.combat_motion.offset(id, 1.141, false), Vec2::ZERO);
         app.capture_combat_visual(
             &GameEvent::EntityMoved {
                 entity: id,
@@ -475,9 +477,9 @@ mod tests {
             expected.drain_events();
             let snapshot = expected.recovery_snapshot_bytes().unwrap();
             app.capture_events_at(Some(1.0));
-            assert!(app.combat_motion.offset(target, 1.0504, false).length() > 0.16);
-            assert_eq!(app.combat_motion.offset(target, 1.18, false), Vec2::ZERO);
-            assert_eq!(app.combat_motion.offset(target, 1.0504, true), Vec2::ZERO);
+            assert!(app.combat_motion.offset(target, 1.07056, false).length() > 0.16);
+            assert_eq!(app.combat_motion.offset(target, 1.253, false), Vec2::ZERO);
+            assert_eq!(app.combat_motion.offset(target, 1.07056, true), Vec2::ZERO);
             assert_eq!(app.game.actors().get(target).unwrap().position(), at);
             assert_eq!(app.game.recovery_snapshot_bytes().unwrap(), snapshot);
         }

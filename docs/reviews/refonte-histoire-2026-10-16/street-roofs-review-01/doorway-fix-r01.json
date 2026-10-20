@@ -1,0 +1,52 @@
+{
+  "review": "DOOR-U01-FIX-01",
+  "date": "2026-10-19",
+  "status": "fixed_verified",
+  "reported_problem": "Quand on ouvre la porte du premier bâtiment à gauche, la lumière reste à la place de la porte.",
+  "root_cause": "The lamp was part of both the background lintel and its foreground copy across the actual walkable threshold.",
+  "correction": "Clear the threshold with existing neutral floor pixels; mount the existing fixture on the adjacent right wall; move its real light source to match; retain only the side jambs in foreground.",
+  "new_drawings": false,
+  "simulation_changes": false,
+  "new_game_required": false,
+  "geometry": "assets/source-art/first-sector-review-01/u01-doorway-fix-r01/doorway.json",
+  "before_native_sha256": "99b71f605ecd95e973cd5166b370e6969b9538dc193849f07aca30fdcebeb2fe",
+  "base_style": "STYLE-RL-2026-10-18-r01",
+  "accepted_roofs_unchanged": true,
+  "target": "First visitable house on the left, home_entry [4,5], bed and kitchenette",
+  "targeted_tests_passed": 7,
+  "debug_build": "passed",
+  "release_check": "passed",
+  "native64": true,
+  "production_door_scenes": 6,
+  "lighting_on_off_scenes": 5,
+  "old_threshold_rgb_before": [
+    171.94372294372295,
+    138.95454545454547,
+    62.95021645021645
+  ],
+  "old_threshold_rgb_after": [
+    83.40259740259741,
+    80.99567099567099,
+    80.45238095238095
+  ],
+  "new_wall_lens_rgb_on": [
+    212.13877551020408,
+    192.465306122449,
+    84.2408163265306
+  ],
+  "new_wall_lens_rgb_off": [
+    27.248979591836736,
+    22.66938775510204,
+    17.60408163265306
+  ],
+  "ambient_unchanged": true,
+  "other_13_lights_unchanged": true,
+  "camp_round_trip": true,
+  "render_read_only": true,
+  "accepted_source_art_intact": true,
+  "current_files_sha256": {
+    "assets/maps/prison-street-01/street.json": "22c76a6708783044d267f40d8f6407f2bf3b5a80310a26b710ae4875c5a3e93e",
+    "assets/maps/prison-street-01/irradiance.png": "484145530f007fa71400c36ac854422c2653f3481092c2fdb97efca2884778e6",
+    "assets/source-art/first-sector-review-01/u01-doorway-fix-r01/doorway.json": "d9ee2e7f2a34e24414fdc2c7ee26169987b720e66afc5228317a189aeddc2483"
+  }
+}

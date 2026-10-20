@@ -2,6 +2,12 @@
 
 17 octobre 2026 · **DECORS-PLAN-01**.
 
+Référence précise acceptée le 18 octobre :
+[STYLE-RL-2026-10-18-r01](STYLE_VISUEL_REFERENCE.md). Les nouveaux décors
+gardent la projection du camp et de SCENE-U01-07, les masses simplifiées,
+les contours affirmés et l’échelle de 64 px. Les prochaines cartes devront
+être plus grandes que cette première rue, avec leurs dimensions à présenter.
+
 Le joueur demande : « ca voudra dire qu'il faudra generer de nouveaux décors
 aussi :) (tout au long du developpement des cartes de jeu) ».
 
@@ -91,6 +97,19 @@ complète avant de multiplier les variantes. La liste n’autorise pas un nouvel
 effet de terrain, une interaction, un stock marchand ou une récompense.
 
 ## Cycle de travail pour chaque nouvelle carte
+
+### Méthode de fabrication — décision du 19 octobre 2026
+
+Le joueur demande : « utilise cette methode pour tous les elements visuels
+des décors » et « je veux quelque chose de pro ».
+
+La fabrication suit désormais le contrat de
+[PRODUCTION_DECORS.md](PRODUCTION_DECORS.md) pour tous les nouveaux décors et
+leurs reprises : éléments indépendants dessinés avant assemblage, transparence
+propre, échelle native, couches séparées et raccords vérifiés. Une illustration
+d'ambiance ne sert plus de banque de fragments de scène. Les ressources
+historiques déjà acceptées restent identifiées ; leur présence ne valide pas
+la réutilisation d'une mauvaise découpe dans les prochains lots.
 
 1. Définir le rôle de la carte, ses accès et ses emplacements indispensables.
 2. Préparer son plan avec les modules disponibles et relever les manques graphiques.

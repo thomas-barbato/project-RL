@@ -59,6 +59,10 @@ fn world_rect(rect: Rect, side: u16) -> Rect {
 }
 
 pub(super) fn draw(rect: Rect, number: u8, corpse: bool, opacity: f32, world: bool) {
+    if number == 57 && !corpse {
+        super::finish::draw_drone(rect, opacity, world);
+        return;
+    }
     let Some(entry) = entry(number) else { return };
     let rect = if world {
         world_rect(rect, entry.side)

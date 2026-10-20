@@ -1,0 +1,401 @@
+{
+  "review": "ART-FINISH-01",
+  "status": "accepted_and_integrated",
+  "scope": "Complete pilot covering all ART-QUALITY-01 recommendations, not the entire bestiary",
+  "entries": [
+    {
+      "code": "FIN-01",
+      "label": "Bastion",
+      "identity": "core:bastion",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        41,
+        33,
+        87,
+        99
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "b82f7b409e0ad5a0ad0234d114a93f188cefed962ba33299b8c093a9e36c579e",
+      "native_sha256": "db0199be3507e91f58ab645f60c56501c79759cc054ccd27f0b8dc1e45e65b17",
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-01-single-body.png",
+            "FIN-01-single-weapon.png",
+            "FIN-01-single-fingers.png"
+          ],
+          "anchor": [
+            81,
+            61
+          ],
+          "held_length": 17
+        },
+        "rifle": {
+          "layers": [
+            "FIN-01-rifle-body.png",
+            "FIN-01-rifle-weapon.png",
+            "FIN-01-rifle-fingers.png"
+          ],
+          "anchor": [
+            [
+              59,
+              64
+            ],
+            [
+              73,
+              61
+            ]
+          ],
+          "held_length": 34
+        }
+      },
+      "head_and_legs_identical_between_configurations": true
+    },
+    {
+      "code": "FIN-02",
+      "label": "Armure Cerbère",
+      "identity": "core:armure_cerbere",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        40,
+        33,
+        88,
+        99
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "458a1ddc012b9efb2fe45bb8077d48a78109884783306817fba4f22cfa5a1320",
+      "native_sha256": "6b7052fdac6793afa64642e1be0d15b8b1b788e9519311d13b4ad42fc3388ee2",
+      "status": "accepted",
+      "configurations": {
+        "single": {
+          "layers": [
+            "FIN-02-single-body.png",
+            "FIN-02-single-weapon.png",
+            "FIN-02-single-fingers.png"
+          ],
+          "anchor": [
+            82,
+            63
+          ],
+          "held_length": 17
+        },
+        "rifle": {
+          "layers": [
+            "FIN-02-rifle-body.png",
+            "FIN-02-rifle-weapon.png",
+            "FIN-02-rifle-fingers.png"
+          ],
+          "anchor": [
+            [
+              58,
+              64
+            ],
+            [
+              74,
+              61
+            ]
+          ],
+          "held_length": 34
+        }
+      },
+      "head_and_legs_identical_between_configurations": true
+    },
+    {
+      "code": "FIN-03",
+      "label": "Brigandine Cognefer",
+      "identity": "core:brigandine_cognefer",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        49,
+        36,
+        80,
+        96
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "44bcc59f7ab259e3a2f91e2ef252737f644dcfbc069d8d85cf62af72760c9822",
+      "native_sha256": "d749c3c5d492a7b990ef9d4842e14be599ee0e57379e25895f4770a2255398f2",
+      "status": "accepted"
+    },
+    {
+      "code": "FIN-04",
+      "label": "Carapace composite",
+      "identity": "core:composite_carapace",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        48,
+        36,
+        80,
+        96
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "8c6108e0771d5ba9ac4fb6f1aed1bd769d9bd85089a223b30dc96615442490de",
+      "native_sha256": "ed362c445dffe9792e8160e00f21f5a967e3cab584c17f3f19d47301ff00f16e",
+      "status": "accepted"
+    },
+    {
+      "code": "FIN-05",
+      "label": "Veste matelassée",
+      "identity": "core:veste_matelassee",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        50,
+        36,
+        78,
+        96
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "04b42078977357b23985a05455797a1f05861d6d269199ebac030f8d3845e37d",
+      "native_sha256": "f400cbd38f032f90159e5b0ccca5a65fe2df2a59e9ccee07066e9b3ea23a064e",
+      "status": "accepted"
+    },
+    {
+      "code": "FIN-06",
+      "label": "Cultiste au fusil",
+      "identity": "164 A",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        45,
+        36,
+        83,
+        96
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "44ab9a4bfa31972750c7fc569dd96ff60c53275fffab4b72bff528616a4f361d",
+      "native_sha256": "07d9a87070ef9dfbd506915cc055951aa40c422d0ce9760b3b08e4b25f4b4cae",
+      "status": "accepted"
+    },
+    {
+      "code": "FIN-07",
+      "label": "Cultiste à la hache",
+      "identity": "165 A",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        44,
+        32,
+        84,
+        96
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "8e01ec3fe5479c01f52e39adb9d959fb5e2f987c9b3db8ae119b232bc617f484",
+      "native_sha256": "7fe8f93fa89ec99301081ff3bae9bc93b4014f4fd465dd2a49bb621f16eb8c54",
+      "status": "accepted"
+    },
+    {
+      "code": "FIN-08",
+      "label": "Possédé",
+      "identity": "005 A",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        33,
+        40,
+        95,
+        96
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "5e392089e1e64cc07ac96c4d763746540499fa13576c917d38f4bf241190aef7",
+      "native_sha256": "0fde63dfeb47e20e56bde211b3392d489d14664cab293102f2e8ff62b3cc81cd",
+      "status": "accepted"
+    },
+    {
+      "code": "FIN-09",
+      "label": "Écorcheur écarlate",
+      "identity": "144 A",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        5,
+        17,
+        123,
+        96
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "61fffc5a320d3b1982ce45fcd6d1f6e85d4f68513035c5ba900401098ba04f7f",
+      "native_sha256": "23859f35b832a7fff2417abe02f1bee839c33b0058853a68259456f7c2a789ec",
+      "status": "accepted",
+      "palettes": [
+        {
+          "file": "FIN-09-orange.png",
+          "material": "orange",
+          "protected_pixels_unchanged": true,
+          "source_alpha_unchanged": true
+        },
+        {
+          "file": "FIN-09-green.png",
+          "material": "green",
+          "protected_pixels_unchanged": true,
+          "source_alpha_unchanged": true
+        },
+        {
+          "file": "FIN-09-blue.png",
+          "material": "blue",
+          "protected_pixels_unchanged": true,
+          "source_alpha_unchanged": true
+        }
+      ]
+    },
+    {
+      "code": "FIN-10",
+      "label": "Ailé d’obsidienne",
+      "identity": "145 A",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        8,
+        7,
+        120,
+        96
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "740e8ff1371e6636ae33fba2f62d45215ad8171edaa2a32f0a9cc311e01803f0",
+      "native_sha256": "d10d9e8ca322b3986088455169bd8812de2540905c59fc5430c81557837a9ae8",
+      "status": "accepted",
+      "palettes": [
+        {
+          "file": "FIN-10-orange.png",
+          "material": "orange",
+          "protected_pixels_unchanged": true,
+          "source_alpha_unchanged": true
+        },
+        {
+          "file": "FIN-10-green.png",
+          "material": "green",
+          "protected_pixels_unchanged": true,
+          "source_alpha_unchanged": true
+        },
+        {
+          "file": "FIN-10-blue.png",
+          "material": "blue",
+          "protected_pixels_unchanged": true,
+          "source_alpha_unchanged": true
+        }
+      ]
+    },
+    {
+      "code": "FIN-11",
+      "label": "Drone de soutien",
+      "identity": "agent:d57",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        34,
+        58,
+        94,
+        96
+      ],
+      "foot": [
+        64,
+        96
+      ],
+      "source_sha256": "2f043a61bcaac5dc7fd187bc80b80b6e5866807cb2ef111be202551f886d3be4",
+      "native_sha256": "b3c1fe95400cd51e8a1a532a8386cc1612ce4dff80043893b871f9bd9ddf6006",
+      "status": "accepted"
+    },
+    {
+      "code": "FIN-12",
+      "label": "Fusil d’assaut",
+      "identity": "core:fusil_d_assaut",
+      "size": [
+        64,
+        64
+      ],
+      "bounds": [
+        2,
+        24,
+        62,
+        46
+      ],
+      "foot": [
+        32,
+        46
+      ],
+      "source_sha256": "2e6c38f8e973f52decc2876d42ca6de7d8736d7f689ed1de056ac7106d0ee285",
+      "native_sha256": "806c6a20fbec3592a656bbc1e972fa95ce6728c7de44299001548da11218dd89",
+      "status": "accepted"
+    },
+    {
+      "code": "FIN-13",
+      "label": "Pistolet Cogneur P01",
+      "identity": "core:modele_cogneur_p01",
+      "size": [
+        64,
+        64
+      ],
+      "bounds": [
+        2,
+        7,
+        62,
+        46
+      ],
+      "foot": [
+        32,
+        46
+      ],
+      "source_sha256": "c9b8d4da4cfcc974e87e6a2a57e7906b3d4fae486ea45af9a3525b21c0660c58",
+      "native_sha256": "28e575671ba52f220646f8b69808a9ccec83fecda9888515213d8a932cfe43ea",
+      "status": "accepted"
+    }
+  ],
+  "ordinary_runtime_unchanged_at_preparation": true,
+  "runtime_assets": "assets/sprites/art-finish-01"
+}

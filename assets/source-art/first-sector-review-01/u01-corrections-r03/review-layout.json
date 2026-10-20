@@ -1,0 +1,113 @@
+{
+  "review": "FIXES-U01-03",
+  "native_cell": 64,
+  "normal_integration": false,
+  "same_lighting": true,
+  "living_actors_unchanged": true,
+  "ground_layer": true,
+  "rejected_for_street": [
+    "GRIM-U01-02"
+  ],
+  "items": [
+    {
+      "id": "STYLE-U01-01/02",
+      "file": "assets/source-art/first-sector-review-01/u01-corrections-r03/STYLE-U01-03-composite.png",
+      "at_px": [
+        128,
+        192
+      ],
+      "size": [
+        704,
+        512
+      ],
+      "alpha_bbox": [
+        0,
+        0,
+        704,
+        512
+      ],
+      "reason": "Essai de matériaux, emprise technique de revue seulement.",
+      "sha256": "20a6c22836d7217868a0ad3cae2081daa7f8647ad6203c9f88c5c2b6bf03a420"
+    },
+    {
+      "id": "GRIM-U01-01",
+      "file": "assets/source-art/first-sector-review-01/u01-corrections-r01/GRIM-U01-01-native.png",
+      "at_px": [
+        256,
+        3584
+      ],
+      "size": [
+        128,
+        64
+      ],
+      "alpha_bbox": [
+        2,
+        16,
+        126,
+        64
+      ],
+      "reason": "Défense brisée près des impacts à l’approche de la prison.",
+      "sha256": "2c84fecd9ceb2a794594f8ccb1f09d6653aa6ffd38379a20e4e4dfc7baef71f6"
+    },
+    {
+      "id": "CORP-U01-01",
+      "file": "assets/source-art/first-sector-review-01/u01-corrections-r03/CORP-U01-01-native.png",
+      "at_px": [
+        192,
+        3776
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "alpha_bbox": [
+        2,
+        6,
+        78,
+        41
+      ],
+      "reason": "Civil à côté de la clôture, hors du couloir de sortie.",
+      "sha256": "6a016733564e23e4d8d2f85458db3f5d7f71e52b078520c2e1abdf8099fce956"
+    },
+    {
+      "id": "CORP-U01-02",
+      "file": "assets/source-art/first-sector-review-01/u01-corrections-r03/CORP-U01-02-native.png",
+      "at_px": [
+        576,
+        3648
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "alpha_bbox": [
+        7,
+        2,
+        73,
+        46
+      ],
+      "reason": "Cultiste sur l’approche de la défense.",
+      "sha256": "0b10f5554c5e12c91f8868d280d57c5a2d466aac9ce23ba9374edd680edccdcb"
+    },
+    {
+      "id": "CORP-U01-03",
+      "file": "assets/source-art/first-sector-review-01/u01-corrections-r03/CORP-U01-03-native.png",
+      "at_px": [
+        384,
+        3520
+      ],
+      "size": [
+        80,
+        48
+      ],
+      "alpha_bbox": [
+        2,
+        2,
+        77,
+        46
+      ],
+      "reason": "Militaire près du point de résistance et des impacts.",
+      "sha256": "0f08bcd7be6558b69fa31cf5fbc554f9ab449374eff0d779d3a77bfc6a719de3"
+    }
+  ]
+}

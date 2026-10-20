@@ -3,7 +3,7 @@ use std::fmt::{Display, Formatter};
 
 use super::{GridPos, Terrain, TileState};
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub struct Map {
     width: usize,
     height: usize,
@@ -12,6 +12,37 @@ pub struct Map {
     /// Keep the campaign's existing JSON and bincode map layout unchanged.
     #[serde(skip)]
     obstructions: std::collections::BTreeMap<usize, (bool, bool)>,
+}
+
+thread_local! {
+    static EXPLICIT_EMPTY_OBSTRUCTIONS: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+}
+
+/// Reproduce the interim Debug encoding when verifying an existing save.
+/// This only changes formatting on the calling thread, never map contents.
+#[doc(hidden)]
+pub fn with_explicit_empty_obstructions<T>(operation: impl FnOnce() -> T) -> T {
+    struct Reset(bool);
+    impl Drop for Reset {
+        fn drop(&mut self) {
+            EXPLICIT_EMPTY_OBSTRUCTIONS.set(self.0);
+        }
+    }
+    let _reset = Reset(EXPLICIT_EMPTY_OBSTRUCTIONS.replace(true));
+    operation()
+}
+
+impl std::fmt::Debug for Map {
+    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut map = formatter.debug_struct("Map");
+        map.field("width", &self.width)
+            .field("height", &self.height)
+            .field("tiles", &self.tiles);
+        if !self.obstructions.is_empty() || EXPLICIT_EMPTY_OBSTRUCTIONS.get() {
+            map.field("obstructions", &self.obstructions);
+        }
+        map.finish()
+    }
 }
 
 impl Map {

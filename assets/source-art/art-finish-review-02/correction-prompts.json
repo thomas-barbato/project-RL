@@ -1,0 +1,33 @@
+{
+  "review": "ART-FINISH-02",
+  "mode": "built-in imagegen",
+  "assets": [
+    {
+      "id": "FIN-17",
+      "prompt": "Use case: precise-object-edit. Image 1 is the edit target, an existing complete game character. Change ONLY the hood fabric from olive-green to dirty pale ivory/light beige, so it matches the light hood of the original small character in image 2. Keep its ivory closed mask, shoulder protection, olive/ochre coat, charcoal trousers, dark gloves, boots, exact stance, proportions and all existing details unchanged. Same worn matte painted game finish, no new accessory, no face or skin. Remove any outer decorative haze/glow and keep TRUE TRANSPARENT background and full figure with margin.",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/art-finish-review-02/FIN-17-initial.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/art-finish-review-02/FIN-17-reference.png"
+      ],
+      "transparent_background": true
+    },
+    {
+      "id": "FIN-18",
+      "prompt": "Use case: identity-preserve. Image 1 is the edit target, green Chrysalide game armor; image 2 is its original small silhouette and color identity. Adjust ONLY the armor plate shapes so it is NOT a green copy of the ivory Cerbere armor. Use more angular green faceted carapace shells, a compact pointed/faceted helmet crown with a narrow dark central slit, and two or three overlapping green chest/abdomen shell segments over dark flexible joints. Green shells at abdomen as in the original, not ivory abdominal plates. Preserve green/olive color identity, hidden face, every limb, stance, hands-empty pose, human proportions, exact matte worn finish and practical gloves/boots. No horns, insect limbs, wings, symbols, luminous accents or new equipment. Full isolated complete figure, generous margin, TRUE TRANSPARENT background without exterior haze, shadow or floor.",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/art-finish-review-02/FIN-18-initial.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/art-finish-review-02/FIN-18-reference.png"
+      ],
+      "transparent_background": true
+    },
+    {
+      "id": "FIN-21",
+      "prompt": "Use case: identity-preserve. Image 1 is the edit target for the heavy Bastion breastplate outfit, image 2 is the small original identity. Change ONLY the heavy armor geometry to distinguish it clearly from Cerbere: broad squared overlapping shoulder guards, a wide rectangular heavy ivory breastplate with a simple dark central joint, larger squared forearm and knee shells, and a short blunt enclosed boxier helmet with one narrow HORIZONTAL dark visor slit instead of a vertical face slit. Heavy squat armored silhouette and protected high collar, grounded human anatomy. Keep dirty ivory plates, dark charcoal undersuit, matte chipped finish, empty hands, exact stance, existing boot design and whole figure proportions. No new colors, no exposed face, no weapons, effects, halos, text or floor. Full body complete with generous margins and TRUE TRANSPARENT background.",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/art-finish-review-02/FIN-21-initial.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/art-finish-review-02/FIN-21-reference.png"
+      ],
+      "transparent_background": true
+    }
+  ]
+}

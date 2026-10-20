@@ -775,6 +775,22 @@ impl AsciiApp {
             self.attack_aim_technique = None;
         }
     }
+    /// A one-time creation default. Ordinary synchronisation only removes
+    /// invalid bindings and never refills a slot the player has cleared.
+    pub(super) fn initialize_class_skill_bar(&mut self) {
+        self.ux.skill_bar[0] = self
+            .game
+            .rules()
+            .agent_class_start
+            .as_ref()
+            .and_then(|start| {
+                start
+                    .skills
+                    .iter()
+                    .find(|id| self.can_assign_agent_skill(id))
+            })
+            .cloned();
+    }
     pub(super) fn begin_agent_skill_drag(
         &mut self,
         id: &str,

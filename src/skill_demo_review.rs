@@ -29,6 +29,10 @@ impl AsciiApp {
         let before = app.game.recovery_snapshot_bytes()?;
         let history = app.history.len();
         let mut evidence = Vec::new();
+        let policy_check = std::env::args().any(|arg| arg == "--animation-policy");
+        let times = [
+            0., 0.12, 0.28, 0.52, 0.82, 1.14, 1.72, 2.6, 0.12, 0.52, 1.14, 2.6,
+        ];
         for skill in project_rl::skills::agent::definitions()
             .iter()
             .filter(|s| s.kind == "active")
@@ -41,10 +45,18 @@ impl AsciiApp {
             let bounds = app
                 .agent_skill_demo_rect()
                 .ok_or("Missing integrated demonstration")?;
-            for frame in 0..24 {
-                app.ux
-                    .skill_demo
-                    .capture_time(Some(10. + frame as f64 * 0.14));
+            for frame in 0..if policy_check { times.len() } else { 24 } {
+                if policy_check && frame == 8 {
+                    app.ux.skill_demo.restart();
+                }
+                app.graphics.active.reduced_motion = policy_check && frame >= 8;
+                app.ux.skill_demo.capture_time(Some(
+                    10. + if policy_check {
+                        times[frame]
+                    } else {
+                        frame as f64 * 0.14
+                    },
+                ));
                 app.draw();
                 if let Some(error) = app.ux.skill_demo.failure() {
                     return Err(format!("{}: {error}", skill.id));
@@ -74,8 +86,9 @@ impl AsciiApp {
                 next_frame().await;
             }
             evidence.push(serde_json::json!({"skill":skill.id,"title":skill.title,"branch":skill.branch,
-                "frames":24,"frame_duration_ms":140,"rank":1,"bounds":[bounds.x,bounds.y,bounds.w,bounds.h]}));
+                "frames":if policy_check {times.len()} else {24},"frame_duration_ms":140,"policy_times":if policy_check {Some(times)} else {None},"reduced_from_frame":if policy_check {Some(8)}else{None},"rank":1,"bounds":[bounds.x,bounds.y,bounds.w,bounds.h]}));
         }
+        app.graphics.active.reduced_motion = false;
         app.ux.skill_demo_request = None;
         app.select_agent_skill_for_capture("AF06")?;
         app.draw();

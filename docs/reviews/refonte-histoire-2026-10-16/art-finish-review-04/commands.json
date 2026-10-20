@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-19",
+  "phase": "candidate_review_preparation",
+  "commands": [
+    {"command": "cargo build --locked", "result": "passed"},
+    {"command": "cargo check --locked --release", "result": "passed; compilation check only"},
+    {"command": "cargo fmt --all -- --check", "result": "passed"},
+    {"command": "git diff --check", "result": "passed"},
+    {"command": "--ui-cold-art-finish-04-review", "result": "two native GPU boards and two read-only before/after lit scene pairs"},
+    {"command": "--ui-cold-art-finish-03-integration -> finish04-normal-check", "result": "ordinary world renderer matches 16 approved samples and two approved scene viewports exactly"},
+    {"command": "validate_art_finish_review_04.py", "result": "two drawings, six configurations, fixed head and lower body, source-authored fingers overlapping weapon grips, 612 unchanged production resources"},
+    {"command": "node --check", "result": "passed for current review interaction script"}
+  ],
+  "full_test_suite_run": false,
+  "browser_automation": false,
+  "new_candidates_integrated": false,
+  "source_master_count": 4,
+  "mode": "built-in imagegen",
+  "native_cell": 64,
+  "visual_inspection": ["two source masters", "native outfit board", "six hand configurations", "lit house", "lit street"],
+  "ui_only_capture_normalization": "Selection markers cleared in the candidate comparison fixture; ordinary input and rendering behavior unchanged",
+  "furniture_audit": "Scheduled after actor visual overhaul, beginning with the reported bed"
+}

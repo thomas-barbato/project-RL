@@ -1,0 +1,32 @@
+{
+  "review": "VISION-U01-05",
+  "date": "2026-10-19",
+  "generation": 158,
+  "real_player_radius": 6,
+  "targeted_tests_passed": 17,
+  "tests": {
+    "player_vision": 4,
+    "engine_six_cell_vision": 1,
+    "prison_street": 12
+  },
+  "historical_generations_verified_before_adoption": [153, 157],
+  "adoption_recovery_snapshot_and_replay_verified": true,
+  "unchanged_historical_rules_fingerprints_verified": true,
+  "no_time_or_random_draw_consumed": true,
+  "minimap_memory_preserved": true,
+  "ordinary_npc_sight_unchanged": true,
+  "debug_build_passed": true,
+  "release_check_passed": true,
+  "formatting_passed": true,
+  "diff_check_passed": true,
+  "gpu_capture": {
+    "report": "artifacts/street-defects-review-01/vision-six-integration/checks.json",
+    "native_cell": 64,
+    "scenes": 6,
+    "read_only_render": true,
+    "camp_round_trip": true,
+    "visual_inspection": "join-middle native64"
+  },
+  "user_saves_modified_by_validation": false,
+  "pending": ["COL-U01-01", "darker_ambient", "GRIM-U01-01"]
+}

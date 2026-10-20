@@ -1,0 +1,127 @@
+{
+  "review": "ART-FINISH-05",
+  "status": "accepted_and_integrated",
+  "native_cell": 64,
+  "drawings": 4,
+  "entries": [
+    {
+      "code": "FIN-28",
+      "number": 14,
+      "variant": 0,
+      "label": "Cultiste",
+      "detail": "Pistolet",
+      "original_code": "CULT-02-r04",
+      "role": "CultistRanged",
+      "status": "accepted",
+      "source_sha256": "06f8e912b504feebdd39615af227efb7221aaebf99efa638b4327157da773490",
+      "native_sha256": "072d549942100c44b0fda1c0950beb29b9af59e5004037487fae4f91ab301d57",
+      "side": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "previous_bounds": [
+        47,
+        36,
+        82,
+        96
+      ],
+      "bounds": [
+        47,
+        37,
+        82,
+        96
+      ]
+    },
+    {
+      "code": "FIN-29",
+      "number": 16,
+      "variant": 0,
+      "label": "Cultiste",
+      "detail": "Bouclier et masse",
+      "original_code": "ELITE-01-r01",
+      "role": "CultistMelee",
+      "status": "accepted",
+      "source_sha256": "b448fa1401cd6419fc4dff15a9a67f27e54c068167c489737aad8c36891f4a6a",
+      "native_sha256": "d09ef8cd93ae986514c9edddf4f55989c5fc7ec63891cf928ca731acdf19aca3",
+      "side": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "previous_bounds": [
+        44,
+        36,
+        85,
+        96
+      ],
+      "bounds": [
+        44,
+        37,
+        85,
+        96
+      ]
+    },
+    {
+      "code": "FIN-30",
+      "number": 6,
+      "variant": 0,
+      "label": "Possédé",
+      "detail": "Hybride quadrupède",
+      "original_code": "MON-02-r02",
+      "role": "PossessedMelee",
+      "status": "accepted",
+      "source_sha256": "49bd5c55234398caf61eb05803a1c1b1f689a3ff270a81cf86a9f02536252815",
+      "native_sha256": "a0c8d1df5fb768d49585e27433dd28023aa23cb36e26f8f6fd86445812dbc807",
+      "side": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "previous_bounds": [
+        33,
+        38,
+        96,
+        96
+      ],
+      "bounds": [
+        33,
+        44,
+        96,
+        96
+      ]
+    },
+    {
+      "code": "FIN-31",
+      "number": 120,
+      "variant": 0,
+      "label": "Zombie",
+      "detail": "Détenu réanimé",
+      "original_code": "ZOM-01-r01",
+      "role": "DemonMelee",
+      "status": "accepted",
+      "source_sha256": "95675ae584883dccd5ffb8704b3b7074ca8c9383a628c6a14e8f55e909ec3249",
+      "native_sha256": "52a11c985cd6e37e9ce822b22159d5f991e6ff69789ed1e174aa570bd84517b0",
+      "side": 128,
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "previous_bounds": [
+        45,
+        32,
+        83,
+        96
+      ],
+      "bounds": [
+        45,
+        33,
+        83,
+        96
+      ]
+    }
+  ],
+  "palette_scope": "Original A only; other variants retain previous artwork pending their own review",
+  "ordinary_runtime_unchanged_at_preparation": true,
+  "runtime_assets": "assets/sprites/art-finish-05"
+}

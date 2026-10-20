@@ -1,0 +1,9 @@
+{
+  "test": "suspension_rebuilds_the_selected_protocol_before_replay",
+  "portraits_change_temporarily_removed": true,
+  "exit_code": 101,
+  "same_error_verified_from_console_output": true,
+  "observed_error": "Les règles ou les mods ont changé ; suspension conservée.",
+  "comparison": "The isolated baseline fails at the same restore_suspension unwrap with the portrait change removed; source restored byte for byte afterwards.",
+  "source_sha256": "f7c908b62c92c0889154b47b18c57a320aa87a65e7e231aa228aa3463181f9e5"
+}

@@ -1,0 +1,125 @@
+{
+  "review": "MAP-U01-EXP-01-r05",
+  "status": "candidate_not_integrated",
+  "native_cell": 64,
+  "dimensions": [
+    26,
+    66
+  ],
+  "walkable": 692,
+  "connected": true,
+  "prison_back_floor_cells": 0,
+  "south_visible_edge": 4064,
+  "corners": {
+    "nw": {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r05/wall-corner-nw.png",
+      "at": [
+        64,
+        64
+      ]
+    },
+    "ne": {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r05/wall-corner-ne.png",
+      "at": [
+        1568,
+        64
+      ]
+    },
+    "sw": {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r05/wall-corner-sw.png",
+      "at": [
+        64,
+        4000
+      ]
+    },
+    "se": {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r05/wall-corner-se.png",
+      "at": [
+        1568,
+        4000
+      ]
+    }
+  },
+  "removed_fixtures": [
+    "post-2",
+    "post-4"
+  ],
+  "off_lights": [
+    "garage-west",
+    "gate-east",
+    "north-east-upper",
+    "post-0",
+    "post-5",
+    "west"
+  ],
+  "active_lights": 29,
+  "total_lights": 35,
+  "optic_overlaps": [],
+  "additional_buildings": 6,
+  "visitable_buildings": 3,
+  "active_map_unchanged": true,
+  "active_hashes": {
+    "car.png": "c5725e480e808ff5940184bc4555900ada360b27a21a0bcab926ef7302056929",
+    "home-roof.png": "cae2668d04aa12f92f56ab6af8571aa080a96d233ab54856e1bcfd0611f9aae4",
+    "illumination-correction.png": "78768677931a438cda79151de2a3e980f3431ac0f9a483b71dcd6d36b404142c",
+    "irradiance.png": "484145530f007fa71400c36ac854422c2653f3481092c2fdb97efca2884778e6",
+    "layout.txt": "dbdeac0482a1c61d017e5f28a63ea91b2f244bf0cb121bba2c431dcaf66abbb0",
+    "shop-roof.png": "9cda1857682b21c53a257f645478459aedba018bc51ea5a39a11f2ca94e30e3d",
+    "street.json": "22c76a6708783044d267f40d8f6407f2bf3b5a80310a26b710ae4875c5a3e93e",
+    "street.png": "1dd45907310699da19977f8e86ebaa79f374dcc8df1086b6d5a456e30562346a"
+  },
+  "road_plan_unchanged": true,
+  "next_zone_not_generated": true,
+  "source_sha256": {
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/collapsed-wall-native.png": "2c3e74720344e1ca99dcc74b12c20add356df016184f4294bc0056e16a155fd0",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/collapsed-wall-source.png": "019e9119bb141bef641a787c6886293b3280a287a245fa85e96609ed9cf58560",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/corner-check-ne.png": "75c4e69b1e5e9fb42d0c88dd12aade732988c3a4e11bfeba88285f71a86e49f7",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/corner-check-nw.png": "c10d6a20c2526dba1f6e36a408ca1fe32be55183bb4c82cef1a1b6291dfd4917",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/corner-check-se.png": "91fa19714f4fafb90e5f96dfcc367e4f8c33b6100e2d3832c39a6485c837db21",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/corner-check-sw.png": "78cef892d3f3389f242786be7c32288b9bd57272ee24bea8f4f918591bc9a237",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/correction.png": "ca6b55f9a4c3a57dc1a6d64cb7d689d3815b3e8fe9147de70f1e90f043fa1b10",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/court-bin-native.png": "887d648a3d1da0876daf9575a1c1a91534bf0dd6464bec900c18c2d584c144b3",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/court-bin-source.png": "5d14ea0d083d17a6991c5d6d5c99c7933f26f39f10a0be0eb030a703b5aa5475",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/court-machines-native.png": "9df811695fac127601380ad6f411fdbac7ea5063ce852f4758895d00e7f6434a",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/court-machines-source.png": "809c8595f104fca9037b4c5223b85dfd3a7a1e70542a05602013b91b2a85cd31",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/east-blue-native.png": "cd3b2e7b23bcb185bcfa6bf184761792b2f97352c64fc3c89c5d78745981d0df",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/east-blue-source.png": "575b0b4a6adab9426e8a32f8fa1b8d6b64d1dab10d50dd02f1c6de8bbaf78e7a",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/east-long-native.png": "46a15bcd8222a39e8acdb2e055e4c4c895cc3354cd6d4cf4acb309b0bc88436f",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/east-long-source.png": "6510d95369da2c634965f251e3a1b1a9400649f081eb348ba3895f78fd08462d",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/east-small-native.png": "f91a2240a89475828e091bc8c5b911dfc3a108f1033101608352875076cf4ef5",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/east-small-source.png": "5f49549c0d58eb605f796b27ff96bc1829933bcfb9d91e5c72e0ba023a1f930c",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/east-south-native.png": "7dc83a63f427095ad77f0858de43a352059c8286c859b0d55c87debf4bf4cea0",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/east-south-source.png": "e12b62c4be5548354e367240cc850d048be9effb9c1b19b9acc44fe522ca4c6c",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/fallen-light-native.png": "06d1be4006c56cb9bde9e33ab615994f8ff6003dd71e1ae7a5f23f8db53d3f45",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/fallen-light-source.png": "a41647c92b61f3831a52cc0a5fef279db8895c972bb0aa552b8dce189574b0f3",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/hedge-0-native.png": "7962d79651d1b9708a2e542bedd30349318ec21914b50e066fed8a3b650a2667",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/hedge-0-source.png": "f37f4537b0de5aaf9ca3454eb6141cef248373eb57354ba1ab785f09e337c01a",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/irradiance.png": "1c8b9f085a116e3cb7a6c2ea97c066ed92e9a23611cfc516aea8dd78a7663533",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/MODULES-U01-FIX-input.png": "d84d72d312879ef37a1864df8a0243f3ba7e87d74739d3bae7886ac975b76c39",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/MODULES-U01-FIX-source.png": "817ba1b7e92666323facef2a9033cb465e06745eaeb93ac403063852eab262d2",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/north-gateway-native.png": "81e6304802bebced84cb71257024102afda9261836c663a4970ba8489eb90b75",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/north-gateway-source.png": "04ca36319c31afc14796c1982f7e5c1f4640a62d52078596e397aecd4df92615",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/roof-0-native.png": "daa333e2a8fef5fe7ee7de620dd69139b7377d2c82c7d883d5e34feb9599bfdf",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/roof-0-source.png": "3ed19d9649173367dc9b57f757137555eea1416a96543983602804c25b1ed1c6",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/roof-1-native.png": "95e279966252b32d21c11575b53404eb7398de334a256a970754dcb1b285ea50",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/roof-1-source.png": "51d6b49978f131b45151ccfcb2dd100f8bcb92f46ced2941087a3fe4c090e036",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/roof-2-native.png": "2381e0b8139249ddefaf77b70ad14912556036df46900021a808ebc2a3efd37b",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/roof-2-source.png": "1e7ed337948712bdfa58cc6faaed5ae6e2d901b0451d4861de54bc7076a24980",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/roof-3-native.png": "36f55710f3341eaed78d0a24b11a5a1a365d8d3e55b012e21f1bf74d43f0e636",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/roof-3-source.png": "4818c088e8069fcd80224cdf4dc00d70197bde6f09af101fba11deb0689d6e97",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/ROOFS-U01-FIX-input.png": "67038e162602424f78ec0ad6ce25c06cd1de671558aee3dbe5c29a127d0aec40",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/ROOFS-U01-FIX-source.png": "29f5485247604858c4398e51de9428db37982d2d135019b3b9ef43f568de64ec",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/street-candidate.png": "6832efe4783260e20dec563b7e5e5b438032556dcdb2e12e6eb6ca6fd6b78587",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/street-post-native.png": "b5a7e63d2fe543e82a578546eac0206cddcadc4ef9bea874a834446095913c14",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/street-post-source.png": "4a15d5e0b29fe7408f066d2a91887bbcfe8af47eaea73b9e8ee1bdd7a973b91e",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/wall-corner-ne.png": "c1431aeeac1a11ea03ad670e30100d485b53f25b0808cf7c93f5bbbef279c98f",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/wall-corner-nw.png": "a66402fd982c9137ee90778fb116a6e2118851d07e8ebbad9223bc388d2b2458",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/wall-corner-se.png": "ad50f96687489c8021ff4e69c3ba7d21f47eef5bcb413b80ecfd316bf628bff7",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/wall-corner-sw.png": "78cef892d3f3389f242786be7c32288b9bd57272ee24bea8f4f918591bc9a237",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/warehouse-native.png": "59b89fc602ecfee9a58ca2f5a2c1a010960d3987ffc8c5646adc08a5a8021f80",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/WAREHOUSE-U01-FIX-input.png": "ea9fc26f202a729542324daf5f0f02cc4136773acd77fc754c3f343968903fee",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/WAREHOUSE-U01-FIX-source.png": "cf7eeb5845b8030b7673064ce4e6fb8b9405bb628c7109a0a51b7c3a9f9f6db1",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/west-garage-native.png": "2a232db48c4499c8a6fe4cc14517e647866d088e69d5dcfa32ba0184ca05f189",
+    "assets/source-art/first-sector-review-01/u01-expansion-r05/west-garage-source.png": "2a75fbf968512ef0e72abb17926d294a74a9cb9d756133a13eaa7f7880ac7123"
+  }
+}

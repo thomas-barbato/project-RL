@@ -2,6 +2,518 @@
 use super::*;
 
 impl AsciiApp {
+    pub async fn capture_prison_street(output: &std::path::Path) -> Result<(), String> {
+        let lighting_review = std::env::args()
+            .nth(1)
+            .is_some_and(|s| s == "--ui-cold-prison-street-lighting");
+        let _review = lighting_review.then(crate::prison_street_render::review);
+        std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
+        let (rules, texts, loot, expeditions) = ascii_game_content()?;
+        let mut app = Self::from_seed(1818, rules, texts, loot, expeditions)?;
+        app.suspension_path = output.join("isolated-run.json");
+        app.crash_recovery_enabled = false;
+        app.begin_character_creation_with_seed(false, 1818)?;
+        app.update_input(&InputFrame {
+            pressed: [crate::controls::Binding::key("Enter")].into(),
+            ..Default::default()
+        });
+        request_new_screen_size(1920., 1080.);
+        for _ in 0..3 {
+            next_frame().await;
+        }
+        let exit = pos(camp::scene().exits[0]);
+        app.walk_fixture_to_unchecked(exit)?;
+        if crate::prison_street::expansion_review() {
+            app.materialize_deferred_destination_for(&GameCommand::Interact { target: exit })?;
+        }
+        if app.execute_command(GameCommand::Interact { target: exit }) != CommandOutcome::Applied {
+            return Err(format!(
+                "Camp to street passage failed: {:?}",
+                app.log.last()
+            ));
+        }
+        app.capture_events_at(Some(0.));
+        if crate::prison_street::expansion_review()
+            || std::env::args().nth(1).as_deref() == Some("--ui-cold-street-integration")
+            || std::env::args().nth(1).as_deref() == Some("--ui-cold-street-defects")
+        {
+            return app.capture_street_expansion(output).await;
+        }
+        if matches!(
+            std::env::args().nth(1).as_deref(),
+            Some("--ui-cold-street-roofs" | "--ui-cold-street-roofs-integration")
+        ) {
+            return app.capture_street_roof_integration(output).await;
+        }
+        let s = crate::prison_street::scene_for_game(&app.game);
+        let mut records = Vec::new();
+        for (label, at) in [
+            ("gate", s.entrance),
+            ("road", [10, 8]),
+            ("home-entry", s.home_entry),
+            ("home", s.home_inside),
+            ("north", [19, 3]),
+        ] {
+            app.walk_fixture_to_unchecked(crate::prison_street::pos(at))?;
+            app.world_presentation_time.set(1.);
+            let before = suspension::fingerprint(&app.game);
+            for _ in 0..2 {
+                app.draw();
+                next_frame().await;
+            }
+            app.draw();
+            let image = crate::ui_capture::framebuffer()?;
+            image.export_png(output.join(format!("street-{label}.png")).to_str().unwrap());
+            if lighting_review {
+                crate::prison_street_render::review_lights(false);
+                for _ in 0..2 {
+                    app.draw();
+                    next_frame().await;
+                }
+                app.draw();
+                crate::ui_capture::framebuffer()?.export_png(
+                    output
+                        .join(format!("street-{label}-off.png"))
+                        .to_str()
+                        .unwrap(),
+                );
+                crate::prison_street_render::review_lights(true);
+            }
+            let r = app
+                .terminal
+                .world_cell_rect(
+                    &app.game,
+                    app.terminal_bounds(),
+                    app.ui_scale(),
+                    64,
+                    app.navigation_signal_summary().is_some(),
+                    crate::prison_street::pos(at),
+                    Vec2::ZERO,
+                )
+                .ok_or("Player outside camera")?;
+            if r.w != 64. || r.h != 64. || suspension::fingerprint(&app.game) != before {
+                return Err("Street render changed scale or world".into());
+            }
+            records.push(serde_json::json!({"scene":label,"at":at,"cell":[r.x,r.y,r.w,r.h],"render_read_only":true,"turn":app.game.turn()}));
+            next_frame().await;
+        }
+        app.walk_fixture_to_unchecked(crate::prison_street::pos(s.entrance))?;
+        if app.execute_command(GameCommand::Interact {
+            target: crate::prison_street::pos(s.entrance),
+        }) != CommandOutcome::Applied
+            || app.game.current_zone().unwrap().id.as_str() != camp::ZONE_ID
+        {
+            return Err("Street return failed".into());
+        }
+        std::fs::write(output.join("checks.json"),serde_json::to_vec_pretty(&serde_json::json!({"review":if lighting_review || s.atmosphere.is_some() {"SCENE-U01-07-r01 / LUM-U01-07-r01"} else {"SCENE-U01-06-r01"},"lighting_review":lighting_review,"lighting_production_enabled":s.atmosphere.is_some(),"generation":app.generation_version,"native_cell":64,"scenes":records,"camp_round_trip":true,"isolated_save":app.suspension_path})).unwrap()).map_err(|e|e.to_string())?;
+        Ok(())
+    }
+
+    async fn capture_unified_vision_after(
+        &mut self,
+        output: &std::path::Path,
+        label: &str,
+    ) -> Result<(), String> {
+        crate::terminal_view::world_visibility_review::set_scenery_circle(
+            std::env::args().any(|arg| arg == "--vision-circle"),
+        );
+        crate::terminal_view::world_visibility_review::set_enabled(true);
+        for _ in 0..2 {
+            self.draw();
+            next_frame().await;
+        }
+        self.draw();
+        let result = crate::ui_capture::framebuffer().map(|image| {
+            image.export_png(
+                output
+                    .join(format!("{label}-unified.png"))
+                    .to_str()
+                    .unwrap(),
+            );
+        });
+        crate::terminal_view::world_visibility_review::set_enabled(false);
+        result
+    }
+
+    async fn capture_street_expansion(&mut self, output: &std::path::Path) -> Result<(), String> {
+        let s = crate::prison_street::scene_for_game(&self.game);
+        self.graphics.active.reduced_motion = false;
+        let mut records = Vec::new();
+        let manifest: serde_json::Value = serde_json::from_str(
+            &std::fs::read_to_string(
+                std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+                    .join("assets/source-art/first-sector-review-01/u01-expansion-r06/street.json"),
+            )
+            .map_err(|e| e.to_string())?,
+        )
+        .map_err(|e| e.to_string())?;
+        let mut views: Vec<(String, [i32; 2])> =
+            serde_json::from_value(manifest["review_views"].clone()).map_err(|e| e.to_string())?;
+        let defects_review = std::env::args().nth(1).as_deref() == Some("--ui-cold-street-defects");
+        if defects_review {
+            let index = views
+                .iter()
+                .position(|(label, _)| label == "house-a-closed")
+                .unwrap()
+                + 1;
+            views.insert(index, ("door-hidden".to_owned(), [17, 19]));
+        }
+        let integrated = std::env::args().nth(1).as_deref() == Some("--ui-cold-street-integration");
+        let circle_review = std::env::args().any(|arg| arg == "--vision-circle");
+        let unified_review = circle_review || std::env::args().any(|arg| arg == "--vision-unified");
+        let six_cell_vision = std::env::args().any(|arg| arg == "--vision-six");
+        if six_cell_vision && self.game.rules().player_field_of_view.radius != 6 {
+            return Err("Six-cell capture must use the real accepted perception rules".into());
+        }
+        let vision_review = defects_review
+            || unified_review
+            || six_cell_vision
+            || std::env::args().any(|arg| arg == "--vision-layout");
+        for (label, at) in views {
+            if label.ends_with("-open") {
+                let door = if label.starts_with("house-a") {
+                    s.extra_doorways[0].door
+                } else {
+                    s.extra_doorways[1].door
+                };
+                if defects_review {
+                    self.walk_fixture_to_unchecked(GridPos::new(door[0], door[1] + 1))?;
+                }
+                if self.execute_command(GameCommand::Interact {
+                    target: crate::prison_street::pos(door),
+                }) != CommandOutcome::Applied
+                {
+                    return Err(format!("Review door interaction failed: {label}"));
+                }
+            }
+            self.walk_fixture_to_unchecked(crate::prison_street::pos(at))?;
+            if defects_review
+                && !matches!(
+                    label.as_str(),
+                    "gate"
+                        | "join-middle"
+                        | "court-clean"
+                        | "house-a-closed"
+                        | "house-a-open"
+                        | "house-b-closed"
+                        | "house-b-open"
+                        | "door-hidden"
+                        | "west-corner"
+                )
+            {
+                continue;
+            }
+            if !defects_review
+                && vision_review
+                && !(unified_review && label == "court-clean")
+                && !matches!(
+                    label.as_str(),
+                    "gate"
+                        | "join-middle"
+                        | "house-a-closed"
+                        | "house-a-open"
+                        | "house-b-open"
+                        | "west-corner"
+                )
+            {
+                continue;
+            }
+            self.world_presentation_time.set(1.);
+            self.capture_events_at(Some(0.));
+            let before = suspension::fingerprint(&self.game);
+            for _ in 0..2 {
+                self.draw();
+                next_frame().await;
+            }
+            self.draw();
+            crate::ui_capture::framebuffer()?
+                .export_png(output.join(format!("{label}.png")).to_str().unwrap());
+            if defects_review {
+                if label == "door-hidden" {
+                    let door = crate::prison_street::pos(s.extra_doorways[0].door);
+                    if self.game.player_visibility().is_visible(door)
+                        || self.game.map().tile(door).unwrap().terrain
+                            != Terrain::Door(project_rl::world::DoorState::Closed)
+                    {
+                        return Err(
+                            "Door popping fixture must have a closed door outside actor LOS".into(),
+                        );
+                    }
+                    crate::prison_street_render::review_legacy_doors(true);
+                    for _ in 0..2 {
+                        self.draw();
+                        next_frame().await;
+                    }
+                    self.draw();
+                    crate::ui_capture::framebuffer()?
+                        .export_png(output.join("door-hidden-avant.png").to_str().unwrap());
+                    crate::prison_street_render::review_legacy_doors(false);
+                }
+                for (suffix, radius, ambient) in [
+                    ("cercle8", Some(8), None),
+                    ("cercle6", Some(6), None),
+                    ("sombre", Some(6), Some([0.28, 0.30, 0.36])),
+                ] {
+                    crate::terminal_view::painted_scene_visibility::review_radius(radius);
+                    crate::prison_street_render::review_ambient(ambient);
+                    for _ in 0..2 {
+                        self.draw();
+                        next_frame().await;
+                    }
+                    self.draw();
+                    crate::ui_capture::framebuffer()?.export_png(
+                        output
+                            .join(format!("{label}-{suffix}.png"))
+                            .to_str()
+                            .unwrap(),
+                    );
+                }
+                crate::terminal_view::painted_scene_visibility::review_radius(None);
+                crate::prison_street_render::review_ambient(None);
+            }
+            if unified_review {
+                self.capture_unified_vision_after(output, &label).await?;
+            }
+            let r = self
+                .terminal
+                .world_cell_rect(
+                    &self.game,
+                    self.terminal_bounds(),
+                    self.ui_scale(),
+                    64,
+                    self.navigation_signal_summary().is_some(),
+                    crate::prison_street::pos(at),
+                    Vec2::ZERO,
+                )
+                .ok_or("Review actor outside viewport")?;
+            if r.w != 64. || r.h != 64. || suspension::fingerprint(&self.game) != before {
+                return Err("Expansion rendering changed scale or world".into());
+            }
+            records.push(serde_json::json!({"scene":label,"player":at,"cell":[r.x,r.y,r.w,r.h],
+                "roofs_hidden":s.roofs.iter().map(|r|r.hidden(&self.game)).collect::<Vec<_>>(),"render_read_only":true}));
+        }
+        let animations: Vec<(String, [i32; 2])> = if vision_review {
+            Vec::new()
+        } else {
+            serde_json::from_value(manifest["review_animations"].clone())
+                .map_err(|e| e.to_string())?
+        };
+        for (label, at) in animations {
+            self.walk_fixture_to_unchecked(crate::prison_street::pos(at))?;
+            self.capture_events_at(Some(0.));
+            let before = suspension::fingerprint(&self.game);
+            let r = self
+                .terminal
+                .world_cell_rect(
+                    &self.game,
+                    self.terminal_bounds(),
+                    self.ui_scale(),
+                    64,
+                    self.navigation_signal_summary().is_some(),
+                    crate::prison_street::pos(at),
+                    Vec2::ZERO,
+                )
+                .ok_or("Animation actor outside camera")?;
+            let crop = Rect::new((r.x - 320.).max(0.), (r.y - 256.).max(0.), 640., 384.);
+            for i in 0..24 {
+                let _time = crate::effect_geometry::frame_time(i as f64 * 0.125 + 0.4);
+                self.draw();
+                next_frame().await;
+                self.draw();
+                let frame = crate::ui_capture::framebuffer()?;
+                frame
+                    .sub_image(Rect::new(
+                        crop.x,
+                        frame.height as f32 - crop.y - crop.h,
+                        crop.w,
+                        crop.h,
+                    ))
+                    .export_png(output.join(format!("{label}-{i:02}.png")).to_str().unwrap());
+            }
+            if suspension::fingerprint(&self.game) != before {
+                return Err("Animation mutated simulation".into());
+            }
+        }
+        self.walk_fixture_to_unchecked(crate::prison_street::pos(s.entrance))?;
+        if self.execute_command(GameCommand::Interact {
+            target: crate::prison_street::pos(s.entrance),
+        }) != CommandOutcome::Applied
+            || self.game.current_zone().unwrap().id.as_str() != camp::ZONE_ID
+        {
+            return Err("Expansion return to camp failed".into());
+        }
+        if unified_review {
+            self.world_presentation_time.set(1.);
+            self.capture_events_at(Some(0.));
+            let before = suspension::fingerprint(&self.game);
+            for _ in 0..2 {
+                self.draw();
+                next_frame().await;
+            }
+            self.draw();
+            crate::ui_capture::framebuffer()?.export_png(output.join("camp.png").to_str().unwrap());
+            self.capture_unified_vision_after(output, "camp").await?;
+            let at = self
+                .game
+                .player_position()
+                .ok_or("Camp review player absent")?;
+            let r = self
+                .terminal
+                .world_cell_rect(
+                    &self.game,
+                    self.terminal_bounds(),
+                    self.ui_scale(),
+                    64,
+                    self.navigation_signal_summary().is_some(),
+                    at,
+                    Vec2::ZERO,
+                )
+                .ok_or("Camp review actor outside viewport")?;
+            if r.w != 64. || suspension::fingerprint(&self.game) != before {
+                return Err("Unified camp review mutated world".into());
+            }
+            records.push(serde_json::json!({"scene":"camp","player":[at.x,at.y],"cell":[r.x,r.y,r.w,r.h],"render_read_only":true}));
+        }
+        std::fs::write(
+            output.join("checks.json"),
+            serde_json::to_vec_pretty(&serde_json::json!({
+                "review":if defects_review {"DEFECTS-U01-01"} else if integrated {"MAP-U01-EXP-01-r06 / VISION-U01-04 integrated"} else if circle_review {"VISION-U01-04"} else if unified_review { "VISION-U01-03" } else if vision_review { "VISION-U01-02" } else { "MAP-U01-EXP-01-r06" },
+                "defects_review":defects_review,
+                "circle_review":circle_review,"unified_review":unified_review,"vision_review":vision_review,"integrated":integrated,"candidate_only":!integrated,"dimensions":[s.width,s.height],
+                "native_cell":64,"camp_round_trip":true,"animation_read_only":true,"scenes":records,
+                "player_vision_radius":self.game.rules().player_field_of_view.radius,
+                "generation":self.generation_version,"six_cell_vision":six_cell_vision,
+                "isolated_save":self.suspension_path,"next_zone_not_generated":true
+            }))
+            .unwrap(),
+        )
+        .map_err(|e| e.to_string())?;
+        Ok(())
+    }
+
+    async fn capture_street_roof_stage(
+        &mut self,
+        output: &std::path::Path,
+        label: &str,
+        records: &mut Vec<serde_json::Value>,
+    ) -> Result<(), String> {
+        self.world_presentation_time.set(1.);
+        self.capture_events_at(Some(0.));
+        let before = suspension::fingerprint(&self.game);
+        for _ in 0..2 {
+            self.draw();
+            next_frame().await;
+        }
+        self.draw();
+        crate::ui_capture::framebuffer()?
+            .export_png(output.join(format!("roof-{label}.png")).to_str().unwrap());
+        if suspension::fingerprint(&self.game) != before {
+            return Err("Roof rendering mutated the world".into());
+        }
+        let s = crate::prison_street::scene_for_game(&self.game);
+        let door = crate::prison_street::pos(s.home_entry);
+        let hidden = s.roofs[0].hidden(&self.game);
+        let cell = self
+            .terminal
+            .world_cell_rect(
+                &self.game,
+                self.terminal_bounds(),
+                self.ui_scale(),
+                64,
+                self.navigation_signal_summary().is_some(),
+                door,
+                Vec2::ZERO,
+            )
+            .map(|cell| [cell.x, cell.y, cell.w, cell.h]);
+        let visibility = self.game.player_visibility();
+        records.push(serde_json::json!({
+            "scene":label,"player":self.game.player_position().map(|p| [p.x,p.y]),
+            "door":format!("{:?}",self.game.map().tile(door).unwrap().terrain),
+            "roof_hidden":hidden,"render_read_only":true,
+            "door_cell":cell,
+            "roof_exposure":s.roofs[0].exposure(|p| visibility.is_visible(p),|p| self.terminal.known(p).is_some()),
+            "home_floor_visible":visibility.is_visible(crate::prison_street::pos(s.home_inside))
+        }));
+        next_frame().await;
+        Ok(())
+    }
+
+    async fn capture_street_roof_integration(
+        &mut self,
+        output: &std::path::Path,
+    ) -> Result<(), String> {
+        use project_rl::world::DoorState;
+        let s = crate::prison_street::scene_for_game(&self.game);
+        let door = crate::prison_street::pos(s.home_entry);
+        let mut records = Vec::new();
+        self.capture_street_roof_stage(output, "unknown", &mut records)
+            .await?;
+        self.walk_fixture_to_unchecked(GridPos::new(door.x, door.y + 1))?;
+        if self.game.map().tile(door).unwrap().terrain != Terrain::Door(DoorState::Closed) {
+            return Err("New street door must start closed".into());
+        }
+        self.capture_street_roof_stage(output, "closed", &mut records)
+            .await?;
+        self.select_world_target(None);
+        self.update_input_at(
+            &InputFrame {
+                pressed: [self.controls.binding(Action::Interact).clone()].into(),
+                pointer: Some((1., 1.)),
+                viewport: Some((1920., 1080.)),
+                ..Default::default()
+            },
+            Some(0.),
+        );
+        if self.game.map().tile(door).unwrap().terrain != Terrain::Door(DoorState::Open) {
+            return Err("Keyboard context did not open the door".into());
+        }
+        self.capture_street_roof_stage(output, "open", &mut records)
+            .await?;
+        self.walk_fixture_to_unchecked(door)?;
+        self.capture_street_roof_stage(output, "threshold", &mut records)
+            .await?;
+        self.walk_fixture_to_unchecked(GridPos::new(door.x, door.y - 1))?;
+        self.select_pointer_world_cell(door, None);
+        if self.game.map().tile(door).unwrap().terrain != Terrain::Door(DoorState::Closed)
+            || !s.roofs[0].hidden(&self.game)
+        {
+            return Err("Closing inside must keep the roof hidden".into());
+        }
+        self.capture_street_roof_stage(output, "inside-closed", &mut records)
+            .await?;
+        if self.execute_command(GameCommand::Interact { target: door }) != CommandOutcome::Applied {
+            return Err("Could not reopen from inside".into());
+        }
+        self.walk_fixture_to_unchecked(GridPos::new(door.x, door.y + 1))?;
+        self.select_pointer_world_cell(door, None);
+        if s.roofs[0].hidden(&self.game) {
+            return Err("Roof must return after closing outside".into());
+        }
+        self.capture_street_roof_stage(output, "reclosed", &mut records)
+            .await?;
+        self.walk_fixture_to_unchecked(crate::prison_street::pos(s.entrance))?;
+        if self.execute_command(GameCommand::Interact {
+            target: crate::prison_street::pos(s.entrance),
+        }) != CommandOutcome::Applied
+            || self.game.current_zone().unwrap().id.as_str() != camp::ZONE_ID
+        {
+            return Err("Camp return failed after door interactions".into());
+        }
+        std::fs::write(
+            output.join("checks.json"),
+            serde_json::to_vec_pretty(&serde_json::json!({
+                "review":"ROOF-U01-01-r01","integrated":true,"generation":self.generation_version,
+                "lighting_production_enabled":s.atmosphere.is_some(),"native_cell":64,
+                "keyboard_without_hover":true,"left_click_interaction":true,
+                "camp_round_trip":true,"scenes":records,
+                "isolated_save":self.suspension_path
+            }))
+            .unwrap(),
+        )
+        .map_err(|e| e.to_string())?;
+        Ok(())
+    }
+
     pub async fn capture_target_outline(output: &std::path::Path) -> Result<(), String> {
         use project_rl::{
             monster_art::{ArtRole, MONSTER_ART},

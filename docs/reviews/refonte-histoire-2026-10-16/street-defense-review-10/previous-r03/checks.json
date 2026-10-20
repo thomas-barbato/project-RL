@@ -1,0 +1,140 @@
+{
+  "engine": {
+    "animated_frames": 24,
+    "armor": "light silver steel",
+    "candidate_obstacle_route_len": 9,
+    "central_lane_clear": true,
+    "cover_shape": "L",
+    "feet_offset_keeps_guards_off_pillars": true,
+    "fires": 4,
+    "guards": 2,
+    "live_guards_installed": false,
+    "native_cell": 64,
+    "new_blood_props": 6,
+    "new_corpses": 12,
+    "new_damage_or_ai": false,
+    "production_map_changed": false,
+    "render_read_only": true,
+    "review": "DEFENSE-U01-10-r03",
+    "sandbag_positions": 2,
+    "scenes": [
+      {
+        "id": "gate",
+        "player": [
+          8,
+          61
+        ]
+      },
+      {
+        "id": "approach",
+        "player": [
+          8,
+          57
+        ]
+      },
+      {
+        "id": "south-fire",
+        "player": [
+          14,
+          58
+        ]
+      },
+      {
+        "id": "van-fire",
+        "player": [
+          18,
+          32
+        ]
+      },
+      {
+        "id": "west-fire",
+        "player": [
+          6,
+          23
+        ]
+      },
+      {
+        "id": "court-fire",
+        "player": [
+          15,
+          40
+        ]
+      }
+    ],
+    "status": "visual_proposal_only",
+    "user_saves_touched": false
+  },
+  "production_assets_unchanged": true,
+  "page_local_references_checked": 31,
+  "native_source_assets": 3,
+  "master_images_generated_with": "built-in imagegen",
+  "runtime_integrated": false,
+  "stature_same_native_scale": [
+    {
+      "id": "FIN-01",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot_anchor": [
+        64,
+        96
+      ],
+      "opaque_height_px": 60,
+      "alpha_threshold": 128,
+      "source_sha256": "db0199be3507e91f58ab645f60c56501c79759cc054ccd27f0b8dc1e45e65b17"
+    },
+    {
+      "id": "GARD-U01-01",
+      "canvas": [
+        64,
+        64
+      ],
+      "foot_anchor": [
+        32,
+        63
+      ],
+      "opaque_height_px": 62,
+      "alpha_threshold": 128,
+      "source_sha256": "695aeda9725954107745fe0c4f82821fbbe32aaa5bda3334232f12900e212d12"
+    },
+    {
+      "id": "GARD-U01-02",
+      "canvas": [
+        64,
+        64
+      ],
+      "foot_anchor": [
+        32,
+        63
+      ],
+      "opaque_height_px": 62,
+      "alpha_threshold": 128,
+      "source_sha256": "b7306b31e0f9d027ac35904fba19d58da10a53a0a6ec33a5f2dbcae3579c82f0"
+    }
+  ],
+  "immutable_reference_sha256": {
+    "approach-before.png": "aa344c5d9b64a7353cb9930bb1d06601f44b6f9d8cc8c93708ba30c984e1bf4b",
+    "approach-proposal.png": "bb6405240d8adae2e32b993b1734c1e6271a68f007a7ca699903c5cfd747d74d",
+    "court-fire-before.png": "2d4d6b3746e8986bd5767a3dc256a54e46fa80a86090598fd539da38f6fab123",
+    "court-fire-proposal.png": "6d4772bf72ae650d983f3ffc509e926455a93e0a41a8fe06043df7d1b52f5d63",
+    "gate-animated.gif": "115f4bf5c7506c49cd6512ccf537b98c1ee7dc3faf2b81d97afcc17a1c9a8b52",
+    "gate-before.png": "f2422d0b7c11f0a34d5eb78193133b3e7c1fe67290e4d89eafddd2f1c7d25897",
+    "gate-proposal.png": "6e689629932748953fbf43a17d72e6854faac359b7e100a2dc1f7ae991d24cf3",
+    "map-proposal.png": "80dcbcf12276d88db4419b9c9db59f0204c24b6fe0b78488daa935fa6e0bb5f6",
+    "south-fire-animated.gif": "4935b4dfd97bc7c689302c3cc981a4aa0daeea256cf4f7b79f4a1d8454f9e1a7",
+    "south-fire-before.png": "19001d0a7935699c556b252bb6d081003ea620e6139dd91c816f413ae2c24cb8",
+    "south-fire-proposal.png": "282b7a843dcc66cb5b6aa02d9692c033c09a072c4fb370580a11f46e66f9fd85",
+    "stature-native.png": "00f55ed0a1cc81f009246b3925edcdcc1f5935803d487deb7e2e1d9862e1137d",
+    "van-fire-before.png": "6c2b4ade3f89bb78af16707708c1bc3cda340572a56ff263c3e735f9a3913d61",
+    "van-fire-proposal.png": "dd04a9f9a011864d7ccb0a7aa5433efdb94411d281c01b3374ee42e597165ba9",
+    "west-fire-before.png": "20795596fd8d104c8cf61806792f53cc2f7171fc2f887e321f4f05149d8d0aea",
+    "west-fire-proposal.png": "477d9b27ac558df92205b7a1d8c473e25a42ad0c8c5655f3c09d931359d85ee8"
+  },
+  "validation_commands": {
+    "cargo_build_locked": "passed",
+    "cargo_fmt_all_check": "passed",
+    "git_diff_check": "passed; existing LF/CRLF notices only",
+    "engine_capture": "passed; six scenes and 24 animation frames, state unchanged"
+  }
+}

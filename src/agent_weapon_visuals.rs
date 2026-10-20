@@ -133,8 +133,11 @@ pub(super) fn draw(
             if skill == "HL02" {
                 let at = r.center() + vec2(0.0, -45.0 * r.w / 64.0);
                 for i in 0..3 {
-                    let angle = if reduced { 0.0 } else { now as f32 * 4.0 }
-                        + i as f32 * std::f32::consts::TAU / 3.0;
+                    let angle = if reduced {
+                        0.0
+                    } else {
+                        crate::animation_policy::clock(now) as f32 * 4.0
+                    } + i as f32 * std::f32::consts::TAU / 3.0;
                     let p = at + vec2(angle.cos() * 14.0, angle.sin() * 5.0) * (r.w / 64.0);
                     for (width, length, color) in [
                         (4.0, 4.0, INK),
@@ -578,10 +581,10 @@ pub(super) fn burst(
                     return;
                 }
                 let frame = ((t / 0.55 * 6.0) as usize).min(5);
-                if crate::effect_geometry::enabled()
-                    && let Some(cells) = cells
-                {
-                    crate::effect_geometry::fitted_cells(&art.blast, frame, cells, &rect, 0.9);
+                if crate::effect_geometry::enabled() && cells.is_some() {
+                    crate::natural_effect::sheet(
+                        &art.blast, frame, target, radius, 0.9, false, map, &rect,
+                    );
                     return;
                 }
                 let size = 134.0 * scale * (f32::from(radius.max(1)) + 0.5) / 1.5;
@@ -636,29 +639,6 @@ pub(super) fn burst(
     }
 }
 
-fn draw_sheet(
-    texture: &Texture2D,
-    at: Vec2,
-    size: Vec2,
-    frame: usize,
-    opacity: f32,
-    rotation: f32,
-) {
-    draw_texture_ex(
-        texture,
-        at.x - size.x * 0.5,
-        at.y - size.y * 0.5,
-        alpha(WHITE, opacity),
-        DrawTextureParams {
-            source: Some(Rect::new(frame.min(5) as f32 * 256.0, 0.0, 256.0, 256.0)),
-            dest_size: Some(size),
-            rotation,
-            pivot: Some(at),
-            ..Default::default()
-        },
-    );
-}
-
 /// Paint keeps its organic outline, while visible terrain alone cuts it.
 /// Scissors use top-left screen coordinates in Macroquad's quad_gl API.
 fn masked_sheet(
@@ -673,78 +653,21 @@ fn masked_sheet(
     rect: &impl Fn(GridPos) -> Option<Rect>,
     origin_rect: Rect,
     clip: Rect,
-    cells: Option<&[GridPos]>,
+    _cells: Option<&[GridPos]>,
 ) {
-    if crate::effect_geometry::enabled()
-        && let Some(cells) = cells
-    {
-        for at in cells {
-            if let Some(cell) = rect(*at) {
-                crate::effect_geometry::clipped(cell, clip, || {
-                    crate::effect_geometry::fitted_sheet(
-                        texture,
-                        frame.min(5),
-                        cells,
-                        rect,
-                        rotation,
-                        opacity,
-                    );
-                });
-            }
-        }
-        return;
-    }
-    let radius = size.length() * 0.5;
-    let extent = vec2(
-        size.x * rotation.cos().abs() + size.y * rotation.sin().abs(),
-        size.x * rotation.sin().abs() + size.y * rotation.cos().abs(),
-    ) * 0.5;
-    let bounds = Rect::new(
-        at.x - extent.x,
-        at.y - extent.y,
-        extent.x * 2.0,
-        extent.y * 2.0,
-    );
-    let centre = GridPos::new(
-        origin.x + ((at.x - origin_rect.center().x) / origin_rect.w).round() as i32,
-        origin.y + ((at.y - origin_rect.center().y) / origin_rect.h).round() as i32,
-    );
-    let span = (radius / origin_rect.w.min(origin_rect.h)).ceil() as i32 + 1;
-    for y in centre.y - span..=centre.y + span {
-        for x in centre.x - span..=centre.x + span {
-            let tile = GridPos::new(x, y);
-            let Some(r) = rect(tile) else {
-                continue;
-            };
-            if !r.overlaps(&bounds) {
-                continue;
-            }
-            if !map.is_walkable(tile)
-                || !project_rl::world::has_line_of_sight(map, origin, tile, true)
-            {
-                continue;
-            }
-            let x = r.x.floor().max(clip.x).max(0.0);
-            let y = r.y.floor().max(clip.y).max(0.0);
-            let w = (r.right().ceil().min(clip.right()).min(screen_width()) - x).max(0.0);
-            let h = (r.bottom().ceil().min(clip.bottom()).min(screen_height()) - y).max(0.0);
-            if w <= 0.0 || h <= 0.0 {
-                continue;
-            }
-            unsafe {
-                macroquad::window::get_internal_gl()
-                    .quad_gl
-                    .scissor(Some((x as i32, y as i32, w as i32, h as i32)));
-            }
-            draw_sheet(texture, at, size, frame, opacity, rotation);
-        }
-    }
-    unsafe {
-        macroquad::window::get_internal_gl().quad_gl.scissor(Some((
-            clip.x as i32,
-            clip.y as i32,
-            clip.w as i32,
-            clip.h as i32,
-        )));
-    }
+    let dest = Rect::new(at.x - size.x * 0.5, at.y - size.y * 0.5, size.x, size.y);
+    crate::effect_geometry::clipped(clip, clip, || {
+        crate::natural_effect::draw(
+            texture,
+            Rect::new(frame.min(5) as f32 * 256., 0., 256., 256.),
+            dest,
+            rotation,
+            opacity,
+            false,
+            origin,
+            origin_rect,
+            map,
+            rect,
+        )
+    });
 }
