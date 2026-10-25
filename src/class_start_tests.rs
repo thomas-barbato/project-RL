@@ -28,7 +28,7 @@ fn normal_start(index: usize) -> AsciiApp {
 fn class_start_uses_class_skin_without_an_item_and_first_active_can_be_removed_and_restored() {
     for (index, skill) in ["B01", "D59", "T01", "FE01", "M01"].into_iter().enumerate() {
         let mut app = normal_start(index);
-        assert_eq!(app.generation_version, 165);
+        assert_eq!(app.generation_version, CURRENT_GENERATION_VERSION);
         assert!(
             app.game
                 .player_equipment()

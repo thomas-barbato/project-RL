@@ -1,0 +1,73 @@
+{
+  "candidate_id": "ME-POST03",
+  "index": 20,
+  "source": {
+    "path": "assets/source-art/class-armor-pose-fixes-03/ME-POST03-source.png",
+    "sha256": "cf91d97323f9741e5bbde05ecd39735941dd2a2959d71f38806f58a1888aa548"
+  },
+  "native": {
+    "path": "assets/source-art/class-armor-pose-fixes-03/ME-POST03-native64.png",
+    "sha256": "085f5028f2e16f7bedd41ef0913b135398a825de277249a55959ca053ef0be3f"
+  },
+  "framing": {
+    "source_core_box": [
+      200,
+      31,
+      814,
+      1412
+    ],
+    "source_crop": [
+      179,
+      10,
+      835,
+      1433
+    ],
+    "isotropic_scale": 0.04055032585083273,
+    "native_core_box": [
+      19,
+      6,
+      44,
+      62
+    ],
+    "native_core_height": 56,
+    "native_core_width": 25,
+    "foot_baseline_y": 61,
+    "framing": "64x64, isotropic, Lanczos, source alpha retained"
+  },
+  "leg_ownership_polygon": [
+    [
+      24,
+      33
+    ],
+    [
+      39,
+      33
+    ],
+    [
+      42,
+      39
+    ],
+    [
+      49,
+      44
+    ],
+    [
+      50,
+      63
+    ],
+    [
+      15,
+      63
+    ],
+    [
+      16,
+      42
+    ],
+    [
+      22,
+      38
+    ]
+  ],
+  "preserved": "original pixels outside leg polygon, including head, torso, arms and hand anchors",
+  "status": "requested posture correction; awaiting visual feedback"
+}

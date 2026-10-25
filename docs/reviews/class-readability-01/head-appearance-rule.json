@@ -1,0 +1,100 @@
+{
+  "rule_id": "CLASS-READ01-HEAD02",
+  "date": "2026-10-21",
+  "rule_status": "accepted_by_explicit_user_request",
+  "visual_status": "five_classes_accepted_integration_authorized",
+  "source_user_requests": [
+    "L'armure de torse couvre par défaut la tête sauf si le joueur enfile un casque.",
+    "oui il faudra donc ajouter ca aussi à l'armure du bastion"
+  ],
+  "scope": "All five player classes, including all five accepted Bastion armor bodies.",
+  "head_visual_precedence": [
+    "If a helmet is equipped, use its head appearance instead of the torso armor's default head appearance.",
+    "Without an equipped helmet, use the head appearance belonging to the equipped torso armor.",
+    "Without torso armor or helmet, retain the class base appearance."
+  ],
+  "removing_helmet_restores_torso_default_head": true,
+  "helmet_override_changes_body": false,
+  "default_head_appearance_creates_a_helmet_item": false,
+  "preserve_class_identity_under_headgear_occlusion": true,
+  "native_cell": [
+    64,
+    64
+  ],
+  "color_variants": "deferred_by_user",
+  "bastion_body_candidates_preserved": [
+    "BA-W01-P01-r01",
+    "BA-W01-P02-r01",
+    "BA-W01-P03-r01",
+    "BA-W01-P04-r01",
+    "BA-W01-P05-r03"
+  ],
+  "bastion_default_head_appearances": "five_accepted_copper_progression_heads",
+  "prior_native_compositions": "preserved_as_reviewed_snapshots; do not infer acceptance of new head drawings",
+  "runtime_integration": true,
+  "integration_gate": "Latest explicit user authorization: integrate approved outfits and verify all current weapons; independent new helmet designs and color variants are not approved by extension.",
+  "bastion_head_review": "docs/reviews/class-readability-01/bastion-copper-wave-01/candidates.json",
+  "bastion_head_acceptance": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+  "technomancien_default_head_appearances": "five_accepted_brighter_progressively_protected_robe_free_heads",
+  "technomancien_head_review": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/candidates.json",
+  "technomancien_identity_acceptance": "docs/reviews/class-readability-01/technomancien-heads-01/acceptance.json",
+  "review_workflow": "all_classes_then_joint_native64_review",
+  "joint_armor_review": "docs/reviews/class-readability-01/metamorphe-biodruid-wave-03/joint-native64-review.json",
+  "traqueuse_head_review": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/candidates.json",
+  "arcaniste_head_review": "docs/reviews/class-readability-01/arcaniste-red-robe-wave-05/candidates.json",
+  "technomancien_identity_acceptance_status": "historical_reference_superseded_by_user_requested_revision",
+  "current_visual_study": "docs/reviews/class-readability-01/metamorphe-biodruid-wave-03/candidates.json",
+  "prior_acceptances_status": "historical_evidence_preserved_after_latest_global_dissatisfaction",
+  "historical_bastion_head_acceptance": "docs/reviews/class-readability-01/bastion-heads-02/acceptance.json",
+  "bastion_copper_armor_acceptance": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+  "future_technomancien_color_intent": {
+    "red_only_changes": true,
+    "gold_edging_fixed": true,
+    "status": "robe-color request retained historically; production variants deferred; new bare metal tint mapping not inferred"
+  },
+  "technomancien_head_acceptance": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+  "technomancien_armor_acceptance": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+  "traqueuse_default_head_appearances": "five_accepted_sniper_ninja_default_heads",
+  "traqueuse_head_acceptance": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+  "traqueuse_armor_acceptance": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+  "arcaniste_default_head_appearances": "five_accepted_red_robed_default_heads; legacy ivory mask at 04 and reinforced masked hood at 05",
+  "arcaniste_face_consistency": {
+    "reference": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-FACE03-identity-reference.png",
+    "method": "same identity reference for exposed faces 01-02; progressively occluded by hood, cloth and mask afterwards",
+    "visible_native_face_reused": false,
+    "headwear_may_hide_forehead_temples_or_cheeks": true,
+    "visual_status": "accepted_as_shown",
+    "current_revision": "ARCANISTE-RED-ROBE-W05"
+  },
+  "arcaniste_head_attachment": {
+    "review": "ARCANISTE-RED-ROBE-W05",
+    "method": "whole head and body drawn together with short neck; no inherited two-pixel correction applied to new sources",
+    "foot_baseline_y": 61,
+    "status": "accepted_as_shown"
+  },
+  "historical_arcaniste_shared_face_review": {
+    "reference": "AR-MH02-P01-r01",
+    "visible_native_face_reused": true,
+    "traits_expression_and_orientation": "shared under headwear",
+    "current_revision": "ARCANISTE-SHORT-NECK04",
+    "visual_status": "pending_user_review",
+    "headwear_may_hide_forehead_temples_or_cheeks": true
+  },
+  "historical_arcaniste_head_attachment": {
+    "native_translation": [
+      0,
+      2
+    ],
+    "review": "ARCANISTE-SHORT-NECK04",
+    "status": "pending_user_visual_review",
+    "head_pixels_preserved": true,
+    "body_foot_anchor_y": 61
+  },
+  "arcaniste_head_acceptance": "docs/reviews/class-readability-01/arcaniste-red-robe-wave-05/acceptance.json",
+  "arcaniste_armor_acceptance": "docs/reviews/class-readability-01/arcaniste-red-robe-wave-05/acceptance.json",
+  "metamorphe_default_head_appearances": "five proposed heads: bare hair, cloth bands, compact temples and chin guards; no broad forehead plate",
+  "metamorphe_armor_acceptance": "docs/reviews/class-readability-01/metamorphe-biodruid-wave-03/acceptance.json",
+  "metamorphe_head_acceptance": "docs/reviews/class-readability-01/metamorphe-biodruid-wave-03/acceptance.json",
+  "integration_checks": "docs/reviews/class-armor-integration-01/validation.json",
+  "open_helmet_identity": "Canonical uncovered head of the current class; both female faces preserved across all torso stages."
+}

@@ -1,0 +1,178 @@
+{
+  "review_id": "METAMORPHE-BIODRUID-ST02",
+  "date": "2026-10-22",
+  "status": "awaiting_native64_visual_review",
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "ME-BD02-P03-r01",
+      "intended_progression_rank": 3,
+      "class_id": "core:metamorphe",
+      "presentation_gender": "female",
+      "form": "human_resting",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/ME-BD02-P03-r01-source.png",
+      "source_sha256": "0711050b7adc994e0ff335052575f146cc54061132f4aaeaee5549f1d40d820c",
+      "native": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/ME-BD02-P03-r01-native64.png",
+      "native_sha256": "08bb1b67383dc33ac3c4ae6d0325a3a1d5e1bfd8e46b649a380f84b6ddc850c2",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          190,
+          36,
+          880,
+          1458
+        ],
+        "source_crop": [
+          169,
+          15,
+          901,
+          1479
+        ],
+        "isotropic_scale": 0.03938115330520394,
+        "native_core_box": [
+          19,
+          6,
+          46,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 27,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/ME-BD02-P03-r01-head-native64.png",
+          "sha256": "59129fcad7f705511c42d4e660bdac5fded5d8240088eee7da471c2e9dfb547f"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/ME-BD02-P03-r01-body-native64.png",
+          "sha256": "01490cdcebdea23273b7c3d284ae3be077f5406ed258871ec5dc3956e69fb376"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/ME-BD02-P03-r01-head-mask-native64.png",
+          "sha256": "0b656dc9464f50d73c2efe1c0a9d2ac3487a83f3dbbe1ae29a375cd6b66ea361"
+        }
+      },
+      "head_ownership_polygon": [
+        [
+          28,
+          4
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          38,
+          9
+        ],
+        [
+          37,
+          14
+        ],
+        [
+          34,
+          17
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          27,
+          13
+        ],
+        [
+          26,
+          9
+        ]
+      ],
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_anchor": [
+        32,
+        13
+      ],
+      "rig_status": "study split; production helmet override and weapon grips pending"
+    }
+  ],
+  "user_liked_reference_outfits": [
+    {
+      "number": "02",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/references/user-01-composite-armor.png",
+      "source_sha256": "39d2d3e2e00a0372642306f5cd88af17dfe04d6c5a815136e51fa0740aef4f33",
+      "native": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/user-reference-02-native64.png",
+      "native_sha256": "c9562de8d04fc5a579f8be7e54aab55d24ee4b0bfbd77701c107ed8917ca72da",
+      "framing": {
+        "source_core_box": [
+          322,
+          89,
+          863,
+          1243
+        ],
+        "source_crop": [
+          305,
+          72,
+          880,
+          1260
+        ],
+        "isotropic_scale": 0.04852686308492201,
+        "native_core_box": [
+          19,
+          6,
+          45,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 26,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "status": "user_liked_reference; no new acceptance or integration inferred"
+    },
+    {
+      "number": "03",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/references/user-02-light-outfit.png",
+      "source_sha256": "4314091df069b41974be573dab988ef1c4bfc9dd8cb6ce6535a644e438020c5d",
+      "native": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/user-reference-03-native64.png",
+      "native_sha256": "92f9ff694df596eb806f0637ee1c53b857cd8bd08e2181dab41f01d5aca411e1",
+      "framing": {
+        "source_core_box": [
+          289,
+          38,
+          950,
+          1247
+        ],
+        "source_crop": [
+          271,
+          20,
+          968,
+          1265
+        ],
+        "isotropic_scale": 0.04631927212572374,
+        "native_core_box": [
+          17,
+          6,
+          47,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 30,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "status": "user_liked_reference; no new acceptance or integration inferred"
+    }
+  ],
+  "previous_study": "METAMORPHE-DRUID-ST01",
+  "runtime_integration": false,
+  "color_variants": "deferred_by_user"
+}

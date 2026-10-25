@@ -1,0 +1,565 @@
+{
+  "review_id": "ARCANISTE-CANALISATION-W01",
+  "date": "2026-10-22",
+  "status": "awaiting_native64_visual_review",
+  "class_id": "core:arcaniste",
+  "class_name": "Arcaniste",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "native_height": 60,
+  "runtime_integration": false,
+  "color_variants": "deferred",
+  "reference_acceptances": [
+    {
+      "path": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+      "sha256": "6d55febb0bd152cca21df65f000b37da01a19d49179fedf9d74309e93bb40028"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+      "sha256": "d51882a635cbd8e024e366f4442cf238e1345668b2d0c03d152d7d6f0f4a0e02"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+      "sha256": "f8ecf404d5c60e6d9c5686def4b8221bc822e44b0a69201163e972b53b15f566"
+    }
+  ],
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "AR-CA01-P01-r01",
+      "rank": 1,
+      "label": "Très légère",
+      "class_name": "Arcaniste",
+      "class_id": "core:arcaniste",
+      "presentation_gender": "male",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P01-r01-source.png",
+      "source_sha256": "372360c0c64ba21c8e1dcf9eea30af6239aab377e017a4db6ec3873650dccc2e",
+      "native": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P01-r01-native64.png",
+      "native_sha256": "5861685a5a81ee0b6ec7acd61d1d6229d04a488982016d2fdfabab5d448fef74",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          403,
+          41,
+          857,
+          1213
+        ],
+        "source_crop": [
+          385,
+          23,
+          875,
+          1231
+        ],
+        "isotropic_scale": 0.051194539249146756,
+        "native_core_box": [
+          21,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 23,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        21,
+        2,
+        44,
+        62
+      ],
+      "native_core_width": 23,
+      "native_core_height": 60,
+      "solid_silhouette_pixels": 697,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Tête nue",
+      "head_ownership_polygon": [
+        [
+          29,
+          1
+        ],
+        [
+          35,
+          1
+        ],
+        [
+          38,
+          4
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          12
+        ],
+        [
+          29,
+          12
+        ],
+        [
+          26,
+          8
+        ],
+        [
+          26,
+          4
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P01-r01-head-native64.png",
+          "sha256": "85389dae73e26a0354485ecd3d8428315defa1e55e0bd903b83d9a0fb807d543"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P01-r01-body-native64.png",
+          "sha256": "2413304981dac6f409590f3ef874960d67d9529722efaaa942b78bb4dbec91e9"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P01-r01-head-mask-native64.png",
+          "sha256": "65acb0f7b5291be0f54d61145eb8d50a4fbc4bfc7de14e0813fb679f21354704"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; independent helmets and weapon grips not prepared"
+    },
+    {
+      "number": "02",
+      "candidate_id": "AR-CA01-P02-r01",
+      "rank": 2,
+      "label": "Légère",
+      "class_name": "Arcaniste",
+      "class_id": "core:arcaniste",
+      "presentation_gender": "male",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P02-r01-source.png",
+      "source_sha256": "8b9e5697da459fedea1826e7a939aa78ac6cee85a278584d0ebf0d66d6a08371",
+      "native": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P02-r01-native64.png",
+      "native_sha256": "b72a5c2cf712a15a8017a725283f330a45fc806fe71d1d537c2efc02c0d76e08",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          379,
+          40,
+          853,
+          1225
+        ],
+        "source_crop": [
+          361,
+          22,
+          871,
+          1243
+        ],
+        "isotropic_scale": 0.05063291139240506,
+        "native_core_box": [
+          20,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 24,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        20,
+        2,
+        44,
+        62
+      ],
+      "native_core_width": 24,
+      "native_core_height": 60,
+      "solid_silhouette_pixels": 785,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Bandeau protecteur",
+      "head_ownership_polygon": [
+        [
+          29,
+          1
+        ],
+        [
+          35,
+          1
+        ],
+        [
+          38,
+          4
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          12
+        ],
+        [
+          29,
+          12
+        ],
+        [
+          26,
+          8
+        ],
+        [
+          26,
+          4
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P02-r01-head-native64.png",
+          "sha256": "3d482fd06f1015283bd107563e8c847dd46bc770cae3c92fd815cedcd3f9c620"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P02-r01-body-native64.png",
+          "sha256": "7fce30640deb893954114ba716336ca23bcb3b081555492ee400c4490e265bb9"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P02-r01-head-mask-native64.png",
+          "sha256": "65acb0f7b5291be0f54d61145eb8d50a4fbc4bfc7de14e0813fb679f21354704"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; independent helmets and weapon grips not prepared"
+    },
+    {
+      "number": "03",
+      "candidate_id": "AR-CA01-P03-r01",
+      "rank": 3,
+      "label": "Interméd.",
+      "class_name": "Arcaniste",
+      "class_id": "core:arcaniste",
+      "presentation_gender": "male",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P03-r01-source.png",
+      "source_sha256": "c23b7ba4c61823f4a75c160ac20adbc198b21980cd475275e7db3a7ffd8423fa",
+      "native": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P03-r01-native64.png",
+      "native_sha256": "5da8ae508203f6242ec3f74bd42c4f08453c662bc0b04d06b00db36cb4175332",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          370,
+          33,
+          855,
+          1242
+        ],
+        "source_crop": [
+          352,
+          15,
+          873,
+          1260
+        ],
+        "isotropic_scale": 0.04962779156327544,
+        "native_core_box": [
+          20,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 24,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        20,
+        2,
+        44,
+        62
+      ],
+      "native_core_width": 24,
+      "native_core_height": 60,
+      "solid_silhouette_pixels": 873,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Coiffe renforcée",
+      "head_ownership_polygon": [
+        [
+          29,
+          1
+        ],
+        [
+          35,
+          1
+        ],
+        [
+          38,
+          4
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          12
+        ],
+        [
+          29,
+          12
+        ],
+        [
+          26,
+          8
+        ],
+        [
+          26,
+          4
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P03-r01-head-native64.png",
+          "sha256": "4dbbf4411abae2aef1cbd114a6cba1a54fa0583234da51138147729a669570bb"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P03-r01-body-native64.png",
+          "sha256": "8d0d48148fad18feb3534360a4b7eb4ba7be4750ce703f52d3cc7d9b868799a7"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P03-r01-head-mask-native64.png",
+          "sha256": "65acb0f7b5291be0f54d61145eb8d50a4fbc4bfc7de14e0813fb679f21354704"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; independent helmets and weapon grips not prepared"
+    },
+    {
+      "number": "04",
+      "candidate_id": "AR-CA01-P04-r02",
+      "rank": 4,
+      "label": "Lourde",
+      "class_name": "Arcaniste",
+      "class_id": "core:arcaniste",
+      "presentation_gender": "male",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P04-r02-source.png",
+      "source_sha256": "c05e4993374ddff552cee15c1e4ef69fd502cb429e81013f229409f119b75f04",
+      "native": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P04-r02-native64.png",
+      "native_sha256": "919df3981606a47de1e9bef73e7e2b547201ebe7fd0e24cea5499b0311e8ab5c",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          364,
+          20,
+          870,
+          1210
+        ],
+        "source_crop": [
+          346,
+          2,
+          888,
+          1228
+        ],
+        "isotropic_scale": 0.05042016806722689,
+        "native_core_box": [
+          19,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 25,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        19,
+        2,
+        44,
+        62
+      ],
+      "native_core_width": 25,
+      "native_core_height": 60,
+      "solid_silhouette_pixels": 931,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Casque ouvert",
+      "head_ownership_polygon": [
+        [
+          29,
+          1
+        ],
+        [
+          35,
+          1
+        ],
+        [
+          38,
+          4
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          12
+        ],
+        [
+          29,
+          12
+        ],
+        [
+          26,
+          8
+        ],
+        [
+          26,
+          4
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P04-r02-head-native64.png",
+          "sha256": "0dc9f2091e2978309396896ffec1f18d305e06464d482905899b3d6ab819937c"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P04-r02-body-native64.png",
+          "sha256": "51dc98db9921e1f5516ff9a9f9eb9bbb99a2477a0ae41bad2ad1f96632af1fa8"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P04-r02-head-mask-native64.png",
+          "sha256": "65acb0f7b5291be0f54d61145eb8d50a4fbc4bfc7de14e0813fb679f21354704"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; independent helmets and weapon grips not prepared"
+    },
+    {
+      "number": "05",
+      "candidate_id": "AR-CA01-P05-r01",
+      "rank": 5,
+      "label": "Très lourde",
+      "class_name": "Arcaniste",
+      "class_id": "core:arcaniste",
+      "presentation_gender": "male",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P05-r01-source.png",
+      "source_sha256": "130df90ad1fdbf80420cf4c6acf9049d4c2bb2fd817c7e6ab1cfd16e5c22bdf9",
+      "native": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P05-r01-native64.png",
+      "native_sha256": "3888ce325b3a898b0f8e995e8c8225380f6525d2324b0562004145fc81508269",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          352,
+          34,
+          892,
+          1248
+        ],
+        "source_crop": [
+          334,
+          16,
+          910,
+          1266
+        ],
+        "isotropic_scale": 0.04942339373970346,
+        "native_core_box": [
+          19,
+          2,
+          45,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 26,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        19,
+        2,
+        45,
+        62
+      ],
+      "native_core_width": 26,
+      "native_core_height": 60,
+      "solid_silhouette_pixels": 974,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Casque intégral",
+      "head_ownership_polygon": [
+        [
+          29,
+          1
+        ],
+        [
+          35,
+          1
+        ],
+        [
+          38,
+          4
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          26,
+          8
+        ],
+        [
+          26,
+          4
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P05-r01-head-native64.png",
+          "sha256": "e8cd68df0d4ca330ca1b6e9ced3f3015089af65b2150fe05168fbb2c3e87a0d2"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P05-r01-body-native64.png",
+          "sha256": "fb648d6111a811f98859b681716ae4925cdc246ad3cc10fe4d7065f1cd688331"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P05-r01-head-mask-native64.png",
+          "sha256": "3776ae0ecbac88abef9be556948ec74daeae496a999b9db30537987d76ace928"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; independent helmets and weapon grips not prepared"
+    }
+  ]
+}

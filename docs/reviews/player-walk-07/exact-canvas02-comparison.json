@@ -1,0 +1,36 @@
+{
+  "execution": "read-only HTML DATA extraction; no attached instructions executed",
+  "canvas02_rows": [
+    7,
+    1
+  ],
+  "comparisons": [
+    {
+      "key": "atlas",
+      "exact_canvas_size": [
+        384,
+        512
+      ],
+      "previous_reference_size": [
+        384,
+        512
+      ],
+      "pixels_equal": true,
+      "canvas_sha256": "8b251be4a0eaf3fb2b63ba5aac14b766ad81ef5f57fd030c467b67a803ca1670"
+    },
+    {
+      "key": "idle",
+      "exact_canvas_size": [
+        256,
+        128
+      ],
+      "previous_reference_size": [
+        256,
+        128
+      ],
+      "pixels_equal": true,
+      "canvas_sha256": "9f590665ae463892214a8ce2cf70e0d4faf6cb4db5a550df386f6d0e7b14bee4"
+    }
+  ],
+  "r04_status": "rejected_by_user"
+}

@@ -1,0 +1,88 @@
+<div id="rl-walk-armed">
+  <div class="armed-toolbar"><div class="viz-controls">
+    <label class="form-label">Équipement <select class="form-select" data-control="equipment"><option value="rifle">03 · Fusil · deux mains</option></select></label>
+    <label class="form-label">Transition <select class="form-select" data-control="pace"><option value="400">400 ms · choix retenu</option><option value="200">200 ms</option><option value="120">120 ms</option></select></label>
+    <label class="form-label">Sol <select class="form-select" data-control="floor"><option value="dark">Sombre</option><option value="light">Clair</option></select></label>
+  </div></div>
+  <div class="viz-controls">
+    <button class="btn btn-primary" type="button" data-action="play">Pause</button>
+    <button class="btn" type="button" data-action="cell">Avancer d’une case</button>
+    <button class="btn" type="button" data-action="frame">Image suivante</button>
+  </div>
+  <div class="armed-scenes">
+    <section><h3>Gauche / droite</h3><canvas data-scene="0" width="288" height="256" role="img" aria-label="Bastion équipé, marche à gauche et à droite, une case à la fois"></canvas><div class="text-small">64 px par case · taille de jeu</div><canvas data-zoom="0" width="256" height="256" role="img" aria-label="Zoom deux fois des appuis et de la prise en déplacement latéral"></canvas></section>
+    <section><h3>Haut / bas · de face</h3><canvas data-scene="1" width="288" height="256" role="img" aria-label="Bastion équipé, marche verticale en conservant sa posture de face"></canvas><div class="text-small">64 px par case · taille de jeu</div><canvas data-zoom="1" width="256" height="256" role="img" aria-label="Zoom deux fois des appuis et de la prise en déplacement vertical"></canvas></section>
+  </div>
+  <div class="viz-row text-small"><span data-movement>À l’arrêt</span><span>Zoom ×2 sous chaque scène</span><span data-status aria-live="polite">Chargement des poses…</span></div>
+</div>
+<style>
+  #rl-walk-armed .armed-toolbar{padding-right:92px}
+  #rl-walk-armed .armed-scenes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:12px}
+  #rl-walk-armed section{min-width:0;text-align:center}
+  #rl-walk-armed h3{margin:8px 0}
+  #rl-walk-armed canvas{display:block;image-rendering:pixelated;margin:8px auto;max-width:100%;object-fit:contain}
+  #rl-walk-armed [data-scene]{width:288px;height:256px}
+  #rl-walk-armed [data-zoom]{width:256px;height:256px}
+  @media(max-width:620px){#rl-walk-armed .armed-scenes{grid-template-columns:1fr}#rl-walk-armed .armed-toolbar{padding-right:0}}
+</style>
+<script>
+(()=>{
+  const root=document.getElementById('rl-walk-armed');
+  const DATA=__ARMED_DATA__;
+  const controls=Object.fromEntries(['equipment','pace','floor'].map(k=>[k,root.querySelector(`[data-control="${k}"]`)]));
+  const saved=window.openai?.widgetState?.modelContent||{};
+  const own=saved.review==='armed02';
+  const state={equipment:own&&DATA.equipment.some(e=>e.id===saved.equipment)?saved.equipment:'rifle',pace:own&&[120,200,400].includes(+saved.pace)?+saved.pace:400,floor:saved.floor==='light'?'light':'dark',playing:!matchMedia('(prefers-reduced-motion: reduce)').matches,automatic:true};
+  const routes=[[[80,144],[144,144],[208,144],[144,144],[80,144]],[[144,80],[144,144],[144,208],[144,144],[144,80]]];
+  const scenes=Array.from(root.querySelectorAll('[data-scene]')),zooms=Array.from(root.querySelectorAll('[data-zoom]'));
+  const movement=root.querySelector('[data-movement]'),status=root.querySelector('[data-status]'),play=root.querySelector('[data-action="play"]');
+  const tiles=Array.from({length:2},()=>{const c=document.createElement('canvas');c.width=c.height=128;return c;});
+  const images=new Map();let loaded=0,index=0,stepCount=0,transition=null,rest=0,previous=0,lateral=2;
+  const grounds={dark:{a:'#293132',b:'#303a3b',line:'#414b49',detail:'#1c2425',target:'#90a4a7',shadow:'rgba(4,9,12,.5)'},light:{a:'#b5afa0',b:'#bdb6a7',line:'#999689',detail:'#a09a8c',target:'#5a6868',shadow:'rgba(28,30,29,.32)'}};
+  for(const item of DATA.equipment){const option=document.createElement('option');option.value=item.id;option.textContent=String(item.number).padStart(2,'0')+' · '+item.label;controls.equipment.append(option);}
+  controls.equipment.firstElementChild.remove();
+  function remember(){window.openai?.setWidgetState?.({modelContent:{review:'armed02',equipment:state.equipment,pace:state.pace,floor:state.floor},privateContent:null}).catch(()=>{});}
+  function sync(){play.textContent=state.playing?'Pause':'Lecture auto';for(const key of Object.keys(controls))controls[key].value=String(state[key]);}
+  function startStep(){if(transition)return;if(index>=4)index=0;transition={age:0};lateral=routes[0][index+1][0]>routes[0][index][0]?2:0;movement.textContent='Une action = une case · déplacement';}
+  function advance(delta){
+    if(transition){transition.age+=delta;if(transition.age>=state.pace){index++;stepCount++;transition=null;rest=0;movement.textContent='Arrêt sur la case';if(!state.automatic){state.playing=false;sync();}}}
+    else if(state.automatic){rest+=delta;if(rest>=520)startStep();}
+  }
+  function location(scene){
+    const a=routes[scene][index];
+    if(!transition)return {x:a[0],y:a[1],frame:0,target:a};
+    const b=routes[scene][index+1],t=Math.min(1,transition.age/state.pace),p=1-(1-t)*(1-t);
+    return {x:Math.round(a[0]+(b[0]-a[0])*p),y:Math.round(a[1]+(b[1]-a[1])*p),frame:1+(stepCount%2)*3+Math.min(2,Math.floor(t*3)),target:b};
+  }
+  function ground(ctx,w,h,scale=1,offset=-16){
+    const c=grounds[state.floor];ctx.fillStyle=c.a;ctx.fillRect(0,0,w,h);const tile=64*scale;
+    for(let y=offset-tile;y<h;y+=tile)for(let x=offset-tile;x<w;x+=tile){
+      if((Math.round((x-offset)/tile)+Math.round((y-offset)/tile))%2===0){ctx.fillStyle=c.b;ctx.fillRect(x,y,tile,tile);}
+      ctx.strokeStyle=c.line;ctx.lineWidth=1;ctx.strokeRect(x+.5,y+.5,tile,tile);
+      ctx.strokeStyle=c.detail;ctx.beginPath();ctx.moveTo(x+14*scale,y+22*scale);ctx.lineTo(x+23*scale,y+27*scale);ctx.lineTo(x+28*scale,y+24*scale);ctx.stroke();
+    }
+  }
+  function render(){
+    if(loaded!==DATA.equipment.length)return;
+    const image=images.get(state.equipment);
+    for(let scene=0;scene<2;scene++){
+      const at=location(scene),direction=scene===1?1:lateral,tile=tiles[scene],part=tile.getContext('2d');
+      part.clearRect(0,0,128,128);part.imageSmoothingEnabled=false;part.drawImage(image,at.frame*128,direction*128,128,128,0,0,128,128);
+      const ctx=scenes[scene].getContext('2d');ctx.imageSmoothingEnabled=false;ground(ctx,288,256);
+      ctx.strokeStyle=grounds[state.floor].target;ctx.strokeRect(at.target[0]-31.5,at.target[1]-31.5,63,63);
+      ctx.fillStyle=grounds[state.floor].shadow;ctx.beginPath();ctx.ellipse(at.x,at.y+30,17,5,0,0,Math.PI*2);ctx.fill();
+      ctx.drawImage(tile,at.x-64,at.y-64);
+      const z=zooms[scene].getContext('2d');z.imageSmoothingEnabled=false;ground(z,256,256,2,64);z.drawImage(tile,0,0,128,128,0,0,256,256);
+      if(scene===0){root.dataset.frame=String(at.frame);root.dataset.cell=String(index);root.dataset.moving=String(!!transition);root.dataset.lateral=String(direction);}
+    }
+    root.dataset.ready='true';root.dataset.vertical='front';root.dataset.pace=String(state.pace);root.dataset.equipment=state.equipment;
+  }
+  for(const item of DATA.equipment){const im=new Image();images.set(item.id,im);im.onload=()=>{loaded++;if(loaded===DATA.equipment.length){status.textContent='Prises de revue · hors du jeu';render();}};im.onerror=()=>{status.textContent='Impossible de charger les poses.';status.setAttribute('role','alert');};im.src=item.image;}
+  function tick(now){if(previous&&state.playing)advance(Math.min(80,now-previous));previous=now;render();requestAnimationFrame(tick);}
+  play.addEventListener('click',()=>{state.playing=!state.playing;if(state.playing)state.automatic=true;sync();});
+  root.querySelector('[data-action="cell"]').addEventListener('click',()=>{state.automatic=false;startStep();state.playing=true;sync();});
+  root.querySelector('[data-action="frame"]').addEventListener('click',()=>{state.playing=false;state.automatic=false;startStep();advance(state.pace/3);sync();render();});
+  for(const key of Object.keys(controls))controls[key].addEventListener('change',e=>{state[key]=key==='pace'?+e.target.value:e.target.value;remember();render();});
+  sync();requestAnimationFrame(tick);
+})();
+</script>

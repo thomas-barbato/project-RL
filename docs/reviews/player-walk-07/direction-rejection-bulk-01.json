@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-24",
+  "player_quote": "Ces image n’est pas bonne, elle présente sur les 2 lignes la meme direction et y’en a encore beaucoup d’autres...",
+  "follow_up_quote": "tu recommences à faire des planches qui vont dans la meme direction",
+  "runtime_integration": false,
+  "visual_acceptance": false,
+  "distinct_reported_identities": [
+    "MON-151-0",
+    "MON-159-0",
+    "MON-152-0",
+    "MON-135-0",
+    "MON-134-0",
+    "MON-121-0",
+    "MON-119-0",
+    "MON-123-0"
+  ],
+  "source_failures": "Several two-row sources actually repeated the same direction. Single-direction eight-pose work sheets were also exposed too early; these are excluded from complete-cycle comparisons.",
+  "selected_replacements": "bulk-draft-selection.json",
+  "presentation_rule": "Only complete left/right comparisons after inspection; no standalone single-direction intermediate sheets."
+}

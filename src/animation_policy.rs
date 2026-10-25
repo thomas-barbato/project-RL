@@ -33,6 +33,7 @@ thread_local! {
     static PLAIN: RefCell<Option<Material>> = const { RefCell::new(None) };
 }
 pub fn with_gain<T>(gain: f32, draw: impl FnOnce() -> T) -> T {
+    let _color = crate::world_readability::color();
     struct Guard(Option<f32>);
     impl Drop for Guard {
         fn drop(&mut self) {

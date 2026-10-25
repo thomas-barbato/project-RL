@@ -1,0 +1,56 @@
+{
+  "review_id": "CLASS-MELEE-GRIP04",
+  "native_tile": 64,
+  "one_hand_melee_models": 27,
+  "outfits": 25,
+  "hand_cases": 1350,
+  "focused_compositions": 1475,
+  "ordinary_compositions": 3100,
+  "exactly_preserved_compositions": 3000,
+  "changed_compositions": 100,
+  "unexpected_changes": [],
+  "changed_models": [
+    68,
+    79
+  ],
+  "source_pixels": "no raster assets modified; mirror whole colored weapon around its grip",
+  "mechanics_changes": false,
+  "save_format_changes": false,
+  "visual_approval": "corrective orientation requested; awaiting feedback",
+  "source_acceptance_hashes_verified": 5,
+  "frozen_native_source_groups_verified": 25,
+  "status": "integrated_corrective_orientation_technical_checks_passed_awaiting_visual_feedback",
+  "tests": {
+    "class_armor_checks_passed": 10,
+    "bevel_regression_final_rerun_passed": 1,
+    "all_weapon_attachment_cases": 5650,
+    "debug_build": "passed",
+    "release_build": "passed",
+    "targeted_rustfmt": "passed",
+    "git_diff_check": "passed",
+    "python_compile": "passed"
+  },
+  "gpu": {
+    "actual_item_to_visual_binding": true,
+    "all_five_classes": true,
+    "gpu_pages": 16,
+    "native_tile": 64,
+    "open_helmet_faces": "canonical uncovered class head; female identity retained",
+    "ordinary_player_renderer": true,
+    "outfit_count": 25,
+    "review_id": "CLASS-ARMOR-INTEGRATION01"
+  },
+  "browser": {
+    "native_board_dimensions": [
+      620,
+      590
+    ],
+    "bevel_zoom_dimensions": [
+      620,
+      220
+    ],
+    "display_matches_natural_dimensions": true,
+    "screenshot": "artifacts/class-armor-integration-01/melee-grip-04/browser-native-review.png"
+  },
+  "inspection": "native before/after on all five classes, both hands and two knives; bevel zoom; all 27 right/left heavy Bastion shapes; ordinary GPU dual-knives across all 25 outfits"
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "MON-099-0-left",
+    "prompt": "Use case: identity-preserve. Image1 is ONLY the exact LEFT-facing whole-body gait and direction guide. Image2 is the creature identity to draw. Make the creature from image2 follow the LEFT directions and compact poses of image1. EXACTLY EIGHT complete figures in FOUR columns TWO rows, ALL EIGHT FACE SCREEN LEFT. Row-major idle,walk0,walk1,walk2 / walk3,walk4,walk5,repeatedidle. Every torso front, recessed faceless head/neck, sternum, waist, hips, knees and toes must turn LEFT together. Do not simply turn a head or keep the chest facing right. This is the existing headless pale/orange bulky mutant with TWO legs and TWO arms, dark waist, original orange shoulder carapace and gray-black forearm armor. Preserve original body mass and proportions, big armored forearm on viewerLEFT, smaller original clawed hand on viewerRIGHT, materials and original feet. Never invent a separate human head, horn, weapon, staff, wing or new armor. Compact alternating foot supports, minimal bob, six distinct whole-body walking phases, true stable idle. Same scale and volume in all8. Genuine transparent alpha, generous32px margins around each complete figure and canvas edges, no floor/shadow/text/labels/glow/particles. ALL eight figures face LEFT, including both idles. Image1 guides movement only; do not copy its red chest plate, loincloth or different limb armor.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\M100-left-whole-figure-guide.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-099-0-identity-detail.png"
+    ],
+    "selected_file": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-099-0-left-integration-r07.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-099-0-left-integration-r07.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-3024d4ea-f16b-417e-81e9-71f7699c908e.png",
+    "sha256": "5b5bae52123da6106a0af6cf4bcef5584680d0b86228a2d1cbfcdb318b601315",
+    "tool": "image_gen integrated",
+    "transparent_background": true
+  }
+]

@@ -70,7 +70,7 @@ fn draw_world(rect: Rect, visual: Visual, opacity: f32) {
                 rect.h * 2.,
             )
         };
-        draw_texture_ex(
+        crate::world_readability::texture(
             &source.texture,
             destination.x,
             destination.y,

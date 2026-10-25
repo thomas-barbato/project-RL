@@ -1,0 +1,29 @@
+{
+  "review_id": "ARMOR-STYLE-STUDIES02",
+  "date": "2026-10-21",
+  "status": "generated_pending_native_review",
+  "feedback": "Direction appreciated, especially 01. Remove derivative facial plate; Briseur has too many small orange accents at64. Replace orange by copper.",
+  "runtime_integration": false,
+  "color_variants": "deferred; copper is a design revision",
+  "tool": "built_in_image_gen",
+  "jobs": [
+    {
+      "candidate_id": "BA-STYLE01-r02",
+      "number": "01",
+      "label": "Vétéran industriel",
+      "reference": "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/armor-style-studies-01/BA-STYLE01-r01-source.png",
+      "prompt": "Use case: precise-object-edit. Edit the provided complete cyberpunk BASTION fighter sprite study. Strict targeted change to the HEAD ONLY. Preserve the full body, pose, anatomy, armor design, copper breastplate, asymmetrical grey shoulder plate, leather straps, olive trousers, boots and hands. Preserve overall framing and full figure extent. The user likes this armor, do not redesign it. Completely remove the large silver plate covering one half of the face and the horizontal forehead strap. Restore a fully human unobstructed face with two natural dark eyes, visible brow, cheek and temple, same square jaw, short brown hair and beard. No metal around the eye, no glowing eye, no facial half-mask, no superhero/cinematic cyborg face trope. Retain only a very small understated dark implant immediately behind the ear, not on cheek or eye. Keep the head compact and natural with a short neck sitting in the shoulders. Use the same quiet painted game sprite treatment and upper-left lighting. Aim at 64 by 64 target resolution: no new tiny highlights or decorations. Transparent background, no floor, no shadow, no text. Full single figure, no clipping. The source is an edit target, not loose inspiration.",
+      "status": "generated",
+      "generated_file": "C:/Users/User/.codex/generated_images/01a15e4b-a136-72f0-b79d-bca96fc58aaa/exec-03457226-d323-4aae-b389-c516c74ce836.png"
+    },
+    {
+      "candidate_id": "BA-STYLE02-r02",
+      "number": "02",
+      "label": "Briseur cuivre",
+      "reference": "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/armor-style-studies-01/BA-STYLE02-r01-source.png",
+      "prompt": "Use case: precise-object-edit. Edit the provided whole BASTION cyberpunk armored melee fighter sprite study into a SIMPLER COPPER version. Preserve the character's robust adult male build, compact head, whole figure framing, stance, empty hands, fitted navy undersuit and main armor geometry. Intended final sprite is 64 by 64 pixels with figure 58 pixels tall: draw large clear material masses, not intricate source illustration. Change EVERY orange or yellow-orange armor area to muted natural burnished COPPER: dark reddish brown shadows, desaturated copper midtones, a few broad dull pale rose-brown highlights. Copper must read as a worn metal material, not vivid orange paint or gold. Keep copper ONLY on the broad chest plate, single large forearm shells and single large shin shells. Remove ALL small accent strips, piping, tiny bolts, decorative dots, orange markings, contrasting cuff bands and orange spots from shoulders, collar, belt, thigh plates, helmet and boots. These secondary regions should be simple continuous dark navy or slate-grey masses. Keep boots plain charcoal. Simplify each limb armor to one readable plate; three value planes maximum per material, broad flat quiet areas, no surface speckles, no scratches, no dithering, no tiny sparkles or microtexture. Copper volumes must remain clearly separated from dark fabric and grey shoulder caps. Completely remove the silver facial half-mask, blue eye and any metal plate over the face. Restore fully human face with two natural dark eyes and unobstructed cheeks, square jaw and short beard. Keep the compact grey helmet, but no helmet decoration or forehead stripes; optional tiny low-contrast implant behind the ear only. Short natural neck inside the shoulders, no head inflation. Clean economical painted/pixel-friendly game-sprite edges suitable for measured downsampling, NOT a high-resolution illustration with thousands of fake tiny pixels. Transparent background, no shadow, no ground, no text, one full figure.",
+      "status": "generated",
+      "generated_file": "C:/Users/User/.codex/generated_images/01a15e4b-a136-72f0-b79d-bca96fc58aaa/exec-ff6c7898-dd29-49a3-ad36-fc6b0f6ab719.png"
+    }
+  ]
+}

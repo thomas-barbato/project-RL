@@ -1,0 +1,25 @@
+{
+  "review_id": "CLASS-READ01-NAMES01",
+  "date": "2026-10-21",
+  "text_status": "accepted_by_explicit_user_request",
+  "visual_status": "awaiting_visual_approval",
+  "runtime_integration": "pending_selected_visuals",
+  "source_user_request": "est-ce que tu pourrais faire du traqueur une femme ? et pareil pour le metamorphe ? (du coup il faudra adapter la traqueuse et la métamorphe).",
+  "bindings": [
+    {
+      "class_id": "core:traqueur",
+      "name_key": "class.traqueur.name",
+      "display_name": "Traqueuse",
+      "with_article": "la traqueuse",
+      "presentation_gender": "female"
+    },
+    {
+      "class_id": "core:metamorphe",
+      "name_key": "class.metamorphe.name",
+      "display_name": "Métamorphe",
+      "with_article": "la métamorphe",
+      "presentation_gender": "female"
+    }
+  ],
+  "ids_skills_equipment_and_stats_changed": false
+}

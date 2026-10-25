@@ -1,0 +1,724 @@
+{
+  "review_id": "BASTION-W01",
+  "revision": "all-five-color-variants",
+  "date": "2026-10-21",
+  "status": "accepted_visual_reference",
+  "model_count": 5,
+  "colored_variants": 15,
+  "views_with_originals": 20,
+  "new_color_sources_generated": 12,
+  "very_heavy_sources_reused": 3,
+  "colors": [
+    "red",
+    "blue",
+    "green"
+  ],
+  "head_identical_rgba_pixels_for_all_20": true,
+  "head_region": [
+    0,
+    0,
+    64,
+    12
+  ],
+  "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+  "all_exports_native64": true,
+  "base_sources_unchanged": {
+    "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-body-source.png": "50b401163794ac4b643e54340e825c0ec0ccdf3906d244bc50d124db406a0ccc",
+    "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-body-source.png": "75537643342fd3a47529f7b8958aa7bdbe592f4a61a294cde3038f427ceb23ae",
+    "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-body-source.png": "d31fff7c909094d094908f2ec231c3529ba449f4eb3aea88037fab5039753804",
+    "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-body-source.png": "b86306a8910215debe3dc55ab205c3e2e3b310f47a4366b67b03b8e870929578",
+    "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png": "807794756fa2c01151569c1cd3ae82aeb51dfb800e06df7259771cff604371dd"
+  },
+  "skin_and_underlayer_palette_intended_unchanged": true,
+  "very_light_material_exception": "protective textile vest recolored; ordinary trousers and exposed skin retain their palette",
+  "palette_variants_are_not_additional_models": true,
+  "entries": [
+    {
+      "number": "01",
+      "label": "Très légère",
+      "base": "BA-W01-P01-r01",
+      "base_native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P01-r01-native64.png",
+      "variants": [
+        {
+          "candidate_id": "BA-W01-P01-r01-red",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-red-body-source.png",
+          "source_sha256": "6e1cacd39eb98e88d1db39187d6ec0cc18f1cc1eeb0cfd8bcfeba461de7bfc86",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P01-r01-red-native64.png",
+          "native_sha256": "0e05bf6c9717c6d05d33839055ff7f7674ab0f31172c3fe04425e8f3f9b8031e",
+          "measurements": {
+            "source_core_box": [
+              277,
+              56,
+              979,
+              1190
+            ],
+            "source_crop": [
+              260,
+              39,
+              996,
+              1207
+            ],
+            "isotropic_scale": 0.04409171075837742,
+            "native_core_box": [
+              17,
+              13,
+              47,
+              62
+            ],
+            "native_core_height": 49,
+            "native_core_width": 30,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "01",
+          "model_candidate": "BA-W01-P01-r01",
+          "color": "red",
+          "color_label": "Rouge",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.9366700715015321,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        },
+        {
+          "candidate_id": "BA-W01-P01-r01-blue",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-blue-body-source.png",
+          "source_sha256": "08eeed0ab250cd10bb6cfa86dd046aff020888923502c4303d1984bb8470772d",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P01-r01-blue-native64.png",
+          "native_sha256": "e69bc7d84ac2b868f0cfa533318fbb52808b0d9b8e2038040f6b9935e1d7a46b",
+          "measurements": {
+            "source_core_box": [
+              274,
+              55,
+              981,
+              1192
+            ],
+            "source_crop": [
+              257,
+              38,
+              998,
+              1209
+            ],
+            "isotropic_scale": 0.04397537379067722,
+            "native_core_box": [
+              17,
+              13,
+              48,
+              62
+            ],
+            "native_core_height": 49,
+            "native_core_width": 31,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "01",
+          "model_candidate": "BA-W01-P01-r01",
+          "color": "blue",
+          "color_label": "Bleue",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.8847290640394089,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        },
+        {
+          "candidate_id": "BA-W01-P01-r01-green",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-green-body-source.png",
+          "source_sha256": "bd7cd4ccda894ec6bc161528b8ac567221f6d49031ab2827af0bfb51459d2725",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P01-r01-green-native64.png",
+          "native_sha256": "4e3e376cbfd6b1f087aadd13d0c83bb7251f3832a25bb217891fc3a20f54cf5b",
+          "measurements": {
+            "source_core_box": [
+              277,
+              56,
+              980,
+              1191
+            ],
+            "source_crop": [
+              260,
+              39,
+              997,
+              1208
+            ],
+            "isotropic_scale": 0.04405286343612335,
+            "native_core_box": [
+              17,
+              13,
+              47,
+              62
+            ],
+            "native_core_height": 49,
+            "native_core_width": 30,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "01",
+          "model_candidate": "BA-W01-P01-r01",
+          "color": "green",
+          "color_label": "Verte",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.9394871794871795,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        }
+      ],
+      "colored_material": "protective_vest_and_light_reinforcements"
+    },
+    {
+      "number": "02",
+      "label": "Légère",
+      "base": "BA-W01-P02-r01",
+      "base_native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P02-r01-native64.png",
+      "variants": [
+        {
+          "candidate_id": "BA-W01-P02-r01-red",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-red-body-source.png",
+          "source_sha256": "8f9dd1a3cb91b908bdd4d899cd58e7f379886fae9cf365229f65a6f80be29a34",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P02-r01-red-native64.png",
+          "native_sha256": "89e990816690533beea9ade7b1fcd14f0459f128b3a120aeb7740b62373a2652",
+          "measurements": {
+            "source_core_box": [
+              187,
+              84,
+              965,
+              1323
+            ],
+            "source_crop": [
+              168,
+              65,
+              984,
+              1342
+            ],
+            "isotropic_scale": 0.04035512510088781,
+            "native_core_box": [
+              17,
+              12,
+              48,
+              62
+            ],
+            "native_core_height": 50,
+            "native_core_width": 31,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "02",
+          "model_candidate": "BA-W01-P02-r01",
+          "color": "red",
+          "color_label": "Rouge",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.9949698189134809,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        },
+        {
+          "candidate_id": "BA-W01-P02-r01-blue",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-blue-body-source.png",
+          "source_sha256": "2dbecc114d86bddf18a26316a954c807c35f9197207506aeabaf529f9f239455",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P02-r01-blue-native64.png",
+          "native_sha256": "0e6291faa24695cb5dbaa6f71a38f031628a1978abdeaa49adf9cc44a148b819",
+          "measurements": {
+            "source_core_box": [
+              187,
+              84,
+              965,
+              1323
+            ],
+            "source_crop": [
+              168,
+              65,
+              984,
+              1342
+            ],
+            "isotropic_scale": 0.04035512510088781,
+            "native_core_box": [
+              17,
+              12,
+              48,
+              62
+            ],
+            "native_core_height": 50,
+            "native_core_width": 31,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "02",
+          "model_candidate": "BA-W01-P02-r01",
+          "color": "blue",
+          "color_label": "Bleue",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.9949698189134809,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        },
+        {
+          "candidate_id": "BA-W01-P02-r01-green",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-green-body-source.png",
+          "source_sha256": "e2dba3ed6ab22a691521c6c628abefb21653a1f89e226207db5fbcf696acaa07",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P02-r01-green-native64.png",
+          "native_sha256": "98f784fcdbfb3afd7554d14ba8dab37943febcd3bc9882a3e6660fd62fb1757b",
+          "measurements": {
+            "source_core_box": [
+              187,
+              85,
+              965,
+              1323
+            ],
+            "source_crop": [
+              168,
+              66,
+              984,
+              1342
+            ],
+            "isotropic_scale": 0.04038772213247173,
+            "native_core_box": [
+              17,
+              12,
+              48,
+              62
+            ],
+            "native_core_height": 50,
+            "native_core_width": 31,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "02",
+          "model_candidate": "BA-W01-P02-r01",
+          "color": "green",
+          "color_label": "Verte",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.9919436052366566,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        }
+      ],
+      "colored_material": "protective_panels_and_plates"
+    },
+    {
+      "number": "03",
+      "label": "Interméd.",
+      "base": "BA-W01-P03-r01",
+      "base_native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P03-r01-native64.png",
+      "variants": [
+        {
+          "candidate_id": "BA-W01-P03-r01-red",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-red-body-source.png",
+          "source_sha256": "a68d1ef1e9f5e0723db94077ec902c52e63aeba8b8adc380af1c270c1081c909",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P03-r01-red-native64.png",
+          "native_sha256": "c17b23b89e570951a5191e4846358265167e2af84e4ec4637f04798963bb7fa8",
+          "measurements": {
+            "source_core_box": [
+              266,
+              105,
+              962,
+              1215
+            ],
+            "source_crop": [
+              249,
+              88,
+              979,
+              1232
+            ],
+            "isotropic_scale": 0.04504504504504504,
+            "native_core_box": [
+              17,
+              12,
+              48,
+              62
+            ],
+            "native_core_height": 50,
+            "native_core_width": 31,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "03",
+          "model_candidate": "BA-W01-P03-r01",
+          "color": "red",
+          "color_label": "Rouge",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.9880478087649402,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        },
+        {
+          "candidate_id": "BA-W01-P03-r01-blue",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-blue-body-source.png",
+          "source_sha256": "7bc9b6ae6ca1ba07e62496890b6e2f8abb12e6d152b343516febef5a7d460671",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P03-r01-blue-native64.png",
+          "native_sha256": "a315578571ee09f2b69ba07de53318962ad85062a96de83c8bc01517aeea0cf3",
+          "measurements": {
+            "source_core_box": [
+              230,
+              5,
+              996,
+              1216
+            ],
+            "source_crop": [
+              212,
+              0,
+              1014,
+              1234
+            ],
+            "isotropic_scale": 0.04128819157720892,
+            "native_core_box": [
+              17,
+              12,
+              48,
+              62
+            ],
+            "native_core_height": 50,
+            "native_core_width": 31,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "03",
+          "model_candidate": "BA-W01-P03-r01",
+          "color": "blue",
+          "color_label": "Bleue",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.962671905697446,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        },
+        {
+          "candidate_id": "BA-W01-P03-r01-green",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-green-body-source.png",
+          "source_sha256": "43b70d895514ce29ba80d82ade9e98a446003f1378f55e0df44720803e932c6b",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P03-r01-green-native64.png",
+          "native_sha256": "1f78510889f800bee821182cf819c3cd38f03f48bcb9a2fd4cc9588e649c5088",
+          "measurements": {
+            "source_core_box": [
+              267,
+              101,
+              959,
+              1212
+            ],
+            "source_crop": [
+              250,
+              84,
+              976,
+              1229
+            ],
+            "isotropic_scale": 0.045004500450045004,
+            "native_core_box": [
+              17,
+              12,
+              48,
+              62
+            ],
+            "native_core_height": 50,
+            "native_core_width": 31,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "03",
+          "model_candidate": "BA-W01-P03-r01",
+          "color": "green",
+          "color_label": "Verte",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.9920079920079921,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        }
+      ],
+      "colored_material": "protective_panels_and_plates"
+    },
+    {
+      "number": "04",
+      "label": "Lourde",
+      "base": "BA-W01-P04-r01",
+      "base_native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P04-r01-native64.png",
+      "variants": [
+        {
+          "candidate_id": "BA-W01-P04-r01-red",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-red-body-source.png",
+          "source_sha256": "51a65d685f09acee176c427ba20178e4163b746ca631fd13d411b66450643579",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P04-r01-red-native64.png",
+          "native_sha256": "83e80e7f741593f222be801687da29a5e38e27893eff78207fde28cce7ebe005",
+          "measurements": {
+            "source_core_box": [
+              287,
+              73,
+              969,
+              1177
+            ],
+            "source_crop": [
+              270,
+              56,
+              986,
+              1194
+            ],
+            "isotropic_scale": 0.04528985507246377,
+            "native_core_box": [
+              17,
+              12,
+              47,
+              62
+            ],
+            "native_core_height": 50,
+            "native_core_width": 30,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "04",
+          "model_candidate": "BA-W01-P04-r01",
+          "color": "red",
+          "color_label": "Rouge",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.9536945812807882,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        },
+        {
+          "candidate_id": "BA-W01-P04-r01-blue",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-blue-body-source.png",
+          "source_sha256": "f7f1035bd46294ac3d5e66be3e94a8ae16bdd5e67fe09e2a62b6ae6894988895",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P04-r01-blue-native64.png",
+          "native_sha256": "e527f29b1afb7bb0ac29a717fd3027217078cb122bdd320f7e0ca871478865e0",
+          "measurements": {
+            "source_core_box": [
+              293,
+              102,
+              962,
+              1195
+            ],
+            "source_crop": [
+              277,
+              86,
+              978,
+              1211
+            ],
+            "isotropic_scale": 0.04574565416285453,
+            "native_core_box": [
+              17,
+              13,
+              47,
+              62
+            ],
+            "native_core_height": 49,
+            "native_core_width": 30,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "04",
+          "model_candidate": "BA-W01-P04-r01",
+          "color": "blue",
+          "color_label": "Bleue",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.9899396378269618,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        },
+        {
+          "candidate_id": "BA-W01-P04-r01-green",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-green-body-source.png",
+          "source_sha256": "c10d69092c9f9ab4645734eee2a162ab903cf57b8a76bfacb389ec4af3fc2206",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P04-r01-green-native64.png",
+          "native_sha256": "b395308ce6f13d4fcba24c9c3ca2b30b47245208de38d780ef2b8a13d7aa8e90",
+          "measurements": {
+            "source_core_box": [
+              293,
+              103,
+              961,
+              1195
+            ],
+            "source_crop": [
+              277,
+              87,
+              977,
+              1211
+            ],
+            "isotropic_scale": 0.045787545787545784,
+            "native_core_box": [
+              17,
+              13,
+              47,
+              62
+            ],
+            "native_core_height": 49,
+            "native_core_width": 30,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "reused_existing_proposal": false,
+          "model_number": "04",
+          "model_candidate": "BA-W01-P04-r01",
+          "color": "green",
+          "color_label": "Verte",
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "solid_alpha_intersection_over_union_vs_base": 0.9979695431472081,
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        }
+      ],
+      "colored_material": "protective_panels_and_plates"
+    },
+    {
+      "number": "05",
+      "label": "Très lourde",
+      "base": "BA-W01-P05-r03",
+      "base_native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P05-r03-native64.png",
+      "variants": [
+        {
+          "candidate_id": "BA-W01-P05-r03-red",
+          "label": "Rouge",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-red-body-source.png",
+          "source_sha256": "d463f343af2f2f1e34c93dfeea8fe38004715484e31ff0be511e3489ccb39804",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P05-r03-red-native64.png",
+          "native_sha256": "0a5bf7e1b26e13893094cc33f3365a65439cc4bb01b944ff816410f51b9606c2",
+          "measurements": {
+            "source_core_box": [
+              232,
+              59,
+              1021,
+              1220
+            ],
+            "source_crop": [
+              215,
+              42,
+              1038,
+              1237
+            ],
+            "isotropic_scale": 0.04306632213608958,
+            "native_core_box": [
+              15,
+              13,
+              48,
+              62
+            ],
+            "native_core_height": 49,
+            "native_core_width": 33,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "head_identical_to_all_five": true,
+          "solid_alpha_intersection_over_union_vs_base": 0.9946714031971581,
+          "exact_plate_masks_and_runtime_palette_shader": "not_produced",
+          "reused_existing_proposal": true,
+          "model_number": "05",
+          "model_candidate": "BA-W01-P05-r03",
+          "color": "red",
+          "color_label": "Rouge",
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        },
+        {
+          "candidate_id": "BA-W01-P05-r03-blue",
+          "label": "Bleue",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-blue-body-source.png",
+          "source_sha256": "a79f3cfe6a8ebad7a37be4b27f5b89e95b5f7116c1811d4813118f999f929f3e",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P05-r03-blue-native64.png",
+          "native_sha256": "0b116897704858ce07232040d0c2e7769b725bf70bf4a8a7f62078344e23697c",
+          "measurements": {
+            "source_core_box": [
+              232,
+              58,
+              1021,
+              1222
+            ],
+            "source_crop": [
+              215,
+              41,
+              1038,
+              1239
+            ],
+            "isotropic_scale": 0.0429553264604811,
+            "native_core_box": [
+              15,
+              13,
+              48,
+              62
+            ],
+            "native_core_height": 49,
+            "native_core_width": 33,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "head_identical_to_all_five": true,
+          "solid_alpha_intersection_over_union_vs_base": 0.9885260370697264,
+          "exact_plate_masks_and_runtime_palette_shader": "not_produced",
+          "reused_existing_proposal": true,
+          "model_number": "05",
+          "model_candidate": "BA-W01-P05-r03",
+          "color": "blue",
+          "color_label": "Bleue",
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        },
+        {
+          "candidate_id": "BA-W01-P05-r03-green",
+          "label": "Verte",
+          "status": "accepted_visual_reference",
+          "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-green-body-source.png",
+          "source_sha256": "e404ffc46869ada2a292a0a0053a1cb0f585cf0137fe9ee44a02cf9c73485092",
+          "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P05-r03-green-native64.png",
+          "native_sha256": "980ba7085a69869589237bca5d94248eb6a0f3e6ec7eef6c8e559c3b914a9d6b",
+          "measurements": {
+            "source_core_box": [
+              232,
+              58,
+              1021,
+              1221
+            ],
+            "source_crop": [
+              215,
+              41,
+              1038,
+              1238
+            ],
+            "isotropic_scale": 0.04299226139294927,
+            "native_core_box": [
+              15,
+              13,
+              48,
+              62
+            ],
+            "native_core_height": 49,
+            "native_core_width": 33,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+          "head_identical_to_all_five": true,
+          "solid_alpha_intersection_over_union_vs_base": 0.9937943262411347,
+          "exact_plate_masks_and_runtime_palette_shader": "not_produced",
+          "reused_existing_proposal": true,
+          "model_number": "05",
+          "model_candidate": "BA-W01-P05-r03",
+          "color": "green",
+          "color_label": "Verte",
+          "silhouette_review": "image_gen proposal; compare the native64 board before approval",
+          "strict_pixel_palette_mask": "pending_production_after_visual_review"
+        }
+      ],
+      "colored_material": "protective_panels_and_plates"
+    }
+  ],
+  "runtime_integration": false,
+  "other_classes_started": false,
+  "acceptance": "docs/reviews/class-readability-01/bastion-wave-01/acceptance.json"
+}

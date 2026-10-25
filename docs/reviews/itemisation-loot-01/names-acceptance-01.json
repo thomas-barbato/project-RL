@@ -1,0 +1,30 @@
+{
+  "review_id": "ITEM-LOOT01-NAMES01",
+  "date": "2026-10-23",
+  "context": [
+    "Il va falloir changer le nom des composants , enfin de \"lot de reglage\" et de\" lot de pièces de réparation\" car c'est plutot mauvais.",
+    "Alliage de récupération devrait plutot être \"Pièces de récupération\"",
+    "ok on continue :)"
+  ],
+  "accepted_names": [
+    {
+      "item": "core:repair_parts",
+      "old": "Lot de pièces de réparation",
+      "name": "Pièces de récupération",
+      "authorization": "Correction fournie directement par le joueur"
+    },
+    {
+      "item": "core:tuning_parts",
+      "old": "Lot de réglage",
+      "name": "Microcircuits",
+      "authorization": "Nom proposé avec le premier remplacement, conservé lors de la correction puis de la demande de continuer"
+    }
+  ],
+  "integration": {
+    "player_facing_names": true,
+    "content_ids_changed": false,
+    "descriptions_changed": false,
+    "mechanics_changed": false
+  },
+  "scope": "Accord sur les noms uniquement ; les nouvelles règles de butin et de fabrication sont présentées séparément."
+}

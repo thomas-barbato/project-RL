@@ -1,0 +1,132 @@
+[
+  {
+    "id": "MON-162-0",
+    "review_id": "WALK07-M61",
+    "kind": "creature",
+    "label": "Créature ailée en tenue rouge",
+    "record": {
+      "id": "MON-162-0",
+      "label": "162 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons humanoïdes",
+      "rig": "winged",
+      "image": "catalogue/assets/2a3b0760ef107afc62f2.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 162,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        37,
+        21,
+        91,
+        96
+      ],
+      "rigLabel": "Appuis et ailes",
+      "reviewId": "WALK03-MON-162-0"
+    },
+    "locomotor_legs": 2,
+    "motion": "Exactly TWO thin humanoid walking legs, TWO long bare arms and TWO separate RED bat wings. Preserve the pale gaunt head and its original dark curved head protrusions, long pale fingers, dark sleeveless upper garment, dark red chest/front hanging cloth, belt and dark gray trousers. Existing hanging strips remain CLOTH, not a tail. Preserve the original bare-arm materials and narrow dark arm details as drawn; no added heavy bracers. Lean compact grounded alternating feet, stable slender torso, wings carried with tiny joint motion. No purple skin, muscular body, new horns, mask, cape, tail, weapons, extra armor or extra limbs copied from INPUT2.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-162-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-162-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot04\\MON-147-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-162-0-cycle-lot10-r01.png",
+    "source_columns": 7,
+    "source_rows": 2,
+    "selected_source_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "shadow": true,
+    "strict_source_outer_margin": true,
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-162-0-lot10-r01.txt",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation for existing identity MON-162-0.\nINPUT1 is the exact canonical APPEARANCE. Preserve anatomy, head/face, supports, all original appendages, materials, colors and proportions. Isolated colored fringe specks in the old export are not glow or anatomy.\nINPUT2 is ONLY an accepted WHOLE-FIGURE motion and layout guide. Do not copy its species, face, bulk, armor, colors, limbs or objects. Use compact supports and the same matte native64-readable game-art finish.\nSPECIFIC ANATOMY AND MOVEMENT: Exactly TWO thin humanoid walking legs, TWO long bare arms and TWO separate RED bat wings. Preserve the pale gaunt head and its original dark curved head protrusions, long pale fingers, dark sleeveless upper garment, dark red chest/front hanging cloth, belt and dark gray trousers. Existing hanging strips remain CLOTH, not a tail. Preserve the original bare-arm materials and narrow dark arm details as drawn; no added heavy bracers. Lean compact grounded alternating feet, stable slender torso, wings carried with tiny joint motion. No purple skin, muscular body, new horns, mask, cape, tail, weapons, extra armor or extra limbs copied from INPUT2.\nOUTPUT EXACTLY FOURTEEN separate COMPLETE figures, exactly TWO ROWS of exactly SEVEN figures on a wide transparent atlas approximately1792x640. No extra rows, eighth column, labels or duplicates. Each whole figure occupies at most75percent of its cell WIDTH AND HEIGHT, all using the SAME scale. Generous transparent margins around every claw, spur, wing and tail; at least24px from the OUTER canvas edge. No figures touch and no appendages are clipped. Do not fill the cells.\nTOP ROW: ALL face screenLEFT in near-front three quarters, idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW: ALL face RIGHT, idle then R0,R1,R2,R3,R4,R5. Nose/beak, chest/front, feet/base all face the SAME direction together. No back view, pure profile, head-only reversal or direction changes inside a row. The two rows must have visibly different lateral orientations. A rearward-curving horn or crest does not define the facing direction: the FACE and chest do.\nSix motion poses form ONE full compact cycle, three phases on one grid cell and the next three on the next cell,400ms per cell. Real stable resting idle. Use actual source morphology, never a human gait for a legless form or extra arms on a bird.\nDraw EACH creature WHOLE and coherent. Constant apparent scale, mass, head size, anatomy and materials across all14 poses; restrained bob, no great split, stretching, hopping or swelling. No grafted parts, procedural strips or detached limbs. Canonical source proportions stay unchanged despite empty cell space.\nGenuine transparent alpha, clean dark matte game-art contours and readable shapes. No floor, ground shadow, text, grid, effects, particles, halo, colored fringe/specks, extra equipment or redesign.",
+    "directional_halves_reordered": true
+  },
+  {
+    "id": "MON-156-0",
+    "review_id": "WALK07-M62",
+    "kind": "creature",
+    "label": "Créature massive bleutée",
+    "record": {
+      "id": "MON-156-0",
+      "label": "156 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons du froid",
+      "rig": "heavy",
+      "image": "catalogue/assets/0dc28a493132db7ddd34.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 156,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        21,
+        5,
+        107,
+        96
+      ],
+      "rigLabel": "Marche lourde",
+      "reviewId": "WALK03-MON-156-0"
+    },
+    "locomotor_legs": 2,
+    "motion": "Exactly TWO heavy walking legs and TWO long muscular arms, NO wings. Preserve the pale BLUE/GRAY angular plated/faceted body, original broad shoulders and forearm shapes, TWO curved ivory/gray horns, dark claws/talons and brown waist cloth. Keep its original tall muscular proportions and relatively small horned head. Compact heavy grounded two-foot gait, original limb length, complete arms, little bob; true both-feet-grounded idle. No mushroom cap, golden material, new mask, pale flesh palette, wings, tail, weapon, frost aura, particles or new armor copied from INPUT2.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-156-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-156-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot07\\MON-155-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-156-0-cycle-lot10-r01.png",
+    "source_columns": 7,
+    "source_rows": 2,
+    "selected_source_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "shadow": true,
+    "strict_source_outer_margin": true,
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-156-0-lot10-r01.txt",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation for existing identity MON-156-0.\nINPUT1 is the exact canonical APPEARANCE. Preserve anatomy, head/face, supports, all original appendages, materials, colors and proportions. Isolated colored fringe specks in the old export are not glow or anatomy.\nINPUT2 is ONLY an accepted WHOLE-FIGURE motion and layout guide. Do not copy its species, face, bulk, armor, colors, limbs or objects. Use compact supports and the same matte native64-readable game-art finish.\nSPECIFIC ANATOMY AND MOVEMENT: Exactly TWO heavy walking legs and TWO long muscular arms, NO wings. Preserve the pale BLUE/GRAY angular plated/faceted body, original broad shoulders and forearm shapes, TWO curved ivory/gray horns, dark claws/talons and brown waist cloth. Keep its original tall muscular proportions and relatively small horned head. Compact heavy grounded two-foot gait, original limb length, complete arms, little bob; true both-feet-grounded idle. No mushroom cap, golden material, new mask, pale flesh palette, wings, tail, weapon, frost aura, particles or new armor copied from INPUT2.\nOUTPUT EXACTLY FOURTEEN separate COMPLETE figures, exactly TWO ROWS of exactly SEVEN figures on a wide transparent atlas approximately1792x640. No extra rows, eighth column, labels or duplicates. Each whole figure occupies at most75percent of its cell WIDTH AND HEIGHT, all using the SAME scale. Generous transparent margins around every claw, spur, wing and tail; at least24px from the OUTER canvas edge. No figures touch and no appendages are clipped. Do not fill the cells.\nTOP ROW: ALL face screenLEFT in near-front three quarters, idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW: ALL face RIGHT, idle then R0,R1,R2,R3,R4,R5. Nose/beak, chest/front, feet/base all face the SAME direction together. No back view, pure profile, head-only reversal or direction changes inside a row. The two rows must have visibly different lateral orientations. A rearward-curving horn or crest does not define the facing direction: the FACE and chest do.\nSix motion poses form ONE full compact cycle, three phases on one grid cell and the next three on the next cell,400ms per cell. Real stable resting idle. Use actual source morphology, never a human gait for a legless form or extra arms on a bird.\nDraw EACH creature WHOLE and coherent. Constant apparent scale, mass, head size, anatomy and materials across all14 poses; restrained bob, no great split, stretching, hopping or swelling. No grafted parts, procedural strips or detached limbs. Canonical source proportions stay unchanged despite empty cell space.\nGenuine transparent alpha, clean dark matte game-art contours and readable shapes. No floor, ground shadow, text, grid, effects, particles, halo, colored fringe/specks, extra equipment or redesign.",
+    "directional_halves_reordered": true
+  }
+]

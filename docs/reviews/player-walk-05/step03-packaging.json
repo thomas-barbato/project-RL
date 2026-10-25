@@ -1,0 +1,61 @@
+{
+  "review_id": "WALK05-STEP03",
+  "status": "accepted",
+  "scope": "CLASS-10, rifle only; complete bank remains pending",
+  "left_sources": [
+    "assets\\source-art\\player-walk-review-05\\step03\\left-00-contact-a.png",
+    "assets\\source-art\\player-walk-review-05\\step03\\left-01-passing-a.png",
+    "assets\\source-art\\player-walk-review-05\\step03\\left-02-reach-b.png",
+    "assets\\source-art\\player-walk-review-05\\step03\\left-03-contact-b.png",
+    "assets\\source-art\\player-walk-review-05\\step03\\left-04-passing-b.png",
+    "assets\\source-art\\player-walk-review-05\\step03\\left-05-reach-a.png"
+  ],
+  "right_source": "assets\\source-art\\player-walk-review-05\\step03\\right-six.png",
+  "idle_sources": [
+    "assets\\source-art\\player-walk-review-05\\step03\\idle-left.png",
+    "assets\\source-art\\player-walk-review-05\\step03\\idle-right.png"
+  ],
+  "native_canvas": [
+    64,
+    64
+  ],
+  "body_height_limit": 58,
+  "baseline": 63,
+  "source_group_uniform_scales": {
+    "left": 0.03929539295392954,
+    "right": 0.1277533039647577,
+    "idle": 0.03910991233985165
+  },
+  "full_figure_only": true,
+  "limb_deformation_or_grafting": false,
+  "source_frame_hashes": [
+    "f3e933bc076debcfc76f444bde173d773deb890882d659f389b88f3c64f425cf",
+    "0b8ff238b543eae36d5b265d726d829e1fbf0396c267e2d8874fc52d9d5326e9",
+    "5347d54469a5bd388963ed7b037e4d3fb47aecf0f64e7d71c7e5e9bc2e0e16bb",
+    "ef8c11eeea5e8be9e791dfbda932ac909d797ee3fa8ba3a2e02a918eed976f86",
+    "6555dfa320c1b2721ceeefab781ac96a5ade24b45c7c52ce4ba224940094d78b",
+    "2103485211a99838c530da0a9c3d32a51e6bcfaa1e985229cc33cd70f1c162ef",
+    "0c53a95f8498c977c24400a31c8ebabb4df8583fe36af0fbb348d09d32a9ebfd",
+    "3de2a9f15f8a991c3e98b69d0fed266e824d1dcfdb1d0bb835836eb799d3404d",
+    "31d6f0dbbeda39d4db1fbe4cc637ef48704cf10753421013954f4d472a70dd19",
+    "d6224687e70a790a5bb7eb065bb5cef77d24cbd7ba20e0d0a69ebcdb17622859",
+    "357b4095f513b1c74b614456cf782ab247cb7ee48049ecadefe01f0fef876c55",
+    "d7c1afbbe1154e971c1dfef15554faa08b11d33223d390fb725a41d389446fa7"
+  ],
+  "frames_per_direction": 6,
+  "idle_count": 2,
+  "default_cell_ms": 400,
+  "idle_gap_ms": 520,
+  "frames_per_cell": 3,
+  "renderer_fix": "Use actual idle atlas whenever moving is false; never freeze a walking pose at arrival",
+  "original_bastion_images_unchanged": true,
+  "runtime_integration": false,
+  "vertical_movement_modified": false,
+  "fragment_bytes": 434298,
+  "limits": [
+    "Accepted CLASS-10 rifle only; full bank remains pending",
+    "No browser or game execution claimed by packaging",
+    "Single-frame generation can introduce detail drift; current sources still require review"
+  ],
+  "acceptance": "docs/reviews/player-walk-05/visual-acceptance-01.json"
+}

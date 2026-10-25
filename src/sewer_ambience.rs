@@ -14,14 +14,11 @@ pub fn water(camera: &GridCamera, plan: &Plan, time: f32) {
     WATER.with(|bank| {
         let mut bank = bank.borrow_mut();
         let (texture, material) = bank.get_or_insert_with(|| {
-            let file = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-                .join("assets/maps/prison-sewer-01/water.png");
-            let t = Texture2D::from_file_with_format(
-                &std::fs::read(file).unwrap(),
-                Some(ImageFormat::Png),
-            );
+            let bytes =
+                project_rl::data_paths::read("assets/maps/prison-sewer-01/water.png").unwrap();
+            let t = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
             t.set_filter(FilterMode::Nearest);
-            let material = load_material(
+            let material = crate::world_readability::material(
                 ShaderSource::Glsl {
                     vertex: VERTEX,
                     fragment: FRAGMENT,
@@ -38,7 +35,7 @@ pub fn water(camera: &GridCamera, plan: &Plan, time: f32) {
             (t, material)
         });
         material.set_uniform("Clock", time);
-        gl_use_material(material);
+        crate::world_readability::use_material(material);
         for (y, row) in plan.layout.iter().enumerate() {
             for (x, c) in row.bytes().enumerate() {
                 if c != b'~' {
@@ -63,25 +60,22 @@ pub fn water(camera: &GridCamera, plan: &Plan, time: f32) {
                 );
             }
         }
-        gl_use_default_material();
+        crate::world_readability::restore();
     });
 }
 pub fn rats(camera: &GridCamera, plan: &Plan, time: f32) {
     RATS.with(|bank| {
         let mut bank = bank.borrow_mut();
         let texture = bank.get_or_insert_with(|| {
-            let file = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-                .join("assets/maps/prison-sewer-01/rats.png");
-            let t = Texture2D::from_file_with_format(
-                &std::fs::read(file).unwrap(),
-                Some(ImageFormat::Png),
-            );
+            let bytes =
+                project_rl::data_paths::read("assets/maps/prison-sewer-01/rats.png").unwrap();
+            let t = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
             t.set_filter(FilterMode::Nearest);
             t
         });
         let origin = camera.rect(GridPos::new(0, 0));
         let scale = origin.w / 64.;
-        gl_use_default_material();
+        crate::world_readability::restore();
         for rat in &plan.rats {
             let Some((p, angle, running)) = rat_pose(rat, time) else {
                 continue;

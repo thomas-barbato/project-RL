@@ -1,0 +1,73 @@
+{
+  "review_id": "WALK06",
+  "status": "integrated",
+  "date": "2026-10-23",
+  "scope": "25 class armor silhouettes, assault rifle model2, Original palettes, no extra equipped helmet",
+  "acceptance": "acceptance.json",
+  "runtime_manifest": "assets/animations/walk-06/manifest.json",
+  "rejected_walk04_enabled": false,
+  "vertical_rendering_changed": false,
+  "default_duration_ms": 400,
+  "duration_choices_ms": [
+    120,
+    200,
+    400
+  ],
+  "review_pause_added_to_gameplay": false,
+  "release_build": "cargo build --locked --release --bin project-rl",
+  "release_build_passed": true,
+  "release_sha256": "df4ce5ffde8b82e7f03455007aafd32ab8b2425d4a87800129acfcd491fe2e8b",
+  "targeted_walk_renderer_tests": {
+    "passed": 6,
+    "failed": 0
+  },
+  "broader_walk_filter": {
+    "passed": 18,
+    "failed": 1,
+    "ignored": 1,
+    "failure": "ascii_app::world_context::tests::world_context_attack_without_ammo_never_walks",
+    "assertion": "app.world_context.is_some() at src/world_context.rs:418; context-menu opening before drawing",
+    "reproduced_in_isolation": true,
+    "baseline_checkout_not_built": true,
+    "note": "No input/context-menu/simulation code changed by WALK06; failure is reported separately, not counted as a passing suite."
+  },
+  "rustfmt_touched_modules": true,
+  "git_diff_check": true,
+  "portable_inventory_contains_all_six_walk06_files": true,
+  "runtime_capture": {
+    "accepted_class_outfits": 25,
+    "accepted_rifle_model": 2,
+    "campaign_monsters_in_live_scene": true,
+    "class_outfits": 25,
+    "duration_ms": 400,
+    "facings": [
+      "left-quarter",
+      "front-unchanged",
+      "right-quarter"
+    ],
+    "light_and_dark": true,
+    "live_world_renderer": true,
+    "loadouts_per_outfit": 6,
+    "logical_distance": 1,
+    "native_cell": 64,
+    "real_move_command": true,
+    "review_id": "WALK06",
+    "simulation_unchanged_by_drawing": true,
+    "status": "passed",
+    "unreviewed_weapons_helmets_monsters_keep_existing_renderer": true,
+    "user_campaign_written": false,
+    "user_settings_written": false
+  },
+  "pixel_checks": "engine-pixel-checks.json",
+  "native_pixel_comparisons": 100,
+  "minimum_opaque_pixel_match": 1.0,
+  "user_settings_or_campaign_written": false,
+  "texture_cache_budget_bytes": 8388608,
+  "maximum_five_atlases_rgba_bytes": 5734400,
+  "next_requested_work": [
+    "other weapons, hand configurations and helmets",
+    "game monsters"
+  ],
+  "next_lots_require_visual_review": true,
+  "next_equipment_inventory": "docs/reviews/player-walk-07/equipment-scope.json"
+}

@@ -1,0 +1,194 @@
+{
+  "review_id": "WALK07-P01",
+  "date": "2026-10-24",
+  "player_request": "parcontre niveau placement des monstres, j'aimerais qu'ils soient toujours centré sur leur case (enfin, ca doit dépendre de leur taille mais, si le monstre est moins haut que la case , il doit être centré :) verticalement",
+  "rule_authorized_by_user": true,
+  "tile_size": 64,
+  "condition": "Whole-cycle visible height strictly less than64 native pixels",
+  "centering": "One integer y-offset from the full-cycle silhouette envelope, at most0.5px from the cell center",
+  "same_offset_for_all14_poses": true,
+  "shadow_follows_whole_body": true,
+  "source_pixels_changed": false,
+  "large_creature_anchor_changed": false,
+  "runtime_integration": false,
+  "browser_or_game_execution": false,
+  "accepted_creature_count": 13,
+  "short_creatures_centered": 8,
+  "cases": [
+    {
+      "identity": "MON-021-0",
+      "label": "M01 · Arachnide · 8 pattes",
+      "cycle_bounds": [
+        15,
+        49,
+        113,
+        112
+      ],
+      "visible_height": 63,
+      "vertical_offset": 0,
+      "centered_when_short": true
+    },
+    {
+      "identity": "MON-030-0",
+      "label": "M02 · Insecte · 6 pattes",
+      "cycle_bounds": [
+        45,
+        86,
+        83,
+        112
+      ],
+      "visible_height": 26,
+      "vertical_offset": -19,
+      "centered_when_short": true
+    },
+    {
+      "identity": "MON-075-0",
+      "label": "M03 · Quadrupède · 4 pattes",
+      "cycle_bounds": [
+        23,
+        62,
+        105,
+        112
+      ],
+      "visible_height": 50,
+      "vertical_offset": -7,
+      "centered_when_short": true
+    },
+    {
+      "identity": "MON-141-0",
+      "label": "M04 · Ver",
+      "cycle_bounds": [
+        18,
+        35,
+        110,
+        112
+      ],
+      "visible_height": 77,
+      "vertical_offset": 0,
+      "centered_when_short": false
+    },
+    {
+      "identity": "MON-124-0",
+      "label": "M05 · Esprit",
+      "cycle_bounds": [
+        40,
+        43,
+        89,
+        112
+      ],
+      "visible_height": 69,
+      "vertical_offset": 0,
+      "centered_when_short": false
+    },
+    {
+      "identity": "DRONE-GUNNER",
+      "label": "M06 · Chenilles",
+      "cycle_bounds": [
+        36,
+        71,
+        93,
+        110
+      ],
+      "visible_height": 39,
+      "vertical_offset": -10,
+      "centered_when_short": true
+    },
+    {
+      "identity": "MON-144-0",
+      "label": "M07 · Créature ailée · 2 pattes",
+      "cycle_bounds": [
+        17,
+        33,
+        111,
+        112
+      ],
+      "visible_height": 79,
+      "vertical_offset": 0,
+      "centered_when_short": false
+    },
+    {
+      "identity": "MON-031-0",
+      "label": "M08 · Insecte · 6 pattes",
+      "cycle_bounds": [
+        41,
+        77,
+        87,
+        112
+      ],
+      "visible_height": 35,
+      "vertical_offset": -14,
+      "centered_when_short": true
+    },
+    {
+      "identity": "MON-071-0",
+      "label": "M09 · Arachnide · 8 pattes",
+      "cycle_bounds": [
+        24,
+        55,
+        104,
+        112
+      ],
+      "visible_height": 57,
+      "vertical_offset": -3,
+      "centered_when_short": true
+    },
+    {
+      "identity": "MON-083-0",
+      "label": "M10 · Scorpion · 8 pattes",
+      "cycle_bounds": [
+        36,
+        64,
+        92,
+        112
+      ],
+      "visible_height": 48,
+      "vertical_offset": -8,
+      "centered_when_short": true
+    },
+    {
+      "identity": "MON-064-0",
+      "label": "M11 · Quadrupède · 4 pattes",
+      "cycle_bounds": [
+        34,
+        80,
+        94,
+        112
+      ],
+      "visible_height": 32,
+      "vertical_offset": -16,
+      "centered_when_short": true
+    },
+    {
+      "identity": "MON-125-0",
+      "label": "M13 · Esprit",
+      "cycle_bounds": [
+        34,
+        46,
+        95,
+        112
+      ],
+      "visible_height": 66,
+      "vertical_offset": 0,
+      "centered_when_short": false
+    },
+    {
+      "identity": "MON-145-0",
+      "label": "M14 · Créature ailée · 2 pattes",
+      "cycle_bounds": [
+        18,
+        23,
+        111,
+        112
+      ],
+      "visible_height": 89,
+      "vertical_offset": 0,
+      "centered_when_short": false
+    }
+  ],
+  "proofs": [
+    "creature-validation-lot01.json",
+    "creature-validation-lot02.json",
+    "renderer-checks.json"
+  ],
+  "comparison_board": "artifacts/player-walk-review-07/vertical-placement-01-native.png"
+}

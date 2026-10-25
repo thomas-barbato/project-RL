@@ -1,0 +1,27 @@
+{
+  "review_id": "METAMORPHE-DRUID-ST01",
+  "date": "2026-10-22",
+  "source_user_request": "non bof la , fait une armure qui fait plutot druide un peu...",
+  "mode": "built_in_image_gen",
+  "status": "direction_study_pending_native64_review",
+  "candidate_id": "ME-DR01-P03-r01",
+  "rank": 3,
+  "native_height": 56,
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "prompt": "Use case: stylized-concept.\nAsset: ONE complete female METAMORPHE character wearing a DRUID-inspired medium armor, for Project RL. A compact robust HUMAN WOMAN in her resting human form. Draw a whole isolated figure on genuine transparent RGBA, from head ornament to boot soles with empty margins; intended to read as a 56-pixel-high figure inside a 64x64 game tile.\nUSER CORRECTION: the previous green tactical/biocomposite armor is rejected. The user explicitly wants an outfit that reads more like a DRUID. Create a new design, not a recoloring of a soldier suit. There is no armor reference, only the same woman's face.\nIdentity and stance: same adult feminine face and short tousled dark-brown hair as the face reference, warm light olive skin, muscular natural arms, strong legs, compact low center of gravity. Slightly bent knees, balanced alert stance, two empty relaxed HUMAN hands away from the body, feet apart. Natural adult proportions, fully clothed torso and legs, no exposed midriff or pinup anatomy. Normal compact head seated close to the shoulders, SHORT NECK; face and natural human eyes remain readable.\nMain DRUID identity: a short broad BROWN/TAN FUR shoulder mantle framing the head and upper torso, over layered MOSS-GREEN cloth and worn brown leather. A short green leaf-shaped cloth cloak falls only to the hips, NOT a long mage robe. The green cloak consists of just three broad leaf-like panels, not hundreds of leaves. Chest is a simple overlapping warm brown leather wrap over a green undershirt; practical leather belt and broad olive sash, two large green leather/cloth tassets reaching mid-thigh. No breast cups. Fitted dark umber/green trousers beneath, leather-wrapped calves and sturdy worn brown boots.\nProtective accents: one broad carved WOOD/BARK forearm guard, the other forearm wrapped in dark leather, one small curved wooden hip guard. Large quiet wood shapes, not technological ivory plates or polished metal. Fingerless brown leather gloves, natural unarmed hands with normal fingers. A single broad pale bone-colored belt fastening can give contrast. No hanging trinkets or jewelry clutter.\nHeadwear: a low simple light WOODEN CIRCLET integrated into the short dark hair, with only TWO VERY SHORT forked branch tips, each at most about two native pixels tall. They are worn wooden decoration, not horns growing out of her head. No giant antlers, stag skull, animal snout, elf ears, full helmet or hood. The small branch silhouette and fur mantle should make this read as a videogame druid at a glance while keeping the face normal-sized.\nPalette and rendering: readable medium moss/sage green cloth, rich worn umber leather, warm brown/tan fur with one broad cream highlight zone, restrained pale wood/bone accents, dark brown joints and boots. Large calm colored masses and a few broad folds. Fur is one textured mass with a few chunky tufts, not noisy individual hairs. No tiny leaf patterns, scratches, runes, glowing effects, small scales, rivets or intricate embroidery. Matte polished painterly game-sprite finish, subtle upper-left light and slightly elevated nearly frontal game view. Keep the feminine face consistent with the reference, not its portrait scale.\nThis must read as a strong shapeshifting DRUID in practical natural equipment. No military armor, standard tactical breastplate, shoulder pauldrons, cargo pockets, cybernetic limbs, machines, luminous implants, orange dots or futuristic helmet. No transformation, beast anatomy, claws, fangs, tail, wings, bare animal feet or new powers.\nNo weapon, staff, wand, shield, spell, orb, aura, floor, ground shadow, scenery, text, label or board. One full figure only on real transparent background.\nInput image 1 is ONLY the underlying woman's human facial identity and painterly treatment. Build the new full druid costume and compact muscular pose independently below it.",
+  "references": [
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-adaptive-wave-01/ME-AD01-female-identity-reference.png",
+      "sha256": "e1fcb9b9a7fe024d52016801a9fc7a8a54b859c524e803dd04f4d76a64d46e5b",
+      "role": "same adult female human face only; no rejected adaptive armor reference"
+    }
+  ],
+  "transparent_background": true,
+  "source": "assets/source-art/class-readability-01/metamorphe-druid-study-01/ME-DR01-P03-r01-source.png",
+  "runtime_integration": false,
+  "source_sha256": "0805ac453be9b99687540224f4e4e133b8c2a417d0808ece387964c417c6a960",
+  "generated_origin": "exec-de63ea82-46df-403c-bf30-82db57ddea62.png"
+}

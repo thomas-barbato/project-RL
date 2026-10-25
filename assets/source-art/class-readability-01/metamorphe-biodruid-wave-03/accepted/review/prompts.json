@@ -1,0 +1,72 @@
+{
+  "review_id": "METAMORPHE-BIODRUID-W03",
+  "date": "2026-10-22",
+  "mode": "built_in_image_gen_and_exact_reuse",
+  "source_user_reply": "ok continue",
+  "authorization": "continue the established modern druid direction into a five-stage range; new range awaits native64 review",
+  "references": [
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/ME-BD02-P03-r01-source.png",
+      "sha256": "0711050b7adc994e0ff335052575f146cc54061132f4aaeaee5549f1d40d820c",
+      "role": "primary modern-druid medium outfit: silhouette, palette, finish, same woman; vary armor stage"
+    },
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/references/user-02-light-outfit.png",
+      "sha256": "4314091df069b41974be573dab988ef1c4bfc9dd8cb6ce6535a644e438020c5d",
+      "role": "same adult female face, short dark hair, muscular human build; very-light endpoint reused exactly"
+    }
+  ],
+  "jobs": [
+    {
+      "rank": 1,
+      "candidate_id": "ME-BD03-P01-r01",
+      "method": "reuse_user_liked_light_outfit_exact",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/references/user-02-light-outfit.png",
+      "reuse_native": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/user-reference-03-native64.png",
+      "source_sha256": "4314091df069b41974be573dab988ef1c4bfc9dd8cb6ce6535a644e438020c5d"
+    },
+    {
+      "rank": 2,
+      "candidate_id": "ME-BD03-P02-r01",
+      "method": "built_in_image_gen",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P02-r01-source.png",
+      "prompt": "Use case: stylized-concept.\nAsset: ONE whole female METAMORPHE HUMAN outfit for a futuristic/cyberpunk roguelike. It belongs to a coherent five-stage very-light to very-heavy armor range. Image 1 is the established MEDIUM outfit and the principal reference for the same woman, short fur mantle, natural-cut moss cloth and warm ivory composites. Image 2 is her very-light outfit and the same face/build. Keep this exact class identity and painterly game-sprite treatment.\nAdult strong muscular woman, warm olive skin, same determined feminine face and short tousled dark-brown hair. Compact human head seated naturally close to the shoulders with a SHORT NECK. Nearly frontal slightly elevated game view, upper-left light. Calm balanced stance, feet separated, arms slightly away from body, two empty HUMAN hands with natural fingers. No pose-dependent weapon. Entire figure from hair to boot soles with transparent margins.\nModern DRUID identity: moss/olive technical cloth, dark umber leather and flexible joints, a modest warm tan fur shoulder collar and just two or three broad green leaf-cut cloth panels ending at hip/thigh. A few broad smooth rounded ivory BIOCOMPOSITE shells, never carved medieval wood or metal knight armor. Natural curved shell shapes and soft collar, no giant square shoulder blocks. Broad readable materials, matte understated wear. Preserve the earthy olive/ivory/umber palette. No luminous effects, circuitry, tech ornaments, tiny runes or carved leaf patterns.\nThe complete outfit includes torso, shoulders, arms/gloves, trousers, legs/boots and its default head protection; all regions progress in coverage. Human RESTING form only, no animal parts, claws, horns, tails, powers or implants. No exposed midriff, pinup anatomy, long robe, medieval cape, antler crown or skull. No conventional military infantry or cargo uniform, no robotic chassis, no copper brawler armor.\nDesigned to remain readable at 56px high inside a 64x64 tile. Large quiet masses, sparse seams, 2-3 broad values per material. Fur is a single chunky mass, not individual hairs. No microtextures, scattered dots, rivet grids or narrow overlapping scales. Same normal human height at every stage; increase protective volume and coverage, NOT the size of the head. Head protection stays compact, hair and face remain recognizable. No broad plate across forehead.\nGenuine transparent RGBA background; no halo, floor, cast shadow, scenery, text, board, weapon, shield, staff, spell, aura or extra object. ONE full isolated character only.\nSTAGE 02 / LIGHT, clearly lighter than Image 1. A fitted short-sleeved olive technical vest, a SMALL ivory sternum insert (not a full breastplate), one curved forearm protector and one leather wrist wrap, fingerless gloves. Elbows/part of upper arms exposed. Small light olive thigh panels, modest knee caps, fitted cloth shins and light reinforced ankle boots. A thin modest tan fur collar and two short green shoulder flaps establish the druid identity with little bulk, nothing resembling a thick full mantle. Dark flexible joints clearly visible. HEAD: same short hair with a very thin dark-brown cloth forehead band mostly hidden by the fringe. No rigid head shell, forehead plate, antlers, crown or helmet. Protective silhouette about 28-30 native pixels wide.",
+      "generated_origin": "exec-019a3205-5642-4353-a0da-431305a1afc6.png",
+      "source_sha256": "9659e4ef986703e34352e2912f273b8d2390e6a9462351823cf34c213871dc0f"
+    },
+    {
+      "rank": 3,
+      "candidate_id": "ME-BD02-P03-r01",
+      "method": "reuse_current_medium_study_exact",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/ME-BD02-P03-r01-source.png",
+      "reuse_native": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/ME-BD02-P03-r01-native64.png",
+      "source_sha256": "0711050b7adc994e0ff335052575f146cc54061132f4aaeaee5549f1d40d820c"
+    },
+    {
+      "rank": 4,
+      "candidate_id": "ME-BD03-P04-r01",
+      "method": "built_in_image_gen",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P04-r01-source.png",
+      "prompt": "Use case: stylized-concept.\nAsset: ONE whole female METAMORPHE HUMAN outfit for a futuristic/cyberpunk roguelike. It belongs to a coherent five-stage very-light to very-heavy armor range. Image 1 is the established MEDIUM outfit and the principal reference for the same woman, short fur mantle, natural-cut moss cloth and warm ivory composites. Image 2 is her very-light outfit and the same face/build. Keep this exact class identity and painterly game-sprite treatment.\nAdult strong muscular woman, warm olive skin, same determined feminine face and short tousled dark-brown hair. Compact human head seated naturally close to the shoulders with a SHORT NECK. Nearly frontal slightly elevated game view, upper-left light. Calm balanced stance, feet separated, arms slightly away from body, two empty HUMAN hands with natural fingers. No pose-dependent weapon. Entire figure from hair to boot soles with transparent margins.\nModern DRUID identity: moss/olive technical cloth, dark umber leather and flexible joints, a modest warm tan fur shoulder collar and just two or three broad green leaf-cut cloth panels ending at hip/thigh. A few broad smooth rounded ivory BIOCOMPOSITE shells, never carved medieval wood or metal knight armor. Natural curved shell shapes and soft collar, no giant square shoulder blocks. Broad readable materials, matte understated wear. Preserve the earthy olive/ivory/umber palette. No luminous effects, circuitry, tech ornaments, tiny runes or carved leaf patterns.\nThe complete outfit includes torso, shoulders, arms/gloves, trousers, legs/boots and its default head protection; all regions progress in coverage. Human RESTING form only, no animal parts, claws, horns, tails, powers or implants. No exposed midriff, pinup anatomy, long robe, medieval cape, antler crown or skull. No conventional military infantry or cargo uniform, no robotic chassis, no copper brawler armor.\nDesigned to remain readable at 56px high inside a 64x64 tile. Large quiet masses, sparse seams, 2-3 broad values per material. Fur is a single chunky mass, not individual hairs. No microtextures, scattered dots, rivet grids or narrow overlapping scales. Same normal human height at every stage; increase protective volume and coverage, NOT the size of the head. Head protection stays compact, hair and face remain recognizable. No broad plate across forehead.\nGenuine transparent RGBA background; no halo, floor, cast shadow, scenery, text, board, weapon, shield, staff, spell, aura or extra object. ONE full isolated character only.\nSTAGE 04 / HEAVY, clearly one tier more protective than Image 1. Fuller curved ivory chest shell with one broad overlapping rib, thicker rounded shoulder protection partly beneath the short tan fur mantle, protected upper arms and substantial forearm shells over olive sleeves. Firm guarded gloves, curved hip and outer-thigh guards, broad knee/shin caps and reinforced modern boots. Keep olive flexible elbow, groin and knee gaps readable; no long skirt. Green leaf-cut panels at hips remain simple and short. About 33-35 native pixels wide. HEAD: same human face/hair, compact low open-face head guard with TWO small curved ivory temple pieces and a dark olive nape band, hair crown and forehead exposed. No large frontal plate, full helmet, ears sticking out, horns or antlers. The head stays the same compact scale, with short neck.",
+      "generated_origin": "exec-53a46acd-e470-4677-878a-77b826793851.png",
+      "source_sha256": "ef93bacf5c86b9882671a90ef3c1627bca3303134662df172dfa5b5ec0801731"
+    },
+    {
+      "rank": 5,
+      "candidate_id": "ME-BD03-P05-r01",
+      "method": "built_in_image_gen",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P05-r01-source.png",
+      "prompt": "Use case: stylized-concept.\nAsset: ONE whole female METAMORPHE HUMAN outfit for a futuristic/cyberpunk roguelike. It belongs to a coherent five-stage very-light to very-heavy armor range. Image 1 is the established MEDIUM outfit and the principal reference for the same woman, short fur mantle, natural-cut moss cloth and warm ivory composites. Image 2 is her very-light outfit and the same face/build. Keep this exact class identity and painterly game-sprite treatment.\nAdult strong muscular woman, warm olive skin, same determined feminine face and short tousled dark-brown hair. Compact human head seated naturally close to the shoulders with a SHORT NECK. Nearly frontal slightly elevated game view, upper-left light. Calm balanced stance, feet separated, arms slightly away from body, two empty HUMAN hands with natural fingers. No pose-dependent weapon. Entire figure from hair to boot soles with transparent margins.\nModern DRUID identity: moss/olive technical cloth, dark umber leather and flexible joints, a modest warm tan fur shoulder collar and just two or three broad green leaf-cut cloth panels ending at hip/thigh. A few broad smooth rounded ivory BIOCOMPOSITE shells, never carved medieval wood or metal knight armor. Natural curved shell shapes and soft collar, no giant square shoulder blocks. Broad readable materials, matte understated wear. Preserve the earthy olive/ivory/umber palette. No luminous effects, circuitry, tech ornaments, tiny runes or carved leaf patterns.\nThe complete outfit includes torso, shoulders, arms/gloves, trousers, legs/boots and its default head protection; all regions progress in coverage. Human RESTING form only, no animal parts, claws, horns, tails, powers or implants. No exposed midriff, pinup anatomy, long robe, medieval cape, antler crown or skull. No conventional military infantry or cargo uniform, no robotic chassis, no copper brawler armor.\nDesigned to remain readable at 56px high inside a 64x64 tile. Large quiet masses, sparse seams, 2-3 broad values per material. Fur is a single chunky mass, not individual hairs. No microtextures, scattered dots, rivet grids or narrow overlapping scales. Same normal human height at every stage; increase protective volume and coverage, NOT the size of the head. Head protection stays compact, hair and face remain recognizable. No broad plate across forehead.\nGenuine transparent RGBA background; no halo, floor, cast shadow, scenery, text, board, weapon, shield, staff, spell, aura or extra object. ONE full isolated character only.\nSTAGE 05 / VERY HEAVY, visibly stronger and thicker than Image 1 and the heavy stage. Broad rounded warm ivory chest and curved side ribs, fuller thick overlapping composite shoulder caps partly framed by a short dense tan fur collar. Substantial rounded upper-arm/forearm shells, protected human gloves, broad curved hip/thigh shells, large smooth knees and wraparound shin plates, heavy reinforced olive boots with broad ivory toe caps. Protection follows organic curved leaf-like contours but is engineered smooth composite, not natural bones or metal soldier blocks. Leave large dark flexible gaps at elbows and knees and green panels visible so this remains a mobile HUMAN druid rather than a robot or Bastion. Green hip cloth is short and broad, no tiny scales. Clearly thicker silhouette, about 36-38 native pixels wide, SAME normal human height and head size. HEAD: compact olive padded head liner partly under the short hair, small ivory temple/ear guards and ONE low curved chin-side guard under the mouth. Entire eyes, nose and mouth visible; forehead and top hair visible, no front brow plate, crown, muzzle or giant helmet. Head protectors fit closely and do not create a tall neck.",
+      "generated_origin": "exec-ea95e79f-39e9-460a-8379-9dae4fd5da55.png",
+      "source_sha256": "b09ecbdd169d9b6f10481bc285ecf7a2041852126f558c5f63c8abbd07e970ed"
+    }
+  ],
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "native_height": 56,
+  "transparent_background": true,
+  "runtime_integration": false,
+  "color_variants": "deferred_by_user"
+}

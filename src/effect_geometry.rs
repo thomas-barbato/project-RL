@@ -3,7 +3,14 @@ use macroquad::prelude::*;
 use project_rl::{combat::AttackPreview, world::GridPos};
 #[cfg(debug_assertions)]
 use std::cell::Cell;
+use std::rc::{Rc, Weak};
 use std::{cell::RefCell, collections::HashMap};
+
+type TextureKey = (&'static [u8], bool, bool);
+thread_local! {
+    // Keys compare the compressed content, not its address or file name.
+    static SHARED_TEXTURES: RefCell<HashMap<TextureKey, Weak<Texture2D>>> = RefCell::new(HashMap::new());
+}
 
 /// Decode and upload only when this particular drawing is actually used.
 /// Art banks can describe an entire skill family without loading every atlas.
@@ -11,7 +18,7 @@ pub(crate) struct LazyTexture {
     bytes: &'static [u8],
     filter: FilterMode,
     fitted: bool,
-    value: std::cell::OnceCell<Texture2D>,
+    value: std::cell::OnceCell<Rc<Texture2D>>,
 }
 impl LazyTexture {
     pub(crate) fn fitted(bytes: &'static [u8], filter: FilterMode) -> Self {
@@ -38,6 +45,12 @@ impl std::ops::Deref for LazyTexture {
     type Target = Texture2D;
     fn deref(&self) -> &Texture2D {
         self.value.get_or_init(|| {
+            let key = (self.bytes, self.filter == FilterMode::Linear, self.fitted);
+            if let Some(texture) =
+                SHARED_TEXTURES.with_borrow(|cache| cache.get(&key).and_then(Weak::upgrade))
+            {
+                return texture;
+            }
             #[cfg(debug_assertions)]
             let started = std::time::Instant::now();
             let value = if self.fitted {
@@ -52,6 +65,11 @@ impl std::ops::Deref for LazyTexture {
                 stats.0 += 1;
                 stats.1 += self.bytes.len();
                 stats.2 += started.elapsed().as_secs_f64() * 1000.;
+            });
+            let value = Rc::new(value);
+            SHARED_TEXTURES.with_borrow_mut(|cache| {
+                cache.retain(|_, texture| texture.strong_count() > 0);
+                cache.insert(key, Rc::downgrade(&value));
             });
             value
         })

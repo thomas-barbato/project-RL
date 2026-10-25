@@ -1,0 +1,1097 @@
+{
+  "review_id": "TECHNOMANCIEN-W02",
+  "date": "2026-10-21",
+  "status": "rejected_by_user",
+  "class_id": "core:technomancien",
+  "starting_skills": [
+    {
+      "id": "D59",
+      "title": "Invocation de l'Artilleur"
+    },
+    {
+      "id": "O03",
+      "title": "Algorithmes de combat améliorés"
+    }
+  ],
+  "models": 5,
+  "colored_variants": 15,
+  "views": 20,
+  "native_cell": [
+    64,
+    64
+  ],
+  "head_reference": "assets/source-art/class-readability-01/CL02-r04-source.png",
+  "head_reference_sha256": "785049af227cc6ea7f06775625092a343036736b2d38ca922ce9cea56380f94d",
+  "head_layer": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-common-head-native64.png",
+  "head_layer_sha256": "835be37822c0fa54ca16577ab9f94e6c6ff110c519a705e21d64d88ad23decd5",
+  "head_region": [
+    0,
+    0,
+    64,
+    14
+  ],
+  "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+  "body_scope": "complete_outfit_below_head_including_hands_legs_boots",
+  "attachment_points": {
+    "head_center_x": 32,
+    "neck_seam_y": 14,
+    "foot_baseline_y": 61
+  },
+  "entries": [
+    {
+      "number": "01",
+      "label": "Très légère",
+      "model_candidate": "TE-W02-P01-r02",
+      "item_id": null,
+      "views": [
+        {
+          "candidate_id": "TE-W02-P01-r02",
+          "color": "original",
+          "color_label": "Originale",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P01-r02-body-source.png",
+          "source_sha256": "6da25fd0357e747a2d25b4545ccc9f8660f5cbac0b64332a60d81d5972db71cb",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P01-r02-native64.png",
+          "native_sha256": "802d530f3c96b9928f5e8b0ecc2681c0c196075785d07ce9c5607f9922ac5c92",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P01-r02-body-native64.png",
+          "body_layer_sha256": "ab507348bcacf5628ad6758593cadfd8d34698ef1680732f2394e4f406446467",
+          "measurements": {
+            "source_core_box": [
+              144,
+              80,
+              880,
+              1446
+            ],
+            "source_crop": [
+              124,
+              60,
+              900,
+              1466
+            ],
+            "isotropic_scale": 0.03513909224011713,
+            "native_core_box": [
+              19,
+              15,
+              44,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 25,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            44,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 1.0
+        },
+        {
+          "candidate_id": "TE-W02-P01-r02-red",
+          "color": "red",
+          "color_label": "Rouge",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P01-r02-red-body-source.png",
+          "source_sha256": "daef0e433f5ba3da077ee1669b972a6c26d44f95eeb34b3174b9f5f2653934f5",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P01-r02-red-native64.png",
+          "native_sha256": "07a0d3adf6117cb82d6e03b3584abaeebc8f51b8172a3ab16d8a3424f6aedb87",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P01-r02-red-body-native64.png",
+          "body_layer_sha256": "85f47ae6d7e4e5b14f63e2e4621c61c7a91c340773d8b2a102f7f1f068e3c8fc",
+          "measurements": {
+            "source_core_box": [
+              144,
+              80,
+              881,
+              1448
+            ],
+            "source_crop": [
+              123,
+              59,
+              902,
+              1469
+            ],
+            "isotropic_scale": 0.03508771929824561,
+            "native_core_box": [
+              19,
+              15,
+              44,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 25,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            44,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9907550077041603
+        },
+        {
+          "candidate_id": "TE-W02-P01-r02-blue",
+          "color": "blue",
+          "color_label": "Bleue",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P01-r02-blue-body-source.png",
+          "source_sha256": "71c146d3176575de19eb357ad7cf2ae9c93a1a0cfc0e00c9dd8e5c50fe31545e",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P01-r02-blue-native64.png",
+          "native_sha256": "364312d41aa7c71cccb2a688c6470a9d79db273fd203df5eb21d01d79e83b257",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P01-r02-blue-body-native64.png",
+          "body_layer_sha256": "1470e841384fcd7cede92547b77037975cf1ae6fe6d85dbb3e44253387cdac95",
+          "measurements": {
+            "source_core_box": [
+              144,
+              78,
+              881,
+              1448
+            ],
+            "source_crop": [
+              123,
+              57,
+              902,
+              1469
+            ],
+            "isotropic_scale": 0.035036496350364967,
+            "native_core_box": [
+              19,
+              15,
+              44,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 25,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            44,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9922958397534669
+        },
+        {
+          "candidate_id": "TE-W02-P01-r02-green",
+          "color": "green",
+          "color_label": "Verte",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P01-r02-green-body-source.png",
+          "source_sha256": "89b9780f816267f61e475eb2d927888cd38490d36ba44006440b330b462e8bf1",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P01-r02-green-native64.png",
+          "native_sha256": "f20b5241e45d8d7163357fa5eacc77e64bc04d04561ea06a7d6c47c4256e50e3",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P01-r02-green-body-native64.png",
+          "body_layer_sha256": "1734e1c58bfecb47b4baf35e00291884c1e751e33679894e14c57d32909473e0",
+          "measurements": {
+            "source_core_box": [
+              143,
+              80,
+              881,
+              1448
+            ],
+            "source_crop": [
+              122,
+              59,
+              902,
+              1469
+            ],
+            "isotropic_scale": 0.03508771929824561,
+            "native_core_box": [
+              19,
+              15,
+              44,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 25,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            44,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9938461538461538
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "label": "Légère",
+      "model_candidate": "TE-W02-P02-r02",
+      "item_id": null,
+      "views": [
+        {
+          "candidate_id": "TE-W02-P02-r02",
+          "color": "original",
+          "color_label": "Originale",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P02-r02-body-source.png",
+          "source_sha256": "0872671f806502af2ddc252475e553fed7f111a19365817f931f569e8d900a52",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P02-r02-native64.png",
+          "native_sha256": "35afcc81e93dfa429a6ad65eb30e054b92d2022bbe7e9319905d65fb404e4d14",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P02-r02-body-native64.png",
+          "body_layer_sha256": "4f48e75d4c39a816c30a29355943f22751fd71b5e3578ba5003df97db85cba11",
+          "measurements": {
+            "source_core_box": [
+              131,
+              54,
+              894,
+              1435
+            ],
+            "source_crop": [
+              110,
+              33,
+              915,
+              1456
+            ],
+            "isotropic_scale": 0.03475742215785663,
+            "native_core_box": [
+              19,
+              15,
+              45,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 26,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            45,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 1.0
+        },
+        {
+          "candidate_id": "TE-W02-P02-r02-red",
+          "color": "red",
+          "color_label": "Rouge",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P02-r02-red-body-source.png",
+          "source_sha256": "28224b7c04081bdc141bd81322338ce7eb969763bc0a1a7448e4d5b547bc7d50",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P02-r02-red-native64.png",
+          "native_sha256": "3856ff1ca6b154a61ddb40885156dd3c43f9d1dffddfc2d3e640a0f3fbedc5cf",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P02-r02-red-body-native64.png",
+          "body_layer_sha256": "d7ec856d6151811c2e887551f91269b0cf924c523eb90df6a7fae2bf3bea6d7c",
+          "measurements": {
+            "source_core_box": [
+              129,
+              53,
+              895,
+              1438
+            ],
+            "source_crop": [
+              108,
+              32,
+              916,
+              1459
+            ],
+            "isotropic_scale": 0.034657039711191336,
+            "native_core_box": [
+              19,
+              15,
+              45,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 26,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            45,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9957924263674615
+        },
+        {
+          "candidate_id": "TE-W02-P02-r02-blue",
+          "color": "blue",
+          "color_label": "Bleue",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P02-r02-blue-body-source.png",
+          "source_sha256": "b5b65145669d2f061f64b3630560f9ba53d875a585bfbe23df83a23ff2d903af",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P02-r02-blue-native64.png",
+          "native_sha256": "837d7fee79ac8042ab4027566ffbd2fb0c7a9dc7089a643e051c590172a5d09f",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P02-r02-blue-body-native64.png",
+          "body_layer_sha256": "6e92504adf8b494d3c50f63f6d859f551f16d72f2e0d59f701ec727296a160ce",
+          "measurements": {
+            "source_core_box": [
+              130,
+              53,
+              894,
+              1437
+            ],
+            "source_crop": [
+              109,
+              32,
+              915,
+              1458
+            ],
+            "isotropic_scale": 0.03468208092485549,
+            "native_core_box": [
+              19,
+              15,
+              45,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 26,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            45,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9957924263674615
+        },
+        {
+          "candidate_id": "TE-W02-P02-r02-green",
+          "color": "green",
+          "color_label": "Verte",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P02-r02-green-body-source.png",
+          "source_sha256": "6ecef3960e04f56a4704047d7e827022c1503056923c14e531be26f15f025697",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P02-r02-green-native64.png",
+          "native_sha256": "ceb5704f7cb500be50ccfb72d6811b4f0fa2c88d3912ecb3fa2b86082f804248",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P02-r02-green-body-native64.png",
+          "body_layer_sha256": "11b7d9cc7aed86abc2d3cc73fafb743845e89bfb115f0a31f1e107dd12cd56aa",
+          "measurements": {
+            "source_core_box": [
+              125,
+              45,
+              900,
+              1438
+            ],
+            "source_crop": [
+              104,
+              24,
+              921,
+              1459
+            ],
+            "isotropic_scale": 0.03445800430725054,
+            "native_core_box": [
+              19,
+              15,
+              45,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 26,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            45,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9943899018232819
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "label": "Intermédiaire",
+      "model_candidate": "TE-W02-P03-r01",
+      "item_id": null,
+      "views": [
+        {
+          "candidate_id": "TE-W02-P03-r01",
+          "color": "original",
+          "color_label": "Originale",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P03-r01-body-source.png",
+          "source_sha256": "ab84ffa78e67148658969191a10431245c34d047efdd8183e163c9a69bfa825f",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P03-r01-native64.png",
+          "native_sha256": "1489538bd0da469d47a2bd91b6f35e835afaeb7757b84e263953f12c4d0d0345",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P03-r01-body-native64.png",
+          "body_layer_sha256": "8938466924d51c4fc157bcc3f0f51e4bf44b1915e3e86b7fa0d59f3ce4480ffd",
+          "measurements": {
+            "source_core_box": [
+              153,
+              68,
+              933,
+              1412
+            ],
+            "source_crop": [
+              133,
+              48,
+              953,
+              1432
+            ],
+            "isotropic_scale": 0.03571428571428571,
+            "native_core_box": [
+              19,
+              15,
+              46,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 27,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            46,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 1.0
+        },
+        {
+          "candidate_id": "TE-W02-P03-r01-red",
+          "color": "red",
+          "color_label": "Rouge",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P03-r01-red-body-source.png",
+          "source_sha256": "491bd83c7f6e2c88bbc72c7ed4ea34a3120c000fc6f2335d9d28f79f9242c588",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P03-r01-red-native64.png",
+          "native_sha256": "a7944c86300ed054720ae529008cdcba1cfec4a4b9c5de17771df3e7d0450502",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P03-r01-red-body-native64.png",
+          "body_layer_sha256": "32d0c8cf57b4378d925fa536c65fd977e001b7b6b45aa99f0d88c6b0619aa054",
+          "measurements": {
+            "source_core_box": [
+              152,
+              67,
+              935,
+              1414
+            ],
+            "source_crop": [
+              132,
+              47,
+              955,
+              1434
+            ],
+            "isotropic_scale": 0.035634743875278395,
+            "native_core_box": [
+              19,
+              15,
+              46,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 27,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            46,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9757343550446999
+        },
+        {
+          "candidate_id": "TE-W02-P03-r01-blue",
+          "color": "blue",
+          "color_label": "Bleue",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P03-r01-blue-body-source.png",
+          "source_sha256": "a38080c5834eeb87289931bf63aa2598cbec4e4042138c4572b569b9dd3e9138",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P03-r01-blue-native64.png",
+          "native_sha256": "477f564bff53ef244a08cf0908c2135ed9afe8f3b2bf41dd355f61b45195290f",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P03-r01-blue-body-native64.png",
+          "body_layer_sha256": "78fdd501966f1b6116696e16a2a270d5631d9b1e5f8f117aa1ca66e17ba279d3",
+          "measurements": {
+            "source_core_box": [
+              153,
+              67,
+              934,
+              1414
+            ],
+            "source_crop": [
+              133,
+              47,
+              954,
+              1434
+            ],
+            "isotropic_scale": 0.035634743875278395,
+            "native_core_box": [
+              19,
+              15,
+              46,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 27,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            46,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9870967741935484
+        },
+        {
+          "candidate_id": "TE-W02-P03-r01-green",
+          "color": "green",
+          "color_label": "Verte",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P03-r01-green-body-source.png",
+          "source_sha256": "e766d460b27f833c9a09f10a80bf6a01c047126987b0b14af310c8f6d781d2cb",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P03-r01-green-native64.png",
+          "native_sha256": "68b73380381ecdd29c59e1ea98a63aae4a017c340fbd19282c84ad43ff3f1db6",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P03-r01-green-body-native64.png",
+          "body_layer_sha256": "cf3afcf3c6852f6793ecc4f75756eed651d0e63d22b4305bac7b46e2bdad80bd",
+          "measurements": {
+            "source_core_box": [
+              152,
+              66,
+              936,
+              1414
+            ],
+            "source_crop": [
+              132,
+              46,
+              956,
+              1434
+            ],
+            "isotropic_scale": 0.03560830860534125,
+            "native_core_box": [
+              19,
+              15,
+              46,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 27,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            46,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9858429858429858
+        }
+      ]
+    },
+    {
+      "number": "04",
+      "label": "Lourde",
+      "model_candidate": "TE-W02-P04-r02",
+      "item_id": null,
+      "views": [
+        {
+          "candidate_id": "TE-W02-P04-r02",
+          "color": "original",
+          "color_label": "Originale",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P04-r02-body-source.png",
+          "source_sha256": "39b65eb085c6af5e477e1690dfa60f60751b46115ab6d928a644f7ce06f8d14e",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P04-r02-native64.png",
+          "native_sha256": "a39ef9fab96bcca93e137d7fe6bd0be4b45f893491da50eaa40d6987083d62e8",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P04-r02-body-native64.png",
+          "body_layer_sha256": "05b4595e7259070455465d76544748579bf9df720867aa989851cf033b2e672f",
+          "measurements": {
+            "source_core_box": [
+              111,
+              44,
+              913,
+              1506
+            ],
+            "source_crop": [
+              89,
+              22,
+              935,
+              1528
+            ],
+            "isotropic_scale": 0.03283173734610123,
+            "native_core_box": [
+              19,
+              15,
+              45,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 26,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            45,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 1.0
+        },
+        {
+          "candidate_id": "TE-W02-P04-r02-red",
+          "color": "red",
+          "color_label": "Rouge",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P04-r02-red-body-source.png",
+          "source_sha256": "4719528f1c1d5963a8e2a6f023b8bba0783e6cd2e95ae7408fe8aa5c023e4c3e",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P04-r02-red-native64.png",
+          "native_sha256": "775c1e99beb06eecbff04cb351f98d16bb2284dacce74fc6681a4b3e948df491",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P04-r02-red-body-native64.png",
+          "body_layer_sha256": "b18855757b357e16f3cc744772e6591e5b342bcefad770251e86fcf85a438375",
+          "measurements": {
+            "source_core_box": [
+              109,
+              43,
+              915,
+              1506
+            ],
+            "source_crop": [
+              87,
+              21,
+              937,
+              1528
+            ],
+            "isotropic_scale": 0.032809295967190705,
+            "native_core_box": [
+              19,
+              15,
+              45,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 26,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            45,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9960474308300395
+        },
+        {
+          "candidate_id": "TE-W02-P04-r02-blue",
+          "color": "blue",
+          "color_label": "Bleue",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P04-r02-blue-body-source.png",
+          "source_sha256": "3b62b8b3705384c4a476e7d6824b7175d788f6792f442d1adc3e1ab9e5d50749",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P04-r02-blue-native64.png",
+          "native_sha256": "bdd1aa32f7c186a047a24296d8eaaf7bd6ce20eeeffb58970d009ed675b47c5b",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P04-r02-blue-body-native64.png",
+          "body_layer_sha256": "8f8b03d523a9088c1d7e0ab52ac6e3734cb428be3c025cc4d11e8f2d26c1bd51",
+          "measurements": {
+            "source_core_box": [
+              111,
+              43,
+              914,
+              1506
+            ],
+            "source_crop": [
+              89,
+              21,
+              936,
+              1528
+            ],
+            "isotropic_scale": 0.032809295967190705,
+            "native_core_box": [
+              19,
+              15,
+              45,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 26,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            45,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9973614775725593
+        },
+        {
+          "candidate_id": "TE-W02-P04-r02-green",
+          "color": "green",
+          "color_label": "Verte",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P04-r02-green-body-source.png",
+          "source_sha256": "6961519483dde9828cfa5b706bea8ce644ce20900a1f86cb73815a912c96c54d",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P04-r02-green-native64.png",
+          "native_sha256": "eb5c3203e396b7647e25b4d3a30caf72995afcbc20ac66786b83ce37f916e32b",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P04-r02-green-body-native64.png",
+          "body_layer_sha256": "49ffa257aff2dc7811e30540837fcb08ba2c72d20c020c3a9f49b29d025b71cc",
+          "measurements": {
+            "source_core_box": [
+              110,
+              44,
+              914,
+              1506
+            ],
+            "source_crop": [
+              88,
+              22,
+              936,
+              1528
+            ],
+            "isotropic_scale": 0.03283173734610123,
+            "native_core_box": [
+              19,
+              15,
+              45,
+              62
+            ],
+            "native_core_height": 47,
+            "native_core_width": 26,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            19,
+            4,
+            45,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9986772486772487
+        }
+      ]
+    },
+    {
+      "number": "05",
+      "label": "Très lourde",
+      "model_candidate": "TE-W02-P05-r03",
+      "item_id": null,
+      "views": [
+        {
+          "candidate_id": "TE-W02-P05-r03",
+          "color": "original",
+          "color_label": "Originale",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P05-r03-body-source.png",
+          "source_sha256": "376db0e8daf28ef9e73d5c008aae47b8a115771015d5583e3e20dd04c4798506",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P05-r03-native64.png",
+          "native_sha256": "a32b5daf8f693d1b590057ab71070cf1fff626b5530fac165a4695110c04b63b",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P05-r03-body-native64.png",
+          "body_layer_sha256": "cc521ac7c8a4c696e5a1acea5822bf06019eec089ed0857644467487f33cd88c",
+          "measurements": {
+            "source_core_box": [
+              8,
+              35,
+              1015,
+              1523
+            ],
+            "source_crop": [
+              0,
+              13,
+              1024,
+              1536
+            ],
+            "isotropic_scale": 0.03225806451612903,
+            "native_core_box": [
+              16,
+              14,
+              49,
+              62
+            ],
+            "native_core_height": 48,
+            "native_core_width": 33,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            16,
+            4,
+            49,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 1.0
+        },
+        {
+          "candidate_id": "TE-W02-P05-r03-red",
+          "color": "red",
+          "color_label": "Rouge",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P05-r03-red-body-source.png",
+          "source_sha256": "84d00d8c260ef1b6965aae8ee8d65fb4b48572eccf2d2b93e992bb15be4ed286",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P05-r03-red-native64.png",
+          "native_sha256": "9421ff86a47422f120d4cc9c68b22401502f6acb19f5cd713d74ad3fde39fbbb",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P05-r03-red-body-native64.png",
+          "body_layer_sha256": "fba54f5406f2dc9c2b8a52fdcd4ff6341097baa678392743af728af8a2d11dfe",
+          "measurements": {
+            "source_core_box": [
+              8,
+              33,
+              1016,
+              1523
+            ],
+            "source_crop": [
+              0,
+              11,
+              1024,
+              1536
+            ],
+            "isotropic_scale": 0.032214765100671144,
+            "native_core_box": [
+              16,
+              14,
+              49,
+              62
+            ],
+            "native_core_height": 48,
+            "native_core_width": 33,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            16,
+            4,
+            49,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9938757655293088
+        },
+        {
+          "candidate_id": "TE-W02-P05-r03-blue",
+          "color": "blue",
+          "color_label": "Bleue",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P05-r03-blue-body-source.png",
+          "source_sha256": "cc154a1b890676389cafec66b92295b1d2118d35e55f389db38cf09a1b56ed32",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P05-r03-blue-native64.png",
+          "native_sha256": "6ac12d0b66b00bea9110988b0b4af3292b99caa51edfdba4036e2007b532a717",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P05-r03-blue-body-native64.png",
+          "body_layer_sha256": "1b1c620d9273a5147fd7c641f48d9d846e7f695564511a27ca9ce2ec827fdd19",
+          "measurements": {
+            "source_core_box": [
+              8,
+              32,
+              1015,
+              1523
+            ],
+            "source_crop": [
+              0,
+              10,
+              1024,
+              1536
+            ],
+            "isotropic_scale": 0.03219315895372234,
+            "native_core_box": [
+              16,
+              14,
+              49,
+              62
+            ],
+            "native_core_height": 48,
+            "native_core_width": 33,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            16,
+            4,
+            49,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9903930131004367
+        },
+        {
+          "candidate_id": "TE-W02-P05-r03-green",
+          "color": "green",
+          "color_label": "Verte",
+          "status": "rejected_by_user",
+          "source": "assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-P05-r03-green-body-source.png",
+          "source_sha256": "fbd5fffcdf9fc061452defb49c661238fa98b1dfe098aaa589bc1f7703443be6",
+          "native": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P05-r03-green-native64.png",
+          "native_sha256": "ac14b36594109ef8c1734669047b0ba523780a9b2fc3e4f3f51360a0eb72622c",
+          "body_layer": "artifacts/class-armor-review-01/technomancien-wave-02/TE-W02-P05-r03-green-body-native64.png",
+          "body_layer_sha256": "ad8d82990149949f38e4f05300624a485b3fcb3b55d90f8c73f0c9bf1c50551f",
+          "measurements": {
+            "source_core_box": [
+              7,
+              33,
+              1016,
+              1523
+            ],
+            "source_crop": [
+              0,
+              11,
+              1024,
+              1536
+            ],
+            "isotropic_scale": 0.032214765100671144,
+            "native_core_box": [
+              16,
+              14,
+              49,
+              62
+            ],
+            "native_core_height": 48,
+            "native_core_width": 33,
+            "foot_baseline_y": 61,
+            "framing": "64x64, isotropic, Lanczos, source alpha retained"
+          },
+          "head_region_sha256": "2ae7a15fb8309e9dcefd3174890788acf7c9c8b999477788ed1676c39ddc1f2f",
+          "assembled_core_box": [
+            16,
+            4,
+            49,
+            62
+          ],
+          "weapon_grips": "pending_separate_review",
+          "strict_material_masks": "pending_production",
+          "solid_alpha_intersection_over_union_vs_original": 0.9921328671328671
+        }
+      ]
+    }
+  ],
+  "runtime_integration": false,
+  "integration_gate": "All armor waves, helmets and weapon hand positions must be ready and reviewed first.",
+  "checks": {
+    "all_views_native64": true,
+    "heads_identical_rgba": true,
+    "sources_framed_without_distortion": true,
+    "bastion_and_active_resources_unchanged": {
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-native64.png": "c9f6ae4d10ac7144d625ca134fdf19129d41aab09fafb0d694fb164539373230",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-body-native64.png": "6876ed1168fa1e2aceddfb70a5712586470a02b826c340cee41feb64410fd6aa",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-body-source.png": "50b401163794ac4b643e54340e825c0ec0ccdf3906d244bc50d124db406a0ccc",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-red-native64.png": "0e05bf6c9717c6d05d33839055ff7f7674ab0f31172c3fe04425e8f3f9b8031e",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-red-body-native64.png": "61dcc7065132b8909b982d96cf765b5bce2c37df76875e03000bc91733b4e326",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-red-body-source.png": "6e1cacd39eb98e88d1db39187d6ec0cc18f1cc1eeb0cfd8bcfeba461de7bfc86",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-blue-native64.png": "e69bc7d84ac2b868f0cfa533318fbb52808b0d9b8e2038040f6b9935e1d7a46b",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-blue-body-native64.png": "ea1555e20efd201442f605a9ae9c32bc5d1a76a6df02a832ba90260c86fa7a65",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-blue-body-source.png": "08eeed0ab250cd10bb6cfa86dd046aff020888923502c4303d1984bb8470772d",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-green-native64.png": "4e3e376cbfd6b1f087aadd13d0c83bb7251f3832a25bb217891fc3a20f54cf5b",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-green-body-native64.png": "268b8ac15eff5f09a43c9a2d0c82bc069acfa2254afd1f44555d0607e4224590",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-green-body-source.png": "bd7cd4ccda894ec6bc161528b8ac567221f6d49031ab2827af0bfb51459d2725",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-native64.png": "ecaee4722c0b2509d59df2f59683d59b539fb1b1db41b0c4458b2aa7ae424ddf",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-body-native64.png": "4056207268ef40e14b75271999f2628f44b01516f10d53b9b3e3dc340327865a",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-body-source.png": "75537643342fd3a47529f7b8958aa7bdbe592f4a61a294cde3038f427ceb23ae",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-red-native64.png": "89e990816690533beea9ade7b1fcd14f0459f128b3a120aeb7740b62373a2652",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-red-body-native64.png": "35f3ad43689f7428075cde76d06ec60a2aaedf3e0b91da1cb66ff9e36199de06",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-red-body-source.png": "8f9dd1a3cb91b908bdd4d899cd58e7f379886fae9cf365229f65a6f80be29a34",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-blue-native64.png": "0e6291faa24695cb5dbaa6f71a38f031628a1978abdeaa49adf9cc44a148b819",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-blue-body-native64.png": "4c35f91f908ccc210d20735a0a22c564c7fa3b2d937182d3cdfb7747958ca0c4",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-blue-body-source.png": "2dbecc114d86bddf18a26316a954c807c35f9197207506aeabaf529f9f239455",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-green-native64.png": "98f784fcdbfb3afd7554d14ba8dab37943febcd3bc9882a3e6660fd62fb1757b",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-green-body-native64.png": "d616b6d150d0646922508ebf726456c8f0690f0f46e8d352be36309979fc3a79",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-green-body-source.png": "e2dba3ed6ab22a691521c6c628abefb21653a1f89e226207db5fbcf696acaa07",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-native64.png": "4e367b2c303d34c4e6f9c867faf12783ff92e1d0b8b49bc226d060f0f7dfd1a0",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-body-native64.png": "9c49cf2126e25b5d62957432b0095e8918db1505473ac459c5f73888e3a590fb",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-body-source.png": "d31fff7c909094d094908f2ec231c3529ba449f4eb3aea88037fab5039753804",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-red-native64.png": "c17b23b89e570951a5191e4846358265167e2af84e4ec4637f04798963bb7fa8",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-red-body-native64.png": "0644d6523e6b7f53a96e8a5671df12fdab57518e6c743a1ff8d7a8db4d6b51e3",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-red-body-source.png": "a68d1ef1e9f5e0723db94077ec902c52e63aeba8b8adc380af1c270c1081c909",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-blue-native64.png": "a315578571ee09f2b69ba07de53318962ad85062a96de83c8bc01517aeea0cf3",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-blue-body-native64.png": "f368146341eb4aea65da47065302426082bb41401357f83622a2070124f94699",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-blue-body-source.png": "7bc9b6ae6ca1ba07e62496890b6e2f8abb12e6d152b343516febef5a7d460671",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-green-native64.png": "1f78510889f800bee821182cf819c3cd38f03f48bcb9a2fd4cc9588e649c5088",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-green-body-native64.png": "9c2c0922a2b97f0edaba4c865979f3e16e968911906423130e8d7e0096376df3",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-green-body-source.png": "43b70d895514ce29ba80d82ade9e98a446003f1378f55e0df44720803e932c6b",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-native64.png": "09dded45d483e7d16f8b6d6517c052668c4ccb2b36d02498b47e3fddb820f805",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-body-native64.png": "0a54de2ebb169759a624ffb2237452ea63981150c024d68ad23210ecba788f36",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-body-source.png": "b86306a8910215debe3dc55ab205c3e2e3b310f47a4366b67b03b8e870929578",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-red-native64.png": "83e80e7f741593f222be801687da29a5e38e27893eff78207fde28cce7ebe005",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-red-body-native64.png": "8a3ac4c49f385ac41a90fe72f283718b23a9a0a28c19dab1221ed1b85ae4f709",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-red-body-source.png": "51a65d685f09acee176c427ba20178e4163b746ca631fd13d411b66450643579",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-blue-native64.png": "e527f29b1afb7bb0ac29a717fd3027217078cb122bdd320f7e0ca871478865e0",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-blue-body-native64.png": "86c28ff4a642a2a9886f97485e872f1507a978b735991fcc49f7478ea3569d06",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-blue-body-source.png": "f7f1035bd46294ac3d5e66be3e94a8ae16bdd5e67fe09e2a62b6ae6894988895",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-green-native64.png": "b395308ce6f13d4fcba24c9c3ca2b30b47245208de38d780ef2b8a13d7aa8e90",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-green-body-native64.png": "e79dde648beb3d08b392c56cbd4545ebc946a99e3b0e37ab9e88a5a17db5a40a",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-green-body-source.png": "c10d69092c9f9ab4645734eee2a162ab903cf57b8a76bfacb389ec4af3fc2206",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-native64.png": "a81d15d0f0c403f6003f703fa2dc9db148c8cb6186e56475c6e1e9e7ba7286a4",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-body-native64.png": "6e2fe2e2c1d83c34015b8a9027aeb6d92d8554b40936b47c9a37c960624905ba",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png": "807794756fa2c01151569c1cd3ae82aeb51dfb800e06df7259771cff604371dd",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-red-native64.png": "0a5bf7e1b26e13893094cc33f3365a65439cc4bb01b944ff816410f51b9606c2",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-red-body-native64.png": "e56b25c0e07a3f601f562cb020efafc78b6cb1b805d5b2613cd6237b825c8437",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-red-body-source.png": "d463f343af2f2f1e34c93dfeea8fe38004715484e31ff0be511e3489ccb39804",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-blue-native64.png": "0b116897704858ce07232040d0c2e7769b725bf70bf4a8a7f62078344e23697c",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-blue-body-native64.png": "902544525445dd2dab6d16bf2311b2ad56f7571392922c394c988efc912dfc66",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-blue-body-source.png": "a79f3cfe6a8ebad7a37be4b27f5b89e95b5f7116c1811d4813118f999f929f3e",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-green-native64.png": "980ba7085a69869589237bca5d94248eb6a0f3e6ec7eef6c8e559c3b914a9d6b",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-green-body-native64.png": "f9757f560c960a47ecc72e938bc003626fe1f39905743ce45e8197d8d51c9842",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-green-body-source.png": "e404ffc46869ada2a292a0a0053a1cb0f585cf0137fe9ee44a02cf9c73485092",
+      "content/core/classes/technomancien.json5": "80f6d233639f1acb79dfa15d6c0c9af56f69471cf171186ddbbc91ef1298f8e4",
+      "assets/sprites/art-finish-02/FIN-14.png": "3b832f850a15f127582d47c9f3c94e31f235a283342a064f3613be99fc0e1f5b"
+    },
+    "native_visual_review_required": true,
+    "scene_is_montage_not_engine_validation": true,
+    "generated_color_silhouettes_are_proposals_not_exact_material_mask_recolors": true
+  },
+  "rejection": "docs/reviews/class-readability-01/technomancien-wave-02/rejection.json"
+}

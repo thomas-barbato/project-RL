@@ -1,0 +1,23 @@
+{
+  "review_id": "ARMOR-TYPES01-REMOVE01",
+  "date": "2026-10-21",
+  "item_id": "core:patched_plating",
+  "display_name": "Tablier de cuir",
+  "user_request": "faut supprimer le tablier de cuir, :) je n'aime pas cette armure",
+  "decision": "accepted_explicit_removal",
+  "future_class_variants": "do_not_produce",
+  "new_campaign_generation": 166,
+  "runtime_status": "implemented_validated",
+  "validation": {
+    "targeted_cargo_tests_passed": 23,
+    "targeted_cargo_tests_failed": 0,
+    "test_command": "cargo test --locked --bin project-rl -- equipment_generation::tests class_start_tests",
+    "release_build": "passed",
+    "release_command": "cargo build --locked --release --bin project-rl",
+    "old_generation_165_inventory_and_replay_test": "passed",
+    "rustfmt_targeted_check": "passed",
+    "git_diff_whitespace_check": "passed"
+  },
+  "preserve": ["historical_item_definition", "source_art", "existing_inventories", "generation_165_and_older_replays"],
+  "other_armor_removals_authorized_by_this_decision": false
+}

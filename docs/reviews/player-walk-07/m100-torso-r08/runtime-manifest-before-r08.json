@@ -1,0 +1,3780 @@
+{
+  "format_version": 1,
+  "review_id": "WALK07-INTEGRATION01",
+  "native_tile": 64,
+  "columns": 7,
+  "rows": 2,
+  "layout": "row0 LEFT, row1 RIGHT; column0 idle, columns1..6 walk; three frames per cell",
+  "entries": [
+    {
+      "id": "MON-021-0",
+      "number": 21,
+      "file": "assets/animations/walk-07/creatures/MON-021-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        15,
+        49,
+        113,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        42,
+        65,
+        151,
+        128
+      ],
+      "front_foot": [
+        96,
+        128
+      ]
+    },
+    {
+      "id": "MON-030-0",
+      "number": 30,
+      "file": "assets/animations/walk-07/creatures/MON-030-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -19,
+      "shadow": true,
+      "cycle_bounds": [
+        45,
+        86,
+        83,
+        112
+      ],
+      "front_vertical_offset": -19,
+      "front_bounds": [
+        13,
+        34,
+        51,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-075-0",
+      "number": 75,
+      "file": "assets/animations/walk-07/creatures/MON-075-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -7,
+      "shadow": true,
+      "cycle_bounds": [
+        23,
+        62,
+        105,
+        112
+      ],
+      "front_vertical_offset": -7,
+      "front_bounds": [
+        22,
+        46,
+        107,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-141-0",
+      "number": 141,
+      "file": "assets/animations/walk-07/creatures/MON-141-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        18,
+        35,
+        110,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        31,
+        19,
+        97,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-124-0",
+      "number": 124,
+      "file": "assets/animations/walk-07/creatures/MON-124-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": false,
+      "cycle_bounds": [
+        40,
+        43,
+        89,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        51,
+        27,
+        77,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "DRONE-GUNNER",
+      "number": 0,
+      "file": "assets/animations/walk-07/creatures/DRONE-GUNNER.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -10,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        71,
+        93,
+        110
+      ],
+      "front_vertical_offset": -10,
+      "front_bounds": [
+        3,
+        23,
+        61,
+        62
+      ],
+      "front_foot": [
+        32,
+        64
+      ]
+    },
+    {
+      "id": "MON-144-0",
+      "number": 144,
+      "file": "assets/animations/walk-07/creatures/MON-144-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        17,
+        33,
+        111,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        5,
+        17,
+        123,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-031-0",
+      "number": 31,
+      "file": "assets/animations/walk-07/creatures/MON-031-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -14,
+      "shadow": true,
+      "cycle_bounds": [
+        41,
+        77,
+        87,
+        112
+      ],
+      "front_vertical_offset": -14,
+      "front_bounds": [
+        9,
+        25,
+        55,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-071-0",
+      "number": 71,
+      "file": "assets/animations/walk-07/creatures/MON-071-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -3,
+      "shadow": true,
+      "cycle_bounds": [
+        24,
+        55,
+        104,
+        112
+      ],
+      "front_vertical_offset": -3,
+      "front_bounds": [
+        23,
+        39,
+        106,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-083-0",
+      "number": 83,
+      "file": "assets/animations/walk-07/creatures/MON-083-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -8,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        64,
+        92,
+        112
+      ],
+      "front_vertical_offset": -8,
+      "front_bounds": [
+        37,
+        48,
+        91,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-064-0",
+      "number": 64,
+      "file": "assets/animations/walk-07/creatures/MON-064-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -16,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        80,
+        94,
+        112
+      ],
+      "front_vertical_offset": -16,
+      "front_bounds": [
+        28,
+        64,
+        100,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-125-0",
+      "number": 125,
+      "file": "assets/animations/walk-07/creatures/MON-125-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        46,
+        95,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        42,
+        30,
+        87,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-145-0",
+      "number": 145,
+      "file": "assets/animations/walk-07/creatures/MON-145-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        18,
+        23,
+        111,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        8,
+        7,
+        120,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-063-0",
+      "number": 63,
+      "file": "assets/animations/walk-07/creatures/MON-063-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -9,
+      "shadow": true,
+      "cycle_bounds": [
+        29,
+        66,
+        99,
+        112
+      ],
+      "front_vertical_offset": -9,
+      "front_bounds": [
+        30,
+        50,
+        98,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-087-0",
+      "number": 87,
+      "file": "assets/animations/walk-07/creatures/MON-087-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -14,
+      "shadow": true,
+      "cycle_bounds": [
+        35,
+        76,
+        93,
+        112
+      ],
+      "front_vertical_offset": -14,
+      "front_bounds": [
+        36,
+        60,
+        92,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-103-0",
+      "number": 103,
+      "file": "assets/animations/walk-07/creatures/MON-103-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -9,
+      "shadow": true,
+      "cycle_bounds": [
+        29,
+        67,
+        99,
+        112
+      ],
+      "front_vertical_offset": -9,
+      "front_bounds": [
+        29,
+        51,
+        100,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-039-0",
+      "number": 39,
+      "file": "assets/animations/walk-07/creatures/MON-039-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -10,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        69,
+        87,
+        112
+      ],
+      "front_vertical_offset": -10,
+      "front_bounds": [
+        7,
+        17,
+        58,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-126-0",
+      "number": 126,
+      "file": "assets/animations/walk-07/creatures/MON-126-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": false,
+      "cycle_bounds": [
+        46,
+        48,
+        83,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        51,
+        32,
+        78,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-146-0",
+      "number": 146,
+      "file": "assets/animations/walk-07/creatures/MON-146-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        20,
+        32,
+        107,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        11,
+        16,
+        117,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-081-0",
+      "number": 81,
+      "file": "assets/animations/walk-07/creatures/MON-081-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -15,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        78,
+        93,
+        112
+      ],
+      "front_vertical_offset": -15,
+      "front_bounds": [
+        34,
+        62,
+        95,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-092-0",
+      "number": 92,
+      "file": "assets/animations/walk-07/creatures/MON-092-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -10,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        69,
+        92,
+        112
+      ],
+      "front_vertical_offset": -10,
+      "front_bounds": [
+        38,
+        53,
+        91,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-139-0",
+      "number": 139,
+      "file": "assets/animations/walk-07/creatures/MON-139-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        29,
+        34,
+        99,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        39,
+        18,
+        90,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-147-0",
+      "number": 147,
+      "file": "assets/animations/walk-07/creatures/MON-147-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        14,
+        28,
+        114,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        7,
+        12,
+        122,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-148-0",
+      "number": 148,
+      "file": "assets/animations/walk-07/creatures/MON-148-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        14,
+        18,
+        114,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        2,
+        2,
+        126,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-035-0",
+      "number": 35,
+      "file": "assets/animations/walk-07/creatures/MON-035-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -17,
+      "shadow": true,
+      "cycle_bounds": [
+        40,
+        82,
+        87,
+        112
+      ],
+      "front_vertical_offset": -17,
+      "front_bounds": [
+        10,
+        30,
+        54,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-076-0",
+      "number": 76,
+      "file": "assets/animations/walk-07/creatures/MON-076-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "shadow": true,
+      "cycle_bounds": [
+        25,
+        50,
+        103,
+        112
+      ],
+      "front_vertical_offset": -1,
+      "front_bounds": [
+        22,
+        34,
+        106,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-101-0",
+      "number": 101,
+      "file": "assets/animations/walk-07/creatures/MON-101-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -5,
+      "shadow": true,
+      "cycle_bounds": [
+        28,
+        58,
+        101,
+        112
+      ],
+      "front_vertical_offset": -5,
+      "front_bounds": [
+        26,
+        42,
+        103,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-070-0",
+      "number": 70,
+      "file": "assets/animations/walk-07/creatures/MON-070-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        26,
+        38,
+        101,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        28,
+        22,
+        101,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-065-0",
+      "number": 65,
+      "file": "assets/animations/walk-07/creatures/MON-065-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        32,
+        49,
+        95,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        31,
+        33,
+        98,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-066-0",
+      "number": 66,
+      "file": "assets/animations/walk-07/creatures/MON-066-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -3,
+      "shadow": true,
+      "cycle_bounds": [
+        32,
+        54,
+        97,
+        112
+      ],
+      "front_vertical_offset": -3,
+      "front_bounds": [
+        23,
+        38,
+        105,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-142-0",
+      "number": 142,
+      "file": "assets/animations/walk-07/creatures/MON-142-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -16,
+      "shadow": true,
+      "cycle_bounds": [
+        28,
+        81,
+        100,
+        112
+      ],
+      "front_vertical_offset": -16,
+      "front_bounds": [
+        15,
+        65,
+        113,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-089-0",
+      "number": 89,
+      "file": "assets/animations/walk-07/creatures/MON-089-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -2,
+      "shadow": true,
+      "cycle_bounds": [
+        33,
+        53,
+        95,
+        112
+      ],
+      "front_vertical_offset": -2,
+      "front_bounds": [
+        36,
+        37,
+        92,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-088-0",
+      "number": 88,
+      "file": "assets/animations/walk-07/creatures/MON-088-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        51,
+        93,
+        112
+      ],
+      "front_vertical_offset": -1,
+      "front_bounds": [
+        38,
+        35,
+        91,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-149-0",
+      "number": 149,
+      "file": "assets/animations/walk-07/creatures/MON-149-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        18,
+        24,
+        110,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        6,
+        8,
+        123,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-150-0",
+      "number": 150,
+      "file": "assets/animations/walk-07/creatures/MON-150-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        18,
+        21,
+        110,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        6,
+        5,
+        122,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-153-0",
+      "number": 153,
+      "file": "assets/animations/walk-07/creatures/MON-153-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        22,
+        31,
+        106,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        14,
+        15,
+        114,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-033-0",
+      "number": 33,
+      "file": "assets/animations/walk-07/creatures/MON-033-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -20,
+      "shadow": true,
+      "cycle_bounds": [
+        45,
+        89,
+        83,
+        112
+      ],
+      "front_vertical_offset": -20,
+      "front_bounds": [
+        12,
+        37,
+        53,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-143-0",
+      "number": 143,
+      "file": "assets/animations/walk-07/creatures/MON-143-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -4,
+      "shadow": true,
+      "cycle_bounds": [
+        24,
+        57,
+        103,
+        112
+      ],
+      "front_vertical_offset": -4,
+      "front_bounds": [
+        25,
+        41,
+        104,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-154-0",
+      "number": 154,
+      "file": "assets/animations/walk-07/creatures/MON-154-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -3,
+      "shadow": true,
+      "cycle_bounds": [
+        26,
+        55,
+        103,
+        112
+      ],
+      "front_vertical_offset": -3,
+      "front_bounds": [
+        20,
+        39,
+        108,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-155-0",
+      "number": 155,
+      "file": "assets/animations/walk-07/creatures/MON-155-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        23,
+        26,
+        105,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        29,
+        10,
+        100,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-157-0",
+      "number": 157,
+      "file": "assets/animations/walk-07/creatures/MON-157-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        29,
+        33,
+        99,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        30,
+        17,
+        99,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-104-0",
+      "number": 104,
+      "file": "assets/animations/walk-07/creatures/MON-104-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -13,
+      "shadow": true,
+      "cycle_bounds": [
+        37,
+        75,
+        91,
+        112
+      ],
+      "front_vertical_offset": -13,
+      "front_bounds": [
+        35,
+        59,
+        93,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-107-0",
+      "number": 107,
+      "file": "assets/animations/walk-07/creatures/MON-107-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -4,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        56,
+        93,
+        112
+      ],
+      "front_vertical_offset": -4,
+      "front_bounds": [
+        37,
+        40,
+        91,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-113-0",
+      "number": 113,
+      "file": "assets/animations/walk-07/creatures/MON-113-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -13,
+      "shadow": true,
+      "cycle_bounds": [
+        40,
+        74,
+        87,
+        112
+      ],
+      "front_vertical_offset": -13,
+      "front_bounds": [
+        38,
+        58,
+        90,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-118-0",
+      "number": 118,
+      "file": "assets/animations/walk-07/creatures/MON-118-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -13,
+      "shadow": true,
+      "cycle_bounds": [
+        38,
+        74,
+        89,
+        112
+      ],
+      "front_vertical_offset": -13,
+      "front_bounds": [
+        44,
+        58,
+        85,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-122-0",
+      "number": 122,
+      "file": "assets/animations/walk-07/creatures/MON-122-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -17,
+      "shadow": true,
+      "cycle_bounds": [
+        32,
+        82,
+        95,
+        112
+      ],
+      "front_vertical_offset": -17,
+      "front_bounds": [
+        36,
+        66,
+        92,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-131-0",
+      "number": 131,
+      "file": "assets/animations/walk-07/creatures/MON-131-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -8,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        64,
+        94,
+        112
+      ],
+      "front_vertical_offset": -8,
+      "front_bounds": [
+        35,
+        48,
+        93,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-037-0",
+      "number": 37,
+      "file": "assets/animations/walk-07/creatures/MON-037-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -20,
+      "shadow": true,
+      "cycle_bounds": [
+        46,
+        88,
+        83,
+        112
+      ],
+      "front_vertical_offset": -20,
+      "front_bounds": [
+        16,
+        36,
+        49,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-038-0",
+      "number": 38,
+      "file": "assets/animations/walk-07/creatures/MON-038-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -16,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        80,
+        86,
+        112
+      ],
+      "front_vertical_offset": -16,
+      "front_bounds": [
+        8,
+        28,
+        56,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-067-0",
+      "number": 67,
+      "file": "assets/animations/walk-07/creatures/MON-067-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -18,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        84,
+        87,
+        112
+      ],
+      "front_vertical_offset": -18,
+      "front_bounds": [
+        40,
+        68,
+        89,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-069-0",
+      "number": 69,
+      "file": "assets/animations/walk-07/creatures/MON-069-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -14,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        77,
+        85,
+        112
+      ],
+      "front_vertical_offset": -14,
+      "front_bounds": [
+        39,
+        61,
+        90,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-090-0",
+      "number": 90,
+      "file": "assets/animations/walk-07/creatures/MON-090-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -18,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        84,
+        85,
+        112
+      ],
+      "front_vertical_offset": -18,
+      "front_bounds": [
+        40,
+        68,
+        89,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-109-0",
+      "number": 109,
+      "file": "assets/animations/walk-07/creatures/MON-109-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -12,
+      "shadow": true,
+      "cycle_bounds": [
+        37,
+        72,
+        91,
+        112
+      ],
+      "front_vertical_offset": -12,
+      "front_bounds": [
+        38,
+        56,
+        91,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-009-0",
+      "number": 9,
+      "file": "assets/animations/walk-07/creatures/MON-009-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        118
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        2,
+        4,
+        127,
+        118
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        66,
+        78,
+        190,
+        192
+      ],
+      "front_foot": [
+        128,
+        192
+      ]
+    },
+    {
+      "id": "MON-020-0",
+      "number": 20,
+      "file": "assets/animations/walk-07/creatures/MON-020-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        20,
+        40,
+        109,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        47,
+        56,
+        145,
+        128
+      ],
+      "front_foot": [
+        96,
+        128
+      ]
+    },
+    {
+      "id": "MON-140-0",
+      "number": 140,
+      "file": "assets/animations/walk-07/creatures/MON-140-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -15,
+      "shadow": true,
+      "cycle_bounds": [
+        30,
+        78,
+        99,
+        112
+      ],
+      "front_vertical_offset": -15,
+      "front_bounds": [
+        31,
+        62,
+        98,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-158-0",
+      "number": 158,
+      "file": "assets/animations/walk-07/creatures/MON-158-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -2,
+      "shadow": true,
+      "cycle_bounds": [
+        18,
+        52,
+        109,
+        112
+      ],
+      "front_vertical_offset": -2,
+      "front_bounds": [
+        17,
+        36,
+        111,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-162-0",
+      "number": 162,
+      "file": "assets/animations/walk-07/creatures/MON-162-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        32,
+        37,
+        95,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        37,
+        21,
+        91,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-156-0",
+      "number": 156,
+      "file": "assets/animations/walk-07/creatures/MON-156-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        22,
+        21,
+        107,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        21,
+        5,
+        107,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-005-0",
+      "number": 5,
+      "file": "assets/animations/walk-07/creatures/MON-005-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -4,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        56,
+        93,
+        112
+      ],
+      "front_vertical_offset": -4,
+      "front_bounds": [
+        33,
+        40,
+        95,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-006-0",
+      "number": 6,
+      "file": "assets/animations/walk-07/creatures/MON-006-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -6,
+      "shadow": true,
+      "cycle_bounds": [
+        30,
+        60,
+        97,
+        112
+      ],
+      "front_vertical_offset": -6,
+      "front_bounds": [
+        33,
+        44,
+        96,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-007-0",
+      "number": 7,
+      "file": "assets/animations/walk-07/creatures/MON-007-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        30,
+        40,
+        97,
+        113
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        17,
+        24,
+        111,
+        97
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-008-0",
+      "number": 8,
+      "file": "assets/animations/walk-07/creatures/MON-008-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -2,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        51,
+        93,
+        113
+      ],
+      "front_vertical_offset": -2,
+      "front_bounds": [
+        32,
+        35,
+        97,
+        97
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-010-0",
+      "number": 10,
+      "file": "assets/animations/walk-07/creatures/MON-010-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -2,
+      "shadow": true,
+      "cycle_bounds": [
+        40,
+        51,
+        88,
+        113
+      ],
+      "front_vertical_offset": -2,
+      "front_bounds": [
+        38,
+        35,
+        89,
+        97
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-011-0",
+      "number": 11,
+      "file": "assets/animations/walk-07/creatures/MON-011-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        48,
+        85,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        37,
+        32,
+        92,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-012-0",
+      "number": 12,
+      "file": "assets/animations/walk-07/creatures/MON-012-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "shadow": true,
+      "cycle_bounds": [
+        30,
+        50,
+        99,
+        112
+      ],
+      "front_vertical_offset": -1,
+      "front_bounds": [
+        29,
+        34,
+        99,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-014-0",
+      "number": 14,
+      "file": "assets/animations/walk-07/creatures/MON-014-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -2,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        53,
+        86,
+        112
+      ],
+      "front_vertical_offset": -2,
+      "front_bounds": [
+        47,
+        37,
+        82,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-015-0",
+      "number": 15,
+      "file": "assets/animations/walk-07/creatures/MON-015-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -2,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        53,
+        86,
+        112
+      ],
+      "front_vertical_offset": -2,
+      "front_bounds": [
+        50,
+        37,
+        79,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-016-0",
+      "number": 16,
+      "file": "assets/animations/walk-07/creatures/MON-016-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -2,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        53,
+        85,
+        112
+      ],
+      "front_vertical_offset": -2,
+      "front_bounds": [
+        44,
+        37,
+        85,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-017-0",
+      "number": 17,
+      "file": "assets/animations/walk-07/creatures/MON-017-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -2,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        52,
+        87,
+        112
+      ],
+      "front_vertical_offset": -2,
+      "front_bounds": [
+        49,
+        36,
+        80,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-022-0",
+      "number": 22,
+      "file": "assets/animations/walk-07/creatures/MON-022-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -7,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        63,
+        86,
+        112
+      ],
+      "front_vertical_offset": -7,
+      "front_bounds": [
+        16,
+        11,
+        48,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-024-0",
+      "number": 24,
+      "file": "assets/animations/walk-07/creatures/MON-024-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -8,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        64,
+        87,
+        112
+      ],
+      "front_vertical_offset": -8,
+      "front_bounds": [
+        17,
+        12,
+        48,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-025-0",
+      "number": 25,
+      "file": "assets/animations/walk-07/creatures/MON-025-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -5,
+      "shadow": true,
+      "cycle_bounds": [
+        46,
+        58,
+        82,
+        112
+      ],
+      "front_vertical_offset": -5,
+      "front_bounds": [
+        16,
+        6,
+        48,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-026-0",
+      "number": 26,
+      "file": "assets/animations/walk-07/creatures/MON-026-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -10,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        69,
+        87,
+        112
+      ],
+      "front_vertical_offset": -10,
+      "front_bounds": [
+        9,
+        17,
+        55,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-028-0",
+      "number": 28,
+      "file": "assets/animations/walk-07/creatures/MON-028-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        30,
+        48,
+        97,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        31,
+        32,
+        98,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-032-0",
+      "number": 32,
+      "file": "assets/animations/walk-07/creatures/MON-032-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -12,
+      "shadow": true,
+      "cycle_bounds": [
+        47,
+        73,
+        81,
+        112
+      ],
+      "front_vertical_offset": -12,
+      "front_bounds": [
+        14,
+        21,
+        51,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-034-0",
+      "number": 34,
+      "file": "assets/animations/walk-07/creatures/MON-034-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -13,
+      "shadow": true,
+      "cycle_bounds": [
+        47,
+        74,
+        81,
+        112
+      ],
+      "front_vertical_offset": -13,
+      "front_bounds": [
+        11,
+        22,
+        53,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-036-0",
+      "number": 36,
+      "file": "assets/animations/walk-07/creatures/MON-036-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -6,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        61,
+        85,
+        112
+      ],
+      "front_vertical_offset": -6,
+      "front_bounds": [
+        12,
+        9,
+        53,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-060-0",
+      "number": 60,
+      "file": "assets/animations/walk-07/creatures/MON-060-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -8,
+      "shadow": true,
+      "cycle_bounds": [
+        43,
+        65,
+        85,
+        112
+      ],
+      "front_vertical_offset": -8,
+      "front_bounds": [
+        44,
+        49,
+        85,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-061-0",
+      "number": 61,
+      "file": "assets/animations/walk-07/creatures/MON-061-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        41,
+        47,
+        87,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        43,
+        31,
+        86,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-062-0",
+      "number": 62,
+      "file": "assets/animations/walk-07/creatures/MON-062-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        49,
+        93,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        40,
+        33,
+        88,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-068-0",
+      "number": 68,
+      "file": "assets/animations/walk-07/creatures/MON-068-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        26,
+        33,
+        103,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        30,
+        17,
+        98,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-072-0",
+      "number": 72,
+      "file": "assets/animations/walk-07/creatures/MON-072-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "shadow": true,
+      "cycle_bounds": [
+        35,
+        50,
+        93,
+        112
+      ],
+      "front_vertical_offset": -1,
+      "front_bounds": [
+        36,
+        34,
+        93,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-073-0",
+      "number": 73,
+      "file": "assets/animations/walk-07/creatures/MON-073-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        45,
+        92,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        38,
+        29,
+        90,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-074-0",
+      "number": 74,
+      "file": "assets/animations/walk-07/creatures/MON-074-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        31,
+        44,
+        97,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        32,
+        28,
+        97,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-077-0",
+      "number": 77,
+      "file": "assets/animations/walk-07/creatures/MON-077-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        23,
+        36,
+        105,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        29,
+        20,
+        99,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-078-0",
+      "number": 78,
+      "file": "assets/animations/walk-07/creatures/MON-078-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        19,
+        33,
+        109,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        18,
+        17,
+        111,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-079-0",
+      "number": 79,
+      "file": "assets/animations/walk-07/creatures/MON-079-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "shadow": true,
+      "cycle_bounds": [
+        35,
+        50,
+        93,
+        112
+      ],
+      "front_vertical_offset": -1,
+      "front_bounds": [
+        36,
+        34,
+        93,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-080-0",
+      "number": 80,
+      "file": "assets/animations/walk-07/creatures/MON-080-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        26,
+        34,
+        103,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        29,
+        18,
+        99,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-082-0",
+      "number": 82,
+      "file": "assets/animations/walk-07/creatures/MON-082-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        24,
+        42,
+        105,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        22,
+        26,
+        106,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-084-0",
+      "number": 84,
+      "file": "assets/animations/walk-07/creatures/MON-084-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        32,
+        48,
+        95,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        34,
+        32,
+        95,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-085-0",
+      "number": 85,
+      "file": "assets/animations/walk-07/creatures/MON-085-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        32,
+        37,
+        97,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        34,
+        21,
+        95,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-086-0",
+      "number": 86,
+      "file": "assets/animations/walk-07/creatures/MON-086-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        46,
+        92,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        39,
+        30,
+        89,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-093-0",
+      "number": 93,
+      "file": "assets/animations/walk-07/creatures/MON-093-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        31,
+        34,
+        97,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        36,
+        18,
+        93,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-096-0",
+      "number": 96,
+      "file": "assets/animations/walk-07/creatures/MON-096-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        40,
+        44,
+        89,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        42,
+        28,
+        87,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-098-0",
+      "number": 98,
+      "file": "assets/animations/walk-07/creatures/MON-098-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -6,
+      "shadow": true,
+      "cycle_bounds": [
+        30,
+        60,
+        98,
+        112
+      ],
+      "front_vertical_offset": -6,
+      "front_bounds": [
+        27,
+        44,
+        101,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-099-0",
+      "number": 99,
+      "file": "assets/animations/walk-07/creatures/MON-099-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        30,
+        40,
+        99,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        35,
+        24,
+        93,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-100-0",
+      "number": 100,
+      "file": "assets/animations/walk-07/creatures/MON-100-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        44,
+        87,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        46,
+        28,
+        82,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-102-0",
+      "number": 102,
+      "file": "assets/animations/walk-07/creatures/MON-102-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        21,
+        32,
+        107,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        26,
+        16,
+        103,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-105-0",
+      "number": 105,
+      "file": "assets/animations/walk-07/creatures/MON-105-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        42,
+        93,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        38,
+        26,
+        90,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-106-0",
+      "number": 106,
+      "file": "assets/animations/walk-07/creatures/MON-106-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -8,
+      "shadow": true,
+      "cycle_bounds": [
+        32,
+        65,
+        97,
+        112
+      ],
+      "front_vertical_offset": -8,
+      "front_bounds": [
+        34,
+        49,
+        95,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-108-0",
+      "number": 108,
+      "file": "assets/animations/walk-07/creatures/MON-108-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        50,
+        85,
+        112
+      ],
+      "front_vertical_offset": -1,
+      "front_bounds": [
+        45,
+        34,
+        83,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-111-0",
+      "number": 111,
+      "file": "assets/animations/walk-07/creatures/MON-111-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        42,
+        94,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        28,
+        26,
+        101,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-112-0",
+      "number": 112,
+      "file": "assets/animations/walk-07/creatures/MON-112-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        37,
+        45,
+        91,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        43,
+        29,
+        85,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-115-0",
+      "number": 115,
+      "file": "assets/animations/walk-07/creatures/MON-115-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        37,
+        34,
+        91,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        44,
+        18,
+        84,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-116-0",
+      "number": 116,
+      "file": "assets/animations/walk-07/creatures/MON-116-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        37,
+        48,
+        91,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        44,
+        32,
+        85,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-117-0",
+      "number": 117,
+      "file": "assets/animations/walk-07/creatures/MON-117-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        38,
+        43,
+        89,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        43,
+        27,
+        85,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-119-0",
+      "number": 119,
+      "file": "assets/animations/walk-07/creatures/MON-119-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        40,
+        44,
+        88,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        43,
+        28,
+        86,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-120-0",
+      "number": 120,
+      "file": "assets/animations/walk-07/creatures/MON-120-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        49,
+        85,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        45,
+        33,
+        83,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-121-0",
+      "number": 121,
+      "file": "assets/animations/walk-07/creatures/MON-121-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "shadow": true,
+      "cycle_bounds": [
+        44,
+        51,
+        85,
+        112
+      ],
+      "front_vertical_offset": -1,
+      "front_bounds": [
+        46,
+        35,
+        82,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-123-0",
+      "number": 123,
+      "file": "assets/animations/walk-07/creatures/MON-123-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        38,
+        93,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        35,
+        22,
+        94,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-128-0",
+      "number": 128,
+      "file": "assets/animations/walk-07/creatures/MON-128-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        40,
+        49,
+        88,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        44,
+        33,
+        84,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-129-0",
+      "number": 129,
+      "file": "assets/animations/walk-07/creatures/MON-129-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        40,
+        48,
+        88,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        43,
+        32,
+        85,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-130-0",
+      "number": 130,
+      "file": "assets/animations/walk-07/creatures/MON-130-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        50,
+        92,
+        112
+      ],
+      "front_vertical_offset": -1,
+      "front_bounds": [
+        33,
+        34,
+        95,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-132-0",
+      "number": 132,
+      "file": "assets/animations/walk-07/creatures/MON-132-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        50,
+        86,
+        112
+      ],
+      "front_vertical_offset": -1,
+      "front_bounds": [
+        43,
+        34,
+        85,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-133-0",
+      "number": 133,
+      "file": "assets/animations/walk-07/creatures/MON-133-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        39,
+        47,
+        89,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        45,
+        31,
+        84,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-134-0",
+      "number": 134,
+      "file": "assets/animations/walk-07/creatures/MON-134-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "shadow": true,
+      "cycle_bounds": [
+        44,
+        50,
+        84,
+        112
+      ],
+      "front_vertical_offset": -1,
+      "front_bounds": [
+        49,
+        34,
+        79,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-135-0",
+      "number": 135,
+      "file": "assets/animations/walk-07/creatures/MON-135-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        42,
+        46,
+        86,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        48,
+        30,
+        81,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-136-0",
+      "number": 136,
+      "file": "assets/animations/walk-07/creatures/MON-136-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        38,
+        36,
+        89,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        34,
+        20,
+        94,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-137-0",
+      "number": 137,
+      "file": "assets/animations/walk-07/creatures/MON-137-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        40,
+        42,
+        89,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        42,
+        26,
+        86,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-138-0",
+      "number": 138,
+      "file": "assets/animations/walk-07/creatures/MON-138-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        49,
+        93,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        27,
+        33,
+        101,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-152-0",
+      "number": 152,
+      "file": "assets/animations/walk-07/creatures/MON-152-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        34,
+        95,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        25,
+        18,
+        103,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-159-0",
+      "number": 159,
+      "file": "assets/animations/walk-07/creatures/MON-159-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        30,
+        21,
+        97,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        22,
+        5,
+        107,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-160-0",
+      "number": 160,
+      "file": "assets/animations/walk-07/creatures/MON-160-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        34,
+        42,
+        95,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        37,
+        26,
+        91,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-161-0",
+      "number": 161,
+      "file": "assets/animations/walk-07/creatures/MON-161-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        38,
+        43,
+        89,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        44,
+        27,
+        85,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-164-0",
+      "number": 164,
+      "file": "assets/animations/walk-07/creatures/MON-164-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -2,
+      "shadow": true,
+      "cycle_bounds": [
+        37,
+        52,
+        91,
+        112
+      ],
+      "front_vertical_offset": -2,
+      "front_bounds": [
+        45,
+        36,
+        83,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-165-0",
+      "number": 165,
+      "file": "assets/animations/walk-07/creatures/MON-165-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        36,
+        48,
+        93,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        44,
+        32,
+        84,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-029-0",
+      "number": 29,
+      "file": "assets/animations/walk-07/creatures/MON-029-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -22,
+      "shadow": true,
+      "cycle_bounds": [
+        44,
+        92,
+        84,
+        112
+      ],
+      "front_vertical_offset": -22,
+      "front_bounds": [
+        15,
+        40,
+        50,
+        60
+      ],
+      "front_foot": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "MON-127-0",
+      "number": 127,
+      "file": "assets/animations/walk-07/creatures/MON-127-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": false,
+      "cycle_bounds": [
+        35,
+        37,
+        93,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        44,
+        21,
+        85,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    },
+    {
+      "id": "MON-151-0",
+      "number": 151,
+      "file": "assets/animations/walk-07/creatures/MON-151-0.png",
+      "side": 128,
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "shadow": true,
+      "cycle_bounds": [
+        27,
+        18,
+        101,
+        112
+      ],
+      "front_vertical_offset": 0,
+      "front_bounds": [
+        8,
+        2,
+        120,
+        96
+      ],
+      "front_foot": [
+        64,
+        96
+      ]
+    }
+  ]
+}

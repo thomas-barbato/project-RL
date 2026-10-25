@@ -1,0 +1,51 @@
+{
+  "review_id": "WALK07-M42-DIR01",
+  "date": "2026-10-24",
+  "timezone": "Europe/Paris",
+  "player_quote": "parfait :)",
+  "status": "visual_accepted",
+  "scope": "Corrected left/right orientation association for M42 MON-155-0, its displayed whole-figure cycle and existing placement. This acknowledgement does not accept the other lot07 candidates.",
+  "runtime_integration_authorized": false,
+  "full_bestiary_accepted": false,
+  "other_lot07_candidates_accepted": false,
+  "other_material_variants_accepted": false,
+  "duration_default_ms": 400,
+  "duration_choice_retained": true,
+  "vertical_movement_modified": false,
+  "correction_evidence": "m42-direction-correction-01.json",
+  "cases": [
+    {
+      "review_id": "WALK07-M42",
+      "identity": "MON-155-0",
+      "locomotor_legs": 2,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot07/MON-155-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "cycle_bounds": [
+        23,
+        26,
+        105,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk",
+      "source_directional_halves_reordered": false
+    }
+  ],
+  "files": [
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot07/MON-155-0-whole-body-native.png",
+      "sha256": "1dd3cee5441884b2e39659bc79eb5311117e43fb3b4cb55b10b30a9809b6d508"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-155-0-cycle-lot07-r01.png",
+      "sha256": "cbc319a7c92ffd9f7427a613d9d5c95fde8b842aab5d961373259cf03897088b"
+    }
+  ]
+}

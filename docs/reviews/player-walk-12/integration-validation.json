@@ -1,0 +1,86 @@
+{
+  "revision": "WALK12-INTEGRATION-r01",
+  "status": "passed",
+  "date": "2026-10-25",
+  "accepted_review": "WALK12-COMMON-r01",
+  "normal_runtime_integration": true,
+  "actors_return_to_canonical_front": [
+    "player",
+    "all monsters",
+    "all NPCs"
+  ],
+  "outfits": 25,
+  "whole_walking_drawings": 300,
+  "reference_idles": 50,
+  "runtime_asset_hashes_unchanged": 51,
+  "selected_source_hashes_unchanged": 25,
+  "inherited_runtime_assets_preserved": 62,
+  "inherited_sources_preserved": 58,
+  "old_walk_sources_and_map_editor_files_preserved": 257,
+  "duration_ms_default": 400,
+  "selectable_ms": [
+    120,
+    200,
+    400
+  ],
+  "distance_cells": 1,
+  "tests": {
+    "combat_visuals": "16 passed, all actor arrivals and both movement axes",
+    "accepted_gait_whole_legs_rigid_grips_and_legacy_scope": "passed,45.69s",
+    "proportions_and_legacy_comparison": "passed,24.23s",
+    "all113_weapons_on_each_class": "passed,25.35s",
+    "distribution": "3 passed"
+  },
+  "native_world_scenes": 53,
+  "native_catalogue_scenes": 54,
+  "native_player_catalogue_cases": 35,
+  "actual_saved_scene": {
+    "all_actors_front_at_arrival": true,
+    "original_save_unchanged": true,
+    "player_front_at_arrival": true,
+    "source": "isolated restoration of actual saved scene",
+    "status": "passed",
+    "walkers": [
+      {
+        "id": 6,
+        "pose": [
+          1,
+          4
+        ],
+        "visual": "Some(CampaignMonster { number: 22, variant: 0 })"
+      },
+      {
+        "id": 7,
+        "pose": [
+          1,
+          4
+        ],
+        "visual": "Some(CampaignMonster { number: 22, variant: 1 })"
+      },
+      {
+        "id": 9,
+        "pose": null,
+        "visual": "Some(CampaignMonster { number: 121, variant: 0 })"
+      },
+      {
+        "id": 10,
+        "pose": [
+          1,
+          1
+        ],
+        "visual": "Some(CampaignMonster { number: 120, variant: 1 })"
+      }
+    ]
+  },
+  "builds": {
+    "debug": "passed",
+    "release": "passed",
+    "release_sha256": "1ac181f7e6581b0ed871de25898e6c6b354fdc223dca55c1e218556a18ac92d9"
+  },
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "runtime_inventory_paths": 1813,
+  "legacy_walk04_enabled": false,
+  "pending_extras": "nine WALK08 form/drone walking cycles remain separate",
+  "preserved_actual_scene_evidence": "integration-native/"
+}

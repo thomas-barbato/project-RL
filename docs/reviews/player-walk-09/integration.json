@@ -1,0 +1,202 @@
+{
+  "status": "passed",
+  "date_utc": "2026-10-24T22:24:14.605510+00:00",
+  "normal_game_enabled": true,
+  "release_build": "cargo build --locked --release --bin project-rl",
+  "release_build_result": "passed",
+  "release_executable_sha256": "38ecac8c287071ff7b41ff94c4f06f7a30161767aebf944a529e8e6340052efe",
+  "debug_executable_sha256": "60e887677b8020d1ba2b4db503c292884bb5a9ccadd0d5f9e5cea5200432cf93",
+  "technical_tests": {
+    "common_cycle_tests": 2,
+    "movement_tests": 13,
+    "control_tests": 24,
+    "accepted_axe67_test": 1,
+    "failed": 0
+  },
+  "live_normal_renderer": {
+    "accepted_class_outfits": 25,
+    "accepted_player_renderer_enabled": true,
+    "accepted_rifle_model": 2,
+    "actual_moving_player_weapon_model": 67,
+    "campaign_monsters_in_live_scene": true,
+    "candidate_renderer_review_only": false,
+    "class_outfits": 25,
+    "common_player_cycle": true,
+    "duration_ms": 400,
+    "facings": [
+      "left-quarter",
+      "front-unchanged",
+      "right-quarter"
+    ],
+    "light_and_dark": true,
+    "live_world_renderer": true,
+    "loadouts_per_outfit": 6,
+    "logical_distance": 1,
+    "native_cell": 64,
+    "real_move_command": true,
+    "review_id": "WALK09-INTEGRATION",
+    "simulation_unchanged_by_drawing": true,
+    "status": "passed",
+    "user_campaign_written": false,
+    "user_settings_written": false,
+    "walk07_approved_creature_cycles": 130,
+    "walk07_both_directions_all14_poses": true,
+    "walk07_repaired_models": [
+      99,
+      106
+    ]
+  },
+  "runtime_distribution_walk09_files": 51,
+  "accepted_runtime_hashes_match": true,
+  "previous_base_monsters_and_map_editor_files_unchanged": 140,
+  "protected_user_files": [
+    {
+      "path": "C:\\Users\\User\\AppData\\Roaming\\ProjectRL\\city-test-run.json",
+      "exists": true,
+      "sha256": "cdc86b85e9bf1e7d760a179562a84881158390ed2abfae67c4739fc28af8f3a1",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\User\\AppData\\Roaming\\ProjectRL\\graphics.json",
+      "exists": true,
+      "sha256": "aca4617b1e61ff2a46b538b4bd52a8e2631e91a7d53e32e4a750c6d65bed9695",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\User\\AppData\\Roaming\\ProjectRL\\controls.json",
+      "exists": false,
+      "sha256": null,
+      "unchanged": true
+    }
+  ],
+  "audit": {
+    "campaign_pairs": 471,
+    "pairs_without_normal_cycle": 342,
+    "cultist_pairs": 16,
+    "cultist_pairs_without_normal_cycle": [
+      {
+        "number": 22,
+        "variant": 1
+      },
+      {
+        "number": 24,
+        "variant": 1
+      },
+      {
+        "number": 132,
+        "variant": 1
+      },
+      {
+        "number": 133,
+        "variant": 1
+      },
+      {
+        "number": 134,
+        "variant": 1
+      },
+      {
+        "number": 135,
+        "variant": 1
+      }
+    ],
+    "small_cultist_models": [
+      22,
+      24
+    ]
+  },
+  "evidence_files": [
+    {
+      "file": "docs/reviews/player-walk-09/integration/accepted-comparison-025.png",
+      "sha256": "82ba5f45546ce687224317faa4c2b4688b491ac4c57a591c137a434d3dcdebbb"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/accepted-comparison-029.png",
+      "sha256": "c70f82ac2ab466f30d1ea82e3f09c297ff536b07ba98479202fd9ec32244a48f"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/checks.json",
+      "sha256": "b08962c52b482f59df30703d22bd0dc2917c628c32f22c443c5aeb5042dc17c7"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/cultists-normal-00.png",
+      "sha256": "5938b7a8322131941c6fc32e4599be6118733e0780ae2409ed4713beff9ea3ea"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/cultists-normal-01.png",
+      "sha256": "11ae32e6f7b2c7e48eff14387684850a45f867b6a5e044e7ee472780dec889b4"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/cultists-normal-02.png",
+      "sha256": "04afbd7f75d3b598fe518d8793de1e51ced9214333f881b4c5124b19558c3106"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/cultists-normal-03.png",
+      "sha256": "11c8e175e09e19df495de2bffa521914d965137676893ab1bc640ec3c6b64f51"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/monster-audit.json",
+      "sha256": "89ffd62516d56d66576cb9ba8d627a020a04987b73b9f39b9ca73bc0884a3abf"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/monsters-rest-400ms.png",
+      "sha256": "a7d411673d0d673c9b1381da446fd3dfbb6d2f31d22bc75d2a4198fb33d143a3"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/monsters-step-200ms.png",
+      "sha256": "c52ec214f7673c4609ea592f9f0c981bf65097beba253dfb61e797ce20cd87aa"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/native-tenue-1-sombre.png",
+      "sha256": "f661d44f43e62763286982f7c7cad396588310c8ec8851ced8f69535c286074c"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/native-tenue-2-sombre.png",
+      "sha256": "efb4785bde00642d28b4f6e291ef9214b2e89738fbf1e33ee622da40a0aedc87"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/native-tenue-3-sombre.png",
+      "sha256": "d27f6f1511dd393f05d1f8cd62c4d046deefd970513330773f6ef8ad9977ff75"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/native-tenue-4-sombre.png",
+      "sha256": "9528cf37fdbd98093b4e3233e4f7fe51da411f090707ea33e9cc3e3ed900e922"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/native-tenue-5-clair.png",
+      "sha256": "40d2578a35cce421a4778b9350292b1894de1f7ac0c0540eac72589e6272ea58"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/native-tenue-5-sombre.png",
+      "sha256": "53fe9cb485a372bf254a571e26ed7094cf0900f0ff39f397486dfcb42031423d"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/walk-live-00.png",
+      "sha256": "5d7865ae1210ec7b87d7dd6e634e3ffbe4de25af4fa971d158ae72dad6ca89b6"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/walk-live-06.png",
+      "sha256": "643c8d64e52f3b32692f02400ee3828629533a4b36e02ab3871a66f23dd57194"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/walk-live-12.png",
+      "sha256": "fc72e9ec95f3b7a26e27df8af608222d3b0f25a27d59ca94b68e908fa595c334"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/walk-live-14.png",
+      "sha256": "216889e6788c88fb226686c11fa129412efe82dcab0ac7121603a2994062fda9"
+    },
+    {
+      "file": "docs/reviews/player-walk-09/integration/walk-live-21.png",
+      "sha256": "3ba0e513f3f9a95a370c7c4b13d3e2ca3b8ef0c87a534d0a75521a1272e4b23d"
+    }
+  ],
+  "final_format_check": "passed",
+  "git_diff_check": "passed",
+  "cleanup": {
+    "method": "RecycleBin",
+    "exports": 98,
+    "bytes": 52686815,
+    "retained_evidence_files": 21
+  },
+  "final_user_files_and_evidence_hashes": "unchanged"
+}

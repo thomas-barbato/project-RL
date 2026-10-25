@@ -1,0 +1,38 @@
+{
+  "walking_renderer_tests": 10,
+  "walking_renderer_tests_passed": true,
+  "walk_filter": {
+    "passed": 22,
+    "failed": 1,
+    "ignored": 2,
+    "previously_recorded_failure": "ascii_app::world_context::tests::world_context_attack_without_ammo_never_walks",
+    "failure_site": "src/world_context.rs:418",
+    "world_context_changed_by_this_work": false
+  },
+  "debug_build": "passed",
+  "release_build": "passed",
+  "engine_capture": "passed",
+  "native_runtime_after_cleanup": "passed",
+  "portable_native_smoke": "passed",
+  "cleanup": {
+    "mode": "recycle_bin",
+    "removed_targets": 357,
+    "removed_files": 144718.0,
+    "removed_project_bytes": 702532616.0,
+    "disk_space_reclaimed": false,
+    "source_art_preserved": true,
+    "pending_player_compositions_preserved": true,
+    "map_editor_preserved": true
+  },
+  "runtime_files_changed_from_turn_baseline": [
+    "src/game_art_walk.rs",
+    "src/walk_capture.rs",
+    "src/game_art.rs",
+    "tools/distribution/runtime-assets.json"
+  ],
+  "walking_tests_after_cleanup": {
+    "passed": 10,
+    "failed": 0
+  },
+  "runtime_assets_depend_on_artifacts": false
+}

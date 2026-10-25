@@ -1,5 +1,25 @@
 //! Recolor authored material labels; geometry, steel, skin and outlines stay fixed.
 use super::*;
+
+/// Compressed bytes stay embedded; decode only the source banks actually sampled.
+pub(super) struct LazyImage {
+    bytes: &'static [u8],
+    image: std::cell::OnceCell<Image>,
+}
+impl LazyImage {
+    pub(super) const fn new(bytes: &'static [u8]) -> Self {
+        Self {
+            bytes,
+            image: std::cell::OnceCell::new(),
+        }
+    }
+}
+impl std::ops::Deref for LazyImage {
+    type Target = Image;
+    fn deref(&self) -> &Image {
+        self.image.get_or_init(|| decoded(self.bytes))
+    }
+}
 use std::collections::BTreeMap;
 include!("game_art_equipment_catalog.rs");
 pub(super) fn decoded(bytes: &[u8]) -> Image {
@@ -129,31 +149,31 @@ fn recolor_default_item(image: &mut Image, mask: &Image, illustration: u16) {
     }
 }
 struct ItemSources {
-    items: Image,
-    flat_outfits: Image,
-    materials: Image,
+    items: LazyImage,
+    flat_outfits: LazyImage,
+    materials: LazyImage,
     native: NativeItems,
     cache: BTreeMap<(u16, EquipmentPalette, u16), (Texture2D, f64)>,
 }
 struct NativeItems {
-    large: Image,
-    small: Image,
-    large_maps: Image,
-    small_maps: Image,
+    large: LazyImage,
+    small: LazyImage,
+    large_maps: LazyImage,
+    small_maps: LazyImage,
 }
 impl NativeItems {
     fn load() -> Self {
         Self {
-            large: decoded(include_bytes!(
+            large: LazyImage::new(include_bytes!(
                 "../assets/sprites/equipment-native64/icons-64.png"
             )),
-            small: decoded(include_bytes!(
+            small: LazyImage::new(include_bytes!(
                 "../assets/sprites/equipment-native64/icons-32.png"
             )),
-            large_maps: decoded(include_bytes!(
+            large_maps: LazyImage::new(include_bytes!(
                 "../assets/sprites/equipment-native64/materials-64.png"
             )),
-            small_maps: decoded(include_bytes!(
+            small_maps: LazyImage::new(include_bytes!(
                 "../assets/sprites/equipment-native64/materials-32.png"
             )),
         }
@@ -207,9 +227,9 @@ thread_local! {
     #[cfg(debug_assertions)]
     static CREATIONS: std::cell::Cell<usize> = const { std::cell::Cell::new(0) };
     static ITEMS: std::cell::RefCell<ItemSources> = std::cell::RefCell::new(ItemSources {
-        items: decoded(include_bytes!("../assets/sprites/cyberpunk/crawl-items-32.png")),
-        flat_outfits: decoded(include_bytes!("../assets/sprites/flat-agents/outfit-icons-32.png")),
-        materials: decoded(include_bytes!("../assets/sprites/cyberpunk/crawl-item-materials-32.png")),
+        items: LazyImage::new(include_bytes!("../assets/sprites/cyberpunk/crawl-items-32.png")),
+        flat_outfits: LazyImage::new(include_bytes!("../assets/sprites/flat-agents/outfit-icons-32.png")),
+        materials: LazyImage::new(include_bytes!("../assets/sprites/cyberpunk/crawl-item-materials-32.png")),
         native: NativeItems::load(), cache: BTreeMap::new(),
     });
 }
@@ -254,7 +274,7 @@ pub(super) fn draw_item(rect: Rect, art: ItemArt, palette: EquipmentPalette, opa
         }
         let (sprite, time) = sources.cache.get_mut(&key).unwrap();
         *time = get_time();
-        draw_texture_ex(
+        crate::world_readability::texture(
             sprite,
             rect.x,
             rect.y,
@@ -307,6 +327,21 @@ pub(super) fn evict<K: Copy + Ord, V>(cache: &mut BTreeMap<K, (V, f64)>, limit: 
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn source_bank_stays_compressed_until_sampled_and_decodes_once() {
+        let source = LazyImage::new(include_bytes!(
+            "../assets/sprites/cyberpunk/crawl-bodies-32.png"
+        ));
+        assert!(source.image.get().is_none());
+        let expected = decoded(source.bytes);
+        assert_eq!(
+            source.bytes,
+            include_bytes!("../assets/sprites/cyberpunk/crawl-bodies-32.png")
+        );
+        let first: *const Image = &*source;
+        assert_eq!((&*source).bytes, expected.bytes);
+        assert!(std::ptr::eq(first, &*source));
+    }
     #[test]
     fn all_current_weapon_and_armor_ids_use_the_reviewed_bank() {
         let catalog: serde_json::Value =

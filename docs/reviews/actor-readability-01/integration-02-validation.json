@@ -1,0 +1,213 @@
+{
+  "review_id": "ACTOR-READABILITY01-INTEGRATION02",
+  "date": "2026-10-22",
+  "debug_build": "passed",
+  "release_build": "passed",
+  "all_targets_check": "passed",
+  "graphics_tests": {
+    "passed": 18,
+    "failed": 0
+  },
+  "game_art_suite": {
+    "passed": 59,
+    "failed": 0,
+    "ignored": 3
+  },
+  "final_class_armor_checks": {
+    "passed": 11,
+    "failed": 0,
+    "includes_explicit_cpu_diagnostic": true
+  },
+  "targeted_rustfmt_check": "passed",
+  "git_diff_check": "passed",
+  "cpu_comparison": {
+    "review_id": "ACTOR-READABILITY01-INTEGRATION02",
+    "cpu_compositions": 3100,
+    "changed_compositions": 1700,
+    "unchanged_compositions": 1400,
+    "changed_configurations": {
+      "weapon-000": 25,
+      "weapon-001": 25,
+      "weapon-002": 25,
+      "weapon-003": 25,
+      "weapon-004": 25,
+      "weapon-005": 25,
+      "weapon-006": 25,
+      "weapon-007": 25,
+      "weapon-008": 25,
+      "weapon-009": 25,
+      "weapon-010": 25,
+      "weapon-011": 25,
+      "weapon-012": 25,
+      "weapon-013": 25,
+      "weapon-014": 25,
+      "weapon-015": 25,
+      "weapon-016": 25,
+      "weapon-017": 25,
+      "weapon-018": 25,
+      "weapon-019": 25,
+      "weapon-020": 25,
+      "weapon-021": 25,
+      "weapon-022": 25,
+      "weapon-023": 25,
+      "weapon-024": 25,
+      "weapon-025": 25,
+      "weapon-026": 25,
+      "weapon-027": 25,
+      "weapon-028": 25,
+      "weapon-029": 25,
+      "weapon-030": 25,
+      "weapon-031": 25,
+      "weapon-032": 25,
+      "weapon-033": 25,
+      "weapon-034": 25,
+      "weapon-035": 25,
+      "weapon-036": 25,
+      "weapon-037": 25,
+      "weapon-038": 25,
+      "weapon-039": 25,
+      "weapon-040": 25,
+      "weapon-041": 25,
+      "weapon-042": 25,
+      "weapon-043": 25,
+      "weapon-044": 25,
+      "weapon-045": 25,
+      "weapon-046": 25,
+      "weapon-047": 25,
+      "weapon-048": 25,
+      "weapon-049": 25,
+      "weapon-050": 25,
+      "weapon-051": 25,
+      "weapon-052": 25,
+      "weapon-053": 25,
+      "weapon-054": 25,
+      "weapon-055": 25,
+      "weapon-056": 25,
+      "weapon-057": 25,
+      "weapon-058": 25,
+      "weapon-059": 25,
+      "weapon-060": 25,
+      "helmet-1": 25,
+      "helmet-2": 25,
+      "helmet-3": 25,
+      "helmet-4": 25,
+      "helmet-5": 25,
+      "helmet-6": 25,
+      "breath-rifle": 25
+    },
+    "long_ranged_models": 61,
+    "class_outfits": 25,
+    "new_base_monsters": 3,
+    "new_monster_appearances_with_existing_palettes": 6,
+    "global_campaign_appearances_brightened": 471,
+    "runtime": {
+      "camp_atmosphere_composite": true,
+      "gray_and_color": true,
+      "markers_on_and_off": true,
+      "native_cell": 64,
+      "options_resolutions": [
+        [
+          1280,
+          800
+        ],
+        [
+          960,
+          540
+        ]
+      ],
+      "ordinary_world_renderer": true,
+      "projectile_and_explosion": true,
+      "saved_campaign_read_or_written": false,
+      "screenshots": 11,
+      "settings_file_written": false,
+      "simulation_fingerprints_unchanged": true
+    },
+    "source_armors_repainted": false,
+    "weapon_designs_repainted": false,
+    "source_paintings_unchanged": true,
+    "items_stats_rules_and_save_ids_unchanged": true
+  },
+  "gpu_pixels": {
+    "camp-gray(615, 330, 652, 379)": {
+      "colored_pixels": 0,
+      "box": [
+        615,
+        330,
+        652,
+        379
+      ]
+    },
+    "monsters-gray(528, 189, 603, 257)": {
+      "colored_pixels": 0,
+      "box": [
+        528,
+        189,
+        603,
+        257
+      ]
+    },
+    "monsters-gray(605, 465, 654, 515)": {
+      "colored_pixels": 0,
+      "box": [
+        605,
+        465,
+        654,
+        515
+      ]
+    },
+    "projectile": {
+      "baseline_color_pixels": 649,
+      "animated_color_pixels": 2478
+    },
+    "explosion": {
+      "baseline_color_pixels": 649,
+      "animated_color_pixels": 11993
+    },
+    "ground_marker_changes_when_disabled": true
+  },
+  "gpu_class_pages": {
+    "actual_item_to_visual_binding": true,
+    "all_five_classes": true,
+    "gpu_pages": 16,
+    "native_tile": 64,
+    "open_helmet_faces": "canonical uncovered class head; female identity retained",
+    "ordinary_player_renderer": true,
+    "outfit_count": 25,
+    "review_id": "CLASS-ARMOR-INTEGRATION01"
+  },
+  "world_diagnostic_exit": 0,
+  "class_diagnostic_exit": 0,
+  "runtime_stderr_empty": true,
+  "class_stderr_empty": true,
+  "executables": {
+    "debug": {
+      "path": "target/debug/project-rl.exe",
+      "sha256": "7fa876fd900f1b07b3712594920189bb4215b53771ea021041be12997c152514"
+    },
+    "release": {
+      "path": "target/release/project-rl.exe",
+      "sha256": "173d0d65baba1719e9e1804a2b15c42e9d1a585ddb81a2cd695e355e7c649c38"
+    }
+  },
+  "no_commits_pushes_or_deployments": true,
+  "monsters_redrawn": 3,
+  "other_bestiary_models_received_global_lighting_but_are_not_redrawn": 126,
+  "all_25_gpu_rifles_match_cpu_plus_approved_lighting": true,
+  "browser_review_url": "http://127.0.0.1:8766/artifacts/actor-readability-integration-02/index.html",
+  "browser_controls_verified": [
+    "scene selector",
+    "color mode",
+    "gray mode"
+  ],
+  "browser_screenshot": "artifacts/actor-readability-integration-02/browser-final.png",
+  "review_crop_native_pixels": [
+    420,
+    420
+  ],
+  "review_crop_from_actual_framebuffer": [
+    490,
+    145,
+    910,
+    565
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "revision": "WALK12-HELMET-ATTACHMENT-r01",
+  "source": "actual normal Rust compositor exports",
+  "outfits": 25,
+  "helmet_models": 6,
+  "directions": 2,
+  "walking_poses_reviewed": 1800,
+  "additional_lateral_reference_idles": 300,
+  "unchanged_front_comparisons": 175,
+  "unchanged_unhelmeted_atlases": 25,
+  "preview_ms_per_cell": 400,
+  "preview_only_rest_ms": 300,
+  "native_tile_px": 64,
+  "source_sha256": {
+    "src\\game_art_walk_rig.rs": "fd4464f5c362f42a1e366e7653e902cc38334efaae7a89d5f359681833905de4",
+    "src\\walk_proportions_player_export.rs": "602dd2e78a29afb93256edfd439a480b2f48f096b57b3ea7382279a207c52363"
+  },
+  "status": "passed",
+  "date": "2026-10-25",
+  "runtime_correction_integrated": true,
+  "regression": {
+    "unarmed_helmet_poses": 2100,
+    "armed_helmet_checks": 600,
+    "seconds": 65.73,
+    "status": "passed"
+  },
+  "builds": {
+    "release": "passed, 2m02s",
+    "release_sha256": "3c676bf50c51940fdc9359c0977559bf663a7971bd42dd686caf211997be0f8b",
+    "cargo_fmt_check": "passed",
+    "git_diff_check": "passed"
+  },
+  "accepted_walk12_runtime_assets_unchanged": 51,
+  "interactive_game_window_tested": false,
+  "preview": "casques-avant-apres-native64.gif"
+}

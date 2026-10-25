@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "runtime_file": "assets/animations/walk-07/creatures/MON-099-0.png",
+  "runtime_file_sha256": "61987d561bbbb622a29224c81fe529c4d225e43cfe2270ed64d836b06a1b5821",
+  "selected_source_exact_bytes": true,
+  "right_native_rgba_unchanged": true,
+  "other_129_native_cycles_unchanged": true,
+  "player_walk_assets_unchanged": true,
+  "map_editor_preserved": true,
+  "rust_sources_unchanged": true,
+  "changed_native_files": [
+    "assets/animations/walk-07/creatures/MON-099-0.png"
+  ],
+  "renderer_tests": {
+    "passed": 10,
+    "failed": 0
+  },
+  "native_runtime_check": "passed;130 cycles,1820 poses",
+  "debug_build": "passed",
+  "release_build": "passed",
+  "live_engine_capture": "passed",
+  "live_native_pixel_comparisons": 28,
+  "minimum_core_pixel_match": 1.0,
+  "release_executable": {
+    "file": "target/release/project-rl.exe",
+    "sha256": "4d9988cbe53f7fb82383c6f58c77774a1c50613160a9658e5ec42bc18bd6461f"
+  },
+  "protected_files_verified_after_cleanup": true,
+  "cleanup": {
+    "disk_space_reclaimed": false,
+    "project_bytes_removed": 43718607.0,
+    "exact_target": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-07\\m100-r08-engine",
+    "durable_engine_evidence_preserved": true,
+    "mode": "recycle_bin",
+    "generated_files_removed": 51,
+    "selected_sources_preserved": true
+  }
+}

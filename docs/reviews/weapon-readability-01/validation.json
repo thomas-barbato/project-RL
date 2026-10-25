@@ -1,0 +1,30 @@
+{
+  "status": "accepted",
+  "runtime_integration": false,
+  "source_export_test": "weapon_readability_source_diagnostic: passed",
+  "candidate_pose_test": "weapon_readability_candidate_diagnostic: passed",
+  "candidate_grip_contacts": 100,
+  "head_and_feet_comparisons": 100,
+  "protected_active_atlases": 23,
+  "native_review_cells": 150,
+  "game_rules_changes": false,
+  "source_tool": "built-in imagegen",
+  "prompts": "docs/reviews/weapon-readability-01/prompts.json",
+  "url": "http://127.0.0.1:8766/artifacts/weapon-readability-review-01/index.html",
+  "browser_controls_verified": [
+    "axe/rifle",
+    "armor 01/05",
+    "light ground",
+    "grayscale",
+    "all 25 outfits disclosure"
+  ],
+  "native_image_display": {
+    "source_canvas": 96,
+    "css_canvas": 96,
+    "logical_tile": 64,
+    "loaded_comparison_images": 15,
+    "page_horizontal_overflow": false
+  },
+  "browser_capture": "artifacts/weapon-readability-review-01/browser-final-five-classes.png",
+  "acceptance": "docs/reviews/weapon-readability-01/acceptance.json"
+}

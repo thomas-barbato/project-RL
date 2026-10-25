@@ -1,15 +1,15 @@
 //! Native campaign bodies, feet anchors and explicit material palette swaps.
 //! Colors never select damage. A cached texture serves board and inspection.
 use macroquad::prelude::*;
+use project_rl::asset_cache::ByteCache;
 use project_rl::monster_art::{MonsterArt, art};
 #[cfg(test)]
 use project_rl::monster_palettes::recolor_rgb as palette;
-use std::collections::BTreeMap;
 
 struct Bank {
-    sources: [(u16, Image); 4],
-    materials: [(u16, Image); 4],
-    cells: BTreeMap<(u16, u8), super::portrait::Sheet>,
+    sources: [(u16, super::palettes::LazyImage); 4],
+    materials: [(u16, super::palettes::LazyImage); 4],
+    cells: ByteCache<(u16, u8, bool), super::portrait::Sheet>,
 }
 
 thread_local! {
@@ -26,13 +26,12 @@ thread_local! {
             (192, decode(include_bytes!("../assets/sprites/campaign-monsters/materials-192.png"))),
             (256, decode(include_bytes!("../assets/sprites/campaign-monsters/materials-256.png"))),
         ],
-        cells: BTreeMap::new(),
+        cells: ByteCache::new(32 * 1024 * 1024),
     });
 }
 
-fn decode(bytes: &[u8]) -> Image {
-    Image::from_file_with_format(bytes, Some(ImageFormat::Png))
-        .expect("packaged native monster atlas")
+fn decode(bytes: &'static [u8]) -> super::palettes::LazyImage {
+    super::palettes::LazyImage::new(bytes)
 }
 
 pub(super) fn prewarm() {
@@ -60,17 +59,18 @@ fn with_sheet(number: u16, variant: u8, draw: impl FnOnce(&super::portrait::Shee
     let Some(entry) = art(number, variant) else {
         return;
     };
+    let key = (number, variant, super::walking::proportions_enabled());
     BANK.with(|bank| {
         let mut bank = bank.borrow_mut();
-        if !bank.cells.contains_key(&(number, variant))
-            && let Some(image) = super::finish::campaign_image(number, variant)
-        {
-            bank.cells.insert(
-                (number, variant),
-                super::portrait::Sheet::from_image(&image, entry.side),
-            );
+        if let Some(sheet) = bank.cells.get(&key) {
+            draw(sheet, entry);
+            return;
         }
-        if !bank.cells.contains_key(&(number, variant)) {
+        let image = if let Some(image) = proposed_front(number, variant)
+            .or_else(|| super::finish::campaign_image(number, variant))
+        {
+            image
+        } else {
             let Some((_, source)) = bank.sources.iter().find(|(side, _)| *side == entry.side)
             else {
                 return;
@@ -96,13 +96,55 @@ fn with_sheet(number: u16, variant: u8, draw: impl FnOnce(&super::portrait::Shee
                 ));
                 palette.apply_rgba(&mut image.bytes, &mask.bytes);
             }
-            bank.cells.insert(
-                (number, variant),
-                super::portrait::Sheet::from_image(&image, entry.side),
-            );
-        }
-        draw(&bank.cells[&(number, variant)], entry);
+            image
+        };
+        let bytes = image.bytes.len();
+        bank.cells.insert(
+            key,
+            super::portrait::Sheet::from_image(&image, entry.side),
+            bytes,
+        );
+        draw(bank.cells.get(&key).unwrap(), entry);
     });
+}
+
+/// CPU reference used to transport the existing material colors to whole walk poses.
+pub(super) fn reference_image(number: u16, variant: u8) -> Option<Image> {
+    let entry = art(number, variant)?;
+    if let Some(image) = proposed_front(number, variant) {
+        return Some(image);
+    }
+    if let Some(image) = super::finish::campaign_image(number, variant) {
+        return Some(image);
+    }
+    BANK.with_borrow(|bank| {
+        let (_, source) = bank.sources.iter().find(|(side, _)| *side == entry.side)?;
+        let side = f32::from(entry.side);
+        let rect = Rect::new(
+            f32::from(entry.index % 8) * side,
+            f32::from(entry.index / 8) * side,
+            side,
+            side,
+        );
+        let mut image = source.sub_image(rect);
+        if let Some(palette) = project_rl::monster_palettes::palette(number, variant) {
+            let (_, materials) = bank.materials.iter().find(|(s, _)| *s == entry.side)?;
+            palette.apply_rgba(&mut image.bytes, &materials.sub_image(rect).bytes);
+        }
+        Some(image)
+    })
+}
+
+fn proposed_front(number: u16, variant: u8) -> Option<Image> {
+    if !super::walking::proportions_enabled() || ![22, 24].contains(&number) {
+        return None;
+    }
+    let path = format!("assets/animations/walk-11/fronts/MON-{number:03}-{variant}.png");
+    Image::from_file_with_format(
+        &project_rl::data_paths::read(&path).ok()?,
+        Some(ImageFormat::Png),
+    )
+    .ok()
 }
 
 fn destination(cell: Rect, entry: &MonsterArt) -> Rect {
@@ -133,7 +175,7 @@ pub(super) fn draw(cell: Rect, number: u16, variant: u8, opacity: f32, world: bo
             side,
             opacity,
         );
-        draw_texture_ex(
+        crate::world_readability::texture(
             &sheet.texture,
             rect.x,
             rect.y,
@@ -164,7 +206,7 @@ pub(crate) fn draw_corpse(cell: Rect, number: u16, variant: u8, opacity: f32) {
         let center = vec2(cell.center().x, cell.bottom() - 12. * cell.w / 64.);
         super::draw_contact_shadow(cell, [32, 52, entry.shadow.min(50) as u8], 64, opacity);
         let size = rect.size();
-        draw_texture_ex(
+        crate::world_readability::texture(
             &sheet.texture,
             center.x - size.x / 2.,
             center.y - size.y / 2.,

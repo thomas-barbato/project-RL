@@ -1,0 +1,53 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Lisibilité · essais en 64 px</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{background:#10191d;color:#e4e9e6;font:15px/1.45 system-ui;margin:20px auto;max-width:1080px;padding:0 14px}h1{font-size:24px;margin:0 0 8px}h2{font-size:19px;margin:24px 0 10px}p{color:#bbc9cb;margin:8px 0}button,select{background:#26383e;color:#f1f0e7;border:1px solid #64797d;border-radius:5px;padding:8px;font:inherit}button{cursor:pointer}button[aria-pressed=true]{background:#355b60;border-color:#9ed8ce}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #93dfd6;outline-offset:2px}.presets{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0}.settings{display:flex;gap:14px;flex-wrap:wrap;align-items:center;background:#1b292e;padding:12px;border-radius:6px}.settings label{display:flex;gap:6px;align-items:center}.toggles{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}input[type=checkbox]{accent-color:#8bd4c7;width:17px;height:17px}.toggles label{display:flex;gap:6px;align-items:center}.viewport{overflow:auto}.scenes{display:flex;gap:16px;width:max-content}.panel{width:320px}.panel h3{font-size:15px;font-weight:500;color:#d2dedc;margin:7px 0}.panel canvas{display:block;width:320px;height:256px;image-rendering:pixelated;background:#172126}.big .panel{width:640px}.big canvas{width:640px;height:512px}.status{min-height:24px;color:#c4ddd7}.hint{font-size:13px;color:#a8bcbf}.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.studies{display:flex;flex-wrap:wrap;width:100%;gap:14px}.study{width:272px;background:#1b292e;padding:8px;border-radius:6px}.study h3{font-size:14px;margin:2px 0 5px}.study canvas{width:256px;height:128px;image-rendering:pixelated;display:block}.study small{color:#a9bcbd}summary{cursor:pointer;color:#c7e5dc}a{color:#a8d9db}footer{margin:30px 0;color:#9db2b5;font-size:13px}.loading{padding:30px;background:#26373e}
+</style>
+<h1>Personnages et monstres · essais de lisibilité</h1>
+<p>Silhouettes éclaircies et nouvelles formes : direction retenue pour tout le bestiaire. En nuances de gris, repères et animations restent en couleur.</p>
+<div id="presets" class="presets" aria-label="Essais numérotés"></div>
+<div class="settings">
+<label>Scène <select id="scene"><option value="street">Rue sombre</option><option value="camp">Sol clair du camp</option></select></label>
+<label>Classe <select id="class"></select></label>
+<label>Armure <select id="rank"><option value="0">01 · Très légère</option><option value="1">02 · Légère</option><option value="2" selected>03 · Intermédiaire</option><option value="3">04 · Lourde</option><option value="4">05 · Très lourde</option></select></label>
+</div>
+<div class="toggles" id="options">
+<label><input type="checkbox" data-bit="1">01 · Contour fin</label>
+<label><input type="checkbox" data-bit="2">02 · Silhouettes éclaircies</label>
+<label><input type="checkbox" data-bit="4">03 · Décor plus calme</label>
+<label><input type="checkbox" data-bit="8">04 · Repères au sol</label>
+<label><input type="checkbox" data-bit="16">05 · Nouvelles formes des monstres</label>
+</div>
+<div class="tools"><label>Intensité <input id="strength" type="range" min="20" max="100" value="75"> <output id="strengthValue">75 %</output></label>
+<label><input id="gray" type="checkbox"> Monde en niveaux de gris</label>
+<button id="zoom" type="button" aria-pressed="false">Zoom ×2</button><button id="hold" type="button">Maintenir pour voir l’actuel</button></div>
+<div class="settings">
+<label>Animation <select id="effect"><option value="none">Aucune</option><option value="burn" selected>Brûlure</option><option value="gel">Gel</option><option value="fireball">Projectile et explosion</option></select></label>
+<button id="play" type="button" aria-pressed="true">Mettre en pause</button>
+<label>Instant <input id="time" type="range" min="0" max="100" value="32" aria-label="Instant de l’animation"></label>
+</div>
+<p class="hint">Deux options indépendantes : les repères au sol et les nuances de gris. En gris, le repère du joueur reste cyan et celui de la cible reste rouge.</p>
+<p class="status" id="status" aria-live="polite">Chargement des dessins…</p>
+<div class="viewport" id="viewport"><div class="scenes">
+<div class="panel"><h3>00 · Actuel</h3><canvas id="before" width="320" height="256" aria-label="Scène témoin à taille native"></canvas></div>
+<div class="panel"><h3 id="afterTitle">Essai</h3><canvas id="after" width="320" height="256" aria-label="Scène avec les options de lisibilité"></canvas></div>
+</div></div>
+<p class="hint">Clique un monstre dans l’essai pour changer de cible et lui appliquer l’animation d’étude. Le témoin reste en couleur. Espace permet aussi de comparer avec l’actuel. Mets en pause pour examiner ou enregistrer un instant précis.</p>
+<p id="description"></p><p class="hint"><a id="download-before" download="lisibilite-actuel.png">Enregistrer le témoin</a> · <a id="download-after" download="lisibilite-essai.png">Enregistrer l’essai</a></p>
+<p id="bestiary-scope" class="hint"></p>
+<h2>05 · Les trois études de silhouettes</h2>
+<p>À gauche dans chaque vignette : le dessin actuel. À droite : le candidat. Les hauteurs et les appuis restent comparables.</p>
+<div class="viewport"><div id="studies" class="studies"></div></div>
+<label><input id="silhouettes" type="checkbox"> Voir uniquement les formes en noir</label>
+<details style="margin-top:24px"><summary>Ce que compare chaque piste</summary>
+<div id="legacy-presets" class="presets" aria-label="Essais précédents"></div>
+<p><b>01.</b> Un contour extérieur d’un pixel, plus sombre sur fond clair et plus clair sur fond sombre.</p>
+<p><b>02.</b> Des ombres moins bouchées et quelques bords éclaircis sur la tête et le haut des membres.</p>
+<p><b>03.</b> Moins de contraste dans les petits détails du sol, sans déplacer les éléments du décor.</p>
+<p><b>04.</b> Un arc discret sous le joueur et le monstre ciblé.</p>
+<p><b>05.</b> Un possédé massif, un Fendeur plus voûté et un tireur plus vertical : les trois formes retenues.</p>
+<p><b>09.</b> Les trois pistes retenues ensemble, sans contour ajouté ni modification du décor.</p>
+<p><b>10.</b> La même sélection avec le monde en gris. Les dessins de Brûlure, Gel et Boule de feu sont ceux des animations du jeu, rejoués dans ce montage de comparaison.</p>
+<p>Options prévues dans Affichage : « Repères au sol » activé par défaut ; « Monde en niveaux de gris » désactivé par défaut. Ces valeurs par défaut et ces libellés sont proposés pour le futur menu.</p>
+</details>
+<footer>Revue ACTOR-READABILITY01 · complément 02. Grille logique de 64 × 64 px. Les créatures conservent leurs dimensions natives du jeu, y compris leurs débordements. La rue utilise un extrait de capture sans acteur ; le sol clair est un montage à partir d’une dalle du camp. Cette page est un aperçu dans le navigateur ; les options du jeu ne sont pas encore modifiées. Les pistes 02, 04 et 05 sont retenues. Le mode gris sélectif et les deux libellés d’option sont présentés ici pour la première fois.</footer>
+<script src="review.js"></script></html>

@@ -1,0 +1,242 @@
+{
+  "status": "passed",
+  "review_id": "WALK07-M100-R08",
+  "execution": "actual Macroquad framebuffer; ordinary game_art::draw_world",
+  "native_pixel_comparisons": 28,
+  "minimum_core_pixel_match": 1.0,
+  "compared_min_alpha": 250,
+  "core_pixel_count": 62568,
+  "comparison": "RGBA source blended over captured floor; alpha250+ core, tolerance3 for shadow/rounding",
+  "both_authored_directions": true,
+  "all_seven_poses_per_direction": true,
+  "floors": [
+    "dark",
+    "light"
+  ],
+  "comparisons": [
+    {
+      "floor": "dark",
+      "side": "left",
+      "pose": 0,
+      "core_pixels": 2186,
+      "matched": 2186,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "left",
+      "pose": 1,
+      "core_pixels": 1974,
+      "matched": 1974,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "left",
+      "pose": 2,
+      "core_pixels": 2035,
+      "matched": 2035,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "left",
+      "pose": 3,
+      "core_pixels": 2075,
+      "matched": 2075,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "left",
+      "pose": 4,
+      "core_pixels": 2033,
+      "matched": 2033,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "left",
+      "pose": 5,
+      "core_pixels": 2140,
+      "matched": 2140,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "left",
+      "pose": 6,
+      "core_pixels": 2001,
+      "matched": 2001,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "right",
+      "pose": 0,
+      "core_pixels": 2479,
+      "matched": 2479,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "right",
+      "pose": 1,
+      "core_pixels": 2474,
+      "matched": 2474,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "right",
+      "pose": 2,
+      "core_pixels": 2484,
+      "matched": 2484,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "right",
+      "pose": 3,
+      "core_pixels": 2458,
+      "matched": 2458,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "right",
+      "pose": 4,
+      "core_pixels": 2410,
+      "matched": 2410,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "right",
+      "pose": 5,
+      "core_pixels": 2290,
+      "matched": 2290,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "dark",
+      "side": "right",
+      "pose": 6,
+      "core_pixels": 2245,
+      "matched": 2245,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "left",
+      "pose": 0,
+      "core_pixels": 2186,
+      "matched": 2186,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "left",
+      "pose": 1,
+      "core_pixels": 1974,
+      "matched": 1974,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "left",
+      "pose": 2,
+      "core_pixels": 2035,
+      "matched": 2035,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "left",
+      "pose": 3,
+      "core_pixels": 2075,
+      "matched": 2075,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "left",
+      "pose": 4,
+      "core_pixels": 2033,
+      "matched": 2033,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "left",
+      "pose": 5,
+      "core_pixels": 2140,
+      "matched": 2140,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "left",
+      "pose": 6,
+      "core_pixels": 2001,
+      "matched": 2001,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "right",
+      "pose": 0,
+      "core_pixels": 2479,
+      "matched": 2479,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "right",
+      "pose": 1,
+      "core_pixels": 2474,
+      "matched": 2474,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "right",
+      "pose": 2,
+      "core_pixels": 2484,
+      "matched": 2484,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "right",
+      "pose": 3,
+      "core_pixels": 2458,
+      "matched": 2458,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "right",
+      "pose": 4,
+      "core_pixels": 2410,
+      "matched": 2410,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "right",
+      "pose": 5,
+      "core_pixels": 2290,
+      "matched": 2290,
+      "matching_fraction": 1.0
+    },
+    {
+      "floor": "light",
+      "side": "right",
+      "pose": 6,
+      "core_pixels": 2245,
+      "matched": 2245,
+      "matching_fraction": 1.0
+    }
+  ]
+}

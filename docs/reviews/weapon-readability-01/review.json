@@ -1,0 +1,114 @@
+{
+  "review_id": "WEAPON-READABILITY01",
+  "status": "accepted_and_integrated",
+  "native_tile": 64,
+  "outfits": 25,
+  "candidates": [
+    {
+      "id": "WR-AX01",
+      "model": 66,
+      "native": "assets/source-art/weapon-readability-01/native/axe-01.png",
+      "origin": [
+        43,
+        55
+      ],
+      "anchor": [
+        52,
+        60
+      ],
+      "support": [
+        68,
+        60
+      ],
+      "angle": 0,
+      "grip_angle": 0.694,
+      "scales": [
+        1,
+        0.95,
+        0.88,
+        0.92,
+        0.96
+      ],
+      "shift_from_palms": [
+        2,
+        0
+      ],
+      "source": "assets/source-art/weapon-readability-01/generated/axe-01.png",
+      "source_sha256": "dabbe5e175d764719cefb55a33ff33d74b624c4414e5f5b0c2252c10e69aab21",
+      "native_sha256": "25ab1c46aa6a77d042d74f6a37d35108fbb9ad12d11e5ad4d51e2329a9aeabf0"
+    },
+    {
+      "id": "WR-RF01",
+      "model": 2,
+      "native": "assets/source-art/weapon-readability-01/native/rifle-01.png",
+      "origin": [
+        43,
+        52
+      ],
+      "anchor": [
+        60,
+        62
+      ],
+      "support": [
+        76,
+        59.5
+      ],
+      "angle": -0.1,
+      "grip_angle": -0.1,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -1
+      ],
+      "source": "assets/source-art/weapon-readability-01/generated/rifle-01.png",
+      "source_sha256": "e69a9e415ad587b0dadd9253ac8df9d17b08da7d6f4e2cee825cbc2b38d5c285",
+      "native_sha256": "7b6fa9012783f8264ac88e054d971f724f125bbb1bf0d945cdba8944cf1651d6"
+    }
+  ],
+  "runtime_integration": true,
+  "arms": "existing accepted source limbs transformed with the production geometry",
+  "hands": "100 candidate grip contacts checked against weapon alpha",
+  "shadow": "1 native px, clipped to the body, 90 percent opacity",
+  "lighting": "current actor shader lightening reproduced; no scene lighting",
+  "source_tool": "built-in imagegen",
+  "protected_active_atlases": {
+    "assets/sprites/class-armors-01/base.png": "a892fe61b48545d3ed6dba00a8ab32f261cbae109e992593b026e79a309cd1bc",
+    "assets/sprites/class-armors-01/core.png": "003154b3c46f4b0136eefe03bcda2647f6de08f4e8bc9d42d7dff49f7a9d1a13",
+    "assets/sprites/class-armors-01/arm-0.png": "74304e3429ba5fd7ac37b44e8526f60c11d6d674167f50d907fb8af9337156e1",
+    "assets/sprites/class-armors-01/arm-1.png": "0734cfe867db79875d515d4f5a784f547567be34fd139f4563aa861f145cb45c",
+    "assets/sprites/class-armors-01/fingers-0.png": "522f7feb13a5ddd51090ab6e0328182bf97184e54280f67818bb031dd2c49c5c",
+    "assets/sprites/class-armors-01/fingers-1.png": "180b463a391fc23982d17b9e0ce0866eb12dbe37c11bf53bb303f4568cd28829",
+    "assets/sprites/class-armors-01/ranged-core.png": "5abb7c37bb7c444d1dbcac036de0d1d3368846fefe5c92467a7969376aebff59",
+    "assets/sprites/class-armors-01/ranged-arm-0.png": "1a9536e404ba6b92f8c8f06b8558fa74ef53540096a48579051219953447738c",
+    "assets/sprites/class-armors-01/ranged-arm-1.png": "3085773378a4c1b95762d583f7abfdd62a6c34cd101831837fbbe3b63b2b92b8",
+    "assets/sprites/class-armors-01/grip-0.png": "8cde30b3c6137fffcc9b10c5d35a0998649f9933722f9d3959344a5053f05fe0",
+    "assets/sprites/class-armors-01/grip-1.png": "a226a4ebdd0d8c2be492863d7983743018184c840f5dd0162eda9f3cfcbe57ce",
+    "assets/sprites/class-armors-01/hand-mask-0.png": "f7c5e6feedc04a76305119e92fd0e9027810d33ebcab55e576a864de59147536",
+    "assets/sprites/class-armors-01/hand-mask-1.png": "a2f2ff6b924660a3e838e1e6f25f23a7cf7c4f6ef3a5dc07d76784bb2e09b2c0",
+    "assets/sprites/class-armors-01/head-mask.png": "dbc48f3cefcfc64e1b082863a367e0c0f9dc5ba356b7fba02024f88cf316fcec",
+    "assets/sprites/class-armors-01/raised-arm-0.png": "fcb3ffc2bc9603b7fc6bfce4ea84d668e519783ac6e14e5654936de1d9821ecb",
+    "assets/sprites/class-armors-01/raised-arm-1.png": "972bdcb44f250e44aa351d1b9cd39ce3d6f77567921db5337637b9690ca37486",
+    "assets/sprites/class-armors-01/raised-erase-0.png": "82395a8e6c61a019a023f5228eefa85178b6b41be9d35ba66d535dcc99cd140a",
+    "assets/sprites/class-armors-01/raised-erase-1.png": "db04128c025667b67685b241f27094fd7fb0cdef4f0cad6dde631796e00eebf9",
+    "assets/sprites/class-armors-01/raised-fingers-0.png": "8c6944ad97068686217d4491f0fe7d3bc6c27fde42ffb879704980f532faa7d1",
+    "assets/sprites/class-armors-01/raised-fingers-1.png": "9a9a829a7cdc782af529c77fbeda798ef7bc165051ba268ccb276a0fbf3cf5da",
+    "assets/sprites/class-armors-01/identity-heads.png": "f066f26241e8e3e6b88f6ff8aaefb89e3836cd5f7f3b3efa344eb6fbcfe83c55",
+    "assets/sprites/class-armors-01/helmets.png": "a600b158b1e5af2bdc33990c819653b4b0013633e067a635b12824317b1cb9e2",
+    "assets/sprites/class-armors-01/helmet-openings.png": "65f82a1a7447f1dfb39559fb782fb1b2791e8be0c90382daeb454b1ffd7d0224"
+  },
+  "actual_before_layers": "read-only export of the current production compositor",
+  "comparisons": 150,
+  "controls": [
+    "weapon",
+    "armor stage",
+    "dark/light ground",
+    "grayscale"
+  ],
+  "runtime_manifest": "assets/sprites/weapon-readability-03/manifest.json"
+}

@@ -1,0 +1,19 @@
+{
+  "review_id": "WALK07",
+  "execution": "Node VM, simulated DOM/canvas; renderer fixtures from Rust Image diagnostic",
+  "runtime_integration": false,
+  "visual_acceptance": false,
+  "pixel_fixtures": 204,
+  "max_visible_channel_difference": 2,
+  "differing_edge_pixels": 1193,
+  "selection_pairs_checked": 1996,
+  "fragments_under_one_megabyte": 6,
+  "all_six_walk_frames": true,
+  "both_lateral_directions": true,
+  "separate_idle_at_arrival": true,
+  "single_cell_stops": true,
+  "duration_choice_and_manual_step": true,
+  "widget_state_restores_without_save_loop": true,
+  "trace_matches_accepted_walk05_step03_viewer": true,
+  "trace_samples": 601
+}

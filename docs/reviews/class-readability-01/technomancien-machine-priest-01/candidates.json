@@ -1,0 +1,515 @@
+{
+  "review_id": "TECHNOMANCIEN-MP01",
+  "date": "2026-10-22",
+  "status": "awaiting_native64_visual_review",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "class_id": "core:technomancien",
+  "runtime_integration": false,
+  "color_variants": "deferred",
+  "bastion_comparison_acceptance": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "TE-MP01-P01-r01",
+      "class_name": "Technomancien",
+      "rank": 1,
+      "label": "Très légère",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P01-r01-source.png",
+      "source_sha256": "72eee3ce35425a4acc130978bc8802558a04d5d587a45f9b95283a552ec974d3",
+      "native": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P01-r01-native64.png",
+      "native_sha256": "32498a32699e6d4851b2363535a42a3130a85f489041b124966546411f2ad597",
+      "framing": {
+        "source_core_box": [
+          356,
+          120,
+          867,
+          1201
+        ],
+        "source_crop": [
+          340,
+          104,
+          883,
+          1217
+        ],
+        "isotropic_scale": 0.05365402405180388,
+        "native_core_box": [
+          19,
+          4,
+          46,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 27,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        19,
+        4,
+        46,
+        62
+      ],
+      "native_core_width": 27,
+      "native_core_height": 58,
+      "solid_silhouette_pixels": 721,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          37,
+          11
+        ],
+        [
+          34,
+          14
+        ],
+        [
+          29,
+          14
+        ],
+        [
+          26,
+          11
+        ],
+        [
+          26,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P01-r01-head-native64.png",
+          "sha256": "e2c09c0f1fed36f0b3a1aeb9774e3df3fe591978d27c2ed694bc55837ec129f9"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P01-r01-body-native64.png",
+          "sha256": "3266d115fcf3db4510f30cfed5590f0b57173a3441b7bdd8fe10275150fdf7df"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P01-r01-head-mask-native64.png",
+          "sha256": "ffca718945af700e56352baed433ae091da0c38d9f4d49ca8484d26ba384e651"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only_arms_grips_and_equippable_helmet_replacement_not_yet_validated"
+    },
+    {
+      "number": "02",
+      "candidate_id": "TE-MP01-P02-r02",
+      "class_name": "Technomancien",
+      "rank": 2,
+      "label": "Légère",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P02-r02-source.png",
+      "source_sha256": "c2858d70646ad9c400e32b149baa251f808b04a97c0fa43d124e6a1b53d52368",
+      "native": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P02-r02-native64.png",
+      "native_sha256": "47607f52891aad56694db738668baab82dd86f42755e5ef6d85ff6d31dc9a848",
+      "framing": {
+        "source_core_box": [
+          355,
+          24,
+          891,
+          1206
+        ],
+        "source_crop": [
+          337,
+          6,
+          909,
+          1224
+        ],
+        "isotropic_scale": 0.049069373942470386,
+        "native_core_box": [
+          19,
+          4,
+          45,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 26,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        19,
+        4,
+        45,
+        62
+      ],
+      "native_core_width": 26,
+      "native_core_height": 58,
+      "solid_silhouette_pixels": 844,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          37,
+          11
+        ],
+        [
+          34,
+          14
+        ],
+        [
+          29,
+          14
+        ],
+        [
+          26,
+          11
+        ],
+        [
+          26,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P02-r02-head-native64.png",
+          "sha256": "f937af6a865b60c18b8f7ef25d0e562749d5194bf2750cc4cc16b34e88c3aac9"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P02-r02-body-native64.png",
+          "sha256": "a3edcec3cc3dae7009cf0acd7b86aea77fc434efbdab511cd5708fea1764ade5"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P02-r02-head-mask-native64.png",
+          "sha256": "ffca718945af700e56352baed433ae091da0c38d9f4d49ca8484d26ba384e651"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only_arms_grips_and_equippable_helmet_replacement_not_yet_validated"
+    },
+    {
+      "number": "03",
+      "candidate_id": "TE-MP01-P03-r02",
+      "class_name": "Technomancien",
+      "rank": 3,
+      "label": "Interméd.",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P03-r02-source.png",
+      "source_sha256": "7c7925eab0c87ed6acad2223582c0a3bbf70f0e274c0018d0cae235870c8ae61",
+      "native": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P03-r02-native64.png",
+      "native_sha256": "0ece608595b41175c6514d805debe37a6ea63212d1bd355a6a533cd9655f3945",
+      "framing": {
+        "source_core_box": [
+          323,
+          110,
+          896,
+          1217
+        ],
+        "source_crop": [
+          306,
+          93,
+          913,
+          1234
+        ],
+        "isotropic_scale": 0.052393857271906055,
+        "native_core_box": [
+          17,
+          4,
+          47,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 30,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        17,
+        4,
+        47,
+        62
+      ],
+      "native_core_width": 30,
+      "native_core_height": 58,
+      "solid_silhouette_pixels": 1044,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          37,
+          11
+        ],
+        [
+          34,
+          14
+        ],
+        [
+          29,
+          14
+        ],
+        [
+          26,
+          11
+        ],
+        [
+          26,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P03-r02-head-native64.png",
+          "sha256": "ff07472f3d602bf69fc06e8fa2292d9f7f4ac522dda7d9d7d9c228774097c0db"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P03-r02-body-native64.png",
+          "sha256": "733922a1de23459619f01bc49502f095919a9d93c043c7d4d459e3e1dc401065"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P03-r02-head-mask-native64.png",
+          "sha256": "ffca718945af700e56352baed433ae091da0c38d9f4d49ca8484d26ba384e651"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only_arms_grips_and_equippable_helmet_replacement_not_yet_validated"
+    },
+    {
+      "number": "04",
+      "candidate_id": "TE-MP01-P04-r02",
+      "class_name": "Technomancien",
+      "rank": 4,
+      "label": "Lourde",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P04-r02-source.png",
+      "source_sha256": "32a784549ca4160542d9ef81e259e91dd5f4700cab2f894d016a2d60322839f6",
+      "native": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P04-r02-native64.png",
+      "native_sha256": "a8a098bd898fcd6aed6f6c803582eb750a7a72367530f9ae479b48dbf31c7ca7",
+      "framing": {
+        "source_core_box": [
+          257,
+          30,
+          997,
+          1220
+        ],
+        "source_crop": [
+          239,
+          12,
+          1015,
+          1238
+        ],
+        "isotropic_scale": 0.04873949579831933,
+        "native_core_box": [
+          14,
+          4,
+          50,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 36,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        14,
+        4,
+        50,
+        62
+      ],
+      "native_core_width": 36,
+      "native_core_height": 58,
+      "solid_silhouette_pixels": 1238,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          37,
+          11
+        ],
+        [
+          34,
+          14
+        ],
+        [
+          29,
+          14
+        ],
+        [
+          26,
+          11
+        ],
+        [
+          26,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P04-r02-head-native64.png",
+          "sha256": "5b0c9790add921db6e43fe8ad6f7366fc9e834a1a43053dbeb3af8c90bd3d1db"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P04-r02-body-native64.png",
+          "sha256": "ad65310e5afafc9fbfb00cea0bf2b58cb5a568306171f1cfdaaeeb0d08f82e0b"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P04-r02-head-mask-native64.png",
+          "sha256": "ffca718945af700e56352baed433ae091da0c38d9f4d49ca8484d26ba384e651"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only_arms_grips_and_equippable_helmet_replacement_not_yet_validated"
+    },
+    {
+      "number": "05",
+      "candidate_id": "TE-MP01-P05-r02",
+      "class_name": "Technomancien",
+      "rank": 5,
+      "label": "Très lourde",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P05-r02-source.png",
+      "source_sha256": "1816d2983be7cecef09e475282b624acbc4f3d68c0db7fe51a29934333208c08",
+      "native": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P05-r02-native64.png",
+      "native_sha256": "e2c57c3d878d67b3ea6c054d82a3e5d0e0d9e27fd152c851c97d5993e86e5a40",
+      "framing": {
+        "source_core_box": [
+          260,
+          22,
+          989,
+          1230
+        ],
+        "source_crop": [
+          242,
+          4,
+          1007,
+          1248
+        ],
+        "isotropic_scale": 0.048013245033112585,
+        "native_core_box": [
+          15,
+          4,
+          50,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 35,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        15,
+        4,
+        50,
+        62
+      ],
+      "native_core_width": 35,
+      "native_core_height": 58,
+      "solid_silhouette_pixels": 1359,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          37,
+          11
+        ],
+        [
+          34,
+          14
+        ],
+        [
+          29,
+          14
+        ],
+        [
+          26,
+          11
+        ],
+        [
+          26,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P05-r02-head-native64.png",
+          "sha256": "4bb39c677c83506947b366df51789a14f89dba0dc80b13bba69ceffbe724bc61"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P05-r02-body-native64.png",
+          "sha256": "714afd5b71e1f1d19be2734d4fde48beff62489385aceec80cb752f68004d7d6"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/technomancien-machine-priest-01/TE-MP01-P05-r02-head-mask-native64.png",
+          "sha256": "ffca718945af700e56352baed433ae091da0c38d9f4d49ca8484d26ba384e651"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only_arms_grips_and_equippable_helmet_replacement_not_yet_validated"
+    }
+  ]
+}

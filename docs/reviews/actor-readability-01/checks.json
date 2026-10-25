@@ -1,0 +1,62 @@
+{
+  "review_id": "ACTOR-READABILITY01",
+  "status": "interactive_review_ready_awaiting_user_choice",
+  "five_options_individually_verified": true,
+  "numbered_presets_including_baseline": 9,
+  "backgrounds": 2,
+  "exported_preset_images": 18,
+  "class_and_armor_cases_in_browser": 50,
+  "distinct_outfit_renders_per_background": 25,
+  "scene_canvas_native": [
+    320,
+    256
+  ],
+  "native_css_display": [
+    320,
+    256
+  ],
+  "explicit_zoom_display": [
+    640,
+    512
+  ],
+  "logical_tile": 64,
+  "monster_candidates": 3,
+  "candidate_images": [
+    128,
+    128
+  ],
+  "original_monster_heights_and_feet_preserved": true,
+  "candidate_corners_transparent": true,
+  "approved_class_acceptances_and_source_groups_verified": {
+    "acceptances": 5,
+    "native_source_groups": 25
+  },
+  "source_sprite_and_scene_hashes_unchanged": true,
+  "baseline_compared_to_itself_exact": true,
+  "all_eight_nonbaseline_presets_change_both_scenes": true,
+  "opaque_player_pixels_preserved_in_options_03_04_05": true,
+  "grayscale_export_all_channels_equal": true,
+  "intensity_rgb_differences": {
+    "20": 1149089,
+    "100": 1577033
+  },
+  "click_selection_verified": [
+    "Possédé blindé",
+    "Fendeur"
+  ],
+  "silhouette_view_verified_in_browser": true,
+  "browser_screenshots": [
+    "artifacts/actor-readability-01/browser-all-options.png",
+    "artifacts/actor-readability-01/browser-silhouettes.png"
+  ],
+  "game_source_changes": false,
+  "engine_execution_for_these_studies": false,
+  "runtime_integration": false,
+  "mechanics_changes": false,
+  "artistic_approval": false,
+  "custom_checkbox_combination_verified": {
+    "mask_after_disabling_contour": 30,
+    "title": "Combinaison personnalisée",
+    "restored_mask": 31
+  }
+}

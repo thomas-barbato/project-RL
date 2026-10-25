@@ -1,0 +1,101 @@
+{
+  "review_id": "ARMOR-STYLE-STUDIES01",
+  "date": "2026-10-21",
+  "status": "awaiting_visual_approval",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "runtime_integration": false,
+  "color_variants": "deferred",
+  "scope": "Two alternative whole Bastion designs, not armor progression or production rigs.",
+  "historical_control": {
+    "path": "artifacts/class-armor-review-01/class-armors-all-02/BA-W01-H03-r01-native64.png",
+    "sha256": "296361036f898304ef58ac3443175dd061c8da1d8f128e3492b46bde3104fc67"
+  },
+  "prior_acceptances": "preserved; latest feedback reopens the overall aesthetic including Bastion",
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "BA-STYLE01-r01",
+      "label": "Vétéran industriel",
+      "status": "awaiting_visual_approval",
+      "source": "assets/source-art/class-readability-01/armor-style-studies-01/BA-STYLE01-r01-source.png",
+      "source_sha256": "d0c266656c4320b5305f6f6afa0dc51023623686c9262bc253368f1b090943a0",
+      "native": "assets/source-art/class-readability-01/armor-style-studies-01/BA-STYLE01-r01-native64.png",
+      "native_sha256": "2a934fb6e1ba93c5d85c32dc4402190f0807f142a88ec06f4e46ef1c14e555a3",
+      "measurements": {
+        "source_core_box": [
+          192,
+          118,
+          896,
+          1372
+        ],
+        "source_crop": [
+          173,
+          99,
+          915,
+          1391
+        ],
+        "isotropic_scale": 0.046251993620414676,
+        "native_core_box": [
+          16,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 32,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "layer_status": "whole_figure_style_study_not_an_equippable_rig",
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_and_grip_anchors": "to_measure_after_style_selection",
+      "production_layers": "body, torso default head, arms, weapon and hand occlusions to prepare after review"
+    },
+    {
+      "number": "02",
+      "candidate_id": "BA-STYLE02-r01",
+      "label": "Briseur cybernétique",
+      "status": "awaiting_visual_approval",
+      "source": "assets/source-art/class-readability-01/armor-style-studies-01/BA-STYLE02-r01-source.png",
+      "source_sha256": "794c43afc8fabd81b4de11b3b632796e828172b4a323abd64574335a474f0512",
+      "native": "assets/source-art/class-readability-01/armor-style-studies-01/BA-STYLE02-r01-native64.png",
+      "native_sha256": "f39c70908175f8575a1af1470819865a7f8dd9d84d72c2805722ec2778a867a6",
+      "measurements": {
+        "source_core_box": [
+          273,
+          72,
+          948,
+          1225
+        ],
+        "source_crop": [
+          256,
+          55,
+          965,
+          1242
+        ],
+        "isotropic_scale": 0.05030355594102342,
+        "native_core_box": [
+          15,
+          4,
+          49,
+          62
+        ],
+        "framing": "isotropic, Nearest, source alpha retained",
+        "foot_baseline_y": 61
+      },
+      "layer_status": "whole_figure_style_study_not_an_equippable_rig",
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_and_grip_anchors": "to_measure_after_style_selection",
+      "production_layers": "body, torso default head, arms, weapon and hand occlusions to prepare after review"
+    }
+  ]
+}

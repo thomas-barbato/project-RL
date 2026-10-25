@@ -1,0 +1,22 @@
+{
+  "scope": "read-only runtime animation audit; no source or runtime asset changes",
+  "observed_executable": "target/release/project-rl.exe",
+  "observed_session": "isolated APPDATA copy of last user session",
+  "observed_scene": {
+    "name": "Abords de la prison",
+    "depth": 1,
+    "x": 18,
+    "y": 43,
+    "visible_hostiles": 3,
+    "player_class": "core:bastion",
+    "active_weapon_ui": "Hachette",
+    "active_weapon_model": 67
+  },
+  "input_limitation": "Windows UI inputs repeatedly reported user input detected; no timing assertion based on captured movement video",
+  "current_monster_numeric_tags_not_instrumented": true,
+  "original_files_checked": 395,
+  "original_files_changed": [],
+  "source_files_modified": false,
+  "runtime_assets_modified": false,
+  "original_user_profile_modified": false
+}

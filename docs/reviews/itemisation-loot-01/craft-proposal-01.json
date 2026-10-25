@@ -1,0 +1,141 @@
+{
+  "review_id": "ITEM-LOOT01-CRAFT01",
+  "date": "2026-10-23",
+  "status": "withdrawn_after_user_feedback_not_integrated",
+  "scope": "Premiers composants de butin et trois recettes ; règles détaillées des quatre qualités et tirage d'équipement à traiter séparément.",
+  "material_roll": {
+    "independent_from_equipment": true,
+    "one_material_type_per_packet": true,
+    "fragment_quantity_always": 1,
+    "selection": "Les pourcentages de matériaux sont conditionnels à la réussite du tirage de paquet.",
+    "sources": [
+      {
+        "source": "adversaire ordinaire",
+        "packet_chance_percent": 40,
+        "ordinary_quantity": [
+          1,
+          2
+        ],
+        "material_weights_percent": {
+          "core:repair_parts": 80,
+          "core:tuning_parts": 20,
+          "core:unstable_fragment": 0
+        }
+      },
+      {
+        "source": "élite",
+        "packet_chance_percent": 80,
+        "ordinary_quantity": [
+          2,
+          4
+        ],
+        "material_weights_percent": {
+          "core:repair_parts": 60,
+          "core:tuning_parts": 30,
+          "core:unstable_fragment": 10
+        }
+      },
+      {
+        "source": "boss",
+        "packet_chance_percent": 100,
+        "ordinary_quantity": [
+          4,
+          6
+        ],
+        "material_weights_percent": {
+          "core:repair_parts": 40,
+          "core:tuning_parts": 40,
+          "core:unstable_fragment": 20
+        }
+      }
+    ]
+  },
+  "crafting": {
+    "place": "atelier",
+    "input_quality": "standard",
+    "output_quality": "artisanal",
+    "output_properties": {
+      "guaranteed": 1,
+      "additional_random": 2,
+      "distinct_properties": true,
+      "value_ranges": "Plages actuelles du palier du modèle, y compris les deux propriétés supplémentaires ; exemple de valeurs affiché au palier 1."
+    },
+    "preserve": [
+      "modèle",
+      "palier",
+      "dessin",
+      "caractéristiques intrinsèques de la base"
+    ],
+    "costs_include_base": true,
+    "credits": 0,
+    "recipes": [
+      {
+        "id": "ITEM-LOOT01-CRAFT01-A",
+        "label": "Arme de mêlée pénétrante",
+        "item_family": "arme de mêlée",
+        "materials": {
+          "core:repair_parts": 6,
+          "core:tuning_parts": 1
+        },
+        "guaranteed_affix": "affix:armor_penetration",
+        "tier1_value": [
+          1,
+          1
+        ]
+      },
+      {
+        "id": "ITEM-LOOT01-CRAFT01-B",
+        "label": "Arme de tir précise",
+        "item_family": "arme à distance",
+        "materials": {
+          "core:repair_parts": 4,
+          "core:tuning_parts": 3
+        },
+        "guaranteed_affix": "affix:accuracy",
+        "tier1_value": [
+          5,
+          10
+        ]
+      },
+      {
+        "id": "ITEM-LOOT01-CRAFT01-C",
+        "label": "Armure de torse robuste",
+        "item_family": "armure de torse",
+        "materials": {
+          "core:repair_parts": 8,
+          "core:tuning_parts": 1
+        },
+        "guaranteed_affix": "affix:resilience",
+        "tier1_value": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "unstable_fragment": "Déjà utile au service d'amélioration existant ; les futures recettes avancées ne font pas partie de ce premier lot.",
+  "not_approved": [
+    "Probabilités et quantités",
+    "Coûts et propriétés des recettes",
+    "Principe d'une propriété garantie et de deux propriétés aléatoires",
+    "Textes de recette et interface",
+    "Définition et classement technique des élites et boss",
+    "Poids propres aux coffres et profils spécialisés des robots",
+    "Détails des qualités et chances de trouver un équipement"
+  ],
+  "source_references": [
+    "src/item/affix.rs",
+    "src/game/equipment_upgrade.rs",
+    "content/core/items/repair_parts.json5",
+    "content/core/items/tuning_parts.json5",
+    "content/core/items/unstable_fragment.json5"
+  ],
+  "runtime_integration": false,
+  "withdrawal": {
+    "user_reply": "ca me semble assez enorme... le but n'etant pas que ce soit commun observe plutot diablo 2 pour voir.",
+    "reason": "Crafting materials and attempts too common; the 40/80/100 percent packet schedule and stack sizes are withdrawn.",
+    "study": "diablo2-crafting-study-01.json",
+    "replacement": "craft-direction-02.json",
+    "recipes_and_costs": "Previous recipes, fixed bonus counts and costs remain unapproved and are not carried over."
+  }
+}

@@ -1,7 +1,8 @@
 //! Accepted ART-FINISH-01 through 06 resources shared by board and inspection.
 //! Embedded assets only; neither captures nor authoring files are runtime inputs.
 use super::*;
-use std::{cell::RefCell, collections::BTreeMap};
+use project_rl::asset_cache::ByteCache;
+use std::cell::RefCell;
 include!("game_art_finish_catalog.rs");
 include!("game_art_finish_catalog_02.rs");
 include!("game_art_finish_catalog_03.rs");
@@ -10,13 +11,15 @@ include!("game_art_finish_catalog_05.rs");
 include!("game_art_finish_catalog_06.rs");
 include!("game_art_finish_icons_catalog_06.rs");
 include!("game_art_torso_catalog_01.rs");
+include!("game_art_readability_catalog.rs");
 
 thread_local! {
-    static IMAGES: RefCell<BTreeMap<String, Image>> = const { RefCell::new(BTreeMap::new()) };
+    static IMAGES: RefCell<ByteCache<String, Image>> = const { RefCell::new(ByteCache::new(16 * 1024 * 1024)) };
     static DRONE: portrait::Sheet = portrait::Sheet::from_image(&image("FIN-11").unwrap(), 128);
 }
 pub(super) fn image(name: &str) -> Option<Image> {
-    let bytes = bytes(name)
+    let bytes = readability_bytes(name)
+        .or_else(|| bytes(name))
         .or_else(|| bytes_02(name))
         .or_else(|| bytes_03(name))
         .or_else(|| bytes_04(name))
@@ -25,14 +28,21 @@ pub(super) fn image(name: &str) -> Option<Image> {
         .or_else(|| bytes_outfit_icons_06(name))
         .or_else(|| bytes_torso_icons_01(name))?;
     Some(IMAGES.with(|images| {
-        images
-            .borrow_mut()
-            .entry(name.to_owned())
-            .or_insert_with(|| palettes::decoded(bytes))
-            .clone()
+        let mut images = images.borrow_mut();
+        let key = name.to_owned();
+        if let Some(image) = images.get(&key) {
+            return image.clone();
+        }
+        let image = palettes::decoded(bytes);
+        let size = image.bytes.len();
+        images.insert(key.clone(), image, size);
+        images.get(&key).unwrap().clone()
     }))
 }
 pub(super) fn campaign_image(number: u16, variant: u8) -> Option<Image> {
+    if let Some(image) = image(&format!("VIS-{number:03}-{variant}")) {
+        return Some(image);
+    }
     image(match (number, variant) {
         (164, 0) => "FIN-06",
         (165, 0) => "FIN-07",
@@ -120,7 +130,7 @@ pub(super) fn draw_drone(cell: Rect, opacity: f32, world: bool) {
             cell.w * 2.,
             cell.h * 2.,
         );
-        draw_texture_ex(
+        crate::world_readability::texture(
             &sheet.texture,
             rect.x,
             rect.y,

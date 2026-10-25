@@ -1,0 +1,47 @@
+{
+  "review_id": "BASTION-W01",
+  "candidate_id": "BA-W01-P05-r03",
+  "parent_candidate": "BA-W01-P05-r02",
+  "status": "accepted_visual_reference",
+  "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png",
+  "source_sha256": "807794756fa2c01151569c1cd3ae82aeb51dfb800e06df7259771cff604371dd",
+  "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P05-r03-native64.png",
+  "native_sha256": "a81d15d0f0c403f6003f703fa2dc9db148c8cb6186e56475c6e1e9e7ba7286a4",
+  "measurements": {
+    "source_core_box": [
+      232,
+      58,
+      1020,
+      1220
+    ],
+    "source_crop": [
+      215,
+      41,
+      1037,
+      1237
+    ],
+    "isotropic_scale": 0.043029259896729774,
+    "native_core_box": [
+      15,
+      13,
+      48,
+      62
+    ],
+    "native_core_height": 49,
+    "native_core_width": 33,
+    "foot_baseline_y": 61,
+    "framing": "64x64, isotropic, Lanczos, source alpha retained"
+  },
+  "assembled_core_box": [
+    15,
+    4,
+    48,
+    62
+  ],
+  "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+  "head_identical_to_all_five": true,
+  "simplification": "larger armor masses, fewer internal divisions, removed fine texture",
+  "other_four_outfits_simplified": false,
+  "runtime_integration": false,
+  "acceptance": "docs/reviews/class-readability-01/bastion-wave-01/acceptance.json"
+}

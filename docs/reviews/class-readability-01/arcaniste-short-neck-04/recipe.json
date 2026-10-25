@@ -1,0 +1,50 @@
+{
+  "review_id": "ARCANISTE-SHORT-NECK04",
+  "date": "2026-10-22",
+  "source_user_request": "sa nuque est trop haute ca fait bizarre",
+  "method": "Existing modular head-layer attachment correction; no new artwork generated.",
+  "native_head_translation": [
+    0,
+    2
+  ],
+  "native_resampling": false,
+  "preserve": "Exact existing heads, common visible face, hood occlusion, body outside old/new head footprints, feet and canvas.",
+  "raccord": "Old and moved ownership masks remove the old attachment and hide the neck beneath the lowered head. No horizontal body crop.",
+  "references": [
+    {
+      "candidate_id": "AR-SF03-P01-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-source.png",
+      "source_sha256": "2a7fdd0a881857b9561a5f2dca4ad4a9832f6a1fd3bb96a19550699f33328453",
+      "native": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-native64.png",
+      "native_sha256": "5861685a5a81ee0b6ec7acd61d1d6229d04a488982016d2fdfabab5d448fef74"
+    },
+    {
+      "candidate_id": "AR-SF03-P02-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-source.png",
+      "source_sha256": "7f7575707cb88305086e9d42c4f817f004905efb4691d26d6f5cc79bf459210d",
+      "native": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-native64.png",
+      "native_sha256": "131cc4fbebe02e20fbe192b31ff1c61ab2be5b0e2c06c4d0bfafcf43332eb9a3"
+    },
+    {
+      "candidate_id": "AR-SF03-P03-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-source.png",
+      "source_sha256": "562e81f5346f1f7c555105abbeb68ea089e5341c1f269ca2456286a2a4a60b3f",
+      "native": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-native64.png",
+      "native_sha256": "959c254308cc52b41d5fc8485f6a18f04bc41a321378640c98610e6f6eb071fe"
+    },
+    {
+      "candidate_id": "AR-SF03-P04-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-source.png",
+      "source_sha256": "d092db2498eb45cccdfc14a05cf3c97cc72c470ff6f1316b07903e9a316dc65d",
+      "native": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-native64.png",
+      "native_sha256": "5ca2d225826779a0c0681051086b616a12e1f1f0377b25b01a0feb3e8386017a"
+    },
+    {
+      "candidate_id": "AR-SF03-P05-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-source.png",
+      "source_sha256": "6d6e7cfe3665963cdc8d487b8d287018e30354d2e7827685f5d13188bfcaaae6",
+      "native": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-native64.png",
+      "native_sha256": "1131f3ea749267053707aac9249df09787cfec843f63f82e9d9b58f36e9bcf34"
+    }
+  ]
+}

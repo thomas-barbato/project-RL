@@ -38,7 +38,7 @@ impl Sheet {
             return;
         };
         let destination = contain(frame, *source);
-        draw_texture_ex(
+        crate::world_readability::texture(
             &self.texture,
             destination.x,
             destination.y,

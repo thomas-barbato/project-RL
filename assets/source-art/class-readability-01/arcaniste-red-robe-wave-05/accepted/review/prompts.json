@@ -1,0 +1,115 @@
+{
+  "review_id": "ARCANISTE-RED-ROBE-W05",
+  "date": "2026-10-22",
+  "mode": "built_in_image_gen",
+  "selected_reference_answer": "01 — Ancien personnage en jeu : robe rouge, capuche et masque",
+  "latest_user_request": "cette version robe rouge, capuche et masque pourrait etre l'une des dernieres armures :)",
+  "reused_rank": 4,
+  "reused_native": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-legacy-reference-native64.png",
+  "reused_native_framing": "FIN-16 crop (32,34,96,98), original pixels unchanged, feet y=61",
+  "provisional_previous_approval": "bon je valide pour l'instant — superseded by explicit preference for the old in-game style; no acceptance manifest created.",
+  "jobs": [
+    {
+      "rank": 1,
+      "candidate_id": "AR-RR05-P01-r01",
+      "prompt": "Use case: stylized-concept.\nAsset: ONE whole full-body ARCANISTE mage outfit for Project RL, to be reduced to a 60-pixel-high figure inside a 64x64 game cell. This is one member of a five-stage armor progression.\nReference image 1 is the LEGACY STYLE reference selected by the user: worn deep red robe, dark inner clothes and belts, red hood and simple warm ivory full face mask with one vertical dark slot. Its hands and feet give the characteristic grounded mage pose. It is a late armor, stage 04, not the starting outfit. Ignore its black background, aura, grunge speckles and microtexture: draw a clean complete transparent figure.\nReference image 2 is the exact existing 64px legacy SPRITE: use its economical broad value masses, slightly elevated front-facing game view, compact proportions, and balanced pose. Avoid a side or three-quarter portrait and avoid a superhero/anime rendering.\nAdult human male, lean torso under the cloth, normal compact head seated low between the shoulders, short neck hidden naturally by collar/hood. The uncovered face where needed is the same pale short-white-haired man across the range, not a different person. At high stages the mask hides him completely. Forearms remain the channeling focus, with protection in dark leather, muted aged metal or discreet implant cuffs. No new powers or devices.\nKeep a consistent nearly frontal stance: two feet apart, both arms slightly bent and held a little away from the torso at waist level, hands empty and fully drawn. Same anatomy and body height across the range. The figure's added width must come from clothing thickness and protection, not different poses or oversized anatomy. Full crown and soles within generous transparent margins.\nPalette and finish: matte worn BRICK RED / OXBLOOD cloth with broad reddish lit folds, charcoal black-brown underclothes and old dark leather straps, limited dull steel, warm ivory only in selected mask or quiet cloth panels. A little restrained dull copper may appear on existing forearm fittings. No shiny gold edging, no orange flecks, no neon lights, no bright magical effects. Restrained polished painterly game-sprite finish, large readable cloth folds and material masses. No scratch noise, embroidery, runes, rivets, chains or tiny gadgets. No big thick black outlines around every fold. The red cloth must remain legible against a dark grey floor.\nEach armor changes torso, arms, gloves, legs and boots together. Headwear grows with the outfit but stays in the same compact head area. Do not lengthen the neck or perch the head above a tall collar. Mage identity must remain different from the Bastion's copper melee plates and the Technomancien's exposed robot machinery.\nNo weapon, staff, wand, book, orb, flame, particles, aura, cast shadow, ground, text or presentation board. One whole figure on genuine transparent RGBA only.\n\nSTAGE 01 / VERY LIGHT. A spare worn brick-red short sleeveless mage tunic, asymmetric red cloth tab reaching to the knee over charcoal trousers. Upper arms exposed, dark fabric wrist wraps, small practical gloves, light worn leather ankle boots. No torso shell, no shoulder plates, no long robe yet. White-haired pale adult man's bare compact head and small copper temple implant from the face reference. No hood or mask. Slender but adult and grounded, no broad warrior muscles. About 26 native pixels wide. This is the light underlayer from which the legacy red robe will grow.\nReference image 3 is ONLY the underlying human facial identity for exposed areas: same white hair, pale face, brow, nose and small copper temple implant. Match the legacy painterly finish and requested red outfit, not the crop lighting or portrait size. Hood may partially cover the face in 02.",
+      "tool": "built_in_image_gen",
+      "transparent_background": true,
+      "references": [
+        {
+          "path": "assets/source-art/art-finish-review-02/FIN-16-source.png",
+          "sha256": "6c81317aa1138b1d9c75396e6433f6d681b6416701b74d4329e57369c3f26c57",
+          "role": "selected late-armor style only; exclude opaque background and effects"
+        },
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-legacy-reference-native64.png",
+          "sha256": "9aa7ae1df0b6a3e526f2b89a6b94dfa78c24c24d138c40fc099b20d695a677d4",
+          "role": "exact legacy sprite silhouette, pose, palette and native-size readability"
+        },
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-FACE03-identity-reference.png",
+          "sha256": "4481e902fd66facd364a8ed5dad2dcef433275b420db7c87517f511149daedf1",
+          "role": "same underlying human face identity only; do not copy the old plum outfit or portrait scale"
+        }
+      ],
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P01-r01-source.png",
+      "generated_origin": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-87937b92-67b5-4641-b345-7bd5205333b8.png",
+      "source": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P01-r01-source.png",
+      "source_sha256": "ac1ecacae16d7a2761dd538e7f6752490f5c3919d2ecacfd98fedd374dc632a6"
+    },
+    {
+      "rank": 2,
+      "candidate_id": "AR-RR05-P02-r01",
+      "prompt": "Use case: stylized-concept.\nAsset: ONE whole full-body ARCANISTE mage outfit for Project RL, to be reduced to a 60-pixel-high figure inside a 64x64 game cell. This is one member of a five-stage armor progression.\nReference image 1 is the LEGACY STYLE reference selected by the user: worn deep red robe, dark inner clothes and belts, red hood and simple warm ivory full face mask with one vertical dark slot. Its hands and feet give the characteristic grounded mage pose. It is a late armor, stage 04, not the starting outfit. Ignore its black background, aura, grunge speckles and microtexture: draw a clean complete transparent figure.\nReference image 2 is the exact existing 64px legacy SPRITE: use its economical broad value masses, slightly elevated front-facing game view, compact proportions, and balanced pose. Avoid a side or three-quarter portrait and avoid a superhero/anime rendering.\nAdult human male, lean torso under the cloth, normal compact head seated low between the shoulders, short neck hidden naturally by collar/hood. The uncovered face where needed is the same pale short-white-haired man across the range, not a different person. At high stages the mask hides him completely. Forearms remain the channeling focus, with protection in dark leather, muted aged metal or discreet implant cuffs. No new powers or devices.\nKeep a consistent nearly frontal stance: two feet apart, both arms slightly bent and held a little away from the torso at waist level, hands empty and fully drawn. Same anatomy and body height across the range. The figure's added width must come from clothing thickness and protection, not different poses or oversized anatomy. Full crown and soles within generous transparent margins.\nPalette and finish: matte worn BRICK RED / OXBLOOD cloth with broad reddish lit folds, charcoal black-brown underclothes and old dark leather straps, limited dull steel, warm ivory only in selected mask or quiet cloth panels. A little restrained dull copper may appear on existing forearm fittings. No shiny gold edging, no orange flecks, no neon lights, no bright magical effects. Restrained polished painterly game-sprite finish, large readable cloth folds and material masses. No scratch noise, embroidery, runes, rivets, chains or tiny gadgets. No big thick black outlines around every fold. The red cloth must remain legible against a dark grey floor.\nEach armor changes torso, arms, gloves, legs and boots together. Headwear grows with the outfit but stays in the same compact head area. Do not lengthen the neck or perch the head above a tall collar. Mage identity must remain different from the Bastion's copper melee plates and the Technomancien's exposed robot machinery.\nNo weapon, staff, wand, book, orb, flame, particles, aura, cast shadow, ground, text or presentation board. One whole figure on genuine transparent RGBA only.\n\nSTAGE 02 / LIGHT. Worn brick-red coat extending just below the knees, narrow practical sleeves and simple reinforced leather cuffs. Small red soft cloth hood seated directly over the shoulders, pale face from the identity reference partly in hood shadow, short white fringe allowed but no head enlargement. Charcoal inner clothes, dark belt, leather gloves, slightly sturdier knee and boot guards. No hard breastplate, no broad shoulder mantle and no full mask. About 29 native pixels wide. Clear red mage clothing, not a tactical uniform.\nReference image 3 is ONLY the underlying human facial identity for exposed areas: same white hair, pale face, brow, nose and small copper temple implant. Match the legacy painterly finish and requested red outfit, not the crop lighting or portrait size. Hood may partially cover the face in 02.",
+      "tool": "built_in_image_gen",
+      "transparent_background": true,
+      "references": [
+        {
+          "path": "assets/source-art/art-finish-review-02/FIN-16-source.png",
+          "sha256": "6c81317aa1138b1d9c75396e6433f6d681b6416701b74d4329e57369c3f26c57",
+          "role": "selected late-armor style only; exclude opaque background and effects"
+        },
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-legacy-reference-native64.png",
+          "sha256": "9aa7ae1df0b6a3e526f2b89a6b94dfa78c24c24d138c40fc099b20d695a677d4",
+          "role": "exact legacy sprite silhouette, pose, palette and native-size readability"
+        },
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-FACE03-identity-reference.png",
+          "sha256": "4481e902fd66facd364a8ed5dad2dcef433275b420db7c87517f511149daedf1",
+          "role": "same underlying human face identity only; do not copy the old plum outfit or portrait scale"
+        }
+      ],
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P02-r01-source.png",
+      "generated_origin": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-c7eeba9f-343d-483c-92e3-94ebce1aeac1.png",
+      "source": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P02-r01-source.png",
+      "source_sha256": "ea9eba640958b95580d27ea44059757f36a5bcaba9bdbbc026f6308ebf06bb90"
+    },
+    {
+      "rank": 3,
+      "candidate_id": "AR-RR05-P03-r01",
+      "prompt": "Use case: stylized-concept.\nAsset: ONE whole full-body ARCANISTE mage outfit for Project RL, to be reduced to a 60-pixel-high figure inside a 64x64 game cell. This is one member of a five-stage armor progression.\nReference image 1 is the LEGACY STYLE reference selected by the user: worn deep red robe, dark inner clothes and belts, red hood and simple warm ivory full face mask with one vertical dark slot. Its hands and feet give the characteristic grounded mage pose. It is a late armor, stage 04, not the starting outfit. Ignore its black background, aura, grunge speckles and microtexture: draw a clean complete transparent figure.\nReference image 2 is the exact existing 64px legacy SPRITE: use its economical broad value masses, slightly elevated front-facing game view, compact proportions, and balanced pose. Avoid a side or three-quarter portrait and avoid a superhero/anime rendering.\nAdult human male, lean torso under the cloth, normal compact head seated low between the shoulders, short neck hidden naturally by collar/hood. The uncovered face where needed is the same pale short-white-haired man across the range, not a different person. At high stages the mask hides him completely. Forearms remain the channeling focus, with protection in dark leather, muted aged metal or discreet implant cuffs. No new powers or devices.\nKeep a consistent nearly frontal stance: two feet apart, both arms slightly bent and held a little away from the torso at waist level, hands empty and fully drawn. Same anatomy and body height across the range. The figure's added width must come from clothing thickness and protection, not different poses or oversized anatomy. Full crown and soles within generous transparent margins.\nPalette and finish: matte worn BRICK RED / OXBLOOD cloth with broad reddish lit folds, charcoal black-brown underclothes and old dark leather straps, limited dull steel, warm ivory only in selected mask or quiet cloth panels. A little restrained dull copper may appear on existing forearm fittings. No shiny gold edging, no orange flecks, no neon lights, no bright magical effects. Restrained polished painterly game-sprite finish, large readable cloth folds and material masses. No scratch noise, embroidery, runes, rivets, chains or tiny gadgets. No big thick black outlines around every fold. The red cloth must remain legible against a dark grey floor.\nEach armor changes torso, arms, gloves, legs and boots together. Headwear grows with the outfit but stays in the same compact head area. Do not lengthen the neck or perch the head above a tall collar. Mage identity must remain different from the Bastion's copper melee plates and the Technomancien's exposed robot machinery.\nNo weapon, staff, wand, book, orb, flame, particles, aura, cast shadow, ground, text or presentation board. One whole figure on genuine transparent RGBA only.\n\nSTAGE 03 / MEDIUM. A long ankle-length split RED robe, substantial but narrower and lighter than the legacy stage 04 reference. Layered charcoal inner tunic and dark leather chest/waist reinforcement, broad belt and one quiet pale central cloth panel. Robe sleeves now widen toward leather-reinforced cuffs, hands still fully visible. Hood has a thick folded cloth rim and covers temples; dark cloth wraps the lower face while the eye region stays in the hood shadow. No ivory full face mask yet, no scalp shell. Boots and knees gain dark protective covers visible under the open hem. About 33 native pixels wide. Protection reads as layered red cloth and dark leather, not a suit of ivory plates.",
+      "tool": "built_in_image_gen",
+      "transparent_background": true,
+      "references": [
+        {
+          "path": "assets/source-art/art-finish-review-02/FIN-16-source.png",
+          "sha256": "6c81317aa1138b1d9c75396e6433f6d681b6416701b74d4329e57369c3f26c57",
+          "role": "selected late-armor style only; exclude opaque background and effects"
+        },
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-legacy-reference-native64.png",
+          "sha256": "9aa7ae1df0b6a3e526f2b89a6b94dfa78c24c24d138c40fc099b20d695a677d4",
+          "role": "exact legacy sprite silhouette, pose, palette and native-size readability"
+        }
+      ],
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P03-r01-source.png",
+      "generated_origin": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-634ad077-b638-48ae-8eea-2507710a78d0.png",
+      "source": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P03-r01-source.png",
+      "source_sha256": "9e407e5dc1dcbe07f5dfb01a4ae064a6ffb8d64f82b0ba9ffe99c70ab599d390"
+    },
+    {
+      "rank": 5,
+      "candidate_id": "AR-RR05-P05-r01",
+      "prompt": "Use case: stylized-concept.\nAsset: ONE whole full-body ARCANISTE mage outfit for Project RL, to be reduced to a 60-pixel-high figure inside a 64x64 game cell. This is one member of a five-stage armor progression.\nReference image 1 is the LEGACY STYLE reference selected by the user: worn deep red robe, dark inner clothes and belts, red hood and simple warm ivory full face mask with one vertical dark slot. Its hands and feet give the characteristic grounded mage pose. It is a late armor, stage 04, not the starting outfit. Ignore its black background, aura, grunge speckles and microtexture: draw a clean complete transparent figure.\nReference image 2 is the exact existing 64px legacy SPRITE: use its economical broad value masses, slightly elevated front-facing game view, compact proportions, and balanced pose. Avoid a side or three-quarter portrait and avoid a superhero/anime rendering.\nAdult human male, lean torso under the cloth, normal compact head seated low between the shoulders, short neck hidden naturally by collar/hood. The uncovered face where needed is the same pale short-white-haired man across the range, not a different person. At high stages the mask hides him completely. Forearms remain the channeling focus, with protection in dark leather, muted aged metal or discreet implant cuffs. No new powers or devices.\nKeep a consistent nearly frontal stance: two feet apart, both arms slightly bent and held a little away from the torso at waist level, hands empty and fully drawn. Same anatomy and body height across the range. The figure's added width must come from clothing thickness and protection, not different poses or oversized anatomy. Full crown and soles within generous transparent margins.\nPalette and finish: matte worn BRICK RED / OXBLOOD cloth with broad reddish lit folds, charcoal black-brown underclothes and old dark leather straps, limited dull steel, warm ivory only in selected mask or quiet cloth panels. A little restrained dull copper may appear on existing forearm fittings. No shiny gold edging, no orange flecks, no neon lights, no bright magical effects. Restrained polished painterly game-sprite finish, large readable cloth folds and material masses. No scratch noise, embroidery, runes, rivets, chains or tiny gadgets. No big thick black outlines around every fold. The red cloth must remain legible against a dark grey floor.\nEach armor changes torso, arms, gloves, legs and boots together. Headwear grows with the outfit but stays in the same compact head area. Do not lengthen the neck or perch the head above a tall collar. Mage identity must remain different from the Bastion's copper melee plates and the Technomancien's exposed robot machinery.\nNo weapon, staff, wand, book, orb, flame, particles, aura, cast shadow, ground, text or presentation board. One whole figure on genuine transparent RGBA only.\n\nSTAGE 05 / VERY HEAVY. Build beyond the legacy stage 04 RED hooded masked robe. Thicker short layered shoulder cowl in deep brick red, a broad folded hood around the same warm ivory faceted full-face mask with ONE dark vertical slit. Keep the mask the same normal human-head size as the legacy, not a giant helmet. The robe is now a broad double layered protective gown, heavy overlapping red panels over charcoal inner armor, large leather belt, broad reinforced sleeves, thick dark forearm guards with a few matte aged steel edges, protective gloves and heavy leather/steel-toed boots. A small dark breast reinforcement is partly concealed by the robe. Shoulder volume comes from padded cloth/cowl; no giant hard melee pauldrons, no segmented ivory knight cuirass. Make the heavy protection and increased thickness visibly stronger than stage 04, especially upper arms, cuffs and layered robe flanks. About 43 native pixels wide. Retain the distinctive red robe, hood and ivory slit mask as the dominant identity.",
+      "tool": "built_in_image_gen",
+      "transparent_background": true,
+      "references": [
+        {
+          "path": "assets/source-art/art-finish-review-02/FIN-16-source.png",
+          "sha256": "6c81317aa1138b1d9c75396e6433f6d681b6416701b74d4329e57369c3f26c57",
+          "role": "selected late-armor style only; exclude opaque background and effects"
+        },
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-legacy-reference-native64.png",
+          "sha256": "9aa7ae1df0b6a3e526f2b89a6b94dfa78c24c24d138c40fc099b20d695a677d4",
+          "role": "exact legacy sprite silhouette, pose, palette and native-size readability"
+        }
+      ],
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P05-r01-source.png",
+      "generated_origin": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-1b9aea64-028f-42ed-b86c-d81f28b68ac6.png",
+      "source": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P05-r01-source.png",
+      "source_sha256": "13a166c9dd2727f83aebdf25c34bc07efac434d75cd9524ea73b9fbdbd9bac16"
+    }
+  ]
+}

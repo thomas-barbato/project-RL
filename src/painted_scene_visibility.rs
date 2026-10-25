@@ -90,7 +90,7 @@ pub(super) fn draw(game: &WorldState, camera: &GridCamera, known: impl Fn(GridPo
     MATERIAL.with(|slot| {
         let mut slot = slot.borrow_mut();
         let material = slot.get_or_insert_with(|| {
-            load_material(
+            crate::world_readability::material(
                 ShaderSource::Glsl {
                     vertex: VERTEX,
                     fragment: FRAGMENT,
@@ -158,7 +158,7 @@ pub(super) fn draw(game: &WorldState, camera: &GridCamera, known: impl Fn(GridPo
         material.set_uniform("memoryStrength", memory_strength);
         material.set_uniform("radii", [(outer - camera.cell * 1.2).max(0.), outer]);
         material.set_texture("memory", texture);
-        gl_use_material(material);
+        crate::world_readability::use_material(material);
         draw_rectangle(
             camera.viewport.x,
             camera.viewport.y,
@@ -166,6 +166,6 @@ pub(super) fn draw(game: &WorldState, camera: &GridCamera, known: impl Fn(GridPo
             camera.viewport.h,
             WHITE,
         );
-        gl_use_default_material();
+        crate::world_readability::restore();
     });
 }

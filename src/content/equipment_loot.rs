@@ -35,7 +35,7 @@ pub(super) fn load_effect_affixes(
     catalog: &mut WeaponCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "weapon_affixes")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawEffectAffix =
             json5::from_str(&source).map_err(|e| invalid(package, &path, e.to_string()))?;
         let id = parse_content_id(package, &path, &raw.id)?;
@@ -67,7 +67,7 @@ pub(super) fn load_equipment_bases(
 ) -> Result<(), ContentLoadError> {
     let mut set_ids = std::collections::BTreeSet::new();
     for path in definition_paths(package, "equipment_loot")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawEquipmentBases =
             json5::from_str(&source).map_err(|e| invalid(package, &path, e.to_string()))?;
         let id = parse_content_id(package, &path, &raw.id)?;

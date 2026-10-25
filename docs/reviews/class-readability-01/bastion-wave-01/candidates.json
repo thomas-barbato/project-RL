@@ -1,0 +1,286 @@
+{
+  "review_id": "BASTION-W01",
+  "date": "2026-10-21",
+  "status": "awaiting_individual_visual_review",
+  "class_id": "core:bastion",
+  "tile_size": 64,
+  "workflow": {
+    "one_class_per_wave": true,
+    "human_review_before_next_wave": true,
+    "next_class_started": false,
+    "no_automatic_visual_acceptance": true
+  },
+  "current_priority": "CL01-r04 cranial implant readability; do not propagate before its review",
+  "head_revisions": [
+    {
+      "candidate_id": "CL01-r02",
+      "status": "not_selected_headset_reading",
+      "source": "assets/source-art/class-readability-01/CL01-r02-source.png",
+      "source_sha256": "77016ca50a37dacd5193c92b99bb0e9e3b8fe435528041b91e1b34e6dcc028dd",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/CL01-r02-native64.png",
+      "native_sha256": "ac6e33297b84a3b6f2834e3d48e1c3795f399aec7025ab106429435bde14747c",
+      "measurements": {
+        "source_core_box": [
+          311,
+          48,
+          945,
+          1194
+        ],
+        "source_crop": [
+          294,
+          31,
+          962,
+          1211
+        ],
+        "isotropic_scale": 0.0506108202443281,
+        "native_core_box": [
+          16,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 32,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      }
+    },
+    {
+      "candidate_id": "CL01-r03",
+      "status": "not_selected_insufficient_native_readability",
+      "source": "assets/source-art/class-readability-01/CL01-r03-source.png",
+      "source_sha256": "ac4117bcd84e2d189f11fa9aaec6217b9d45a031f5c42ae395bb71c886a285ad",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/CL01-r03-native64.png",
+      "native_sha256": "cdbe0dcf3a9991a3a7225cd463388fbbb7eaa36c8c0ffc92e678f4102dda9d3a",
+      "measurements": {
+        "source_core_box": [
+          321,
+          71,
+          932,
+          1190
+        ],
+        "source_crop": [
+          304,
+          54,
+          949,
+          1207
+        ],
+        "isotropic_scale": 0.05183199285075961,
+        "native_core_box": [
+          17,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 31,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      }
+    },
+    {
+      "candidate_id": "CL01-r04",
+      "status": "awaiting_visual_approval",
+      "source": "assets/source-art/class-readability-01/CL01-r04-source.png",
+      "source_sha256": "353bc3360eab60a66c2c0a3ffd16b130f13d22fcdc53661daccd35bc7f55a8b3",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/CL01-r04-native64.png",
+      "native_sha256": "96a9893e03ea0429bc7515e75579b710fc1ef7c77455479c4178c008cdd5edd6",
+      "measurements": {
+        "source_core_box": [
+          321,
+          69,
+          933,
+          1190
+        ],
+        "source_crop": [
+          304,
+          52,
+          950,
+          1207
+        ],
+        "isotropic_scale": 0.05173951828724353,
+        "native_core_box": [
+          17,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 31,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      }
+    }
+  ],
+  "torso_candidates": [
+    {
+      "number": 1,
+      "candidate_id": "BA-W01-01-r01",
+      "item_id": "core:veste_de_veille",
+      "name": "Tenue du technicien",
+      "class_id": "core:bastion",
+      "status": "preliminary_torso_waiting_for_head_review",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-01-r01-source.png",
+      "source_sha256": "7e2cef838610a7fdba3cdf958c8dd1af323eab5865bc6877b948b77b1f34fa2d",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-01-r01-native64.png",
+      "native_sha256": "20767020e3554083d25aec294f5297a872c8d5f8bcbcfdb59572c7b3651f8e9c",
+      "measurements": {
+        "source_core_box": [
+          320,
+          70,
+          934,
+          1190
+        ],
+        "source_crop": [
+          303,
+          53,
+          951,
+          1207
+        ],
+        "isotropic_scale": 0.05178571428571429,
+        "native_core_box": [
+          16,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 32,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "head_reference": "CL01-r01",
+      "production_layers_and_weapon_anchors": "not_produced"
+    },
+    {
+      "number": 2,
+      "candidate_id": "BA-W01-02-r01",
+      "item_id": "core:combinaison_fantome",
+      "name": "Tenue Fantôme",
+      "class_id": "core:bastion",
+      "status": "preliminary_torso_waiting_for_head_review",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-02-r01-source.png",
+      "source_sha256": "8317688868726b10ae2e33dd30497da64d5b06a039b1008ea6103520ff1d54d6",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-02-r01-native64.png",
+      "native_sha256": "868666db4399ea2a1cc3abe5ecec73cff0650ec98974bdab128810ff9d52bece",
+      "measurements": {
+        "source_core_box": [
+          320,
+          70,
+          933,
+          1191
+        ],
+        "source_crop": [
+          303,
+          53,
+          950,
+          1208
+        ],
+        "isotropic_scale": 0.05173951828724353,
+        "native_core_box": [
+          17,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 31,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "head_reference": "CL01-r01",
+      "production_layers_and_weapon_anchors": "not_produced"
+    },
+    {
+      "number": 3,
+      "candidate_id": "BA-W01-03-r01",
+      "item_id": "core:plastron_bastion",
+      "name": "Armure Bastion",
+      "class_id": "core:bastion",
+      "status": "preliminary_torso_waiting_for_head_review",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-03-r01-source.png",
+      "source_sha256": "eac46d38c28b887c234a4e018c61e3b1d69be4ea7ad2b5e1d2c1059395d19bcc",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-03-r01-native64.png",
+      "native_sha256": "948bc9c53ab95af42a66b92e949e05dc82347fa703f3de1a525867d3f493d2b3",
+      "measurements": {
+        "source_core_box": [
+          320,
+          66,
+          932,
+          1191
+        ],
+        "source_crop": [
+          303,
+          49,
+          949,
+          1208
+        ],
+        "isotropic_scale": 0.051555555555555556,
+        "native_core_box": [
+          17,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 31,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "head_reference": "CL01-r01",
+      "production_layers_and_weapon_anchors": "not_produced"
+    }
+  ],
+  "base_reference": {
+    "id": "CL01-r01",
+    "measurements": {
+      "source_core_box": [
+        320,
+        69,
+        932,
+        1190
+      ],
+      "source_crop": [
+        303,
+        52,
+        949,
+        1207
+      ],
+      "isotropic_scale": 0.05173951828724353,
+      "native_core_box": [
+        17,
+        4,
+        48,
+        62
+      ],
+      "native_core_height": 58,
+      "native_core_width": 31,
+      "foot_baseline_y": 61,
+      "framing": "64x64, isotropic, Lanczos, source alpha retained"
+    }
+  },
+  "approval_scopes": {
+    "implant_idea": "appreciated_by_user",
+    "implant_r04_pixels": "pending",
+    "three_torso_interpretations": "pending",
+    "new_items_or_stats": "none"
+  },
+  "checks": {
+    "all_sprites_native64": true,
+    "aspect_ratio_preserved": true,
+    "source_alpha_retained": true,
+    "foot_baseline_y": 61,
+    "game_assets_and_content_unchanged": {
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\sprites\\art-finish-01\\FIN-01.png": "db0199be3507e91f58ab645f60c56501c79759cc054ccd27f0b8dc1e45e65b17",
+      "C:\\Users\\User\\Desktop\\project-RL\\content\\core\\classes\\bastion.json5": "d8c5c951bceafe5b9248778540ef3ba3a4c3c4f611012db7afca7e01fd30dca0",
+      "C:\\Users\\User\\Desktop\\project-RL\\content\\core\\items\\veste_de_veille.json5": "6073046745b332615a56bbb74012f70fe5db32180171de35840550120aa2f3d1",
+      "C:\\Users\\User\\Desktop\\project-RL\\content\\core\\items\\combinaison_fantome.json5": "46fa802e97c1f27518041b20d2e76e09cc98576eabfe305ef99d95330db5cb4a",
+      "C:\\Users\\User\\Desktop\\project-RL\\content\\core\\items\\plastron_bastion.json5": "86c2f697629bac211d717121390a9120ae609f70ec4b327073ea0ce4db02c93b"
+    },
+    "source_changes_made_by": "built-in image_gen",
+    "runtime_changed": false,
+    "in_engine_capture": false,
+    "scene_is_montage_not_engine_lighting_validation": true,
+    "production_masks_anchors_and_poses_validated": false
+  }
+}

@@ -42,6 +42,13 @@ pub(crate) enum WeaponHold {
     TwoHanded,
     MeleeTwoHanded,
 }
+#[cfg(any(debug_assertions, test))]
+pub(crate) fn weapon_uses_two_hands(model: u16) -> bool {
+    matches!(
+        weapon_hold(model),
+        WeaponHold::TwoHanded | WeaponHold::MeleeTwoHanded
+    )
+}
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub(crate) enum Visual {
@@ -80,6 +87,9 @@ pub(crate) enum Visual {
 }
 
 include!("game_art_catalog.rs");
+#[cfg(all(test, debug_assertions))]
+#[path = "walk_proportions_campaign_export.rs"]
+mod proportions_export;
 pub(super) fn item(id: &str) -> Option<ItemArt> {
     let illustration = match id {
         "core:tenue_assaut" => 200,
@@ -106,6 +116,8 @@ mod player_layers;
 mod portrait;
 #[path = "game_art_spectral.rs"]
 mod spectral;
+#[path = "game_art_walk.rs"]
+pub(crate) mod walking;
 
 fn texture(bytes: &[u8], filter: FilterMode) -> Texture2D {
     let texture = Texture2D::from_file_with_format(bytes, Some(ImageFormat::Png));
@@ -275,7 +287,7 @@ pub(crate) fn wear(
 }
 
 fn draw_cell(texture: &Texture2D, rect: Rect, index: u16, side: u16, opacity: f32) {
-    draw_texture_ex(
+    crate::world_readability::texture(
         texture,
         rect.x,
         rect.y,
@@ -341,6 +353,13 @@ pub(crate) fn draw_world_animated(
     opacity: f32,
     idle_time: Option<f64>,
 ) {
+    let _actor = crate::world_readability::actor(!matches!(
+        visual,
+        Visual::Terrain { .. }
+            | Visual::ColoredItem(..)
+            | Visual::Bestiary { corpse: true, .. }
+            | Visual::AgentHologram(_)
+    ));
     #[cfg(debug_assertions)]
     let visual = finish_completion::normalized_visual(visual);
     #[cfg(debug_assertions)]
@@ -373,6 +392,10 @@ pub(crate) fn draw_world_animated(
     if finish_review::draw_replacement(rect, visual, opacity) {
         return;
     }
+    if walking::draw(rect, visual, opacity) {
+        return;
+    }
+    let rect = walking::static_cell(rect, visual);
     TEXTURES.with(|art| match visual {
         Visual::AgentForm(index) => draw_agent_form(rect, index, opacity),
         Visual::DroneScout => drones::draw_scout(rect, opacity),
@@ -392,7 +415,9 @@ pub(crate) fn draw_world_animated(
                 rect, body, equipment, weapon, hands, palettes, 32, opacity, idle_time,
             );
         }
-        Visual::Actor(index) if (20..=25).contains(&index) && idle_time.is_some() => {
+        Visual::Actor(index)
+            if (20..=25).contains(&index) && (idle_time.is_some() || walking::active()) =>
+        {
             draw_actor_shadow(rect, index, opacity);
             player_layers::draw_npc(rect, index, None, 32, opacity, idle_time);
         }
@@ -504,7 +529,7 @@ pub(crate) fn draw_corpse(rect: Rect, sprite: u8, opacity: f32) {
     TEXTURES.with(|art| {
         let size = vec2(rect.w * 0.42, rect.h * 0.84);
         let center = vec2(rect.x + rect.w * 0.5, rect.y + rect.h * 0.69);
-        draw_texture_ex(
+        crate::world_readability::texture(
             &art.actors,
             center.x - size.x * 0.5,
             center.y - size.y * 0.5,
@@ -684,7 +709,7 @@ thread_local! { static AGENT_FORMS:[portrait::Sheet;6]=[
 fn draw_agent_form(rect: Rect, index: u8, opacity: f32) {
     AGENT_FORMS.with(|textures| {
         if let Some(t) = textures.get(usize::from(index)) {
-            draw_texture_ex(
+            crate::world_readability::texture(
                 &t.texture,
                 rect.x,
                 rect.y,

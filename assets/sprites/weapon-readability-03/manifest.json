@@ -1,0 +1,249 @@
+{
+  "review_id": "WEAPON-READABILITY03-INTEGRATION",
+  "native_tile": 64,
+  "canvas": 128,
+  "approvals": [
+    "docs/reviews/weapon-readability-01/acceptance.json",
+    "docs/reviews/weapon-readability-02/acceptance.json"
+  ],
+  "entries": [
+    {
+      "id": "WR-AX01",
+      "model": 66,
+      "native": "assets/source-art/weapon-readability-01/native/axe-01.png",
+      "origin": [
+        43,
+        55
+      ],
+      "anchor": [
+        52,
+        60
+      ],
+      "support": [
+        68,
+        60
+      ],
+      "angle": 0,
+      "grip_angle": 0.694,
+      "scales": [
+        1,
+        0.95,
+        0.88,
+        0.92,
+        0.96
+      ],
+      "shift_from_palms": [
+        2,
+        0
+      ],
+      "source": "assets/source-art/weapon-readability-01/generated/axe-01.png",
+      "source_sha256": "dabbe5e175d764719cefb55a33ff33d74b624c4414e5f5b0c2252c10e69aab21",
+      "native_sha256": "25ab1c46aa6a77d042d74f6a37d35108fbb9ad12d11e5ad4d51e2329a9aeabf0",
+      "runtime": "assets/sprites/weapon-readability-03/WR-AX01.png",
+      "runtime_sha256": "081da8c3e345a50d0d495e628f682d2c0107ee4d8e773695209e95ef009ef55c",
+      "material_mask": "assets/sprites/weapon-readability-03/WR-AX01-materials.png",
+      "material_mask_sha256": "b47afe0bf73649ac759b14ec322382ae3b4f8585d23cd48d706a540e07be8d79"
+    },
+    {
+      "id": "WR-RF01",
+      "model": 2,
+      "native": "assets/source-art/weapon-readability-01/native/rifle-01.png",
+      "origin": [
+        43,
+        52
+      ],
+      "anchor": [
+        60,
+        62
+      ],
+      "support": [
+        76,
+        59.5
+      ],
+      "angle": -0.1,
+      "grip_angle": -0.1,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -1
+      ],
+      "source": "assets/source-art/weapon-readability-01/generated/rifle-01.png",
+      "source_sha256": "e69a9e415ad587b0dadd9253ac8df9d17b08da7d6f4e2cee825cbc2b38d5c285",
+      "native_sha256": "7b6fa9012783f8264ac88e054d971f724f125bbb1bf0d945cdba8944cf1651d6",
+      "runtime": "assets/sprites/weapon-readability-03/WR-RF01.png",
+      "runtime_sha256": "145b8339064d4ff13e988a059b58279548545d8ff559b62016108599416725fa",
+      "material_mask": "assets/sprites/weapon-readability-03/WR-RF01-materials.png",
+      "material_mask_sha256": "54ad851db5c4e79c6ae8eb6a9a71213fa71dad95a2edeb15831eb43050eb1234"
+    },
+    {
+      "id": "WR-MG02",
+      "model": 31,
+      "native": "assets/source-art/weapon-readability-02/native/machinegun-02.png",
+      "origin": [
+        37,
+        47
+      ],
+      "anchor": [
+        48,
+        57
+      ],
+      "support": [
+        61,
+        66
+      ],
+      "angle": 0,
+      "grip_angle": 0,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -1.5
+      ],
+      "label": "03 · Mitrailleuse",
+      "title": "Mitrailleuse lourde",
+      "description": "Bloc moteur gris, boîte de munitions ocre et faisceau de canons dégagé. Les deux prises restent sur le corps de l’arme.",
+      "source": "assets/source-art/weapon-readability-02/generated/machinegun-02.png",
+      "source_sha256": "01b7218a898c5d185245b7ee219ca6e01f7ec7908fbd96a8b322a4afbe53f08c",
+      "native_sha256": "9fbf5a882ddd64890c4de3fc4d823c222206c553da93ddfcc0e22792d4bb6581",
+      "runtime": "assets/sprites/weapon-readability-03/WR-MG02.png",
+      "runtime_sha256": "a769216f661da0366c89f7abad495b62d226b9b1ec0cf14d1685417b9e479111",
+      "material_mask": "assets/sprites/weapon-readability-03/WR-MG02-materials.png",
+      "material_mask_sha256": "144caf3fbc928b23d028680a4e5b6422bedbac43070d4698c7f34db495101866"
+    },
+    {
+      "id": "WR-FT02",
+      "model": 17,
+      "native": "assets/source-art/weapon-readability-02/native/flamethrower-02.png",
+      "origin": [
+        36,
+        48
+      ],
+      "anchor": [
+        53,
+        63
+      ],
+      "support": [
+        73,
+        62
+      ],
+      "angle": 0,
+      "grip_angle": 0,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -2
+      ],
+      "label": "04 · Lance-flammes",
+      "title": "Lance-flammes · Korgan F-100",
+      "description": "Corps métallique clair, réservoir roux et embout cylindrique distinct. Deux poignées visibles, durite raccourcie.",
+      "source": "assets/source-art/weapon-readability-02/generated/flamethrower-02.png",
+      "source_sha256": "d8409f4f4b606ff3764c2afc38645907f8e3b43d8f8e282c53a34e515a994ff9",
+      "native_sha256": "dff33476206f2927a9d70e43bde622c8bdfb53320bfafa6e2dd12fa37822e8be",
+      "runtime": "assets/sprites/weapon-readability-03/WR-FT02.png",
+      "runtime_sha256": "edb1f7012b9a5dc9f159c79aef890fa0cdefa04c5bae7a8babbe1b09809a9eb9",
+      "material_mask": "assets/sprites/weapon-readability-03/WR-FT02-materials.png",
+      "material_mask_sha256": "75efef407092c836debd1847af92a601642873214d207b22219359aa0e1a277d"
+    },
+    {
+      "id": "WR-GL02",
+      "model": 23,
+      "native": "assets/source-art/weapon-readability-02/native/grenade-02.png",
+      "origin": [
+        35,
+        48
+      ],
+      "anchor": [
+        52,
+        66
+      ],
+      "support": [
+        79,
+        68
+      ],
+      "angle": -0.035,
+      "grip_angle": -0.035,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -2
+      ],
+      "label": "05 · Lance-grenades",
+      "title": "Lance-grenades",
+      "description": "Gros barillet gris, crosse olive, canon court et deux poignées dégagées.",
+      "source": "assets/source-art/weapon-readability-02/generated/grenade-02.png",
+      "source_sha256": "82afdba89afb3a78c7ba99fa9e44f3d659e0a57820d7de0d481c8d30abc571a4",
+      "native_sha256": "561e5d741a81d196a4d819fbdea68a81452721e5fd2f6a149515318fad42882f",
+      "runtime": "assets/sprites/weapon-readability-03/WR-GL02.png",
+      "runtime_sha256": "d91c2e8c2fd288f0a5b2d598b7557c0844db62d9ad37168e2a5579fe412fa7b0",
+      "material_mask": "assets/sprites/weapon-readability-03/WR-GL02-materials.png",
+      "material_mask_sha256": "d21e04955d92ef296d08f01221c2c019b1fdc1301a5ed18ea0fa66755015b0ca"
+    },
+    {
+      "id": "WR-RL02",
+      "model": 51,
+      "native": "assets/source-art/weapon-readability-02/native/rocket-02.png",
+      "origin": [
+        32,
+        48
+      ],
+      "anchor": [
+        52,
+        63
+      ],
+      "support": [
+        63,
+        63
+      ],
+      "angle": 0,
+      "grip_angle": 0,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -2
+      ],
+      "label": "06 · Lance-roquettes",
+      "title": "Lance-roquettes",
+      "description": "Long tube gris avec arête claire, avant olive et anneau rouge. Deux prises sous le tube.",
+      "source": "assets/source-art/weapon-readability-02/generated/rocket-02.png",
+      "source_sha256": "39e3bd84f9d1713d362b1bd05575c57b2c2c7a9116a678b535f4bdd48a5f2e07",
+      "native_sha256": "9d34d2846d848ff971251e120f4d457d6a4467a23c902ddd874015e2f77b12d9",
+      "runtime": "assets/sprites/weapon-readability-03/WR-RL02.png",
+      "runtime_sha256": "664a6a51228a8c7e49e53d45d44261677bf47809689d591a1d44cd61a04d8680",
+      "material_mask": "assets/sprites/weapon-readability-03/WR-RL02-materials.png",
+      "material_mask_sha256": "cca77f744f5c59a0974ad29bb4a35fa8070ffe34669494ebb0f78a7f54491b67"
+    }
+  ],
+  "runtime_source": "embedded assets only",
+  "painted_variants": "existing equipment ramps, same material-label policy",
+  "other_models": "preserved",
+  "game_rules_changes": false
+}

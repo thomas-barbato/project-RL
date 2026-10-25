@@ -1,0 +1,60 @@
+{
+  "id": "CLASS-10-prosthesis-r07e",
+  "source_tool": "built-in image_gen; individual whole-figure material edits",
+  "selected_left_source": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07b-left.png",
+  "selected_right_source": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07e-right.png",
+  "right_row_sha256": "2ce76215dbf81dc2f7f28029fcec9ddf6de61039876df804aa0ab7fb2e2a1fd2",
+  "pose_sources": [
+    {
+      "column": 0,
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07c-right.png",
+      "source_column": 0,
+      "whole_figure_scale": 1
+    },
+    {
+      "column": 1,
+      "file": "assets/source-art/player-walk-review-07/CLASS-10-r07e-right-pose-1.png",
+      "whole_figure_scale": 0.3956412405699916
+    },
+    {
+      "column": 2,
+      "file": "assets/source-art/player-walk-review-07/CLASS-10-r07e-right-pose-2.png",
+      "whole_figure_scale": 0.42779291553133514
+    },
+    {
+      "column": 3,
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07d-right-rejected.png",
+      "source_column": 3,
+      "whole_figure_scale": 0.9221789883268483
+    },
+    {
+      "column": 4,
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07c-right.png",
+      "source_column": 4,
+      "whole_figure_scale": 1
+    },
+    {
+      "column": 5,
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07c-right.png",
+      "source_column": 5,
+      "whole_figure_scale": 1
+    },
+    {
+      "column": 6,
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07c-right.png",
+      "source_column": 6,
+      "whole_figure_scale": 1
+    }
+  ],
+  "no_limb_patches_or_mirroring": true,
+  "no_runtime_integration": true,
+  "rejected_halo_outputs": [
+    "exec-927eb688-f988-4bab-b7df-081e8c74d023.png",
+    "exec-dc1fec19-0e21-4e4b-a6ca-6188ca886b9d.png"
+  ],
+  "prompts": [
+    "prompts/CLASS-10-prosthesis-r07e-right-1.txt",
+    "prompts/CLASS-10-prosthesis-r07e-right-2.txt",
+    "prompts/CLASS-10-prosthesis-r07d-right.txt"
+  ]
+}

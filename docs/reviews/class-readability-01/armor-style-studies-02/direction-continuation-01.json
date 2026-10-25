@@ -1,0 +1,29 @@
+{
+  "decision_id": "ARMOR-STYLE-STUDIES02-CONTINUE01",
+  "date": "2026-10-21",
+  "status": "direction_retained_continuation_authorized",
+  "source_user_replies": [
+    "c'est bien mieux là :)",
+    "ok tu peux continuer :). Et n'hésite pas à rendre l'armure plus epaisse et brutale à mesure qu'on monte dans les versions :)."
+  ],
+  "scope": "Use the two appreciated studies in a five-stage Bastion progression; increase armor mass at higher stages.",
+  "does_not_authorize_runtime_integration": true,
+  "color_variants": "deferred",
+  "references": [
+    {
+      "candidate_id": "BA-STYLE01-r02",
+      "source": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE01-r02-source.png",
+      "source_sha256": "74fe2ebd55cbe35095fc3bf4ebd455e8fe90f3d06bb8fee454715f13453ff61c",
+      "native": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE01-r02-native64.png",
+      "native_sha256": "03ec80102a43a84d35a14cb7d488d33bd7b166b01ea800626b435d879b921867"
+    },
+    {
+      "candidate_id": "BA-STYLE02-r02",
+      "source": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE02-r02-source.png",
+      "source_sha256": "723fa71a93ba00aaba2971ce4ff028e882df2fe97e896eec834d46f94decce39",
+      "native": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE02-r02-native64.png",
+      "native_sha256": "1ad57327fec45142b5babb56286a0631cffbc7b966967e36add2d8aa598d8770"
+    }
+  ],
+  "new_candidates_require_native64_review": true
+}

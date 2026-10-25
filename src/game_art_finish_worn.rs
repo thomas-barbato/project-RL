@@ -1,7 +1,19 @@
 //! Exact accepted poses and completed source-authored rigs for current outfits.
 use super::*;
+#[path = "game_art_class_armor.rs"]
+mod class_armor;
 #[path = "game_art_finish_worn_generic.rs"]
 mod generic;
+
+pub(super) fn class_outfit(body: u8, equipment: [Option<u16>; 4]) -> Option<u16> {
+    class_armor::outfit_index(body, equipment)
+}
+pub(super) fn approved_walking_layers(
+    key: Key,
+    pose: crate::game_art::walking::Pose,
+) -> Option<Vec<Image>> {
+    class_armor::walking_layers(key, pose)
+}
 
 fn binding(key: Key) -> Option<(&'static str, Option<&'static str>)> {
     let (outfit, hands, colors) = key;
@@ -48,7 +60,10 @@ fn binding(key: Key) -> Option<(&'static str, Option<&'static str>)> {
     Some((code, Some(pose)))
 }
 pub(super) fn supports(key: Key) -> bool {
-    binding(key).is_some() || generic::supports(key)
+    class_armor::supports(key)
+        || class_armor::walking_npc(key)
+        || binding(key).is_some()
+        || generic::supports(key)
 }
 fn files(key: Key) -> Option<Vec<String>> {
     let (code, pose) = binding(key)?;
@@ -61,6 +76,29 @@ fn files(key: Key) -> Option<Vec<String>> {
     })
 }
 fn layers(key: Key, breath: u8) -> Option<Vec<Image>> {
+    if class_armor::walking_npc(key) {
+        return class_armor::walking_layers(
+            key,
+            crate::game_art::walking::pose().unwrap_or(crate::game_art::walking::Pose {
+                facing: 0,
+                frame: 8,
+            }),
+        );
+    }
+    if class_armor::supports(key) {
+        return Some(
+            class_armor::render_layers(key)?
+                .into_iter()
+                .enumerate()
+                .map(|(index, image)| breathed(image, index, breath))
+                .collect(),
+        );
+    }
+    if let Some(pose) = crate::game_art::walking::pose()
+        && let Some(layers) = class_armor::walking_layers(key, pose)
+    {
+        return Some(layers);
+    }
     if binding(key).is_none() {
         return Some(
             generic::layers(key)?
@@ -117,11 +155,10 @@ pub(super) fn compose(key: Key, breath: u8) -> Option<Image> {
     Some(composed)
 }
 struct Pack {
-    layers: Vec<Texture2D>,
     portrait: portrait::Sheet,
 }
 thread_local! {
-    static CACHE: std::cell::RefCell<BTreeMap<(Key,u8),(Pack,f64)>> = const {std::cell::RefCell::new(BTreeMap::new())};
+    static CACHE: std::cell::RefCell<BTreeMap<(Key,u8,Option<crate::game_art::walking::Pose>),(Pack,f64)>> = const {std::cell::RefCell::new(BTreeMap::new())};
 }
 #[cfg(debug_assertions)]
 pub(super) fn cache_len() -> usize {
@@ -131,21 +168,34 @@ pub(super) fn draw(rect: Rect, key: Key, side: u16, opacity: f32, breath: u8) ->
     if !supports(key) {
         return false;
     }
+    let breath = if side != 128 && crate::game_art::walking::active() {
+        0
+    } else {
+        breath
+    };
+    let rect = if side != 128
+        && crate::game_art::walking::pose().is_some_and(|p| [1, 4].contains(&p.frame))
+    {
+        Rect::new(rect.x, rect.y - rect.w / 64., rect.w, rect.h)
+    } else {
+        rect
+    };
     CACHE.with(|cache| {
         let mut cache = cache.borrow_mut();
-        let cache_key = (key, breath);
+        let cache_key = (
+            key,
+            breath,
+            if side == 128 {
+                None
+            } else {
+                crate::game_art::walking::pose()
+            },
+        );
         if !cache.contains_key(&cache_key) {
-            let images = layers(key, breath).unwrap();
+            let image =
+                crate::game_art::walking::with_pose(cache_key.2, || compose(key, breath).unwrap());
             let pack = Pack {
-                layers: images
-                    .iter()
-                    .map(|im| {
-                        let texture = Texture2D::from_image(im);
-                        texture.set_filter(FilterMode::Nearest);
-                        texture
-                    })
-                    .collect(),
-                portrait: portrait::Sheet::from_image(&compose(key, breath).unwrap(), 128),
+                portrait: portrait::Sheet::from_image(&image, 128),
             };
             palettes::evict(&mut cache, 192);
             cache.insert(cache_key, (pack, get_time()));
@@ -164,18 +214,18 @@ pub(super) fn draw(rect: Rect, key: Key, side: u16, opacity: f32, breath: u8) ->
             rect.w * 2.,
             rect.h * 2.,
         );
-        for texture in &pack.layers {
-            draw_texture_ex(
-                texture,
-                dest.x,
-                dest.y,
-                Color::new(1., 1., 1., opacity),
-                DrawTextureParams {
-                    dest_size: Some(dest.size()),
-                    ..Default::default()
-                },
-            );
-        }
+        // Grade the cached final silhouette once, rather than brightening
+        // internal edges between sleeves, fingers and weapons separately.
+        crate::world_readability::texture(
+            &pack.portrait.texture,
+            dest.x,
+            dest.y,
+            Color::new(1., 1., 1., opacity),
+            DrawTextureParams {
+                dest_size: Some(dest.size()),
+                ..Default::default()
+            },
+        );
     });
     true
 }

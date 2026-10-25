@@ -272,10 +272,9 @@ pub(super) fn art(id: &str, category: &str, rect: Rect, clip: Option<Rect>) -> b
         let texture = cache
             .entry((id.to_owned(), category.to_owned()))
             .or_insert_with(|| {
-                let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-                    .join("assets/skills/agent")
-                    .join(filename);
-                let bytes = std::fs::read(path).expect("packaged accepted skill drawing");
+                let bytes =
+                    project_rl::data_paths::read(&format!("assets/skills/agent/{filename}"))
+                        .expect("packaged accepted skill drawing");
                 let texture = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
                 texture.set_filter(FilterMode::Nearest);
                 texture

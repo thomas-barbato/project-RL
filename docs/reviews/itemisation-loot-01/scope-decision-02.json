@@ -1,0 +1,26 @@
+{
+  "review_id": "ITEM-LOOT01-SCOPE02",
+  "date": "2026-10-23",
+  "user_reply": "tu sais quoi, pour l'instant le systeme de craft c'est pas ca donc on va l'oublier.",
+  "decision": "Le système de fabrication proposé est mis de côté pour l'instant.",
+  "current_refactor_scope": {
+    "equipment_qualities": ["standard", "modifié", "rare"],
+    "crafted_quality": "reportée avec le système de fabrication dont elle dépend",
+    "crafting_recipes": "hors périmètre",
+    "additional_crafting_material_drops": "hors périmètre",
+    "loot_and_itemisation": "discussion poursuivable sur les trois qualités et les règles de butin ; aucun nouveau taux validé"
+  },
+  "existing_game": {
+    "preexisting_equipment_improvement_service": "conservé ; distinct du système de fabrication proposé",
+    "approved_component_names": "Pièces de récupération et Microcircuits conservés",
+    "existing_materials": "conservés pour leurs usages existants",
+    "crafting_system_previously_integrated": false,
+    "runtime_rules_changed_by_this_decision": false
+  },
+  "historical_references": [
+    "scope-acceptance-01.json",
+    "craft-proposal-01.json",
+    "craft-direction-02.json",
+    "names-acceptance-01.json"
+  ]
+}

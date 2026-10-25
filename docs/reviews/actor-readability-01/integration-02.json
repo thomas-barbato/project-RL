@@ -1,0 +1,69 @@
+{
+  "review_id": "ACTOR-READABILITY01-INTEGRATION02",
+  "date": "2026-10-22",
+  "authorization": "tu peux appliquer tout ca au jeu (les nouveaux visuels de classe, les aides à la visibilités etc)",
+  "additional_request": "armes à distance à deux mains : taille adaptée à chaque personnage pour une tenue naturelle",
+  "user_confirmed_additional_request": true,
+  "accepted_preview": "ACTOR-READABILITY01 presets 02/04/05 and selective grayscale 10 with colored markers",
+  "armor_outfits": 25,
+  "armor_source_acceptances": "docs/reviews/class-readability-01/",
+  "selected_monster_references": [
+    {
+      "id": "VIS05-A",
+      "number": 7,
+      "candidate_native": "assets/source-art/actor-readability-01/VIS05-A-native128.png",
+      "candidate_native_sha256": "488e2ca8e6609363af76a50011d2e1b0bc5383c3bd176f412bf1c326c5e1ea76",
+      "new_source": "assets/source-art/actor-readability-01/VIS05-A-source.png",
+      "new_source_sha256": "dd0382d85f276ed0c3a3857cccf3791947eda696162279adaa1551c3aa0a2ddb"
+    },
+    {
+      "id": "VIS05-B",
+      "number": 8,
+      "candidate_native": "assets/source-art/actor-readability-01/VIS05-B-native128.png",
+      "candidate_native_sha256": "e2470e0cb0d84eef9ef4467326906365f0dba60a67fd5de474e3e4cf768d3df7",
+      "new_source": "assets/source-art/actor-readability-01/VIS05-B-source.png",
+      "new_source_sha256": "31cb0b51e0dec6db4650fa95c5524e61f6dcb7014fa21f3923881761140fc1e2"
+    },
+    {
+      "id": "VIS05-C",
+      "number": 10,
+      "candidate_native": "assets/source-art/actor-readability-01/VIS05-C-native128.png",
+      "candidate_native_sha256": "99cc29ecf756d0b339b470a8af478cc4f8b4320ba65c39dd867a38571d92315d",
+      "new_source": "assets/source-art/actor-readability-01/VIS05-C-source.png",
+      "new_source_sha256": "e3bc6fc074311650fc04229e4ac753a37ced77e89d3ec6f3f33647ead13c81d5"
+    }
+  ],
+  "runtime_monsters": "assets/sprites/actor-readability-02/manifest.json",
+  "global_living_actor_lighting": true,
+  "campaign_appearances_covered": 471,
+  "remaining_monster_shape_designs": 126,
+  "ground_markers": {
+    "default": true,
+    "toggle_in_options": true,
+    "scope": "player and selected/hovered visible living hostile target",
+    "player_color": "cyan",
+    "target_color": "red"
+  },
+  "world_grayscale": {
+    "default": false,
+    "toggle_in_options": true,
+    "colored_layers": [
+      "ground markers",
+      "spell and combat animation effects",
+      "HUD and inspection"
+    ]
+  },
+  "ranged_weapon_scale_by_class": {
+    "Bastion": 0.78,
+    "Technomancien": 0.7,
+    "Traqueuse": 0.64,
+    "Arcaniste": 0.68,
+    "Metamorphe": 0.72
+  },
+  "ranged_models": 61,
+  "melee_and_one_hand_weapon_scales_unchanged": true,
+  "runtime_integration": true,
+  "gameplay_and_save_id_changes": false,
+  "new_raster_monster_drawings_only_for_presented_models": true,
+  "unseen_monster_models_not_implicitly_accepted": true
+}

@@ -1,0 +1,44 @@
+{
+  "review_id": "ARMOR-TYPES01",
+  "revision": "r02",
+  "date": "2026-10-21",
+  "inventory": {
+    "all_definitions": 37,
+    "retained_models": 28,
+    "retired_torsos": 4,
+    "historical_class_starter_torsos": 5,
+    "all_nonstarter_items_classified_once": true,
+    "proposed_active_families": 15,
+    "models_per_family_target": [5, 6],
+    "total_target_if_families_retained": [75, 90],
+    "missing_models_if_families_retained": [47, 62],
+    "source_hashes_verified": 64,
+    "inventory_modified_game_content": false
+  },
+  "runtime_retirement": {
+    "decision": "ARMOR-TYPES01-REMOVE01",
+    "targeted_tests": {"passed": 23, "failed": 0},
+    "old_165_inventory_and_replay_preserved": true,
+    "release_build": "passed",
+    "targeted_rustfmt": "passed",
+    "git_diff_check": "passed",
+    "full_test_suite_run": false,
+    "game_launched": false
+  },
+  "browser_review": {
+    "status": "r02_verified_in_existing_browser_tab",
+    "all_15_family_rows_and_targets_verified": true,
+    "four_slot_summary_matches_inventory": true,
+    "overview_fits_narrow_viewport_without_horizontal_scroll": true,
+    "leather_apron_excluded_from_future_variants": true,
+    "url": "http://127.0.0.1:8766/artifacts/class-armor-review-01/index.html#armor-types",
+    "screenshot": "artifacts/class-armor-review-01/armor-types-verified.png"
+  },
+  "acceptance": {
+    "target_5_to_6_models_per_type": "requested_by_user",
+    "cyberpunk_nomenclature": "requested_by_user",
+    "type_names_and_grouping": "proposal_only",
+    "new_items_or_stats": "not_produced",
+    "class_sprites_integrated": false
+  }
+}

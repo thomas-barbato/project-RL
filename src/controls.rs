@@ -692,14 +692,29 @@ impl MovementRepeater {
 
     /// The initial press remains in `InputFrame::pressed`, so this only returns
     /// subsequent repeats. At most one action is produced per rendered frame.
+    #[cfg(test)]
     pub fn poll(&mut self, controls: &Controls, frame: &InputFrame, now: f64) -> Option<Action> {
+        self.poll_paced(controls, frame, now, 0)
+    }
+    pub fn poll_paced(
+        &mut self,
+        controls: &Controls,
+        frame: &InputFrame,
+        now: f64,
+        milliseconds: u16,
+    ) -> Option<Action> {
+        let interval = if [120, 200, 400].contains(&milliseconds) {
+            f64::from(milliseconds) / 1000.
+        } else {
+            Self::INTERVAL_SECONDS
+        };
         if let Some(action) = Action::MOVEMENT
             .iter()
             .copied()
             .find(|action| controls.pressed(*action, frame))
         {
             self.active = Some(action);
-            self.repeat_at = now + Self::INITIAL_DELAY_SECONDS;
+            self.repeat_at = now + Self::INITIAL_DELAY_SECONDS.max(interval);
             return None;
         }
 
@@ -711,7 +726,7 @@ impl MovementRepeater {
         if now < self.repeat_at {
             return None;
         }
-        self.repeat_at = now + Self::INTERVAL_SECONDS;
+        self.repeat_at = now + interval;
         Some(action)
     }
 }
@@ -1049,6 +1064,45 @@ mod tests {
             ..Default::default()
         };
         assert_eq!(repeat.poll(&controls, &held_again, 3.0), None);
+    }
+    #[test]
+    fn paced_movement_repeats_leave_time_for_every_selected_grid_step() {
+        let controls = Controls::preset(Layout::Qwerty, KeySemantics::Physical);
+        let pressed = InputFrame {
+            pressed: [Binding::key("D")].into(),
+            held: [Binding::key("D")].into(),
+            ..Default::default()
+        };
+        let held = InputFrame {
+            held: [Binding::key("D")].into(),
+            ..Default::default()
+        };
+        for ms in [120, 200, 400] {
+            let mut repeater = MovementRepeater::default();
+            let duration = f64::from(ms) / 1000.;
+            assert_eq!(repeater.poll_paced(&controls, &pressed, 1., ms), None);
+            let first = 1. + duration.max(MovementRepeater::INITIAL_DELAY_SECONDS);
+            assert_eq!(
+                repeater.poll_paced(&controls, &held, first - 0.001, ms),
+                None
+            );
+            assert_eq!(
+                repeater.poll_paced(&controls, &held, first + 0.001, ms),
+                Some(Action::MoveEast)
+            );
+            assert_eq!(
+                repeater.poll_paced(&controls, &held, first + duration - 0.001, ms),
+                None
+            );
+            assert_eq!(
+                repeater.poll_paced(&controls, &held, first + duration + 0.002, ms),
+                Some(Action::MoveEast)
+            );
+            assert_eq!(
+                repeater.poll_paced(&controls, &InputFrame::default(), first + 2. * duration, ms),
+                None
+            );
+        }
     }
 
     #[test]

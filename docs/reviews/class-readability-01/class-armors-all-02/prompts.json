@@ -1,0 +1,399 @@
+{
+  "review_id": "CLASS-ARMORS-ALL02",
+  "date": "2026-10-21",
+  "status": "prepared_for_joint_native64_review",
+  "tool": "built-in image_gen",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "source_review": "docs/reviews/class-readability-01/class-armors-all-01/candidates.json",
+  "color_variants": "deferred_by_user",
+  "runtime_integration": false,
+  "source_user_feedback": "bon , en faite je ne suis pas fan du technomancien et de l'arcaniste (le casque), ni de la traqueuse en faite.. j'ai l'impression que t'as pas vraiment fait les casques de la traqueuse, d'ailleurs si tu veux une inspiration ca serait plutot une tireuse d'elite ou une ninja. Le casque de l'arcaniste ne semble pas s'accorder avec sa tenue, on dirait que sa tête est 2 fois plus grosse c'est bizarre (et moche) Aussi de facon générale j'ai l'impression que la nuque est super longue.",
+  "technomancien_choice": "Prêtre-machine sombre, visage mécanique et manteau sobre",
+  "numbers_preserved": "01–25",
+  "classes": [
+    {
+      "key": "bastion",
+      "name": "Bastion",
+      "seam": 12,
+      "source_mode": "unchanged_accepted_compositions",
+      "neck_audit": "Original accepted join already short; preserve exact pixels."
+    },
+    {
+      "key": "technomancien",
+      "name": "Technomancien",
+      "seam": 14,
+      "base_class": "CL02-r04",
+      "body_height": 50,
+      "source_mode": "new_body_and_head"
+    },
+    {
+      "key": "traqueuse",
+      "name": "Traqueuse",
+      "seam": 16,
+      "base_class": "CL03-r03",
+      "body_height": 50,
+      "source_mode": "new_body_and_head"
+    },
+    {
+      "key": "arcaniste",
+      "name": "Arcaniste",
+      "seam": 14,
+      "base_class": "CL04-r03",
+      "body_height": 52,
+      "source_mode": "existing_body_new_frame_and_head"
+    },
+    {
+      "key": "metamorphe",
+      "name": "Métamorphe",
+      "seam": 16,
+      "base_class": "CL05-r02",
+      "body_height": 50,
+      "source_mode": "existing_body_new_frame_same_head"
+    }
+  ],
+  "jobs": [
+    {
+      "candidate_id": "TE-W02-S01-r01",
+      "class_key": "technomancien",
+      "kind": "body",
+      "rank": 1,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-4cdbe80c-919f-4cae-9dd5-7ffde63dd1fd.png",
+      "source_ref": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: separate full HEADLESS armor outfit body for a 64x64 cyberpunk roguelike.\nReference role: class anatomy, augmentation identity, relaxed frontal pose, proportions and rendering. Replace the worn clothing with this new armor model.\nDraw ONE body from the BASE OF THE JAW/SHORT ANATOMICAL NECK to BOTH SOLES. NO head, face, hair, headgear, helmet or hood. NO tall neck tube, long neck cylinder, stalk, raised mannequin peg or pedestal. The collar opening sits directly between the shoulders; neck projection above shoulders is tiny.\nStraight-front balanced stance; both arms relaxed down with a little gap, two EMPTY hands visible, ordinary human limb counts, all toes/soles inside the image. No weapons, tools, extra limbs, backpack projections or effects.\nThe torso armor supplies the whole outfit: upper body, arms, gloves, pants/skirt, legs and boots. Protection must visibly increase with the requested tier.\nNative body height is about 48-52 pixels: use very few large matte faceted masses, 2-3 broad tones, clear continuous dark contour and simple upper-left lighting. No microtexture, rivets, tiny straps, thin dangling parts or noisy panels. Useful large material areas should separate from a medium-dark floor.\nGenuinely transparent background around the whole isolated character body, generous margins, no halo, vignette, ground or cast shadow. No labels, symbols or text.\n\nCLASS:\nA machine priest: an almost entirely mechanical adult figure, no flesh. DARK sober work-vestments, plain charcoal/ash-grey cloth, aged copper chassis and gauntlets. Long narrow slit robes, simple asymmetrical drape and a few large functional guards. Not turquoise, not a colorful wizard, no long pointed fantasy hood, ornate trim, robe patterns or square white marine armor. Dark cloth still has broad medium-grey planes and pale ash edge/lining for native64 visibility; articulated copper hands and lower legs remain readable.\nMODEL:\nVERY LIGHT: plain knee-length charcoal technician tabard over an exposed dark robotic torso core, minimal ash-grey cloth edge, uncovered copper mechanical upper/forearms with light hand guards. Thin robotic thighs and calves, practical narrow mechanical boots. Small shoulder cloth fold, no large body plates."
+    },
+    {
+      "candidate_id": "TE-W02-SH01-r01",
+      "class_key": "technomancien",
+      "kind": "headgear",
+      "rank": 1,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-0f1d9cbb-f333-4b2b-b53b-e58c5bb57fc6.png",
+      "source_ref": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nA machine priest: an almost entirely mechanical adult figure, no flesh. DARK sober work-vestments, plain charcoal/ash-grey cloth, aged copper chassis and gauntlets. Long narrow slit robes, simple asymmetrical drape and a few large functional guards. Not turquoise, not a colorful wizard, no long pointed fantasy hood, ornate trim, robe patterns or square white marine armor. Dark cloth still has broad medium-grey planes and pale ash edge/lining for native64 visibility; articulated copper hands and lower legs remain readable.\nVERY LIGHT machine-priest head: a close-fitting short rounded DARK GREY CLOTH COWL around a fully OPAQUE MECHANICAL FACE MASK. Simple charcoal face, one aged-copper jaw plate, ONE amber circular optic on viewer left. Small ash-grey upper fold, no tall point, no visible flesh. CLOSED.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 11,
+        "max_width": 10,
+        "bottom_exclusive": 14
+      }
+    },
+    {
+      "candidate_id": "TR-W03-P01-r03",
+      "class_key": "traqueuse",
+      "kind": "body",
+      "rank": 1,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-2c247357-6bdd-4f13-aabe-f016c732c197.png",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: separate full HEADLESS armor outfit body for a 64x64 cyberpunk roguelike.\nReference role: class anatomy, augmentation identity, relaxed frontal pose, proportions and rendering. Replace the worn clothing with this new armor model.\nDraw ONE body from the BASE OF THE JAW/SHORT ANATOMICAL NECK to BOTH SOLES. NO head, face, hair, headgear, helmet or hood. NO tall neck tube, long neck cylinder, stalk, raised mannequin peg or pedestal. The collar opening sits directly between the shoulders; neck projection above shoulders is tiny.\nStraight-front balanced stance; both arms relaxed down with a little gap, two EMPTY hands visible, ordinary human limb counts, all toes/soles inside the image. No weapons, tools, extra limbs, backpack projections or effects.\nThe torso armor supplies the whole outfit: upper body, arms, gloves, pants/skirt, legs and boots. Protection must visibly increase with the requested tier.\nNative body height is about 48-52 pixels: use very few large matte faceted masses, 2-3 broad tones, clear continuous dark contour and simple upper-left lighting. No microtexture, rivets, tiny straps, thin dangling parts or noisy panels. Useful large material areas should separate from a medium-dark floor.\nGenuinely transparent background around the whole isolated character body, generous margins, no halo, vignette, ground or cast shadow. No labels, symbols or text.\n\nCLASS:\nA compact ATHLETIC ADULT WOMAN recon sniper/ninja, retaining the reference's one cybernetic forearm and opposite cybernetic lower leg. Functional fully clothed physique, two arms and legs, no sexualized armor. Fitted slate-grey / desaturated blue tactical clothing with LIGHT SMOKE-GREY protective masses, charcoal joints, one restrained blue optic accent. Asymmetrical short marksman drapes, compact diagonal wraps and mobile leg protection. No khaki military jacket, long priest robe, bulky melee pauldrons, swords or new weapons.\nMODEL:\nVERY LIGHT: fitted sleeveless slate-grey reconnaissance tunic with a diagonal wrap across the chest and a plain waist wrap. One natural upper arm and robotic forearm as in the reference; minimal wrist guards and light gloves. Slim dark utility pants, flexible knee wraps and soft shin-height scout boots. No cape yet, minimal hard protection."
+    },
+    {
+      "candidate_id": "TR-W03-H01-r02",
+      "class_key": "traqueuse",
+      "kind": "headgear",
+      "rank": 1,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-7e626c0d-3991-4269-8226-5949f9c009e0.png",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nA compact ATHLETIC ADULT WOMAN recon sniper/ninja, retaining the reference's one cybernetic forearm and opposite cybernetic lower leg. Functional fully clothed physique, two arms and legs, no sexualized armor. Fitted slate-grey / desaturated blue tactical clothing with LIGHT SMOKE-GREY protective masses, charcoal joints, one restrained blue optic accent. Asymmetrical short marksman drapes, compact diagonal wraps and mobile leg protection. No khaki military jacket, long priest robe, bulky melee pauldrons, swords or new weapons.\nVERY LIGHT recon/ninja head: a compact close-fitting slate FABRIC HEADWRAP/BALACLAVA and charcoal mouth/nose mask. A single horizontal ALPHA-ZERO eye opening across the upper face so the original eyes/optic show through. Fabric encloses crown, temples and jaw; no loose tails, helmet dome or shoulder scarf. OPEN eye window, no face drawn.",
+      "head_mode": "overlay",
+      "framing": {
+        "target_height": 10,
+        "max_width": 10,
+        "bottom_exclusive": 16
+      }
+    },
+    {
+      "candidate_id": "AR-W04-H01-r02",
+      "class_key": "arcaniste",
+      "kind": "headgear",
+      "rank": 1,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-38649e57-2921-4edf-8e2e-5f60955ceca0.png",
+      "source_ref": "assets/source-art/class-readability-01/class-armors-all-01/AR-W04-P03-r01-body-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nMaterial/style reference only: the original slender arcanist's burgundy technical tabard, IVORY CERAMIC torso guard and COPPER channeling bracers. Do not draw the referenced body. Match these materials in very few broad shapes.\nVERY LIGHT arcanist head: a very small LOW COPPER FOREHEAD GUARD, ivory central rectangular plate and a close burgundy temple band. The white hair, face and lower jaw are entirely absent from the drawing and remain ALPHA-ZERO OPEN. No bulky side terminals or ring around the whole head. OPEN.",
+      "head_mode": "overlay",
+      "framing": {
+        "target_height": 4,
+        "max_width": 8,
+        "bottom_exclusive": 9
+      }
+    },
+    {
+      "candidate_id": "TE-W02-S02-r01",
+      "class_key": "technomancien",
+      "kind": "body",
+      "rank": 2,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-35b8c9da-4d57-47de-8588-a93ce1d44cbe.png",
+      "source_ref": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: separate full HEADLESS armor outfit body for a 64x64 cyberpunk roguelike.\nReference role: class anatomy, augmentation identity, relaxed frontal pose, proportions and rendering. Replace the worn clothing with this new armor model.\nDraw ONE body from the BASE OF THE JAW/SHORT ANATOMICAL NECK to BOTH SOLES. NO head, face, hair, headgear, helmet or hood. NO tall neck tube, long neck cylinder, stalk, raised mannequin peg or pedestal. The collar opening sits directly between the shoulders; neck projection above shoulders is tiny.\nStraight-front balanced stance; both arms relaxed down with a little gap, two EMPTY hands visible, ordinary human limb counts, all toes/soles inside the image. No weapons, tools, extra limbs, backpack projections or effects.\nThe torso armor supplies the whole outfit: upper body, arms, gloves, pants/skirt, legs and boots. Protection must visibly increase with the requested tier.\nNative body height is about 48-52 pixels: use very few large matte faceted masses, 2-3 broad tones, clear continuous dark contour and simple upper-left lighting. No microtexture, rivets, tiny straps, thin dangling parts or noisy panels. Useful large material areas should separate from a medium-dark floor.\nGenuinely transparent background around the whole isolated character body, generous margins, no halo, vignette, ground or cast shadow. No labels, symbols or text.\n\nCLASS:\nA machine priest: an almost entirely mechanical adult figure, no flesh. DARK sober work-vestments, plain charcoal/ash-grey cloth, aged copper chassis and gauntlets. Long narrow slit robes, simple asymmetrical drape and a few large functional guards. Not turquoise, not a colorful wizard, no long pointed fantasy hood, ornate trim, robe patterns or square white marine armor. Dark cloth still has broad medium-grey planes and pale ash edge/lining for native64 visibility; articulated copper hands and lower legs remain readable.\nMODEL:\nLIGHT: sober dark long split machine-priest coat with one broad ash-grey inner strip, small asymmetrical shoulder mantle, light aged-copper forearm protection and articulated gloves. Dark robotic legs and modest reinforced boots. Readable simple drape, almost no ornament."
+    },
+    {
+      "candidate_id": "TE-W02-SH02-r01",
+      "class_key": "technomancien",
+      "kind": "headgear",
+      "rank": 2,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-bb4bc55e-1157-4522-94d5-481731e96fa7.png",
+      "source_ref": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nA machine priest: an almost entirely mechanical adult figure, no flesh. DARK sober work-vestments, plain charcoal/ash-grey cloth, aged copper chassis and gauntlets. Long narrow slit robes, simple asymmetrical drape and a few large functional guards. Not turquoise, not a colorful wizard, no long pointed fantasy hood, ornate trim, robe patterns or square white marine armor. Dark cloth still has broad medium-grey planes and pale ash edge/lining for native64 visibility; articulated copper hands and lower legs remain readable.\nLIGHT machine-priest head: a deep but compact charcoal hood with one plain ash-grey side fold, enclosing an OPAQUE DARK METAL FACE with a copper lower jaw and ONE amber optic. Smooth tapered cowl cheeks, ordinary compact head proportions. CLOSED.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 11,
+        "max_width": 10,
+        "bottom_exclusive": 14
+      }
+    },
+    {
+      "candidate_id": "TR-W03-P02-r03",
+      "class_key": "traqueuse",
+      "kind": "body",
+      "rank": 2,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-ad8731a9-e341-4216-b886-cb8d72981b94.png",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: separate full HEADLESS armor outfit body for a 64x64 cyberpunk roguelike.\nReference role: class anatomy, augmentation identity, relaxed frontal pose, proportions and rendering. Replace the worn clothing with this new armor model.\nDraw ONE body from the BASE OF THE JAW/SHORT ANATOMICAL NECK to BOTH SOLES. NO head, face, hair, headgear, helmet or hood. NO tall neck tube, long neck cylinder, stalk, raised mannequin peg or pedestal. The collar opening sits directly between the shoulders; neck projection above shoulders is tiny.\nStraight-front balanced stance; both arms relaxed down with a little gap, two EMPTY hands visible, ordinary human limb counts, all toes/soles inside the image. No weapons, tools, extra limbs, backpack projections or effects.\nThe torso armor supplies the whole outfit: upper body, arms, gloves, pants/skirt, legs and boots. Protection must visibly increase with the requested tier.\nNative body height is about 48-52 pixels: use very few large matte faceted masses, 2-3 broad tones, clear continuous dark contour and simple upper-left lighting. No microtexture, rivets, tiny straps, thin dangling parts or noisy panels. Useful large material areas should separate from a medium-dark floor.\nGenuinely transparent background around the whole isolated character body, generous margins, no halo, vignette, ground or cast shadow. No labels, symbols or text.\n\nCLASS:\nA compact ATHLETIC ADULT WOMAN recon sniper/ninja, retaining the reference's one cybernetic forearm and opposite cybernetic lower leg. Functional fully clothed physique, two arms and legs, no sexualized armor. Fitted slate-grey / desaturated blue tactical clothing with LIGHT SMOKE-GREY protective masses, charcoal joints, one restrained blue optic accent. Asymmetrical short marksman drapes, compact diagonal wraps and mobile leg protection. No khaki military jacket, long priest robe, bulky melee pauldrons, swords or new weapons.\nMODEL:\nLIGHT: fitted desaturated blue/slate scout suit with a SHORT ASYMMETRICAL smoke-grey shoulder drape ending above one elbow. Thin diagonal torso reinforcement, lightweight gloves, flexible trousers, modest knee guards and split fabric boot wraps. Sniper/ninja workwear, small clear cloth masses."
+    },
+    {
+      "candidate_id": "TR-W03-H02-r02",
+      "class_key": "traqueuse",
+      "kind": "headgear",
+      "rank": 2,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-51923152-cdc1-4e15-8c42-66094071515a.png",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nA compact ATHLETIC ADULT WOMAN recon sniper/ninja, retaining the reference's one cybernetic forearm and opposite cybernetic lower leg. Functional fully clothed physique, two arms and legs, no sexualized armor. Fitted slate-grey / desaturated blue tactical clothing with LIGHT SMOKE-GREY protective masses, charcoal joints, one restrained blue optic accent. Asymmetrical short marksman drapes, compact diagonal wraps and mobile leg protection. No khaki military jacket, long priest robe, bulky melee pauldrons, swords or new weapons.\nLIGHT sniper head: a small rounded slate fabric hood, integrated charcoal lower-face mask and a simple OPAQUE narrow blue-grey goggle lens. Complete covered head, compact fitted profile, one large plain smoke-grey temple pad. CLOSED, no face, no neck.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 10,
+        "max_width": 10,
+        "bottom_exclusive": 16
+      }
+    },
+    {
+      "candidate_id": "AR-W04-H02-r02",
+      "class_key": "arcaniste",
+      "kind": "headgear",
+      "rank": 2,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-3940a5e9-8fe3-417f-b3f6-b671fadee796.png",
+      "source_ref": "assets/source-art/class-readability-01/class-armors-all-01/AR-W04-P03-r01-body-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nMaterial/style reference only: the original slender arcanist's burgundy technical tabard, IVORY CERAMIC torso guard and COPPER channeling bracers. Do not draw the referenced body. Match these materials in very few broad shapes.\nLIGHT arcanist head: a slim BURGUNDY skull-fitting half-coif with a single small IVORY brow plate and narrow copper temple reinforcement. Wide ALPHA-ZERO face opening, no neck or cheek flanges. Keep the physical shell extremely close to the skull, no big ears. OPEN.",
+      "head_mode": "overlay",
+      "framing": {
+        "target_height": 7,
+        "max_width": 8,
+        "bottom_exclusive": 14
+      }
+    },
+    {
+      "candidate_id": "TE-W02-S03-r01",
+      "class_key": "technomancien",
+      "kind": "body",
+      "rank": 3,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-c1ced269-2e74-4f2a-8ab0-018e42364d78.png",
+      "source_ref": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: separate full HEADLESS armor outfit body for a 64x64 cyberpunk roguelike.\nReference role: class anatomy, augmentation identity, relaxed frontal pose, proportions and rendering. Replace the worn clothing with this new armor model.\nDraw ONE body from the BASE OF THE JAW/SHORT ANATOMICAL NECK to BOTH SOLES. NO head, face, hair, headgear, helmet or hood. NO tall neck tube, long neck cylinder, stalk, raised mannequin peg or pedestal. The collar opening sits directly between the shoulders; neck projection above shoulders is tiny.\nStraight-front balanced stance; both arms relaxed down with a little gap, two EMPTY hands visible, ordinary human limb counts, all toes/soles inside the image. No weapons, tools, extra limbs, backpack projections or effects.\nThe torso armor supplies the whole outfit: upper body, arms, gloves, pants/skirt, legs and boots. Protection must visibly increase with the requested tier.\nNative body height is about 48-52 pixels: use very few large matte faceted masses, 2-3 broad tones, clear continuous dark contour and simple upper-left lighting. No microtexture, rivets, tiny straps, thin dangling parts or noisy panels. Useful large material areas should separate from a medium-dark floor.\nGenuinely transparent background around the whole isolated character body, generous margins, no halo, vignette, ground or cast shadow. No labels, symbols or text.\n\nCLASS:\nA machine priest: an almost entirely mechanical adult figure, no flesh. DARK sober work-vestments, plain charcoal/ash-grey cloth, aged copper chassis and gauntlets. Long narrow slit robes, simple asymmetrical drape and a few large functional guards. Not turquoise, not a colorful wizard, no long pointed fantasy hood, ornate trim, robe patterns or square white marine armor. Dark cloth still has broad medium-grey planes and pale ash edge/lining for native64 visibility; articulated copper hands and lower legs remain readable.\nMODEL:\nMEDIUM: plain charcoal machine-priest vestment almost to the ankles, narrow asymmetric overlap and light ash-grey collar and lining. One simple dark-metal sternum cover, substantial copper bracers and mechanical gloves. Armored mechanical knees/calves and solid boots visible through the front split."
+    },
+    {
+      "candidate_id": "TE-W02-SH03-r01",
+      "class_key": "technomancien",
+      "kind": "headgear",
+      "rank": 3,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-38b046cc-9dea-4e43-8983-82974348bbf4.png",
+      "source_ref": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nA machine priest: an almost entirely mechanical adult figure, no flesh. DARK sober work-vestments, plain charcoal/ash-grey cloth, aged copper chassis and gauntlets. Long narrow slit robes, simple asymmetrical drape and a few large functional guards. Not turquoise, not a colorful wizard, no long pointed fantasy hood, ornate trim, robe patterns or square white marine armor. Dark cloth still has broad medium-grey planes and pale ash edge/lining for native64 visibility; articulated copper hands and lower legs remain readable.\nMEDIUM machine-priest head: a low angular dark fabric cowl with a broad simple ash-grey rim, OPAQUE graphite faceplate with one amber round optic and a simple aged-copper lower face guard. Quiet industrial design, no grille. CLOSED.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 11,
+        "max_width": 10,
+        "bottom_exclusive": 14
+      }
+    },
+    {
+      "candidate_id": "TR-W03-P03-r03",
+      "class_key": "traqueuse",
+      "kind": "body",
+      "rank": 3,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-21b5da73-46e2-4407-9b95-3eb3a7a48185.png",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: separate full HEADLESS armor outfit body for a 64x64 cyberpunk roguelike.\nReference role: class anatomy, augmentation identity, relaxed frontal pose, proportions and rendering. Replace the worn clothing with this new armor model.\nDraw ONE body from the BASE OF THE JAW/SHORT ANATOMICAL NECK to BOTH SOLES. NO head, face, hair, headgear, helmet or hood. NO tall neck tube, long neck cylinder, stalk, raised mannequin peg or pedestal. The collar opening sits directly between the shoulders; neck projection above shoulders is tiny.\nStraight-front balanced stance; both arms relaxed down with a little gap, two EMPTY hands visible, ordinary human limb counts, all toes/soles inside the image. No weapons, tools, extra limbs, backpack projections or effects.\nThe torso armor supplies the whole outfit: upper body, arms, gloves, pants/skirt, legs and boots. Protection must visibly increase with the requested tier.\nNative body height is about 48-52 pixels: use very few large matte faceted masses, 2-3 broad tones, clear continuous dark contour and simple upper-left lighting. No microtexture, rivets, tiny straps, thin dangling parts or noisy panels. Useful large material areas should separate from a medium-dark floor.\nGenuinely transparent background around the whole isolated character body, generous margins, no halo, vignette, ground or cast shadow. No labels, symbols or text.\n\nCLASS:\nA compact ATHLETIC ADULT WOMAN recon sniper/ninja, retaining the reference's one cybernetic forearm and opposite cybernetic lower leg. Functional fully clothed physique, two arms and legs, no sexualized armor. Fitted slate-grey / desaturated blue tactical clothing with LIGHT SMOKE-GREY protective masses, charcoal joints, one restrained blue optic accent. Asymmetrical short marksman drapes, compact diagonal wraps and mobile leg protection. No khaki military jacket, long priest robe, bulky melee pauldrons, swords or new weapons.\nMODEL:\nMEDIUM: fitted slate reconnaissance cuirass under a short smoke-grey half-poncho over ONE shoulder, diagonal wrapped waist and compact flat forearm guards and gloves. Slim protected thighs, simple angular knee/shin plates and quiet armored boots. No large army shoulder blocks."
+    },
+    {
+      "candidate_id": "TR-W03-H03-r02",
+      "class_key": "traqueuse",
+      "kind": "headgear",
+      "rank": 3,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-9d4189f3-2b4c-4e38-a760-fa53ca475c75.png",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nA compact ATHLETIC ADULT WOMAN recon sniper/ninja, retaining the reference's one cybernetic forearm and opposite cybernetic lower leg. Functional fully clothed physique, two arms and legs, no sexualized armor. Fitted slate-grey / desaturated blue tactical clothing with LIGHT SMOKE-GREY protective masses, charcoal joints, one restrained blue optic accent. Asymmetrical short marksman drapes, compact diagonal wraps and mobile leg protection. No khaki military jacket, long priest robe, bulky melee pauldrons, swords or new weapons.\nMEDIUM recon head: a real compact low angular SMOKE-GREY RECON HELMET with a charcoal balaclava faceplate and ONE narrow blue-grey visor band. Flat tapered forehead, close cheek protection, small practical profile. CLOSED, not a cap or little brow strap.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 11,
+        "max_width": 11,
+        "bottom_exclusive": 16
+      }
+    },
+    {
+      "candidate_id": "AR-W04-H03-r02",
+      "class_key": "arcaniste",
+      "kind": "headgear",
+      "rank": 3,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-3ac6aab9-4ee5-4a51-abbf-03f5b5764cb7.png",
+      "source_ref": "assets/source-art/class-readability-01/class-armors-all-01/AR-W04-P03-r01-body-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nMaterial/style reference only: the original slender arcanist's burgundy technical tabard, IVORY CERAMIC torso guard and COPPER channeling bracers. Do not draw the referenced body. Match these materials in very few broad shapes.\nMEDIUM arcanist head: compact narrow burgundy HALF-HELM with a simple ivory forehead/nose ridge and flat copper temple edges. ALPHA-ZERO open eye/cheek region and open mouth below. Tight proportions matching a slender man; no side protrusions, no round dome. OPEN.",
+      "head_mode": "overlay",
+      "framing": {
+        "target_height": 10,
+        "max_width": 8,
+        "bottom_exclusive": 14
+      }
+    },
+    {
+      "candidate_id": "TE-W02-S04-r01",
+      "class_key": "technomancien",
+      "kind": "body",
+      "rank": 4,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-6ac3354e-c2aa-420a-bf38-8bf3c83984a6.png",
+      "source_ref": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: separate full HEADLESS armor outfit body for a 64x64 cyberpunk roguelike.\nReference role: class anatomy, augmentation identity, relaxed frontal pose, proportions and rendering. Replace the worn clothing with this new armor model.\nDraw ONE body from the BASE OF THE JAW/SHORT ANATOMICAL NECK to BOTH SOLES. NO head, face, hair, headgear, helmet or hood. NO tall neck tube, long neck cylinder, stalk, raised mannequin peg or pedestal. The collar opening sits directly between the shoulders; neck projection above shoulders is tiny.\nStraight-front balanced stance; both arms relaxed down with a little gap, two EMPTY hands visible, ordinary human limb counts, all toes/soles inside the image. No weapons, tools, extra limbs, backpack projections or effects.\nThe torso armor supplies the whole outfit: upper body, arms, gloves, pants/skirt, legs and boots. Protection must visibly increase with the requested tier.\nNative body height is about 48-52 pixels: use very few large matte faceted masses, 2-3 broad tones, clear continuous dark contour and simple upper-left lighting. No microtexture, rivets, tiny straps, thin dangling parts or noisy panels. Useful large material areas should separate from a medium-dark floor.\nGenuinely transparent background around the whole isolated character body, generous margins, no halo, vignette, ground or cast shadow. No labels, symbols or text.\n\nCLASS:\nA machine priest: an almost entirely mechanical adult figure, no flesh. DARK sober work-vestments, plain charcoal/ash-grey cloth, aged copper chassis and gauntlets. Long narrow slit robes, simple asymmetrical drape and a few large functional guards. Not turquoise, not a colorful wizard, no long pointed fantasy hood, ornate trim, robe patterns or square white marine armor. Dark cloth still has broad medium-grey planes and pale ash edge/lining for native64 visibility; articulated copper hands and lower legs remain readable.\nMODEL:\nHEAVY: reinforced long dark vestment with a few broad vertical ash-grey ceramic protection panels on torso and hip overlap, restrained copper mechanical couplings, stronger bracers and full articulated gloves. Continuous shin guards and heavy industrial boots. Sloping plain cloth shoulders rather than wide square pauldrons."
+    },
+    {
+      "candidate_id": "TE-W02-SH04-r01",
+      "class_key": "technomancien",
+      "kind": "headgear",
+      "rank": 4,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-107a19f5-4104-4d79-b742-1662163298e9.png",
+      "source_ref": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nA machine priest: an almost entirely mechanical adult figure, no flesh. DARK sober work-vestments, plain charcoal/ash-grey cloth, aged copper chassis and gauntlets. Long narrow slit robes, simple asymmetrical drape and a few large functional guards. Not turquoise, not a colorful wizard, no long pointed fantasy hood, ornate trim, robe patterns or square white marine armor. Dark cloth still has broad medium-grey planes and pale ash edge/lining for native64 visibility; articulated copper hands and lower legs remain readable.\nHEAVY machine-priest head: a reinforced compact charcoal cowl with a plain ash-grey crown guard and a narrow OPAQUE dark-metal face, simple copper cheek/jaw casing, ONE amber optic. The hood is narrow and rounded, not wizard-pointed or a white soldier helmet. CLOSED.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 11,
+        "max_width": 10,
+        "bottom_exclusive": 14
+      }
+    },
+    {
+      "candidate_id": "TR-W03-P04-r03",
+      "class_key": "traqueuse",
+      "kind": "body",
+      "rank": 4,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-cb703ba5-f81b-4b8a-8270-9225c30ac1ba.png",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: separate full HEADLESS armor outfit body for a 64x64 cyberpunk roguelike.\nReference role: class anatomy, augmentation identity, relaxed frontal pose, proportions and rendering. Replace the worn clothing with this new armor model.\nDraw ONE body from the BASE OF THE JAW/SHORT ANATOMICAL NECK to BOTH SOLES. NO head, face, hair, headgear, helmet or hood. NO tall neck tube, long neck cylinder, stalk, raised mannequin peg or pedestal. The collar opening sits directly between the shoulders; neck projection above shoulders is tiny.\nStraight-front balanced stance; both arms relaxed down with a little gap, two EMPTY hands visible, ordinary human limb counts, all toes/soles inside the image. No weapons, tools, extra limbs, backpack projections or effects.\nThe torso armor supplies the whole outfit: upper body, arms, gloves, pants/skirt, legs and boots. Protection must visibly increase with the requested tier.\nNative body height is about 48-52 pixels: use very few large matte faceted masses, 2-3 broad tones, clear continuous dark contour and simple upper-left lighting. No microtexture, rivets, tiny straps, thin dangling parts or noisy panels. Useful large material areas should separate from a medium-dark floor.\nGenuinely transparent background around the whole isolated character body, generous margins, no halo, vignette, ground or cast shadow. No labels, symbols or text.\n\nCLASS:\nA compact ATHLETIC ADULT WOMAN recon sniper/ninja, retaining the reference's one cybernetic forearm and opposite cybernetic lower leg. Functional fully clothed physique, two arms and legs, no sexualized armor. Fitted slate-grey / desaturated blue tactical clothing with LIGHT SMOKE-GREY protective masses, charcoal joints, one restrained blue optic accent. Asymmetrical short marksman drapes, compact diagonal wraps and mobile leg protection. No khaki military jacket, long priest robe, bulky melee pauldrons, swords or new weapons.\nMODEL:\nHEAVY: an armored sniper/ninja suit with broad LIGHT smoke-grey angled chest and forearm plates over desaturated navy fabric, a small plain asymmetrical shoulder mantle, compact hip protection and full gloves. Continuous low-profile thigh/shin shells and mobile armored boots. Close-fitting and clearly protective."
+    },
+    {
+      "candidate_id": "TR-W03-H04-r02",
+      "class_key": "traqueuse",
+      "kind": "headgear",
+      "rank": 4,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-2784fbb6-653b-453e-a494-6fe8dc69a165.png",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nA compact ATHLETIC ADULT WOMAN recon sniper/ninja, retaining the reference's one cybernetic forearm and opposite cybernetic lower leg. Functional fully clothed physique, two arms and legs, no sexualized armor. Fitted slate-grey / desaturated blue tactical clothing with LIGHT SMOKE-GREY protective masses, charcoal joints, one restrained blue optic accent. Asymmetrical short marksman drapes, compact diagonal wraps and mobile leg protection. No khaki military jacket, long priest robe, bulky melee pauldrons, swords or new weapons.\nHEAVY ninja head: a complete slim faceted slate helmet, pale smoke-grey cheek/brow planes and a charcoal face mask with one oblique muted-blue optic slit. Enclosed crown and jaw, aerodynamic and narrow, no protruding ear cups. CLOSED.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 11,
+        "max_width": 11,
+        "bottom_exclusive": 16
+      }
+    },
+    {
+      "candidate_id": "AR-W04-H04-r02",
+      "class_key": "arcaniste",
+      "kind": "headgear",
+      "rank": 4,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-73e9cc4c-8b8c-4048-ba55-5ed93e0fdb26.png",
+      "source_ref": "assets/source-art/class-readability-01/class-armors-all-01/AR-W04-P03-r01-body-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nMaterial/style reference only: the original slender arcanist's burgundy technical tabard, IVORY CERAMIC torso guard and COPPER channeling bracers. Do not draw the referenced body. Match these materials in very few broad shapes.\nHEAVY arcanist head: a complete narrow IVORY CERAMIC FACE MASK nested in a close burgundy crown, one short copper vertical brow channel and a thin dark eye slit. Smooth geometric cheeks and jaw, very compact like a fitted faceplate, no large ear blocks. Entire face opaque. CLOSED.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 10,
+        "max_width": 9,
+        "bottom_exclusive": 14
+      }
+    },
+    {
+      "candidate_id": "TE-W02-S05-r01",
+      "class_key": "technomancien",
+      "kind": "body",
+      "rank": 5,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-48dd2bf8-89a0-40a5-bb4d-8d7f8f8a57b5.png",
+      "source_ref": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: separate full HEADLESS armor outfit body for a 64x64 cyberpunk roguelike.\nReference role: class anatomy, augmentation identity, relaxed frontal pose, proportions and rendering. Replace the worn clothing with this new armor model.\nDraw ONE body from the BASE OF THE JAW/SHORT ANATOMICAL NECK to BOTH SOLES. NO head, face, hair, headgear, helmet or hood. NO tall neck tube, long neck cylinder, stalk, raised mannequin peg or pedestal. The collar opening sits directly between the shoulders; neck projection above shoulders is tiny.\nStraight-front balanced stance; both arms relaxed down with a little gap, two EMPTY hands visible, ordinary human limb counts, all toes/soles inside the image. No weapons, tools, extra limbs, backpack projections or effects.\nThe torso armor supplies the whole outfit: upper body, arms, gloves, pants/skirt, legs and boots. Protection must visibly increase with the requested tier.\nNative body height is about 48-52 pixels: use very few large matte faceted masses, 2-3 broad tones, clear continuous dark contour and simple upper-left lighting. No microtexture, rivets, tiny straps, thin dangling parts or noisy panels. Useful large material areas should separate from a medium-dark floor.\nGenuinely transparent background around the whole isolated character body, generous margins, no halo, vignette, ground or cast shadow. No labels, symbols or text.\n\nCLASS:\nA machine priest: an almost entirely mechanical adult figure, no flesh. DARK sober work-vestments, plain charcoal/ash-grey cloth, aged copper chassis and gauntlets. Long narrow slit robes, simple asymmetrical drape and a few large functional guards. Not turquoise, not a colorful wizard, no long pointed fantasy hood, ornate trim, robe patterns or square white marine armor. Dark cloth still has broad medium-grey planes and pale ash edge/lining for native64 visibility; articulated copper hands and lower legs remain readable.\nMODEL:\nVERY HEAVY: severe industrial machine-priest armor: broad plain charcoal mantle and rigid long A-line protective skirt with three large ash-grey vertical plates. A compact heavy torso casing, large aged copper vambraces and closed articulated gloves, reinforced thigh/calf shells and sturdy mechanical boots. Heavy but still the recognizable sober robed machine priest, no decorative clutter."
+    },
+    {
+      "candidate_id": "TE-W02-SH05-r01",
+      "class_key": "technomancien",
+      "kind": "headgear",
+      "rank": 5,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-6c2d5f44-570b-42a9-aaf7-0234e17a9415.png",
+      "source_ref": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nA machine priest: an almost entirely mechanical adult figure, no flesh. DARK sober work-vestments, plain charcoal/ash-grey cloth, aged copper chassis and gauntlets. Long narrow slit robes, simple asymmetrical drape and a few large functional guards. Not turquoise, not a colorful wizard, no long pointed fantasy hood, ornate trim, robe patterns or square white marine armor. Dark cloth still has broad medium-grey planes and pale ash edge/lining for native64 visibility; articulated copper hands and lower legs remain readable.\nVERY HEAVY machine-priest head: a compact plain armored dark cowl, broad ash-grey outer reinforcement and a fully OPAQUE blackened copper/graphite mechanical face with ONE amber optic. More solid coverage but only slightly broader than the other tiers; no crest, long point or neck. CLOSED.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 11,
+        "max_width": 11,
+        "bottom_exclusive": 14
+      }
+    },
+    {
+      "candidate_id": "TR-W03-P05-r03",
+      "class_key": "traqueuse",
+      "kind": "body",
+      "rank": 5,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-89007332-27fc-43e7-9716-2efc5cdf161c.png",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: separate full HEADLESS armor outfit body for a 64x64 cyberpunk roguelike.\nReference role: class anatomy, augmentation identity, relaxed frontal pose, proportions and rendering. Replace the worn clothing with this new armor model.\nDraw ONE body from the BASE OF THE JAW/SHORT ANATOMICAL NECK to BOTH SOLES. NO head, face, hair, headgear, helmet or hood. NO tall neck tube, long neck cylinder, stalk, raised mannequin peg or pedestal. The collar opening sits directly between the shoulders; neck projection above shoulders is tiny.\nStraight-front balanced stance; both arms relaxed down with a little gap, two EMPTY hands visible, ordinary human limb counts, all toes/soles inside the image. No weapons, tools, extra limbs, backpack projections or effects.\nThe torso armor supplies the whole outfit: upper body, arms, gloves, pants/skirt, legs and boots. Protection must visibly increase with the requested tier.\nNative body height is about 48-52 pixels: use very few large matte faceted masses, 2-3 broad tones, clear continuous dark contour and simple upper-left lighting. No microtexture, rivets, tiny straps, thin dangling parts or noisy panels. Useful large material areas should separate from a medium-dark floor.\nGenuinely transparent background around the whole isolated character body, generous margins, no halo, vignette, ground or cast shadow. No labels, symbols or text.\n\nCLASS:\nA compact ATHLETIC ADULT WOMAN recon sniper/ninja, retaining the reference's one cybernetic forearm and opposite cybernetic lower leg. Functional fully clothed physique, two arms and legs, no sexualized armor. Fitted slate-grey / desaturated blue tactical clothing with LIGHT SMOKE-GREY protective masses, charcoal joints, one restrained blue optic accent. Asymmetrical short marksman drapes, compact diagonal wraps and mobile leg protection. No khaki military jacket, long priest robe, bulky melee pauldrons, swords or new weapons.\nMODEL:\nVERY HEAVY: full mobile reconnaissance armor: smoke-grey and slate faceted torso casing, low sloping shoulder shells, reinforced forearms/gloves, short asymmetrical waist/shoulder drape, continuous compact leg armor and solid boots. Heavy protection shaped for a female sniper/ninja, no broad melee silhouette or long robe."
+    },
+    {
+      "candidate_id": "TR-W03-H05-r02",
+      "class_key": "traqueuse",
+      "kind": "headgear",
+      "rank": 5,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-531e4961-af94-403b-b156-0b7e2e67ea8a.png",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nA compact ATHLETIC ADULT WOMAN recon sniper/ninja, retaining the reference's one cybernetic forearm and opposite cybernetic lower leg. Functional fully clothed physique, two arms and legs, no sexualized armor. Fitted slate-grey / desaturated blue tactical clothing with LIGHT SMOKE-GREY protective masses, charcoal joints, one restrained blue optic accent. Asymmetrical short marksman drapes, compact diagonal wraps and mobile leg protection. No khaki military jacket, long priest robe, bulky melee pauldrons, swords or new weapons.\nVERY HEAVY sniper/ninja head: a fully enclosed narrow stealth helmet, smoke-grey reinforced crown and upper cheeks, graphite lower face and a single sharp blue-grey visor slit. A simple dark cloth rear edge integrated close to the helmet. Compact armored head, no large hood point, spikes, ears or neck. CLOSED.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 11,
+        "max_width": 11,
+        "bottom_exclusive": 16
+      }
+    },
+    {
+      "candidate_id": "AR-W04-H05-r02",
+      "class_key": "arcaniste",
+      "kind": "headgear",
+      "rank": 5,
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-42c9952c-8c3e-4ce1-a99a-94b345ab6160.png",
+      "source_ref": "assets/source-art/class-readability-01/class-armors-all-01/AR-W04-P03-r01-body-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE complete class-specific head protection module for a native64 cyberpunk roguelike.\nDraw ONLY the WORN HEADGEAR viewed STRAIGHT FRONT, sized for a normal narrow adult head. NO shoulders, collar, long neck, mannequin, bare skull, stand or body.\nThe final helmet is about 8-11 pixels wide and 9-11 pixels high. Use a few broad simple masses and an anatomically close-fitting outline. Never big ear cups, giant side flanges, a round globe, large crown or oversized head.\nMatte broad 2-3 tone materials, readable dark outer contour, light upper-left. No tiny vents, rivets, hairline seams, wires, tall antenna, horns, magic glow, religious or licensed symbols.\nTransparent outside the complete item. For OPEN models, the front face opening must be GENUINELY ALPHA-ZERO EMPTY with no flesh, face, hair, black mannequin or rear lining. For CLOSED models draw an opaque complete visor/mask surface, no human features behind it. No ground shadow, halo or text.\n\nMaterial/style reference only: the original slender arcanist's burgundy technical tabard, IVORY CERAMIC torso guard and COPPER channeling bracers. Do not draw the referenced body. Match these materials in very few broad shapes.\nVERY HEAVY arcanist head: a narrow ridged BURGUNDY AND IVORY CERAMIC HELM, slim copper central ridge and a compact opaque geometric ivory faceplate with a dark narrow eye slit. Short angular crown, no giant crest, ear flanges or round bulb. Entire helmet fits an ordinary narrow head. CLOSED.",
+      "head_mode": "replace",
+      "framing": {
+        "target_height": 10,
+        "max_width": 9,
+        "bottom_exclusive": 14
+      }
+    }
+  ]
+}

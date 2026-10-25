@@ -1,0 +1,26 @@
+[
+  {
+    "id": "M100-r08-master-a",
+    "prompt": "Use case: identity-preserve. This is an existing game-creature appearance reference, not a pose to copy. Draw ONE complete creature on true transparent alpha, centered with generous empty margins, no floor, shadow, labels, text, particles or glow. Preserve the original pale muscular mutant, faceless downward-pointed pale head/neck wedge, orange shoulder carapace, dark waist/loincloth, TWO legs and TWO arms, black/gray forearm protection and original bare clawed feet. No new human face, horn, weapon, extra armor or appendage. Change the ENTIRE pose to a CLEAR FRONT-LEFT THREE-QUARTER VIEW: the monster faces SCREEN LEFT about55-60 degrees away from straight front. Physically rotate the ribcage, shoulder line, sternum, belly, belt, pelvis, knees and toes LEFT together. Its chest front projects toward the LEFT edge, while its broad near flank and near shoulder occupy the RIGHT side. The far shoulder is partially occluded behind the rotated chest. Pectorals and abdominal midline MUST be visibly foreshortened and oblique, NOT the symmetrical frontal/right-facing chest in the input. This is a full new whole-body pose, not a face edit or leg twist. Both feet supported in a restrained staggered idle. Keep the larger armored forearm on viewerLEFT, now on the FAR side of the body, allowing correct perspective and partial occlusion; the smaller existing hand remains viewerRIGHT on the NEAR side. Do not force the far arm into its old frontal size or location. Retain original body mass, materials and proportions. Chest, pelvis and feet unmistakably face LEFT.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/m100-torso-r08/M100-current-right-idle.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/M100-r08-master-a.png",
+    "prompt_file": "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/m100-torso-r08/M100-r08-master-a-prompt.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-af79cbc2-eede-41d5-8ced-f3186e6cbbf6.png",
+    "sha256": "b3c4ada09d2307db79634be40d8ea97562ce6ffa54415e7ea0f21be3a6462f6a",
+    "tool": "image_gen integrated"
+  },
+  {
+    "id": "M100-r08-master-b",
+    "prompt": "Use case: precise-object-edit. The entire supplied monster is facing SCREEN RIGHT. Horizontally reverse the complete whole-body pose so it faces SCREEN LEFT: reverse the entire ribcage, pectorals, abdomen, pelvis, shoulders, head/neck wedge and clawed feet together, with the full original silhouette and lighting coherently redrawn. Do not keep the same chest direction. ONE complete figure only, true transparent background and ample margins. Preserve the original pale muscular body, orange shoulder carapace, dark waist, forearm materials, TWO arms and TWO legs, existing faceless head shape; no new head, horn, weapon, text, shadow or floor. This output is a pose-direction study: prioritize a genuinely reversed LEFT-facing entire torso over keeping original viewer-side arm placement.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/m100-torso-r08/M100-current-right-idle.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/M100-r08-master-b.png",
+    "prompt_file": "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/m100-torso-r08/M100-r08-master-b-prompt.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-70540768-6802-4d8d-8ec4-08480a22b421.png",
+    "sha256": "d8388cdbc810051c5ff367747dfdc7606e09d1e52446365967188a73700b8791",
+    "tool": "image_gen integrated"
+  }
+]

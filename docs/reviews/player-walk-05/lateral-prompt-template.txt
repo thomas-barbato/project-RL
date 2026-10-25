@@ -1,0 +1,28 @@
+Use case: identity-preserve. Whole-character 2D game walk animation, review only.
+Input 1: exact accepted identity, outfit and body proportions.
+Input 2: actual equipped pose with its existing weapon and grips.
+Input 3: the user's successful Bastion LATERAL walk, motion/camera reference only.
+
+Create a regular atlas with SIX columns and TWO rows, exactly twelve COMPLETE
+full-body walking poses including all equipment. Row1 front-left three quarters,
+moving screen LEFT. Row2 front-right three quarters, moving screen RIGHT.
+Both head and torso face the specified direction; no profile/back/frontal rows.
+All twelve have identical body proportions, outfit, head and weapon identity.
+Six chronological poses per row: left contact, right knee passing, right foot
+reaching, right contact, left knee passing, left foot reaching. A compact measured
+walk, minimal bob, no running, straddling, wide sideways steps or exaggerated lift.
+Same anatomy and coordinated hips/knees/feet throughout. Arms keep natural grips
+on the equipped weapon rather than swinging through it. Whole figure is drawn
+in every cell. No deformed standing sprites, no separate pasted-on legs.
+
+Match the supplied identity faithfully, never copy the Bastion's orange armor
+or bulky build. Use the actual weapon, no new gear. Exactly the existing limbs,
+whole shoulders/sleeves/wrists/hands without gaps or third arm. Both grips on
+the same straight shaft for two-handed items. Keep every barrel/shaft/blade
+rigid and the same length/shape in all frames. Hold ready, not an attack.
+
+Canvas1536x512, twelve equal256x256cells. Same scale/bodyheight208px and sole
+baseline236px in all cells, clear transparent gutters. Full heads/boots/weapons,
+no clipping or neighbors. Transparent alpha, no background, text, labels, floor,
+shadows, particles or effects. Matte clean illustrated sprites as reference1,
+native64 readability, dark controlled contours, no blur/grain/glow.

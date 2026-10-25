@@ -1,0 +1,60 @@
+{
+  "review_id": "ARCANISTE-MAGE-HEADS02",
+  "date": "2026-10-22",
+  "user_request": "alors j'aime la tenue mais les têtes ne vont pas (avec le casque) il faut faire quelque chose de plus.. magicien de jeu vidéo tu sais.",
+  "mode": "built_in_image_gen",
+  "unchanged_ranks": [
+    1,
+    2
+  ],
+  "jobs": [
+    {
+      "rank": 3,
+      "candidate_id": "AR-MH02-P03-r01",
+      "tool": "built_in_image_gen",
+      "prompt": "Use case: precise-object-edit.\nAsset: one whole transparent character source, Arcaniste armor study 03 for Project RL, intended for an actual 64x64 sprite.\nInput image 1 is the EDIT TARGET. Preserve the entire existing character below the jaw exactly, including every garment, plate, collar, copper neck connector, color, arm, hand, leg, boot, pose, framing and position. Change ONLY the headwear above the collar. Keep the same pale male face identity and short white hair where visible.\nUser feedback: the outfit is liked, but the heads look too much like science-fiction soldiers and must read as a videogame MAG WIZARD.\nHead design: INTERMEDIATE: replace the current close-fitting mechanical coif with a clearly recognizable fantasy videogame wizard HOOD. A matte plum cloth hood, gently pointed peaked top, fitted close around the human face, one broad folded cloth rim. White fringe and pale face visible. No ceramic helmet shell, no ear discs. Simple pure cloth silhouette, barely wider than the original head.\nKeep this mage's face readable at tiny size. Use broad quiet shapes, a light face against the plum hood, two or three strong value groups; no tiny embroidery, runes, lights, floating dots, dangling gadgets, cables, gemstone speckles or texture noise. Match the existing plum, ivory and restrained copper palette. A compact hood, not a huge head: same crown height and chin position as the source, normal head-to-body proportions, no extended neck. Keep the full head within approximately the original head area, with only a small lateral expansion of the hood.\nMatch the source's restrained game-illustration finish and light direction. No changes to the outfit or silhouette below the chin. Do not add staff, weapons, effects or backdrop. Full figure on a genuinely transparent RGBA background. Preserve the input canvas 1230x1278, subject coordinates, body scale, feet and empty margins. Output the edited full image, not a head crop or a board.",
+      "transparent_background": true,
+      "references": [
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P03-r01-source.png",
+          "sha256": "c23b7ba4c61823f4a75c160ac20adbc198b21980cd475275e7db3a7ffd8423fa",
+          "role": "edit_target; whole outfit and framing locked, headwear only changes"
+        }
+      ],
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P03-r01-generated-head-edit.png",
+      "built_in_output_path": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-ece3d93e-a1b3-472f-b8d1-35331884e424.png"
+    },
+    {
+      "rank": 4,
+      "candidate_id": "AR-MH02-P04-r01",
+      "tool": "built_in_image_gen",
+      "prompt": "Use case: precise-object-edit.\nAsset: one whole transparent character source, Arcaniste armor study 04 for Project RL, intended for an actual 64x64 sprite.\nInput image 1 is the EDIT TARGET. Preserve the entire existing character below the jaw exactly, including every garment, plate, collar, copper neck connector, color, arm, hand, leg, boot, pose, framing and position. Change ONLY the headwear above the collar. Keep the same pale male face identity and short white hair where visible.\nUser feedback: the outfit is liked, but the heads look too much like science-fiction soldiers and must read as a videogame MAG WIZARD.\nHead design: HEAVY: replace the current ivory military open helmet with an unmistakable battlemage CLOTH HOOD. Plum hood with a broad warm ivory cloth lining framing the open human face, and a low narrow copper brow band resting just above the eyebrows. The cloth hood has a modest tapered peaked top. No hard cap or ear discs; most of the exterior remains visibly soft plum cloth.\nKeep this mage's face readable at tiny size. Use broad quiet shapes, a light face against the plum hood, two or three strong value groups; no tiny embroidery, runes, lights, floating dots, dangling gadgets, cables, gemstone speckles or texture noise. Match the existing plum, ivory and restrained copper palette. A compact hood, not a huge head: same crown height and chin position as the source, normal head-to-body proportions, no extended neck. Keep the full head within approximately the original head area, with only a small lateral expansion of the hood.\nMatch the source's restrained game-illustration finish and light direction. No changes to the outfit or silhouette below the chin. Do not add staff, weapons, effects or backdrop. Full figure on a genuinely transparent RGBA background. Preserve the input canvas 1254x1254, subject coordinates, body scale, feet and empty margins. Output the edited full image, not a head crop or a board.",
+      "transparent_background": true,
+      "references": [
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P04-r02-source.png",
+          "sha256": "c05e4993374ddff552cee15c1e4ef69fd502cb429e81013f229409f119b75f04",
+          "role": "edit_target; whole outfit and framing locked, headwear only changes"
+        }
+      ],
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P04-r01-generated-head-edit.png",
+      "built_in_output_path": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-13ff770e-5a73-437f-b3a4-09dbbb7a7427.png"
+    },
+    {
+      "rank": 5,
+      "candidate_id": "AR-MH02-P05-r01",
+      "tool": "built_in_image_gen",
+      "prompt": "Use case: precise-object-edit.\nAsset: one whole transparent character source, Arcaniste armor study 05 for Project RL, intended for an actual 64x64 sprite.\nInput image 1 is the EDIT TARGET. Preserve the entire existing character below the jaw exactly, including every garment, plate, collar, copper neck connector, color, arm, hand, leg, boot, pose, framing and position. Change ONLY the headwear above the collar. Keep the same pale male face identity and short white hair where visible.\nUser feedback: the outfit is liked, but the heads look too much like science-fiction soldiers and must read as a videogame MAG WIZARD.\nHead design: VERY HEAVY: replace the closed scifi helmet with an unmistakable archmage hood and low ivory DIADEM. Matte plum hood with a modest tapered peaked top; a single broad warm ivory ceramic diadem traces the forehead and the temples, with a tiny low central upward point. Human pale face, eyes, nose and mouth completely exposed in a clear light facial mass. Ivory hood lining connects visually to the coat. No visor, faceplate, jaw plate, ear discs or full hard helmet shell. The diadem is solid and simple, no individual jewels or spikes.\nKeep this mage's face readable at tiny size. Use broad quiet shapes, a light face against the plum hood, two or three strong value groups; no tiny embroidery, runes, lights, floating dots, dangling gadgets, cables, gemstone speckles or texture noise. Match the existing plum, ivory and restrained copper palette. A compact hood, not a huge head: same crown height and chin position as the source, normal head-to-body proportions, no extended neck. Keep the full head within approximately the original head area, with only a small lateral expansion of the hood.\nMatch the source's restrained game-illustration finish and light direction. No changes to the outfit or silhouette below the chin. Do not add staff, weapons, effects or backdrop. Full figure on a genuinely transparent RGBA background. Preserve the input canvas 1230x1278, subject coordinates, body scale, feet and empty margins. Output the edited full image, not a head crop or a board.",
+      "transparent_background": true,
+      "references": [
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-channeler-wave-01/AR-CA01-P05-r01-source.png",
+          "sha256": "130df90ad1fdbf80420cf4c6acf9049d4c2bb2fd817c7e6ab1cfd16e5c22bdf9",
+          "role": "edit_target; whole outfit and framing locked, headwear only changes"
+        }
+      ],
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P05-r01-generated-head-edit.png",
+      "built_in_output_path": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-4fdedf4f-4f1f-4aa1-bdcd-1c6ea984af04.png"
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+[
+  {
+    "id": "MON-081-0",
+    "review_id": "WALK07-M21",
+    "kind": "creature",
+    "label": "Quadrupède cuirassé",
+    "record": {
+      "id": "MON-081-0",
+      "label": "081 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons et créations",
+      "rig": "quad",
+      "image": "catalogue/assets/9d9701824214a5a53ec6.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 81,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        34,
+        62,
+        95,
+        96
+      ],
+      "rigLabel": "Appuis de quadrupède",
+      "reviewId": "WALK03-MON-081-0"
+    },
+    "locomotor_legs": 4,
+    "motion": "Exactly four short weight-bearing legs, the existing short pointed rear appendage, pink/red underside and rough olive-brown dorsal covering. Keep the original low broad mound, head/front opening and short clawed feet. Compact low four-foot walking supports. No black beak, new plates, horns or extra feet copied from the reference.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-081-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-081-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot03\\MON-103-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-081-0-cycle-lot04-r01.png",
+    "source_columns": 7,
+    "source_rows": 2,
+    "selected_source_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "shadow": true,
+    "strict_source_outer_margin": true,
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-081-0-lot04-r01.txt",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation for existing identity MON-081-0.\nINPUT1 is the exact canonical APPEARANCE. Preserve anatomy, head/face, supports, all original appendages, materials, colors, carried objects and proportions. Isolated colored fringe specks in the old export are not glow or anatomy.\nINPUT2 is ONLY a compatible accepted WHOLE-FIGURE motion and layout guide. Do not copy its species, face, bulk, armor, color or objects. Use compact supports and the same matte native64-readable game-art finish.\nSPECIFIC ANATOMY AND MOVEMENT: Exactly four short weight-bearing legs, the existing short pointed rear appendage, pink/red underside and rough olive-brown dorsal covering. Keep the original low broad mound, head/front opening and short clawed feet. Compact low four-foot walking supports. No black beak, new plates, horns or extra feet copied from the reference.\nOUTPUT EXACTLY FOURTEEN separate COMPLETE figures, exactly TWO ROWS of exactly SEVEN figures on a wide transparent atlas approximately1792x640. No extra rows, eighth column, labels or duplicates. Each whole figure must occupy at most75percent of its cell WIDTH AND HEIGHT, all using the SAME scale. Leave generous transparent margins around every horn, wing, claw, coil, book and tail, at least24px from the OUTER canvas edge. No neighboring figures may touch; no clipped appendages. Do not fill the cells.\nTOP ROW: ALL face screenLEFT in near-front three quarters, idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW: ALL face RIGHT, idle then R0,R1,R2,R3,R4,R5. Head, torso and feet/base face together. No back view, pure profile, head-only reversal or changing direction within a row. Preserve asymmetric object ownership from INPUT1.\nSix motion poses form ONE full compact cycle, three phases on one grid cell and the next three on the following cell,400ms per cell. Real stable resting idle; no frozen raised foot at arrival. Use the actual source morphology, not a human gait for a legless form.\nDraw EACH creature WHOLE and coherent. Constant apparent scale, mass, head size, anatomy, materials and object identity across all14 poses; low restrained bob, no wide spread, stretching, hopping or swelling. No grafted parts, procedural strips or detached limbs. Canonical source proportions stay unchanged despite empty cell space.\nGenuine transparent alpha, clean dark matte game-art contours and readable shapes. No floor, ground shadow, text, grid, effects, particles, halo, colored fringe/specks, extra equipment or redesign."
+  },
+  {
+    "id": "MON-092-0",
+    "review_id": "WALK07-M22",
+    "kind": "creature",
+    "label": "Quadrupède pâle",
+    "record": {
+      "id": "MON-092-0",
+      "label": "092 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons et créations",
+      "rig": "quad",
+      "image": "catalogue/assets/964cbafafd4a12dc026c.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 92,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        38,
+        53,
+        91,
+        96
+      ],
+      "rigLabel": "Appuis de quadrupède",
+      "reviewId": "WALK03-MON-092-0"
+    },
+    "locomotor_legs": 4,
+    "motion": "Exactly four weight-bearing limbs. Preserve the pale high arched back, red underside/creases, broad dark front claws and shorter rear limbs. Preserve its original narrow/obscured head instead of inventing a large face. Low compact four-limb gait, stable back, distinct fore/hind support. No added dorsal plates, horns, tail or costume.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-092-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-092-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot02\\MON-064-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-092-0-cycle-lot04-r01.png",
+    "source_columns": 7,
+    "source_rows": 2,
+    "selected_source_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "shadow": true,
+    "strict_source_outer_margin": true,
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-092-0-lot04-r01.txt",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation for existing identity MON-092-0.\nINPUT1 is the exact canonical APPEARANCE. Preserve anatomy, head/face, supports, all original appendages, materials, colors, carried objects and proportions. Isolated colored fringe specks in the old export are not glow or anatomy.\nINPUT2 is ONLY a compatible accepted WHOLE-FIGURE motion and layout guide. Do not copy its species, face, bulk, armor, color or objects. Use compact supports and the same matte native64-readable game-art finish.\nSPECIFIC ANATOMY AND MOVEMENT: Exactly four weight-bearing limbs. Preserve the pale high arched back, red underside/creases, broad dark front claws and shorter rear limbs. Preserve its original narrow/obscured head instead of inventing a large face. Low compact four-limb gait, stable back, distinct fore/hind support. No added dorsal plates, horns, tail or costume.\nOUTPUT EXACTLY FOURTEEN separate COMPLETE figures, exactly TWO ROWS of exactly SEVEN figures on a wide transparent atlas approximately1792x640. No extra rows, eighth column, labels or duplicates. Each whole figure must occupy at most75percent of its cell WIDTH AND HEIGHT, all using the SAME scale. Leave generous transparent margins around every horn, wing, claw, coil, book and tail, at least24px from the OUTER canvas edge. No neighboring figures may touch; no clipped appendages. Do not fill the cells.\nTOP ROW: ALL face screenLEFT in near-front three quarters, idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW: ALL face RIGHT, idle then R0,R1,R2,R3,R4,R5. Head, torso and feet/base face together. No back view, pure profile, head-only reversal or changing direction within a row. Preserve asymmetric object ownership from INPUT1.\nSix motion poses form ONE full compact cycle, three phases on one grid cell and the next three on the following cell,400ms per cell. Real stable resting idle; no frozen raised foot at arrival. Use the actual source morphology, not a human gait for a legless form.\nDraw EACH creature WHOLE and coherent. Constant apparent scale, mass, head size, anatomy, materials and object identity across all14 poses; low restrained bob, no wide spread, stretching, hopping or swelling. No grafted parts, procedural strips or detached limbs. Canonical source proportions stay unchanged despite empty cell space.\nGenuine transparent alpha, clean dark matte game-art contours and readable shapes. No floor, ground shadow, text, grid, effects, particles, halo, colored fringe/specks, extra equipment or redesign."
+  },
+  {
+    "id": "MON-139-0",
+    "review_id": "WALK07-M24",
+    "kind": "creature",
+    "label": "Créature au livre",
+    "record": {
+      "id": "MON-139-0",
+      "label": "139 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Nécromanciens démoniaques",
+      "rig": "float",
+      "image": "catalogue/assets/f9e52bce38c4fac0ede7.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 139,
+      "variant": 0,
+      "status": "Visuel réservé",
+      "note": "Une ressource visuelle ne crée pas de rencontre ni de nouvelle capacité.",
+      "bounds": [
+        39,
+        18,
+        90,
+        96
+      ],
+      "rigLabel": "Flottement",
+      "reviewId": "WALK03-MON-139-0"
+    },
+    "locomotor_legs": 0,
+    "motion": "NO humanoid walking legs. Preserve this exact green-hooded pale-faced creature, TWO skeletal arms, brown/gold OPEN BOOK and all the existing pale coiled lower-body appendages under the robe. The coiled base creeps with tiny traveling contractions; do not turn coils into feet, remove coils or create extra limbs. Upper body stays level. The open book is RIGID, remains supported by the SAME anatomical holding hand through all14 poses, and stays on the viewer RIGHT in BOTH near-front views like INPUT1; the empty extended claw stays viewer LEFT. Never mirror the book across the torso, swap hands, duplicate the book or bend its spine/pages. INPUT2 guides subtle coiled-base motion ONLY: do not copy its worm head or replace the green hood, arms, book or body.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-139-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-139-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot01\\MON-141-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-139-0-cycle-lot04-r01.png",
+    "source_columns": 7,
+    "source_rows": 2,
+    "selected_source_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "shadow": true,
+    "strict_source_outer_margin": true,
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-139-0-lot04-r01.txt",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation for existing identity MON-139-0.\nINPUT1 is the exact canonical APPEARANCE. Preserve anatomy, head/face, supports, all original appendages, materials, colors, carried objects and proportions. Isolated colored fringe specks in the old export are not glow or anatomy.\nINPUT2 is ONLY a compatible accepted WHOLE-FIGURE motion and layout guide. Do not copy its species, face, bulk, armor, color or objects. Use compact supports and the same matte native64-readable game-art finish.\nSPECIFIC ANATOMY AND MOVEMENT: NO humanoid walking legs. Preserve this exact green-hooded pale-faced creature, TWO skeletal arms, brown/gold OPEN BOOK and all the existing pale coiled lower-body appendages under the robe. The coiled base creeps with tiny traveling contractions; do not turn coils into feet, remove coils or create extra limbs. Upper body stays level. The open book is RIGID, remains supported by the SAME anatomical holding hand through all14 poses, and stays on the viewer RIGHT in BOTH near-front views like INPUT1; the empty extended claw stays viewer LEFT. Never mirror the book across the torso, swap hands, duplicate the book or bend its spine/pages. INPUT2 guides subtle coiled-base motion ONLY: do not copy its worm head or replace the green hood, arms, book or body.\nOUTPUT EXACTLY FOURTEEN separate COMPLETE figures, exactly TWO ROWS of exactly SEVEN figures on a wide transparent atlas approximately1792x640. No extra rows, eighth column, labels or duplicates. Each whole figure must occupy at most75percent of its cell WIDTH AND HEIGHT, all using the SAME scale. Leave generous transparent margins around every horn, wing, claw, coil, book and tail, at least24px from the OUTER canvas edge. No neighboring figures may touch; no clipped appendages. Do not fill the cells.\nTOP ROW: ALL face screenLEFT in near-front three quarters, idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW: ALL face RIGHT, idle then R0,R1,R2,R3,R4,R5. Head, torso and feet/base face together. No back view, pure profile, head-only reversal or changing direction within a row. Preserve asymmetric object ownership from INPUT1.\nSix motion poses form ONE full compact cycle, three phases on one grid cell and the next three on the following cell,400ms per cell. Real stable resting idle; no frozen raised foot at arrival. Use the actual source morphology, not a human gait for a legless form.\nDraw EACH creature WHOLE and coherent. Constant apparent scale, mass, head size, anatomy, materials and object identity across all14 poses; low restrained bob, no wide spread, stretching, hopping or swelling. No grafted parts, procedural strips or detached limbs. Canonical source proportions stay unchanged despite empty cell space.\nGenuine transparent alpha, clean dark matte game-art contours and readable shapes. No floor, ground shadow, text, grid, effects, particles, halo, colored fringe/specks, extra equipment or redesign."
+  },
+  {
+    "id": "MON-147-0",
+    "review_id": "WALK07-M25",
+    "kind": "creature",
+    "label": "Créature ailée violette",
+    "record": {
+      "id": "MON-147-0",
+      "label": "147 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons ailés",
+      "rig": "winged",
+      "image": "catalogue/assets/50286b2d9c203723c909.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 147,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        7,
+        12,
+        122,
+        96
+      ],
+      "rigLabel": "Appuis et ailes",
+      "reviewId": "WALK03-MON-147-0"
+    },
+    "locomotor_legs": 2,
+    "motion": "Exactly TWO hind walking legs, TWO arms and TWO broad wings. Preserve the purple flesh, pale violet wing membranes, original horns, dark torso/waist cloth and original source appendages. Do not add any tail or equipment absent from INPUT1. Compact grounded two-foot walk, no great split. Wings carried in the original wide spread with very slight joint motion, no flight and no change of skin/membrane color.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-147-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-147-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot01\\MON-144-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-147-0-cycle-lot04-r01.png",
+    "source_columns": 7,
+    "source_rows": 2,
+    "selected_source_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "shadow": true,
+    "strict_source_outer_margin": true,
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-147-0-lot04-r01.txt",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation for existing identity MON-147-0.\nINPUT1 is the exact canonical APPEARANCE. Preserve anatomy, head/face, supports, all original appendages, materials, colors, carried objects and proportions. Isolated colored fringe specks in the old export are not glow or anatomy.\nINPUT2 is ONLY a compatible accepted WHOLE-FIGURE motion and layout guide. Do not copy its species, face, bulk, armor, color or objects. Use compact supports and the same matte native64-readable game-art finish.\nSPECIFIC ANATOMY AND MOVEMENT: Exactly TWO hind walking legs, TWO arms and TWO broad wings. Preserve the purple flesh, pale violet wing membranes, original horns, dark torso/waist cloth and original source appendages. Do not add any tail or equipment absent from INPUT1. Compact grounded two-foot walk, no great split. Wings carried in the original wide spread with very slight joint motion, no flight and no change of skin/membrane color.\nOUTPUT EXACTLY FOURTEEN separate COMPLETE figures, exactly TWO ROWS of exactly SEVEN figures on a wide transparent atlas approximately1792x640. No extra rows, eighth column, labels or duplicates. Each whole figure must occupy at most75percent of its cell WIDTH AND HEIGHT, all using the SAME scale. Leave generous transparent margins around every horn, wing, claw, coil, book and tail, at least24px from the OUTER canvas edge. No neighboring figures may touch; no clipped appendages. Do not fill the cells.\nTOP ROW: ALL face screenLEFT in near-front three quarters, idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW: ALL face RIGHT, idle then R0,R1,R2,R3,R4,R5. Head, torso and feet/base face together. No back view, pure profile, head-only reversal or changing direction within a row. Preserve asymmetric object ownership from INPUT1.\nSix motion poses form ONE full compact cycle, three phases on one grid cell and the next three on the following cell,400ms per cell. Real stable resting idle; no frozen raised foot at arrival. Use the actual source morphology, not a human gait for a legless form.\nDraw EACH creature WHOLE and coherent. Constant apparent scale, mass, head size, anatomy, materials and object identity across all14 poses; low restrained bob, no wide spread, stretching, hopping or swelling. No grafted parts, procedural strips or detached limbs. Canonical source proportions stay unchanged despite empty cell space.\nGenuine transparent alpha, clean dark matte game-art contours and readable shapes. No floor, ground shadow, text, grid, effects, particles, halo, colored fringe/specks, extra equipment or redesign."
+  },
+  {
+    "id": "MON-148-0",
+    "review_id": "WALK07-M26",
+    "kind": "creature",
+    "label": "Créature ailée massive",
+    "record": {
+      "id": "MON-148-0",
+      "label": "148 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Minotaures ailés",
+      "rig": "winged",
+      "image": "catalogue/assets/79a901dbe868fdc8a11e.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 148,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        2,
+        2,
+        126,
+        96
+      ],
+      "rigLabel": "Appuis et ailes",
+      "reviewId": "WALK03-MON-148-0"
+    },
+    "locomotor_legs": 2,
+    "motion": "Exactly TWO hind walking legs, TWO arms and TWO wings. Preserve the massive brown body, large curved ivory horns, dark hair/beard around the head/chest, reddish dark wing membranes, dark waist cloth and lower legs. No golden or purple material from the reference, no tail, weapon or equipment absent from INPUT1. Heavy compact grounded alternating supports, restrained bob, wings remain carried spread; no flight or growing/shrinking body.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-148-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-148-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot03\\MON-146-0-whole-body-native.png"
+    ],
+    "source_destination": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-148-0-cycle-lot04-r02.png",
+    "source_columns": 7,
+    "source_rows": 2,
+    "selected_source_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "shadow": true,
+    "strict_source_outer_margin": true,
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-148-0-lot04-r01.txt",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation for existing identity MON-148-0.\nINPUT1 is the exact canonical APPEARANCE. Preserve anatomy, head/face, supports, all original appendages, materials, colors, carried objects and proportions. Isolated colored fringe specks in the old export are not glow or anatomy.\nINPUT2 is ONLY a compatible accepted WHOLE-FIGURE motion and layout guide. Do not copy its species, face, bulk, armor, color or objects. Use compact supports and the same matte native64-readable game-art finish.\nSPECIFIC ANATOMY AND MOVEMENT: Exactly TWO hind walking legs, TWO arms and TWO wings. Preserve the massive brown body, large curved ivory horns, dark hair/beard around the head/chest, reddish dark wing membranes, dark waist cloth and lower legs. No golden or purple material from the reference, no tail, weapon or equipment absent from INPUT1. Heavy compact grounded alternating supports, restrained bob, wings remain carried spread; no flight or growing/shrinking body.\nOUTPUT EXACTLY FOURTEEN separate COMPLETE figures, exactly TWO ROWS of exactly SEVEN figures on a wide transparent atlas approximately1792x640. No extra rows, eighth column, labels or duplicates. Each whole figure must occupy at most75percent of its cell WIDTH AND HEIGHT, all using the SAME scale. Leave generous transparent margins around every horn, wing, claw, coil, book and tail, at least24px from the OUTER canvas edge. No neighboring figures may touch; no clipped appendages. Do not fill the cells.\nTOP ROW: ALL face screenLEFT in near-front three quarters, idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW: ALL face RIGHT, idle then R0,R1,R2,R3,R4,R5. Head, torso and feet/base face together. No back view, pure profile, head-only reversal or changing direction within a row. Preserve asymmetric object ownership from INPUT1.\nSix motion poses form ONE full compact cycle, three phases on one grid cell and the next three on the following cell,400ms per cell. Real stable resting idle; no frozen raised foot at arrival. Use the actual source morphology, not a human gait for a legless form.\nDraw EACH creature WHOLE and coherent. Constant apparent scale, mass, head size, anatomy, materials and object identity across all14 poses; low restrained bob, no wide spread, stretching, hopping or swelling. No grafted parts, procedural strips or detached limbs. Canonical source proportions stay unchanged despite empty cell space.\nGenuine transparent alpha, clean dark matte game-art contours and readable shapes. No floor, ground shadow, text, grid, effects, particles, halo, colored fringe/specks, extra equipment or redesign.",
+    "selected_correction": "generation-creatures-lot04-r02.json"
+  }
+]

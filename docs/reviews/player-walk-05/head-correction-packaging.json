@@ -1,0 +1,236 @@
+{
+  "review_id": "WALK05-HEAD02",
+  "status": "rejected_by_player",
+  "rejection": "Head correction does not fix the gait; user rejects WALK05-HEAD02",
+  "coverage": "CLASS-10 / rifle / left and right only; remaining bank pending",
+  "sources": [
+    "assets\\source-art\\player-walk-review-05\\traqueuse-rifle-left-head02.png",
+    "assets\\source-art\\player-walk-review-05\\traqueuse-rifle-right-head02.png"
+  ],
+  "method": "whole figures; one common scale; common baseline; no limb manipulation",
+  "scale": 0.11787819253438114,
+  "baseline": 63,
+  "frames": [
+    {
+      "direction": "left",
+      "frame": 0,
+      "source_bounds": [
+        138,
+        2,
+        471,
+        510
+      ],
+      "native_bounds": [
+        13,
+        3,
+        52,
+        63
+      ],
+      "sha256": "881db23bdf43f06da9fdf98aa4fda72b8f7c7062403a4c165de9fd5ff5104d0d"
+    },
+    {
+      "direction": "left",
+      "frame": 1,
+      "source_bounds": [
+        597,
+        2,
+        926,
+        511
+      ],
+      "native_bounds": [
+        13,
+        3,
+        52,
+        63
+      ],
+      "sha256": "429df3bb759fd66f32af3a881a6061dd4777236e15ba6623c17c409adec9ddf7"
+    },
+    {
+      "direction": "left",
+      "frame": 2,
+      "source_bounds": [
+        1062,
+        2,
+        1389,
+        510
+      ],
+      "native_bounds": [
+        13,
+        3,
+        52,
+        63
+      ],
+      "sha256": "693a3d62de8e1a078aaaff41cc99daca0d193e103334c98acda88223f97af691"
+    },
+    {
+      "direction": "left",
+      "frame": 3,
+      "source_bounds": [
+        135,
+        511,
+        468,
+        1018
+      ],
+      "native_bounds": [
+        13,
+        3,
+        52,
+        63
+      ],
+      "sha256": "f3867b2f4768d25bff7dfd9c8470095ef800f2ed0dbc2cac4ca96a972a1caa5e"
+    },
+    {
+      "direction": "left",
+      "frame": 4,
+      "source_bounds": [
+        590,
+        511,
+        924,
+        1019
+      ],
+      "native_bounds": [
+        13,
+        3,
+        52,
+        63
+      ],
+      "sha256": "dc4525b4cd50170958d0cf757fd2c61940b13a5f6884f65f8c846f78b3dee6fc"
+    },
+    {
+      "direction": "left",
+      "frame": 5,
+      "source_bounds": [
+        1068,
+        511,
+        1393,
+        1018
+      ],
+      "native_bounds": [
+        13,
+        3,
+        51,
+        63
+      ],
+      "sha256": "d571f99d5a7b058feeb9d171afe05324e1476272f6b31b68f5700c06879464cf"
+    },
+    {
+      "direction": "right",
+      "frame": 0,
+      "source_bounds": [
+        176,
+        1,
+        477,
+        493
+      ],
+      "native_bounds": [
+        15,
+        5,
+        50,
+        63
+      ],
+      "sha256": "1e4fd3fa71fea762903120b559de2f08f2221f387c74f380c3b991b963b694c5"
+    },
+    {
+      "direction": "right",
+      "frame": 1,
+      "source_bounds": [
+        685,
+        1,
+        990,
+        494
+      ],
+      "native_bounds": [
+        14,
+        5,
+        50,
+        63
+      ],
+      "sha256": "e94bd95f38c69f7146c4829ed0c77c4157c590b86435583230348ef9eefe5216"
+    },
+    {
+      "direction": "right",
+      "frame": 2,
+      "source_bounds": [
+        1200,
+        0,
+        1504,
+        492
+      ],
+      "native_bounds": [
+        14,
+        5,
+        50,
+        63
+      ],
+      "sha256": "0e28bd427473e3b5098135c69dbac7876b790abc2d7ac52dd004e888e16e3fd3"
+    },
+    {
+      "direction": "right",
+      "frame": 3,
+      "source_bounds": [
+        170,
+        518,
+        476,
+        1002
+      ],
+      "native_bounds": [
+        14,
+        6,
+        50,
+        63
+      ],
+      "sha256": "c5543dfb86180e8c87804c9d6200bcced905c97437b751b326732725968ae901"
+    },
+    {
+      "direction": "right",
+      "frame": 4,
+      "source_bounds": [
+        654,
+        518,
+        963,
+        1003
+      ],
+      "native_bounds": [
+        14,
+        6,
+        50,
+        63
+      ],
+      "sha256": "4ad4f8bfe52f5c171445a43763ade2032005c7cfe13c2ec8f441a0aea6271c5e"
+    },
+    {
+      "direction": "right",
+      "frame": 5,
+      "source_bounds": [
+        1144,
+        518,
+        1450,
+        1004
+      ],
+      "native_bounds": [
+        14,
+        6,
+        50,
+        63
+      ],
+      "sha256": "84cc857fc4066fe1d06fa5ee7dd2b76460624e2a1f7ad67330f690b26b715da3"
+    }
+  ],
+  "default_cell_duration_ms": 400,
+  "choices_ms": [
+    120,
+    200,
+    400
+  ],
+  "game_integration": false,
+  "vertical_movement_modified": false,
+  "directions_manually_checked": [
+    "all six left-facing",
+    "all six right-facing"
+  ],
+  "limits": [
+    "Gait quality still requires player review",
+    "No claim that the complete bank is ready"
+  ],
+  "fragment_bytes": 142394
+}

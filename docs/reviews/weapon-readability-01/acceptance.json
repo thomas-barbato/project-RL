@@ -1,0 +1,77 @@
+{
+  "review_id": "WEAPON-READABILITY01-ACCEPT01",
+  "user_quote": "c'est beaucoup mieux oui , on peut aussi voir pour les armes lourdes ? :) en tout cas je valide !",
+  "accepted_candidates": [
+    {
+      "id": "WR-AX01",
+      "model": 66,
+      "native": "assets/source-art/weapon-readability-01/native/axe-01.png",
+      "origin": [
+        43,
+        55
+      ],
+      "anchor": [
+        52,
+        60
+      ],
+      "support": [
+        68,
+        60
+      ],
+      "angle": 0,
+      "grip_angle": 0.694,
+      "scales": [
+        1,
+        0.95,
+        0.88,
+        0.92,
+        0.96
+      ],
+      "shift_from_palms": [
+        2,
+        0
+      ],
+      "source": "assets/source-art/weapon-readability-01/generated/axe-01.png",
+      "source_sha256": "dabbe5e175d764719cefb55a33ff33d74b624c4414e5f5b0c2252c10e69aab21",
+      "native_sha256": "25ab1c46aa6a77d042d74f6a37d35108fbb9ad12d11e5ad4d51e2329a9aeabf0"
+    },
+    {
+      "id": "WR-RF01",
+      "model": 2,
+      "native": "assets/source-art/weapon-readability-01/native/rifle-01.png",
+      "origin": [
+        43,
+        52
+      ],
+      "anchor": [
+        60,
+        62
+      ],
+      "support": [
+        76,
+        59.5
+      ],
+      "angle": -0.1,
+      "grip_angle": -0.1,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -1
+      ],
+      "source": "assets/source-art/weapon-readability-01/generated/rifle-01.png",
+      "source_sha256": "e69a9e415ad587b0dadd9253ac8df9d17b08da7d6f4e2cee825cbc2b38d5c285",
+      "native_sha256": "7b6fa9012783f8264ac88e054d971f724f125bbb1bf0d945cdba8944cf1651d6"
+    }
+  ],
+  "accepted_view": "02, new drawing and pose with one-pixel body-contact shadow",
+  "native_tile": 64,
+  "outfits": 25,
+  "game_rules_changes": false,
+  "integration_status": "approved drawings, active game unchanged during heavy-weapon review"
+}

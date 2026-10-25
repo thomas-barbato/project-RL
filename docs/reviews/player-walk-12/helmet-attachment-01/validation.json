@@ -1,0 +1,41 @@
+{
+  "revision": "WALK12-HELMET-ORIENTATION-r02",
+  "shell_turns_with_walking_head": true,
+  "open_helmets_keep_the_authored_walking_face": true,
+  "source": "actual normal Rust compositor exports",
+  "outfits": 25,
+  "helmet_models": 6,
+  "directions": 2,
+  "walking_poses_reviewed": 1800,
+  "additional_lateral_reference_idles": 300,
+  "unchanged_front_comparisons": 175,
+  "unchanged_unhelmeted_atlases": 25,
+  "preview_ms_per_cell": 400,
+  "preview_only_rest_ms": 300,
+  "native_tile_px": 64,
+  "source_sha256": {
+    "src\\game_art_walk_rig.rs": "11ae515a8c31f8be59abdb17b72a79e886854c95444dcd6515f8d3085c650d33",
+    "src\\walk_proportions_player_export.rs": "602dd2e78a29afb93256edfd439a480b2f48f096b57b3ea7382279a207c52363"
+  },
+  "status": "passed",
+  "date": "2026-10-25",
+  "runtime_correction_integrated": true,
+  "regression": {
+    "helmet_poses": 2100,
+    "armed_helmet_checks": 600,
+    "seconds": 44.47,
+    "status": "passed",
+    "six_models_have_distinct_left_right_projections": true,
+    "technical_visors_face_the_movement": true,
+    "open_helmets_preserve_the_walking_face": true
+  },
+  "builds": {
+    "release": "passed, 1m55s",
+    "release_sha256": "e423181fae25f95020bc65e5387dfe28372bdaa776a4f8b86fca2a69bffa3233",
+    "cargo_fmt_check": "passed",
+    "git_diff_check": "passed"
+  },
+  "accepted_walk12_runtime_assets_unchanged": 51,
+  "interactive_game_window_tested": false,
+  "preview": "casques-orientes-avant-apres-native64.gif"
+}

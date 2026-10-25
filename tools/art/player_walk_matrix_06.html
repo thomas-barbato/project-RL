@@ -1,0 +1,99 @@
+<div id="rl-walk-matrix-__CLASS_INDEX__">
+  <h3>__CLASS_NAME__ · cinq tenues</h3>
+  <div class="viz-controls">
+    <button class="btn btn-primary" type="button" data-action="play">Pause</button>
+    <button class="btn" type="button" data-action="cell">Avancer d’une case</button>
+    <button class="btn" type="button" data-action="step">Image suivante</button>
+    <label class="form-label">Une case
+      <select class="form-select" data-control="pace"><option value="120">120 ms</option><option value="200">200 ms</option><option value="400" selected>400 ms</option></select>
+    </label>
+    <label class="form-label">Sol
+      <select class="form-select" data-control="floor"><option value="dark">Sombre</option><option value="light">Clair</option><option value="textured">Texturé</option></select>
+    </label>
+  </div>
+  <div class="walk-figures"></div>
+  <div class="viz-row text-small" aria-live="polite"><span data-grid-status>À l’arrêt</span><span data-status>Chargement des poses…</span></div>
+</div>
+<style>
+  #rl-walk-matrix-__CLASS_INDEX__ .walk-figures {display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:16px}
+  #rl-walk-matrix-__CLASS_INDEX__ figure {width:192px;max-width:100%;margin:0;text-align:center}
+  #rl-walk-matrix-__CLASS_INDEX__ canvas {display:block;image-rendering:pixelated;margin:8px auto}
+  #rl-walk-matrix-__CLASS_INDEX__ [data-scene] {width:192px;height:128px}
+  #rl-walk-matrix-__CLASS_INDEX__ [data-zoom] {width:128px;height:128px}
+</style>
+<script>
+(()=>{
+  const root=document.getElementById('rl-walk-matrix-__CLASS_INDEX__');
+  const DATA=__WALK_MATRIX_DATA__;
+  const holder=root.querySelector('.walk-figures');
+  const atlas=new Image();
+  const actors=DATA.entries.map((entry,localIndex)=>{
+    const figure=document.createElement('figure'),caption=document.createElement('figcaption');
+    caption.textContent=String(entry.number).padStart(2,'0')+' · Tenue '+(entry.stage+1)+(entry.status==='accepted_reference'?' · validée':'');
+    const nativeLabel=document.createElement('div');nativeLabel.className='text-small';nativeLabel.textContent='Taille native · 64 × 64';
+    const scene=document.createElement('canvas');scene.width=192;scene.height=128;scene.dataset.scene=String(localIndex);scene.setAttribute('role','img');scene.setAttribute('aria-label',entry.label+' avec fusil : marche latérale case par case, taille native');
+    const zoomLabel=document.createElement('div');zoomLabel.className='text-small';zoomLabel.textContent='Détail ×2';
+    const zoom=document.createElement('canvas');zoom.width=zoom.height=128;zoom.dataset.zoom=String(localIndex);zoom.setAttribute('role','img');zoom.setAttribute('aria-label',entry.label+' avec fusil, agrandissement deux fois');
+    figure.append(caption,nativeLabel,scene,zoomLabel,zoom);holder.append(figure);
+    const tile=document.createElement('canvas');tile.width=tile.height=64;
+    return {entry,localIndex,scene,zoom,tile};
+  });
+  const initial=window.openai?.widgetState?.modelContent||{};
+  const state={playing:!matchMedia('(prefers-reduced-motion: reduce)').matches,automatic:true,pace:[120,200,400].includes(+initial.pace)?+initial.pace:400,floor:['dark','light','textured'].includes(initial.floor)?initial.floor:'dark'};
+  let loaded=false,previous=0,lastSide=1,index=0,transition=null,rest=0,stepCount=0;
+  const play=root.querySelector('[data-action="play"]'),status=root.querySelector('[data-status]'),gridStatus=root.querySelector('[data-grid-status]');
+  const points=[[32,64],[96,64],[160,64],[96,64],[32,64]];
+  const colors={dark:{base:'#293132',tile:'#303a3b',line:'#414b49',crack:'#1c2425',shadow:'rgba(4,9,12,.5)',target:'#90a4a7'},light:{base:'#b5afa0',tile:'#bdb6a7',line:'#999689',crack:'#a09a8c',shadow:'rgba(28,30,29,.32)',target:'#5a6868'}};
+  function remember(){window.openai?.setWidgetState?.({modelContent:{pace:state.pace,floor:state.floor,className:DATA.className},privateContent:null}).catch(()=>{});}
+  function sync(){play.textContent=state.playing?'Pause':'Lecture auto';for(const key of ['pace','floor'])root.querySelector(`[data-control="${key}"]`).value=String(state[key]);}
+  function startStep(){
+    if(transition)return;
+    if(index>=points.length-1)index=0;
+    const a=points[index],b=points[index+1];lastSide=b[0]>a[0]?1:7;
+    transition={from:a,to:b,age:0};gridStatus.textContent='Une case · déplacement';
+  }
+  function advance(delta){
+    if(transition){transition.age+=delta;if(transition.age>=state.pace){index++;stepCount++;transition=null;rest=0;gridStatus.textContent='Arrêt sur la case';if(!state.automatic){state.playing=false;sync();}}}
+    else if(state.automatic){rest+=delta;if(rest>=520)startStep();}
+  }
+  function location(){
+    if(!transition){const at=points[index];return {x:at[0],y:at[1],moving:false,frame:0,target:at};}
+    const t=Math.min(1,transition.age/state.pace),p=1-(1-t)*(1-t),a=transition.from,b=transition.to;
+    return {x:Math.round(a[0]+(b[0]-a[0])*p),y:64,moving:true,frame:(stepCount%2)*3+Math.min(2,Math.floor(t*3)),target:b};
+  }
+  function floor(ctx,width,height){
+    const c=colors[state.floor==='light'?'light':'dark'];ctx.fillStyle=c.base;ctx.fillRect(0,0,width,height);
+    for(let y=-32;y<height;y+=64)for(let x=0;x<width;x+=64){
+      if((Math.floor(x/64)+Math.floor(y/64))%2===0){ctx.fillStyle=c.tile;ctx.fillRect(x,y,64,64);}
+      ctx.strokeStyle=c.line;ctx.lineWidth=1;ctx.strokeRect(x+.5,y+.5,64,64);
+      if(state.floor==='textured'){ctx.strokeStyle=c.crack;ctx.beginPath();ctx.moveTo(x+14,y+22);ctx.lineTo(x+23,y+27);ctx.lineTo(x+28,y+24);ctx.stroke();}
+    }
+  }
+  function render(){
+    if(!loaded)return;
+    const loc=location(),c=colors[state.floor==='light'?'light':'dark'];
+    for(const actor of actors){
+      const ctx=actor.tile.getContext('2d');ctx.clearRect(0,0,64,64);ctx.imageSmoothingEnabled=false;
+      const sx=(loc.moving?loc.frame+1:0)*64,sy=actor.localIndex*128+(lastSide===7?0:64);
+      ctx.drawImage(atlas,sx,sy,64,64,0,0,64,64);
+      const scene=actor.scene.getContext('2d');scene.imageSmoothingEnabled=false;floor(scene,192,128);
+      scene.strokeStyle=c.target;scene.lineWidth=1;scene.strokeRect(loc.target[0]-31.5,loc.target[1]-31.5,63,63);
+      scene.fillStyle=c.shadow;scene.beginPath();scene.ellipse(loc.x,loc.y+30,17,5,0,0,Math.PI*2);scene.fill();
+      scene.drawImage(actor.tile,loc.x-32,loc.y-32);
+      const zoom=actor.zoom.getContext('2d');zoom.imageSmoothingEnabled=false;floor(zoom,128,128);zoom.drawImage(actor.tile,0,0,64,64,0,0,128,128);
+    }
+    root.dataset.frame=String(loc.frame);root.dataset.direction=String(lastSide);root.dataset.ready='true';root.dataset.moving=String(loc.moving);root.dataset.cell=String(index);
+  }
+  function tick(now){if(previous&&state.playing&&loaded)advance(Math.min(80,now-previous));previous=now;render();requestAnimationFrame(tick);}
+  atlas.onload=()=>{loaded=true;status.textContent='Fusil équipé · revue avant intégration';render();};
+  atlas.onerror=()=>{status.textContent='Impossible de charger les poses.';status.setAttribute('role','alert');};
+  atlas.src=DATA.atlas;
+  play.addEventListener('click',()=>{state.playing=!state.playing;if(state.playing)state.automatic=true;sync();});
+  root.querySelector('[data-action="cell"]').addEventListener('click',()=>{if(!loaded)return;state.automatic=false;startStep();state.playing=true;sync();});
+  root.querySelector('[data-action="step"]').addEventListener('click',()=>{if(!loaded)return;state.playing=false;state.automatic=false;if(transition)advance(state.pace/3);else startStep();sync();render();});
+  for(const key of ['pace','floor'])root.querySelector(`[data-control="${key}"]`).addEventListener('change',e=>{state[key]=key==='pace'?+e.target.value:e.target.value;remember();render();});
+  window.addEventListener('openai:set_globals',event=>{const saved=event.detail?.globals?.widgetState?.modelContent;if(!saved)return;if([120,200,400].includes(+saved.pace))state.pace=+saved.pace;if(['dark','light','textured'].includes(saved.floor))state.floor=saved.floor;sync();render();});
+  document.addEventListener('visibilitychange',()=>{previous=0;});
+  sync();requestAnimationFrame(tick);
+})();
+</script>

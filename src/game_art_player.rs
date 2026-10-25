@@ -2,6 +2,19 @@
 use super::*;
 #[path = "game_art_worn.rs"]
 mod worn;
+pub(super) fn approved_walking_image(
+    body: u8,
+    equipment: [Option<u16>; 4],
+    weapon: Option<u16>,
+    hands: Option<[Option<u16>; 2]>,
+    colors: [EquipmentPalette; 3],
+    pose: crate::game_art::walking::Pose,
+) -> Option<Image> {
+    worn::approved_walking_image(body, equipment, weapon, hands, colors, pose)
+}
+pub(super) fn outfit_index(body: u8, equipment: [Option<u16>; 4]) -> u16 {
+    worn::outfit_index(body, equipment)
+}
 #[cfg(debug_assertions)]
 pub(super) fn draw_finish_review(
     rect: Rect,

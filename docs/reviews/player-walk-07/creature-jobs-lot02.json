@@ -1,0 +1,286 @@
+[
+  {
+    "id": "MON-031-0",
+    "review_id": "WALK07-M08",
+    "kind": "creature",
+    "label": "Insecte",
+    "record": {
+      "id": "MON-031-0",
+      "label": "031 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons et créations",
+      "rig": "crawl",
+      "image": "catalogue/assets/337187ea499f8ce63d6c.png",
+      "foot": [
+        32,
+        60
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "number": 31,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        9,
+        25,
+        55,
+        60
+      ],
+      "rigLabel": "Pattes multiples",
+      "reviewId": "WALK03-MON-031-0"
+    },
+    "locomotor_legs": 6,
+    "motion": "Six walking legs, three attached pairs. Blue-green chitin shell and amber segmented legs. Alternate compact tripod supports: front and rear on one side with middle on the other. Keep the same six leg chains; no extra arms or pincers.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-031-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-031-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot01\\MON-030-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-031-0-cycle-lot02-r01.png",
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-031-0-lot02-r01.txt",
+    "prompt": "Use case: identity-preserve.\nAsset: complete lateral movement atlas for the EXISTING game creature MON-031-0.\nINPUT1 is the exact canonical APPEARANCE reference. Preserve its anatomy, head, appendages, materials, colors, distinctive shapes and existing equipment. Ignore isolated colored edge specks from the old game export: no new glowing dots.\nINPUT2 shows an accepted native movement reference: TOP ROW seven complete LEFT-facing poses (idle then six walk); BOTTOM ROW seven RIGHT-facing poses. Use its compact cadence, coherent whole figures and matte native64-readable finish. It is NOT the target species, material, bulk or body shape. Do not copy its armor or anatomy.\n\nSPECIFIC ANATOMY AND MOVEMENT: Six walking legs, three attached pairs. Blue-green chitin shell and amber segmented legs. Alternate compact tripod supports: front and rear on one side with middle on the other. Keep the same six leg chains; no extra arms or pincers.\nOutput ONE regular FOUR-COLUMN FOUR-ROW atlas, sixteen COMPLETE figures on genuine transparent alpha,1536square. Each384square cell has generous transparent margins; keep heads, feet, wings, tail and pincers fully inside the cell. No neighboring fragment, floor, ground shadow, labels, text, halos, effects, background or grid.\nTOP TWO ROWS, cells0..7, all near-front LEFT three quarters, head and entire body directed screenLEFT. BOTTOM TWO ROWS, cells8..15, all near-front RIGHT three quarters directedRIGHT. Show front and side together; no back view, no pure side profile, no head-only reversal. Do not flip direction during a half.\nExact row-major order LEFT: idleL,L0,L1,L2,L3,L4,L5,duplicate idleL. RIGHT: idleR,R0,R1,R2,R3,R4,R5,duplicate idleR. Six walking poses make one full compact cycle: three phases on a grid cell and three on the next cell,400ms per cell. Idle is a real stable resting pose.\nDraw each WHOLE creature coherently. Constant body volume, apparent scale and anatomy across all16 figures; no shrinking, growing, extra limbs, swapped materials, wide splits or excessive bob. Keep original source proportions. Keep joints, supports and intentional gaps connected correctly. Do not graft limbs from INPUT2 or apply a human gait to a nonhuman body. Matte game-art shapes, readable contours, controlled detail. Genuine transparent cutout."
+  },
+  {
+    "id": "MON-071-0",
+    "review_id": "WALK07-M09",
+    "kind": "creature",
+    "label": "Arachnide",
+    "record": {
+      "id": "MON-071-0",
+      "label": "071 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons et créations",
+      "rig": "crawl",
+      "image": "catalogue/assets/0ac7a7d1bda9a5d61b05.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 71,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        23,
+        39,
+        106,
+        96
+      ],
+      "rigLabel": "Pattes multiples",
+      "reviewId": "WALK03-MON-071-0"
+    },
+    "locomotor_legs": 8,
+    "motion": "Eight walking legs in four attached pairs, around the red/dark abdomen. Retain the large red-and-charcoal abdomen, small head and pale pointed feet. Compact alternating groups of four supports; rear legs may be partly occluded, never removed or fused into the abdomen.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-071-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-071-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot01\\MON-021-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-071-0-cycle-lot02-r01.png",
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-071-0-lot02-r01.txt",
+    "prompt": "Use case: identity-preserve.\nAsset: complete lateral movement atlas for the EXISTING game creature MON-071-0.\nINPUT1 is the exact canonical APPEARANCE reference. Preserve its anatomy, head, appendages, materials, colors, distinctive shapes and existing equipment. Ignore isolated colored edge specks from the old game export: no new glowing dots.\nINPUT2 shows an accepted native movement reference: TOP ROW seven complete LEFT-facing poses (idle then six walk); BOTTOM ROW seven RIGHT-facing poses. Use its compact cadence, coherent whole figures and matte native64-readable finish. It is NOT the target species, material, bulk or body shape. Do not copy its armor or anatomy.\n\nSPECIFIC ANATOMY AND MOVEMENT: Eight walking legs in four attached pairs, around the red/dark abdomen. Retain the large red-and-charcoal abdomen, small head and pale pointed feet. Compact alternating groups of four supports; rear legs may be partly occluded, never removed or fused into the abdomen.\nOutput ONE regular FOUR-COLUMN FOUR-ROW atlas, sixteen COMPLETE figures on genuine transparent alpha,1536square. Each384square cell has generous transparent margins; keep heads, feet, wings, tail and pincers fully inside the cell. No neighboring fragment, floor, ground shadow, labels, text, halos, effects, background or grid.\nTOP TWO ROWS, cells0..7, all near-front LEFT three quarters, head and entire body directed screenLEFT. BOTTOM TWO ROWS, cells8..15, all near-front RIGHT three quarters directedRIGHT. Show front and side together; no back view, no pure side profile, no head-only reversal. Do not flip direction during a half.\nExact row-major order LEFT: idleL,L0,L1,L2,L3,L4,L5,duplicate idleL. RIGHT: idleR,R0,R1,R2,R3,R4,R5,duplicate idleR. Six walking poses make one full compact cycle: three phases on a grid cell and three on the next cell,400ms per cell. Idle is a real stable resting pose.\nDraw each WHOLE creature coherently. Constant body volume, apparent scale and anatomy across all16 figures; no shrinking, growing, extra limbs, swapped materials, wide splits or excessive bob. Keep original source proportions. Keep joints, supports and intentional gaps connected correctly. Do not graft limbs from INPUT2 or apply a human gait to a nonhuman body. Matte game-art shapes, readable contours, controlled detail. Genuine transparent cutout."
+  },
+  {
+    "id": "MON-083-0",
+    "review_id": "WALK07-M10",
+    "kind": "creature",
+    "label": "Scorpion",
+    "record": {
+      "id": "MON-083-0",
+      "label": "083 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons et créations",
+      "rig": "crawl",
+      "image": "catalogue/assets/c148f1381b3641291082.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 83,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        37,
+        48,
+        91,
+        96
+      ],
+      "rigLabel": "Pattes multiples",
+      "reviewId": "WALK03-MON-083-0"
+    },
+    "locomotor_legs": 8,
+    "motion": "Exactly eight WALKING LEGS, plus TWO distinct large front PINCERS, plus ONE segmented arched TAIL and its dark stinger. Pincers and tail are not walking legs. Preserve the red-brown chitin, ivory joints and dark claw tips. The eight feet walk in compact staggered supports; pincers remain carried in front and the tail keeps its stable arch, with slight joint motion only.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-083-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-083-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot01\\MON-021-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-083-0-cycle-lot02-r01.png",
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-083-0-lot02-r01.txt",
+    "prompt": "Use case: identity-preserve.\nAsset: complete lateral movement atlas for the EXISTING game creature MON-083-0.\nINPUT1 is the exact canonical APPEARANCE reference. Preserve its anatomy, head, appendages, materials, colors, distinctive shapes and existing equipment. Ignore isolated colored edge specks from the old game export: no new glowing dots.\nINPUT2 shows an accepted native movement reference: TOP ROW seven complete LEFT-facing poses (idle then six walk); BOTTOM ROW seven RIGHT-facing poses. Use its compact cadence, coherent whole figures and matte native64-readable finish. It is NOT the target species, material, bulk or body shape. Do not copy its armor or anatomy.\n\nSPECIFIC ANATOMY AND MOVEMENT: Exactly eight WALKING LEGS, plus TWO distinct large front PINCERS, plus ONE segmented arched TAIL and its dark stinger. Pincers and tail are not walking legs. Preserve the red-brown chitin, ivory joints and dark claw tips. The eight feet walk in compact staggered supports; pincers remain carried in front and the tail keeps its stable arch, with slight joint motion only.\nOutput ONE regular FOUR-COLUMN FOUR-ROW atlas, sixteen COMPLETE figures on genuine transparent alpha,1536square. Each384square cell has generous transparent margins; keep heads, feet, wings, tail and pincers fully inside the cell. No neighboring fragment, floor, ground shadow, labels, text, halos, effects, background or grid.\nTOP TWO ROWS, cells0..7, all near-front LEFT three quarters, head and entire body directed screenLEFT. BOTTOM TWO ROWS, cells8..15, all near-front RIGHT three quarters directedRIGHT. Show front and side together; no back view, no pure side profile, no head-only reversal. Do not flip direction during a half.\nExact row-major order LEFT: idleL,L0,L1,L2,L3,L4,L5,duplicate idleL. RIGHT: idleR,R0,R1,R2,R3,R4,R5,duplicate idleR. Six walking poses make one full compact cycle: three phases on a grid cell and three on the next cell,400ms per cell. Idle is a real stable resting pose.\nDraw each WHOLE creature coherently. Constant body volume, apparent scale and anatomy across all16 figures; no shrinking, growing, extra limbs, swapped materials, wide splits or excessive bob. Keep original source proportions. Keep joints, supports and intentional gaps connected correctly. Do not graft limbs from INPUT2 or apply a human gait to a nonhuman body. Matte game-art shapes, readable contours, controlled detail. Genuine transparent cutout."
+  },
+  {
+    "id": "MON-064-0",
+    "review_id": "WALK07-M11",
+    "kind": "creature",
+    "label": "Quadrupède",
+    "record": {
+      "id": "MON-064-0",
+      "label": "064 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons et créations",
+      "rig": "quad",
+      "image": "catalogue/assets/16cfe4effcfab0e736eb.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 64,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        28,
+        64,
+        100,
+        96
+      ],
+      "rigLabel": "Appuis de quadrupède",
+      "reviewId": "WALK03-MON-064-0"
+    },
+    "locomotor_legs": 4,
+    "motion": "Exactly four weight-bearing limbs. Preserve this low pale fleshy crawler, its dark red open back/rib cavity, large forelimb claws and short rear limbs. Front and hind supports alternate with a low stable body. No armor, rock shell, horns, tentacles or human upright posture from the motion reference.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-064-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-064-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot01\\MON-075-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-064-0-cycle-lot02-r01.png",
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-064-0-lot02-r01.txt",
+    "prompt": "Use case: identity-preserve.\nAsset: complete lateral movement atlas for the EXISTING game creature MON-064-0.\nINPUT1 is the exact canonical APPEARANCE reference. Preserve its anatomy, head, appendages, materials, colors, distinctive shapes and existing equipment. Ignore isolated colored edge specks from the old game export: no new glowing dots.\nINPUT2 shows an accepted native movement reference: TOP ROW seven complete LEFT-facing poses (idle then six walk); BOTTOM ROW seven RIGHT-facing poses. Use its compact cadence, coherent whole figures and matte native64-readable finish. It is NOT the target species, material, bulk or body shape. Do not copy its armor or anatomy.\n\nSPECIFIC ANATOMY AND MOVEMENT: Exactly four weight-bearing limbs. Preserve this low pale fleshy crawler, its dark red open back/rib cavity, large forelimb claws and short rear limbs. Front and hind supports alternate with a low stable body. No armor, rock shell, horns, tentacles or human upright posture from the motion reference.\nOutput ONE regular FOUR-COLUMN FOUR-ROW atlas, sixteen COMPLETE figures on genuine transparent alpha,1536square. Each384square cell has generous transparent margins; keep heads, feet, wings, tail and pincers fully inside the cell. No neighboring fragment, floor, ground shadow, labels, text, halos, effects, background or grid.\nTOP TWO ROWS, cells0..7, all near-front LEFT three quarters, head and entire body directed screenLEFT. BOTTOM TWO ROWS, cells8..15, all near-front RIGHT three quarters directedRIGHT. Show front and side together; no back view, no pure side profile, no head-only reversal. Do not flip direction during a half.\nExact row-major order LEFT: idleL,L0,L1,L2,L3,L4,L5,duplicate idleL. RIGHT: idleR,R0,R1,R2,R3,R4,R5,duplicate idleR. Six walking poses make one full compact cycle: three phases on a grid cell and three on the next cell,400ms per cell. Idle is a real stable resting pose.\nDraw each WHOLE creature coherently. Constant body volume, apparent scale and anatomy across all16 figures; no shrinking, growing, extra limbs, swapped materials, wide splits or excessive bob. Keep original source proportions. Keep joints, supports and intentional gaps connected correctly. Do not graft limbs from INPUT2 or apply a human gait to a nonhuman body. Matte game-art shapes, readable contours, controlled detail. Genuine transparent cutout."
+  },
+  {
+    "id": "MON-125-0",
+    "review_id": "WALK07-M13",
+    "kind": "creature",
+    "label": "Esprit",
+    "record": {
+      "id": "MON-125-0",
+      "label": "125 · Esprit torturé · variante 0",
+      "category": "Campagne",
+      "family": "Esprits torturés",
+      "rig": "float",
+      "image": "catalogue/assets/eae9634a2faf7ce151f5.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 125,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        42,
+        30,
+        87,
+        96
+      ],
+      "rigLabel": "Flottement",
+      "reviewId": "WALK03-MON-125-0"
+    },
+    "locomotor_legs": 0,
+    "motion": "NO walking legs. Preserve the exact narrow floating hooded figure and its long ivory/tan shredded cloth strips, empty dark face and thin hanging silhouette. The split lower strips remain cloth, never boots or feet. Slight coherent shroud drift and small folds during travel, no glowing aura or new effects.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-125-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-125-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot01\\MON-124-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-125-0-cycle-lot02-r01.png",
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-125-0-lot02-r01.txt",
+    "prompt": "Use case: identity-preserve.\nAsset: complete lateral movement atlas for the EXISTING game creature MON-125-0.\nINPUT1 is the exact canonical APPEARANCE reference. Preserve its anatomy, head, appendages, materials, colors, distinctive shapes and existing equipment. Ignore isolated colored edge specks from the old game export: no new glowing dots.\nINPUT2 shows an accepted native movement reference: TOP ROW seven complete LEFT-facing poses (idle then six walk); BOTTOM ROW seven RIGHT-facing poses. Use its compact cadence, coherent whole figures and matte native64-readable finish. It is NOT the target species, material, bulk or body shape. Do not copy its armor or anatomy.\n\nSPECIFIC ANATOMY AND MOVEMENT: NO walking legs. Preserve the exact narrow floating hooded figure and its long ivory/tan shredded cloth strips, empty dark face and thin hanging silhouette. The split lower strips remain cloth, never boots or feet. Slight coherent shroud drift and small folds during travel, no glowing aura or new effects.\nOutput ONE regular FOUR-COLUMN FOUR-ROW atlas, sixteen COMPLETE figures on genuine transparent alpha,1536square. Each384square cell has generous transparent margins; keep heads, feet, wings, tail and pincers fully inside the cell. No neighboring fragment, floor, ground shadow, labels, text, halos, effects, background or grid.\nTOP TWO ROWS, cells0..7, all near-front LEFT three quarters, head and entire body directed screenLEFT. BOTTOM TWO ROWS, cells8..15, all near-front RIGHT three quarters directedRIGHT. Show front and side together; no back view, no pure side profile, no head-only reversal. Do not flip direction during a half.\nExact row-major order LEFT: idleL,L0,L1,L2,L3,L4,L5,duplicate idleL. RIGHT: idleR,R0,R1,R2,R3,R4,R5,duplicate idleR. Six walking poses make one full compact cycle: three phases on a grid cell and three on the next cell,400ms per cell. Idle is a real stable resting pose.\nDraw each WHOLE creature coherently. Constant body volume, apparent scale and anatomy across all16 figures; no shrinking, growing, extra limbs, swapped materials, wide splits or excessive bob. Keep original source proportions. Keep joints, supports and intentional gaps connected correctly. Do not graft limbs from INPUT2 or apply a human gait to a nonhuman body. Matte game-art shapes, readable contours, controlled detail. Genuine transparent cutout."
+  },
+  {
+    "id": "MON-145-0",
+    "review_id": "WALK07-M14",
+    "kind": "creature",
+    "label": "Créature ailée",
+    "record": {
+      "id": "MON-145-0",
+      "label": "145 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons ailés",
+      "rig": "winged",
+      "image": "catalogue/assets/4fb05e3d2ccf7b3fa25f.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 145,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        8,
+        7,
+        120,
+        96
+      ],
+      "rigLabel": "Appuis et ailes",
+      "reviewId": "WALK03-MON-145-0"
+    },
+    "locomotor_legs": 2,
+    "motion": "Exactly TWO hind walking legs, TWO arms, TWO batlike wings, and ONE long dark tail. Preserve the lean muscular blue-gray demon, dark membranes, long horns and narrow face. Compact grounded alternating two-foot walk. Wings stay carried in the existing spread, with slight joint motion; tail follows subtly. No flight, no red coloration, no heavy stocky build from the reference.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-145-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-145-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\accepted\\creatures-lot01\\MON-144-0-whole-body-native.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-145-0-cycle-lot02-r02.png",
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-145-0-lot02-r01.txt",
+    "prompt": "Use case: identity-preserve.\nAsset: complete lateral movement atlas for the EXISTING game creature MON-145-0.\nINPUT1 is the exact canonical APPEARANCE reference. Preserve its anatomy, head, appendages, materials, colors, distinctive shapes and existing equipment. Ignore isolated colored edge specks from the old game export: no new glowing dots.\nINPUT2 shows an accepted native movement reference: TOP ROW seven complete LEFT-facing poses (idle then six walk); BOTTOM ROW seven RIGHT-facing poses. Use its compact cadence, coherent whole figures and matte native64-readable finish. It is NOT the target species, material, bulk or body shape. Do not copy its armor or anatomy.\n\nSPECIFIC ANATOMY AND MOVEMENT: Exactly TWO hind walking legs, TWO arms, TWO batlike wings, and ONE long dark tail. Preserve the lean muscular blue-gray demon, dark membranes, long horns and narrow face. Compact grounded alternating two-foot walk. Wings stay carried in the existing spread, with slight joint motion; tail follows subtly. No flight, no red coloration, no heavy stocky build from the reference.\nOutput ONE regular FOUR-COLUMN FOUR-ROW atlas, sixteen COMPLETE figures on genuine transparent alpha,1536square. Each384square cell has generous transparent margins; keep heads, feet, wings, tail and pincers fully inside the cell. No neighboring fragment, floor, ground shadow, labels, text, halos, effects, background or grid.\nTOP TWO ROWS, cells0..7, all near-front LEFT three quarters, head and entire body directed screenLEFT. BOTTOM TWO ROWS, cells8..15, all near-front RIGHT three quarters directedRIGHT. Show front and side together; no back view, no pure side profile, no head-only reversal. Do not flip direction during a half.\nExact row-major order LEFT: idleL,L0,L1,L2,L3,L4,L5,duplicate idleL. RIGHT: idleR,R0,R1,R2,R3,R4,R5,duplicate idleR. Six walking poses make one full compact cycle: three phases on a grid cell and three on the next cell,400ms per cell. Idle is a real stable resting pose.\nDraw each WHOLE creature coherently. Constant body volume, apparent scale and anatomy across all16 figures; no shrinking, growing, extra limbs, swapped materials, wide splits or excessive bob. Keep original source proportions. Keep joints, supports and intentional gaps connected correctly. Do not graft limbs from INPUT2 or apply a human gait to a nonhuman body. Matte game-art shapes, readable contours, controlled detail. Genuine transparent cutout.",
+    "source_columns": 7,
+    "source_rows": 2,
+    "selected_source_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "directional_halves_reordered": true,
+    "selected_correction": "generation-creatures-lot02-r02.json"
+  }
+]

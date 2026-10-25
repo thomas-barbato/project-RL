@@ -1,0 +1,85 @@
+{
+  "review_id": "METAMORPHE-BIODRUID-W03-ALL25",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "outfit_count": 25,
+  "accepted_outfit_count": 20,
+  "pending_outfit_count": 5,
+  "classes": [
+    {
+      "class": "Bastion · validé",
+      "status": "accepted",
+      "acceptance": {
+        "path": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+        "sha256": "6d55febb0bd152cca21df65f000b37da01a19d49179fedf9d74309e93bb40028"
+      },
+      "candidate_ids": [
+        "BA-CU01-P01-r01",
+        "BA-STYLE01-r02",
+        "BA-STYLE02-r02",
+        "BA-CU01-P04-r01",
+        "BA-CU01-P05-r01"
+      ]
+    },
+    {
+      "class": "Technomancien · validé",
+      "status": "accepted",
+      "acceptance": {
+        "path": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+        "sha256": "d51882a635cbd8e024e366f4442cf238e1345668b2d0c03d152d7d6f0f4a0e02"
+      },
+      "candidate_ids": [
+        "TE-NR01-P01-r02",
+        "TE-NR01-P02-r02",
+        "TE-NR01-P03-r02",
+        "TE-NR01-P04-r02",
+        "TE-NR01-P05-r02"
+      ]
+    },
+    {
+      "class": "Traqueuse · validée",
+      "status": "accepted",
+      "acceptance": {
+        "path": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+        "sha256": "f8ecf404d5c60e6d9c5686def4b8221bc822e44b0a69201163e972b53b15f566"
+      },
+      "candidate_ids": [
+        "TR-SN01-P01-r01",
+        "TR-SN01-P02-r01",
+        "TR-SN01-P03-r01",
+        "TR-SN01-P04-r01",
+        "TR-SN01-P05-r02"
+      ]
+    },
+    {
+      "class": "Arcaniste · validé",
+      "status": "accepted",
+      "acceptance": {
+        "path": "docs/reviews/class-readability-01/arcaniste-red-robe-wave-05/acceptance.json",
+        "sha256": "39b0287e29dd2cfe6adbbe8e9026fdc1975ce3fea18a01cc9981fc7caf676461"
+      },
+      "candidate_ids": [
+        "AR-RR05-P01-r01",
+        "AR-RR05-P02-r01",
+        "AR-RR05-P03-r01",
+        "AR-RR05-P04-r01",
+        "AR-RR05-P05-r01"
+      ]
+    },
+    {
+      "class": "Métamorphe",
+      "status": "awaiting_native64_visual_review",
+      "candidate_ids": [
+        "ME-BD03-P01-r01",
+        "ME-BD03-P02-r01",
+        "ME-BD02-P03-r01",
+        "ME-BD03-P04-r01",
+        "ME-BD03-P05-r01"
+      ]
+    }
+  ],
+  "board": "artifacts/class-armor-review-01/metamorphe-biodruid-wave-03/five-classes-native64.png",
+  "runtime_integration": false
+}

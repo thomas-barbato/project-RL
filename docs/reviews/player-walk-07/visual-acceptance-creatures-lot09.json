@@ -1,0 +1,205 @@
+{
+  "review_id": "WALK07-CREATURES-LOT09",
+  "date": "2026-10-24",
+  "timezone": "Europe/Paris",
+  "player_quote": "ok on continue",
+  "status": "visual_accepted",
+  "scope": "Six presented cycles M51-M56, displayed identities/materials and accepted vertical placement; original source directions reordered for M52 and M56.",
+  "runtime_integration_authorized": false,
+  "full_bestiary_accepted": false,
+  "deferred_M12_M23_M44_accepted": false,
+  "other_material_variants_accepted": false,
+  "duration_default_ms": 400,
+  "duration_choice_retained": true,
+  "vertical_movement_modified": false,
+  "cases": [
+    {
+      "review_id": "WALK07-M51",
+      "identity": "MON-037-0",
+      "locomotor_legs": 4,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-037-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -20,
+      "cycle_bounds": [
+        46,
+        88,
+        83,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk",
+      "source_directional_halves_reordered": false
+    },
+    {
+      "review_id": "WALK07-M52",
+      "identity": "MON-038-0",
+      "locomotor_legs": 4,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-038-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -16,
+      "cycle_bounds": [
+        42,
+        80,
+        86,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk",
+      "source_directional_halves_reordered": true
+    },
+    {
+      "review_id": "WALK07-M53",
+      "identity": "MON-067-0",
+      "locomotor_legs": 4,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-067-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -18,
+      "cycle_bounds": [
+        42,
+        84,
+        87,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk",
+      "source_directional_halves_reordered": false
+    },
+    {
+      "review_id": "WALK07-M54",
+      "identity": "MON-069-0",
+      "locomotor_legs": 6,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-069-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -14,
+      "cycle_bounds": [
+        42,
+        77,
+        85,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk",
+      "source_directional_halves_reordered": false
+    },
+    {
+      "review_id": "WALK07-M55",
+      "identity": "MON-090-0",
+      "locomotor_legs": 6,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-090-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -18,
+      "cycle_bounds": [
+        42,
+        84,
+        85,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk",
+      "source_directional_halves_reordered": false
+    },
+    {
+      "review_id": "WALK07-M56",
+      "identity": "MON-109-0",
+      "locomotor_legs": 4,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-109-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -12,
+      "cycle_bounds": [
+        37,
+        72,
+        91,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk",
+      "source_directional_halves_reordered": true
+    }
+  ],
+  "files": [
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-037-0-whole-body-native.png",
+      "sha256": "379e8a467096eaa2aed9d216a34e3d61267769c36ad74ab9c61073749d5c63be"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-037-0-cycle-lot09-r02.png",
+      "sha256": "cada8ed82ba0a0dc35ff1883566761d9f38f9012aee5200a498da0889a22df91"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-038-0-whole-body-native.png",
+      "sha256": "51582f0fdfe50e1717cb62cb875dcbe6522bcd3d573c44b5ebae4bac8cc12cd9"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-038-0-cycle-lot09-r01.png",
+      "sha256": "5e840bcdfeb1ebeed278cd221afee512f2f68a08e9bc41f11416166a8e544e68"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-067-0-whole-body-native.png",
+      "sha256": "45cccacf647c89dd66228f8760611872a30ab24f86639e83b49fdef5b231afb2"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-067-0-cycle-lot09-r01.png",
+      "sha256": "49e0d373b566eac8bbe2baa600f0e0ca6f09adee86d4772215783ce968a28344"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-069-0-whole-body-native.png",
+      "sha256": "3223b6ad92d5c23062e71f27edae63aaaa68c24873514001ff6c0bd37f81defd"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-069-0-cycle-lot09-r01.png",
+      "sha256": "c21e3a8bf3dbbfdb17837dce44be5f10794d38228b96c58ce398aba2cc8e1c96"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-090-0-whole-body-native.png",
+      "sha256": "4b17dd474ac5e5da5acde96d8e8e449081b5d0b8d65252590cc9ec062ecb754c"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-090-0-cycle-lot09-r01.png",
+      "sha256": "d0304195828a607ef76c856b60b3f55b7aea32a132fdda0a43f29650b6d79ba5"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot09/MON-109-0-whole-body-native.png",
+      "sha256": "121c15247d83f8a68b48c20a7c0c284e94bdf57046432bd719b73ff2bf194426"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-109-0-cycle-lot09-r01.png",
+      "sha256": "f5410fc36ff3bb751f41fbb0795bb27d7b3b1d65948a1d20c3de0c9d060c650d"
+    }
+  ]
+}

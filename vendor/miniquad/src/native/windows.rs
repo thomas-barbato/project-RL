@@ -47,6 +47,73 @@ const WM_KILLFOCUS: UINT = 0x0008;
 use std::sync::atomic::AtomicBool;
 static IME_USER_DISABLED: AtomicBool = AtomicBool::new(false);
 
+// ShowCursor is a counter, not a boolean. Repair a hidden native pointer only
+// inside this app's client area; preserve Windows' touch/pen suppression.
+unsafe fn restore_cursor_visibility(flags: DWORD) {
+    if flags & (CURSOR_SHOWING | CURSOR_SUPPRESSED) == 0 {
+        while ShowCursor(TRUE) < 0 {}
+    }
+}
+
+#[cfg(test)]
+mod cursor_visibility_tests {
+    use super::*;
+
+    unsafe fn count() -> i32 {
+        let incremented = ShowCursor(TRUE);
+        ShowCursor(0);
+        incremented - 1
+    }
+
+    struct RestoreCount(i32);
+    impl Drop for RestoreCount {
+        fn drop(&mut self) {
+            unsafe {
+                let mut current = count();
+                while current < self.0 { current = ShowCursor(TRUE); }
+                while current > self.0 { current = ShowCursor(0); }
+            }
+        }
+    }
+
+    #[test]
+    fn cursor_recovers_multiple_native_hides_without_counting_each_frame() {
+        unsafe {
+            let _restore = RestoreCount(count());
+            while ShowCursor(0) >= 0 {}
+            ShowCursor(0);
+            assert!(count() < -1);
+            restore_cursor_visibility(0);
+            assert_eq!(count(), 0);
+            for _ in 0..120 { restore_cursor_visibility(CURSOR_SHOWING); }
+            assert_eq!(count(), 0);
+        }
+    }
+
+    #[test]
+    fn cursor_touch_suppression_is_not_overridden() {
+        unsafe {
+            let _restore = RestoreCount(count());
+            while ShowCursor(0) >= 0 {}
+            let hidden = count();
+            restore_cursor_visibility(CURSOR_SUPPRESSED);
+            assert_eq!(count(), hidden);
+        }
+    }
+
+    #[test]
+    fn cursor_standard_arrow_hand_and_crosshair_resources_exist() {
+        unsafe {
+            let arrow = LoadCursorW(NULL as _, IDC_ARROW);
+            let hand = LoadCursorW(NULL as _, IDC_HAND);
+            let cross = LoadCursorW(NULL as _, IDC_CROSS);
+            assert!(!arrow.is_null() && !hand.is_null() && !cross.is_null());
+            assert_ne!(arrow, hand);
+            assert_ne!(arrow, cross);
+        }
+    }
+}
+
 // IME composition form constants
 const CFS_POINT: DWORD = 0x0002;
 const CFS_CANDIDATEPOS: DWORD = 0x0040;
@@ -106,7 +173,6 @@ pub(crate) struct WindowsDisplay {
     window_scale: f32,
     mouse_scale: f32,
     show_cursor: bool,
-    user_cursor: bool,
     mouse_x: f32,
     mouse_y: f32,
     cursor: HCURSOR,
@@ -135,6 +201,34 @@ impl WindowsDisplay {
         if self.show_cursor != shown {
             self.show_cursor = shown;
             unsafe { ShowCursor(shown.into()) };
+            self.apply_mouse_cursor();
+        }
+    }
+
+    fn apply_mouse_cursor(&self) {
+        unsafe {
+            let mut position: POINT = std::mem::zeroed();
+            if GetCursorPos(&mut position) == 0 || WindowFromPoint(position) != self.wnd {
+                return;
+            }
+            let mut client = position;
+            let mut bounds: RECT = std::mem::zeroed();
+            if ScreenToClient(self.wnd, &mut client) == 0
+                || GetClientRect(self.wnd, &mut bounds) == 0
+                || client.x < bounds.left || client.x >= bounds.right
+                || client.y < bounds.top || client.y >= bounds.bottom
+            {
+                return;
+            }
+            // Never override another app's pointer or the system resize cursors.
+            SetCursor(if self.show_cursor { self.cursor } else { std::ptr::null_mut() });
+            if self.show_cursor && !self.cursor.is_null() {
+                let mut info: CURSORINFO = std::mem::zeroed();
+                info.cbSize = std::mem::size_of::<CURSORINFO>() as u32;
+                if GetCursorInfo(&mut info) != 0 {
+                    restore_cursor_visibility(info.flags);
+                }
+            }
         }
     }
     /// Set IME candidate window position in client coordinates
@@ -198,9 +292,10 @@ impl WindowsDisplay {
             CursorIcon::NWSEResize => IDC_SIZENWSE,
         };
         self.cursor = unsafe { LoadCursorW(NULL as _, cursor_name) };
-        unsafe { SetCursor(self.cursor) };
-
-        self.user_cursor = cursor_icon != CursorIcon::Default;
+        if self.cursor.is_null() {
+            self.cursor = unsafe { LoadCursorW(NULL as _, IDC_ARROW) };
+        }
+        self.apply_mouse_cursor();
     }
     fn set_window_size(&mut self, new_width: u32, new_height: u32) {
         let mut x = 0;
@@ -449,9 +544,8 @@ unsafe extern "system" fn win32_wndproc(
             }
         }
         WM_SETCURSOR => {
-            if payload.user_cursor && LOWORD(lparam as _) == HTCLIENT as _ {
-                SetCursor(payload.cursor);
-
+            if LOWORD(lparam as _) == HTCLIENT as _ {
+                payload.apply_mouse_cursor();
                 return 1;
             }
         }
@@ -1181,8 +1275,7 @@ where
             mouse_x: 0.,
             mouse_y: 0.,
             show_cursor: true,
-            user_cursor: false,
-            cursor: std::ptr::null_mut(),
+            cursor: LoadCursorW(NULL as _, IDC_ARROW),
             libopengl32,
             _msg_wnd: msg_wnd,
             msg_dc,

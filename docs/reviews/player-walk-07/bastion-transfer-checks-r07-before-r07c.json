@@ -1,0 +1,113 @@
+{
+  "review_id": "WALK07-r07",
+  "date": "2026-10-24",
+  "status": "awaiting_visual_review",
+  "runtime_integration": false,
+  "user_visual_acceptance": false,
+  "exact_motion_reference": "original canvas02 Bastion rows7 and1",
+  "whole_drawn_figures_only": true,
+  "pose_checks": 3276,
+  "leg_mask_excluded_from_arms": true,
+  "all_five_runtime_atlases_unchanged": true,
+  "results": [
+    {
+      "id": "CLASS-10",
+      "loadouts": 117,
+      "equipment_pose_checks": 1638,
+      "movement_geometry": [
+        {
+          "side": 0,
+          "lower_body_silhouette_pixels_changed_from_idle": [
+            295,
+            229,
+            260,
+            264,
+            213,
+            275
+          ]
+        },
+        {
+          "side": 1,
+          "lower_body_silhouette_pixels_changed_from_idle": [
+            308,
+            299,
+            218,
+            165,
+            153,
+            188
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CLASS-24",
+      "loadouts": 117,
+      "equipment_pose_checks": 1638,
+      "movement_geometry": [
+        {
+          "side": 0,
+          "lower_body_silhouette_pixels_changed_from_idle": [
+            332,
+            298,
+            333,
+            302,
+            203,
+            340
+          ]
+        },
+        {
+          "side": 1,
+          "lower_body_silhouette_pixels_changed_from_idle": [
+            384,
+            213,
+            396,
+            411,
+            394,
+            394
+          ]
+        }
+      ]
+    }
+  ],
+  "material_revision": "r07b",
+  "identified_prosthesis_checks": [
+    {
+      "column": 0,
+      "identified_shin_steel_pixels": 18,
+      "other_leg_region_steel_pixels": 1
+    },
+    {
+      "column": 1,
+      "identified_shin_steel_pixels": 23,
+      "other_leg_region_steel_pixels": 0
+    },
+    {
+      "column": 2,
+      "identified_shin_steel_pixels": 19,
+      "other_leg_region_steel_pixels": 0
+    },
+    {
+      "column": 3,
+      "identified_shin_steel_pixels": 20,
+      "other_leg_region_steel_pixels": 0
+    },
+    {
+      "column": 4,
+      "identified_shin_steel_pixels": 20,
+      "other_leg_region_steel_pixels": 0
+    },
+    {
+      "column": 5,
+      "identified_shin_steel_pixels": 23,
+      "other_leg_region_steel_pixels": 0
+    },
+    {
+      "column": 6,
+      "identified_shin_steel_pixels": 19,
+      "other_leg_region_steel_pixels": 0
+    }
+  ],
+  "browser_execution": false,
+  "browser_limit": "Browser access policy rejected local file URL protocol; no alternative browser or server workaround attempted.",
+  "artistic_limit": "Silhouette changes, matching clocks and source identity do not prove a good walk; examine synchronized comparison with the exact Bastion."
+}

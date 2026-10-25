@@ -1,0 +1,80 @@
+{
+  "classes": [
+    "Bastion",
+    "Technomancien",
+    "Traqueuse",
+    "Arcaniste",
+    "Métamorphe"
+  ],
+  "stages_per_class": 5,
+  "canonical_silhouettes": 25,
+  "torso_models": [
+    null,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    200,
+    201,
+    202,
+    203,
+    204
+  ],
+  "helmet_models": [
+    null,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120
+  ],
+  "physical_item_stage_aliases": {
+    "none": [
+      null,
+      108,
+      112,
+      113,
+      200,
+      201,
+      202,
+      203,
+      204
+    ],
+    "stage2": [
+      110,
+      114
+    ],
+    "stage3": [
+      102,
+      105,
+      106,
+      111
+    ],
+    "stage4": [
+      101,
+      104,
+      107,
+      109
+    ],
+    "stage5": [
+      103
+    ]
+  },
+  "class_torso_helmet_cases": 700,
+  "unique_class_stage_helmet_combinations": 175,
+  "initial_animation_configuration": "rifle only; other grips/helmets remain separate required work",
+  "gameplay_mapping_modified": false,
+  "runtime_integrated": true,
+  "integrated_scope": "25 class armor silhouettes, assault rifle model2, Original palettes, no extra equipped helmet"
+}

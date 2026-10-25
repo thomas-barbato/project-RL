@@ -3,6 +3,7 @@ use std::error::Error;
 use std::fmt::{Display, Formatter};
 use std::fs;
 use std::path::{Path, PathBuf};
+use std::sync::Arc;
 
 use semver::Version;
 use serde::Deserialize;
@@ -86,6 +87,62 @@ impl ContentLoader {
         game_version: &Version,
     ) -> Result<LoadedContent, ContentLoadError> {
         let packages = discover_packages(package_parent_directories)?;
+        Self::load_packages(packages, game_version)
+    }
+
+    /// Base content is read directly from the distribution archive; additional
+    /// user mods keep their existing directory format and dependency rules.
+    pub fn load_installation(
+        source: Arc<crate::data_paths::DataSource>,
+        game_version: &Version,
+    ) -> Result<LoadedContent, ContentLoadError> {
+        if !source.is_packed() {
+            return Self::load(
+                &[source.root().join("content"), source.root().join("mods")],
+                game_version,
+            );
+        }
+        let mut packages = discover_packages(&[source.root().join("mods")])?;
+        for name in source.paths() {
+            let path = Path::new(name);
+            if !matches!(path.components().next(), Some(std::path::Component::Normal(p)) if p == "content" || p == "mods")
+                || path.components().count() != 3
+                || path.file_name().is_none_or(|n| n != "manifest.toml")
+            {
+                continue;
+            }
+            let manifest_path = source.root().join(path);
+            let text = source
+                .read_limited(name, MAX_MANIFEST_BYTES)
+                .and_then(|b| String::from_utf8(b).map_err(|e| e.to_string()))
+                .map_err(|explanation| ContentLoadError::Io {
+                    path: manifest_path.clone(),
+                    explanation,
+                })?;
+            let manifest =
+                PackageManifest::from_toml(&text).map_err(|error| ContentLoadError::Manifest {
+                    path: manifest_path.clone(),
+                    error,
+                })?;
+            let id = manifest.id.clone();
+            let root = manifest_path.parent().unwrap().to_owned();
+            let discovered = DiscoveredPackage {
+                canonical_root: root.clone(),
+                root,
+                manifest,
+                source: Some(Arc::clone(&source)),
+            };
+            if packages.insert(id.clone(), discovered).is_some() {
+                return Err(ContentLoadError::DuplicatePackage(id));
+            }
+        }
+        Self::load_packages(packages, game_version)
+    }
+
+    fn load_packages(
+        packages: BTreeMap<PackageId, DiscoveredPackage>,
+        game_version: &Version,
+    ) -> Result<LoadedContent, ContentLoadError> {
         if !packages.keys().any(|package| package.as_str() == "core") {
             return Err(ContentLoadError::MissingCorePackage);
         }
@@ -273,6 +330,7 @@ struct DiscoveredPackage {
     root: PathBuf,
     canonical_root: PathBuf,
     manifest: PackageManifest,
+    source: Option<Arc<crate::data_paths::DataSource>>,
 }
 
 fn discover_packages(
@@ -330,6 +388,7 @@ fn discover_packages(
                 root,
                 canonical_root,
                 manifest,
+                source: None,
             };
             if packages.insert(package_id.clone(), discovered).is_some() {
                 return Err(ContentLoadError::DuplicatePackage(package_id));
@@ -344,7 +403,7 @@ fn load_status_definitions(
     catalog: &mut StatusCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "status")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawStatusDefinition =
             json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
                 package: package.manifest.id.clone(),
@@ -418,7 +477,7 @@ fn load_weapon_definitions(
     catalog: &mut WeaponCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "weapons")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawWeaponDefinition =
             json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
                 package: package.manifest.id.clone(),
@@ -466,7 +525,7 @@ fn load_visual_cue_definitions(
     catalog: &mut VisualCueCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "visuals")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawVisualCueDefinition =
             json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
                 package: package.manifest.id.clone(),
@@ -631,7 +690,7 @@ fn load_item_definitions(
     catalog: &mut ItemCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "items")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawItemDefinition =
             json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
                 package: package.manifest.id.clone(),
@@ -707,7 +766,7 @@ fn load_character_class_definitions(
     catalog: &mut CharacterClassCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "classes")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawCharacterClassDefinition =
             json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
                 package: package.manifest.id.clone(),
@@ -783,7 +842,7 @@ fn load_loot_definitions(
     catalog: &mut LootCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "loot")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawLootTable =
             json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
                 package: package.manifest.id.clone(),
@@ -862,7 +921,7 @@ fn load_regional_world_definitions(
     catalog: &mut RegionalWorldCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "regional_worlds")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawRegionalWorld =
             json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
                 package: package.manifest.id.clone(),
@@ -1829,7 +1888,7 @@ fn load_expedition_definitions(
     catalog: &mut ExpeditionCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "worlds")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawExpeditionDefinition =
             json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
                 package: package.manifest.id.clone(),
@@ -3357,7 +3416,7 @@ fn load_skill_definitions(
     catalog: &mut SkillCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "skills")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawSkillDefinitions =
             json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
                 package: package.manifest.id.clone(),
@@ -3637,7 +3696,7 @@ fn load_text_definitions(
     catalog: &mut TextCatalog,
 ) -> Result<(), ContentLoadError> {
     for path in definition_paths(package, "locales")? {
-        let source = read_limited_utf8(&path, MAX_DEFINITION_BYTES)?;
+        let source = read_package_utf8(package, &path, MAX_DEFINITION_BYTES)?;
         let raw: RawTextDefinitions =
             json5::from_str(&source).map_err(|error| ContentLoadError::DefinitionSyntax {
                 package: package.manifest.id.clone(),
@@ -3691,6 +3750,16 @@ fn definition_paths(
     directory_name: &str,
 ) -> Result<Vec<PathBuf>, ContentLoadError> {
     let directory = package.root.join(directory_name);
+    if let Some(source) = &package.source {
+        return Ok(source
+            .paths()
+            .map(|name| source.root().join(name))
+            .filter(|path| {
+                path.parent() == Some(directory.as_path())
+                    && path.extension().is_some_and(|e| e == "json5")
+            })
+            .collect());
+    }
     if !directory.exists() {
         return Ok(Vec::new());
     }
@@ -3744,6 +3813,39 @@ fn read_limited_utf8(path: &Path, maximum_bytes: u64) -> Result<String, ContentL
         path: path.to_path_buf(),
         explanation: error.to_string(),
     })
+}
+
+fn read_package_utf8(
+    package: &DiscoveredPackage,
+    path: &Path,
+    maximum_bytes: u64,
+) -> Result<String, ContentLoadError> {
+    let Some(source) = &package.source else {
+        return read_limited_utf8(path, maximum_bytes);
+    };
+    let name = path
+        .strip_prefix(source.root())
+        .map_err(|_| ContentLoadError::PathEscapesPackage(path.to_owned()))?
+        .to_string_lossy()
+        .replace('\\', "/");
+    let io_error = |explanation| ContentLoadError::Io {
+        path: path.to_owned(),
+        explanation,
+    };
+    let size = source.size(&name).map_err(io_error)?;
+    if size > maximum_bytes {
+        return Err(ContentLoadError::FileTooLarge {
+            path: path.to_owned(),
+            maximum_bytes,
+            actual_bytes: size,
+        });
+    }
+    String::from_utf8(
+        source
+            .read_limited(&name, maximum_bytes)
+            .map_err(io_error)?,
+    )
+    .map_err(|e| io_error(e.to_string()))
 }
 
 #[derive(Deserialize)]

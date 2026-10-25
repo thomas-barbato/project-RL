@@ -1,0 +1,112 @@
+{
+  "review_id": "METAMORPHE-DRUID-ST01",
+  "date": "2026-10-22",
+  "status": "direction_study_awaiting_visual_review",
+  "candidate_count": 1,
+  "supersedes_direction": "METAMORPHE-ADAPTIVE-W01",
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "ME-DR01-P03-r01",
+      "intended_progression_rank": 3,
+      "class_id": "core:metamorphe",
+      "class_name": "Métamorphe",
+      "presentation_gender": "female",
+      "form": "human_resting",
+      "status": "direction_study_awaiting_visual_review",
+      "source": "assets/source-art/class-readability-01/metamorphe-druid-study-01/ME-DR01-P03-r01-source.png",
+      "source_sha256": "0805ac453be9b99687540224f4e4e133b8c2a417d0808ece387964c417c6a960",
+      "native": "assets/source-art/class-readability-01/metamorphe-druid-study-01/ME-DR01-P03-r01-native64.png",
+      "native_sha256": "a57c1bb60deab22af2d09ec158e5e58767470db4c2be8f71dadfcf5160f17ec0",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          120,
+          17,
+          907,
+          1494
+        ],
+        "source_crop": [
+          98,
+          0,
+          929,
+          1516
+        ],
+        "isotropic_scale": 0.037914691943127965,
+        "native_core_box": [
+          17,
+          7,
+          47,
+          62
+        ],
+        "native_core_height": 55,
+        "native_core_width": 30,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-druid-study-01/ME-DR01-P03-r01-head-native64.png",
+          "sha256": "4b2ed8d2174df51930f0092a7f4f1b9697b7b97f1e8487f7ad05118d74593356"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-druid-study-01/ME-DR01-P03-r01-body-native64.png",
+          "sha256": "53c8ffba954931d7ac273440a5b48212906260819a013c453c969f8eb30828a4"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-druid-study-01/ME-DR01-P03-r01-head-mask-native64.png",
+          "sha256": "90be35efecf3fe44272fb3764c7f8a179375226ee89bbb5da955c08b8286d8ec"
+        }
+      },
+      "head_ownership_polygon": [
+        [
+          28,
+          5
+        ],
+        [
+          36,
+          5
+        ],
+        [
+          38,
+          10
+        ],
+        [
+          37,
+          15
+        ],
+        [
+          34,
+          18
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          27,
+          13
+        ],
+        [
+          26,
+          9
+        ]
+      ],
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_anchor": [
+        32,
+        13
+      ],
+      "rig_status": "study split only; production helmet override and weapon grips pending"
+    }
+  ],
+  "runtime_integration": false,
+  "color_variants": "deferred_by_user"
+}

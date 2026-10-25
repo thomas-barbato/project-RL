@@ -1,0 +1,330 @@
+{
+  "review_id": "CLASS-ARMORS-ALL01",
+  "date": "2026-10-21",
+  "status": "prepared_for_joint_native64_review",
+  "tool": "built-in image_gen",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "models_per_class": 5,
+  "total_armor_compositions": 25,
+  "new_body_sources": 15,
+  "new_default_headgear_sources": 3,
+  "color_variants": "deferred_by_user",
+  "runtime_integration": false,
+  "source_user_request": "fait toutes les armures de toutes les classes puis ensuite tu me montreras l'ensemble en taille réelle pour voir lesquelles seront à modifier / garder :)",
+  "workflow": "Prepare all classes before joint visual review; this supersedes the earlier one-class-at-a-time review cadence. No new art is accepted by this production request.",
+  "classes": [
+    {
+      "key": "traqueuse",
+      "class_id": "core:traqueur",
+      "prefix": "TR-W03",
+      "name": "Traqueuse",
+      "base": "CL03-r03",
+      "seam": 16,
+      "source": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "identity": "A compact ATHLETIC ADULT WOMAN scout. Keep the female body, stance, normal limb count and the reference's one cybernetic forearm and opposite cybernetic lower leg. Practical utilitarian silhouette, narrow shoulders and waist, agile ranger outline. OLIVE / CHARCOAL equipment, a small muted OCHRE marking. Fitted short tactical garments and angled low-profile protection. No long coat, robe, hood, huge square shoulder blocks or bulky melee armor."
+    },
+    {
+      "key": "arcaniste",
+      "class_id": "core:arcaniste",
+      "prefix": "AR-W04",
+      "name": "Arcaniste",
+      "base": "CL04-r03",
+      "seam": 14,
+      "source": "assets/source-art/class-readability-01/CL04-r03-source.png",
+      "identity": "A TALL SLENDER ADULT MALE cybernetic arcanist. Keep the reference's slim male anatomy and copper/ceramic channeling forearms and hands. Long vertical ceremonial TECH-TABARD shapes and an ivory central strip over BURGUNDY / CHARCOAL clothing. A narrow high structural collar, geometric copper conductors and ceramic masses. No open buttoned technician trenchcoat, teal cloth hood, giant square melee pauldrons or floating magical effects."
+    },
+    {
+      "key": "metamorphe",
+      "class_id": "core:metamorphe",
+      "prefix": "ME-W05",
+      "name": "Métamorphe",
+      "base": "CL05-r02",
+      "seam": 16,
+      "source": "assets/source-art/class-readability-01/CL05-r02-source.png",
+      "identity": "A MUSCULAR COMPACT ADULT WOMAN, human at rest, based on the reference. Keep her female face/body identity, strong human arms, normal hands, two normal legs and feet. Clothing is advanced flexible BIOWEAVE and manufactured organic-looking CHITIN armor, deep PLUM/CHARCOAL and warm TAWNY BONE. Curved overlapping shell masses and rib-like armor seams, no square military plates. These are wearable protections, not a bodily mutation: no claws, fangs, horns, animal head, tail, wings, extra limbs or monstrous anatomy. Functional covered torso, no sexualized armor, heels or breast cups."
+    }
+  ],
+  "jobs": [
+    {
+      "candidate_id": "TR-W03-H00-r01",
+      "class_id": "core:traqueur",
+      "kind": "headgear",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-17aa52c8-7a25-4b8f-85db-839fe07637ab.png",
+      "class_key": "traqueuse",
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "framing": {
+        "target_height": 5,
+        "max_width": 11,
+        "bottom_exclusive": 12
+      },
+      "prompt": "Use case: stylized-concept. Asset type: separate class-specific DEFAULT HEADGEAR OVERLAY for a 64x64 roguelike.\nInput role: class material/identity reference ONLY. Draw ONLY the physical protection. No head anatomy, person, face, flesh, eye drawn beneath open gear, hair, mannequin, neck or shoulders. Straight frontal worn view, centered, ample transparent margins.\nA real existing class head is placed behind this overlay. All areas described as open must be genuinely ALPHA-ZERO TRANSPARENT, never a black face, interior liner, rear shell or tinted rectangle. Opaque lens is allowed only where requested.\nNative item is only 5-7 pixels tall and 10-12 wide, so use extremely few broad shapes, 2-3 tones, a readable dark outline. No tiny detail, rivets, texture, halo or ground shadow. Genuine transparent background, no text or labels.\n\nA compact ATHLETIC ADULT WOMAN scout. Keep the female body, stance, normal limb count and the reference's one cybernetic forearm and opposite cybernetic lower leg. Practical utilitarian silhouette, narrow shoulders and waist, agile ranger outline. OLIVE / CHARCOAL equipment, a small muted OCHRE marking. Fitted short tactical garments and angled low-profile protection. No long coat, robe, hood, huge square shoulder blocks or bulky melee armor.\nA separate asymmetrical SCOUT SENSOR GUARD: one small charcoal and olive temple mount joined to a very thin dark upper-brow strap, with ONE slanted blue smoked monocular lens on the viewer's LEFT. Most of the head/face is not drawn and remains genuinely transparent. No face or hair. Compact asymmetric profile, no cap, dome, helmet, hood, ear cups, mask, jaw bar or full-width soldier visor."
+    },
+    {
+      "candidate_id": "TR-W03-P01-r02",
+      "class_id": "core:traqueur",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-f4a818fe-c4cc-4d27-978d-6e6c211ab7eb.png",
+      "class_key": "traqueuse",
+      "rank": 1,
+      "source_ref": "assets/source-art/class-readability-01/class-armors-all-01/TR-W03-P01-r01-body-source.png",
+      "prompt": "Use case: precise-object-edit. Asset type: headless scout armor body module for a native64 game.\nEdit the referenced outfit to improve readability when reduced to a 46-pixel-tall body. Keep the SAME female body anatomy, exact pose, proportions, hands, cybernetic forearm and opposite robotic lower leg, armor model geometry, footprint, neck-to-soles framing and true transparency. Do not add a head, weapon or object.\nChange ONLY the visual value structure of the clothing/protection: the olive vest/jacket/armor surfaces must become LIGHT COOL SAGE-KHAKI with broad clear pale upper planes, well separated from the charcoal flexible underlayer. Strongly increase their brightness so the main chest/shoulder/knee/shin protection reads as separate big light masses at native64. Main protection surfaces should look distinctly LIGHT rather than brown/black camouflage. Keep dark charcoal joints/underclothes, natural skin, white robotic components and the few amber identity marks.\nSimplify the inner shading into 2-3 broad values per material, remove tiny seams and noisy shading; preserve the big existing panels and dark outer contour. No extra armor or added decorations. No new little straps, rivets, fabric texture or speckling. Keep all parts attached and the hands empty.\nDo not merely increase the light source, contrast of the background or specular dots. The actual protective material must have broad light sage-khaki middle values. Do not turn it white, teal or gold. Matte functional equipment for a compact female ranged scout.\nTransparent background outside the whole body. Remove any aura/halo/vignette if present; leave no ground or cast shadow. Entire soles and hands remain visible.",
+      "supersedes": "TR-W03-P01-r01"
+    },
+    {
+      "candidate_id": "TR-W03-P02-r02",
+      "class_id": "core:traqueur",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-427de955-81f2-4473-a87b-5af4be9fc92f.png",
+      "class_key": "traqueuse",
+      "rank": 2,
+      "source_ref": "assets/source-art/class-readability-01/class-armors-all-01/TR-W03-P02-r01-body-source.png",
+      "prompt": "Use case: precise-object-edit. Asset type: headless scout armor body module for a native64 game.\nEdit the referenced outfit to improve readability when reduced to a 46-pixel-tall body. Keep the SAME female body anatomy, exact pose, proportions, hands, cybernetic forearm and opposite robotic lower leg, armor model geometry, footprint, neck-to-soles framing and true transparency. Do not add a head, weapon or object.\nChange ONLY the visual value structure of the clothing/protection: the olive vest/jacket/armor surfaces must become LIGHT COOL SAGE-KHAKI with broad clear pale upper planes, well separated from the charcoal flexible underlayer. Strongly increase their brightness so the main chest/shoulder/knee/shin protection reads as separate big light masses at native64. Main protection surfaces should look distinctly LIGHT rather than brown/black camouflage. Keep dark charcoal joints/underclothes, natural skin, white robotic components and the few amber identity marks.\nSimplify the inner shading into 2-3 broad values per material, remove tiny seams and noisy shading; preserve the big existing panels and dark outer contour. No extra armor or added decorations. No new little straps, rivets, fabric texture or speckling. Keep all parts attached and the hands empty.\nDo not merely increase the light source, contrast of the background or specular dots. The actual protective material must have broad light sage-khaki middle values. Do not turn it white, teal or gold. Matte functional equipment for a compact female ranged scout.\nTransparent background outside the whole body. Remove any aura/halo/vignette if present; leave no ground or cast shadow. Entire soles and hands remain visible.",
+      "supersedes": "TR-W03-P02-r01"
+    },
+    {
+      "candidate_id": "TR-W03-P03-r02",
+      "class_id": "core:traqueur",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-24b7d6ca-9d6d-43b5-803d-5f5bab9513b0.png",
+      "class_key": "traqueuse",
+      "rank": 3,
+      "source_ref": "assets/source-art/class-readability-01/class-armors-all-01/TR-W03-P03-r01-body-source.png",
+      "prompt": "Use case: precise-object-edit. Asset type: headless scout armor body module for a native64 game.\nEdit the referenced outfit to improve readability when reduced to a 46-pixel-tall body. Keep the SAME female body anatomy, exact pose, proportions, hands, cybernetic forearm and opposite robotic lower leg, armor model geometry, footprint, neck-to-soles framing and true transparency. Do not add a head, weapon or object.\nChange ONLY the visual value structure of the clothing/protection: the olive vest/jacket/armor surfaces must become LIGHT COOL SAGE-KHAKI with broad clear pale upper planes, well separated from the charcoal flexible underlayer. Strongly increase their brightness so the main chest/shoulder/knee/shin protection reads as separate big light masses at native64. Main protection surfaces should look distinctly LIGHT rather than brown/black camouflage. Keep dark charcoal joints/underclothes, natural skin, white robotic components and the few amber identity marks.\nSimplify the inner shading into 2-3 broad values per material, remove tiny seams and noisy shading; preserve the big existing panels and dark outer contour. No extra armor or added decorations. No new little straps, rivets, fabric texture or speckling. Keep all parts attached and the hands empty.\nDo not merely increase the light source, contrast of the background or specular dots. The actual protective material must have broad light sage-khaki middle values. Do not turn it white, teal or gold. Matte functional equipment for a compact female ranged scout.\nTransparent background outside the whole body. Remove any aura/halo/vignette if present; leave no ground or cast shadow. Entire soles and hands remain visible.",
+      "supersedes": "TR-W03-P03-r01"
+    },
+    {
+      "candidate_id": "TR-W03-P04-r02",
+      "class_id": "core:traqueur",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-e4b1fb44-2221-4557-ad19-020fb86a1576.png",
+      "class_key": "traqueuse",
+      "rank": 4,
+      "source_ref": "assets/source-art/class-readability-01/class-armors-all-01/TR-W03-P04-r01-body-source.png",
+      "prompt": "Use case: precise-object-edit. Asset type: headless scout armor body module for a native64 game.\nEdit the referenced outfit to improve readability when reduced to a 46-pixel-tall body. Keep the SAME female body anatomy, exact pose, proportions, hands, cybernetic forearm and opposite robotic lower leg, armor model geometry, footprint, neck-to-soles framing and true transparency. Do not add a head, weapon or object.\nChange ONLY the visual value structure of the clothing/protection: the olive vest/jacket/armor surfaces must become LIGHT COOL SAGE-KHAKI with broad clear pale upper planes, well separated from the charcoal flexible underlayer. Strongly increase their brightness so the main chest/shoulder/knee/shin protection reads as separate big light masses at native64. Main protection surfaces should look distinctly LIGHT rather than brown/black camouflage. Keep dark charcoal joints/underclothes, natural skin, white robotic components and the few amber identity marks.\nSimplify the inner shading into 2-3 broad values per material, remove tiny seams and noisy shading; preserve the big existing panels and dark outer contour. No extra armor or added decorations. No new little straps, rivets, fabric texture or speckling. Keep all parts attached and the hands empty.\nDo not merely increase the light source, contrast of the background or specular dots. The actual protective material must have broad light sage-khaki middle values. Do not turn it white, teal or gold. Matte functional equipment for a compact female ranged scout.\nTransparent background outside the whole body. Remove any aura/halo/vignette if present; leave no ground or cast shadow. Entire soles and hands remain visible.",
+      "supersedes": "TR-W03-P04-r01"
+    },
+    {
+      "candidate_id": "TR-W03-P05-r02",
+      "class_id": "core:traqueur",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-400a1a7b-ed57-4f2a-b8d8-a23870e9c360.png",
+      "class_key": "traqueuse",
+      "rank": 5,
+      "source_ref": "assets/source-art/class-readability-01/class-armors-all-01/TR-W03-P05-r01-body-source.png",
+      "prompt": "Use case: precise-object-edit. Asset type: headless scout armor body module for a native64 game.\nEdit the referenced outfit to improve readability when reduced to a 46-pixel-tall body. Keep the SAME female body anatomy, exact pose, proportions, hands, cybernetic forearm and opposite robotic lower leg, armor model geometry, footprint, neck-to-soles framing and true transparency. Do not add a head, weapon or object.\nChange ONLY the visual value structure of the clothing/protection: the olive vest/jacket/armor surfaces must become LIGHT COOL SAGE-KHAKI with broad clear pale upper planes, well separated from the charcoal flexible underlayer. Strongly increase their brightness so the main chest/shoulder/knee/shin protection reads as separate big light masses at native64. Main protection surfaces should look distinctly LIGHT rather than brown/black camouflage. Keep dark charcoal joints/underclothes, natural skin, white robotic components and the few amber identity marks.\nSimplify the inner shading into 2-3 broad values per material, remove tiny seams and noisy shading; preserve the big existing panels and dark outer contour. No extra armor or added decorations. No new little straps, rivets, fabric texture or speckling. Keep all parts attached and the hands empty.\nDo not merely increase the light source, contrast of the background or specular dots. The actual protective material must have broad light sage-khaki middle values. Do not turn it white, teal or gold. Matte functional equipment for a compact female ranged scout.\nTransparent background outside the whole body. Remove any aura/halo/vignette if present; leave no ground or cast shadow. Entire soles and hands remain visible.",
+      "supersedes": "TR-W03-P05-r01"
+    },
+    {
+      "candidate_id": "AR-W04-H00-r01",
+      "class_id": "core:arcaniste",
+      "kind": "headgear",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-4f7ba3df-b8d4-4d5e-b84d-005bd0d4bfd9.png",
+      "class_key": "arcaniste",
+      "source_ref": "assets/source-art/class-readability-01/CL04-r03-source.png",
+      "framing": {
+        "target_height": 7,
+        "max_width": 11,
+        "bottom_exclusive": 11
+      },
+      "prompt": "Use case: stylized-concept. Asset type: separate class-specific DEFAULT HEADGEAR OVERLAY for a 64x64 roguelike.\nInput role: class material/identity reference ONLY. Draw ONLY the physical protection. No head anatomy, person, face, flesh, eye drawn beneath open gear, hair, mannequin, neck or shoulders. Straight frontal worn view, centered, ample transparent margins.\nA real existing class head is placed behind this overlay. All areas described as open must be genuinely ALPHA-ZERO TRANSPARENT, never a black face, interior liner, rear shell or tinted rectangle. Opaque lens is allowed only where requested.\nNative item is only 5-7 pixels tall and 10-12 wide, so use extremely few broad shapes, 2-3 tones, a readable dark outline. No tiny detail, rivets, texture, halo or ground shadow. Genuine transparent background, no text or labels.\n\nA TALL SLENDER ADULT MALE cybernetic arcanist. Keep the reference's slim male anatomy and copper/ceramic channeling forearms and hands. Long vertical ceremonial TECH-TABARD shapes and an ivory central strip over BURGUNDY / CHARCOAL clothing. A narrow high structural collar, geometric copper conductors and ceramic masses. No open buttoned technician trenchcoat, teal cloth hood, giant square melee pauldrons or floating magical effects.\nA separate OPEN COPPER TEMPLE DIADEM for the slender male cybernetic arcanist: two short narrow copper side arcs attached to a thin charcoal brow support, one small ivory central brow plate. Distinct vertical side terminals, extremely simple geometry. Empty alpha-zero center and top so the original white hair and face remain visible. No face, hair, skull, mannequin, helmet dome, fabric hood, floating halo, tall spikes or religious symbols."
+    },
+    {
+      "candidate_id": "AR-W04-P01-r01",
+      "class_id": "core:arcaniste",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-316e5ba4-0c34-43fa-9518-95e7cdf79fb8.png",
+      "class_key": "arcaniste",
+      "rank": 1,
+      "source_ref": "assets/source-art/class-readability-01/CL04-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA TALL SLENDER ADULT MALE cybernetic arcanist. Keep the reference's slim male anatomy and copper/ceramic channeling forearms and hands. Long vertical ceremonial TECH-TABARD shapes and an ivory central strip over BURGUNDY / CHARCOAL clothing. A narrow high structural collar, geometric copper conductors and ceramic masses. No open buttoned technician trenchcoat, teal cloth hood, giant square melee pauldrons or floating magical effects.\nMODEL:\nVERY LIGHT: sleeveless burgundy technical tunic with one narrow long ivory central tabard dropping almost to the knees. Natural upper arms, slim copper/ceramic cybernetic forearms with light hand protection. Loose charcoal pants, soft dark boots, minimal armor. Slender vertical silhouette, no waist-length soldier vest."
+    },
+    {
+      "candidate_id": "AR-W04-P02-r01",
+      "class_id": "core:arcaniste",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-90de4b39-7fbe-47b9-b898-92804661fe37.png",
+      "class_key": "arcaniste",
+      "rank": 2,
+      "source_ref": "assets/source-art/class-readability-01/CL04-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA TALL SLENDER ADULT MALE cybernetic arcanist. Keep the reference's slim male anatomy and copper/ceramic channeling forearms and hands. Long vertical ceremonial TECH-TABARD shapes and an ivory central strip over BURGUNDY / CHARCOAL clothing. A narrow high structural collar, geometric copper conductors and ceramic masses. No open buttoned technician trenchcoat, teal cloth hood, giant square melee pauldrons or floating magical effects.\nMODEL:\nLIGHT: a long BURGUNDY split tech-robe with an ivory front strip, fitted narrow sleeves and a light upright collar. Copper wrist and hand guards, charcoal trousers and fitted mid-calf boots visible through the front split. Few broad soft cloth folds, no armor shoulders."
+    },
+    {
+      "candidate_id": "AR-W04-P03-r01",
+      "class_id": "core:arcaniste",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-c78513ff-cf2a-47c9-a19f-36d346554536.png",
+      "class_key": "arcaniste",
+      "rank": 3,
+      "source_ref": "assets/source-art/class-readability-01/CL04-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA TALL SLENDER ADULT MALE cybernetic arcanist. Keep the reference's slim male anatomy and copper/ceramic channeling forearms and hands. Long vertical ceremonial TECH-TABARD shapes and an ivory central strip over BURGUNDY / CHARCOAL clothing. A narrow high structural collar, geometric copper conductors and ceramic masses. No open buttoned technician trenchcoat, teal cloth hood, giant square melee pauldrons or floating magical effects.\nMODEL:\nMEDIUM: an upright ivory ceramic sternum guard over a long burgundy TABARD, narrow high angular collar and broad copper/ivory channeling bracers and gloves. Long split skirt panels, a dark underlayer, ceramic knee guards and tapered protected boots. Thin upper body, strong long vertical divisions."
+    },
+    {
+      "candidate_id": "AR-W04-P04-r01",
+      "class_id": "core:arcaniste",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-e5071f95-d565-4571-a568-76725a9608ac.png",
+      "class_key": "arcaniste",
+      "rank": 4,
+      "source_ref": "assets/source-art/class-readability-01/CL04-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA TALL SLENDER ADULT MALE cybernetic arcanist. Keep the reference's slim male anatomy and copper/ceramic channeling forearms and hands. Long vertical ceremonial TECH-TABARD shapes and an ivory central strip over BURGUNDY / CHARCOAL clothing. A narrow high structural collar, geometric copper conductors and ceramic masses. No open buttoned technician trenchcoat, teal cloth hood, giant square melee pauldrons or floating magical effects.\nMODEL:\nHEAVY: a structured BURGUNDY AND IVORY armored tabard, raised angular collar and a few vertical ceramic rib panels down the chest. Small sharply sloped triangular shoulder guards, heavier copper forearm housings and gloves. Overlapping LONG vertical skirt plates, protected legs and solid boots. No rounded military body shell."
+    },
+    {
+      "candidate_id": "AR-W04-P05-r01",
+      "class_id": "core:arcaniste",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-de26ae49-d41d-4973-9837-f75432574d46.png",
+      "class_key": "arcaniste",
+      "rank": 5,
+      "source_ref": "assets/source-art/class-readability-01/CL04-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA TALL SLENDER ADULT MALE cybernetic arcanist. Keep the reference's slim male anatomy and copper/ceramic channeling forearms and hands. Long vertical ceremonial TECH-TABARD shapes and an ivory central strip over BURGUNDY / CHARCOAL clothing. A narrow high structural collar, geometric copper conductors and ceramic masses. No open buttoned technician trenchcoat, teal cloth hood, giant square melee pauldrons or floating magical effects.\nMODEL:\nVERY HEAVY: a complete CERAMIC CHANNELING VESTMENT: tall narrow torso with ivory vertical armor ribs, broad sloping triangular shoulder flanges, heavy copper/ivory bracers and enclosed gloves. A rigid flared bell-like segmented long battle-skirt made of a few large burgundy/ivory panels, matching armored lower legs and boots. Tall ceremonial silhouette with a narrow waist; all parts physically attached, no floating plates or glow."
+    },
+    {
+      "candidate_id": "ME-W05-H00-r01",
+      "class_id": "core:metamorphe",
+      "kind": "headgear",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-35d25e8b-4c65-4278-add0-96c6322f8ba8.png",
+      "class_key": "metamorphe",
+      "source_ref": "assets/source-art/class-readability-01/CL05-r02-source.png",
+      "framing": {
+        "target_height": 7,
+        "max_width": 12,
+        "bottom_exclusive": 14
+      },
+      "prompt": "Use case: stylized-concept. Asset type: separate class-specific DEFAULT HEADGEAR OVERLAY for a 64x64 roguelike.\nInput role: class material/identity reference ONLY. Draw ONLY the physical protection. No head anatomy, person, face, flesh, eye drawn beneath open gear, hair, mannequin, neck or shoulders. Straight frontal worn view, centered, ample transparent margins.\nA real existing class head is placed behind this overlay. All areas described as open must be genuinely ALPHA-ZERO TRANSPARENT, never a black face, interior liner, rear shell or tinted rectangle. Opaque lens is allowed only where requested.\nNative item is only 5-7 pixels tall and 10-12 wide, so use extremely few broad shapes, 2-3 tones, a readable dark outline. No tiny detail, rivets, texture, halo or ground shadow. Genuine transparent background, no text or labels.\n\nA MUSCULAR COMPACT ADULT WOMAN, human at rest, based on the reference. Keep her female face/body identity, strong human arms, normal hands, two normal legs and feet. Clothing is advanced flexible BIOWEAVE and manufactured organic-looking CHITIN armor, deep PLUM/CHARCOAL and warm TAWNY BONE. Curved overlapping shell masses and rib-like armor seams, no square military plates. These are wearable protections, not a bodily mutation: no claws, fangs, horns, animal head, tail, wings, extra limbs or monstrous anatomy. Functional covered torso, no sexualized armor, heels or breast cups.\nA separate low curved TAWNY CHITIN BROW AND TEMPLE GUARD on a dark plum flexible backing. One broad smooth arched shell over the brow with two tapered side cheeks, a natural shell-like profile. Large central alpha-zero transparent opening for the original human face and open lower jaw. No face, flesh, hair, skull, mannequin, helmet dome, mechanical visor, hood, horns, teeth, spikes, claws or mutation."
+    },
+    {
+      "candidate_id": "ME-W05-P01-r01",
+      "class_id": "core:metamorphe",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-60490247-73a0-487a-93fb-b74b268b5483.png",
+      "class_key": "metamorphe",
+      "rank": 1,
+      "source_ref": "assets/source-art/class-readability-01/CL05-r02-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA MUSCULAR COMPACT ADULT WOMAN, human at rest, based on the reference. Keep her female face/body identity, strong human arms, normal hands, two normal legs and feet. Clothing is advanced flexible BIOWEAVE and manufactured organic-looking CHITIN armor, deep PLUM/CHARCOAL and warm TAWNY BONE. Curved overlapping shell masses and rib-like armor seams, no square military plates. These are wearable protections, not a bodily mutation: no claws, fangs, horns, animal head, tail, wings, extra limbs or monstrous anatomy. Functional covered torso, no sexualized armor, heels or breast cups.\nMODEL:\nVERY LIGHT: a fully covering sleeveless dark-plum bioweave torso vest with curved reinforced edges and a few tawny organic-fiber straps. Strong natural upper arms remain visible, wrap-protected forearms and light cloth gloves. Flexible dark fitted utility trousers, soft knee wraps and low broad boots. A simple practical lightweight outfit, normal human anatomy."
+    },
+    {
+      "candidate_id": "ME-W05-P02-r01",
+      "class_id": "core:metamorphe",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-8d2704f4-e0c3-458d-89de-0abf0167c064.png",
+      "class_key": "metamorphe",
+      "rank": 2,
+      "source_ref": "assets/source-art/class-readability-01/CL05-r02-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA MUSCULAR COMPACT ADULT WOMAN, human at rest, based on the reference. Keep her female face/body identity, strong human arms, normal hands, two normal legs and feet. Clothing is advanced flexible BIOWEAVE and manufactured organic-looking CHITIN armor, deep PLUM/CHARCOAL and warm TAWNY BONE. Curved overlapping shell masses and rib-like armor seams, no square military plates. These are wearable protections, not a bodily mutation: no claws, fangs, horns, animal head, tail, wings, extra limbs or monstrous anatomy. Functional covered torso, no sexualized armor, heels or breast cups.\nMODEL:\nLIGHT: a short plum membrane jacket with a few curved tawny reinforcement patches at ribs and forearms, flexible full gloves. Dark woven pants with curved knee patches, supple ankle/shin wraps and short shell-toed boots. No long cloth coat and no military shoulder blocks."
+    },
+    {
+      "candidate_id": "ME-W05-P03-r01",
+      "class_id": "core:metamorphe",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-82df31c7-5f86-4f8a-91f5-24990d3c95af.png",
+      "class_key": "metamorphe",
+      "rank": 3,
+      "source_ref": "assets/source-art/class-readability-01/CL05-r02-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA MUSCULAR COMPACT ADULT WOMAN, human at rest, based on the reference. Keep her female face/body identity, strong human arms, normal hands, two normal legs and feet. Clothing is advanced flexible BIOWEAVE and manufactured organic-looking CHITIN armor, deep PLUM/CHARCOAL and warm TAWNY BONE. Curved overlapping shell masses and rib-like armor seams, no square military plates. These are wearable protections, not a bodily mutation: no claws, fangs, horns, animal head, tail, wings, extra limbs or monstrous anatomy. Functional covered torso, no sexualized armor, heels or breast cups.\nMODEL:\nMEDIUM: layered CHITIN-BIOWEAVE ARMOR: one large curved tawny shoulder shell and complementary rib-like chest panels over plum cloth, curved forearm guards and full gloves. A few compact scalloped hip plates, flexible thighs, oval knee guards, curved calf shells and rounded broad boots. Keep the muscular female outline."
+    },
+    {
+      "candidate_id": "ME-W05-P04-r01",
+      "class_id": "core:metamorphe",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-91513865-58b6-4ac6-a92a-a5bd33b9baa4.png",
+      "class_key": "metamorphe",
+      "rank": 4,
+      "source_ref": "assets/source-art/class-readability-01/CL05-r02-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA MUSCULAR COMPACT ADULT WOMAN, human at rest, based on the reference. Keep her female face/body identity, strong human arms, normal hands, two normal legs and feet. Clothing is advanced flexible BIOWEAVE and manufactured organic-looking CHITIN armor, deep PLUM/CHARCOAL and warm TAWNY BONE. Curved overlapping shell masses and rib-like armor seams, no square military plates. These are wearable protections, not a bodily mutation: no claws, fangs, horns, animal head, tail, wings, extra limbs or monstrous anatomy. Functional covered torso, no sexualized armor, heels or breast cups.\nMODEL:\nHEAVY: a continuous smooth tawny rib-cage-like CHEST SHELL over plum bioweave, curved overlapping shoulder caps and solid rounded forearm and hand guards. Scalloped compact hip protection, large smooth thigh and shin shells with flexible dark joints, enclosed rounded armored boots. Manufactured protective organic forms, not exposed anatomy."
+    },
+    {
+      "candidate_id": "ME-W05-P05-r01",
+      "class_id": "core:metamorphe",
+      "kind": "body",
+      "status": "generated_awaiting_native_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-6789da43-b182-4bb2-bf87-a8afcdac2f96.png",
+      "class_key": "metamorphe",
+      "rank": 5,
+      "source_ref": "assets/source-art/class-readability-01/CL05-r02-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA MUSCULAR COMPACT ADULT WOMAN, human at rest, based on the reference. Keep her female face/body identity, strong human arms, normal hands, two normal legs and feet. Clothing is advanced flexible BIOWEAVE and manufactured organic-looking CHITIN armor, deep PLUM/CHARCOAL and warm TAWNY BONE. Curved overlapping shell masses and rib-like armor seams, no square military plates. These are wearable protections, not a bodily mutation: no claws, fangs, horns, animal head, tail, wings, extra limbs or monstrous anatomy. Functional covered torso, no sexualized armor, heels or breast cups.\nMODEL:\nVERY HEAVY: a thick BEETLE-LIKE TAWNY CARAPACE cuirass, broad curved petal shoulder shells, rounded reinforced vambraces and full gloved hands. Overlapping scalloped hip guards, continuous curved thigh and calf armor and broad heavy shell boots over a plum flexible underlayer. Compact powerful female human, normal limbs and feet. A smooth curved armored cocoon outline, never a square soldier suit or actual beast transformation."
+    }
+  ],
+  "superseded_jobs": [
+    {
+      "candidate_id": "TR-W03-P01-r01",
+      "class_id": "core:traqueur",
+      "kind": "body",
+      "status": "superseded_after_native_contrast_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-3fa260b4-583e-473a-9eb0-4ec710215b97.png",
+      "class_key": "traqueuse",
+      "rank": 1,
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA compact ATHLETIC ADULT WOMAN scout. Keep the female body, stance, normal limb count and the reference's one cybernetic forearm and opposite cybernetic lower leg. Practical utilitarian silhouette, narrow shoulders and waist, agile ranger outline. OLIVE / CHARCOAL equipment, a small muted OCHRE marking. Fitted short tactical garments and angled low-profile protection. No long coat, robe, hood, huge square shoulder blocks or bulky melee armor.\nMODEL:\nVERY LIGHT: sleeveless short reinforced olive vest over a charcoal undershirt. Bare natural forearm and exposed robotic forearm as in the reference, light fingerless gloves. Loose dark utility trousers, cloth knee wraps and light ankle boots, little rigid coverage. Entire torso/arms/hands/legs/feet included.",
+      "workspace_source": "assets/source-art/class-readability-01/class-armors-all-01/TR-W03-P01-r01-body-source.png"
+    },
+    {
+      "candidate_id": "TR-W03-P02-r01",
+      "class_id": "core:traqueur",
+      "kind": "body",
+      "status": "superseded_after_native_contrast_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-0e70e810-9def-4a67-b272-75dc612fc91f.png",
+      "class_key": "traqueuse",
+      "rank": 2,
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA compact ATHLETIC ADULT WOMAN scout. Keep the female body, stance, normal limb count and the reference's one cybernetic forearm and opposite cybernetic lower leg. Practical utilitarian silhouette, narrow shoulders and waist, agile ranger outline. OLIVE / CHARCOAL equipment, a small muted OCHRE marking. Fitted short tactical garments and angled low-profile protection. No long coat, robe, hood, huge square shoulder blocks or bulky melee armor.\nMODEL:\nLIGHT: cropped olive ranger jacket with fitted sleeves, two large slanted fabric panels, low wrist guards. Slim charcoal trousers with broad olive knee patches, flexible gloves and calf-high soft scout boots. Keep the whole outline athletic and close to the body.",
+      "workspace_source": "assets/source-art/class-readability-01/class-armors-all-01/TR-W03-P02-r01-body-source.png"
+    },
+    {
+      "candidate_id": "TR-W03-P03-r01",
+      "class_id": "core:traqueur",
+      "kind": "body",
+      "status": "superseded_after_native_contrast_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-3a42bd57-7605-4c4d-9555-e1c260950f98.png",
+      "class_key": "traqueuse",
+      "rank": 3,
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA compact ATHLETIC ADULT WOMAN scout. Keep the female body, stance, normal limb count and the reference's one cybernetic forearm and opposite cybernetic lower leg. Practical utilitarian silhouette, narrow shoulders and waist, agile ranger outline. OLIVE / CHARCOAL equipment, a small muted OCHRE marking. Fitted short tactical garments and angled low-profile protection. No long coat, robe, hood, huge square shoulder blocks or bulky melee armor.\nMODEL:\nMEDIUM: a fitted olive segmented ballistic jacket with a strong diagonal CHARCOAL chest strap, one broad low shoulder guard, shaped forearm guards and padded gloves. Flexible dark trousers, flat thigh guards, angular knees and reinforced tapered calf boots. All shapes compact, no wide melee shoulders.",
+      "workspace_source": "assets/source-art/class-readability-01/class-armors-all-01/TR-W03-P03-r01-body-source.png"
+    },
+    {
+      "candidate_id": "TR-W03-P04-r01",
+      "class_id": "core:traqueur",
+      "kind": "body",
+      "status": "superseded_after_native_contrast_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-bc71d503-9b45-4f1d-be49-982ccdb8b496.png",
+      "class_key": "traqueuse",
+      "rank": 4,
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA compact ATHLETIC ADULT WOMAN scout. Keep the female body, stance, normal limb count and the reference's one cybernetic forearm and opposite cybernetic lower leg. Practical utilitarian silhouette, narrow shoulders and waist, agile ranger outline. OLIVE / CHARCOAL equipment, a small muted OCHRE marking. Fitted short tactical garments and angled low-profile protection. No long coat, robe, hood, huge square shoulder blocks or bulky melee armor.\nMODEL:\nHEAVY: a waist-length layered ranger shell with a strong diagonal opening, compact sloping shoulder guards, full tapered arm and hand protection. Matching flexible laminate trousers with continuous low-profile thigh and shin panels and armored ranger boots. More continuous coverage while the female scout remains slim and mobile.",
+      "workspace_source": "assets/source-art/class-readability-01/class-armors-all-01/TR-W03-P04-r01-body-source.png"
+    },
+    {
+      "candidate_id": "TR-W03-P05-r01",
+      "class_id": "core:traqueur",
+      "kind": "body",
+      "status": "superseded_after_native_contrast_review",
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-3a1cbeea-1b46-44a0-b3b2-4c658d0fe744.png",
+      "class_key": "traqueuse",
+      "rank": 5,
+      "source_ref": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "prompt": "Use case: stylized-concept. Asset type: headless full outfit body module for a 64x64 cyberpunk roguelike character.\nInput image role: reference for the CLASS ANATOMY, POSE, proportions and broad rendering style only. Replace its clothes with the specified armor model.\nDraw ONE COMPLETE humanoid body FROM NECK TO BOTH SOLES, straight frontal worn view, relaxed balanced stance, both arms down with a gap from the torso, BOTH EMPTY HANDS visible and fingers inward. Keep the reference class proportions. Entire feet visible, no cropping or stretching.\nCRITICAL: NO HEAD, no face, hair, helmet, hood or headgear. Just a short dark neck socket at the top; the exact existing class head is composited separately. No flesh blob at the neck.\nThe armor of the torso determines the entire worn outfit: arms, gloves, trousers/skirt, leg protection and boots all belong to this model. Clearly change their protection with the requested weight. Empty hands, no weapons, tools, drones, effects or loose objects.\nStyle: extremely readable native64 GAME SPRITE, few large faceted matte masses, continuous readable dark outer contour, restrained upper-left highlights, 2-3 broad values per material, almost no texture. The finished body is only about 46-48 pixels tall. No miniature buckles, screws, thin wires, tiny seams or dense patterns.\nTrue transparent background outside the complete body, ample clear margin around hands and feet, no ground, shadow, aura, glow, vignette, text, icons or frame.\n\nCLASS IDENTITY:\nA compact ATHLETIC ADULT WOMAN scout. Keep the female body, stance, normal limb count and the reference's one cybernetic forearm and opposite cybernetic lower leg. Practical utilitarian silhouette, narrow shoulders and waist, agile ranger outline. OLIVE / CHARCOAL equipment, a small muted OCHRE marking. Fitted short tactical garments and angled low-profile protection. No long coat, robe, hood, huge square shoulder blocks or bulky melee armor.\nMODEL:\nVERY HEAVY: a complete close-fitting OLIVE SCOUT EXOSUIT. Continuous angled torso shell, narrow sloping shoulders, short flat hip guards, reinforced forearms and full gloves. Compact thigh/knee/shin shells and heavier enclosed boots. A thick protective suit shaped for a ranged scout, NOT a broad blocky melee soldier. No extra limbs, weapons or backpack projections.",
+      "workspace_source": "assets/source-art/class-readability-01/class-armors-all-01/TR-W03-P05-r01-body-source.png"
+    }
+  ],
+  "native_review_note": "The first five scout bodies blended into dark ground at native64; r02 improves broad material values without adding color variants or changing the armor models."
+}

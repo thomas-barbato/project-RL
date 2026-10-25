@@ -6,15 +6,15 @@ mod revised_hands;
 
 pub(super) struct FlatAgents {
     held: revised_hands::HeldPoses,
-    reviewed: Image,
-    reviewed64: Image,
-    bodies: Image,
-    fingers: Image,
-    weapons: Image,
-    extended_reviewed: Image,
-    extended_reviewed64: Image,
-    extended_bodies: Image,
-    extended_fingers: Image,
+    reviewed: palettes::LazyImage,
+    reviewed64: palettes::LazyImage,
+    bodies: palettes::LazyImage,
+    fingers: palettes::LazyImage,
+    weapons: palettes::LazyImage,
+    extended_reviewed: palettes::LazyImage,
+    extended_reviewed64: palettes::LazyImage,
+    extended_bodies: palettes::LazyImage,
+    extended_fingers: palettes::LazyImage,
 }
 impl FlatAgents {
     pub(super) fn held_source(&self, model: u16, left: bool) -> Option<Image> {
@@ -34,31 +34,31 @@ impl FlatAgents {
     pub(super) fn load() -> Self {
         Self {
             held: revised_hands::HeldPoses::load(),
-            reviewed: palettes::decoded(include_bytes!(
+            reviewed: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/flat-agents/reviewed-64.png"
             )),
-            reviewed64: palettes::decoded(include_bytes!(
+            reviewed64: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/flat-agents/reviewed-128.png"
             )),
-            bodies: palettes::decoded(include_bytes!(
+            bodies: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/flat-agents/bodies-128.png"
             )),
-            fingers: palettes::decoded(include_bytes!(
+            fingers: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/flat-agents/fingers-128.png"
             )),
-            weapons: palettes::decoded(include_bytes!(
+            weapons: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/flat-agents/weapons-128.png"
             )),
-            extended_reviewed: palettes::decoded(include_bytes!(
+            extended_reviewed: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/equipment-native64/outfits-64.png"
             )),
-            extended_reviewed64: palettes::decoded(include_bytes!(
+            extended_reviewed64: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/equipment-native64/outfits-128.png"
             )),
-            extended_bodies: palettes::decoded(include_bytes!(
+            extended_bodies: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/equipment-native64/bodies-128.png"
             )),
-            extended_fingers: palettes::decoded(include_bytes!(
+            extended_fingers: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/equipment-native64/fingers-128.png"
             )),
         }

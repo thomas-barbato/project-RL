@@ -1,0 +1,199 @@
+{
+  "review_id": "WALK07-CREATURES-LOT08",
+  "date": "2026-10-24",
+  "execution": "Native image checks; controller checked separately with Node simulated DOM/canvas",
+  "runtime_integration": false,
+  "browser_or_game_execution": false,
+  "pose_count": 84,
+  "visual_acceptance_record": "visual-acceptance-creatures-lot08.json",
+  "anatomy_limit": "Counts, gait quality and facing consistency require visual review; dimensions and different pixels cannot prove them.",
+  "native_comparison_board": "artifacts/player-walk-review-07/creature-lot08-comparison-native.png",
+  "cases": [
+    {
+      "review_id": "WALK07-M45",
+      "identity": "MON-104-0",
+      "poses": 14,
+      "source_sha256": "7c24bd801d56ae36f02c639c9dc9f37b31925caba485513b3027cd77cbab2d69",
+      "native_height_range": [
+        33,
+        37
+      ],
+      "original_native_height": 37,
+      "distinct_walking_poses_per_direction": [
+        6,
+        6
+      ],
+      "cycle_visible_height": 37,
+      "vertical_offset": -13,
+      "one_fixed_offset_for_all14_poses": true,
+      "source_opaque_outer_edge_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "frozen_accepted_pixels_match": true,
+      "reference_native_pixels_exact": true,
+      "native_reference_not_clipped": true,
+      "review_origin": [
+        64,
+        112
+      ]
+    },
+    {
+      "review_id": "WALK07-M46",
+      "identity": "MON-107-0",
+      "poses": 14,
+      "source_sha256": "2c1bb0669b67fc79f9239e37e11ac742700e988d0acb9f4254540eda87186091",
+      "native_height_range": [
+        56,
+        56
+      ],
+      "original_native_height": 56,
+      "distinct_walking_poses_per_direction": [
+        6,
+        6
+      ],
+      "cycle_visible_height": 56,
+      "vertical_offset": -4,
+      "one_fixed_offset_for_all14_poses": true,
+      "source_opaque_outer_edge_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "frozen_accepted_pixels_match": true,
+      "reference_native_pixels_exact": true,
+      "native_reference_not_clipped": true,
+      "review_origin": [
+        64,
+        112
+      ]
+    },
+    {
+      "review_id": "WALK07-M47",
+      "identity": "MON-113-0",
+      "poses": 14,
+      "source_sha256": "4bcd9fa85cb8501f1aae4c533dad895b1d0b9053fab0c981cc8ff02e2cb52cf4",
+      "native_height_range": [
+        35,
+        38
+      ],
+      "original_native_height": 38,
+      "distinct_walking_poses_per_direction": [
+        6,
+        6
+      ],
+      "cycle_visible_height": 38,
+      "vertical_offset": -13,
+      "one_fixed_offset_for_all14_poses": true,
+      "source_opaque_outer_edge_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "frozen_accepted_pixels_match": true,
+      "reference_native_pixels_exact": true,
+      "native_reference_not_clipped": true,
+      "review_origin": [
+        64,
+        112
+      ]
+    },
+    {
+      "review_id": "WALK07-M48",
+      "identity": "MON-118-0",
+      "poses": 14,
+      "source_sha256": "ddf0ed7d9d8e321103c4c46454f69612b9c713eb858a110ad5096e518eb516a2",
+      "native_height_range": [
+        34,
+        38
+      ],
+      "original_native_height": 38,
+      "distinct_walking_poses_per_direction": [
+        6,
+        6
+      ],
+      "cycle_visible_height": 38,
+      "vertical_offset": -13,
+      "one_fixed_offset_for_all14_poses": true,
+      "source_opaque_outer_edge_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "frozen_accepted_pixels_match": true,
+      "reference_native_pixels_exact": true,
+      "native_reference_not_clipped": true,
+      "review_origin": [
+        64,
+        112
+      ]
+    },
+    {
+      "review_id": "WALK07-M49",
+      "identity": "MON-122-0",
+      "poses": 14,
+      "source_sha256": "9f95aa5559a7d1b4b4de5a9b63a1de2c88d4fe065162fd5f231205b4605bc116",
+      "native_height_range": [
+        26,
+        30
+      ],
+      "original_native_height": 30,
+      "distinct_walking_poses_per_direction": [
+        6,
+        6
+      ],
+      "cycle_visible_height": 30,
+      "vertical_offset": -17,
+      "one_fixed_offset_for_all14_poses": true,
+      "source_opaque_outer_edge_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "frozen_accepted_pixels_match": true,
+      "reference_native_pixels_exact": true,
+      "native_reference_not_clipped": true,
+      "review_origin": [
+        64,
+        112
+      ]
+    },
+    {
+      "review_id": "WALK07-M50",
+      "identity": "MON-131-0",
+      "poses": 14,
+      "source_sha256": "8c29fbfc7971960528af480b0bc7248c4aae25d2abf7492e171dd5e5680158a5",
+      "native_height_range": [
+        45,
+        48
+      ],
+      "original_native_height": 48,
+      "distinct_walking_poses_per_direction": [
+        6,
+        6
+      ],
+      "cycle_visible_height": 48,
+      "vertical_offset": -8,
+      "one_fixed_offset_for_all14_poses": true,
+      "source_opaque_outer_edge_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "frozen_accepted_pixels_match": true,
+      "reference_native_pixels_exact": true,
+      "native_reference_not_clipped": true,
+      "review_origin": [
+        64,
+        112
+      ]
+    }
+  ]
+}

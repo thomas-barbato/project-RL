@@ -1,0 +1,375 @@
+{
+  "review_id": "BASTION-W01",
+  "revision": "r02-full-body-progression",
+  "date": "2026-10-21",
+  "status": "first_four_accepted_fifth_replaced_by_P05_r03",
+  "class_id": "core:bastion",
+  "class_theme": "melee",
+  "torso_visual_scope": "complete_outfit_below_head_including_arms_hands_legs_boots",
+  "head_source": "assets/source-art/class-readability-01/CL01-r04-source.png",
+  "head_source_sha256": "353bc3360eab60a66c2c0a3ffd16b130f13d22fcdc53661daccd35bc7f55a8b3",
+  "head_layer": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-common-head-native64.png",
+  "head_layer_sha256": "4a1bf61268837bf93c2000c0e494e2845fdd7eddd50414585fb3a02108b69126",
+  "reference_measurements": {
+    "source_core_box": [
+      321,
+      69,
+      933,
+      1190
+    ],
+    "source_crop": [
+      304,
+      52,
+      950,
+      1207
+    ],
+    "isotropic_scale": 0.05173951828724353,
+    "native_core_box": [
+      17,
+      4,
+      48,
+      62
+    ],
+    "native_core_height": 58,
+    "native_core_width": 31,
+    "foot_baseline_y": 61,
+    "framing": "64x64, isotropic, Lanczos, source alpha retained"
+  },
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "BA-W01-P01-r01",
+      "label": "Très légère",
+      "class_id": "core:bastion",
+      "item_id": null,
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-body-source.png",
+      "source_sha256": "50b401163794ac4b643e54340e825c0ec0ccdf3906d244bc50d124db406a0ccc",
+      "body_layer": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P01-r01-body-native64.png",
+      "body_layer_sha256": "6876ed1168fa1e2aceddfb70a5712586470a02b826c340cee41feb64410fd6aa",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P01-r01-native64.png",
+      "native_sha256": "c9f6ae4d10ac7144d625ca134fdf19129d41aab09fafb0d694fb164539373230",
+      "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+      "head_layer": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-common-head-native64.png",
+      "measurements": {
+        "source_core_box": [
+          277,
+          58,
+          978,
+          1189
+        ],
+        "source_crop": [
+          260,
+          41,
+          995,
+          1206
+        ],
+        "isotropic_scale": 0.04420866489832007,
+        "native_core_box": [
+          17,
+          12,
+          47,
+          62
+        ],
+        "native_core_height": 50,
+        "native_core_width": 30,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "assembled_core_box": [
+        17,
+        4,
+        47,
+        62
+      ],
+      "attachment_points": {
+        "head_center_x": 32,
+        "neck_seam_y": 12,
+        "foot_baseline_y": 61
+      },
+      "weapon_anchors_and_poses": "pending_after_visual_review"
+    },
+    {
+      "number": "02",
+      "candidate_id": "BA-W01-P02-r01",
+      "label": "Légère",
+      "class_id": "core:bastion",
+      "item_id": null,
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-body-source.png",
+      "source_sha256": "75537643342fd3a47529f7b8958aa7bdbe592f4a61a294cde3038f427ceb23ae",
+      "body_layer": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P02-r01-body-native64.png",
+      "body_layer_sha256": "4056207268ef40e14b75271999f2628f44b01516f10d53b9b3e3dc340327865a",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P02-r01-native64.png",
+      "native_sha256": "ecaee4722c0b2509d59df2f59683d59b539fb1b1db41b0c4458b2aa7ae424ddf",
+      "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+      "head_layer": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-common-head-native64.png",
+      "measurements": {
+        "source_core_box": [
+          188,
+          85,
+          965,
+          1323
+        ],
+        "source_crop": [
+          169,
+          66,
+          984,
+          1342
+        ],
+        "isotropic_scale": 0.04038772213247173,
+        "native_core_box": [
+          17,
+          12,
+          48,
+          62
+        ],
+        "native_core_height": 50,
+        "native_core_width": 31,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "assembled_core_box": [
+        17,
+        4,
+        48,
+        62
+      ],
+      "attachment_points": {
+        "head_center_x": 32,
+        "neck_seam_y": 12,
+        "foot_baseline_y": 61
+      },
+      "weapon_anchors_and_poses": "pending_after_visual_review"
+    },
+    {
+      "number": "03",
+      "candidate_id": "BA-W01-P03-r01",
+      "label": "Intermédiaire",
+      "class_id": "core:bastion",
+      "item_id": null,
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-body-source.png",
+      "source_sha256": "d31fff7c909094d094908f2ec231c3529ba449f4eb3aea88037fab5039753804",
+      "body_layer": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P03-r01-body-native64.png",
+      "body_layer_sha256": "9c49cf2126e25b5d62957432b0095e8918db1505473ac459c5f73888e3a590fb",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P03-r01-native64.png",
+      "native_sha256": "4e367b2c303d34c4e6f9c867faf12783ff92e1d0b8b49bc226d060f0f7dfd1a0",
+      "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+      "head_layer": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-common-head-native64.png",
+      "measurements": {
+        "source_core_box": [
+          268,
+          106,
+          959,
+          1219
+        ],
+        "source_crop": [
+          251,
+          89,
+          976,
+          1236
+        ],
+        "isotropic_scale": 0.044923629829290206,
+        "native_core_box": [
+          17,
+          12,
+          48,
+          62
+        ],
+        "native_core_height": 50,
+        "native_core_width": 31,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "assembled_core_box": [
+        17,
+        4,
+        48,
+        62
+      ],
+      "attachment_points": {
+        "head_center_x": 32,
+        "neck_seam_y": 12,
+        "foot_baseline_y": 61
+      },
+      "weapon_anchors_and_poses": "pending_after_visual_review"
+    },
+    {
+      "number": "04",
+      "candidate_id": "BA-W01-P04-r01",
+      "label": "Lourde",
+      "class_id": "core:bastion",
+      "item_id": null,
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-body-source.png",
+      "source_sha256": "b86306a8910215debe3dc55ab205c3e2e3b310f47a4366b67b03b8e870929578",
+      "body_layer": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P04-r01-body-native64.png",
+      "body_layer_sha256": "0a54de2ebb169759a624ffb2237452ea63981150c024d68ad23210ecba788f36",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P04-r01-native64.png",
+      "native_sha256": "09dded45d483e7d16f8b6d6517c052668c4ccb2b36d02498b47e3fddb820f805",
+      "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+      "head_layer": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-common-head-native64.png",
+      "measurements": {
+        "source_core_box": [
+          293,
+          103,
+          961,
+          1195
+        ],
+        "source_crop": [
+          277,
+          87,
+          977,
+          1211
+        ],
+        "isotropic_scale": 0.045787545787545784,
+        "native_core_box": [
+          17,
+          13,
+          47,
+          62
+        ],
+        "native_core_height": 49,
+        "native_core_width": 30,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "assembled_core_box": [
+        17,
+        4,
+        47,
+        62
+      ],
+      "attachment_points": {
+        "head_center_x": 32,
+        "neck_seam_y": 12,
+        "foot_baseline_y": 61
+      },
+      "weapon_anchors_and_poses": "pending_after_visual_review"
+    },
+    {
+      "number": "05",
+      "candidate_id": "BA-W01-P05-r02",
+      "label": "Très lourde",
+      "class_id": "core:bastion",
+      "item_id": null,
+      "status": "superseded_by_BA-W01-P05-r03",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r02-body-source.png",
+      "source_sha256": "53f98fdea9007dd2a38c16c640458820a075424987bf828e8db5ca5abd3e0f75",
+      "body_layer": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P05-r02-body-native64.png",
+      "body_layer_sha256": "0fec8f0fef32a181f5dbea9d5b0cf85da520eb236567249f9462815c2cab6ad0",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P05-r02-native64.png",
+      "native_sha256": "69374df5753820fc465b62299b091789be6e5503afa79137b036e305db88385a",
+      "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+      "head_layer": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-common-head-native64.png",
+      "measurements": {
+        "source_core_box": [
+          255,
+          60,
+          999,
+          1215
+        ],
+        "source_crop": [
+          238,
+          43,
+          1016,
+          1232
+        ],
+        "isotropic_scale": 0.04329004329004329,
+        "native_core_box": [
+          16,
+          13,
+          48,
+          62
+        ],
+        "native_core_height": 49,
+        "native_core_width": 32,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "assembled_core_box": [
+        16,
+        4,
+        48,
+        62
+      ],
+      "attachment_points": {
+        "head_center_x": 32,
+        "neck_seam_y": 12,
+        "foot_baseline_y": 61
+      },
+      "weapon_anchors_and_poses": "pending_after_visual_review"
+    }
+  ],
+  "workflow": {
+    "one_class_at_a_time": true,
+    "user_visual_review_before_next_wave": true,
+    "other_classes_started": false,
+    "integration_authorized": false
+  },
+  "scope_limits": {
+    "new_item_names_or_stats": false,
+    "item_catalogue_assignments": "pending",
+    "numeric_weight_or_melee_bonuses": "not_defined",
+    "weapon_poses_validated": false,
+    "head_pixels_newly_accepted": false,
+    "runtime_integration": false
+  },
+  "checks": {
+    "candidate_count": 5,
+    "native_size": [
+      64,
+      64
+    ],
+    "shared_head_identical_rgba_pixels": true,
+    "shared_head_region": [
+      0,
+      0,
+      64,
+      12
+    ],
+    "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+    "hands_legs_boots_regions_distinct_for_all_five": true,
+    "region_hashes": {
+      "hands_forearms_left": [
+        "b3c8403f799253c4b5d18c2fac6e96e498335d67dd6076679c3a603c17820296",
+        "c331d4bf1e2c2bb3bc7367ea5712285b5d92db4462adbe8c6c9a74c5891efb78",
+        "ff92358e0e99fa683000293a190c4d00ea3465834c77bf8e713393301ecb2a2c",
+        "30458e85dd7a5eaaf10063b5973292b69d5b3965be6140701ef43fce33d76208",
+        "dbb2a215322979138ca90c6c6509754da1b350820b4e76ddf69907e20622d6fd"
+      ],
+      "hands_forearms_right": [
+        "8bfb9b6cde9ddf326b6d8b8b2d44c33da5d2cc6d37c056e627a4d556c0c82663",
+        "7399045b3a2e01fc4683af574a73f4a5d88c586064c955f4ee81da518e4851b4",
+        "abd57d7daa61dc0695f362a61b6c67d474295a0d9b91ef917e81b612e8372190",
+        "7703ad19255bf463378dc678318b5b73f1800eeae6cdf54c01b94701b4034268",
+        "4e7ff0af06fbb4120674d7792953a7a2400ae18d4ef9093c309f6910637052b6"
+      ],
+      "legs": [
+        "f16d3e0d54fd9ed41dfe054b17fd063deacdc1609b51a7216716f478b25591b6",
+        "a4ff6ed6519354192236c3e549df456932ee9d2694daa20e709086c00a534758",
+        "f65784fbd024739ed89da71935304d21d308cd46f83b4227d2776a559e645c06",
+        "edf145f967bc2c97695463b5338098bc7c1d715455485108b6e1b8f9ffe282c1",
+        "92bc305c5199cb389e5d62c81e719c1f32f2a06c8d37b441781090e63bbc9322"
+      ],
+      "boots": [
+        "9549f8ac223a82bfb47ed799952b8f800bf86c80153cb3b9c3cb4e27f067dc29",
+        "013e3f9895e3cb5497988fa82c0775e918b53859ab152666db4150fe607a4757",
+        "b2d6907490290972b723d609d94fff0043733a9ad05d7ebf8dae1a6334fa8e3b",
+        "150cc0340c39426aa292ed4c65b749abd4c1d01c34309c0426d5544d38dbed46",
+        "2b340ecad4b2f773c7b508d2ae9c1657bd9a8ae690a56ba9d199f632e7d3d8f9"
+      ]
+    },
+    "source_alpha_retained": true,
+    "framing_isotropic": true,
+    "foot_baseline_y": 61,
+    "all_assembled_heights": 58,
+    "active_game_hashes_unchanged": {
+      "assets/sprites/art-finish-01/FIN-01.png": "db0199be3507e91f58ab645f60c56501c79759cc054ccd27f0b8dc1e45e65b17",
+      "content/core/classes/bastion.json5": "d8c5c951bceafe5b9248778540ef3ba3a4c3c4f611012db7afca7e01fd30dca0"
+    },
+    "scene_is_montage_not_engine_validation": true
+  },
+  "acceptance": "docs/reviews/class-readability-01/bastion-wave-01/acceptance.json"
+}

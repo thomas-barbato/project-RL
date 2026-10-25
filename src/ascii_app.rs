@@ -69,8 +69,8 @@ use project_rl::combat::{
 #[cfg(test)]
 use project_rl::content::RegionMapSize;
 use project_rl::content::{
-    ContentId, ContentLoader, ExpeditionCatalog, HubQuestProviderDefinition, RegionCoord,
-    RegionDirection, RegionVerticalDirection, RegionalWorldCatalog,
+    ContentId, ExpeditionCatalog, HubQuestProviderDefinition, RegionCoord, RegionDirection,
+    RegionVerticalDirection, RegionalWorldCatalog,
 };
 use project_rl::drone::{
     DroneCapabilities, DroneCondition, DroneConditionalResponse, DroneDeploymentAssignment,
@@ -345,7 +345,9 @@ const CITY_POPULATION_GENERATION_VERSION: u8 = SEWER_GENERATION_VERSION + 1;
 const COSMETIC_STARTING_OUTFITS_GENERATION_VERSION: u8 = CITY_POPULATION_GENERATION_VERSION + 1;
 const CLASS_BASE_APPEARANCE_GENERATION_VERSION: u8 =
     COSMETIC_STARTING_OUTFITS_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = CLASS_BASE_APPEARANCE_GENERATION_VERSION;
+const LEATHER_APRON_RETIREMENT_GENERATION_VERSION: u8 =
+    CLASS_BASE_APPEARANCE_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = LEATHER_APRON_RETIREMENT_GENERATION_VERSION;
 
 #[cfg(any(test, debug_assertions))]
 #[path = "combat_fixes_review.rs"]
@@ -452,6 +454,9 @@ mod depth_distribution_tests;
 #[path = "terminal_dialogue_app.rs"]
 mod terminal_dialogue_app;
 pub use terminal_dialogue_app::TerminalDialogue;
+#[cfg(debug_assertions)]
+#[path = "actor_readability_capture.rs"]
+mod actor_readability_capture;
 #[cfg(test)]
 #[path = "expedition_decisions_tests.rs"]
 mod expedition_decisions_tests;
@@ -511,6 +516,9 @@ mod tactical_reading_proposal;
 #[cfg(debug_assertions)]
 #[path = "terminal_console_capture.rs"]
 mod terminal_console_capture;
+#[cfg(debug_assertions)]
+#[path = "walk_capture.rs"]
+mod walk_capture;
 const _: () = assert!(CURRENT_GENERATION_VERSION == suspension::MAX_GENERATION_VERSION);
 
 #[path = "arsenal_app.rs"]
@@ -1700,7 +1708,6 @@ impl AsciiApp {
             self.poll_resume_request(now);
             return;
         }
-        let previous_cursor = self.cursor_icon;
         if !self.tick_graphics(now) {
             let input = self.graphics.active.transform_input(InputFrame::capture());
             self.update_input_at(&input, Some(now));
@@ -1729,9 +1736,10 @@ impl AsciiApp {
         } else {
             miniquad::CursorIcon::Default
         };
-        if cursor_icon != previous_cursor {
-            miniquad::window::set_mouse_cursor(cursor_icon);
-        }
+        // Restore the native pointer even when the logical icon has not changed
+        // (startup, fullscreen transitions and returning from another window).
+        miniquad::window::show_mouse(true);
+        miniquad::window::set_mouse_cursor(cursor_icon);
         self.cursor_icon = cursor_icon;
     }
 
@@ -7466,7 +7474,18 @@ impl AsciiApp {
 
         let repeated_movement = captured_at.and_then(|now| {
             self.movement_repeat
-                .poll(&self.controls, input, now)
+                .poll_paced(
+                    &self.controls,
+                    input,
+                    now,
+                    if crate::game_art::walking::player_enabled()
+                        && !self.graphics.active.reduced_motion
+                    {
+                        self.graphics.active.walk_duration_ms
+                    } else {
+                        0
+                    },
+                )
                 .and_then(movement_direction)
         });
 
@@ -7664,6 +7683,8 @@ impl AsciiApp {
                 ui_scale: self.ui_scale(),
                 cell_size: self.graphics.active.world_cell_px,
                 reduced_motion: self.graphics.active.reduced_motion,
+                actor_ground_markers: self.graphics.active.actor_ground_markers,
+                world_grayscale: self.graphics.active.world_grayscale,
                 hover_monster_health: self.graphics.active.hover_monster_health,
                 combat_motion: &self.combat_motion,
                 combat_time: effect_time,
@@ -22069,7 +22090,7 @@ impl AsciiApp {
         if ((clicked && hovered.is_some()) || activate)
             && self.menu_row_enabled(self.menu_selection)
         {
-            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection, 0..=7) {
+            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection, 0..=10) {
                 let rect = MenuLayout::for_screen(
                     self.menu,
                     input.viewport.unwrap_or((1280.0, 800.0)).0,
@@ -22128,14 +22149,14 @@ impl AsciiApp {
                 (MenuScreen::Options, 1) => self.open_menu(MenuScreen::Graphics),
                 (MenuScreen::Options, 2) => self.open_menu(self.options_return),
                 (MenuScreen::ConfirmAbandon, 0) => self.open_menu(MenuScreen::Pause),
-                (MenuScreen::Graphics, row @ 0..=7) => self.graphics.draft.cycle(row, true),
-                (MenuScreen::Graphics, 8) => self.graphics.draft = GraphicsSettings::default(),
-                (MenuScreen::Graphics, 9) => {
+                (MenuScreen::Graphics, row @ 0..=10) => self.graphics.draft.cycle(row, true),
+                (MenuScreen::Graphics, 11) => self.graphics.draft = GraphicsSettings::default(),
+                (MenuScreen::Graphics, 12) => {
                     if self.graphics.begin_preview() {
                         self.open_menu(MenuScreen::ConfirmGraphics);
                     }
                 }
-                (MenuScreen::Graphics, 10) => self.open_menu(MenuScreen::Options),
+                (MenuScreen::Graphics, 13) => self.open_menu(MenuScreen::Options),
                 (MenuScreen::ConfirmGraphics, 0) => self.open_menu(MenuScreen::Graphics),
                 (MenuScreen::ConfirmGraphics, 1) => {
                     self.graphics.confirm();
@@ -22263,6 +22284,26 @@ impl AsciiApp {
                     } else {
                         "non"
                     }
+                ),
+                format!(
+                    "Repères au sol : {}",
+                    if settings.actor_ground_markers {
+                        "oui"
+                    } else {
+                        "non"
+                    }
+                ),
+                format!(
+                    "Monde en niveaux de gris : {}",
+                    if settings.world_grayscale {
+                        "oui"
+                    } else {
+                        "non"
+                    }
+                ),
+                format!(
+                    "Animation de déplacement : {} ms",
+                    settings.walk_duration_ms
                 ),
                 "Valeurs par défaut".to_owned(),
                 "Appliquer les modifications".to_owned(),
@@ -22447,11 +22488,13 @@ impl AsciiApp {
         for (index, (label, rect)) in buttons.iter().zip(&layout.buttons).enumerate() {
             let enabled = self.menu_row_enabled(index);
             let selected = enabled && self.menu_focus.highlighted(index, self.menu_selection);
-            if self.menu == MenuScreen::Graphics && index <= 7 {
+            if self.menu == MenuScreen::Graphics && index <= 10 {
                 let toggle = match index {
                     4 => Some(self.graphics.draft.high_contrast),
                     5 => Some(self.graphics.draft.reduced_motion),
                     7 => Some(self.graphics.draft.hover_monster_health),
+                    8 => Some(self.graphics.draft.actor_ground_markers),
+                    9 => Some(self.graphics.draft.world_grayscale),
                     _ => None,
                 };
                 theme.setting_row(*rect, label, selected, enabled, toggle);
@@ -25071,12 +25114,8 @@ fn loot_for_generation_version(
 
 fn ascii_game_content() -> Result<(GameRules, TextCatalog, LootCatalog, ExpeditionCatalog), String>
 {
-    let project_root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-    let loaded = ContentLoader::load(
-        &[project_root.join("content"), project_root.join("mods")],
-        &semver::Version::new(0, 1, 0),
-    )
-    .map_err(|error| error.to_string())?;
+    let loaded = project_rl::data_paths::load_content(&semver::Version::new(0, 1, 0))
+        .map_err(|error| error.to_string())?;
     let corrosion_id: StatusId = "core:corroded"
         .parse()
         .map_err(|error: project_rl::content::ContentIdError| error.to_string())?;
@@ -25247,18 +25286,14 @@ fn ascii_active_packages() -> Result<Vec<SavedPackage>, String> {
         std::sync::OnceLock::new();
     PACKAGES
         .get_or_init(|| {
-            let project_root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-            ContentLoader::load(
-                &[project_root.join("content"), project_root.join("mods")],
-                &semver::Version::new(0, 1, 0),
-            )
-            .map_err(|error| error.to_string())?
-            .package_manifests()
-            .iter()
-            .map(|manifest| {
-                SavedPackage::new(manifest.id.to_string(), manifest.version.to_string())
-            })
-            .collect()
+            project_rl::data_paths::load_content(&semver::Version::new(0, 1, 0))
+                .map_err(|error| error.to_string())?
+                .package_manifests()
+                .iter()
+                .map(|manifest| {
+                    SavedPackage::new(manifest.id.to_string(), manifest.version.to_string())
+                })
+                .collect()
         })
         .clone()
 }
@@ -25316,13 +25351,9 @@ fn ascii_regional_world_catalog() -> Result<RegionalWorldCatalog, String> {
         std::sync::OnceLock::new();
     CATALOG
         .get_or_init(|| {
-            let project_root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-            ContentLoader::load(
-                &[project_root.join("content"), project_root.join("mods")],
-                &semver::Version::new(0, 1, 0),
-            )
-            .map(|loaded| loaded.regional_worlds().clone())
-            .map_err(|error| error.to_string())
+            project_rl::data_paths::load_content(&semver::Version::new(0, 1, 0))
+                .map(|loaded| loaded.regional_worlds().clone())
+                .map_err(|error| error.to_string())
         })
         .clone()
 }
@@ -25332,13 +25363,9 @@ fn ascii_character_class_catalog() -> Result<CharacterClassCatalog, String> {
         std::sync::OnceLock::new();
     CATALOG
         .get_or_init(|| {
-            let project_root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-            ContentLoader::load(
-                &[project_root.join("content"), project_root.join("mods")],
-                &semver::Version::new(0, 1, 0),
-            )
-            .map(|loaded| loaded.character_classes().clone())
-            .map_err(|error| error.to_string())
+            project_rl::data_paths::load_content(&semver::Version::new(0, 1, 0))
+                .map(|loaded| loaded.character_classes().clone())
+                .map_err(|error| error.to_string())
         })
         .clone()
 }
@@ -25348,13 +25375,9 @@ fn ascii_visual_cue_catalog() -> Result<VisualCueCatalog, String> {
         std::sync::OnceLock::new();
     CATALOG
         .get_or_init(|| {
-            let project_root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-            ContentLoader::load(
-                &[project_root.join("content"), project_root.join("mods")],
-                &semver::Version::new(0, 1, 0),
-            )
-            .map(|loaded| loaded.visual_cues().clone())
-            .map_err(|error| error.to_string())
+            project_rl::data_paths::load_content(&semver::Version::new(0, 1, 0))
+                .map(|loaded| loaded.visual_cues().clone())
+                .map_err(|error| error.to_string())
         })
         .clone()
 }
@@ -25784,7 +25807,7 @@ const fn menu_button_tone(menu: MenuScreen, index: usize, has_suspension: bool) 
         }
         MenuScreen::Pause if index == 0 => ButtonTone::Primary,
         MenuScreen::Pause if index == 3 => ButtonTone::Danger,
-        MenuScreen::Graphics if index == 9 => ButtonTone::Primary,
+        MenuScreen::Graphics if index == 12 => ButtonTone::Primary,
         MenuScreen::ConfirmGraphics if index == 1 => ButtonTone::Primary,
         MenuScreen::ConfirmAbandon | MenuScreen::ConfirmNewRun | MenuScreen::ConfirmRestart
             if index == 1 =>
@@ -25812,11 +25835,12 @@ const fn menu_button_icon(menu: MenuScreen, index: usize) -> UiIcon {
         (MenuScreen::Graphics, 2) => UiIcon::Character,
         (MenuScreen::Graphics, 4) => UiIcon::Contrast,
         (MenuScreen::Graphics, 5) => UiIcon::Motion,
-        (MenuScreen::Graphics, 7) => UiIcon::Target,
+        (MenuScreen::Graphics, 7 | 8) => UiIcon::Target,
+        (MenuScreen::Graphics, 9) => UiIcon::Contrast,
         (MenuScreen::Graphics, 6) => UiIcon::Display,
-        (MenuScreen::Graphics, 8) => UiIcon::Reset,
-        (MenuScreen::Graphics, 9) => UiIcon::Confirm,
-        (MenuScreen::Graphics, 10) => UiIcon::Back,
+        (MenuScreen::Graphics, 11) => UiIcon::Reset,
+        (MenuScreen::Graphics, 12) => UiIcon::Confirm,
+        (MenuScreen::Graphics, 13) => UiIcon::Back,
         (MenuScreen::ConfirmGraphics, 0) => UiIcon::Reset,
         (MenuScreen::ConfirmGraphics, 1) => UiIcon::Confirm,
         (MenuScreen::ConfirmAbandon, 0) | (MenuScreen::ConfirmNewRun, 0) => UiIcon::Cancel,
@@ -28456,7 +28480,7 @@ mod tests {
             app.graphics.active.interface_style,
             graphics::InterfaceStyle::Metal
         );
-        app.update_input(&menu_pointer(MenuScreen::Graphics, 9, true));
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 12, true));
         assert_eq!(app.menu, MenuScreen::ConfirmGraphics);
         assert!(app.graphics.previewing());
         assert!(!app.graphics.path.exists());
@@ -28502,7 +28526,7 @@ mod tests {
             app.open_menu(MenuScreen::Graphics);
             app.update_input(&input("Enter")); // Borderless -> windowed draft.
             assert_eq!(app.graphics.active.mode, WindowMode::Borderless);
-            app.update_input(&menu_pointer(MenuScreen::Graphics, 9, true));
+            app.update_input(&menu_pointer(MenuScreen::Graphics, 12, true));
             assert_eq!(app.menu, MenuScreen::ConfirmGraphics);
             for key in ["W", "Space", "F", "R"] {
                 app.update_input(&input(key));
@@ -28574,7 +28598,7 @@ mod tests {
         let display = app.graphics.active;
         app.open_menu(MenuScreen::Graphics);
         app.update_input(&input("Enter"));
-        app.update_input(&menu_pointer(MenuScreen::Graphics, 9, true));
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 12, true));
         assert!(app.graphics.previewing());
         app.request_quit();
         assert!(app.should_quit());

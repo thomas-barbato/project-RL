@@ -1,0 +1,144 @@
+{
+  "review_id": "ITEM-LOOT01-D2STUDY01",
+  "date": "2026-10-23",
+  "inspection": {
+    "source": "D:\\JEUX\\Diablo 2 old\\Diablo II",
+    "read_only": true,
+    "vanilla_archives_only": true,
+    "game_launched": false,
+    "saves_accessed": false,
+    "archive_precedence": [
+      "patch_d2.mpq",
+      "d2exp.mpq",
+      "d2data.mpq"
+    ],
+    "tables": {
+      "TreasureClassEx": {
+        "archive": "patch_d2.mpq",
+        "bytes": 88253,
+        "sha256": "214c3b83e1f45f44380598b2157de0689bd6ad0318edae4af4cc8d2ee5c2b525"
+      },
+      "CubeMain": {
+        "archive": "patch_d2.mpq",
+        "bytes": 30516,
+        "sha256": "ff5d7e9b6b6cff4ff5462684eb23358d764ce8c193beff0f1044af7fb0cb544a"
+      },
+      "ItemRatio": {
+        "archive": "patch_d2.mpq",
+        "bytes": 662,
+        "sha256": "f8ebb2128c09311d2f17f9f3ea9e1933441f3322ab2c4c203eb9858a00af90ff"
+      },
+      "Misc": {
+        "archive": "patch_d2.mpq",
+        "bytes": 55821,
+        "sha256": "f7fa37ae4f7cdb3f5337a28a55b3876fc27aef066822b3268933e56b636b50f0"
+      },
+      "MonStats": {
+        "archive": "patch_d2.mpq",
+        "bytes": 432634,
+        "sha256": "a15e1cb876bd9af1e8f54199c9619226cf4835c45c799aed2d432901487ecb7c"
+      },
+      "SuperUniques": {
+        "archive": "patch_d2.mpq",
+        "bytes": 8071,
+        "sha256": "a2f954f2ca3e27353d8895650263928845cf8e9378e41fd4005a1a6b3f27320a"
+      }
+    },
+    "archive_checks": [
+      {
+        "archive": "patch_d2.mpq",
+        "bytes": 3915305,
+        "last_write_utc": "2026-09-26T20:50:27.6531857Z",
+        "unchanged": true
+      },
+      {
+        "archive": "d2exp.mpq",
+        "bytes": 250156780,
+        "last_write_utc": "2026-09-26T20:50:27.4946002Z",
+        "unchanged": true
+      },
+      {
+        "archive": "d2data.mpq",
+        "bytes": 269191615,
+        "last_write_utc": "2026-09-26T20:58:45.6481556Z",
+        "unchanged": true
+      }
+    ]
+  },
+  "crafted_recipe_checks": {
+    "enabled_recipes": 36,
+    "all_four_inputs": true,
+    "all_magic_bases": true,
+    "all_require_jewel": true,
+    "all_require_perfect_gem": true,
+    "rune_codes": [
+      "r03",
+      "r04",
+      "r05",
+      "r06",
+      "r07",
+      "r08",
+      "r09",
+      "r10",
+      "r11",
+      "r12"
+    ],
+    "perfect_gem_codes": [
+      "gpb",
+      "gpg",
+      "gpr",
+      "gpv"
+    ]
+  },
+  "ordinary_first_act_example": {
+    "treasure_class": "Act 1 H2H A",
+    "monster_examples": [
+      "fallen1",
+      "zombie1",
+      "skeleton1"
+    ],
+    "assumptions": [
+      "Normal difficulty",
+      "single-player /players 1; unchanged NoDrop",
+      "ordinary monster; no quest-specific source",
+      "initial treasure class only; no level upgrade to a different class",
+      "not a universal Diablo II component rate"
+    ],
+    "picks": 1,
+    "total_weight": 160,
+    "no_drop_weight": 100,
+    "good_branch_weight": 2,
+    "good_branch_percent": 1.25,
+    "good_branch_includes": [
+      "rings",
+      "amulets",
+      "jewels",
+      "charms",
+      "chipped gems"
+    ],
+    "chipped_gem_percent": 0.625,
+    "jewel_percent": 0.0625,
+    "jewel_fraction": "1/1600",
+    "calculation": "Good 2/160; chipped gem = Good * 5/10; jewel = Good * 5/10 * 2/20"
+  },
+  "previous_rl_proposal_expectations_per_100_ordinary_kills": {
+    "component_packets": 40,
+    "pieces": 48,
+    "microcircuits": 12,
+    "warning": "Expected material quantities only, not a guaranteed number of crafting attempts."
+  },
+  "primary_sources": [
+    "https://classic.battle.net/diablo2exp/items/crafteditems.shtml",
+    "https://classic.battle.net/diablo2exp/items/crafted/blood.shtml",
+    "https://classic.battle.net/diablo2exp/items/gems.shtml",
+    "https://classic.battle.net/diablo2exp/items/cube.shtml",
+    "https://classic.battle.net/diablo2exp/items/runes.shtml"
+  ],
+  "findings": [
+    "The local expansion crafting recipes require a compatible magic base, one jewel, a specified rune and a specified perfect gem.",
+    "Low runes can be common; crafting is not gated exclusively by exceptionally rare runes.",
+    "Ordinary treasure tables include NoDrop and weighted item branches; no uniform 40/80/100 percent material packet rule.",
+    "Crafted output has random affixes and is not guaranteed to be a desirable improvement."
+  ],
+  "runtime_integration": false
+}

@@ -1,0 +1,53 @@
+{
+  "review_id": "WALK07-M42-DIR01",
+  "date": "2026-10-24",
+  "player_quote": "attention, M42 marche à l'envers.",
+  "cause": "Incorrect left/right directional half swap in review packing",
+  "correction": "Remove that swap and focus the corrected preview on M42; preserve original left then right source rows",
+  "runtime_integration": false,
+  "source_redrawn": false,
+  "source_sha256_unchanged": "cbc319a7c92ffd9f7427a613d9d5c95fde8b842aab5d961373259cf03897088b",
+  "default_focus": "MON-155-0",
+  "duration_choices_preserved": [
+    120,
+    200,
+    400
+  ],
+  "cases": [
+    {
+      "identity": "MON-033-0",
+      "poses_pixel_identical_to_previous": true,
+      "only_complete_direction_rows_swapped": false,
+      "phase_order_within_direction_unchanged": true,
+      "anchor_unchanged": true
+    },
+    {
+      "identity": "MON-143-0",
+      "poses_pixel_identical_to_previous": true,
+      "only_complete_direction_rows_swapped": false,
+      "phase_order_within_direction_unchanged": true,
+      "anchor_unchanged": true
+    },
+    {
+      "identity": "MON-154-0",
+      "poses_pixel_identical_to_previous": true,
+      "only_complete_direction_rows_swapped": false,
+      "phase_order_within_direction_unchanged": true,
+      "anchor_unchanged": true
+    },
+    {
+      "identity": "MON-155-0",
+      "poses_pixel_identical_to_previous": true,
+      "only_complete_direction_rows_swapped": true,
+      "phase_order_within_direction_unchanged": true,
+      "anchor_unchanged": true
+    },
+    {
+      "identity": "MON-157-0",
+      "poses_pixel_identical_to_previous": true,
+      "only_complete_direction_rows_swapped": false,
+      "phase_order_within_direction_unchanged": true,
+      "anchor_unchanged": true
+    }
+  ]
+}

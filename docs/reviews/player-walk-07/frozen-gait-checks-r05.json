@@ -1,0 +1,51 @@
+{
+  "review_id": "WALK07-r05",
+  "date": "2026-10-24",
+  "status": "technical_checks_passed_artistic_review_pending",
+  "runtime_integration": false,
+  "user_visual_acceptance": false,
+  "pose_checks": 3276,
+  "frozen_native_rows": [
+    [
+      0,
+      20
+    ],
+    [
+      35,
+      64
+    ]
+  ],
+  "edited_native_rows": [
+    20,
+    35
+  ],
+  "all_five_accepted_runtime_atlases_unchanged": true,
+  "results": [
+    {
+      "id": "CLASS-10",
+      "own_approved_source": "assets/animations/walk-06/traqueuse-rifle.png",
+      "loadouts": 117,
+      "pose_checks": 1638,
+      "head_pixels_exact": true,
+      "lower_body_pixels_exact": true,
+      "arm_and_finger_sources_contain_no_protected_leg_pixels": true,
+      "pixels_previously_assigned_to_arms_restored_to_body": 208
+    },
+    {
+      "id": "CLASS-24",
+      "own_approved_source": "assets/animations/walk-06/metamorphe-rifle.png",
+      "loadouts": 117,
+      "pose_checks": 1638,
+      "head_pixels_exact": true,
+      "lower_body_pixels_exact": true,
+      "arm_and_finger_sources_contain_no_protected_leg_pixels": true,
+      "pixels_previously_assigned_to_arms_restored_to_body": 530
+    }
+  ],
+  "occlusion_note": "Actual held weapons and posed arms can overlap the protected body; the body source itself remains exact.",
+  "javascript_checks": "renderer-checks.json",
+  "native_boards": [
+    "CLASS-10-r05-protected-poses-x2.png",
+    "CLASS-24-r05-protected-poses-x2.png"
+  ]
+}

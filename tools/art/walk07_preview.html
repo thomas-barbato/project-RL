@@ -1,0 +1,190 @@
+<div id="walk07-__WALK07_ID__">
+  <h3>__WALK07_TITLE__</h3>
+  <div class="viz-controls">
+    <label class="form-label" data-armor-label>Tenue <select class="form-select" data-control="armor" disabled></select></label>
+    <div class="walk-option-field"><label class="form-label">Arme ou créature <select class="form-select" data-control="option" disabled></select></label></div>
+    <label class="form-label">Une case <select class="form-select" data-control="pace" disabled><option value="120">120 ms</option><option value="200">200 ms</option><option value="400" selected>400 ms</option></select></label>
+    <label class="form-label">Sol <select class="form-select" data-control="floor" disabled><option value="dark">Sombre</option><option value="light">Clair</option><option value="textured">Texturé</option></select></label>
+  </div>
+  <div class="viz-row">
+    <button class="btn btn-primary" type="button" data-action="play" disabled>Pause</button>
+    <button class="btn" type="button" data-action="cell" disabled>Avancer d’une case</button>
+    <button class="btn" type="button" data-action="step" disabled>Image suivante</button>
+  </div>
+  <div class="walk-pictures">
+    <figure data-reference-wrap hidden><figcaption data-reference-caption>Cycle de référence</figcaption><canvas data-reference-scene width="256" height="192" role="img" aria-label="Cycle accepté pour comparaison"></canvas></figure>
+    <figure><figcaption data-scene-caption>Nouvel essai · taille native</figcaption><canvas data-scene width="256" height="192" role="img" aria-label="Marche latérale case par case à taille native"></canvas></figure>
+    <figure><figcaption>Détail ×2</figcaption><canvas data-zoom width="256" height="256" role="img" aria-label="Détail de la pose, agrandi deux fois"></canvas></figure>
+  </div>
+  <div class="viz-row text-small" aria-live="polite"><span data-status>Chargement des poses…</span><span data-phase>À l’arrêt</span></div>
+</div>
+<style>
+  #walk07-__WALK07_ID__ .walk-option-field {flex:1 1 240px;min-width:0;max-width:100%}
+  #walk07-__WALK07_ID__ .walk-pictures {display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:12px}
+  #walk07-__WALK07_ID__ figure {margin:0;width:256px;max-width:100%;text-align:center}
+  #walk07-__WALK07_ID__ canvas {display:block;image-rendering:pixelated;margin:8px auto}
+</style>
+<script>
+(async()=>{
+  const root=document.getElementById('walk07-__WALK07_ID__');
+  const DATA=__WALK07_DATA__;
+  const bytes=Uint8Array.from(atob(DATA.framesGzip),c=>c.charCodeAt(0));
+  const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+  const frames=JSON.parse(await new Response(stream).text());
+  const atlas=new Image();
+  await new Promise((resolve,reject)=>{atlas.onload=resolve;atlas.onerror=reject;atlas.src=DATA.atlas;});
+  let reference;
+  if(DATA.dualDirections){reference=true;root.querySelector('[data-reference-wrap]').hidden=false;root.querySelector('[data-reference-caption]').textContent='← Gauche · taille native';root.querySelector('[data-reference-scene]').setAttribute('aria-label','Marche vers la gauche, taille native');root.querySelector('[data-scene-caption]').textContent='Droite → · taille native';}
+  else if(DATA.referenceAtlas){reference=new Image();await new Promise((resolve,reject)=>{reference.onload=resolve;reference.onerror=reject;reference.src=DATA.referenceAtlas;});root.querySelector('[data-reference-wrap]').hidden=false;root.querySelector('[data-reference-caption]').textContent=DATA.referenceLabel||'Cycle de référence';root.querySelector('[data-reference-scene]').setAttribute('aria-label',DATA.referenceLabel||'Cycle de référence');}
+  if(DATA.placementComparison){root.querySelector('[data-reference-caption]').textContent='Avant · ancrage en bas';root.querySelector('[data-reference-scene]').setAttribute('aria-label','Même cycle, placement précédent en bas de case');}
+  if(DATA.sceneLabel)root.querySelector('[data-scene-caption]').textContent=DATA.sceneLabel;
+  const tile=document.createElement('canvas');tile.width=tile.height=128;
+  const sources=new Map(),tiles=new Map();
+  function source(id){
+    if(!sources.has(id)){
+      const r=DATA.rects[id],c=document.createElement('canvas');c.width=r[2];c.height=r[3];
+      const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(atlas,...r,0,0,r[2],r[3]);
+      sources.set(id,{width:r[2],height:r[3],data:ctx.getImageData(0,0,r[2],r[3]).data});
+    }
+    return sources.get(id);
+  }
+  // Software sampling matches the game's premultiplied bilinear affine raster.
+  function affine07(src,command){
+    const [,a,b,c,d,e,f]=command,det=a*d-b*c,out=new Uint8ClampedArray(128*128*4);
+    const corners=[[-1,-1],[src.width+1,-1],[-1,src.height+1],[src.width+1,src.height+1]];
+    const xs=corners.map(([x,y])=>a*x+b*y+e),ys=corners.map(([x,y])=>c*x+d*y+f);
+    const x0=Math.max(0,Math.floor(Math.min(...xs))-1),x1=Math.min(128,Math.ceil(Math.max(...xs))+1);
+    const y0=Math.max(0,Math.floor(Math.min(...ys))-1),y1=Math.min(128,Math.ceil(Math.max(...ys))+1);
+    for(let y=y0;y<y1;y++)for(let x=x0;x<x1;x++){
+      const dx=x+.5-e,dy=y+.5-f,sx=(d*dx-b*dy)/det-.5,sy=(-c*dx+a*dy)/det-.5;
+      const ix=Math.floor(sx),iy=Math.floor(sy),fx=sx-ix,fy=sy-iy,sum=[0,0,0,0];
+      for(let j=0;j<2;j++)for(let i=0;i<2;i++){
+        const xx=ix+i,yy=iy+j;if(xx<0||yy<0||xx>=src.width||yy>=src.height)continue;
+        const offset=(yy*src.width+xx)*4,weight=(i?fx:1-fx)*(j?fy:1-fy),alpha=src.data[offset+3]*weight;
+        sum[3]+=alpha;for(let k=0;k<3;k++)sum[k]+=src.data[offset+k]*alpha;
+      }
+      if(sum[3]>0){const offset=(y*128+x)*4;for(let k=0;k<3;k++)out[offset+k]=Math.round(sum[k]/sum[3]);out[offset+3]=Math.round(sum[3]);}
+    }
+    return out;
+  }
+  function over07(dest,src){
+    for(let i=0;i<dest.length;i+=4){
+      const a=src[i+3];if(!a)continue;
+      const old=dest[i+3]*(255-a),total=a*255+old;
+      for(let c=0;c<3;c++)dest[i+c]=Math.floor((src[i+c]*a*255+dest[i+c]*old+Math.floor(total/2))/total);
+      dest[i+3]=Math.floor((total+127)/255);
+    }
+  }
+  function drawnTile(frameIndex){
+    const key=state.armor+':'+state.option+':'+frameIndex;
+    if(tiles.has(key))return tiles.get(key);
+    const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d');
+    const commands=frames[state.armor][state.option][frameIndex];
+    if(DATA.recipe){
+      const composed=new Uint8ClampedArray(128*128*4);
+      for(const group of commands){const layer=new Uint8ClampedArray(composed.length);for(const cmd of group)over07(layer,affine07(source(cmd[0]),cmd));over07(composed,layer);}
+      ctx.putImageData(new ImageData(composed,128,128),0,0);
+    }else for(const [id,x,y] of commands){const r=DATA.rects[id];ctx.drawImage(atlas,...r,x,y,r[2],r[3]);}
+    tiles.set(key,c);return c;
+  }
+  const scene=root.querySelector('[data-scene]'),zoom=root.querySelector('[data-zoom]');
+  const fields=Object.fromEntries(['armor','option','pace','floor'].map(key=>[key,root.querySelector(`[data-control="${key}"]`)]));
+  DATA.armors.forEach((name,index)=>{const o=document.createElement('option');o.value=String(index);o.textContent=name;fields.armor.append(o);});
+  DATA.options.forEach((entry,index)=>{const o=document.createElement('option');o.value=String(index);o.textContent=entry.label;fields.option.append(o);});
+  if(DATA.armors.length===1)root.querySelector('[data-armor-label]').hidden=true;
+  const previousState=window.openai?.widgetState?.modelContent||{};
+  const saved=DATA.revision&&previousState.revision!==DATA.revision?{pace:previousState.pace,floor:previousState.floor}:previousState;
+  const validIndex=(value,count)=>Number.isInteger(+value)&&+value>=0&&+value<count;
+  const defaultOption=Math.max(0,DATA.options.findIndex(o=>o.key===(DATA.defaultKey||'axe')));
+  const state={armor:validIndex(saved.armor,DATA.armors.length)?+saved.armor:(validIndex(DATA.defaultArmor,DATA.armors.length)?+DATA.defaultArmor:0),
+    option:validIndex(saved.option,DATA.options.length)?+saved.option:defaultOption,
+    pace:[120,200,400].includes(+saved.pace)?+saved.pace:400,
+    floor:['dark','light','textured'].includes(saved.floor)?saved.floor:'dark',
+    playing:!matchMedia('(prefers-reduced-motion: reduce)').matches,automatic:true};
+  const colors={dark:{base:'#293132',tile:'#303a3b',line:'#414b49',crack:'#1c2425',target:'#90a4a7',shadow:'rgba(4,9,12,.5)'},light:{base:'#b5afa0',tile:'#bdb6a7',line:'#999689',crack:'#a09a8c',target:'#5a6868',shadow:'rgba(28,30,29,.32)'}};
+  const points=[[64,96],[128,96],[192,96],[128,96],[64,96]];
+  let index=0,lastSide=1,transition=null,rest=0,stepCount=0,previous=0;
+  const play=root.querySelector('[data-action="play"]'),phase=root.querySelector('[data-phase]'),status=root.querySelector('[data-status]');
+  function remember(){window.openai?.setWidgetState?.({modelContent:{armor:state.armor,option:state.option,pace:state.pace,floor:state.floor,selection:DATA.options[state.option].label,revision:DATA.revision||null},privateContent:null}).catch(()=>{});}
+  function sync(){for(const key of Object.keys(fields))fields[key].value=String(state[key]);play.textContent=state.playing?'Pause':'Lecture auto';}
+  function startStep(){if(transition)return;if(index>=points.length-1)index=0;const a=points[index],b=points[index+1];lastSide=b[0]>a[0]?1:7;transition={from:a,to:b,age:0};phase.textContent='Une case · déplacement';}
+  function advance(delta){
+    if(transition){transition.age+=delta;if(transition.age>=state.pace){index++;stepCount++;transition=null;rest=0;phase.textContent='Arrêt sur la case';if(!state.automatic){state.playing=false;sync();}}}
+    else if(state.automatic){rest+=delta;if(rest>=520)startStep();}
+  }
+  function location(){
+    if(!transition){const p=points[index];return {x:p[0],y:p[1],moving:false,frame:0,target:p};}
+    const t=Math.min(1,transition.age/state.pace),ease=1-(1-t)*(1-t),a=transition.from,b=transition.to;
+    return {x:Math.round(a[0]+(b[0]-a[0])*ease),y:a[1],moving:true,frame:stepCount%2*3+Math.min(2,Math.floor(t*3)),target:b};
+  }
+  function floor(ctx,width,height){
+    const c=colors[state.floor==='light'?'light':'dark'];ctx.fillStyle=c.base;ctx.fillRect(0,0,width,height);
+    for(let y=0;y<height;y+=64)for(let x=-32;x<width;x+=64){
+      if((Math.floor(x/64)+Math.floor(y/64))%2===0){ctx.fillStyle=c.tile;ctx.fillRect(x,y,64,64);}
+      ctx.strokeStyle=c.line;ctx.lineWidth=1;ctx.strokeRect(x+.5,y+.5,64,64);
+      if(state.floor==='textured'){ctx.strokeStyle=c.crack;ctx.beginPath();ctx.moveTo(x+14,y+22);ctx.lineTo(x+23,y+27);ctx.lineTo(x+28,y+24);ctx.stroke();}
+    }
+  }
+  function render(){
+    const loc=location(),option=DATA.options[state.option];
+    // The bulk comparison keeps a dedicated LEFT figure and RIGHT figure.
+    // On the return half of the existing two-cell loop, reflect positions only;
+    // each body still uses its own complete authored directional drawings.
+    if(DATA.dualDirections&&lastSide===7){loc.x=256-loc.x;loc.target=[256-loc.target[0],loc.target[1]];}
+    const dy=Number.isFinite(option.verticalOffset)?option.verticalOffset:0;
+    const frameIndex=(DATA.dualDirections?7:(lastSide===7?0:7))+(loc.moving?loc.frame+1:0);
+    const t=tile.getContext('2d');t.clearRect(0,0,128,128);t.imageSmoothingEnabled=false;
+    t.drawImage(drawnTile(frameIndex),0,0);
+    const c=scene.getContext('2d');c.imageSmoothingEnabled=false;floor(c,256,192);
+    const palette=colors[state.floor==='light'?'light':'dark'];c.strokeStyle=palette.target;c.strokeRect(loc.target[0]-31.5,loc.target[1]-31.5,63,63);
+    if(reference){
+      const ref=root.querySelector('[data-reference-scene]').getContext('2d');ref.imageSmoothingEnabled=false;floor(ref,256,192);
+      const refX=DATA.dualDirections?256-loc.x:loc.x;
+      ref.strokeStyle=palette.target;ref.strokeRect((DATA.dualDirections?256-loc.target[0]:loc.target[0])-31.5,loc.target[1]-31.5,63,63);
+      const refDy=DATA.placementComparison?0:dy;
+      if(option.shadow){ref.fillStyle=palette.shadow;ref.beginPath();ref.ellipse(refX,loc.y+30+refDy,17,5,0,0,Math.PI*2);ref.fill();}
+      if(DATA.dualDirections){
+        const leftFrame=loc.moving?loc.frame+1:0;
+        ref.drawImage(drawnTile(leftFrame),refX-option.foot[0],loc.y+32-option.foot[1]+dy);
+        root.dataset.leftSourceFrame=String(leftFrame);root.dataset.rightSourceFrame=String(frameIndex);
+      }else if(DATA.placementComparison){
+        ref.drawImage(tile,loc.x-option.foot[0],loc.y+32-option.foot[1]);
+      }else if(DATA.referenceRects){
+        const r=DATA.referenceRects[state.option];
+        ref.drawImage(reference,...r,loc.x-option.foot[0],loc.y+32-option.foot[1]+refDy,r[2],r[3]);
+      }else ref.drawImage(reference,(loc.moving?loc.frame+1:0)*64,lastSide===7?0:64,64,64,loc.x-32,loc.y-32,64,64);
+    }
+    if(option.shadow){c.fillStyle=palette.shadow;c.beginPath();c.ellipse(loc.x,loc.y+30+dy,17,5,0,0,Math.PI*2);c.fill();}
+    c.drawImage(tile,loc.x-option.foot[0],loc.y+32-option.foot[1]+dy);
+    const z=zoom.getContext('2d');z.imageSmoothingEnabled=false;
+    if(DATA.placementComparison||option.placementMode==='center_short_creatures_native64'){
+      let top=loc.y-64;
+      if(option.cycleBounds){
+        const bodyTop=loc.y+32-option.foot[1]+dy+option.cycleBounds[1];
+        if(bodyTop<top)top=bodyTop-4;
+      }
+      z.drawImage(scene,loc.x-64,top,128,128,0,0,256,256);
+    }
+    else{floor(z,256,256);z.drawImage(tile,0,0,128,128,0,0,256,256);}
+    root.dataset.verticalOffset=String(dy);
+    root.dataset.ready='true';root.dataset.frame=String(loc.frame);root.dataset.direction=String(lastSide);root.dataset.moving=String(loc.moving);root.dataset.cell=String(index);root.dataset.armor=String(state.armor);root.dataset.option=String(state.option);
+  }
+  function tick(now){if(previous&&state.playing)advance(Math.min(80,now-previous));previous=now;render();requestAnimationFrame(tick);}
+  function choose(key,value,save=true){
+    if(key==='armor'&&!validIndex(value,DATA.armors.length)||key==='option'&&!validIndex(value,DATA.options.length))return;
+    if(key==='pace'&&![120,200,400].includes(+value)||key==='floor'&&!['dark','light','textured'].includes(value))return;
+    state[key]=key==='floor'?value:+value;if(key==='armor'||key==='option')tiles.clear();sync();status.textContent=DATA.armors[state.armor]+' · '+DATA.options[state.option].label;
+    scene.setAttribute('aria-label',status.textContent+(DATA.dualDirections?' : marche vers la droite, case par case, taille native':' : marche latérale case par case à taille native'));
+    if(DATA.dualDirections)root.querySelector('[data-reference-scene]').setAttribute('aria-label',status.textContent+' : marche vers la gauche, case par case, taille native');
+    if(save)remember();render();
+  }
+  for(const key of Object.keys(fields))fields[key].addEventListener('change',e=>choose(key,e.target.value));
+  play.addEventListener('click',()=>{state.playing=!state.playing;if(state.playing)state.automatic=true;sync();});
+  root.querySelector('[data-action="cell"]').addEventListener('click',()=>{state.automatic=false;startStep();state.playing=true;sync();});
+  root.querySelector('[data-action="step"]').addEventListener('click',()=>{state.playing=false;state.automatic=false;if(transition)advance(state.pace/3);else startStep();sync();render();});
+  window.addEventListener('openai:set_globals',event=>{const s=event.detail?.globals?.widgetState?.modelContent;if(!s)return;for(const key of Object.keys(fields))if(s[key]!==undefined)choose(key,s[key],false);});
+  document.addEventListener('visibilitychange',()=>{previous=0;});
+  root.querySelectorAll('button,select').forEach(e=>e.disabled=false);
+  choose('option',state.option,false);sync();requestAnimationFrame(tick);
+})().catch(()=>{const root=document.getElementById('walk07-__WALK07_ID__');const status=root.querySelector('[data-status]');status.textContent='Impossible de charger les poses.';status.setAttribute('role','alert');});
+</script>

@@ -1,0 +1,360 @@
+{
+  "acceptance_id": "BASTION-W01-ACCEPT01",
+  "review_id": "BASTION-W01",
+  "date": "2026-10-21",
+  "user_answer": "ok je valide :)",
+  "status": "accepted_visual_reference",
+  "scope": "Five Bastion full-body armor models and all fifteen red/blue/green variants shown on the native64 board, including the shared head in these compositions.",
+  "class_id": "core:bastion",
+  "models": 5,
+  "colored_variants": 15,
+  "approved_views": 20,
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "approved_model_ids": [
+    "BA-W01-P01-r01",
+    "BA-W01-P02-r01",
+    "BA-W01-P03-r01",
+    "BA-W01-P04-r01",
+    "BA-W01-P05-r03"
+  ],
+  "shared_head": {
+    "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-common-head-native64.png",
+    "sha256": "4a1bf61268837bf93c2000c0e494e2845fdd7eddd50414585fb3a02108b69126",
+    "region": [
+      0,
+      0,
+      64,
+      12
+    ],
+    "rgba_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c"
+  },
+  "approved_board": {
+    "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/review/all-armors-colors-native64.png",
+    "sha256": "7b523a11873f78984594957bb05bd634395c2312c02fd081bc661d4c618d6600"
+  },
+  "entries": [
+    {
+      "candidate_id": "BA-W01-P01-r01",
+      "model_number": "01",
+      "color": "original",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-body-source.png",
+      "source_sha256": "50b401163794ac4b643e54340e825c0ec0ccdf3906d244bc50d124db406a0ccc",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-native64.png",
+        "sha256": "c9f6ae4d10ac7144d625ca134fdf19129d41aab09fafb0d694fb164539373230"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-body-native64.png",
+        "sha256": "6876ed1168fa1e2aceddfb70a5712586470a02b826c340cee41feb64410fd6aa"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P01-r01-red",
+      "model_number": "01",
+      "color": "red",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-red-body-source.png",
+      "source_sha256": "6e1cacd39eb98e88d1db39187d6ec0cc18f1cc1eeb0cfd8bcfeba461de7bfc86",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-red-native64.png",
+        "sha256": "0e05bf6c9717c6d05d33839055ff7f7674ab0f31172c3fe04425e8f3f9b8031e"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-red-body-native64.png",
+        "sha256": "61dcc7065132b8909b982d96cf765b5bce2c37df76875e03000bc91733b4e326"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P01-r01-blue",
+      "model_number": "01",
+      "color": "blue",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-blue-body-source.png",
+      "source_sha256": "08eeed0ab250cd10bb6cfa86dd046aff020888923502c4303d1984bb8470772d",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-blue-native64.png",
+        "sha256": "e69bc7d84ac2b868f0cfa533318fbb52808b0d9b8e2038040f6b9935e1d7a46b"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-blue-body-native64.png",
+        "sha256": "ea1555e20efd201442f605a9ae9c32bc5d1a76a6df02a832ba90260c86fa7a65"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P01-r01-green",
+      "model_number": "01",
+      "color": "green",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-green-body-source.png",
+      "source_sha256": "bd7cd4ccda894ec6bc161528b8ac567221f6d49031ab2827af0bfb51459d2725",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-green-native64.png",
+        "sha256": "4e3e376cbfd6b1f087aadd13d0c83bb7251f3832a25bb217891fc3a20f54cf5b"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-green-body-native64.png",
+        "sha256": "268b8ac15eff5f09a43c9a2d0c82bc069acfa2254afd1f44555d0607e4224590"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P02-r01",
+      "model_number": "02",
+      "color": "original",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-body-source.png",
+      "source_sha256": "75537643342fd3a47529f7b8958aa7bdbe592f4a61a294cde3038f427ceb23ae",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-native64.png",
+        "sha256": "ecaee4722c0b2509d59df2f59683d59b539fb1b1db41b0c4458b2aa7ae424ddf"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-body-native64.png",
+        "sha256": "4056207268ef40e14b75271999f2628f44b01516f10d53b9b3e3dc340327865a"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P02-r01-red",
+      "model_number": "02",
+      "color": "red",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-red-body-source.png",
+      "source_sha256": "8f9dd1a3cb91b908bdd4d899cd58e7f379886fae9cf365229f65a6f80be29a34",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-red-native64.png",
+        "sha256": "89e990816690533beea9ade7b1fcd14f0459f128b3a120aeb7740b62373a2652"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-red-body-native64.png",
+        "sha256": "35f3ad43689f7428075cde76d06ec60a2aaedf3e0b91da1cb66ff9e36199de06"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P02-r01-blue",
+      "model_number": "02",
+      "color": "blue",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-blue-body-source.png",
+      "source_sha256": "2dbecc114d86bddf18a26316a954c807c35f9197207506aeabaf529f9f239455",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-blue-native64.png",
+        "sha256": "0e6291faa24695cb5dbaa6f71a38f031628a1978abdeaa49adf9cc44a148b819"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-blue-body-native64.png",
+        "sha256": "4c35f91f908ccc210d20735a0a22c564c7fa3b2d937182d3cdfb7747958ca0c4"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P02-r01-green",
+      "model_number": "02",
+      "color": "green",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-green-body-source.png",
+      "source_sha256": "e2dba3ed6ab22a691521c6c628abefb21653a1f89e226207db5fbcf696acaa07",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-green-native64.png",
+        "sha256": "98f784fcdbfb3afd7554d14ba8dab37943febcd3bc9882a3e6660fd62fb1757b"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-green-body-native64.png",
+        "sha256": "d616b6d150d0646922508ebf726456c8f0690f0f46e8d352be36309979fc3a79"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P03-r01",
+      "model_number": "03",
+      "color": "original",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-body-source.png",
+      "source_sha256": "d31fff7c909094d094908f2ec231c3529ba449f4eb3aea88037fab5039753804",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-native64.png",
+        "sha256": "4e367b2c303d34c4e6f9c867faf12783ff92e1d0b8b49bc226d060f0f7dfd1a0"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-body-native64.png",
+        "sha256": "9c49cf2126e25b5d62957432b0095e8918db1505473ac459c5f73888e3a590fb"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P03-r01-red",
+      "model_number": "03",
+      "color": "red",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-red-body-source.png",
+      "source_sha256": "a68d1ef1e9f5e0723db94077ec902c52e63aeba8b8adc380af1c270c1081c909",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-red-native64.png",
+        "sha256": "c17b23b89e570951a5191e4846358265167e2af84e4ec4637f04798963bb7fa8"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-red-body-native64.png",
+        "sha256": "0644d6523e6b7f53a96e8a5671df12fdab57518e6c743a1ff8d7a8db4d6b51e3"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P03-r01-blue",
+      "model_number": "03",
+      "color": "blue",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-blue-body-source.png",
+      "source_sha256": "7bc9b6ae6ca1ba07e62496890b6e2f8abb12e6d152b343516febef5a7d460671",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-blue-native64.png",
+        "sha256": "a315578571ee09f2b69ba07de53318962ad85062a96de83c8bc01517aeea0cf3"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-blue-body-native64.png",
+        "sha256": "f368146341eb4aea65da47065302426082bb41401357f83622a2070124f94699"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P03-r01-green",
+      "model_number": "03",
+      "color": "green",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-green-body-source.png",
+      "source_sha256": "43b70d895514ce29ba80d82ade9e98a446003f1378f55e0df44720803e932c6b",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-green-native64.png",
+        "sha256": "1f78510889f800bee821182cf819c3cd38f03f48bcb9a2fd4cc9588e649c5088"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-green-body-native64.png",
+        "sha256": "9c2c0922a2b97f0edaba4c865979f3e16e968911906423130e8d7e0096376df3"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P04-r01",
+      "model_number": "04",
+      "color": "original",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-body-source.png",
+      "source_sha256": "b86306a8910215debe3dc55ab205c3e2e3b310f47a4366b67b03b8e870929578",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-native64.png",
+        "sha256": "09dded45d483e7d16f8b6d6517c052668c4ccb2b36d02498b47e3fddb820f805"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-body-native64.png",
+        "sha256": "0a54de2ebb169759a624ffb2237452ea63981150c024d68ad23210ecba788f36"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P04-r01-red",
+      "model_number": "04",
+      "color": "red",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-red-body-source.png",
+      "source_sha256": "51a65d685f09acee176c427ba20178e4163b746ca631fd13d411b66450643579",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-red-native64.png",
+        "sha256": "83e80e7f741593f222be801687da29a5e38e27893eff78207fde28cce7ebe005"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-red-body-native64.png",
+        "sha256": "8a3ac4c49f385ac41a90fe72f283718b23a9a0a28c19dab1221ed1b85ae4f709"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P04-r01-blue",
+      "model_number": "04",
+      "color": "blue",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-blue-body-source.png",
+      "source_sha256": "f7f1035bd46294ac3d5e66be3e94a8ae16bdd5e67fe09e2a62b6ae6894988895",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-blue-native64.png",
+        "sha256": "e527f29b1afb7bb0ac29a717fd3027217078cb122bdd320f7e0ca871478865e0"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-blue-body-native64.png",
+        "sha256": "86c28ff4a642a2a9886f97485e872f1507a978b735991fcc49f7478ea3569d06"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P04-r01-green",
+      "model_number": "04",
+      "color": "green",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-green-body-source.png",
+      "source_sha256": "c10d69092c9f9ab4645734eee2a162ab903cf57b8a76bfacb389ec4af3fc2206",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-green-native64.png",
+        "sha256": "b395308ce6f13d4fcba24c9c3ca2b30b47245208de38d780ef2b8a13d7aa8e90"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-green-body-native64.png",
+        "sha256": "e79dde648beb3d08b392c56cbd4545ebc946a99e3b0e37ab9e88a5a17db5a40a"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P05-r03",
+      "model_number": "05",
+      "color": "original",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png",
+      "source_sha256": "807794756fa2c01151569c1cd3ae82aeb51dfb800e06df7259771cff604371dd",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-native64.png",
+        "sha256": "a81d15d0f0c403f6003f703fa2dc9db148c8cb6186e56475c6e1e9e7ba7286a4"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-body-native64.png",
+        "sha256": "6e2fe2e2c1d83c34015b8a9027aeb6d92d8554b40936b47c9a37c960624905ba"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P05-r03-red",
+      "model_number": "05",
+      "color": "red",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-red-body-source.png",
+      "source_sha256": "d463f343af2f2f1e34c93dfeea8fe38004715484e31ff0be511e3489ccb39804",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-red-native64.png",
+        "sha256": "0a5bf7e1b26e13893094cc33f3365a65439cc4bb01b944ff816410f51b9606c2"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-red-body-native64.png",
+        "sha256": "e56b25c0e07a3f601f562cb020efafc78b6cb1b805d5b2613cd6237b825c8437"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P05-r03-blue",
+      "model_number": "05",
+      "color": "blue",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-blue-body-source.png",
+      "source_sha256": "a79f3cfe6a8ebad7a37be4b27f5b89e95b5f7116c1811d4813118f999f929f3e",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-blue-native64.png",
+        "sha256": "0b116897704858ce07232040d0c2e7769b725bf70bf4a8a7f62078344e23697c"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-blue-body-native64.png",
+        "sha256": "902544525445dd2dab6d16bf2311b2ad56f7571392922c394c988efc912dfc66"
+      }
+    },
+    {
+      "candidate_id": "BA-W01-P05-r03-green",
+      "model_number": "05",
+      "color": "green",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-green-body-source.png",
+      "source_sha256": "e404ffc46869ada2a292a0a0053a1cb0f585cf0137fe9ee44a02cf9c73485092",
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-green-native64.png",
+        "sha256": "980ba7085a69869589237bca5d94248eb6a0f3e6ec7eef6c8e559c3b914a9d6b"
+      },
+      "body_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-green-body-native64.png",
+        "sha256": "f9757f560c960a47ecc72e938bc003626fe1f39905743ce45e8197d8d51c9842"
+      }
+    }
+  ],
+  "runtime_integration": false,
+  "remaining": [
+    "Map these appearance models to existing item IDs without changing gameplay.",
+    "Prepare weapon grips, material masks and in-engine checks.",
+    "Review other class armor waves separately.",
+    "Any future simplification changes are new revisions requiring their own visual review."
+  ],
+  "excluded": [
+    "BA-W01-P05-r02",
+    "old torso-only candidates",
+    "other class silhouettes and armor waves",
+    "new item names or mechanical rules",
+    "unseen revisions or weapon poses"
+  ],
+  "checks": {
+    "all_twenty_native64": true,
+    "shared_head_pixels_identical": true,
+    "approved_exports_copied_without_pixel_changes": true,
+    "sources_unchanged": true
+  }
+}

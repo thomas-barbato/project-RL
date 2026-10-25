@@ -1,0 +1,48 @@
+{
+  "review_id": "WALK08-STEP1-PREDATOR-r02",
+  "user_report": "la forme de prédateur se déplace à l'envers.",
+  "status": "prepared_for_visual_review",
+  "original_atlas_sha256": "487a3cbe4da34e3a75f71a4319189f3d99572703bc299a8ff1ef67066862dddf",
+  "extra_atlas_hashes_before": {
+    "DRONE-GUARDIAN.png": "e469784bb029db3a9d30028eb71f4ed8ec0aa23df60ec177132425b25cd37e6d",
+    "DRONE-SCOUT.png": "937ff090710af7cb84f7f15c45b1ffe8e9d2a837f767916be2485d59d81045ed",
+    "DRONE-TRACKER.png": "d2bcca1baa2001df0488400a76102dba8669be6f72904668f19f6829fe3acdf5",
+    "FORM-ABYSS.png": "50d89d72e58ad04fac260b81140e6a672b03777b0581f49c6882cc71ca9ba93f",
+    "FORM-ARMOR.png": "80be31f2064c32ee8513c698fc934d08df8ea03a850b3c017bbc10aa854c42e3",
+    "FORM-CLOSED.png": "7ced2023ac88d80c850b911c28a04abb8500d0d37b080330287c29ff805568d4",
+    "FORM-COLOSSUS.png": "7d32b49c30df4df54d2c239607212bd426babeb415cba4c015f73d98e0e3670b",
+    "FORM-POSSESSED.png": "7d6de97bf3cb906aa40d7eec06221e5fb7055572132c216112f97949174cd514",
+    "FORM-PREDATOR.png": "487a3cbe4da34e3a75f71a4319189f3d99572703bc299a8ff1ef67066862dddf"
+  },
+  "previous_left_row": 0,
+  "correct_left_row": 1,
+  "correct_right_row": 0,
+  "phase_order": "unchanged",
+  "normal_game_enabled": false,
+  "extra_atlas_pixels_and_bytes_unchanged": true,
+  "entry_metadata": {
+    "id": "FORM-PREDATOR",
+    "left_row": 1,
+    "file": "assets/animations/walk-08/extras/FORM-PREDATOR.png",
+    "foot": [
+      64,
+      112
+    ],
+    "vertical_offset": -1,
+    "cycle_bounds": [
+      37,
+      50,
+      91,
+      112
+    ]
+  },
+  "normal_release_executable_sha256": "4d9988cbe53f7fb82383c6f58c77774a1c50613160a9658e5ec42bc18bd6461f",
+  "normal_release_executable_unchanged": true,
+  "direction_regression_test": "passed",
+  "one_cell_duration_test": "passed",
+  "debug_build": "passed",
+  "native_catalogue_capture": "passed",
+  "native_capture": "docs/reviews/player-walk-08/PREDATOR-r02-after.png",
+  "git_diff_check": "passed",
+  "debug_executable_sha256": "643a2347fd0289556347f9cfdb2550f1a1c93c13af71cd72a7efea6f0b634644"
+}

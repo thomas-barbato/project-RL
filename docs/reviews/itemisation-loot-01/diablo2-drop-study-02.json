@@ -1,0 +1,545 @@
+{
+  "review_id": "ITEM-LOOT01-DROPSTUDY02",
+  "date": "2026-10-23",
+  "source": {
+    "source": "D:\\JEUX\\Diablo 2 old\\Diablo II",
+    "read_only": true,
+    "vanilla_archives_only": true,
+    "game_launched": false,
+    "saves_accessed": false,
+    "archive_precedence": [
+      "patch_d2.mpq",
+      "d2exp.mpq",
+      "d2data.mpq"
+    ],
+    "tables": {
+      "TreasureClassEx": {
+        "archive": "patch_d2.mpq",
+        "bytes": 88253,
+        "sha256": "214c3b83e1f45f44380598b2157de0689bd6ad0318edae4af4cc8d2ee5c2b525"
+      },
+      "CubeMain": {
+        "archive": "patch_d2.mpq",
+        "bytes": 30516,
+        "sha256": "ff5d7e9b6b6cff4ff5462684eb23358d764ce8c193beff0f1044af7fb0cb544a"
+      },
+      "ItemRatio": {
+        "archive": "patch_d2.mpq",
+        "bytes": 662,
+        "sha256": "f8ebb2128c09311d2f17f9f3ea9e1933441f3322ab2c4c203eb9858a00af90ff"
+      },
+      "Misc": {
+        "archive": "patch_d2.mpq",
+        "bytes": 55821,
+        "sha256": "f7fa37ae4f7cdb3f5337a28a55b3876fc27aef066822b3268933e56b636b50f0"
+      },
+      "MonStats": {
+        "archive": "patch_d2.mpq",
+        "bytes": 432634,
+        "sha256": "a15e1cb876bd9af1e8f54199c9619226cf4835c45c799aed2d432901487ecb7c"
+      },
+      "SuperUniques": {
+        "archive": "patch_d2.mpq",
+        "bytes": 8071,
+        "sha256": "a2f954f2ca3e27353d8895650263928845cf8e9378e41fd4005a1a6b3f27320a"
+      }
+    },
+    "archive_checks": [
+      {
+        "archive": "patch_d2.mpq",
+        "bytes": 3915305,
+        "last_write_utc": "2026-09-26T20:50:27.6531857Z",
+        "unchanged": true
+      },
+      {
+        "archive": "d2exp.mpq",
+        "bytes": 250156780,
+        "last_write_utc": "2026-09-26T20:50:27.4946002Z",
+        "unchanged": true
+      },
+      {
+        "archive": "d2data.mpq",
+        "bytes": 269191615,
+        "last_write_utc": "2026-09-26T20:58:45.6481556Z",
+        "unchanged": true
+      }
+    ]
+  },
+  "categories": [
+    "weapon_armor",
+    "jewelry",
+    "gold",
+    "other"
+  ],
+  "assumptions": [
+    "LoD vanilla archive tables from the local installation, not ProjectD2 data.",
+    "Named treasure classes fixed as listed, with no further level-based class substitution.",
+    "Single-player /players 1 except for the explicitly labeled virtual-player comparison.",
+    "Successful item creation and placement; six-item cap.",
+    "Category probabilities, not exact model or final item-quality probabilities.",
+    "Quest treasure classes are reported separately; persistent quest-state/Andariel behavior is not modeled."
+  ],
+  "ordinary_first_act_weights": {
+    "nothing": 100,
+    "gold": 21,
+    "weapons_armor": 16,
+    "junk": 21,
+    "good": 2,
+    "total": 160
+  },
+  "examples": [
+    {
+      "label": "Monstre ordinaire, début acte I",
+      "treasure_class": "Act 1 H2H A",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 62.5,
+      "weapon_armor_at_least_one_percent": 10.0,
+      "weapon_armor_probability_fraction": "1/10",
+      "mean_objects": 0.375,
+      "mean_by_category": {
+        "weapon_armor": 0.1,
+        "jewelry": 0.00375,
+        "gold": 0.13125,
+        "other": 0.14
+      },
+      "mean_weapon_armor_fraction": "1/10"
+    },
+    {
+      "label": "Lanceur de sorts, table acte I",
+      "treasure_class": "Act 1 Cast A",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 62.5,
+      "weapon_armor_at_least_one_percent": 9.375,
+      "weapon_armor_probability_fraction": "3/32",
+      "mean_objects": 0.375,
+      "mean_by_category": {
+        "weapon_armor": 0.09375,
+        "jewelry": 0.00375,
+        "gold": 0.1125,
+        "other": 0.165
+      },
+      "mean_weapon_armor_fraction": "3/32"
+    },
+    {
+      "label": "Tireur, table acte I",
+      "treasure_class": "Act 1 Miss A",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 62.5,
+      "weapon_armor_at_least_one_percent": 11.875,
+      "weapon_armor_probability_fraction": "19/160",
+      "mean_objects": 0.375,
+      "mean_by_category": {
+        "weapon_armor": 0.11875,
+        "jewelry": 0.00375,
+        "gold": 0.1125,
+        "other": 0.14
+      },
+      "mean_weapon_armor_fraction": "19/160"
+    },
+    {
+      "label": "Spectre, table acte I",
+      "treasure_class": "Act 1 Wraith A",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 72.11538461538461,
+      "weapon_armor_at_least_one_percent": 0.0,
+      "weapon_armor_probability_fraction": "0",
+      "mean_objects": 0.27884615384615385,
+      "mean_by_category": {
+        "weapon_armor": 0.0,
+        "jewelry": 0.011538461538461539,
+        "gold": 0.0,
+        "other": 0.2673076923076923
+      },
+      "mean_weapon_armor_fraction": "0"
+    },
+    {
+      "label": "Champion, début acte I",
+      "treasure_class": "Act 1 Champ A",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 0.0,
+      "weapon_armor_at_least_one_percent": 37.0,
+      "weapon_armor_probability_fraction": "37/100",
+      "mean_objects": 3.0,
+      "mean_by_category": {
+        "weapon_armor": 0.37,
+        "jewelry": 0.009,
+        "gold": 0.6,
+        "other": 2.021
+      },
+      "mean_weapon_armor_fraction": "37/100"
+    },
+    {
+      "label": "Monstre nommé, début acte I",
+      "treasure_class": "Act 1 Unique A",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 0.0,
+      "weapon_armor_at_least_one_percent": 93.54838709677419,
+      "weapon_armor_probability_fraction": "29/31",
+      "mean_objects": 5.0,
+      "mean_by_category": {
+        "weapon_armor": 0.9354838709677419,
+        "jewelry": 0.01935483870967742,
+        "gold": 0.0,
+        "other": 4.04516129032258
+      },
+      "mean_weapon_armor_fraction": "29/31"
+    },
+    {
+      "label": "Monstre ordinaire, fin acte V Enfer",
+      "treasure_class": "Act 5 (H) H2H C",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 62.5,
+      "weapon_armor_at_least_one_percent": 10.0,
+      "weapon_armor_probability_fraction": "1/10",
+      "mean_objects": 0.375,
+      "mean_by_category": {
+        "weapon_armor": 0.1,
+        "jewelry": 0.0034615384615384616,
+        "gold": 0.13125,
+        "other": 0.14028846153846153
+      },
+      "mean_weapon_armor_fraction": "1/10"
+    },
+    {
+      "label": "Andariel, hors récompense de quête",
+      "treasure_class": "Andariel",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 0.014748626847958425,
+      "weapon_armor_at_least_one_percent": 90.12706717730202,
+      "weapon_armor_probability_fraction": "5462341619952/6060711605323",
+      "mean_objects": 4.918060783544487,
+      "mean_by_category": {
+        "weapon_armor": 1.9467323934863594,
+        "jewelry": 0.08782251399186584,
+        "gold": 1.127055596228945,
+        "other": 1.756450279837317
+      },
+      "mean_weapon_armor_fraction": "11798583609661/6060711605323"
+    },
+    {
+      "label": "Mephisto, hors récompense de quête",
+      "treasure_class": "Mephisto",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 0.0008147209882736206,
+      "weapon_armor_at_least_one_percent": 99.93446387014389,
+      "weapon_armor_probability_fraction": "1047888803871/1048576000000",
+      "mean_objects": 5.4537435583770275,
+      "mean_by_category": {
+        "weapon_armor": 4.362994846701622,
+        "jewelry": 0.04871830473984441,
+        "gold": 0.41951873525977135,
+        "other": 0.6225116716757897
+      },
+      "mean_weapon_armor_fraction": "1463978139/335544320"
+    },
+    {
+      "label": "Diablo, hors récompense de quête",
+      "treasure_class": "Diablo",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 0.0008147209882736206,
+      "weapon_armor_at_least_one_percent": 99.93446387014389,
+      "weapon_armor_probability_fraction": "1047888803871/1048576000000",
+      "mean_objects": 5.4537435583770275,
+      "mean_by_category": {
+        "weapon_armor": 4.362994846701622,
+        "jewelry": 0.07403271798701848,
+        "gold": 0.41951873525977135,
+        "other": 0.5971972584286157
+      },
+      "mean_weapon_armor_fraction": "1463978139/335544320"
+    },
+    {
+      "label": "Baal, hors récompense de quête",
+      "treasure_class": "Baal",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 0.0008147209882736206,
+      "weapon_armor_at_least_one_percent": 99.93446387014389,
+      "weapon_armor_probability_fraction": "1047888803871/1048576000000",
+      "mean_objects": 5.4537435583770275,
+      "mean_by_category": {
+        "weapon_armor": 4.362994846701622,
+        "jewelry": 0.06970465139700817,
+        "gold": 0.41951873525977135,
+        "other": 0.601525325018626
+      },
+      "mean_weapon_armor_fraction": "1463978139/335544320"
+    },
+    {
+      "label": "Andariel, table de quête",
+      "treasure_class": "Andarielq",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 0.4589741324733029,
+      "weapon_armor_at_least_one_percent": 98.7192210526152,
+      "weapon_armor_probability_fraction": "192259902142/194754273881",
+      "mean_objects": 3.743289842622152,
+      "mean_by_category": {
+        "weapon_armor": 3.232841227719131,
+        "jewelry": 0.14584246140086307,
+        "gold": 0.0,
+        "other": 0.3646061535021577
+      },
+      "mean_weapon_armor_fraction": "629609645877/194754273881"
+    },
+    {
+      "label": "Mephisto, table de quête",
+      "treasure_class": "Mephistoq",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 0.002074686749811485,
+      "weapon_armor_at_least_one_percent": 99.99256556196823,
+      "weapon_armor_probability_fraction": "8402875247/8403500000",
+      "mean_objects": 5.3151359146547295,
+      "mean_by_category": {
+        "weapon_armor": 5.025219410219017,
+        "jewelry": 0.05611287182626694,
+        "gold": 0.0,
+        "other": 0.2338036326094456
+      },
+      "mean_weapon_armor_fraction": "662157483/131766880"
+    }
+  ],
+  "virtual_player_comparison": [
+    {
+      "virtual_players": 1,
+      "treasure_class": "Act 1 H2H A",
+      "effective_no_drop_exponent": 1,
+      "no_object_percent": 62.5,
+      "weapon_armor_at_least_one_percent": 10.0,
+      "weapon_armor_probability_fraction": "1/10",
+      "mean_objects": 0.375,
+      "mean_by_category": {
+        "weapon_armor": 0.1,
+        "jewelry": 0.00375,
+        "gold": 0.13125,
+        "other": 0.14
+      },
+      "mean_weapon_armor_fraction": "1/10"
+    },
+    {
+      "virtual_players": 3,
+      "treasure_class": "Act 1 H2H A",
+      "effective_no_drop_exponent": 2,
+      "no_object_percent": 38.775510204081634,
+      "weapon_armor_at_least_one_percent": 16.3265306122449,
+      "weapon_armor_probability_fraction": "8/49",
+      "mean_objects": 0.6122448979591837,
+      "mean_by_category": {
+        "weapon_armor": 0.16326530612244897,
+        "jewelry": 0.006122448979591836,
+        "gold": 0.21428571428571427,
+        "other": 0.22857142857142856
+      },
+      "mean_weapon_armor_fraction": "8/49"
+    },
+    {
+      "virtual_players": 5,
+      "treasure_class": "Act 1 H2H A",
+      "effective_no_drop_exponent": 3,
+      "no_object_percent": 24.050632911392405,
+      "weapon_armor_at_least_one_percent": 20.253164556962027,
+      "weapon_armor_probability_fraction": "16/79",
+      "mean_objects": 0.759493670886076,
+      "mean_by_category": {
+        "weapon_armor": 0.20253164556962025,
+        "jewelry": 0.007594936708860759,
+        "gold": 0.26582278481012656,
+        "other": 0.28354430379746837
+      },
+      "mean_weapon_armor_fraction": "16/79"
+    },
+    {
+      "virtual_players": 7,
+      "treasure_class": "Act 1 H2H A",
+      "effective_no_drop_exponent": 4,
+      "no_object_percent": 14.285714285714286,
+      "weapon_armor_at_least_one_percent": 22.857142857142858,
+      "weapon_armor_probability_fraction": "8/35",
+      "mean_objects": 0.8571428571428571,
+      "mean_by_category": {
+        "weapon_armor": 0.22857142857142856,
+        "jewelry": 0.008571428571428572,
+        "gold": 0.3,
+        "other": 0.32
+      },
+      "mean_weapon_armor_fraction": "8/35"
+    }
+  ],
+  "quality": {
+    "separate_from_base_drop": true,
+    "itemratio_rows": [
+      {
+        "Function": "Ratio - (Monster Level / Ratio Divisor)",
+        "Version": "0",
+        "Uber": "0",
+        "Class Specific": "0",
+        "Unique": "400",
+        "UniqueDivisor": "2",
+        "UniqueMin": "6400",
+        "Rare": "160",
+        "RareDivisor": "3",
+        "RareMin": "3200",
+        "Set": "125",
+        "SetDivisor": "6",
+        "SetMin": "5600",
+        "Magic": "30",
+        "MagicDivisor": "16",
+        "MagicMin": "192",
+        "HiQuality": "12",
+        "HiQualityDivisor": "16",
+        "Normal": "4",
+        "NormalDivisor": "8"
+      },
+      {
+        "Function": "Uber",
+        "Version": "0",
+        "Uber": "1",
+        "Class Specific": "0",
+        "Unique": "240",
+        "UniqueDivisor": "2",
+        "UniqueMin": "6400",
+        "Rare": "96",
+        "RareDivisor": "3",
+        "RareMin": "3200",
+        "Set": "96",
+        "SetDivisor": "6",
+        "SetMin": "5600",
+        "Magic": "3",
+        "MagicDivisor": "100",
+        "MagicMin": "192",
+        "HiQuality": "4",
+        "HiQualityDivisor": "16",
+        "Normal": "1",
+        "NormalDivisor": "8"
+      },
+      {
+        "Function": "Ratio - (Monster Level / Ratio Divisor)",
+        "Version": "1",
+        "Uber": "0",
+        "Class Specific": "0",
+        "Unique": "400",
+        "UniqueDivisor": "1",
+        "UniqueMin": "6400",
+        "Rare": "100",
+        "RareDivisor": "2",
+        "RareMin": "3200",
+        "Set": "160",
+        "SetDivisor": "2",
+        "SetMin": "5600",
+        "Magic": "34",
+        "MagicDivisor": "3",
+        "MagicMin": "192",
+        "HiQuality": "12",
+        "HiQualityDivisor": "8",
+        "Normal": "2",
+        "NormalDivisor": "2"
+      },
+      {
+        "Function": "Uber",
+        "Version": "1",
+        "Uber": "1",
+        "Class Specific": "0",
+        "Unique": "400",
+        "UniqueDivisor": "1",
+        "UniqueMin": "6400",
+        "Rare": "100",
+        "RareDivisor": "2",
+        "RareMin": "3200",
+        "Set": "160",
+        "SetDivisor": "2",
+        "SetMin": "5600",
+        "Magic": "34",
+        "MagicDivisor": "3",
+        "MagicMin": "192",
+        "HiQuality": "12",
+        "HiQualityDivisor": "8",
+        "Normal": "1",
+        "NormalDivisor": "1"
+      },
+      {
+        "Function": "Class Specific",
+        "Version": "1",
+        "Uber": "0",
+        "Class Specific": "1",
+        "Unique": "240",
+        "UniqueDivisor": "3",
+        "UniqueMin": "6400",
+        "Rare": "80",
+        "RareDivisor": "3",
+        "RareMin": "3200",
+        "Set": "120",
+        "SetDivisor": "3",
+        "SetMin": "5600",
+        "Magic": "17",
+        "MagicDivisor": "6",
+        "MagicMin": "192",
+        "HiQuality": "9",
+        "HiQualityDivisor": "8",
+        "Normal": "2",
+        "NormalDivisor": "2"
+      },
+      {
+        "Function": "Class Specific Uber",
+        "Version": "1",
+        "Uber": "1",
+        "Class Specific": "1",
+        "Unique": "240",
+        "UniqueDivisor": "3",
+        "UniqueMin": "6400",
+        "Rare": "80",
+        "RareDivisor": "3",
+        "RareMin": "3200",
+        "Set": "120",
+        "SetDivisor": "3",
+        "SetMin": "5600",
+        "Magic": "17",
+        "MagicDivisor": "6",
+        "MagicMin": "192",
+        "HiQuality": "9",
+        "HiQualityDivisor": "8",
+        "Normal": "1",
+        "NormalDivisor": "1"
+      }
+    ],
+    "champion_named_weapon_armor_magic_factor": 1024,
+    "champion_named_unique_set_rare_factors": 800,
+    "ordinary_item_factors": 0,
+    "warning": "TC factors are internal modifiers, not percentages. Final rarity depends on base level/type, monster level, Magic Find and available unique/set versions.",
+    "sequence": [
+      "unique",
+      "set",
+      "rare",
+      "magic",
+      "superior",
+      "normal",
+      "inferior"
+    ]
+  },
+  "verified_checks": [
+    "All distributions sum exactly to one.",
+    "All counts respect the six-item cap.",
+    "Ordinary, champion and named-equipment means match hand calculations.",
+    "Boss capped-binomial mean matches an independent formula.",
+    "Input-table SHA-256 matches the read-only extraction report."
+  ],
+  "primary_sources": [
+    "https://classic.battle.net/diablo2exp/items/basics.shtml",
+    "https://classic.battle.net/diablo2exp/items/magic/magicfind.shtml",
+    "https://github.com/ThePhrozenKeep/D2MOO/blob/master/source/D2Game/src/ITEMS/Items.cpp"
+  ],
+  "rl_implications_proposed": [
+    "Use a chance of no equipment on ordinary eligible deaths instead of one uniform equipment reward per kill.",
+    "Separate amount of loot, base-model eligibility and final quality.",
+    "Distinguish ordinary, champion/named and boss reward profiles.",
+    "Keep material/crafting changes outside the current scope.",
+    "Study per-expedition encounter counts before assigning RL drop rates.",
+    "Do not automatically turn excluded unique/set outcomes into extra rare rewards."
+  ],
+  "current_rl_observation": {
+    "source": "src/game/equipment_bonuses.rs and src/loot/equipment.rs",
+    "eligible_hostile_death": "One equipment reward if the active monster catalogue is nonempty.",
+    "model_selection": "Uniform catalogue draw, excluding the previous model, without depth/monster-level filtering.",
+    "enchanted_chance_percent": 60,
+    "note": "Observed existing code; not a proposed rate for the refactor."
+  },
+  "rl_new_rates_approved": false,
+  "runtime_integration": false
+}

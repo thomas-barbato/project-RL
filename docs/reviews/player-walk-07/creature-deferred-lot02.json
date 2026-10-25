@@ -1,0 +1,54 @@
+{
+  "review_id": "WALK07-M12",
+  "identity": "MON-029-0",
+  "status": "deferred_not_presented",
+  "reason": "R01/R02 still show an inconsistent extra rear opening. R03 generation was rejected by the image tool at output moderation; no usable output.",
+  "failed_request_id": "cef165d5-79ec-4d2f-839c-7fb3a873f080",
+  "runtime_integration": false,
+  "visual_accepted": false,
+  "original_job": {
+    "id": "MON-029-0",
+    "review_id": "WALK07-M12",
+    "kind": "creature",
+    "label": "Larve",
+    "record": {
+      "id": "MON-029-0",
+      "label": "029 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons et créations",
+      "rig": "serpent",
+      "image": "catalogue/assets/4406a4118b14cae85c82.png",
+      "foot": [
+        32,
+        60
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "number": 29,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        15,
+        40,
+        50,
+        60
+      ],
+      "rigLabel": "Ondulation",
+      "reviewId": "WALK03-MON-029-0"
+    },
+    "locomotor_legs": 0,
+    "motion": "NO walking legs, wings or arms. Preserve the small pale cream/pink segmented larva with the reddish dark open mouth. Body stays LOW and HORIZONTAL against the floor, with a compact traveling contraction from rear segments toward the head. The rear stays a rounded larval end: never a foot, tail barb or upright coil. Preserve the small length and body volume.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-029-0-identity-detail.png",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-029-0-identity-detail.png"
+    ],
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-029-0-cycle-lot02-r01.png",
+    "prompt_file": "docs\\reviews\\player-walk-07\\prompts\\MON-029-0-lot02-r01.txt",
+    "prompt": "Use case: identity-preserve.\nAsset: complete lateral movement atlas for the EXISTING game creature MON-029-0.\nINPUT1 is the exact canonical APPEARANCE reference. Preserve its anatomy, head, appendages, materials, colors, distinctive shapes and existing equipment. Ignore isolated colored edge specks from the old game export: no new glowing dots.\n\nSPECIFIC ANATOMY AND MOVEMENT: NO walking legs, wings or arms. Preserve the small pale cream/pink segmented larva with the reddish dark open mouth. Body stays LOW and HORIZONTAL against the floor, with a compact traveling contraction from rear segments toward the head. The rear stays a rounded larval end: never a foot, tail barb or upright coil. Preserve the small length and body volume.\nOutput ONE regular FOUR-COLUMN FOUR-ROW atlas, sixteen COMPLETE figures on genuine transparent alpha,1536square. Each384square cell has generous transparent margins; keep heads, feet, wings, tail and pincers fully inside the cell. No neighboring fragment, floor, ground shadow, labels, text, halos, effects, background or grid.\nTOP TWO ROWS, cells0..7, all near-front LEFT three quarters, head and entire body directed screenLEFT. BOTTOM TWO ROWS, cells8..15, all near-front RIGHT three quarters directedRIGHT. Show front and side together; no back view, no pure side profile, no head-only reversal. Do not flip direction during a half.\nExact row-major order LEFT: idleL,L0,L1,L2,L3,L4,L5,duplicate idleL. RIGHT: idleR,R0,R1,R2,R3,R4,R5,duplicate idleR. Six walking poses make one full compact cycle: three phases on a grid cell and three on the next cell,400ms per cell. Idle is a real stable resting pose.\nDraw each WHOLE creature coherently. Constant body volume, apparent scale and anatomy across all16 figures; no shrinking, growing, extra limbs, swapped materials, wide splits or excessive bob. Keep original source proportions. Keep joints, supports and intentional gaps connected correctly. Do not graft limbs from INPUT2 or apply a human gait to a nonhuman body. Matte game-art shapes, readable contours, controlled detail. Genuine transparent cutout."
+  },
+  "current_status": "accepted_and_integrated",
+  "current_selection": "integration/authorization.json"
+}

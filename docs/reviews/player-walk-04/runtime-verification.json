@@ -1,0 +1,66 @@
+{
+  "integration": "WALK02-FIX02",
+  "user_authorized": true,
+  "exact_canvas_reference": "data-scene=\"1\"",
+  "reference_atlas_sha256": "8b251be4a0eaf3fb2b63ba5aac14b766ad81ef5f57fd030c467b67a803ca1670",
+  "reference_attachment_atlas_byte_identical": true,
+  "default_duration_ms": 400,
+  "duration_choices_ms": [
+    120,
+    200,
+    400
+  ],
+  "default_duration_awaiting_player_feedback": true,
+  "movement_poses": 6,
+  "poses_per_cell": 3,
+  "support_alternates": true,
+  "class_outfits": 25,
+  "weapon_models_using_production_layers": 113,
+  "historical_outfits_with_three_palettes": 19,
+  "directional_rigs": 182,
+  "creature_atlases_rebuilt": 577,
+  "installed_atlases": 659,
+  "runtime_review_or_source_art_dependency": false,
+  "native_capture": "artifacts/player-walk-fix-02/runtime/checks.json",
+  "release_build": "passed_with_experiments_disabled",
+  "full_test_suite_run": false,
+  "broader_walk_filter": {
+    "passed": 14,
+    "failed": 1,
+    "ignored": 1,
+    "failure": "ascii_app::world_context::tests::world_context_attack_without_ammo_never_walks",
+    "failure_stage": "context opening; no rendering executed"
+  },
+  "targeted_test_runs": {
+    "walking_bindings_and_assets": {
+      "passed": 2,
+      "failed": 0
+    },
+    "combat_visuals": {
+      "passed": 12,
+      "failed": 0
+    },
+    "all_weapon_models_rigid_and_legs_move": {
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "user_preferences_or_campaign_overwritten": false,
+  "site_required": false,
+  "game_committed_or_pushed": false,
+  "status": "rejected_and_withdrawn",
+  "playable_walking_renderer_enabled": false,
+  "visual_validation": false,
+  "retained_reference": "Original canvas data-scene=1; user calls it 040 and 041",
+  "rejected": [
+    "WALK02-FIX02 spread-leg deformation",
+    "WALK02-DRAW03 lower-body graft"
+  ],
+  "next_visual_requirement": "A coherent complete drawn walk cycle reviewed before activation",
+  "withdrawal_regression_test": "passed",
+  "executable": "target/release/project-rl.exe",
+  "executable_sha256": "125678cc2dd468b8afa8417e7359cda21d86696c8e16a73ba09856c3ab62a872",
+  "diff_check": "passed",
+  "format_check": "passed",
+  "runtime_inventory_authoring_dependencies": 0
+}

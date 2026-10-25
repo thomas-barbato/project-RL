@@ -1,0 +1,119 @@
+{
+  "review_id": "CLASS-ARMOR-INTEGRATION01",
+  "date": "2026-10-22",
+  "status": "integrated_corrective_candidate_technical_checks_passed_awaiting_visual_feedback",
+  "user_authorization": "All 25 current outfits approved and integration explicitly requested, subject to compatibility with all current weapons.",
+  "outfits": 25,
+  "classes": 5,
+  "native_tile": 64,
+  "production_atlases": 20,
+  "unchanged_accepted_native_bases": 24,
+  "unchanged_prior_review_images": 1301,
+  "tests": {
+    "library": {
+      "passed": 990,
+      "failed": 0
+    },
+    "game_art": {
+      "passed": 57,
+      "failed": 0,
+      "ignored": 2
+    },
+    "class_start": {
+      "passed": 4,
+      "failed": 0
+    },
+    "source_compositor_diagnostic": {
+      "passed": 1,
+      "compositions": 3100,
+      "configurations_per_outfit": 124
+    },
+    "all_weapon_attachment_cases": 5650,
+    "weapon_models": 113,
+    "supported_hand_slots": 2,
+    "one_hand_pair_support_cases": 38025,
+    "one_hand_models": 39,
+    "one_hand_pair_scope": "All pairs checked for support; not all 38025 pairs individually composed or reviewed visually.",
+    "female_open_helmet_identity_cases": 20,
+    "gpu_native_compositions": 400,
+    "gpu_pages": 16,
+    "all_targets_check": "passed",
+    "debug_build": "passed",
+    "release_build": "passed",
+    "targeted_rustfmt_check": "passed",
+    "git_diff_check": "passed",
+    "repository_wide_cargo_fmt": "Existing formatting differences in src/lib.rs, src/agent_skill_window.rs, src/cryogenic_camp_render.rs and src/prison_street_render.rs; preserved outside this change.",
+    "portable_package_verify_attempt": "Not a package verification: --verify-assets exits 1 in this checkout because runtime-assets.json is absent. No portable package was built or modified.",
+    "ordinary_class_menu": "passed: agent-class-traqueur, current Traqueuse portrait and all five class thumbnails",
+    "ordinary_native_camp": "passed: agent-world-bastion, current base outfit and actual starting weapon",
+    "non_pistol_compositions_exactly_preserved_after_revision": 2640,
+    "latest_targeted_class_armor": {
+      "passed": 9,
+      "failed": 0,
+      "includes_explicit_compositor_diagnostic": true
+    },
+    "prior_full_library_and_broad_game_art_checks": "The library/game_art counts above are prior integration checks; current revision reruns the 9 class-armor checks, 5650 bindings, full compositor and GPU diagnostics.",
+    "latest_melee_revision": {
+      "class_armor_checks_passed": 10,
+      "bevel_regression_final_rerun_passed": 1,
+      "all_weapon_attachment_cases": 5650,
+      "debug_build": "passed",
+      "release_build": "passed",
+      "targeted_rustfmt": "passed",
+      "git_diff_check": "passed",
+      "python_compile": "passed"
+    }
+  },
+  "visual_checks": {
+    "inspected_native": true,
+    "inspected_enlarged_grips": true,
+    "weapon_draw_order": "body and arms, weapon, isolated fingers",
+    "pistol": "Bastion and Arcaniste use dedicated painted bent-arm patches; whole old cuffs erased, no stretching. Other classes retain their prior pistol rigs.",
+    "one_hand_hammers": [
+      97,
+      98
+    ],
+    "new_two_hand_hammers": "3 drawings visually accepted; no new gameplay content defined",
+    "metamorphe_01": "Only leg ownership revised; head/torso/arms/hand anchors exactly preserved; both foot baselines now y61.",
+    "one_hand_cutting_edges": "Models 68 and 79 reflected about grip in either hand; 27 one-hand melee models inspected in dedicated native exports, 1350 single-hand cases plus dual/mixed configs."
+  },
+  "mechanics_changes": false,
+  "save_format_changes": false,
+  "new_armor_color_variants": false,
+  "runtime_assets": "assets/sprites/class-armors-01",
+  "review_page": "artifacts/class-armor-integration-01/index.html",
+  "scope_limit": "Attachment and compositing checks plus representative native visual inspection. This does not assert human artistic approval of all 3100 compositions.",
+  "browser_review": {
+    "interactive_class_and_weapon_selection": "verified",
+    "five_canvas_dimensions": [
+      128,
+      128
+    ],
+    "native_actor_tile": 64,
+    "all_review_images_at_original_pixel_width": true,
+    "loaded_images": 6,
+    "screenshots": [
+      "browser-native-review.png",
+      "browser-hammers-review.png"
+    ],
+    "latest_native_boards": [
+      {
+        "path": "pose-fixes-03/all-tiers-native.png",
+        "natural_and_display_dimensions": [
+          620,
+          470
+        ]
+      },
+      {
+        "path": "pose-fixes-03/metamorphe-rifle-native.png",
+        "natural_and_display_dimensions": [
+          620,
+          360
+        ]
+      }
+    ]
+  },
+  "latest_revision": "melee-grip-04/checks.json",
+  "latest_user_approval": "User requests checking one-hand knife/melee grips and inward cutting edge; corrective orientation of models 68 and 79 prepared and integrated for review.",
+  "requested_posture_correction": 20
+}

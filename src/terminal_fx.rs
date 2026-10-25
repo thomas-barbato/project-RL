@@ -8,6 +8,7 @@ use macroquad::prelude::*;
 mod elements;
 
 pub(super) fn draw(rect: Rect, effect: TerminalEffectSample, occupied: bool) {
+    let _color = crate::world_readability::color();
     if crate::terminal_fire::enabled() && effect.family == TerminalEffectFamily::Flame {
         crate::terminal_fire::draw(rect, effect);
         return;
@@ -16,6 +17,7 @@ pub(super) fn draw(rect: Rect, effect: TerminalEffectSample, occupied: bool) {
 }
 
 pub(super) fn draw_legacy(rect: Rect, effect: TerminalEffectSample, occupied: bool) {
+    let _color = crate::world_readability::color();
     match effect.family {
         TerminalEffectFamily::Buckshot => buckshot(rect, effect, occupied),
         TerminalEffectFamily::Ballistic

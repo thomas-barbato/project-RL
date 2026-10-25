@@ -197,6 +197,8 @@ pub struct TerminalDrawOptions<'a> {
     pub ui_scale: f32,
     pub cell_size: u16,
     pub reduced_motion: bool,
+    pub actor_ground_markers: bool,
+    pub world_grayscale: bool,
     pub hover_monster_health: bool,
     pub combat_motion: &'a crate::combat_visuals::CombatMotion,
     pub combat_time: f64,
@@ -930,6 +932,8 @@ impl TerminalView {
             ui_scale,
             cell_size,
             reduced_motion,
+            actor_ground_markers,
+            world_grayscale,
             hover_monster_health,
             combat_motion,
             combat_time,
@@ -1122,6 +1126,17 @@ impl TerminalView {
         } else {
             combat_time as f32
         };
+        let world_grading = crate::world_readability::world(world_grayscale);
+        let ground_target = [
+            attack_preview.map(|p| p.cursor),
+            selected_cell,
+            camera.hit(mouse_position()),
+        ]
+        .into_iter()
+        .flatten()
+        .find(|p| {
+            crate::target_outline::tone_at(game, *p) == Some(crate::target_outline::Tone::Hostile)
+        });
         if cryogenic_camp {
             crate::cryogenic_camp_render::begin(&camera);
         } else if prison_street {
@@ -1222,6 +1237,7 @@ impl TerminalView {
                 && let Some(preview) = attack_preview
                 && let Some(cell) = preview.cells.iter().find(|cell| cell.position == position)
             {
+                let _color = crate::world_readability::color();
                 if crate::attack_preview_visuals::active() {
                     let edge = [
                         GridPos::new(position.x, position.y - 1),
@@ -1257,6 +1273,15 @@ impl TerminalView {
                         });
                     let actor_rect =
                         Rect::new(rect.x + offset.x, rect.y + offset.y, rect.w, rect.h);
+                    if actor_ground_markers
+                        && (game.player_position() == Some(position)
+                            || ground_target == Some(position))
+                    {
+                        crate::world_readability::ground_marker(
+                            actor_rect,
+                            game.player_position() == Some(position),
+                        );
+                    }
                     let burning = burning_actor(game, position);
                     let frozen = game.actors().entity_at(position).filter(|id| {
                         game.actors().get(*id).is_some_and(|a| {
@@ -1274,37 +1299,46 @@ impl TerminalView {
                     if let Some(id) = burning {
                         combat_motion.draw_burn(id, actor_rect, combat_time, reduced_motion, true);
                     }
-                    draw_entity_with_appearance(
-                        actor_rect,
-                        cell.symbol,
-                        TerminalGlyphPalette::new(
-                            cell.color,
-                            cell.accent_color,
-                            cell.highlight_color,
-                        ),
-                        cell.selected,
-                        cell.alert.is_some() && !enemy_status_only(game, position, cell.symbol),
-                        cell.status_icon.filter(|icon| !icon.is_quest()),
-                        cell.visual,
-                        if cell.symbol == '@' {
-                            Some(player_appearance.into())
+                    let walk = game.actors().entity_at(position).and_then(|entity| {
+                        if entity == game.player_id() {
+                            combat_motion.player_walk_pose(entity, combat_time, reduced_motion)
                         } else {
-                            cell.npc_appearance
-                        },
-                        (!reduced_motion && offset == Vec2::ZERO).then_some(combat_time),
-                    );
-                    if outline_target == Some(position)
-                        && let Some(tone) = crate::target_outline::tone_at(game, position)
-                        && let Some(visual) = cell.visual
-                    {
-                        crate::target_outline::draw(
+                            combat_motion.creature_walk_pose(entity, combat_time, reduced_motion)
+                        }
+                    });
+                    crate::game_art::walking::with_pose(walk, || {
+                        draw_entity_with_appearance(
                             actor_rect,
-                            visual,
+                            cell.symbol,
+                            TerminalGlyphPalette::new(
+                                cell.color,
+                                cell.accent_color,
+                                cell.highlight_color,
+                            ),
+                            cell.selected,
+                            cell.alert.is_some() && !enemy_status_only(game, position, cell.symbol),
+                            cell.status_icon.filter(|icon| !icon.is_quest()),
+                            cell.visual,
+                            if cell.symbol == '@' {
+                                Some(player_appearance.into())
+                            } else {
+                                cell.npc_appearance
+                            },
                             (!reduced_motion && offset == Vec2::ZERO).then_some(combat_time),
-                            tone,
-                            (!cryogenic_camp).then_some(camera.viewport),
                         );
-                    }
+                        if outline_target == Some(position)
+                            && let Some(tone) = crate::target_outline::tone_at(game, position)
+                            && let Some(visual) = cell.visual
+                        {
+                            crate::target_outline::draw(
+                                actor_rect,
+                                visual,
+                                (!reduced_motion && offset == Vec2::ZERO).then_some(combat_time),
+                                tone,
+                                (!cryogenic_camp).then_some(camera.viewport),
+                            );
+                        }
+                    });
                     if let Some(id) = burning {
                         combat_motion.draw_burn(id, actor_rect, combat_time, reduced_motion, false);
                     }
@@ -1396,6 +1430,7 @@ impl TerminalView {
             painted_scene_vision(game, &camera, |at| known_at(at).is_some());
             terminal_perception::draw_fields(game, &camera, observation_fields, sound_fields);
         }
+        drop(world_grading);
         // A second pass keeps overhead markers above neighbouring terrain and
         // supports installations even when no actor/item overlay occupies them.
         // A gentle 0–3 px float every 2.4 seconds uses presentation time only.

@@ -6,9 +6,12 @@ mod animation_readability_review;
 #[cfg(debug_assertions)]
 mod art_quality_capture;
 mod ascii_app;
+mod asset_smoke;
 mod attack_preview_visuals;
 mod camp_atmosphere;
 mod camp_npc_review;
+#[cfg(debug_assertions)]
+mod class_armor_capture;
 mod combat_visuals;
 mod controls;
 mod cryogenic_camp;
@@ -47,27 +50,55 @@ mod ui_capture;
 mod ui_skin;
 mod ui_theme;
 mod visual_effects;
+#[cfg(debug_assertions)]
+mod walk_review;
 mod watcher_signals;
+mod world_readability;
 
 use ascii_app::{AsciiApp, TerminalDialogue};
 use macroquad::prelude::*;
 
 fn window_conf() -> Conf {
     let settings = graphics::startup().0;
+    let reviewing =
+        cfg!(debug_assertions) && std::env::args().nth(1).as_deref() == Some("--apercu-animations");
     Conf {
-        window_title: "Project RL — Terminal".to_owned(),
+        window_title: if reviewing {
+            "Project RL — Revue des animations"
+        } else {
+            "Project RL — Terminal"
+        }
+        .to_owned(),
         window_width: settings.windowed_size[0] as i32,
         window_height: settings.windowed_size[1] as i32,
         // Miniquad's desktop fullscreen is borderless, not an exclusive mode.
-        fullscreen: settings.mode == graphics::WindowMode::Borderless,
+        fullscreen: !reviewing && settings.mode == graphics::WindowMode::Borderless,
         window_resizable: true,
         high_dpi: true,
         ..Default::default()
     }
 }
 
-#[macroquad::main(window_conf)]
-async fn main() {
+fn main() {
+    if std::env::args().nth(1).as_deref() == Some("--verify-assets") {
+        match project_rl::data_paths::verify() {
+            Ok(count) => println!(
+                "Verified {count} packaged files and game content: {}",
+                project_rl::data_paths::root().display()
+            ),
+            Err(error) => {
+                eprintln!("[ASSETS] {error}");
+                std::process::exit(1);
+            }
+        }
+        return;
+    }
+    macroquad::Window::from_config(window_conf(), game_main());
+}
+
+async fn game_main() {
+    show_mouse(true);
+    miniquad::window::set_mouse_cursor(miniquad::CursorIcon::Default);
     prevent_quit();
     if let Err(error) = ui_theme::initialize_fonts() {
         eprintln!("[UI] Police embarquée indisponible, police de secours utilisée : {error}");
@@ -76,9 +107,44 @@ async fn main() {
     terminal_view::initialize_player_art();
     game_art::prewarm();
     #[cfg(debug_assertions)]
+    if matches!(
+        std::env::args().nth(1).as_deref(),
+        Some("--apercu-animations" | "--ui-cold-walk-catalogue")
+    ) {
+        let output = std::env::args_os().nth(2).map(std::path::PathBuf::from);
+        if let Err(error) = walk_review::run(output.as_deref()).await {
+            eprintln!("[WALK08 REVIEW] {error}");
+        }
+        return;
+    }
+    if std::env::args().nth(1).as_deref() == Some("--smoke-assets") {
+        let output = std::env::args_os()
+            .nth(2)
+            .map(std::path::PathBuf::from)
+            .expect("--smoke-assets OUTPUT");
+        if let Err(error) = asset_smoke::run(&output).await {
+            eprintln!("[ASSETS] {error}");
+            std::process::exit(1);
+        }
+        return;
+    }
+    #[cfg(debug_assertions)]
     if let Some(output) = graphics::ui_smoke_output() {
         let mode = std::env::args().nth(1).unwrap_or_default();
-        let result = if mode == "--ui-cold-animation-readability" {
+        let result = if mode == "--ui-cold-proportions-npcs" {
+            AsciiApp::capture_npc_proportions(&output).await
+        } else if matches!(
+            mode.as_str(),
+            "--ui-cold-walk-integration" | "--ui-cold-walk08-integration"
+        ) {
+            let _review = (mode == "--ui-cold-walk08-integration")
+                .then(game_art::walking::review_corrections);
+            AsciiApp::capture_walk_integration(&output).await
+        } else if mode == "--ui-cold-actor-readability" {
+            AsciiApp::capture_actor_readability(&output).await
+        } else if mode == "--ui-cold-class-armor-integration" {
+            class_armor_capture::capture(&output).await
+        } else if mode == "--ui-cold-animation-readability" {
             animation_readability_review::capture(&output).await
         } else if mode == "--ui-cold-animation-shape" {
             animation_readability_review::shape::capture(&output).await

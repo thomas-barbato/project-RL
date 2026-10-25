@@ -1,0 +1,46 @@
+{
+  "revision": "r07-exact-bastion-whole-pose-transfer",
+  "status": "awaiting_visual_review",
+  "reported_families": [
+    "Traqueuse",
+    "Metamorphe"
+  ],
+  "withdrawn_class_indices": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "repair_pilot_indices": [
+    10,
+    24
+  ],
+  "limit_reported_families_to_pilots": true,
+  "previous_revision_status": "r06_rejected_by_user",
+  "player_rejection_quotes": [
+    "ben pas trop non ...",
+    "pareil pour la metamorphe s'il te plais"
+  ],
+  "reference_mode": "exact_original_bastion_canvas02",
+  "runtime_integration": false,
+  "player_feedback": "la tête de la traqueuse n'est plus dans le bon sens, ses jambes ne bougent presque plus ; la démarche de la metamorphe ne fonctionne pas. S'inspirer du Bastion.",
+  "material_revision": "r07e",
+  "candidate_revisions": {
+    "10": "r07e",
+    "24": "r07"
+  },
+  "prosthesis_feedback": "non le probleme est toujours là .. (alternance de jambe armurée)",
+  "rejected_traqueuse_left_source": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07-left.png",
+  "gait_feedback": "seems_ok; retain existing pose targets; no integration approval",
+  "anatomical_ownership_revision": "r07c rejected: time halves do not identify limbs; preserve the same visible hip-knee-calf chain throughout each direction",
+  "rejected_material_revisions": [
+    "r07c",
+    "r07d-full-row"
+  ]
+}

@@ -7,10 +7,12 @@
 pub mod action_profile;
 pub mod agent_class;
 pub mod ai;
+pub mod asset_cache;
 pub mod character_class;
 pub mod combat;
 pub mod companion;
 pub mod content;
+pub mod data_paths;
 pub mod drone;
 pub mod effects;
 pub mod electronic_warfare;

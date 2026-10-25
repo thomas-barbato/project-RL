@@ -1,0 +1,68 @@
+{
+  "review_id": "ITEM-LOOT01-SCOPE01",
+  "crafting_scope_superseded_by": "scope-decision-02.json",
+  "date": "2026-10-23",
+  "user_reply": "pje pense que pour l'instant on va mettre uniquement les standard / modifiés / rare / artisanal mais alors il faudrait ajouter des elements de craft à la table de butin",
+  "accepted_scope": {
+    "equipment_qualities": [
+      "standard",
+      "modifié",
+      "rare",
+      "artisanal"
+    ],
+    "crafting_materials_in_loot": true,
+    "other_equipment_qualities": "hors du périmètre initial"
+  },
+  "proposed_materials": [
+    {
+      "item": "core:repair_parts",
+      "existing_name": "Lot de pièces de réparation",
+      "proposed_role": "Base commune des recettes de fabrication",
+      "proposed_sources": [
+        "adversaires",
+        "caches",
+        "zones industrielles"
+      ]
+    },
+    {
+      "item": "core:tuning_parts",
+      "existing_name": "Lot de réglage",
+      "proposed_role": "Recettes spécialisées et propriétés liées à la recette",
+      "proposed_sources": [
+        "robots",
+        "coffres techniques",
+        "ateliers"
+      ]
+    },
+    {
+      "item": "core:unstable_fragment",
+      "existing_name": "Fragment instable",
+      "proposed_role": "Recettes avancées, avec conservation du service d'amélioration existant",
+      "proposed_sources": [
+        "élites",
+        "caches particulières"
+      ]
+    }
+  ],
+  "proposal_to_review": {
+    "material_roll": "Un tirage de composants distinct du tirage d'équipement peut donner des matériaux, un équipement, les deux ou aucun des deux selon les règles futures.",
+    "crafted_item": "Une base standard et les composants requis par une recette donnent un objet artisanal, avec des propriétés garanties liées à la recette et une part aléatoire.",
+    "material_progression": "Les recettes de départ utiliseraient les composants courants ; les fragments seraient réservés à certaines recettes avancées."
+  },
+  "pending_approval": [
+    "Rôle exact et provenance des trois ressources proposées",
+    "Probabilités, quantités et nombre de tirages",
+    "Recettes, coûts et propriétés garanties ou aléatoires",
+    "Règles détaillées des qualités et couleurs des noms",
+    "Interface et éventuels nouveaux visuels"
+  ],
+  "current_content_references": [
+    "content/core/items/repair_parts.json5",
+    "content/core/items/tuning_parts.json5",
+    "content/core/items/unstable_fragment.json5",
+    "content/core/loot/regional_cache.json5",
+    "content/core/loot/surface_salvage.json5",
+    "src/game/equipment_upgrade.rs"
+  ],
+  "runtime_integration": false
+}

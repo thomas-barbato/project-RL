@@ -1,0 +1,1411 @@
+{
+  "review_id": "CLASS-ARMOR-INTEGRATION01",
+  "native_tile": [
+    64,
+    64
+  ],
+  "layer_canvas": [
+    128,
+    128
+  ],
+  "native_origin": [
+    32,
+    32
+  ],
+  "outfit_count": 25,
+  "source_acceptances": [
+    {
+      "path": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+      "sha256": "6d55febb0bd152cca21df65f000b37da01a19d49179fedf9d74309e93bb40028"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+      "sha256": "d51882a635cbd8e024e366f4442cf238e1345668b2d0c03d152d7d6f0f4a0e02"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+      "sha256": "f8ecf404d5c60e6d9c5686def4b8221bc822e44b0a69201163e972b53b15f566"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/arcaniste-red-robe-wave-05/acceptance.json",
+      "sha256": "39b0287e29dd2cfe6adbbe8e9026fdc1975ce3fea18a01cc9981fc7caf676461"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/metamorphe-biodruid-wave-03/acceptance.json",
+      "sha256": "16257f7fec4dbfa81227b7caf287ffb5ec75eabd586af4bd30fc0a92e859ce55"
+    }
+  ],
+  "outfits": [
+    {
+      "index": 0,
+      "class_id": "core:bastion",
+      "candidate_id": "BA-CU01-P01-r01",
+      "rank": 1,
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P01-r01-native64.png",
+        "sha256": "a1fd3482085814c0464fc9e0d3a6986c129c3565522ade4dd5439befbd8ae270"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P01-r01-native64.png",
+        "sha256": "a1fd3482085814c0464fc9e0d3a6986c129c3565522ade4dd5439befbd8ae270"
+      },
+      "pose_revision": "POSE03-00",
+      "raised_palms": [
+        [
+          45.83974596215562,
+          47.866025403784434
+        ],
+        [
+          82.66025403784438,
+          47.0
+        ]
+      ],
+      "palms": [
+        [
+          50,
+          67
+        ],
+        [
+          77,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          51,
+          59
+        ],
+        [
+          76,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        41.0
+      ],
+      "head_top": 4,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 1,
+      "class_id": "core:bastion",
+      "candidate_id": "BA-STYLE01-r02",
+      "rank": 2,
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-STYLE01-r02-native64.png",
+        "sha256": "03ec80102a43a84d35a14cb7d488d33bd7b166b01ea800626b435d879b921867"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-STYLE01-r02-native64.png",
+        "sha256": "03ec80102a43a84d35a14cb7d488d33bd7b166b01ea800626b435d879b921867"
+      },
+      "pose_revision": "POSE03-01",
+      "raised_palms": [
+        [
+          45.70577136594005,
+          48.366025403784434
+        ],
+        [
+          82.29422863405995,
+          48.366025403784434
+        ]
+      ],
+      "palms": [
+        [
+          50,
+          67
+        ],
+        [
+          77,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          51,
+          59
+        ],
+        [
+          76,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        41.0
+      ],
+      "head_top": 4,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 2,
+      "class_id": "core:bastion",
+      "candidate_id": "BA-STYLE02-r02",
+      "rank": 3,
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-STYLE02-r02-native64.png",
+        "sha256": "1ad57327fec45142b5babb56286a0631cffbc7b966967e36add2d8aa598d8770"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-STYLE02-r02-native64.png",
+        "sha256": "1ad57327fec45142b5babb56286a0631cffbc7b966967e36add2d8aa598d8770"
+      },
+      "pose_revision": "POSE03-02",
+      "raised_palms": [
+        [
+          45.07179676972449,
+          49.73205080756888
+        ],
+        [
+          82.9282032302755,
+          49.73205080756888
+        ]
+      ],
+      "palms": [
+        [
+          51,
+          67
+        ],
+        [
+          77,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          52,
+          59
+        ],
+        [
+          76,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        41.0
+      ],
+      "head_top": 4,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 3,
+      "class_id": "core:bastion",
+      "candidate_id": "BA-CU01-P04-r01",
+      "rank": 4,
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P04-r01-native64.png",
+        "sha256": "59106470d2302590dce474d18026bcae7052ecc4386ce1f2437e209301ea1482"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P04-r01-native64.png",
+        "sha256": "59106470d2302590dce474d18026bcae7052ecc4386ce1f2437e209301ea1482"
+      },
+      "pose_revision": "POSE03-03",
+      "raised_palms": [
+        [
+          45.20577136594005,
+          49.23205080756888
+        ],
+        [
+          82.79422863405995,
+          49.23205080756888
+        ]
+      ],
+      "palms": [
+        [
+          50,
+          67
+        ],
+        [
+          78,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          51,
+          59
+        ],
+        [
+          77,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        41.0
+      ],
+      "head_top": 4,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 4,
+      "class_id": "core:bastion",
+      "candidate_id": "BA-CU01-P05-r01",
+      "rank": 5,
+      "native": {
+        "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P05-r01-native64.png",
+        "sha256": "c5b24e92d5a3458fe7db8aca96b4cafb51b1bdbc8868f109b0da5d504b762fcc"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P05-r01-native64.png",
+        "sha256": "c5b24e92d5a3458fe7db8aca96b4cafb51b1bdbc8868f109b0da5d504b762fcc"
+      },
+      "pose_revision": "POSE03-04",
+      "raised_palms": [
+        [
+          44.45632646816664,
+          46.02140473100496
+        ],
+        [
+          83.54367353183335,
+          46.02140473100496
+        ]
+      ],
+      "palms": [
+        [
+          48,
+          67
+        ],
+        [
+          80,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          49,
+          59
+        ],
+        [
+          79,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        41.0
+      ],
+      "head_top": 4,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 5,
+      "class_id": "core:technomancien",
+      "candidate_id": "TE-NR01-P01-r02",
+      "rank": 1,
+      "native": {
+        "path": "assets/source-art/class-readability-01/technomancien-no-robe-heads-02/accepted/native64/TE-NR01-P01-r02-native64.png",
+        "sha256": "bdee9f5c9530d2d406def2af344b62fffcd937b66c32848b0d52eb35622a54b2"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/technomancien-no-robe-heads-02/accepted/native64/TE-NR01-P01-r02-native64.png",
+        "sha256": "bdee9f5c9530d2d406def2af344b62fffcd937b66c32848b0d52eb35622a54b2"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          49
+        ],
+        [
+          82,
+          49
+        ]
+      ],
+      "palms": [
+        [
+          51,
+          67
+        ],
+        [
+          76,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          52,
+          59
+        ],
+        [
+          75,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        41.0
+      ],
+      "head_top": 4,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 6,
+      "class_id": "core:technomancien",
+      "candidate_id": "TE-NR01-P02-r02",
+      "rank": 2,
+      "native": {
+        "path": "assets/source-art/class-readability-01/technomancien-no-robe-heads-02/accepted/native64/TE-NR01-P02-r02-native64.png",
+        "sha256": "07658a7544da1216a8d5be08511f3f175d522d7fcaa162d5ffaeb6c7a3afa9e5"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/technomancien-no-robe-heads-02/accepted/native64/TE-NR01-P02-r02-native64.png",
+        "sha256": "07658a7544da1216a8d5be08511f3f175d522d7fcaa162d5ffaeb6c7a3afa9e5"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          49
+        ],
+        [
+          82,
+          49
+        ]
+      ],
+      "palms": [
+        [
+          51,
+          67
+        ],
+        [
+          76,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          52,
+          59
+        ],
+        [
+          75,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        41.0
+      ],
+      "head_top": 4,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 7,
+      "class_id": "core:technomancien",
+      "candidate_id": "TE-NR01-P03-r02",
+      "rank": 3,
+      "native": {
+        "path": "assets/source-art/class-readability-01/technomancien-no-robe-heads-02/accepted/native64/TE-NR01-P03-r02-native64.png",
+        "sha256": "a85c7c12b608d11536b883905e6a70f073de0fe988e7ac3606ec1114cc21398a"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/technomancien-no-robe-heads-02/accepted/native64/TE-NR01-P03-r02-native64.png",
+        "sha256": "a85c7c12b608d11536b883905e6a70f073de0fe988e7ac3606ec1114cc21398a"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          49
+        ],
+        [
+          82,
+          49
+        ]
+      ],
+      "palms": [
+        [
+          51,
+          67
+        ],
+        [
+          76,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          52,
+          59
+        ],
+        [
+          75,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        41.0
+      ],
+      "head_top": 4,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 8,
+      "class_id": "core:technomancien",
+      "candidate_id": "TE-NR01-P04-r02",
+      "rank": 4,
+      "native": {
+        "path": "assets/source-art/class-readability-01/technomancien-no-robe-heads-02/accepted/native64/TE-NR01-P04-r02-native64.png",
+        "sha256": "7ed613c7072881f2a1b44ebf4b66e8120499f3f5b5a94026d422dfd8e2e9beb1"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/technomancien-no-robe-heads-02/accepted/native64/TE-NR01-P04-r02-native64.png",
+        "sha256": "7ed613c7072881f2a1b44ebf4b66e8120499f3f5b5a94026d422dfd8e2e9beb1"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          49
+        ],
+        [
+          82,
+          49
+        ]
+      ],
+      "palms": [
+        [
+          51,
+          67
+        ],
+        [
+          76,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          52,
+          59
+        ],
+        [
+          75,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        41.0
+      ],
+      "head_top": 4,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 9,
+      "class_id": "core:technomancien",
+      "candidate_id": "TE-NR01-P05-r02",
+      "rank": 5,
+      "native": {
+        "path": "assets/source-art/class-readability-01/technomancien-no-robe-heads-02/accepted/native64/TE-NR01-P05-r02-native64.png",
+        "sha256": "fc2b9e9b691d0db7d4d23aa8a053b0eb39925eb04bf7c9d2658d7ca03ef7e7c9"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/technomancien-no-robe-heads-02/accepted/native64/TE-NR01-P05-r02-native64.png",
+        "sha256": "fc2b9e9b691d0db7d4d23aa8a053b0eb39925eb04bf7c9d2658d7ca03ef7e7c9"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          49
+        ],
+        [
+          82,
+          49
+        ]
+      ],
+      "palms": [
+        [
+          51,
+          67
+        ],
+        [
+          77,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          52,
+          59
+        ],
+        [
+          76,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        41.0
+      ],
+      "head_top": 4,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 10,
+      "class_id": "core:traqueur",
+      "candidate_id": "TR-SN01-P01-r01",
+      "rank": 1,
+      "native": {
+        "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/native64/TR-SN01-P01-r01-native64.png",
+        "sha256": "57d2ae404673afdb824c72a33f8b841457b18237b11b8fb4076bd206b921f090"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/native64/TR-SN01-P01-r01-native64.png",
+        "sha256": "57d2ae404673afdb824c72a33f8b841457b18237b11b8fb4076bd206b921f090"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          51
+        ],
+        [
+          82,
+          51
+        ]
+      ],
+      "palms": [
+        [
+          53,
+          68
+        ],
+        [
+          75,
+          68
+        ]
+      ],
+      "pivots": [
+        [
+          54,
+          60
+        ],
+        [
+          74,
+          60
+        ]
+      ],
+      "head_center": [
+        64,
+        43.0
+      ],
+      "head_top": 6,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 11,
+      "class_id": "core:traqueur",
+      "candidate_id": "TR-SN01-P02-r01",
+      "rank": 2,
+      "native": {
+        "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/native64/TR-SN01-P02-r01-native64.png",
+        "sha256": "5788ac22d84837da74517e9c4a012f31c8b7e941c4b98d56b32f0508d04b758f"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/native64/TR-SN01-P02-r01-native64.png",
+        "sha256": "5788ac22d84837da74517e9c4a012f31c8b7e941c4b98d56b32f0508d04b758f"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          51
+        ],
+        [
+          82,
+          51
+        ]
+      ],
+      "palms": [
+        [
+          52,
+          68
+        ],
+        [
+          75,
+          68
+        ]
+      ],
+      "pivots": [
+        [
+          53,
+          60
+        ],
+        [
+          74,
+          60
+        ]
+      ],
+      "head_center": [
+        64,
+        43.0
+      ],
+      "head_top": 6,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 12,
+      "class_id": "core:traqueur",
+      "candidate_id": "TR-SN01-P03-r01",
+      "rank": 3,
+      "native": {
+        "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/native64/TR-SN01-P03-r01-native64.png",
+        "sha256": "1a3c651f3a1ed544df5182a2c27cc5d1a8b74d82512b325b196a324ce6ae6e08"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/native64/TR-SN01-P03-r01-native64.png",
+        "sha256": "1a3c651f3a1ed544df5182a2c27cc5d1a8b74d82512b325b196a324ce6ae6e08"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          51
+        ],
+        [
+          82,
+          51
+        ]
+      ],
+      "palms": [
+        [
+          53,
+          68
+        ],
+        [
+          75,
+          68
+        ]
+      ],
+      "pivots": [
+        [
+          54,
+          60
+        ],
+        [
+          74,
+          60
+        ]
+      ],
+      "head_center": [
+        64,
+        43.0
+      ],
+      "head_top": 6,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 13,
+      "class_id": "core:traqueur",
+      "candidate_id": "TR-SN01-P04-r01",
+      "rank": 4,
+      "native": {
+        "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/native64/TR-SN01-P04-r01-native64.png",
+        "sha256": "b4ed95d0e41319cc52e7187eb068a2f23d81605c7c3eac372134b164bda52c82"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/native64/TR-SN01-P04-r01-native64.png",
+        "sha256": "b4ed95d0e41319cc52e7187eb068a2f23d81605c7c3eac372134b164bda52c82"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          51
+        ],
+        [
+          82,
+          51
+        ]
+      ],
+      "palms": [
+        [
+          52,
+          68
+        ],
+        [
+          75,
+          68
+        ]
+      ],
+      "pivots": [
+        [
+          53,
+          60
+        ],
+        [
+          74,
+          60
+        ]
+      ],
+      "head_center": [
+        64,
+        43.0
+      ],
+      "head_top": 6,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 14,
+      "class_id": "core:traqueur",
+      "candidate_id": "TR-SN01-P05-r02",
+      "rank": 5,
+      "native": {
+        "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/native64/TR-SN01-P05-r02-native64.png",
+        "sha256": "bda3bc65660c98f6b4156f3e1ae3b7f5973ccb31b73d1f3f366010cb03d9d619"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/native64/TR-SN01-P05-r02-native64.png",
+        "sha256": "bda3bc65660c98f6b4156f3e1ae3b7f5973ccb31b73d1f3f366010cb03d9d619"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          51
+        ],
+        [
+          82,
+          51
+        ]
+      ],
+      "palms": [
+        [
+          52,
+          68
+        ],
+        [
+          75,
+          68
+        ]
+      ],
+      "pivots": [
+        [
+          53,
+          60
+        ],
+        [
+          74,
+          60
+        ]
+      ],
+      "head_center": [
+        64,
+        43.0
+      ],
+      "head_top": 6,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 15,
+      "class_id": "core:arcaniste",
+      "candidate_id": "AR-RR05-P01-r01",
+      "rank": 1,
+      "native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P01-r01-native64.png",
+        "sha256": "5b7d2ffbd336be0624cb67ca5e9b51c72ec6d7ef32fd63646cb3a8d690cf606a"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P01-r01-native64.png",
+        "sha256": "5b7d2ffbd336be0624cb67ca5e9b51c72ec6d7ef32fd63646cb3a8d690cf606a"
+      },
+      "pose_revision": "POSE03-15",
+      "raised_palms": [
+        [
+          45.47372055837118,
+          46.5
+        ],
+        [
+          82.52627944162882,
+          46.5
+        ]
+      ],
+      "palms": [
+        [
+          50,
+          59
+        ],
+        [
+          78,
+          60
+        ]
+      ],
+      "pivots": [
+        [
+          56,
+          52
+        ],
+        [
+          72,
+          52
+        ]
+      ],
+      "head_center": [
+        64,
+        39.0
+      ],
+      "head_top": 2,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 16,
+      "class_id": "core:arcaniste",
+      "candidate_id": "AR-RR05-P02-r01",
+      "rank": 2,
+      "native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P02-r01-native64.png",
+        "sha256": "c6e16f7d6cc1a42f7f357c0db2ee6990d1705961dc87aec0a6bb23078c61b317"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P02-r01-native64.png",
+        "sha256": "c6e16f7d6cc1a42f7f357c0db2ee6990d1705961dc87aec0a6bb23078c61b317"
+      },
+      "pose_revision": "POSE03-16",
+      "raised_palms": [
+        [
+          45.83974596215562,
+          47.866025403784434
+        ],
+        [
+          82.16025403784438,
+          47.866025403784434
+        ]
+      ],
+      "palms": [
+        [
+          49,
+          60
+        ],
+        [
+          79,
+          60
+        ]
+      ],
+      "pivots": [
+        [
+          56,
+          52
+        ],
+        [
+          72,
+          52
+        ]
+      ],
+      "head_center": [
+        64,
+        39.0
+      ],
+      "head_top": 2,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 17,
+      "class_id": "core:arcaniste",
+      "candidate_id": "AR-RR05-P03-r01",
+      "rank": 3,
+      "native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P03-r01-native64.png",
+        "sha256": "442f13a1e7999d17ffe7fca322a6e63eebb779e80692cc27dd516162aa5123f4"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P03-r01-native64.png",
+        "sha256": "442f13a1e7999d17ffe7fca322a6e63eebb779e80692cc27dd516162aa5123f4"
+      },
+      "pose_revision": "POSE03-17",
+      "raised_palms": [
+        [
+          45.83974596215562,
+          47.866025403784434
+        ],
+        [
+          82.16025403784438,
+          47.866025403784434
+        ]
+      ],
+      "palms": [
+        [
+          49,
+          60
+        ],
+        [
+          79,
+          60
+        ]
+      ],
+      "pivots": [
+        [
+          56,
+          52
+        ],
+        [
+          72,
+          52
+        ]
+      ],
+      "head_center": [
+        64,
+        39.0
+      ],
+      "head_top": 2,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 18,
+      "class_id": "core:arcaniste",
+      "candidate_id": "AR-RR05-P04-r01",
+      "rank": 4,
+      "native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P04-r01-native64.png",
+        "sha256": "9aa7ae1df0b6a3e526f2b89a6b94dfa78c24c24d138c40fc099b20d695a677d4"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P04-r01-native64.png",
+        "sha256": "9aa7ae1df0b6a3e526f2b89a6b94dfa78c24c24d138c40fc099b20d695a677d4"
+      },
+      "pose_revision": "POSE03-18",
+      "raised_palms": [
+        [
+          45.47372055837118,
+          48.23205080756888
+        ],
+        [
+          82.52627944162882,
+          48.23205080756888
+        ]
+      ],
+      "palms": [
+        [
+          49,
+          61
+        ],
+        [
+          79,
+          61
+        ]
+      ],
+      "pivots": [
+        [
+          56,
+          52
+        ],
+        [
+          72,
+          52
+        ]
+      ],
+      "head_center": [
+        64,
+        39.0
+      ],
+      "head_top": 2,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 19,
+      "class_id": "core:arcaniste",
+      "candidate_id": "AR-RR05-P05-r01",
+      "rank": 5,
+      "native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P05-r01-native64.png",
+        "sha256": "3b1acfa20c67c81c58c74f5fcecbd54262cdaa3a35eeb8694bec38a964c23be8"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P05-r01-native64.png",
+        "sha256": "3b1acfa20c67c81c58c74f5fcecbd54262cdaa3a35eeb8694bec38a964c23be8"
+      },
+      "pose_revision": "POSE03-19",
+      "raised_palms": [
+        [
+          45.107695154586736,
+          46.866025403784434
+        ],
+        [
+          82.89230484541326,
+          46.866025403784434
+        ]
+      ],
+      "palms": [
+        [
+          49,
+          61
+        ],
+        [
+          79,
+          61
+        ]
+      ],
+      "pivots": [
+        [
+          56,
+          52
+        ],
+        [
+          72,
+          52
+        ]
+      ],
+      "head_center": [
+        64,
+        39.0
+      ],
+      "head_top": 2,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 20,
+      "class_id": "core:metamorphe",
+      "candidate_id": "ME-BD03-P01-r01",
+      "rank": 1,
+      "native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P01-r01-native64.png",
+        "sha256": "92f9ff694df596eb806f0637ee1c53b857cd8bd08e2181dab41f01d5aca411e1"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-armor-pose-fixes-03/ME-POST03-native64.png",
+        "sha256": "085f5028f2e16f7bedd41ef0913b135398a825de277249a55959ca053ef0be3f"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          51
+        ],
+        [
+          82,
+          51
+        ]
+      ],
+      "palms": [
+        [
+          52,
+          66
+        ],
+        [
+          74,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          53,
+          58
+        ],
+        [
+          73,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        43.0
+      ],
+      "head_top": 6,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 21,
+      "class_id": "core:metamorphe",
+      "candidate_id": "ME-BD03-P02-r01",
+      "rank": 2,
+      "native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P02-r01-native64.png",
+        "sha256": "b48a0e65861fd84c1c6c0e0c72b9f4c1fb28893718bb7705243a105b0da2aa33"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P02-r01-native64.png",
+        "sha256": "b48a0e65861fd84c1c6c0e0c72b9f4c1fb28893718bb7705243a105b0da2aa33"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          51
+        ],
+        [
+          82,
+          51
+        ]
+      ],
+      "palms": [
+        [
+          52,
+          67
+        ],
+        [
+          74,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          53,
+          59
+        ],
+        [
+          73,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        43.0
+      ],
+      "head_top": 6,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 22,
+      "class_id": "core:metamorphe",
+      "candidate_id": "ME-BD02-P03-r01",
+      "rank": 3,
+      "native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD02-P03-r01-native64.png",
+        "sha256": "08bb1b67383dc33ac3c4ae6d0325a3a1d5e1bfd8e46b649a380f84b6ddc850c2"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD02-P03-r01-native64.png",
+        "sha256": "08bb1b67383dc33ac3c4ae6d0325a3a1d5e1bfd8e46b649a380f84b6ddc850c2"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          51
+        ],
+        [
+          82,
+          51
+        ]
+      ],
+      "palms": [
+        [
+          52,
+          67
+        ],
+        [
+          75,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          53,
+          59
+        ],
+        [
+          74,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        43.0
+      ],
+      "head_top": 6,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 23,
+      "class_id": "core:metamorphe",
+      "candidate_id": "ME-BD03-P04-r01",
+      "rank": 4,
+      "native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P04-r01-native64.png",
+        "sha256": "0bde901a4e677ba3a98599a7e19a3379209bd6daae10622fc718a412691c12ee"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P04-r01-native64.png",
+        "sha256": "0bde901a4e677ba3a98599a7e19a3379209bd6daae10622fc718a412691c12ee"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          51
+        ],
+        [
+          82,
+          51
+        ]
+      ],
+      "palms": [
+        [
+          52,
+          67
+        ],
+        [
+          74,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          53,
+          59
+        ],
+        [
+          73,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        43.0
+      ],
+      "head_top": 6,
+      "limb_masks_are_source_pixels": true
+    },
+    {
+      "index": 24,
+      "class_id": "core:metamorphe",
+      "candidate_id": "ME-BD03-P05-r01",
+      "rank": 5,
+      "native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P05-r01-native64.png",
+        "sha256": "27ad7264d30731b996ec7d0cc99dccb06b914aa2abd71704f38fbd72eca2051a"
+      },
+      "runtime_native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P05-r01-native64.png",
+        "sha256": "27ad7264d30731b996ec7d0cc99dccb06b914aa2abd71704f38fbd72eca2051a"
+      },
+      "pose_revision": null,
+      "raised_palms": [
+        [
+          46,
+          51
+        ],
+        [
+          82,
+          51
+        ]
+      ],
+      "palms": [
+        [
+          51,
+          67
+        ],
+        [
+          75,
+          67
+        ]
+      ],
+      "pivots": [
+        [
+          52,
+          59
+        ],
+        [
+          74,
+          59
+        ]
+      ],
+      "head_center": [
+        64,
+        43.0
+      ],
+      "head_top": 6,
+      "limb_masks_are_source_pixels": true
+    }
+  ],
+  "atlases": {
+    "base": {
+      "path": "assets/sprites/class-armors-01/base.png",
+      "sha256": "a892fe61b48545d3ed6dba00a8ab32f261cbae109e992593b026e79a309cd1bc"
+    },
+    "core": {
+      "path": "assets/sprites/class-armors-01/core.png",
+      "sha256": "003154b3c46f4b0136eefe03bcda2647f6de08f4e8bc9d42d7dff49f7a9d1a13"
+    },
+    "arm-0": {
+      "path": "assets/sprites/class-armors-01/arm-0.png",
+      "sha256": "74304e3429ba5fd7ac37b44e8526f60c11d6d674167f50d907fb8af9337156e1"
+    },
+    "arm-1": {
+      "path": "assets/sprites/class-armors-01/arm-1.png",
+      "sha256": "0734cfe867db79875d515d4f5a784f547567be34fd139f4563aa861f145cb45c"
+    },
+    "fingers-0": {
+      "path": "assets/sprites/class-armors-01/fingers-0.png",
+      "sha256": "522f7feb13a5ddd51090ab6e0328182bf97184e54280f67818bb031dd2c49c5c"
+    },
+    "fingers-1": {
+      "path": "assets/sprites/class-armors-01/fingers-1.png",
+      "sha256": "180b463a391fc23982d17b9e0ce0866eb12dbe37c11bf53bb303f4568cd28829"
+    },
+    "ranged-core": {
+      "path": "assets/sprites/class-armors-01/ranged-core.png",
+      "sha256": "5abb7c37bb7c444d1dbcac036de0d1d3368846fefe5c92467a7969376aebff59"
+    },
+    "ranged-arm-0": {
+      "path": "assets/sprites/class-armors-01/ranged-arm-0.png",
+      "sha256": "1a9536e404ba6b92f8c8f06b8558fa74ef53540096a48579051219953447738c"
+    },
+    "ranged-arm-1": {
+      "path": "assets/sprites/class-armors-01/ranged-arm-1.png",
+      "sha256": "3085773378a4c1b95762d583f7abfdd62a6c34cd101831837fbbe3b63b2b92b8"
+    },
+    "grip-0": {
+      "path": "assets/sprites/class-armors-01/grip-0.png",
+      "sha256": "8cde30b3c6137fffcc9b10c5d35a0998649f9933722f9d3959344a5053f05fe0"
+    },
+    "grip-1": {
+      "path": "assets/sprites/class-armors-01/grip-1.png",
+      "sha256": "a226a4ebdd0d8c2be492863d7983743018184c840f5dd0162eda9f3cfcbe57ce"
+    },
+    "hand-mask-0": {
+      "path": "assets/sprites/class-armors-01/hand-mask-0.png",
+      "sha256": "f7c5e6feedc04a76305119e92fd0e9027810d33ebcab55e576a864de59147536"
+    },
+    "hand-mask-1": {
+      "path": "assets/sprites/class-armors-01/hand-mask-1.png",
+      "sha256": "a2f2ff6b924660a3e838e1e6f25f23a7cf7c4f6ef3a5dc07d76784bb2e09b2c0"
+    },
+    "head-mask": {
+      "path": "assets/sprites/class-armors-01/head-mask.png",
+      "sha256": "dbc48f3cefcfc64e1b082863a367e0c0f9dc5ba356b7fba02024f88cf316fcec"
+    },
+    "raised-arm-0": {
+      "path": "assets/sprites/class-armors-01/raised-arm-0.png",
+      "sha256": "fcb3ffc2bc9603b7fc6bfce4ea84d668e519783ac6e14e5654936de1d9821ecb"
+    },
+    "raised-arm-1": {
+      "path": "assets/sprites/class-armors-01/raised-arm-1.png",
+      "sha256": "972bdcb44f250e44aa351d1b9cd39ce3d6f77567921db5337637b9690ca37486"
+    },
+    "raised-erase-0": {
+      "path": "assets/sprites/class-armors-01/raised-erase-0.png",
+      "sha256": "82395a8e6c61a019a023f5228eefa85178b6b41be9d35ba66d535dcc99cd140a"
+    },
+    "raised-erase-1": {
+      "path": "assets/sprites/class-armors-01/raised-erase-1.png",
+      "sha256": "db04128c025667b67685b241f27094fd7fb0cdef4f0cad6dde631796e00eebf9"
+    },
+    "raised-fingers-0": {
+      "path": "assets/sprites/class-armors-01/raised-fingers-0.png",
+      "sha256": "8c6944ad97068686217d4491f0fe7d3bc6c27fde42ffb879704980f532faa7d1"
+    },
+    "raised-fingers-1": {
+      "path": "assets/sprites/class-armors-01/raised-fingers-1.png",
+      "sha256": "9a9a829a7cdc782af529c77fbeda798ef7bc165051ba268ccb276a0fbf3cf5da"
+    },
+    "identity-heads": {
+      "path": "assets/sprites/class-armors-01/identity-heads.png",
+      "sha256": "f066f26241e8e3e6b88f6ff8aaefb89e3836cd5f7f3b3efa344eb6fbcfe83c55"
+    },
+    "helmets": {
+      "path": "assets/sprites/class-armors-01/helmets.png",
+      "sha256": "a600b158b1e5af2bdc33990c819653b4b0013633e067a635b12824317b1cb9e2"
+    },
+    "helmet-openings": {
+      "path": "assets/sprites/class-armors-01/helmet-openings.png",
+      "sha256": "65f82a1a7447f1dfb39559fb782fb1b2791e8be0c90382daeb454b1ffd7d0224"
+    }
+  },
+  "weapon_designs": "unchanged current 113-model catalogue; original grip bindings reused",
+  "colors": "approved original materials; new torso variants remain deferred"
+}

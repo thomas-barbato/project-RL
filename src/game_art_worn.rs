@@ -10,7 +10,36 @@ mod finish_worn;
 mod flat_agents;
 #[path = "game_art_held_geometry.rs"]
 mod held_geometry;
+pub(super) fn approved_walking_image(
+    body: u8,
+    equipment: [Option<u16>; 4],
+    weapon: Option<u16>,
+    hands: Option<[Option<u16>; 2]>,
+    colors: [EquipmentPalette; 3],
+    pose: crate::game_art::walking::Pose,
+) -> Option<Image> {
+    if !(3..=7).contains(&body)
+        || ![-1, 1].contains(&pose.facing)
+        || ![0, 1, 2, 3, 4, 5, 8].contains(&pose.frame)
+    {
+        return None;
+    }
+    let key = (
+        outfit_index(body, equipment),
+        selection(weapon, hands),
+        colors,
+    );
+    let layers = finish_worn::approved_walking_layers(key, pose)?;
+    let mut image = Image::gen_image_color(128, 128, BLANK);
+    for layer in layers {
+        held_geometry::over(&mut image, &layer);
+    }
+    Some(image)
+}
 pub(super) fn outfit_index(body: u8, equipment: [Option<u16>; 4]) -> u16 {
+    if let Some(outfit) = finish_worn::class_outfit(body, equipment) {
+        return outfit;
+    }
     if let Some(outfit) = equipment[0].and_then(palettes::reviewed_outfit) {
         return outfit;
     }
@@ -26,38 +55,38 @@ pub(super) fn outfit_index(body: u8, equipment: [Option<u16>; 4]) -> u16 {
 struct Sources {
     flat: flat_agents::FlatAgents,
     agents: agent_rigs::AgentRigs,
-    bodies: Image,
-    body_maps: Image,
-    arms: Image,
-    arm_maps: Image,
-    fingers: Image,
-    weapons: Image,
-    weapon_maps: Image,
+    bodies: palettes::LazyImage,
+    body_maps: palettes::LazyImage,
+    arms: palettes::LazyImage,
+    arm_maps: palettes::LazyImage,
+    fingers: palettes::LazyImage,
+    weapons: palettes::LazyImage,
+    weapon_maps: palettes::LazyImage,
 }
 impl Sources {
     fn load() -> Self {
         Self {
             flat: flat_agents::FlatAgents::load(),
             agents: agent_rigs::AgentRigs::load(),
-            bodies: palettes::decoded(include_bytes!(
+            bodies: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/crawl-bodies-32.png"
             )),
-            body_maps: palettes::decoded(include_bytes!(
+            body_maps: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/crawl-body-materials-32.png"
             )),
-            arms: palettes::decoded(include_bytes!(
+            arms: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/crawl-arms-48.png"
             )),
-            arm_maps: palettes::decoded(include_bytes!(
+            arm_maps: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/crawl-arm-materials-48.png"
             )),
-            fingers: palettes::decoded(include_bytes!(
+            fingers: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/crawl-fingers-48.png"
             )),
-            weapons: palettes::decoded(include_bytes!(
+            weapons: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/agent-rigs/families-48.png"
             )),
-            weapon_maps: palettes::decoded(include_bytes!(
+            weapon_maps: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/crawl-weapon-materials-48.png"
             )),
         }
@@ -264,7 +293,7 @@ fn draw_key(rect: Rect, key: Key, side: u16, opacity: f32, idle_time: Option<f64
             rect.w * scale,
             rect.h * scale,
         );
-        draw_texture_ex(
+        crate::world_readability::texture(
             texture,
             destination.x,
             destination.y,

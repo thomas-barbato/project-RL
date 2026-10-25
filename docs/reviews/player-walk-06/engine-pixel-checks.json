@@ -1,0 +1,816 @@
+{
+  "review_id": "WALK06",
+  "renderer": "ordinary game_art::draw_world at native64",
+  "native_framebuffer_comparisons": 100,
+  "floors": [
+    "light",
+    "dark"
+  ],
+  "outfits": 25,
+  "directions": 2,
+  "walk_frame": 2,
+  "rgba_tolerance": 3,
+  "minimum_opaque_pixel_match": 1.0,
+  "comparisons": [
+    {
+      "id": "CLASS-00",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 110,
+      "matching_pixels": 110,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-00",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-05",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 141,
+      "matching_pixels": 141,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-05",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 134,
+      "matching_pixels": 134,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-10",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 158,
+      "matching_pixels": 158,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-10",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 142,
+      "matching_pixels": 142,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-15",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 112,
+      "matching_pixels": 112,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-15",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 132,
+      "matching_pixels": 132,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-20",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 129,
+      "matching_pixels": 129,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-20",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 120,
+      "matching_pixels": 120,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-00",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 110,
+      "matching_pixels": 110,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-00",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-05",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 141,
+      "matching_pixels": 141,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-05",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 134,
+      "matching_pixels": 134,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-10",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 158,
+      "matching_pixels": 158,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-10",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 142,
+      "matching_pixels": 142,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-15",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 112,
+      "matching_pixels": 112,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-15",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 132,
+      "matching_pixels": 132,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-20",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 129,
+      "matching_pixels": 129,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-20",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 120,
+      "matching_pixels": 120,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-01",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 121,
+      "matching_pixels": 121,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-01",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-06",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 122,
+      "matching_pixels": 122,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-06",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 114,
+      "matching_pixels": 114,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-11",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 127,
+      "matching_pixels": 127,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-11",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 129,
+      "matching_pixels": 129,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-16",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-16",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 120,
+      "matching_pixels": 120,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-21",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 119,
+      "matching_pixels": 119,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-21",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 113,
+      "matching_pixels": 113,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-01",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 121,
+      "matching_pixels": 121,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-01",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-06",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 122,
+      "matching_pixels": 122,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-06",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 114,
+      "matching_pixels": 114,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-11",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 127,
+      "matching_pixels": 127,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-11",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 129,
+      "matching_pixels": 129,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-16",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-16",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 120,
+      "matching_pixels": 120,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-21",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 119,
+      "matching_pixels": 119,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-21",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 113,
+      "matching_pixels": 113,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-02",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 132,
+      "matching_pixels": 132,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-02",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 124,
+      "matching_pixels": 124,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-07",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 137,
+      "matching_pixels": 137,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-07",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 131,
+      "matching_pixels": 131,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-12",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 133,
+      "matching_pixels": 133,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-12",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-17",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 127,
+      "matching_pixels": 127,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-17",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 121,
+      "matching_pixels": 121,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-22",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 124,
+      "matching_pixels": 124,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-22",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 120,
+      "matching_pixels": 120,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-02",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 132,
+      "matching_pixels": 132,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-02",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 124,
+      "matching_pixels": 124,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-07",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 137,
+      "matching_pixels": 137,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-07",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 131,
+      "matching_pixels": 131,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-12",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 133,
+      "matching_pixels": 133,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-12",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-17",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 127,
+      "matching_pixels": 127,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-17",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 121,
+      "matching_pixels": 121,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-22",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 124,
+      "matching_pixels": 124,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-22",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 120,
+      "matching_pixels": 120,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-03",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 132,
+      "matching_pixels": 132,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-03",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 133,
+      "matching_pixels": 133,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-08",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 138,
+      "matching_pixels": 138,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-08",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 135,
+      "matching_pixels": 135,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-13",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 125,
+      "matching_pixels": 125,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-13",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-18",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 106,
+      "matching_pixels": 106,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-18",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 116,
+      "matching_pixels": 116,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-23",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 112,
+      "matching_pixels": 112,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-23",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 128,
+      "matching_pixels": 128,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-03",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 132,
+      "matching_pixels": 132,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-03",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 133,
+      "matching_pixels": 133,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-08",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 138,
+      "matching_pixels": 138,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-08",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 135,
+      "matching_pixels": 135,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-13",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 125,
+      "matching_pixels": 125,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-13",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-18",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 106,
+      "matching_pixels": 106,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-18",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 116,
+      "matching_pixels": 116,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-23",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 112,
+      "matching_pixels": 112,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-23",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 128,
+      "matching_pixels": 128,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-04",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 133,
+      "matching_pixels": 133,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-04",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 119,
+      "matching_pixels": 119,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-09",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 145,
+      "matching_pixels": 145,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-09",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 145,
+      "matching_pixels": 145,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-14",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 130,
+      "matching_pixels": 130,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-14",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 114,
+      "matching_pixels": 114,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-19",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 105,
+      "matching_pixels": 105,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-19",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 116,
+      "matching_pixels": 116,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-24",
+      "floor": "sombre",
+      "side": "left",
+      "opaque_pixels": 115,
+      "matching_pixels": 115,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-24",
+      "floor": "sombre",
+      "side": "right",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-04",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 133,
+      "matching_pixels": 133,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-04",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 119,
+      "matching_pixels": 119,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-09",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 145,
+      "matching_pixels": 145,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-09",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 145,
+      "matching_pixels": 145,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-14",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 130,
+      "matching_pixels": 130,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-14",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 114,
+      "matching_pixels": 114,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-19",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 105,
+      "matching_pixels": 105,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-19",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 116,
+      "matching_pixels": 116,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-24",
+      "floor": "clair",
+      "side": "left",
+      "opaque_pixels": 115,
+      "matching_pixels": 115,
+      "matching_fraction": 1.0
+    },
+    {
+      "id": "CLASS-24",
+      "floor": "clair",
+      "side": "right",
+      "opaque_pixels": 126,
+      "matching_pixels": 126,
+      "matching_fraction": 1.0
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+import json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2];DOC=ROOT/'docs/reviews/player-walk-07'
+j=json.loads((DOC/'anatomy-detail-jobs-r06c.json').read_text('utf8'))[1]
+j.update({'id':'CLASS-24-second-support','destination':str(ROOT/'assets/source-art/player-walk-review-07/ANATOMY-24-r06d-second-support.png')})
+j['prompt']='''Use case: precise-object-edit. EDIT TARGET: exactly TWO complete armored druid figures, one facing screenLEFT on the left, one facing screenRIGHT on the right. Preserve their directions, identity, head, upper body, fur, ivory/olive armor, empty raised hands, exact stocky proportions, pixel-art clusters and scale.
+Change BOTH figures from idle into ONE specific LOW PASSING walking pose: the VIEWER-RIGHT leg is STRAIGHT and bears the body weight, viewer-right boot sole FIRMLY PLANTED on the baseline. The VIEWER-LEFT leg is the MOVING leg: slightly bend its knee and lift its COMPLETE boot so even its LOWEST TOE is 6 native pixels ABOVE the baseline. The legs remain clearly separated side-by-side and attached to their own hips; never cross. In BOTH figures the planted boot is on the RIGHT SIDE OF THEIR BODY IN THE IMAGE, the lifted boot is on the LEFT SIDE OF THEIR BODY IN THE IMAGE. Do NOT lift the viewer-right foot. Do NOT leave the viewer-left toe touching the ground. Do not mirror the pose between the two figures: only the face direction differs.
+Keep the moving foot low, no high knee, running, big split or wide kick. Fixed original head and hip height, same full body height as target; do not shrink a figure to accommodate the raised foot. This represents anatomical LEFT support / RIGHT passing in a near-frontal camera and corrects the SECOND half-step only. Output exactly TWO COMPLETE figures in ONE horizontal row, same order and scale, generous transparent gutters, complete hair and both boots. True transparent background; no label, text, guide, floor, shadow, equipment, extra arm or effects.'''
+(DOC/'anatomy-detail-job-r06d.json').write_text(json.dumps(j,ensure_ascii=False,indent=2)+'\n','utf8')
+(DOC/'prompts/CLASS-24-second-support-r06d.txt').write_text(j['prompt'],'utf8')

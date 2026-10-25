@@ -49,16 +49,20 @@ pub(super) const RETIRED_CORE_ITEMS: [&str; 7] = [
     "core:agent_dose_soin",
 ];
 pub(super) const RETIRED_AVIATOR: &str = "core:veste_matelassee";
+pub(super) const RETIRED_LEATHER_APRON: &str = "core:patched_plating";
 
 pub(super) fn is_retired_test_item(id: &ContentId) -> bool {
     id.namespace().as_str() == "lab"
         || RETIRED_CORE_ITEMS.contains(&id.as_str())
         || id.as_str() == RETIRED_AVIATOR
+        || id.as_str() == RETIRED_LEATHER_APRON
 }
 
 pub(super) fn is_retired_at_version(id: &ContentId, version: u8) -> bool {
     if id.as_str() == RETIRED_AVIATOR {
         version >= RETIRED_AVIATOR_GENERATION_VERSION
+    } else if id.as_str() == RETIRED_LEATHER_APRON {
+        version >= LEATHER_APRON_RETIREMENT_GENERATION_VERSION
     } else {
         version >= RETIRED_TEST_ITEMS_GENERATION_VERSION && is_retired_test_item(id)
     }
@@ -290,6 +294,80 @@ mod tests {
     use project_rl::game::ZoneInfo;
     use project_rl::world::{Map, Terrain};
     #[test]
+    fn leather_apron_retirement_keeps_old_inventories_and_replays() {
+        let previous_version = LEATHER_APRON_RETIREMENT_GENERATION_VERSION - 1;
+        let apron: ItemId = RETIRED_LEATHER_APRON.parse().unwrap();
+        assert!(!is_retired_at_version(&apron, previous_version));
+        assert!(is_retired_at_version(&apron, CURRENT_GENERATION_VERSION));
+
+        let mut drops = blueprint();
+        drops.loot = [
+            RETIRED_LEATHER_APRON,
+            "core:veste_de_veille",
+            "core:power_regulator",
+        ]
+        .into_iter()
+        .enumerate()
+        .map(|(index, id)| {
+            GroundLootBlueprint::new(GridPos::new(index as i32 + 2, 2), id.parse().unwrap(), 1)
+        })
+        .collect();
+        let original = drops.loot.clone();
+        app(previous_version).remove_retired_test_drops(&mut drops);
+        assert_eq!(drops.loot, original);
+        app(CURRENT_GENERATION_VERSION).remove_retired_test_drops(&mut drops);
+        assert_eq!(drops.loot, original[1..]);
+
+        let (mut rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+        rules.player_starting_items = vec![StartingItemStack::new(apron.clone(), 1)];
+        let previous = AsciiApp::from_seed_version(
+            INITIAL_SEED,
+            rules.clone(),
+            texts.clone(),
+            loot.clone(),
+            expeditions.clone(),
+            previous_version,
+        )
+        .unwrap();
+        assert!(
+            previous
+                .game
+                .player_inventory()
+                .iter()
+                .any(|item| item.item() == &apron)
+        );
+        let current = AsciiApp::from_seed_version(
+            INITIAL_SEED,
+            rules.clone(),
+            texts.clone(),
+            loot.clone(),
+            expeditions.clone(),
+            CURRENT_GENERATION_VERSION,
+        )
+        .unwrap();
+        assert!(
+            current
+                .game
+                .player_inventory()
+                .iter()
+                .all(|item| item.item() != &apron)
+        );
+        assert!(current.rules.items.get(&apron).is_some());
+
+        let saved = previous.suspension().unwrap();
+        let restored =
+            AsciiApp::restore_suspension(&saved, rules, texts, loot, expeditions).unwrap();
+        assert!(
+            restored
+                .game
+                .player_inventory()
+                .iter()
+                .any(|item| item.item() == &apron)
+        );
+        assert_eq!(suspension::fingerprint(&restored.game), saved.state);
+    }
+
+    #[test]
     fn aviator_retirement_preserves_generation148_and_reversible_catalogs() {
         let (base, _, loot, _) = ascii_game_content().unwrap();
         let old = rules_for_generation_version(base.clone(), 148);
@@ -398,7 +476,8 @@ mod tests {
                 "{}: {ids:?}",
                 class.id()
             );
-            assert!(ids.iter().any(|id| id.starts_with("core:tenue_")));
+            // CLASS-START-03 keeps the class appearance without granting a torso item.
+            assert!(ids.iter().all(|id| !id.starts_with("core:tenue_")));
             assert!(game.ground_items().iter().next().is_none());
         }
     }

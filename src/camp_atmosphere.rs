@@ -1,7 +1,6 @@
 //! Approved cosmetic light/ambience pass. No simulation mutation or per-frame uploads.
 use macroquad::{miniquad as mq, prelude::*};
 use serde::Deserialize;
-use std::path::PathBuf;
 mod surface_wear;
 
 #[derive(Deserialize)]
@@ -40,15 +39,20 @@ pub struct Atmosphere {
 }
 
 fn load(path: &str, filter: FilterMode) -> Texture2D {
-    let path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(path);
-    let im = Image::from_file_with_format(&std::fs::read(path).unwrap(), None).unwrap();
+    let im =
+        Image::from_file_with_format(&project_rl::data_paths::read(path).unwrap(), None).unwrap();
     let t = Texture2D::from_image(&im);
     t.set_filter(filter);
     t
 }
 
 fn material(fragment: &str, textures: &[&str], uniforms: &[(&str, mq::UniformType)]) -> Material {
-    load_material(
+    let build = if fragment == COMPOSITE {
+        crate::world_readability::lighting_material
+    } else {
+        crate::world_readability::material
+    };
+    build(
         ShaderSource::Glsl {
             vertex: VERTEX,
             fragment,
@@ -183,12 +187,12 @@ impl Atmosphere {
             surface
                 .background
                 .set_uniform("LightOn", if lights { 1.0_f32 } else { 0.0_f32 });
-            gl_use_material(&surface.background);
+            crate::world_readability::use_material(&surface.background);
             return;
         }
         self.background
             .set_uniform("LightOn", if lights { 1.0_f32 } else { 0.0_f32 });
-        gl_use_material(&self.background);
+        crate::world_readability::use_material(&self.background);
     }
 
     pub fn background_time(&self, time: f32) {
@@ -214,7 +218,7 @@ impl Atmosphere {
     pub fn begin_surface(&self, size: Vec2) {
         if let Some(surface) = self.active_surface() {
             surface.isolated.set_uniform("ReviewSize", (size.x, size.y));
-            gl_use_material(&surface.isolated);
+            crate::world_readability::use_material(&surface.isolated);
         }
     }
 
@@ -238,7 +242,7 @@ impl Atmosphere {
         set_camera(&camera);
         clear_background(BLACK);
         self.composite.set_uniform("LightOn", 1.0_f32);
-        gl_use_material(&self.composite);
+        crate::world_readability::use_material(&self.composite);
         draw_texture_ex(
             &self.frame.texture,
             0.,
@@ -249,7 +253,7 @@ impl Atmosphere {
                 ..Default::default()
             },
         );
-        gl_use_default_material();
+        crate::world_readability::restore();
         draw_exteriors();
         unsafe {
             macroquad::window::get_internal_gl().flush();
@@ -264,7 +268,7 @@ impl Atmosphere {
     }
 
     pub fn end_material(&self) {
-        gl_use_default_material();
+        crate::world_readability::restore();
     }
     #[cfg(debug_assertions)]
     pub fn review_ambient(&self, color: [f32; 3]) {
@@ -282,10 +286,11 @@ impl Atmosphere {
         self.animated_prop.set_uniform("Clock", time);
         self.animated_prop.set_uniform("Phase", phase);
         self.animated_prop.set_uniform("Panel", panel);
-        gl_use_material(&self.animated_prop);
+        crate::world_readability::use_material(&self.animated_prop);
     }
 
     pub fn steam(&self, foot: Vec2, time: f32) {
+        let _color = crate::world_readability::color();
         let cycle = time.rem_euclid(6.);
         for i in 0..6 {
             let age = cycle - i as f32 * 0.19;
@@ -309,7 +314,7 @@ impl Atmosphere {
     }
 
     pub fn finish(&self, rect: Rect, clip: Rect, lights: bool) {
-        gl_use_default_material();
+        crate::world_readability::restore();
         pop_camera_state();
         unsafe {
             macroquad::window::get_internal_gl().quad_gl.scissor(Some((
@@ -321,7 +326,7 @@ impl Atmosphere {
         }
         self.composite
             .set_uniform("LightOn", if lights { 1.0_f32 } else { 0.0_f32 });
-        gl_use_material(&self.composite);
+        crate::world_readability::use_material(&self.composite);
         draw_texture_ex(
             &self.frame.texture,
             rect.x,
@@ -333,7 +338,7 @@ impl Atmosphere {
                 ..Default::default()
             },
         );
-        gl_use_default_material();
+        crate::world_readability::restore();
     }
 }
 
@@ -397,7 +402,9 @@ void main() {
     vec3 light=texture2D(Irradiance,vec2(uv.x,1.0-uv.y)).rgb*2.0;
     // Dark void around the architecture must not reveal the coarse wall grid.
     float surface=smoothstep(0.07,0.17,max(ink.r,max(ink.g,ink.b)));
-    ink.rgb*=mix(Ambient,light,LightOn*surface);
+    vec3 illumination=mix(Ambient,light,LightOn*surface);
+    illumination=mix(illumination,vec3(dot(illumination,vec3(0.2126,0.7152,0.0722))),WorldGray);
+    ink.rgb*=illumination;
     // The complete world has an opaque backdrop; do not blend its shadows or
     // antialiased actor edges a second time when compositing the framebuffer.
     gl_FragColor=vec4(ink.rgb*tint.rgb,tint.a);

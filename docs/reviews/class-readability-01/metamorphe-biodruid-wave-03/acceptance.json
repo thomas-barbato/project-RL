@@ -1,0 +1,447 @@
+{
+  "acceptance_id": "METAMORPHE-BIODRUID-W03-ACCEPT01",
+  "review_id": "METAMORPHE-BIODRUID-W03",
+  "date": "2026-10-22",
+  "user_answer": "je valide :) , on peut donc integrer ces nouveaux dessins, à noter que du coup il faut s’assurer que chaque dessins soit compatible avec toutes les armes :)",
+  "status": "accepted_visual_reference",
+  "class_id": "core:metamorphe",
+  "approved_compositions": 5,
+  "approved_default_heads": 5,
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "ME-BD03-P01-r01",
+      "rank": 1,
+      "label": "Très légère",
+      "head_label": "Tête nue",
+      "head_ownership_polygon": [
+        [
+          29,
+          4
+        ],
+        [
+          35,
+          4
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          38,
+          12
+        ],
+        [
+          35,
+          16
+        ],
+        [
+          29,
+          16
+        ],
+        [
+          26,
+          12
+        ],
+        [
+          26,
+          8
+        ]
+      ],
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "native_core_box": [
+        17,
+        6,
+        47,
+        62
+      ],
+      "source": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/sources/user-02-light-outfit.png",
+        "sha256": "4314091df069b41974be573dab988ef1c4bfc9dd8cb6ce6535a644e438020c5d"
+      },
+      "native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P01-r01-native64.png",
+        "sha256": "92f9ff694df596eb806f0637ee1c53b857cd8bd08e2181dab41f01d5aca411e1"
+      },
+      "components": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P01-r01-head-native64.png",
+          "sha256": "f9dca75da631069237b077491269e6cc56a30a003e10ee51d5521bbaee5b0df0"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P01-r01-body-native64.png",
+          "sha256": "5c2fbc6a36047a85596d46f3aaab63183a670c9340bf10842303a2b2435196a9"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P01-r01-head-mask-native64.png",
+          "sha256": "5131054f32287b0cf4532031cde6f3cb311e32852033a3185f24580d21bda2e0"
+        }
+      }
+    },
+    {
+      "number": "02",
+      "candidate_id": "ME-BD03-P02-r01",
+      "rank": 2,
+      "label": "Légère",
+      "head_label": "Bandeau léger",
+      "head_ownership_polygon": [
+        [
+          28,
+          4
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          38,
+          9
+        ],
+        [
+          37,
+          14
+        ],
+        [
+          34,
+          17
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          27,
+          13
+        ],
+        [
+          26,
+          9
+        ]
+      ],
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "native_core_box": [
+        19,
+        6,
+        46,
+        62
+      ],
+      "source": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/sources/ME-BD03-P02-r01-source.png",
+        "sha256": "9659e4ef986703e34352e2912f273b8d2390e6a9462351823cf34c213871dc0f"
+      },
+      "native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P02-r01-native64.png",
+        "sha256": "b48a0e65861fd84c1c6c0e0c72b9f4c1fb28893718bb7705243a105b0da2aa33"
+      },
+      "components": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P02-r01-head-native64.png",
+          "sha256": "783d32280c2392672944d4c360cdb66c7f23cbd8ffc0e18f2babae0dd834fc52"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P02-r01-body-native64.png",
+          "sha256": "fac87165e39836079d26a7da4a7bb96d0e4fa01fc3c8c1598122896399559075"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P02-r01-head-mask-native64.png",
+          "sha256": "0b656dc9464f50d73c2efe1c0a9d2ac3487a83f3dbbe1ae29a375cd6b66ea361"
+        }
+      }
+    },
+    {
+      "number": "03",
+      "candidate_id": "ME-BD02-P03-r01",
+      "rank": 3,
+      "label": "Interméd.",
+      "head_label": "Bandeau souple",
+      "head_ownership_polygon": [
+        [
+          28,
+          4
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          38,
+          9
+        ],
+        [
+          37,
+          14
+        ],
+        [
+          34,
+          17
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          27,
+          13
+        ],
+        [
+          26,
+          9
+        ]
+      ],
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "native_core_box": [
+        19,
+        6,
+        46,
+        62
+      ],
+      "source": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/sources/ME-BD02-P03-r01-source.png",
+        "sha256": "0711050b7adc994e0ff335052575f146cc54061132f4aaeaee5549f1d40d820c"
+      },
+      "native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD02-P03-r01-native64.png",
+        "sha256": "08bb1b67383dc33ac3c4ae6d0325a3a1d5e1bfd8e46b649a380f84b6ddc850c2"
+      },
+      "components": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD02-P03-r01-head-native64.png",
+          "sha256": "59129fcad7f705511c42d4e660bdac5fded5d8240088eee7da471c2e9dfb547f"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD02-P03-r01-body-native64.png",
+          "sha256": "01490cdcebdea23273b7c3d284ae3be077f5406ed258871ec5dc3956e69fb376"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD02-P03-r01-head-mask-native64.png",
+          "sha256": "0b656dc9464f50d73c2efe1c0a9d2ac3487a83f3dbbe1ae29a375cd6b66ea361"
+        }
+      }
+    },
+    {
+      "number": "04",
+      "candidate_id": "ME-BD03-P04-r01",
+      "rank": 4,
+      "label": "Lourde",
+      "head_label": "Tempes protégées",
+      "head_ownership_polygon": [
+        [
+          28,
+          4
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          39,
+          9
+        ],
+        [
+          38,
+          14
+        ],
+        [
+          35,
+          17
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          26,
+          9
+        ]
+      ],
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "native_core_box": [
+        19,
+        6,
+        46,
+        62
+      ],
+      "source": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/sources/ME-BD03-P04-r01-source.png",
+        "sha256": "ef93bacf5c86b9882671a90ef3c1627bca3303134662df172dfa5b5ec0801731"
+      },
+      "native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P04-r01-native64.png",
+        "sha256": "0bde901a4e677ba3a98599a7e19a3379209bd6daae10622fc718a412691c12ee"
+      },
+      "components": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P04-r01-head-native64.png",
+          "sha256": "9777d382db78c6fc868d1430e479c9edc139b4be5bfa1ebbfa1ccc23fe712111"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P04-r01-body-native64.png",
+          "sha256": "a04e329dbf9ffe52610216916e96e0968d7f5d15952bf3721ba0abfb590e02c1"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P04-r01-head-mask-native64.png",
+          "sha256": "6b674dc6c5a80855ddb71ebe0b243d4ce6f49d798c39f67be6204bb71755fcab"
+        }
+      }
+    },
+    {
+      "number": "05",
+      "candidate_id": "ME-BD03-P05-r01",
+      "rank": 5,
+      "label": "Très lourde",
+      "head_label": "Menton protégé",
+      "head_ownership_polygon": [
+        [
+          28,
+          4
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          39,
+          8
+        ],
+        [
+          39,
+          13
+        ],
+        [
+          35,
+          18
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          26,
+          8
+        ]
+      ],
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "native_core_box": [
+        17,
+        6,
+        47,
+        62
+      ],
+      "source": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/sources/ME-BD03-P05-r01-source.png",
+        "sha256": "b09ecbdd169d9b6f10481bc285ecf7a2041852126f558c5f63c8abbd07e970ed"
+      },
+      "native": {
+        "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/native64/ME-BD03-P05-r01-native64.png",
+        "sha256": "27ad7264d30731b996ec7d0cc99dccb06b914aa2abd71704f38fbd72eca2051a"
+      },
+      "components": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P05-r01-head-native64.png",
+          "sha256": "9fd7c23b0c7e142decdb7e572e88545025e37322bc671ee969f3ae90a88892d7"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P05-r01-body-native64.png",
+          "sha256": "171e822c5adf144506ece963d49bdb7e1b073c9ceed1f516c7045d02dee5f7f6"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/layers/ME-BD03-P05-r01-head-mask-native64.png",
+          "sha256": "94711d1f27cfd39fcd605a267654a83c2247a520f89a7fed60e529f02673e620"
+        }
+      }
+    }
+  ],
+  "review_references": [
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/review/all-classes-review-page.png",
+      "sha256": "3a87c7d4fb3f5ff32d7acf893166cb1a6e87c4d45fb904ae932e38a2cdfca1b2"
+    },
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/review/head-layers-audit-x8.png",
+      "sha256": "63a9cdb5ca688666996c86f3715c0fdd499d67030b7c8cc4ba0a0b36e4e66472"
+    },
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/review/head-progression-native-x4.png",
+      "sha256": "ec58f08ca618e225cf1e1753829dd599663715295312ae597e6ff22459e207fe"
+    },
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/review/progression-zoom-x3.png",
+      "sha256": "7178eb1bb7ffbb9b2115948e1bae35f963e11bd59b466c97ebbd2c69fbe705de"
+    },
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/review/review-page.png",
+      "sha256": "bfd152ff5161ac821c14dc611121a50bdef18026ae61fa3c268c518c0492a027"
+    }
+  ],
+  "provenance": [
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/review/prompts.json",
+      "sha256": "62994c8155bf021c81687d4ec387027e46ff3babff73253e226e55a4313868fd"
+    },
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/review/checks.json",
+      "sha256": "e9efa65b31fd271c2ea257c63a182825c4f16ce38e4f6fb98fb2465de6217171"
+    },
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/review/REVIEW.md",
+      "sha256": "82309c015baee1094ebfbbdcd22b1037d1cbd55327e1861df34b074dce4a8641"
+    },
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/review/joint-native64-review.json",
+      "sha256": "2f519236b01fbe4a790ec0201169d39fc61524922a7e75147c436a1134569536"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/metamorphe-biodruid-wave-03/accepted-review/candidates-as-reviewed.json",
+      "sha256": "571d27ca52df657422ac634898efd469765fc744f348aff05f5c6a23f622dde9"
+    }
+  ],
+  "reference_acceptances": [
+    {
+      "path": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+      "sha256": "6d55febb0bd152cca21df65f000b37da01a19d49179fedf9d74309e93bb40028"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+      "sha256": "d51882a635cbd8e024e366f4442cf238e1345668b2d0c03d152d7d6f0f4a0e02"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+      "sha256": "f8ecf404d5c60e6d9c5686def4b8221bc822e44b0a69201163e972b53b15f566"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/arcaniste-red-robe-wave-05/acceptance.json",
+      "sha256": "39b0287e29dd2cfe6adbbe8e9026fdc1975ce3fea18a01cc9981fc7caf676461"
+    }
+  ],
+  "integration_authorized": true,
+  "integration_condition": "verify every approved outfit with all current weapons and active hand configurations",
+  "new_color_variants": 0,
+  "runtime_integration": "authorized_pending_implementation_and_checks"
+}

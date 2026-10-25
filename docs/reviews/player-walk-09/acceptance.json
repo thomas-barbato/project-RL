@@ -1,0 +1,760 @@
+{
+  "review_id": "WALK09-COMMON-r01",
+  "accepted_at": "2026-10-24T22:15:29.314828+00:00",
+  "user_quote": "bon on va dire que c'est bon pour le moment :) , parcontre attention une fois que tu auras mis tout ca en jeu, il faudra aussi observer les monstres qui ne sont pas animés alors qu'ils devraient (certains cultistes) et qui en plus ne sont pas à la bonne taille (trop petits)",
+  "runtime_integration_authorized": true,
+  "scope": {
+    "player_classes": 5,
+    "outfits": 25,
+    "whole_poses": 350,
+    "left_and_right": true,
+    "actual_equipped_weapons_and_helmets": true,
+    "axe67_revision": "AX67-r02",
+    "duration_ms": 400,
+    "duration_remains_adjustable": true,
+    "distance_cells": 1,
+    "vertical_drawings_unchanged": true
+  },
+  "excluded_pending_reviews": [
+    "WALK08 creature palette transfers",
+    "WALK08 nine extra forms/drone cycles"
+  ],
+  "runtime_files": [
+    {
+      "file": "assets/animations/walk-09/player/CLASS-00-left.png",
+      "sha256": "2d60dcbcad35e5870fb6852c969bd28fe54dce28bc9bcb5ec48862515b094b71"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-00-right.png",
+      "sha256": "4e041426ffa9571ae8165400cf79f1d94a44e6a866a7bf12ce61d3e390a37afd"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-01-left.png",
+      "sha256": "eac0e08de3a4dfb1f7ea61c303945b2866989273a2ea5b02b02f9709f85c3d3a"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-01-right.png",
+      "sha256": "8f476dffe4eccf925e082de4f3189e46062ca622f8ef3f2e1ddacad31204359b"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-02-left.png",
+      "sha256": "6210144f0104d9ef6949d419c578dbd4e165cedd623bd637adb5828309450b2c"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-02-right.png",
+      "sha256": "fc0f7d028054b099407f38956aad11344773bc8bc6c739bf9f9f0c82f6d28e0f"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-03-left.png",
+      "sha256": "651f9d033d7fa306be2e99e850e393c6b80843730521a8b1d662757a2106af6f"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-03-right.png",
+      "sha256": "d174da811e9f205ba3559a10a83543e7c486a640e14ec6391231d5574a3c0c11"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-04-left.png",
+      "sha256": "eafaa278febd6acac877b47423a4422e7bd0dba11da8979d5ba7240a79658241"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-04-right.png",
+      "sha256": "c7cd4783c491174860ddb04e81a95b99b93e65ff71acd88970dd6ec3a18084d3"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-05-left.png",
+      "sha256": "4970e8b92d19d1f31fc159d1966e0ea9e26be86aad6e012c59c1a7af081c5d51"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-05-right.png",
+      "sha256": "5d38b407d1d0f94d282957a50ec1837f5c8b6f82620fa67f05b01a6b1b258d11"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-06-left.png",
+      "sha256": "f736ea4172226d6fb378033feee6014ee1e4e22e7cf964b4b783e97de85e2194"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-06-right.png",
+      "sha256": "f5b8b7dd6611bf2e8693f74fc19047fb8bec01c046ea6c36ac111a4c82f42bea"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-07-left.png",
+      "sha256": "dfcff45971d36332625854ea0dd8a85a8e10254c2308b2db1fd650d614a0569c"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-07-right.png",
+      "sha256": "500f2090ab03f4da704dddf44f1d577c864794af835e47513cb62cd899026bf5"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-08-left.png",
+      "sha256": "93fbe27315af5ecccebf4fb59d95c7ac6b50837b57f97b3a0c579d145690d02e"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-08-right.png",
+      "sha256": "5d6289cd88eab75c4941dda815ad776f0e1070d18f126c331d95fd4eaa23e2c1"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-09-left.png",
+      "sha256": "6671ca0bae23b7101540e73d76cb229e05d31cdd5da363e5a38bbe9a7f2601bd"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-09-right.png",
+      "sha256": "c76571bb974d338421607ac644a075efdee3b94b2d76a9c1bd7b3162c9e6334d"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-10-left.png",
+      "sha256": "a5ef8953d6e10e497e02ba2ba947b9e74af74257b5c8eb672965c596c9aebceb"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-10-right.png",
+      "sha256": "141cba3d1bfeeb05ab6dd50cc0c91772a1aadcef52b6de607dfaa5754ba541a8"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-11-left.png",
+      "sha256": "b9c247d837a17561d0b01604cd6f319cd8cdf2adc796c69a2ea267884b1bdd64"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-11-right.png",
+      "sha256": "52c6bf5dccff7127e857bad848c6161c6970c65a16343cebd825b34166c0486a"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-12-left.png",
+      "sha256": "a4eb942a5114e70d830534c0216961060c6a5679f96ecf44cfc613b42d184f9f"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-12-right.png",
+      "sha256": "850a2a03e10ee82a26e0f235d170b4638e48cb20514a0dcefc2b74d778433ab6"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-13-left.png",
+      "sha256": "86e07b807a7167d0b1c358a9274a9c69db2af6d624e2a5de8796de997ae5ead9"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-13-right.png",
+      "sha256": "033b49751b7aeb9c0937c4957787be9cce223e4363b4f363de6a681e0b8f9894"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-14-left.png",
+      "sha256": "33af1a085d149bd2bcc753641e51178b5323346dca8974ac6da8e128707c5ca4"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-14-right.png",
+      "sha256": "6be53f66c6bddde7be161e83d6e9f66188d16f7a580d08e77e01216c02458454"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-15-left.png",
+      "sha256": "0b65a1d09f0e0e57c903e4d6e7410887a04ce86b5e075eb69e265513aee1b3af"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-15-right.png",
+      "sha256": "5f2f3c8c597e2e3fb6a4cb7c2e51c73b39515858b53f322b7f5dde7ec05b9502"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-16-left.png",
+      "sha256": "6c974b24e9c7c3865618387cdab9b5bc18a7be257e55d38d97bbab707615b10f"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-16-right.png",
+      "sha256": "272ca5f2f8e83bbca1b55844e6cb408779c4451532a5dfee6d77b8500371c5f4"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-17-left.png",
+      "sha256": "7ca29e9ea86e1065ee21a979e2469e8f7d3ec8b443c8c048483cf8700d51f7bc"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-17-right.png",
+      "sha256": "c1fe4844ccb8aa5617b5ebecf5fb007093631f3ce9e5eee4e83f615482395166"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-18-left.png",
+      "sha256": "867309501f043d365f8ab10086ab4b7bcf62d463a61236258b43504d724d1f26"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-18-right.png",
+      "sha256": "429aca23b158079c83217bca248b452819f0a45a539ed33259557df93c933cfa"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-19-left.png",
+      "sha256": "c4ca600463c40b5d65457203961271ff02124cb326e7ad89bafe6a759f51dd05"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-19-right.png",
+      "sha256": "13ac40f81ed399b69655d20abdabc2d6ba48a9cbe287dc23b4cee51f2d6c970a"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-20-left.png",
+      "sha256": "96c217361be8f51e1ee1e4adf30b335d4a76c731c05e39c13514c5487dc5a307"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-20-right.png",
+      "sha256": "acb4655e55a1f5ae83c848482b4a0ddc17ba066e497274d4fa896f035485c0ca"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-21-left.png",
+      "sha256": "f3671dd00c7147bde34dfdc093f429199552d72657a692c02383b6bc0e81c03d"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-21-right.png",
+      "sha256": "425ac530bf1f9fa1d76fb6c25baabf11ffc298c68abbfe669f28d794e627d75f"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-22-left.png",
+      "sha256": "8f2b9434327da7cdd6129ed612ce1b167180872740840523d735c1bc62d77ab7"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-22-right.png",
+      "sha256": "034d8189fddd671cb9aa6dbb894f85664830e2f0870f2cd4cdd61d895b1c020f"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-23-left.png",
+      "sha256": "5ce7d9d10dfbdbc8cdfa987e984bb510177a0432a514cd62e86c612fba42ef74"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-23-right.png",
+      "sha256": "b01d41306bbab1df0f8b00ee4687304f9b5bc4d6b71f775b1b6152e6e7d67226"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-24-left.png",
+      "sha256": "703e8216215c464ae0c273b1ec5a3e66aa67cd4b5eab18efed5478f55730cdb7"
+    },
+    {
+      "file": "assets/animations/walk-09/player/CLASS-24-right.png",
+      "sha256": "72f5c7dd7fcdee482de25ea52a4542638bd1cccc02bed8cfbb012737efc2551b"
+    },
+    {
+      "file": "assets/animations/walk-09/player/manifest.json",
+      "sha256": "2247fd76e7b14c0c45c8913bbb0c2050004fcd7adc808935ec33fbe28acb8126"
+    }
+  ],
+  "preserved_direction_sources": [
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-00-identity.png",
+      "sha256": "367b3ebf5b4537c5698b06f2c9da7ac89ee465087ac838cd93fb228711dab326"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-00-left-common-r01.png",
+      "sha256": "d38109d055d6ca15e088fe0c617336fa81657e60a0b64a6c046b31cbe53d87f2"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-00-left-identity.png",
+      "sha256": "08a447d20ad252562f10e844c83cd8ca2e3c041b0a9f118aff2601c0b42ebe75"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-00-right-common-r01.png",
+      "sha256": "316071ee10e0d88e20e97b3b707517480923beffbae371bd14b244a79e4002d4"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-00-right-identity.png",
+      "sha256": "354ec7fc1a63abdae8eb1f14e3070134a69d4997ea73f1ae5688dba8c51db74c"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-01-identity.png",
+      "sha256": "2707d9101dc6b6541bf9b62f5e2d08fbd902469d88804dacac15cc0db0c4205a"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-01-left-common-r01.png",
+      "sha256": "082059c7e415e4b3fa467b778ac9fc5fa9ab612478c3ae50524383ec3b72bec3"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-01-left-identity.png",
+      "sha256": "8ae5aed0602cf90da244ff2ba253e77d9de46b5ddeab0a993192c2c356a2389e"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-01-right-common-r01.png",
+      "sha256": "c2a298c288f3b70fe86df86ac4437e4f7b90b5e1a2db2de989167f5dba1c2ead"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-01-right-identity.png",
+      "sha256": "1ff8c5bc41819045bf621a9c49d696657cf9f18abb03407105d57f61179d603e"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-02-identity.png",
+      "sha256": "7094ae496323a96997c587d7d2cd05c1660c2ae560f712884732118ecfc9d7d6"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-02-left-common-r01.png",
+      "sha256": "df9ea4e84756a99b6394f2e95832c150587c49fb145afa311dcc768ebfe2f05c"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-02-left-identity.png",
+      "sha256": "44d6f5e05e786ebb4f2db5d23425f9b54fee21bf3f36d313d60ad540d9a991eb"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-02-right-common-r01.png",
+      "sha256": "f147fb978e83f34507654607941bdc382c286eaa56e186ff1ff074811a30d3a0"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-02-right-identity.png",
+      "sha256": "542afae3e829721ca2a0f84f7ec39f50d4398c862fc8f44063e3dbe400f4b4a9"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-03-identity.png",
+      "sha256": "1855e71ac0d1179e5bc93da7e7b616981ff36bc7fa65657cfd45930bb4d92317"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-03-left-common-r01.png",
+      "sha256": "88a61346910b1676d43f0f277d4da84af48dc655f6140679acc489f917a439bd"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-03-left-identity.png",
+      "sha256": "ab0ffca7b9d39169640731ad56b00248ab77a030e443f128c50afba1213c66d5"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-03-right-common-r01.png",
+      "sha256": "2536ca808c2613f8b5533aec72fa2c737bd0ec64426ce1fe36de4ccbbd6d309e"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-03-right-identity.png",
+      "sha256": "4691ab29c8015759f47057b3a4f943918da71df3403f6c4da7ab02a372de3d7e"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-04-identity.png",
+      "sha256": "f9d2020e49b7a8e2647c4a78d7b6853238cf7ee02479a98c1bd2e9ac1b9beac6"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-04-left-common-r01.png",
+      "sha256": "312e37ed2ea83f862ffd4a7cb56f91dcd54b6e21d4d5a386ec060e858bacdda6"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-04-left-common-r02.png",
+      "sha256": "e0795698de13b2ee5e80d5e95bcdcde7ae1c1dfdd824b1dcd4a1e0933b30d249"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-04-left-identity.png",
+      "sha256": "55e078fb33ba5d8dce6524447c70ebd5cdad6b2ebfa2635c29773e4b207914d6"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-04-right-common-r01.png",
+      "sha256": "151e6275ebfb0b761902e45aef7188f5f9165c13a6f877919e76599fd4cb07a3"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-04-right-common-r02.png",
+      "sha256": "b087117aad465361e8ed04919107fa2a8d566bf32877d455bb3603de3aad7603"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-04-right-identity.png",
+      "sha256": "659175a836438514af0376f0698e9dc936759db1b648f518cc71ed15c60fdb92"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-05-identity.png",
+      "sha256": "b4b12aca7d59a3405b3ec69fc4e2f02a0207ae4ae4f94fd015885ee5f30341f1"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-05-left-common-r01.png",
+      "sha256": "3b3b69849aa592764748d7254a7034051db8e9ede2d927c467ca2819885f8cda"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-05-left-identity.png",
+      "sha256": "20293134208ea2546a768537f75ef431c7442e3a3a196fb53317b2785cb04f5c"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-05-right-common-r01.png",
+      "sha256": "c5e27462e33ae19bc0f393ebcdfb9f83273dafe8325295daea81787a52bf2f98"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-05-right-identity.png",
+      "sha256": "0290bb94cc02b164bcbfdec9fb6b0055d2da27372c25ba8ced54ed587a4488b4"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-06-identity.png",
+      "sha256": "5171a754cad88d0f06f65184f6a9919cbc348a52673db2287404d92c2d9b0c0f"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-06-left-common-r01.png",
+      "sha256": "9cf101a1df0012bc14d78d70377083cc07c6b0e19118cf86345ff26e4059172f"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-06-left-identity.png",
+      "sha256": "a9d5e8c06166fbacb3399b8add43b736fc4710a16c8c4c00004e66fb61d38333"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-06-right-common-r01.png",
+      "sha256": "fbf6850b1de24a1575ef823e682512809c8cfa21b566666a23c1dfa2e696a5e2"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-06-right-identity.png",
+      "sha256": "be5c7c0bef1e9f9bdca2fc2cefa21afcf419b38740a7b670b944a913dbc07003"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-07-identity.png",
+      "sha256": "38ce008ac3e4beb31b6e14e5c6bf9920be9b9fe7ee64b20249bcb1da4ec3931d"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-07-left-common-r01.png",
+      "sha256": "dff452221dd0d42b7f83de5c6b88dcfb67d7b1185e188b45794403ebe643c7ee"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-07-left-identity.png",
+      "sha256": "1b77d53e6017a712af036121687dac4dee4b3b7169c341874891220f11a3579f"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-07-right-common-r01.png",
+      "sha256": "cbd5df608e716b403e5c39fdf5a3521a565c645c8018466bf55edbfefba7085f"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-07-right-identity.png",
+      "sha256": "b909d9b36e122775c3f6fb25ceb6f402e80b05c9e1414e4c456ceba93bbe8339"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-08-identity.png",
+      "sha256": "d7e04c7fbf397db8b6330bdcefd1e64702a4be95e3c02a4e36ef7bcc70fb98bd"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-08-left-common-r01.png",
+      "sha256": "c656d98b118d2ea725f386d74faabc0f4a405ad3d6ee3323492bbf811ac6d840"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-08-left-identity.png",
+      "sha256": "0331992c761cbe9700e0124f2da5a79ac97e75e182cdaba813b300e9ad25a098"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-08-right-common-r01.png",
+      "sha256": "9df78624b731284ccdb46af0f985075e82ed074bc3234926fe9084eb76ffe965"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-08-right-identity.png",
+      "sha256": "f63f0e20686bf00acd472fefd7838e7e3b467a42dec4e1907c84877fd6d196a2"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-09-identity.png",
+      "sha256": "04de4ff945f7b96b84a39bd9afbb79bb7e2e52c75a97ed5eab286c718099f6ef"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-09-left-common-r01.png",
+      "sha256": "fd7c1261bacb1d5a22b159f6985521035aafd58474254b41c51630a6933b4494"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-09-left-identity.png",
+      "sha256": "b446b4b1318b1d892ff78465234a1263b2bbd60609aa20417a7afa019564bee7"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-09-right-common-r01.png",
+      "sha256": "6b6a0c089aec0573c967bf8822904725b6b6682cb64e6568e6de021ee21de751"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-09-right-identity.png",
+      "sha256": "533fe3d2c8949617c59da48b299e1696f5de6a6a6c78055f6e24f4cf583ae20a"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-10-identity.png",
+      "sha256": "c2c617f06bc5689fbcf439e7980ac92cf72b674d657d131d4fb6f5e1dc4b26b5"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-10-left-common-r01.png",
+      "sha256": "b22ba630e2eb5462c5a37db805a6e64ba287fe8b01fb74d0f1bcb5405abdf508"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-10-left-identity.png",
+      "sha256": "ec5dbbde3b0b837bc4f30aeec16ce8b8a3df943a63794162fb6256992635084c"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-10-right-common-r01.png",
+      "sha256": "f8c5f9976d34766da1f0a627cc9e8e1ff43f6e8f9058a21d68bc3117afba7eb4"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-10-right-identity.png",
+      "sha256": "15bc42a8c35dc0195bb1bfe7b5b50f79786ed662f77c342734d4db8cfb168d16"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-11-identity.png",
+      "sha256": "6d568327de09bf409ac4efa999bf1e7b94891d89400d150a25c78af7a8da291b"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-11-left-common-r01.png",
+      "sha256": "982646a3a4cca1cc02b6879651720611cd5058b9060c016c374e64432110e77a"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-11-left-identity.png",
+      "sha256": "b79271424d44e0011e2b3ff57d2e07167bb039fa0257840a0acf777b28d948a8"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-11-right-common-r01.png",
+      "sha256": "2375c9767624921b2118f95b3c8a5620ebb4fd9e1256a627c579a640ec531f27"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-11-right-identity.png",
+      "sha256": "38f9a7e3eb2f9d82bfb70f2934744c1cd6b5c95a36ae4f93f11ae2533b6a815d"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-12-identity.png",
+      "sha256": "a335df309c9017f9ac8d9561ce06cb087fea6799cd4f046a06dc3dd94f917882"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-12-left-common-r01.png",
+      "sha256": "3d0fb6e4fdc6a822ca22d48d04e4416fd28dba033a0c84bcf6aef13d135fdd69"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-12-left-identity.png",
+      "sha256": "8e23244de1a7275c1be3e4e3a33e79375dc74b74db380dec086dcae0aa9ca7e5"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-12-right-common-r01.png",
+      "sha256": "2b171ffee2e4f87ecfa19250cca80c03582251c7f95efdc260f878b576aedf57"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-12-right-identity.png",
+      "sha256": "5397bec5049762b5e24a2b753933527ba5c8a45792eb4f01a0114890bbca0b6d"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-13-identity.png",
+      "sha256": "38a4f6d4fcfb16061dda1b3cfac026a10e3ed52f1a67941f82e395a0cc3bc926"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-13-left-common-r01.png",
+      "sha256": "b0f00669263e68e8ebc1af98304681edcaed834acd5e4c74351fcede81b8927b"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-13-left-identity.png",
+      "sha256": "68d92d6e1493fc370642f984d6708d12eafbaf94dd93a302a25acddf52fe7957"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-13-right-common-r01.png",
+      "sha256": "931e55fe16b01787496e4b4de9b08b4a6e0c6f47fdcd4a1afc7cf54230dcfdbe"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-13-right-identity.png",
+      "sha256": "f376c17e10d6642e5c8ac50cfc8dc7def6e8ba812b524663b60f8b32901f64f3"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-14-identity.png",
+      "sha256": "581133bf6bd7235f1409e8e32d5397b44a989e15c0dda0d34345ed7c7acd40a2"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-14-left-common-r01.png",
+      "sha256": "2d0cb50b909776561a9a5a1149eee31e851880144e223fde11ce649e574c6774"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-14-left-identity.png",
+      "sha256": "66eaa143c4495709b665c9a07c3e5bebc5b32438a8d0f1a00261cedf70d0d44c"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-14-right-common-r01.png",
+      "sha256": "5d6fbd29120979a6427aa935ad6573ce206ab3bf489aacff273831942bd5fe1b"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-14-right-identity.png",
+      "sha256": "3d5988724df7acb8757cc9d04a2a937f45dfa5f4cd670eb83fa5ca301d0f82ce"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-15-identity.png",
+      "sha256": "180ae105906510ad63f1a16a6b127f63a37cbc94cdce4619528839fc766b8353"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-15-left-common-r01.png",
+      "sha256": "28c9478778fc55486f50427fc69fa65fc3fe2fc843d547f242dc8b7d0dc131d7"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-15-left-identity.png",
+      "sha256": "30927137ac1474f645fa939b5ffd60c508fcdda7f6fbcb6b78cb2b7d41c9def5"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-15-right-common-r01.png",
+      "sha256": "c50e735a7043e131f80b9883aebcf131c653f3a8fbd9a104e03ebb49ecf3af12"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-15-right-identity.png",
+      "sha256": "085b077a4a0a7d2979c1d919ea08bfcb263ec719df02b8f3b21648837db845c4"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-16-identity.png",
+      "sha256": "2a35fd81b4e777867d937759d14e50eefefab2f92ed723b41dab3e5dcdc3f5a6"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-16-left-common-r01.png",
+      "sha256": "96df08e9f974dcfbe48fd0000e8e4c64bd6e9a79167a30ccbd1d4ed3a9a41bca"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-16-left-identity.png",
+      "sha256": "46dc6fd9763d308255222507997693b58af7e71139da4552a4af4e59dbde4159"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-16-right-common-r01.png",
+      "sha256": "7c88f2cc0394f2a43ebb1bd88adb4b00aa885168dda66e3439411e8e7cea6e92"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-16-right-identity.png",
+      "sha256": "c5f2f72621e1ece0a9fc73e53dd4aa279016f956a41b8935ee7ae4d00e563cd8"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-17-identity.png",
+      "sha256": "4a6fc78bda1f181bf8769e264ce37145245813639932b7eec49ce20c5f5dd6e7"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-17-left-common-r01.png",
+      "sha256": "38fa728283987dd54d400cc6bf7ae28d6da2f46d09a6520269644fe88e700577"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-17-left-identity.png",
+      "sha256": "3bf6df0d2951829c0e540d4cfead0487005ea14a3492bc49ee7e5439141265ca"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-17-right-common-r01.png",
+      "sha256": "03c848a7e863214d9b1e4b8adab974a350e06a4ca0038880a1928f49c46b6ff0"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-17-right-identity.png",
+      "sha256": "397d812998ded3bd49ae6b764e454bb30497a8c3d0e95f540f9ddd888847bcca"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-18-identity.png",
+      "sha256": "8d4552addca34de3274c83f69442eaaa026f10d3cbece77212e0c8ab90d2d36a"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-18-left-common-r01.png",
+      "sha256": "e3b8b953092d782141f2833f358302cf6a76cf196e6ecb058a26373d4c8e1f95"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-18-left-identity.png",
+      "sha256": "5d67d6d359f844104c40279ba4b9f1c35f47dfe0f76bbcfc9073be4b629cfcc7"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-18-right-common-r01.png",
+      "sha256": "1a785bf21308c3042473abf840552ad8b16b1bbb37ca31a4ff2bf7666a373417"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-18-right-identity.png",
+      "sha256": "a7dad089632858ccf9c50eedb8e403e04dea237ae16513680f205269935f1339"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-19-identity.png",
+      "sha256": "d2c733673287e22cf516d3fbe535e59a08ff20c9fd5d4fc490a219e390949f00"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-19-left-common-r01.png",
+      "sha256": "2ff5a1f3691f56ee780c3fca807eae03212f6262202d63d0bf57ca73b3c4b6d0"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-19-left-identity.png",
+      "sha256": "8c161f45196e8ffd3bbaf3b8cb5892c0d8518b7d33abd2a4d201d9b798d3d8eb"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-19-right-common-r01.png",
+      "sha256": "73fa2adfb7db1ef6ae3f0db98c4af86d74e0dc7d7462b1c7a8f489f59da29424"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-19-right-identity.png",
+      "sha256": "b4058908a8748b3ebe521088b8d4d6e1f52342de2c9407df73a04761b2c1db8b"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-20-identity.png",
+      "sha256": "2705cd66f3dfb4140bd2e555b07c0474d045f3973221ed487ae386c14ce74583"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-20-left-common-r01.png",
+      "sha256": "ca568313e2c34d5467d82750ec7835e1576ee31a203e075370a1116879366ad4"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-20-left-identity.png",
+      "sha256": "91e9484ab185d9e960b6dafaff7060acc45b8020f18ac907cc0104d3ca699da3"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-20-right-common-r01.png",
+      "sha256": "a54c876ff44db27e577507da463c9cce5ede64f2d0d6938c1110d2e9694287be"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-20-right-identity.png",
+      "sha256": "0bb4ed90cb4064179e21d2c9783cb8809a3f4abb85d4fecfd7ebf25cef67624b"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-21-identity.png",
+      "sha256": "64718fba0489fc414f1e2ae1d2f739f8cb543a84a0d6c3721f5e7024d739a897"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-21-left-common-r01.png",
+      "sha256": "12e3b6a7f76b4959fae37517282df4481971741444647605e2e0343d8e16c906"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-21-left-identity.png",
+      "sha256": "5823a138c6678e5cbaaeeb9f10746f874b5c07cbed1093720f37a1578fe8a987"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-21-right-common-r01.png",
+      "sha256": "1ea636c4de3124dfde4c420cfe0d14859d1562cb70426a8568d173339eadf40a"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-21-right-identity.png",
+      "sha256": "c3fe9733aeb39fd535d9ce82ecf2fe5be9cd64b69df05bc2999db8cf9b266dea"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-22-identity.png",
+      "sha256": "40e0a1934f67a582aa7777c2d2a11ee3e53610c30648305bb4d94098b78e8191"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-22-left-common-r01.png",
+      "sha256": "6e64688e066007ad9ef2ad3e2a9f3dba7522562cb831036e1ee2f70115548770"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-22-left-identity.png",
+      "sha256": "6f4bb3cd2793f26d3bea91c4dba545a129ecb95107ea383c8520c0740cc2ae95"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-22-right-common-r01.png",
+      "sha256": "13c6eb2823546d0f9add398240091512b4002180409c5cb9f33a397e654f2ccf"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-22-right-identity.png",
+      "sha256": "db75223efdacecbd64ef03de1b5845422a323d401cef72a014936c2c40a3fef8"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-23-identity.png",
+      "sha256": "927d0a1a6d057ad864e7bf0307b0f90b9ff5eaa647d6ff48da2eb59e26413661"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-23-left-common-r01.png",
+      "sha256": "27486e2f8171ee160f937cca40d553a06f68c6395460d97fe5b438bf71c5919a"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-23-left-identity.png",
+      "sha256": "690a8777fa33e592abc31a8e95bb080553543bd295e4ba5d99e558d87a315a09"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-23-right-common-r01.png",
+      "sha256": "069d4637a283d1b8f1877a74676f126d980c5952a49b4e67717edf1a609dfec1"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-23-right-identity.png",
+      "sha256": "1307bfa1c0eb748e354c170c7a57d4e30e27394e61c66dc0abcf1d53869e56ef"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-24-identity.png",
+      "sha256": "3e499fc8c0c0c381bf26ec29e01059f9a82c3b4c928712daa98775856acfb760"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-24-left-common-r01.png",
+      "sha256": "e15e07a0f022d19a01edf1683d7e8ac76fee5738d08745990aec4d418f003611"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-24-left-identity.png",
+      "sha256": "bc0511a30b342ba1ef934ee3fa5f90c63d3a39e0fdab715dcd8fcf7ac7f9e86f"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-24-right-common-r01.png",
+      "sha256": "ad43c87c36739807239085bc86598749e1420cda76182ce729884dc11a7a2a4b"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/CLASS-24-right-identity.png",
+      "sha256": "cea0120bd9791e82c319d8efb9de4c6864989a27790ade3c822b1185105778a7"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/common-gait-left-reference.png",
+      "sha256": "92b015f3f29a2378c744906b09399a5dd5c1a0eb634ed9040f6aea3b79dfc0d1"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/common-gait-reference.png",
+      "sha256": "64905c0de0e55205f9956169a2c3c036a28ed2e5084c9820bf68f91974b8e7f7"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-09/common-gait-right-reference.png",
+      "sha256": "b919b4db1e13415b86fa9557555d064fd0672255727878a4dd1cdba90adbe73e"
+    }
+  ],
+  "extra_weapon_files": [
+    {
+      "file": "assets/animations/walk-08/weapons/AX67-r02-materials.png",
+      "sha256": "ee4f9d38c9957a1b69a70ff7ff50c830c6d82a9e8610ec20ae0bd82b5882086b"
+    },
+    {
+      "file": "assets/animations/walk-08/weapons/AX67-r02.png",
+      "sha256": "58695fbe6374fdc870512db66b1d26188af697c31fdb85082573a69a2f1f147c"
+    }
+  ]
+}

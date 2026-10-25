@@ -1,0 +1,239 @@
+[
+  {
+    "id": "MON-007-0",
+    "review_id": "WALK07-M65",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-007-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-007-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Both rows need a CLEAR whole-body near-front three-quarter turn, left versus right. Keep the single huge stone/plated arm on viewerLEFT in BOTH near-front directions; pale flesh arm remains viewerRIGHT. Do not merely turn the head or mirror the body.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-007-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-007-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Both rows need a CLEAR whole-body near-front three-quarter turn, left versus right. Keep the single huge stone/plated arm on viewerLEFT in BOTH near-front directions; pale flesh arm remains viewerRIGHT. Do not merely turn the head or mirror the body."
+  },
+  {
+    "id": "MON-010-0",
+    "review_id": "WALK07-M67",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-010-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-010-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: The gun arm was mirrored onto the wrong anatomical side. It must remain on viewerLEFT in BOTH near-front directions; the flesh arm stays viewerRIGHT. Reorient the complete body, hips and feet while preserving this anatomical ownership. Keep the barrel straight and body identity exact.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-010-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-010-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "The gun arm was mirrored onto the wrong anatomical side. It must remain on viewerLEFT in BOTH near-front directions; the flesh arm stays viewerRIGHT. Reorient the complete body, hips and feet while preserving this anatomical ownership. Keep the barrel straight and body identity exact."
+  },
+  {
+    "id": "MON-011-0",
+    "review_id": "WALK07-M68",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-011-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-011-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Preserve the original tall versus short dorsal tubular structures on their original anatomical sides, tall on viewerRIGHT in both near-front directions. Clear whole-body left/right orientation; no body mirroring.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-011-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-011-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Preserve the original tall versus short dorsal tubular structures on their original anatomical sides, tall on viewerRIGHT in both near-front directions. Clear whole-body left/right orientation; no body mirroring."
+  },
+  {
+    "id": "MON-015-0",
+    "review_id": "WALK07-M71",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-015-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-015-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: The staff must stay in the same anatomical hand, on viewerRIGHT in BOTH near-front directions. The other hand stays free on viewerLEFT. Clear whole-body left and right three-quarter figures; do not mirror the staff across arms.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-015-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-015-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "The staff must stay in the same anatomical hand, on viewerRIGHT in BOTH near-front directions. The other hand stays free on viewerLEFT. Clear whole-body left and right three-quarter figures; do not mirror the staff across arms."
+  },
+  {
+    "id": "MON-017-0",
+    "review_id": "WALK07-M73",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-017-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-017-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Keep the existing staff in its original anatomical hand, viewerRIGHT in both near-front directions. Show complete face, chest, hips and feet turning together LEFT on top and RIGHT below; no swapped staff hand.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-017-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-017-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Keep the existing staff in its original anatomical hand, viewerRIGHT in both near-front directions. Show complete face, chest, hips and feet turning together LEFT on top and RIGHT below; no swapped staff hand."
+  },
+  {
+    "id": "MON-025-0",
+    "review_id": "WALK07-M76",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-025-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-025-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Both rows currently face RIGHT. Redraw the entire TOP row facing LEFT, near-front three quarters; BOTTOM row faces RIGHT. Head, chest, hips, knees and feet all turn together. Preserve the original bare pale foot and other covered dark foot on their SAME hip-knee-ankle chains through all phases; compact parallel foot lanes, no material transfer between legs, no head-only flip.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-025-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-025-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Both rows currently face RIGHT. Redraw the entire TOP row facing LEFT, near-front three quarters; BOTTOM row faces RIGHT. Head, chest, hips, knees and feet all turn together. Preserve the original bare pale foot and other covered dark foot on their SAME hip-knee-ankle chains through all phases; compact parallel foot lanes, no material transfer between legs, no head-only flip."
+  },
+  {
+    "id": "MON-061-0",
+    "review_id": "WALK07-M83",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-061-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-061-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Both rows currently face RIGHT. Reorient the complete TOP-row figures LEFT, keeping BOTTOM figures RIGHT. Preserve the long narrow body, dark curved crest, pale chest and dark lower legs. No head-only rotation or pure side view.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-061-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-061-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Both rows currently face RIGHT. Reorient the complete TOP-row figures LEFT, keeping BOTTOM figures RIGHT. Preserve the long narrow body, dark curved crest, pale chest and dark lower legs. No head-only rotation or pure side view."
+  },
+  {
+    "id": "MON-080-0",
+    "review_id": "WALK07-M92",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-080-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-080-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Both rows currently face RIGHT. TOP row must show complete front-LEFT three-quarter bodies; BOTTOM complete front-RIGHT. Skull face, chest, hips, knees and toes turn together. Preserve original pale/red torso and both charcoal forearms, no new chains or equipment.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-080-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-080-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Both rows currently face RIGHT. TOP row must show complete front-LEFT three-quarter bodies; BOTTOM complete front-RIGHT. Skull face, chest, hips, knees and toes turn together. Preserve original pale/red torso and both charcoal forearms, no new chains or equipment."
+  },
+  {
+    "id": "MON-106-0",
+    "review_id": "WALK07-M104",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-106-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-106-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Both rows currently face LEFT. TOP stays front-LEFT three quarters, BOTTOM must turn complete head, low torso and all four supports front-RIGHT. Exactly two hind feet and two front hands, no extra legs, no standing upright.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-106-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-106-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Both rows currently face LEFT. TOP stays front-LEFT three quarters, BOTTOM must turn complete head, low torso and all four supports front-RIGHT. Exactly two hind feet and two front hands, no extra legs, no standing upright."
+  },
+  {
+    "id": "MON-111-0",
+    "review_id": "WALK07-M106",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-111-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-111-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: The huge black/red armored shoulder/arm must stay anatomically on viewerLEFT in BOTH front-three-quarter directions; pale arm stays viewerRIGHT. Show clear LEFT/RIGHT whole-body turns without mirroring the armor or removing it.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-111-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-111-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "The huge black/red armored shoulder/arm must stay anatomically on viewerLEFT in BOTH front-three-quarter directions; pale arm stays viewerRIGHT. Show clear LEFT/RIGHT whole-body turns without mirroring the armor or removing it."
+  },
+  {
+    "id": "MON-119-0",
+    "review_id": "WALK07-M111",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-119-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-119-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Both rows face RIGHT. TOP row complete LEFT-facing figures, BOTTOM row RIGHT-facing. Turn hooded face, chest, pelvis and boot toes together, near-front three quarters. Preserve red hood, gray sleeves, bare lower arms, coat hem and current leg movement.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-119-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-119-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Both rows face RIGHT. TOP row complete LEFT-facing figures, BOTTOM row RIGHT-facing. Turn hooded face, chest, pelvis and boot toes together, near-front three quarters. Preserve red hood, gray sleeves, bare lower arms, coat hem and current leg movement."
+  },
+  {
+    "id": "MON-121-0",
+    "review_id": "WALK07-M113",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-121-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-121-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Both rows face RIGHT. TOP row complete LEFT-facing figures, BOTTOM RIGHT-facing. Face, shoulders, torso, hips, knees and toes align with their row. Preserve the orange vest, dark short sleeves, trousers, pale dangling arms, and original bald head.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-121-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-121-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Both rows face RIGHT. TOP row complete LEFT-facing figures, BOTTOM RIGHT-facing. Face, shoulders, torso, hips, knees and toes align with their row. Preserve the orange vest, dark short sleeves, trousers, pale dangling arms, and original bald head."
+  },
+  {
+    "id": "MON-123-0",
+    "review_id": "WALK07-M114",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-123-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-123-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: The ochre/yellow suit panel must stay on viewerRIGHT in BOTH front-three-quarter directions, on the SAME anatomical side throughout walking. Preserve the original massive belly and suit, clear left/right whole-body orientation. Never mirror the stripe or change body mass.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-123-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-123-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "The ochre/yellow suit panel must stay on viewerRIGHT in BOTH front-three-quarter directions, on the SAME anatomical side throughout walking. Preserve the original massive belly and suit, clear left/right whole-body orientation. Never mirror the stripe or change body mass."
+  },
+  {
+    "id": "MON-133-0",
+    "review_id": "WALK07-M119",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-133-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-133-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Remove the invented backpack, back tubes and bottles. INPUT1 has no such equipment; preserve ONLY the small objects actually visible in the canonical hands. Preserve exact white coat, hood, clothes, anatomy and compact walking. TOP whole figures LEFT, BOTTOM RIGHT.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-133-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-133-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Remove the invented backpack, back tubes and bottles. INPUT1 has no such equipment; preserve ONLY the small objects actually visible in the canonical hands. Preserve exact white coat, hood, clothes, anatomy and compact walking. TOP whole figures LEFT, BOTTOM RIGHT."
+  },
+  {
+    "id": "MON-134-0",
+    "review_id": "WALK07-M120",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-134-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-134-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Both rows face RIGHT. TOP complete front-LEFT bodies, BOTTOM front-RIGHT bodies, showing a clearly different whole-body orientation. Keep the SAME small green object held before the torso in TWO connected hands, no backpack, tubes or extra objects.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-134-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-134-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Both rows face RIGHT. TOP complete front-LEFT bodies, BOTTOM front-RIGHT bodies, showing a clearly different whole-body orientation. Keep the SAME small green object held before the torso in TWO connected hands, no backpack, tubes or extra objects."
+  },
+  {
+    "id": "MON-135-0",
+    "review_id": "WALK07-M121",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-135-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-135-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Both rows face RIGHT. TOP complete front-LEFT figures, BOTTOM front-RIGHT; hooded face, chest, pelvis and boots align. Remove invented backpack/tubes not in INPUT1. Keep only the original small dark handheld device, pale coat panels, long red front cloth and gray/dark clothing.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-135-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-135-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Both rows face RIGHT. TOP complete front-LEFT figures, BOTTOM front-RIGHT; hooded face, chest, pelvis and boots align. Remove invented backpack/tubes not in INPUT1. Keep only the original small dark handheld device, pale coat panels, long red front cloth and gray/dark clothing."
+  },
+  {
+    "id": "MON-152-0",
+    "review_id": "WALK07-M125",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-152-0-cycle-bulk-r02.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-152-0-bulk-r02.txt",
+    "prompt": "Use case: precise-object-edit. Correct this EXISTING complete game-creature animation atlas. INPUT1 is the canonical identity; INPUT2 is the current14-pose animation to repair. Preserve style, anatomy, proportions, native-scale readability, original colors, all actual equipment and compact gait.\nTARGETED CORRECTION: Both rows face RIGHT. TOP must clearly turn the COMPLETE heavy creature LEFT, BOTTOM RIGHT, near-front three quarters. Face, chest, hips and toes follow together. Preserve original lumps and their anatomical shoulder placement, small horns, stable belly mass and pale yellow/green material.\nReturn exactly TWO rows of SEVEN separate complete figures, TOP idle+six walk facing LEFT, BOTTOM idle+six walk facing RIGHT, all showing the front and side together. No back views, no pure profile, no row-internal direction changes. Six phases per full cycle, three per cell then three next cell,400ms per cell, real stable idle. SAME apparent scale for all14, little bob, no wide split, no new details. Clean genuine transparency; ample empty space around every figure and at least24pixels from every outer canvas edge. No text, labels, floor, shadow, glow or particles. Do not crop, graft limbs or reorient only the head.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-152-0-identity-detail.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-152-0-cycle-bulk-r01.png"
+    ],
+    "repair_reason": "Both rows face RIGHT. TOP must clearly turn the COMPLETE heavy creature LEFT, BOTTOM RIGHT, near-front three quarters. Face, chest, hips and toes follow together. Preserve original lumps and their anatomical shoulder placement, small horns, stable belly mass and pale yellow/green material."
+  },
+  {
+    "id": "MON-029-0",
+    "review_id": "WALK07-M12",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-029-0-cycle-bulk-deferred-r04.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-029-0-bulk-deferred-r04.txt",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation for existing identity MON-029-0.\nINPUT1 is the exact canonical APPEARANCE. Preserve anatomy, head/face, supports, all original appendages, materials, colors and proportions. Isolated colored fringe specks in the old export are not glow or anatomy.\nINPUT2 is ONLY an accepted WHOLE-FIGURE motion and layout guide. Do not copy its species, face, bulk, armor, colors, limbs or objects. Use compact supports and the same matte native64-readable game-art finish.\nSPECIFIC ANATOMY AND MOVEMENT: NO walking legs, wings or arms. Preserve the small pale cream/pink segmented larva with the reddish dark open mouth. Body stays LOW and HORIZONTAL against the floor, with a compact traveling contraction from rear segments toward the head. The rear stays a rounded larval end: never a foot, tail barb or upright coil. Preserve the small length and body volume.\nOUTPUT EXACTLY FOURTEEN separate COMPLETE figures, exactly TWO ROWS of exactly SEVEN figures on a wide transparent atlas approximately1792x640. No extra rows, eighth column, labels or duplicates. Each whole figure occupies at most75percent of its cell WIDTH AND HEIGHT, all using the SAME scale. Generous transparent margins around every claw, spur, wing and tail; at least24px from the OUTER canvas edge. No figures touch and no appendages are clipped. Do not fill the cells.\nTOP ROW: ALL face screenLEFT in near-front three quarters, idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW: ALL face RIGHT, idle then R0,R1,R2,R3,R4,R5. Nose/beak, chest/front, feet/base all face the SAME direction together. No back view, pure profile, head-only reversal or direction changes inside a row. The two rows must have visibly different lateral orientations. A rearward-curving horn or crest does not define the facing direction: the FACE and chest do.\nSix motion poses form ONE full compact cycle, three phases on one grid cell and the next three on the next cell,400ms per cell. Real stable resting idle. Use actual source morphology, never a human gait for a legless form or extra arms on a bird.\nDraw EACH creature WHOLE and coherent. Constant apparent scale, mass, head size, anatomy and materials across all14 poses; restrained bob, no great split, stretching, hopping or swelling. No grafted parts, procedural strips or detached limbs. Canonical source proportions stay unchanged despite empty cell space.\nGenuine transparent alpha, clean dark matte game-art contours and readable shapes. No floor, ground shadow, text, grid, effects, particles, halo, colored fringe/specks, extra equipment or redesign.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-029-0-identity-detail.png"
+    ],
+    "repair_reason": "Deferred case, fresh whole-figure method preserving original subject and anatomy; if tool rejects, keep deferred."
+  },
+  {
+    "id": "MON-127-0",
+    "review_id": "WALK07-M23",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-127-0-cycle-bulk-deferred-r04.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-127-0-bulk-deferred-r04.txt",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation for existing identity MON-127-0.\nINPUT1 is the exact canonical APPEARANCE. Preserve anatomy, head/face, supports, all original appendages, materials, colors and proportions. Isolated colored fringe specks in the old export are not glow or anatomy.\nINPUT2 is ONLY an accepted WHOLE-FIGURE motion and layout guide. Do not copy its species, face, bulk, armor, colors, limbs or objects. Use compact supports and the same matte native64-readable game-art finish.\nSPECIFIC ANATOMY AND MOVEMENT: NO walking feet or legs. Preserve the skeletal hooded figure, original ivory skull/face, dark charcoal robe, ivory bands, two existing skeletal arms/hands and its long divided ragged lower cloth. The trailing strips stay cloth, never boots. Small coherent gliding/cloth movement, with constant standing height, face and proportions. No new staff, weapon, glowing eyes or aura. The single gray-covered arm remains viewerLEFT in BOTH near-front directions; the viewerRIGHT hand/arm stays pale skeletal. Show genuinely opposite front-left and front-right whole-figure orientations; do not mirror anatomical materials.\nOUTPUT EXACTLY FOURTEEN separate COMPLETE figures, exactly TWO ROWS of exactly SEVEN figures on a wide transparent atlas approximately1792x640. No extra rows, eighth column, labels or duplicates. Each whole figure occupies at most75percent of its cell WIDTH AND HEIGHT, all using the SAME scale. Generous transparent margins around every claw, spur, wing and tail; at least24px from the OUTER canvas edge. No figures touch and no appendages are clipped. Do not fill the cells.\nTOP ROW: ALL face screenLEFT in near-front three quarters, idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW: ALL face RIGHT, idle then R0,R1,R2,R3,R4,R5. Nose/beak, chest/front, feet/base all face the SAME direction together. No back view, pure profile, head-only reversal or direction changes inside a row. The two rows must have visibly different lateral orientations. A rearward-curving horn or crest does not define the facing direction: the FACE and chest do.\nSix motion poses form ONE full compact cycle, three phases on one grid cell and the next three on the next cell,400ms per cell. Real stable resting idle. Use actual source morphology, never a human gait for a legless form or extra arms on a bird.\nDraw EACH creature WHOLE and coherent. Constant apparent scale, mass, head size, anatomy and materials across all14 poses; restrained bob, no great split, stretching, hopping or swelling. No grafted parts, procedural strips or detached limbs. Canonical source proportions stay unchanged despite empty cell space.\nGenuine transparent alpha, clean dark matte game-art contours and readable shapes. No floor, ground shadow, text, grid, effects, particles, halo, colored fringe/specks, extra equipment or redesign.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-127-0-identity-detail.png"
+    ],
+    "repair_reason": "Deferred case, fresh whole-figure method preserving original subject and anatomy; if tool rejects, keep deferred."
+  },
+  {
+    "id": "MON-151-0",
+    "review_id": "WALK07-M44",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-151-0-cycle-bulk-deferred-r04.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-151-0-bulk-deferred-r04.txt",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation for existing identity MON-151-0.\nINPUT1 is the exact canonical APPEARANCE. Preserve anatomy, head/face, supports, all original appendages, materials, colors and proportions. Isolated colored fringe specks in the old export are not glow or anatomy.\nINPUT2 is ONLY an accepted WHOLE-FIGURE motion and layout guide. Do not copy its species, face, bulk, armor, colors, limbs or objects. Use compact supports and the same matte native64-readable game-art finish.\nSPECIFIC ANATOMY AND MOVEMENT: Exactly TWO walking legs, TWO muscular arms and TWO separate RED bat wings. Preserve the pale athletic body, ivory skull-like face, TWO original dark curved horns, dark waist cloth, dark feet and claws. CRITICAL ASYMMETRY: the SINGLE CHARCOAL BRACER covers ONLY the creature RIGHT forearm, seen on the VIEWER LEFT in INPUT1. It stays on that SAME anatomical arm in EVERY pose in BOTH near-front directions, remaining on viewer LEFT; the viewer RIGHT forearm stays PALE and uncovered. Never mirror the whole figure, swap the bracer, put it on both arms, remove it or turn just the head. Correct complete left-facing AND right-facing bodies, face/chest/knees/toes aligned together, compact grounded two-foot steps with restrained bob. Preserve the athletic torso and leg lengths; no purple skin, new tail, weapon or armor from INPUT2.\nOUTPUT EXACTLY FOURTEEN separate COMPLETE figures, exactly TWO ROWS of exactly SEVEN figures on a wide transparent atlas approximately1792x640. No extra rows, eighth column, labels or duplicates. Each whole figure occupies at most75percent of its cell WIDTH AND HEIGHT, all using the SAME scale. Generous transparent margins around every claw, spur, wing and tail; at least24px from the OUTER canvas edge. No figures touch and no appendages are clipped. Do not fill the cells.\nTOP ROW: ALL face screenLEFT in near-front three quarters, idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW: ALL face RIGHT, idle then R0,R1,R2,R3,R4,R5. Nose/beak, chest/front, feet/base all face the SAME direction together. No back view, pure profile, head-only reversal or direction changes inside a row. The two rows must have visibly different lateral orientations. A rearward-curving horn or crest does not define the facing direction: the FACE and chest do.\nSix motion poses form ONE full compact cycle, three phases on one grid cell and the next three on the next cell,400ms per cell. Real stable resting idle. Use actual source morphology, never a human gait for a legless form or extra arms on a bird.\nDraw EACH creature WHOLE and coherent. Constant apparent scale, mass, head size, anatomy and materials across all14 poses; restrained bob, no great split, stretching, hopping or swelling. No grafted parts, procedural strips or detached limbs. Canonical source proportions stay unchanged despite empty cell space.\nGenuine transparent alpha, clean dark matte game-art contours and readable shapes. No floor, ground shadow, text, grid, effects, particles, halo, colored fringe/specks, extra equipment or redesign.",
+    "references": [
+      "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-151-0-identity-detail.png"
+    ],
+    "repair_reason": "Deferred case, fresh whole-figure method preserving original subject and anatomy; if tool rejects, keep deferred."
+  }
+]

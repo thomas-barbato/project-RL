@@ -1,0 +1,101 @@
+{
+  "review_id": "ACTOR-READABILITY01-SELECTIVE-GRAY02",
+  "status": "browser_preview_verified",
+  "selected_options": [
+    "02",
+    "04",
+    "05"
+  ],
+  "selected_mask": 26,
+  "optional_ground_markers": true,
+  "optional_selective_grayscale": true,
+  "native_canvas": [
+    320,
+    256
+  ],
+  "logical_cell": 64,
+  "ground_markers_remain_colored": true,
+  "game_source_changes": false,
+  "runtime_integration": false,
+  "engine_execution": false,
+  "preserved_color_layers": [
+    "ground markers",
+    "animated spell effects"
+  ],
+  "grayscale_layers": [
+    "scene background",
+    "actor body and held equipment",
+    "contact shadows"
+  ],
+  "cases": [
+    {
+      "scene": "street",
+      "effect": "none",
+      "colored_pixels": 212,
+      "image": "artifacts/actor-readability-01/street-gray-none-02.png"
+    },
+    {
+      "scene": "street",
+      "effect": "burn",
+      "colored_pixels": 804,
+      "image": "artifacts/actor-readability-01/street-gray-burn-02.png"
+    },
+    {
+      "scene": "street",
+      "effect": "gel",
+      "colored_pixels": 1860,
+      "image": "artifacts/actor-readability-01/street-gray-gel-02.png"
+    },
+    {
+      "scene": "street",
+      "effect": "fireball",
+      "colored_pixels": 4449,
+      "image": "artifacts/actor-readability-01/street-gray-fireball-02.png"
+    },
+    {
+      "scene": "camp",
+      "effect": "none",
+      "colored_pixels": 212,
+      "image": "artifacts/actor-readability-01/camp-gray-none-02.png"
+    },
+    {
+      "scene": "camp",
+      "effect": "burn",
+      "colored_pixels": 803,
+      "image": "artifacts/actor-readability-01/camp-gray-burn-02.png"
+    },
+    {
+      "scene": "camp",
+      "effect": "gel",
+      "colored_pixels": 1860,
+      "image": "artifacts/actor-readability-01/camp-gray-gel-02.png"
+    },
+    {
+      "scene": "camp",
+      "effect": "fireball",
+      "colored_pixels": 4451,
+      "image": "artifacts/actor-readability-01/camp-gray-fireball-02.png"
+    }
+  ],
+  "markers_disabled_and_effects_off_all_channels_equal": true,
+  "original_baseline_unchanged_on_both_scenes": true,
+  "runtime_animation_atlases_copied_byte_exact": true,
+  "existing_animation_atlases": 5,
+  "bestiary_scope": {
+    "campaign_models": 129,
+    "campaign_appearances_including_material_palettes": 471,
+    "selected_shape_pilots": 3,
+    "remaining_campaign_models_for_shape_review": 126
+  },
+  "remaining_shape_design_work_is_not_claimed_complete": true,
+  "node_syntax_check": "passed",
+  "target_selection_verified": [
+    "Possédé blindé",
+    "Fendeur"
+  ],
+  "selective_gray_visual_acceptance": "requested behavior, revised preview not yet judged by user",
+  "selected_preset_09_and_grayscale_preset_10_verified": true,
+  "pause_resume_and_timeline_scrubbing_verified": true,
+  "browser_screenshot": "artifacts/actor-readability-01/browser-selective-gray-02.png",
+  "git_diff_check": "passed"
+}

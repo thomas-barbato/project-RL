@@ -1,0 +1,21 @@
+[
+  {
+    "id": "MON-148-0",
+    "destination": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-148-0-cycle-lot04-r02.png",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-148-0-cycle-lot04-r01.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-148-0-identity-detail.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-146-0-whole-body-native.png"
+    ],
+    "prompt": "Use case: identity-preserve. Repair the DIRECTIONS of a whole-creature game animation atlas.\nINPUT1 is the edit target, fourteen complete brown horned winged creatures. BOTH rows currently look RIGHT; this is the defect. INPUT2 is the exact brown canonical identity. INPUT3 shows the correct WHOLE-BODY near-front directions/layout: TOP seven face LEFT, BOTTOM seven RIGHT; its gold material is NOT the target.\nRedraw the entire TOP ROW coherently facing screenLEFT: the muzzle/nose must visibly project toward the LEFT side of the face, gaze LEFT, chest/body near-front left-three-quarter, knees and toes directed LEFT together. Do not rotate only the head. Keep the BOTTOM ROW coherent near-front RIGHT, muzzle visibly projecting RIGHT. These rows MUST visibly differ in direction. Show chest front and both shoulders in both rows, no profile or back.\nPreserve the same massive brown muscular body, dark beard/hair, large curved ivory horns, red-brown wing membranes, black waist cloth and lower legs, two arms, two legs, two wings. No gold color, no tail, no weapon, no new anatomy. Same body size and compact walking gait: each row idle then six walk phases, no large splits or bounce; whole figures drawn coherently.\nExactly TWO ROWS of SEVEN figures, FOURTEEN total, on the same wide transparent atlas. Constant scale across all figures, generous fully transparent margins around every whole body/horn/wing tip, at most75percent cell occupancy. No figures touching each other or an outer edge, no labels, ground, shadow, glow, colored fringe, effects or backdrop. Genuine alpha transparency."
+  },
+  {
+    "id": "MON-127-0",
+    "destination": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-127-0-cycle-lot04-r02.png",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-127-0-cycle-lot04-r01.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-127-0-identity-detail.png"
+    ],
+    "prompt": "Use case: identity-preserve. Correct asymmetric arm ownership and directions in this existing game-creature atlas.\nINPUT1 is the fourteen-pose edit target. INPUT2 is the exact canonical skeletal hooded spirit. Its large GRAY-COVERED FOREARM is on VIEWER LEFT and its bare skeletal hand/claw is on VIEWER RIGHT. Preserve these sides in BOTH near-front directional rows, attached to the same anatomical shoulders throughout the entire cycle. Do not mirror this asymmetry across the torso and do not turn the covered arm into a shield or new weapon.\nOUTPUT exactly TWO ROWS of SEVEN COMPLETE figures on a wide transparent atlas. TOP ROW seven near-front LEFT-facing figures, BOTTOM ROW seven near-front RIGHT-facing figures; each row idle then six small coherent gliding/cloth phases. Ivory skull face/gaze, hood and torso must point LEFT together in TOP and RIGHT together in BOTTOM, both shoulders and chest visible. Gray-covered arm still viewer LEFT and skeletal claw still viewer RIGHT in BOTH rows. Not a head-only rotation or grafted arm: redraw every figure as a complete coherent creature.\nKeep the canonical ivory skull, dark charcoal hood/robe, ivory diagonal bands, the existing gray arm covering and long divided ragged cloth. No walking legs or feet, no staff, extra objects, glowing eyes or aura. Constant height, body proportions, materials and size, restrained cloth drift only; no swelling, large bob or new gait.\nGenuine clean transparent alpha; leave generous transparent margins around every whole figure and every hand/cloth tip, no touching neighbors/outer edges. Same matte native64-readable finish. No labels, grid, floor, ground shadow, halos, colored specks, effects or text."
+  }
+]

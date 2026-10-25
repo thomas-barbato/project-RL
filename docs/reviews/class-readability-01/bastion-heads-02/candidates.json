@@ -1,0 +1,402 @@
+{
+  "review_id": "BASTION-W01-HEAD02",
+  "date": "2026-10-21",
+  "status": "accepted_visual_reference",
+  "scope": "Five default head appearances belonging to the torso armor models, not five new loot helmet items.",
+  "rule": "docs/reviews/class-readability-01/head-appearance-rule.json",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "BA-W01-H01-r01",
+      "label": "Très légère",
+      "body_candidate": "BA-W01-P01-r01",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-heads-02/BA-W01-H01-r01-overlay-source.png",
+      "source_sha256": "809c871cad1de6a41a1ca4ebbc407f289ace0f34e3a96e9bd4611cd4dc80a64f",
+      "native": "artifacts/class-armor-review-01/bastion-heads-02/BA-W01-H01-r01-assembled-native64.png",
+      "native_sha256": "d125a4e3c0f6dc06bfe291445951d64823f96bc32b9c0cc6f086b22420f83659",
+      "headgear_layer": "artifacts/class-armor-review-01/bastion-heads-02/BA-W01-H01-r01-overlay-native64.png",
+      "headgear_layer_sha256": "9e9083cb1d2380280149b47a96e22e6c9f4321c1578f54fe67e18e6cec338e74",
+      "approved_body_native": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-native64.png",
+      "body_region": [
+        0,
+        12,
+        64,
+        64
+      ],
+      "body_region_rgba_sha256": "5d36b8126864c5cb33eeb167c64c20838307390f6eaacbd6c360211ab9dc28b6",
+      "measurements": {
+        "source_core_box": [
+          420,
+          131,
+          1355,
+          649
+        ],
+        "source_crop": [
+          410,
+          121,
+          1365,
+          659
+        ],
+        "isotropic_scale": 0.007722007722007722,
+        "native_core_box": [
+          28,
+          3,
+          35,
+          7
+        ],
+        "placement": [
+          28,
+          3
+        ],
+        "head_only_region": [
+          0,
+          0,
+          64,
+          12
+        ],
+        "fit_preserves_source_aspect_ratio": true
+      },
+      "unoccluded_original_head_pixels": 42,
+      "head_occlusion_mask": "alpha channel of the explicit headgear overlay; base face is never redrawn",
+      "approved_native": {
+        "path": "assets/source-art/class-readability-01/bastion-heads-02/accepted/native64/BA-W01-H01-r01-assembled-native64.png",
+        "sha256": "d125a4e3c0f6dc06bfe291445951d64823f96bc32b9c0cc6f086b22420f83659"
+      },
+      "approved_headgear_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-heads-02/accepted/layers/BA-W01-H01-r01-overlay-native64.png",
+        "sha256": "9e9083cb1d2380280149b47a96e22e6c9f4321c1578f54fe67e18e6cec338e74"
+      }
+    },
+    {
+      "number": "02",
+      "candidate_id": "BA-W01-H02-r01",
+      "label": "Légère",
+      "body_candidate": "BA-W01-P02-r01",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-heads-02/BA-W01-H02-r01-overlay-source.png",
+      "source_sha256": "2cb2131bf74c8708d5eac0b8de195ffe3bd28a263dc9f26a88262e79d0d1ccbf",
+      "native": "artifacts/class-armor-review-01/bastion-heads-02/BA-W01-H02-r01-assembled-native64.png",
+      "native_sha256": "70e599e240f40f2048aa52da38af90f5bd8b0ac85f2d0912671ce3a95b89186e",
+      "headgear_layer": "artifacts/class-armor-review-01/bastion-heads-02/BA-W01-H02-r01-overlay-native64.png",
+      "headgear_layer_sha256": "c8befe1903dfff8698946b6236fe6e9b2eed0674de05b784819c5538eb2cfde2",
+      "approved_body_native": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-native64.png",
+      "body_region": [
+        0,
+        12,
+        64,
+        64
+      ],
+      "body_region_rgba_sha256": "5f609bb5054afb66172282c3953a1e104ed15e2ff34812cc8429533e59a4ede0",
+      "measurements": {
+        "source_core_box": [
+          154,
+          175,
+          1100,
+          964
+        ],
+        "source_crop": [
+          138,
+          159,
+          1116,
+          980
+        ],
+        "isotropic_scale": 0.010139416983523447,
+        "native_core_box": [
+          27,
+          4,
+          37,
+          12
+        ],
+        "placement": [
+          27,
+          4
+        ],
+        "head_only_region": [
+          0,
+          0,
+          64,
+          12
+        ],
+        "fit_preserves_source_aspect_ratio": true
+      },
+      "unoccluded_original_head_pixels": 8,
+      "head_occlusion_mask": "alpha channel of the explicit headgear overlay; base face is never redrawn",
+      "approved_native": {
+        "path": "assets/source-art/class-readability-01/bastion-heads-02/accepted/native64/BA-W01-H02-r01-assembled-native64.png",
+        "sha256": "70e599e240f40f2048aa52da38af90f5bd8b0ac85f2d0912671ce3a95b89186e"
+      },
+      "approved_headgear_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-heads-02/accepted/layers/BA-W01-H02-r01-overlay-native64.png",
+        "sha256": "c8befe1903dfff8698946b6236fe6e9b2eed0674de05b784819c5538eb2cfde2"
+      }
+    },
+    {
+      "number": "03",
+      "candidate_id": "BA-W01-H03-r01",
+      "label": "Intermédiaire",
+      "body_candidate": "BA-W01-P03-r01",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-heads-02/BA-W01-H03-r01-overlay-source.png",
+      "source_sha256": "1089a17ac8860f57eee10651ccc9c644925be3905c94bc205f59e8a09d4070c6",
+      "native": "artifacts/class-armor-review-01/bastion-heads-02/BA-W01-H03-r01-assembled-native64.png",
+      "native_sha256": "296361036f898304ef58ac3443175dd061c8da1d8f128e3492b46bde3104fc67",
+      "headgear_layer": "artifacts/class-armor-review-01/bastion-heads-02/BA-W01-H03-r01-overlay-native64.png",
+      "headgear_layer_sha256": "6da7d1b714a6bcc334a1d8d0f5e247b592a84ae83167aa519b8c9124e413cae1",
+      "approved_body_native": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-native64.png",
+      "body_region": [
+        0,
+        12,
+        64,
+        64
+      ],
+      "body_region_rgba_sha256": "090392aaa162fc33c59e411d8e478bffd2344a4f6d66e8c5511bedd0097de792",
+      "measurements": {
+        "source_core_box": [
+          126,
+          103,
+          1128,
+          1156
+        ],
+        "source_crop": [
+          105,
+          82,
+          1149,
+          1177
+        ],
+        "isotropic_scale": 0.00949667616334283,
+        "native_core_box": [
+          27,
+          2,
+          37,
+          12
+        ],
+        "placement": [
+          27,
+          2
+        ],
+        "head_only_region": [
+          0,
+          0,
+          64,
+          12
+        ],
+        "fit_preserves_source_aspect_ratio": true
+      },
+      "unoccluded_original_head_pixels": 10,
+      "head_occlusion_mask": "alpha channel of the explicit headgear overlay; base face is never redrawn",
+      "approved_native": {
+        "path": "assets/source-art/class-readability-01/bastion-heads-02/accepted/native64/BA-W01-H03-r01-assembled-native64.png",
+        "sha256": "296361036f898304ef58ac3443175dd061c8da1d8f128e3492b46bde3104fc67"
+      },
+      "approved_headgear_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-heads-02/accepted/layers/BA-W01-H03-r01-overlay-native64.png",
+        "sha256": "6da7d1b714a6bcc334a1d8d0f5e247b592a84ae83167aa519b8c9124e413cae1"
+      }
+    },
+    {
+      "number": "04",
+      "candidate_id": "BA-W01-H04-r01",
+      "label": "Lourde",
+      "body_candidate": "BA-W01-P04-r01",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-heads-02/BA-W01-H04-r01-overlay-source.png",
+      "source_sha256": "e0a4b80a430f1330e0d9683ce2be46188cc38459a4409e72a2c592dbf00b627a",
+      "native": "artifacts/class-armor-review-01/bastion-heads-02/BA-W01-H04-r01-assembled-native64.png",
+      "native_sha256": "936484135ed9f0367ec54f73e88ff6998c2b3b27b363a5ba5f6ef297a770118a",
+      "headgear_layer": "artifacts/class-armor-review-01/bastion-heads-02/BA-W01-H04-r01-overlay-native64.png",
+      "headgear_layer_sha256": "dd3a882e46efd078d165825d7e24772085ebc492e08c6bd1e724fa1117b35f78",
+      "approved_body_native": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-native64.png",
+      "body_region": [
+        0,
+        12,
+        64,
+        64
+      ],
+      "body_region_rgba_sha256": "e584fb7a414b4ae37a3de926296bb99ec60b0fbbc8cd0d5b9b25176a6be19eea",
+      "measurements": {
+        "source_core_box": [
+          92,
+          70,
+          1160,
+          1160
+        ],
+        "source_crop": [
+          70,
+          48,
+          1182,
+          1182
+        ],
+        "isotropic_scale": 0.011009174311926606,
+        "native_core_box": [
+          26,
+          1,
+          38,
+          12
+        ],
+        "placement": [
+          26,
+          1
+        ],
+        "head_only_region": [
+          0,
+          0,
+          64,
+          12
+        ],
+        "fit_preserves_source_aspect_ratio": true
+      },
+      "unoccluded_original_head_pixels": 1,
+      "head_occlusion_mask": "alpha channel of the explicit headgear overlay; base face is never redrawn",
+      "approved_native": {
+        "path": "assets/source-art/class-readability-01/bastion-heads-02/accepted/native64/BA-W01-H04-r01-assembled-native64.png",
+        "sha256": "936484135ed9f0367ec54f73e88ff6998c2b3b27b363a5ba5f6ef297a770118a"
+      },
+      "approved_headgear_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-heads-02/accepted/layers/BA-W01-H04-r01-overlay-native64.png",
+        "sha256": "dd3a882e46efd078d165825d7e24772085ebc492e08c6bd1e724fa1117b35f78"
+      }
+    },
+    {
+      "number": "05",
+      "candidate_id": "BA-W01-H05-r01",
+      "label": "Très lourde",
+      "body_candidate": "BA-W01-P05-r03",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-heads-02/BA-W01-H05-r01-overlay-source.png",
+      "source_sha256": "0f708aff830940b986f860da7e6ff7e90d5bd0c97a351df31d9fe1cdd63c75ea",
+      "native": "artifacts/class-armor-review-01/bastion-heads-02/BA-W01-H05-r01-assembled-native64.png",
+      "native_sha256": "ff88fe4e59f9587598924a74cda762fe37f688bd8987cbc33a2fff7944038f16",
+      "headgear_layer": "artifacts/class-armor-review-01/bastion-heads-02/BA-W01-H05-r01-overlay-native64.png",
+      "headgear_layer_sha256": "49d4f33f46ae3f4ec19e82b60239b759d5b17f384607ddebc8d3827fc892b5d9",
+      "approved_body_native": "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-native64.png",
+      "body_region": [
+        0,
+        12,
+        64,
+        64
+      ],
+      "body_region_rgba_sha256": "06d7d68860dae38c1f67f26582da7166c4b151169025c452433b331e9e4b5e6b",
+      "measurements": {
+        "source_core_box": [
+          144,
+          143,
+          1109,
+          1108
+        ],
+        "source_crop": [
+          125,
+          124,
+          1128,
+          1127
+        ],
+        "isotropic_scale": 0.012435233160621761,
+        "native_core_box": [
+          26,
+          1,
+          38,
+          12
+        ],
+        "placement": [
+          26,
+          1
+        ],
+        "head_only_region": [
+          0,
+          0,
+          64,
+          12
+        ],
+        "fit_preserves_source_aspect_ratio": true
+      },
+      "unoccluded_original_head_pixels": 0,
+      "head_occlusion_mask": "alpha channel of the explicit headgear overlay; base face is never redrawn",
+      "approved_native": {
+        "path": "assets/source-art/class-readability-01/bastion-heads-02/accepted/native64/BA-W01-H05-r01-assembled-native64.png",
+        "sha256": "ff88fe4e59f9587598924a74cda762fe37f688bd8987cbc33a2fff7944038f16"
+      },
+      "approved_headgear_layer": {
+        "path": "assets/source-art/class-readability-01/bastion-heads-02/accepted/layers/BA-W01-H05-r01-overlay-native64.png",
+        "sha256": "49d4f33f46ae3f4ec19e82b60239b759d5b17f384607ddebc8d3827fc892b5d9"
+      }
+    }
+  ],
+  "color_variants_generated": 0,
+  "runtime_integration": false,
+  "checks": {
+    "accepted_body_pixels_preserved_below_y": 12,
+    "original_base_face_preserved_outside_explicit_overlay_occlusion": true,
+    "helmet_override_uses_override_instead_of_default_overlay": true,
+    "removing_override_restores_default_exact_rgba": true,
+    "all_accepted_bastion_files_preserved": {
+      "docs/reviews/class-readability-01/bastion-wave-01/acceptance.json": "77470478b0b1cb51d39fcf1ff83018823a5c927130be3821dd470236d02080ae",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-native64.png": "c9f6ae4d10ac7144d625ca134fdf19129d41aab09fafb0d694fb164539373230",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-body-native64.png": "6876ed1168fa1e2aceddfb70a5712586470a02b826c340cee41feb64410fd6aa",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-body-source.png": "50b401163794ac4b643e54340e825c0ec0ccdf3906d244bc50d124db406a0ccc",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-red-native64.png": "0e05bf6c9717c6d05d33839055ff7f7674ab0f31172c3fe04425e8f3f9b8031e",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-red-body-native64.png": "61dcc7065132b8909b982d96cf765b5bce2c37df76875e03000bc91733b4e326",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-red-body-source.png": "6e1cacd39eb98e88d1db39187d6ec0cc18f1cc1eeb0cfd8bcfeba461de7bfc86",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-blue-native64.png": "e69bc7d84ac2b868f0cfa533318fbb52808b0d9b8e2038040f6b9935e1d7a46b",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-blue-body-native64.png": "ea1555e20efd201442f605a9ae9c32bc5d1a76a6df02a832ba90260c86fa7a65",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-blue-body-source.png": "08eeed0ab250cd10bb6cfa86dd046aff020888923502c4303d1984bb8470772d",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P01-r01-green-native64.png": "4e3e376cbfd6b1f087aadd13d0c83bb7251f3832a25bb217891fc3a20f54cf5b",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P01-r01-green-body-native64.png": "268b8ac15eff5f09a43c9a2d0c82bc069acfa2254afd1f44555d0607e4224590",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P01-r01-green-body-source.png": "bd7cd4ccda894ec6bc161528b8ac567221f6d49031ab2827af0bfb51459d2725",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-native64.png": "ecaee4722c0b2509d59df2f59683d59b539fb1b1db41b0c4458b2aa7ae424ddf",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-body-native64.png": "4056207268ef40e14b75271999f2628f44b01516f10d53b9b3e3dc340327865a",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-body-source.png": "75537643342fd3a47529f7b8958aa7bdbe592f4a61a294cde3038f427ceb23ae",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-red-native64.png": "89e990816690533beea9ade7b1fcd14f0459f128b3a120aeb7740b62373a2652",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-red-body-native64.png": "35f3ad43689f7428075cde76d06ec60a2aaedf3e0b91da1cb66ff9e36199de06",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-red-body-source.png": "8f9dd1a3cb91b908bdd4d899cd58e7f379886fae9cf365229f65a6f80be29a34",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-blue-native64.png": "0e6291faa24695cb5dbaa6f71a38f031628a1978abdeaa49adf9cc44a148b819",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-blue-body-native64.png": "4c35f91f908ccc210d20735a0a22c564c7fa3b2d937182d3cdfb7747958ca0c4",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-blue-body-source.png": "2dbecc114d86bddf18a26316a954c807c35f9197207506aeabaf529f9f239455",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P02-r01-green-native64.png": "98f784fcdbfb3afd7554d14ba8dab37943febcd3bc9882a3e6660fd62fb1757b",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P02-r01-green-body-native64.png": "d616b6d150d0646922508ebf726456c8f0690f0f46e8d352be36309979fc3a79",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P02-r01-green-body-source.png": "e2dba3ed6ab22a691521c6c628abefb21653a1f89e226207db5fbcf696acaa07",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-native64.png": "4e367b2c303d34c4e6f9c867faf12783ff92e1d0b8b49bc226d060f0f7dfd1a0",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-body-native64.png": "9c49cf2126e25b5d62957432b0095e8918db1505473ac459c5f73888e3a590fb",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-body-source.png": "d31fff7c909094d094908f2ec231c3529ba449f4eb3aea88037fab5039753804",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-red-native64.png": "c17b23b89e570951a5191e4846358265167e2af84e4ec4637f04798963bb7fa8",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-red-body-native64.png": "0644d6523e6b7f53a96e8a5671df12fdab57518e6c743a1ff8d7a8db4d6b51e3",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-red-body-source.png": "a68d1ef1e9f5e0723db94077ec902c52e63aeba8b8adc380af1c270c1081c909",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-blue-native64.png": "a315578571ee09f2b69ba07de53318962ad85062a96de83c8bc01517aeea0cf3",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-blue-body-native64.png": "f368146341eb4aea65da47065302426082bb41401357f83622a2070124f94699",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-blue-body-source.png": "7bc9b6ae6ca1ba07e62496890b6e2f8abb12e6d152b343516febef5a7d460671",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P03-r01-green-native64.png": "1f78510889f800bee821182cf819c3cd38f03f48bcb9a2fd4cc9588e649c5088",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P03-r01-green-body-native64.png": "9c2c0922a2b97f0edaba4c865979f3e16e968911906423130e8d7e0096376df3",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P03-r01-green-body-source.png": "43b70d895514ce29ba80d82ade9e98a446003f1378f55e0df44720803e932c6b",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-native64.png": "09dded45d483e7d16f8b6d6517c052668c4ccb2b36d02498b47e3fddb820f805",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-body-native64.png": "0a54de2ebb169759a624ffb2237452ea63981150c024d68ad23210ecba788f36",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-body-source.png": "b86306a8910215debe3dc55ab205c3e2e3b310f47a4366b67b03b8e870929578",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-red-native64.png": "83e80e7f741593f222be801687da29a5e38e27893eff78207fde28cce7ebe005",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-red-body-native64.png": "8a3ac4c49f385ac41a90fe72f283718b23a9a0a28c19dab1221ed1b85ae4f709",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-red-body-source.png": "51a65d685f09acee176c427ba20178e4163b746ca631fd13d411b66450643579",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-blue-native64.png": "e527f29b1afb7bb0ac29a717fd3027217078cb122bdd320f7e0ca871478865e0",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-blue-body-native64.png": "86c28ff4a642a2a9886f97485e872f1507a978b735991fcc49f7478ea3569d06",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-blue-body-source.png": "f7f1035bd46294ac3d5e66be3e94a8ae16bdd5e67fe09e2a62b6ae6894988895",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P04-r01-green-native64.png": "b395308ce6f13d4fcba24c9c3ca2b30b47245208de38d780ef2b8a13d7aa8e90",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P04-r01-green-body-native64.png": "e79dde648beb3d08b392c56cbd4545ebc946a99e3b0e37ab9e88a5a17db5a40a",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P04-r01-green-body-source.png": "c10d69092c9f9ab4645734eee2a162ab903cf57b8a76bfacb389ec4af3fc2206",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-native64.png": "a81d15d0f0c403f6003f703fa2dc9db148c8cb6186e56475c6e1e9e7ba7286a4",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-body-native64.png": "6e2fe2e2c1d83c34015b8a9027aeb6d92d8554b40936b47c9a37c960624905ba",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png": "807794756fa2c01151569c1cd3ae82aeb51dfb800e06df7259771cff604371dd",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-red-native64.png": "0a5bf7e1b26e13893094cc33f3365a65439cc4bb01b944ff816410f51b9606c2",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-red-body-native64.png": "e56b25c0e07a3f601f562cb020efafc78b6cb1b805d5b2613cd6237b825c8437",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-red-body-source.png": "d463f343af2f2f1e34c93dfeea8fe38004715484e31ff0be511e3489ccb39804",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-blue-native64.png": "0b116897704858ce07232040d0c2e7769b725bf70bf4a8a7f62078344e23697c",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-blue-body-native64.png": "902544525445dd2dab6d16bf2311b2ad56f7571392922c394c988efc912dfc66",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-blue-body-source.png": "a79f3cfe6a8ebad7a37be4b27f5b89e95b5f7116c1811d4813118f999f929f3e",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/native64/BA-W01-P05-r03-green-native64.png": "980ba7085a69869589237bca5d94248eb6a0f3e6ec7eef6c8e559c3b914a9d6b",
+      "assets/source-art/class-readability-01/bastion-wave-01/accepted/layers/BA-W01-P05-r03-green-body-native64.png": "f9757f560c960a47ecc72e938bc003626fe1f39905743ce45e8197d8d51c9842",
+      "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-green-body-source.png": "e404ffc46869ada2a292a0a0053a1cb0f585cf0137fe9ee44a02cf9c73485092"
+    },
+    "scene_is_montage_not_engine_validation": true
+  },
+  "override_demo": "Protection 05 reused purely to illustrate the visual priority rule; no independent helmet item or gameplay rule is created.",
+  "acceptance": "docs/reviews/class-readability-01/bastion-heads-02/acceptance.json"
+}

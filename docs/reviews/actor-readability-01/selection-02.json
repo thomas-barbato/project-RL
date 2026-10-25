@@ -1,0 +1,67 @@
+{
+  "review_id": "ACTOR-READABILITY01-SELECTION02",
+  "date": "2026-10-22",
+  "user_message": "J'aime bien : Repère au sol (mais il faudra que ce soit désactivable dans les options), Silhouettes eclaircies, Nouvelles formes de monstres, Niveau de gris (mais ca devrait être une option à activer ou non) qui permettrait de laisser seulement les sorts et les animations en couleurs.",
+  "followup_user_message": "il faudra faire la meme chose pour tous les monstres du coup : )",
+  "grayscale_marker_correction_user_message": "(en nuances de gris, les repères devraient etre en couleur quand meme :) . )",
+  "selected_existing_preview_options": [
+    "02",
+    "04",
+    "05"
+  ],
+  "selected_existing_monster_candidates": [
+    "VIS05-A",
+    "VIS05-B",
+    "VIS05-C"
+  ],
+  "not_selected_options": [
+    "01",
+    "03"
+  ],
+  "requested_global_scope": "Entire bestiary, including visual variants: brighter actors and more legible distinct monster forms. The three studies establish the direction; unseen drawings still require numbered native review.",
+  "ground_markers": {
+    "requested_option": true,
+    "approved_preview": "Arc under the player and selected visible monster",
+    "proposed_menu_label": "Repères au sol",
+    "proposed_default": true
+  },
+  "grayscale": {
+    "requested_option": true,
+    "requested_behavior": "World and actors grayscale; ground markers, spells and animated effects remain colored",
+    "previous_preview_limitation": "Desaturated the whole final image",
+    "revised_candidate": "10",
+    "revised_candidate_reviewed_by_user": false,
+    "proposed_menu_label": "Monde en niveaux de gris",
+    "proposed_default": false,
+    "ground_markers_also_grayscale": false,
+    "ui_hud_not_part_of_world_filter": true
+  },
+  "runtime_integration": false,
+  "scope_note": "This record preserves the selection and requested bestiary scope. It does not mark unseen monster designs, revised selective grayscale, defaults or proposed UI labels as visually accepted.",
+  "selected_pixel_references": [
+    {
+      "id": "VIS05-A",
+      "number": 7,
+      "candidate_native": "assets/source-art/actor-readability-01/VIS05-A-native128.png",
+      "candidate_native_sha256": "488e2ca8e6609363af76a50011d2e1b0bc5383c3bd176f412bf1c326c5e1ea76",
+      "new_source": "assets/source-art/actor-readability-01/VIS05-A-source.png",
+      "new_source_sha256": "dd0382d85f276ed0c3a3857cccf3791947eda696162279adaa1551c3aa0a2ddb"
+    },
+    {
+      "id": "VIS05-B",
+      "number": 8,
+      "candidate_native": "assets/source-art/actor-readability-01/VIS05-B-native128.png",
+      "candidate_native_sha256": "e2470e0cb0d84eef9ef4467326906365f0dba60a67fd5de474e3e4cf768d3df7",
+      "new_source": "assets/source-art/actor-readability-01/VIS05-B-source.png",
+      "new_source_sha256": "31cb0b51e0dec6db4650fa95c5524e61f6dcb7014fa21f3923881761140fc1e2"
+    },
+    {
+      "id": "VIS05-C",
+      "number": 10,
+      "candidate_native": "assets/source-art/actor-readability-01/VIS05-C-native128.png",
+      "candidate_native_sha256": "99cc29ecf756d0b339b470a8af478cc4f8b4320ba65c39dd867a38571d92315d",
+      "new_source": "assets/source-art/actor-readability-01/VIS05-C-source.png",
+      "new_source_sha256": "e3bc6fc074311650fc04229e4ac753a37ced77e89d3ec6f3f33647ead13c81d5"
+    }
+  ]
+}

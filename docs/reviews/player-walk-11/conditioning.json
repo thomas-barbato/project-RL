@@ -1,0 +1,6257 @@
+{
+  "status": "preview_only",
+  "normal_game_changed": false,
+  "entries": [
+    {
+      "id": "CLASS-00-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-00-left-proportions-r01.png",
+      "source_sha256": "bb3b8389f2b56f166bac7be1012ee5c7db96963198ab9faa7202cf4d44837ac6",
+      "front": {
+        "bounds": [
+          47,
+          36,
+          80,
+          94
+        ],
+        "height": 58,
+        "width": 33,
+        "opaque_area": 1081,
+        "upper_body_mean_occupied_width": 26.94
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.15977961432506887,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1175,
+          "upper_body_mean_occupied_width": 25.12,
+          "upper_body_width_ratio": 0.932
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15833333333333333,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 1013,
+          "upper_body_mean_occupied_width": 24.31,
+          "upper_body_width_ratio": 0.902
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.1615598885793872,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1054,
+          "upper_body_mean_occupied_width": 24.81,
+          "upper_body_width_ratio": 0.921
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.15877437325905291,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 1036,
+          "upper_body_mean_occupied_width": 24.5,
+          "upper_body_width_ratio": 0.909
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.16193181818181818,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 1044,
+          "upper_body_mean_occupied_width": 25.75,
+          "upper_body_width_ratio": 0.956
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1638418079096045,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 1103,
+          "upper_body_mean_occupied_width": 25.62,
+          "upper_body_width_ratio": 0.951
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.16147308781869688,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 1024,
+          "upper_body_mean_occupied_width": 25.06,
+          "upper_body_width_ratio": 0.93
+        }
+      ]
+    },
+    {
+      "id": "CLASS-00-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-00-right-proportions-r01.png",
+      "source_sha256": "d1e0841ab776537786f957e936789edc773f7ca6ab2bf2a1d9afe81a671e131c",
+      "front": {
+        "bounds": [
+          47,
+          36,
+          80,
+          94
+        ],
+        "height": 58,
+        "width": 33,
+        "opaque_area": 1081,
+        "upper_body_mean_occupied_width": 26.94
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.15977961432506887,
+          "bounds": [
+            49,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 30,
+          "opaque_area": 1103,
+          "upper_body_mean_occupied_width": 24.0,
+          "upper_body_width_ratio": 0.891
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.1574585635359116,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 977,
+          "upper_body_mean_occupied_width": 24.12,
+          "upper_body_width_ratio": 0.895
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.16022099447513813,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 1039,
+          "upper_body_mean_occupied_width": 25.44,
+          "upper_body_width_ratio": 0.944
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.1574585635359116,
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 1003,
+          "upper_body_mean_occupied_width": 25.19,
+          "upper_body_width_ratio": 0.935
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15921787709497207,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 981,
+          "upper_body_mean_occupied_width": 24.69,
+          "upper_body_width_ratio": 0.916
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16201117318435754,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 1003,
+          "upper_body_mean_occupied_width": 25.19,
+          "upper_body_width_ratio": 0.935
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.15921787709497207,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 999,
+          "upper_body_mean_occupied_width": 24.75,
+          "upper_body_width_ratio": 0.919
+        }
+      ]
+    },
+    {
+      "id": "CLASS-01-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-01-left-proportions-r01.png",
+      "source_sha256": "b2548eb4fc5be8d9a2eaa21da797532a3498fbb11758b8d36182da8ec3bc0238",
+      "front": {
+        "bounds": [
+          48,
+          36,
+          80,
+          94
+        ],
+        "height": 58,
+        "width": 32,
+        "opaque_area": 1125,
+        "upper_body_mean_occupied_width": 27.5
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.15977961432506887,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1186,
+          "upper_body_mean_occupied_width": 26.62,
+          "upper_body_width_ratio": 0.968
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.1553133514986376,
+          "bounds": [
+            49,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 30,
+          "opaque_area": 974,
+          "upper_body_mean_occupied_width": 25.25,
+          "upper_body_width_ratio": 0.918
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15846994535519127,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1058,
+          "upper_body_mean_occupied_width": 26.56,
+          "upper_body_width_ratio": 0.966
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.1557377049180328,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 1008,
+          "upper_body_mean_occupied_width": 25.75,
+          "upper_body_width_ratio": 0.936
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15616438356164383,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 1052,
+          "upper_body_mean_occupied_width": 26.44,
+          "upper_body_width_ratio": 0.961
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16066481994459833,
+          "bounds": [
+            47,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 34,
+          "opaque_area": 1074,
+          "upper_body_mean_occupied_width": 27.75,
+          "upper_body_width_ratio": 1.009
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1574585635359116,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1047,
+          "upper_body_mean_occupied_width": 26.88,
+          "upper_body_width_ratio": 0.977
+        }
+      ]
+    },
+    {
+      "id": "CLASS-01-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-01-right-proportions-r01.png",
+      "source_sha256": "da0ff73a3acdd17f547066fedd58a17e271d85ebbef16ab8897b961027a18d48",
+      "front": {
+        "bounds": [
+          48,
+          36,
+          80,
+          94
+        ],
+        "height": 58,
+        "width": 32,
+        "opaque_area": 1125,
+        "upper_body_mean_occupied_width": 27.5
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.15104166666666666,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 1249,
+          "upper_body_mean_occupied_width": 27.75,
+          "upper_body_width_ratio": 1.009
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15079365079365079,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1116,
+          "upper_body_mean_occupied_width": 28.88,
+          "upper_body_width_ratio": 1.05
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15384615384615385,
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1137,
+          "upper_body_mean_occupied_width": 28.94,
+          "upper_body_width_ratio": 1.052
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.15240641711229946,
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1167,
+          "upper_body_mean_occupied_width": 29.19,
+          "upper_body_width_ratio": 1.061
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15281501340482573,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1106,
+          "upper_body_mean_occupied_width": 29.06,
+          "upper_body_width_ratio": 1.057
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.15803814713896458,
+          "bounds": [
+            46,
+            37,
+            82,
+            96
+          ],
+          "height": 59,
+          "width": 36,
+          "opaque_area": 1184,
+          "upper_body_mean_occupied_width": 29.81,
+          "upper_body_width_ratio": 1.084
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1553133514986376,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1136,
+          "upper_body_mean_occupied_width": 29.12,
+          "upper_body_width_ratio": 1.059
+        }
+      ]
+    },
+    {
+      "id": "CLASS-02-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-02-left-proportions-r01.png",
+      "source_sha256": "7bcdb6a0757911abcf4c300dd31bb9e09d1be22c27b105fc92f624a48c599a13",
+      "front": {
+        "bounds": [
+          47,
+          36,
+          81,
+          94
+        ],
+        "height": 58,
+        "width": 34,
+        "opaque_area": 1157,
+        "upper_body_mean_occupied_width": 28.75
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.15977961432506887,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 1236,
+          "upper_body_mean_occupied_width": 26.94,
+          "upper_body_width_ratio": 0.937
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15702479338842976,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1035,
+          "upper_body_mean_occupied_width": 26.81,
+          "upper_body_width_ratio": 0.933
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15977961432506887,
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1120,
+          "upper_body_mean_occupied_width": 27.88,
+          "upper_body_width_ratio": 0.97
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.15833333333333333,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1054,
+          "upper_body_mean_occupied_width": 27.25,
+          "upper_body_width_ratio": 0.948
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15833333333333333,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1053,
+          "upper_body_mean_occupied_width": 27.81,
+          "upper_body_width_ratio": 0.967
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16111111111111112,
+          "bounds": [
+            46,
+            37,
+            82,
+            96
+          ],
+          "height": 59,
+          "width": 36,
+          "opaque_area": 1120,
+          "upper_body_mean_occupied_width": 28.38,
+          "upper_body_width_ratio": 0.987
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.15833333333333333,
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1083,
+          "upper_body_mean_occupied_width": 29.0,
+          "upper_body_width_ratio": 1.009
+        }
+      ]
+    },
+    {
+      "id": "CLASS-02-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-02-right-proportions-r01.png",
+      "source_sha256": "c6b321873f0d38060b21b1fbf804e27e832d5842deae4b2e138cead1ce4f1bd2",
+      "front": {
+        "bounds": [
+          47,
+          36,
+          81,
+          94
+        ],
+        "height": 58,
+        "width": 34,
+        "opaque_area": 1157,
+        "upper_body_mean_occupied_width": 28.75
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.15675675675675677,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 1264,
+          "upper_body_mean_occupied_width": 28.0,
+          "upper_body_width_ratio": 0.974
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15447154471544716,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1107,
+          "upper_body_mean_occupied_width": 27.56,
+          "upper_body_width_ratio": 0.959
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15675675675675677,
+          "bounds": [
+            47,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 34,
+          "opaque_area": 1188,
+          "upper_body_mean_occupied_width": 27.56,
+          "upper_body_width_ratio": 0.959
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.1532258064516129,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1114,
+          "upper_body_mean_occupied_width": 26.38,
+          "upper_body_width_ratio": 0.918
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1574585635359116,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1177,
+          "upper_body_mean_occupied_width": 28.88,
+          "upper_body_width_ratio": 1.005
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16066481994459833,
+          "bounds": [
+            46,
+            37,
+            82,
+            96
+          ],
+          "height": 59,
+          "width": 36,
+          "opaque_area": 1175,
+          "upper_body_mean_occupied_width": 29.44,
+          "upper_body_width_ratio": 1.024
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1574585635359116,
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1191,
+          "upper_body_mean_occupied_width": 29.31,
+          "upper_body_width_ratio": 1.019
+        }
+      ]
+    },
+    {
+      "id": "CLASS-03-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-03-left-proportions-r01.png",
+      "source_sha256": "170867894d0e0f3a78cd7ff2d17cf6e7ff6ca0eaad926a9c5d31b4225965468a",
+      "front": {
+        "bounds": [
+          46,
+          36,
+          82,
+          94
+        ],
+        "height": 58,
+        "width": 36,
+        "opaque_area": 1303,
+        "upper_body_mean_occupied_width": 31.5
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.16111111111111112,
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1339,
+          "upper_body_mean_occupied_width": 30.75,
+          "upper_body_width_ratio": 0.976
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15789473684210525,
+          "bounds": [
+            45,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 38,
+          "opaque_area": 1171,
+          "upper_body_mean_occupied_width": 30.81,
+          "upper_body_width_ratio": 0.978
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.16066481994459833,
+          "bounds": [
+            44,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 39,
+          "opaque_area": 1254,
+          "upper_body_mean_occupied_width": 31.19,
+          "upper_body_width_ratio": 0.99
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.15789473684210525,
+          "bounds": [
+            46,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 37,
+          "opaque_area": 1234,
+          "upper_body_mean_occupied_width": 31.06,
+          "upper_body_width_ratio": 0.986
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15833333333333333,
+          "bounds": [
+            45,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 38,
+          "opaque_area": 1215,
+          "upper_body_mean_occupied_width": 31.12,
+          "upper_body_width_ratio": 0.988
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16111111111111112,
+          "bounds": [
+            44,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 39,
+          "opaque_area": 1243,
+          "upper_body_mean_occupied_width": 31.56,
+          "upper_body_width_ratio": 1.002
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1574585635359116,
+          "bounds": [
+            45,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 38,
+          "opaque_area": 1177,
+          "upper_body_mean_occupied_width": 30.94,
+          "upper_body_width_ratio": 0.982
+        }
+      ]
+    },
+    {
+      "id": "CLASS-03-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-03-right-proportions-r01.png",
+      "source_sha256": "c0a4e256d9aeb02960c1081fa64afbed00f49ee1b8673f173c2a05703ec50982",
+      "front": {
+        "bounds": [
+          46,
+          36,
+          82,
+          94
+        ],
+        "height": 58,
+        "width": 36,
+        "opaque_area": 1303,
+        "upper_body_mean_occupied_width": 31.5
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1643059490084986,
+          "bounds": [
+            46,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 37,
+          "opaque_area": 1394,
+          "upper_body_mean_occupied_width": 30.75,
+          "upper_body_width_ratio": 0.976
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.16101694915254236,
+          "bounds": [
+            46,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 37,
+          "opaque_area": 1210,
+          "upper_body_mean_occupied_width": 30.5,
+          "upper_body_width_ratio": 0.968
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.16338028169014085,
+          "bounds": [
+            46,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 37,
+          "opaque_area": 1240,
+          "upper_body_mean_occupied_width": 30.62,
+          "upper_body_width_ratio": 0.972
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.16056338028169015,
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1178,
+          "upper_body_mean_occupied_width": 29.75,
+          "upper_body_width_ratio": 0.944
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.16147308781869688,
+          "bounds": [
+            46,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 37,
+          "opaque_area": 1208,
+          "upper_body_mean_occupied_width": 30.81,
+          "upper_body_width_ratio": 0.978
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1643059490084986,
+          "bounds": [
+            46,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 37,
+          "opaque_area": 1213,
+          "upper_body_mean_occupied_width": 31.0,
+          "upper_body_width_ratio": 0.984
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.16147308781869688,
+          "bounds": [
+            46,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 37,
+          "opaque_area": 1220,
+          "upper_body_mean_occupied_width": 30.56,
+          "upper_body_width_ratio": 0.97
+        }
+      ]
+    },
+    {
+      "id": "CLASS-04-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-04-left-proportions-r01.png",
+      "source_sha256": "e52c15e69a04aebcb73c39ad995e835d6a156178c3eb5d3eb54bced3f12e3193",
+      "front": {
+        "bounds": [
+          43,
+          36,
+          85,
+          94
+        ],
+        "height": 58,
+        "width": 42,
+        "opaque_area": 1606,
+        "upper_body_mean_occupied_width": 38.19
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.16292134831460675,
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1355,
+          "upper_body_mean_occupied_width": 30.69,
+          "upper_body_width_ratio": 0.804
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.1601123595505618,
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1188,
+          "upper_body_mean_occupied_width": 30.81,
+          "upper_body_width_ratio": 0.807
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.16201117318435754,
+          "bounds": [
+            46,
+            37,
+            82,
+            96
+          ],
+          "height": 59,
+          "width": 36,
+          "opaque_area": 1216,
+          "upper_body_mean_occupied_width": 30.88,
+          "upper_body_width_ratio": 0.809
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.15921787709497207,
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1155,
+          "upper_body_mean_occupied_width": 30.75,
+          "upper_body_width_ratio": 0.805
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.16193181818181818,
+          "bounds": [
+            45,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 38,
+          "opaque_area": 1204,
+          "upper_body_mean_occupied_width": 32.25,
+          "upper_body_width_ratio": 0.844
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16477272727272727,
+          "bounds": [
+            45,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 38,
+          "opaque_area": 1262,
+          "upper_body_mean_occupied_width": 32.44,
+          "upper_body_width_ratio": 0.849
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.16193181818181818,
+          "bounds": [
+            46,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 37,
+          "opaque_area": 1188,
+          "upper_body_mean_occupied_width": 31.62,
+          "upper_body_width_ratio": 0.828
+        }
+      ]
+    },
+    {
+      "id": "CLASS-04-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-04-right-proportions-r01.png",
+      "source_sha256": "7add2ed8af8af3835dbbd633518b185992b24db1d7899a66bbc05189c7694bc0",
+      "front": {
+        "bounds": [
+          43,
+          36,
+          85,
+          94
+        ],
+        "height": 58,
+        "width": 42,
+        "opaque_area": 1606,
+        "upper_body_mean_occupied_width": 38.19
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1638418079096045,
+          "bounds": [
+            46,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 37,
+          "opaque_area": 1493,
+          "upper_body_mean_occupied_width": 32.69,
+          "upper_body_width_ratio": 0.856
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15921787709497207,
+          "bounds": [
+            44,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 39,
+          "opaque_area": 1279,
+          "upper_body_mean_occupied_width": 33.62,
+          "upper_body_width_ratio": 0.88
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.16246498599439776,
+          "bounds": [
+            44,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 39,
+          "opaque_area": 1404,
+          "upper_body_mean_occupied_width": 34.44,
+          "upper_body_width_ratio": 0.902
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.1601123595505618,
+          "bounds": [
+            44,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 39,
+          "opaque_area": 1306,
+          "upper_body_mean_occupied_width": 33.56,
+          "upper_body_width_ratio": 0.879
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15966386554621848,
+          "bounds": [
+            44,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 39,
+          "opaque_area": 1329,
+          "upper_body_mean_occupied_width": 34.0,
+          "upper_body_width_ratio": 0.89
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16246498599439776,
+          "bounds": [
+            44,
+            37,
+            84,
+            96
+          ],
+          "height": 59,
+          "width": 40,
+          "opaque_area": 1356,
+          "upper_body_mean_occupied_width": 34.12,
+          "upper_body_width_ratio": 0.893
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1601123595505618,
+          "bounds": [
+            44,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 39,
+          "opaque_area": 1328,
+          "upper_body_mean_occupied_width": 33.69,
+          "upper_body_width_ratio": 0.882
+        }
+      ]
+    },
+    {
+      "id": "CLASS-05-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-05-left-proportions-r02.png",
+      "source_sha256": "c2454df77953ba6cd02b921f5f9f6456507df629d5428e83c9080c138674ba38",
+      "front": {
+        "bounds": [
+          50,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 28,
+        "opaque_area": 644,
+        "upper_body_mean_occupied_width": 15.62
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14646464646464646,
+          "bounds": [
+            52,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 25,
+          "opaque_area": 731,
+          "upper_body_mean_occupied_width": 15.94,
+          "upper_body_width_ratio": 1.02
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14540816326530612,
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 698,
+          "upper_body_mean_occupied_width": 16.38,
+          "upper_body_width_ratio": 1.049
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14871794871794872,
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 742,
+          "upper_body_mean_occupied_width": 17.12,
+          "upper_body_width_ratio": 1.096
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14615384615384616,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 704,
+          "upper_body_mean_occupied_width": 16.19,
+          "upper_body_width_ratio": 1.036
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.152,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 716,
+          "upper_body_mean_occupied_width": 16.06,
+          "upper_body_width_ratio": 1.028
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.15508021390374332,
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 742,
+          "upper_body_mean_occupied_width": 16.94,
+          "upper_body_width_ratio": 1.085
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.15281501340482573,
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 728,
+          "upper_body_mean_occupied_width": 16.38,
+          "upper_body_width_ratio": 1.049
+        }
+      ]
+    },
+    {
+      "id": "CLASS-05-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-05-right-proportions-r01.png",
+      "source_sha256": "abdcb6a0a58fed381dee60437572b804bbc53ba54aa92641e2a5b34d51e67d19",
+      "front": {
+        "bounds": [
+          50,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 28,
+        "opaque_area": 644,
+        "upper_body_mean_occupied_width": 15.62
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14948453608247422,
+          "bounds": [
+            52,
+            37,
+            76,
+            96
+          ],
+          "height": 59,
+          "width": 24,
+          "opaque_area": 837,
+          "upper_body_mean_occupied_width": 17.12,
+          "upper_body_width_ratio": 1.096
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14728682170542637,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 765,
+          "upper_body_mean_occupied_width": 17.81,
+          "upper_body_width_ratio": 1.14
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14987080103359174,
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 805,
+          "upper_body_mean_occupied_width": 18.38,
+          "upper_body_width_ratio": 1.177
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14728682170542637,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 796,
+          "upper_body_mean_occupied_width": 18.81,
+          "upper_body_width_ratio": 1.204
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1484375,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 777,
+          "upper_body_mean_occupied_width": 19.69,
+          "upper_body_width_ratio": 1.261
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.15025906735751296,
+          "bounds": [
+            50,
+            37,
+            78,
+            96
+          ],
+          "height": 59,
+          "width": 28,
+          "opaque_area": 780,
+          "upper_body_mean_occupied_width": 20.62,
+          "upper_body_width_ratio": 1.32
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14728682170542637,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 784,
+          "upper_body_mean_occupied_width": 19.81,
+          "upper_body_width_ratio": 1.268
+        }
+      ]
+    },
+    {
+      "id": "CLASS-06-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-06-left-proportions-r02.png",
+      "source_sha256": "1673244083d8b4dff6815cba9c85ac140def05e6b92d17d59c0294b38476ae2b",
+      "front": {
+        "bounds": [
+          50,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 28,
+        "opaque_area": 674,
+        "upper_body_mean_occupied_width": 16.12
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14871794871794872,
+          "bounds": [
+            51,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 26,
+          "opaque_area": 823,
+          "upper_body_mean_occupied_width": 19.12,
+          "upper_body_width_ratio": 1.186
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14652956298200515,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 772,
+          "upper_body_mean_occupied_width": 19.0,
+          "upper_body_width_ratio": 1.179
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14910025706940874,
+          "bounds": [
+            50,
+            37,
+            78,
+            96
+          ],
+          "height": 59,
+          "width": 28,
+          "opaque_area": 783,
+          "upper_body_mean_occupied_width": 18.88,
+          "upper_body_width_ratio": 1.171
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14652956298200515,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 777,
+          "upper_body_mean_occupied_width": 19.06,
+          "upper_body_width_ratio": 1.182
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14728682170542637,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 769,
+          "upper_body_mean_occupied_width": 19.19,
+          "upper_body_width_ratio": 1.19
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.14987080103359174,
+          "bounds": [
+            50,
+            37,
+            78,
+            96
+          ],
+          "height": 59,
+          "width": 28,
+          "opaque_area": 781,
+          "upper_body_mean_occupied_width": 19.0,
+          "upper_body_width_ratio": 1.179
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14728682170542637,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 759,
+          "upper_body_mean_occupied_width": 18.88,
+          "upper_body_width_ratio": 1.171
+        }
+      ]
+    },
+    {
+      "id": "CLASS-06-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-06-right-proportions-r02.png",
+      "source_sha256": "7737279f0bb4d34a21cc9cc66c17da1aebe9ee7e58a314487653b49eebdb806e",
+      "front": {
+        "bounds": [
+          50,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 28,
+        "opaque_area": 674,
+        "upper_body_mean_occupied_width": 16.12
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14948453608247422,
+          "bounds": [
+            52,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 25,
+          "opaque_area": 808,
+          "upper_body_mean_occupied_width": 18.06,
+          "upper_body_width_ratio": 1.12
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14690721649484537,
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 755,
+          "upper_body_mean_occupied_width": 17.69,
+          "upper_body_width_ratio": 1.097
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14987080103359174,
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 779,
+          "upper_body_mean_occupied_width": 17.38,
+          "upper_body_width_ratio": 1.078
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14690721649484537,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 761,
+          "upper_body_mean_occupied_width": 17.62,
+          "upper_body_width_ratio": 1.093
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1484375,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 793,
+          "upper_body_mean_occupied_width": 18.69,
+          "upper_body_width_ratio": 1.159
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.15104166666666666,
+          "bounds": [
+            50,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 29,
+          "opaque_area": 791,
+          "upper_body_mean_occupied_width": 18.81,
+          "upper_body_width_ratio": 1.167
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14805194805194805,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 802,
+          "upper_body_mean_occupied_width": 18.94,
+          "upper_body_width_ratio": 1.175
+        }
+      ]
+    },
+    {
+      "id": "CLASS-07-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-07-left-proportions-r01.png",
+      "source_sha256": "7d76ae091f61d97ae7d784b6a6c2e57fc5278239d0dd5b18dfca230764030688",
+      "front": {
+        "bounds": [
+          49,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 29,
+        "opaque_area": 763,
+        "upper_body_mean_occupied_width": 18.94
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1514360313315927,
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 905,
+          "upper_body_mean_occupied_width": 20.69,
+          "upper_body_width_ratio": 1.092
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14766839378238342,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 816,
+          "upper_body_mean_occupied_width": 20.12,
+          "upper_body_width_ratio": 1.062
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.1514360313315927,
+          "bounds": [
+            49,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 30,
+          "opaque_area": 873,
+          "upper_body_mean_occupied_width": 20.5,
+          "upper_body_width_ratio": 1.082
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14728682170542637,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 824,
+          "upper_body_mean_occupied_width": 20.0,
+          "upper_body_width_ratio": 1.056
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1503957783641161,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 822,
+          "upper_body_mean_occupied_width": 20.25,
+          "upper_body_width_ratio": 1.069
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1554959785522788,
+          "bounds": [
+            50,
+            37,
+            78,
+            96
+          ],
+          "height": 59,
+          "width": 28,
+          "opaque_area": 845,
+          "upper_body_mean_occupied_width": 20.25,
+          "upper_body_width_ratio": 1.069
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.15119363395225463,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 827,
+          "upper_body_mean_occupied_width": 20.62,
+          "upper_body_width_ratio": 1.089
+        }
+      ]
+    },
+    {
+      "id": "CLASS-07-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-07-right-proportions-r01.png",
+      "source_sha256": "55d8594bb8a3b18d0a1d22d0db6fb57db4d1fb423322ee162ea668223953334c",
+      "front": {
+        "bounds": [
+          49,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 29,
+        "opaque_area": 763,
+        "upper_body_mean_occupied_width": 18.94
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14320987654320988,
+          "bounds": [
+            51,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 26,
+          "opaque_area": 872,
+          "upper_body_mean_occupied_width": 19.31,
+          "upper_body_width_ratio": 1.02
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.13970588235294118,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 785,
+          "upper_body_mean_occupied_width": 18.56,
+          "upper_body_width_ratio": 0.98
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14356435643564355,
+          "bounds": [
+            50,
+            37,
+            78,
+            96
+          ],
+          "height": 59,
+          "width": 28,
+          "opaque_area": 841,
+          "upper_body_mean_occupied_width": 18.88,
+          "upper_body_width_ratio": 0.997
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.1417910447761194,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 818,
+          "upper_body_mean_occupied_width": 19.12,
+          "upper_body_width_ratio": 1.01
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14357682619647355,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 834,
+          "upper_body_mean_occupied_width": 19.56,
+          "upper_body_width_ratio": 1.033
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.14646464646464646,
+          "bounds": [
+            48,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 31,
+          "opaque_area": 841,
+          "upper_body_mean_occupied_width": 20.5,
+          "upper_body_width_ratio": 1.082
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1450381679389313,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 851,
+          "upper_body_mean_occupied_width": 20.06,
+          "upper_body_width_ratio": 1.059
+        }
+      ]
+    },
+    {
+      "id": "CLASS-08-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-08-left-proportions-r01.png",
+      "source_sha256": "d3dcd7143d8454cd9254ac403ce998d5f76260be069704ee9fbf52e7c5eeaca8",
+      "front": {
+        "bounds": [
+          50,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 28,
+        "opaque_area": 836,
+        "upper_body_mean_occupied_width": 20.56
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14948453608247422,
+          "bounds": [
+            52,
+            37,
+            76,
+            96
+          ],
+          "height": 59,
+          "width": 24,
+          "opaque_area": 911,
+          "upper_body_mean_occupied_width": 19.81,
+          "upper_body_width_ratio": 0.964
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14805194805194805,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 848,
+          "upper_body_mean_occupied_width": 20.94,
+          "upper_body_width_ratio": 1.018
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15223097112860892,
+          "bounds": [
+            50,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 29,
+          "opaque_area": 898,
+          "upper_body_mean_occupied_width": 21.06,
+          "upper_body_width_ratio": 1.024
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.1484375,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 852,
+          "upper_body_mean_occupied_width": 21.19,
+          "upper_body_width_ratio": 1.031
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1532258064516129,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 868,
+          "upper_body_mean_occupied_width": 21.12,
+          "upper_body_width_ratio": 1.027
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.15466666666666667,
+          "bounds": [
+            48,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 31,
+          "opaque_area": 881,
+          "upper_body_mean_occupied_width": 22.38,
+          "upper_body_width_ratio": 1.089
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.15079365079365079,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 886,
+          "upper_body_mean_occupied_width": 21.44,
+          "upper_body_width_ratio": 1.043
+        }
+      ]
+    },
+    {
+      "id": "CLASS-08-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-08-right-proportions-r01.png",
+      "source_sha256": "ab62ca455030399ea1c49c36917d942f3cf3cdf28b06733847a15844a32c8e2a",
+      "front": {
+        "bounds": [
+          50,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 28,
+        "opaque_area": 836,
+        "upper_body_mean_occupied_width": 20.56
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14609571788413098,
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 985,
+          "upper_body_mean_occupied_width": 21.81,
+          "upper_body_width_ratio": 1.061
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14393939393939395,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 917,
+          "upper_body_mean_occupied_width": 21.19,
+          "upper_body_width_ratio": 1.031
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.1468354430379747,
+          "bounds": [
+            48,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 31,
+          "opaque_area": 959,
+          "upper_body_mean_occupied_width": 21.25,
+          "upper_body_width_ratio": 1.034
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14357682619647355,
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 905,
+          "upper_body_mean_occupied_width": 20.62,
+          "upper_body_width_ratio": 1.003
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14357682619647355,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 832,
+          "upper_body_mean_occupied_width": 20.88,
+          "upper_body_width_ratio": 1.016
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.14720812182741116,
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 918,
+          "upper_body_mean_occupied_width": 21.44,
+          "upper_body_width_ratio": 1.043
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1446700507614213,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 928,
+          "upper_body_mean_occupied_width": 21.31,
+          "upper_body_width_ratio": 1.036
+        }
+      ]
+    },
+    {
+      "id": "CLASS-09-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-09-left-proportions-r01.png",
+      "source_sha256": "d9b59049450cfb0a029e58a6db72f5a879bba0b84fe02e4275ed3d5ece08a7b0",
+      "front": {
+        "bounds": [
+          49,
+          36,
+          79,
+          94
+        ],
+        "height": 58,
+        "width": 30,
+        "opaque_area": 950,
+        "upper_body_mean_occupied_width": 22.0
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1518324607329843,
+          "bounds": [
+            50,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 29,
+          "opaque_area": 1001,
+          "upper_body_mean_occupied_width": 22.44,
+          "upper_body_width_ratio": 1.02
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 967,
+          "upper_body_mean_occupied_width": 23.5,
+          "upper_body_width_ratio": 1.068
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15223097112860892,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 970,
+          "upper_body_mean_occupied_width": 23.25,
+          "upper_body_width_ratio": 1.057
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14960629921259844,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 910,
+          "upper_body_mean_occupied_width": 22.56,
+          "upper_body_width_ratio": 1.025
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15240641711229946,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 957,
+          "upper_body_mean_occupied_width": 23.44,
+          "upper_body_width_ratio": 1.065
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.15508021390374332,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 975,
+          "upper_body_mean_occupied_width": 23.38,
+          "upper_body_width_ratio": 1.063
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.15240641711229946,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 906,
+          "upper_body_mean_occupied_width": 22.81,
+          "upper_body_width_ratio": 1.037
+        }
+      ]
+    },
+    {
+      "id": "CLASS-09-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-09-right-proportions-r01.png",
+      "source_sha256": "eb68b304545286970fdcde76f5473f7d148f2a4a9daf232d49ac0f26c7e300db",
+      "front": {
+        "bounds": [
+          49,
+          36,
+          79,
+          94
+        ],
+        "height": 58,
+        "width": 30,
+        "opaque_area": 950,
+        "upper_body_mean_occupied_width": 22.0
+      },
+      "target_height": 58,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1518324607329843,
+          "bounds": [
+            50,
+            37,
+            78,
+            96
+          ],
+          "height": 59,
+          "width": 28,
+          "opaque_area": 984,
+          "upper_body_mean_occupied_width": 22.06,
+          "upper_body_width_ratio": 1.003
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14921465968586387,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 884,
+          "upper_body_mean_occupied_width": 21.81,
+          "upper_body_width_ratio": 0.991
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.1518324607329843,
+          "bounds": [
+            50,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 29,
+          "opaque_area": 889,
+          "upper_body_mean_occupied_width": 21.25,
+          "upper_body_width_ratio": 0.966
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14921465968586387,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 838,
+          "upper_body_mean_occupied_width": 20.69,
+          "upper_body_width_ratio": 0.94
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14960629921259844,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 871,
+          "upper_body_mean_occupied_width": 21.62,
+          "upper_body_width_ratio": 0.983
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.15223097112860892,
+          "bounds": [
+            50,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 29,
+          "opaque_area": 870,
+          "upper_body_mean_occupied_width": 21.88,
+          "upper_body_width_ratio": 0.995
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14960629921259844,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 882,
+          "upper_body_mean_occupied_width": 21.0,
+          "upper_body_width_ratio": 0.955
+        }
+      ]
+    },
+    {
+      "id": "CLASS-10-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-10-left-proportions-r01.png",
+      "source_sha256": "eddf725c1b42f7892e0b514d0c7a786689c27236a151856850c33c8864d3dcf2",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 716,
+        "upper_body_mean_occupied_width": 18.31
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.13493975903614458,
+          "bounds": [
+            52,
+            39,
+            76,
+            96
+          ],
+          "height": 57,
+          "width": 24,
+          "opaque_area": 779,
+          "upper_body_mean_occupied_width": 17.44,
+          "upper_body_width_ratio": 0.952
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.13221153846153846,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 672,
+          "upper_body_mean_occupied_width": 17.19,
+          "upper_body_width_ratio": 0.939
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.13493975903614458,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 725,
+          "upper_body_mean_occupied_width": 17.5,
+          "upper_body_width_ratio": 0.956
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.13253012048192772,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 681,
+          "upper_body_mean_occupied_width": 17.06,
+          "upper_body_width_ratio": 0.932
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.13095238095238096,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 702,
+          "upper_body_mean_occupied_width": 18.0,
+          "upper_body_width_ratio": 0.983
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.13592233009708737,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 752,
+          "upper_body_mean_occupied_width": 18.75,
+          "upper_body_width_ratio": 1.024
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.13381995133819952,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 697,
+          "upper_body_mean_occupied_width": 17.88,
+          "upper_body_width_ratio": 0.977
+        }
+      ]
+    },
+    {
+      "id": "CLASS-10-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-10-right-proportions-r01.png",
+      "source_sha256": "4878bf9dc10a34f50b43c88cac108f7e723314dd55a612591af996a03680838b",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 716,
+        "upper_body_mean_occupied_width": 18.31
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.13559322033898305,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 778,
+          "upper_body_mean_occupied_width": 16.88,
+          "upper_body_width_ratio": 0.922
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.13285024154589373,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 727,
+          "upper_body_mean_occupied_width": 17.06,
+          "upper_body_width_ratio": 0.932
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.13658536585365855,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 761,
+          "upper_body_mean_occupied_width": 16.81,
+          "upper_body_width_ratio": 0.918
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.13317191283292978,
+          "bounds": [
+            52,
+            40,
+            76,
+            96
+          ],
+          "height": 56,
+          "width": 24,
+          "opaque_area": 716,
+          "upper_body_mean_occupied_width": 16.62,
+          "upper_body_width_ratio": 0.908
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.13414634146341464,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 722,
+          "upper_body_mean_occupied_width": 17.25,
+          "upper_body_width_ratio": 0.942
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1362530413625304,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 751,
+          "upper_body_mean_occupied_width": 17.56,
+          "upper_body_width_ratio": 0.959
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.13349514563106796,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 716,
+          "upper_body_mean_occupied_width": 17.75,
+          "upper_body_width_ratio": 0.969
+        }
+      ]
+    },
+    {
+      "id": "CLASS-11-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-11-left-proportions-r01.png",
+      "source_sha256": "8e142f5b1c00adea5913bf6b7cc25fb8470fe0888f0b325f1ea94db058b3f71e",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 733,
+        "upper_body_mean_occupied_width": 18.94
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1407035175879397,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 887,
+          "upper_body_mean_occupied_width": 19.5,
+          "upper_body_width_ratio": 1.03
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.1388888888888889,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 816,
+          "upper_body_mean_occupied_width": 18.94,
+          "upper_body_width_ratio": 1.0
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14035087719298245,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 828,
+          "upper_body_mean_occupied_width": 18.56,
+          "upper_body_width_ratio": 0.98
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.1388888888888889,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 794,
+          "upper_body_mean_occupied_width": 18.75,
+          "upper_body_width_ratio": 0.99
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.13681592039800994,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 795,
+          "upper_body_mean_occupied_width": 19.12,
+          "upper_body_width_ratio": 1.01
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.13861386138613863,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 798,
+          "upper_body_mean_occupied_width": 19.0,
+          "upper_body_width_ratio": 1.003
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.13681592039800994,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 769,
+          "upper_body_mean_occupied_width": 18.56,
+          "upper_body_width_ratio": 0.98
+        }
+      ]
+    },
+    {
+      "id": "CLASS-11-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-11-right-proportions-r01.png",
+      "source_sha256": "f9490d436c2b6cbe9157d0f6f4879ae163a67e8051537cb3dd34f0f2a598edbc",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 733,
+        "upper_body_mean_occupied_width": 18.94
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14507772020725387,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 866,
+          "upper_body_mean_occupied_width": 18.25,
+          "upper_body_width_ratio": 0.964
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14435695538057744,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 812,
+          "upper_body_mean_occupied_width": 19.19,
+          "upper_body_width_ratio": 1.013
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14698162729658792,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 891,
+          "upper_body_mean_occupied_width": 19.38,
+          "upper_body_width_ratio": 1.023
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14435695538057744,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 818,
+          "upper_body_mean_occupied_width": 19.19,
+          "upper_body_width_ratio": 1.013
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14666666666666667,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 834,
+          "upper_body_mean_occupied_width": 18.81,
+          "upper_body_width_ratio": 0.993
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1497326203208556,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 869,
+          "upper_body_mean_occupied_width": 19.38,
+          "upper_body_width_ratio": 1.023
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14666666666666667,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 836,
+          "upper_body_mean_occupied_width": 19.31,
+          "upper_body_width_ratio": 1.02
+        }
+      ]
+    },
+    {
+      "id": "CLASS-12-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-12-left-proportions-r01.png",
+      "source_sha256": "ce48042eb1725594e55ff2312e12c1f395b38f95aa4c55056a5b05894ce08ca9",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 755,
+        "upper_body_mean_occupied_width": 19.25
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.13930348258706468,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 830,
+          "upper_body_mean_occupied_width": 17.56,
+          "upper_body_width_ratio": 0.912
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.13681592039800994,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 756,
+          "upper_body_mean_occupied_width": 17.38,
+          "upper_body_width_ratio": 0.903
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.13930348258706468,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 776,
+          "upper_body_mean_occupied_width": 17.44,
+          "upper_body_width_ratio": 0.906
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.13681592039800994,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 749,
+          "upper_body_mean_occupied_width": 17.44,
+          "upper_body_width_ratio": 0.906
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.13924050632911392,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 748,
+          "upper_body_mean_occupied_width": 18.25,
+          "upper_body_width_ratio": 0.948
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.14177215189873418,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 788,
+          "upper_body_mean_occupied_width": 18.19,
+          "upper_body_width_ratio": 0.945
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1371571072319202,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 744,
+          "upper_body_mean_occupied_width": 17.56,
+          "upper_body_width_ratio": 0.912
+        }
+      ]
+    },
+    {
+      "id": "CLASS-12-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-12-right-proportions-r01.png",
+      "source_sha256": "ffa5effa1c1a7323adb68585b16bfc3ce9fab2df5e90a12e5d470038f255755a",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 755,
+        "upper_body_mean_occupied_width": 19.25
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1462140992167102,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 837,
+          "upper_body_mean_occupied_width": 18.5,
+          "upper_body_width_ratio": 0.961
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14322916666666666,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 743,
+          "upper_body_mean_occupied_width": 17.5,
+          "upper_body_width_ratio": 0.909
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14583333333333334,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 792,
+          "upper_body_mean_occupied_width": 18.19,
+          "upper_body_width_ratio": 0.945
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14322916666666666,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 719,
+          "upper_body_mean_occupied_width": 17.44,
+          "upper_body_width_ratio": 0.906
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14824797843665768,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 763,
+          "upper_body_mean_occupied_width": 18.44,
+          "upper_body_width_ratio": 0.958
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.15013404825737264,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 807,
+          "upper_body_mean_occupied_width": 19.31,
+          "upper_body_width_ratio": 1.003
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14864864864864866,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 787,
+          "upper_body_mean_occupied_width": 18.56,
+          "upper_body_width_ratio": 0.964
+        }
+      ]
+    },
+    {
+      "id": "CLASS-13-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-13-left-proportions-r01.png",
+      "source_sha256": "c1b424fbc66c37bef773acf1d26de28d281158b086b8308b44c4561c1d46f74b",
+      "front": {
+        "bounds": [
+          50,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 28,
+        "opaque_area": 813,
+        "upper_body_mean_occupied_width": 20.69
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14583333333333334,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 884,
+          "upper_body_mean_occupied_width": 19.94,
+          "upper_body_width_ratio": 0.964
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14175257731958762,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 801,
+          "upper_body_mean_occupied_width": 20.0,
+          "upper_body_width_ratio": 0.967
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14545454545454545,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 845,
+          "upper_body_mean_occupied_width": 20.5,
+          "upper_body_width_ratio": 0.991
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14248704663212436,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 816,
+          "upper_body_mean_occupied_width": 20.44,
+          "upper_body_width_ratio": 0.988
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1455026455026455,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 848,
+          "upper_body_mean_occupied_width": 21.31,
+          "upper_body_width_ratio": 1.03
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.14854111405835543,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 857,
+          "upper_body_mean_occupied_width": 21.12,
+          "upper_body_width_ratio": 1.021
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1455026455026455,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 832,
+          "upper_body_mean_occupied_width": 20.31,
+          "upper_body_width_ratio": 0.982
+        }
+      ]
+    },
+    {
+      "id": "CLASS-13-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-13-right-proportions-r01.png",
+      "source_sha256": "8b08482cfe3f468ae731dd14bc0328ff6e658d35eed00281cdb9d99e3e1e9763",
+      "front": {
+        "bounds": [
+          50,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 28,
+        "opaque_area": 813,
+        "upper_body_mean_occupied_width": 20.69
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1462140992167102,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 881,
+          "upper_body_mean_occupied_width": 19.31,
+          "upper_body_width_ratio": 0.933
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14322916666666666,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 766,
+          "upper_body_mean_occupied_width": 19.0,
+          "upper_body_width_ratio": 0.918
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14583333333333334,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 805,
+          "upper_body_mean_occupied_width": 19.44,
+          "upper_body_width_ratio": 0.94
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14322916666666666,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 764,
+          "upper_body_mean_occupied_width": 19.0,
+          "upper_body_width_ratio": 0.918
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14360313315926893,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 767,
+          "upper_body_mean_occupied_width": 19.31,
+          "upper_body_width_ratio": 0.933
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1462140992167102,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 784,
+          "upper_body_mean_occupied_width": 18.88,
+          "upper_body_width_ratio": 0.913
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14360313315926893,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 759,
+          "upper_body_mean_occupied_width": 19.19,
+          "upper_body_width_ratio": 0.928
+        }
+      ]
+    },
+    {
+      "id": "CLASS-14-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-14-left-proportions-r01.png",
+      "source_sha256": "0436b626bb09ac63820dc8b4774cb7ee9fab0eaa8c18ca855790d117be386a02",
+      "front": {
+        "bounds": [
+          50,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 28,
+        "opaque_area": 884,
+        "upper_body_mean_occupied_width": 21.94
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14507772020725387,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 947,
+          "upper_body_mean_occupied_width": 22.44,
+          "upper_body_width_ratio": 1.023
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.1421188630490956,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 835,
+          "upper_body_mean_occupied_width": 21.31,
+          "upper_body_width_ratio": 0.971
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14470284237726097,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 885,
+          "upper_body_mean_occupied_width": 21.5,
+          "upper_body_width_ratio": 0.98
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14248704663212436,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 799,
+          "upper_body_mean_occupied_width": 21.19,
+          "upper_body_width_ratio": 0.966
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14360313315926893,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 879,
+          "upper_body_mean_occupied_width": 21.88,
+          "upper_body_width_ratio": 0.997
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.14545454545454545,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 871,
+          "upper_body_mean_occupied_width": 21.81,
+          "upper_body_width_ratio": 0.994
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14360313315926893,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 856,
+          "upper_body_mean_occupied_width": 21.5,
+          "upper_body_width_ratio": 0.98
+        }
+      ]
+    },
+    {
+      "id": "CLASS-14-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-14-right-proportions-r01.png",
+      "source_sha256": "793e65d92416e9e382248a0b2be5995c87702100ce1f29aea2cf32050c445d4a",
+      "front": {
+        "bounds": [
+          50,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 28,
+        "opaque_area": 884,
+        "upper_body_mean_occupied_width": 21.94
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14736842105263157,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 996,
+          "upper_body_mean_occupied_width": 23.44,
+          "upper_body_width_ratio": 1.068
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14360313315926893,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 860,
+          "upper_body_mean_occupied_width": 21.75,
+          "upper_body_width_ratio": 0.991
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14583333333333334,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 889,
+          "upper_body_mean_occupied_width": 22.06,
+          "upper_body_width_ratio": 1.005
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14360313315926893,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 821,
+          "upper_body_mean_occupied_width": 21.62,
+          "upper_body_width_ratio": 0.985
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14435695538057744,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 870,
+          "upper_body_mean_occupied_width": 22.31,
+          "upper_body_width_ratio": 1.017
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.14736842105263157,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 910,
+          "upper_body_mean_occupied_width": 23.19,
+          "upper_body_width_ratio": 1.057
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14435695538057744,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 881,
+          "upper_body_mean_occupied_width": 22.44,
+          "upper_body_width_ratio": 1.023
+        }
+      ]
+    },
+    {
+      "id": "CLASS-15-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-15-left-proportions-r01.png",
+      "source_sha256": "ea635cd983b8e592eb57755869099f19d54fe9a304f4885af05d683232e2d4c2",
+      "front": {
+        "bounds": [
+          47,
+          34,
+          81,
+          94
+        ],
+        "height": 60,
+        "width": 34,
+        "opaque_area": 946,
+        "upper_body_mean_occupied_width": 20.06
+      },
+      "target_height": 60,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.16085790884718498,
+          "bounds": [
+            50,
+            35,
+            78,
+            96
+          ],
+          "height": 61,
+          "width": 28,
+          "opaque_area": 1081,
+          "upper_body_mean_occupied_width": 21.22,
+          "upper_body_width_ratio": 1.058
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15691489361702127,
+          "bounds": [
+            49,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 30,
+          "opaque_area": 1002,
+          "upper_body_mean_occupied_width": 21.59,
+          "upper_body_width_ratio": 1.076
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15915119363395225,
+          "bounds": [
+            48,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 31,
+          "opaque_area": 1065,
+          "upper_body_mean_occupied_width": 22.39,
+          "upper_body_width_ratio": 1.116
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.15733333333333333,
+          "bounds": [
+            48,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 31,
+          "opaque_area": 1007,
+          "upper_body_mean_occupied_width": 22.18,
+          "upper_body_width_ratio": 1.106
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1581769436997319,
+          "bounds": [
+            49,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 30,
+          "opaque_area": 1026,
+          "upper_body_mean_occupied_width": 22.35,
+          "upper_body_width_ratio": 1.114
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16216216216216217,
+          "bounds": [
+            48,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 31,
+          "opaque_area": 1007,
+          "upper_body_mean_occupied_width": 22.39,
+          "upper_body_width_ratio": 1.116
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.15945945945945947,
+          "bounds": [
+            48,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 31,
+          "opaque_area": 1009,
+          "upper_body_mean_occupied_width": 22.06,
+          "upper_body_width_ratio": 1.1
+        }
+      ]
+    },
+    {
+      "id": "CLASS-15-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-15-right-proportions-r01.png",
+      "source_sha256": "6c7a55696da00158cec129d69e233e4bd1184340eac2a6048acdfc5f3d0c180f",
+      "front": {
+        "bounds": [
+          47,
+          34,
+          81,
+          94
+        ],
+        "height": 60,
+        "width": 34,
+        "opaque_area": 946,
+        "upper_body_mean_occupied_width": 20.06
+      },
+      "target_height": 60,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.15873015873015872,
+          "bounds": [
+            50,
+            35,
+            78,
+            96
+          ],
+          "height": 61,
+          "width": 28,
+          "opaque_area": 1121,
+          "upper_body_mean_occupied_width": 22.5,
+          "upper_body_width_ratio": 1.122
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15649867374005305,
+          "bounds": [
+            48,
+            36,
+            80,
+            96
+          ],
+          "height": 60,
+          "width": 32,
+          "opaque_area": 1013,
+          "upper_body_mean_occupied_width": 23.06,
+          "upper_body_width_ratio": 1.15
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15915119363395225,
+          "bounds": [
+            49,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 30,
+          "opaque_area": 1041,
+          "upper_body_mean_occupied_width": 23.24,
+          "upper_body_width_ratio": 1.159
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.15733333333333333,
+          "bounds": [
+            48,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 31,
+          "opaque_area": 1022,
+          "upper_body_mean_occupied_width": 22.76,
+          "upper_body_width_ratio": 1.135
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15649867374005305,
+          "bounds": [
+            49,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 30,
+          "opaque_area": 991,
+          "upper_body_mean_occupied_width": 22.35,
+          "upper_body_width_ratio": 1.114
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.158311345646438,
+          "bounds": [
+            49,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 30,
+          "opaque_area": 995,
+          "upper_body_mean_occupied_width": 22.56,
+          "upper_body_width_ratio": 1.125
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.15649867374005305,
+          "bounds": [
+            49,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 30,
+          "opaque_area": 1003,
+          "upper_body_mean_occupied_width": 22.65,
+          "upper_body_width_ratio": 1.129
+        }
+      ]
+    },
+    {
+      "id": "CLASS-16-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-16-left-proportions-r01.png",
+      "source_sha256": "aaf4299355b8af833b29a9d7a4467d32d5300c4a0a4774b82d85e15e94afc6da",
+      "front": {
+        "bounds": [
+          46,
+          34,
+          82,
+          94
+        ],
+        "height": 60,
+        "width": 36,
+        "opaque_area": 1135,
+        "upper_body_mean_occupied_width": 24.18
+      },
+      "target_height": 60,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.15748031496062992,
+          "bounds": [
+            49,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 30,
+          "opaque_area": 1237,
+          "upper_body_mean_occupied_width": 23.44,
+          "upper_body_width_ratio": 0.969
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15485564304461943,
+          "bounds": [
+            48,
+            36,
+            80,
+            96
+          ],
+          "height": 60,
+          "width": 32,
+          "opaque_area": 1136,
+          "upper_body_mean_occupied_width": 23.59,
+          "upper_body_width_ratio": 0.976
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15706806282722513,
+          "bounds": [
+            48,
+            35,
+            80,
+            96
+          ],
+          "height": 61,
+          "width": 32,
+          "opaque_area": 1154,
+          "upper_body_mean_occupied_width": 23.22,
+          "upper_body_width_ratio": 0.96
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.15485564304461943,
+          "bounds": [
+            48,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 31,
+          "opaque_area": 1108,
+          "upper_body_mean_occupied_width": 23.24,
+          "upper_body_width_ratio": 0.961
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15526315789473685,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 1154,
+          "upper_body_mean_occupied_width": 23.59,
+          "upper_body_width_ratio": 0.976
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.15789473684210525,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1181,
+          "upper_body_mean_occupied_width": 23.33,
+          "upper_body_width_ratio": 0.965
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.15567282321899736,
+          "bounds": [
+            48,
+            36,
+            80,
+            96
+          ],
+          "height": 60,
+          "width": 32,
+          "opaque_area": 1106,
+          "upper_body_mean_occupied_width": 23.06,
+          "upper_body_width_ratio": 0.954
+        }
+      ]
+    },
+    {
+      "id": "CLASS-16-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-16-right-proportions-r01.png",
+      "source_sha256": "7393e1eabc2bc8d91b609473d1fd293e8f62158b18e4b60d725020cf0be5ca68",
+      "front": {
+        "bounds": [
+          46,
+          34,
+          82,
+          94
+        ],
+        "height": 60,
+        "width": 36,
+        "opaque_area": 1135,
+        "upper_body_mean_occupied_width": 24.18
+      },
+      "target_height": 60,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.17045454545454544,
+          "bounds": [
+            48,
+            35,
+            80,
+            96
+          ],
+          "height": 61,
+          "width": 32,
+          "opaque_area": 1320,
+          "upper_body_mean_occupied_width": 25.67,
+          "upper_body_width_ratio": 1.062
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.1671388101983003,
+          "bounds": [
+            48,
+            36,
+            80,
+            96
+          ],
+          "height": 60,
+          "width": 32,
+          "opaque_area": 1159,
+          "upper_body_mean_occupied_width": 24.53,
+          "upper_body_width_ratio": 1.014
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.16806722689075632,
+          "bounds": [
+            46,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 35,
+          "opaque_area": 1244,
+          "upper_body_mean_occupied_width": 25.44,
+          "upper_body_width_ratio": 1.052
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.164804469273743,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1172,
+          "upper_body_mean_occupied_width": 25.18,
+          "upper_body_width_ratio": 1.041
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.16573033707865167,
+          "bounds": [
+            48,
+            36,
+            80,
+            96
+          ],
+          "height": 60,
+          "width": 32,
+          "opaque_area": 1138,
+          "upper_body_mean_occupied_width": 24.88,
+          "upper_body_width_ratio": 1.029
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1671309192200557,
+          "bounds": [
+            48,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 33,
+          "opaque_area": 1164,
+          "upper_body_mean_occupied_width": 26.0,
+          "upper_body_width_ratio": 1.075
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1638888888888889,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1172,
+          "upper_body_mean_occupied_width": 25.53,
+          "upper_body_width_ratio": 1.056
+        }
+      ]
+    },
+    {
+      "id": "CLASS-17-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-17-left-proportions-r01.png",
+      "source_sha256": "e558bd60e3b44f4c2d68fcc186983aa371909a573192ca87514646ca6aef5dc4",
+      "front": {
+        "bounds": [
+          45,
+          34,
+          82,
+          94
+        ],
+        "height": 60,
+        "width": 37,
+        "opaque_area": 1187,
+        "upper_body_mean_occupied_width": 25.29
+      },
+      "target_height": 60,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.16085790884718498,
+          "bounds": [
+            48,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 33,
+          "opaque_area": 1310,
+          "upper_body_mean_occupied_width": 24.44,
+          "upper_body_width_ratio": 0.966
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.15608465608465608,
+          "bounds": [
+            46,
+            36,
+            83,
+            96
+          ],
+          "height": 60,
+          "width": 37,
+          "opaque_area": 1286,
+          "upper_body_mean_occupied_width": 25.41,
+          "upper_body_width_ratio": 1.005
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15789473684210525,
+          "bounds": [
+            46,
+            35,
+            83,
+            96
+          ],
+          "height": 61,
+          "width": 37,
+          "opaque_area": 1331,
+          "upper_body_mean_occupied_width": 25.61,
+          "upper_body_width_ratio": 1.013
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.15567282321899736,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 1240,
+          "upper_body_mean_occupied_width": 24.59,
+          "upper_body_width_ratio": 0.972
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15945945945945947,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 1292,
+          "upper_body_mean_occupied_width": 26.0,
+          "upper_body_width_ratio": 1.028
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16129032258064516,
+          "bounds": [
+            44,
+            35,
+            83,
+            96
+          ],
+          "height": 61,
+          "width": 39,
+          "opaque_area": 1372,
+          "upper_body_mean_occupied_width": 27.06,
+          "upper_body_width_ratio": 1.07
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1581769436997319,
+          "bounds": [
+            46,
+            36,
+            83,
+            96
+          ],
+          "height": 60,
+          "width": 37,
+          "opaque_area": 1295,
+          "upper_body_mean_occupied_width": 25.82,
+          "upper_body_width_ratio": 1.021
+        }
+      ]
+    },
+    {
+      "id": "CLASS-17-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-17-right-proportions-r01.png",
+      "source_sha256": "80b0b63eca83019810d86bf8999d08c0c57c176159fa23176237100c5038449c",
+      "front": {
+        "bounds": [
+          45,
+          34,
+          82,
+          94
+        ],
+        "height": 60,
+        "width": 37,
+        "opaque_area": 1187,
+        "upper_body_mean_occupied_width": 25.29
+      },
+      "target_height": 60,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.15748031496062992,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1337,
+          "upper_body_mean_occupied_width": 26.5,
+          "upper_body_width_ratio": 1.048
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.1524547803617571,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 1131,
+          "upper_body_mean_occupied_width": 24.65,
+          "upper_body_width_ratio": 0.975
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.15748031496062992,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1196,
+          "upper_body_mean_occupied_width": 25.44,
+          "upper_body_width_ratio": 1.006
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.15567282321899736,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1161,
+          "upper_body_mean_occupied_width": 25.76,
+          "upper_body_width_ratio": 1.019
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.15404699738903394,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 1201,
+          "upper_body_mean_occupied_width": 26.47,
+          "upper_body_width_ratio": 1.047
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1595744680851064,
+          "bounds": [
+            46,
+            35,
+            82,
+            96
+          ],
+          "height": 61,
+          "width": 36,
+          "opaque_area": 1237,
+          "upper_body_mean_occupied_width": 27.39,
+          "upper_body_width_ratio": 1.083
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.15775401069518716,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 1138,
+          "upper_body_mean_occupied_width": 26.88,
+          "upper_body_width_ratio": 1.063
+        }
+      ]
+    },
+    {
+      "id": "CLASS-18-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-18-left-proportions-r01.png",
+      "source_sha256": "ca7c9039b7d26bc970b53371dd64b4c4aa87ccac33ab60b04027f956a78bac7a",
+      "front": {
+        "bounds": [
+          44,
+          34,
+          84,
+          94
+        ],
+        "height": 60,
+        "width": 40,
+        "opaque_area": 1323,
+        "upper_body_mean_occupied_width": 29.24
+      },
+      "target_height": 60,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1724137931034483,
+          "bounds": [
+            46,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 35,
+          "opaque_area": 1396,
+          "upper_body_mean_occupied_width": 27.39,
+          "upper_body_width_ratio": 0.937
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.16905444126074498,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 1220,
+          "upper_body_mean_occupied_width": 26.76,
+          "upper_body_width_ratio": 0.915
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.17191977077363896,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1237,
+          "upper_body_mean_occupied_width": 26.5,
+          "upper_body_width_ratio": 0.906
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.16954022988505746,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1227,
+          "upper_body_mean_occupied_width": 27.29,
+          "upper_body_width_ratio": 0.933
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.16954022988505746,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1244,
+          "upper_body_mean_occupied_width": 27.24,
+          "upper_body_width_ratio": 0.932
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.17191977077363896,
+          "bounds": [
+            46,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 35,
+          "opaque_area": 1264,
+          "upper_body_mean_occupied_width": 26.89,
+          "upper_body_width_ratio": 0.92
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.17002881844380405,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1219,
+          "upper_body_mean_occupied_width": 27.12,
+          "upper_body_width_ratio": 0.927
+        }
+      ]
+    },
+    {
+      "id": "CLASS-18-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-18-right-proportions-r01.png",
+      "source_sha256": "0aedd583a05da0ca5ee93ef50e2dce4368901f80aa1bb2eb715b01541999e1a3",
+      "front": {
+        "bounds": [
+          44,
+          34,
+          84,
+          94
+        ],
+        "height": 60,
+        "width": 40,
+        "opaque_area": 1323,
+        "upper_body_mean_occupied_width": 29.24
+      },
+      "target_height": 60,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1652892561983471,
+          "bounds": [
+            48,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 33,
+          "opaque_area": 1380,
+          "upper_body_mean_occupied_width": 25.89,
+          "upper_body_width_ratio": 0.885
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.162534435261708,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1191,
+          "upper_body_mean_occupied_width": 26.35,
+          "upper_body_width_ratio": 0.901
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.1643835616438356,
+          "bounds": [
+            48,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 33,
+          "opaque_area": 1326,
+          "upper_body_mean_occupied_width": 26.72,
+          "upper_body_width_ratio": 0.914
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.162534435261708,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 1205,
+          "upper_body_mean_occupied_width": 27.06,
+          "upper_body_width_ratio": 0.925
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.162534435261708,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1205,
+          "upper_body_mean_occupied_width": 26.65,
+          "upper_body_width_ratio": 0.911
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1652892561983471,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1252,
+          "upper_body_mean_occupied_width": 27.56,
+          "upper_body_width_ratio": 0.943
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1620879120879121,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 1222,
+          "upper_body_mean_occupied_width": 27.18,
+          "upper_body_width_ratio": 0.93
+        }
+      ]
+    },
+    {
+      "id": "CLASS-19-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-19-left-proportions-r01.png",
+      "source_sha256": "91053bd0e7c4789f5dea2e3e503dc392969f3ed6404ffd4cdead0ba60ac38a00",
+      "front": {
+        "bounds": [
+          45,
+          34,
+          84,
+          94
+        ],
+        "height": 60,
+        "width": 39,
+        "opaque_area": 1363,
+        "upper_body_mean_occupied_width": 28.24
+      },
+      "target_height": 60,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.16759776536312848,
+          "bounds": [
+            48,
+            35,
+            80,
+            96
+          ],
+          "height": 61,
+          "width": 32,
+          "opaque_area": 1342,
+          "upper_body_mean_occupied_width": 25.83,
+          "upper_body_width_ratio": 0.915
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.16526610644257703,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1175,
+          "upper_body_mean_occupied_width": 25.71,
+          "upper_body_width_ratio": 0.91
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.16759776536312848,
+          "bounds": [
+            48,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 33,
+          "opaque_area": 1207,
+          "upper_body_mean_occupied_width": 26.0,
+          "upper_body_width_ratio": 0.921
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.16526610644257703,
+          "bounds": [
+            48,
+            36,
+            80,
+            96
+          ],
+          "height": 60,
+          "width": 32,
+          "opaque_area": 1133,
+          "upper_body_mean_occupied_width": 25.06,
+          "upper_body_width_ratio": 0.887
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.164804469273743,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1151,
+          "upper_body_mean_occupied_width": 25.29,
+          "upper_body_width_ratio": 0.896
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16759776536312848,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1186,
+          "upper_body_mean_occupied_width": 26.33,
+          "upper_body_width_ratio": 0.932
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.164804469273743,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1145,
+          "upper_body_mean_occupied_width": 25.29,
+          "upper_body_width_ratio": 0.896
+        }
+      ]
+    },
+    {
+      "id": "CLASS-19-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-19-right-proportions-r01.png",
+      "source_sha256": "10882f019b60e1624e49d81e9768ecb8339c14627487271a3353c7fd58251b21",
+      "front": {
+        "bounds": [
+          45,
+          34,
+          84,
+          94
+        ],
+        "height": 60,
+        "width": 39,
+        "opaque_area": 1363,
+        "upper_body_mean_occupied_width": 28.24
+      },
+      "target_height": 60,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.16666666666666666,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1445,
+          "upper_body_mean_occupied_width": 28.06,
+          "upper_body_width_ratio": 0.994
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.1634349030470914,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 1243,
+          "upper_body_mean_occupied_width": 27.76,
+          "upper_body_width_ratio": 0.983
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.16620498614958448,
+          "bounds": [
+            46,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 35,
+          "opaque_area": 1390,
+          "upper_body_mean_occupied_width": 28.56,
+          "upper_body_width_ratio": 1.011
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.16298342541436464,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 1239,
+          "upper_body_mean_occupied_width": 28.06,
+          "upper_body_width_ratio": 0.994
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.16526610644257703,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 1207,
+          "upper_body_mean_occupied_width": 28.12,
+          "upper_body_width_ratio": 0.996
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.16759776536312848,
+          "bounds": [
+            46,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 35,
+          "opaque_area": 1212,
+          "upper_body_mean_occupied_width": 29.17,
+          "upper_body_width_ratio": 1.033
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.164804469273743,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1230,
+          "upper_body_mean_occupied_width": 28.76,
+          "upper_body_width_ratio": 1.018
+        }
+      ]
+    },
+    {
+      "id": "CLASS-20-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-20-left-proportions-r01.png",
+      "source_sha256": "e2944a17a7614fa4b8cf8fde29e9c5f0c3c1a71036e36aa816b331e39491270e",
+      "front": {
+        "bounds": [
+          49,
+          38,
+          76,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 732,
+        "upper_body_mean_occupied_width": 19.31
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14659685863874344,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 879,
+          "upper_body_mean_occupied_width": 20.19,
+          "upper_body_width_ratio": 1.046
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14360313315926893,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 757,
+          "upper_body_mean_occupied_width": 19.38,
+          "upper_body_width_ratio": 1.004
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.1462140992167102,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 788,
+          "upper_body_mean_occupied_width": 19.94,
+          "upper_body_width_ratio": 1.033
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14473684210526316,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 803,
+          "upper_body_mean_occupied_width": 19.88,
+          "upper_body_width_ratio": 1.03
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14666666666666667,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 795,
+          "upper_body_mean_occupied_width": 20.5,
+          "upper_body_width_ratio": 1.062
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1497326203208556,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 803,
+          "upper_body_mean_occupied_width": 20.19,
+          "upper_body_width_ratio": 1.046
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14666666666666667,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 784,
+          "upper_body_mean_occupied_width": 20.38,
+          "upper_body_width_ratio": 1.055
+        }
+      ]
+    },
+    {
+      "id": "CLASS-20-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-20-right-proportions-r01.png",
+      "source_sha256": "9cb7f99aa7cd65d359cbef17567586e1fd127882bbc3a1a2f0b381e9076521e2",
+      "front": {
+        "bounds": [
+          49,
+          38,
+          76,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 732,
+        "upper_body_mean_occupied_width": 19.31
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14105793450881612,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 924,
+          "upper_body_mean_occupied_width": 20.38,
+          "upper_body_width_ratio": 1.055
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.1385390428211587,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 839,
+          "upper_body_mean_occupied_width": 20.75,
+          "upper_body_width_ratio": 1.075
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14213197969543148,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 868,
+          "upper_body_mean_occupied_width": 20.81,
+          "upper_body_width_ratio": 1.078
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14030612244897958,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 829,
+          "upper_body_mean_occupied_width": 20.06,
+          "upper_body_width_ratio": 1.039
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1455026455026455,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 858,
+          "upper_body_mean_occupied_width": 21.75,
+          "upper_body_width_ratio": 1.126
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.14814814814814814,
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 887,
+          "upper_body_mean_occupied_width": 22.12,
+          "upper_body_width_ratio": 1.146
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1455026455026455,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 842,
+          "upper_body_mean_occupied_width": 21.56,
+          "upper_body_width_ratio": 1.117
+        }
+      ]
+    },
+    {
+      "id": "CLASS-21-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-21-left-proportions-r02.png",
+      "source_sha256": "f407b813d930be4279867392457eaa1b3e13cd70841ecb3c578720de9ee5a68e",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 713,
+        "upper_body_mean_occupied_width": 18.44
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.12362030905077263,
+          "bounds": [
+            52,
+            40,
+            76,
+            96
+          ],
+          "height": 56,
+          "width": 24,
+          "opaque_area": 825,
+          "upper_body_mean_occupied_width": 19.44,
+          "upper_body_width_ratio": 1.054
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.12195121951219512,
+          "bounds": [
+            51,
+            41,
+            77,
+            96
+          ],
+          "height": 55,
+          "width": 26,
+          "opaque_area": 768,
+          "upper_body_mean_occupied_width": 18.67,
+          "upper_body_width_ratio": 1.012
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.12334801762114538,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 771,
+          "upper_body_mean_occupied_width": 18.62,
+          "upper_body_width_ratio": 1.01
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.12141280353200883,
+          "bounds": [
+            51,
+            41,
+            77,
+            96
+          ],
+          "height": 55,
+          "width": 26,
+          "opaque_area": 746,
+          "upper_body_mean_occupied_width": 18.47,
+          "upper_body_width_ratio": 1.002
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.13447432762836187,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 839,
+          "upper_body_mean_occupied_width": 19.44,
+          "upper_body_width_ratio": 1.054
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1362530413625304,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 871,
+          "upper_body_mean_occupied_width": 20.88,
+          "upper_body_width_ratio": 1.132
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.13381995133819952,
+          "bounds": [
+            48,
+            41,
+            81,
+            96
+          ],
+          "height": 55,
+          "width": 33,
+          "opaque_area": 826,
+          "upper_body_mean_occupied_width": 20.93,
+          "upper_body_width_ratio": 1.135
+        }
+      ]
+    },
+    {
+      "id": "CLASS-21-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-21-right-proportions-r02.png",
+      "source_sha256": "cf8ec84758677528be09b40643c374ffaf1bcb954991f1aeb3c164cd376ce543",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 713,
+        "upper_body_mean_occupied_width": 18.44
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.12933025404157045,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 856,
+          "upper_body_mean_occupied_width": 19.06,
+          "upper_body_width_ratio": 1.034
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.12790697674418605,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 810,
+          "upper_body_mean_occupied_width": 19.25,
+          "upper_body_width_ratio": 1.044
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.12962962962962962,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 836,
+          "upper_body_mean_occupied_width": 18.25,
+          "upper_body_width_ratio": 0.99
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.12731481481481483,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 818,
+          "upper_body_mean_occupied_width": 18.94,
+          "upper_body_width_ratio": 1.027
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.12941176470588237,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 814,
+          "upper_body_mean_occupied_width": 20.06,
+          "upper_body_width_ratio": 1.088
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.13145539906103287,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 822,
+          "upper_body_mean_occupied_width": 19.25,
+          "upper_body_width_ratio": 1.044
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.12910798122065728,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 812,
+          "upper_body_mean_occupied_width": 19.38,
+          "upper_body_width_ratio": 1.051
+        }
+      ]
+    },
+    {
+      "id": "CLASS-22-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-22-left-proportions-r03.png",
+      "source_sha256": "5836966702e4e455f9290a7830cb38e16c386dcd48d9bf976239fd072089456c",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 761,
+        "upper_body_mean_occupied_width": 20.06
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.12669683257918551,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 844,
+          "upper_body_mean_occupied_width": 18.88,
+          "upper_body_width_ratio": 0.941
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.12471655328798185,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 836,
+          "upper_body_mean_occupied_width": 20.19,
+          "upper_body_width_ratio": 1.006
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.12669683257918551,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 871,
+          "upper_body_mean_occupied_width": 19.75,
+          "upper_body_width_ratio": 0.985
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.12387387387387387,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 821,
+          "upper_body_mean_occupied_width": 19.81,
+          "upper_body_width_ratio": 0.988
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.13317191283292978,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 892,
+          "upper_body_mean_occupied_width": 20.81,
+          "upper_body_width_ratio": 1.037
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.13493975903614458,
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 947,
+          "upper_body_mean_occupied_width": 21.62,
+          "upper_body_width_ratio": 1.078
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.13253012048192772,
+          "bounds": [
+            48,
+            40,
+            81,
+            96
+          ],
+          "height": 56,
+          "width": 33,
+          "opaque_area": 904,
+          "upper_body_mean_occupied_width": 21.88,
+          "upper_body_width_ratio": 1.091
+        }
+      ]
+    },
+    {
+      "id": "CLASS-22-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-22-right-proportions-r01.png",
+      "source_sha256": "1bbafae4a3bbdc8c6eb57a8ba4aac58a7d6b1e15a520d4299d010d26897aaff8",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 761,
+        "upper_body_mean_occupied_width": 20.06
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.12472160356347439,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 838,
+          "upper_body_mean_occupied_width": 20.5,
+          "upper_body_width_ratio": 1.022
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.12222222222222222,
+          "bounds": [
+            50,
+            41,
+            77,
+            96
+          ],
+          "height": 55,
+          "width": 27,
+          "opaque_area": 800,
+          "upper_body_mean_occupied_width": 19.6,
+          "upper_body_width_ratio": 0.977
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.12612612612612611,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 881,
+          "upper_body_mean_occupied_width": 20.81,
+          "upper_body_width_ratio": 1.037
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.12331838565022421,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 834,
+          "upper_body_mean_occupied_width": 20.31,
+          "upper_body_width_ratio": 1.012
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1375,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 916,
+          "upper_body_mean_occupied_width": 21.31,
+          "upper_body_width_ratio": 1.062
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1382716049382716,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 886,
+          "upper_body_mean_occupied_width": 21.06,
+          "upper_body_width_ratio": 1.05
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.1354679802955665,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 883,
+          "upper_body_mean_occupied_width": 20.88,
+          "upper_body_width_ratio": 1.041
+        }
+      ]
+    },
+    {
+      "id": "CLASS-23-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-23-left-proportions-r01.png",
+      "source_sha256": "51870d30521ed506fbe36646556a65aac48cf51e383134864e16c3592669b23a",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 794,
+        "upper_body_mean_occupied_width": 20.69
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14775725593667546,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 1032,
+          "upper_body_mean_occupied_width": 23.94,
+          "upper_body_width_ratio": 1.157
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14360313315926893,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 968,
+          "upper_body_mean_occupied_width": 23.81,
+          "upper_body_width_ratio": 1.151
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14545454545454545,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 951,
+          "upper_body_mean_occupied_width": 23.81,
+          "upper_body_width_ratio": 1.151
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14473684210526316,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 947,
+          "upper_body_mean_occupied_width": 22.88,
+          "upper_body_width_ratio": 1.106
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14285714285714285,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 935,
+          "upper_body_mean_occupied_width": 23.19,
+          "upper_body_width_ratio": 1.121
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.1462140992167102,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 961,
+          "upper_body_mean_occupied_width": 23.31,
+          "upper_body_width_ratio": 1.127
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14322916666666666,
+          "bounds": [
+            50,
+            40,
+            78,
+            96
+          ],
+          "height": 56,
+          "width": 28,
+          "opaque_area": 912,
+          "upper_body_mean_occupied_width": 23.19,
+          "upper_body_width_ratio": 1.121
+        }
+      ]
+    },
+    {
+      "id": "CLASS-23-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-23-right-proportions-r01.png",
+      "source_sha256": "c5f9a6d8114502198aef102ea5968f931455c85af46d05119caac4ebcc599cae",
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 794,
+        "upper_body_mean_occupied_width": 20.69
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1382716049382716,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 886,
+          "upper_body_mean_occupied_width": 19.75,
+          "upper_body_width_ratio": 0.955
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.13580246913580246,
+          "bounds": [
+            52,
+            40,
+            76,
+            96
+          ],
+          "height": 56,
+          "width": 24,
+          "opaque_area": 825,
+          "upper_body_mean_occupied_width": 18.62,
+          "upper_body_width_ratio": 0.9
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.1382716049382716,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 860,
+          "upper_body_mean_occupied_width": 19.5,
+          "upper_body_width_ratio": 0.942
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.13647642679900746,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 851,
+          "upper_body_mean_occupied_width": 20.25,
+          "upper_body_width_ratio": 0.979
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1375,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 817,
+          "upper_body_mean_occupied_width": 20.19,
+          "upper_body_width_ratio": 0.976
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.13930348258706468,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 854,
+          "upper_body_mean_occupied_width": 20.56,
+          "upper_body_width_ratio": 0.994
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.13819095477386933,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 821,
+          "upper_body_mean_occupied_width": 20.06,
+          "upper_body_width_ratio": 0.97
+        }
+      ]
+    },
+    {
+      "id": "CLASS-24-left",
+      "source": "assets/source-art/player-walk-review-11/CLASS-24-left-proportions-r01.png",
+      "source_sha256": "7eab3bb57a4c2f45df11940540585d9ab0aa61dae1df334a72e5e9414cdaf6ca",
+      "front": {
+        "bounds": [
+          49,
+          38,
+          79,
+          94
+        ],
+        "height": 56,
+        "width": 30,
+        "opaque_area": 863,
+        "upper_body_mean_occupied_width": 22.75
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.14583333333333334,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 1130,
+          "upper_body_mean_occupied_width": 25.56,
+          "upper_body_width_ratio": 1.124
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14360313315926893,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 989,
+          "upper_body_mean_occupied_width": 24.38,
+          "upper_body_width_ratio": 1.072
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.1462140992167102,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 1009,
+          "upper_body_mean_occupied_width": 24.19,
+          "upper_body_width_ratio": 1.063
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14360313315926893,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 998,
+          "upper_body_mean_occupied_width": 24.12,
+          "upper_body_width_ratio": 1.06
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.1455026455026455,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 1021,
+          "upper_body_mean_occupied_width": 25.44,
+          "upper_body_width_ratio": 1.118
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.14854111405835543,
+          "bounds": [
+            48,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 31,
+          "opaque_area": 1019,
+          "upper_body_mean_occupied_width": 25.25,
+          "upper_body_width_ratio": 1.11
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14588859416445624,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 1023,
+          "upper_body_mean_occupied_width": 25.06,
+          "upper_body_width_ratio": 1.102
+        }
+      ]
+    },
+    {
+      "id": "CLASS-24-right",
+      "source": "assets/source-art/player-walk-review-11/CLASS-24-right-proportions-r01.png",
+      "source_sha256": "6f5f1f223fa4e4c980e9c17f9be6c8e7987fef27cc69121d5a38f61e0dc0ba18",
+      "front": {
+        "bounds": [
+          49,
+          38,
+          79,
+          94
+        ],
+        "height": 56,
+        "width": 30,
+        "opaque_area": 863,
+        "upper_body_mean_occupied_width": 22.75
+      },
+      "target_height": 56,
+      "metrics": [
+        {
+          "frame": 8,
+          "uniform_xy_scale": 0.1432225063938619,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 1100,
+          "upper_body_mean_occupied_width": 25.19,
+          "upper_body_width_ratio": 1.107
+        },
+        {
+          "frame": 0,
+          "uniform_xy_scale": 0.14066496163682865,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 984,
+          "upper_body_mean_occupied_width": 25.38,
+          "upper_body_width_ratio": 1.116
+        },
+        {
+          "frame": 1,
+          "uniform_xy_scale": 0.14432989690721648,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 1023,
+          "upper_body_mean_occupied_width": 22.38,
+          "upper_body_width_ratio": 0.984
+        },
+        {
+          "frame": 2,
+          "uniform_xy_scale": 0.14138817480719795,
+          "bounds": [
+            48,
+            41,
+            79,
+            96
+          ],
+          "height": 55,
+          "width": 31,
+          "opaque_area": 996,
+          "upper_body_mean_occupied_width": 25.53,
+          "upper_body_width_ratio": 1.122
+        },
+        {
+          "frame": 3,
+          "uniform_xy_scale": 0.14138817480719795,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 1020,
+          "upper_body_mean_occupied_width": 25.25,
+          "upper_body_width_ratio": 1.11
+        },
+        {
+          "frame": 4,
+          "uniform_xy_scale": 0.14432989690721648,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 965,
+          "upper_body_mean_occupied_width": 22.5,
+          "upper_body_width_ratio": 0.989
+        },
+        {
+          "frame": 5,
+          "uniform_xy_scale": 0.14175257731958762,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 1013,
+          "upper_body_mean_occupied_width": 25.44,
+          "upper_body_width_ratio": 1.118
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,199 @@
+{
+  "review_id": "WALK07-CREATURES-LOT03",
+  "date": "2026-10-24",
+  "timezone": "Europe/Paris",
+  "player_quote": "Ok on continue :)",
+  "status": "visual_accepted",
+  "scope": "Six presented whole-creature lateral cycles M15-M20, existing identities and displayed material variants, with accepted small-creature vertical centering",
+  "runtime_integration_authorized": false,
+  "full_bestiary_accepted": false,
+  "deferred_larva_M12_accepted": false,
+  "other_material_variants_accepted": false,
+  "duration_default_ms": 400,
+  "duration_choice_retained": true,
+  "vertical_movement_modified": false,
+  "cases": [
+    {
+      "review_id": "WALK07-M15",
+      "identity": "MON-063-0",
+      "locomotor_legs": 4,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-063-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -9,
+      "cycle_bounds": [
+        29,
+        66,
+        99,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    },
+    {
+      "review_id": "WALK07-M16",
+      "identity": "MON-087-0",
+      "locomotor_legs": 4,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-087-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -14,
+      "cycle_bounds": [
+        35,
+        76,
+        93,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    },
+    {
+      "review_id": "WALK07-M17",
+      "identity": "MON-103-0",
+      "locomotor_legs": 4,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-103-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -9,
+      "cycle_bounds": [
+        29,
+        67,
+        99,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    },
+    {
+      "review_id": "WALK07-M18",
+      "identity": "MON-039-0",
+      "locomotor_legs": 2,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-039-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -10,
+      "cycle_bounds": [
+        42,
+        69,
+        87,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    },
+    {
+      "review_id": "WALK07-M19",
+      "identity": "MON-126-0",
+      "locomotor_legs": 0,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-126-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "cycle_bounds": [
+        46,
+        48,
+        83,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    },
+    {
+      "review_id": "WALK07-M20",
+      "identity": "MON-146-0",
+      "locomotor_legs": 2,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-146-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "cycle_bounds": [
+        20,
+        32,
+        107,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    }
+  ],
+  "files": [
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-063-0-whole-body-native.png",
+      "sha256": "7eacc773283f65332cb5f43976f1278371a6bed26e63bd1a78da8603e27a297f"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-063-0-cycle-lot03-r02.png",
+      "sha256": "54b1eb33377dd44f78a834468c9d58b0a2748d8d8be873361a00236d4022ce0e"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-087-0-whole-body-native.png",
+      "sha256": "77c646aa206a08c408c702b93e8edcd5e9f75697abbeff1f951ff5ead92e9062"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-087-0-cycle-lot03-r01.png",
+      "sha256": "bb16d7c2f70cad162e852515deb933eb815776ac363f8c8e23d3fe4fdb1e8ad2"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-103-0-whole-body-native.png",
+      "sha256": "fddd34476718b59e9cffe41e5a827cab2cdbb6ef9896f3db0541247c33dc96ac"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-103-0-cycle-lot03-r01.png",
+      "sha256": "9a8cb1abdb5e6166f1f4bfc6e8f2398b4fce73b744b2f1193d070d90a4aa35a1"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-039-0-whole-body-native.png",
+      "sha256": "f50f5f115567923e014073bb5ee52a7725a50295323e4667d055bbf8763b3ba0"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-039-0-cycle-lot03-r01.png",
+      "sha256": "a0e61cb221ea45e57491e2a7a494a1bef7a80cf57706d0796baa65c267d128fc"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-126-0-whole-body-native.png",
+      "sha256": "f312c399119bc695e0512f7e683dbe00d38ec311e4f7d7ad84ec1d123ba274e7"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-126-0-cycle-lot03-r01.png",
+      "sha256": "371e5b7af85ec60449e05db8a012e8ac1b9021f229f8d01c3621159d3440b910"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot03/MON-146-0-whole-body-native.png",
+      "sha256": "7288482a8a3bb9a825caebf83ffd2e85e42bc513c6a585e52a419ade2ea49003"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-146-0-cycle-lot03-r01.png",
+      "sha256": "3b437850e58ca7a0c3c410bb88f3405f671eef1461aef9ba02254cb6fa6a0ab5"
+    }
+  ]
+}

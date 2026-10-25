@@ -1,0 +1,75 @@
+{
+  "review_id": "WALK07-CREATURES-LOT11",
+  "date": "2026-10-24",
+  "execution": "Native image checks; controller checked separately with Node simulated DOM/canvas",
+  "runtime_integration": false,
+  "browser_or_game_execution": false,
+  "pose_count": 28,
+  "visual_acceptance_record": "visual-acceptance-creatures-lot11.json",
+  "anatomy_limit": "Counts, gait quality and facing consistency require visual review; dimensions and different pixels cannot prove them.",
+  "native_comparison_board": "artifacts/player-walk-review-07/creature-lot11-comparison-native.png",
+  "cases": [
+    {
+      "review_id": "WALK07-M61",
+      "identity": "MON-162-0",
+      "poses": 14,
+      "source_sha256": "0a41204a77614aa15051ec1f11fc73da137e75dd5734b2ee4da231d5e60d818d",
+      "native_height_range": [
+        72,
+        75
+      ],
+      "original_native_height": 75,
+      "distinct_walking_poses_per_direction": [
+        6,
+        6
+      ],
+      "cycle_visible_height": 75,
+      "vertical_offset": 0,
+      "one_fixed_offset_for_all14_poses": true,
+      "source_opaque_outer_edge_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "frozen_accepted_pixels_match": true,
+      "reference_native_pixels_exact": true,
+      "native_reference_not_clipped": true,
+      "review_origin": [
+        64,
+        112
+      ]
+    },
+    {
+      "review_id": "WALK07-M62",
+      "identity": "MON-156-0",
+      "poses": 14,
+      "source_sha256": "40d9d723ca69b3d159a30e943a4291e973f0a736af13827d7152dfc68ad6fb08",
+      "native_height_range": [
+        88,
+        91
+      ],
+      "original_native_height": 91,
+      "distinct_walking_poses_per_direction": [
+        6,
+        6
+      ],
+      "cycle_visible_height": 91,
+      "vertical_offset": 0,
+      "one_fixed_offset_for_all14_poses": true,
+      "source_opaque_outer_edge_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "frozen_accepted_pixels_match": true,
+      "reference_native_pixels_exact": true,
+      "native_reference_not_clipped": true,
+      "review_origin": [
+        64,
+        112
+      ]
+    }
+  ]
+}

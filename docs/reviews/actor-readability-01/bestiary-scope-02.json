@@ -1,0 +1,2805 @@
+{
+  "review_id": "ACTOR-READABILITY01-BESTIARY02",
+  "request": "Apply readability direction to all monsters, including variants",
+  "catalog_source": "assets/sprites/campaign-monsters/manifest.json",
+  "catalog_sha256": "1ef7fe027ea57f28673036456e329e1944d51995fd215e6632e87a8eef9fa13d",
+  "campaign_models": 129,
+  "campaign_appearances_including_material_palettes": 471,
+  "selected_shape_pilots": 3,
+  "remaining_campaign_models_for_shape_review": 126,
+  "global_render_requirements": [
+    "brighter actor silhouettes",
+    "optional ground markers",
+    "optional selective grayscale with colored markers and animated effects"
+  ],
+  "removed_numbers_excluded": [
+    13,
+    23,
+    27,
+    91,
+    163
+  ],
+  "deferred_bosses_not_reintroduced": [
+    18,
+    19
+  ],
+  "entries": [
+    {
+      "number": 5,
+      "label": "Possédé",
+      "family": "Possédés et hybrides",
+      "role": "PossessedMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/005-r02-A.png"
+      ]
+    },
+    {
+      "number": 6,
+      "label": "Possédé",
+      "family": "Possédés et hybrides",
+      "role": "PossessedMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/006-r02-A.png"
+      ]
+    },
+    {
+      "number": 7,
+      "label": "Possédé",
+      "family": "Possédés et hybrides",
+      "role": "PossessedMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "pilot_selected",
+      "source_entries": [
+        "tiles/007-r02-A.png"
+      ]
+    },
+    {
+      "number": 8,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "pilot_selected",
+      "source_entries": [
+        "tiles/008-r02-A.png"
+      ]
+    },
+    {
+      "number": 9,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 256,
+      "foot": [
+        128,
+        192
+      ],
+      "variants": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/009-r03-A.png"
+      ]
+    },
+    {
+      "number": 10,
+      "label": "Possédé",
+      "family": "Possédés et hybrides",
+      "role": "PossessedRanged",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "pilot_selected",
+      "source_entries": [
+        "tiles/010-r02-A.png"
+      ]
+    },
+    {
+      "number": 11,
+      "label": "Démon",
+      "family": "Possédés et hybrides",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/011-r02-A.png"
+      ]
+    },
+    {
+      "number": 12,
+      "label": "Possédé",
+      "family": "Possédés et hybrides",
+      "role": "PossessedMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/012-r02-A.png"
+      ]
+    },
+    {
+      "number": 14,
+      "label": "Cultiste",
+      "family": "Cultistes humains",
+      "role": "CultistRanged",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/014-r04-A.png"
+      ]
+    },
+    {
+      "number": 15,
+      "label": "Démon",
+      "family": "Cultistes humains",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/015-r03-A.png"
+      ]
+    },
+    {
+      "number": 16,
+      "label": "Cultiste",
+      "family": "Cultistes humains",
+      "role": "CultistMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/016-r01-A.png"
+      ]
+    },
+    {
+      "number": 17,
+      "label": "Démon",
+      "family": "Cultistes humains",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/017-r01-A.png"
+      ]
+    },
+    {
+      "number": 20,
+      "label": "Démon",
+      "family": "Élites démoniaques",
+      "role": "DemonMelee",
+      "native_canvas_side": 192,
+      "foot": [
+        96,
+        128
+      ],
+      "variants": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/020-r02-A.png"
+      ]
+    },
+    {
+      "number": 21,
+      "label": "Démon",
+      "family": "Élites démoniaques",
+      "role": "DemonMelee",
+      "native_canvas_side": 192,
+      "foot": [
+        96,
+        128
+      ],
+      "variants": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/021-r02-A.png"
+      ]
+    },
+    {
+      "number": 22,
+      "label": "Cultiste",
+      "family": "Cultistes humains",
+      "role": "CultistMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/022-r01-A.png",
+        "tiles/022-r01-B.png"
+      ]
+    },
+    {
+      "number": 24,
+      "label": "Cultiste",
+      "family": "Cultistes humains",
+      "role": "CultistRanged",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/024-r01-A.png",
+        "tiles/024-r01-B.png"
+      ]
+    },
+    {
+      "number": 25,
+      "label": "Démon",
+      "family": "Possédés et hybrides",
+      "role": "ReservedCaster",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/025-r01-A.png",
+        "tiles/025-r01-B.png"
+      ]
+    },
+    {
+      "number": 26,
+      "label": "Possédé",
+      "family": "Possédés et hybrides",
+      "role": "PossessedMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/026-r01-A.png"
+      ]
+    },
+    {
+      "number": 28,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/028-r02-A.png",
+        "tiles/028-r02-B.png"
+      ]
+    },
+    {
+      "number": 29,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/029-r01-A.png",
+        "tiles/029-r01-B.png"
+      ]
+    },
+    {
+      "number": 30,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/030-r01-A.png",
+        "tiles/030-r01-B.png"
+      ]
+    },
+    {
+      "number": 31,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/031-r01-A.png",
+        "tiles/031-r01-B.png"
+      ]
+    },
+    {
+      "number": 32,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/032-r01-A.png",
+        "tiles/032-r01-B.png"
+      ]
+    },
+    {
+      "number": 33,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/033-r01-A.png",
+        "tiles/033-r01-B.png"
+      ]
+    },
+    {
+      "number": 34,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/034-r01-A.png",
+        "tiles/034-r01-B.png"
+      ]
+    },
+    {
+      "number": 35,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/035-r01-A.png",
+        "tiles/035-r01-B.png"
+      ]
+    },
+    {
+      "number": 36,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/036-r01-A.png",
+        "tiles/036-r01-B.png"
+      ]
+    },
+    {
+      "number": 37,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/037-r01-A.png",
+        "tiles/037-r01-B.png"
+      ]
+    },
+    {
+      "number": 38,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/038-r01-A.png",
+        "tiles/038-r01-B.png"
+      ]
+    },
+    {
+      "number": 39,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 64,
+      "foot": [
+        32,
+        60
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/039-r01-A.png",
+        "tiles/039-r01-B.png"
+      ]
+    },
+    {
+      "number": 60,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/060-r02-A.png",
+        "tiles/060-r02-B.png"
+      ]
+    },
+    {
+      "number": 61,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/061-r02-A.png",
+        "tiles/061-r02-B.png"
+      ]
+    },
+    {
+      "number": 62,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/062-r02-A.png",
+        "tiles/062-r02-B.png"
+      ]
+    },
+    {
+      "number": 63,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/063-r02-A.png",
+        "tiles/063-r02-B.png"
+      ]
+    },
+    {
+      "number": 64,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/064-r02-A.png",
+        "tiles/064-r02-B.png"
+      ]
+    },
+    {
+      "number": 65,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/065-r02-A.png",
+        "tiles/065-r02-B.png"
+      ]
+    },
+    {
+      "number": 66,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/066-r02-A.png",
+        "tiles/066-r02-B.png"
+      ]
+    },
+    {
+      "number": 67,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/067-r02-A.png",
+        "tiles/067-r02-B.png"
+      ]
+    },
+    {
+      "number": 68,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/068-r02-A.png",
+        "tiles/068-r02-B.png"
+      ]
+    },
+    {
+      "number": 69,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/069-r02-A.png",
+        "tiles/069-r02-B.png"
+      ]
+    },
+    {
+      "number": 70,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/070-r02-A.png",
+        "tiles/070-r02-B.png"
+      ]
+    },
+    {
+      "number": 71,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/071-r02-A.png",
+        "tiles/071-r02-B.png"
+      ]
+    },
+    {
+      "number": 72,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonRanged",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/072-r02-A.png",
+        "tiles/072-r02-B.png"
+      ]
+    },
+    {
+      "number": 73,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/073-r02-A.png",
+        "tiles/073-r02-B.png"
+      ]
+    },
+    {
+      "number": 74,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/074-r02-A.png",
+        "tiles/074-r02-B.png"
+      ]
+    },
+    {
+      "number": 75,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/075-r02-A.png",
+        "tiles/075-r02-B.png"
+      ]
+    },
+    {
+      "number": 76,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/076-r02-A.png",
+        "tiles/076-r02-B.png"
+      ]
+    },
+    {
+      "number": 77,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/077-r02-A.png",
+        "tiles/077-r02-B.png"
+      ]
+    },
+    {
+      "number": 78,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/078-r02-A.png",
+        "tiles/078-r02-B.png"
+      ]
+    },
+    {
+      "number": 79,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/079-r02-A.png",
+        "tiles/079-r02-B.png"
+      ]
+    },
+    {
+      "number": 80,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/080-r01-A.png",
+        "tiles/080-r01-B.png"
+      ]
+    },
+    {
+      "number": 81,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/081-r01-A.png",
+        "tiles/081-r01-B.png"
+      ]
+    },
+    {
+      "number": 82,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/082-r01-A.png",
+        "tiles/082-r01-B.png"
+      ]
+    },
+    {
+      "number": 83,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/083-r01-A.png",
+        "tiles/083-r01-B.png"
+      ]
+    },
+    {
+      "number": 84,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/084-r01-A.png",
+        "tiles/084-r01-B.png"
+      ]
+    },
+    {
+      "number": 85,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/085-r01-A.png",
+        "tiles/085-r01-B.png"
+      ]
+    },
+    {
+      "number": 86,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/086-r01-A.png",
+        "tiles/086-r01-B.png"
+      ]
+    },
+    {
+      "number": 87,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/087-r01-A.png",
+        "tiles/087-r01-B.png"
+      ]
+    },
+    {
+      "number": 88,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/088-r01-A.png",
+        "tiles/088-r01-B.png"
+      ]
+    },
+    {
+      "number": 89,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/089-r01-A.png",
+        "tiles/089-r01-B.png"
+      ]
+    },
+    {
+      "number": 90,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/090-r01-A.png",
+        "tiles/090-r01-B.png"
+      ]
+    },
+    {
+      "number": 92,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/092-r01-A.png",
+        "tiles/092-r01-B.png"
+      ]
+    },
+    {
+      "number": 93,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/093-r01-A.png",
+        "tiles/093-r01-B.png"
+      ]
+    },
+    {
+      "number": 96,
+      "label": "Possédé",
+      "family": "Possédés et hybrides",
+      "role": "PossessedRanged",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/096-r01-A.png",
+        "tiles/096-r01-B.png"
+      ]
+    },
+    {
+      "number": 98,
+      "label": "Possédé",
+      "family": "Possédés et hybrides",
+      "role": "PossessedRanged",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/098-r01-A.png",
+        "tiles/098-r01-B.png"
+      ]
+    },
+    {
+      "number": 99,
+      "label": "Possédé",
+      "family": "Possédés et hybrides",
+      "role": "PossessedMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/099-r01-A.png",
+        "tiles/099-r01-B.png"
+      ]
+    },
+    {
+      "number": 100,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/100-r01-A.png",
+        "tiles/100-r01-B.png"
+      ]
+    },
+    {
+      "number": 101,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/101-r01-A.png",
+        "tiles/101-r01-B.png"
+      ]
+    },
+    {
+      "number": 102,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/102-r01-A.png",
+        "tiles/102-r01-B.png"
+      ]
+    },
+    {
+      "number": 103,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/103-r01-A.png",
+        "tiles/103-r01-B.png"
+      ]
+    },
+    {
+      "number": 104,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/104-r01-A.png",
+        "tiles/104-r01-B.png"
+      ]
+    },
+    {
+      "number": 105,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/105-r01-A.png",
+        "tiles/105-r01-B.png"
+      ]
+    },
+    {
+      "number": 106,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/106-r01-A.png",
+        "tiles/106-r01-B.png"
+      ]
+    },
+    {
+      "number": 107,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/107-r01-A.png",
+        "tiles/107-r01-B.png"
+      ]
+    },
+    {
+      "number": 108,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/108-r01-A.png",
+        "tiles/108-r01-B.png"
+      ]
+    },
+    {
+      "number": 109,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/109-r01-A.png",
+        "tiles/109-r01-B.png"
+      ]
+    },
+    {
+      "number": 111,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/111-r01-A.png",
+        "tiles/111-r01-B.png"
+      ]
+    },
+    {
+      "number": 112,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/112-r01-A.png",
+        "tiles/112-r01-B.png"
+      ]
+    },
+    {
+      "number": 113,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/113-r01-A.png",
+        "tiles/113-r01-B.png"
+      ]
+    },
+    {
+      "number": 115,
+      "label": "Démon",
+      "family": "Démons et créations",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/115-r01-A.png",
+        "tiles/115-r01-B.png"
+      ]
+    },
+    {
+      "number": 116,
+      "label": "Possédé",
+      "family": "Cultistes possédés",
+      "role": "PossessedMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/116-r01-A.png",
+        "tiles/116-r01-B.png"
+      ]
+    },
+    {
+      "number": 117,
+      "label": "Démon",
+      "family": "Cultistes possédés",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/117-r01-A.png",
+        "tiles/117-r01-B.png"
+      ]
+    },
+    {
+      "number": 118,
+      "label": "Possédé",
+      "family": "Cultistes possédés",
+      "role": "PossessedMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/118-r01-A.png",
+        "tiles/118-r01-B.png"
+      ]
+    },
+    {
+      "number": 119,
+      "label": "Possédé",
+      "family": "Cultistes possédés",
+      "role": "PossessedMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/119-r01-A.png",
+        "tiles/119-r01-B.png"
+      ]
+    },
+    {
+      "number": 120,
+      "label": "Zombie",
+      "family": "Zombies",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/120-r01-A.png",
+        "tiles/120-r01-B.png"
+      ]
+    },
+    {
+      "number": 121,
+      "label": "Zombie",
+      "family": "Zombies",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/121-r01-A.png",
+        "tiles/121-r01-B.png"
+      ]
+    },
+    {
+      "number": 122,
+      "label": "Zombie",
+      "family": "Zombies",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/122-r01-A.png",
+        "tiles/122-r01-B.png"
+      ]
+    },
+    {
+      "number": 123,
+      "label": "Zombie",
+      "family": "Zombies",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/123-r01-A.png",
+        "tiles/123-r01-B.png"
+      ]
+    },
+    {
+      "number": 124,
+      "label": "Esprit torturé",
+      "family": "Esprits torturés",
+      "role": "Spirit",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/124-r01-A.png",
+        "tiles/124-r01-B.png"
+      ]
+    },
+    {
+      "number": 125,
+      "label": "Esprit torturé",
+      "family": "Esprits torturés",
+      "role": "Spirit",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/125-r01-A.png",
+        "tiles/125-r01-B.png"
+      ]
+    },
+    {
+      "number": 126,
+      "label": "Esprit torturé",
+      "family": "Esprits torturés",
+      "role": "Spirit",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/126-r01-A.png",
+        "tiles/126-r01-B.png"
+      ]
+    },
+    {
+      "number": 127,
+      "label": "Esprit torturé",
+      "family": "Esprits torturés",
+      "role": "Spirit",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/127-r01-A.png",
+        "tiles/127-r01-B.png"
+      ]
+    },
+    {
+      "number": 128,
+      "label": "Squelette",
+      "family": "Squelettes",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/128-r01-A.png",
+        "tiles/128-r01-B.png"
+      ]
+    },
+    {
+      "number": 129,
+      "label": "Squelette",
+      "family": "Squelettes",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/129-r01-A.png",
+        "tiles/129-r01-B.png"
+      ]
+    },
+    {
+      "number": 130,
+      "label": "Démon",
+      "family": "Créatures enflammées",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/130-r01-A.png",
+        "tiles/130-r01-B.png"
+      ]
+    },
+    {
+      "number": 131,
+      "label": "Démon",
+      "family": "Créatures enflammées",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/131-r01-A.png",
+        "tiles/131-r01-B.png"
+      ]
+    },
+    {
+      "number": 132,
+      "label": "Cultiste",
+      "family": "Nécromanciens scientifiques",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/132-r02-A.png",
+        "tiles/132-r02-B.png"
+      ]
+    },
+    {
+      "number": 133,
+      "label": "Cultiste",
+      "family": "Nécromanciens scientifiques",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/133-r02-A.png",
+        "tiles/133-r02-B.png"
+      ]
+    },
+    {
+      "number": 134,
+      "label": "Cultiste",
+      "family": "Nécromanciens scientifiques",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/134-r02-A.png",
+        "tiles/134-r02-B.png"
+      ]
+    },
+    {
+      "number": 135,
+      "label": "Cultiste",
+      "family": "Nécromanciens scientifiques",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/135-r01-A.png",
+        "tiles/135-r01-B.png"
+      ]
+    },
+    {
+      "number": 136,
+      "label": "Démon",
+      "family": "Nécromanciens démoniaques",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/136-r01-A.png",
+        "tiles/136-r01-B.png"
+      ]
+    },
+    {
+      "number": 137,
+      "label": "Démon",
+      "family": "Nécromanciens démoniaques",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/137-r02-A.png",
+        "tiles/137-r02-B.png"
+      ]
+    },
+    {
+      "number": 138,
+      "label": "Démon",
+      "family": "Nécromanciens démoniaques",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/138-r01-A.png",
+        "tiles/138-r01-B.png"
+      ]
+    },
+    {
+      "number": 139,
+      "label": "Démon",
+      "family": "Nécromanciens démoniaques",
+      "role": "ReservedCaster",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/139-r02-A.png",
+        "tiles/139-r02-B.png"
+      ]
+    },
+    {
+      "number": 140,
+      "label": "Démon",
+      "family": "Vers et larves démoniaques",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/140-r01-A.png",
+        "tiles/140-r01-B.png"
+      ]
+    },
+    {
+      "number": 141,
+      "label": "Démon",
+      "family": "Vers et larves démoniaques",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/141-r01-A.png",
+        "tiles/141-r01-B.png"
+      ]
+    },
+    {
+      "number": 142,
+      "label": "Démon",
+      "family": "Vers et larves démoniaques",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/142-r01-A.png",
+        "tiles/142-r01-B.png"
+      ]
+    },
+    {
+      "number": 143,
+      "label": "Démon",
+      "family": "Vers et larves démoniaques",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/143-r01-A.png",
+        "tiles/143-r01-B.png"
+      ]
+    },
+    {
+      "number": 144,
+      "label": "Démon",
+      "family": "Démons ailés",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/144-r01-A.png",
+        "tiles/144-r01-B.png"
+      ]
+    },
+    {
+      "number": 145,
+      "label": "Démon",
+      "family": "Démons ailés",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/145-r01-A.png",
+        "tiles/145-r01-B.png"
+      ]
+    },
+    {
+      "number": 146,
+      "label": "Démon",
+      "family": "Démons ailés",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/146-r01-A.png",
+        "tiles/146-r01-B.png"
+      ]
+    },
+    {
+      "number": 147,
+      "label": "Démon",
+      "family": "Démons ailés",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/147-r01-A.png",
+        "tiles/147-r01-B.png"
+      ]
+    },
+    {
+      "number": 148,
+      "label": "Démon",
+      "family": "Minotaures ailés",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/148-r01-A.png",
+        "tiles/148-r01-B.png"
+      ]
+    },
+    {
+      "number": 149,
+      "label": "Démon",
+      "family": "Minotaures ailés",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/149-r01-A.png",
+        "tiles/149-r01-B.png"
+      ]
+    },
+    {
+      "number": 150,
+      "label": "Démon",
+      "family": "Minotaures ailés",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/150-r01-A.png",
+        "tiles/150-r01-B.png"
+      ]
+    },
+    {
+      "number": 151,
+      "label": "Démon",
+      "family": "Minotaures ailés",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/151-r01-A.png",
+        "tiles/151-r01-B.png"
+      ]
+    },
+    {
+      "number": 152,
+      "label": "Démon",
+      "family": "Démons de peste",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/152-r01-A.png",
+        "tiles/152-r01-B.png"
+      ]
+    },
+    {
+      "number": 153,
+      "label": "Démon",
+      "family": "Démons de peste",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/153-r01-A.png",
+        "tiles/153-r01-B.png"
+      ]
+    },
+    {
+      "number": 154,
+      "label": "Démon",
+      "family": "Démons de peste",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/154-r01-A.png",
+        "tiles/154-r01-B.png"
+      ]
+    },
+    {
+      "number": 155,
+      "label": "Démon",
+      "family": "Démons de peste",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/155-r01-A.png",
+        "tiles/155-r01-B.png"
+      ]
+    },
+    {
+      "number": 156,
+      "label": "Démon",
+      "family": "Démons du froid",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/156-r02-A.png"
+      ]
+    },
+    {
+      "number": 157,
+      "label": "Démon",
+      "family": "Démons du froid",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/157-r01-A.png",
+        "tiles/157-r01-B.png"
+      ]
+    },
+    {
+      "number": 158,
+      "label": "Démon",
+      "family": "Démons du froid",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/158-r01-A.png",
+        "tiles/158-r01-B.png"
+      ]
+    },
+    {
+      "number": 159,
+      "label": "Démon",
+      "family": "Démons du froid",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/159-r01-A.png",
+        "tiles/159-r01-B.png"
+      ]
+    },
+    {
+      "number": 160,
+      "label": "Démon",
+      "family": "Démons humanoïdes",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/160-r01-A.png",
+        "tiles/160-r01-B.png"
+      ]
+    },
+    {
+      "number": 161,
+      "label": "Démon",
+      "family": "Démons humanoïdes",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/161-r01-A.png",
+        "tiles/161-r01-B.png"
+      ]
+    },
+    {
+      "number": 162,
+      "label": "Démon",
+      "family": "Démons humanoïdes",
+      "role": "DemonMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/162-r01-A.png",
+        "tiles/162-r01-B.png"
+      ]
+    },
+    {
+      "number": 164,
+      "label": "Cultiste",
+      "family": "Cultistes humains",
+      "role": "CultistRanged",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/164-r01-A.png"
+      ]
+    },
+    {
+      "number": 165,
+      "label": "Cultiste",
+      "family": "Cultistes humains",
+      "role": "CultistMelee",
+      "native_canvas_side": 128,
+      "foot": [
+        64,
+        96
+      ],
+      "variants": [
+        0
+      ],
+      "shape_status": "to_review",
+      "source_entries": [
+        "tiles/165-r01-A.png"
+      ]
+    }
+  ],
+  "runtime_integration": false,
+  "scope_note": "Inventory of current campaign catalog; no new species or revived removed models. Other actor render paths must share global treatments when integrating."
+}

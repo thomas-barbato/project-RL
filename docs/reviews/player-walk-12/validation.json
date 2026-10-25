@@ -1,0 +1,80 @@
+{
+  "revision": "WALK12-TECH-r01",
+  "date": "2026-10-25",
+  "status": "passed",
+  "normal_game": {
+    "front_at_player_arrival": true,
+    "equipped_arms_rigid_during_step": true,
+    "vertical_creature_steps_select_existing_cycle": true,
+    "default_milliseconds_per_cell": 400,
+    "selectable_milliseconds": [
+      120,
+      200,
+      400
+    ],
+    "distance_cells": 1,
+    "accepted_images_changed": false
+  },
+  "builds": {
+    "debug": "passed,29.53s",
+    "release": "passed,126s; final recheck0.27s",
+    "release_sha256": "0c03d8918de62f41ec9d1f0d6b56810f48c335ac788c808db4ff5117b08ae828",
+    "cargo_fmt_check": "passed",
+    "git_diff_check": "passed using repository line-ending settings"
+  },
+  "tests": {
+    "combat_visuals": "15 passed",
+    "normal_471_creature_palette_geometries": "passed,27.22s",
+    "normal_350_whole_poses_and_leg_guards": "passed,19.38s",
+    "normal_arms_weapon_pose_stability": "passed,27.59s",
+    "proposed_350_poses_legs_rigid_grips_and_context_restoration": "passed,45.94s",
+    "normal_contact_cases": 2690,
+    "normal_contact_failures": 0,
+    "proposed_contact_cases": 2690,
+    "proposed_contact_failures": 0,
+    "proposed_contact_seconds": 109.09
+  },
+  "actual_saved_scene": {
+    "source": "isolated restoration; original save bytes unchanged",
+    "player_front_at_arrival": true,
+    "monster_moves_audited": 10,
+    "missing_cycles_after_fix": 0,
+    "native_frames": 3,
+    "report": "live-state-audit.json"
+  },
+  "native_world": {
+    "scenes": 53,
+    "cell_px": 64,
+    "status": "passed"
+  },
+  "native_proposal_catalogue": {
+    "scenes": 54,
+    "player_cases": 35,
+    "stderr": ""
+  },
+  "proposal": {
+    "revision": "WALK12-COMMON-r01",
+    "outfits": 25,
+    "whole_walking_drawings": 300,
+    "reference_idles_unchanged": 50,
+    "new_art_integrated_in_normal_game": false,
+    "user_visual_approval": "pending",
+    "runtime_distribution_includes_proposal": false,
+    "geometry_verification": "asset-verification.json",
+    "manifest_sha256": "4dfdcd7f5be9c098d6b8f9c93ae6d713239518ae81d4a801a3c79c7bbaf89190",
+    "contact_report_sha256": "db8239df91b1c3335582c85574c004bd7d4c00218d38fe977610dd9c973dbaba"
+  },
+  "accepted_runtime_assets_unchanged": 62,
+  "accepted_sources_unchanged": 58,
+  "original_walk07_walk09_and_map_editor_files_unchanged": 257,
+  "source_sha256": {
+    "src/combat_visuals.rs": "c5d01508d98e7cea1d68726e487c7634ff94be5f33ae01bbd79a3c31dd570af4",
+    "src/terminal_view.rs": "5675c24cd0023947ad013ba0dcd00d2b617a9630f48416e6e79c31066f203c01",
+    "src/game_art_walk_rig.rs": "a5035188a29af93f8b03ef1ea2b4483570cde1c308fc9bc5951995a9f7be15fb",
+    "src/game_art_walk.rs": "eb7eb6e7a9dc368229fa337d8c15e9b6162841e16993ea4f2fa9965f65b4736d",
+    "src/game_art_walk_approved.rs": "5215bafc0da484825af4001eefd515f470276badfa4628a5e3b0e7d3e2bc739f",
+    "src/walk_review.rs": "daf564f1274ca8c00eba89dc138d6609e3287b351b8be14e29f8ea9bbbe2bc24",
+    "src/walk_capture.rs": "bd0a8243990add06ba451a897fe02f83aed2402a5934c67534accc8656d06558",
+    "src/walk_proportions_player_export.rs": "3e6fb882e17ced1445247414024280d3117c36d2a213ff63553493c3dcaffb16"
+  }
+}

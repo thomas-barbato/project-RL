@@ -1,0 +1,564 @@
+{
+  "review_id": "ARCANISTE-SHORT-NECK04",
+  "date": "2026-10-22",
+  "class_id": "core:arcaniste",
+  "source_user_request": "sa nuque est trop haute ca fait bizarre",
+  "status": "awaiting_visual_review",
+  "reference_acceptances": [
+    {
+      "path": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+      "sha256": "6d55febb0bd152cca21df65f000b37da01a19d49179fedf9d74309e93bb40028"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+      "sha256": "d51882a635cbd8e024e366f4442cf238e1345668b2d0c03d152d7d6f0f4a0e02"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+      "sha256": "f8ecf404d5c60e6d9c5686def4b8221bc822e44b0a69201163e972b53b15f566"
+    }
+  ],
+  "runtime_integration": false,
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "AR-NC04-P01-r01",
+      "rank": 1,
+      "label": "Très légère",
+      "status": "awaiting_visual_review",
+      "previous_candidate_id": "AR-SF03-P01-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-source.png",
+      "source_sha256": "1caec0615c9866aefd42452da81f33caa066748c5189e1fc649bff8a3a7b4d21",
+      "native": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-native64.png",
+      "native_sha256": "9ed34f2c608f7891e27c2c60f2bbe9462cbd11de23999a9f1dd1d5716fb5dfd9",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        21,
+        4,
+        44,
+        62
+      ],
+      "framing": {
+        "source_core_box": [
+          403,
+          41,
+          857,
+          1213
+        ],
+        "source_crop": [
+          385,
+          23,
+          875,
+          1231
+        ],
+        "isotropic_scale": 0.051194539249146756,
+        "native_core_box": [
+          21,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 23,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "framing_status": "unchanged body framing; head translated afterwards",
+      "head_label": "Tête nue",
+      "native_head_translation": [
+        0,
+        2
+      ],
+      "source_head_translation": [
+        0,
+        39
+      ],
+      "native_head_pixels_preserved_by_translation": true,
+      "native_resampling": false,
+      "native_pixel_changes_outside_attachment": 0,
+      "all_pixels_from_y13_exact": true,
+      "source_pixels_outside_attachment_exact": true,
+      "visible_face_preserved_by_translation": true,
+      "head_body_recomposition_exact": true,
+      "hood_occlusion_allowed": true,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-head-native64.png",
+          "sha256": "97c7def8019a7323ddf790a635345855153427d0de32a2290b0a52a685e95dd8"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-body-native64.png",
+          "sha256": "8d3f7fe5629386458c36875ff015cb227a43ed983a5e38a289b07dc90b3e14aa"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-head-mask-native64.png",
+          "sha256": "f474e195d8181bb8902b68851d363c679099d7a220b5d53a55c161302826e97f"
+        },
+        "attachment-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-attachment-mask-native64.png",
+          "sha256": "96295dc2742dc566e8fdd8d7e9924ddc8a62388c31ed70cb68992cbd22652a47"
+        },
+        "face": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-face-native64.png",
+          "sha256": "bf21254d8362fb6b3ec8677db7a0cf19a529959eea24db9e1224f71ad1108e6c"
+        },
+        "face-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-face-mask-native64.png",
+          "sha256": "bf2e8f44a468d5899a7655cdb938015d03f91a15a112538e7c658933cda17c1a"
+        },
+        "head-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-head-source.png",
+          "sha256": "09696521fec540e1add988b8e48f705520b91e9af2d125a265755cbb2106d7ae"
+        },
+        "body-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-body-source.png",
+          "sha256": "f999469ab80072d67a27e22c305fc6f8f5a77d518730c8646f3cdd41af83df8b"
+        },
+        "attachment-mask-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P01-r01-attachment-mask-source.png",
+          "sha256": "83f9f10c97b23fcad49f778156410bd2e04bc37763ea53300e6a176bb3ddafb9"
+        }
+      },
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study attachment correction only; independent helmet override and weapon grips pending"
+    },
+    {
+      "number": "02",
+      "candidate_id": "AR-NC04-P02-r01",
+      "rank": 2,
+      "label": "Légère",
+      "status": "awaiting_visual_review",
+      "previous_candidate_id": "AR-SF03-P02-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-source.png",
+      "source_sha256": "c20b70c2cb67c8b245c4a1bab2b5ba5b7906abd088250b75cad38fc6f553ec6e",
+      "native": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-native64.png",
+      "native_sha256": "6a0bbcaefc183e229161ce13df4890dd3d67c6e7437727f3bde17aa84d0682c2",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        20,
+        4,
+        44,
+        62
+      ],
+      "framing": {
+        "source_core_box": [
+          379,
+          40,
+          853,
+          1225
+        ],
+        "source_crop": [
+          361,
+          22,
+          871,
+          1243
+        ],
+        "isotropic_scale": 0.05063291139240506,
+        "native_core_box": [
+          20,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 24,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "framing_status": "unchanged body framing; head translated afterwards",
+      "head_label": "Bandeau",
+      "native_head_translation": [
+        0,
+        2
+      ],
+      "source_head_translation": [
+        0,
+        39
+      ],
+      "native_head_pixels_preserved_by_translation": true,
+      "native_resampling": false,
+      "native_pixel_changes_outside_attachment": 0,
+      "all_pixels_from_y13_exact": true,
+      "source_pixels_outside_attachment_exact": true,
+      "visible_face_preserved_by_translation": true,
+      "head_body_recomposition_exact": true,
+      "hood_occlusion_allowed": true,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-head-native64.png",
+          "sha256": "9907401b7d297fd8fc67f57934ff31d5aff7a9d677caaae05a222527c1dcfb34"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-body-native64.png",
+          "sha256": "46b751a2c12c6aef2f43e730515483136a348fc8b9ac26af35c6739e90ec2580"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-head-mask-native64.png",
+          "sha256": "f474e195d8181bb8902b68851d363c679099d7a220b5d53a55c161302826e97f"
+        },
+        "attachment-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-attachment-mask-native64.png",
+          "sha256": "96295dc2742dc566e8fdd8d7e9924ddc8a62388c31ed70cb68992cbd22652a47"
+        },
+        "face": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-face-native64.png",
+          "sha256": "bf21254d8362fb6b3ec8677db7a0cf19a529959eea24db9e1224f71ad1108e6c"
+        },
+        "face-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-face-mask-native64.png",
+          "sha256": "bf2e8f44a468d5899a7655cdb938015d03f91a15a112538e7c658933cda17c1a"
+        },
+        "head-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-head-source.png",
+          "sha256": "ee3078c96044e5f37b10883af28e3862841de260cf410427d65e479173ac044e"
+        },
+        "body-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-body-source.png",
+          "sha256": "2e94da54575ccc226367262c39a68fee621b7c92f02371ffe85b9fa2802d9aaa"
+        },
+        "attachment-mask-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P02-r01-attachment-mask-source.png",
+          "sha256": "fc5ab0439a3b35215f618e748132965b0e76cfacd089f1891f76a484a83d56d7"
+        }
+      },
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study attachment correction only; independent helmet override and weapon grips pending"
+    },
+    {
+      "number": "03",
+      "candidate_id": "AR-NC04-P03-r01",
+      "rank": 3,
+      "label": "Interméd.",
+      "status": "awaiting_visual_review",
+      "previous_candidate_id": "AR-SF03-P03-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-source.png",
+      "source_sha256": "9af5adf58dec06bb79a066ddc479cdcb07750c077eb08dad3d049fbbbc1862bf",
+      "native": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-native64.png",
+      "native_sha256": "194ccaae3819231185d98c62969afdbbe3fe53db5679b9cf57004ddfd5148227",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        20,
+        3,
+        44,
+        62
+      ],
+      "framing": {
+        "source_core_box": [
+          370,
+          33,
+          855,
+          1242
+        ],
+        "source_crop": [
+          352,
+          15,
+          873,
+          1260
+        ],
+        "isotropic_scale": 0.04962779156327544,
+        "native_core_box": [
+          20,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 24,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "framing_status": "unchanged body framing; head translated afterwards",
+      "head_label": "Capuche de mage",
+      "native_head_translation": [
+        0,
+        2
+      ],
+      "source_head_translation": [
+        0,
+        40
+      ],
+      "native_head_pixels_preserved_by_translation": true,
+      "native_resampling": false,
+      "native_pixel_changes_outside_attachment": 0,
+      "all_pixels_from_y13_exact": true,
+      "source_pixels_outside_attachment_exact": true,
+      "visible_face_preserved_by_translation": true,
+      "head_body_recomposition_exact": true,
+      "hood_occlusion_allowed": true,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-head-native64.png",
+          "sha256": "d18ed00004ba6427e3191fa4997e60deca2b4530d1128683e119cced4d4f8bb4"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-body-native64.png",
+          "sha256": "f91e28e0f2a4b6dc88258f6b59ce572328f275b372f7d94dcb97f3218cb3fb6d"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-head-mask-native64.png",
+          "sha256": "f474e195d8181bb8902b68851d363c679099d7a220b5d53a55c161302826e97f"
+        },
+        "attachment-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-attachment-mask-native64.png",
+          "sha256": "96295dc2742dc566e8fdd8d7e9924ddc8a62388c31ed70cb68992cbd22652a47"
+        },
+        "face": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-face-native64.png",
+          "sha256": "bf21254d8362fb6b3ec8677db7a0cf19a529959eea24db9e1224f71ad1108e6c"
+        },
+        "face-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-face-mask-native64.png",
+          "sha256": "bf2e8f44a468d5899a7655cdb938015d03f91a15a112538e7c658933cda17c1a"
+        },
+        "head-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-head-source.png",
+          "sha256": "e96ecf770ec4a2bec1d2d524570fdbb7f2fc74f3ab8714439a6293a919d0157c"
+        },
+        "body-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-body-source.png",
+          "sha256": "aed74f36e91994f1021896537b64f9f544cf47afca85a4cc709104231e21bfa9"
+        },
+        "attachment-mask-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P03-r01-attachment-mask-source.png",
+          "sha256": "2b01a0f32909bb9eeaeafc5df61a1f03319f9b5236fa2eb128f3cdfff5a9056e"
+        }
+      },
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study attachment correction only; independent helmet override and weapon grips pending"
+    },
+    {
+      "number": "04",
+      "candidate_id": "AR-NC04-P04-r01",
+      "rank": 4,
+      "label": "Lourde",
+      "status": "awaiting_visual_review",
+      "previous_candidate_id": "AR-SF03-P04-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-source.png",
+      "source_sha256": "fcfb661458512dc4bc14a5df72c00f2fbcc1e35ff1e9d5da5f71a7e8401661ac",
+      "native": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-native64.png",
+      "native_sha256": "e1f3fba3fd91c1e29dd271152bf51868d2fdd0b35c5e93360fb76548c1e5103b",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        19,
+        4,
+        44,
+        62
+      ],
+      "framing": {
+        "source_core_box": [
+          364,
+          20,
+          870,
+          1210
+        ],
+        "source_crop": [
+          346,
+          2,
+          888,
+          1228
+        ],
+        "isotropic_scale": 0.05042016806722689,
+        "native_core_box": [
+          19,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 25,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "framing_status": "unchanged body framing; head translated afterwards",
+      "head_label": "Capuche bordée",
+      "native_head_translation": [
+        0,
+        2
+      ],
+      "source_head_translation": [
+        0,
+        40
+      ],
+      "native_head_pixels_preserved_by_translation": true,
+      "native_resampling": false,
+      "native_pixel_changes_outside_attachment": 0,
+      "all_pixels_from_y13_exact": true,
+      "source_pixels_outside_attachment_exact": true,
+      "visible_face_preserved_by_translation": true,
+      "head_body_recomposition_exact": true,
+      "hood_occlusion_allowed": true,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-head-native64.png",
+          "sha256": "4ad3f40ef98ac743ebdbbe7a23815125534b31aa5064fb72c886c2286cfaf9f4"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-body-native64.png",
+          "sha256": "a5d72b8d8da7377898185f015f767bd77f1bef8f48d58b44edb20b174f065899"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-head-mask-native64.png",
+          "sha256": "f474e195d8181bb8902b68851d363c679099d7a220b5d53a55c161302826e97f"
+        },
+        "attachment-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-attachment-mask-native64.png",
+          "sha256": "96295dc2742dc566e8fdd8d7e9924ddc8a62388c31ed70cb68992cbd22652a47"
+        },
+        "face": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-face-native64.png",
+          "sha256": "bf21254d8362fb6b3ec8677db7a0cf19a529959eea24db9e1224f71ad1108e6c"
+        },
+        "face-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-face-mask-native64.png",
+          "sha256": "bf2e8f44a468d5899a7655cdb938015d03f91a15a112538e7c658933cda17c1a"
+        },
+        "head-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-head-source.png",
+          "sha256": "d60195c45c5205c7b0f0c9afb93829a8ade809d58c2418d2641771923db5a204"
+        },
+        "body-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-body-source.png",
+          "sha256": "cfc1fd48978c7a0206b46687b0d661e0c6bcaf4bc3ea6842acd012ff804a1307"
+        },
+        "attachment-mask-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P04-r01-attachment-mask-source.png",
+          "sha256": "d38f2146bcb84033de2400955085a9bc6d78b565d6dae903a9b50c7c20dfc38e"
+        }
+      },
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study attachment correction only; independent helmet override and weapon grips pending"
+    },
+    {
+      "number": "05",
+      "candidate_id": "AR-NC04-P05-r01",
+      "rank": 5,
+      "label": "Très lourde",
+      "status": "awaiting_visual_review",
+      "previous_candidate_id": "AR-SF03-P05-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-source.png",
+      "source_sha256": "485cd17aa41bdf9447d2d2689fab848b7091890b8e71f7b5ccb7084b623f7aec",
+      "native": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-native64.png",
+      "native_sha256": "d24929688dac6d094eb6111aafb05447321bd7f0b51e197a727755c8c70d5cb7",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        19,
+        4,
+        45,
+        62
+      ],
+      "framing": {
+        "source_core_box": [
+          352,
+          34,
+          892,
+          1248
+        ],
+        "source_crop": [
+          334,
+          16,
+          910,
+          1266
+        ],
+        "isotropic_scale": 0.04942339373970346,
+        "native_core_box": [
+          19,
+          2,
+          45,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 26,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "framing_status": "unchanged body framing; head translated afterwards",
+      "head_label": "Diadème de mage",
+      "native_head_translation": [
+        0,
+        2
+      ],
+      "source_head_translation": [
+        0,
+        40
+      ],
+      "native_head_pixels_preserved_by_translation": true,
+      "native_resampling": false,
+      "native_pixel_changes_outside_attachment": 0,
+      "all_pixels_from_y13_exact": true,
+      "source_pixels_outside_attachment_exact": true,
+      "visible_face_preserved_by_translation": true,
+      "head_body_recomposition_exact": true,
+      "hood_occlusion_allowed": true,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-head-native64.png",
+          "sha256": "90eaaf4bb887c7e97c271408faa80787bdc0405a143e69de14555ed1711bc3da"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-body-native64.png",
+          "sha256": "11624663571780923784121b45507f9498d3528598f5ad3b2955f3248b08b914"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-head-mask-native64.png",
+          "sha256": "f474e195d8181bb8902b68851d363c679099d7a220b5d53a55c161302826e97f"
+        },
+        "attachment-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-attachment-mask-native64.png",
+          "sha256": "96295dc2742dc566e8fdd8d7e9924ddc8a62388c31ed70cb68992cbd22652a47"
+        },
+        "face": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-face-native64.png",
+          "sha256": "bf21254d8362fb6b3ec8677db7a0cf19a529959eea24db9e1224f71ad1108e6c"
+        },
+        "face-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-face-mask-native64.png",
+          "sha256": "bf2e8f44a468d5899a7655cdb938015d03f91a15a112538e7c658933cda17c1a"
+        },
+        "head-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-head-source.png",
+          "sha256": "37986fee96325c815982522e58ae5d1575bbaf9587d84ab589e4cfe8df242c36"
+        },
+        "body-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-body-source.png",
+          "sha256": "d3baea66b7403ac5dcbe5f13c4d8181a8f91345c0ba63c30e3dac415ee114b6b"
+        },
+        "attachment-mask-source": {
+          "path": "assets/source-art/class-readability-01/arcaniste-short-neck-04/AR-NC04-P05-r01-attachment-mask-source.png",
+          "sha256": "0223ebe20faf1179a559c9c7b596448770dc325db1df19edab9310530086592e"
+        }
+      },
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study attachment correction only; independent helmet override and weapon grips pending"
+    }
+  ]
+}

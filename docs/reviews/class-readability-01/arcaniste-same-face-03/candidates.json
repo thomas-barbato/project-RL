@@ -1,0 +1,765 @@
+{
+  "review_id": "ARCANISTE-SAME-FACE03",
+  "date": "2026-10-22",
+  "class_id": "core:arcaniste",
+  "source_user_request": "j'ai l'impression que le visage n'est pas le meme partout.",
+  "status": "awaiting_visual_review",
+  "reference_acceptances": [
+    {
+      "path": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+      "sha256": "6d55febb0bd152cca21df65f000b37da01a19d49179fedf9d74309e93bb40028"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+      "sha256": "d51882a635cbd8e024e366f4442cf238e1345668b2d0c03d152d7d6f0f4a0e02"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+      "sha256": "f8ecf404d5c60e6d9c5686def4b8221bc822e44b0a69201163e972b53b15f566"
+    }
+  ],
+  "canonical_face": "AR-MH02-P01-r01",
+  "runtime_integration": false,
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "AR-SF03-P01-r01",
+      "rank": 1,
+      "label": "Très légère",
+      "status": "awaiting_visual_review",
+      "head_label": "Tête nue",
+      "previous_candidate_id": "AR-MH02-P01-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-source.png",
+      "source_sha256": "2a7fdd0a881857b9561a5f2dca4ad4a9832f6a1fd3bb96a19550699f33328453",
+      "native": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-native64.png",
+      "native_sha256": "5861685a5a81ee0b6ec7acd61d1d6229d04a488982016d2fdfabab5d448fef74",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        21,
+        2,
+        44,
+        62
+      ],
+      "framing": {
+        "source_core_box": [
+          403,
+          41,
+          857,
+          1213
+        ],
+        "source_crop": [
+          385,
+          23,
+          875,
+          1231
+        ],
+        "isotropic_scale": 0.051194539249146756,
+        "native_core_box": [
+          21,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 23,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "framing_status": "inherited body projection, not recomputed from edited head",
+      "source_head_mask": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-head-mask-source.png",
+      "source_face_mask": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-face-mask-source.png",
+      "source_face_mask_usage": "reference only; smooth source head is the image_gen identity edit, without a face patch",
+      "generated_head_edit": null,
+      "generated_head_edit_sha256": null,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-head-native64.png",
+          "sha256": "13a925f65c6491f06c9b802d3cef366c7efdd6e4e4482537f6e21677488c05f0"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-body-native64.png",
+          "sha256": "2df35615086a89ccdaa0b30621d9b45e91597c69cf93c41174d813a2131af38a"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-head-mask-native64.png",
+          "sha256": "622f74190156725ccb798b4f5fa1c1c7a0eedf674104814d4f32eed664655ef6"
+        },
+        "face": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-face-native64.png",
+          "sha256": "54f2fc9b66356b47fbe025dbd726160a63148861866a6e3ef2925a1cf4b45edb"
+        },
+        "face-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P01-r01-face-mask-native64.png",
+          "sha256": "d28ea91127a1fcf811b2b1f512128fde535387e574d217b33b3561314fdfbed2"
+        }
+      },
+      "head_region_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          25,
+          3
+        ]
+      ],
+      "face_region_polygon": [
+        [
+          30,
+          6
+        ],
+        [
+          34,
+          6
+        ],
+        [
+          34,
+          7
+        ],
+        [
+          33,
+          9
+        ],
+        [
+          31,
+          9
+        ],
+        [
+          30,
+          8
+        ]
+      ],
+      "non_head_native_pixel_changes": 0,
+      "all_pixels_below_y11_exact": true,
+      "canonical_visible_face_pixel_mismatches": 0,
+      "head_body_recomposition_exact": true,
+      "hood_occlusion_allowed": true,
+      "common_face_excludes_forehead_temples_and_outer_cheeks": true,
+      "body_feedback": "liked and preserved exactly",
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study layers only; helmet override and weapon grips pending"
+    },
+    {
+      "number": "02",
+      "candidate_id": "AR-SF03-P02-r01",
+      "rank": 2,
+      "label": "Légère",
+      "status": "awaiting_visual_review",
+      "head_label": "Bandeau",
+      "previous_candidate_id": "AR-MH02-P02-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-source.png",
+      "source_sha256": "7f7575707cb88305086e9d42c4f817f004905efb4691d26d6f5cc79bf459210d",
+      "native": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-native64.png",
+      "native_sha256": "131cc4fbebe02e20fbe192b31ff1c61ab2be5b0e2c06c4d0bfafcf43332eb9a3",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        20,
+        2,
+        44,
+        62
+      ],
+      "framing": {
+        "source_core_box": [
+          379,
+          40,
+          853,
+          1225
+        ],
+        "source_crop": [
+          361,
+          22,
+          871,
+          1243
+        ],
+        "isotropic_scale": 0.05063291139240506,
+        "native_core_box": [
+          20,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 24,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "framing_status": "inherited body projection, not recomputed from edited head",
+      "source_head_mask": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-head-mask-source.png",
+      "source_face_mask": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-face-mask-source.png",
+      "source_face_mask_usage": "reference only; smooth source head is the image_gen identity edit, without a face patch",
+      "generated_head_edit": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-generated-head-edit.png",
+      "generated_head_edit_sha256": "8869d1c263b67330ac2c3c9550f89c2847896b2fe2c0d702a3be6442c70317f6",
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-head-native64.png",
+          "sha256": "4fbb71ec797ff4fef22a9668be9d2c23101acd8d36604e9b1a78dd1eb6ed85f1"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-body-native64.png",
+          "sha256": "e872ca1dbd796d611eac4d16e88992ca18136ed5c5618efb7ca5aeedf77982b9"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-head-mask-native64.png",
+          "sha256": "622f74190156725ccb798b4f5fa1c1c7a0eedf674104814d4f32eed664655ef6"
+        },
+        "face": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-face-native64.png",
+          "sha256": "54f2fc9b66356b47fbe025dbd726160a63148861866a6e3ef2925a1cf4b45edb"
+        },
+        "face-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-face-mask-native64.png",
+          "sha256": "d28ea91127a1fcf811b2b1f512128fde535387e574d217b33b3561314fdfbed2"
+        }
+      },
+      "head_region_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          25,
+          3
+        ]
+      ],
+      "face_region_polygon": [
+        [
+          30,
+          6
+        ],
+        [
+          34,
+          6
+        ],
+        [
+          34,
+          7
+        ],
+        [
+          33,
+          9
+        ],
+        [
+          31,
+          9
+        ],
+        [
+          30,
+          8
+        ]
+      ],
+      "non_head_native_pixel_changes": 0,
+      "all_pixels_below_y11_exact": true,
+      "canonical_visible_face_pixel_mismatches": 0,
+      "head_body_recomposition_exact": true,
+      "hood_occlusion_allowed": true,
+      "common_face_excludes_forehead_temples_and_outer_cheeks": true,
+      "body_feedback": "liked and preserved exactly",
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study layers only; helmet override and weapon grips pending"
+    },
+    {
+      "number": "03",
+      "candidate_id": "AR-SF03-P03-r01",
+      "rank": 3,
+      "label": "Interméd.",
+      "status": "awaiting_visual_review",
+      "head_label": "Capuche de mage",
+      "previous_candidate_id": "AR-MH02-P03-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-source.png",
+      "source_sha256": "562e81f5346f1f7c555105abbeb68ea089e5341c1f269ca2456286a2a4a60b3f",
+      "native": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-native64.png",
+      "native_sha256": "959c254308cc52b41d5fc8485f6a18f04bc41a321378640c98610e6f6eb071fe",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        20,
+        1,
+        44,
+        62
+      ],
+      "framing": {
+        "source_core_box": [
+          370,
+          33,
+          855,
+          1242
+        ],
+        "source_crop": [
+          352,
+          15,
+          873,
+          1260
+        ],
+        "isotropic_scale": 0.04962779156327544,
+        "native_core_box": [
+          20,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 24,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "framing_status": "inherited body projection, not recomputed from edited head",
+      "source_head_mask": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-head-mask-source.png",
+      "source_face_mask": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-face-mask-source.png",
+      "source_face_mask_usage": "reference only; smooth source head is the image_gen identity edit, without a face patch",
+      "generated_head_edit": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-generated-head-edit.png",
+      "generated_head_edit_sha256": "9eefaf852cf8969e0fc2fe6e1401d2bc2cb56ba7d15edeba150912e62eaacddf",
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-head-native64.png",
+          "sha256": "b6ba7926a604874203d6e499a92afa2b0ea3518b1c22f0e644b34468864094a8"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-body-native64.png",
+          "sha256": "58c6610209788500b452aebe280a0723561711ed3f50f4f6cf110326f9403066"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-head-mask-native64.png",
+          "sha256": "622f74190156725ccb798b4f5fa1c1c7a0eedf674104814d4f32eed664655ef6"
+        },
+        "face": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-face-native64.png",
+          "sha256": "54f2fc9b66356b47fbe025dbd726160a63148861866a6e3ef2925a1cf4b45edb"
+        },
+        "face-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-face-mask-native64.png",
+          "sha256": "d28ea91127a1fcf811b2b1f512128fde535387e574d217b33b3561314fdfbed2"
+        }
+      },
+      "head_region_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          25,
+          3
+        ]
+      ],
+      "face_region_polygon": [
+        [
+          30,
+          6
+        ],
+        [
+          34,
+          6
+        ],
+        [
+          34,
+          7
+        ],
+        [
+          33,
+          9
+        ],
+        [
+          31,
+          9
+        ],
+        [
+          30,
+          8
+        ]
+      ],
+      "non_head_native_pixel_changes": 0,
+      "all_pixels_below_y11_exact": true,
+      "canonical_visible_face_pixel_mismatches": 0,
+      "head_body_recomposition_exact": true,
+      "hood_occlusion_allowed": true,
+      "common_face_excludes_forehead_temples_and_outer_cheeks": true,
+      "body_feedback": "liked and preserved exactly",
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study layers only; helmet override and weapon grips pending"
+    },
+    {
+      "number": "04",
+      "candidate_id": "AR-SF03-P04-r01",
+      "rank": 4,
+      "label": "Lourde",
+      "status": "awaiting_visual_review",
+      "head_label": "Capuche bordée",
+      "previous_candidate_id": "AR-MH02-P04-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-source.png",
+      "source_sha256": "d092db2498eb45cccdfc14a05cf3c97cc72c470ff6f1316b07903e9a316dc65d",
+      "native": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-native64.png",
+      "native_sha256": "5ca2d225826779a0c0681051086b616a12e1f1f0377b25b01a0feb3e8386017a",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        19,
+        2,
+        44,
+        62
+      ],
+      "framing": {
+        "source_core_box": [
+          364,
+          20,
+          870,
+          1210
+        ],
+        "source_crop": [
+          346,
+          2,
+          888,
+          1228
+        ],
+        "isotropic_scale": 0.05042016806722689,
+        "native_core_box": [
+          19,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 25,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "framing_status": "inherited body projection, not recomputed from edited head",
+      "source_head_mask": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-head-mask-source.png",
+      "source_face_mask": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-face-mask-source.png",
+      "source_face_mask_usage": "reference only; smooth source head is the image_gen identity edit, without a face patch",
+      "generated_head_edit": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-generated-head-edit.png",
+      "generated_head_edit_sha256": "3ac37099027bd2423f60bc5b3ec7dbfad45d3a1358bb3c267708bc276563c8d3",
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-head-native64.png",
+          "sha256": "9bbe3b6ae088eda5d9bf804a61a04bbc744a12d2fef1f549a68850f72ea5b308"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-body-native64.png",
+          "sha256": "2b506dd816ec6dea9a00ea2c058ab4b97101a1dd8d2283bde4ff31bd2def1980"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-head-mask-native64.png",
+          "sha256": "622f74190156725ccb798b4f5fa1c1c7a0eedf674104814d4f32eed664655ef6"
+        },
+        "face": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-face-native64.png",
+          "sha256": "54f2fc9b66356b47fbe025dbd726160a63148861866a6e3ef2925a1cf4b45edb"
+        },
+        "face-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-face-mask-native64.png",
+          "sha256": "d28ea91127a1fcf811b2b1f512128fde535387e574d217b33b3561314fdfbed2"
+        }
+      },
+      "head_region_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          25,
+          3
+        ]
+      ],
+      "face_region_polygon": [
+        [
+          30,
+          6
+        ],
+        [
+          34,
+          6
+        ],
+        [
+          34,
+          7
+        ],
+        [
+          33,
+          9
+        ],
+        [
+          31,
+          9
+        ],
+        [
+          30,
+          8
+        ]
+      ],
+      "non_head_native_pixel_changes": 0,
+      "all_pixels_below_y11_exact": true,
+      "canonical_visible_face_pixel_mismatches": 0,
+      "head_body_recomposition_exact": true,
+      "hood_occlusion_allowed": true,
+      "common_face_excludes_forehead_temples_and_outer_cheeks": true,
+      "body_feedback": "liked and preserved exactly",
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study layers only; helmet override and weapon grips pending"
+    },
+    {
+      "number": "05",
+      "candidate_id": "AR-SF03-P05-r01",
+      "rank": 5,
+      "label": "Très lourde",
+      "status": "awaiting_visual_review",
+      "head_label": "Diadème de mage",
+      "previous_candidate_id": "AR-MH02-P05-r01",
+      "source": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-source.png",
+      "source_sha256": "6d6e7cfe3665963cdc8d487b8d287018e30354d2e7827685f5d13188bfcaaae6",
+      "native": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-native64.png",
+      "native_sha256": "1131f3ea749267053707aac9249df09787cfec843f63f82e9d9b58f36e9bcf34",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        19,
+        2,
+        45,
+        62
+      ],
+      "framing": {
+        "source_core_box": [
+          352,
+          34,
+          892,
+          1248
+        ],
+        "source_crop": [
+          334,
+          16,
+          910,
+          1266
+        ],
+        "isotropic_scale": 0.04942339373970346,
+        "native_core_box": [
+          19,
+          2,
+          45,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 26,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "framing_status": "inherited body projection, not recomputed from edited head",
+      "source_head_mask": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-head-mask-source.png",
+      "source_face_mask": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-face-mask-source.png",
+      "source_face_mask_usage": "reference only; smooth source head is the image_gen identity edit, without a face patch",
+      "generated_head_edit": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-generated-head-edit.png",
+      "generated_head_edit_sha256": "91e04891d0cf2c0bf8e0a49e35af2c7c269a514c35942ff09267037471abe607",
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-head-native64.png",
+          "sha256": "611a03c467969742e0886b31b7b9811653ff285cb24bde95e6795f62a3af4241"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-body-native64.png",
+          "sha256": "c6b852700f4aafabbeb0624095a619c172ba9b2e6e7ea772f1be9ba329063d67"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-head-mask-native64.png",
+          "sha256": "622f74190156725ccb798b4f5fa1c1c7a0eedf674104814d4f32eed664655ef6"
+        },
+        "face": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-face-native64.png",
+          "sha256": "54f2fc9b66356b47fbe025dbd726160a63148861866a6e3ef2925a1cf4b45edb"
+        },
+        "face-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-face-mask-native64.png",
+          "sha256": "d28ea91127a1fcf811b2b1f512128fde535387e574d217b33b3561314fdfbed2"
+        }
+      },
+      "head_region_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          25,
+          3
+        ]
+      ],
+      "face_region_polygon": [
+        [
+          30,
+          6
+        ],
+        [
+          34,
+          6
+        ],
+        [
+          34,
+          7
+        ],
+        [
+          33,
+          9
+        ],
+        [
+          31,
+          9
+        ],
+        [
+          30,
+          8
+        ]
+      ],
+      "non_head_native_pixel_changes": 0,
+      "all_pixels_below_y11_exact": true,
+      "canonical_visible_face_pixel_mismatches": 0,
+      "head_body_recomposition_exact": true,
+      "hood_occlusion_allowed": true,
+      "common_face_excludes_forehead_temples_and_outer_cheeks": true,
+      "body_feedback": "liked and preserved exactly",
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study layers only; helmet override and weapon grips pending"
+    }
+  ]
+}

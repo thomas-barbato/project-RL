@@ -1,0 +1,1277 @@
+[
+  {
+    "id": "CLASS-00",
+    "record": {
+      "id": "CLASS-00",
+      "label": "Bastion · tenue 1",
+      "category": "Classes",
+      "family": "Bastion",
+      "rig": "heavy",
+      "image": "catalogue/assets/9e39325105378b30ef77.png",
+      "pack": [
+        "catalogue/assets/76e83ccd88f213d79938.png",
+        "catalogue/assets/1124a705f458aca1ddd8.png",
+        "catalogue/assets/3c7a4339889c8be511c4.png"
+      ],
+      "core": "catalogue/assets/eb4fae4c98033f674cab.png",
+      "headmask": "catalogue/assets/5e3a54e12ca126b72104.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 0,
+      "candidate": "BA-CU01-P01-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        46,
+        35,
+        81,
+        95
+      ],
+      "rigLabel": "Marche lourde",
+      "reviewId": "WALK03-CLASS-00"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-00-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-00-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-00-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-00-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-00-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-00-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-00-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\bastion-copper-wave-01\\accepted\\sources\\BA-CU01-P01-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-00-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit BA-CU01-P01-r01 (Bastion · tenue 1).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-01",
+    "record": {
+      "id": "CLASS-01",
+      "label": "Bastion · tenue 2",
+      "category": "Classes",
+      "family": "Bastion",
+      "rig": "heavy",
+      "image": "catalogue/assets/0bad5453086013fdfbe2.png",
+      "pack": [
+        "catalogue/assets/bf27d944f488c732e40d.png",
+        "catalogue/assets/e74ebde486b1ee6aeed0.png",
+        "catalogue/assets/1c16fefb1a578d45d527.png"
+      ],
+      "core": "catalogue/assets/f7105fc772887b610eb0.png",
+      "headmask": "catalogue/assets/3febcb0f02d084300874.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 1,
+      "candidate": "BA-STYLE01-r02",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        47,
+        35,
+        81,
+        95
+      ],
+      "rigLabel": "Marche lourde",
+      "reviewId": "WALK03-CLASS-01"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-01-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-01-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-01-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-01-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-01-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-01-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-01-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\bastion-copper-wave-01\\accepted\\sources\\BA-STYLE01-r02-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-01-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit BA-STYLE01-r02 (Bastion · tenue 2).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-02",
+    "record": {
+      "id": "CLASS-02",
+      "label": "Bastion · tenue 3",
+      "category": "Classes",
+      "family": "Bastion",
+      "rig": "heavy",
+      "image": "catalogue/assets/89b8e8c235ccb5d56725.png",
+      "pack": [
+        "catalogue/assets/72145c2dd02ab007bae9.png",
+        "catalogue/assets/a2ce6de2934e0f8b4ba0.png",
+        "catalogue/assets/de69c47356297d7da166.png"
+      ],
+      "core": "catalogue/assets/cdd050d1e420b6d1f19a.png",
+      "headmask": "catalogue/assets/f3cd8a32cb4241eb3e89.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 2,
+      "candidate": "BA-STYLE02-r02",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        46,
+        35,
+        82,
+        95
+      ],
+      "rigLabel": "Marche lourde",
+      "reviewId": "WALK03-CLASS-02"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-02-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-02-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-02-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-02-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-02-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-02-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-02-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\bastion-copper-wave-01\\accepted\\sources\\BA-STYLE02-r02-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-02-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit BA-STYLE02-r02 (Bastion · tenue 3).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-03",
+    "record": {
+      "id": "CLASS-03",
+      "label": "Bastion · tenue 4",
+      "category": "Classes",
+      "family": "Bastion",
+      "rig": "heavy",
+      "image": "catalogue/assets/71285c597576b07671fb.png",
+      "pack": [
+        "catalogue/assets/d4b08fa38578d271c5f4.png",
+        "catalogue/assets/e246d75b88582ef74a05.png",
+        "catalogue/assets/b96acac8948dae400211.png"
+      ],
+      "core": "catalogue/assets/598b64ff2eda594c64e1.png",
+      "headmask": "catalogue/assets/f3cd8a32cb4241eb3e89.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 3,
+      "candidate": "BA-CU01-P04-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        45,
+        35,
+        83,
+        95
+      ],
+      "rigLabel": "Marche lourde",
+      "reviewId": "WALK03-CLASS-03"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-03-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-03-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-03-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-03-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-03-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-03-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-03-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\bastion-copper-wave-01\\accepted\\sources\\BA-CU01-P04-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-03-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit BA-CU01-P04-r01 (Bastion · tenue 4).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-04",
+    "record": {
+      "id": "CLASS-04",
+      "label": "Bastion · tenue 5",
+      "category": "Classes",
+      "family": "Bastion",
+      "rig": "heavy",
+      "image": "catalogue/assets/3d58049134c45688f18f.png",
+      "pack": [
+        "catalogue/assets/1b6e2286dc847b5f6dbc.png",
+        "catalogue/assets/dc73a50e5cdeb853f766.png",
+        "catalogue/assets/ec9d1c8d3b9b423f6706.png"
+      ],
+      "core": "catalogue/assets/95c7e79500df8ff93847.png",
+      "headmask": "catalogue/assets/f3cd8a32cb4241eb3e89.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 4,
+      "candidate": "BA-CU01-P05-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        42,
+        35,
+        86,
+        95
+      ],
+      "rigLabel": "Marche lourde",
+      "reviewId": "WALK03-CLASS-04"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-04-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-04-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-04-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-04-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-04-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-04-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-04-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\bastion-copper-wave-01\\accepted\\sources\\BA-CU01-P05-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-04-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit BA-CU01-P05-r01 (Bastion · tenue 5).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-05",
+    "record": {
+      "id": "CLASS-05",
+      "label": "Technomancien · tenue 1",
+      "category": "Classes",
+      "family": "Technomancien",
+      "rig": "biped",
+      "image": "catalogue/assets/113d9e422d5b187b9cae.png",
+      "pack": [
+        "catalogue/assets/588f5d8c06e7c1b93921.png",
+        "catalogue/assets/2d082839a56daed959ac.png",
+        "catalogue/assets/8d76fea2ccf81534a17c.png"
+      ],
+      "core": "catalogue/assets/ff79e9b90b5b33d18c22.png",
+      "headmask": "catalogue/assets/ff8471ed67c9e9464566.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 5,
+      "candidate": "TE-NR01-P01-r02",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        49,
+        35,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-05"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-05-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-05-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-05-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-05-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-05-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-05-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-05-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\technomancien-no-robe-heads-02\\accepted\\sources\\TE-NR01-P01-r02-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-05-quarter-source-r02.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit TE-NR01-P01-r02 (Technomancien · tenue 1).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-06",
+    "record": {
+      "id": "CLASS-06",
+      "label": "Technomancien · tenue 2",
+      "category": "Classes",
+      "family": "Technomancien",
+      "rig": "biped",
+      "image": "catalogue/assets/82f0393fc60b792d86ce.png",
+      "pack": [
+        "catalogue/assets/20e52eaa139ba052bd82.png",
+        "catalogue/assets/2d082839a56daed959ac.png",
+        "catalogue/assets/8d76fea2ccf81534a17c.png"
+      ],
+      "core": "catalogue/assets/1d7d29b2c2f15c820266.png",
+      "headmask": "catalogue/assets/ff8471ed67c9e9464566.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 6,
+      "candidate": "TE-NR01-P02-r02",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        49,
+        35,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-06"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-06-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-06-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-06-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-06-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-06-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-06-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-06-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\technomancien-no-robe-heads-02\\accepted\\sources\\TE-NR01-P02-r02-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-06-quarter-source-r02.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit TE-NR01-P02-r02 (Technomancien · tenue 2).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-07",
+    "record": {
+      "id": "CLASS-07",
+      "label": "Technomancien · tenue 3",
+      "category": "Classes",
+      "family": "Technomancien",
+      "rig": "biped",
+      "image": "catalogue/assets/98f6f2377f073c143440.png",
+      "pack": [
+        "catalogue/assets/0a6cf1309504df7cb40d.png",
+        "catalogue/assets/2d082839a56daed959ac.png",
+        "catalogue/assets/8d76fea2ccf81534a17c.png"
+      ],
+      "core": "catalogue/assets/9aa71801503091a924c3.png",
+      "headmask": "catalogue/assets/ff8471ed67c9e9464566.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 7,
+      "candidate": "TE-NR01-P03-r02",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        48,
+        35,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-07"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-07-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-07-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-07-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-07-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-07-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-07-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-07-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\technomancien-no-robe-heads-02\\accepted\\sources\\TE-NR01-P03-r02-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-07-quarter-source-r02.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit TE-NR01-P03-r02 (Technomancien · tenue 3).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-08",
+    "record": {
+      "id": "CLASS-08",
+      "label": "Technomancien · tenue 4",
+      "category": "Classes",
+      "family": "Technomancien",
+      "rig": "biped",
+      "image": "catalogue/assets/dc3393810e0c25250a1b.png",
+      "pack": [
+        "catalogue/assets/bd69e1be19aa21732167.png",
+        "catalogue/assets/2d082839a56daed959ac.png",
+        "catalogue/assets/8d76fea2ccf81534a17c.png"
+      ],
+      "core": "catalogue/assets/d44d0a9235ff2a220a5b.png",
+      "headmask": "catalogue/assets/ff8471ed67c9e9464566.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 8,
+      "candidate": "TE-NR01-P04-r02",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        49,
+        35,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-08"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-08-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-08-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-08-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-08-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-08-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-08-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-08-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\technomancien-no-robe-heads-02\\accepted\\sources\\TE-NR01-P04-r02-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-08-quarter-source-r02.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit TE-NR01-P04-r02 (Technomancien · tenue 4).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-09",
+    "record": {
+      "id": "CLASS-09",
+      "label": "Technomancien · tenue 5",
+      "category": "Classes",
+      "family": "Technomancien",
+      "rig": "biped",
+      "image": "catalogue/assets/aa9b7fa2c5285d035153.png",
+      "pack": [
+        "catalogue/assets/45598fff10e71b4b7155.png",
+        "catalogue/assets/91a37cb9398850fd26ab.png",
+        "catalogue/assets/7696ca14ab5b3e62d98a.png"
+      ],
+      "core": "catalogue/assets/fb9ffa559b648a671df3.png",
+      "headmask": "catalogue/assets/ff8471ed67c9e9464566.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 9,
+      "candidate": "TE-NR01-P05-r02",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        48,
+        35,
+        80,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-09"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-09-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-09-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-09-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-09-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-09-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-09-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-09-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\technomancien-no-robe-heads-02\\accepted\\sources\\TE-NR01-P05-r02-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-09-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit TE-NR01-P05-r02 (Technomancien · tenue 5).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-10",
+    "record": {
+      "id": "CLASS-10",
+      "label": "Traqueur · tenue 1",
+      "category": "Classes",
+      "family": "Traqueur",
+      "rig": "biped",
+      "image": "catalogue/assets/81bc3e1703ee6348daf4.png",
+      "pack": [
+        "catalogue/assets/88ca14ed1d57553d6508.png",
+        "catalogue/assets/a3b908517b8e34fadaef.png",
+        "catalogue/assets/fc96d578f571b8d119ba.png"
+      ],
+      "core": "catalogue/assets/215de9f89bb440b26038.png",
+      "headmask": "catalogue/assets/84edaf15ba39c63cb266.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 10,
+      "candidate": "TR-SN01-P01-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        50,
+        37,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-10"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-10-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-10-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-10-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-10-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-10-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-10-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-10-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\traqueuse-sniper-wave-01\\accepted\\sources\\TR-SN01-P01-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-10-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit TR-SN01-P01-r01 (Traqueur · tenue 1).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-11",
+    "record": {
+      "id": "CLASS-11",
+      "label": "Traqueur · tenue 2",
+      "category": "Classes",
+      "family": "Traqueur",
+      "rig": "biped",
+      "image": "catalogue/assets/f7009211903baf85baac.png",
+      "pack": [
+        "catalogue/assets/160d757e4132efcdea01.png",
+        "catalogue/assets/2245a4ab4106f00b7952.png",
+        "catalogue/assets/e55470095b1dff542c1d.png"
+      ],
+      "core": "catalogue/assets/42ad26f1761b5107a8ab.png",
+      "headmask": "catalogue/assets/84edaf15ba39c63cb266.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 11,
+      "candidate": "TR-SN01-P02-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        50,
+        37,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-11"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-11-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-11-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-11-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-11-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-11-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-11-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-11-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\traqueuse-sniper-wave-01\\accepted\\sources\\TR-SN01-P02-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-11-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit TR-SN01-P02-r01 (Traqueur · tenue 2).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-12",
+    "record": {
+      "id": "CLASS-12",
+      "label": "Traqueur · tenue 3",
+      "category": "Classes",
+      "family": "Traqueur",
+      "rig": "biped",
+      "image": "catalogue/assets/27d320ec8b1f40966668.png",
+      "pack": [
+        "catalogue/assets/71211ebbdb21f45564ca.png",
+        "catalogue/assets/a3b908517b8e34fadaef.png",
+        "catalogue/assets/fc96d578f571b8d119ba.png"
+      ],
+      "core": "catalogue/assets/c765bfc90f3e44bef11c.png",
+      "headmask": "catalogue/assets/84edaf15ba39c63cb266.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 12,
+      "candidate": "TR-SN01-P03-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        50,
+        37,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-12"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-12-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-12-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-12-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-12-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-12-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-12-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-12-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\traqueuse-sniper-wave-01\\accepted\\sources\\TR-SN01-P03-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-12-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit TR-SN01-P03-r01 (Traqueur · tenue 3).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-13",
+    "record": {
+      "id": "CLASS-13",
+      "label": "Traqueur · tenue 4",
+      "category": "Classes",
+      "family": "Traqueur",
+      "rig": "biped",
+      "image": "catalogue/assets/58d98b0e31c11cbfe89d.png",
+      "pack": [
+        "catalogue/assets/91d143dd30c01532f574.png",
+        "catalogue/assets/2245a4ab4106f00b7952.png",
+        "catalogue/assets/e55470095b1dff542c1d.png"
+      ],
+      "core": "catalogue/assets/67c7277e333e4d0a3325.png",
+      "headmask": "catalogue/assets/84edaf15ba39c63cb266.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 13,
+      "candidate": "TR-SN01-P04-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        49,
+        37,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-13"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-13-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-13-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-13-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-13-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-13-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-13-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-13-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\traqueuse-sniper-wave-01\\accepted\\sources\\TR-SN01-P04-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-13-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit TR-SN01-P04-r01 (Traqueur · tenue 4).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-14",
+    "record": {
+      "id": "CLASS-14",
+      "label": "Traqueur · tenue 5",
+      "category": "Classes",
+      "family": "Traqueur",
+      "rig": "biped",
+      "image": "catalogue/assets/c81d154bbc59630d2019.png",
+      "pack": [
+        "catalogue/assets/ea7e06a4304fd06c9cb1.png",
+        "catalogue/assets/2245a4ab4106f00b7952.png",
+        "catalogue/assets/e55470095b1dff542c1d.png"
+      ],
+      "core": "catalogue/assets/a942c4f9ab8650680f63.png",
+      "headmask": "catalogue/assets/b2ab093e61cb662f6700.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 14,
+      "candidate": "TR-SN01-P05-r02",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        49,
+        37,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-14"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-14-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-14-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-14-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-14-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-14-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-14-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-14-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\traqueuse-sniper-wave-01\\accepted\\sources\\TR-SN01-P05-r02-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-14-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit TR-SN01-P05-r02 (Traqueur · tenue 5).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-15",
+    "record": {
+      "id": "CLASS-15",
+      "label": "Arcaniste · tenue 1",
+      "category": "Classes",
+      "family": "Arcaniste",
+      "rig": "robe",
+      "image": "catalogue/assets/836479b49d92885e143b.png",
+      "pack": [
+        "catalogue/assets/f11992835b342eb83052.png",
+        "catalogue/assets/f4f5d7d6a909ac1192d1.png",
+        "catalogue/assets/3faf50b212582be16c67.png"
+      ],
+      "core": "catalogue/assets/a7b7898a52ada5e653f7.png",
+      "headmask": "catalogue/assets/6679d68175deb10754db.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 15,
+      "candidate": "AR-RR05-P01-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        46,
+        33,
+        82,
+        95
+      ],
+      "rigLabel": "Pas sous une robe",
+      "reviewId": "WALK03-CLASS-15"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-15-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-15-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-15-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-15-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-15-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-15-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-15-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\arcaniste-red-robe-wave-05\\accepted\\sources\\AR-RR05-P01-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-15-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit AR-RR05-P01-r01 (Arcaniste · tenue 1).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-16",
+    "record": {
+      "id": "CLASS-16",
+      "label": "Arcaniste · tenue 2",
+      "category": "Classes",
+      "family": "Arcaniste",
+      "rig": "robe",
+      "image": "catalogue/assets/5374fd25eecf10492647.png",
+      "pack": [
+        "catalogue/assets/22ce2c966c18fc53ba09.png",
+        "catalogue/assets/46f6eb73db116fad6084.png",
+        "catalogue/assets/b2ea9bf3c81410d8cbdd.png"
+      ],
+      "core": "catalogue/assets/d398d9099a37d59c9aa5.png",
+      "headmask": "catalogue/assets/532cb23051eb3145e4f3.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 16,
+      "candidate": "AR-RR05-P02-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        45,
+        33,
+        83,
+        95
+      ],
+      "rigLabel": "Pas sous une robe",
+      "reviewId": "WALK03-CLASS-16"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-16-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-16-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-16-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-16-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-16-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-16-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-16-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\arcaniste-red-robe-wave-05\\accepted\\sources\\AR-RR05-P02-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-16-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit AR-RR05-P02-r01 (Arcaniste · tenue 2).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-17",
+    "record": {
+      "id": "CLASS-17",
+      "label": "Arcaniste · tenue 3",
+      "category": "Classes",
+      "family": "Arcaniste",
+      "rig": "robe",
+      "image": "catalogue/assets/89349d9f9d9b5bb10fb7.png",
+      "pack": [
+        "catalogue/assets/6ec1c93264a41c9295c8.png",
+        "catalogue/assets/46f6eb73db116fad6084.png",
+        "catalogue/assets/9e4b9f30bf37127aec25.png"
+      ],
+      "core": "catalogue/assets/42bb0caef4066f43f6b9.png",
+      "headmask": "catalogue/assets/c929ddb66f9a050b0251.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 17,
+      "candidate": "AR-RR05-P03-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        44,
+        33,
+        83,
+        95
+      ],
+      "rigLabel": "Pas sous une robe",
+      "reviewId": "WALK03-CLASS-17"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-17-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-17-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-17-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-17-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-17-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-17-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-17-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\arcaniste-red-robe-wave-05\\accepted\\sources\\AR-RR05-P03-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-17-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit AR-RR05-P03-r01 (Arcaniste · tenue 3).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-18",
+    "record": {
+      "id": "CLASS-18",
+      "label": "Arcaniste · tenue 4",
+      "category": "Classes",
+      "family": "Arcaniste",
+      "rig": "robe",
+      "image": "catalogue/assets/2d4dc770ac6d62223a73.png",
+      "pack": [
+        "catalogue/assets/f0755d1bfb3cd7e73773.png",
+        "catalogue/assets/7e26b1ec3533b88ccf26.png",
+        "catalogue/assets/f4a2f2ff1761ce25bfbe.png"
+      ],
+      "core": "catalogue/assets/0b10fae9c0808cf9855a.png",
+      "headmask": "catalogue/assets/c929ddb66f9a050b0251.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 18,
+      "candidate": "AR-RR05-P04-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        41,
+        32,
+        87,
+        96
+      ],
+      "rigLabel": "Pas sous une robe",
+      "reviewId": "WALK03-CLASS-18"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-18-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-18-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-18-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-18-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-18-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-18-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-18-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-18-canonical-reference.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-18-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit AR-RR05-P04-r01 (Arcaniste · tenue 4).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-19",
+    "record": {
+      "id": "CLASS-19",
+      "label": "Arcaniste · tenue 5",
+      "category": "Classes",
+      "family": "Arcaniste",
+      "rig": "robe",
+      "image": "catalogue/assets/b16d90b267c1952571b1.png",
+      "pack": [
+        "catalogue/assets/1ab2ba3c2d38916b9a6a.png",
+        "catalogue/assets/89b49837696f8738cbfa.png",
+        "catalogue/assets/7a9e76b2c1caabc82eee.png"
+      ],
+      "core": "catalogue/assets/41250069d4f31ccf3417.png",
+      "headmask": "catalogue/assets/c929ddb66f9a050b0251.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 19,
+      "candidate": "AR-RR05-P05-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        44,
+        33,
+        85,
+        95
+      ],
+      "rigLabel": "Pas sous une robe",
+      "reviewId": "WALK03-CLASS-19"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-19-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-19-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-19-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-19-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-19-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-19-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-19-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\arcaniste-red-robe-wave-05\\accepted\\sources\\AR-RR05-P05-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-19-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit AR-RR05-P05-r01 (Arcaniste · tenue 5).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-20",
+    "record": {
+      "id": "CLASS-20",
+      "label": "Métamorphe · tenue 1",
+      "category": "Classes",
+      "family": "Métamorphe",
+      "rig": "biped",
+      "image": "catalogue/assets/51828199586f1183dab1.png",
+      "pack": [
+        "catalogue/assets/23573dbaf6393c97be59.png",
+        "catalogue/assets/371fb61daedb64a5db64.png",
+        "catalogue/assets/4bd8b50e63eb143cd4c1.png"
+      ],
+      "core": "catalogue/assets/a9615fd16711b19436e1.png",
+      "headmask": "catalogue/assets/7032d3fc87051c024d61.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 20,
+      "candidate": "ME-BD03-P01-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        48,
+        37,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-20"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-20-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-20-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-20-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-20-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-20-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-20-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-20-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\metamorphe-biodruid-wave-03\\accepted\\sources\\user-02-light-outfit.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-20-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit ME-BD03-P01-r01 (Métamorphe · tenue 1).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-21",
+    "record": {
+      "id": "CLASS-21",
+      "label": "Métamorphe · tenue 2",
+      "category": "Classes",
+      "family": "Métamorphe",
+      "rig": "biped",
+      "image": "catalogue/assets/67b5fcb82ec73ccda236.png",
+      "pack": [
+        "catalogue/assets/9cb3feab17aee4dc5c59.png",
+        "catalogue/assets/772afc3a5a9a28c0239e.png",
+        "catalogue/assets/1c2750a74dd8a23ccd47.png"
+      ],
+      "core": "catalogue/assets/2cfac2b6b09c68c33e86.png",
+      "headmask": "catalogue/assets/5092b34eedb8b81e9139.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 21,
+      "candidate": "ME-BD03-P02-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        50,
+        37,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-21"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-21-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-21-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-21-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-21-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-21-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-21-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-21-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\metamorphe-biodruid-wave-03\\accepted\\sources\\ME-BD03-P02-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-21-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit ME-BD03-P02-r01 (Métamorphe · tenue 2).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-22",
+    "record": {
+      "id": "CLASS-22",
+      "label": "Métamorphe · tenue 3",
+      "category": "Classes",
+      "family": "Métamorphe",
+      "rig": "biped",
+      "image": "catalogue/assets/ab73a0c383f7593ae670.png",
+      "pack": [
+        "catalogue/assets/94a76a527e493f0a8a77.png",
+        "catalogue/assets/5e5dab5c2c531bd37da1.png",
+        "catalogue/assets/197db71b3c3430c20b5e.png"
+      ],
+      "core": "catalogue/assets/d90a60809416259d0457.png",
+      "headmask": "catalogue/assets/5092b34eedb8b81e9139.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 22,
+      "candidate": "ME-BD02-P03-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        50,
+        37,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-22"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-22-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-22-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-22-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-22-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-22-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-22-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-22-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\metamorphe-biodruid-wave-03\\accepted\\sources\\ME-BD02-P03-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-22-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit ME-BD02-P03-r01 (Métamorphe · tenue 3).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-23",
+    "record": {
+      "id": "CLASS-23",
+      "label": "Métamorphe · tenue 4",
+      "category": "Classes",
+      "family": "Métamorphe",
+      "rig": "biped",
+      "image": "catalogue/assets/df9a7900044d1156bd01.png",
+      "pack": [
+        "catalogue/assets/5915093e7c54f55102bb.png",
+        "catalogue/assets/772afc3a5a9a28c0239e.png",
+        "catalogue/assets/1c2750a74dd8a23ccd47.png"
+      ],
+      "core": "catalogue/assets/adebc747348851740ba9.png",
+      "headmask": "catalogue/assets/84a90a52be79737d31ff.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 23,
+      "candidate": "ME-BD03-P04-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        50,
+        37,
+        79,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-23"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-23-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-23-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-23-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-23-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-23-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-23-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-23-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\metamorphe-biodruid-wave-03\\accepted\\sources\\ME-BD03-P04-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-23-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit ME-BD03-P04-r01 (Métamorphe · tenue 4).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  },
+  {
+    "id": "CLASS-24",
+    "record": {
+      "id": "CLASS-24",
+      "label": "Métamorphe · tenue 5",
+      "category": "Classes",
+      "family": "Métamorphe",
+      "rig": "biped",
+      "image": "catalogue/assets/93b35bb4ea5559a43b77.png",
+      "pack": [
+        "catalogue/assets/d59f63a68cf638be4d46.png",
+        "catalogue/assets/44b9a9860c394483fc95.png",
+        "catalogue/assets/de04f974199fb9777b84.png"
+      ],
+      "core": "catalogue/assets/d3d2a6d6f94b26be086e.png",
+      "headmask": "catalogue/assets/e25cf66bcad889aa6b63.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "classIndex": 24,
+      "candidate": "ME-BD03-P05-r01",
+      "status": "Tenue actuelle · mouvement proposé",
+      "configs": "class",
+      "note": "Sources réelles du jeu ; raccords des manches à examiner.",
+      "bounds": [
+        48,
+        38,
+        80,
+        95
+      ],
+      "rigLabel": "Marche bipède",
+      "reviewId": "WALK03-CLASS-24"
+    },
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\player-walk-review-04\\CLASS-24-reference-r02.png",
+    "fronts": [
+      "artifacts\\player-walk-review-04\\CLASS-24-0-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-24-1-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-24-2-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-24-3-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-24-4-front.png",
+      "artifacts\\player-walk-review-04\\CLASS-24-5-front.png"
+    ],
+    "identity_reference": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\class-readability-01\\metamorphe-biodruid-wave-03\\accepted\\sources\\ME-BD03-P05-r01-source.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-04\\CLASS-24-quarter-source.png",
+    "prompt": "Use case: identity-preserve. Asset type: one complete directional pose atlas for the single Project RL outfit ME-BD03-P05-r01 (Métamorphe · tenue 5).\nInput 1 is the EXACT approved full-size character design: preserve this identity, body build, head, materials, colors and armor stage.\nInput 2 contains six equipment reference rows, each with the full-size unarmed design on the LEFT and the real equipped frontal pose on the RIGHT. Preserve each weapon's actual shape and grip configuration. These source columns are references, NOT the desired output directions. Follow input 1 for all character details; never invent a new helmet or physique.\nCreate a TRANSPARENT, perfectly regular atlas of TWO COLUMNS and SIX ROWS: exactly TWELVE full-body figures. Canvas portrait 768x2304, twelve square 384x384 cells. No text, labels, guides, shadows, ground or background. Transparent margins, complete boots and heads, same character height and foot baseline in every cell. Feet baseline y=350 inside every cell, head top y=35. Keep weapons wholly inside their cell.\nEvery LEFT column is a TRUE FRONT-LEFT THREE-QUARTER view, turned about 35 degrees and looking screen LEFT. Every RIGHT column is a TRUE FRONT-RIGHT THREE-QUARTER view, turned about 35 degrees and looking screen RIGHT. Both head and torso turn; front plates and shoulder volumes must show the angle. Near-front RPG camera, orthographic slightly elevated, same camera as input 2. NOT frontal sprites squeezed or sheared. NOT pure profile, NOT back views.\nRows in exact source order: (1) no weapon, relaxed complete arms; (2) one pistol held ready in one hand, other arm complete; (3) one-handed hammer, other arm complete; (4) assault rifle across chest with TWO HANDS, rear hand on pistol grip and support hand under handguard; (5) large axe with TWO HANDS on the same shaft; (6) two pistols, one per hand.\nMatch the actual weapon silhouette and materials in the corresponding source row. For left views, muzzle / readiness direction follows screen LEFT; right follows RIGHT. Rifle stock rests against shoulder, no floating stock or barrel. Keep the character's exact armor stage, helmet/face identity, clothing colors, silhouette, proportions and all body panels. Same body and boots across all six rows. Only arms and held equipment change. Do not add or remove armor.\nANATOMY IS CRITICAL: exactly two arms, each with ONE connected shoulder, upper arm, elbow, forearm, wrist and hand. Paint full continuous sleeves and gloves. No transparent cuts, missing wedges, holes or erased strips inside an arm. Natural empty air between a bent arm and torso is fine. Closed coherent grips with fingers visibly wrapping the handles. No third arm or abandoned old hand. Ensure elbows connect smoothly to sleeves; no disconnected wrists. Full opaque body surfaces and clean transparent exterior.\nClean matte painted game sprite finish with strong readable masses, coherent light, dark controlled outlines, no photorealism, grain or colored noise. Must remain readable at native logical 64x64. Standing neutral ready-to-walk poses, not attacks. No particles or muzzle flash."
+  }
+]

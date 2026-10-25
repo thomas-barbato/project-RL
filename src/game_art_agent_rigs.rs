@@ -6,37 +6,37 @@ const BODY_BINDINGS: [u16; 5] = [9, 2, 1, 11, 5];
 const LEFT_FAMILIES: [u8; 7] = [0, 1, 4, 5, 6, 7, 16];
 
 pub(super) struct AgentRigs {
-    bodies: Image,
-    body_maps: Image,
-    weapons: Image,
-    weapon_maps: Image,
-    arms: Image,
-    arm_maps: Image,
-    fingers: Image,
+    bodies: palettes::LazyImage,
+    body_maps: palettes::LazyImage,
+    weapons: palettes::LazyImage,
+    weapon_maps: palettes::LazyImage,
+    arms: palettes::LazyImage,
+    arm_maps: palettes::LazyImage,
+    fingers: palettes::LazyImage,
 }
 
 impl AgentRigs {
     pub(super) fn load() -> Self {
         Self {
-            bodies: palettes::decoded(include_bytes!(
+            bodies: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/agent-rigs/bodies-32.png"
             )),
-            body_maps: palettes::decoded(include_bytes!(
+            body_maps: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/agent-rigs/body-materials-32.png"
             )),
-            weapons: palettes::decoded(include_bytes!(
+            weapons: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/agent-rigs/weapons-64.png"
             )),
-            weapon_maps: palettes::decoded(include_bytes!(
+            weapon_maps: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/agent-rigs/weapon-materials-64.png"
             )),
-            arms: palettes::decoded(include_bytes!(
+            arms: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/agent-rigs/arms-64.png"
             )),
-            arm_maps: palettes::decoded(include_bytes!(
+            arm_maps: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/agent-rigs/arm-materials-64.png"
             )),
-            fingers: palettes::decoded(include_bytes!(
+            fingers: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/cyberpunk/agent-rigs/fingers-64.png"
             )),
         }

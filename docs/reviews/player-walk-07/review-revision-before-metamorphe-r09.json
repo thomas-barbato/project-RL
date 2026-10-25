@@ -1,0 +1,80 @@
+{
+  "revision": "r07-exact-bastion-whole-pose-transfer",
+  "status": "extensions_awaiting_visual_review",
+  "reported_families": [
+    "Traqueuse",
+    "Metamorphe"
+  ],
+  "withdrawn_class_indices": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "repair_pilot_indices": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    24
+  ],
+  "limit_reported_families_to_pilots": true,
+  "previous_revision_status": "r06_rejected_by_user",
+  "player_rejection_quotes": [
+    "ben pas trop non ...",
+    "pareil pour la metamorphe s'il te plais"
+  ],
+  "reference_mode": "exact_original_bastion_canvas02",
+  "runtime_integration": false,
+  "player_feedback": "la tête de la traqueuse n'est plus dans le bon sens, ses jambes ne bougent presque plus ; la démarche de la metamorphe ne fonctionne pas. S'inspirer du Bastion.",
+  "material_revision": "r08-family",
+  "candidate_revisions": {
+    "10": "r07f",
+    "24": "r07",
+    "11": "r08",
+    "12": "r08",
+    "13": "r08",
+    "14": "r08"
+  },
+  "prosthesis_feedback": "non le probleme est toujours là .. (alternance de jambe armurée)",
+  "rejected_traqueuse_left_source": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07-left.png",
+  "gait_feedback": "seems_ok; retain existing pose targets; no integration approval",
+  "anatomical_ownership_revision": "r07c rejected: time halves do not identify limbs; preserve the same visible hip-knee-calf chain throughout each direction",
+  "rejected_material_revisions": [
+    "r07c",
+    "r07d-full-row"
+  ],
+  "leg_material_mode": "bilateral_metal_calves",
+  "material_change_user_quote": "bon, le probleme n'arrivant pas à être corrigé, je pense que tu devrais faire les 2 jambes en metal.",
+  "material_change_scope": "Traqueuse outfit1, two matching metal calves from knee to ankle, both lateral directions, true idle and six walking poses; no statistical change",
+  "accepted_class_indices": [
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "awaiting_visual_class_indices": [
+    24
+  ],
+  "accepted_pilot_review": "visual-acceptance-r07f.json",
+  "family_reference_modes": {
+    "traqueuse": "accepted_traqueuse_r07f"
+  },
+  "family_candidate_revisions": {
+    "traqueuse": "r08"
+  },
+  "accepted_family_reviews": {
+    "traqueuse": [
+      "visual-acceptance-r07f.json",
+      "visual-acceptance-traqueuse-r08.json"
+    ]
+  }
+}

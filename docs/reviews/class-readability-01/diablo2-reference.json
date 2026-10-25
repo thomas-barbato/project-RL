@@ -1,0 +1,154 @@
+{
+  "source": "D:\\JEUX\\Diablo 2 old\\Diablo II",
+  "read_only": true,
+  "game_launched": false,
+  "saves_accessed": false,
+  "entries": [
+    {
+      "archive": "patch_d2.mpq",
+      "file": "data\\global\\excel\\Armor.txt",
+      "bytes": 76370,
+      "sha256": "d8a4827d52807652f8de33d1b9b335ab8bdd40d1b60b5cbabce24ff9987b30fa"
+    },
+    {
+      "archive": "d2exp.mpq",
+      "file": "data\\global\\excel\\Armor.txt",
+      "bytes": 82472,
+      "sha256": "f6cf034bc8e23000813083d92309680e360f6ece6f500e928d8c232ac1037b0f"
+    },
+    {
+      "archive": "d2exp.mpq",
+      "file": "data\\global\\excel\\ArmType.txt",
+      "bytes": 45,
+      "sha256": "288a8c7964e5d4dc0dc3e2a05f6793e9b3946a46b50e1604c86c172e91d291a1"
+    },
+    {
+      "archive": "d2exp.mpq",
+      "file": "data\\global\\excel\\Composit.txt",
+      "bytes": 207,
+      "sha256": "f59507ae8d7d4fa6a919f502ea957b47369ac4077ae21e2fa28de360a515c604"
+    },
+    {
+      "archive": "d2data.mpq",
+      "file": "data\\global\\excel\\Armor.txt",
+      "bytes": 32810,
+      "sha256": "3239878ec74b7c9e0c857e44ad2ddad83f3e78743a505fa7ca4686896cc3ce5b"
+    },
+    {
+      "archive": "d2data.mpq",
+      "file": "data\\global\\excel\\ArmType.txt",
+      "bytes": 45,
+      "sha256": "288a8c7964e5d4dc0dc3e2a05f6793e9b3946a46b50e1604c86c172e91d291a1"
+    },
+    {
+      "archive": "d2data.mpq",
+      "file": "data\\global\\excel\\Composit.txt",
+      "bytes": 207,
+      "sha256": "f59507ae8d7d4fa6a919f502ea957b47369ac4077ae21e2fa28de360a515c604"
+    },
+    {
+      "archive": "d2char.mpq",
+      "file": "data\\global\\chars\\BA\\TR\\BATRlitNUHTH.dcc",
+      "bytes": 29016,
+      "sha256": "3690d4c4bb44ffa17da9db5e3b9934deb17a3aab1e3cc62f8d231a1058811c7d"
+    },
+    {
+      "archive": "d2char.mpq",
+      "file": "data\\global\\chars\\BA\\TR\\BATRmedNUHTH.dcc",
+      "bytes": 28804,
+      "sha256": "16829a4b0db23d8f8b42a46dd21b5ce9f8601a90b1201ce50268c97a2b4a74bf"
+    },
+    {
+      "archive": "d2char.mpq",
+      "file": "data\\global\\chars\\BA\\TR\\BATRhvyNUHTH.dcc",
+      "bytes": 30533,
+      "sha256": "085780fa99642a681bdfbe789ae99775b69c7ddf7945ac0d0953c728c7261f70"
+    },
+    {
+      "archive": "d2char.mpq",
+      "file": "data\\global\\chars\\NE\\TR\\NETRlitNUHTH.dcc",
+      "bytes": 19999,
+      "sha256": "6ca9a2a8ce47f7111c0d7addda07b5e56dce7afcaefd18c2c720672d4ec90401"
+    },
+    {
+      "archive": "d2char.mpq",
+      "file": "data\\global\\chars\\NE\\TR\\NETRmedNUHTH.dcc",
+      "bytes": 20665,
+      "sha256": "5791c7dd1d082b7896abe66bd915b06053f5cd534db87c2bdda2878670937fa1"
+    },
+    {
+      "archive": "d2char.mpq",
+      "file": "data\\global\\chars\\NE\\TR\\NETRhvyNUHTH.dcc",
+      "bytes": 21702,
+      "sha256": "a9d854a809b87770cad07f1fc7af30b8c9bd03a643c11391a860a458c27018e0"
+    }
+  ],
+  "selected_armor_rows": [
+    {
+      "name": "Quilted Armor",
+      "code": "qui",
+      "Torso": "0",
+      "rArm": "0",
+      "lArm": "0",
+      "Legs": "0",
+      "rSPad": "1",
+      "lSPad": "1"
+    },
+    {
+      "name": "Leather Armor",
+      "code": "lea",
+      "Torso": "1",
+      "rArm": "0",
+      "lArm": "0",
+      "Legs": "0",
+      "rSPad": "1",
+      "lSPad": "1"
+    },
+    {
+      "name": "Hard Leather Armor",
+      "code": "hla",
+      "Torso": "1",
+      "rArm": "1",
+      "lArm": "1",
+      "Legs": "0",
+      "rSPad": "1",
+      "lSPad": "1"
+    },
+    {
+      "name": "Full Plate Mail",
+      "code": "ful",
+      "Torso": "2",
+      "rArm": "2",
+      "lArm": "2",
+      "Legs": "2",
+      "rSPad": "2",
+      "lSPad": "2"
+    },
+    {
+      "name": "Ancient Armor",
+      "code": "aar",
+      "Torso": "2",
+      "rArm": "1",
+      "lArm": "2",
+      "Legs": "2",
+      "rSPad": "2",
+      "lSPad": "0"
+    }
+  ],
+  "arm_types": [
+    {
+      "Name": "Lite",
+      "Token": "lit"
+    },
+    {
+      "Name": "Medium",
+      "Token": "med"
+    },
+    {
+      "Name": "Heavy",
+      "Token": "hvy"
+    }
+  ],
+  "observed": "Armor.txt selects body-component variants; separate BA and NE torso DCC banks exist for lit/med/hvy.",
+  "limits": "Table and component-bank inspection only; DCC animations were not decoded or visually compared. No Diablo II sprites copied into the game."
+}

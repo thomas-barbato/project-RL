@@ -1,0 +1,18 @@
+Use case: identity-preserve.
+Asset type: 2D game animation sprite sheet for a native 64x64 square-grid roguelike. This is a review prototype of walking, not a redesign.
+Input image 1 is the EXACT character reference: the Bastion in copper-orange and charcoal powered plate armour, helmet with black narrow visor and gray face plate, gray shoulder plates, copper chest and forearms and shins, dark navy flexible joints. Preserve this outfit and proportions faithfully.
+Create ONE perfectly regular sprite atlas, exactly SIX columns and EIGHT rows, 48 distinct full-body walk frames, landscape characters all same scale. Image canvas 1536 pixels wide by 2048 pixels tall. Each cell 256x256. Put every character centered horizontally in its own cell, body height 208 pixels, ground contact baseline 236 pixels. Keep clear transparent gutters. No sprite can touch another cell. Transparent alpha background throughout, no ground, no ground shadow, no labels, no grid, no text, no weapons.
+Camera fixed in the same almost-front elevated orthographic 2D game view as the reference, never isometric diamond perspective. Directions refer to movement ON SCREEN, not an overhead view.
+Row order EXACTLY:
+ROW 1: walking SOUTH towards viewer, front of helmet and chest visible.
+ROW 2: walking SOUTH-EAST screen right and down, front-right three-quarter view.
+ROW 3: walking EAST screen right, right-facing side profile.
+ROW 4: walking NORTH-EAST screen right and up, rear-right three-quarter view.
+ROW 5: walking NORTH away from viewer, BACK of head and back armour visible, no face or chest from behind.
+ROW 6: walking NORTH-WEST screen left and up, rear-left three-quarter view.
+ROW 7: walking WEST screen left, left-facing side profile.
+ROW 8: walking SOUTH-WEST screen left and down, front-left three-quarter view.
+Every row is a coherent SIX-FRAME full WALK cycle in time order:
+1 left-foot contact, right foot back; 2 left support with right knee passing; 3 right foot reaches forward; 4 right-foot contact and left foot back; 5 right support with left knee passing; 6 left foot reaches forward. Alternating opposing arm swing, grounded weight transfer, minimal vertical bob. A measured purposeful WALK, not a sprint, not stationary standing poses and not whole-body rotations. Same anatomy, armour plates and head size in every frame.
+Style: match reference's matte game illustration finish, bold readable shapes, restrained warm copper highlights, dark navy joints, crisp nuanced dark contours. Retain fine silhouette alpha transitions, no painterly smears, no blur, no glow, no new armor or symbols. Full boots and helmet always entirely present.
+The atlas MUST have exactly six equally-spaced frames per row and exactly eight equally-spaced rows.

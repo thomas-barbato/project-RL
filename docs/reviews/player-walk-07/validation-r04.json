@@ -1,0 +1,65 @@
+{
+  "review_id": "WALK07-r04",
+  "status": "two_cycle_repair_pilots_awaiting_visual_review",
+  "runtime_integration": false,
+  "user_visual_acceptance": false,
+  "accepted_walk06_preserved": true,
+  "vertical_rendering_or_simulation_changed": false,
+  "default_duration_ms": 400,
+  "duration_choices_ms": [
+    120,
+    200,
+    400
+  ],
+  "source_tool": "built-in image_gen; no generation CLI",
+  "source_manifest": "source-manifest.json",
+  "whole_body_outfits": 2,
+  "whole_body_pose_entries": 28,
+  "weapon_models": 113,
+  "loadout_outfit_pairs": 234,
+  "equipment_poses": 3276,
+  "creature_candidates": 7,
+  "creature_pose_entries": 98,
+  "remaining_non_class_catalogue_records": 627,
+  "pending_additional_equipment": [
+    "other hand assignments and pairs",
+    "extra equipped helmets",
+    "equipment palettes",
+    "legacy outfits"
+  ],
+  "checks": {
+    "cargo_check_locked_bin": "passed",
+    "accepted_walk_renderer_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "existing_rigid_weapon_regression_test": "passed",
+    "rustfmt_touched_rust_modules": "passed",
+    "git_diff_check": "passed",
+    "all_weapon_bounds_inside_review_canvas": true,
+    "whole_pose_arm_ownership_recomposition": "exact",
+    "rust_vs_preview_pixel_fixtures": 204,
+    "maximum_visible_channel_difference_of_255": 2,
+    "controller_trace_matches_accepted_viewer_samples": 601,
+    "all_equipment_and_creature_selections_checked": 1996,
+    "fragments_under_one_megabyte": 6,
+    "browser_or_game_execution_of_walk07": false,
+    "full_test_suite_run_this_lot": false,
+    "prior_known_failure": "WALK06 integration-checks.json: ascii_app::world_context::tests::world_context_attack_without_ammo_never_walks",
+    "complete_figures_and_native_height_checks": "passed for two pilots; artistic gait still awaiting user review"
+  },
+  "date": "2026-10-24",
+  "other_reported_family_outfits_pending": 8,
+  "source_bank_outfits_total": 25,
+  "native_height_ranges": {
+    "UNARMED-10": [
+      57,
+      59
+    ],
+    "UNARMED-24": [
+      56,
+      58
+    ]
+  },
+  "previous_publication_withdrawn_for_reported_families": true
+}

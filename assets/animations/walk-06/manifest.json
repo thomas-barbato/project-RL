@@ -1,0 +1,43 @@
+{
+  "review_id": "WALK06-CLASS-ARMOR-MATRIX",
+  "format_version": 1,
+  "native_tile": 64,
+  "columns": 7,
+  "rows": 10,
+  "weapon_model": 2,
+  "extra_helmets": false,
+  "palettes": "Original only",
+  "layout": "Each outfit uses two rows: left then right. Column0 is idle,1..6 are walk frames0..5.",
+  "files": [
+    {
+      "class_index": 0,
+      "file": "assets/animations/walk-06/bastion-rifle.png",
+      "sha256": "6f504fbc2458e7f052f630fc0c63a36b9beaf88b3355f8ba7053c20f8ca99001",
+      "rgba_sha256": "f595e926db6876b1188175cfd1b44f2f486be9b662616d01a5bcf495734c4875"
+    },
+    {
+      "class_index": 1,
+      "file": "assets/animations/walk-06/technomancien-rifle.png",
+      "sha256": "d920d1d9c19f7def6bbf73d4789d577be9e0fd9e2aaf85b2979d6ebc1f2f20ae",
+      "rgba_sha256": "25a463c08d1d358a55e9387601fba0c308d11623338e645f05e71aafad5865e2"
+    },
+    {
+      "class_index": 2,
+      "file": "assets/animations/walk-06/traqueuse-rifle.png",
+      "sha256": "01016616a06288b2d03c37ab85cc2f42840c6d49c91f10f520b7c4629a698632",
+      "rgba_sha256": "2d86e5e8f6852262c5968972cba587544131312d431f30a0432cf7cc6c1c172a"
+    },
+    {
+      "class_index": 3,
+      "file": "assets/animations/walk-06/arcaniste-rifle.png",
+      "sha256": "795606d29ae273c018740c91dc5212090774a59b9d825b499681aaaacd5abf64",
+      "rgba_sha256": "7f7ea8d0c7566582b9d85d5e5a3cd77f3c27d9ca7ee5d7f1dc18326bd55b282b"
+    },
+    {
+      "class_index": 4,
+      "file": "assets/animations/walk-06/metamorphe-rifle.png",
+      "sha256": "1aad78d9f8a61f80b42237eecaace7c95d46d6ce15391b3e90c511c7cfed295a",
+      "rgba_sha256": "12943f63668d2f9bb6f8aeafb147ebbca0956b65659cdc83889acfc1ad29df79"
+    }
+  ]
+}

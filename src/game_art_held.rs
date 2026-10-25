@@ -10,12 +10,12 @@ pub(super) struct Grip {
 include!("game_art_held_catalog.rs");
 
 pub(super) struct HeldPoses {
-    weapons: Image,
+    weapons: palettes::LazyImage,
 }
 impl HeldPoses {
     pub(super) fn load() -> Self {
         Self {
-            weapons: palettes::decoded(include_bytes!(
+            weapons: palettes::LazyImage::new(include_bytes!(
                 "../assets/sprites/held-native64/weapons-128.png"
             )),
         }

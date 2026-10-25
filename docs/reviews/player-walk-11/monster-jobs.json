@@ -1,0 +1,116 @@
+[
+  {
+    "id": "MON-014-left",
+    "kind": "monster",
+    "number": 14,
+    "side": "left",
+    "front_source": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-014-front-reference.png",
+    "input": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-014-left-old-guide.png",
+    "destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-014-left-proportions-r04.png",
+    "prompt": "Use case: identity-preserve. Nonviolent videogame WALK atlas. IMAGE1 is the EXACT SCREEN-LEFT whole-body orientation and compact gait reference. All its figures face LEFT. Copy that LEFT-facing head/torso/pelvis/knee/toe orientation and compact support sequence, NOT its outfit/species/armor/face or build. IMAGE2 is the creature/person identity to draw: preserve its exact SLENDER physique, small head size, narrow chest, long thin legs and equipment. IMAGE3 is its native front proportions.\nCRITICAL: every output figure MUST turn to SCREEN LEFT like image1. Nose/mask opening/pale head tip and chest/front plane point LEFT; LEFT-facing leading boot and knees match. Do NOT copy the screen-right orientation from image2. Turn the complete coherent figure into near-front three quarters LEFT, not just the head. Preserve front anatomical limb ownership; no horizontal mirror that swaps asymmetric equipment between limbs. Exact red/black coat and white small mask, pistol safely lowered in the same anatomical right hand throughout; other hand empty. Keep the same body size and slender proportions as image2 while turning; no thickening or chibi build. Original carried objects are passive at rest, no attack/aiming/effects.\nEXACTLY FOUR columns TWO rows,8 WHOLE figures on transparent alpha, all looking and travelling LEFT including idle0/7. Row-major: planted idle,walk0,walk1,walk2 / walk3,walk4,walk5,repeatedidle. First3 frames use one supporting foot while the other knee bends narrowly under hips; next3 reverse the support. No side spreading, splits, kicking or running. Same physical size/head size all8cells, generous transparent margins, no crops, labels, background, floor, shadows or extra limbs. Match image2''s finish and physique.",
+    "referenced_image_paths": [
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\CLASS-21-left-proportions-r02.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\refonte-histoire-2026-10-16\\npc-monsters-review-01\\CULT-02-r04.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-014-front-reference.png"
+    ]
+  },
+  {
+    "id": "MON-014-right",
+    "kind": "monster",
+    "number": 14,
+    "side": "right",
+    "front_source": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-014-front-reference.png",
+    "input": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-014-right-old-guide.png",
+    "destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-014-right-proportions-r03.png",
+    "prompt": "Use case: identity-preserve. Nonviolent fantasy videogame movement sprite sheet. Image1 is the authoritative high-resolution FRONT design and physical build. Image2 is the actual native game front. Draw EXACTLY the same creature and proportions as image1, merely turned together into NEAR-FRONT three quarters SCREEN RIGHT, both shoulders visible. Do NOT invent a new stocky/chibi body or enlarged head. Match every proportion: small head fraction of total height, long thin limbs, narrow chest and waist, normal glove/boot thickness and original cloth length. A projected three-quarter torso is a little NARROWER than the frontal torso. Red/black narrow straight-cut long coat, small angular white mask, grey boots and gloves, original single pistol safely LOWERED beside the anatomical right thigh in the SAME right hand in all8 cells. Other hand empty. No aiming, firing or attack.\nOutput EXACTLY4 columns by2rows,8 WHOLE complete uncropped figures, ALL facing SCREEN RIGHT together (head/chest/pelvis/knees/toes). Row-major idle,move0,move1,move2 / move3,move4,move5,repeatedidle. For a biped, the first3 movement frames use one supporting foot while the other knee bends and heel lifts narrowly under the pelvis; the next3 reverse the support. No leg spreading, splits, running, kicks or extra limbs. For the spirit, only very subtle coherent floating drift. Constant physical scale and head size in every cell. Stable resting idle in cells0/7. Generous transparent cell/outer margins, no floor, background, labels, shadows, glow, added objects or attacks. Transparent alpha; match original matte readable native64 finish.",
+    "referenced_image_paths": [
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\refonte-histoire-2026-10-16\\npc-monsters-review-01\\CULT-02-r04.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-014-front-reference.png"
+    ]
+  },
+  {
+    "id": "MON-015-left",
+    "kind": "monster",
+    "number": 15,
+    "side": "left",
+    "front_source": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-015-front-reference.png",
+    "input": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-015-left-old-guide.png",
+    "destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-015-left-proportions-r05.png",
+    "prompt": "Use case: precise-object-edit. Nonviolent fantasy game WALK sprites. Image1 has the correct LEFT-facing narrow hooded figure and all8 compact poses: KEEP the head/hood/mask, LEFT-facing chest, hips, legs, boots, proportions and cell positions unchanged. Image2 is the canonical outfit/hand ownership. Correct ONLY ownership of the existing straight violet-topped staff. In ALL8 figures, it must be carried by the arm attached to the shoulder on SCREEN RIGHT (the creature''s anatomical left arm in this near-front view), and the staff stands beside that SCREEN RIGHT side, like image2. The shoulder on SCREEN LEFT connects to the FREE EMPTY right arm. Never staff on screenLEFT; never hands switching between frames; precisely TWO arms and TWO hands. Preserve all existing costume, body build, face direction, whole8-pose4cols2rows arrangement, transparent background and complete uncropped feet. No new objects, effects, attacking, labels, background or shadows.",
+    "referenced_image_paths": [
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-015-left-proportions-r04.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\refonte-histoire-2026-10-16\\npc-monsters-review-01\\CULT-03-r03.png"
+    ]
+  },
+  {
+    "id": "MON-015-right",
+    "kind": "monster",
+    "number": 15,
+    "side": "right",
+    "front_source": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-015-front-reference.png",
+    "input": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-015-right-old-guide.png",
+    "destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-015-right-proportions-r03.png",
+    "prompt": "Use case: identity-preserve. Nonviolent fantasy videogame movement sprite sheet. Image1 is the authoritative high-resolution FRONT design and physical build. Image2 is the actual native game front. Draw EXACTLY the same creature and proportions as image1, merely turned together into NEAR-FRONT three quarters SCREEN RIGHT, both shoulders visible. Do NOT invent a new stocky/chibi body or enlarged head. Match every proportion: small head fraction of total height, long thin limbs, narrow chest and waist, normal glove/boot thickness and original cloth length. A projected three-quarter torso is a little NARROWER than the frontal torso. Narrow long red/black straight coat, small white angular mask, grey gloves and normal narrow boots. Original straight black staff with violet crystal stays in the SAME anatomical left hand throughout all8. Opposite hand empty. No spells or attacks.\nOutput EXACTLY4 columns by2rows,8 WHOLE complete uncropped figures, ALL facing SCREEN RIGHT together (head/chest/pelvis/knees/toes). Row-major idle,move0,move1,move2 / move3,move4,move5,repeatedidle. For a biped, the first3 movement frames use one supporting foot while the other knee bends and heel lifts narrowly under the pelvis; the next3 reverse the support. No leg spreading, splits, running, kicks or extra limbs. For the spirit, only very subtle coherent floating drift. Constant physical scale and head size in every cell. Stable resting idle in cells0/7. Generous transparent cell/outer margins, no floor, background, labels, shadows, glow, added objects or attacks. Transparent alpha; match original matte readable native64 finish.",
+    "referenced_image_paths": [
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\refonte-histoire-2026-10-16\\npc-monsters-review-01\\CULT-03-r03.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-015-front-reference.png"
+    ]
+  },
+  {
+    "id": "MON-115-left",
+    "kind": "monster",
+    "number": 115,
+    "side": "left",
+    "front_source": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-115-front-reference.png",
+    "input": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-115-left-old-guide.png",
+    "destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-115-left-proportions-r04.png",
+    "prompt": "Use case: identity-preserve. Nonviolent videogame WALK atlas. IMAGE1 is the EXACT SCREEN-LEFT whole-body orientation and compact gait reference. All its figures face LEFT. Copy that LEFT-facing head/torso/pelvis/knee/toe orientation and compact support sequence, NOT its outfit/species/armor/face or build. IMAGE2 is the creature/person identity to draw: preserve its exact SLENDER physique, small head size, narrow chest, long thin legs and equipment. IMAGE3 is its native front proportions.\nCRITICAL: every output figure MUST turn to SCREEN LEFT like image1. Nose/mask opening/pale head tip and chest/front plane point LEFT; LEFT-facing leading boot and knees match. Do NOT copy the screen-right orientation from image2. Turn the complete coherent figure into near-front three quarters LEFT, not just the head. Preserve front anatomical limb ownership; no horizontal mirror that swaps asymmetric equipment between limbs. The same lanky narrow sinewy pale monster, fine long legs, original small crested head, one huge dark plated anatomical right forearm stays on viewerLEFT; opposite pale arm thin. No new muscles or thicker feet. Keep the same body size and slender proportions as image2 while turning; no thickening or chibi build. Original carried objects are passive at rest, no attack/aiming/effects.\nEXACTLY FOUR columns TWO rows,8 WHOLE figures on transparent alpha, all looking and travelling LEFT including idle0/7. Row-major: planted idle,walk0,walk1,walk2 / walk3,walk4,walk5,repeatedidle. First3 frames use one supporting foot while the other knee bends narrowly under hips; next3 reverse the support. No side spreading, splits, kicking or running. Same physical size/head size all8cells, generous transparent margins, no crops, labels, background, floor, shadows or extra limbs. Match image2''s finish and physique.",
+    "referenced_image_paths": [
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\CLASS-21-left-proportions-r02.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\refonte-histoire-2026-10-16\\npc-monsters-review-01\\RLU-24-r01.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-115-front-reference.png"
+    ]
+  },
+  {
+    "id": "MON-115-right",
+    "kind": "monster",
+    "number": 115,
+    "side": "right",
+    "front_source": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-115-front-reference.png",
+    "input": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-115-right-old-guide.png",
+    "destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-115-right-proportions-r03.png",
+    "prompt": "Use case: identity-preserve. Nonviolent fantasy videogame movement sprite sheet. Image1 is the authoritative high-resolution FRONT design and physical build. Image2 is the actual native game front. Draw EXACTLY the same creature and proportions as image1, merely turned together into NEAR-FRONT three quarters SCREEN RIGHT, both shoulders visible. Do NOT invent a new stocky/chibi body or enlarged head. Match every proportion: small head fraction of total height, long thin limbs, narrow chest and waist, normal glove/boot thickness and original cloth length. A projected three-quarter torso is a little NARROWER than the frontal torso. Tall lanky pale creature with a very NARROW chest/waist, small original crested spike/head, thin sinewy long legs. Preserve the ONE oversized dark armored forearm on its original anatomical right arm (viewerLEFT on front reference), and keep the opposite pale arm thin and long. Near-upright compact walk, not a crouched attacking stance; never enlarge chest, pale arm, hands or feet.\nOutput EXACTLY4 columns by2rows,8 WHOLE complete uncropped figures, ALL facing SCREEN RIGHT together (head/chest/pelvis/knees/toes). Row-major idle,move0,move1,move2 / move3,move4,move5,repeatedidle. For a biped, the first3 movement frames use one supporting foot while the other knee bends and heel lifts narrowly under the pelvis; the next3 reverse the support. No leg spreading, splits, running, kicks or extra limbs. For the spirit, only very subtle coherent floating drift. Constant physical scale and head size in every cell. Stable resting idle in cells0/7. Generous transparent cell/outer margins, no floor, background, labels, shadows, glow, added objects or attacks. Transparent alpha; match original matte readable native64 finish.",
+    "referenced_image_paths": [
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\refonte-histoire-2026-10-16\\npc-monsters-review-01\\RLU-24-r01.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-115-front-reference.png"
+    ]
+  },
+  {
+    "id": "MON-124-left",
+    "kind": "monster",
+    "number": 124,
+    "side": "left",
+    "front_source": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-124-front-reference.png",
+    "input": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-124-left-old-guide.png",
+    "destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-124-left-proportions-r03.png",
+    "prompt": "Use case: identity-preserve. Nonviolent fantasy videogame movement sprite sheet. Image1 is the authoritative high-resolution FRONT design and physical build. Image2 is the actual native game front. Draw EXACTLY the same creature and proportions as image1, merely turned together into NEAR-FRONT three quarters SCREEN LEFT, both shoulders visible. Do NOT invent a new stocky/chibi body or enlarged head. Match every proportion: small head fraction of total height, long thin limbs, narrow chest and waist, normal glove/boot thickness and original cloth length. A projected three-quarter torso is a little NARROWER than the frontal torso. VERY NARROW tapering shroud, small hood and thin bound forearms with existing cuffs/chain. Retain all original hanging strips and their length, but NO wide billowing skirt or broad cape. Do not thicken hood, torso, forearms or cloth. A floating spirit with NO legs or feet; only tiny coherent cloth drift.\nOutput EXACTLY4 columns by2rows,8 WHOLE complete uncropped figures, ALL facing SCREEN LEFT together (head/chest/pelvis/knees/toes). Row-major idle,move0,move1,move2 / move3,move4,move5,repeatedidle. For a biped, the first3 movement frames use one supporting foot while the other knee bends and heel lifts narrowly under the pelvis; the next3 reverse the support. No leg spreading, splits, running, kicks or extra limbs. For the spirit, only very subtle coherent floating drift. Constant physical scale and head size in every cell. Stable resting idle in cells0/7. Generous transparent cell/outer margins, no floor, background, labels, shadows, glow, added objects or attacks. Transparent alpha; match original matte readable native64 finish.",
+    "referenced_image_paths": [
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\refonte-histoire-2026-10-16\\npc-monsters-review-01\\ESP-01-r01.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-124-front-reference.png"
+    ]
+  },
+  {
+    "id": "MON-124-right",
+    "kind": "monster",
+    "number": 124,
+    "side": "right",
+    "front_source": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-124-front-reference.png",
+    "input": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-124-right-old-guide.png",
+    "destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-124-right-proportions-r03.png",
+    "prompt": "Use case: identity-preserve. Nonviolent fantasy videogame movement sprite sheet. Image1 is the authoritative high-resolution FRONT design and physical build. Image2 is the actual native game front. Draw EXACTLY the same creature and proportions as image1, merely turned together into NEAR-FRONT three quarters SCREEN RIGHT, both shoulders visible. Do NOT invent a new stocky/chibi body or enlarged head. Match every proportion: small head fraction of total height, long thin limbs, narrow chest and waist, normal glove/boot thickness and original cloth length. A projected three-quarter torso is a little NARROWER than the frontal torso. VERY NARROW tapering shroud, small hood and thin bound forearms with existing cuffs/chain. Retain all original hanging strips and their length, but NO wide billowing skirt or broad cape. Do not thicken hood, torso, forearms or cloth. A floating spirit with NO legs or feet; only tiny coherent cloth drift.\nOutput EXACTLY4 columns by2rows,8 WHOLE complete uncropped figures, ALL facing SCREEN RIGHT together (head/chest/pelvis/knees/toes). Row-major idle,move0,move1,move2 / move3,move4,move5,repeatedidle. For a biped, the first3 movement frames use one supporting foot while the other knee bends and heel lifts narrowly under the pelvis; the next3 reverse the support. No leg spreading, splits, running, kicks or extra limbs. For the spirit, only very subtle coherent floating drift. Constant physical scale and head size in every cell. Stable resting idle in cells0/7. Generous transparent cell/outer margins, no floor, background, labels, shadows, glow, added objects or attacks. Transparent alpha; match original matte readable native64 finish.",
+    "referenced_image_paths": [
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\refonte-histoire-2026-10-16\\npc-monsters-review-01\\ESP-01-r01.png",
+      "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-11\\MON-124-front-reference.png"
+    ]
+  }
+]

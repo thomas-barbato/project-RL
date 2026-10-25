@@ -34,6 +34,9 @@ fn default_cell_size() -> u16 {
 fn default_hover_health() -> bool {
     true
 }
+fn default_walk_duration() -> u16 {
+    400
+}
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
@@ -111,6 +114,12 @@ pub struct GraphicsSettings {
     pub reduced_motion: bool,
     #[serde(default = "default_hover_health")]
     pub hover_monster_health: bool,
+    #[serde(default = "default_hover_health")]
+    pub actor_ground_markers: bool,
+    #[serde(default)]
+    pub world_grayscale: bool,
+    #[serde(default = "default_walk_duration")]
+    pub walk_duration_ms: u16,
 }
 
 impl Default for GraphicsSettings {
@@ -126,6 +135,9 @@ impl Default for GraphicsSettings {
             high_contrast: false,
             reduced_motion: false,
             hover_monster_health: true,
+            actor_ground_markers: true,
+            world_grayscale: false,
+            walk_duration_ms: default_walk_duration(),
         }
     }
 }
@@ -137,6 +149,7 @@ impl GraphicsSettings {
             || !(480..=4320).contains(&self.windowed_size[1])
             || !UI_SCALES.contains(&self.ui_scale_percent)
             || !CELL_SIZES.contains(&self.world_cell_px)
+            || ![120, 200, 400].contains(&self.walk_duration_ms)
         {
             return Err(
                 "Version, dimensions ou échelle d'interface non prises en charge.".to_owned(),
@@ -241,6 +254,12 @@ impl GraphicsSettings {
                     cycle_value(&InterfaceStyle::ALL, self.interface_style, forward)
             }
             7 => self.hover_monster_health = !self.hover_monster_health,
+            8 => self.actor_ground_markers = !self.actor_ground_markers,
+            9 => self.world_grayscale = !self.world_grayscale,
+            10 => {
+                self.walk_duration_ms =
+                    cycle_value(&[120, 200, 400], self.walk_duration_ms, forward)
+            }
             _ => {}
         }
     }
@@ -458,6 +477,45 @@ mod tests {
     }
 
     #[test]
+    fn readability_preferences_migrate_toggle_independently_and_revert_together() {
+        let original = GraphicsSettings {
+            ui_scale_percent: 150,
+            interface_theme: InterfaceTheme::Green,
+            ..Default::default()
+        };
+        let mut legacy = serde_json::to_value(original).unwrap();
+        legacy
+            .as_object_mut()
+            .unwrap()
+            .remove("actor_ground_markers");
+        legacy.as_object_mut().unwrap().remove("world_grayscale");
+        assert_eq!(
+            GraphicsSettings::decode(&legacy.to_string()).unwrap(),
+            original
+        );
+        let mut changed = original;
+        changed.cycle(8, true);
+        assert!(!changed.actor_ground_markers && !changed.world_grayscale);
+        changed.cycle(9, true);
+        assert!(!changed.actor_ground_markers && changed.world_grayscale);
+        assert_eq!(
+            GraphicsSettings::decode(&serde_json::to_string(&changed).unwrap()).unwrap(),
+            changed
+        );
+        assert_eq!(changed.ui_scale_percent, original.ui_scale_percent);
+        let mut state = GraphicsState {
+            active: original,
+            draft: changed,
+            ..Default::default()
+        };
+        assert!(state.begin_preview());
+        assert_eq!(state.active, changed);
+        state.revert();
+        assert_eq!(state.active, original);
+        assert_eq!(state.draft, original);
+    }
+
+    #[test]
     fn settings_reject_unsupported_modes_dimensions_scales_and_versions() {
         let valid = serde_json::to_value(GraphicsSettings::default()).unwrap();
         for (field, value) in [
@@ -540,6 +598,33 @@ mod tests {
         }
         document["world_cell_px"] = serde_json::json!(1);
         assert!(GraphicsSettings::decode(&document.to_string()).is_err());
+    }
+
+    #[test]
+    fn walk_duration_migrates_cycles_and_roundtrips_without_resetting_preferences() {
+        let mut settings = GraphicsSettings {
+            ui_scale_percent: 150,
+            interface_theme: InterfaceTheme::Red,
+            ..Default::default()
+        };
+        let mut legacy = serde_json::to_value(settings).unwrap();
+        legacy.as_object_mut().unwrap().remove("walk_duration_ms");
+        assert_eq!(
+            GraphicsSettings::decode(&legacy.to_string()).unwrap(),
+            settings
+        );
+        for milliseconds in [400, 120, 200] {
+            assert_eq!(settings.walk_duration_ms, milliseconds);
+            assert_eq!(
+                GraphicsSettings::decode(&serde_json::to_string(&settings).unwrap()).unwrap(),
+                settings
+            );
+            settings.cycle(10, true);
+            assert_eq!(settings.ui_scale_percent, 150);
+            assert_eq!(settings.interface_theme, InterfaceTheme::Red);
+        }
+        settings.walk_duration_ms = 0;
+        assert!(settings.validate().is_err());
     }
 
     #[test]

@@ -1,0 +1,199 @@
+{
+  "review_id": "WALK07-CREATURES-LOT05",
+  "date": "2026-10-24",
+  "timezone": "Europe/Paris",
+  "player_quote": "ok on continue :)",
+  "status": "visual_accepted",
+  "scope": "Six presented whole-creature lateral cycles M27-M32, displayed identities/material variants and accepted size-based vertical placement",
+  "runtime_integration_authorized": false,
+  "full_bestiary_accepted": false,
+  "deferred_M12_M23_accepted": false,
+  "other_material_variants_accepted": false,
+  "duration_default_ms": 400,
+  "duration_choice_retained": true,
+  "vertical_movement_modified": false,
+  "cases": [
+    {
+      "review_id": "WALK07-M27",
+      "identity": "MON-035-0",
+      "locomotor_legs": 4,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-035-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -17,
+      "cycle_bounds": [
+        40,
+        82,
+        87,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    },
+    {
+      "review_id": "WALK07-M28",
+      "identity": "MON-076-0",
+      "locomotor_legs": 2,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-076-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -1,
+      "cycle_bounds": [
+        25,
+        50,
+        103,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    },
+    {
+      "review_id": "WALK07-M29",
+      "identity": "MON-101-0",
+      "locomotor_legs": 4,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-101-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -5,
+      "cycle_bounds": [
+        28,
+        58,
+        101,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    },
+    {
+      "review_id": "WALK07-M30",
+      "identity": "MON-070-0",
+      "locomotor_legs": 4,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-070-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "cycle_bounds": [
+        26,
+        38,
+        101,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    },
+    {
+      "review_id": "WALK07-M31",
+      "identity": "MON-065-0",
+      "locomotor_legs": 0,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-065-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": 0,
+      "cycle_bounds": [
+        32,
+        49,
+        95,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    },
+    {
+      "review_id": "WALK07-M32",
+      "identity": "MON-066-0",
+      "locomotor_legs": 2,
+      "atlas": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-066-0-whole-body-native.png",
+      "canvas": [
+        128,
+        128
+      ],
+      "foot": [
+        64,
+        112
+      ],
+      "vertical_offset": -3,
+      "cycle_bounds": [
+        32,
+        54,
+        97,
+        112
+      ],
+      "pose_order": "left idle + six walk; right idle + six walk"
+    }
+  ],
+  "files": [
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-035-0-whole-body-native.png",
+      "sha256": "eeeca072e0ff360bb663474fb546c941c91d631f55546fb56da9224390ed6888"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-035-0-cycle-lot05-r01.png",
+      "sha256": "9ea15a07409539b2bcdcc180463c4f2eabe49afc60ea1f8b094b73a8e0960e97"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-076-0-whole-body-native.png",
+      "sha256": "cacdbb8949ca366a2ed8bbb6fd756dbd4288808cdd2840c27adb49738ae924aa"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-076-0-cycle-lot05-r01.png",
+      "sha256": "c9f9c5c17bfd432f85b4ca82df17e6999351b0f3560d1ee7b039a220b61a4991"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-101-0-whole-body-native.png",
+      "sha256": "6a73e2d59635d29654f0f1390c3c99e5c13b57e042dda31bd29f2324369b5ff7"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-101-0-cycle-lot05-r01.png",
+      "sha256": "76c4fabe7659515036497bd8bc31e06163235faeff03193830d1c3dc6d8d1fea"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-070-0-whole-body-native.png",
+      "sha256": "36a18dad5819ae9edaca729ab17264ab4c0d2853f5d71c781981edf4271a6fdd"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-070-0-cycle-lot05-r01.png",
+      "sha256": "f371d1d7209a0b828f124f068510e2b3d3c6505e9ec3caa991528df9e3c97756"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-065-0-whole-body-native.png",
+      "sha256": "20f53734be2202406499685d6bc663e9153200311bb0af491a71293af5a81320"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-065-0-cycle-lot05-r01.png",
+      "sha256": "fb5e2f1194e3db2517b4ffbc54609d7d1037d58f29f24ce2dc4a1cb49caac7b1"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/accepted/creatures-lot05/MON-066-0-whole-body-native.png",
+      "sha256": "054ccd1e9356fbb663f33d341225b40e7b5842a299c9426961e358e686a06564"
+    },
+    {
+      "file": "assets/source-art/player-walk-review-07/MON-066-0-cycle-lot05-r01.png",
+      "sha256": "66959d2fedc1d0bc513b3455a8f4d8e1560cb4be333b28ec1a73ca45e26367d5"
+    }
+  ]
+}

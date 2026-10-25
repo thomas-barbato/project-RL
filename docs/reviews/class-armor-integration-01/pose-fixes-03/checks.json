@@ -1,0 +1,54 @@
+{
+  "review_id": "CLASS-POSE-FIX03",
+  "status": "integrated_corrective_candidate_technical_checks_passed_awaiting_visual_feedback",
+  "targeted_class_armor_tests": {
+    "passed": 9,
+    "failed": 0,
+    "includes_explicit_compositor_diagnostic": true
+  },
+  "all_weapon_attachment_cases": 5650,
+  "weapon_models": 113,
+  "outfits": 25,
+  "corrected_pistol_outfits": 10,
+  "metamorphe_posture_outfit": 20,
+  "compositor_images": 3100,
+  "exactly_unchanged_compositions": 2836,
+  "changed_compositions": 264,
+  "unexpected_changes": [],
+  "non_pistol_compositions_unchanged_outside_requested_metamorphe": 2640,
+  "gpu": {
+    "actual_item_to_visual_binding": true,
+    "all_five_classes": true,
+    "gpu_pages": 12,
+    "native_tile": 64,
+    "open_helmet_faces": "canonical uncovered class head; female identity retained",
+    "ordinary_player_renderer": true,
+    "outfit_count": 25,
+    "review_id": "CLASS-ARMOR-INTEGRATION01"
+  },
+  "debug_build": "passed",
+  "release_build": "passed",
+  "targeted_rustfmt": "passed",
+  "git_diff_check": "passed",
+  "python_compile": "passed",
+  "browser_native_boards": [
+    {
+      "path": "pose-fixes-03/all-tiers-native.png",
+      "natural_and_display_dimensions": [
+        620,
+        470
+      ]
+    },
+    {
+      "path": "pose-fixes-03/metamorphe-rifle-native.png",
+      "natural_and_display_dimensions": [
+        620,
+        360
+      ]
+    }
+  ],
+  "visual_inspection": "native all-tier pistol boards, exact open-helmet/rifle posture comparison and GPU dual-pistol/open-helmet captures inspected",
+  "source_acceptances_and_original_native_files": "all 5 acceptance hashes, 25 original native/full source/layer hash groups verified unchanged",
+  "rules_and_save_format_changes": false,
+  "browser_screenshot": "artifacts/class-armor-integration-01/pose-fixes-03/browser-metamorphe-review.png"
+}

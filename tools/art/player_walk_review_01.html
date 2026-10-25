@@ -1,0 +1,107 @@
+<div id="rl-walk-review">
+  <div class="walk-toolbar"><div class="viz-controls">
+    <button class="btn btn-primary" type="button" data-action="play">Pause</button>
+    <button class="btn" type="button" data-action="cell">Avancer d’une case</button>
+    <button class="btn" type="button" data-action="step">Image suivante</button>
+    <label class="form-label">Parcours <select class="form-select" data-control="path"><option value="circuit">Huit directions</option><option value="lateral">Gauche / droite</option></select></label>
+    <label class="form-label">Transition <select class="form-select" data-control="pace"><option value="120">Actuelle · 120 ms</option><option value="200">Posée · 200 ms</option><option value="400">Ralenti · 400 ms</option></select></label>
+    <label class="form-label">Sol <select class="form-select" data-control="floor"><option value="dark">Sombre</option><option value="light">Clair</option></select></label>
+  </div></div>
+  <div class="walk-comparison">
+    <section><h3>01 · Frontal discret</h3><div class="text-small">Le buste conserve sa posture de face.</div><canvas data-scene="0" width="288" height="256" role="img" aria-label="Animation 1, marche frontale discrète du Bastion à taille native"></canvas><div class="text-small">64 × 64 · taille de jeu</div><canvas data-zoom="0" width="128" height="128" role="img" aria-label="Détail agrandi deux fois de l'animation 1"></canvas></section>
+    <section><h3>02 · Gauche / droite</h3><div class="text-small">Deux orientations de trois quarts.</div><canvas data-scene="1" width="288" height="256" role="img" aria-label="Animation 2, marche à gauche et à droite du Bastion à taille native"></canvas><div class="text-small">64 × 64 · taille de jeu</div><canvas data-zoom="1" width="128" height="128" role="img" aria-label="Détail agrandi deux fois de l'animation 2"></canvas></section>
+    <section><h3>03 · Huit directions</h3><div class="text-small">Face, profils, dos et diagonales.</div><canvas data-scene="2" width="288" height="256" role="img" aria-label="Animation 3, marche dans huit directions du Bastion à taille native"></canvas><div class="text-small">64 × 64 · taille de jeu</div><canvas data-zoom="2" width="128" height="128" role="img" aria-label="Détail agrandi deux fois de l'animation 3"></canvas></section>
+  </div>
+  <div class="viz-row text-small"><span>Une action = une case</span><span data-grid-status>À l’arrêt</span><span>Zoom ×2 sous chaque scène</span><span data-status aria-live="polite">Chargement des poses…</span></div>
+</div>
+<style>
+  #rl-walk-review .walk-comparison{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+  #rl-walk-review .walk-toolbar{padding-right:92px}
+  #rl-walk-review section{min-width:0;text-align:center}
+  #rl-walk-review h3{margin-bottom:4px}
+  #rl-walk-review canvas{display:block;image-rendering:pixelated;margin:8px auto;max-width:100%}
+  #rl-walk-review [data-scene]{width:288px;height:256px;object-fit:contain}
+  #rl-walk-review [data-zoom]{width:128px;height:128px}
+  @media(max-width:860px){#rl-walk-review .walk-comparison{grid-template-columns:1fr}#rl-walk-review .walk-toolbar{padding-right:0}}
+</style>
+<script>
+(()=>{
+  const root=document.getElementById('rl-walk-review');
+  const DATA=__WALK_DATA__;
+  const scenes=Array.from(root.querySelectorAll('[data-scene]'));
+  const zooms=Array.from(root.querySelectorAll('[data-zoom]'));
+  const tiles=Array.from({length:3},()=>{const c=document.createElement('canvas');c.width=c.height=64;return c;});
+  const atlas=new Image(),front=new Image(),idle=new Image();
+  const initial=window.openai?.widgetState?.modelContent||{};
+  const state={playing:!matchMedia('(prefers-reduced-motion: reduce)').matches,automatic:true,path:initial.path==='lateral'?'lateral':'circuit',pace:[120,200,400].includes(+initial.pace)?+initial.pace:120,floor:initial.floor==='light'?'light':'dark'};
+  let loaded=0,previous=0,lastSide=1,lastDirection=1,index=0,transition=null,rest=0,stepCount=0;
+  const play=root.querySelector('[data-action="play"]');
+  const status=root.querySelector('[data-status]');
+  const gridStatus=root.querySelector('[data-grid-status]');
+  const colors={dark:{base:'#293132',tile:'#303a3b',line:'#414b49',crack:'#1c2425',shadow:'rgba(4,9,12,.5)'},light:{base:'#b5afa0',tile:'#bdb6a7',line:'#999689',crack:'#a09a8c',shadow:'rgba(28,30,29,.32)'}};
+  const routes={lateral:[[80,144],[208,144],[80,144]],circuit:[[80,208],[144,208],[208,144],[208,80],[144,80],[80,144],[80,208],[144,144],[144,80],[208,144],[208,208],[144,208],[80,144],[80,80],[144,144],[144,208],[80,208]]};
+  function cells(){const result=[routes[state.path][0]];for(const target of routes[state.path].slice(1)){const from=result[result.length-1],count=Math.max(Math.abs(target[0]-from[0]),Math.abs(target[1]-from[1]))/64;for(let i=1;i<=count;i++)result.push([from[0]+(target[0]-from[0])*i/count,from[1]+(target[1]-from[1])*i/count]);}return result;}
+  function remember(){window.openai?.setWidgetState?.({modelContent:{path:state.path,pace:state.pace,floor:state.floor},privateContent:null}).catch(()=>{});}
+  function sync(){play.textContent=state.playing?'Pause':'Lecture auto';for(const key of ['path','pace','floor'])root.querySelector(`[data-control="${key}"]`).value=String(state[key]);}
+  function startStep(){
+    if(transition)return;
+    const points=cells();if(index>=points.length-1)index=0;
+    const a=points[index],b=points[index+1],dx=b[0]-a[0],dy=b[1]-a[1];
+    if(dx!==0)lastSide=dx>0?1:7;
+    lastDirection=dx===0?(dy>0?0:4):dy===0?(dx>0?2:6):dy>0?(dx>0?1:7):(dx>0?3:5);
+    transition={from:a,to:b,age:0};gridStatus.textContent='Une case · déplacement';
+  }
+  function advance(delta){
+    if(transition){transition.age+=delta;if(transition.age>=state.pace){index++;stepCount++;transition=null;rest=0;gridStatus.textContent='Arrêt sur la case';if(!state.automatic){state.playing=false;sync();}}}
+    else if(state.automatic){rest+=delta;if(rest>=520)startStep();}
+  }
+  function location(){
+    if(!transition){const at=cells()[index];return {x:at[0],y:at[1],moving:false,direction:lastDirection,frame:0,target:at};}
+    const t=Math.min(1,transition.age/state.pace),p=1-(1-t)*(1-t),a=transition.from,b=transition.to;
+    return {x:Math.round(a[0]+(b[0]-a[0])*p),y:Math.round(a[1]+(b[1]-a[1])*p),moving:true,direction:lastDirection,frame:(stepCount%2)*3+Math.min(2,Math.floor(t*3)),target:b};
+  }
+  function drawFrontal(ctx,frame,moving){
+    ctx.clearRect(0,0,64,64);ctx.imageSmoothingEnabled=false;
+    if(!moving){ctx.drawImage(front,0,0);return;}
+    const left=[0,-1,-2,0,0,0][frame],right=[0,0,0,0,-1,-2][frame],sway=[0,0,1,0,0,-1][frame];
+    ctx.drawImage(front,0,40,32,24,-Math.max(0,-sway),40+left,32,24);
+    ctx.drawImage(front,32,40,32,24,32+Math.max(0,sway),40+right,32,24);
+    ctx.drawImage(front,0,0,64,43,sway,frame===1||frame===4?1:0,64,43);
+  }
+  function drawTile(index,loc){
+    const ctx=tiles[index].getContext('2d');ctx.clearRect(0,0,64,64);ctx.imageSmoothingEnabled=false;
+    if(index===0)drawFrontal(ctx,loc.frame,loc.moving);
+    else {const row=index===1?lastSide:loc.direction;if(loc.moving)ctx.drawImage(atlas,loc.frame*64,row*64,64,64,0,0,64,64);else ctx.drawImage(idle,(row%4)*64,Math.floor(row/4)*64,64,64,0,0,64,64);}
+  }
+  function floor(ctx,width,height){
+    const c=colors[state.floor];ctx.fillStyle=c.base;ctx.fillRect(0,0,width,height);
+    for(let y=-16;y<height;y+=64)for(let x=-16;x<width;x+=64){
+      if((Math.floor(x/64)+Math.floor(y/64))%2===0){ctx.fillStyle=c.tile;ctx.fillRect(x,y,64,64);}
+      ctx.strokeStyle=c.line;ctx.lineWidth=1;ctx.strokeRect(x+.5,y+.5,64,64);
+      ctx.strokeStyle=c.crack;ctx.beginPath();ctx.moveTo(x+14,y+22);ctx.lineTo(x+23,y+27);ctx.lineTo(x+28,y+24);ctx.stroke();
+    }
+  }
+  function render(){
+    if(loaded<3)return;
+    const loc=location();
+    scenes.forEach((canvas,index)=>{
+      drawTile(index,loc);
+      const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;floor(ctx,288,256);
+      ctx.strokeStyle=state.floor==='dark'?'#90a4a7':'#5a6868';ctx.lineWidth=1;ctx.strokeRect(loc.target[0]-31.5,loc.target[1]-31.5,63,63);
+      ctx.fillStyle=colors[state.floor].shadow;ctx.beginPath();ctx.ellipse(loc.x,loc.y+30,17,5,0,0,Math.PI*2);ctx.fill();
+      ctx.drawImage(tiles[index],loc.x-32,loc.y-32);
+      const z=zooms[index].getContext('2d');z.imageSmoothingEnabled=false;floor(z,128,128);z.drawImage(tiles[index],0,0,64,64,0,0,128,128);
+    });
+    root.dataset.frame=String(loc.frame);root.dataset.direction=String(loc.direction);root.dataset.ready='true';root.dataset.moving=String(loc.moving);root.dataset.cell=String(index);
+  }
+  function tick(now){if(previous&&state.playing)advance(Math.min(80,now-previous));previous=now;render();requestAnimationFrame(tick);}
+  function ready(){loaded++;if(loaded===3){status.textContent='Prototypes de revue · hors du jeu';render();}}
+  atlas.onload=front.onload=idle.onload=ready;atlas.onerror=front.onerror=idle.onerror=()=>{status.textContent='Impossible de charger les poses.';status.setAttribute('role','alert');};
+  atlas.src=DATA.atlas;front.src=DATA.front;idle.src=DATA.idle;
+  play.addEventListener('click',()=>{state.playing=!state.playing;if(state.playing)state.automatic=true;sync();});
+  root.querySelector('[data-action="cell"]').addEventListener('click',()=>{state.automatic=false;startStep();state.playing=true;sync();});
+  root.querySelector('[data-action="step"]').addEventListener('click',()=>{state.playing=false;state.automatic=false;startStep();advance(state.pace/6);sync();render();});
+  for(const key of ['path','pace','floor'])root.querySelector(`[data-control="${key}"]`).addEventListener('change',e=>{state[key]=key==='pace'?+e.target.value:e.target.value;if(key==='path'){index=stepCount=rest=0;transition=null;lastDirection=lastSide=1;gridStatus.textContent='À l’arrêt';}remember();render();});
+  sync();requestAnimationFrame(tick);
+})();
+</script>

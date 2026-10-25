@@ -1,0 +1,84 @@
+{
+  "review_id": "TECHNOMANCIEN-NOROBE-HEADS02",
+  "candidate_count": 5,
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "head_masks_explicit": true,
+  "head_body_recomposition_exact": true,
+  "non_head_native_pixel_changes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "head_luma_before": [
+    {
+      "solid_pixels": 54,
+      "mean_luma_0_255": 75.06,
+      "pixels_luma_above_120": 7
+    },
+    {
+      "solid_pixels": 56,
+      "mean_luma_0_255": 75.08,
+      "pixels_luma_above_120": 7
+    },
+    {
+      "solid_pixels": 52,
+      "mean_luma_0_255": 71.05,
+      "pixels_luma_above_120": 4
+    },
+    {
+      "solid_pixels": 50,
+      "mean_luma_0_255": 66.84,
+      "pixels_luma_above_120": 4
+    },
+    {
+      "solid_pixels": 54,
+      "mean_luma_0_255": 76.06,
+      "pixels_luma_above_120": 6
+    }
+  ],
+  "head_luma_after": [
+    {
+      "solid_pixels": 52,
+      "mean_luma_0_255": 107.49,
+      "pixels_luma_above_120": 16
+    },
+    {
+      "solid_pixels": 56,
+      "mean_luma_0_255": 105.63,
+      "pixels_luma_above_120": 22
+    },
+    {
+      "solid_pixels": 53,
+      "mean_luma_0_255": 99.94,
+      "pixels_luma_above_120": 19
+    },
+    {
+      "solid_pixels": 58,
+      "mean_luma_0_255": 109.96,
+      "pixels_luma_above_120": 23
+    },
+    {
+      "solid_pixels": 62,
+      "mean_luma_0_255": 111.1,
+      "pixels_luma_above_120": 25
+    }
+  ],
+  "previous_images_and_acceptances_unchanged": 798,
+  "bastion_approved_compositions_unchanged": 5,
+  "runtime_integration": false,
+  "engine_execution": false,
+  "ui_execution": "verified_in_app_browser",
+  "all_four_review_images_css_scale_one": true,
+  "native_height": 58,
+  "foot_baseline_y": 61,
+  "head_masks_visually_inspected": true,
+  "final_browser_screenshot": "artifacts/class-armor-review-01/technomancien-no-robe-heads-02/browser-verified.png",
+  "final_browser_screenshot_sha256": "323a57a20245f58c2eb2e445673f55577d9af73d71df1835b3a945623dc52aff",
+  "approval": "accepted_by_explicit_user_reply",
+  "acceptance": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json"
+}

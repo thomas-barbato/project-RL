@@ -204,6 +204,9 @@ impl MenuScreen {
                 "Animations réduites",
                 "Habillage de l'interface",
                 "Vie au survol",
+                "Repères au sol",
+                "Monde en niveaux de gris",
+                "Animation de déplacement",
                 "Valeurs par défaut",
                 "Appliquer",
                 "Retour",
@@ -285,7 +288,8 @@ impl MenuLayout {
             3 => 445.0,
             4 => 470.0,
             5..=7 => 500.0,
-            _ => 540.0,
+            8..=11 => 540.0,
+            _ => 620.0,
         };
         let panel_height = (height - 32.0).clamp(400.0, desired_height);
         let panel = Rect::new(
@@ -294,7 +298,10 @@ impl MenuLayout {
             panel_width,
             panel_height,
         );
-        let row_height = ((panel_height - 190.0) / count.max(1) as f32).clamp(25.0, 58.0);
+        let compact = count >= 13;
+        let row_height = ((panel_height - if compact { 170.0 } else { 190.0 })
+            / count.max(1) as f32)
+            .clamp(if compact { 20.0 } else { 25.0 }, 58.0);
         let button_width = if count <= 4 {
             (panel.w - 120.0).max(300.0)
         } else {
@@ -304,9 +311,9 @@ impl MenuLayout {
             .map(|index| {
                 Rect::new(
                     panel.x + (panel.w - button_width) * 0.5,
-                    panel.y + 88.0 + index as f32 * row_height,
+                    panel.y + if compact { 74.0 } else { 88.0 } + index as f32 * row_height,
                     button_width,
-                    row_height - 7.0,
+                    row_height - if compact { 3.0 } else { 7.0 },
                 )
             })
             .collect();

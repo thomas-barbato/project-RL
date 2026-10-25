@@ -1,0 +1,84 @@
+{
+  "revision": "WALK12-ALL-HELMETS-r01",
+  "status": "passed",
+  "catalogue": [
+    {
+      "item": "core:calotte_cognefer",
+      "model": 115,
+      "head": 1,
+      "name": "Calotte Cognefer"
+    },
+    {
+      "item": "core:capuche_de_mue",
+      "model": 116,
+      "head": 2,
+      "name": "Capuche de mue"
+    },
+    {
+      "item": "core:casque_cerbere",
+      "model": 117,
+      "head": 3,
+      "name": "Casque Cerbère"
+    },
+    {
+      "item": "core:heaume_bastion",
+      "model": 118,
+      "head": 4,
+      "name": "Heaume Bastion"
+    },
+    {
+      "item": "core:masque_chrysalide",
+      "model": 119,
+      "head": 5,
+      "name": "Masque Chrysalide"
+    },
+    {
+      "item": "core:visiere_fantome",
+      "model": 120,
+      "head": 6,
+      "name": "Visière Fantôme"
+    }
+  ],
+  "outfits": 25,
+  "helmet_outfit_combinations": 150,
+  "directions": 2,
+  "walking_frames_per_direction": 6,
+  "milliseconds_per_cell": 400,
+  "preview_rest_ms": 300,
+  "source": "existing normal Rust compositor exports; source and release hashes verified",
+  "new_game_code_required": false,
+  "all_six_helmets_already_integrated": true,
+  "overview": "tous-les-casques-cinq-classes-native64.gif",
+  "class_previews": [
+    {
+      "class": "Bastion",
+      "outfits": 5,
+      "helmets": 6,
+      "file": "Bastion-tous-casques-cinq-tenues-native64.gif"
+    },
+    {
+      "class": "Technomancien",
+      "outfits": 5,
+      "helmets": 6,
+      "file": "Technomancien-tous-casques-cinq-tenues-native64.gif"
+    },
+    {
+      "class": "Traqueuse",
+      "outfits": 5,
+      "helmets": 6,
+      "file": "Traqueuse-tous-casques-cinq-tenues-native64.gif"
+    },
+    {
+      "class": "Arcaniste",
+      "outfits": 5,
+      "helmets": 6,
+      "file": "Arcaniste-tous-casques-cinq-tenues-native64.gif"
+    },
+    {
+      "class": "Metamorphe",
+      "outfits": 5,
+      "helmets": 6,
+      "file": "Metamorphe-tous-casques-cinq-tenues-native64.gif"
+    }
+  ]
+}

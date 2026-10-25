@@ -1,0 +1,46 @@
+{
+  "review_id": "ARCANISTE-SAME-FACE03",
+  "candidate_count": 5,
+  "edited_heads": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "unchanged_heads": [
+    1
+  ],
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "non_head_native_pixel_changes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "canonical_face_pixel_mismatches": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "source_pixels_outside_head_masks_exact": true,
+  "all_pixels_below_y11_exact": true,
+  "head_body_recomposition_exact": true,
+  "previous_images_and_acceptances_unchanged": 1060,
+  "approved_compositions_unchanged": 15,
+  "runtime_integration": false,
+  "engine_execution": false,
+  "ui_execution": "verified_in_app_browser",
+  "all_five_review_images_css_scale_one": true,
+  "head_masks_visually_inspected": true,
+  "face_occlusion_allowed": true,
+  "shared_face_mask_excludes_forehead_and_temples": true,
+  "approval": "pending_user_head_visual_review",
+  "browser_screenshot": "artifacts/class-armor-review-01/arcaniste-same-face-03/browser-verified-full.png",
+  "shared_face_pixel_count": 17
+}

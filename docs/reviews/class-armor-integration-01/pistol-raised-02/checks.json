@@ -1,0 +1,37 @@
+{
+  "review_id": "PISTOL-RAISED02",
+  "date": "2026-10-22",
+  "status": "implemented_and_technically_verified",
+  "visual_status": "new_pose_shown_for_user_review",
+  "outfits": 25,
+  "classes": 5,
+  "native_actor_tile": 64,
+  "one_hand_firearm_models": 12,
+  "single_dual_mixed_pose_cases": 375,
+  "all_weapon_attachment_cases": 5650,
+  "visible_head_overlap_threshold": 16,
+  "head_and_boot_source_pixels_preserved": true,
+  "non_pistol_compositions_exactly_preserved": 2750,
+  "central_face_regions_preserved": 350,
+  "ordinary_cpu_compositor_configs": 3100,
+  "gpu_native_pages": 12,
+  "gpu_outfits_per_page": 25,
+  "game_art_tests": {
+    "passed": 57,
+    "failed": 0,
+    "ignored": 2
+  },
+  "explicit_compositor_diagnostic": {
+    "passed": 1
+  },
+  "debug_build": "passed",
+  "release_build": "passed",
+  "targeted_rustfmt": "passed",
+  "git_diff_check": "passed",
+  "gameplay_changes": false,
+  "source_art_changes": false,
+  "browser_all_images_loaded": true,
+  "browser_comparison_natural_and_display_width": 640,
+  "browser_screenshot": "docs/reviews/class-armor-integration-01/pistol-raised-02/browser-review.png",
+  "detail": "New code repositions existing source limb, closed hand, weapon and finger layers. No generated replacement art."
+}

@@ -1,0 +1,261 @@
+[
+  {
+    "id": "MON-152-0-left-idle",
+    "prompt": "Use case: precise-object-edit. Edit this SINGLE complete LEFT-facing monster. Keep his exact left-facing head, torso, hips, legs, stance and anatomy. Correct ONLY shoulder nodule ownership: erase the golden nodules from the RIGHT side of the picture, replace that area with the original mottled bare shoulder skin; put those same three golden nodules on the LEFT side of the picture, attached to the OTHER shoulder. The shoulder on the RIGHT of picture must have NO nodules. Do NOT mirror or turn the character. Keep exact original body proportions, brown loincloth, claws, horns and palette. One complete figure only, true transparent background, ample margins, no other objects or text.",
+    "reference": "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-152-0-left-idle-edit-target.png",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-5c62445f-4a24-4e55-887e-33876d47e0a6.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-152-0-left-idle-edit-target.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-152-0-left-idle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-152-0-left-idle-bulk-r06.txt",
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "7586bff23b93f26a311643469eebbe7c6e4d227caafc03790886bbb5bbc19534"
+  },
+  {
+    "id": "MON-135-0-left-idle",
+    "prompt": "Use case: precise-object-edit. Edit this SINGLE complete cultist who faces SCREEN LEFT. Keep this exact head direction, hood, chest, legs, pose, coat, backpack and original anatomy. Correct ONLY which hand holds the dark rectangular device: move the device from the hand on the LEFT side of the picture into the empty hand on the RIGHT side of the picture. Make the LEFT-side hand empty and relaxed, RIGHT-side hand holding the device securely. Keep two complete arms, natural elbows, no extra fingers. Do NOT mirror or turn the character. Single complete figure, exact same proportions, materials, colors, true transparent background, ample margins, no floor or text.",
+    "reference": "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-135-0-left-idle-edit-target.png",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-edc539a7-a7d4-4d10-a8eb-6ab215b17915.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-135-0-left-idle-edit-target.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-135-0-left-idle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-135-0-left-idle-bulk-r06.txt",
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "23243436323de2b34aa118ea00bc45058ef0ae2c342fc489d1c9351882031ee8"
+  },
+  {
+    "id": "MON-152-0-left",
+    "prompt": "Use case: identity-preserve. Image1 is the EXACT CORRECT LEFT-facing character and equipment to animate. Keep this LEFT orientation, proportions, colors, clothes and anatomical equipment ownership identical in ALL EIGHT figures. Image2 supplies ONLY the compact whole-body walking poses. Make EXACTLY4columns2rows with8complete figures: idle,walk0,walk1,walk2 / walk3,walk4,walk5,repeatedidle. ALL8 including idles face LEFT, entire body and feet. Minimal bob, six compact coherent walking poses, no wide splits, constant apparent height. The THREE GOLDEN NODULES stay on the shoulder at VIEWER LEFT as in IMAGE1; the large exposed shoulder at viewerRIGHT stays bare mottled skin. Never swap them in any pose. Preserve all other anatomy and objects from image1, never copy image2's costume or head. True transparent background, ample32px outer margins, no labels,text,floor,shadow,extra objects. This is ONE LEFT-facing cycle only.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-152-0-left-idle-bulk-r06.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-left-r03.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-152-0-left-cycle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-152-0-left-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-2db90370-aa02-475d-888d-4b837e83ba64.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-152-0-left-idle-bulk-r06.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-left-r03.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "31a7dfefacf34797de05c11a9c9eab39c59a78e7ed576dde38dc37cf62b242f3"
+  },
+  {
+    "id": "MON-135-0-left",
+    "prompt": "Use case: identity-preserve. Image1 is the EXACT CORRECT LEFT-facing character and equipment to animate. Keep this LEFT orientation, proportions, colors, clothes and anatomical equipment ownership identical in ALL EIGHT figures. Image2 supplies ONLY the compact whole-body walking poses. Make EXACTLY4columns2rows with8complete figures: idle,walk0,walk1,walk2 / walk3,walk4,walk5,repeatedidle. ALL8 including idles face LEFT, entire body and feet. Minimal bob, six compact coherent walking poses, no wide splits, constant apparent height. The rectangular handheld device stays in the SAME hand at VIEWER RIGHT as in IMAGE1. Free empty hand at viewerLEFT. The device, forearm and grasp stay coherent and barely move while walking. Never exchange hands in any pose. Preserve all other anatomy and objects from image1, never copy image2's costume or head. True transparent background, ample32px outer margins, no labels,text,floor,shadow,extra objects. This is ONE LEFT-facing cycle only.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-135-0-left-idle-bulk-r06.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-left-r03.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-135-0-left-cycle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-135-0-left-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-133e46b1-d764-491d-84cb-55773f51779c.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-135-0-left-idle-bulk-r06.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-left-r03.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "3684a18164fb1c9438f4b44e6944d05691df1854748da51e72797174362fb842"
+  },
+  {
+    "id": "MON-014-0",
+    "prompt": "Use case: identity-preserve. Game animation sprite sheet. Image 1 supplies the EXACT poses and directions to follow: TOP row faces SCREEN LEFT in every cell; BOTTOM row faces SCREEN RIGHT in every cell. Re-draw those 14 whole-body poses as the creature in image 2. Image 2 supplies only character identity, species, clothes, materials, appendages and equipment. Do not copy image 2's facing direction. Match the CLEAR left/right angles in image 1 with the entire body: face, chest, hips, knees and toes together. Preserve the compact six-phase walking motion and true idle in the first cell of each row. Two rows of seven complete separate figures, 14 total, genuine transparent background, generous margins at least32px, same scale in every cell. No text, labels, floor, shadows, glow, extra items, cropping, head grafts or detached limbs. No backwards view. Red-hooded human cultist, dark sleeves and trousers, long red tabard, boots and SHORT STRAIGHT KNIFE in his right hand. Knife must stay in the hand on VIEWER LEFT in BOTH near-front directions and every phase. Other empty hand viewerRIGHT. Do not swap weapon hands. Knife follows body direction with a natural grip, not pointing behind him.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/whole-figure-opposite-direction-guide.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-014-0-identity-detail.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-014-0-cycle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-014-0-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-9aad0f8a-5e44-4e62-8449-0ec3de2a69ed.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/whole-figure-opposite-direction-guide.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-014-0-identity-detail.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "3362c8dc257ed77b2d575e9005b4bdae239599338eea44e2990ca3f1404280d5"
+  },
+  {
+    "id": "MON-017-0",
+    "prompt": "Use case: identity-preserve. Game animation sprite sheet. Image 1 supplies the EXACT poses and directions to follow: TOP row faces SCREEN LEFT in every cell; BOTTOM row faces SCREEN RIGHT in every cell. Re-draw those 14 whole-body poses as the creature in image 2. Image 2 supplies only character identity, species, clothes, materials, appendages and equipment. Do not copy image 2's facing direction. Match the CLEAR left/right angles in image 1 with the entire body: face, chest, hips, knees and toes together. Preserve the compact six-phase walking motion and true idle in the first cell of each row. Two rows of seven complete separate figures, 14 total, genuine transparent background, generous margins at least32px, same scale in every cell. No text, labels, floor, shadows, glow, extra items, cropping, head grafts or detached limbs. No backwards view. Red-hooded human cultist, dark clothes, red tabard, boots, original straight dark staff with its small pale pronged tip. Staff stays in the SAME hand at VIEWER RIGHT in BOTH near-front directions and every phase. Other free empty hand viewerLEFT. No purple crystal or new staff ornament. Match original identity.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/whole-figure-opposite-direction-guide.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-017-0-identity-detail.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-017-0-cycle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-017-0-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-d33451a0-708d-4229-9f49-a4b2e6265f8a.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/whole-figure-opposite-direction-guide.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-017-0-identity-detail.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "f2478d7a5f8c3e26cdb98535f7324f0b681ea19ee867b42a5ca22c0e5f8c5c58"
+  },
+  {
+    "id": "MON-132-0",
+    "prompt": "Use case: identity-preserve. Game animation sprite sheet. Image 1 supplies the EXACT poses and directions to follow: TOP row faces SCREEN LEFT in every cell; BOTTOM row faces SCREEN RIGHT in every cell. Re-draw those 14 whole-body poses as the creature in image 2. Image 2 supplies only character identity, species, clothes, materials, appendages and equipment. Do not copy image 2's facing direction. Match the CLEAR left/right angles in image 1 with the entire body: face, chest, hips, knees and toes together. Preserve the compact six-phase walking motion and true idle in the first cell of each row. Two rows of seven complete separate figures, 14 total, genuine transparent background, generous margins at least32px, same scale in every cell. No text, labels, floor, shadows, glow, extra items, cropping, head grafts or detached limbs. No backwards view. Human cultist scientist: black/red hood, ivory lab coat, red inner clothes, boots. Raised small green/dark instrument stays in the hand on VIEWER LEFT. Black rectangular medical case/book stays in the other hand on VIEWER RIGHT. Keep BOTH ownership sides in BOTH front-three-quarter orientations and every pose, NEVER swap the two props.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/whole-figure-opposite-direction-guide.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-132-0-identity-detail.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-132-0-cycle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-132-0-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-83996da6-5c3f-429e-beb3-31a07ed0bb3b.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/whole-figure-opposite-direction-guide.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-132-0-identity-detail.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "52161addfe3a9bb7d9c6156af359c47dc6ee1b6093b85589e697714f54d15c27"
+  },
+  {
+    "id": "MON-136-0",
+    "prompt": "Use case: identity-preserve. Game animation sprite sheet. Image 1 supplies the EXACT poses and directions to follow: TOP row faces SCREEN LEFT in every cell; BOTTOM row faces SCREEN RIGHT in every cell. Re-draw those 14 whole-body poses as the creature in image 2. Image 2 supplies only character identity, species, clothes, materials, appendages and equipment. Do not copy image 2's facing direction. Match the CLEAR left/right angles in image 1 with the entire body: face, chest, hips, knees and toes together. Preserve the compact six-phase walking motion and true idle in the first cell of each row. Two rows of seven complete separate figures, 14 total, genuine transparent background, generous margins at least32px, same scale in every cell. No text, labels, floor, shadows, glow, extra items, cropping, head grafts or detached limbs. No backwards view. Tall thin pale skeletal necromancer in ragged dark purple robe, TWO bony legs and TWO arms. Skull-topped rigid staff stays in the hand on VIEWER LEFT in BOTH front-three-quarter orientations; other free skeletal claw at viewerRIGHT. Skull on staff is an object, preserve actual small hooded head. Never swap the staff hand.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/whole-figure-opposite-direction-guide.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-136-0-identity-detail.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-136-0-cycle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-136-0-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-6c303518-1953-4426-bffb-ad026f330f89.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/whole-figure-opposite-direction-guide.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-136-0-identity-detail.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "9043fc7c27955f18bb880850a41f33df4227603faa456a92e2250c7e039216db"
+  },
+  {
+    "id": "MON-138-0",
+    "prompt": "Use case: identity-preserve. Game animation sprite sheet. Image 1 supplies the EXACT poses and directions to follow: TOP row faces SCREEN LEFT in every cell; BOTTOM row faces SCREEN RIGHT in every cell. Re-draw those 14 whole-body poses as the creature in image 2. Image 2 supplies only character identity, species, clothes, materials, appendages and equipment. Do not copy image 2's facing direction. Match the CLEAR left/right angles in image 1 with the entire body: face, chest, hips, knees and toes together. Preserve the compact six-phase walking motion and true idle in the first cell of each row. Two rows of seven complete separate figures, 14 total, genuine transparent background, generous margins at least32px, same scale in every cell. No text, labels, floor, shadows, glow, extra items, cropping, head grafts or detached limbs. No backwards view. Broad short skeletal necromancer with pale round belly, red hooded cloak, TWO short legs and TWO arms. Skull-topped staff stays in the SAME hand on VIEWER LEFT, dark rectangular book stays in the other hand on VIEWER RIGHT, in BOTH front-three-quarter orientations and every phase. Never swap the two props or change his short round body proportions.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/whole-figure-opposite-direction-guide.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-138-0-identity-detail.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-138-0-cycle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-138-0-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-90179b1f-c8e3-422d-9e47-acf101b80310.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/whole-figure-opposite-direction-guide.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-138-0-identity-detail.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "58f5aafef611ee3963ba4fd87b475b62157ea1bdce763ef6516daea294a90084"
+  },
+  {
+    "id": "MON-132-0-right-idle",
+    "identity": "MON-132-0",
+    "prompt": "Use case: precise-object-edit. Edit this SINGLE complete RIGHT-facing character. Preserve the head, face, hood, chest, hips, legs, stance and RIGHT direction exactly; do not turn or mirror the body. Correct ONLY the hands and held object ownership: Move the raised small green instrument from the hand on the RIGHT of the picture into the hand on the LEFT of the picture. Move the black rectangular case from the hand on the LEFT of the picture into the other hand on the RIGHT of the picture. Swap only the two grasped items and adjust the fingers naturally; preserve two whole arms. Instrument must be viewerLEFT and case viewerRIGHT. Keep exact original proportions, materials, clothing and colors, all original appendages. One complete figure, genuine transparent background, ample margins. No text, floor, shadow, extra arms, new equipment.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-132-0-right-idle-edit-target.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-132-0-right-idle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-132-0-right-idle-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-9fbb1e9e-8151-4a95-aa0a-20943e2cdc78.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-132-0-right-idle-edit-target.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "6c53372f3bfd76163337bb04a343616f856d89b78d3a5a2ffb0482dc6dd2c7a4"
+  },
+  {
+    "id": "MON-136-0-right-idle",
+    "identity": "MON-136-0",
+    "prompt": "Use case: precise-object-edit. Edit this SINGLE complete RIGHT-facing character. Preserve the head, face, hood, chest, hips, legs, stance and RIGHT direction exactly; do not turn or mirror the body. Correct ONLY the hands and held object ownership: Move the skull-topped staff from the hand on the RIGHT of the picture into the free hand on the LEFT of the picture. The hand on the RIGHT of picture becomes an empty skeletal claw. Staff must remain a single rigid object on viewerLEFT, held by the original arm. Preserve actual hooded head and skeleton anatomy. Keep exact original proportions, materials, clothing and colors, all original appendages. One complete figure, genuine transparent background, ample margins. No text, floor, shadow, extra arms, new equipment.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-136-0-right-idle-edit-target.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-136-0-right-idle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-136-0-right-idle-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-585a7d7c-756a-47df-813c-4a884182fc0c.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-136-0-right-idle-edit-target.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "3121116910208b965cfebdd1d3364a0ad39ee4b4f7bb8f5a343f5d1f53c51908"
+  },
+  {
+    "id": "MON-138-0-right-idle",
+    "identity": "MON-138-0",
+    "prompt": "Use case: precise-object-edit. Edit this SINGLE complete RIGHT-facing character. Preserve the head, face, hood, chest, hips, legs, stance and RIGHT direction exactly; do not turn or mirror the body. Correct ONLY the hands and held object ownership: Move the skull-topped staff from the hand on the RIGHT of the picture into the hand on the LEFT of the picture. Move the black book from the hand on the LEFT of picture into the hand on the RIGHT of picture. Staff must be viewerLEFT, book viewerRIGHT, with natural coherent grasp. Preserve the original small round body. Keep exact original proportions, materials, clothing and colors, all original appendages. One complete figure, genuine transparent background, ample margins. No text, floor, shadow, extra arms, new equipment.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-138-0-right-idle-edit-target.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-138-0-right-idle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-138-0-right-idle-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-4106429d-6315-4721-8450-3eb1e10c784a.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-138-0-right-idle-edit-target.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "f7a1c4a06462beb368878ef5a1bfc4916c6eb42cedc34d3ad1b95a910a3d793c"
+  },
+  {
+    "id": "MON-132-0-right",
+    "prompt": "Use case: identity-preserve. Image1 is the EXACT CORRECT RIGHT-facing character and equipment to animate. Keep its RIGHT orientation, proportions, colors, original clothing and anatomical equipment ownership identical in EVERY figure. Image2 gives ONLY compact whole-body gait timing; never copy its head, clothes, anatomy or equipment. Raised green instrument stays in the hand at viewerLEFT. Black medical case/book stays in the hand at viewerRIGHT. Keep both original objects, their exact ownership and coherent grips. Every pose follows the SAME hand ownership shown in image1, without mirroring it. EXACTLY8complete figures in4columns2rows, row-major idle,walk0,walk1,walk2 / walk3,walk4,walk5,repeatedidle. ALL8 including idles face RIGHT, entire face/torso/hips/knees/feet together. True stable idle, six compact walk poses, little bob, constant scale. No wide split. Genuine transparent alpha, ample32px outer margins, no cropping, text, floor,shadow,glow or extra items.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-132-0-right-idle-bulk-r06.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-right-r03.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-132-0-right-cycle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-132-0-right-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-5ff48ddc-d6ce-4658-ab0c-1c72e700982d.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-132-0-right-idle-bulk-r06.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-right-r03.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "3b058558aee36f6e909c4009246c8114c99d4e3b0261e50398a621d36f727673"
+  },
+  {
+    "id": "MON-136-0-right",
+    "prompt": "Use case: identity-preserve. Image1 is the EXACT CORRECT RIGHT-facing character and equipment to animate. Keep its RIGHT orientation, proportions, colors, original clothing and anatomical equipment ownership identical in EVERY figure. Image2 gives ONLY compact whole-body gait timing; never copy its head, clothes, anatomy or equipment. Single skull-topped staff stays in the hand at viewerLEFT. Empty skeletal hand remains viewerRIGHT. Preserve the small hooded actual head, two bony legs, dark purple ragged robe, original rigid staff and coherent grip. Every pose follows the SAME hand ownership shown in image1, without mirroring it. EXACTLY8complete figures in4columns2rows, row-major idle,walk0,walk1,walk2 / walk3,walk4,walk5,repeatedidle. ALL8 including idles face RIGHT, entire face/torso/hips/knees/feet together. True stable idle, six compact walk poses, little bob, constant scale. No wide split. Genuine transparent alpha, ample32px outer margins, no cropping, text, floor,shadow,glow or extra items.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-136-0-right-idle-bulk-r06.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-right-r03.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-136-0-right-cycle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-136-0-right-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-1463ecda-01ec-4074-8658-78914d31a6d8.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-136-0-right-idle-bulk-r06.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-right-r03.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "0794ab6ab54952e333bcd4b6c4ece08567914ded6f42c275d610bfadae6a8e9e"
+  },
+  {
+    "id": "MON-138-0-right",
+    "prompt": "Use case: identity-preserve. Image1 is the EXACT CORRECT RIGHT-facing character and equipment to animate. Keep its RIGHT orientation, proportions, colors, original clothing and anatomical equipment ownership identical in EVERY figure. Image2 gives ONLY compact whole-body gait timing; never copy its head, clothes, anatomy or equipment. Skull-topped staff stays in the hand at viewerLEFT, book stays in the other hand at viewerRIGHT. Preserve the broad round belly, red cloak, small legs, original proportions and coherent grips. Every pose follows the SAME hand ownership shown in image1, without mirroring it. EXACTLY8complete figures in4columns2rows, row-major idle,walk0,walk1,walk2 / walk3,walk4,walk5,repeatedidle. ALL8 including idles face RIGHT, entire face/torso/hips/knees/feet together. True stable idle, six compact walk poses, little bob, constant scale. No wide split. Genuine transparent alpha, ample32px outer margins, no cropping, text, floor,shadow,glow or extra items.",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-138-0-right-idle-bulk-r06.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-right-r03.png"
+    ],
+    "selected_file": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-138-0-right-cycle-bulk-r06.png",
+    "prompt_file": "docs/reviews/player-walk-07/prompts/MON-138-0-right-bulk-r06.txt",
+    "original_generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a16812-c028-73a3-9d94-d6e3343cb79c\\exec-b30d97fe-db08-4ad0-b08d-b55b0d6e2c99.png",
+    "referenced_image_paths": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-138-0-right-idle-bulk-r06.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-right-r03.png"
+    ],
+    "tool": "image_gen integrated",
+    "transparent_background": true,
+    "sha256": "076730dec63f99ae6ac3d4504e9e7c5e4dff8e572920ffed266287769c49aee6"
+  }
+]

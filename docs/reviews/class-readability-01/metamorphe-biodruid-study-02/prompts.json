@@ -1,0 +1,38 @@
+{
+  "review_id": "METAMORPHE-BIODRUID-ST02",
+  "date": "2026-10-22",
+  "mode": "built_in_image_gen",
+  "intent": "reference_guided_whole_outfit_revision",
+  "status": "awaiting_native64_visual_review",
+  "candidate_id": "ME-BD02-P03-r01",
+  "rank": 3,
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "native_height": 56,
+  "transparent_background": true,
+  "runtime_integration": false,
+  "source_user_request": "un peu moins medievale quand meme . Mais sinon j'aime bien les deux que j'ai mis. Parcontre j'aime pas trop son casque",
+  "references": [
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/references/user-01-composite-armor.png",
+      "sha256": "39d2d3e2e00a0372642306f5cd88af17dfe04d6c5a815136e51fa0740aef4f33",
+      "role": "modern fitted outfit and curved composite materials; exclude forehead plate"
+    },
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/references/user-02-light-outfit.png",
+      "sha256": "4314091df069b41974be573dab988ef1c4bfc9dd8cb6ce6535a644e438020c5d",
+      "role": "same female face, short hair, muscular build and light technical clothing"
+    },
+    {
+      "path": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/references/user-03-druid-outfit.png",
+      "sha256": "2c35204bc0e15ae76c1559c4d2d9d0b86756317bb46d2f26976653e50ca2de0f",
+      "role": "druid identity, green cloth and short fur mantle; reduce medieval styling and remove branch crown"
+    }
+  ],
+  "prompt": "Use case: stylized-concept.\nCreate ONE whole female Metamorphe outfit for a futuristic/cyberpunk roguelike, using the three supplied references. The user likes these looks but asks for LESS MEDIEVAL styling and a better, discreet head design. This is a medium-protection study, not the final heavy armor.\nReference 1: modern green fitted armor and warm ivory curved composite material; do NOT copy its broad forehead plate.\nReference 2: preserve this woman's adult face, short tousled dark brown hair, warm olive skin, muscular feminine build, balanced athletic stance, compact head and SHORT neck.\nReference 3: keep a recognizable druid feel through a SHORT warm tan fur shoulder collar and broad moss-green cloth panels. Modernize its medieval costume, and REMOVE its wooden branch crown entirely.\nCombine a close-fitting olive technical-fabric suit with a few smooth curved warm ivory biocomposite reinforcements. One quiet curved shell on the upper chest, asymmetrical forearm guards, small knee/shin protections. Underlying umber leather and dark flexible joints. Short cropped shoulder mantle: a modest tan fur collar plus two or three broad green technical-cloth panels ending at the hips, with a natural leaf-like cut. No long cape or robe. Practical modern trousers, fingerless gloves and sturdy reinforced boots. Replace carved wood, wrapping ribbons and bone belt clasp with matte composites, clean seams and one plain functional fastening. Retain the earthy olive/umber/ivory palette and natural shapes; the druid identity must remain apparent rather than becoming a generic infantry soldier.\nHEAD: uncovered tousled dark hair and visible same human face, with ONLY a THIN plain olive cloth headband partially hidden by the fringe. No forehead armor plate, branches, antlers, crown, goggles, hood or bulky helmet. Natural head proportions, no tall neck.\nWhole figure from crown to soles with empty margin, both natural human hands empty and visible, feet apart. Human resting form only. Match the references' polished restrained painterly game-sprite finish, upper-left light and slightly elevated nearly frontal view. Designed to remain readable as a 56-pixel-high figure inside a 64x64 tile: LARGE quiet masses, sparse broad seams, limited folds, no tiny scratches, fur hairs, leaf motifs, rivets, glowing dots or runes. No exposed midriff, pinup anatomy, robot parts, animal anatomy, claws or new powers.\nGenuine transparent RGBA background. No background halo, floor, scenery, shadow, weapon, staff, shield, spell, text or board. One whole character only.",
+  "source": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/ME-BD02-P03-r01-source.png",
+  "source_sha256": "0711050b7adc994e0ff335052575f146cc54061132f4aaeaee5549f1d40d820c",
+  "generated_origin": "exec-9316296a-e359-4e5c-ab6c-17d6bb9e7ab6.png"
+}

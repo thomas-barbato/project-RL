@@ -1,0 +1,99 @@
+{
+  "review_id": "ARCANISTE-SAME-FACE03",
+  "date": "2026-10-22",
+  "source_user_request": "j'ai l'impression que le visage n'est pas le meme partout.",
+  "mode": "built_in_image_gen",
+  "unchanged_ranks": [
+    1
+  ],
+  "canonical_face_candidate": "AR-MH02-P01-r01",
+  "native_face_reuse": "Existing version 01 exposed central eyes/nose/mouth pixels reused under a small explicit mask; forehead, temples, hair and outer cheeks excluded. Smooth source heads remain the image_gen identity edits.",
+  "jobs": [
+    {
+      "rank": 2,
+      "candidate_id": "AR-SF03-P02-r01",
+      "prompt": "Use case: identity-preserve.\nAsset: precise head-only correction of a whole Arcaniste game character for a 64x64 sprite.\nImage 1 is the EDIT TARGET: preserve the exact outfit, all armor and cloth below the jaw, colors, pose, hands, legs, boots, collar and copper neck attachment. Image 2 is the SINGLE CANONICAL FACE REFERENCE taken from version 01 of this same character. It defines the identity and facial direction for all five outfits. Do not invent another man.\nReplace the target's facial features with the reference man's same pale angular face: same brow shape, eye spacing, nose, cheekbones, mouth, jaw, short white hair where visible, and copper temple implant where not covered. The face must look forward exactly like the reference, with the same neutral stern expression and normal proportions. No profile face, no head rotation to follow the body, no older or younger variation, no change of skin tone or expression.\nHeadwear: Keep the short white hair and low copper forehead band, without a hood. Place the band above the eyebrows and keep the full face exposed.\nFit the headwear around this SAME face, rather than redesigning the face to fit the hood. Keep a compact head, same chin and eye height as the reference when both characters are fitted to the same 60-pixel body height. No longer neck or giant head.\nThe only changed region is above the collar. Retain the current compact silhouette and established plum, ivory and copper palette. Match the image's broad clean game illustration shapes and quiet values. No additional ornament, beard, makeup, mask, visor, extra jewelry, weapons, staff, effects or props. Full isolated figure on genuine transparent RGBA. Keep the exact input canvas 1230x1278, body coordinates, feet and empty margins. Output one full edited character, not a board or a portrait.",
+      "tool": "built_in_image_gen",
+      "transparent_background": true,
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P02-r01-generated-head-edit.png",
+      "references": [
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P02-r01-source.png",
+          "sha256": "f6f390bbe2b708038734e41260509fa517a5e94668b4c822e03da19387463570",
+          "role": "edit_target; outfit locked, head identity corrected"
+        },
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-FACE03-identity-reference.png",
+          "sha256": "4481e902fd66facd364a8ed5dad2dcef433275b420db7c87517f511149daedf1",
+          "role": "canonical face identity and forward orientation from unchanged version 01"
+        }
+      ],
+      "built_in_output_path": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-6ea0840c-d0f0-40bc-9d4f-76e172a10e4d.png"
+    },
+    {
+      "rank": 3,
+      "candidate_id": "AR-SF03-P03-r01",
+      "prompt": "Use case: identity-preserve.\nAsset: precise head-only correction of a whole Arcaniste game character for a 64x64 sprite.\nImage 1 is the EDIT TARGET: preserve the exact outfit, all armor and cloth below the jaw, colors, pose, hands, legs, boots, collar and copper neck attachment. Image 2 is the SINGLE CANONICAL FACE REFERENCE taken from version 01 of this same character. It defines the identity and facial direction for all five outfits. Do not invent another man.\nReplace the target's facial features with the reference man's same pale angular face: same brow shape, eye spacing, nose, cheekbones, mouth, jaw, short white hair where visible, and copper temple implant where not covered. The face must look forward exactly like the reference, with the same neutral stern expression and normal proportions. No profile face, no head rotation to follow the body, no older or younger variation, no change of skin tone or expression.\nHeadwear: Keep the current compact plum mage hood with ivory rim and modest pointed top. The hood frames the face and does not cover the eyes or jaw.\nFit the headwear around this SAME face, rather than redesigning the face to fit the hood. Keep a compact head, same chin and eye height as the reference when both characters are fitted to the same 60-pixel body height. No longer neck or giant head.\nThe only changed region is above the collar. Retain the current compact silhouette and established plum, ivory and copper palette. Match the image's broad clean game illustration shapes and quiet values. No additional ornament, beard, makeup, mask, visor, extra jewelry, weapons, staff, effects or props. Full isolated figure on genuine transparent RGBA. Keep the exact input canvas 1230x1278, body coordinates, feet and empty margins. Output one full edited character, not a board or a portrait.",
+      "tool": "built_in_image_gen",
+      "transparent_background": true,
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P03-r01-generated-head-edit.png",
+      "references": [
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P03-r01-source.png",
+          "sha256": "99b45e6c264c57a09d7de0de63c1ad8e88b8f70016f24e30a08ffc0d628ec273",
+          "role": "edit_target; outfit locked, head identity corrected"
+        },
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-FACE03-identity-reference.png",
+          "sha256": "4481e902fd66facd364a8ed5dad2dcef433275b420db7c87517f511149daedf1",
+          "role": "canonical face identity and forward orientation from unchanged version 01"
+        }
+      ],
+      "built_in_output_path": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-cdea6fe9-2f6d-423d-b2ad-cdb93de0f841.png"
+    },
+    {
+      "rank": 4,
+      "candidate_id": "AR-SF03-P04-r01",
+      "prompt": "Use case: identity-preserve.\nAsset: precise head-only correction of a whole Arcaniste game character for a 64x64 sprite.\nImage 1 is the EDIT TARGET: preserve the exact outfit, all armor and cloth below the jaw, colors, pose, hands, legs, boots, collar and copper neck attachment. Image 2 is the SINGLE CANONICAL FACE REFERENCE taken from version 01 of this same character. It defines the identity and facial direction for all five outfits. Do not invent another man.\nReplace the target's facial features with the reference man's same pale angular face: same brow shape, eye spacing, nose, cheekbones, mouth, jaw, short white hair where visible, and copper temple implant where not covered. The face must look forward exactly like the reference, with the same neutral stern expression and normal proportions. No profile face, no head rotation to follow the body, no older or younger variation, no change of skin tone or expression.\nHeadwear: Keep the current compact plum mage hood with a broad ivory lining and low copper brow band. Align the hood opening and brow band to the common frontal face.\nFit the headwear around this SAME face, rather than redesigning the face to fit the hood. Keep a compact head, same chin and eye height as the reference when both characters are fitted to the same 60-pixel body height. No longer neck or giant head.\nThe only changed region is above the collar. Retain the current compact silhouette and established plum, ivory and copper palette. Match the image's broad clean game illustration shapes and quiet values. No additional ornament, beard, makeup, mask, visor, extra jewelry, weapons, staff, effects or props. Full isolated figure on genuine transparent RGBA. Keep the exact input canvas 1254x1254, body coordinates, feet and empty margins. Output one full edited character, not a board or a portrait.",
+      "tool": "built_in_image_gen",
+      "transparent_background": true,
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P04-r01-generated-head-edit.png",
+      "references": [
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P04-r01-source.png",
+          "sha256": "e3ddd49fe2acec9722ee1f9dcd4356a2df9eec18143adbfa92e72617a14cc8ad",
+          "role": "edit_target; outfit locked, head identity corrected"
+        },
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-FACE03-identity-reference.png",
+          "sha256": "4481e902fd66facd364a8ed5dad2dcef433275b420db7c87517f511149daedf1",
+          "role": "canonical face identity and forward orientation from unchanged version 01"
+        }
+      ],
+      "built_in_output_path": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-6494679e-4061-4698-843c-6e61f0ed3b0a.png"
+    },
+    {
+      "rank": 5,
+      "candidate_id": "AR-SF03-P05-r01",
+      "prompt": "Use case: identity-preserve.\nAsset: precise head-only correction of a whole Arcaniste game character for a 64x64 sprite.\nImage 1 is the EDIT TARGET: preserve the exact outfit, all armor and cloth below the jaw, colors, pose, hands, legs, boots, collar and copper neck attachment. Image 2 is the SINGLE CANONICAL FACE REFERENCE taken from version 01 of this same character. It defines the identity and facial direction for all five outfits. Do not invent another man.\nReplace the target's facial features with the reference man's same pale angular face: same brow shape, eye spacing, nose, cheekbones, mouth, jaw, short white hair where visible, and copper temple implant where not covered. The face must look forward exactly like the reference, with the same neutral stern expression and normal proportions. No profile face, no head rotation to follow the body, no older or younger variation, no change of skin tone or expression.\nHeadwear: Keep the current plum archmage hood, broad low ivory diadem and one low central upward point. Turn the hood opening to frame the common frontal face; remove the old side-profile facial impression.\nFit the headwear around this SAME face, rather than redesigning the face to fit the hood. Keep a compact head, same chin and eye height as the reference when both characters are fitted to the same 60-pixel body height. No longer neck or giant head.\nThe only changed region is above the collar. Retain the current compact silhouette and established plum, ivory and copper palette. Match the image's broad clean game illustration shapes and quiet values. No additional ornament, beard, makeup, mask, visor, extra jewelry, weapons, staff, effects or props. Full isolated figure on genuine transparent RGBA. Keep the exact input canvas 1230x1278, body coordinates, feet and empty margins. Output one full edited character, not a board or a portrait.",
+      "tool": "built_in_image_gen",
+      "transparent_background": true,
+      "generated_file": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-SF03-P05-r01-generated-head-edit.png",
+      "references": [
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P05-r01-source.png",
+          "sha256": "b7f583638330bc0f2b6ca197a2cced86b8d1dc3e95f942d56b1ce9ac1a0649a2",
+          "role": "edit_target; outfit locked, head identity corrected"
+        },
+        {
+          "path": "assets/source-art/class-readability-01/arcaniste-same-face-03/AR-FACE03-identity-reference.png",
+          "sha256": "4481e902fd66facd364a8ed5dad2dcef433275b420db7c87517f511149daedf1",
+          "role": "canonical face identity and forward orientation from unchanged version 01"
+        }
+      ],
+      "built_in_output_path": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-b2be4fcb-9ea6-478f-9272-b547fb547dcc.png"
+    }
+  ],
+  "additional_user_steering": "ca me dérange pas si le visage est un peu masqué par la capuche tu sais",
+  "headwear_occlusion": "Allowed over forehead, temples and outer cheeks; do not reveal the whole face by pasting skin over headwear."
+}

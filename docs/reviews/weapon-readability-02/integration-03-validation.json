@@ -1,0 +1,34 @@
+{
+  "review_id": "WEAPON-READABILITY03-INTEGRATION",
+  "date": "2026-10-22",
+  "class_armor_tests": {
+    "passed": 12,
+    "failed": 0,
+    "all_weapon_attachment_cases": 5650
+  },
+  "cpu_checks": "integration-03-cpu-checks.json",
+  "gpu_checks": "integration-03-gpu-checks.json",
+  "debug_build": "cargo build --locked --bin project-rl: passed",
+  "release_build": "cargo build --locked --release --bin project-rl: passed",
+  "rustfmt_touched_sources": "passed",
+  "python_compile": "passed",
+  "git_diff_check": "passed",
+  "preview": "artifacts/weapon-readability-review-01/index.html#melee-cuffs-03",
+  "binaries": {
+    "target/debug/project-rl.exe": "de520f16df45f2367bff9d65e78a49231c542c964c09c998195b7abeb32a113e",
+    "target/release/project-rl.exe": "2925ce9cbfd6d0ad1efbc3d781aabd5271f292ea255d67bc733a4fd60c27232c"
+  },
+  "preserved": [
+    "item IDs",
+    "game rules",
+    "approved armor paintings",
+    "native approved weapon pixels"
+  ],
+  "melee_fix": "Complete original cuff/hand ownership removal before positioning two-handed forearms; no repaint.",
+  "cleanup_confirmation": {
+    "release_rebuilt": true,
+    "release_sha256": "f0d2633cc7585292147b23fa5311a53f87817e529960ca765911a23f4f7c1c66",
+    "debug_cache_removed": true,
+    "record": "docs/maintenance/nettoyage-2026-10-22/armes/result.json"
+  }
+}

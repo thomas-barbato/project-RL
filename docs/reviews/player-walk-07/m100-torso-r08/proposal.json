@@ -1,0 +1,74 @@
+{
+  "review_id": "WALK07-M100-R08",
+  "status": "awaiting_visual_review",
+  "runtime_integrated": false,
+  "source": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\M100-r08-left-cycle.png",
+  "native_proposal": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\M100-r08-whole-body-native.png",
+  "uniform_scale_left": 0.17603911980440098,
+  "left_pose_sizes_before_reduction": [
+    [
+      308,
+      409
+    ],
+    [
+      315,
+      409
+    ],
+    [
+      316,
+      405
+    ],
+    [
+      330,
+      408
+    ],
+    [
+      327,
+      409
+    ],
+    [
+      317,
+      395
+    ],
+    [
+      326,
+      407
+    ]
+  ],
+  "cycle_bounds": [
+    30,
+    40,
+    98,
+    112
+  ],
+  "vertical_offset": 0,
+  "foot": [
+    64,
+    112
+  ],
+  "right_7_poses_exact_rgba": true,
+  "runtime_file_unchanged": true,
+  "native_rgba_sha256": "afb92cc94b088b7d6161885aa1c872077cdc35d28890bb37bd5f61c3520b08a8",
+  "native_file_sha256": "61987d561bbbb622a29224c81fe529c4d225e43cfe2270ed64d836b06a1b5821",
+  "pose_rgba_sha256": [
+    "424f91a25393ecca4971180a032b25459b247966a02ff6bf2263b721aee33177",
+    "1debacecd9a263452d5ac5184de0d76fbefe006f81776a91bfcc422784933cf0",
+    "11467538c6029e796fdd7216e0162904e845d45b101fbeedfe5ebb99303d6467",
+    "0c7faa6c3ab6c88f036b22a979b91a02ff6b16faa22802efb3446f07d8d9ebf1",
+    "05a538fc4e9c19065629a3be21c0366906c705052a4ae1c8349aef106fcdd408",
+    "cbd4d648df61c56572246e7fb2fdad50bcca622fe25398cc0d2dbaaccbaf6853",
+    "1f71fc9170d682fdf2ba1612628dd40b0c3f3eb6f5efd13b5554675b4cb17846",
+    "d8b36bd1391001840c31c719af48fc7d61f37658b0eab0c9ae01eb57db909f98",
+    "a1ceb86eb95eccdd17dccca40088f75b51aa9a9abc2960e2b7052e91ba69dae4",
+    "3988b89792a0ee575270b17aa852c7ede68801dadc6f35e1a9266f9ecb79b1ef",
+    "3a9f6a62b7d8d6334d8402677d11e3c3f858370c4e4e7c09cd0171bea5df0706",
+    "9e75a2f8eb86d988ef2d2aff5a662dbb1db5b23dc0a5dc27712b944442b6721a",
+    "8dfa4bd975d020e9ad6bb8cd7a82446507f52047694b5ea24c3b6585c31661f9",
+    "5e1327964948ed8cfa8a54a03c5199c9fd2ecf40fbde4f62d2e8a21b51768c5b"
+  ],
+  "warnings": [],
+  "conditioning": "whole-figure alpha crop, one uniform scale across 7 left poses, fixed foot anchor; no limb edits",
+  "visual_orientation_requires_human_review": true,
+  "preview": "C:\\Users\\User\\.codex\\visualizations\\2026\\10\\23\\01a16812-c028-73a3-9d94-d6e3343cb79c\\m100-torso-r08.html",
+  "preview_bytes": 141077
+}

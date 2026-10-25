@@ -15,8 +15,7 @@ struct Art {
     props: Vec<Texture2D>,
 }
 fn load(file: &str) -> Texture2D {
-    let bytes = std::fs::read(std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(file))
-        .expect("accepted street texture");
+    let bytes = project_rl::data_paths::read(file).expect("accepted street texture");
     let texture = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
     texture.set_filter(FilterMode::Nearest);
     texture
@@ -99,7 +98,7 @@ pub fn review_normal_style() {
 
 fn draw_ground_prop(origin: Rect, art: &Art, texture: &Texture2D, at_px: [i32; 2]) {
     let scale = origin.w / 64.;
-    gl_use_default_material();
+    crate::world_readability::restore();
     if let Some(atmosphere) = &art.atmosphere {
         atmosphere.begin_surface(texture.size());
     }
@@ -359,8 +358,9 @@ pub fn draw(camera: &GridCamera, game: &WorldState, known: impl Fn(GridPos) -> b
                 ..Default::default()
             },
         );
-        gl_use_default_material();
+        crate::world_readability::restore();
         let frame = (time.max(0.) * 8.) as u32 % 8;
+        let _animated_color = crate::world_readability::color();
         // Same native flame placements as the reviewed two-cell car preview.
         for (x, y, w, h, phase) in [
             (91., 0., 32., 48., 0),
@@ -507,7 +507,7 @@ pub fn roofs(camera: &GridCamera, game: &WorldState, known: impl Fn(GridPos) -> 
                     ..Default::default()
                 },
             );
-            gl_use_default_material();
+            crate::world_readability::restore();
         }
     });
 }
@@ -530,7 +530,7 @@ pub fn export_review_world(game: &WorldState, path: &std::path::Path) -> Result<
                 {
                     atmosphere.begin_surface(texture.size());
                     draw_texture(texture, prop.at_px[0] as f32, prop.at_px[1] as f32, WHITE);
-                    gl_use_default_material();
+                    crate::world_readability::restore();
                 }
             }
             for (roof, texture) in s.roofs.iter().zip(&art.roofs) {
@@ -544,7 +544,7 @@ pub fn export_review_world(game: &WorldState, path: &std::path::Path) -> Result<
                     (s.image_origin[1] * 64 + s.image_offset_px[1] + roof.at_px[1]) as f32,
                     ambient,
                 );
-                gl_use_default_material();
+                crate::world_readability::restore();
             }
             // The opt-in population proposal has an uncropped technical map;
             // its all-monster export does not affect normal game visibility.
@@ -554,7 +554,7 @@ pub fn export_review_world(game: &WorldState, path: &std::path::Path) -> Result<
             {
                 atmosphere.begin_surface(vec2(64., 64.));
                 crate::sewer_review::draw_overview_population(game);
-                gl_use_default_material();
+                crate::world_readability::restore();
             }
         })
     })

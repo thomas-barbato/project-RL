@@ -1,0 +1,131 @@
+{
+  "review_id": "BASTION-W01",
+  "parent_candidate": "BA-W01-P05-r03",
+  "status": "accepted_visual_reference",
+  "requested_plate_colors": [
+    "red",
+    "blue",
+    "green"
+  ],
+  "same_model_not_three_new_models": true,
+  "head_identical_rgba_pixels": true,
+  "monochromatic_means_one_plate_hue_with_value_shading": true,
+  "entries": [
+    {
+      "candidate_id": "BA-W01-P05-r03-red",
+      "label": "Rouge",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-red-body-source.png",
+      "source_sha256": "d463f343af2f2f1e34c93dfeea8fe38004715484e31ff0be511e3489ccb39804",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P05-r03-red-native64.png",
+      "native_sha256": "0a5bf7e1b26e13893094cc33f3365a65439cc4bb01b944ff816410f51b9606c2",
+      "measurements": {
+        "source_core_box": [
+          232,
+          59,
+          1021,
+          1220
+        ],
+        "source_crop": [
+          215,
+          42,
+          1038,
+          1237
+        ],
+        "isotropic_scale": 0.04306632213608958,
+        "native_core_box": [
+          15,
+          13,
+          48,
+          62
+        ],
+        "native_core_height": 49,
+        "native_core_width": 33,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+      "head_identical_to_all_five": true,
+      "solid_alpha_intersection_over_union_vs_base": 0.9946714031971581,
+      "exact_plate_masks_and_runtime_palette_shader": "not_produced"
+    },
+    {
+      "candidate_id": "BA-W01-P05-r03-blue",
+      "label": "Bleue",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-blue-body-source.png",
+      "source_sha256": "a79f3cfe6a8ebad7a37be4b27f5b89e95b5f7116c1811d4813118f999f929f3e",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P05-r03-blue-native64.png",
+      "native_sha256": "0b116897704858ce07232040d0c2e7769b725bf70bf4a8a7f62078344e23697c",
+      "measurements": {
+        "source_core_box": [
+          232,
+          58,
+          1021,
+          1222
+        ],
+        "source_crop": [
+          215,
+          41,
+          1038,
+          1239
+        ],
+        "isotropic_scale": 0.0429553264604811,
+        "native_core_box": [
+          15,
+          13,
+          48,
+          62
+        ],
+        "native_core_height": 49,
+        "native_core_width": 33,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+      "head_identical_to_all_five": true,
+      "solid_alpha_intersection_over_union_vs_base": 0.9885260370697264,
+      "exact_plate_masks_and_runtime_palette_shader": "not_produced"
+    },
+    {
+      "candidate_id": "BA-W01-P05-r03-green",
+      "label": "Verte",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-green-body-source.png",
+      "source_sha256": "e404ffc46869ada2a292a0a0053a1cb0f585cf0137fe9ee44a02cf9c73485092",
+      "native": "artifacts/class-armor-review-01/bastion-wave-01/BA-W01-P05-r03-green-native64.png",
+      "native_sha256": "980ba7085a69869589237bca5d94248eb6a0f3e6ec7eef6c8e559c3b914a9d6b",
+      "measurements": {
+        "source_core_box": [
+          232,
+          58,
+          1021,
+          1221
+        ],
+        "source_crop": [
+          215,
+          41,
+          1038,
+          1238
+        ],
+        "isotropic_scale": 0.04299226139294927,
+        "native_core_box": [
+          15,
+          13,
+          48,
+          62
+        ],
+        "native_core_height": 49,
+        "native_core_width": 33,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "head_region_sha256": "a1873875a238bcb54f1e29718e5f6be6e8d727c8feda127edc752742f91be28c",
+      "head_identical_to_all_five": true,
+      "solid_alpha_intersection_over_union_vs_base": 0.9937943262411347,
+      "exact_plate_masks_and_runtime_palette_shader": "not_produced"
+    }
+  ],
+  "runtime_integration": false,
+  "acceptance": "docs/reviews/class-readability-01/bastion-wave-01/acceptance.json"
+}

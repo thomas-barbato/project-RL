@@ -1,0 +1,584 @@
+{
+  "review_id": "ARCANISTE-MAGE-HEADS02",
+  "date": "2026-10-22",
+  "class_id": "core:arcaniste",
+  "status": "awaiting_head_visual_review",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "body_feedback": "liked; no outfit pixels changed",
+  "source_user_request": "alors j'aime la tenue mais les têtes ne vont pas (avec le casque) il faut faire quelque chose de plus.. magicien de jeu vidéo tu sais.",
+  "reference_acceptances": [
+    {
+      "path": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+      "sha256": "6d55febb0bd152cca21df65f000b37da01a19d49179fedf9d74309e93bb40028"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+      "sha256": "d51882a635cbd8e024e366f4442cf238e1345668b2d0c03d152d7d6f0f4a0e02"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+      "sha256": "f8ecf404d5c60e6d9c5686def4b8221bc822e44b0a69201163e972b53b15f566"
+    }
+  ],
+  "runtime_integration": false,
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "AR-MH02-P01-r01",
+      "rank": 1,
+      "label": "Très légère",
+      "status": "awaiting_head_visual_review",
+      "original_candidate_id": "AR-CA01-P01-r01",
+      "body_feedback": "liked_by_user; preserved_exactly; no runtime integration",
+      "head_label": "Tête nue",
+      "head_changed": false,
+      "source": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P01-r01-source.png",
+      "source_sha256": "2a7fdd0a881857b9561a5f2dca4ad4a9832f6a1fd3bb96a19550699f33328453",
+      "source_head_mask": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P01-r01-head-mask-source.png",
+      "source_head_mask_sha256": "aae9047c9caa839a362ca17bbdef7e46dc645c0d8ea6572957cf928872524e46",
+      "source_pixels_outside_head_mask_exact": true,
+      "generated_head_edit": null,
+      "generated_head_edit_sha256": null,
+      "native": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P01-r01-native64.png",
+      "native_sha256": "5861685a5a81ee0b6ec7acd61d1d6229d04a488982016d2fdfabab5d448fef74",
+      "framing": {
+        "source_core_box": [
+          403,
+          41,
+          857,
+          1213
+        ],
+        "source_crop": [
+          385,
+          23,
+          875,
+          1231
+        ],
+        "isotropic_scale": 0.051194539249146756,
+        "native_core_box": [
+          21,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 23,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        21,
+        2,
+        44,
+        62
+      ],
+      "head_region_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          25,
+          3
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P01-r01-head-native64.png",
+          "sha256": "13a925f65c6491f06c9b802d3cef366c7efdd6e4e4482537f6e21677488c05f0"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P01-r01-body-native64.png",
+          "sha256": "2df35615086a89ccdaa0b30621d9b45e91597c69cf93c41174d813a2131af38a"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P01-r01-head-mask-native64.png",
+          "sha256": "622f74190156725ccb798b4f5fa1c1c7a0eedf674104814d4f32eed664655ef6"
+        }
+      },
+      "non_head_native_pixel_changes": 0,
+      "all_pixels_below_y11_exact": true,
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study only; independent helmet replacement and weapon grips pending"
+    },
+    {
+      "number": "02",
+      "candidate_id": "AR-MH02-P02-r01",
+      "rank": 2,
+      "label": "Légère",
+      "status": "awaiting_head_visual_review",
+      "original_candidate_id": "AR-CA01-P02-r01",
+      "body_feedback": "liked_by_user; preserved_exactly; no runtime integration",
+      "head_label": "Bandeau",
+      "head_changed": false,
+      "source": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P02-r01-source.png",
+      "source_sha256": "f6f390bbe2b708038734e41260509fa517a5e94668b4c822e03da19387463570",
+      "source_head_mask": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P02-r01-head-mask-source.png",
+      "source_head_mask_sha256": "0c62cd3b9caa10fe5a914bdc3a156044a1f5c4321a3d7a0f7ddde94c8bd0fa80",
+      "source_pixels_outside_head_mask_exact": true,
+      "generated_head_edit": null,
+      "generated_head_edit_sha256": null,
+      "native": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P02-r01-native64.png",
+      "native_sha256": "b72a5c2cf712a15a8017a725283f330a45fc806fe71d1d537c2efc02c0d76e08",
+      "framing": {
+        "source_core_box": [
+          379,
+          40,
+          853,
+          1225
+        ],
+        "source_crop": [
+          361,
+          22,
+          871,
+          1243
+        ],
+        "isotropic_scale": 0.05063291139240506,
+        "native_core_box": [
+          20,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 24,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        20,
+        2,
+        44,
+        62
+      ],
+      "head_region_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          25,
+          3
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P02-r01-head-native64.png",
+          "sha256": "0bd8658480e5836f0cc73e0129103a76531593b178b06ef546fa7af22e2e97db"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P02-r01-body-native64.png",
+          "sha256": "e872ca1dbd796d611eac4d16e88992ca18136ed5c5618efb7ca5aeedf77982b9"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P02-r01-head-mask-native64.png",
+          "sha256": "622f74190156725ccb798b4f5fa1c1c7a0eedf674104814d4f32eed664655ef6"
+        }
+      },
+      "non_head_native_pixel_changes": 0,
+      "all_pixels_below_y11_exact": true,
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study only; independent helmet replacement and weapon grips pending"
+    },
+    {
+      "number": "03",
+      "candidate_id": "AR-MH02-P03-r01",
+      "rank": 3,
+      "label": "Interméd.",
+      "status": "awaiting_head_visual_review",
+      "original_candidate_id": "AR-CA01-P03-r01",
+      "body_feedback": "liked_by_user; preserved_exactly; no runtime integration",
+      "head_label": "Capuche de mage",
+      "head_changed": true,
+      "source": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P03-r01-source.png",
+      "source_sha256": "99b45e6c264c57a09d7de0de63c1ad8e88b8f70016f24e30a08ffc0d628ec273",
+      "source_head_mask": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P03-r01-head-mask-source.png",
+      "source_head_mask_sha256": "4ee14967a393436eec5db65013940b7b2ec9e94ca839ec85cc437d9e41c414b5",
+      "source_pixels_outside_head_mask_exact": true,
+      "generated_head_edit": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P03-r01-generated-head-edit.png",
+      "generated_head_edit_sha256": "c4bb976fedcc52b9338908844e95d8958fdbbbe83fce5b099b6a99004c1c45df",
+      "native": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P03-r01-native64.png",
+      "native_sha256": "73d6d65af41365f83d7fa6c96cc350fc9a1c8e86fc3d194dc283c8c96556bfde",
+      "framing": {
+        "source_core_box": [
+          370,
+          33,
+          855,
+          1242
+        ],
+        "source_crop": [
+          352,
+          15,
+          873,
+          1260
+        ],
+        "isotropic_scale": 0.04962779156327544,
+        "native_core_box": [
+          20,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 24,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        20,
+        1,
+        44,
+        62
+      ],
+      "head_region_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          25,
+          3
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P03-r01-head-native64.png",
+          "sha256": "a1cd78151c4db0acf7760e19f6e1e7f6ff050effc5524b59dd460a5f14faa7c0"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P03-r01-body-native64.png",
+          "sha256": "58c6610209788500b452aebe280a0723561711ed3f50f4f6cf110326f9403066"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P03-r01-head-mask-native64.png",
+          "sha256": "622f74190156725ccb798b4f5fa1c1c7a0eedf674104814d4f32eed664655ef6"
+        }
+      },
+      "non_head_native_pixel_changes": 0,
+      "all_pixels_below_y11_exact": true,
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study only; independent helmet replacement and weapon grips pending"
+    },
+    {
+      "number": "04",
+      "candidate_id": "AR-MH02-P04-r01",
+      "rank": 4,
+      "label": "Lourde",
+      "status": "awaiting_head_visual_review",
+      "original_candidate_id": "AR-CA01-P04-r02",
+      "body_feedback": "liked_by_user; preserved_exactly; no runtime integration",
+      "head_label": "Capuche bordée",
+      "head_changed": true,
+      "source": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P04-r01-source.png",
+      "source_sha256": "e3ddd49fe2acec9722ee1f9dcd4356a2df9eec18143adbfa92e72617a14cc8ad",
+      "source_head_mask": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P04-r01-head-mask-source.png",
+      "source_head_mask_sha256": "64820f8bc7bb67fd65db03764c3bc7a32bc36133a98f70b4a0204627a0cab733",
+      "source_pixels_outside_head_mask_exact": true,
+      "generated_head_edit": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P04-r01-generated-head-edit.png",
+      "generated_head_edit_sha256": "02ca58ffe66b2cdb9ac5f3ec398f17191bad8bc11836fa8fdec6f21f71c711d2",
+      "native": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P04-r01-native64.png",
+      "native_sha256": "c054a61ad3400d74997f706dfee664631722d53a34d44cbe2badfb1a32face9d",
+      "framing": {
+        "source_core_box": [
+          364,
+          20,
+          870,
+          1210
+        ],
+        "source_crop": [
+          346,
+          2,
+          888,
+          1228
+        ],
+        "isotropic_scale": 0.05042016806722689,
+        "native_core_box": [
+          19,
+          2,
+          44,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 25,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        19,
+        2,
+        44,
+        62
+      ],
+      "head_region_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          25,
+          3
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P04-r01-head-native64.png",
+          "sha256": "a04339a060be0a0d27590685258666e1da80dc2d78c78110aa81d674b2ae62c6"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P04-r01-body-native64.png",
+          "sha256": "2b506dd816ec6dea9a00ea2c058ab4b97101a1dd8d2283bde4ff31bd2def1980"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P04-r01-head-mask-native64.png",
+          "sha256": "622f74190156725ccb798b4f5fa1c1c7a0eedf674104814d4f32eed664655ef6"
+        }
+      },
+      "non_head_native_pixel_changes": 0,
+      "all_pixels_below_y11_exact": true,
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study only; independent helmet replacement and weapon grips pending"
+    },
+    {
+      "number": "05",
+      "candidate_id": "AR-MH02-P05-r01",
+      "rank": 5,
+      "label": "Très lourde",
+      "status": "awaiting_head_visual_review",
+      "original_candidate_id": "AR-CA01-P05-r01",
+      "body_feedback": "liked_by_user; preserved_exactly; no runtime integration",
+      "head_label": "Diadème de mage",
+      "head_changed": true,
+      "source": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P05-r01-source.png",
+      "source_sha256": "b7f583638330bc0f2b6ca197a2cced86b8d1dc3e95f942d56b1ce9ac1a0649a2",
+      "source_head_mask": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P05-r01-head-mask-source.png",
+      "source_head_mask_sha256": "81b1c5c58d986b70b874f3c4e4b80e3cbc1edede3e4ad476958e45897f1210bf",
+      "source_pixels_outside_head_mask_exact": true,
+      "generated_head_edit": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P05-r01-generated-head-edit.png",
+      "generated_head_edit_sha256": "2bf3742b8f6828a40d5a79d9d3e95941b63c7f63c981e3e25dc6d7f4e50a75f0",
+      "native": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P05-r01-native64.png",
+      "native_sha256": "d0f2a7e5ece76de632614f1ecc0c7141358688f8ff9c6ffe7504b2029491dfcf",
+      "framing": {
+        "source_core_box": [
+          352,
+          34,
+          892,
+          1248
+        ],
+        "source_crop": [
+          334,
+          16,
+          910,
+          1266
+        ],
+        "isotropic_scale": 0.04942339373970346,
+        "native_core_box": [
+          19,
+          2,
+          45,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 26,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "native_core_box": [
+        19,
+        2,
+        45,
+        62
+      ],
+      "head_region_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          38,
+          3
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          35,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          25,
+          3
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P05-r01-head-native64.png",
+          "sha256": "676b5c21259893bb0d960935e7fb147acbfd6b3dbaea8018e62588efbde30671"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P05-r01-body-native64.png",
+          "sha256": "c6b852700f4aafabbeb0624095a619c172ba9b2e6e7ea772f1be9ba329063d67"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-mage-heads-02/AR-MH02-P05-r01-head-mask-native64.png",
+          "sha256": "622f74190156725ccb798b4f5fa1c1c7a0eedf674104814d4f32eed664655ef6"
+        }
+      },
+      "non_head_native_pixel_changes": 0,
+      "all_pixels_below_y11_exact": true,
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "rig_status": "study only; independent helmet replacement and weapon grips pending"
+    }
+  ]
+}

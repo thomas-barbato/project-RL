@@ -1,0 +1,20 @@
+[
+  {
+    "id": "MON-029-0",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-029-0-cycle-lot02-r01.png",
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-029-0-identity-detail.png"
+    ],
+    "destination": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-029-0-cycle-lot02-r02.png",
+    "prompt": "Use case: identity-preserve. Correct this existing whole-creature animation atlas.\nINPUT1 is the atlas to repair. INPUT2 is the exact small cream/pink segmented LARVA identity.\nKeep exactly FOUR COLUMNS and FOUR ROWS, sixteen whole larvae on transparent alpha, same compact body proportions and small contracting movement. Correct ALL poses consistently:\nThe larva has exactly ONE dark red mouth/opening at its HEAD. The opposite REAR is smoothly CLOSED and rounded, with no second opening. Remove every invented mouth at the rear. The small pink bulges underneath are soft body lobes, NOT feet, legs, toes or articulated ankles; no new appendages. Keep the body low and horizontal, without an upright coil.\nTOP TWO ROWS: all eight larvae face LEFT, their SINGLE mouth at the LEFT end, rounded closed rear on the RIGHT. Order idle,L0,L1,L2,L3,L4,L5,duplicate idle. BOTTOM TWO ROWS: all eight face RIGHT, single mouth RIGHT, closed rounded rear LEFT; idle,R0,R1,R2,R3,R4,R5,duplicate idle.\nConstant body volume and scale, a subtle traveling contraction only. No head/rear swaps during a directional half. Entire figures drawn coherently.\nClean genuine transparent background with generous empty margins around each whole larva. Remove the unwanted red halo, detached red/yellow specks and stray pixels around INPUT1. Keep dark brown game-art contours and the actual pink/cream body shading, no glowing outline, ground, shadow, labels or effects. No crop."
+  },
+  {
+    "id": "MON-145-0",
+    "references": [
+      "C:/Users/User/Desktop/project-RL/docs/reviews/player-walk-07/references/MON-145-0-identity-detail.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/accepted/creatures-lot01/MON-144-0-whole-body-native.png"
+    ],
+    "destination": "C:/Users/User/Desktop/project-RL/assets/source-art/player-walk-review-07/MON-145-0-cycle-lot02-r02.png",
+    "prompt": "Use case: identity-preserve. Complete lateral game-creature animation.\nINPUT1 is the exact target BLUE-GRAY WINGED DEMON. Keep this lean body, narrow head and long horns, blue-gray flesh, dark wide wing membranes, two arms, two walking legs and one long tail. Wings stay WIDELY SPREAD as in INPUT1, extending well past both arms, not folded narrowly behind the torso. Do not replace the slim proportions with a stocky body. No clothing or ornaments absent from INPUT1.\nINPUT2 is ONLY the accepted compact movement and exact TWO-ROW SEVEN-COLUMN layout reference; do NOT copy its red skin, thick body or armor.\nOUTPUT EXACTLY FOURTEEN complete separate figures, SEVEN in the TOP ROW and SEVEN in the BOTTOM ROW, on a WIDE transparent canvas approximately1792x640. Exactly TWO rows, not four; exactly SEVEN columns, not eight. Generous transparent cell margins: every horn, wing tip, hand, foot and entire tail must fit.\nTOP ROW ALL face LEFT, near-front three quarters: idle then L0,L1,L2,L3,L4,L5. BOTTOM ROW ALL face RIGHT: idle then R0,R1,R2,R3,R4,R5. Head, chest, knees and both feet point together in each half, no pure profile or back.\nCompact grounded two-leg walk with clear alternating supports, three poses per grid cell and next three on the next cell,400ms. Real idle with both feet down. Low bob, no great splits, constant scale/body volume/head size. Wings remain carried spread with very slight joint motion; tail follows subtly. Draw every figure WHOLE, no separate head or limb substitutions.\nUse INPUT1's identity and matte native64-readable game-art finish. Actual alpha transparency, clean dark contours, no colored fringe/specks, background, shadow, labels, text, grid or effects."
+  }
+]

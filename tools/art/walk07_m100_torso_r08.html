@@ -1,0 +1,123 @@
+<div id="walk07-m100-torso-r08">
+  <style>
+    #walk07-m100-torso-r08 { color: var(--foreground); }
+    #walk07-m100-torso-r08 .view { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin: 16px 0; }
+    #walk07-m100-torso-r08 figure { margin: 0; }
+    #walk07-m100-torso-r08 figcaption { margin: 0 0 8px; }
+    #walk07-m100-torso-r08 .side-label { margin: 8px 0 0; }
+    #walk07-m100-torso-r08 canvas { display: block; image-rendering: pixelated; max-width: 100%; }
+    #walk07-m100-torso-r08 .footnote { margin-top: 8px; }
+  </style>
+  <div class="viz-controls">
+    <button class="btn btn-primary" type="button" data-action="play">Pause</button>
+    <button class="btn" type="button" data-action="cell">Une case</button>
+    <button class="btn" type="button" data-action="phase">Image suivante</button>
+    <label class="form-label">Durée par case
+      <select class="form-select" data-control="pace">
+        <option value="120">120 ms</option><option value="200">200 ms</option><option value="400" selected>400 ms</option>
+      </select>
+    </label>
+  </div>
+  <div class="view">
+    <figure>
+      <figcaption>Cases de 64 px · taille de jeu</figcaption>
+      <div class="side-label text-small">← Gauche · nouvel essai R08</div>
+      <canvas data-view="left" width="288" height="128" role="img" aria-label="M100, nouvelle marche vers la gauche, taille native sur des cases de 64 pixels"></canvas>
+      <div class="side-label text-small">Droite · conservée →</div>
+      <canvas data-view="right" width="288" height="128" role="img" aria-label="M100, marche vers la droite conservée, taille native sur des cases de 64 pixels"></canvas>
+    </figure>
+    <figure>
+      <figcaption>Buste gauche · détail ×3</figcaption>
+      <canvas data-view="detail" width="256" height="264" role="img" aria-label="Agrandissement sans lissage de la nouvelle pose gauche, synchronisé avec la marche"></canvas>
+    </figure>
+  </div>
+  <div class="text-small tabular-nums" data-status="phase" aria-live="polite">Chargement…</div>
+  <script>
+  (() => {
+    const root = document.getElementById('walk07-m100-torso-r08');
+    const DATA = __M100_R08_DATA__;
+    const left = root.querySelector('[data-view="left"]');
+    const right = root.querySelector('[data-view="right"]');
+    const detail = root.querySelector('[data-view="detail"]');
+    const play = root.querySelector('[data-action="play"]');
+    const cell = root.querySelector('[data-action="cell"]');
+    const next = root.querySelector('[data-action="phase"]');
+    const pace = root.querySelector('[data-control="pace"]');
+    const status = root.querySelector('[data-status="phase"]');
+    const image = new Image();
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let duration = 400, running = !reduced, elapsed = 0, last = null, mode = 'loop', fixedPose = null;
+    let lastAnnouncement = '';
+    function restore(saved) {
+      const s = saved && saved.modelContent;
+      if (!s || s.review !== 'WALK07-M100-R08') return;
+      if ([120, 200, 400].includes(s.duration)) duration = s.duration;
+      if (typeof s.running === 'boolean') running = s.running;
+      pace.value = String(duration);
+    }
+    restore(window.openai && window.openai.widgetState);
+    if (!running) fixedPose = 0;
+    function save() {
+      const api = window.openai;
+      if (api && api.setWidgetState) api.setWidgetState({modelContent: {review:'WALK07-M100-R08', duration, running}, privateContent:null}).catch(() => {});
+    }
+    window.addEventListener('openai:set_globals', event => {
+      restore(event.detail && event.detail.globals && event.detail.globals.widgetState);
+      last = null; draw();
+    });
+    function sample(time) {
+      if (fixedPose !== null) return {pose:fixedPose, progress:0, idle:fixedPose === 0};
+      const total = duration * 2;
+      const t = mode === 'cell' ? Math.min(time, duration) : time % (total + 520);
+      if ((mode === 'cell' && t >= duration) || t >= total) return {pose:0, progress:mode === 'cell' ? 1 : 2, idle:true};
+      const travelled = t / duration;
+      const step = Math.floor(travelled);
+      const phase = Math.min(2, Math.floor((travelled - step) * 3));
+      return {pose:(step % 2) * 3 + phase + 1, progress:travelled, idle:false};
+    }
+    function colors() {
+      const css = getComputedStyle(root);
+      return {bg:css.getPropertyValue('--muted').trim(), grid:css.getPropertyValue('--border').trim(), text:css.getPropertyValue('--foreground').trim()};
+    }
+    function native(canvas, row, x, pose, theme) {
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = false;
+      ctx.clearRect(0,0,288,128);
+      ctx.fillStyle = theme.bg; ctx.fillRect(0,0,288,128);
+      ctx.strokeStyle = theme.grid; ctx.lineWidth = 1;
+      for (let i=0;i<4;i++) ctx.strokeRect(16+i*64+.5,32.5,64,64);
+      ctx.drawImage(image,pose*128,row*128,128,128,Math.round(x)-64,-16,128,128);
+    }
+    function announce(text) { if (text !== lastAnnouncement) { status.textContent = text; lastAnnouncement = text; } }
+    function draw() {
+      play.textContent = running ? 'Pause' : 'Lire';
+      if (!image.complete || !image.naturalWidth) return;
+      const s = sample(elapsed), theme = colors();
+      native(left,0,240-s.progress*64,s.pose,theme);
+      native(right,1,48+s.progress*64,s.pose,theme);
+      const ctx = detail.getContext('2d'); ctx.imageSmoothingEnabled = false;
+      ctx.clearRect(0,0,256,264); ctx.fillStyle = theme.bg; ctx.fillRect(0,0,256,264);
+      ctx.drawImage(image,s.pose*128+21,32,86,88,-1,0,258,264);
+      // Do not announce every frame while looping.
+      announce(s.idle ? 'Repos · deux pieds posés' : running ? 'Marche · ' + duration + ' ms par case' : 'Pose ' + s.pose + ' / 6 · ' + duration + ' ms par case');
+    }
+    function tick(now) {
+      if (last !== null && running) elapsed += Math.max(0,Math.min(now-last,100));
+      last = now;
+      if (mode === 'cell' && elapsed >= duration) { elapsed = duration; running = false; }
+      draw(); requestAnimationFrame(tick);
+    }
+    play.addEventListener('click', () => {
+      if (mode === 'cell' || fixedPose !== null) { mode = 'loop'; fixedPose = null; elapsed = 0; }
+      running = !running; last = null; save(); draw();
+    });
+    cell.addEventListener('click', () => { mode = 'cell'; fixedPose = null; elapsed = 0; running = true; last = null; save(); draw(); });
+    next.addEventListener('click', () => { fixedPose = (sample(elapsed).pose + 1) % 7; running = false; last = null; save(); draw(); });
+    pace.addEventListener('change', () => { const progress = elapsed / duration; duration = Number(pace.value); elapsed = progress * duration; last = null; save(); draw(); });
+    image.onload = () => { draw(); requestAnimationFrame(tick); };
+    image.onerror = () => { status.textContent = 'Aperçu indisponible'; status.setAttribute('role','alert'); };
+    image.src = DATA.atlas;
+    new MutationObserver(() => draw()).observe(document.documentElement,{attributes:true,attributeFilter:['class','style','data-theme']});
+  })();
+  </script>
+</div>

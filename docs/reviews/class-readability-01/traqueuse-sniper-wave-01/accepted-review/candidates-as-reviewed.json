@@ -1,0 +1,562 @@
+{
+  "review_id": "TRAQUEUSE-SNIPER-W01",
+  "date": "2026-10-22",
+  "status": "awaiting_native64_visual_review",
+  "class_id": "core:traqueur",
+  "class_name": "Traqueuse",
+  "presentation_gender": "female",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "native_height": 56,
+  "runtime_integration": false,
+  "color_variants": "deferred",
+  "reference_acceptances": [
+    {
+      "path": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+      "sha256": "6d55febb0bd152cca21df65f000b37da01a19d49179fedf9d74309e93bb40028"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+      "sha256": "d51882a635cbd8e024e366f4442cf238e1345668b2d0c03d152d7d6f0f4a0e02"
+    }
+  ],
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "TR-SN01-P01-r01",
+      "rank": 1,
+      "label": "Très légère",
+      "class_name": "Traqueuse",
+      "class_id": "core:traqueur",
+      "presentation_gender": "female",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P01-r01-source.png",
+      "source_sha256": "ade2035a4361d178e9c9a5724fca4b3ea91f9110e5076834fc1048fde3ffd882",
+      "native": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P01-r01-native64.png",
+      "native_sha256": "57d2ae404673afdb824c72a33f8b841457b18237b11b8fb4076bd206b921f090",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          378,
+          124,
+          898,
+          1199
+        ],
+        "source_crop": [
+          362,
+          108,
+          914,
+          1215
+        ],
+        "isotropic_scale": 0.052093023255813956,
+        "native_core_box": [
+          19,
+          6,
+          46,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 27,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        19,
+        6,
+        46,
+        62
+      ],
+      "native_core_width": 27,
+      "native_core_height": 56,
+      "solid_silhouette_pixels": 691,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Tête découverte",
+      "head_ownership_polygon": [
+        [
+          29,
+          5
+        ],
+        [
+          35,
+          5
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          38,
+          13
+        ],
+        [
+          35,
+          16
+        ],
+        [
+          29,
+          16
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          26,
+          8
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P01-r01-head-native64.png",
+          "sha256": "516ac9d7813f5c08d734163b156316ec1892cb89ce927e53f6da63a7362c9085"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P01-r01-body-native64.png",
+          "sha256": "f4717f87a8dd4f66619fc1525ae49696e50c8f7eb12538e1f032bb0cb5365026"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P01-r01-head-mask-native64.png",
+          "sha256": "66819434b8abe1f79d05831f4ef953e2ea7bf50354808abf493ffabb98c64847"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; independent helmets and weapon grips not prepared"
+    },
+    {
+      "number": "02",
+      "candidate_id": "TR-SN01-P02-r01",
+      "rank": 2,
+      "label": "Légère",
+      "class_name": "Traqueuse",
+      "class_id": "core:traqueur",
+      "presentation_gender": "female",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P02-r01-source.png",
+      "source_sha256": "98d4525bdb4dc3d25bf6e18ddd87fea2ba8f89c063b6e35a528bb3755aee8f82",
+      "native": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P02-r01-native64.png",
+      "native_sha256": "5788ac22d84837da74517e9c4a012f31c8b7e941c4b98d56b32f0508d04b758f",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          360,
+          118,
+          893,
+          1196
+        ],
+        "source_crop": [
+          344,
+          102,
+          909,
+          1212
+        ],
+        "isotropic_scale": 0.05194805194805195,
+        "native_core_box": [
+          19,
+          6,
+          46,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 27,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        19,
+        6,
+        46,
+        62
+      ],
+      "native_core_width": 27,
+      "native_core_height": 56,
+      "solid_silhouette_pixels": 698,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Cagoule souple",
+      "head_ownership_polygon": [
+        [
+          29,
+          5
+        ],
+        [
+          35,
+          5
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          38,
+          13
+        ],
+        [
+          35,
+          16
+        ],
+        [
+          29,
+          16
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          26,
+          8
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P02-r01-head-native64.png",
+          "sha256": "68e2d017caa73eda361a428c42d00a2c4f06c7489721cab61b9d19e3d620cf6e"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P02-r01-body-native64.png",
+          "sha256": "7ac7c2eb527cd976302458a433dc5c36aecfba43d11ee556e3412d6fe20772ac"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P02-r01-head-mask-native64.png",
+          "sha256": "66819434b8abe1f79d05831f4ef953e2ea7bf50354808abf493ffabb98c64847"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; independent helmets and weapon grips not prepared"
+    },
+    {
+      "number": "03",
+      "candidate_id": "TR-SN01-P03-r01",
+      "rank": 3,
+      "label": "Interméd.",
+      "class_name": "Traqueuse",
+      "class_id": "core:traqueur",
+      "presentation_gender": "female",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P03-r01-source.png",
+      "source_sha256": "61db0155c12d51ff6070c0696b89dc761a06ae8231c23083a004684960a14410",
+      "native": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P03-r01-native64.png",
+      "native_sha256": "1a3c651f3a1ed544df5182a2c27cc5d1a8b74d82512b325b196a324ce6ae6e08",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          361,
+          107,
+          889,
+          1200
+        ],
+        "source_crop": [
+          345,
+          91,
+          905,
+          1216
+        ],
+        "isotropic_scale": 0.05123513266239707,
+        "native_core_box": [
+          19,
+          6,
+          46,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 27,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        19,
+        6,
+        46,
+        62
+      ],
+      "native_core_width": 27,
+      "native_core_height": 56,
+      "solid_silhouette_pixels": 713,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Demi-casque",
+      "head_ownership_polygon": [
+        [
+          29,
+          5
+        ],
+        [
+          35,
+          5
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          38,
+          13
+        ],
+        [
+          35,
+          16
+        ],
+        [
+          29,
+          16
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          26,
+          8
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P03-r01-head-native64.png",
+          "sha256": "c2d9994b36a3dbf55421d6788ec4e78d257f4919291e8906329bf1ce88a0c367"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P03-r01-body-native64.png",
+          "sha256": "71a1d327bdeb376ef3b19b2e70f1bb9449c2109091606b20c9a67d24751bf403"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P03-r01-head-mask-native64.png",
+          "sha256": "66819434b8abe1f79d05831f4ef953e2ea7bf50354808abf493ffabb98c64847"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; independent helmets and weapon grips not prepared"
+    },
+    {
+      "number": "04",
+      "candidate_id": "TR-SN01-P04-r01",
+      "rank": 4,
+      "label": "Lourde",
+      "class_name": "Traqueuse",
+      "class_id": "core:traqueur",
+      "presentation_gender": "female",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P04-r01-source.png",
+      "source_sha256": "4df17ffbb5b26ac1ff018bbd731863142cef2ef6d9f8aa823ebe111b7b8e4180",
+      "native": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P04-r01-native64.png",
+      "native_sha256": "b4ed95d0e41319cc52e7187eb068a2f23d81605c7c3eac372134b164bda52c82",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          355,
+          119,
+          893,
+          1201
+        ],
+        "source_crop": [
+          339,
+          103,
+          909,
+          1217
+        ],
+        "isotropic_scale": 0.051756007393715345,
+        "native_core_box": [
+          18,
+          6,
+          46,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 28,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        18,
+        6,
+        46,
+        62
+      ],
+      "native_core_width": 28,
+      "native_core_height": 56,
+      "solid_silhouette_pixels": 775,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Casque fermé",
+      "head_ownership_polygon": [
+        [
+          29,
+          5
+        ],
+        [
+          35,
+          5
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          38,
+          13
+        ],
+        [
+          35,
+          16
+        ],
+        [
+          29,
+          16
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          26,
+          8
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P04-r01-head-native64.png",
+          "sha256": "48626cbbfe42127b3124533f27bf65be3018600792d09cad82ce73a4cf3d2441"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P04-r01-body-native64.png",
+          "sha256": "96a5de49ed040c3fef93a18b9b69ceb010f5730763d18c7bccb970fe43f1776e"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P04-r01-head-mask-native64.png",
+          "sha256": "66819434b8abe1f79d05831f4ef953e2ea7bf50354808abf493ffabb98c64847"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; independent helmets and weapon grips not prepared"
+    },
+    {
+      "number": "05",
+      "candidate_id": "TR-SN01-P05-r02",
+      "rank": 5,
+      "label": "Très lourde",
+      "class_name": "Traqueuse",
+      "class_id": "core:traqueur",
+      "presentation_gender": "female",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P05-r02-source.png",
+      "source_sha256": "308b5af31ccc69a40a8401f8abc98059c61a7ba8efc1e58b279c0ce6f25927fa",
+      "native": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P05-r02-native64.png",
+      "native_sha256": "bda3bc65660c98f6b4156f3e1ae3b7f5973ccb31b73d1f3f366010cb03d9d619",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          304,
+          44,
+          925,
+          1280
+        ],
+        "source_crop": [
+          285,
+          25,
+          944,
+          1299
+        ],
+        "isotropic_scale": 0.045307443365695796,
+        "native_core_box": [
+          18,
+          6,
+          46,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 28,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        18,
+        6,
+        46,
+        62
+      ],
+      "native_core_width": 28,
+      "native_core_height": 56,
+      "solid_silhouette_pixels": 856,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Casque intégral",
+      "head_ownership_polygon": [
+        [
+          29,
+          5
+        ],
+        [
+          35,
+          5
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          38,
+          12
+        ],
+        [
+          35,
+          14
+        ],
+        [
+          29,
+          14
+        ],
+        [
+          26,
+          12
+        ],
+        [
+          26,
+          8
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P05-r02-head-native64.png",
+          "sha256": "ba2411982a04fc6f6368f23352398ae3367e54578a8f3ec433a3c800b109f7d5"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P05-r02-body-native64.png",
+          "sha256": "a569bab3cff479285a96b18ecdb9e9ee35e920601f85576026f5240192c2d24d"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/TR-SN01-P05-r02-head-mask-native64.png",
+          "sha256": "3c99cacdc877f0ea9e0f1e8c82a50dae6d1649b5683910dcc3d114e458175dae"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; independent helmets and weapon grips not prepared"
+    }
+  ]
+}

@@ -1,0 +1,512 @@
+{
+  "actors": [
+    {
+      "id": 1,
+      "normal_creature_cycle": null,
+      "player": true,
+      "position": {
+        "x": 15,
+        "y": 57
+      },
+      "tags": [],
+      "visible": true,
+      "visual": "Some(Player { body: 3, palettes: [Original, Original, Original], weapon: Some(67), equipment: [None, None, None, None], hands: None })"
+    },
+    {
+      "id": 6,
+      "normal_creature_cycle": "assets/animations/walk-11/creatures/MON-022-0.png",
+      "player": false,
+      "position": {
+        "x": 13,
+        "y": 57
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_22_0",
+        "core:street_group_1",
+        "core:street_population_01"
+      ],
+      "visible": true,
+      "visual": "Some(CampaignMonster { number: 22, variant: 0 })"
+    },
+    {
+      "id": 7,
+      "normal_creature_cycle": "assets/animations/walk-11/creatures/MON-022-0.png",
+      "player": false,
+      "position": {
+        "x": 14,
+        "y": 56
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_22_1",
+        "core:street_group_1",
+        "core:street_population_01"
+      ],
+      "visible": true,
+      "visual": "Some(CampaignMonster { number: 22, variant: 1 })"
+    },
+    {
+      "id": 8,
+      "normal_creature_cycle": "assets/animations/walk-07/creatures/MON-120-0.png",
+      "player": false,
+      "position": {
+        "x": 10,
+        "y": 55
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_120_0",
+        "core:street_group_2",
+        "core:street_population_01"
+      ],
+      "visible": true,
+      "visual": "Some(CampaignMonster { number: 120, variant: 0 })"
+    },
+    {
+      "id": 9,
+      "normal_creature_cycle": "assets/animations/walk-07/creatures/MON-121-0.png",
+      "player": false,
+      "position": {
+        "x": 12,
+        "y": 56
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_121_0",
+        "core:street_group_2",
+        "core:street_population_01"
+      ],
+      "visible": true,
+      "visual": "Some(CampaignMonster { number: 121, variant: 0 })"
+    },
+    {
+      "id": 10,
+      "normal_creature_cycle": "assets/animations/walk-07/creatures/MON-120-0.png",
+      "player": false,
+      "position": {
+        "x": 14,
+        "y": 58
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_120_1",
+        "core:street_group_2",
+        "core:street_population_01"
+      ],
+      "visible": true,
+      "visual": "Some(CampaignMonster { number: 120, variant: 1 })"
+    },
+    {
+      "id": 11,
+      "normal_creature_cycle": "assets/animations/walk-11/creatures/MON-022-0.png",
+      "player": false,
+      "position": {
+        "x": 17,
+        "y": 37
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_22_1",
+        "core:street_group_3",
+        "core:street_population_01"
+      ],
+      "visible": false,
+      "visual": "Some(CampaignMonster { number: 22, variant: 1 })"
+    },
+    {
+      "id": 12,
+      "normal_creature_cycle": "assets/animations/walk-11/creatures/MON-022-0.png",
+      "player": false,
+      "position": {
+        "x": 19,
+        "y": 37
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_22_0",
+        "core:street_group_3",
+        "core:street_population_01"
+      ],
+      "visible": false,
+      "visual": "Some(CampaignMonster { number: 22, variant: 0 })"
+    },
+    {
+      "id": 13,
+      "normal_creature_cycle": "assets/animations/walk-11/creatures/MON-024-0.png",
+      "player": false,
+      "position": {
+        "x": 19,
+        "y": 35
+      },
+      "tags": [
+        "core:encounter_level_1",
+        "core:monster_art_24_0",
+        "core:street_group_3",
+        "core:street_population_01"
+      ],
+      "visible": false,
+      "visual": "Some(CampaignMonster { number: 24, variant: 0 })"
+    },
+    {
+      "id": 14,
+      "normal_creature_cycle": "assets/animations/walk-07/creatures/MON-121-0.png",
+      "player": false,
+      "position": {
+        "x": 17,
+        "y": 24
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_121_0",
+        "core:street_group_4",
+        "core:street_population_01"
+      ],
+      "visible": false,
+      "visual": "Some(CampaignMonster { number: 121, variant: 0 })"
+    },
+    {
+      "id": 15,
+      "normal_creature_cycle": "assets/animations/walk-07/creatures/MON-120-0.png",
+      "player": false,
+      "position": {
+        "x": 19,
+        "y": 24
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_120_0",
+        "core:street_group_4",
+        "core:street_population_01"
+      ],
+      "visible": false,
+      "visual": "Some(CampaignMonster { number: 120, variant: 0 })"
+    },
+    {
+      "id": 16,
+      "normal_creature_cycle": "assets/animations/walk-07/creatures/MON-121-0.png",
+      "player": false,
+      "position": {
+        "x": 18,
+        "y": 23
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_121_1",
+        "core:street_group_4",
+        "core:street_population_01"
+      ],
+      "visible": false,
+      "visual": "Some(CampaignMonster { number: 121, variant: 1 })"
+    },
+    {
+      "id": 17,
+      "normal_creature_cycle": "assets/animations/walk-11/creatures/MON-022-0.png",
+      "player": false,
+      "position": {
+        "x": 18,
+        "y": 7
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_22_0",
+        "core:street_group_5",
+        "core:street_population_01"
+      ],
+      "visible": false,
+      "visual": "Some(CampaignMonster { number: 22, variant: 0 })"
+    },
+    {
+      "id": 18,
+      "normal_creature_cycle": "assets/animations/walk-11/creatures/MON-022-0.png",
+      "player": false,
+      "position": {
+        "x": 20,
+        "y": 7
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_22_1",
+        "core:street_group_5",
+        "core:street_population_01"
+      ],
+      "visible": false,
+      "visual": "Some(CampaignMonster { number: 22, variant: 1 })"
+    },
+    {
+      "id": 19,
+      "normal_creature_cycle": "assets/animations/walk-11/creatures/MON-022-0.png",
+      "player": false,
+      "position": {
+        "x": 17,
+        "y": 8
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_22_0",
+        "core:street_group_5",
+        "core:street_population_01"
+      ],
+      "visible": false,
+      "visual": "Some(CampaignMonster { number: 22, variant: 0 })"
+    },
+    {
+      "id": 20,
+      "normal_creature_cycle": "assets/animations/walk-11/creatures/MON-024-0.png",
+      "player": false,
+      "position": {
+        "x": 19,
+        "y": 5
+      },
+      "tags": [
+        "core:encounter_level_2",
+        "core:monster_art_24_1",
+        "core:street_group_5",
+        "core:street_population_01"
+      ],
+      "visible": false,
+      "visual": "Some(CampaignMonster { number: 24, variant: 1 })"
+    }
+  ],
+  "movement_trials": [
+    {
+      "both_ends_visible": true,
+      "command": "Wait",
+      "cycle_for_this_direction": "assets/animations/walk-11/creatures/MON-022-0.png",
+      "entity": 6,
+      "from": {
+        "x": 13,
+        "y": 57
+      },
+      "motion_facing": 1,
+      "outcome": "Applied",
+      "player": false,
+      "to": {
+        "x": 14,
+        "y": 57
+      },
+      "visual": "Some(CampaignMonster { number: 22, variant: 0 })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Wait",
+      "cycle_for_this_direction": "assets/animations/walk-07/creatures/MON-120-0.png",
+      "entity": 8,
+      "from": {
+        "x": 10,
+        "y": 55
+      },
+      "motion_facing": 1,
+      "outcome": "Applied",
+      "player": false,
+      "to": {
+        "x": 11,
+        "y": 55
+      },
+      "visual": "Some(CampaignMonster { number: 120, variant: 0 })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Wait",
+      "cycle_for_this_direction": "assets/animations/walk-07/creatures/MON-121-0.png",
+      "entity": 9,
+      "from": {
+        "x": 12,
+        "y": 56
+      },
+      "motion_facing": 1,
+      "outcome": "Applied",
+      "player": false,
+      "to": {
+        "x": 13,
+        "y": 56
+      },
+      "visual": "Some(CampaignMonster { number: 121, variant: 0 })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Move(East)",
+      "cycle_for_this_direction": null,
+      "entity": 1,
+      "from": {
+        "x": 15,
+        "y": 57
+      },
+      "motion_facing": 1,
+      "outcome": "Applied",
+      "player": true,
+      "to": {
+        "x": 16,
+        "y": 57
+      },
+      "visual": "Some(Player { body: 3, palettes: [Original, Original, Original], weapon: Some(67), equipment: [None, None, None, None], hands: None })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Move(East)",
+      "cycle_for_this_direction": "assets/animations/walk-11/creatures/MON-022-0.png",
+      "entity": 6,
+      "from": {
+        "x": 13,
+        "y": 57
+      },
+      "motion_facing": 1,
+      "outcome": "Applied",
+      "player": false,
+      "to": {
+        "x": 14,
+        "y": 57
+      },
+      "visual": "Some(CampaignMonster { number: 22, variant: 0 })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Move(East)",
+      "cycle_for_this_direction": null,
+      "entity": 7,
+      "from": {
+        "x": 14,
+        "y": 56
+      },
+      "motion_facing": 0,
+      "outcome": "Applied",
+      "player": false,
+      "to": {
+        "x": 14,
+        "y": 55
+      },
+      "visual": "Some(CampaignMonster { number: 22, variant: 1 })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Move(East)",
+      "cycle_for_this_direction": "assets/animations/walk-07/creatures/MON-120-0.png",
+      "entity": 10,
+      "from": {
+        "x": 14,
+        "y": 58
+      },
+      "motion_facing": 1,
+      "outcome": "Applied",
+      "player": false,
+      "to": {
+        "x": 15,
+        "y": 58
+      },
+      "visual": "Some(CampaignMonster { number: 120, variant: 1 })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Move(West)",
+      "cycle_for_this_direction": null,
+      "entity": 1,
+      "from": {
+        "x": 15,
+        "y": 57
+      },
+      "motion_facing": -1,
+      "outcome": "Applied",
+      "player": true,
+      "to": {
+        "x": 14,
+        "y": 57
+      },
+      "visual": "Some(Player { body: 3, palettes: [Original, Original, Original], weapon: Some(67), equipment: [None, None, None, None], hands: None })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Move(West)",
+      "cycle_for_this_direction": "assets/animations/walk-07/creatures/MON-120-0.png",
+      "entity": 8,
+      "from": {
+        "x": 10,
+        "y": 55
+      },
+      "motion_facing": 1,
+      "outcome": "Applied",
+      "player": false,
+      "to": {
+        "x": 11,
+        "y": 55
+      },
+      "visual": "Some(CampaignMonster { number: 120, variant: 0 })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Move(West)",
+      "cycle_for_this_direction": "assets/animations/walk-07/creatures/MON-121-0.png",
+      "entity": 9,
+      "from": {
+        "x": 12,
+        "y": 56
+      },
+      "motion_facing": 1,
+      "outcome": "Applied",
+      "player": false,
+      "to": {
+        "x": 13,
+        "y": 56
+      },
+      "visual": "Some(CampaignMonster { number: 121, variant: 0 })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Move(South)",
+      "cycle_for_this_direction": null,
+      "entity": 1,
+      "from": {
+        "x": 15,
+        "y": 57
+      },
+      "motion_facing": 0,
+      "outcome": "Applied",
+      "player": true,
+      "to": {
+        "x": 15,
+        "y": 58
+      },
+      "visual": "Some(Player { body: 3, palettes: [Original, Original, Original], weapon: Some(67), equipment: [None, None, None, None], hands: None })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Move(South)",
+      "cycle_for_this_direction": "assets/animations/walk-11/creatures/MON-022-0.png",
+      "entity": 6,
+      "from": {
+        "x": 13,
+        "y": 57
+      },
+      "motion_facing": 1,
+      "outcome": "Applied",
+      "player": false,
+      "to": {
+        "x": 14,
+        "y": 57
+      },
+      "visual": "Some(CampaignMonster { number: 22, variant: 0 })"
+    },
+    {
+      "both_ends_visible": true,
+      "command": "Move(South)",
+      "cycle_for_this_direction": null,
+      "entity": 7,
+      "from": {
+        "x": 14,
+        "y": 56
+      },
+      "motion_facing": 0,
+      "outcome": "Applied",
+      "player": false,
+      "to": {
+        "x": 14,
+        "y": 55
+      },
+      "visual": "Some(CampaignMonster { number: 22, variant: 1 })"
+    }
+  ],
+  "player_position": {
+    "x": 15,
+    "y": 57
+  },
+  "source": "restored user save; commands simulated only in isolated memory clones"
+}

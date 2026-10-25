@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "accepted_revision": "WALK11-PROPORTIONS-GRIP-r03",
+  "runtime_integration": true,
+  "date": "2026-10-25",
+  "accepted_runtime_assets_unchanged": 62,
+  "selected_sources_unchanged": 58,
+  "original_walk07_walk09_and_map_editor_files_preserved": 257,
+  "cargo_check_locked_bin": "passed,28.93s",
+  "release_build": "passed,118s",
+  "debug_build": "passed,52.14s",
+  "rust_targeted_tests": {
+    "accepted_player_and_471_monster_variant_activation": "2 passed,31.31s",
+    "all_113_weapons_on_each_class": "1 passed,15.49s",
+    "all_350_whole_poses_and_leg_guards": "1 passed,18.18s",
+    "movement_cadence_and_simulation": "13 passed"
+  },
+  "distribution_tests": "3 passed",
+  "runtime_inventory_paths": 1762,
+  "runtime_inventory_contains_all_62_accepted_assets": true,
+  "grip_reference": {
+    "file": "grips/r03/after/contact.json",
+    "composites": 2690,
+    "failures": 0,
+    "approved_pixel_assets_preserved": true,
+    "normal_renderer_matches_approved_review": true
+  },
+  "native_world_capture": {
+    "source": "integration-native/checks.json",
+    "status": "passed",
+    "captured_pngs": 53,
+    "actual_move_command": true,
+    "distance_cells": 1,
+    "duration_ms": 400,
+    "class_outfits": 25,
+    "loadouts_per_outfit": 6,
+    "campaign_monster_pairs_with_normal_animation": 471,
+    "cultist_022_front_height": 59,
+    "cultist_024_front_height": 59,
+    "small_fronts_vertically_centered": true,
+    "stderr": ""
+  },
+  "release_sha256": "1d778228182d26cad2b5c1f32fd1ab44cc74c559e3b5da1a0d31ea187d947210",
+  "legacy_walk04_enabled": false,
+  "pending_extras": "The nine WALK08 forms/drone proposals keep their separate review.",
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "cleanup_generated_pngs_removed": 2077,
+  "cleanup_bytes_removed": 127617498.0,
+  "current_review_native_captures_and_source_art_preserved": true
+}

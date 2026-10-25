@@ -1,0 +1,172 @@
+{
+  "review_id": "WEAPON-READABILITY02",
+  "status": "accepted_and_integrated",
+  "native_tile": 64,
+  "outfits": 25,
+  "candidates": [
+    {
+      "id": "WR-MG02",
+      "model": 31,
+      "native": "assets/source-art/weapon-readability-02/native/machinegun-02.png",
+      "origin": [
+        37,
+        47
+      ],
+      "anchor": [
+        48,
+        57
+      ],
+      "support": [
+        61,
+        66
+      ],
+      "angle": 0,
+      "grip_angle": 0,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -1.5
+      ],
+      "label": "03 · Mitrailleuse",
+      "title": "Mitrailleuse lourde",
+      "description": "Bloc moteur gris, boîte de munitions ocre et faisceau de canons dégagé. Les deux prises restent sur le corps de l’arme.",
+      "source": "assets/source-art/weapon-readability-02/generated/machinegun-02.png",
+      "source_sha256": "01b7218a898c5d185245b7ee219ca6e01f7ec7908fbd96a8b322a4afbe53f08c",
+      "native_sha256": "9fbf5a882ddd64890c4de3fc4d823c222206c553da93ddfcc0e22792d4bb6581"
+    },
+    {
+      "id": "WR-FT02",
+      "model": 17,
+      "native": "assets/source-art/weapon-readability-02/native/flamethrower-02.png",
+      "origin": [
+        36,
+        48
+      ],
+      "anchor": [
+        53,
+        63
+      ],
+      "support": [
+        73,
+        62
+      ],
+      "angle": 0,
+      "grip_angle": 0,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -2
+      ],
+      "label": "04 · Lance-flammes",
+      "title": "Lance-flammes · Korgan F-100",
+      "description": "Corps métallique clair, réservoir roux et embout cylindrique distinct. Deux poignées visibles, durite raccourcie.",
+      "source": "assets/source-art/weapon-readability-02/generated/flamethrower-02.png",
+      "source_sha256": "d8409f4f4b606ff3764c2afc38645907f8e3b43d8f8e282c53a34e515a994ff9",
+      "native_sha256": "dff33476206f2927a9d70e43bde622c8bdfb53320bfafa6e2dd12fa37822e8be"
+    },
+    {
+      "id": "WR-GL02",
+      "model": 23,
+      "native": "assets/source-art/weapon-readability-02/native/grenade-02.png",
+      "origin": [
+        35,
+        48
+      ],
+      "anchor": [
+        52,
+        66
+      ],
+      "support": [
+        79,
+        68
+      ],
+      "angle": -0.035,
+      "grip_angle": -0.035,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -2
+      ],
+      "label": "05 · Lance-grenades",
+      "title": "Lance-grenades",
+      "description": "Gros barillet gris, crosse olive, canon court et deux poignées dégagées.",
+      "source": "assets/source-art/weapon-readability-02/generated/grenade-02.png",
+      "source_sha256": "82afdba89afb3a78c7ba99fa9e44f3d659e0a57820d7de0d481c8d30abc571a4",
+      "native_sha256": "561e5d741a81d196a4d819fbdea68a81452721e5fd2f6a149515318fad42882f"
+    },
+    {
+      "id": "WR-RL02",
+      "model": 51,
+      "native": "assets/source-art/weapon-readability-02/native/rocket-02.png",
+      "origin": [
+        32,
+        48
+      ],
+      "anchor": [
+        52,
+        63
+      ],
+      "support": [
+        63,
+        63
+      ],
+      "angle": 0,
+      "grip_angle": 0,
+      "scales": [
+        0.78,
+        0.7,
+        0.64,
+        0.68,
+        0.72
+      ],
+      "shift_from_palms": [
+        2,
+        -2
+      ],
+      "label": "06 · Lance-roquettes",
+      "title": "Lance-roquettes",
+      "description": "Long tube gris avec arête claire, avant olive et anneau rouge. Deux prises sous le tube.",
+      "source": "assets/source-art/weapon-readability-02/generated/rocket-02.png",
+      "source_sha256": "39e3bd84f9d1713d362b1bd05575c57b2c2c7a9116a678b535f4bdd48a5f2e07",
+      "native_sha256": "9d34d2846d848ff971251e120f4d457d6a4467a23c902ddd874015e2f77b12d9"
+    }
+  ],
+  "runtime_integration": true,
+  "accepted_previous_candidates": [
+    "WR-AX01",
+    "WR-RF01"
+  ],
+  "accepted_previous_cells_preserved": 150,
+  "unchanged_active_atlases": 23,
+  "heavy_family_count": 4,
+  "existing_heavy_models": 27,
+  "source_tool": "built-in imagegen",
+  "heavy_grip_contacts_checked": 200,
+  "source_limbs": "accepted production-rig sleeves, reposed with production geometry",
+  "shadow": "1 native px, clipped to the body, same as approved first wave",
+  "color_variants": "not created",
+  "game_rules_changes": false,
+  "head_and_feet_checks": 200,
+  "scope": "Four representative family designs; other statistical model identities are preserved.",
+  "lighting": "current actor lightening reproduced, no scene lighting",
+  "review_cells": 300,
+  "runtime_manifest": "assets/sprites/weapon-readability-03/manifest.json"
+}

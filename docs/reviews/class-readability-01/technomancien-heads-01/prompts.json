@@ -1,0 +1,100 @@
+{
+  "review_id": "TECHNOMANCIEN-W02-HEAD01",
+  "date": "2026-10-21",
+  "status": "stopped_after_user_rejection",
+  "tool": "built-in image_gen",
+  "class_id": "core:technomancien",
+  "rule": "docs/reviews/class-readability-01/head-appearance-rule.json",
+  "source_body_review": "docs/reviews/class-readability-01/technomancien-wave-02/design-candidates.json",
+  "native_cell": [
+    64,
+    64
+  ],
+  "body_preserved_below_y": 14,
+  "color_variants": "deferred_by_user",
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "TE-W02-H01-r01",
+      "label": "Très légère",
+      "body_candidate": "TE-W02-D01-r01",
+      "target_height": 5,
+      "max_width": 11,
+      "bottom_exclusive": 8,
+      "prompt": "Use case: stylized-concept.\nAsset type: separate HEADGEAR OVERLAY for a native 64x64 cyberpunk roguelike player sprite.\nReference image role: material and rendering guide ONLY, a teal technical coat with copper prostheses and charcoal joints. Do not draw the body from the reference.\nDraw ONE head protection piece in a STRAIGHT FRONT worn position. Only physical headgear, NO person, human face, mannequin, skull, hair, head anatomy, neck, shoulders, torso or stand.\nThis gear overlays an existing partly human partly robotic head. Any open face area MUST be truly ALPHA-ZERO EMPTY so the old head shows through. Do not fill an open face area with a dark lining, rear shell, black mannequin, flesh or tinted glass. Opaque masks are permitted ONLY where explicitly requested.\nClass identity: an extensively augmented machine technician with a technical coat, workwear and cybernetic apparatus. Strong narrow hood/cowl silhouette, industrial function, no fantasy jewelry, no religious insignia or licensed symbols.\nPalette: muted deep TEAL fabric/casing, charcoal inner edging, a FEW broad aged COPPER guards, at most one amber accent. NO ivory/white soldier helmet, bulky round marine helmet or silver suit.\nNative gear will be only 10-14 pixels across and 5-13 pixels tall. Use extremely few big simple masses, 2-3 broad tones per material, continuous dark outer contour, subtle upper-left light. No seams/rivets/screws/textures/tiny vents, wires, external tubes, antennas, spikes or dangling ornaments.\nIsolated centered object, ample transparent margin, genuine transparent background and transparent face opening. No labels, text, ground shadow, vignette, glow or light halo.\n\nVERY LIGHT: a low charcoal padded forehead workband with a broad simple copper reinforcement at its sides and a restrained teal top insert. A shallow UPPER-CROWN guard, about twice as wide as tall. NO ear cups, cheek guards, jaw, mask, visor, hood or back shell. The whole face below the brow and the entire lower half of the image remain empty transparent. Low unobtrusive protection for the short work jacket.",
+      "status": "rejected_visual_direction",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-ID01-r01-body-source.png"
+      ],
+      "transparent_background": true,
+      "generated_file": "C:/Users/User/.codex/generated_images/01a15e4b-a136-72f0-b79d-bca96fc58aaa/exec-8b2c83a1-fcec-4f1e-9178-c703d0cb6db5.png",
+      "workspace_source": "assets/source-art/class-readability-01/technomancien-heads-01/rejected/TE-W02-H01-r01-source.png"
+    },
+    {
+      "number": "02",
+      "candidate_id": "TE-W02-H02-r01",
+      "label": "Légère",
+      "body_candidate": "TE-W02-D02-r01",
+      "target_height": 10,
+      "max_width": 12,
+      "bottom_exclusive": 14,
+      "prompt": "Use case: stylized-concept.\nAsset type: separate HEADGEAR OVERLAY for a native 64x64 cyberpunk roguelike player sprite.\nReference image role: material and rendering guide ONLY, a teal technical coat with copper prostheses and charcoal joints. Do not draw the body from the reference.\nDraw ONE head protection piece in a STRAIGHT FRONT worn position. Only physical headgear, NO person, human face, mannequin, skull, hair, head anatomy, neck, shoulders, torso or stand.\nThis gear overlays an existing partly human partly robotic head. Any open face area MUST be truly ALPHA-ZERO EMPTY so the old head shows through. Do not fill an open face area with a dark lining, rear shell, black mannequin, flesh or tinted glass. Opaque masks are permitted ONLY where explicitly requested.\nClass identity: an extensively augmented machine technician with a technical coat, workwear and cybernetic apparatus. Strong narrow hood/cowl silhouette, industrial function, no fantasy jewelry, no religious insignia or licensed symbols.\nPalette: muted deep TEAL fabric/casing, charcoal inner edging, a FEW broad aged COPPER guards, at most one amber accent. NO ivory/white soldier helmet, bulky round marine helmet or silver suit.\nNative gear will be only 10-14 pixels across and 5-13 pixels tall. Use extremely few big simple masses, 2-3 broad tones per material, continuous dark outer contour, subtle upper-left light. No seams/rivets/screws/textures/tiny vents, wires, external tubes, antennas, spikes or dangling ornaments.\nIsolated centered object, ample transparent margin, genuine transparent background and transparent face opening. No labels, text, ground shadow, vignette, glow or light halo.\n\nLIGHT: a short shallow TEAL TECHNICIAN HOOD, open front. One smooth rounded upper cap, short narrow side flaps stopping near the ears, simple charcoal face edging and ONE broad copper temple pad. An upside-down U shape. Wide fully transparent front opening and open jaw. No goggles, visor, face, lining across the opening or opaque jaw bar. Light unarmored fabric mass, noticeably narrower and shorter than a deep cowl.",
+      "status": "rejected_visual_direction",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-ID01-r01-body-source.png"
+      ],
+      "transparent_background": true,
+      "generated_file": "C:/Users/User/.codex/generated_images/01a15e4b-a136-72f0-b79d-bca96fc58aaa/exec-db26c09a-49e8-4f09-b3df-e06a3e547418.png",
+      "workspace_source": "assets/source-art/class-readability-01/technomancien-heads-01/rejected/TE-W02-H02-r01-source.png"
+    },
+    {
+      "number": "03",
+      "candidate_id": "TE-W02-H03-r01",
+      "label": "Intermédiaire",
+      "body_candidate": "TE-W02-ID01-r01",
+      "target_height": 12,
+      "max_width": 13,
+      "bottom_exclusive": 14,
+      "prompt": "Use case: stylized-concept.\nAsset type: separate HEADGEAR OVERLAY for a native 64x64 cyberpunk roguelike player sprite.\nReference image role: material and rendering guide ONLY, a teal technical coat with copper prostheses and charcoal joints. Do not draw the body from the reference.\nDraw ONE head protection piece in a STRAIGHT FRONT worn position. Only physical headgear, NO person, human face, mannequin, skull, hair, head anatomy, neck, shoulders, torso or stand.\nThis gear overlays an existing partly human partly robotic head. Any open face area MUST be truly ALPHA-ZERO EMPTY so the old head shows through. Do not fill an open face area with a dark lining, rear shell, black mannequin, flesh or tinted glass. Opaque masks are permitted ONLY where explicitly requested.\nClass identity: an extensively augmented machine technician with a technical coat, workwear and cybernetic apparatus. Strong narrow hood/cowl silhouette, industrial function, no fantasy jewelry, no religious insignia or licensed symbols.\nPalette: muted deep TEAL fabric/casing, charcoal inner edging, a FEW broad aged COPPER guards, at most one amber accent. NO ivory/white soldier helmet, bulky round marine helmet or silver suit.\nNative gear will be only 10-14 pixels across and 5-13 pixels tall. Use extremely few big simple masses, 2-3 broad tones per material, continuous dark outer contour, subtle upper-left light. No seams/rivets/screws/textures/tiny vents, wires, external tubes, antennas, spikes or dangling ornaments.\nIsolated centered object, ample transparent margin, genuine transparent background and transparent face opening. No labels, text, ground shadow, vignette, glow or light halo.\n\nMEDIUM: a deep angular TEAL MACHINE-TECHNICIAN COWL. Slightly peaked crown, broad simple teal side folds enclosing the temples, charcoal edge, and one broad copper brow strip. The whole face opening is genuinely EMPTY TRANSPARENT, as an upside-down U, including mouth and chin. No mask, glass, head or rear liner across the open front. Readable deep hood to match a long teal coat, no shoulder cape and nothing below the jaw.",
+      "status": "rejected_visual_direction",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-ID01-r01-body-source.png"
+      ],
+      "transparent_background": true,
+      "generated_file": "C:/Users/User/.codex/generated_images/01a15e4b-a136-72f0-b79d-bca96fc58aaa/exec-92204799-ed7a-4645-b318-0ddc262e2767.png",
+      "workspace_source": "assets/source-art/class-readability-01/technomancien-heads-01/rejected/TE-W02-H03-r01-source.png"
+    },
+    {
+      "number": "04",
+      "candidate_id": "TE-W02-H04-r01",
+      "label": "Lourde",
+      "body_candidate": "TE-W02-D04-r01",
+      "target_height": 13,
+      "max_width": 14,
+      "bottom_exclusive": 14,
+      "prompt": "Use case: stylized-concept.\nAsset type: separate HEADGEAR OVERLAY for a native 64x64 cyberpunk roguelike player sprite.\nReference image role: material and rendering guide ONLY, a teal technical coat with copper prostheses and charcoal joints. Do not draw the body from the reference.\nDraw ONE head protection piece in a STRAIGHT FRONT worn position. Only physical headgear, NO person, human face, mannequin, skull, hair, head anatomy, neck, shoulders, torso or stand.\nThis gear overlays an existing partly human partly robotic head. Any open face area MUST be truly ALPHA-ZERO EMPTY so the old head shows through. Do not fill an open face area with a dark lining, rear shell, black mannequin, flesh or tinted glass. Opaque masks are permitted ONLY where explicitly requested.\nClass identity: an extensively augmented machine technician with a technical coat, workwear and cybernetic apparatus. Strong narrow hood/cowl silhouette, industrial function, no fantasy jewelry, no religious insignia or licensed symbols.\nPalette: muted deep TEAL fabric/casing, charcoal inner edging, a FEW broad aged COPPER guards, at most one amber accent. NO ivory/white soldier helmet, bulky round marine helmet or silver suit.\nNative gear will be only 10-14 pixels across and 5-13 pixels tall. Use extremely few big simple masses, 2-3 broad tones per material, continuous dark outer contour, subtle upper-left light. No seams/rivets/screws/textures/tiny vents, wires, external tubes, antennas, spikes or dangling ornaments.\nIsolated centered object, ample transparent margin, genuine transparent background and transparent face opening. No labels, text, ground shadow, vignette, glow or light halo.\n\nHEAVY: a reinforced narrow TEAL COWL, angular crown and thick broad COPPER temple/cheek guards. A single solid CHARCOAL respirator covers only the LOWER face/mouth area, one smooth protective block with no little vents. The UPPER CENTRAL EYE OPENING between the brow and the mouth block is EMPTY ALPHA-ZERO TRANSPARENT, preserving the existing cyborg eyes under the overlay. Do not draw eyes or a face. Protective hood, not a rounded soldier helmet; top and outside remain clearly teal. No hose or collar.",
+      "status": "cancelled_before_review",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-ID01-r01-body-source.png"
+      ],
+      "transparent_background": true
+    },
+    {
+      "number": "05",
+      "candidate_id": "TE-W02-H05-r01",
+      "label": "Très lourde",
+      "body_candidate": "TE-W02-D05-r02",
+      "target_height": 13,
+      "max_width": 15,
+      "bottom_exclusive": 14,
+      "prompt": "Use case: stylized-concept.\nAsset type: separate HEADGEAR OVERLAY for a native 64x64 cyberpunk roguelike player sprite.\nReference image role: material and rendering guide ONLY, a teal technical coat with copper prostheses and charcoal joints. Do not draw the body from the reference.\nDraw ONE head protection piece in a STRAIGHT FRONT worn position. Only physical headgear, NO person, human face, mannequin, skull, hair, head anatomy, neck, shoulders, torso or stand.\nThis gear overlays an existing partly human partly robotic head. Any open face area MUST be truly ALPHA-ZERO EMPTY so the old head shows through. Do not fill an open face area with a dark lining, rear shell, black mannequin, flesh or tinted glass. Opaque masks are permitted ONLY where explicitly requested.\nClass identity: an extensively augmented machine technician with a technical coat, workwear and cybernetic apparatus. Strong narrow hood/cowl silhouette, industrial function, no fantasy jewelry, no religious insignia or licensed symbols.\nPalette: muted deep TEAL fabric/casing, charcoal inner edging, a FEW broad aged COPPER guards, at most one amber accent. NO ivory/white soldier helmet, bulky round marine helmet or silver suit.\nNative gear will be only 10-14 pixels across and 5-13 pixels tall. Use extremely few big simple masses, 2-3 broad tones per material, continuous dark outer contour, subtle upper-left light. No seams/rivets/screws/textures/tiny vents, wires, external tubes, antennas, spikes or dangling ornaments.\nIsolated centered object, ample transparent margin, genuine transparent background and transparent face opening. No labels, text, ground shadow, vignette, glow or light halo.\n\nVERY HEAVY: a rigid angular TEAL ARMORED COWL, taller and more enclosing than a soft hood, with broad graphite side guards and a simple CLOSED AGED-COPPER FACEPLATE. Only ONE large AMBER circular optic on the viewer's LEFT upper faceplate, all other faceplate areas opaque copper or charcoal. Entirely enclosed face, NO human face and NO transparent front opening in this last model. Outer silhouette must remain a narrow pointed TEAL hood around the mechanical face, not a round white combat helmet. Few broad facets only, no grille, individual teeth, holes, wires, tubes or neck.",
+      "status": "cancelled_before_review",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/technomancien-wave-02/TE-W02-ID01-r01-body-source.png"
+      ],
+      "transparent_background": true
+    }
+  ],
+  "user_feedback": "non mais c'est les memes formes que ceux du bastion, tu dois faire different .",
+  "scope_note": "Rejected parallel soldier-headgear progression. Do not finish this range or treat teal/copper recoloring as class differentiation."
+}

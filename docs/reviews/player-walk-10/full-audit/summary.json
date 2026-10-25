@@ -1,0 +1,382 @@
+{
+  "player_body_cases": 200,
+  "player_full_pose_measurements": 2800,
+  "player_weapon_cases": 565,
+  "weapon_sample_pose_measurements": 2260,
+  "base_player_outfits_with_signals": 23,
+  "campaign_pairs": 471,
+  "campaign_distinct_front_geometries": 129,
+  "campaign_base_pose_measurements": 1806,
+  "campaign_pair_pose_comparisons": 6594,
+  "campaign_bases_with_signals": 97,
+  "campaign_pairs_with_signals": 369,
+  "normal_campaign_static_pairs": 342,
+  "extras": 10,
+  "extras_with_signals": 8,
+  "static_indices": 96,
+  "pages": [
+    {
+      "page": "players/00.png",
+      "cases": [
+        "CLASS-00-H0",
+        "CLASS-01-H0",
+        "CLASS-02-H0",
+        "CLASS-03-H0",
+        "CLASS-04-H0",
+        "CLASS-05-H0",
+        "CLASS-06-H0",
+        "CLASS-07-H0"
+      ]
+    },
+    {
+      "page": "players/01.png",
+      "cases": [
+        "CLASS-08-H0",
+        "CLASS-09-H0",
+        "CLASS-10-H0",
+        "CLASS-11-H0",
+        "CLASS-12-H0",
+        "CLASS-13-H0",
+        "CLASS-14-H0",
+        "CLASS-15-H0"
+      ]
+    },
+    {
+      "page": "players/02.png",
+      "cases": [
+        "CLASS-16-H0",
+        "CLASS-17-H0",
+        "CLASS-18-H0",
+        "CLASS-19-H0",
+        "CLASS-20-H0",
+        "CLASS-21-H0",
+        "CLASS-22-H0",
+        "CLASS-23-H0"
+      ]
+    },
+    {
+      "page": "players/03.png",
+      "cases": [
+        "CLASS-24-H0"
+      ]
+    },
+    {
+      "page": "players-axe/00.png",
+      "cases": [
+        "CLASS-00-H0-W067",
+        "CLASS-01-H0-W067",
+        "CLASS-02-H0-W067",
+        "CLASS-03-H0-W067",
+        "CLASS-04-H0-W067",
+        "CLASS-05-H0-W067",
+        "CLASS-06-H0-W067",
+        "CLASS-07-H0-W067"
+      ]
+    },
+    {
+      "page": "players-axe/01.png",
+      "cases": [
+        "CLASS-08-H0-W067",
+        "CLASS-09-H0-W067",
+        "CLASS-10-H0-W067",
+        "CLASS-11-H0-W067",
+        "CLASS-12-H0-W067",
+        "CLASS-13-H0-W067",
+        "CLASS-14-H0-W067",
+        "CLASS-15-H0-W067"
+      ]
+    },
+    {
+      "page": "players-axe/02.png",
+      "cases": [
+        "CLASS-16-H0-W067",
+        "CLASS-17-H0-W067",
+        "CLASS-18-H0-W067",
+        "CLASS-19-H0-W067",
+        "CLASS-20-H0-W067",
+        "CLASS-21-H0-W067",
+        "CLASS-22-H0-W067",
+        "CLASS-23-H0-W067"
+      ]
+    },
+    {
+      "page": "players-axe/03.png",
+      "cases": [
+        "CLASS-24-H0-W067"
+      ]
+    },
+    {
+      "page": "players-helmet-alerts/00.png",
+      "cases": [
+        "CLASS-21-H1",
+        "CLASS-21-H2",
+        "CLASS-21-H6",
+        "CLASS-21-H5",
+        "CLASS-21-H3",
+        "CLASS-05-H6",
+        "CLASS-21-H4",
+        "CLASS-05-H1"
+      ]
+    },
+    {
+      "page": "players-helmet-alerts/01.png",
+      "cases": [
+        "CLASS-05-H5",
+        "CLASS-05-H2",
+        "CLASS-06-H6",
+        "CLASS-06-H1",
+        "CLASS-05-H3",
+        "CLASS-06-H2",
+        "CLASS-06-H5",
+        "CLASS-05-H4"
+      ]
+    },
+    {
+      "page": "players-helmet-alerts/02.png",
+      "cases": [
+        "CLASS-06-H3",
+        "CLASS-06-H4",
+        "CLASS-22-H1",
+        "CLASS-22-H2",
+        "CLASS-22-H6",
+        "CLASS-22-H5",
+        "CLASS-22-H3",
+        "CLASS-22-H4"
+      ]
+    },
+    {
+      "page": "campaign/00.png",
+      "cases": [
+        "MON-005-0",
+        "MON-006-0",
+        "MON-007-0",
+        "MON-008-0",
+        "MON-009-0",
+        "MON-010-0",
+        "MON-011-0",
+        "MON-012-0"
+      ]
+    },
+    {
+      "page": "campaign/01.png",
+      "cases": [
+        "MON-014-0",
+        "MON-015-0",
+        "MON-016-0",
+        "MON-017-0",
+        "MON-020-0",
+        "MON-021-0",
+        "MON-022-0",
+        "MON-024-0"
+      ]
+    },
+    {
+      "page": "campaign/02.png",
+      "cases": [
+        "MON-025-0",
+        "MON-026-0",
+        "MON-028-0",
+        "MON-029-0",
+        "MON-030-0",
+        "MON-031-0",
+        "MON-032-0",
+        "MON-033-0"
+      ]
+    },
+    {
+      "page": "campaign/03.png",
+      "cases": [
+        "MON-034-0",
+        "MON-035-0",
+        "MON-036-0",
+        "MON-037-0",
+        "MON-038-0",
+        "MON-039-0",
+        "MON-060-0",
+        "MON-061-0"
+      ]
+    },
+    {
+      "page": "campaign/04.png",
+      "cases": [
+        "MON-062-0",
+        "MON-063-0",
+        "MON-064-0",
+        "MON-065-0",
+        "MON-066-0",
+        "MON-067-0",
+        "MON-068-0",
+        "MON-069-0"
+      ]
+    },
+    {
+      "page": "campaign/05.png",
+      "cases": [
+        "MON-070-0",
+        "MON-071-0",
+        "MON-072-0",
+        "MON-073-0",
+        "MON-074-0",
+        "MON-075-0",
+        "MON-076-0",
+        "MON-077-0"
+      ]
+    },
+    {
+      "page": "campaign/06.png",
+      "cases": [
+        "MON-078-0",
+        "MON-079-0",
+        "MON-080-0",
+        "MON-081-0",
+        "MON-082-0",
+        "MON-083-0",
+        "MON-084-0",
+        "MON-085-0"
+      ]
+    },
+    {
+      "page": "campaign/07.png",
+      "cases": [
+        "MON-086-0",
+        "MON-087-0",
+        "MON-088-0",
+        "MON-089-0",
+        "MON-090-0",
+        "MON-092-0",
+        "MON-093-0",
+        "MON-096-0"
+      ]
+    },
+    {
+      "page": "campaign/08.png",
+      "cases": [
+        "MON-098-0",
+        "MON-099-0",
+        "MON-100-0",
+        "MON-101-0",
+        "MON-102-0",
+        "MON-103-0",
+        "MON-104-0",
+        "MON-105-0"
+      ]
+    },
+    {
+      "page": "campaign/09.png",
+      "cases": [
+        "MON-106-0",
+        "MON-107-0",
+        "MON-108-0",
+        "MON-109-0",
+        "MON-111-0",
+        "MON-112-0",
+        "MON-113-0",
+        "MON-115-0"
+      ]
+    },
+    {
+      "page": "campaign/10.png",
+      "cases": [
+        "MON-116-0",
+        "MON-117-0",
+        "MON-118-0",
+        "MON-119-0",
+        "MON-120-0",
+        "MON-121-0",
+        "MON-122-0",
+        "MON-123-0"
+      ]
+    },
+    {
+      "page": "campaign/11.png",
+      "cases": [
+        "MON-124-0",
+        "MON-125-0",
+        "MON-126-0",
+        "MON-127-0",
+        "MON-128-0",
+        "MON-129-0",
+        "MON-130-0",
+        "MON-131-0"
+      ]
+    },
+    {
+      "page": "campaign/12.png",
+      "cases": [
+        "MON-132-0",
+        "MON-133-0",
+        "MON-134-0",
+        "MON-135-0",
+        "MON-136-0",
+        "MON-137-0",
+        "MON-138-0",
+        "MON-139-0"
+      ]
+    },
+    {
+      "page": "campaign/13.png",
+      "cases": [
+        "MON-140-0",
+        "MON-141-0",
+        "MON-142-0",
+        "MON-143-0",
+        "MON-144-0",
+        "MON-145-0",
+        "MON-146-0",
+        "MON-147-0"
+      ]
+    },
+    {
+      "page": "campaign/14.png",
+      "cases": [
+        "MON-148-0",
+        "MON-149-0",
+        "MON-150-0",
+        "MON-151-0",
+        "MON-152-0",
+        "MON-153-0",
+        "MON-154-0",
+        "MON-155-0"
+      ]
+    },
+    {
+      "page": "campaign/15.png",
+      "cases": [
+        "MON-156-0",
+        "MON-157-0",
+        "MON-158-0",
+        "MON-159-0",
+        "MON-160-0",
+        "MON-161-0",
+        "MON-162-0",
+        "MON-164-0"
+      ]
+    },
+    {
+      "page": "campaign/16.png",
+      "cases": [
+        "MON-165-0"
+      ]
+    },
+    {
+      "page": "forms-drones/00.png",
+      "cases": [
+        "FORM-PREDATOR",
+        "FORM-COLOSSUS",
+        "FORM-ARMOR",
+        "FORM-POSSESSED",
+        "FORM-ABYSS",
+        "FORM-CLOSED",
+        "DRONE-SCOUT",
+        "DRONE-TRACKER"
+      ]
+    },
+    {
+      "page": "forms-drones/01.png",
+      "cases": [
+        "DRONE-GUARDIAN",
+        "DRONE-GUNNER"
+      ]
+    }
+  ]
+}

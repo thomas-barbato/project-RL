@@ -165,7 +165,7 @@ pub(super) fn draw(game: &WorldState, camera: &GridCamera, known: impl Fn(GridPo
     MASK.with(|slot| {
         let mut slot = slot.borrow_mut();
         let material = slot.get_or_insert_with(|| {
-            load_material(
+            crate::world_readability::material(
                 ShaderSource::Glsl {
                     vertex: VERTEX,
                     fragment: FRAGMENT,
@@ -216,7 +216,7 @@ pub(super) fn draw(game: &WorldState, camera: &GridCamera, known: impl Fn(GridPo
             [1.0 / f32::from(image.width), 1.0 / f32::from(image.height)],
         );
         material.set_texture("visibilityMask", texture);
-        gl_use_material(material);
+        crate::world_readability::use_material(material);
         let mut mesh = Mesh {
             vertices: Vec::with_capacity(256),
             indices: Vec::with_capacity(384),
@@ -301,7 +301,7 @@ pub(super) fn draw(game: &WorldState, camera: &GridCamera, known: impl Fn(GridPo
         if !mesh.indices.is_empty() {
             draw_mesh(&mesh);
         }
-        gl_use_default_material();
+        crate::world_readability::restore();
     });
 }
 

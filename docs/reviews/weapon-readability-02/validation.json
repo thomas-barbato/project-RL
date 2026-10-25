@@ -1,0 +1,25 @@
+{
+  "status": "awaiting_visual_approval",
+  "source_export_test": "passed: models 31,17,23,51",
+  "candidate_pose_test": "passed: 150 configurations, 300 grip contacts across both waves",
+  "heavy_grip_contacts": 200,
+  "head_mask_and_feet_checks": 200,
+  "approved_review_cells_preserved": 150,
+  "protected_active_armor_atlases": 23,
+  "runtime_integration": false,
+  "browser_controls_verified": [
+    "six weapon tabs",
+    "approved status for first wave",
+    "armor 01 and 05",
+    "light ground",
+    "grayscale",
+    "four-family overview"
+  ],
+  "native_overview_source_width": 432,
+  "native_overview_css_width": 432,
+  "native_comparison_source_canvas": 96,
+  "native_comparison_css_canvas": 96,
+  "browser_capture": "artifacts/weapon-readability-review-01/heavy-browser-overview.png",
+  "display_capture": "artifacts/weapon-readability-review-01/heavy-browser-overview-native.png",
+  "capture_crop_only_no_resize": true
+}

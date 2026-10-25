@@ -1,0 +1,595 @@
+{
+  "review_id": "CLASS-READ01",
+  "date": "2026-10-21",
+  "status": "accepted_current_25_outfits_integrated",
+  "scope": "25 accepted player outfits for five classes integrated; historical candidate entries retained as archived context; monsters excluded.",
+  "latest_steering": "22 October 2026: all 25 current class outfits accepted. User explicitly authorizes integration and requires compatibility of every outfit with all weapons.",
+  "tile_size": 64,
+  "active_game_resources_modified": true,
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "CL01-r04",
+      "class_id": "core:bastion",
+      "name": "Bastion",
+      "status": "awaiting_visual_approval",
+      "direction": "Large et robuste ; bras puissants, appuis solides, augmentation faciale proposée en r04.",
+      "skills": [
+        {
+          "id": "B01",
+          "title": "Frappe de rupture",
+          "description": "Vos implants libèrent toute leur puissance dans un coup brutal."
+        },
+        {
+          "id": "B03",
+          "title": "Vitalité améliorée",
+          "description": "Votre corps renforcé supporte davantage de blessures avant de céder."
+        }
+      ],
+      "presentation_gender": "unspecified",
+      "class_source": "content/core/classes/bastion.json5",
+      "class_source_sha256": "d8c5c951bceafe5b9248778540ef3ba3a4c3c4f611012db7afca7e01fd30dca0",
+      "current_art": "assets/sprites/art-finish-01/FIN-01.png",
+      "source": "assets/source-art/class-readability-01/CL01-r04-source.png",
+      "source_sha256": "353bc3360eab60a66c2c0a3ffd16b130f13d22fcdc53661daccd35bc7f55a8b3",
+      "native": "artifacts/class-armor-review-01/CL01-r04-native64.png",
+      "native_sha256": "96a9893e03ea0429bc7515e75579b710fc1ef7c77455479c4178c008cdd5edd6",
+      "measurements": {
+        "source_core_box": [
+          321,
+          69,
+          933,
+          1190
+        ],
+        "source_crop": [
+          304,
+          52,
+          950,
+          1207
+        ],
+        "isotropic_scale": 0.05173951828724353,
+        "native_core_box": [
+          17,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 31,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "layer_status": "silhouette_reference_only_not_a_production_rig",
+      "attachment_points": "foot_baseline_measured; head/shoulders/hands_pending_after_silhouette_review"
+    },
+    {
+      "number": "02",
+      "candidate_id": "CL02-r04",
+      "class_id": "core:technomancien",
+      "name": "Technomancien",
+      "status": "awaiting_visual_approval",
+      "direction": "Corps presque entièrement mécanique ; crâne partiel, torse-machine et membres articulés.",
+      "skills": [
+        {
+          "id": "D59",
+          "title": "Invocation de l'Artilleur",
+          "description": "Votre artilleur verrouille une cible et ouvre le feu à vos côtés."
+        },
+        {
+          "id": "O03",
+          "title": "Algorithmes de combat améliorés",
+          "description": "Vos drones exploitent des algorithmes de combat plus performants pour rendre leurs attaques plus destructrices."
+        }
+      ],
+      "presentation_gender": "unspecified",
+      "class_source": "content/core/classes/technomancien.json5",
+      "class_source_sha256": "80f6d233639f1acb79dfa15d6c0c9af56f69471cf171186ddbbc91ef1298f8e4",
+      "current_art": "assets/sprites/art-finish-02/FIN-14.png",
+      "source": "assets/source-art/class-readability-01/CL02-r04-source.png",
+      "source_sha256": "785049af227cc6ea7f06775625092a343036736b2d38ca922ce9cea56380f94d",
+      "native": "artifacts/class-armor-review-01/CL02-r04-native64.png",
+      "native_sha256": "6267865ff1b3944e7185e6aff4beb971967491f582a6af0bd216f7f80aa216f2",
+      "measurements": {
+        "source_core_box": [
+          115,
+          44,
+          826,
+          1654
+        ],
+        "source_crop": [
+          91,
+          20,
+          850,
+          1678
+        ],
+        "isotropic_scale": 0.03602484472049689,
+        "native_core_box": [
+          19,
+          4,
+          44,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 25,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "layer_status": "silhouette_reference_only_not_a_production_rig",
+      "attachment_points": "foot_baseline_measured; head/shoulders/hands_pending_after_silhouette_review"
+    },
+    {
+      "number": "03",
+      "candidate_id": "CL03-r03",
+      "class_id": "core:traqueur",
+      "name": "Traqueuse",
+      "status": "awaiting_visual_approval",
+      "direction": "La traqueuse : compacte et athlétique ; optique, avant-bras et jambe cybernétiques.",
+      "skills": [
+        {
+          "id": "T01",
+          "title": "Marquage balistique",
+          "description": "Vous désignez les failles de votre cible pour guider vos tirs."
+        },
+        {
+          "id": "T03",
+          "title": "Maîtrise des attaques à distance",
+          "description": "Vous exploitez chaque ouverture pour frapper vos proies avec une violence accrue."
+        }
+      ],
+      "presentation_gender": "female",
+      "class_source": "content/core/classes/traqueur.json5",
+      "class_source_sha256": "64015f3abaecb1b58d54fb72a9b183635f5a9a90c82729607ca4e48fe74aa3f2",
+      "current_art": "assets/sprites/art-finish-02/FIN-15.png",
+      "source": "assets/source-art/class-readability-01/CL03-r03-source.png",
+      "source_sha256": "98aaf4f22a93ec611c10938d0e7a8bbc1fea818b9958b29cb60c91c1d2576d54",
+      "native": "artifacts/class-armor-review-01/CL03-r03-native64.png",
+      "native_sha256": "80a226535b7a48bd693841a819aefd7b2a6720c60a3256586ef75e89c13f8870",
+      "measurements": {
+        "source_core_box": [
+          185,
+          7,
+          849,
+          1451
+        ],
+        "source_crop": [
+          163,
+          0,
+          871,
+          1473
+        ],
+        "isotropic_scale": 0.038781163434903045,
+        "native_core_box": [
+          19,
+          6,
+          44,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 25,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "layer_status": "silhouette_reference_only_not_a_production_rig",
+      "attachment_points": "foot_baseline_measured; head/shoulders/hands_pending_after_silhouette_review"
+    },
+    {
+      "number": "04",
+      "candidate_id": "CL04-r03",
+      "class_id": "core:arcaniste",
+      "name": "Arcaniste",
+      "status": "awaiting_visual_approval",
+      "direction": "Élancé ; avant-bras de canalisation, implants cuivre et céramique.",
+      "skills": [
+        {
+          "id": "FE01",
+          "title": "Braise",
+          "description": "Vous projetez une braise incandescente qui s’accroche à votre cible et la consume."
+        },
+        {
+          "id": "A03",
+          "title": "Canalisation",
+          "description": "Vos implants canalisent les forces occultes avec moins de pertes."
+        }
+      ],
+      "presentation_gender": "unspecified",
+      "class_source": "content/core/classes/arcaniste.json5",
+      "class_source_sha256": "56ca891019a84d6171111ef6c238e643b3516c28011e98ff15e5aa04587ba829",
+      "current_art": "assets/sprites/art-finish-02/FIN-16.png",
+      "source": "assets/source-art/class-readability-01/CL04-r03-source.png",
+      "source_sha256": "ef89d641df772f16ea299f58a36d8309f918436bad169cd8eb77024aae4f551d",
+      "native": "artifacts/class-armor-review-01/CL04-r03-native64.png",
+      "native_sha256": "ad4e39c7925e07f04150e51233636bc53f64ee400050b16ec328f871f40a049c",
+      "measurements": {
+        "source_core_box": [
+          386,
+          26,
+          843,
+          1250
+        ],
+        "source_crop": [
+          368,
+          8,
+          861,
+          1268
+        ],
+        "isotropic_scale": 0.049019607843137254,
+        "native_core_box": [
+          21,
+          2,
+          43,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 22,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "layer_status": "silhouette_reference_only_not_a_production_rig",
+      "attachment_points": "foot_baseline_measured; head/shoulders/hands_pending_after_silhouette_review"
+    },
+    {
+      "number": "05",
+      "candidate_id": "CL05-r02",
+      "class_id": "core:metamorphe",
+      "name": "Métamorphe",
+      "status": "awaiting_visual_approval",
+      "direction": "La métamorphe : nerveuse, musclée et ramassée ; forme humaine au repos.",
+      "skills": [
+        {
+          "id": "M01",
+          "title": "Mue prédatrice",
+          "description": "Vous vous métamorphosez en une bête sauvage, animée par un instinct de prédateur."
+        },
+        {
+          "id": "M03",
+          "title": "Puissance métamorphe",
+          "description": "L’énergie occulte imprègne votre corps métamorphosé et amplifie la violence de vos attaques."
+        }
+      ],
+      "presentation_gender": "female",
+      "class_source": "content/core/classes/metamorphe.json5",
+      "class_source_sha256": "e8b3d8eddc0b3af38279dfa9ff6309be4a7393386f3a753fed61f2d089d9c1b9",
+      "current_art": "assets/sprites/art-finish-02/FIN-17.png",
+      "source": "assets/source-art/class-readability-01/CL05-r02-source.png",
+      "source_sha256": "3548362e46cc9905db556384739ab084c4ec67cedeec4159af28e36a5cbefde7",
+      "native": "artifacts/class-armor-review-01/CL05-r02-native64.png",
+      "native_sha256": "3e8c8a5ef32cc8e7c088f1fc2e4428db67795f951d1f9c9de51499d992e639b5",
+      "measurements": {
+        "source_core_box": [
+          339,
+          92,
+          857,
+          1258
+        ],
+        "source_crop": [
+          322,
+          75,
+          874,
+          1275
+        ],
+        "isotropic_scale": 0.048027444253859346,
+        "native_core_box": [
+          19,
+          6,
+          44,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 25,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "layer_status": "silhouette_reference_only_not_a_production_rig",
+      "attachment_points": "foot_baseline_measured; head/shoulders/hands_pending_after_silhouette_review"
+    }
+  ],
+  "equipment_inventory": [
+    {
+      "id": "core:armure_cerbere",
+      "name": "Armure Cerbère",
+      "slot": "core:body_armor",
+      "source": "content/core/items/armure_cerbere.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "generated_catalogue",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:brigandine_cognefer",
+      "name": "Tenue Cognefer",
+      "slot": "core:body_armor",
+      "source": "content/core/items/brigandine_cognefer.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "retired",
+      "planned_for_class_variants": false
+    },
+    {
+      "id": "core:calotte_cognefer",
+      "name": "Calotte Cognefer",
+      "slot": "core:head_armor",
+      "source": "content/core/items/calotte_cognefer.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "accessory",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:capuche_de_mue",
+      "name": "Capuche de mue",
+      "slot": "core:head_armor",
+      "source": "content/core/items/capuche_de_mue.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "accessory",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:carapace_chrysalide",
+      "name": "Carapace Chrysalide",
+      "slot": "core:body_armor",
+      "source": "content/core/items/carapace_chrysalide.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "generated_catalogue",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:casque_cerbere",
+      "name": "Casque Cerbère",
+      "slot": "core:head_armor",
+      "source": "content/core/items/casque_cerbere.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "accessory",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:combinaison_fantome",
+      "name": "Tenue Fantôme",
+      "slot": "core:body_armor",
+      "source": "content/core/items/combinaison_fantome.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "generated_catalogue",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:composite_carapace",
+      "name": "Armure Azurite",
+      "slot": "core:body_armor",
+      "source": "content/core/items/composite_carapace.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "retired",
+      "planned_for_class_variants": false
+    },
+    {
+      "id": "core:heaume_bastion",
+      "name": "Heaume Bastion",
+      "slot": "core:head_armor",
+      "source": "content/core/items/heaume_bastion.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "accessory",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:manteau_de_mue",
+      "name": "Robe de mue",
+      "slot": "core:body_armor",
+      "source": "content/core/items/manteau_de_mue.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "generated_catalogue",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:masque_chrysalide",
+      "name": "Masque Chrysalide",
+      "slot": "core:head_armor",
+      "source": "content/core/items/masque_chrysalide.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "accessory",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:patched_plating",
+      "name": "Tablier de cuir",
+      "slot": "core:body_armor",
+      "source": "content/core/items/patched_plating.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "retired",
+      "planned_for_class_variants": false
+    },
+    {
+      "id": "core:plastron_bastion",
+      "name": "Armure Bastion",
+      "slot": "core:body_armor",
+      "source": "content/core/items/plastron_bastion.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "generated_catalogue",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:tenue_assaut",
+      "name": "Tenue d’assaut",
+      "slot": "core:body_armor",
+      "source": "content/core/items/tenue_assaut.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": true,
+      "catalogue_status": "class_base_compatibility",
+      "planned_for_class_variants": false
+    },
+    {
+      "id": "core:tenue_metamorphe",
+      "name": "Tenue métamorphe",
+      "slot": "core:body_armor",
+      "source": "content/core/items/tenue_metamorphe.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": true,
+      "catalogue_status": "class_base_compatibility",
+      "planned_for_class_variants": false
+    },
+    {
+      "id": "core:tenue_rituelle",
+      "name": "Tenue rituelle",
+      "slot": "core:body_armor",
+      "source": "content/core/items/tenue_rituelle.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": true,
+      "catalogue_status": "class_base_compatibility",
+      "planned_for_class_variants": false
+    },
+    {
+      "id": "core:tenue_technique",
+      "name": "Tenue technique",
+      "slot": "core:body_armor",
+      "source": "content/core/items/tenue_technique.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": true,
+      "catalogue_status": "class_base_compatibility",
+      "planned_for_class_variants": false
+    },
+    {
+      "id": "core:tenue_traque",
+      "name": "Tenue de traque",
+      "slot": "core:body_armor",
+      "source": "content/core/items/tenue_traque.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": true,
+      "catalogue_status": "class_base_compatibility",
+      "planned_for_class_variants": false
+    },
+    {
+      "id": "core:veste_a_fibres_croisees",
+      "name": "Tenue du nomade",
+      "slot": "core:body_armor",
+      "source": "content/core/items/veste_a_fibres_croisees.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "generated_catalogue",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:veste_de_la_seconde_ombre",
+      "name": "Robe de la Seconde Ombre",
+      "slot": "core:body_armor",
+      "source": "content/core/items/veste_de_la_seconde_ombre.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "generated_catalogue",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:veste_de_membranes",
+      "name": "Tenue de membranes",
+      "slot": "core:body_armor",
+      "source": "content/core/items/veste_de_membranes.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "generated_catalogue",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:veste_de_peau_seconde",
+      "name": "Combinaison Peau-Seconde",
+      "slot": "core:body_armor",
+      "source": "content/core/items/veste_de_peau_seconde.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "generated_catalogue",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:veste_de_veille",
+      "name": "Tenue du technicien",
+      "slot": "core:body_armor",
+      "source": "content/core/items/veste_de_veille.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "generated_catalogue",
+      "planned_for_class_variants": true
+    },
+    {
+      "id": "core:veste_matelassee",
+      "name": "Tenue d’aviateur",
+      "slot": "core:body_armor",
+      "source": "content/core/items/veste_matelassee.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "retired",
+      "planned_for_class_variants": false
+    },
+    {
+      "id": "core:visiere_fantome",
+      "name": "Visière Fantôme",
+      "slot": "core:head_armor",
+      "source": "content/core/items/visiere_fantome.json5",
+      "visual_family": null,
+      "class_variants": "pending_after_base_review",
+      "historical_starter": false,
+      "catalogue_status": "accessory",
+      "planned_for_class_variants": true
+    }
+  ],
+  "approval_scopes": {
+    "base_silhouettes": "pending",
+    "body_armor_variants": "25 outfits for five classes accepted; integration authorized subject to all-weapon verification.",
+    "head_armor_variants": "not_produced",
+    "weapon_grips": "not_produced",
+    "new_effects": "none",
+    "monster_readability": "later_review",
+    "default_head_appearances": "All 25 torso-provided default heads accepted."
+  },
+  "color_variants": "deferred_by_user",
+  "review_workflow": "all_classes_then_joint_native64_review",
+  "current_visual_study": "docs/reviews/class-readability-01/metamorphe-biodruid-wave-03/candidates.json",
+  "bastion_current_acceptance": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+  "future_technomancien_color_intent": {
+    "red_only_changes": true,
+    "gold_edging_fixed": true,
+    "status": "robe-color request retained historically; production variants deferred; new bare metal tint mapping not inferred"
+  },
+  "technomancien_current_acceptance": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+  "traqueuse_current_acceptance": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+  "arcaniste_selected_style_reference": {
+    "candidate": "FIN-16",
+    "path": "assets/sprites/art-finish-02/FIN-16.png",
+    "direction": "red robe, hood and ivory slit mask at a late armor stage",
+    "new_range_approval": "accepted_visual_reference",
+    "previous_provisional_reply": "bon je valide pour l'instant",
+    "previous_provisional_status": "superseded_by_explicit_style_change"
+  },
+  "arcaniste_current_acceptance": "docs/reviews/class-readability-01/arcaniste-red-robe-wave-05/acceptance.json",
+  "current_native64_overview": "docs/reviews/class-readability-01/metamorphe-biodruid-wave-03/joint-native64-review.json",
+  "metamorphe_current_acceptance": "docs/reviews/class-readability-01/metamorphe-biodruid-wave-03/acceptance.json",
+  "runtime_integration": "docs/reviews/class-armor-integration-01/validation.json"
+}

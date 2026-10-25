@@ -1,0 +1,604 @@
+{
+  "review_id": "METAMORPHE-BIODRUID-W03",
+  "date": "2026-10-22",
+  "status": "awaiting_native64_visual_review",
+  "class_id": "core:metamorphe",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "native_height": 56,
+  "candidate_count": 5,
+  "reference_acceptances": [
+    {
+      "path": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+      "sha256": "6d55febb0bd152cca21df65f000b37da01a19d49179fedf9d74309e93bb40028"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+      "sha256": "d51882a635cbd8e024e366f4442cf238e1345668b2d0c03d152d7d6f0f4a0e02"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+      "sha256": "f8ecf404d5c60e6d9c5686def4b8221bc822e44b0a69201163e972b53b15f566"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/arcaniste-red-robe-wave-05/acceptance.json",
+      "sha256": "39b0287e29dd2cfe6adbbe8e9026fdc1975ce3fea18a01cc9981fc7caf676461"
+    }
+  ],
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "ME-BD03-P01-r01",
+      "rank": 1,
+      "label": "Très légère",
+      "class_id": "core:metamorphe",
+      "class_name": "Métamorphe",
+      "presentation_gender": "female",
+      "form": "human_resting",
+      "status": "awaiting_native64_visual_review",
+      "method": "reuse_user_liked_light_outfit_exact",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/references/user-02-light-outfit.png",
+      "source_sha256": "4314091df069b41974be573dab988ef1c4bfc9dd8cb6ce6535a644e438020c5d",
+      "native": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P01-r01-native64.png",
+      "native_sha256": "92f9ff694df596eb806f0637ee1c53b857cd8bd08e2181dab41f01d5aca411e1",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          289,
+          38,
+          950,
+          1247
+        ],
+        "source_crop": [
+          271,
+          20,
+          968,
+          1265
+        ],
+        "isotropic_scale": 0.04631927212572374,
+        "native_core_box": [
+          17,
+          6,
+          47,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 30,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        17,
+        6,
+        47,
+        62
+      ],
+      "native_core_height": 56,
+      "native_core_width": 30,
+      "solid_silhouette_pixels": 701,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P01-r01-head-native64.png",
+          "sha256": "f9dca75da631069237b077491269e6cc56a30a003e10ee51d5521bbaee5b0df0"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P01-r01-body-native64.png",
+          "sha256": "5c2fbc6a36047a85596d46f3aaab63183a670c9340bf10842303a2b2435196a9"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P01-r01-head-mask-native64.png",
+          "sha256": "5131054f32287b0cf4532031cde6f3cb311e32852033a3185f24580d21bda2e0"
+        }
+      },
+      "head_label": "Tête nue",
+      "head_ownership_polygon": [
+        [
+          29,
+          4
+        ],
+        [
+          35,
+          4
+        ],
+        [
+          38,
+          8
+        ],
+        [
+          38,
+          12
+        ],
+        [
+          35,
+          16
+        ],
+        [
+          29,
+          16
+        ],
+        [
+          26,
+          12
+        ],
+        [
+          26,
+          8
+        ]
+      ],
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_anchor": [
+        32,
+        13
+      ],
+      "head_is_default_appearance_of_torso": true,
+      "rig_status": "study layers; independent helmet override and weapon grips pending"
+    },
+    {
+      "number": "02",
+      "candidate_id": "ME-BD03-P02-r01",
+      "rank": 2,
+      "label": "Légère",
+      "class_id": "core:metamorphe",
+      "class_name": "Métamorphe",
+      "presentation_gender": "female",
+      "form": "human_resting",
+      "status": "awaiting_native64_visual_review",
+      "method": "built_in_image_gen",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P02-r01-source.png",
+      "source_sha256": "9659e4ef986703e34352e2912f273b8d2390e6a9462351823cf34c213871dc0f",
+      "native": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P02-r01-native64.png",
+      "native_sha256": "b48a0e65861fd84c1c6c0e0c72b9f4c1fb28893718bb7705243a105b0da2aa33",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          192,
+          38,
+          890,
+          1457
+        ],
+        "source_crop": [
+          171,
+          17,
+          911,
+          1478
+        ],
+        "isotropic_scale": 0.03946441155743481,
+        "native_core_box": [
+          19,
+          6,
+          46,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 27,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        19,
+        6,
+        46,
+        62
+      ],
+      "native_core_height": 56,
+      "native_core_width": 27,
+      "solid_silhouette_pixels": 684,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P02-r01-head-native64.png",
+          "sha256": "783d32280c2392672944d4c360cdb66c7f23cbd8ffc0e18f2babae0dd834fc52"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P02-r01-body-native64.png",
+          "sha256": "fac87165e39836079d26a7da4a7bb96d0e4fa01fc3c8c1598122896399559075"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P02-r01-head-mask-native64.png",
+          "sha256": "0b656dc9464f50d73c2efe1c0a9d2ac3487a83f3dbbe1ae29a375cd6b66ea361"
+        }
+      },
+      "head_label": "Bandeau léger",
+      "head_ownership_polygon": [
+        [
+          28,
+          4
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          38,
+          9
+        ],
+        [
+          37,
+          14
+        ],
+        [
+          34,
+          17
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          27,
+          13
+        ],
+        [
+          26,
+          9
+        ]
+      ],
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_anchor": [
+        32,
+        13
+      ],
+      "head_is_default_appearance_of_torso": true,
+      "rig_status": "study layers; independent helmet override and weapon grips pending"
+    },
+    {
+      "number": "03",
+      "candidate_id": "ME-BD02-P03-r01",
+      "rank": 3,
+      "label": "Interméd.",
+      "class_id": "core:metamorphe",
+      "class_name": "Métamorphe",
+      "presentation_gender": "female",
+      "form": "human_resting",
+      "status": "awaiting_native64_visual_review",
+      "method": "reuse_current_medium_study_exact",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-study-02/ME-BD02-P03-r01-source.png",
+      "source_sha256": "0711050b7adc994e0ff335052575f146cc54061132f4aaeaee5549f1d40d820c",
+      "native": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD02-P03-r01-native64.png",
+      "native_sha256": "08bb1b67383dc33ac3c4ae6d0325a3a1d5e1bfd8e46b649a380f84b6ddc850c2",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          190,
+          36,
+          880,
+          1458
+        ],
+        "source_crop": [
+          169,
+          15,
+          901,
+          1479
+        ],
+        "isotropic_scale": 0.03938115330520394,
+        "native_core_box": [
+          19,
+          6,
+          46,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 27,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        19,
+        6,
+        46,
+        62
+      ],
+      "native_core_height": 56,
+      "native_core_width": 27,
+      "solid_silhouette_pixels": 732,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD02-P03-r01-head-native64.png",
+          "sha256": "59129fcad7f705511c42d4e660bdac5fded5d8240088eee7da471c2e9dfb547f"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD02-P03-r01-body-native64.png",
+          "sha256": "01490cdcebdea23273b7c3d284ae3be077f5406ed258871ec5dc3956e69fb376"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD02-P03-r01-head-mask-native64.png",
+          "sha256": "0b656dc9464f50d73c2efe1c0a9d2ac3487a83f3dbbe1ae29a375cd6b66ea361"
+        }
+      },
+      "head_label": "Bandeau souple",
+      "head_ownership_polygon": [
+        [
+          28,
+          4
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          38,
+          9
+        ],
+        [
+          37,
+          14
+        ],
+        [
+          34,
+          17
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          27,
+          13
+        ],
+        [
+          26,
+          9
+        ]
+      ],
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_anchor": [
+        32,
+        13
+      ],
+      "head_is_default_appearance_of_torso": true,
+      "rig_status": "study layers; independent helmet override and weapon grips pending"
+    },
+    {
+      "number": "04",
+      "candidate_id": "ME-BD03-P04-r01",
+      "rank": 4,
+      "label": "Lourde",
+      "class_id": "core:metamorphe",
+      "class_name": "Métamorphe",
+      "presentation_gender": "female",
+      "form": "human_resting",
+      "status": "awaiting_native64_visual_review",
+      "method": "built_in_image_gen",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P04-r01-source.png",
+      "source_sha256": "ef93bacf5c86b9882671a90ef3c1627bca3303134662df172dfa5b5ec0801731",
+      "native": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P04-r01-native64.png",
+      "native_sha256": "0bde901a4e677ba3a98599a7e19a3379209bd6daae10622fc718a412691c12ee",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          184,
+          32,
+          890,
+          1462
+        ],
+        "source_crop": [
+          163,
+          11,
+          911,
+          1483
+        ],
+        "isotropic_scale": 0.039160839160839164,
+        "native_core_box": [
+          19,
+          6,
+          46,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 27,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        19,
+        6,
+        46,
+        62
+      ],
+      "native_core_height": 56,
+      "native_core_width": 27,
+      "solid_silhouette_pixels": 770,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P04-r01-head-native64.png",
+          "sha256": "9777d382db78c6fc868d1430e479c9edc139b4be5bfa1ebbfa1ccc23fe712111"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P04-r01-body-native64.png",
+          "sha256": "a04e329dbf9ffe52610216916e96e0968d7f5d15952bf3721ba0abfb590e02c1"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P04-r01-head-mask-native64.png",
+          "sha256": "6b674dc6c5a80855ddb71ebe0b243d4ce6f49d798c39f67be6204bb71755fcab"
+        }
+      },
+      "head_label": "Tempes protégées",
+      "head_ownership_polygon": [
+        [
+          28,
+          4
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          39,
+          9
+        ],
+        [
+          38,
+          14
+        ],
+        [
+          35,
+          17
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          26,
+          9
+        ]
+      ],
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_anchor": [
+        32,
+        13
+      ],
+      "head_is_default_appearance_of_torso": true,
+      "rig_status": "study layers; independent helmet override and weapon grips pending"
+    },
+    {
+      "number": "05",
+      "candidate_id": "ME-BD03-P05-r01",
+      "rank": 5,
+      "label": "Très lourde",
+      "class_id": "core:metamorphe",
+      "class_name": "Métamorphe",
+      "presentation_gender": "female",
+      "form": "human_resting",
+      "status": "awaiting_native64_visual_review",
+      "method": "built_in_image_gen",
+      "source": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P05-r01-source.png",
+      "source_sha256": "b09ecbdd169d9b6f10481bc285ecf7a2041852126f558c5f63c8abbd07e970ed",
+      "native": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P05-r01-native64.png",
+      "native_sha256": "27ad7264d30731b996ec7d0cc99dccb06b914aa2abd71704f38fbd72eca2051a",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          145,
+          11,
+          945,
+          1515
+        ],
+        "source_crop": [
+          122,
+          0,
+          968,
+          1536
+        ],
+        "isotropic_scale": 0.03723404255319149,
+        "native_core_box": [
+          17,
+          6,
+          47,
+          62
+        ],
+        "native_core_height": 56,
+        "native_core_width": 30,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        17,
+        6,
+        47,
+        62
+      ],
+      "native_core_height": 56,
+      "native_core_width": 30,
+      "solid_silhouette_pixels": 833,
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P05-r01-head-native64.png",
+          "sha256": "9fd7c23b0c7e142decdb7e572e88545025e37322bc671ee969f3ae90a88892d7"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P05-r01-body-native64.png",
+          "sha256": "171e822c5adf144506ece963d49bdb7e1b073c9ceed1f516c7045d02dee5f7f6"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/ME-BD03-P05-r01-head-mask-native64.png",
+          "sha256": "94711d1f27cfd39fcd605a267654a83c2247a520f89a7fed60e529f02673e620"
+        }
+      },
+      "head_label": "Menton protégé",
+      "head_ownership_polygon": [
+        [
+          28,
+          4
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          39,
+          8
+        ],
+        [
+          39,
+          13
+        ],
+        [
+          35,
+          18
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          26,
+          8
+        ]
+      ],
+      "head_body_recomposition_exact": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_anchor": [
+        32,
+        13
+      ],
+      "head_is_default_appearance_of_torso": true,
+      "rig_status": "study layers; independent helmet override and weapon grips pending"
+    }
+  ],
+  "runtime_integration": false,
+  "color_variants": "deferred_by_user"
+}

@@ -1,0 +1,32 @@
+{
+  "review_id": "WALK10-PROPORTIONS-BA00-r01",
+  "status": "proposal_not_integrated",
+  "native_tile": 64,
+  "scope": "Bastion outfit1, unarmed and actual axe67, both directions, 14 whole poses",
+  "normal_release_sha256": "38ecac8c287071ff7b41ff94c4f06f7a30161767aebf944a529e8e6340052efe",
+  "compositor_diagnostic": "passed",
+  "exported_parts": 14,
+  "preview_one_step_ms": 400,
+  "preview_distance_px": 64,
+  "source_audit": "../player-walk-09/volume-audit/metrics.json",
+  "candidate_geometry": "conditioning.json",
+  "generation_mode": "built-in image_gen",
+  "prompts": "prompts.json",
+  "source_directory": "assets/source-art/player-walk-review-10",
+  "limitations": "Pilot for Bastion outfit1 only. Other24 outfits still need individual front-proportion matching. No new animation or body asset is selected by the normal game.",
+  "gif_checks": [
+    {
+      "file": "Bastion-unarmed-front-current-proposal.gif",
+      "frames": 28,
+      "one_step_ms": 400,
+      "duration_ms": 3520
+    },
+    {
+      "file": "Bastion-axe-front-current-proposal.gif",
+      "frames": 28,
+      "one_step_ms": 400,
+      "duration_ms": 3520
+    }
+  ],
+  "installed_walk09_and_release_unchanged": true
+}

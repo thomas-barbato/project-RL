@@ -1,0 +1,832 @@
+{
+  "source_tool": "built-in image_gen; whole-figure player pose transfer and anatomy-specific creature cycles; uniform scaling only",
+  "selected_source_count": 165,
+  "runtime_integration": false,
+  "entries": [
+    {
+      "id": "UNARMED-00",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-00-r01.png",
+      "sha256": "2efbd01c4601074681abd231e7d8e4d4771f4a70f794e3292d7e71e1ea5d5a85"
+    },
+    {
+      "id": "UNARMED-01",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-01-r01.png",
+      "sha256": "c3ace94f671e38fd9ecba0aa0e334223596f5ecd333a62ffe6a612333eaa16a6"
+    },
+    {
+      "id": "UNARMED-02",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-02-r01.png",
+      "sha256": "80c0ee0d33e02f0eb6d80324819a43dbf9b3f85af39664ec8d0301a7c4d5d0aa"
+    },
+    {
+      "id": "UNARMED-03",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-03-r01.png",
+      "sha256": "61f440dae39194c1a2c90150e6c59a51dd2d0443804ab1c50e35f8c67df36652"
+    },
+    {
+      "id": "UNARMED-04",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-04-r01.png",
+      "sha256": "6bb4096df6b828a54a1271ba83eaa7a9ad7a3fe98659b844d74a4f2277332a6d"
+    },
+    {
+      "id": "UNARMED-05",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-05-r02.png",
+      "sha256": "af29b4b442d8dba1ae2af1e4f85fe4a09df174f7626612542715a536f3797d20"
+    },
+    {
+      "id": "UNARMED-06",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-06-r01.png",
+      "sha256": "0e7e5e1ae1f6efdbe654fd1f536995854d0f9498e1b9334d4b5fc3cbd1b392fe"
+    },
+    {
+      "id": "UNARMED-07",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-07-r01.png",
+      "sha256": "25de7c8045291ef126fde86260fd3a6486fd881fbebc9744f6b669a4a889eaaa"
+    },
+    {
+      "id": "UNARMED-08",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-08-r01.png",
+      "sha256": "73994814f3f34693e3d47d8f99051a9482107784248dcbe951f5f6e88deb0d49"
+    },
+    {
+      "id": "UNARMED-09",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-09-r01.png",
+      "sha256": "9bdae06442fd2c6c90866ce02a43d1a71674a266b356b2da2e10b51e75cd26da"
+    },
+    {
+      "id": "UNARMED-10",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07f-left.png",
+      "sha256": "23e301494708eb850bd01ef8c1f70e4fd1f745e76f0db34595c0e8ec42739743"
+    },
+    {
+      "id": "UNARMED-10",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-10-r07f-right.png",
+      "sha256": "16cdbd0435978a7ee15f246b08fd5d55e3b2bf2ee3d4f602f8be6801775b1f64"
+    },
+    {
+      "id": "UNARMED-11",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-11-r08-left.png",
+      "sha256": "6f46991958ece0bff9fe768243a8acd0a76598efd5ffa416db0a3f8e93a26789"
+    },
+    {
+      "id": "UNARMED-11",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-11-r08-right.png",
+      "sha256": "4af74fb79d6dd12941ab73ddf520b63db6487e7290584c719a4f94785fc8967b"
+    },
+    {
+      "id": "UNARMED-12",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-12-r08-left.png",
+      "sha256": "5fce886c0180cad415e535cfb59cf3efb64a15d3d8612666cd22dd70437098c1"
+    },
+    {
+      "id": "UNARMED-12",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-12-r08-right.png",
+      "sha256": "f1a3a984fa6ef812fdabbfa1543f8f3ec08ef5506bdebf2e5f0342c74d252dfb"
+    },
+    {
+      "id": "UNARMED-13",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-13-r08-left.png",
+      "sha256": "ac3eeae73f55f70f7232dd3961bc2de11c357398e25e1fd523aad921a59c129b"
+    },
+    {
+      "id": "UNARMED-13",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-13-r08-right.png",
+      "sha256": "803cc104144d28f5eb8ece1b99f8055528e6616bb2ea7862350e49a089b0b310"
+    },
+    {
+      "id": "UNARMED-14",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-14-r08-left.png",
+      "sha256": "a9d874f02b0f0200cd5dbbd497c216a40e172dff164261573cb7911f03ec55cf"
+    },
+    {
+      "id": "UNARMED-14",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-14-r08-right.png",
+      "sha256": "9a8947ec6be1c428458861ae2233933190bb9e27cd4dcf76c093677cb358ba6c"
+    },
+    {
+      "id": "UNARMED-15",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-15-r01.png",
+      "sha256": "de06f51c076afab4301dd660c0d7351e5f894622926c8853542744b31028a848"
+    },
+    {
+      "id": "UNARMED-16",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-16-r01.png",
+      "sha256": "d87019ceb3936e45c3f0b18f12ad447efa5c2e2f19ff3776ca34f610c07d22d6"
+    },
+    {
+      "id": "UNARMED-17",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-17-r01.png",
+      "sha256": "feda5f1ee486465d9a18fba131b92d266142cc3b321661d68522710e950c468a"
+    },
+    {
+      "id": "UNARMED-18",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-18-r01.png",
+      "sha256": "257d946fd60af2e988a1bc17c0024d87717974bc1d0b9158c92eecf171ddb5ee"
+    },
+    {
+      "id": "UNARMED-19",
+      "file": "assets/source-art/player-walk-review-07/UNARMED-19-r01.png",
+      "sha256": "32206c78bdedc34f8043c0f6847c08c97c3e550831fb1b249086fd73f5694aca"
+    },
+    {
+      "id": "UNARMED-20",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-20-r09-left.png",
+      "sha256": "83b51409c71fc723ded2d6d6be10776e1a116d7f809d8ab61ebc486703e19116"
+    },
+    {
+      "id": "UNARMED-20",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-20-r09-right.png",
+      "sha256": "8201910eb97de9671217a6058020a869891e7e7ed600f37840b5f4fc61cdde08"
+    },
+    {
+      "id": "UNARMED-21",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-21-r09b-left.png",
+      "sha256": "62a499a3fb3a6b6da43b13fcd942e8f8ae604b9e0b02b277fe0e7cbd09107cb0"
+    },
+    {
+      "id": "UNARMED-21",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-21-r09b-right.png",
+      "sha256": "fd41cfa8b2dec77c35765d4c1e1388ec1cc4ed0e20569acbf747d32b4ccb5e5d"
+    },
+    {
+      "id": "UNARMED-22",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-22-r09b-left.png",
+      "sha256": "ebf439f715b13f260252772f1e38d8d6d157e0b391d64f3f3129082b9546fccb"
+    },
+    {
+      "id": "UNARMED-22",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-22-r09b-right.png",
+      "sha256": "1a814263b5a57c97180c3d9a426d946fa41d6824e828055bc58c1eccf3a33fa9"
+    },
+    {
+      "id": "UNARMED-23",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-23-r09b-left.png",
+      "sha256": "861777a91ea1ff4ce32952f698ef7e9ab72d35473324b983d84dd269bcbf5cd1"
+    },
+    {
+      "id": "UNARMED-23",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-23-r09b-right.png",
+      "sha256": "4b37518853204a827aa509d936d1052f0469d8b8f3720f81a05b3b673e6a0669"
+    },
+    {
+      "id": "UNARMED-24",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-24-r07-left.png",
+      "sha256": "6ac84e6827ae0bf3d284bc139104e7e6b668e622b1bbd5008b63f81e6396cbb3"
+    },
+    {
+      "id": "UNARMED-24",
+      "file": "assets/source-art/player-walk-review-07/BASTION-TRANSFER-24-r07-right.png",
+      "sha256": "21ff88702c84769dec97cd94e3460b2cb8f36f40310f88e0a0fa2802300f3e73"
+    },
+    {
+      "id": "MON-021-0",
+      "file": "assets/source-art/player-walk-review-07/MON-021-0-cycle-r01.png",
+      "sha256": "d9fa9ba54da301208169770397acb2f7d53087d756caf78401d51bb21f93a0d4"
+    },
+    {
+      "id": "MON-030-0",
+      "file": "assets/source-art/player-walk-review-07/MON-030-0-cycle-r01.png",
+      "sha256": "e17eaa0ee8e2c817fb90e370b1fe4efe33dc78dc43a32837155981284d64f9ac"
+    },
+    {
+      "id": "MON-075-0",
+      "file": "assets/source-art/player-walk-review-07/MON-075-0-cycle-r01.png",
+      "sha256": "c8c2ffe6beaa712b7f18350d7bc8962e41e2e372fe6f64fade42beb36bba690a"
+    },
+    {
+      "id": "MON-141-0",
+      "file": "assets/source-art/player-walk-review-07/MON-141-0-cycle-r01.png",
+      "sha256": "781e6821cc0cde383c3a36c679f53c0ae4f29353bb489ca3938722aae26962a6"
+    },
+    {
+      "id": "MON-124-0",
+      "file": "assets/source-art/player-walk-review-07/MON-124-0-cycle-r01.png",
+      "sha256": "798b7456341fbacbb233af2e4b5e5b02fa454c626a2c987032fb1642fb0967ff"
+    },
+    {
+      "id": "DRONE-GUNNER",
+      "file": "assets/source-art/player-walk-review-07/DRONE-GUNNER-cycle-r01.png",
+      "sha256": "8259f534f8487cac48c2d0f3d22a7f1ae94ca903d2f62bf5840705a6d6f85437"
+    },
+    {
+      "id": "MON-144-0",
+      "file": "assets/source-art/player-walk-review-07/MON-144-0-cycle-r01.png",
+      "sha256": "3117fe0d1b9257d901c22993d519be8b118a549d5df2d7be2598000aaf209fbf"
+    },
+    {
+      "id": "MON-031-0",
+      "file": "assets/source-art/player-walk-review-07/MON-031-0-cycle-lot02-r01.png",
+      "sha256": "466968639331f194eeb51e843cc34417fec97e7fdff299576966c7a5f42e54e4"
+    },
+    {
+      "id": "MON-071-0",
+      "file": "assets/source-art/player-walk-review-07/MON-071-0-cycle-lot02-r01.png",
+      "sha256": "9fee2dcf63693590dc7ae5ecd7b77575a6403f9a253d5b6cb11b1d6318b1bd1d"
+    },
+    {
+      "id": "MON-083-0",
+      "file": "assets/source-art/player-walk-review-07/MON-083-0-cycle-lot02-r01.png",
+      "sha256": "a9daea422d13d061506a3e045c4f2dd0df9ba25905da42a02730e276bca01f0f"
+    },
+    {
+      "id": "MON-064-0",
+      "file": "assets/source-art/player-walk-review-07/MON-064-0-cycle-lot02-r01.png",
+      "sha256": "1cf1f01f22f3e91e19f0fb6b984f2d394240e1278c56c244e1c4e685b38f8e56"
+    },
+    {
+      "id": "MON-125-0",
+      "file": "assets/source-art/player-walk-review-07/MON-125-0-cycle-lot02-r01.png",
+      "sha256": "ceded063342a0e74d223705cb3ccb1639eb7b281a7ba4f8f24d76222e8398b02"
+    },
+    {
+      "id": "MON-145-0",
+      "file": "assets/source-art/player-walk-review-07/MON-145-0-cycle-lot02-r02.png",
+      "sha256": "4e9a7232d65880e9e06e02c29ff154917bb3aef18336cc861fe356d1d4787a92"
+    },
+    {
+      "id": "MON-063-0",
+      "file": "assets/source-art/player-walk-review-07/MON-063-0-cycle-lot03-r02.png",
+      "sha256": "54b1eb33377dd44f78a834468c9d58b0a2748d8d8be873361a00236d4022ce0e"
+    },
+    {
+      "id": "MON-087-0",
+      "file": "assets/source-art/player-walk-review-07/MON-087-0-cycle-lot03-r01.png",
+      "sha256": "bb16d7c2f70cad162e852515deb933eb815776ac363f8c8e23d3fe4fdb1e8ad2"
+    },
+    {
+      "id": "MON-103-0",
+      "file": "assets/source-art/player-walk-review-07/MON-103-0-cycle-lot03-r01.png",
+      "sha256": "9a8cb1abdb5e6166f1f4bfc6e8f2398b4fce73b744b2f1193d070d90a4aa35a1"
+    },
+    {
+      "id": "MON-039-0",
+      "file": "assets/source-art/player-walk-review-07/MON-039-0-cycle-lot03-r01.png",
+      "sha256": "a0e61cb221ea45e57491e2a7a494a1bef7a80cf57706d0796baa65c267d128fc"
+    },
+    {
+      "id": "MON-126-0",
+      "file": "assets/source-art/player-walk-review-07/MON-126-0-cycle-lot03-r01.png",
+      "sha256": "371e5b7af85ec60449e05db8a012e8ac1b9021f229f8d01c3621159d3440b910"
+    },
+    {
+      "id": "MON-146-0",
+      "file": "assets/source-art/player-walk-review-07/MON-146-0-cycle-lot03-r01.png",
+      "sha256": "3b437850e58ca7a0c3c410bb88f3405f671eef1461aef9ba02254cb6fa6a0ab5"
+    },
+    {
+      "id": "MON-081-0",
+      "file": "assets/source-art/player-walk-review-07/MON-081-0-cycle-lot04-r01.png",
+      "sha256": "6f28775bee828ae308aef7efb88656780883e0e671a24d802d1cbd46f5e071af"
+    },
+    {
+      "id": "MON-092-0",
+      "file": "assets/source-art/player-walk-review-07/MON-092-0-cycle-lot04-r01.png",
+      "sha256": "c52236f6d50fae9cb605eb526972949d2df2a9486c8c25c2e980b9940536b1d0"
+    },
+    {
+      "id": "MON-139-0",
+      "file": "assets/source-art/player-walk-review-07/MON-139-0-cycle-lot04-r01.png",
+      "sha256": "45cf109f57c0eb156a7efbcbf7be352b81b69a27b699801637ae2380d9f7a90a"
+    },
+    {
+      "id": "MON-147-0",
+      "file": "assets/source-art/player-walk-review-07/MON-147-0-cycle-lot04-r01.png",
+      "sha256": "e69c54543333cb11642dd06d9ad2d7f637cb0cd00673c426e77f152ef0f15f16"
+    },
+    {
+      "id": "MON-148-0",
+      "file": "assets/source-art/player-walk-review-07/MON-148-0-cycle-lot04-r02.png",
+      "sha256": "625bcc42032983859920cef005b3f0406a5e61defc10e32bc5344dc71c3a56e1"
+    },
+    {
+      "id": "MON-035-0",
+      "file": "assets/source-art/player-walk-review-07/MON-035-0-cycle-lot05-r01.png",
+      "sha256": "9ea15a07409539b2bcdcc180463c4f2eabe49afc60ea1f8b094b73a8e0960e97"
+    },
+    {
+      "id": "MON-076-0",
+      "file": "assets/source-art/player-walk-review-07/MON-076-0-cycle-lot05-r01.png",
+      "sha256": "c9f9c5c17bfd432f85b4ca82df17e6999351b0f3560d1ee7b039a220b61a4991"
+    },
+    {
+      "id": "MON-101-0",
+      "file": "assets/source-art/player-walk-review-07/MON-101-0-cycle-lot05-r01.png",
+      "sha256": "76c4fabe7659515036497bd8bc31e06163235faeff03193830d1c3dc6d8d1fea"
+    },
+    {
+      "id": "MON-070-0",
+      "file": "assets/source-art/player-walk-review-07/MON-070-0-cycle-lot05-r01.png",
+      "sha256": "f371d1d7209a0b828f124f068510e2b3d3c6505e9ec3caa991528df9e3c97756"
+    },
+    {
+      "id": "MON-065-0",
+      "file": "assets/source-art/player-walk-review-07/MON-065-0-cycle-lot05-r01.png",
+      "sha256": "fb5e2f1194e3db2517b4ffbc54609d7d1037d58f29f24ce2dc4a1cb49caac7b1"
+    },
+    {
+      "id": "MON-066-0",
+      "file": "assets/source-art/player-walk-review-07/MON-066-0-cycle-lot05-r01.png",
+      "sha256": "66959d2fedc1d0bc513b3455a8f4d8e1560cb4be333b28ec1a73ca45e26367d5"
+    },
+    {
+      "id": "MON-142-0",
+      "file": "assets/source-art/player-walk-review-07/MON-142-0-cycle-lot06-r02.png",
+      "sha256": "2585c947bcebc4c04cd84fbcae485457513a4d4f5463ae1604cd250887eec4f2"
+    },
+    {
+      "id": "MON-089-0",
+      "file": "assets/source-art/player-walk-review-07/MON-089-0-cycle-lot06-r01.png",
+      "sha256": "a9d9353a235bf0b8d86c1a8427397cef9dd89371f2df593c1eb95818d5b52994"
+    },
+    {
+      "id": "MON-088-0",
+      "file": "assets/source-art/player-walk-review-07/MON-088-0-cycle-lot06-r01.png",
+      "sha256": "ad38749c3fd4ed3f84c5ca75f2895b617447ca96ae0cfef40c78cf86c3e9a8a5"
+    },
+    {
+      "id": "MON-149-0",
+      "file": "assets/source-art/player-walk-review-07/MON-149-0-cycle-lot06-r02.png",
+      "sha256": "bb4aedeca1ab5a5b086f876be86f46f0a28966d3ab55fa2e890de54e5144ba8c"
+    },
+    {
+      "id": "MON-150-0",
+      "file": "assets/source-art/player-walk-review-07/MON-150-0-cycle-lot06-r02.png",
+      "sha256": "5a64dd310748d10b22bc785756b2053a98b541a6d192b2eb0740c471776d804f"
+    },
+    {
+      "id": "MON-153-0",
+      "file": "assets/source-art/player-walk-review-07/MON-153-0-cycle-lot06-r01.png",
+      "sha256": "680a6508ce2ca78bfb37cc43b8cdb58f66d26d75758e96c8bb794b884dde209e"
+    },
+    {
+      "id": "MON-033-0",
+      "file": "assets/source-art/player-walk-review-07/MON-033-0-cycle-lot07-r01.png",
+      "sha256": "1feb704c4d4ad47632979ded1d7ac6a37bddd20ed7f167d3d74fa20e7b3bce6d"
+    },
+    {
+      "id": "MON-143-0",
+      "file": "assets/source-art/player-walk-review-07/MON-143-0-cycle-lot07-r01.png",
+      "sha256": "a9a990318a120f5bdca8ad6968733185428d90c1fc395cda3ec545ee886cd1ca"
+    },
+    {
+      "id": "MON-154-0",
+      "file": "assets/source-art/player-walk-review-07/MON-154-0-cycle-lot07-r01.png",
+      "sha256": "c3ae36ad5c86860f3074e0ff7dbab01570ce85cff2a7d79536bd13902b323cd0"
+    },
+    {
+      "id": "MON-155-0",
+      "file": "assets/source-art/player-walk-review-07/MON-155-0-cycle-lot07-r01.png",
+      "sha256": "cbc319a7c92ffd9f7427a613d9d5c95fde8b842aab5d961373259cf03897088b"
+    },
+    {
+      "id": "MON-157-0",
+      "file": "assets/source-art/player-walk-review-07/MON-157-0-cycle-lot07-r02.png",
+      "sha256": "77b348a29ce26a1b6361f0e99e414f68a13608412efd6a36a8ccc96bc1b668b6"
+    },
+    {
+      "id": "MON-104-0",
+      "file": "assets/source-art/player-walk-review-07/MON-104-0-cycle-lot08-r01.png",
+      "sha256": "7c24bd801d56ae36f02c639c9dc9f37b31925caba485513b3027cd77cbab2d69"
+    },
+    {
+      "id": "MON-107-0",
+      "file": "assets/source-art/player-walk-review-07/MON-107-0-cycle-lot08-r01.png",
+      "sha256": "2c1bb0669b67fc79f9239e37e11ac742700e988d0acb9f4254540eda87186091"
+    },
+    {
+      "id": "MON-113-0",
+      "file": "assets/source-art/player-walk-review-07/MON-113-0-cycle-lot08-r01.png",
+      "sha256": "4bcd9fa85cb8501f1aae4c533dad895b1d0b9053fab0c981cc8ff02e2cb52cf4"
+    },
+    {
+      "id": "MON-118-0",
+      "file": "assets/source-art/player-walk-review-07/MON-118-0-cycle-lot08-r01.png",
+      "sha256": "ddf0ed7d9d8e321103c4c46454f69612b9c713eb858a110ad5096e518eb516a2"
+    },
+    {
+      "id": "MON-122-0",
+      "file": "assets/source-art/player-walk-review-07/MON-122-0-cycle-lot08-r01.png",
+      "sha256": "9f95aa5559a7d1b4b4de5a9b63a1de2c88d4fe065162fd5f231205b4605bc116"
+    },
+    {
+      "id": "MON-131-0",
+      "file": "assets/source-art/player-walk-review-07/MON-131-0-cycle-lot08-r01.png",
+      "sha256": "8c29fbfc7971960528af480b0bc7248c4aae25d2abf7492e171dd5e5680158a5"
+    },
+    {
+      "id": "MON-037-0",
+      "file": "assets/source-art/player-walk-review-07/MON-037-0-cycle-lot09-r02.png",
+      "sha256": "cada8ed82ba0a0dc35ff1883566761d9f38f9012aee5200a498da0889a22df91"
+    },
+    {
+      "id": "MON-038-0",
+      "file": "assets/source-art/player-walk-review-07/MON-038-0-cycle-lot09-r01.png",
+      "sha256": "5e840bcdfeb1ebeed278cd221afee512f2f68a08e9bc41f11416166a8e544e68"
+    },
+    {
+      "id": "MON-067-0",
+      "file": "assets/source-art/player-walk-review-07/MON-067-0-cycle-lot09-r01.png",
+      "sha256": "49e0d373b566eac8bbe2baa600f0e0ca6f09adee86d4772215783ce968a28344"
+    },
+    {
+      "id": "MON-069-0",
+      "file": "assets/source-art/player-walk-review-07/MON-069-0-cycle-lot09-r01.png",
+      "sha256": "c21e3a8bf3dbbfdb17837dce44be5f10794d38228b96c58ce398aba2cc8e1c96"
+    },
+    {
+      "id": "MON-090-0",
+      "file": "assets/source-art/player-walk-review-07/MON-090-0-cycle-lot09-r01.png",
+      "sha256": "d0304195828a607ef76c856b60b3f55b7aea32a132fdda0a43f29650b6d79ba5"
+    },
+    {
+      "id": "MON-109-0",
+      "file": "assets/source-art/player-walk-review-07/MON-109-0-cycle-lot09-r01.png",
+      "sha256": "f5410fc36ff3bb751f41fbb0795bb27d7b3b1d65948a1d20c3de0c9d060c650d"
+    },
+    {
+      "id": "MON-009-0",
+      "file": "assets/source-art/player-walk-review-07/MON-009-0-cycle-lot10-r01.png",
+      "sha256": "eb19c70f23cb3bca0292469efd9aed5f8256903ef4c3bdaf0513374ff0da4e79"
+    },
+    {
+      "id": "MON-020-0",
+      "file": "assets/source-art/player-walk-review-07/MON-020-0-cycle-lot10-r01.png",
+      "sha256": "f610782dda9b5033dc03cd4c1999f8bebcc667ad97ddec4a82eec5dd7a915fa1"
+    },
+    {
+      "id": "MON-140-0",
+      "file": "assets/source-art/player-walk-review-07/MON-140-0-cycle-lot10-r01.png",
+      "sha256": "a87bba0f95ef9e143d3b320b0074630061781cf3a71616bc3bed1811b8be14d8"
+    },
+    {
+      "id": "MON-158-0",
+      "file": "assets/source-art/player-walk-review-07/MON-158-0-cycle-lot10-r01.png",
+      "sha256": "140401dcc54dca310cccab16469b9615f84b78c804fffa0348680d3acc98285c"
+    },
+    {
+      "id": "MON-162-0",
+      "file": "assets/source-art/player-walk-review-07/MON-162-0-cycle-lot10-r01.png",
+      "sha256": "0a41204a77614aa15051ec1f11fc73da137e75dd5734b2ee4da231d5e60d818d"
+    },
+    {
+      "id": "MON-156-0",
+      "file": "assets/source-art/player-walk-review-07/MON-156-0-cycle-lot10-r01.png",
+      "sha256": "40d9d723ca69b3d159a30e943a4291e973f0a736af13827d7152dfc68ad6fb08"
+    },
+    {
+      "id": "MON-005-0",
+      "file": "assets/source-art/player-walk-review-07/MON-005-0-cycle-bulk-r01.png",
+      "sha256": "cd2ae03a14dd32be28871f9bd5b33ae116ba12f274839bb6f21815efdcccd3d6"
+    },
+    {
+      "id": "MON-006-0",
+      "file": "assets/source-art/player-walk-review-07/MON-006-0-cycle-bulk-r01.png",
+      "sha256": "28ad0aea106e0b1d44705d772790f53db996aba65ea387379cc120a4de69eb33"
+    },
+    {
+      "id": "MON-007-0",
+      "file": "assets/source-art/player-walk-review-07/MON-007-0-cycle-bulk-r04.png",
+      "sha256": "217fc21e2c9b57d784cae00304ce0f815d97a311657ba2729209d4df378d89b1"
+    },
+    {
+      "id": "MON-008-0",
+      "file": "assets/source-art/player-walk-review-07/MON-008-0-cycle-bulk-r01.png",
+      "sha256": "bf0e84ed60c36dde03926c8c2b3eb8c101b503e953750c23b886e6a6b73bf3cc"
+    },
+    {
+      "id": "MON-010-0",
+      "file": "assets/source-art/player-walk-review-07/MON-010-0-cycle-bulk-r04.png",
+      "sha256": "885c35df046bc3016520c016caf8fa7df425f0d47ce68195e0dd23b682238df0"
+    },
+    {
+      "id": "MON-011-0",
+      "file": "assets/source-art/player-walk-review-07/MON-011-0-cycle-bulk-r05.png",
+      "sha256": "87e11c473ffdc6b55510396083f13172f15533d0e32948da9cc3bcff83a45aa5"
+    },
+    {
+      "id": "MON-012-0",
+      "file": "assets/source-art/player-walk-review-07/MON-012-0-cycle-bulk-r01.png",
+      "sha256": "ff8ca63b517a92e7e2d2f03946b83c133179af892ae143533e602b387ab230ff"
+    },
+    {
+      "id": "MON-014-0",
+      "file": "assets/source-art/player-walk-review-07/MON-014-0-cycle-bulk-r01.png",
+      "sha256": "0c6d523ca4126b7d64836ab9de7b6840fe0a87d91f8af98cb8782809c1a13075"
+    },
+    {
+      "id": "MON-015-0",
+      "file": "assets/source-art/player-walk-review-07/MON-015-0-cycle-bulk-r04.png",
+      "sha256": "c087ee09ba3ad7025bc90c13195c32d21051043d5128c17e245324a6c8f77d69"
+    },
+    {
+      "id": "MON-016-0",
+      "file": "assets/source-art/player-walk-review-07/MON-016-0-cycle-bulk-r01.png",
+      "sha256": "164b535228175991ae182810a8341a0e36821552674d17a736878970e966b2a9"
+    },
+    {
+      "id": "MON-017-0",
+      "file": "assets/source-art/player-walk-review-07/MON-017-0-cycle-bulk-r02.png",
+      "sha256": "3e311927a5bec731ccaaa940dc25527ef428ec1a6eb0d0b65d1562057d226cb7"
+    },
+    {
+      "id": "MON-022-0",
+      "file": "assets/source-art/player-walk-review-07/MON-022-0-cycle-bulk-r01.png",
+      "sha256": "0438f7f36c2c687a49465ba1083ad3b315376ad1d31941a95272e6209abb61a7"
+    },
+    {
+      "id": "MON-024-0",
+      "file": "assets/source-art/player-walk-review-07/MON-024-0-cycle-bulk-r01.png",
+      "sha256": "9713b85710ff48d7ef419d0593255fed1c5aecfb88fd62cc5d341d0ba54a3673"
+    },
+    {
+      "id": "MON-025-0",
+      "file": "assets/source-art/player-walk-review-07/MON-025-0-cycle-bulk-r05-assembled.png",
+      "sha256": "7e4090279aa7468a8dbdf115591da0de1d8b23556c09e79c40d8d053f472e903"
+    },
+    {
+      "id": "MON-026-0",
+      "file": "assets/source-art/player-walk-review-07/MON-026-0-cycle-bulk-r01.png",
+      "sha256": "13042758acb8ec0801944842fbe907281a664784baf3289c7616ea008312f15d"
+    },
+    {
+      "id": "MON-028-0",
+      "file": "assets/source-art/player-walk-review-07/MON-028-0-cycle-bulk-r01.png",
+      "sha256": "d69d8848741869135778c33481d851d4743c387148fa872df33f1fec4b3e0c68"
+    },
+    {
+      "id": "MON-032-0",
+      "file": "assets/source-art/player-walk-review-07/MON-032-0-cycle-bulk-r01.png",
+      "sha256": "f79726b5559f2da2940ef8ed29a358fbad2fea9efc31fa3c256994a1aeb5cb4b"
+    },
+    {
+      "id": "MON-034-0",
+      "file": "assets/source-art/player-walk-review-07/MON-034-0-cycle-bulk-r01.png",
+      "sha256": "f197fbc1c21934ae3df39cec6df0c557bf9e09c2729d0f4884573b3909fbc709"
+    },
+    {
+      "id": "MON-036-0",
+      "file": "assets/source-art/player-walk-review-07/MON-036-0-cycle-bulk-r01.png",
+      "sha256": "578a76708ebb06bc2659b254230af494db5f1c52b16f485c85fa260996c517a4"
+    },
+    {
+      "id": "MON-060-0",
+      "file": "assets/source-art/player-walk-review-07/MON-060-0-cycle-bulk-r01.png",
+      "sha256": "1be20a5cb3d743123f5d59745333a5150e41265b9972be0133e124c5e98b9ce4"
+    },
+    {
+      "id": "MON-061-0",
+      "file": "assets/source-art/player-walk-review-07/MON-061-0-cycle-bulk-r02.png",
+      "sha256": "7b152e3b2f0e72686cca13a0558f3cfd1945d4118a94a74d65b44a009d7ae493"
+    },
+    {
+      "id": "MON-062-0",
+      "file": "assets/source-art/player-walk-review-07/MON-062-0-cycle-bulk-r01.png",
+      "sha256": "0e7716d929164fd64ab7e5831f94521298c7e16fd377e0ec178be26b05c8cc8c"
+    },
+    {
+      "id": "MON-068-0",
+      "file": "assets/source-art/player-walk-review-07/MON-068-0-cycle-bulk-r01.png",
+      "sha256": "893056e79c4f8d2c0467191d7e4fe4dbeb25d9bac2930d56b6a8dffb07fcf28d"
+    },
+    {
+      "id": "MON-072-0",
+      "file": "assets/source-art/player-walk-review-07/MON-072-0-cycle-bulk-r01.png",
+      "sha256": "6bed94e56e577382a1e27ef9ca6f2fab88c51c460de7a13a40fee8a6e794b2f7"
+    },
+    {
+      "id": "MON-073-0",
+      "file": "assets/source-art/player-walk-review-07/MON-073-0-cycle-bulk-r01.png",
+      "sha256": "a0730223ffa91683195646c0ee6e58288fdb9be1b52bd65ca8b881b53d6b2cd7"
+    },
+    {
+      "id": "MON-074-0",
+      "file": "assets/source-art/player-walk-review-07/MON-074-0-cycle-bulk-r01.png",
+      "sha256": "986cc42347c341b497b571615511fd88b2703c8d225bcf980be96ed1d64733a5"
+    },
+    {
+      "id": "MON-077-0",
+      "file": "assets/source-art/player-walk-review-07/MON-077-0-cycle-bulk-r01.png",
+      "sha256": "2d51313f4f0d1e70243e0e6b7d64a3770087563076182221d4147ad42a50242a"
+    },
+    {
+      "id": "MON-078-0",
+      "file": "assets/source-art/player-walk-review-07/MON-078-0-cycle-bulk-r01.png",
+      "sha256": "d5f9d7ec19f1800fecb8d868e5b6ec7446efd25020463a38634b076207e8e730"
+    },
+    {
+      "id": "MON-079-0",
+      "file": "assets/source-art/player-walk-review-07/MON-079-0-cycle-bulk-r01.png",
+      "sha256": "6180e2dc4742b2d688661f47129ff237ae9bd495a1c28a8d6df5cad76da2a71a"
+    },
+    {
+      "id": "MON-080-0",
+      "file": "assets/source-art/player-walk-review-07/MON-080-0-cycle-bulk-r02.png",
+      "sha256": "f653d93593c7557157a230fd07152a0e8490e01ac3538e5d159f5d1edf29e88d"
+    },
+    {
+      "id": "MON-082-0",
+      "file": "assets/source-art/player-walk-review-07/MON-082-0-cycle-bulk-r01.png",
+      "sha256": "5d82e680c79c076fcc5a3f5e72a3596c5041f0f698fe88a8f3d4c4e9f9940a27"
+    },
+    {
+      "id": "MON-084-0",
+      "file": "assets/source-art/player-walk-review-07/MON-084-0-cycle-bulk-r01.png",
+      "sha256": "53ccb87dd8c8a8d9c25d19916709f9a9dfd443b8252938f5bf5b5e0f13d87984"
+    },
+    {
+      "id": "MON-085-0",
+      "file": "assets/source-art/player-walk-review-07/MON-085-0-cycle-bulk-r01.png",
+      "sha256": "3c7cc4e834e4fdf998d9c087303cf902dec1c8247dcd78d5af3cdd67338326ce"
+    },
+    {
+      "id": "MON-086-0",
+      "file": "assets/source-art/player-walk-review-07/MON-086-0-cycle-bulk-r01.png",
+      "sha256": "a113c7d4f6375c15256f7da55d174501dceab9234b2947c5ec887907e9c1bf05"
+    },
+    {
+      "id": "MON-093-0",
+      "file": "assets/source-art/player-walk-review-07/MON-093-0-cycle-bulk-r01.png",
+      "sha256": "f3a77da337e97cda1525dfcb54b1dd0d4b2a4e0deacdd67b946644487c237410"
+    },
+    {
+      "id": "MON-096-0",
+      "file": "assets/source-art/player-walk-review-07/MON-096-0-cycle-bulk-r01.png",
+      "sha256": "1d9cfd4b241b2a877ed1cf26164155f721755e2051d079f36fd9329fd9cc27aa"
+    },
+    {
+      "id": "MON-098-0",
+      "file": "assets/source-art/player-walk-review-07/MON-098-0-cycle-bulk-r01.png",
+      "sha256": "a172faba617304264936fa4143dab3132d8e5844c4bb8fced65775f4230aadb2"
+    },
+    {
+      "id": "MON-099-0",
+      "file": "assets/source-art/player-walk-review-07/MON-099-0-cycle-bulk-r01.png",
+      "sha256": "1f06372cf7d8ac80ff2cbfa0691122129bf4597133781f416b00ef6573f0f5a9"
+    },
+    {
+      "id": "MON-100-0",
+      "file": "assets/source-art/player-walk-review-07/MON-100-0-cycle-bulk-r01.png",
+      "sha256": "b330a0e83712523a3a58cd29e4cab89e0d3c574209af3b47f93c616fd57e9087"
+    },
+    {
+      "id": "MON-102-0",
+      "file": "assets/source-art/player-walk-review-07/MON-102-0-cycle-bulk-r01.png",
+      "sha256": "a4854359e5492d6ba616a3cb185e6c9ae8bb05a265282d6efda77729c381fd8f"
+    },
+    {
+      "id": "MON-105-0",
+      "file": "assets/source-art/player-walk-review-07/MON-105-0-cycle-bulk-r01.png",
+      "sha256": "1fd021a49a1853c515049b31d3d96df2cf501598e5097e1a68062896f7af9463"
+    },
+    {
+      "id": "MON-106-0",
+      "file": "assets/source-art/player-walk-review-07/MON-106-0-cycle-bulk-r02.png",
+      "sha256": "6452d7b966a77af0e28e1cf38e1696f2d3ab0544ef099f09cdb8544da40d6719"
+    },
+    {
+      "id": "MON-108-0",
+      "file": "assets/source-art/player-walk-review-07/MON-108-0-cycle-bulk-r01.png",
+      "sha256": "e129aa58b5de20d1f35c66be38d51a2c7ff4e15170ff4feb11a66fac05ed70d1"
+    },
+    {
+      "id": "MON-111-0",
+      "file": "assets/source-art/player-walk-review-07/MON-111-0-cycle-bulk-r04.png",
+      "sha256": "438bcdc1335fff65d39df57145083c625b264eab5c7b973224aafd019ee742b5"
+    },
+    {
+      "id": "MON-112-0",
+      "file": "assets/source-art/player-walk-review-07/MON-112-0-cycle-bulk-r01.png",
+      "sha256": "881463fb05917a9bf8a90fbb49b4dc1b2b0c34ae6da34885adb679ea65f96e60"
+    },
+    {
+      "id": "MON-115-0",
+      "file": "assets/source-art/player-walk-review-07/MON-115-0-cycle-bulk-r01.png",
+      "sha256": "3f61742d5cd078c08a4760202adc6770443259d422e05f848fa8f920b586f827"
+    },
+    {
+      "id": "MON-116-0",
+      "file": "assets/source-art/player-walk-review-07/MON-116-0-cycle-bulk-r01.png",
+      "sha256": "ca4bd6d8a55c451323ff3c54adcfedc0be02721c3fce72b237fa20821c7eced8"
+    },
+    {
+      "id": "MON-117-0",
+      "file": "assets/source-art/player-walk-review-07/MON-117-0-cycle-bulk-r01.png",
+      "sha256": "6f89eee4103b0d2398b9d197af2cf4a8812e2d3f1c70c33626b24704f554e6b4"
+    },
+    {
+      "id": "MON-119-0",
+      "file": "assets/source-art/player-walk-review-07/MON-119-0-cycle-bulk-r05-assembled.png",
+      "sha256": "07bf90c0eb8225036b20e844d1978075ec80c5b0f0f8d08c01989d732f05d238"
+    },
+    {
+      "id": "MON-120-0",
+      "file": "assets/source-art/player-walk-review-07/MON-120-0-cycle-bulk-r01.png",
+      "sha256": "d9bc4996be56ee98407d319c615525d4ba4fbabb37f59bf32c895b80411c0e8e"
+    },
+    {
+      "id": "MON-121-0",
+      "file": "assets/source-art/player-walk-review-07/MON-121-0-cycle-bulk-r05.png",
+      "sha256": "717a7564e210b36994269f9e211b28d49eed5ac01f817ae297d34eeaf9166758"
+    },
+    {
+      "id": "MON-123-0",
+      "file": "assets/source-art/player-walk-review-07/MON-123-0-cycle-bulk-r04.png",
+      "sha256": "0077bbbfe107c0e923a422e4ccbe3e99ed4d3dfdc635ac0bc070ccf48ed15f69"
+    },
+    {
+      "id": "MON-128-0",
+      "file": "assets/source-art/player-walk-review-07/MON-128-0-cycle-bulk-r01.png",
+      "sha256": "f8fdaf27ba8adeb7a4e5b9d28ba36c5daf583830d4805213fe39614aebbb538e"
+    },
+    {
+      "id": "MON-129-0",
+      "file": "assets/source-art/player-walk-review-07/MON-129-0-cycle-bulk-r01.png",
+      "sha256": "7252668ef10a7539a1826fef52daacf1acfd21950c4f59f35f7ebfa193fdc224"
+    },
+    {
+      "id": "MON-130-0",
+      "file": "assets/source-art/player-walk-review-07/MON-130-0-cycle-bulk-r01.png",
+      "sha256": "611710506d05704e24098d6b5fb87d8978bc6e103df1a95b26304b5ecae85146"
+    },
+    {
+      "id": "MON-132-0",
+      "file": "assets/source-art/player-walk-review-07/MON-132-0-cycle-bulk-r01.png",
+      "sha256": "c0fa580e64ac501dcc8c8c09007d229663881ef2f056d0c50c14c2363be7f8fe"
+    },
+    {
+      "id": "MON-133-0",
+      "file": "assets/source-art/player-walk-review-07/MON-133-0-cycle-bulk-r02.png",
+      "sha256": "75c58b1ef7bf3696ad09d71b619bde5b777677643c432188058493fe1969dd2a"
+    },
+    {
+      "id": "MON-134-0",
+      "file": "assets/source-art/player-walk-review-07/MON-134-0-cycle-bulk-r04.png",
+      "sha256": "b3be48e3980a3be0bec657011f19141228fded179e6c8da448369d5e5231ae39"
+    },
+    {
+      "id": "MON-135-0",
+      "file": "assets/source-art/player-walk-review-07/MON-135-0-cycle-bulk-r06-assembled.png",
+      "sha256": "1145f99cd6209ab66d7a04463eaf850b03e23cd638bab1104c634ce346a2cc9f"
+    },
+    {
+      "id": "MON-136-0",
+      "file": "assets/source-art/player-walk-review-07/MON-136-0-cycle-bulk-r01.png",
+      "sha256": "ed7f2a011df433f19132050840c2770fb0055a4d38ab1ddd23a2191716f3cd5b"
+    },
+    {
+      "id": "MON-137-0",
+      "file": "assets/source-art/player-walk-review-07/MON-137-0-cycle-bulk-r01.png",
+      "sha256": "7d1022d75409ebf3a39e6aaf3d2a18c3fb9df4a8bfcd0bd9392447b4ae718cff"
+    },
+    {
+      "id": "MON-138-0",
+      "file": "assets/source-art/player-walk-review-07/MON-138-0-cycle-bulk-r01.png",
+      "sha256": "6726eaa88a0b701095524071e65f393de567b8bba7159188f3648026126e521f"
+    },
+    {
+      "id": "MON-152-0",
+      "file": "assets/source-art/player-walk-review-07/MON-152-0-cycle-bulk-r06-assembled.png",
+      "sha256": "5dd7f018cca27ec405a1a50fadfaf9e05098f025a26f880e67bf3c9446a1cd7a"
+    },
+    {
+      "id": "MON-159-0",
+      "file": "assets/source-art/player-walk-review-07/MON-159-0-cycle-bulk-r04.png",
+      "sha256": "ccee52ab7732890ae02465cc57d9c28471d484a27394fbd2996fb35c2bcea435"
+    },
+    {
+      "id": "MON-160-0",
+      "file": "assets/source-art/player-walk-review-07/MON-160-0-cycle-bulk-r01.png",
+      "sha256": "2d30634cf92f2d479e8ab822b7b48db3b38265f785ebed323059a32c1a27bd21"
+    },
+    {
+      "id": "MON-161-0",
+      "file": "assets/source-art/player-walk-review-07/MON-161-0-cycle-bulk-r01.png",
+      "sha256": "857ebaab27356d5c323b0c77a6fb28c00464f476e46d53f927f8a7686f112707"
+    },
+    {
+      "id": "MON-164-0",
+      "file": "assets/source-art/player-walk-review-07/MON-164-0-cycle-bulk-r01.png",
+      "sha256": "cbadcc80f2e02f5dbc38055803cb116b6edca5fbf2ebf2522c9589576e0a30a0"
+    },
+    {
+      "id": "MON-165-0",
+      "file": "assets/source-art/player-walk-review-07/MON-165-0-cycle-bulk-r01.png",
+      "sha256": "74038a2eba86e51d05495cc2eafcff62f1280b18d090abb5bcbe7f9b86f02021"
+    },
+    {
+      "id": "MON-029-0",
+      "file": "assets/source-art/player-walk-review-07/MON-029-0-cycle-bulk-r04.png",
+      "sha256": "622a407a5f9061b2c0424fdcbdf8bc60d5bc3d41cc020b36f9749af7b17aead6"
+    },
+    {
+      "id": "MON-127-0",
+      "file": "assets/source-art/player-walk-review-07/MON-127-0-cycle-bulk-r05.png",
+      "sha256": "e1c0b272270fc94818df684d6b312b4110fe3035b60faa320e456cfc6d7e703a"
+    },
+    {
+      "id": "MON-151-0",
+      "file": "assets/source-art/player-walk-review-07/MON-151-0-cycle-bulk-r04.png",
+      "sha256": "e3cf78bb47f27c5c2dcf5211d0b1ff44a4ddc3bb5b6ce3bb66e46f622a599619"
+    }
+  ]
+}

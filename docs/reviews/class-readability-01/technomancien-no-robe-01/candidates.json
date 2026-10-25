@@ -1,0 +1,512 @@
+{
+  "review_id": "TECHNOMANCIEN-NOROBE01",
+  "date": "2026-10-22",
+  "status": "awaiting_native64_visual_review",
+  "class_id": "core:technomancien",
+  "runtime_integration": false,
+  "scope": "Five robe-free protection stages; stage03 identity witness preserved.",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "production_color_variants": "deferred",
+  "future_color_rule": "Red-cloth-only tint intent retained historically; no extension to this steel chassis inferred.",
+  "bastion_comparison_acceptance": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "TE-NR01-P01-r01",
+      "rank": 1,
+      "label": "Très légère",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P01-r01-source.png",
+      "source_sha256": "5fa7e1c7c7bb9d95a077ed4f3fb2238fabbc6db41a626cce58367677ef4a4e26",
+      "native": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P01-r01-native64.png",
+      "native_sha256": "91abef1763194e32794e3c07d9ee2b135eec794620af5ec38c5cc06d9d9e185f",
+      "framing": {
+        "source_core_box": [
+          351,
+          124,
+          871,
+          1198
+        ],
+        "source_crop": [
+          335,
+          108,
+          887,
+          1214
+        ],
+        "isotropic_scale": 0.054003724394785846,
+        "native_core_box": [
+          18,
+          4,
+          46,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 28,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        18,
+        4,
+        46,
+        62
+      ],
+      "native_core_width": 28,
+      "native_core_height": 58,
+      "solid_silhouette_pixels": 597,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          34,
+          3
+        ],
+        [
+          36,
+          6
+        ],
+        [
+          36,
+          10
+        ],
+        [
+          34,
+          13
+        ],
+        [
+          29,
+          13
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P01-r01-head-native64.png",
+          "sha256": "02ec9ab2538b3305dd4babb0d23ccb89fb889f498b3bfcb6bc60ff54c937e9a2"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P01-r01-body-native64.png",
+          "sha256": "b93b935069460180056cd71ea5d0f5f891f8c01487074532792ea3364025ef0a"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P01-r01-head-mask-native64.png",
+          "sha256": "e4fd361c75ebaf1967922dfce27e20c5962fc7f2dd24a57fbed958ddc632f20e"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; equippable helmets and weapon grips not yet prepared"
+    },
+    {
+      "number": "02",
+      "candidate_id": "TE-NR01-P02-r01",
+      "rank": 2,
+      "label": "Légère",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P02-r01-source.png",
+      "source_sha256": "cd1d017d4701b22b37a809162fdc15f42ec31da6418523ec83738f907fd565b9",
+      "native": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P02-r01-native64.png",
+      "native_sha256": "40cc2d05de3c03c9368ebe26858a7615bc1ffd0fff6d9037418fed6c12f06c42",
+      "framing": {
+        "source_core_box": [
+          352,
+          122,
+          867,
+          1193
+        ],
+        "source_crop": [
+          336,
+          106,
+          883,
+          1209
+        ],
+        "isotropic_scale": 0.05415499533146592,
+        "native_core_box": [
+          18,
+          4,
+          46,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 28,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        18,
+        4,
+        46,
+        62
+      ],
+      "native_core_width": 28,
+      "native_core_height": 58,
+      "solid_silhouette_pixels": 644,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          34,
+          3
+        ],
+        [
+          36,
+          6
+        ],
+        [
+          36,
+          10
+        ],
+        [
+          34,
+          13
+        ],
+        [
+          29,
+          13
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P02-r01-head-native64.png",
+          "sha256": "95f4774caa2aa5c7c45c610b3ac40a174aed39019f7c7b286482a913fbbfaa69"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P02-r01-body-native64.png",
+          "sha256": "d7ea4f65cc26156b541e17d8add28c5844afaba5bd41307e1569aadb4d043217"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P02-r01-head-mask-native64.png",
+          "sha256": "e4fd361c75ebaf1967922dfce27e20c5962fc7f2dd24a57fbed958ddc632f20e"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; equippable helmets and weapon grips not yet prepared"
+    },
+    {
+      "number": "03",
+      "candidate_id": "TE-NR01-P03-r01",
+      "rank": 3,
+      "label": "Interméd.",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P03-r01-source.png",
+      "source_sha256": "8a4b5be57d68eb5b86a3d0b3c8bd5aac4e81832b1ec2be50b8803e7e31b8947b",
+      "native": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P03-r01-native64.png",
+      "native_sha256": "9da48e28a12b12a42d422f0743ea2c007bb76ebd15c5347a424ede30fb37e0a5",
+      "framing": {
+        "source_core_box": [
+          341,
+          132,
+          878,
+          1207
+        ],
+        "source_crop": [
+          325,
+          116,
+          894,
+          1223
+        ],
+        "isotropic_scale": 0.053953488372093024,
+        "native_core_box": [
+          17,
+          4,
+          46,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 29,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        17,
+        4,
+        46,
+        62
+      ],
+      "native_core_width": 29,
+      "native_core_height": 58,
+      "solid_silhouette_pixels": 725,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          34,
+          3
+        ],
+        [
+          36,
+          6
+        ],
+        [
+          36,
+          10
+        ],
+        [
+          34,
+          13
+        ],
+        [
+          29,
+          13
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P03-r01-head-native64.png",
+          "sha256": "199929454eee3bf7af3cb50b9ab1d1d73b520c8b1da859db65fee5a12bb0ab3e"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P03-r01-body-native64.png",
+          "sha256": "07db11244952b46e56aad54229c249f4ec707b54a244c653d27dd67b26624758"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P03-r01-head-mask-native64.png",
+          "sha256": "e4fd361c75ebaf1967922dfce27e20c5962fc7f2dd24a57fbed958ddc632f20e"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; equippable helmets and weapon grips not yet prepared"
+    },
+    {
+      "number": "04",
+      "candidate_id": "TE-NR01-P04-r01",
+      "rank": 4,
+      "label": "Lourde",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P04-r01-source.png",
+      "source_sha256": "28ccbcb26d494aea6da5e9fec76596d0365ffe08559dbf10debc7eed150d4ecf",
+      "native": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P04-r01-native64.png",
+      "native_sha256": "4e6d41419b3d5c9ffba4f722caa2a90e4689368d246ae88d41a9223e8dbe7338",
+      "framing": {
+        "source_core_box": [
+          323,
+          59,
+          899,
+          1228
+        ],
+        "source_crop": [
+          305,
+          41,
+          917,
+          1246
+        ],
+        "isotropic_scale": 0.04961505560307956,
+        "native_core_box": [
+          18,
+          4,
+          46,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 28,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        18,
+        4,
+        46,
+        62
+      ],
+      "native_core_width": 28,
+      "native_core_height": 58,
+      "solid_silhouette_pixels": 802,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          34,
+          3
+        ],
+        [
+          36,
+          6
+        ],
+        [
+          36,
+          10
+        ],
+        [
+          34,
+          13
+        ],
+        [
+          29,
+          13
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P04-r01-head-native64.png",
+          "sha256": "d2e2cfae31886ec683af884168a17edc046571baec86ba4e5ef2b4a2fd52836a"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P04-r01-body-native64.png",
+          "sha256": "9063871609d54010177ff4b5ce5758f672d0b1a0e0b4f54d7bd52b501c257083"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P04-r01-head-mask-native64.png",
+          "sha256": "e4fd361c75ebaf1967922dfce27e20c5962fc7f2dd24a57fbed958ddc632f20e"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; equippable helmets and weapon grips not yet prepared"
+    },
+    {
+      "number": "05",
+      "candidate_id": "TE-NR01-P05-r01",
+      "rank": 5,
+      "label": "Très lourde",
+      "status": "awaiting_native64_visual_review",
+      "source": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P05-r01-source.png",
+      "source_sha256": "c3c454e09bbc2fa4b58c1e69bae96c36f9479e8a880c9f2cccbde5e0418e51ea",
+      "native": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P05-r01-native64.png",
+      "native_sha256": "dfc20046ed95a55029877d46d9c16bb4c8d111da5e592a96abdce594ef52cada",
+      "framing": {
+        "source_core_box": [
+          318,
+          89,
+          908,
+          1219
+        ],
+        "source_crop": [
+          301,
+          72,
+          925,
+          1236
+        ],
+        "isotropic_scale": 0.05132743362831858,
+        "native_core_box": [
+          17,
+          4,
+          47,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 30,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        17,
+        4,
+        47,
+        62
+      ],
+      "native_core_width": 30,
+      "native_core_height": 58,
+      "solid_silhouette_pixels": 906,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          34,
+          3
+        ],
+        [
+          36,
+          6
+        ],
+        [
+          36,
+          10
+        ],
+        [
+          34,
+          13
+        ],
+        [
+          29,
+          13
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P05-r01-head-native64.png",
+          "sha256": "23e4528b982d1e392724e1f9348d7a5411b7baac35b252d082dd052f6bae5a68"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P05-r01-body-native64.png",
+          "sha256": "cebb4118c400c59c9cb65203befc83cd948a3760b9babff1fa1c588856f02c87"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/technomancien-no-robe-01/TE-NR01-P05-r01-head-mask-native64.png",
+          "sha256": "e4fd361c75ebaf1967922dfce27e20c5962fc7f2dd24a57fbed958ddc632f20e"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "rig_status": "study_layers_only; equippable helmets and weapon grips not yet prepared"
+    }
+  ]
+}

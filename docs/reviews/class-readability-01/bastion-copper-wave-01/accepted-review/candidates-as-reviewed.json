@@ -1,0 +1,523 @@
+{
+  "review_id": "BASTION-COPPER-W01",
+  "date": "2026-10-21",
+  "status": "awaiting_native64_visual_review",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "runtime_integration": false,
+  "color_variants": "deferred",
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "BA-CU01-P01-r01",
+      "class_name": "Bastion",
+      "rank": 1,
+      "label": "Très légère",
+      "status": "new_progression_composition_pending_visual_review",
+      "source": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P01-r01-source.png",
+      "source_sha256": "473b59aa865f6b3d573f0d4cc645bb43e591e143cadbdd80c7edef92b2055076",
+      "native": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P01-r01-native64.png",
+      "native_sha256": "a1fd3482085814c0464fc9e0d3a6986c129c3565522ade4dd5439befbd8ae270",
+      "framing": {
+        "source_core_box": [
+          188,
+          96,
+          910,
+          1369
+        ],
+        "source_crop": [
+          169,
+          77,
+          929,
+          1388
+        ],
+        "isotropic_scale": 0.04556166535742341,
+        "native_core_box": [
+          15,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 33,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        15,
+        4,
+        48,
+        62
+      ],
+      "native_core_width": 33,
+      "native_core_height": 58,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          36,
+          6
+        ],
+        [
+          36,
+          10
+        ],
+        [
+          34,
+          12
+        ],
+        [
+          29,
+          12
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P01-r01-head-native64.png",
+          "sha256": "b07dea11544f02b66ae077d2d7eb44dfd5b6e0e213eec3f7c8004f4298f1c989"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P01-r01-body-native64.png",
+          "sha256": "3e997977034bd1fe6dacc19b9e2642932c0129be2ee45a092b0758610760f07e"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P01-r01-head-mask-native64.png",
+          "sha256": "a6267e9ba2e3a1999ea3a347be21e89915599e2ec3d76ddaa54765aa27c29066"
+        }
+      },
+      "head_body_recompose_exactly": true,
+      "retained_reference": null,
+      "rig_status": "study_layers_only_arms_grips_and_helmet_replacement_not_yet_validated"
+    },
+    {
+      "number": "02",
+      "candidate_id": "BA-STYLE01-r02",
+      "class_name": "Bastion",
+      "rank": 2,
+      "label": "Légère",
+      "status": "new_progression_composition_pending_visual_review",
+      "source": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE01-r02-source.png",
+      "source_sha256": "74fe2ebd55cbe35095fc3bf4ebd455e8fe90f3d06bb8fee454715f13453ff61c",
+      "native": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE01-r02-native64.png",
+      "native_sha256": "03ec80102a43a84d35a14cb7d488d33bd7b166b01ea800626b435d879b921867",
+      "framing": {
+        "source_core_box": [
+          188,
+          93,
+          901,
+          1352
+        ],
+        "source_crop": [
+          169,
+          74,
+          920,
+          1371
+        ],
+        "isotropic_scale": 0.046068308181096106,
+        "native_core_box": [
+          15,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 33,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        16,
+        4,
+        48,
+        62
+      ],
+      "native_core_width": 32,
+      "native_core_height": 58,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          36,
+          6
+        ],
+        [
+          36,
+          10
+        ],
+        [
+          34,
+          11
+        ],
+        [
+          29,
+          11
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-STYLE01-r02-head-native64.png",
+          "sha256": "b60b8703b556456b25813de3c795929dd3408fafd0b1bae857d2255f66d1bb7c"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-STYLE01-r02-body-native64.png",
+          "sha256": "81e1f37cfa7452c9b2d95e6bac1b074bdc48ec7fa7b3b84df9e5e90684958909"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-STYLE01-r02-head-mask-native64.png",
+          "sha256": "61db90a055ca9f2abf90aa1d83e53b4531662df57de0a081abe0e576eb28853f"
+        }
+      },
+      "head_body_recompose_exactly": true,
+      "retained_reference": {
+        "candidate_id": "BA-STYLE01-r02",
+        "native": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE01-r02-native64.png",
+        "native_sha256": "03ec80102a43a84d35a14cb7d488d33bd7b166b01ea800626b435d879b921867",
+        "pixels_preserved": true
+      },
+      "rig_status": "study_layers_only_arms_grips_and_helmet_replacement_not_yet_validated"
+    },
+    {
+      "number": "03",
+      "candidate_id": "BA-STYLE02-r02",
+      "class_name": "Bastion",
+      "rank": 3,
+      "label": "Interméd.",
+      "status": "new_progression_composition_pending_visual_review",
+      "source": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE02-r02-source.png",
+      "source_sha256": "723fa71a93ba00aaba2971ce4ff028e882df2fe97e896eec834d46f94decce39",
+      "native": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE02-r02-native64.png",
+      "native_sha256": "1ad57327fec45142b5babb56286a0631cffbc7b966967e36add2d8aa598d8770",
+      "framing": {
+        "source_core_box": [
+          264,
+          64,
+          955,
+          1240
+        ],
+        "source_crop": [
+          246,
+          46,
+          973,
+          1258
+        ],
+        "isotropic_scale": 0.04931972789115646,
+        "native_core_box": [
+          15,
+          4,
+          49,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 34,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        15,
+        4,
+        49,
+        62
+      ],
+      "native_core_width": 34,
+      "native_core_height": 58,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          37,
+          10
+        ],
+        [
+          35,
+          12
+        ],
+        [
+          29,
+          12
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-STYLE02-r02-head-native64.png",
+          "sha256": "171a455414e4981893f141b6ab98d75ed9167df193ac10158c3d866067855a65"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-STYLE02-r02-body-native64.png",
+          "sha256": "2d626ebcf155d005085a45aafcf1d14ed20b7a78af623850422ab9a530342040"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-STYLE02-r02-head-mask-native64.png",
+          "sha256": "ae7cae9503a87e21aa20eb77e8974539d2aca724ec69281c8fced12f8fcccdca"
+        }
+      },
+      "head_body_recompose_exactly": true,
+      "retained_reference": {
+        "candidate_id": "BA-STYLE02-r02",
+        "native": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE02-r02-native64.png",
+        "native_sha256": "1ad57327fec45142b5babb56286a0631cffbc7b966967e36add2d8aa598d8770",
+        "pixels_preserved": true
+      },
+      "rig_status": "study_layers_only_arms_grips_and_helmet_replacement_not_yet_validated"
+    },
+    {
+      "number": "04",
+      "candidate_id": "BA-CU01-P04-r01",
+      "class_name": "Bastion",
+      "rank": 4,
+      "label": "Lourde",
+      "status": "new_progression_composition_pending_visual_review",
+      "source": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P04-r01-source.png",
+      "source_sha256": "16d2b4236a6cf6faebebd1c763573218a2e5e44039cbac52d52c6885bb310355",
+      "native": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P04-r01-native64.png",
+      "native_sha256": "59106470d2302590dce474d18026bcae7052ecc4386ce1f2437e209301ea1482",
+      "framing": {
+        "source_core_box": [
+          242,
+          79,
+          969,
+          1230
+        ],
+        "source_crop": [
+          225,
+          62,
+          986,
+          1247
+        ],
+        "isotropic_scale": 0.05039096437880104,
+        "native_core_box": [
+          14,
+          4,
+          50,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 36,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        14,
+        4,
+        50,
+        62
+      ],
+      "native_core_width": 36,
+      "native_core_height": 58,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          37,
+          10
+        ],
+        [
+          35,
+          12
+        ],
+        [
+          29,
+          12
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P04-r01-head-native64.png",
+          "sha256": "afbc515b7c4d13833433cea48f2b3d2c2c7c19f97b9ea59c12fa1551da29484c"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P04-r01-body-native64.png",
+          "sha256": "c7f412f86cb5d394fdde5b108278bd4a441b0d9569421a475d1de693be776554"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P04-r01-head-mask-native64.png",
+          "sha256": "ae7cae9503a87e21aa20eb77e8974539d2aca724ec69281c8fced12f8fcccdca"
+        }
+      },
+      "head_body_recompose_exactly": true,
+      "retained_reference": null,
+      "rig_status": "study_layers_only_arms_grips_and_helmet_replacement_not_yet_validated"
+    },
+    {
+      "number": "05",
+      "candidate_id": "BA-CU01-P05-r01",
+      "class_name": "Bastion",
+      "rank": 5,
+      "label": "Très lourde",
+      "status": "new_progression_composition_pending_visual_review",
+      "source": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P05-r01-source.png",
+      "source_sha256": "f53e4fa50b6672e357138a98cc25df7210128be32f77c24bc8cf1cb57673e7ff",
+      "native": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P05-r01-native64.png",
+      "native_sha256": "c5b24e92d5a3458fe7db8aca96b4cafb51b1bdbc8868f109b0da5d504b762fcc",
+      "framing": {
+        "source_core_box": [
+          190,
+          75,
+          1038,
+          1233
+        ],
+        "source_crop": [
+          173,
+          58,
+          1055,
+          1250
+        ],
+        "isotropic_scale": 0.05008635578583765,
+        "native_core_box": [
+          11,
+          4,
+          53,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 42,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        11,
+        4,
+        53,
+        62
+      ],
+      "native_core_width": 42,
+      "native_core_height": 58,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_ownership_polygon": [
+        [
+          29,
+          3
+        ],
+        [
+          35,
+          3
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          37,
+          10
+        ],
+        [
+          35,
+          12
+        ],
+        [
+          29,
+          12
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P05-r01-head-native64.png",
+          "sha256": "6e17767887c846c0353613fe105af8b97800e343509f115ea3c975ec2712dfd0"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P05-r01-body-native64.png",
+          "sha256": "6e9187537f7ddab7550db8e414afe984ba9c7bb4042d64bc08169c2e61f20028"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/bastion-copper-wave-01/BA-CU01-P05-r01-head-mask-native64.png",
+          "sha256": "ae7cae9503a87e21aa20eb77e8974539d2aca724ec69281c8fced12f8fcccdca"
+        }
+      },
+      "head_body_recompose_exactly": true,
+      "retained_reference": null,
+      "rig_status": "study_layers_only_arms_grips_and_helmet_replacement_not_yet_validated"
+    }
+  ]
+}

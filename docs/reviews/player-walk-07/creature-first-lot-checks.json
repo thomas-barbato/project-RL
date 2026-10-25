@@ -1,0 +1,150 @@
+{
+  "review_id": "WALK07-CREATURES-r01",
+  "date": "2026-10-24",
+  "visual_acceptance": true,
+  "runtime_integration": false,
+  "browser_or_game_execution": false,
+  "execution": "Native image inspection and packed-image structural checks; Node simulated controller checked separately",
+  "manual_anatomy_note": "Rear arachnid pair is partly occluded by the carapace; arm and wing silhouettes remain separate from the two ground supports on M07. Counts are a manual source classification, not an automated proof of gait quality.",
+  "scope": "First seven representatives only, not the full bestiary",
+  "pose_count": 98,
+  "reference_scale": "Existing rendered pixels copied without resizing",
+  "rows": [
+    {
+      "candidate": "WALK07-M01",
+      "identity": "MON-021-0",
+      "locomotor_legs_from_identity_review": 8,
+      "source_sha256": "d9fa9ba54da301208169770397acb2f7d53087d756caf78401d51bb21f93a0d4",
+      "poses": 14,
+      "distinct_walk_poses_per_direction": [
+        6,
+        6
+      ],
+      "packed_height_range": [
+        58,
+        63
+      ],
+      "existing_native_height": 63,
+      "whole_figures_uniform_scale": true,
+      "within_review_canvas": true,
+      "exact_native_reference": true
+    },
+    {
+      "candidate": "WALK07-M02",
+      "identity": "MON-030-0",
+      "locomotor_legs_from_identity_review": 6,
+      "source_sha256": "e17eaa0ee8e2c817fb90e370b1fe4efe33dc78dc43a32837155981284d64f9ac",
+      "poses": 14,
+      "distinct_walk_poses_per_direction": [
+        6,
+        6
+      ],
+      "packed_height_range": [
+        24,
+        26
+      ],
+      "existing_native_height": 26,
+      "whole_figures_uniform_scale": true,
+      "within_review_canvas": true,
+      "exact_native_reference": true
+    },
+    {
+      "candidate": "WALK07-M03",
+      "identity": "MON-075-0",
+      "locomotor_legs_from_identity_review": 4,
+      "source_sha256": "c8c2ffe6beaa712b7f18350d7bc8962e41e2e372fe6f64fade42beb36bba690a",
+      "poses": 14,
+      "distinct_walk_poses_per_direction": [
+        6,
+        6
+      ],
+      "packed_height_range": [
+        46,
+        50
+      ],
+      "existing_native_height": 50,
+      "whole_figures_uniform_scale": true,
+      "within_review_canvas": true,
+      "exact_native_reference": true
+    },
+    {
+      "candidate": "WALK07-M04",
+      "identity": "MON-141-0",
+      "locomotor_legs_from_identity_review": 0,
+      "source_sha256": "781e6821cc0cde383c3a36c679f53c0ae4f29353bb489ca3938722aae26962a6",
+      "poses": 14,
+      "distinct_walk_poses_per_direction": [
+        6,
+        6
+      ],
+      "packed_height_range": [
+        66,
+        77
+      ],
+      "existing_native_height": 77,
+      "whole_figures_uniform_scale": true,
+      "within_review_canvas": true,
+      "exact_native_reference": true
+    },
+    {
+      "candidate": "WALK07-M05",
+      "identity": "MON-124-0",
+      "locomotor_legs_from_identity_review": 0,
+      "source_sha256": "798b7456341fbacbb233af2e4b5e5b02fa454c626a2c987032fb1642fb0967ff",
+      "poses": 14,
+      "distinct_walk_poses_per_direction": [
+        6,
+        6
+      ],
+      "packed_height_range": [
+        68,
+        69
+      ],
+      "existing_native_height": 69,
+      "whole_figures_uniform_scale": true,
+      "within_review_canvas": true,
+      "exact_native_reference": true
+    },
+    {
+      "candidate": "WALK07-M06",
+      "identity": "DRONE-GUNNER",
+      "locomotor_legs_from_identity_review": 0,
+      "source_sha256": "8259f534f8487cac48c2d0f3d22a7f1ae94ca903d2f62bf5840705a6d6f85437",
+      "poses": 14,
+      "distinct_walk_poses_per_direction": [
+        6,
+        6
+      ],
+      "packed_height_range": [
+        39,
+        39
+      ],
+      "existing_native_height": 39,
+      "whole_figures_uniform_scale": true,
+      "within_review_canvas": true,
+      "exact_native_reference": true
+    },
+    {
+      "candidate": "WALK07-M07",
+      "identity": "MON-144-0",
+      "locomotor_legs_from_identity_review": 2,
+      "source_sha256": "3117fe0d1b9257d901c22993d519be8b118a549d5df2d7be2598000aaf209fbf",
+      "poses": 14,
+      "distinct_walk_poses_per_direction": [
+        6,
+        6
+      ],
+      "packed_height_range": [
+        76,
+        79
+      ],
+      "existing_native_height": 79,
+      "whole_figures_uniform_scale": true,
+      "within_review_canvas": true,
+      "exact_native_reference": true
+    }
+  ],
+  "preserved_native_references": "docs/reviews/player-walk-07/references/<identity>-native-current.png",
+  "reference_relocation_preview_sha256_unchanged": "7daf8601c8b862847291c570a22486151307d1021f3dd5a6e19bf4ba85ead576",
+  "acceptance_record": "visual-acceptance-creatures-lot01.json"
+}

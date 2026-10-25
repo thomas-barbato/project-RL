@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-24",
+  "review_id": "WALK07-r04",
+  "runtime_integration": false,
+  "pilots": [
+    10,
+    24
+  ],
+  "other_reported_family_outfits_pending": 8,
+  "old_source_regressions": [
+    {
+      "id": "UNARMED-10",
+      "old_source_heights": [
+        304,
+        304,
+        303,
+        305,
+        298,
+        295,
+        297,
+        299,
+        303,
+        303,
+        300,
+        302,
+        284,
+        285,
+        284,
+        285
+      ],
+      "new_native_height_range": [
+        57,
+        59
+      ]
+    },
+    {
+      "id": "UNARMED-24",
+      "old_source_heights": [
+        332,
+        330,
+        329,
+        331,
+        326,
+        323,
+        325,
+        326,
+        329,
+        324,
+        324,
+        329,
+        208,
+        208,
+        207,
+        209
+      ],
+      "new_native_height_range": [
+        56,
+        58
+      ]
+    }
+  ],
+  "native_height_span_limit": 2,
+  "new_strips_complete_and_padded": true,
+  "whole_figures_only": true,
+  "rejected_two_row_atlases_blocked": 2,
+  "manual_source_and_native_board_inspection": {
+    "left_faces_left": true,
+    "right_faces_right": true,
+    "opposite_support_half_drawn": true
+  },
+  "equipment_export_recipe_test": "passed for both pilots, 117 configurations each",
+  "equipment_export_raster_test": "passed for both pilots, 117 configurations each",
+  "accepted_runtime_renderer_tests_passed": 6,
+  "javascript_checks": {
+    "review_id": "WALK07",
+    "execution": "Node VM, simulated DOM/canvas; renderer fixtures from Rust Image diagnostic",
+    "runtime_integration": false,
+    "visual_acceptance": false,
+    "pixel_fixtures": 204,
+    "max_visible_channel_difference": 2,
+    "differing_edge_pixels": 1183,
+    "selection_pairs_checked": 1996,
+    "fragments_under_one_megabyte": 6,
+    "all_six_walk_frames": true,
+    "both_lateral_directions": true,
+    "separate_idle_at_arrival": true,
+    "single_cell_stops": true,
+    "duration_choice_and_manual_step": true,
+    "widget_state_restores_without_save_loop": true,
+    "trace_matches_accepted_walk05_step03_viewer": true,
+    "trace_samples": 601
+  },
+  "user_visual_acceptance": false
+}

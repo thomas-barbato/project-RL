@@ -1,0 +1,519 @@
+{
+  "review_id": "ACTOR-READABILITY01",
+  "status": "selected_02_04_05_selective_grayscale_in_review",
+  "native_tile": 64,
+  "scene_size": [
+    320,
+    256
+  ],
+  "backgrounds": [
+    {
+      "id": "street",
+      "name": "Rue sombre",
+      "source": "assets/source-art/first-sector-review-01/u01-style-r07/references/street-native-lighting.png",
+      "crop": [
+        0,
+        128,
+        320,
+        384
+      ],
+      "path": "street.png",
+      "source_sha256": "dfd77b2925e9c3e730ac4a32689a06bd4af50c89aed5e94259bb6740630a9f21"
+    },
+    {
+      "id": "camp",
+      "name": "Sol clair du camp",
+      "source": "artifacts/class-armor-integration-01/world-bastion/cold-start.png",
+      "crop": [
+        673,
+        335,
+        737,
+        399
+      ],
+      "path": "camp.png",
+      "source_sha256": "038a8d3a74515eea462499a906fd3932d9f1a40a9f02140708a01384503f0fad"
+    }
+  ],
+  "players": [
+    {
+      "index": 0,
+      "path": "players/00.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-00.png",
+      "source_sha256": "24a4ff2f9207d30c34a41f0e2af0cd56793c39581ee655e78253326387c7c7a8"
+    },
+    {
+      "index": 1,
+      "path": "players/01.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-01.png",
+      "source_sha256": "4811233c2cd3fc38d7d0ffb21fb829fb03aa591fd491bbe41a71c497a7d0f834"
+    },
+    {
+      "index": 2,
+      "path": "players/02.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-02.png",
+      "source_sha256": "39e4d8e38dd0ab6dade8cc44424f29d5167015eeace3a5bd068aa0599f0ec74d"
+    },
+    {
+      "index": 3,
+      "path": "players/03.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-03.png",
+      "source_sha256": "e24a811ca1605610712fbeeb5fcb588489b4b29b517d309bf3317ce9a10a06c9"
+    },
+    {
+      "index": 4,
+      "path": "players/04.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-04.png",
+      "source_sha256": "168fa61a3f280dfd0413d008782b951d2e50e2d012b65ef245d8950fb67d1fef"
+    },
+    {
+      "index": 5,
+      "path": "players/05.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-05.png",
+      "source_sha256": "40ebc23db40817f015c976c3cc50ec3a33ae1b2d8ee479a09d21020d4914374c"
+    },
+    {
+      "index": 6,
+      "path": "players/06.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-06.png",
+      "source_sha256": "0fc215dcde7c4b7d0c2a15c29a3710c0d8f11e91a256622fab3da2e3907c6448"
+    },
+    {
+      "index": 7,
+      "path": "players/07.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-07.png",
+      "source_sha256": "85b077cec78b1d3d819eae4fe22aabbf849373b8261139f0f2edc4d3afdaa1ec"
+    },
+    {
+      "index": 8,
+      "path": "players/08.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-08.png",
+      "source_sha256": "f7402578455372cd04a9cc6e0492ebb2ae1311ac8d1321008469186d06d0b686"
+    },
+    {
+      "index": 9,
+      "path": "players/09.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-09.png",
+      "source_sha256": "1234d685bf695ce9719f5f23968fc68a80329ba53fdc3e05c1aacff8cecba6eb"
+    },
+    {
+      "index": 10,
+      "path": "players/10.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-10.png",
+      "source_sha256": "c17737428d134ab2dfa8cce33b34e494ed5cda55c2354c64607832991f11ac92"
+    },
+    {
+      "index": 11,
+      "path": "players/11.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-11.png",
+      "source_sha256": "8d88acbe1f870942cb68e9b2de2ee585661341999536bfbb6f811d1da5b62c6b"
+    },
+    {
+      "index": 12,
+      "path": "players/12.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-12.png",
+      "source_sha256": "1c0bb3d9cc9248b17b76b24d694eef2f2485c583518aa992bcf2b5cfebbd332a"
+    },
+    {
+      "index": 13,
+      "path": "players/13.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-13.png",
+      "source_sha256": "8063cacfc820cab62763989aabb22c557e744585f634ae1b72787a0963a05430"
+    },
+    {
+      "index": 14,
+      "path": "players/14.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-14.png",
+      "source_sha256": "990defedb2c30cf5bf2905918f8527c04b2e2c5dcb8b6cd5eded849ceff5f105"
+    },
+    {
+      "index": 15,
+      "path": "players/15.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-15.png",
+      "source_sha256": "9c90b324ee285981f921d29f798a9f440077d27e8152bcd1a82fa743969da91f"
+    },
+    {
+      "index": 16,
+      "path": "players/16.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-16.png",
+      "source_sha256": "20f29e2e2ccbd1bcf41c1a644439ac440e9276b5ed84f2220e3cb3cefedbf163"
+    },
+    {
+      "index": 17,
+      "path": "players/17.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-17.png",
+      "source_sha256": "e68c3c40f5c5b1035d233ce148e99649ad48cabbdd94c0c869eca3f67102f6e5"
+    },
+    {
+      "index": 18,
+      "path": "players/18.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-18.png",
+      "source_sha256": "06a412cb2790852a8e3553fd14a576d6b4d90203597fdede31ff3d1560e99cb0"
+    },
+    {
+      "index": 19,
+      "path": "players/19.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-19.png",
+      "source_sha256": "63b3da8cfd05eb6ef8136d468c1d3ae9482c653e798cf2d1b525cd2f2ec2a27d"
+    },
+    {
+      "index": 20,
+      "path": "players/20.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-20.png",
+      "source_sha256": "9ff1177fdb344381e14cfd658d1bb078fac803cfde89e1dfbeb571efab6c0e3a"
+    },
+    {
+      "index": 21,
+      "path": "players/21.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-21.png",
+      "source_sha256": "6d15ab7605905b20c8853fbbc9c8a10da7999453b74ebbe5d5eb1d246e63fd76"
+    },
+    {
+      "index": 22,
+      "path": "players/22.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-22.png",
+      "source_sha256": "044bc3f02bf5dd9647e9e3f52301a5f6bcf58443964c6e09213646b537195943"
+    },
+    {
+      "index": 23,
+      "path": "players/23.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-23.png",
+      "source_sha256": "5bbf67753a3a53b1d0d458d5c9c585e80e48c2b162382ca64b527e5b49150a19"
+    },
+    {
+      "index": 24,
+      "path": "players/24.png",
+      "foot": [
+        64,
+        96
+      ],
+      "source": "artifacts/class-armor-integration-01/compositor/outfit-24.png",
+      "source_sha256": "1dbd25ba6fa95040fd68fd753e1f9da6b34b2c94b8e5e28f9688906496636505"
+    }
+  ],
+  "monsters": [
+    {
+      "id": "VIS05-A",
+      "number": 7,
+      "label": "Possédé blindé",
+      "original": "monsters/007-original.png",
+      "candidate": "monsters/007-candidate.png",
+      "foot": [
+        64,
+        96
+      ],
+      "old_core_box": [
+        25,
+        25,
+        103,
+        96
+      ],
+      "new_core_box": [
+        18,
+        25,
+        110,
+        96
+      ],
+      "original_source": "assets/sprites/art-finish-completion-06/monsters/007-0.png",
+      "original_sha256": "f90d2d0964b6f37734423d452aed8addeb17ae5b5a6473f242355b719d8e209e",
+      "new_source": "assets/source-art/actor-readability-01/VIS05-A-source.png",
+      "new_source_sha256": "dd0382d85f276ed0c3a3857cccf3791947eda696162279adaa1551c3aa0a2ddb",
+      "candidate_native": "assets/source-art/actor-readability-01/VIS05-A-native128.png",
+      "candidate_native_sha256": "488e2ca8e6609363af76a50011d2e1b0bc5383c3bd176f412bf1c326c5e1ea76"
+    },
+    {
+      "id": "VIS05-B",
+      "number": 8,
+      "label": "Fendeur",
+      "original": "monsters/008-original.png",
+      "candidate": "monsters/008-candidate.png",
+      "foot": [
+        64,
+        96
+      ],
+      "old_core_box": [
+        34,
+        36,
+        95,
+        96
+      ],
+      "new_core_box": [
+        33,
+        36,
+        96,
+        96
+      ],
+      "original_source": "assets/sprites/art-finish-completion-06/monsters/008-0.png",
+      "original_sha256": "018c6d948a099e5b43f921590ca31b1660f6bea980374bf45d5aa31016650d0f",
+      "new_source": "assets/source-art/actor-readability-01/VIS05-B-source.png",
+      "new_source_sha256": "31cb0b51e0dec6db4650fa95c5524e61f6dcb7014fa21f3923881761140fc1e2",
+      "candidate_native": "assets/source-art/actor-readability-01/VIS05-B-native128.png",
+      "candidate_native_sha256": "e2470e0cb0d84eef9ef4467326906365f0dba60a67fd5de474e3e4cf768d3df7"
+    },
+    {
+      "id": "VIS05-C",
+      "number": 10,
+      "label": "Possédé tireur",
+      "original": "monsters/010-original.png",
+      "candidate": "monsters/010-candidate.png",
+      "foot": [
+        64,
+        96
+      ],
+      "old_core_box": [
+        38,
+        36,
+        90,
+        96
+      ],
+      "new_core_box": [
+        39,
+        36,
+        88,
+        96
+      ],
+      "original_source": "assets/sprites/art-finish-completion-06/monsters/010-0.png",
+      "original_sha256": "9b6fbceafff1a8280c173c38004b2005002153164d62842ae1e9a39242241b8f",
+      "new_source": "assets/source-art/actor-readability-01/VIS05-C-source.png",
+      "new_source_sha256": "e3bc6fc074311650fc04229e4ac753a37ced77e89d3ec6f3f33647ead13c81d5",
+      "candidate_native": "assets/source-art/actor-readability-01/VIS05-C-native128.png",
+      "candidate_native_sha256": "99cc29ecf756d0b339b470a8af478cc4f8b4320ba65c39dd867a38571d92315d"
+    }
+  ],
+  "classes": [
+    "Bastion",
+    "Technomancien",
+    "Traqueuse",
+    "Arcaniste",
+    "Métamorphe"
+  ],
+  "effects": [
+    {
+      "id": "flame",
+      "path": "fx/flame.png",
+      "source": "assets/animations/agent/skill-animation-review-06/flame-atlas.png",
+      "source_sha256": "2ef54f2b5a41fc272ab1cd1e753316ac713407e017ff2e4b0d02e1fee1bbb855",
+      "dimensions": [
+        1024,
+        128
+      ],
+      "reused_existing_runtime_art": true
+    },
+    {
+      "id": "gel-rear",
+      "path": "fx/gel-rear.png",
+      "source": "assets/animations/agent/skill-animation-review-27/gel-atlas.png",
+      "source_sha256": "441aaabd1adc9e298a422c1d2c4bc0b5f1cd21ec5533a3903b476295a930c87f",
+      "dimensions": [
+        1536,
+        256
+      ],
+      "reused_existing_runtime_art": true
+    },
+    {
+      "id": "gel-front",
+      "path": "fx/gel-front.png",
+      "source": "assets/animations/agent/skill-animation-review-28/gel-atlas.png",
+      "source_sha256": "d66ca18953a964ff325fdce5df41096e985d8e1b16d4fbb1303267eaf6569a38",
+      "dimensions": [
+        1536,
+        256
+      ],
+      "reused_existing_runtime_art": true
+    },
+    {
+      "id": "projectile",
+      "path": "fx/projectile.png",
+      "source": "assets/animations/agent/skill-animation-review-16/projectile-atlas.png",
+      "source_sha256": "5f02965b8c3fae95b76a4a88d80a336ad53492dc85ba662aa192163ed873c01b",
+      "dimensions": [
+        1024,
+        256
+      ],
+      "reused_existing_runtime_art": true
+    },
+    {
+      "id": "burst",
+      "path": "fx/burst.png",
+      "source": "assets/animations/agent/skill-animation-review-20/burst-atlas.png",
+      "source_sha256": "373c6dd5831e9d5f4e6728e51a84ddf8e197aca1fd557cd2aebc954d67d31efa",
+      "dimensions": [
+        1536,
+        256
+      ],
+      "reused_existing_runtime_art": true
+    }
+  ],
+  "selection": {
+    "review_id": "ACTOR-READABILITY01-SELECTION02",
+    "date": "2026-10-22",
+    "user_message": "J'aime bien : Repère au sol (mais il faudra que ce soit désactivable dans les options), Silhouettes eclaircies, Nouvelles formes de monstres, Niveau de gris (mais ca devrait être une option à activer ou non) qui permettrait de laisser seulement les sorts et les animations en couleurs.",
+    "followup_user_message": "il faudra faire la meme chose pour tous les monstres du coup : )",
+    "grayscale_marker_correction_user_message": "(en nuances de gris, les repères devraient etre en couleur quand meme :) . )",
+    "selected_existing_preview_options": [
+      "02",
+      "04",
+      "05"
+    ],
+    "selected_existing_monster_candidates": [
+      "VIS05-A",
+      "VIS05-B",
+      "VIS05-C"
+    ],
+    "not_selected_options": [
+      "01",
+      "03"
+    ],
+    "requested_global_scope": "Entire bestiary, including visual variants: brighter actors and more legible distinct monster forms. The three studies establish the direction; unseen drawings still require numbered native review.",
+    "ground_markers": {
+      "requested_option": true,
+      "approved_preview": "Arc under the player and selected visible monster",
+      "proposed_menu_label": "Repères au sol",
+      "proposed_default": true
+    },
+    "grayscale": {
+      "requested_option": true,
+      "requested_behavior": "World and actors grayscale; ground markers, spells and animated effects remain colored",
+      "previous_preview_limitation": "Desaturated the whole final image",
+      "revised_candidate": "10",
+      "revised_candidate_reviewed_by_user": false,
+      "proposed_menu_label": "Monde en niveaux de gris",
+      "proposed_default": false,
+      "ground_markers_also_grayscale": false,
+      "ui_hud_not_part_of_world_filter": true
+    },
+    "runtime_integration": false,
+    "scope_note": "This record preserves the selection and requested bestiary scope. It does not mark unseen monster designs, revised selective grayscale, defaults or proposed UI labels as visually accepted.",
+    "selected_pixel_references": [
+      {
+        "id": "VIS05-A",
+        "number": 7,
+        "candidate_native": "assets/source-art/actor-readability-01/VIS05-A-native128.png",
+        "candidate_native_sha256": "488e2ca8e6609363af76a50011d2e1b0bc5383c3bd176f412bf1c326c5e1ea76",
+        "new_source": "assets/source-art/actor-readability-01/VIS05-A-source.png",
+        "new_source_sha256": "dd0382d85f276ed0c3a3857cccf3791947eda696162279adaa1551c3aa0a2ddb"
+      },
+      {
+        "id": "VIS05-B",
+        "number": 8,
+        "candidate_native": "assets/source-art/actor-readability-01/VIS05-B-native128.png",
+        "candidate_native_sha256": "e2470e0cb0d84eef9ef4467326906365f0dba60a67fd5de474e3e4cf768d3df7",
+        "new_source": "assets/source-art/actor-readability-01/VIS05-B-source.png",
+        "new_source_sha256": "31cb0b51e0dec6db4650fa95c5524e61f6dcb7014fa21f3923881761140fc1e2"
+      },
+      {
+        "id": "VIS05-C",
+        "number": 10,
+        "candidate_native": "assets/source-art/actor-readability-01/VIS05-C-native128.png",
+        "candidate_native_sha256": "99cc29ecf756d0b339b470a8af478cc4f8b4320ba65c39dd867a38571d92315d",
+        "new_source": "assets/source-art/actor-readability-01/VIS05-C-source.png",
+        "new_source_sha256": "e3bc6fc074311650fc04229e4ac753a37ced77e89d3ec6f3f33647ead13c81d5"
+      }
+    ]
+  },
+  "bestiary_scope": {
+    "campaign_models": 129,
+    "campaign_appearances_including_material_palettes": 471,
+    "selected_shape_pilots": 3,
+    "remaining_campaign_models_for_shape_review": 126
+  },
+  "game_integration": false,
+  "engine_scene_execution": false,
+  "presentation": "interactive canvas composition of actual native game assets, not a played game capture",
+  "scope": "selected 02/04/05 plus optional selective grayscale study; existing spell animation art reused; no gameplay changes"
+}

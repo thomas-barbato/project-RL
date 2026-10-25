@@ -1,0 +1,36 @@
+{
+  "review_id": "ITEM-LOOT01-CRAFT02",
+  "date": "2026-10-23",
+  "status": "deferred_at_user_request_not_integrated",
+  "scope_decision": "scope-decision-02.json",
+  "replaces": "ITEM-LOOT01-CRAFT01",
+  "references": [
+    "diablo2-crafting-study-01.json",
+    "scope-acceptance-01.json",
+    "names-acceptance-01.json"
+  ],
+  "accepted_user_intent": "Artisanal equipment should be occasional; study Diablo II before assigning rates.",
+  "proposed_direction": {
+    "material_budget": "Crafting materials belong to the weighted loot choices rather than a generous automatic extra packet.",
+    "quantity": "One material per successful material drop.",
+    "bosses": "More rewarding general loot without guaranteed crafting materials.",
+    "input_base": "A compatible modified item, with recipe-specific base requirements to be defined.",
+    "ingredients": [
+      "Pièces de récupération",
+      "Microcircuits",
+      "Fragment instable"
+    ],
+    "limiting_ingredient": "Require a Fragment instable catalyst for a crafted-equipment attempt; its availability is the main proposed constraint.",
+    "random_result": "A craft gives an artisanal item; its random properties can make the result less desirable than hoped.",
+    "pacing": "A few meaningful crafting opportunities over a normal playthrough; availability to be measured against actual encounters before setting percentages."
+  },
+  "pending": [
+    "All proposed directions above",
+    "Recipe identities, counts, costs and properties",
+    "Source-specific item/material odds",
+    "Compatibility with the existing fragment-based improvement service",
+    "Rules for normal and modified equipment outside crafting"
+  ],
+  "rates": null,
+  "runtime_integration": false
+}

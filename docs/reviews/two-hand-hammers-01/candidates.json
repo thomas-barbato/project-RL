@@ -1,0 +1,64 @@
+{
+  "review_id": "HAM-2H01",
+  "user_direction": "Existing hammers remain one-handed and held like one-handed swords. Add a few separate two-handed hammer models, held horizontally.",
+  "integration_status": "visuals_accepted_gameplay_rules_not_proposed",
+  "existing_one_hand_models": [
+    97,
+    98
+  ],
+  "new_gameplay_rules_or_stats": false,
+  "candidates": [
+    {
+      "id": "HAM-2H01",
+      "number": 1,
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/two-hand-hammers-01/HAM-2H01-source.png",
+      "source_sha256": "979b8ab0586b3107791ebcb08cf629cebc041438ac590b7443dd3feeeff0b9b6",
+      "native": "assets/source-art/two-hand-hammers-01/HAM-2H01-native64.png",
+      "native_sha256": "6c8a60db586b9e55cafce2d7dde30d17c9e77967c891abae9dcc5db04a32b4d1",
+      "prompt": "Use case: stylized-concept. Create ONE isolated full futuristic two-handed war hammer for a grimdark cyberpunk roguelike sprite. Transparent background, no ground, no character or hands, no shadow cast onto a floor, no text, no labels. Whole weapon fully visible with generous empty margin, long shaft EXACTLY HORIZONTAL left to right, large striking head on RIGHT, clear side/front elevation appropriate for a front-facing standing character. Matte worn steel, restrained ivory edge highlights, simple quiet surfaces, dark charcoal grip. Two distinct hand grip bands at 32% and 62% along the shaft, unobstructed. It will be reduced to only 54 pixels wide inside a 64px actor tile: strong simple silhouette, thick 2-3px-equivalent shaft, broad material groups, no fine wires or tiny decorations, no glow. Game-ready painted raster illustration with crisp dark contour, readable robust volumes, muted grimdark comic finish, not photorealistic, no 3D product render. Very wide landscape composition. Industrial demolition maul, massive rectangular steel head, bevelled corners, broad worn cold-silver striking plates, short black shock absorber collar. Subtle copper reinforcement only at the head collar. Practical robust construction.",
+      "tool": "built-in image_gen",
+      "shaft_y": 32,
+      "weapon_width": 54,
+      "native_canvas": [
+        64,
+        64
+      ]
+    },
+    {
+      "id": "HAM-2H02",
+      "number": 2,
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/two-hand-hammers-01/HAM-2H02-source.png",
+      "source_sha256": "dd08ef27f56dffafb89135ba8e1bb6b44b313a18bd3771a41c0572a9bb30bce8",
+      "native": "assets/source-art/two-hand-hammers-01/HAM-2H02-native64.png",
+      "native_sha256": "5f6d9a744a66ad92eaec104bd30f7612c432037619f0f94e26074a10bf7ebf18",
+      "prompt": "Use case: stylized-concept. Create ONE isolated full futuristic two-handed war hammer for a grimdark cyberpunk roguelike sprite. Transparent background, no ground, no character or hands, no shadow cast onto a floor, no text, no labels. Whole weapon fully visible with generous empty margin, long shaft EXACTLY HORIZONTAL left to right, large striking head on RIGHT, clear side/front elevation appropriate for a front-facing standing character. Matte worn steel, restrained ivory edge highlights, simple quiet surfaces, dark charcoal grip. Two distinct hand grip bands at 32% and 62% along the shaft, unobstructed. It will be reduced to only 54 pixels wide inside a 64px actor tile: strong simple silhouette, thick 2-3px-equivalent shaft, broad material groups, no fine wires or tiny decorations, no glow. Game-ready painted raster illustration with crisp dark contour, readable robust volumes, muted grimdark comic finish, not photorealistic, no 3D product render. Very wide landscape composition. Futuristic hydraulic siege hammer, wide compact cylindrical double striking head aligned vertically above and below shaft, two large dark steel lobes and thick pale steel striking caps, one visible central hydraulic block, restrained dark red panel. Different unmistakable silhouette from a rectangular sledge.",
+      "tool": "built-in image_gen",
+      "shaft_y": 32,
+      "weapon_width": 54,
+      "native_canvas": [
+        64,
+        64
+      ]
+    },
+    {
+      "id": "HAM-2H03",
+      "number": 3,
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/two-hand-hammers-01/HAM-2H03-source.png",
+      "source_sha256": "128d406ee3ace630477d3985a10715968afd6a94456f3020249e97e084b1b484",
+      "native": "assets/source-art/two-hand-hammers-01/HAM-2H03-native64.png",
+      "native_sha256": "f9c60aef147b509731743b0290d66ca2a253ea544790f268b34b0215227ce96b",
+      "prompt": "Use case: stylized-concept. Create ONE isolated full futuristic two-handed war hammer for a grimdark cyberpunk roguelike sprite. Transparent background, no ground, no character or hands, no shadow cast onto a floor, no text, no labels. Whole weapon fully visible with generous empty margin, long shaft EXACTLY HORIZONTAL left to right, large striking head on RIGHT, clear side/front elevation appropriate for a front-facing standing character. Matte worn steel, restrained ivory edge highlights, simple quiet surfaces, dark charcoal grip. Two distinct hand grip bands at 32% and 62% along the shaft, unobstructed. It will be reduced to only 54 pixels wide inside a 64px actor tile: strong simple silhouette, thick 2-3px-equivalent shaft, broad material groups, no fine wires or tiny decorations, no glow. Game-ready painted raster illustration with crisp dark contour, readable robust volumes, muted grimdark comic finish, not photorealistic, no 3D product render. Very wide landscape composition. Brutal salvaged reactor-core maul, chunky hexagonal striking head with one broad pale metal face, dark navy steel casing, squat triangular reinforcement behind head, one muted copper inset. Heavy angular silhouette, no spikes or exposed cables.",
+      "tool": "built-in image_gen",
+      "shaft_y": 32,
+      "weapon_width": 54,
+      "native_canvas": [
+        64,
+        64
+      ]
+    }
+  ],
+  "acceptance": "docs/reviews/two-hand-hammers-01/acceptance.json"
+}

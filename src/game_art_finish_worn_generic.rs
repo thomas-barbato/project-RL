@@ -65,6 +65,10 @@ fn weapon_binding(model: u16, left: bool) -> Option<&'static WeaponBinding> {
                 .find(|w| w.model == model && w.support.is_some())
         })
 }
+pub(super) fn attachment(model: u16, left: bool) -> Option<([f32; 2], Option<[f32; 2]>)> {
+    let binding = weapon_binding(model, left)?;
+    Some((binding.anchor, binding.support))
+}
 pub(super) fn supports(key: Key) -> bool {
     FINISHED_RIGS.iter().any(|r| r.outfit == key.0)
         && key
@@ -84,7 +88,7 @@ fn reflected(im: &Image) -> Image {
     }
     r
 }
-fn weapon_image(model: u16, left: bool, color: EquipmentPalette) -> Option<Image> {
+pub(super) fn weapon_image(model: u16, left: bool, color: EquipmentPalette) -> Option<Image> {
     let mut image = raw_weapon_image(model, left)?;
     if color != EquipmentPalette::Original {
         let mask_left = weapon_binding(model, left)?.left;

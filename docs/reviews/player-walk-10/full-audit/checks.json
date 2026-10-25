@@ -1,0 +1,186 @@
+{
+  "status": "audit_complete_findings_require_correction",
+  "date": "2026-10-25",
+  "unit_diagnostics": {
+    "player_compositor_export": "passed200 full cases plus565 weapon samples",
+    "campaign_reference_export": "passed471 references",
+    "palette_alpha_and_base_pose_test": "passed471 pairs"
+  },
+  "native_npc_check": {
+    "status": "passed",
+    "cases": 24,
+    "same_pixels": true,
+    "full_game_renderer": true,
+    "owning_cell_only": true
+  },
+  "debug_build": "passed",
+  "cargo_check": "passed",
+  "visual_contact_pages_inspected": 30,
+  "manual_review_scope": {
+    "all_player_base_outfits": 25,
+    "all_axe_outfits": 25,
+    "all_campaign_base_models": 129,
+    "extra_cycles": 10,
+    "selected_helmet_cases": 24
+  },
+  "runtime_resources_unchanged": true,
+  "protected_monster_and_map_editor_files": 140,
+  "release_unchanged": true,
+  "release_sha256": "38ecac8c287071ff7b41ff94c4f06f7a30161767aebf944a529e8e6340052efe",
+  "normal_gameplay_changes": false,
+  "game_state_created": false,
+  "user_campaign_written": false,
+  "user_settings_written": false,
+  "limits": [
+    "Not a full armor x helmet x weapon x pose Cartesian product.",
+    "Silhouette area changes can reflect pose overlap, wings or foreshortening.",
+    "Static banks are inventoried separately; absence of a gait does not count as a successful walk-proportion review."
+  ],
+  "priority_body_reviews": [
+    "CLASS-00..24 using each front reference",
+    "MON-014-0",
+    "MON-015-0",
+    "MON-115-0",
+    "MON-124-0"
+  ],
+  "separate_pose_reviews": [
+    "MON-101-0",
+    "MON-141-0"
+  ],
+  "proof_files": [
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/00.png",
+      "sha256": "bcefe76bb1931e0dda0cc9e4ca09f2080c770ac3b865c222a3dc745387f4eda9"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/01.png",
+      "sha256": "f1a2db082c2e01db7774dfc82eda5fadd5d29248e6da1c20eb3d546013758f18"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/02.png",
+      "sha256": "a8e20c9f92c19a74a8cf8adfde6ac90c7540caa31cccc3053dde06a44dfb2608"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/03.png",
+      "sha256": "f81edecff408e9a149e35e7d90f6cda6b8146ac85df1dc84320931283d98caf0"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/04.png",
+      "sha256": "3f640c87a15c2b9a562160b2c18403256fcfdba3cd450246a68ba767769f8dc0"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/05.png",
+      "sha256": "ada2da95b788370d0f0251aa384df961f5663d5f36fc0c34b3778a8079c0342b"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/06.png",
+      "sha256": "a1d7cb2b0e1eb7fca46dd245b364d34ca5d0dae0d686751b6537fcc9e011ef28"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/07.png",
+      "sha256": "6a06513701320e43cf7eacbffb7e060aa83d585dc2b03dbc0e32f8061be9ec26"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/08.png",
+      "sha256": "1af0fc558ea48c5068cfe648120c1eaa97c71f381629d8f2da0e8ce80e5bfc61"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/09.png",
+      "sha256": "7e9f5dea6fd59d02c3664fa95e4e054ca6f08e279930e0451db6f039ede460ab"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/10.png",
+      "sha256": "4b3c89e4fd08654c04ef70abaac7e8b5dde8ce54d81996a06a7c5e9d72c03e9b"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/11.png",
+      "sha256": "b1061dfc2271531dd9de452e88c92477c0ed0634a875e84f292ed6021608f70a"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/12.png",
+      "sha256": "649db8d2dce579eb522bb1871a5e329a02b5158083a461913c790c3c2a8a483f"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/13.png",
+      "sha256": "0713dfdd7c85e7e8178b0f931978e796bf5fa50aedd9fe9ffff65e84ca772ee6"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/14.png",
+      "sha256": "593173996b1bee548d63585eab28ec928a1e639780bd62ab0025c82a2fe6491b"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/15.png",
+      "sha256": "45983dc62ea1694ec981a1c4051e16fb8328c0029bb1c9869c6ef60667552099"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/campaign/16.png",
+      "sha256": "615999f9adb4d7102ea4d1b6cdd58bd69bcc2f1c92b546563287d4c330d32746"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/forms-drones/00.png",
+      "sha256": "5c731b7b6c7f722457a3870d0cd4197788e03526db1fbffafd569461c0080b78"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/forms-drones/01.png",
+      "sha256": "7125d34c041ed19399e88e77ffdc806c70264ff6fd55d8e7c6a9b8476ac44877"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/npc-check/npc-size-64.png",
+      "sha256": "b89fa7d0eaec5fe2d73a0ebb6d2b03a76d41782606f095543fa15c7db403a6bb"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/npc-check/npc-size-96.png",
+      "sha256": "4dc5b648e6f801d55bd86c89d0b773d081ea320790a73f8d8706dff4fe77dfbc"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players/00.png",
+      "sha256": "e45224f90951a7ccdbc63134af6cc8a51c16e0ac05c9ab972a816987ad8fbbf4"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players/01.png",
+      "sha256": "98ea0ffc1ed7aca47750ed6f25907667f1d49cff66c030e671308c389c79a2a9"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players/02.png",
+      "sha256": "a6c23e3af1eab6c73d4bbb96244f835e8069b0b2a71ca8c22f16ceb6ae6a5e8a"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players/03.png",
+      "sha256": "aeef9867fc90498578e8a349e536b9bc9310a2f3c9e6c8de8ed279a031300643"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players-axe/00.png",
+      "sha256": "20fdba1457ac5b7dec952e89b5c37906e9b49c6ca271e42dd36deafa1a68859e"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players-axe/01.png",
+      "sha256": "543c41af100ed85872cabaf8164db55941cdb936b6521dee3600ef015cac9a12"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players-axe/02.png",
+      "sha256": "10d67691e34a41400fd63edf016be74f47381b855eb23b3c664aff681c51f448"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players-axe/03.png",
+      "sha256": "263ec6cde75a5a80a8e890754f5058729cdddd5cd85d7913c23a4da659cde618"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players-helmet-alerts/00.png",
+      "sha256": "610118496a32ddd025d6362fa5716248b8dacb312fc8b6e54d7d2f0de9307043"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players-helmet-alerts/01.png",
+      "sha256": "0ddf97d6713f9c9d4f809ab34d68661b6fdfcaefc3f7bb33d12705d64287a191"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/players-helmet-alerts/02.png",
+      "sha256": "a8a9f6216554d9d76523ac6b6c94509c13ba28909014c7b443624fbc6294fd61"
+    },
+    {
+      "file": "docs/reviews/player-walk-10/full-audit/principaux-ecarts-native64.png",
+      "sha256": "bc6e0ae147ff8b22a83810673cb1c7facd8425e3ed12d00dc453d4c1e031c374"
+    }
+  ],
+  "format_check": "passed",
+  "git_diff_check": "passed"
+}

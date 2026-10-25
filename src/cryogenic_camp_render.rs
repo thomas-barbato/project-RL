@@ -17,8 +17,7 @@ struct Scene {
     atmosphere: Atmosphere,
 }
 fn load(file: &str) -> Texture2D {
-    let bytes = std::fs::read(std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(file))
-        .expect("accepted camp texture");
+    let bytes = project_rl::data_paths::read(file).expect("accepted camp texture");
     let t = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
     t.set_filter(FilterMode::Nearest);
     t
@@ -202,7 +201,7 @@ pub fn draw_npc(cell: Rect, index: u8, opacity: f32, world: bool, idle_time: Opt
             // The fixed lower strip covers the overlap; feet and shadow stay put.
             let scale = r.w / 128.;
             for (y, height, offset) in [(0., 78., breath), (78., 50., 0.)] {
-                draw_texture_ex(
+                crate::world_readability::texture(
                     t,
                     r.x,
                     r.y + (y + offset) * scale,

@@ -2,6 +2,52 @@
 
 Version 1 — 5 octobre 2026.
 
+### WEAPON-READABILITY03 — six dessins intégrés le 22 octobre 2026
+
+Le joueur valide les quatre armes lourdes et autorise explicitement l’intégration
+de tout le lot. Les six modèles montrés (2, 17, 23, 31, 51 et 66) reprennent leurs
+dessins natifs, prises, angles, tailles par classe et ombre locale validés.
+Les ressources embarquées sont dans `assets/sprites/weapon-readability-03/` ;
+aucune lecture d’un aperçu sous `artifacts/` n’est nécessaire au jeu.
+Les palettes d’équipement existantes réutilisent leur classement de matériaux,
+en protégeant les métaux neutres et les contours. Le corps, les armes et les
+doigts gardent leurs couches ; l’ombre ne modifie pas le corps source.
+Le même compositeur sert au plateau et aux portraits. Les autres modèles et
+les règles du jeu sont conservés. Accords et contrôles :
+`docs/reviews/weapon-readability-02/`, intégration 03.
+
+À sa demande complémentaire, la découpe complète des anciennes mains et
+manches est aussi appliquée aux armes de mêlée à deux mains : les fragments
+restés sur le Bastion et l’Arcaniste disparaissent du montage. Les dessins
+sources, les armures et les armes existantes restent conservés.
+
+### WEAPON-READABILITY01 — hache et fusil validés le 22 octobre 2026
+
+Le joueur valide WR-AX01 et WR-RF01 après comparaison sur les 25 tenues en
+64 px : hampe de bois continue, formes simplifiées, prises adaptées aux classes
+et ombre de séparation d’un pixel sur le corps. Les sources et les poses exactes
+sont figées dans `docs/reviews/weapon-readability-01/acceptance.json`.
+Il demande ensuite de voir les armes lourdes. Les quatre candidats de familles
+03–06 sous `docs/reviews/weapon-readability-02/` sont ensuite validés et intégrés
+par l’accord WEAPON-READABILITY03 ; les autres modèles du catalogue sont conservés.
+
+### ACTOR-READABILITY01 — intégration autorisée le 22 octobre 2026
+
+Le joueur choisit les silhouettes éclaircies, les repères au sol désactivables,
+les nouvelles formes montrées et un monde facultatif en nuances de gris. Il
+précise que les repères, les sorts et les animations restent en couleur, puis
+demande d’appliquer l’ensemble au jeu. Les 25 tenues de classe restent celles
+acceptées. Les armes longues conservent leur dessin commun mais leur échelle,
+leur position et leurs deux prises s’adaptent au gabarit de la classe ; les
+anciennes mains et bordures de manche doivent disparaître de leur ancienne pose.
+Les effets de lisibilité ne modifient ni statistiques ni perception simulée.
+
+Les trois nouveaux monstres présentés et leurs variantes de matériau existantes
+sont intégrés. L’éclaircissement est général ; les autres formes du bestiaire
+restent à reprendre par lots avec contrôle natif, sans prétendre qu’elles ont
+toutes été redessinées. Accords, ressources exactes et vérifications :
+`docs/reviews/actor-readability-01/`, complément d’intégration 02.
+
 ### Référence de finition CIVILS-U01-08 — accord du 19 octobre 2026
 
 Le joueur valide les cinq dessins de corps civils, leurs dix-huit placements
@@ -859,6 +905,268 @@ bleu/ivoire, anthracite/turquoise. Ne pas imposer le même accent partout.
 Les couleurs sont expressives ; le réalisme n'est pas une limite imposée.
 
 ## 6. Personnages, tenues et couches
+
+### Règle courante du 21 octobre 2026 — tête du torse, casque prioritaire
+
+Le joueur révise la règle de tête : **l’armure de torse couvre par défaut aussi
+la tête**, sauf lorsqu’un casque est équipé. La tenue de torse fournit donc
+son apparence complète, tête comprise. Le casque équipé remplace uniquement
+l’apparence de tête fournie par le torse ; le corps conserve la tenue du torse.
+Retirer le casque rétablit la tête prévue avec cette armure.
+
+Cette règle s’applique aux cinq classes, **y compris aux cinq armures du Bastion
+déjà validées**, comme le précise explicitement le joueur. Conserver leurs
+corps acceptés et préparer des éléments de tête assortis pour une nouvelle revue.
+Les compositions déjà acceptées restent des références exactes de l’accord passé ;
+elles ne valident pas les nouveaux dessins de tête à produire.
+
+La tête de base et les augmentations de la classe restent la référence sous
+les protections, qui peuvent les masquer. Garder des couches séparées pour
+composer et remplacer ces protections sans redessiner le corps. L’apparence de
+tête du torse ne crée pas d’objet de casque et n’occupe pas ce slot d’inventaire.
+La case reste de 64 × 64 et les variantes colorées restent reportées.
+Règle et portée : `reviews/class-readability-01/head-appearance-rule.json`.
+
+Le 21 octobre, le joueur répond **« ok j evalide »** aux cinq protections de
+tête assorties du Bastion, revue `BASTION-W01-HEAD02`. Leurs compositions en
+64 × 64 et leurs calques exacts sont acceptés et figés, avec les corps validés
+conservés au pixel près. L’accord est dans
+`reviews/class-readability-01/bastion-heads-02/acceptance.json`. Il ne couvre
+pas les têtes des autres classes ni les futurs objets de casque. L’intégration
+reste différée jusqu’aux armures, casques et prises d’armes préparés et revus.
+
+Le joueur valide ensuite le témoin du Technomancien à capuche souple et col
+asymétrique, **TE-W02-ID02-r01**, par « d'accord ca me va ». Son apparence exacte
+et ses calques sont figés dans
+`reviews/class-readability-01/technomancien-heads-01/acceptance.json`.
+Il demande ensuite de préparer **toutes les armures des cinq classes**, puis
+de présenter l’ensemble à taille réelle pour choisir les modèles à garder
+ou à modifier. Cette cadence remplace désormais les validations classe par
+classe. `reviews/class-readability-01/class-armors-all-01/` regroupe les cinq
+degrés de protection par classe. Les accords précédents restent conservés ;
+les nouveaux dessins attendent cette revue commune, sans intégration automatique.
+L’intégration demeure différée jusqu’à la préparation et la revue de toutes
+les armures, des têtes fournies par les torses, des casques et des prises d’armes.
+
+Après la première planche complète, le joueur demande de reprendre les formes
+du Technomancien et de la Traqueuse, de vrais casques pour cette dernière,
+une tête d’Arcaniste plus compacte et des nuques plus courtes. La Traqueuse
+suit une inspiration tireuse d’élite/ninja. Le choix du Technomancien est
+« Prêtre-machine sombre, visage mécanique et manteau sobre ».
+`reviews/class-readability-01/class-armors-all-02/` conserve cette reprise,
+avec les numéros 01–25 stables et les références antérieures intactes.
+Le retour suivant remet en revue l'esthétique de l'ensemble, Bastion compris.
+`reviews/class-readability-01/armor-style-studies-01/` prépare deux dessins
+entiers du Bastion, numérotés 01 et 02, pour rechercher une meilleure direction
+à taille native avant de refaire les gammes. Ce sont des études de style,
+pas des rigs équipables. Les anciens dessins et accords restent des archives ;
+les deux essais et toute déclinaison future attendent une nouvelle revue.
+Le joueur apprécie ensuite ces deux pistes, notamment la lecture du 01 en
+64 px. Il demande de retirer la plaque faciale trop identifiable, de réduire
+les petits accents du Briseur et de remplacer son orange par du cuivre.
+`reviews/class-readability-01/armor-style-studies-02/` présente cette reprise,
+en gardant la tenue native du 01 identique hors zone explicite de tête.
+La réduction de la grande source du Briseur utilise désormais Lanczos,
+comme celle du 01 ; Nearest reste utilisé pour les zooms entiers de contrôle.
+La simplification du dessin et celle de son conditionnement sont distinguées.
+Ces nouveaux pixels et leur future intégration restent à valider.
+Après « c'est bien mieux là », le joueur demande de poursuivre et d'épaissir
+les protections de façon plus brutale dans les versions supérieures.
+`reviews/class-readability-01/bastion-copper-wave-01/` présente la progression
+du Bastion en cinq paliers. Les deux études appréciées sont conservées
+exactement aux paliers 02 et 03 ; trois dessins nouveaux complètent la gamme.
+Augmenter les grands volumes et la couverture, en conservant une hauteur et
+une tête humaines stables. Le 22 octobre 2026, « je valide :) » accepte les
+cinq tenues et têtes par défaut montrées en 64 × 64. L'accord exact est
+`BASTION-COPPER-W01-ACCEPT01`, dans le dossier de revue de cette gamme ; les
+copies figées et empreintes sont conservées. La gamme cuivre devient la
+référence courante du Bastion ; les anciens accords restent historiques.
+Les casques équipables, les prises et l'intégration demeurent différés.
+Le joueur demande ensuite de reprendre le Technomancien en gardant son
+identité de prêtre-machine sombre et une progression légère à lourde lisible
+en 64 px. `reviews/class-readability-01/technomancien-machine-priest-01/`
+présente des tenues entières : capuche compacte, visage mécanique, manteau
+vertical fendu, châssis et pans blindés de plus en plus protecteurs.
+Comparer directement les cinq paliers avec le Bastion accepté à même échelle.
+Le choix de direction ne valide pas d'avance ces nouveaux dessins ; les
+références du Bastion et les règles de tête/torse restent conservées.
+Le joueur apprécie les protections mais demande de reprendre la robe,
+d’abord rouge avec bordures dorées, puis demande de poursuivre **sans robe**
+pour s’éloigner d’une référence de franchise trop reconnaissable. La revue
+`reviews/class-readability-01/technomancien-no-robe-01/` retire robe, capuche
+et pans pendants : châssis mécanique apparent, petit crâne découvert,
+coques acier et articulations dégagées, du léger au lourd. Cette direction
+autorise la préparation de la gamme ; les nouveaux dessins attendent leur
+revue native. Les essais de robes rouge et or restent archivés sans acceptation.
+La demande de variantes modifiant uniquement le rouge, avec bordures dorées
+fixes, est conservée comme intention ; elle n’est pas étendue automatiquement
+aux pièces métalliques du nouveau corps sans robe. Variantes et intégration
+restent différées.
+
+### Têtes du Technomancien — correction en revue du 22 octobre
+
+Le joueur juge les têtes sans robe trop sombres et trop identiques entre
+paliers. `reviews/class-readability-01/technomancien-no-robe-heads-02/`
+propose de grands plans acier plus clairs, du crâne dégagé au casque fermé.
+Les corps natifs hors région de tête restent identiques ; les têtes gardent
+une échelle compacte. Le 22 octobre, « ok je valide » accepte les cinq
+tenues sans robe et leurs têtes corrigées en 64 × 64. L’accord exact est
+`TECHNOMANCIEN-NOROBE-ACCEPT01`, dans le dossier de cette correction ; sources,
+exports et couches approuvés sont figés. Le Bastion cuivre reste accepté et
+l’intégration demeure différée jusqu’aux autres armures, casques et prises.
+Les formes de casque appartiennent à la tête par défaut du torse et ne créent pas encore
+de casques équipables indépendants.
+
+Après cette validation, le joueur demande de poursuivre. La revue
+`reviews/class-readability-01/traqueuse-sniper-wave-01/` prépare cinq tenues
+de la Traqueuse, femme, selon sa direction tireuse d’élite / ninja : textile
+bleu ardoise, protections asymétriques gris bleuté et augmentations localisées.
+Tête, bras, jambes, gants et bottes suivent une protection croissante.
+La comparaison en 64 × 64 reprend les deux gammes acceptées. Le 22 octobre,
+« d'accord on valide :) » accepte les cinq tenues de la Traqueuse et leurs
+têtes par défaut, paliers 01–04 r01 et 05 r02. L’accord exact est
+`TRAQUEUSE-SNIPER-W01-ACCEPT01`, dans le dossier de cette gamme ; les
+sources, exports et couches approuvés sont figés. La Traqueuse garde une silhouette de 56 px,
+sans étirement vers les 58 px du Bastion et du Technomancien. Les anciennes
+versions restent des archives et l’intégration demeure différée.
+
+Le joueur confirme ensuite la poursuite vers l’Arcaniste. La revue
+`reviews/class-readability-01/arcaniste-channeler-wave-01/` prépare cinq
+protections de mage technologique, guidées par Braise et Canalisation :
+manteau prune, céramique claire et avant-bras cuivrés. La silhouette garde
+ses 60 px élancés dans la case de 64 px. Les coiffes et casques sont compacts,
+assortis aux matières du corps et raccordés à une nuque courte. Les cinq
+nouveaux candidats attendent leur propre accord ; les quinze compositions
+des trois classes acceptées restent inchangées et ne sont pas réintégrées.
+
+Le retour suivant apprécie les tenues de l’Arcaniste, mais refuse les têtes
+casquées et demande un aspect de magicien de jeu vidéo. La reprise
+`reviews/class-readability-01/arcaniste-mage-heads-02/` conserve chaque pixel
+des cinq corps natifs, ainsi que les têtes 01–02. Les 03–05 reçoivent des
+capuches prune avec bordures ivoire puis diadème, laissant le visage visible.
+Ces nouveaux dessins de tête attendent leur propre accord en 64 px. L’accord
+sur les vêtements ne vaut ni validation des nouveaux pixels ni intégration.
+
+Le joueur relève ensuite des différences de visage entre ces tenues.
+`reviews/class-readability-01/arcaniste-same-face-03/` prend le visage du 01
+comme référence commune, avec une couche faciale native réutilisée exactement
+sous les coiffes. Le 01 et les cinq corps restent identiques ; les têtes 02–05
+sont corrigées et attendent revue. La protection portée ne doit pas changer
+les traits, l’expression ou l’orientation de ce visage de référence.
+Le joueur autorise ensuite une capuche masquant une partie du visage : front,
+tempes ou bords des joues peuvent être cachés. Conserver cette occlusion,
+sans plaquer un visage découvert par-dessus le tissu ou le diadème.
+
+Le retour suivant juge la nuque trop haute. La revue
+`reviews/class-readability-01/arcaniste-short-neck-04/` rapproche les cinq
+têtes des épaules par une translation entière de deux pixels natifs. Les
+dessins de tête et de visage restent identiques. Le raccord au col change
+localement ; épaules latérales, corps, échelle et appuis restent conservés.
+Les nouvelles compositions attendent leur propre revue en 64 × 64.
+
+Après une validation « pour l'instant », le joueur préfère l’ancien style
+de l’Arcaniste et choisit explicitement le personnage en jeu `FIN-16` :
+robe rouge, capuche et masque ivoire. Cette silhouette doit correspondre à
+l’une des dernières armures. `reviews/class-readability-01/arcaniste-red-robe-wave-05/`
+propose une progression légère à lourde autour de cette identité ; le 04
+reprend les pixels historiques et le 05 renforce la robe, les manches,
+les avant-bras et les bottes. La gamme prune reste conservée comme historique.
+Ce choix valide la référence de direction, pas d’avance les nouveaux dessins
+ni leur intégration. Garder les nuques courtes et une lecture de mage en 64 px.
+
+Le 22 octobre 2026, « je valide :) » accepte les cinq tenues rouges de cette
+gamme et leurs têtes par défaut. Les références exactes sont figées dans
+`reviews/class-readability-01/arcaniste-red-robe-wave-05/acceptance.json`
+sous `ARCANISTE-RED-ROBE-W05-ACCEPT01`. Quatre classes sont désormais validées,
+soit vingt compositions. La Métamorphe, les casques équipables indépendants,
+les prises d’armes et l’intégration restent à préparer ou revoir.
+
+Pour la Métamorphe, le joueur refuse ensuite la piste de protections adaptatives
+et demande une armure « plutot druide ». La revue
+`reviews/class-readability-01/metamorphe-druid-study-01/` propose d’abord une
+tenue intermédiaire en cuir brun, fourrure, étoffes vert mousse et bois,
+avec cercle de branches porté. La classe reste une femme humaine au repos,
+robuste et mobile ; aucune transformation ni règle ne change. Cette étude
+attend sa revue en 64 × 64 avant la déclinaison légère à lourde. Les vingt
+compositions acceptées des autres classes restent conservées à l’identique.
+
+Le joueur apprécie ensuite les références jointes, mais demande une Métamorphe
+moins médiévale et une autre coiffe. L’étude courante
+`reviews/class-readability-01/metamorphe-biodruid-study-02/` rapproche la tenue
+druide des deux tenues modernes fournies : textiles techniques olive, fourrure
+courte et renforts composites ivoire. Un bandeau souple remplace les branches,
+avec cheveux et visage visibles, sans large plaque frontale. Les références
+fournies restent intactes ; cette nouvelle composition attend sa revue native64.
+
+Le joueur autorise la suite par « ok continue ». La gamme
+`reviews/class-readability-01/metamorphe-biodruid-wave-03/` prépare cinq degrés
+du très léger au très lourd. Le 01 reprend exactement sa référence légère ;
+le 03 conserve l’étude intermédiaire. Les trois nouveaux dessins font progresser
+la couverture du corps entier et les renforts discrets aux tempes puis au menton,
+sans masquer le visage ni agrandir la tête. Une planche native rassemble les
+25 tenues : vingt références validées inchangées et cinq Métamorphes proposées.
+La nouvelle gamme attend revue ; l’intégration reste différée.
+
+Caler les épaules et le col avec les repères de la tête : le corps peut
+chevaucher ses lignes derrière son masque explicite d’occlusion. Ne pas
+cumuler le cou d’une source sans tête avec celui de la tête de base ni
+supprimer horizontalement les épaules à côté du visage.
+
+### Historique du 21 octobre 2026 — tête indépendante, règle remplacée
+
+Pour la nouvelle revue par classe, le joueur précise que l’armure de torse
+définit **tout le corps sauf la tête** : épaules, bras, avant-bras, mains/gants,
+pantalon, jambes et bottes évoluent ensemble. La tête et son augmentation
+corporelle restent une référence fixe, sans redessin d’une armure à l’autre.
+Cette précision remplace, pour ce chantier, l’inclusion du casque dans la
+tenue complète décrite dans les paragraphes historiques ci-dessous.
+
+La progression commence par une armure très légère et se termine par une
+très lourde, en conservant le thème et la corpulence de la classe : ici,
+le Bastion et la mêlée. Le joueur demande aussi une lecture moins détaillée
+à 64 px et des variantes rouges, bleues et vertes monochromes sur les plaques.
+Les couleurs conservent le relief par les valeurs ; elles ne recolorent pas
+la peau, le tissu ou les articulations et ne créent pas de nouveaux modèles.
+Le joueur précise que **tous les modèles d’armure** doivent recevoir leurs
+trois variantes, de la très légère à la très lourde. Pour la très légère
+sans plaques rigides, la proposition colore le gilet protecteur et ses
+renforts clairs, en conservant la peau et les vêtements ordinaires sombres.
+La fabrication avance par vagues, un personnage à la fois, avec revue humaine
+avant la suivante. Les chiffres et statistiques ne sont pas approuvés par ces
+principes. Le 21 octobre, après la planche native des cinq armures du Bastion
+et de leurs quinze variantes rouge, bleue et verte, le joueur répond
+« ok je valide :) ». `reviews/class-readability-01/bastion-wave-01/acceptance.json`
+fige les vingt compositions 64 × 64 exactes : P01-r01 à P04-r01 et P05-r03,
+avec leur tête commune. Les révisions futures, dont une simplification des
+quatre premières tenues, gardent leur revue propre. Les associations aux objets,
+les prises d’armes et le rendu en jeu restent à préparer.
+Le joueur précise ensuite que l’intégration aura lieu lorsque toutes les
+armures du chantier, les casques et les bonnes positions des mains avec les
+armes seront prêts et revus. Conserver les accords de chaque vague sans
+intégrer séparément les premiers modèles acceptés.
+
+Le joueur refuse ensuite toute la première série du Technomancien, qu’il trouve
+illisible à 64 px et trop proche du Bastion. Chaque classe doit se reconnaître
+par sa silhouette, sa coupe et la structure de ses protections ; une autre
+corpulence ou une autre couleur sur les mêmes plaques ne suffit pas. Le refus
+est conservé dans `reviews/class-readability-01/technomancien-wave-02/rejection.json`.
+La reprise passe d’abord par un témoin d’identité à revoir avant la gamme complète.
+
+La couleur portée suit **l’objet de torse équipé** : une pièce bleue donne une
+tenue bleue, avec la forme propre à la classe qui la porte. Cette couleur est
+une propriété de l’objet looté et reste avec lui au ramassage, à l’équipement,
+à l’abandon et à la sauvegarde. La présente précision ne crée aucune association
+supplémentaire entre teinte et rareté. Armes et tête gardent leurs couches et
+leurs palettes indépendantes.
+
+Le joueur précise ensuite que rouge, bleu et vert visaient surtout le Bastion,
+puis demande de **laisser les variantes de couleur de côté pour l’instant**.
+Le travail courant se concentre sur le dessin, la beauté et l’identité propre
+des armures à 64 px. Ne pas fabriquer de nouvelles recolorations ni imposer
+la palette du Bastion aux autres classes. Les variantes déjà acceptées du
+Bastion restent conservées. Le manteau technique turquoise et les prothèses
+cuivrées du nouveau témoin du Technomancien plaisent au joueur ; ils servent
+de direction de travail, sans validation déduite des modèles encore à produire.
 
 ### Référence fixe
 
@@ -4064,3 +4372,315 @@ les bonus et les portraits restent conservés. Les couleurs sont cosmétiques.
 Comparer les pixels acceptés, puis contrôler dans le moteur l’objet au sol,
 l’inventaire, la fiche, la tenue éclairée et les configurations de mains.
 La galerie conserve les planches historiques et les captures actives.
+
+### CLASS-ARMOR-INTEGRATION01 — cinq classes, cinq armures chacune
+
+Le 22 octobre 2026, le joueur accepte les 25 dessins de la revue courante
+et demande leur intégration, avec compatibilité de chaque tenue avec toutes
+les armes. Les cinq acceptations restent figées sous
+`docs/reviews/class-readability-01/`. Le bilan et les contrôles sont dans
+`docs/reviews/class-armor-integration-01/` ; les couches embarquées sont dans
+`assets/sprites/class-armors-01/`.
+
+Le modèle de torse choisit un stade de protection visuelle de 01 à 05, avec
+un dessin propre à chaque classe. La tenue entière et sa tête par défaut
+évoluent ensemble ; un casque équipé remplace cette tête. Les casques ouverts
+reprennent le visage découvert de la classe, notamment celui de la Traqueuse
+ou de la Métamorphe. Les six casques existants sont réutilisés ; cet accord
+ne crée pas de nouvelle famille de casques.
+
+Les dessins acceptés restent en 64 × 64 sans agrandissement. Les armes
+communes aux classes sont posées par leurs attaches, avec les doigts seuls
+devant l’arme. Les marteaux actuels restent à une main, comme les épées à
+une main. Les nouveaux marteaux à deux mains horizontaux restent un lot
+distinct de propositions dans `docs/reviews/two-hand-hammers-01/`.
+
+À la demande plus récente du joueur, les variantes de couleur des nouvelles
+tenues restent reportées : les 25 matériaux originaux sont conservés.
+Les palettes et icônes historiques ne sont pas supprimées. Les monstres,
+les statistiques, les identifiants d’objets et les sauvegardes ne changent pas.
+
+Le retour suivant accepte l’ensemble sauf la position des pistolets. La reprise
+PISTOL-RAISED02 replie les avant-bras vers le haut et porte un ou deux pistolets
+à hauteur de tête, avec les canons relevés et les visages dégagés. La prise de
+l’autre arme d’une paire mêlée + pistolet est conservée. La comparaison native
+et la conservation des autres prises sont documentées dans
+`docs/reviews/class-armor-integration-01/pistol-raised-02/`.
+Les trois dessins de marteaux horizontaux sont aussi validés par ce retour ;
+leur accord est figé dans `docs/reviews/two-hand-hammers-01/acceptance.json`.
+
+### WALK-LATERAL-METHOD01 — marche latérale acceptée le 23 octobre 2026
+
+Le joueur valide WALK05-STEP03 et demande son adaptation à tous les personnages,
+toutes les armures et les monstres, avec leurs équipements. La méthode complète
+est dans `docs/reviews/player-walk-05/REGLE-MARCHE-LATERALE.md` et l'accord dans
+`visual-acceptance-01.json` du même dossier. Les deux vues proches de la face
+utilisent des dessins complets et des appuis compacts, suivis d'une véritable
+pose de repos à l'arrivée. Aucun cisaillement de jambes ou greffe de bas de corps.
+Le visage, le corps et l'arme suivent ensemble la direction. Le réglage400ms
+reste modifiable ; les déplacements haut/bas existants restent conservés.
+
+L'accord sur la Traqueuse tenue1 au fusil ne valide pas les autres déclinaisons.
+La compatibilité concerne toutes les armures portables de chaque personnage,
+avec armes et casques. Les nouvelles planches natives restent à examiner avant
+réintégration de la banque ; adapter la locomotion à la morphologie des monstres.
+
+### WALK06 — 25 tenues au fusil, intégration autorisée le 23 octobre 2026
+
+Après la revue des cinq familles, le joueur répond « je pense qu'on peut integrer :) ».
+L'accord porte sur les25 tenues au fusil d'assaut modèle2, palettes Original,
+sans casque équipé supplémentaire. L'accord exact et les empreintes sont dans
+`docs/reviews/player-walk-06/acceptance.json`. Les atlas natifs embarqués sont
+dans `assets/animations/walk-06/` ; le moteur dessine les poses entières acceptées,
+sans déformation de membres. Les trois dessins par case, l'appui alterné et la
+vraie pose de repos restent ceux de la revue.400ms reste le défaut réglable.
+
+Les déplacements verticaux et les autres équipements conservent leur rendu.
+Le joueur demande de poursuivre avec toutes les armes, puis les monstres ;
+ces prochaines déclinaisons restent à présenter avant intégration.
+
+### WALK07 — autres armes et premier lot anatomique, en revue
+
+La proposition `docs/reviews/player-walk-07/REVUE.md` présente les113 modèles
+d'armes sur25 cycles de tenue entiers, avec poses de repos et prises composées
+à partir des armes réelles. Les jambes ne subissent aucune déformation.
+Un premier lot de sept créatures distingue huit, six, quatre et deux pattes,
+ver continu, esprit flottant et châssis à chenilles. Vérifier les appuis réels
+dans chaque dessin ; les catégories techniques ne suffisent pas.
+
+Après correction, les cinq tenues de la Traqueuse et les cinq tenues humaines
+de la Métamorphe reçoivent leur accord visuel distinct le24 octobre2026.
+Leurs sources et poses exactes sont figées dans les accords
+`visual-acceptance-r07f.json`, `visual-acceptance-traqueuse-r08.json` et
+`visual-acceptance-metamorphe-r09.json` de la revue WALK07.
+Les deux mollets métalliques demandés pour la Traqueuse restent propres à
+cette classe ; la Métamorphe conserve les matières de chaque tenue.
+
+Le joueur valide ensuite les sept créatures par « je valide :) ».
+L'accord, les sources et les98 poses natives exactes sont figés dans
+`docs/reviews/player-walk-07/visual-acceptance-creatures-lot01.json` et
+`assets/source-art/player-walk-review-07/accepted/creatures-lot01/`.
+Cet accord concerne M01 à M07 et leurs matériaux présentés. Le joueur valide
+ensuite les six candidats M08, M09, M10, M11, M13 et M14 par « je valide :) ».
+Le second accord et les84 poses exactes sont conservés dans
+`docs/reviews/player-walk-07/visual-acceptance-creatures-lot02.json` et
+`assets/source-art/player-walk-review-07/accepted/creatures-lot02/`.
+La larve M12 reste différée et exclue de l'aperçu. Ces candidats ne remplacent pas
+WALK06. Le reste du bestiaire, les casques additionnels, palettes et autres
+configurations d'équipement restent à examiner.400ms réglables, les mouvements
+verticaux et les règles existantes sont conservés.
+
+### WALK07-P01 — placement vertical demandé le24 octobre2026
+
+Le joueur demande de centrer verticalement les monstres moins hauts que leur
+case64px. Le calage s'applique à la silhouette entière et à son ombre, avec
+un seul décalage stable pour l'ensemble du cycle. Conserver l'échelle native,
+les pixels acceptés et les appuis ; ne pas corriger chaque membre ou chaque
+image séparément. Les grandes créatures gardent l'ancrage lié à leur taille.
+La comparaison préparée et la règle d'intégration sont conservées dans
+`docs/reviews/player-walk-07/PLACEMENT-VERTICAL-01.md`.
+
+Le joueur accepte cette comparaison par « parfait on continue :) ».
+L'accord est conservé dans `visual-acceptance-placement-01.json` de la revue.
+Le troisième lot M15 à M20 reprend cette règle et reste présenté avant son
+propre accord artistique ; il ne remplace pas les ressources actives.
+
+Le joueur accepte ensuite les six cycles M15–M20 par « Ok on continue :) ».
+L'accord exact, les sources et leurs84 poses natives sont figés dans
+`docs/reviews/player-walk-07/visual-acceptance-creatures-lot03.json` et
+`assets/source-art/player-walk-review-07/accepted/creatures-lot03/`.
+Les références suivantes conservent leur propre revue, avec la même règle
+de placement. Le reste du bestiaire n'est pas validé par extension.
+
+Le quatrième lot reçoit ensuite « ok parfait :) je valide :) » pour les cinq
+candidats présentés M21, M22, M24, M25 et M26. L'accord et leurs70 poses exactes
+sont figés dans `docs/reviews/player-walk-07/visual-acceptance-creatures-lot04.json`
+et `assets/source-art/player-walk-review-07/accepted/creatures-lot04/`.
+M23 reste différé : son bras gris et les deux orientations ne sont pas encore
+conservés ensemble. Il ne fait pas partie de cet accord, ni la larve M12.
+Les24 cycles acceptés restent des ressources de revue, hors du rendu actif.
+
+Le cinquième lot M27–M32 reçoit ensuite « ok on continue :) ». Ses six sources,
+84 poses natives et calages exacts sont figés dans
+`docs/reviews/player-walk-07/visual-acceptance-creatures-lot05.json` et
+`assets/source-art/player-walk-review-07/accepted/creatures-lot05/`.
+La vérification rapprochée de MON-076-0 retient deux pieds porteurs et deux
+appendices recourbés, plutôt que quatre appuis déduits de sa catégorie ancienne.
+Les30 cycles acceptés conservent leur identité et leur taille de revue.
+M12 et M23 restent différés ; aucune nouvelle intégration n'est effectuée.
+
+Le sixième lot M33–M38 reçoit ensuite « ok on continue :) ». Ses six sources
+sélectionnées,84 poses natives et calages exacts sont figés dans
+`docs/reviews/player-walk-07/visual-acceptance-creatures-lot06.json` et
+`assets/source-art/player-walk-review-07/accepted/creatures-lot06/`.
+Les36 cycles acceptés,504 poses, conservent leurs sources et pixels propres.
+Les nouvelles identités et variantes gardent leur revue avant intégration.
+
+Le septième lot présente M39–M43 avant accord. M44 (MON-151-0) reste différé :
+les essais échangent son brassard ou regardent du même côté. Préserver son
+équipement canonique asymétrique et reprendre ce cas séparément, sans valider
+les essais rejetés ni intégrer un dessin incorrect au rendu actif.
+
+Le joueur signale que M42 marche à l'envers. Le conditionnement avait inversé
+à tort ses deux séries directionnelles ; leur ordre d'origine est rétabli,
+sans redessin ni changement de phase. « parfait :) » valide cette correction
+ciblée. L'accord et les14 poses exactes sont figés dans
+`docs/reviews/player-walk-07/visual-acceptance-m42-direction-01.json` et
+`assets/source-art/player-walk-review-07/accepted/creatures-lot07/`.
+Les quatre autres candidats du lot07 gardent leur propre accord à recevoir.
+
+« ok on valide tout ca et on continue :) » accepte ensuite le reste du lot07
+présenté, M39–M43 avec M42 corrigé. L'accord, les sources et70 poses exactes
+sont figés dans `docs/reviews/player-walk-07/visual-acceptance-creatures-lot07.json`
+et `assets/source-art/player-walk-review-07/accepted/creatures-lot07/`.
+Les41 cycles acceptés,574 poses, gardent leur revue propre. M12, M23 et M44
+restent différés ; cette validation ne déclenche pas de nouvelle intégration.
+
+Le huitième lot M45–M50 reçoit « ok je valide :) ». Ses six sources,84 poses
+natives et calages exacts sont figés dans
+`docs/reviews/player-walk-07/visual-acceptance-creatures-lot08.json` et
+`assets/source-art/player-walk-review-07/accepted/creatures-lot08/`.
+Les deux humanoïdes rampants gardent leurs deux bras et deux jambes, avec
+appui sur les mains ; les flammes canoniques de M50 ne créent aucun nouvel
+effet mécanique. Les47 cycles acceptés,658 poses, restent hors du rendu actif.
+Les trois cas différés et les autres identités gardent leur propre revue.
+
+Le neuvième lot M51–M56 reçoit « ok on continue ». Ses six sources sélectionnées,
+84 poses et calages exacts sont figés dans
+`docs/reviews/player-walk-07/visual-acceptance-creatures-lot09.json` et
+`assets/source-art/player-walk-review-07/accepted/creatures-lot09/`.
+Les53 cycles acceptés,742 poses, restent hors du rendu actif. Le maintien du
+gabarit natif de la grande créature du lot suivant n'autorise aucun changement
+de taille logique, de collision ou de déplacement vertical en jeu.
+
+Le dixième lot M57–M60 reçoit « ok je valide :) ». Ses quatre sources,
+56 poses et calages exacts sont figés dans
+`docs/reviews/player-walk-07/visual-acceptance-creatures-lot10.json` et
+`assets/source-art/player-walk-review-07/accepted/creatures-lot10/`.
+M57 conserve sa hauteur native114px ; la grille reste64px et le canevas de revue
+ajoute seulement de la marge. Les57 cycles acceptés,798 poses, restent hors
+du rendu actif. Les deux bipèdes M61/M62 sont présentés ensuite pour leur propre
+accord, sans étendre la validation aux identités ou variantes restantes.
+
+M61/M62 reçoivent ensuite « ok on continue :) ». Les deux sources et28 poses
+exactes sont figées dans
+`docs/reviews/player-walk-07/visual-acceptance-creatures-lot11.json` et
+`assets/source-art/player-walk-review-07/accepted/creatures-lot11/`.
+Les59 cycles acceptés,826 poses natives, restent hors du rendu actif. Le joueur
+demande ensuite de préparer toutes les animations restantes pour les examiner
+ensemble et signaler les reprises. Cette préparation globale est autorisée ;
+elle ne valide pas d'avance de nouvelles silhouettes, palettes ou intégrations.
+
+La revue groupée suivante porte sur71 cycles de base proposés, dont les trois
+anciens cas différés. Après le signalement de sens identiques sur deux lignes,
+les sources sont reprises et leurs orientations contrôlées avant présentation.
+Une planche de travail à un seul sens n'est jamais montrée comme un cycle
+gauche/droite complet. Le lecteur affiche les deux sens simultanément, à taille
+native. Les contrôles de dimensions ou de pixels distincts ne prouvent pas une
+orientation : examiner corps, visage, appuis, repos et propriété des objets
+asymétriques. Suivi et limites :
+`docs/reviews/player-walk-07/BULK-REVIEW.md`. Aucun nouvel accord n'est déduit
+de cette préparation ; les59 cycles acceptés restent inchangés et hors du jeu.
+
+### WALK07-INTEGRATION01 — intégration autorisée le24 octobre2026
+
+Le joueur valide69 cycles de cette revue et demande les réparations M100/M104,
+le nettoyage des sorties inutiles puis l'intégration. M104 reçoit l'association
+correcte de ses deux séries entières ; M100 reçoit sa série gauche redessinée,
+sans modifier les sept poses droites validées. Les130 cycles de base, y compris
+les59 antérieurs, sont installés dans `assets/animations/walk-07/`. Le corps et
+l'ombre des petits monstres restent centrés avec un décalage fixe ;400ms demeure
+réglable et les déplacements haut/bas restent de face. Les palettes non revues
+et anciennes identités gardent leur rendu. Aucun prototype WALK04 n'est activé.
+Accord, sources exactes, preuves du moteur et limites :
+`docs/reviews/player-walk-07/integration/INTEGRATION.md`.
+
+Revue ultérieure : le joueur rejette le torse gauche de M100 dans la révision
+R07 intégrée. La proposition R08 redessine la perspective de la figure entière
+et conserve exactement les poses droites. Le joueur l'accepte ensuite par
+« ok tres bien je valide :) » ; elle remplace les sept poses gauches dans la
+banque du jeu. Accord et empreintes :
+`docs/reviews/player-walk-07/m100-torso-r08/acceptance.json`.
+
+### WALK08 — correction de couverture, catalogue à valider
+
+Après l'audit des lacunes en partie, le joueur demande de corriger l'ensemble,
+puis de voir toutes les animations pour les valider ou les refuser. Le catalogue
+isolé `Voir_animations.cmd` présente les25 tenues, les113 modèles d'armes avec
+leurs prises réelles, les casques, les471 couples de monstres et leurs couleurs,
+ainsi que les six transformations et quatre drones. Il conserve les poses
+entières, les trois phases par case,400ms réglables et les vrais repos.
+Les neuf nouveaux cycles et les variantes de couleur restent des propositions.
+Le lancement normal conserve ses dessins et la banque WALK04 reste désactivée.
+Les décisions se font par configuration, sans activation automatique. Périmètre,
+sources et contrôles : `docs/reviews/player-walk-08/REVUE.md`.
+
+### WALK09 — harmonisation proposée des personnages
+
+Le joueur juge les démarches trop différentes et signale des protections de
+jambes absentes. Le nouvel essai utilise un seul cycle de référence du Bastion
+pour les cinq classes et leurs25 tenues. La revue courante permet de comparer
+les cinq personnages synchronisés, équipés de la même arme, à taille64px.
+Les figures entières et leurs protections restent dans les couches appropriées ;
+les nouvelles apparences sont des candidats à valider. Les anciens essais sont
+conservés pour comparaison et le lancement normal ne change pas.
+Sources, limites et contrôles : `docs/reviews/player-walk-09/REVUE.md`.
+
+
+### WALK09-INTEGRATION — accord du25 octobre2026
+
+Le joueur accepte la démarche commune des cinq classes et25 tenues, avec les
+armes équipées, et demande l’intégration puis l’observation des monstres encore
+immobiles ou trop petits. Le lecteur normal utilise les350 poses entières
+WALK09 et la hachette AX67-r02 au manche affiné. Une case correspond à une
+animation ;400ms reste réglable. Les mouvements verticaux conservent leur rendu.
+La banque rejetée WALK04 reste désactivée. Les nouvelles variantes de monstres
+et les neuf cycles de formes/drones WALK08 gardent leur revue distincte.
+Accord et ressources exactes : `docs/reviews/player-walk-09/acceptance.json`.
+
+
+### WALK11-INTEGRATION — proportions et prises validées le25 octobre2026
+
+Le joueur valide le rendu corrigé puis autorise son intégration par « ok tu peux integrer ».
+Les25 tenues utilisent leurs350 figures entières WALK11, avec les vrais modèles
+d’armes, casques et couleurs. GRIP-r03 aligne les centres de pixels des prises,
+conserve les contours complets des gants et protège les plaques de cuisse.
+Les mains sont composées une seule fois au-dessus des armes, sans changer les
+dessins sources ni les statistiques. Les six monstres014/015/022/024/115/124
+utilisent les proportions montrées ; les471 couples modèle/couleur de campagne
+réutilisent leurs cycles entiers et leurs couleurs canoniques. Les petits
+monstres restent centrés verticalement. Une animation parcourt une seule case,
+avec400ms réglables ; le dessin vertical du joueur reste celui accepté.
+La banque WALK04 reste désactivée et les neuf cycles de formes/drones WALK08
+gardent leur validation distincte. Les sources, les62 empreintes des ressources
+et les contrôles sont dans `docs/reviews/player-walk-11/acceptance.json` et
+`docs/reviews/player-walk-11/integration-validation.json`.
+
+### WALK12-TECH — retour de face et prises stables, 25 octobre 2026
+
+À la demande du joueur, le personnage reprend sa véritable vue frontale et
+son équipement dès l'arrivée sur la case, à toutes les vitesses proposées.
+Les bras, mains et objets portés conservent une même prise pendant le pas,
+avec seulement la petite translation entière du torse. Les dessins acceptés
+restent ceux de WALK11. Les monstres en mouvement vertical utilisent leur
+cycle existant en conservant leur dernière orientation latérale ; cela ne
+change pas le dessin vertical du joueur. L'audit de la sauvegarde réelle et
+les contrôles natifs sont dans `docs/reviews/player-walk-12/`.
+Les nouveaux dessins de démarche commune WALK12-COMMON-r01 restent une
+proposition séparée, disponible dans l'aperçu et désactivée en jeu normal.
+
+### WALK12-INTEGRATION — accord du25 octobre2026 et retour de face général
+
+Le joueur valide explicitement les nouvelles démarches WALK12 et précise que
+le retour de face à la fin d'un déplacement concerne aussi les monstres et
+les PNJ. Le jeu normal Debug et Release utilise les300 dessins de marche des
+25 tenues montrées, avec les armes équipées, leurs prises stables et les
+proportions validées. Une arrivée choisit le dessin statique habituel de chaque
+acteur avec son équipement ; aucune pose de marche ou de repos latéral ne
+reste affichée. Les400ms réglables et le déplacement d'une seule case restent
+conservés. Les cycles de monstres gardent leurs morphologies propres et le
+dessin vertical du joueur est conservé.
+Les ressources exactes, l'accord, la règle et les contrôles sont dans
+`docs/reviews/player-walk-12/acceptance.json`, `REGLE-MARCHE-12.md` et
+`integration-validation.json`. Les sources antérieures, les cartes de l'éditeur
+et les propositions de formes/drones non validées restent conservées.

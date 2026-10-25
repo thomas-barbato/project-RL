@@ -1,0 +1,348 @@
+{
+  "review_id": "TECHNOMANCIEN-W02",
+  "date": "2026-10-21",
+  "class_id": "core:technomancien",
+  "tool": "built-in image_gen",
+  "head_reference": "assets/source-art/class-readability-01/CL02-r04-source.png",
+  "head_reference_native": "artifacts/class-armor-review-01/CL02-r04-native64.png",
+  "native_cell": [
+    64,
+    64
+  ],
+  "neck_seam_y": 14,
+  "body_core_height": 48,
+  "colors": [
+    "original",
+    "red",
+    "blue",
+    "green"
+  ],
+  "entries": [
+    {
+      "number": "01",
+      "label": "Très légère",
+      "description": "Very light service outfit: a slim exposed dark gunmetal robotic ribcage and narrow mechanical limbs, a tiny sleeveless ivory protective textile vest with short dark navy side tabs; exposed upper arms and thighs are clearly artificial metal, not skin. Small pale protective wrist cuffs and short toe caps only. No shoulder armor. No large chest shell. The torso, hands, legs and feet are all designed as this complete very-light outfit.",
+      "candidate_id": "TE-W02-P01-r02",
+      "status": "generated_awaiting_native_review",
+      "prompt": "Use case: identity-preserve. Asset type: modular full-body armor sprite BELOW THE HEAD for a French futuristic roguelike, native final cell 64x64.\nInput image 1 is the Technomancien body identity and posture reference. Input image 2 is ONLY the accepted level of simplification and broad material shading; do not copy that muscular human body.\nCreate one original technomancer OUTFIT BODY MODULE from a small robotic neck stump down to both complete feet. Omit the entire head and face: a separate immutable head layer will be composed later. This character is a nearly wholly robotic human technician, master of combat drones and algorithms, with two robotic arms and two robotic legs. Retain the front-facing neutral stance, lean angular torso, empty hands lowered beside the hips, and recognizable mechanical humanoid construction. Absolutely no exposed human skin.\nCRITICAL NATIVE64 ART DIRECTION: design for a body only 48 pixels high in the final 64px cell. Large clean masses, deliberately few plate divisions, 2-3 broad shade values per material, dark clear contour, matte worn finish with almost no surface texture. No tiny screws, rivets, text, dense cables, checkerboard panels, scratches or decorative filigree. Any robot joint is a simple dark cylinder or hinge, not many thin struts. Arms separated from torso, feet separated, stout readable fingers grouped into a simple hand. High contrast ivory protection against charcoal machinery; fixed small amber indicators, subdued dark navy cloth. No dominant glowing effects. A clean original cyberpunk machine-priest, no licensed logos or emblems.\nTransparent background, centered single isolated entire body, neck near upper center and feet on the same baseline. Preserve generous clear transparent margins. Flat frontal game sprite, no perspective distortion, no ground, no shadow, no text, no labels, no border.\nSpecific model: Very light service outfit: a slim exposed dark gunmetal robotic ribcage and narrow mechanical limbs, a tiny sleeveless ivory protective textile vest with short dark navy side tabs; exposed upper arms and thighs are clearly artificial metal, not skin. Small pale protective wrist cuffs and short toe caps only. No shoulder armor. No large chest shell. The torso, hands, legs and feet are all designed as this complete very-light outfit.",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/CL02-r04-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png"
+      ],
+      "transparent_background": true,
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-dabb3a1d-8fe4-4b7c-a012-12517978db6e.png",
+      "generation_attempts": [
+        {
+          "candidate_id": "TE-W02-P01-r01",
+          "prompt": "Use case: identity-preserve. Asset type: modular full-body armor sprite BELOW THE HEAD for a French futuristic roguelike, native final cell 64x64.\nInput image 1 is the Technomancien body identity and posture reference. Input image 2 is ONLY the accepted level of simplification and broad material shading; do not copy that muscular human body.\nCreate one original technomancer OUTFIT BODY MODULE from a small robotic neck stump down to both complete feet. Omit the entire head and face: a separate immutable head layer will be composed later. This character is a nearly wholly robotic human technician, master of combat drones and algorithms, with two robotic arms and two robotic legs. Retain the front-facing neutral stance, lean angular torso, empty hands lowered beside the hips, and recognizable mechanical humanoid construction. Absolutely no exposed human skin.\nCRITICAL NATIVE64 ART DIRECTION: design for a body only 48 pixels high in the final 64px cell. Large clean masses, deliberately few plate divisions, 2-3 broad shade values per material, dark clear contour, matte worn finish with almost no surface texture. No tiny screws, rivets, text, dense cables, checkerboard panels, scratches or decorative filigree. Any robot joint is a simple dark cylinder or hinge, not many thin struts. Arms separated from torso, feet separated, stout readable fingers grouped into a simple hand. High contrast ivory protection against charcoal machinery; fixed small amber indicators, subdued dark navy cloth. No dominant glowing effects. A clean original cyberpunk machine-priest, no licensed logos or emblems.\nTransparent background, centered single isolated entire body, neck near upper center and feet on the same baseline. Preserve generous clear transparent margins. Flat frontal game sprite, no perspective distortion, no ground, no shadow, no text, no labels, no border.\nSpecific model: Very light service outfit: a slim exposed dark gunmetal robotic ribcage and narrow mechanical limbs, a tiny sleeveless ivory protective textile vest with short dark navy side tabs; exposed upper arms and thighs are clearly artificial metal, not skin. Small pale protective wrist cuffs and short toe caps only. No shoulder armor. No large chest shell. The torso, hands, legs and feet are all designed as this complete very-light outfit.",
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-da6baea5-b2f1-40a9-b8cf-a925a3061bd6.png"
+        }
+      ],
+      "cleanup_prompt": "Use case: background-extraction. Edit target is the attached isolated headless robot body module. Remove ONLY the cloudy grey/brown halo, glow and backdrop pixels outside the robot. Keep the exact drawn robot body, ivory armor, dark metal joints, dark blue cloth, amber small indicators, two hands, both feet, all shape and pose, same framing and exact colors unchanged. Do not redesign or add any object. Output a clean cutout on genuinely transparent background with alpha zero everywhere outside the character. No shadow, no aura, no studio gradient, no black background, no grey radial bloom. Keep useful antialiased edges of the robot itself, no hard background rectangle. Full neck-to-feet body preserved. No head. This is a transparent game sprite module destined for a 64x64 cell, not a studio illustration.",
+      "variants": [
+        {
+          "candidate_id": "TE-W02-P01-r02-red",
+          "color": "red",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent deep clear red hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-dabb3a1d-8fe4-4b7c-a012-12517978db6e.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-1d5c2aae-8edc-4280-965a-b24c4cc6633a.png"
+        },
+        {
+          "candidate_id": "TE-W02-P01-r02-blue",
+          "color": "blue",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear cobalt blue hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-dabb3a1d-8fe4-4b7c-a012-12517978db6e.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-3a5fbbc3-b7a4-4c54-8b30-83e3b155164a.png"
+        },
+        {
+          "candidate_id": "TE-W02-P01-r02-green",
+          "color": "green",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear medium emerald green hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-dabb3a1d-8fe4-4b7c-a012-12517978db6e.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-ce1c9d74-78f7-446e-b055-063fab57a9ef.png"
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "label": "Légère",
+      "description": "Light service armor: a close-fitting ivory padded work vest, small flat shoulder caps, light forearm cuffs with open articulated robotic hands, narrow knee covers and short protective ankle shells. Much of the dark mechanical upper arms and thighs remains visible. A short dark navy split work-tabard at the hips. Narrow technician proportions, visibly more protection than very light yet clearly light.",
+      "candidate_id": "TE-W02-P02-r02",
+      "status": "generated_awaiting_native_review",
+      "prompt": "Use case: identity-preserve. Asset type: modular full-body armor sprite BELOW THE HEAD for a French futuristic roguelike, native final cell 64x64.\nInput image 1 is the Technomancien body identity and posture reference. Input image 2 is ONLY the accepted level of simplification and broad material shading; do not copy that muscular human body.\nCreate one original technomancer OUTFIT BODY MODULE from a small robotic neck stump down to both complete feet. Omit the entire head and face: a separate immutable head layer will be composed later. This character is a nearly wholly robotic human technician, master of combat drones and algorithms, with two robotic arms and two robotic legs. Retain the front-facing neutral stance, lean angular torso, empty hands lowered beside the hips, and recognizable mechanical humanoid construction. Absolutely no exposed human skin.\nCRITICAL NATIVE64 ART DIRECTION: design for a body only 48 pixels high in the final 64px cell. Large clean masses, deliberately few plate divisions, 2-3 broad shade values per material, dark clear contour, matte worn finish with almost no surface texture. No tiny screws, rivets, text, dense cables, checkerboard panels, scratches or decorative filigree. Any robot joint is a simple dark cylinder or hinge, not many thin struts. Arms separated from torso, feet separated, stout readable fingers grouped into a simple hand. High contrast ivory protection against charcoal machinery; fixed small amber indicators, subdued dark navy cloth. No dominant glowing effects. A clean original cyberpunk machine-priest, no licensed logos or emblems.\nTransparent background, centered single isolated entire body, neck near upper center and feet on the same baseline. Preserve generous clear transparent margins. Flat frontal game sprite, no perspective distortion, no ground, no shadow, no text, no labels, no border.\nSpecific model: Light service armor: a close-fitting ivory padded work vest, small flat shoulder caps, light forearm cuffs with open articulated robotic hands, narrow knee covers and short protective ankle shells. Much of the dark mechanical upper arms and thighs remains visible. A short dark navy split work-tabard at the hips. Narrow technician proportions, visibly more protection than very light yet clearly light.",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/CL02-r04-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png"
+      ],
+      "transparent_background": true,
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-d6798ac7-c2c3-44a6-87b9-55d5066b3e82.png",
+      "generation_attempts": [
+        {
+          "candidate_id": "TE-W02-P02-r01",
+          "prompt": "Use case: identity-preserve. Asset type: modular full-body armor sprite BELOW THE HEAD for a French futuristic roguelike, native final cell 64x64.\nInput image 1 is the Technomancien body identity and posture reference. Input image 2 is ONLY the accepted level of simplification and broad material shading; do not copy that muscular human body.\nCreate one original technomancer OUTFIT BODY MODULE from a small robotic neck stump down to both complete feet. Omit the entire head and face: a separate immutable head layer will be composed later. This character is a nearly wholly robotic human technician, master of combat drones and algorithms, with two robotic arms and two robotic legs. Retain the front-facing neutral stance, lean angular torso, empty hands lowered beside the hips, and recognizable mechanical humanoid construction. Absolutely no exposed human skin.\nCRITICAL NATIVE64 ART DIRECTION: design for a body only 48 pixels high in the final 64px cell. Large clean masses, deliberately few plate divisions, 2-3 broad shade values per material, dark clear contour, matte worn finish with almost no surface texture. No tiny screws, rivets, text, dense cables, checkerboard panels, scratches or decorative filigree. Any robot joint is a simple dark cylinder or hinge, not many thin struts. Arms separated from torso, feet separated, stout readable fingers grouped into a simple hand. High contrast ivory protection against charcoal machinery; fixed small amber indicators, subdued dark navy cloth. No dominant glowing effects. A clean original cyberpunk machine-priest, no licensed logos or emblems.\nTransparent background, centered single isolated entire body, neck near upper center and feet on the same baseline. Preserve generous clear transparent margins. Flat frontal game sprite, no perspective distortion, no ground, no shadow, no text, no labels, no border.\nSpecific model: Light service armor: a close-fitting ivory padded work vest, small flat shoulder caps, light forearm cuffs with open articulated robotic hands, narrow knee covers and short protective ankle shells. Much of the dark mechanical upper arms and thighs remains visible. A short dark navy split work-tabard at the hips. Narrow technician proportions, visibly more protection than very light yet clearly light.",
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-6ff81ece-34eb-4db5-8e0f-516fac1b3c41.png"
+        }
+      ],
+      "cleanup_prompt": "Use case: background-extraction. Edit target is the attached isolated headless robot body module. Remove ONLY the cloudy grey/brown halo, glow and backdrop pixels outside the robot. Keep the exact drawn robot body, ivory armor, dark metal joints, dark blue cloth, amber small indicators, two hands, both feet, all shape and pose, same framing and exact colors unchanged. Do not redesign or add any object. Output a clean cutout on genuinely transparent background with alpha zero everywhere outside the character. No shadow, no aura, no studio gradient, no black background, no grey radial bloom. Keep useful antialiased edges of the robot itself, no hard background rectangle. Full neck-to-feet body preserved. No head. This is a transparent game sprite module destined for a 64x64 cell, not a studio illustration.",
+      "variants": [
+        {
+          "candidate_id": "TE-W02-P02-r02-red",
+          "color": "red",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent deep clear red hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-d6798ac7-c2c3-44a6-87b9-55d5066b3e82.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-2734ee14-ffd9-47b3-8351-7cf68cdee93e.png"
+        },
+        {
+          "candidate_id": "TE-W02-P02-r02-blue",
+          "color": "blue",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear cobalt blue hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-d6798ac7-c2c3-44a6-87b9-55d5066b3e82.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-8fcbed9a-0407-46e1-8f57-63fb699ae85c.png"
+        },
+        {
+          "candidate_id": "TE-W02-P02-r02-green",
+          "color": "green",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear medium emerald green hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-d6798ac7-c2c3-44a6-87b9-55d5066b3e82.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-aac565d4-d3a5-4d24-aa99-1ac8846ce0b2.png"
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "label": "Intermédiaire",
+      "description": "Medium technician armor: a single broad ivory chest carapace, modest angular shoulder plates, closed forearm shells and mechanical gloves, thigh strips, single-piece shin guards and armored toes. Dark robotic joints remain exposed at elbows, waist and knees. Short dark navy split side-tabs at hips. Moderate width, clean engineered rectangles, no muscular human anatomy.",
+      "candidate_id": "TE-W02-P03-r01",
+      "status": "generated_awaiting_native_review",
+      "prompt": "Use case: identity-preserve. Asset type: modular full-body armor sprite BELOW THE HEAD for a French futuristic roguelike, native final cell 64x64.\nInput image 1 is the Technomancien body identity and posture reference. Input image 2 is ONLY the accepted level of simplification and broad material shading; do not copy that muscular human body.\nCreate one original technomancer OUTFIT BODY MODULE from a small robotic neck stump down to both complete feet. Omit the entire head and face: a separate immutable head layer will be composed later. This character is a nearly wholly robotic human technician, master of combat drones and algorithms, with two robotic arms and two robotic legs. Retain the front-facing neutral stance, lean angular torso, empty hands lowered beside the hips, and recognizable mechanical humanoid construction. Absolutely no exposed human skin.\nCRITICAL NATIVE64 ART DIRECTION: design for a body only 48 pixels high in the final 64px cell. Large clean masses, deliberately few plate divisions, 2-3 broad shade values per material, dark clear contour, matte worn finish with almost no surface texture. No tiny screws, rivets, text, dense cables, checkerboard panels, scratches or decorative filigree. Any robot joint is a simple dark cylinder or hinge, not many thin struts. Arms separated from torso, feet separated, stout readable fingers grouped into a simple hand. High contrast ivory protection against charcoal machinery; fixed small amber indicators, subdued dark navy cloth. No dominant glowing effects. A clean original cyberpunk machine-priest, no licensed logos or emblems.\nTransparent background, centered single isolated entire body, neck near upper center and feet on the same baseline. Preserve generous clear transparent margins. Flat frontal game sprite, no perspective distortion, no ground, no shadow, no text, no labels, no border.\nSpecific model: Medium technician armor: a single broad ivory chest carapace, modest angular shoulder plates, closed forearm shells and mechanical gloves, thigh strips, single-piece shin guards and armored toes. Dark robotic joints remain exposed at elbows, waist and knees. Short dark navy split side-tabs at hips. Moderate width, clean engineered rectangles, no muscular human anatomy.",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/CL02-r04-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png"
+      ],
+      "transparent_background": true,
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-d360a44e-011e-477c-9a25-5db361906751.png",
+      "variants": [
+        {
+          "candidate_id": "TE-W02-P03-r01-red",
+          "color": "red",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent deep clear red hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-d360a44e-011e-477c-9a25-5db361906751.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-248736f9-1325-4f41-8113-d64c03cb44d4.png"
+        },
+        {
+          "candidate_id": "TE-W02-P03-r01-blue",
+          "color": "blue",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear cobalt blue hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-d360a44e-011e-477c-9a25-5db361906751.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-93f86592-cdc5-47f0-aa81-f2ef81b67f0c.png"
+        },
+        {
+          "candidate_id": "TE-W02-P03-r01-green",
+          "color": "green",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear medium emerald green hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-d360a44e-011e-477c-9a25-5db361906751.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-c48fdac3-0778-4db9-96ec-dfdab8e8bdec.png"
+        }
+      ]
+    },
+    {
+      "number": "04",
+      "label": "Lourde",
+      "description": "Heavy technician armor: an enclosing broad ivory chest shell with a single dark vertical vent, box-shaped shoulder shields, broad forearm housings and robotic gauntlets, long thigh and shin shells and fully enclosed mechanical boots. A short dark navy split technical skirt behind the hips. The exposed charcoal hinges and narrow waist preserve the original lean robot identity. No more than a handful of large plate shapes per limb.",
+      "candidate_id": "TE-W02-P04-r02",
+      "status": "generated_awaiting_native_review",
+      "prompt": "Use case: identity-preserve. Asset type: modular full-body armor sprite BELOW THE HEAD for a French futuristic roguelike, native final cell 64x64.\nInput image 1 is the Technomancien body identity and posture reference. Input image 2 is ONLY the accepted level of simplification and broad material shading; do not copy that muscular human body.\nCreate one original technomancer OUTFIT BODY MODULE from a small robotic neck stump down to both complete feet. Omit the entire head and face: a separate immutable head layer will be composed later. This character is a nearly wholly robotic human technician, master of combat drones and algorithms, with two robotic arms and two robotic legs. Retain the front-facing neutral stance, lean angular torso, empty hands lowered beside the hips, and recognizable mechanical humanoid construction. Absolutely no exposed human skin.\nCRITICAL NATIVE64 ART DIRECTION: design for a body only 48 pixels high in the final 64px cell. Large clean masses, deliberately few plate divisions, 2-3 broad shade values per material, dark clear contour, matte worn finish with almost no surface texture. No tiny screws, rivets, text, dense cables, checkerboard panels, scratches or decorative filigree. Any robot joint is a simple dark cylinder or hinge, not many thin struts. Arms separated from torso, feet separated, stout readable fingers grouped into a simple hand. High contrast ivory protection against charcoal machinery; fixed small amber indicators, subdued dark navy cloth. No dominant glowing effects. A clean original cyberpunk machine-priest, no licensed logos or emblems.\nTransparent background, centered single isolated entire body, neck near upper center and feet on the same baseline. Preserve generous clear transparent margins. Flat frontal game sprite, no perspective distortion, no ground, no shadow, no text, no labels, no border.\nSpecific model: Heavy technician armor: an enclosing broad ivory chest shell with a single dark vertical vent, box-shaped shoulder shields, broad forearm housings and robotic gauntlets, long thigh and shin shells and fully enclosed mechanical boots. A short dark navy split technical skirt behind the hips. The exposed charcoal hinges and narrow waist preserve the original lean robot identity. No more than a handful of large plate shapes per limb.",
+      "referenced_image_paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/CL02-r04-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png"
+      ],
+      "transparent_background": true,
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-20354ce5-e86a-44f1-9403-5a16ede8ed31.png",
+      "generation_attempts": [
+        {
+          "candidate_id": "TE-W02-P04-r01",
+          "prompt": "Use case: identity-preserve. Asset type: modular full-body armor sprite BELOW THE HEAD for a French futuristic roguelike, native final cell 64x64.\nInput image 1 is the Technomancien body identity and posture reference. Input image 2 is ONLY the accepted level of simplification and broad material shading; do not copy that muscular human body.\nCreate one original technomancer OUTFIT BODY MODULE from a small robotic neck stump down to both complete feet. Omit the entire head and face: a separate immutable head layer will be composed later. This character is a nearly wholly robotic human technician, master of combat drones and algorithms, with two robotic arms and two robotic legs. Retain the front-facing neutral stance, lean angular torso, empty hands lowered beside the hips, and recognizable mechanical humanoid construction. Absolutely no exposed human skin.\nCRITICAL NATIVE64 ART DIRECTION: design for a body only 48 pixels high in the final 64px cell. Large clean masses, deliberately few plate divisions, 2-3 broad shade values per material, dark clear contour, matte worn finish with almost no surface texture. No tiny screws, rivets, text, dense cables, checkerboard panels, scratches or decorative filigree. Any robot joint is a simple dark cylinder or hinge, not many thin struts. Arms separated from torso, feet separated, stout readable fingers grouped into a simple hand. High contrast ivory protection against charcoal machinery; fixed small amber indicators, subdued dark navy cloth. No dominant glowing effects. A clean original cyberpunk machine-priest, no licensed logos or emblems.\nTransparent background, centered single isolated entire body, neck near upper center and feet on the same baseline. Preserve generous clear transparent margins. Flat frontal game sprite, no perspective distortion, no ground, no shadow, no text, no labels, no border.\nSpecific model: Heavy technician armor: an enclosing broad ivory chest shell with a single dark vertical vent, box-shaped shoulder shields, broad forearm housings and robotic gauntlets, long thigh and shin shells and fully enclosed mechanical boots. A short dark navy split technical skirt behind the hips. The exposed charcoal hinges and narrow waist preserve the original lean robot identity. No more than a handful of large plate shapes per limb.",
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-89597595-ae79-4502-abb0-59e8a8e4c029.png"
+        }
+      ],
+      "cleanup_prompt": "Use case: background-extraction. Edit target is the attached isolated headless robot body module. Remove ONLY the cloudy grey/brown halo, glow and backdrop pixels outside the robot. Keep the exact drawn robot body, ivory armor, dark metal joints, dark blue cloth, amber small indicators, two hands, both feet, all shape and pose, same framing and exact colors unchanged. Do not redesign or add any object. Output a clean cutout on genuinely transparent background with alpha zero everywhere outside the character. No shadow, no aura, no studio gradient, no black background, no grey radial bloom. Keep useful antialiased edges of the robot itself, no hard background rectangle. Full neck-to-feet body preserved. No head. This is a transparent game sprite module destined for a 64x64 cell, not a studio illustration.",
+      "variants": [
+        {
+          "candidate_id": "TE-W02-P04-r02-red",
+          "color": "red",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent deep clear red hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-20354ce5-e86a-44f1-9403-5a16ede8ed31.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-0da6e420-e214-4934-8b8d-5335dfe77007.png"
+        },
+        {
+          "candidate_id": "TE-W02-P04-r02-blue",
+          "color": "blue",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear cobalt blue hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-20354ce5-e86a-44f1-9403-5a16ede8ed31.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-28bcd366-c5a6-4550-aa91-8f676529d4c3.png"
+        },
+        {
+          "candidate_id": "TE-W02-P04-r02-green",
+          "color": "green",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear medium emerald green hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-20354ce5-e86a-44f1-9403-5a16ede8ed31.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-17581284-beea-4911-9c20-77ca5be1ffac.png"
+        }
+      ]
+    },
+    {
+      "number": "05",
+      "label": "Très lourde",
+      "description": "Very heavy machine-priest armor: a fully enclosed ivory industrial exoshell over the same robotic frame, broad squared shoulder blocks, a large solid chest housing with one small amber power indicator, reinforced closed gauntlets, broad continuous thigh and shin housings and heavy flat mechanical boots. A short dark navy split tech-tabard visible behind the hips. Clearly the heaviest tier but more angular and slimmer than a hulking melee warrior. One large form per body segment; deep readable dark hinge gaps. No gun, no tools, no antenna, no extra arms, no spikes, no extra backpack projections.",
+      "candidate_id": "TE-W02-P05-r03",
+      "status": "generated_awaiting_native_review",
+      "prompt": "Use case: precise-object-edit. Asset: headless full-body armor sprite for a 64x64 native roguelike cell.\nInput 1 is the Technomancien's previous very-heavy armor, which reads too slim and medium-weight at final size. Input 2 is a simplification reference ONLY, not the human body anatomy.\nMake input 1 unambiguously VERY HEAVY by adding thick LARGE ivory industrial armor housings around the same robotic frame. This is the fifth final tier: MUCH wider shoulder blocks, one broad nearly solid square chest housing, thick broad forearm gauntlet housings, large continuous hip/thigh shells and very broad thick enclosed boots. Fill most exposed rib-like subdivisions with a few clean large armor shapes. Preserve simple dark elbow, waist and knee hinges so the robotic nature remains obvious. Bare structure is mostly hidden by protection now.\nCRITICAL: the previous body was only 27 pixels wide at final 48-pixel body height. Draw the NEW armor silhouette to occupy approximately 34-36 pixels wide at that SAME 48-pixel body height. Achieve this by drawing genuinely much thicker protective housings, not by stretching the robot or shortening the legs. Outer silhouette width should be about 72 percent of neck-to-foot body height. Broad shoulders, gauntlets and boots MUST visibly change the silhouette at tiny game size. A slender frame under thick machinery, not human muscles. The hand itself may remain a dark simple robotic mitten below its bulky armored cuff. Keep feet visibly separate.\nMaintain the frontal neutral stance, empty lowered hands, two robotic arms and two robotic legs; no extra limbs. One small amber rectangle on chest, dark navy short split work-tabard at hips. Ivory outer plates with 2-3 broad shade values, charcoal dark hinges and outlines. Extremely simple native64-readable volumes. No texture, small rivets, dense cables, tiny panels or dozens of exposed struts.\nEntire body from short robotic neck stump to both complete soles. NO HEAD OR FACE, helmet, weapon, tool, drone, shield, antenna, spikes or backpack projections. Same centered position and baseline with transparent margins. Genuinely transparent background, no glow, halo, shadow, radial gradient or text. Original cyberpunk machine-priest engineering, no licensed markings.",
+      "referenced_image_paths": [
+        "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-29da0147-f2bc-4dde-a668-e5fb72b7c5fb.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png"
+      ],
+      "transparent_background": true,
+      "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-ee4af80f-4895-492b-8d03-02b6bdd2c11a.png",
+      "variants": [
+        {
+          "candidate_id": "TE-W02-P05-r03-red",
+          "color": "red",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent deep clear red hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-ee4af80f-4895-492b-8d03-02b6bdd2c11a.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-9c04101b-3940-4bcd-b358-b395aa85adc8.png"
+        },
+        {
+          "candidate_id": "TE-W02-P05-r03-blue",
+          "color": "blue",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear cobalt blue hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-ee4af80f-4895-492b-8d03-02b6bdd2c11a.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-92e21131-a68d-4206-8956-47178806274a.png"
+        },
+        {
+          "candidate_id": "TE-W02-P05-r03-green",
+          "color": "green",
+          "status": "generated_awaiting_native_review",
+          "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear medium emerald green hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+          "referenced_image_paths": [
+            "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-ee4af80f-4895-492b-8d03-02b6bdd2c11a.png"
+          ],
+          "transparent_background": true,
+          "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-2cf71af5-5e5b-4e5b-b01f-8124c0695602.png"
+        }
+      ],
+      "superseded_full_model": {
+        "number": "05",
+        "label": "Très lourde",
+        "description": "Very heavy machine-priest armor: a fully enclosed ivory industrial exoshell over the same robotic frame, broad squared shoulder blocks, a large solid chest housing with one small amber power indicator, reinforced closed gauntlets, broad continuous thigh and shin housings and heavy flat mechanical boots. A short dark navy split tech-tabard visible behind the hips. Clearly the heaviest tier but more angular and slimmer than a hulking melee warrior. One large form per body segment; deep readable dark hinge gaps. No gun, no tools, no antenna, no extra arms, no spikes, no extra backpack projections.",
+        "candidate_id": "TE-W02-P05-r02",
+        "status": "generated_awaiting_native_review",
+        "prompt": "Use case: identity-preserve. Asset type: modular full-body armor sprite BELOW THE HEAD for a French futuristic roguelike, native final cell 64x64.\nInput image 1 is the Technomancien body identity and posture reference. Input image 2 is ONLY the accepted level of simplification and broad material shading; do not copy that muscular human body.\nCreate one original technomancer OUTFIT BODY MODULE from a small robotic neck stump down to both complete feet. Omit the entire head and face: a separate immutable head layer will be composed later. This character is a nearly wholly robotic human technician, master of combat drones and algorithms, with two robotic arms and two robotic legs. Retain the front-facing neutral stance, lean angular torso, empty hands lowered beside the hips, and recognizable mechanical humanoid construction. Absolutely no exposed human skin.\nCRITICAL NATIVE64 ART DIRECTION: design for a body only 48 pixels high in the final 64px cell. Large clean masses, deliberately few plate divisions, 2-3 broad shade values per material, dark clear contour, matte worn finish with almost no surface texture. No tiny screws, rivets, text, dense cables, checkerboard panels, scratches or decorative filigree. Any robot joint is a simple dark cylinder or hinge, not many thin struts. Arms separated from torso, feet separated, stout readable fingers grouped into a simple hand. High contrast ivory protection against charcoal machinery; fixed small amber indicators, subdued dark navy cloth. No dominant glowing effects. A clean original cyberpunk machine-priest, no licensed logos or emblems.\nTransparent background, centered single isolated entire body, neck near upper center and feet on the same baseline. Preserve generous clear transparent margins. Flat frontal game sprite, no perspective distortion, no ground, no shadow, no text, no labels, no border.\nSpecific model: Very heavy machine-priest armor: a fully enclosed ivory industrial exoshell over the same robotic frame, broad squared shoulder blocks, a large solid chest housing with one small amber power indicator, reinforced closed gauntlets, broad continuous thigh and shin housings and heavy flat mechanical boots. A short dark navy split tech-tabard visible behind the hips. Clearly the heaviest tier but more angular and slimmer than a hulking melee warrior. One large form per body segment; deep readable dark hinge gaps. No gun, no tools, no antenna, no extra arms, no spikes, no extra backpack projections.",
+        "referenced_image_paths": [
+          "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/CL02-r04-source.png",
+          "C:/Users/User/Desktop/project-RL/assets/source-art/class-readability-01/bastion-wave-01/BA-W01-P05-r03-body-source.png"
+        ],
+        "transparent_background": true,
+        "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-29da0147-f2bc-4dde-a668-e5fb72b7c5fb.png",
+        "generation_attempts": [
+          {
+            "candidate_id": "TE-W02-P05-r01",
+            "prompt": "Use case: identity-preserve. Asset type: modular full-body armor sprite BELOW THE HEAD for a French futuristic roguelike, native final cell 64x64.\nInput image 1 is the Technomancien body identity and posture reference. Input image 2 is ONLY the accepted level of simplification and broad material shading; do not copy that muscular human body.\nCreate one original technomancer OUTFIT BODY MODULE from a small robotic neck stump down to both complete feet. Omit the entire head and face: a separate immutable head layer will be composed later. This character is a nearly wholly robotic human technician, master of combat drones and algorithms, with two robotic arms and two robotic legs. Retain the front-facing neutral stance, lean angular torso, empty hands lowered beside the hips, and recognizable mechanical humanoid construction. Absolutely no exposed human skin.\nCRITICAL NATIVE64 ART DIRECTION: design for a body only 48 pixels high in the final 64px cell. Large clean masses, deliberately few plate divisions, 2-3 broad shade values per material, dark clear contour, matte worn finish with almost no surface texture. No tiny screws, rivets, text, dense cables, checkerboard panels, scratches or decorative filigree. Any robot joint is a simple dark cylinder or hinge, not many thin struts. Arms separated from torso, feet separated, stout readable fingers grouped into a simple hand. High contrast ivory protection against charcoal machinery; fixed small amber indicators, subdued dark navy cloth. No dominant glowing effects. A clean original cyberpunk machine-priest, no licensed logos or emblems.\nTransparent background, centered single isolated entire body, neck near upper center and feet on the same baseline. Preserve generous clear transparent margins. Flat frontal game sprite, no perspective distortion, no ground, no shadow, no text, no labels, no border.\nSpecific model: Very heavy machine-priest armor: a fully enclosed ivory industrial exoshell over the same robotic frame, broad squared shoulder blocks, a large solid chest housing with one small amber power indicator, reinforced closed gauntlets, broad continuous thigh and shin housings and heavy flat mechanical boots. A short dark navy split tech-tabard visible behind the hips. Clearly the heaviest tier but more angular and slimmer than a hulking melee warrior. One large form per body segment; deep readable dark hinge gaps. No gun, no tools, no antenna, no extra arms, no spikes, no extra backpack projections.",
+            "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-629408ba-f07b-4abc-b708-1f1bbff4a532.png"
+          }
+        ],
+        "cleanup_prompt": "Use case: background-extraction. Edit target is the attached isolated headless robot body module. Remove ONLY the cloudy grey/brown halo, glow and backdrop pixels outside the robot. Keep the exact drawn robot body, ivory armor, dark metal joints, dark blue cloth, amber small indicators, two hands, both feet, all shape and pose, same framing and exact colors unchanged. Do not redesign or add any object. Output a clean cutout on genuinely transparent background with alpha zero everywhere outside the character. No shadow, no aura, no studio gradient, no black background, no grey radial bloom. Keep useful antialiased edges of the robot itself, no hard background rectangle. Full neck-to-feet body preserved. No head. This is a transparent game sprite module destined for a 64x64 cell, not a studio illustration.",
+        "variants": [
+          {
+            "candidate_id": "TE-W02-P05-r02-red",
+            "color": "red",
+            "status": "generated_awaiting_native_review",
+            "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent deep clear red hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+            "referenced_image_paths": [
+              "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-29da0147-f2bc-4dde-a668-e5fb72b7c5fb.png"
+            ],
+            "transparent_background": true,
+            "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-7a10ef99-46d5-4edb-8a0c-0679d1947472.png"
+          },
+          {
+            "candidate_id": "TE-W02-P05-r02-blue",
+            "color": "blue",
+            "status": "generated_awaiting_native_review",
+            "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear cobalt blue hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+            "referenced_image_paths": [
+              "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-29da0147-f2bc-4dde-a668-e5fb72b7c5fb.png"
+            ],
+            "transparent_background": true,
+            "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-4baad583-4717-4756-95e2-72edbc6bd19f.png"
+          },
+          {
+            "candidate_id": "TE-W02-P05-r02-green",
+            "color": "green",
+            "status": "generated_awaiting_native_review",
+            "prompt": "Use case: precise-object-edit. Asset: transparent headless robotic armor body module for a final native 64x64 game sprite. Edit target: attached image. Change ONLY the IVORY protective armor panels and protective pale vest surfaces to ONE coherent clear medium emerald green hue, with 2-3 simple shade values for volume. Every pale protection on chest/vest, collar, shoulders, arm cuffs, hands, waist, legs and feet follows the same hue. Do NOT color the bare dark metallic mechanical chassis, dark joints, dark navy cloth, dark outlines or small amber indicator panels. Preserve the exact robot identity, every body proportion, pose, neck stump, fingers, boots, plate shapes, negative spaces, contour, shading placement, lighting, framing and transparent margins. This is a material color variation of the very same armor model, never an armor redesign. Keep the same amount of armor coverage as the reference. Do not add or remove plates. No head or face, no weapon, no accessories. Preserve genuinely transparent alpha outside the body. No ground, shadow, aura, glow, vignette, gradient background, text or labels. Design stays readable as broad simple shapes at native64.",
+            "referenced_image_paths": [
+              "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-29da0147-f2bc-4dde-a668-e5fb72b7c5fb.png"
+            ],
+            "transparent_background": true,
+            "generated_file": "C:\\Users\\User\\.codex\\generated_images\\01a15e4b-a136-72f0-b79d-bca96fc58aaa\\exec-a89ac613-a522-46b8-a1d8-8a15010bea78.png"
+          }
+        ]
+      }
+    }
+  ]
+}

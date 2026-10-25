@@ -1,0 +1,266 @@
+[
+  {
+    "id": "MON-021-0",
+    "kind": "creature",
+    "label": "Arachnide",
+    "record": {
+      "id": "MON-021-0",
+      "label": "021 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Élites démoniaques",
+      "rig": "crawl",
+      "image": "catalogue/assets/da8e36956a607e8b8927.png",
+      "foot": [
+        96,
+        128
+      ],
+      "size": [
+        192,
+        192
+      ],
+      "number": 21,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        42,
+        65,
+        151,
+        128
+      ],
+      "rigLabel": "Pattes multiples",
+      "reviewId": "WALK03-MON-021-0"
+    },
+    "locomotor_legs": 8,
+    "motion": "Eight walking legs in four pairs, compact staggered support, alternating groups of four. Keep all eight legs attached around the orange armored body. No legs transform into arms.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-021-0-identity-detail.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-021-0-cycle-r01.png",
+    "prompt": "Use case: identity-preserve. Asset: whole-creature lateral movement atlas for existing game monster MON-021-0.\nINPUT1 is the exact current creature design. Preserve its species, morphology, exact number of locomotor supports, head/face, appendages, materials, colors, armor, carried weapons and distinctive details. No new anatomy, equipment, attacks, effects or redesign. Match this existing game's matte detailed native64 finish.\nOutput one regular FOUR-COLUMN FOUR-ROW transparent atlas, sixteen COMPLETE separate creatures,1536square. Every384square cell has generous transparent margins, roughly maxbodyheight280/maxbodywidth280, sole/base baseline336. No cropped heads, legs, wings, tails or neighbor fragments. No labels, floor, background, grid, shadow or particles.\nTOP TWO ROWS (cells0..7) ALL front-left three quarters directed screenLEFT. BOTTOM TWO ROWS (cells8..15) ALL front-right directedRIGHT. Near-front viewpoint like the input, showing the front and side together, never pure profile or back. Head and whole body/chassis face the same direction.\nExact reading order LEFT cells0..7: idleL, movementL0, L1, L2, L3, L4, L5, duplicate idleL. RIGHT cells8..15: idleR, movementR0,R1,R2,R3,R4,R5,duplicate idleR. The six movement poses form one coherent full cycle: first three accompany one grid cell, next three the next cell. Both idle poses are truly stable at rest; no unsupported lifted limb frozen at arrival.\nSPECIFIC ANATOMY AND MOVEMENT: Eight walking legs in four pairs, compact staggered support, alternating groups of four. Keep all eight legs attached around the orange armored body. No legs transform into arms.\nDraw the ENTIRE actual creature in every pose. Maintain its body volume and apparent size across all sixteen. Small measured motion suitable for400ms per cell, no wide spread, exaggerated bounce or large pose changes. Preserve all anatomical joints and connections; intentional cloth holes/air between legs stay transparent. Do not merge, remove or invent legs across frames. Do not impose a humanoid gait on this creature. Exact source identity and materials in every frame. True transparency."
+  },
+  {
+    "id": "MON-030-0",
+    "kind": "creature",
+    "label": "Insecte",
+    "record": {
+      "id": "MON-030-0",
+      "label": "030 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons et créations",
+      "rig": "crawl",
+      "image": "catalogue/assets/26d0bb1e34a5040421b7.png",
+      "foot": [
+        32,
+        60
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "number": 30,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        13,
+        34,
+        51,
+        60
+      ],
+      "rigLabel": "Pattes multiples",
+      "reviewId": "WALK03-MON-030-0"
+    },
+    "locomotor_legs": 6,
+    "motion": "Six walking legs in three pairs. Alternating tripod supports: front+rear on one side and middle on the opposite, then reverse. Three low compact phases per step, no hopping.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-030-0-identity-detail.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-030-0-cycle-r01.png",
+    "prompt": "Use case: identity-preserve. Asset: whole-creature lateral movement atlas for existing game monster MON-030-0.\nINPUT1 is the exact current creature design. Preserve its species, morphology, exact number of locomotor supports, head/face, appendages, materials, colors, armor, carried weapons and distinctive details. No new anatomy, equipment, attacks, effects or redesign. Match this existing game's matte detailed native64 finish.\nOutput one regular FOUR-COLUMN FOUR-ROW transparent atlas, sixteen COMPLETE separate creatures,1536square. Every384square cell has generous transparent margins, roughly maxbodyheight280/maxbodywidth280, sole/base baseline336. No cropped heads, legs, wings, tails or neighbor fragments. No labels, floor, background, grid, shadow or particles.\nTOP TWO ROWS (cells0..7) ALL front-left three quarters directed screenLEFT. BOTTOM TWO ROWS (cells8..15) ALL front-right directedRIGHT. Near-front viewpoint like the input, showing the front and side together, never pure profile or back. Head and whole body/chassis face the same direction.\nExact reading order LEFT cells0..7: idleL, movementL0, L1, L2, L3, L4, L5, duplicate idleL. RIGHT cells8..15: idleR, movementR0,R1,R2,R3,R4,R5,duplicate idleR. The six movement poses form one coherent full cycle: first three accompany one grid cell, next three the next cell. Both idle poses are truly stable at rest; no unsupported lifted limb frozen at arrival.\nSPECIFIC ANATOMY AND MOVEMENT: Six walking legs in three pairs. Alternating tripod supports: front+rear on one side and middle on the opposite, then reverse. Three low compact phases per step, no hopping.\nDraw the ENTIRE actual creature in every pose. Maintain its body volume and apparent size across all sixteen. Small measured motion suitable for400ms per cell, no wide spread, exaggerated bounce or large pose changes. Preserve all anatomical joints and connections; intentional cloth holes/air between legs stay transparent. Do not merge, remove or invent legs across frames. Do not impose a humanoid gait on this creature. Exact source identity and materials in every frame. True transparency."
+  },
+  {
+    "id": "MON-075-0",
+    "kind": "creature",
+    "label": "Quadrupède",
+    "record": {
+      "id": "MON-075-0",
+      "label": "075 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons et créations",
+      "rig": "quad",
+      "image": "catalogue/assets/12db273401ca79da6393.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 75,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        22,
+        46,
+        107,
+        96
+      ],
+      "rigLabel": "Appuis de quadrupède",
+      "reviewId": "WALK03-MON-075-0"
+    },
+    "locomotor_legs": 4,
+    "motion": "Exactly four weight-bearing legs. Slow compact four-legged walk with alternating diagonal supports, front and hind paws distinct. Heavy rocky body stays low and stable, no human knees.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-075-0-identity-detail.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-075-0-cycle-r01.png",
+    "prompt": "Use case: identity-preserve. Asset: whole-creature lateral movement atlas for existing game monster MON-075-0.\nINPUT1 is the exact current creature design. Preserve its species, morphology, exact number of locomotor supports, head/face, appendages, materials, colors, armor, carried weapons and distinctive details. No new anatomy, equipment, attacks, effects or redesign. Match this existing game's matte detailed native64 finish.\nOutput one regular FOUR-COLUMN FOUR-ROW transparent atlas, sixteen COMPLETE separate creatures,1536square. Every384square cell has generous transparent margins, roughly maxbodyheight280/maxbodywidth280, sole/base baseline336. No cropped heads, legs, wings, tails or neighbor fragments. No labels, floor, background, grid, shadow or particles.\nTOP TWO ROWS (cells0..7) ALL front-left three quarters directed screenLEFT. BOTTOM TWO ROWS (cells8..15) ALL front-right directedRIGHT. Near-front viewpoint like the input, showing the front and side together, never pure profile or back. Head and whole body/chassis face the same direction.\nExact reading order LEFT cells0..7: idleL, movementL0, L1, L2, L3, L4, L5, duplicate idleL. RIGHT cells8..15: idleR, movementR0,R1,R2,R3,R4,R5,duplicate idleR. The six movement poses form one coherent full cycle: first three accompany one grid cell, next three the next cell. Both idle poses are truly stable at rest; no unsupported lifted limb frozen at arrival.\nSPECIFIC ANATOMY AND MOVEMENT: Exactly four weight-bearing legs. Slow compact four-legged walk with alternating diagonal supports, front and hind paws distinct. Heavy rocky body stays low and stable, no human knees.\nDraw the ENTIRE actual creature in every pose. Maintain its body volume and apparent size across all sixteen. Small measured motion suitable for400ms per cell, no wide spread, exaggerated bounce or large pose changes. Preserve all anatomical joints and connections; intentional cloth holes/air between legs stay transparent. Do not merge, remove or invent legs across frames. Do not impose a humanoid gait on this creature. Exact source identity and materials in every frame. True transparency."
+  },
+  {
+    "id": "MON-141-0",
+    "kind": "creature",
+    "label": "Ver",
+    "record": {
+      "id": "MON-141-0",
+      "label": "141 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Vers et larves démoniaques",
+      "rig": "serpent",
+      "image": "catalogue/assets/f88d3f3bed3e8aa8e10e.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 141,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        31,
+        19,
+        97,
+        96
+      ],
+      "rigLabel": "Ondulation",
+      "reviewId": "WALK03-MON-141-0"
+    },
+    "locomotor_legs": 0,
+    "motion": "NO legs, no arms. Preserve the upright segmented worm and its continuous coiled lower body. Subtle whole-body traveling contraction over six phases; the base coil undulates softly and never becomes feet. Keep the same apparent body length and head shape.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-141-0-identity-detail.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-141-0-cycle-r01.png",
+    "prompt": "Use case: identity-preserve. Asset: whole-creature lateral movement atlas for existing game monster MON-141-0.\nINPUT1 is the exact current creature design. Preserve its species, morphology, exact number of locomotor supports, head/face, appendages, materials, colors, armor, carried weapons and distinctive details. No new anatomy, equipment, attacks, effects or redesign. Match this existing game's matte detailed native64 finish.\nOutput one regular FOUR-COLUMN FOUR-ROW transparent atlas, sixteen COMPLETE separate creatures,1536square. Every384square cell has generous transparent margins, roughly maxbodyheight280/maxbodywidth280, sole/base baseline336. No cropped heads, legs, wings, tails or neighbor fragments. No labels, floor, background, grid, shadow or particles.\nTOP TWO ROWS (cells0..7) ALL front-left three quarters directed screenLEFT. BOTTOM TWO ROWS (cells8..15) ALL front-right directedRIGHT. Near-front viewpoint like the input, showing the front and side together, never pure profile or back. Head and whole body/chassis face the same direction.\nExact reading order LEFT cells0..7: idleL, movementL0, L1, L2, L3, L4, L5, duplicate idleL. RIGHT cells8..15: idleR, movementR0,R1,R2,R3,R4,R5,duplicate idleR. The six movement poses form one coherent full cycle: first three accompany one grid cell, next three the next cell. Both idle poses are truly stable at rest; no unsupported lifted limb frozen at arrival.\nSPECIFIC ANATOMY AND MOVEMENT: NO legs, no arms. Preserve the upright segmented worm and its continuous coiled lower body. Subtle whole-body traveling contraction over six phases; the base coil undulates softly and never becomes feet. Keep the same apparent body length and head shape.\nDraw the ENTIRE actual creature in every pose. Maintain its body volume and apparent size across all sixteen. Small measured motion suitable for400ms per cell, no wide spread, exaggerated bounce or large pose changes. Preserve all anatomical joints and connections; intentional cloth holes/air between legs stay transparent. Do not merge, remove or invent legs across frames. Do not impose a humanoid gait on this creature. Exact source identity and materials in every frame. True transparency."
+  },
+  {
+    "id": "MON-124-0",
+    "kind": "creature",
+    "label": "Esprit",
+    "record": {
+      "id": "MON-124-0",
+      "label": "124 · Esprit torturé · variante 0",
+      "category": "Campagne",
+      "family": "Esprits torturés",
+      "rig": "float",
+      "image": "catalogue/assets/4d6f16daecf7ffcfcc6c.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 124,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        51,
+        27,
+        77,
+        96
+      ],
+      "rigLabel": "Flottement",
+      "reviewId": "WALK03-MON-124-0"
+    },
+    "locomotor_legs": 0,
+    "motion": "NO walking legs. Preserve the exact hooded torn-cloth spirit, empty dark face and ragged floating lower silhouette. Very slight coherent drifting of the whole shroud during travel, tiny cloth motion, no invented feet or added glowing effects.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-124-0-identity-detail.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-124-0-cycle-r01.png",
+    "prompt": "Use case: identity-preserve. Asset: whole-creature lateral movement atlas for existing game monster MON-124-0.\nINPUT1 is the exact current creature design. Preserve its species, morphology, exact number of locomotor supports, head/face, appendages, materials, colors, armor, carried weapons and distinctive details. No new anatomy, equipment, attacks, effects or redesign. Match this existing game's matte detailed native64 finish.\nOutput one regular FOUR-COLUMN FOUR-ROW transparent atlas, sixteen COMPLETE separate creatures,1536square. Every384square cell has generous transparent margins, roughly maxbodyheight280/maxbodywidth280, sole/base baseline336. No cropped heads, legs, wings, tails or neighbor fragments. No labels, floor, background, grid, shadow or particles.\nTOP TWO ROWS (cells0..7) ALL front-left three quarters directed screenLEFT. BOTTOM TWO ROWS (cells8..15) ALL front-right directedRIGHT. Near-front viewpoint like the input, showing the front and side together, never pure profile or back. Head and whole body/chassis face the same direction.\nExact reading order LEFT cells0..7: idleL, movementL0, L1, L2, L3, L4, L5, duplicate idleL. RIGHT cells8..15: idleR, movementR0,R1,R2,R3,R4,R5,duplicate idleR. The six movement poses form one coherent full cycle: first three accompany one grid cell, next three the next cell. Both idle poses are truly stable at rest; no unsupported lifted limb frozen at arrival.\nSPECIFIC ANATOMY AND MOVEMENT: NO walking legs. Preserve the exact hooded torn-cloth spirit, empty dark face and ragged floating lower silhouette. Very slight coherent drifting of the whole shroud during travel, tiny cloth motion, no invented feet or added glowing effects.\nDraw the ENTIRE actual creature in every pose. Maintain its body volume and apparent size across all sixteen. Small measured motion suitable for400ms per cell, no wide spread, exaggerated bounce or large pose changes. Preserve all anatomical joints and connections; intentional cloth holes/air between legs stay transparent. Do not merge, remove or invent legs across frames. Do not impose a humanoid gait on this creature. Exact source identity and materials in every frame. True transparency."
+  },
+  {
+    "id": "DRONE-GUNNER",
+    "kind": "creature",
+    "label": "Chenilles",
+    "record": {
+      "id": "DRONE-GUNNER",
+      "label": "Drone · Artilleur",
+      "category": "PNJ et formes",
+      "family": "Drones",
+      "rig": "roll",
+      "image": "catalogue/assets/6bbe4d03b970960b6cd3.png",
+      "foot": [
+        32,
+        64
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "status": "Drone actuel",
+      "note": "Dimensions et corps issus du rendu actuel.",
+      "bounds": [
+        3,
+        23,
+        61,
+        62
+      ],
+      "rigLabel": "Roulement / chenilles",
+      "reviewId": "WALK03-DRONE-GUNNER"
+    },
+    "locomotor_legs": 0,
+    "motion": "NO legs. Exactly the source mechanical tracked chassis with its two treads, red/black armor and original weapon barrels. Only restrained continuous tread phase progression in six steps; chassis stays level. Do not bend shafts/barrels or turn treads into feet.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\DRONE-GUNNER-identity-detail.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\DRONE-GUNNER-cycle-r01.png",
+    "prompt": "Use case: identity-preserve. Asset: whole-creature lateral movement atlas for existing game monster DRONE-GUNNER.\nINPUT1 is the exact current creature design. Preserve its species, morphology, exact number of locomotor supports, head/face, appendages, materials, colors, armor, carried weapons and distinctive details. No new anatomy, equipment, attacks, effects or redesign. Match this existing game's matte detailed native64 finish.\nOutput one regular FOUR-COLUMN FOUR-ROW transparent atlas, sixteen COMPLETE separate creatures,1536square. Every384square cell has generous transparent margins, roughly maxbodyheight280/maxbodywidth280, sole/base baseline336. No cropped heads, legs, wings, tails or neighbor fragments. No labels, floor, background, grid, shadow or particles.\nTOP TWO ROWS (cells0..7) ALL front-left three quarters directed screenLEFT. BOTTOM TWO ROWS (cells8..15) ALL front-right directedRIGHT. Near-front viewpoint like the input, showing the front and side together, never pure profile or back. Head and whole body/chassis face the same direction.\nExact reading order LEFT cells0..7: idleL, movementL0, L1, L2, L3, L4, L5, duplicate idleL. RIGHT cells8..15: idleR, movementR0,R1,R2,R3,R4,R5,duplicate idleR. The six movement poses form one coherent full cycle: first three accompany one grid cell, next three the next cell. Both idle poses are truly stable at rest; no unsupported lifted limb frozen at arrival.\nSPECIFIC ANATOMY AND MOVEMENT: NO legs. Exactly the source mechanical tracked chassis with its two treads, red/black armor and original weapon barrels. Only restrained continuous tread phase progression in six steps; chassis stays level. Do not bend shafts/barrels or turn treads into feet.\nDraw the ENTIRE actual creature in every pose. Maintain its body volume and apparent size across all sixteen. Small measured motion suitable for400ms per cell, no wide spread, exaggerated bounce or large pose changes. Preserve all anatomical joints and connections; intentional cloth holes/air between legs stay transparent. Do not merge, remove or invent legs across frames. Do not impose a humanoid gait on this creature. Exact source identity and materials in every frame. True transparency."
+  },
+  {
+    "id": "MON-144-0",
+    "kind": "creature",
+    "label": "Créature ailée",
+    "record": {
+      "id": "MON-144-0",
+      "label": "144 · Démon · variante 0",
+      "category": "Campagne",
+      "family": "Démons ailés",
+      "rig": "winged",
+      "image": "catalogue/assets/f1107b84c29d59a65def.png",
+      "foot": [
+        64,
+        96
+      ],
+      "size": [
+        128,
+        128
+      ],
+      "number": 144,
+      "variant": 0,
+      "status": "Ressource de campagne",
+      "note": "Silhouette et palette actuelles ; animation proposée selon la morphologie.",
+      "bounds": [
+        5,
+        17,
+        123,
+        96
+      ],
+      "rigLabel": "Appuis et ailes",
+      "reviewId": "WALK03-MON-144-0"
+    },
+    "locomotor_legs": 2,
+    "motion": "Exactly two hind legs, two arms and the same two wings as the source. This grounded walk alternates the two feet compactly, wings remain carried in their existing posture with slight movement at joints, no new flight or humanized costume.",
+    "reference": "C:\\Users\\User\\Desktop\\project-RL\\docs\\reviews\\player-walk-07\\references\\MON-144-0-identity-detail.png",
+    "source_destination": "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\player-walk-review-07\\MON-144-0-cycle-r01.png",
+    "prompt": "Use case: identity-preserve. Asset: whole-creature lateral movement atlas for existing game monster MON-144-0.\nINPUT1 is the exact current creature design. Preserve its species, morphology, exact number of locomotor supports, head/face, appendages, materials, colors, armor, carried weapons and distinctive details. No new anatomy, equipment, attacks, effects or redesign. Match this existing game's matte detailed native64 finish.\nOutput one regular FOUR-COLUMN FOUR-ROW transparent atlas, sixteen COMPLETE separate creatures,1536square. Every384square cell has generous transparent margins, roughly maxbodyheight280/maxbodywidth280, sole/base baseline336. No cropped heads, legs, wings, tails or neighbor fragments. No labels, floor, background, grid, shadow or particles.\nTOP TWO ROWS (cells0..7) ALL front-left three quarters directed screenLEFT. BOTTOM TWO ROWS (cells8..15) ALL front-right directedRIGHT. Near-front viewpoint like the input, showing the front and side together, never pure profile or back. Head and whole body/chassis face the same direction.\nExact reading order LEFT cells0..7: idleL, movementL0, L1, L2, L3, L4, L5, duplicate idleL. RIGHT cells8..15: idleR, movementR0,R1,R2,R3,R4,R5,duplicate idleR. The six movement poses form one coherent full cycle: first three accompany one grid cell, next three the next cell. Both idle poses are truly stable at rest; no unsupported lifted limb frozen at arrival.\nSPECIFIC ANATOMY AND MOVEMENT: Exactly two hind legs, two arms and the same two wings as the source. This grounded walk alternates the two feet compactly, wings remain carried in their existing posture with slight movement at joints, no new flight or humanized costume.\nDraw the ENTIRE actual creature in every pose. Maintain its body volume and apparent size across all sixteen. Small measured motion suitable for400ms per cell, no wide spread, exaggerated bounce or large pose changes. Preserve all anatomical joints and connections; intentional cloth holes/air between legs stay transparent. Do not merge, remove or invent legs across frames. Do not impose a humanoid gait on this creature. Exact source identity and materials in every frame. True transparency."
+  }
+]

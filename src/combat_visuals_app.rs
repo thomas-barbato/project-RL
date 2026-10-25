@@ -20,7 +20,13 @@ impl AsciiApp {
                 if self.game.player_visibility().is_visible(*from)
                     && self.game.player_visibility().is_visible(*to)
                 {
-                    self.combat_motion.glide(*entity, *from, *to, now);
+                    self.combat_motion.glide_timed(
+                        *entity,
+                        *from,
+                        *to,
+                        now,
+                        self.graphics.active.walk_duration_ms,
+                    );
                 } else {
                     self.combat_motion.stop_glide(*entity);
                 }
@@ -413,7 +419,7 @@ mod tests {
             app.game.player_position(),
             Some(GridPos::new(start.x + 2, start.y))
         );
-        assert_eq!(app.combat_motion.offset(id, 1.141, false), Vec2::ZERO);
+        assert_eq!(app.combat_motion.offset(id, 1.421, false), Vec2::ZERO);
         app.capture_combat_visual(
             &GameEvent::EntityMoved {
                 entity: id,
@@ -424,6 +430,30 @@ mod tests {
             1.03,
         );
         assert_eq!(app.combat_motion.glide_offset(id, 1.03, false), Vec2::ZERO);
+    }
+
+    #[test]
+    fn walk_speed_does_not_gate_commands_or_modify_gameplay_or_saves() {
+        let _review = crate::game_art::walking::review_corrections();
+        let mut expected = None;
+        for milliseconds in [120, 200, 400] {
+            let mut app = fixture();
+            app.graphics.active.walk_duration_ms = milliseconds;
+            app.capture_events_at(Some(0.));
+            for time in [1., 1.01] {
+                assert_eq!(
+                    app.execute_command(GameCommand::Move(Direction::East)),
+                    CommandOutcome::Applied
+                );
+                app.capture_events_at(Some(time));
+            }
+            let snapshot = app.game.recovery_snapshot_bytes().unwrap();
+            if let Some(previous) = &expected {
+                assert_eq!(&snapshot, previous);
+            } else {
+                expected = Some(snapshot);
+            }
+        }
     }
 
     fn reaction_fixture() -> AsciiApp {

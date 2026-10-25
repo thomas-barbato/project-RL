@@ -1,0 +1,20 @@
+{
+  "revision": "WALK12-HELMET-ORIENTATION-r02",
+  "shell_turns_with_walking_head": true,
+  "open_helmets_keep_the_authored_walking_face": true,
+  "source": "actual normal Rust compositor exports",
+  "outfits": 25,
+  "helmet_models": 6,
+  "directions": 2,
+  "walking_poses_reviewed": 1800,
+  "additional_lateral_reference_idles": 300,
+  "unchanged_front_comparisons": 175,
+  "unchanged_unhelmeted_atlases": 25,
+  "preview_ms_per_cell": 400,
+  "preview_only_rest_ms": 300,
+  "native_tile_px": 64,
+  "source_sha256": {
+    "src\\game_art_walk_rig.rs": "11ae515a8c31f8be59abdb17b72a79e886854c95444dcd6515f8d3085c650d33",
+    "src\\walk_proportions_player_export.rs": "602dd2e78a29afb93256edfd439a480b2f48f096b57b3ea7382279a207c52363"
+  }
+}

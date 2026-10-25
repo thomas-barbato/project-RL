@@ -1,0 +1,215 @@
+{
+  "date": "2026-10-21",
+  "package_bytes": 94252012,
+  "package_statistics": {
+    "logical_input_files": 602,
+    "original_data_bytes": 39094548,
+    "deduplicated_bytes": 1397634,
+    "lossless_compression_saved_bytes": 496260,
+    "packaged_data_bytes": 37200654
+  },
+  "files": 573,
+  "aliases": 29,
+  "memory_before": {
+    "peak_sampled_working_set_bytes": 528474112,
+    "elapsed_seconds": 13.152748,
+    "exit": 0
+  },
+  "memory_after": {
+    "peak_sampled_working_set_bytes": 315105280,
+    "elapsed_seconds": 7.0499044,
+    "exit": 0
+  },
+  "native": {
+    "atmospheres": 7,
+    "content_and_menu": true,
+    "dialogue_audio_loaded": true,
+    "files": 573,
+    "pngs_decoded_and_uploaded": 194,
+    "root": "C:\\Users\\User\\AppData\\Local\\Temp\\Project RL portable validation 2026-10-21",
+    "shared_animation_texture": true,
+    "status": "passed"
+  },
+  "sewer": {
+    "generation": 162,
+    "integration": true,
+    "resurrection_active": false,
+    "review": "EG-COMP-04 / EG-POP-04",
+    "variants": [
+      {
+        "entry_and_return": true,
+        "monsters": 85,
+        "snapshot_restore": true,
+        "variant": 1
+      },
+      {
+        "entry_and_return": true,
+        "monsters": 104,
+        "snapshot_restore": true,
+        "variant": 2
+      },
+      {
+        "entry_and_return": true,
+        "monsters": 78,
+        "snapshot_restore": true,
+        "variant": 3
+      }
+    ]
+  },
+  "cleanup": {
+    "status": "sent_to_recycle_bin",
+    "directories": 38,
+    "inventoried_files": 10881,
+    "inventoried_logical_bytes": 5034938895,
+    "disk_space_released": false
+  },
+  "git_bytes_after": 7036955505,
+  "git_bytes_before": 8216573858,
+  "startup_pixels_compared": true,
+  "street_capture_result": "Joueur absent from checkout and from portable data; no successful route assertion",
+  "test_results": {
+    "game_art_passed": 50,
+    "game_art_ignored": 1,
+    "data_paths_passed": 2,
+    "byte_cache_passed": 2,
+    "package_passed": 3
+  },
+  "original_assets_check": {
+    "files_checked": 10383,
+    "missing": 0,
+    "changed": [
+      "assets/maps/cryogenic-camp-01/camp.json"
+    ],
+    "source_pixels_unchanged": true
+  },
+  "debug_cleanup": {
+    "files_removed": 1340,
+    "cargo_report": "1.4 GiB",
+    "release_and_distribution_retained": true
+  },
+  "camp_actor_production_copies_byte_identical": true,
+  "current_animation_preview_files_checked": 60,
+  "storage_after": {
+    "root_bytes": 10567510873,
+    "root_sizes": [
+      {
+        "path": ".git",
+        "bytes": 7036955505
+      },
+      {
+        "path": "assets",
+        "bytes": 1926309317
+      },
+      {
+        "path": "target",
+        "bytes": 850500702
+      },
+      {
+        "path": "docs",
+        "bytes": 480286833
+      },
+      {
+        "path": "artifacts",
+        "bytes": 146078115
+      },
+      {
+        "path": "dist",
+        "bytes": 94252012
+      },
+      {
+        "path": "tools",
+        "bytes": 17334247
+      },
+      {
+        "path": "src",
+        "bytes": 11659809
+      },
+      {
+        "path": "tests",
+        "bytes": 2014276
+      },
+      {
+        "path": "vendor",
+        "bytes": 1011776
+      },
+      {
+        "path": "examples",
+        "bytes": 562421
+      },
+      {
+        "path": "content",
+        "bytes": 417875
+      },
+      {
+        "path": "Projet_Roguelike_IA_Document_Conception_v0.2.md",
+        "bytes": 46060
+      },
+      {
+        "path": "Projet_Roguelike_IA_Spec_CODEX_v0.2.md",
+        "bytes": 44795
+      },
+      {
+        "path": "Cargo.lock",
+        "bytes": 17500
+      },
+      {
+        "path": "mods",
+        "bytes": 5290
+      },
+      {
+        "path": "README.md",
+        "bytes": 4278
+      },
+      {
+        "path": "AGENTS.md",
+        "bytes": 4261
+      },
+      {
+        "path": "build.rs",
+        "bytes": 1970
+      },
+      {
+        "path": ".gitignore",
+        "bytes": 1862
+      },
+      {
+        "path": "Cargo.toml",
+        "bytes": 648
+      },
+      {
+        "path": "Editeur_de_cartes.cmd",
+        "bytes": 449
+      },
+      {
+        "path": "Voir_camp_prototype.cmd",
+        "bytes": 288
+      },
+      {
+        "path": "Tester_dialogue_terminal.cmd",
+        "bytes": 243
+      },
+      {
+        "path": "Jouer.cmd",
+        "bytes": 168
+      },
+      {
+        "path": "Construire_distribution.cmd",
+        "bytes": 102
+      },
+      {
+        "path": ".vscode",
+        "bytes": 71
+      }
+    ],
+    "recycled_outputs_disk_space_not_yet_released": true,
+    "temporary_git_bundle_recycled_after_integrity_and_refs_checks": true,
+    "previous_reversible_cleanup_archive_recycled": true,
+    "remaining_artifact_directories": [
+      "map-editor",
+      "refonte-agent-2026-10-06",
+      "walk-preview-review-01"
+    ],
+    "temporary_diagnostics_retired": true
+  },
+  "headless_package_verification": "passed after relocation and after rebuilding same destination"
+}

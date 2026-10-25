@@ -1,0 +1,119 @@
+{
+  "review_id": "ARMOR-STYLE-STUDIES02",
+  "date": "2026-10-21",
+  "status": "awaiting_visual_review",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "runtime_integration": false,
+  "color_variants": "deferred",
+  "previous_feedback": "docs/reviews/class-readability-01/armor-style-studies-01/feedback-01.json",
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "BA-STYLE01-r02",
+      "label": "Vétéran industriel",
+      "status": "awaiting_visual_review",
+      "source": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE01-r02-source.png",
+      "source_sha256": "74fe2ebd55cbe35095fc3bf4ebd455e8fe90f3d06bb8fee454715f13453ff61c",
+      "native": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE01-r02-native64.png",
+      "native_sha256": "03ec80102a43a84d35a14cb7d488d33bd7b166b01ea800626b435d879b921867",
+      "previous_native": "assets/source-art/class-readability-01/armor-style-studies-01/BA-STYLE01-r01-native64.png",
+      "previous_native_sha256": "2a934fb6e1ba93c5d85c32dc4402190f0807f142a88ec06f4e46ef1c14e555a3",
+      "source_framing": {
+        "source_core_box": [
+          188,
+          93,
+          901,
+          1352
+        ],
+        "source_crop": [
+          169,
+          74,
+          920,
+          1371
+        ],
+        "isotropic_scale": 0.046068308181096106,
+        "native_core_box": [
+          15,
+          4,
+          48,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 33,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "actual_native_core_box": [
+        16,
+        4,
+        48,
+        62
+      ],
+      "head_edit_ownership_box": [
+        27,
+        3,
+        37,
+        12
+      ],
+      "outside_head_edit_exactly_preserved": true,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "layer_status": "whole_figure_study_not_a_production_rig"
+    },
+    {
+      "number": "02",
+      "candidate_id": "BA-STYLE02-r02",
+      "label": "Briseur cuivre",
+      "status": "awaiting_visual_review",
+      "source": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE02-r02-source.png",
+      "source_sha256": "723fa71a93ba00aaba2971ce4ff028e882df2fe97e896eec834d46f94decce39",
+      "native": "assets/source-art/class-readability-01/armor-style-studies-02/BA-STYLE02-r02-native64.png",
+      "native_sha256": "1ad57327fec45142b5babb56286a0631cffbc7b966967e36add2d8aa598d8770",
+      "previous_native": "assets/source-art/class-readability-01/armor-style-studies-01/BA-STYLE02-r01-native64.png",
+      "previous_native_sha256": "f39c70908175f8575a1af1470819865a7f8dd9d84d72c2805722ec2778a867a6",
+      "source_framing": {
+        "source_core_box": [
+          264,
+          64,
+          955,
+          1240
+        ],
+        "source_crop": [
+          246,
+          46,
+          973,
+          1258
+        ],
+        "isotropic_scale": 0.04931972789115646,
+        "native_core_box": [
+          15,
+          4,
+          49,
+          62
+        ],
+        "native_core_height": 58,
+        "native_core_width": 34,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "actual_native_core_box": [
+        15,
+        4,
+        49,
+        62
+      ],
+      "head_edit_ownership_box": null,
+      "outside_head_edit_exactly_preserved": false,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "layer_status": "whole_figure_study_not_a_production_rig"
+    }
+  ]
+}

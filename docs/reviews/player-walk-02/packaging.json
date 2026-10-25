@@ -1,0 +1,26 @@
+{
+  "review_id": "PLAYER-WALK-02",
+  "status": "awaiting_visual_review",
+  "default_transition_ms": 400,
+  "choices_ms": [
+    120,
+    200,
+    400
+  ],
+  "directions": [
+    "left",
+    "front",
+    "right"
+  ],
+  "equipment_count": 5,
+  "frames_per_direction": 7,
+  "native_tile": 64,
+  "composition_canvas": 128,
+  "fragment_bytes": 365446,
+  "game_integrated": false,
+  "limits": [
+    "Proposed carry drawings, not engine equipment layers",
+    "Bastion heavy copper only",
+    "No gameplay change"
+  ]
+}

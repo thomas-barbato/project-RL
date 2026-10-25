@@ -1,0 +1,596 @@
+{
+  "review_id": "ARCANISTE-RED-ROBE-W05",
+  "date": "2026-10-22",
+  "status": "accepted_visual_reference",
+  "class_id": "core:arcaniste",
+  "native_dimensions": [
+    64,
+    64
+  ],
+  "legacy_reference_rank": 4,
+  "reference_acceptances": [
+    {
+      "path": "docs/reviews/class-readability-01/bastion-copper-wave-01/acceptance.json",
+      "sha256": "6d55febb0bd152cca21df65f000b37da01a19d49179fedf9d74309e93bb40028"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/technomancien-no-robe-heads-02/acceptance.json",
+      "sha256": "d51882a635cbd8e024e366f4442cf238e1345668b2d0c03d152d7d6f0f4a0e02"
+    },
+    {
+      "path": "docs/reviews/class-readability-01/traqueuse-sniper-wave-01/acceptance.json",
+      "sha256": "f8ecf404d5c60e6d9c5686def4b8221bc822e44b0a69201163e972b53b15f566"
+    }
+  ],
+  "runtime_integration": false,
+  "color_variants": "deferred",
+  "entries": [
+    {
+      "number": "01",
+      "candidate_id": "AR-RR05-P01-r01",
+      "rank": 1,
+      "label": "Très légère",
+      "class_name": "Arcaniste",
+      "class_id": "core:arcaniste",
+      "presentation_gender": "male",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P01-r01-source.png",
+      "source_sha256": "ac1ecacae16d7a2761dd538e7f6752490f5c3919d2ecacfd98fedd374dc632a6",
+      "native": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P01-r01-native64.png",
+      "native_sha256": "5b7d2ffbd336be0624cb67ca5e9b51c72ec6d7ef32fd63646cb3a8d690cf606a",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          124,
+          91,
+          904,
+          1452
+        ],
+        "source_crop": [
+          104,
+          71,
+          924,
+          1472
+        ],
+        "isotropic_scale": 0.0440852314474651,
+        "native_core_box": [
+          15,
+          2,
+          49,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 34,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        15,
+        2,
+        49,
+        62
+      ],
+      "native_core_width": 34,
+      "native_core_height": 60,
+      "solid_silhouette_pixels": 902,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Tête nue",
+      "head_ownership_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          37,
+          4
+        ],
+        [
+          37,
+          9
+        ],
+        [
+          35,
+          12
+        ],
+        [
+          29,
+          12
+        ],
+        [
+          27,
+          9
+        ],
+        [
+          27,
+          4
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P01-r01-head-native64.png",
+          "sha256": "5d7de0b581b36db0bd13d3d83cde296391ce6f4a186edd133866f0473d1640fc"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P01-r01-body-native64.png",
+          "sha256": "24a3912a907947ba83593e7bc140f91472d48c9d74b2ff94fad6e48a1eb19cd8"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P01-r01-head-mask-native64.png",
+          "sha256": "77df51d95e775879a4a5b490780363499a3d2d3cea335abadc0403190801b686"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "recomposition_method": "binary ownership paste; alpha composite exact at every visible pixel",
+      "legacy_sprite_reused_exactly": false,
+      "rig_status": "whole-outfit study only; independent helmet replacement, weapon grips and animation pending",
+      "approved_native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P01-r01-native64.png",
+        "sha256": "5b7d2ffbd336be0624cb67ca5e9b51c72ec6d7ef32fd63646cb3a8d690cf606a"
+      }
+    },
+    {
+      "number": "02",
+      "candidate_id": "AR-RR05-P02-r01",
+      "rank": 2,
+      "label": "Légère",
+      "class_name": "Arcaniste",
+      "class_id": "core:arcaniste",
+      "presentation_gender": "male",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P02-r01-source.png",
+      "source_sha256": "ea9eba640958b95580d27ea44059757f36a5bcaba9bdbbc026f6308ebf06bb90",
+      "native": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P02-r01-native64.png",
+      "native_sha256": "c6e16f7d6cc1a42f7f357c0db2ee6990d1705961dc87aec0a6bb23078c61b317",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          231,
+          67,
+          962,
+          1282
+        ],
+        "source_crop": [
+          213,
+          49,
+          980,
+          1300
+        ],
+        "isotropic_scale": 0.04938271604938271,
+        "native_core_box": [
+          14,
+          2,
+          50,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 36,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        14,
+        2,
+        50,
+        62
+      ],
+      "native_core_width": 36,
+      "native_core_height": 60,
+      "solid_silhouette_pixels": 1107,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Capuche légère",
+      "head_ownership_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          39,
+          6
+        ],
+        [
+          39,
+          11
+        ],
+        [
+          36,
+          14
+        ],
+        [
+          28,
+          14
+        ],
+        [
+          25,
+          11
+        ],
+        [
+          25,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P02-r01-head-native64.png",
+          "sha256": "a37b4411402bdd6f4473b280ede823ade65e16830c49cd689ac4ec83fa862467"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P02-r01-body-native64.png",
+          "sha256": "5486b9310b551a86118ba0a42e518d9d2e7e74ee9d57b46c013f0a3fa11215a6"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P02-r01-head-mask-native64.png",
+          "sha256": "aa2201e44ff60f385c2c2f9ef0aef6ca82d73b79b01c7c21da9729740d37336e"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "recomposition_method": "binary ownership paste; alpha composite exact at every visible pixel",
+      "legacy_sprite_reused_exactly": false,
+      "rig_status": "whole-outfit study only; independent helmet replacement, weapon grips and animation pending",
+      "approved_native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P02-r01-native64.png",
+        "sha256": "c6e16f7d6cc1a42f7f357c0db2ee6990d1705961dc87aec0a6bb23078c61b317"
+      }
+    },
+    {
+      "number": "03",
+      "candidate_id": "AR-RR05-P03-r01",
+      "rank": 3,
+      "label": "Interméd.",
+      "class_name": "Arcaniste",
+      "class_id": "core:arcaniste",
+      "presentation_gender": "male",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P03-r01-source.png",
+      "source_sha256": "9e407e5dc1dcbe07f5dfb01a4ae064a6ffb8d64f82b0ba9ffe99c70ab599d390",
+      "native": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P03-r01-native64.png",
+      "native_sha256": "442f13a1e7999d17ffe7fca322a6e63eebb779e80692cc27dd516162aa5123f4",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          144,
+          80,
+          943,
+          1368
+        ],
+        "source_crop": [
+          125,
+          61,
+          962,
+          1387
+        ],
+        "isotropic_scale": 0.046583850931677016,
+        "native_core_box": [
+          13,
+          2,
+          50,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 37,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        13,
+        2,
+        50,
+        62
+      ],
+      "native_core_width": 37,
+      "native_core_height": 60,
+      "solid_silhouette_pixels": 1161,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Capuche doublée",
+      "head_ownership_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          39,
+          6
+        ],
+        [
+          40,
+          11
+        ],
+        [
+          37,
+          15
+        ],
+        [
+          27,
+          15
+        ],
+        [
+          24,
+          11
+        ],
+        [
+          25,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P03-r01-head-native64.png",
+          "sha256": "d83ac0edc0f702b3be03dc082df8307a7ae95a53e0062a6ddc18c7d17a981b41"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P03-r01-body-native64.png",
+          "sha256": "d2a90c498120d1b3411e03c121ac63bc956757b27f33fcbf1c43693183995f47"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P03-r01-head-mask-native64.png",
+          "sha256": "e149c43c8559937ee933bd0fc6f0207daec2ff1570f6d9d20cdb3b7181f4fe01"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "recomposition_method": "binary ownership paste; alpha composite exact at every visible pixel",
+      "legacy_sprite_reused_exactly": false,
+      "rig_status": "whole-outfit study only; independent helmet replacement, weapon grips and animation pending",
+      "approved_native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P03-r01-native64.png",
+        "sha256": "442f13a1e7999d17ffe7fca322a6e63eebb779e80692cc27dd516162aa5123f4"
+      }
+    },
+    {
+      "number": "04",
+      "candidate_id": "AR-RR05-P04-r01",
+      "rank": 4,
+      "label": "Lourde",
+      "class_name": "Arcaniste",
+      "class_id": "core:arcaniste",
+      "presentation_gender": "male",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P04-r01-source.png",
+      "source_sha256": "75f4dd38edf1eef5950d1942dc50b096c2f2a35264cab4936aab7b328bfbcba1",
+      "native": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P04-r01-native64.png",
+      "native_sha256": "9aa7ae1df0b6a3e526f2b89a6b94dfa78c24c24d138c40fc099b20d695a677d4",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          44,
+          36,
+          84,
+          96
+        ],
+        "source_crop": [
+          32,
+          34,
+          96,
+          98
+        ],
+        "isotropic_scale": 1,
+        "native_core_box": [
+          12,
+          2,
+          52,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 40,
+        "foot_baseline_y": 61,
+        "framing": "Original 128px runtime sprite cropped to 64px logical cell and feet aligned; no resampling."
+      },
+      "native_core_box": [
+        12,
+        2,
+        52,
+        62
+      ],
+      "native_core_width": 40,
+      "native_core_height": 60,
+      "solid_silhouette_pixels": 1294,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Masque ancien",
+      "head_ownership_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          39,
+          6
+        ],
+        [
+          40,
+          11
+        ],
+        [
+          37,
+          15
+        ],
+        [
+          27,
+          15
+        ],
+        [
+          24,
+          11
+        ],
+        [
+          25,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P04-r01-head-native64.png",
+          "sha256": "a30eba75085b8173defd7549ea65387f8897f4f9781bb8737dd76e8182746060"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P04-r01-body-native64.png",
+          "sha256": "e51da5f8c0c43c3ca22caa35bdd1a177f2735b38e0ac6fce36130e530791235d"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P04-r01-head-mask-native64.png",
+          "sha256": "e149c43c8559937ee933bd0fc6f0207daec2ff1570f6d9d20cdb3b7181f4fe01"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "recomposition_method": "binary ownership paste; alpha composite exact at every visible pixel",
+      "legacy_sprite_reused_exactly": true,
+      "rig_status": "whole-outfit study only; independent helmet replacement, weapon grips and animation pending",
+      "approved_native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P04-r01-native64.png",
+        "sha256": "9aa7ae1df0b6a3e526f2b89a6b94dfa78c24c24d138c40fc099b20d695a677d4"
+      }
+    },
+    {
+      "number": "05",
+      "candidate_id": "AR-RR05-P05-r01",
+      "rank": 5,
+      "label": "Très lourde",
+      "class_name": "Arcaniste",
+      "class_id": "core:arcaniste",
+      "presentation_gender": "male",
+      "status": "accepted_visual_reference",
+      "source": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P05-r01-source.png",
+      "source_sha256": "13a166c9dd2727f83aebdf25c34bc07efac434d75cd9524ea73b9fbdbd9bac16",
+      "native": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P05-r01-native64.png",
+      "native_sha256": "3b1acfa20c67c81c58c74f5fcecbd54262cdaa3a35eeb8694bec38a964c23be8",
+      "native_dimensions": [
+        64,
+        64
+      ],
+      "framing": {
+        "source_core_box": [
+          102,
+          37,
+          985,
+          1388
+        ],
+        "source_crop": [
+          82,
+          17,
+          1005,
+          1408
+        ],
+        "isotropic_scale": 0.04441154700222058,
+        "native_core_box": [
+          13,
+          2,
+          52,
+          62
+        ],
+        "native_core_height": 60,
+        "native_core_width": 39,
+        "foot_baseline_y": 61,
+        "framing": "64x64, isotropic, Lanczos, source alpha retained"
+      },
+      "native_core_box": [
+        13,
+        2,
+        52,
+        62
+      ],
+      "native_core_width": 39,
+      "native_core_height": 60,
+      "solid_silhouette_pixels": 1345,
+      "foot_anchor": [
+        32,
+        61
+      ],
+      "head_label": "Masque renforcé",
+      "head_ownership_polygon": [
+        [
+          29,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          39,
+          6
+        ],
+        [
+          40,
+          11
+        ],
+        [
+          37,
+          15
+        ],
+        [
+          27,
+          15
+        ],
+        [
+          24,
+          11
+        ],
+        [
+          25,
+          6
+        ]
+      ],
+      "layers": {
+        "head": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P05-r01-head-native64.png",
+          "sha256": "d799f46d7fd4fc11e3269f28550c6f200612129b2c151c710dc9397d6507e1f5"
+        },
+        "body": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P05-r01-body-native64.png",
+          "sha256": "012a4bbb749cbc92fbb04f6ea5c3ab2f9404031a6ed9c1fba0eae3ef293d6a1b"
+        },
+        "head-mask": {
+          "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/AR-RR05-P05-r01-head-mask-native64.png",
+          "sha256": "e149c43c8559937ee933bd0fc6f0207daec2ff1570f6d9d20cdb3b7181f4fe01"
+        }
+      },
+      "head_body_recomposition_exact": true,
+      "recomposition_method": "binary ownership paste; alpha composite exact at every visible pixel",
+      "legacy_sprite_reused_exactly": false,
+      "rig_status": "whole-outfit study only; independent helmet replacement, weapon grips and animation pending",
+      "approved_native": {
+        "path": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/native64/AR-RR05-P05-r01-native64.png",
+        "sha256": "3b1acfa20c67c81c58c74f5fcecbd54262cdaa3a35eeb8694bec38a964c23be8"
+      }
+    }
+  ],
+  "acceptance": "docs/reviews/class-readability-01/arcaniste-red-robe-wave-05/acceptance.json",
+  "accepted_date": "2026-10-22"
+}
