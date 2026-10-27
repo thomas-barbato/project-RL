@@ -6,7 +6,6 @@ impl AsciiApp {
         let mut app = Self::new_agent_skill_laboratory()?;
         app.graphics.active.ui_scale_percent = 100;
         app.graphics.active.interface_style = crate::graphics::InterfaceStyle::Metal;
-        app.graphics.active.interface_theme = crate::graphics::InterfaceTheme::Violet;
         app.graphics.active.reduced_motion = false;
         app.open_agent_skill_window();
         app.select_agent_skill_for_capture("FE02")?;
@@ -99,7 +98,6 @@ impl AsciiApp {
         app.ux.skill_demo_request = Some("FE02".into());
         app.ux.skill_demo.capture_time(Some(10.7));
         app.graphics.active.interface_style = crate::graphics::InterfaceStyle::Terminal;
-        app.graphics.active.interface_theme = crate::graphics::InterfaceTheme::Green;
         app.draw();
         crate::ui_capture::framebuffer()?.export_png(
             output

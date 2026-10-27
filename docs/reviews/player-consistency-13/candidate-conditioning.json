@@ -1,0 +1,1370 @@
+{
+  "revision": "PLAYER-CONSISTENCY13-r02",
+  "status": "pending_visual_approval",
+  "normal_game_changed": false,
+  "native_tile": 64,
+  "outfits": [
+    {
+      "candidate": "TE-C13-01-r02",
+      "rank": 1,
+      "whole_figures": 13,
+      "walking_scale_uniform_for_all_twelve": 0.1336405529953917,
+      "complete_figure_repair": null,
+      "metrics": [
+        {
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 898,
+          "upper_body_mean_occupied_width": 22.31
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 930,
+          "upper_body_mean_occupied_width": 19.69
+        },
+        {
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 843,
+          "upper_body_mean_occupied_width": 20.06
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 916,
+          "upper_body_mean_occupied_width": 20.06
+        },
+        {
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 958,
+          "upper_body_mean_occupied_width": 20.38
+        },
+        {
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 844,
+          "upper_body_mean_occupied_width": 21.0
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 950,
+          "upper_body_mean_occupied_width": 20.94
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 982,
+          "upper_body_mean_occupied_width": 20.88
+        },
+        {
+          "bounds": [
+            50,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 29,
+          "opaque_area": 878,
+          "upper_body_mean_occupied_width": 20.88
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 982,
+          "upper_body_mean_occupied_width": 20.88
+        },
+        {
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1003,
+          "upper_body_mean_occupied_width": 21.0
+        },
+        {
+          "bounds": [
+            50,
+            37,
+            78,
+            96
+          ],
+          "height": 59,
+          "width": 28,
+          "opaque_area": 879,
+          "upper_body_mean_occupied_width": 21.31
+        },
+        {
+          "bounds": [
+            47,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 34,
+          "opaque_area": 986,
+          "upper_body_mean_occupied_width": 20.44
+        }
+      ],
+      "source_sha256": {
+        "TE-C13-01-front-r02-source.png": "dbba6e25d329d2b3f03cf6c848820bdf537bb5e77885540259ef3c306e78f422",
+        "TE-C13-01-walk-r02-source.png": "a7a8cab0d01bb6752d42c7a8b547077214a4767483bcdbb3822b4b48850c59dd"
+      },
+      "walk_front_upper_width_ratio": 0.936
+    },
+    {
+      "candidate": "TE-C13-02-r01",
+      "rank": 2,
+      "whole_figures": 13,
+      "walking_scale_uniform_for_all_twelve": 0.1336405529953917,
+      "complete_figure_repair": null,
+      "metrics": [
+        {
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 829,
+          "upper_body_mean_occupied_width": 20.0
+        },
+        {
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 878,
+          "upper_body_mean_occupied_width": 18.81
+        },
+        {
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 755,
+          "upper_body_mean_occupied_width": 18.5
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 878,
+          "upper_body_mean_occupied_width": 19.19
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 892,
+          "upper_body_mean_occupied_width": 19.19
+        },
+        {
+          "bounds": [
+            51,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 26,
+          "opaque_area": 784,
+          "upper_body_mean_occupied_width": 19.31
+        },
+        {
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 889,
+          "upper_body_mean_occupied_width": 19.12
+        },
+        {
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 858,
+          "upper_body_mean_occupied_width": 18.69
+        },
+        {
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 775,
+          "upper_body_mean_occupied_width": 19.5
+        },
+        {
+          "bounds": [
+            47,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 34,
+          "opaque_area": 884,
+          "upper_body_mean_occupied_width": 19.38
+        },
+        {
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 868,
+          "upper_body_mean_occupied_width": 18.81
+        },
+        {
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 762,
+          "upper_body_mean_occupied_width": 18.94
+        },
+        {
+          "bounds": [
+            47,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 34,
+          "opaque_area": 887,
+          "upper_body_mean_occupied_width": 19.19
+        }
+      ],
+      "source_sha256": {
+        "TE-C13-02-front-r01-source.png": "dd1f3cc24fea27c9d0ef7a38c39b65d1c55fce1751143b63fe15507425f6b53c",
+        "TE-C13-02-walk-r01-source.png": "b1b5a8cc64fb08ec995e7768e08000ed7a71c46796ae5d29937bf44087797c7b"
+      },
+      "walk_front_upper_width_ratio": 0.958
+    },
+    {
+      "candidate": "TE-C13-03-r01",
+      "rank": 3,
+      "whole_figures": 13,
+      "walking_scale_uniform_for_all_twelve": 0.14463840399002495,
+      "complete_figure_repair": null,
+      "metrics": [
+        {
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 861,
+          "upper_body_mean_occupied_width": 21.12
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 895,
+          "upper_body_mean_occupied_width": 19.25
+        },
+        {
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 840,
+          "upper_body_mean_occupied_width": 20.06
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 905,
+          "upper_body_mean_occupied_width": 20.31
+        },
+        {
+          "bounds": [
+            48,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 31,
+          "opaque_area": 924,
+          "upper_body_mean_occupied_width": 19.88
+        },
+        {
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 834,
+          "upper_body_mean_occupied_width": 20.12
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 918,
+          "upper_body_mean_occupied_width": 20.12
+        },
+        {
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 934,
+          "upper_body_mean_occupied_width": 20.81
+        },
+        {
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 857,
+          "upper_body_mean_occupied_width": 21.12
+        },
+        {
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 922,
+          "upper_body_mean_occupied_width": 20.31
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 923,
+          "upper_body_mean_occupied_width": 20.44
+        },
+        {
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 853,
+          "upper_body_mean_occupied_width": 20.88
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 948,
+          "upper_body_mean_occupied_width": 20.75
+        }
+      ],
+      "source_sha256": {
+        "TE-C13-03-front-r01-source.png": "d82b516d8a9e95240e5701d0a3faa8c8fb04c204adb51731a5f1683956a625cd",
+        "TE-C13-03-walk-r01-source.png": "71dd3d85a3ff21361da959b40436cd4c4036936d38970a66fc0fe30f47a9015b"
+      },
+      "walk_front_upper_width_ratio": 0.962
+    },
+    {
+      "candidate": "TE-C13-04-r01",
+      "rank": 4,
+      "whole_figures": 13,
+      "walking_scale_uniform_for_all_twelve": 0.14250614250614252,
+      "complete_figure_repair": null,
+      "metrics": [
+        {
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 943,
+          "upper_body_mean_occupied_width": 22.19
+        },
+        {
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 954,
+          "upper_body_mean_occupied_width": 20.0
+        },
+        {
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 884,
+          "upper_body_mean_occupied_width": 20.81
+        },
+        {
+          "bounds": [
+            47,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 34,
+          "opaque_area": 969,
+          "upper_body_mean_occupied_width": 20.56
+        },
+        {
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 971,
+          "upper_body_mean_occupied_width": 20.81
+        },
+        {
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 902,
+          "upper_body_mean_occupied_width": 21.69
+        },
+        {
+          "bounds": [
+            47,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 34,
+          "opaque_area": 979,
+          "upper_body_mean_occupied_width": 20.88
+        },
+        {
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 978,
+          "upper_body_mean_occupied_width": 21.25
+        },
+        {
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 889,
+          "upper_body_mean_occupied_width": 21.19
+        },
+        {
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 971,
+          "upper_body_mean_occupied_width": 20.88
+        },
+        {
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 980,
+          "upper_body_mean_occupied_width": 21.06
+        },
+        {
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 889,
+          "upper_body_mean_occupied_width": 22.06
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 998,
+          "upper_body_mean_occupied_width": 21.62
+        }
+      ],
+      "source_sha256": {
+        "TE-C13-04-front-r01-source.png": "5bd31b0a448c296594a8bdd0627df4a81660f1aef332775d1222bb82e82d3d3d",
+        "TE-C13-04-walk-r01-source.png": "b56ddd0b80266c209fb9f4d4ea03d6e8de44df83dbf636ae9f6deb7b915a63a7"
+      },
+      "walk_front_upper_width_ratio": 0.945
+    },
+    {
+      "candidate": "TE-C13-05-r01",
+      "rank": 5,
+      "whole_figures": 13,
+      "walking_scale_uniform_for_all_twelve": 0.13679245283018868,
+      "complete_figure_repair": {
+        "file": "TE-C13-05-frame11-r03-source.png",
+        "pose": 11,
+        "source_resolution_scale": 0.43491735537190085
+      },
+      "metrics": [
+        {
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 1004,
+          "upper_body_mean_occupied_width": 23.12
+        },
+        {
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1036,
+          "upper_body_mean_occupied_width": 21.5
+        },
+        {
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 920,
+          "upper_body_mean_occupied_width": 21.5
+        },
+        {
+          "bounds": [
+            47,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 34,
+          "opaque_area": 1045,
+          "upper_body_mean_occupied_width": 22.5
+        },
+        {
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 1014,
+          "upper_body_mean_occupied_width": 21.12
+        },
+        {
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 887,
+          "upper_body_mean_occupied_width": 21.38
+        },
+        {
+          "bounds": [
+            47,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 34,
+          "opaque_area": 1021,
+          "upper_body_mean_occupied_width": 21.62
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1063,
+          "upper_body_mean_occupied_width": 23.0
+        },
+        {
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 930,
+          "upper_body_mean_occupied_width": 21.94
+        },
+        {
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1041,
+          "upper_body_mean_occupied_width": 22.94
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1049,
+          "upper_body_mean_occupied_width": 22.5
+        },
+        {
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 893,
+          "upper_body_mean_occupied_width": 22.06
+        },
+        {
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1028,
+          "upper_body_mean_occupied_width": 22.25
+        }
+      ],
+      "source_sha256": {
+        "TE-C13-05-front-r01-source.png": "b393397419debe1bf0066d2d2db868c2768a5e435f6669ef1fb0b2f9be614f42",
+        "TE-C13-05-walk-r01-source.png": "8d70efb66de2ff56acd289caa10d25c732b530133fd238ca41b1b3b2e43804d7",
+        "TE-C13-05-frame11-r03-source.png": "e1e9c802ac33ee7f0be2cb69bc1e2adc2b4e9f4dbaa4fb359e513872c71fa9f5"
+      },
+      "walk_front_upper_width_ratio": 0.952
+    }
+  ],
+  "bastion_outfits": [
+    {
+      "candidate": "BA-C13-03-r01",
+      "rank": 3,
+      "new_whole_walking_figures": 12,
+      "front_unchanged": true,
+      "walking_scale_uniform": 0.14463840399002495,
+      "metrics": [
+        {
+          "bounds": [
+            47,
+            36,
+            81,
+            94
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1157,
+          "upper_body_mean_occupied_width": 28.75
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1156,
+          "upper_body_mean_occupied_width": 25.5
+        },
+        {
+          "bounds": [
+            49,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 30,
+          "opaque_area": 1069,
+          "upper_body_mean_occupied_width": 25.0
+        },
+        {
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1173,
+          "upper_body_mean_occupied_width": 25.81
+        },
+        {
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1197,
+          "upper_body_mean_occupied_width": 25.62
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 1037,
+          "upper_body_mean_occupied_width": 25.81
+        },
+        {
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1166,
+          "upper_body_mean_occupied_width": 25.19
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 37,
+          "opaque_area": 1225,
+          "upper_body_mean_occupied_width": 27.12
+        },
+        {
+          "bounds": [
+            48,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 31,
+          "opaque_area": 1067,
+          "upper_body_mean_occupied_width": 25.88
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1201,
+          "upper_body_mean_occupied_width": 26.62
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1180,
+          "upper_body_mean_occupied_width": 26.19
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 1043,
+          "upper_body_mean_occupied_width": 26.19
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 37,
+          "opaque_area": 1221,
+          "upper_body_mean_occupied_width": 27.0
+        }
+      ],
+      "source_sha256": "e17463ce3b88dffea8f8ce0893a35ea1c191a900f9c1a4e739278c434b566c05"
+    },
+    {
+      "candidate": "BA-C13-04-r01",
+      "rank": 4,
+      "new_whole_walking_figures": 12,
+      "front_unchanged": true,
+      "walking_scale_uniform": 0.14043583535108958,
+      "metrics": [
+        {
+          "bounds": [
+            46,
+            36,
+            82,
+            94
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1303,
+          "upper_body_mean_occupied_width": 31.5
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1236,
+          "upper_body_mean_occupied_width": 27.19
+        },
+        {
+          "bounds": [
+            48,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 31,
+          "opaque_area": 1131,
+          "upper_body_mean_occupied_width": 26.94
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1253,
+          "upper_body_mean_occupied_width": 28.19
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1259,
+          "upper_body_mean_occupied_width": 27.75
+        },
+        {
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1082,
+          "upper_body_mean_occupied_width": 27.12
+        },
+        {
+          "bounds": [
+            46,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 37,
+          "opaque_area": 1260,
+          "upper_body_mean_occupied_width": 27.31
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 37,
+          "opaque_area": 1273,
+          "upper_body_mean_occupied_width": 28.25
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1147,
+          "upper_body_mean_occupied_width": 28.38
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 37,
+          "opaque_area": 1278,
+          "upper_body_mean_occupied_width": 28.5
+        },
+        {
+          "bounds": [
+            45,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 38,
+          "opaque_area": 1312,
+          "upper_body_mean_occupied_width": 30.56
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1131,
+          "upper_body_mean_occupied_width": 28.38
+        },
+        {
+          "bounds": [
+            45,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 38,
+          "opaque_area": 1292,
+          "upper_body_mean_occupied_width": 28.81
+        }
+      ],
+      "source_sha256": "cccfbea6b599e8513090ed90964122c025f76e9c9201e8258ff6b3b0a5e3164c"
+    },
+    {
+      "candidate": "BA-C13-05-r01",
+      "rank": 5,
+      "new_whole_walking_figures": 12,
+      "front_unchanged": true,
+      "walking_scale_uniform": 0.1475826972010178,
+      "metrics": [
+        {
+          "bounds": [
+            43,
+            36,
+            85,
+            94
+          ],
+          "height": 58,
+          "width": 42,
+          "opaque_area": 1606,
+          "upper_body_mean_occupied_width": 38.19
+        },
+        {
+          "bounds": [
+            45,
+            38,
+            83,
+            96
+          ],
+          "height": 58,
+          "width": 38,
+          "opaque_area": 1310,
+          "upper_body_mean_occupied_width": 28.12
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 1148,
+          "upper_body_mean_occupied_width": 27.31
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1266,
+          "upper_body_mean_occupied_width": 27.31
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1283,
+          "upper_body_mean_occupied_width": 27.75
+        },
+        {
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 1071,
+          "upper_body_mean_occupied_width": 26.62
+        },
+        {
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1271,
+          "upper_body_mean_occupied_width": 27.5
+        },
+        {
+          "bounds": [
+            46,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 37,
+          "opaque_area": 1305,
+          "upper_body_mean_occupied_width": 27.5
+        },
+        {
+          "bounds": [
+            47,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 34,
+          "opaque_area": 1208,
+          "upper_body_mean_occupied_width": 29.12
+        },
+        {
+          "bounds": [
+            45,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 38,
+          "opaque_area": 1333,
+          "upper_body_mean_occupied_width": 28.44
+        },
+        {
+          "bounds": [
+            45,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 38,
+          "opaque_area": 1323,
+          "upper_body_mean_occupied_width": 27.88
+        },
+        {
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1134,
+          "upper_body_mean_occupied_width": 27.44
+        },
+        {
+          "bounds": [
+            45,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 38,
+          "opaque_area": 1326,
+          "upper_body_mean_occupied_width": 28.38
+        }
+      ],
+      "source_sha256": "9a465ba9193a93abcdc26ff47b91d1fe387b1de38da4b6225307c9ee66589af3"
+    }
+  ],
+  "new_whole_figures": 101,
+  "new_walking_poses": 96,
+  "new_fronts": 5,
+  "movement_ms_per_cell": 400,
+  "preview_rest_ms": 300,
+  "equipment_compositor_not_changed": true,
+  "review_images_unarmed": true
+}

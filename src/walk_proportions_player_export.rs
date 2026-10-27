@@ -2,6 +2,200 @@
 use super::*;
 use serde_json::{Value, json};
 
+#[test]
+#[ignore = "Read-only arm projection review; RL_ARM14_OUTPUT required"]
+fn export_arm_projection14_review() {
+    struct Restore(bool);
+    impl Drop for Restore {
+        fn drop(&mut self) {
+            ARM_PROJECTION14.set(self.0);
+        }
+    }
+    let _restore = Restore(ARM_PROJECTION14.replace(false));
+    let output = std::path::PathBuf::from(std::env::var("RL_ARM14_OUTPUT").unwrap());
+    std::fs::create_dir_all(&output).unwrap();
+    let mut records = Vec::new();
+    let mut failures = Vec::new();
+    let mut checked = 0;
+    for index in (0..5).chain(10..25) {
+        for (name, held) in [
+            ("rifle", selection(Some(2), None)),
+            ("axe", selection(Some(67), None)),
+            ("dual", selection(None, Some([Some(68), Some(101)]))),
+        ] {
+            let key = (BASE + index, held, [EquipmentPalette::Original; 3]);
+            let front = compose(super::super::layers(key).unwrap(), true);
+            let normal: Vec<_> = [-1, 1]
+                .into_iter()
+                .flat_map(|facing| (0..6).map(move |frame| Pose { facing, frame }))
+                .map(|p| layers(key, p).unwrap())
+                .collect();
+            let mut variants = Vec::new();
+            for proposed in [false, true] {
+                ARM_PROJECTION14.set(proposed);
+                let mut atlas = Image::gen_image_color(13 * 128, 128, BLANK);
+                for y in 0..128usize {
+                    atlas.bytes[(y * 1664) * 4..(y * 1664 + 128) * 4]
+                        .copy_from_slice(&front.bytes[y * 512..(y + 1) * 512]);
+                }
+                let mut details = Vec::new();
+                for (n, pose) in [-1, 1]
+                    .into_iter()
+                    .flat_map(|facing| (0..6).map(move |frame| Pose { facing, frame }))
+                    .enumerate()
+                {
+                    let parts = layers(key, pose).unwrap();
+                    assert_eq!(
+                        parts[0].bytes, normal[n][0].bytes,
+                        "body/helmet changed: {index} {name}"
+                    );
+                    if proposed {
+                        let gear = &parts[3];
+                        let fingers = &parts[4];
+                        let mut todo: std::collections::BTreeSet<(i32, i32)> = fingers
+                            .bytes
+                            .chunks_exact(4)
+                            .enumerate()
+                            .filter(|(_, p)| p[3] >= 96)
+                            .map(|(i, _)| ((i % 128) as i32, (i / 128) as i32))
+                            .collect();
+                        let mut islands = 0;
+                        while let Some(seed) = todo.pop_first() {
+                            let mut component = vec![seed];
+                            let mut stack = vec![seed];
+                            while let Some((x, y)) = stack.pop() {
+                                for dx in -1..=1 {
+                                    for dy in -1..=1 {
+                                        let q = (x + dx, y + dy);
+                                        if todo.remove(&q) {
+                                            component.push(q);
+                                            stack.push(q);
+                                        }
+                                    }
+                                }
+                            }
+                            if component.len() < 2 {
+                                continue;
+                            }
+                            islands += 1;
+                            if !component.iter().any(|&(x, y)| {
+                                gear.bytes[(y as usize * 128 + x as usize) * 4 + 3] >= 64
+                            }) {
+                                failures.push(json!({"index":index,"loadout":name,"facing":pose.facing,"frame":pose.frame,"island":component}));
+                            }
+                        }
+                        if islands == 0 {
+                            failures.push(json!({"index":index,"loadout":name,"facing":pose.facing,"frame":pose.frame,"missing_fingers":true}));
+                        }
+                        checked += 1;
+                    }
+                    details.push(json!({"facing":pose.facing,"frame":pose.frame,"arm_opaque_area":parts[1..3].iter().map(|a|a.bytes.chunks_exact(4).filter(|p|p[3]>=96).count()).sum::<usize>()}));
+                    let image = compose(parts, true);
+                    for y in 0..128usize {
+                        let at = (y * 1664 + (n + 1) * 128) * 4;
+                        atlas.bytes[at..at + 512]
+                            .copy_from_slice(&image.bytes[y * 512..(y + 1) * 512]);
+                    }
+                }
+                let file = format!(
+                    "CLASS-{index:02}-{name}-{}.png",
+                    if proposed { "candidate" } else { "current" }
+                );
+                assert!(!output.join(&file).exists(), "review output exists");
+                atlas.export_png(output.join(&file).to_str().unwrap());
+                variants.push(json!({"proposed":proposed,"file":file,"poses":details}));
+            }
+            ARM_PROJECTION14.set(true);
+            records.push(json!({"index":index,"loadout":name,"reference_frames":[walking_arm_reference(key,Pose{facing:-1,frame:0}),walking_arm_reference(key,Pose{facing:1,frame:0})],"variants":variants}));
+            ARM_PROJECTION14.set(false);
+        }
+        eprintln!("[ARM14] CLASS-{index:02}: three loadouts, both directions, six phases");
+    }
+    std::fs::write(output.join("review.json"),serde_json::to_vec_pretty(&json!({"id":"ARM14-r01","normal_game_changed":false,"native_tile_px":64,"exported_pngs_need_vertical_flip":true,"contact_cases":checked,"contact_failures":failures,"cases":records})).unwrap()).unwrap();
+    assert!(!ARM_PROJECTION14.get());
+}
+
+#[test]
+#[ignore = "Full ARM14 integration contact matrix; RL_ARM14_INTEGRATION_OUTPUT required"]
+fn audit_arm14_all_outfits_and_weapons() {
+    let output = std::path::PathBuf::from(std::env::var("RL_ARM14_INTEGRATION_OUTPUT").unwrap());
+    std::fs::create_dir_all(&output).unwrap();
+    assert!(ARM_PROJECTION14.get());
+    assert!(crate::game_art::walking::gait12_enabled());
+    let mut cases = 0;
+    let mut failures = Vec::new();
+    let mut references = Vec::new();
+    for index in 0..25 {
+        for facing in [-1, 1] {
+            let empty = (BASE + index, [None; 2], [EquipmentPalette::Original; 3]);
+            let frame = walking_arm_reference(empty, Pose { facing, frame: 0 });
+            assert!(
+                frame < 6,
+                "missing current-cycle reference: {index} {facing}"
+            );
+            references.push(json!({"index":index,"facing":facing,"frame":frame}));
+            for weapon in 0..HELD_WEAPON_COUNT {
+                let key = (
+                    BASE + index,
+                    selection(Some(weapon), None),
+                    [EquipmentPalette::Original; 3],
+                );
+                let parts = layers(key, Pose { facing, frame }).unwrap();
+                let gear = &parts[parts.len() - 2];
+                let fingers = &parts[parts.len() - 1];
+                let mut todo: std::collections::BTreeSet<(i32, i32)> = fingers
+                    .bytes
+                    .chunks_exact(4)
+                    .enumerate()
+                    .filter(|(_, p)| p[3] >= 96)
+                    .map(|(i, _)| ((i % 128) as i32, (i / 128) as i32))
+                    .collect();
+                let mut islands = 0;
+                let mut gaps = 0;
+                while let Some(seed) = todo.pop_first() {
+                    let mut component = vec![seed];
+                    let mut stack = vec![seed];
+                    while let Some((x, y)) = stack.pop() {
+                        for dx in -1..=1 {
+                            for dy in -1..=1 {
+                                let q = (x + dx, y + dy);
+                                if todo.remove(&q) {
+                                    component.push(q);
+                                    stack.push(q);
+                                }
+                            }
+                        }
+                    }
+                    if component.len() < 2 {
+                        continue;
+                    }
+                    islands += 1;
+                    if !component
+                        .iter()
+                        .any(|&(x, y)| gear.bytes[(y as usize * 128 + x as usize) * 4 + 3] >= 64)
+                    {
+                        gaps += 1;
+                    }
+                }
+                if islands == 0 || gaps > 0 {
+                    failures.push(json!({"index":index,"weapon":weapon,"facing":facing,"frame":frame,"hand_islands":islands,"gaps":gaps}));
+                }
+                cases += 1;
+            }
+        }
+        eprintln!(
+            "[ARM14-INTEGRATION] outfit{index:02}: all113 weapons, both directions; {} failures",
+            failures.len()
+        );
+    }
+    std::fs::write(output.join("all-weapons-contact.json"),serde_json::to_vec_pretty(&json!({"review_id":"ARM14-INTEGRATION01","outfits":25,"legacy_outfits_retained":5,"weapon_models":HELD_WEAPON_COUNT,"contact_cases":cases,"failures":failures,"reference_frames":references,"scope":"each outfit x each weapon x both directions at the stable assembly pose; six-phase stability and all helmets checked separately","normal_renderer_arm14_enabled":true})).unwrap()).unwrap();
+    assert!(
+        failures.is_empty(),
+        "{} hand/weapon failures; see all-weapons-contact.json",
+        failures.len()
+    );
+}
+
 fn compose(parts: Vec<Image>, include_weapon: bool) -> Image {
     let weapon = parts.len() - 2;
     let mut result = Image::gen_image_color(128, 128, BLANK);

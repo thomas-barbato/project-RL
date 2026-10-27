@@ -46,7 +46,6 @@ impl AsciiApp {
         app.select_weapon_slot(0);
         app.inventory_open = true;
         app.graphics.active.interface_style = crate::graphics::InterfaceStyle::Metal;
-        app.graphics.active.interface_theme = crate::graphics::InterfaceTheme::Violet;
         app.graphics.active.ui_scale_percent = 100;
         app.graphics.active.reduced_motion = true;
         app.ux.skill_bar = [
@@ -75,20 +74,11 @@ impl AsciiApp {
         let _clock = crate::effect_geometry::frame_time(10.);
         let items = app.game.player_inventory().len();
         let mut captures = Vec::new();
-        for (theme, style, color) in [
-            (
-                "metal",
-                crate::graphics::InterfaceStyle::Metal,
-                crate::graphics::InterfaceTheme::Violet,
-            ),
-            (
-                "terminal",
-                crate::graphics::InterfaceStyle::Terminal,
-                crate::graphics::InterfaceTheme::Green,
-            ),
+        for (theme, style) in [
+            ("metal", crate::graphics::InterfaceStyle::Metal),
+            ("terminal", crate::graphics::InterfaceStyle::Terminal),
         ] {
             app.graphics.active.interface_style = style;
-            app.graphics.active.interface_theme = color;
             for reversed in [false, true] {
                 let pair = if reversed { 2 } else { 0 };
                 for (slot, model) in [

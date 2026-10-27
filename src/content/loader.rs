@@ -810,6 +810,7 @@ fn load_character_class_definitions(
             starting_equipment,
         )
         .and_then(|definition| {
+            let definition = definition.with_creation_availability(raw.available_at_creation);
             definition.validate_references(weapons, items).map(|()| {
                 if let Some(start) = raw.agent_start {
                     definition.with_agent_start(start)
@@ -4809,6 +4810,8 @@ struct RawEquipmentProfile {
 #[serde(deny_unknown_fields)]
 struct RawCharacterClassDefinition {
     id: String,
+    #[serde(default = "default_class_available_at_creation")]
+    available_at_creation: bool,
     name_key: String,
     role_key: String,
     description_key: String,
@@ -4820,6 +4823,10 @@ struct RawCharacterClassDefinition {
     starting_equipment: Vec<Option<String>>,
     #[serde(default)]
     agent_start: Option<crate::agent_class::AgentClassStart>,
+}
+
+fn default_class_available_at_creation() -> bool {
+    true
 }
 
 #[derive(Deserialize)]
@@ -7810,7 +7817,7 @@ mod tests {
             vec!["core"]
         );
         assert!(loaded.statuses().contains(&corrosion));
-        assert_eq!(loaded.character_classes().iter().count(), 5);
+        assert_eq!(loaded.character_classes().iter().count(), 4);
         assert_eq!(
             loaded
                 .character_classes()

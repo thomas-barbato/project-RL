@@ -4,6 +4,7 @@ use std::cell::Cell;
 
 #[derive(Default)]
 pub(super) struct UxState {
+    pub creation_details: Option<super::character_creation_details::Preview>,
     pub familiars: super::familiar_window::State,
     pub skill_bar: [Option<String>; 6],
     pub skill_drag: Option<super::agent_skill_bar::Drag>,

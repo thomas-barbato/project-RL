@@ -1,0 +1,91 @@
+{
+  "review_id": "ARM14-r01",
+  "date": "2026-10-27",
+  "status": "awaiting_visual_approval",
+  "normal_game_changed": false,
+  "accepted_art_changed": false,
+  "runtime_reference_frame": 8,
+  "candidate_reference": "A compact complete WALK12 arm pose, selected independently per outfit/direction and held stable for all six phases.",
+  "outfits": 20,
+  "loadouts": [
+    "rifle002",
+    "axe067",
+    "dual068+101"
+  ],
+  "directions": 2,
+  "phases": 6,
+  "contact_cases": 720,
+  "contact_failures": 0,
+  "body_and_helmet_bytes_unchanged": 720,
+  "normal_arm_pose_test": "passed",
+  "cargo_check_locked_all_targets": "passed",
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "browser_execution": "not verified; file scheme rejected by browser policy; no workaround attempted",
+  "release_integration": false,
+  "source_manifests": [
+    {
+      "file": "assets/animations/walk-12/player/manifest.json",
+      "sha256": "4dfdcd7f5be9c098d6b8f9c93ae6d713239518ae81d4a801a3c79c7bbaf89190"
+    },
+    {
+      "file": "assets/animations/walk-11/player/manifest.json",
+      "sha256": "4516838d9c65f1507b7078ee74a2019dac54f7a4af46d099b48c9db142b55df0"
+    }
+  ],
+  "render_exports": 120,
+  "review_gifs": [
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Arcaniste-axe-natif64.gif",
+      "sha256": "bc1832ec445a7a85e7a71ec6d43675827507a609b61835b403c1054689fc9a12"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Arcaniste-dual-natif64.gif",
+      "sha256": "ac6d6f53e20468d9846ffb9fe20a5ac9b53dd2c104596fcbe9beeb2ce3f1457f"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Arcaniste-rifle-natif64.gif",
+      "sha256": "0d1bc63db9d91fe31165224d3cba4a022aacdcc335fa4f320ed4ab165bfeb078"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Bastion-axe-detail.gif",
+      "sha256": "e88523cd492062abb5bfefea025e5b50d91f028661c54b40f17e3e97fa61c9fb"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Bastion-axe-natif64.gif",
+      "sha256": "d43c3826853ab5dcb1ed4ec6c725ff327bb55a865d4bfe61caef018c3a58d7c9"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Bastion-dual-natif64.gif",
+      "sha256": "e295534ef6e743918b55441c65d6638803cb7be1782a08513f49c7cad8fb4d52"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Bastion-rifle-natif64.gif",
+      "sha256": "2463c89808c65904da1187b32f99e546de4eddf025ff8152f636714e798fe85a"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Metamorphe-axe-natif64.gif",
+      "sha256": "016772f2b95f5b7ee6c5fee28da91d80ba392f1dfc6afaebf63501499071af59"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Metamorphe-dual-natif64.gif",
+      "sha256": "379fd08ad5520ac5fcfc903dfcab860ecce54a42d62fc184dac8998bb6a958f7"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Metamorphe-rifle-natif64.gif",
+      "sha256": "d3e6fb0db5840924007eec567d9314eea294d7898d2245a5d6a10828c9abbfbc"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Traqueuse-axe-natif64.gif",
+      "sha256": "ff0144967715c92a860b77af83a750ca06b57a64b83f55121c07c37d00192edf"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Traqueuse-dual-natif64.gif",
+      "sha256": "22822beb316b58a972a74d0d0bd7a7a4087cfc3832a32c3a1887e0494c9d1f90"
+    },
+    {
+      "file": "artifacts/walk-arm-projection-14/r01/Traqueuse-rifle-natif64.gif",
+      "sha256": "81f15fb6a8e6363e3b3e89019e741ae1d799229a8a766123dcdbbbed8333c946"
+    }
+  ]
+}

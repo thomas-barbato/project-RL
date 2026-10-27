@@ -40,6 +40,8 @@ mod attack_aim_input_tests;
 #[cfg(test)]
 #[path = "campaign_aggression_tests.rs"]
 mod campaign_aggression_tests;
+#[path = "character_creation_details.rs"]
+mod character_creation_details;
 #[cfg(test)]
 #[path = "class_start_tests.rs"]
 mod class_start_tests;
@@ -724,6 +726,8 @@ impl InventorySort {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum CharacterCreationHover {
     Class(usize),
+    StartingItem(usize),
+    StartingSkill(usize),
     Attribute(usize),
     AttributeMinus(usize),
     AttributePlus(usize),
@@ -746,6 +750,7 @@ struct CharacterCreation {
 
 struct CharacterCreationLayout {
     panel: Rect,
+    body_offset: f32,
     class_rows: Vec<Rect>,
     cancel: Rect,
     continue_button: Rect,
@@ -1357,28 +1362,36 @@ impl SkillsLayout {
 
 impl CharacterCreationLayout {
     fn new(width: f32, height: f32, class_count: usize) -> Self {
-        let w = (width - 32.0).min(1120.0);
-        let h = (height - 32.0).min(540.0);
+        let margin = if width < 1100. || height < 650. {
+            16.
+        } else {
+            24.
+        };
+        let w = (width - 2. * margin).min(1560.);
+        let h = height - 2. * margin;
         let panel = Rect::new((width - w) * 0.5, (height - h) * 0.5, w, h);
-        let left_width = panel.w * 0.43;
-        let row_height = ((panel.h - 210.0) / class_count.max(1) as f32).clamp(50.0, 78.0);
+        let left_width = Self::sidebar_width_for(panel);
+        let row_height = ((panel.h - 210.0) / class_count.max(1) as f32).clamp(62.0, 98.0);
+        let attribute_stride =
+            ((panel.h - 190.0) / PrimaryAttribute::ALL.len() as f32).clamp(43.0, 58.0);
+        let content_height = (row_height * class_count as f32)
+            .max(attribute_stride * PrimaryAttribute::ALL.len() as f32);
+        let body_offset = ((panel.h - 210. - content_height) * 0.5).max(0.);
         let class_rows = (0..class_count)
             .map(|index| {
                 Rect::new(
                     panel.x + 24.0,
-                    panel.y + 105.0 + index as f32 * row_height,
+                    panel.y + 105.0 + body_offset + index as f32 * row_height,
                     left_width - 36.0,
                     row_height - 8.0,
                 )
             })
             .collect();
-        let attribute_stride =
-            ((panel.h - 190.0) / PrimaryAttribute::ALL.len() as f32).clamp(43.0, 58.0);
         let attribute_rows = (0..PrimaryAttribute::ALL.len())
             .map(|index| {
                 Rect::new(
                     panel.x + 28.0,
-                    panel.y + 112.0 + index as f32 * attribute_stride,
+                    panel.y + 112.0 + body_offset + index as f32 * attribute_stride,
                     left_width - 44.0,
                     attribute_stride - 7.0,
                 )
@@ -1394,6 +1407,7 @@ impl CharacterCreationLayout {
             .collect();
         Self {
             panel,
+            body_offset,
             class_rows,
             cancel: Rect::new(panel.x + 24.0, panel.y + panel.h - 61.0, 150.0, 37.0),
             continue_button: Rect::new(
@@ -1412,6 +1426,14 @@ impl CharacterCreationLayout {
                 34.0,
             ),
         }
+    }
+
+    fn sidebar_width_for(panel: Rect) -> f32 {
+        (panel.w * 0.34).clamp(280., 460.)
+    }
+
+    fn sidebar_width(&self) -> f32 {
+        Self::sidebar_width_for(self.panel)
     }
 
     fn hit(
@@ -3294,16 +3316,14 @@ impl AsciiApp {
         } else {
             (scene, None)
         };
-        let (scene, theme) = [
-            ("-blue", graphics::InterfaceTheme::Blue),
-            ("-violet", graphics::InterfaceTheme::Violet),
-            ("-green", graphics::InterfaceTheme::Green),
-            ("-red", graphics::InterfaceTheme::Red),
+        let (scene, style) = [
+            ("-blue", graphics::InterfaceStyle::Metal),
+            ("-terminal", graphics::InterfaceStyle::Terminal),
         ]
         .into_iter()
-        .find_map(|(suffix, theme)| scene.strip_suffix(suffix).map(|base| (base, theme)))
-        .unwrap_or((scene, graphics::InterfaceTheme::default()));
-        app.graphics.active.interface_theme = theme;
+        .find_map(|(suffix, style)| scene.strip_suffix(suffix).map(|base| (base, style)))
+        .unwrap_or((scene, graphics::InterfaceStyle::default()));
+        app.graphics.active.interface_style = style;
         let (scene, cell_size) = [
             ("-cell16", 16),
             ("-cell20", 20),
@@ -3429,7 +3449,7 @@ impl AsciiApp {
                 .collect();
             let unchanged = before == app.game.recovery_snapshot_bytes()?;
             let validation = serde_json::json!({
-                "scene": scene, "state_unchanged": unchanged, "theme": app.graphics.active.interface_theme,
+                "scene": scene, "state_unchanged": unchanged, "style": app.graphics.active.interface_style,
                 "commands_readable": (!inventory).then_some(commands_readable),
                 "hud_energy": app.ux.hud_energy.get().map(|r| [r.x, r.y, r.w, r.h]),
                 "hud_points": app.ux.hud_points.get().map(|r| [r.x, r.y, r.w, r.h]),
@@ -4632,7 +4652,74 @@ impl AsciiApp {
                 app.rebuild_run_with_character_class(&creation)?;
                 app.character_open = true;
             }
-            "character-creation" => app.begin_character_creation_with_seed(false, app.seed)?,
+            scene if scene.starts_with("character-creation") => {
+                app.begin_character_creation_with_seed(false, app.seed)?;
+                let slug = std::env::args().find_map(|arg| {
+                    arg.strip_prefix("--capture-creation-class=")
+                        .map(str::to_owned)
+                });
+                let mut creation = app.character_creation.take().unwrap();
+                if let Some(slug) = slug {
+                    let index = app
+                        .character_classes
+                        .iter()
+                        .position(|(id, _)| id.as_str() == format!("core:{slug}"))
+                        .ok_or("Unknown creation capture class")?;
+                    creation.selected_class = index;
+                    creation.attributes = app
+                        .character_classes
+                        .iter()
+                        .nth(index)
+                        .unwrap()
+                        .1
+                        .recommended_attributes();
+                }
+                app.refresh_creation_details(&creation)?;
+                let layout = CharacterCreationLayout::new(
+                    app.ui_width(),
+                    app.ui_height(),
+                    app.character_classes.iter().count(),
+                );
+                let preview = app.ux.creation_details.as_ref().unwrap();
+                let details = character_creation_details::DetailsLayout::new(
+                    &layout,
+                    preview.items.len(),
+                    preview.skills.len(),
+                    0.,
+                );
+                let target = if scene.ends_with("-item") {
+                    details.items.first()
+                } else if scene.ends_with("-passive") {
+                    details.skills.get(1)
+                } else if scene.contains("-skill") {
+                    details.skills.first()
+                } else {
+                    None
+                };
+                if let Some(target) = target {
+                    app.update_creation_details_hover(
+                        &mut creation,
+                        &InputFrame {
+                            pointer: Some(target.center().into()),
+                            viewport: Some((app.ui_width(), app.ui_height())),
+                            ..Default::default()
+                        },
+                        &layout,
+                    );
+                }
+                app.character_creation = Some(creation);
+                if scene.ends_with("-scroll") {
+                    app.draw();
+                    next_frame().await;
+                    let popup = character_creation_details::tooltip_rect(&layout);
+                    app.update_character_creation(&InputFrame {
+                        pointer: Some(popup.center().into()),
+                        wheel_y: -8.,
+                        viewport: Some((app.ui_width(), app.ui_height())),
+                        ..Default::default()
+                    });
+                }
+            }
             scene
                 if scene.starts_with("agent-class-")
                     || scene.starts_with("agent-inventory-")
@@ -5773,6 +5860,9 @@ impl AsciiApp {
                 next_frame().await;
             }
         }
+        if let Some(creation) = app.character_creation.as_ref().cloned() {
+            app.refresh_creation_details(&creation)?;
+        }
         let shadow_fingerprint = scene
             .starts_with("vision-shadows")
             .then(|| suspension::fingerprint(&app.game));
@@ -6018,7 +6108,15 @@ impl AsciiApp {
                 app.character_classes.iter().count(),
             );
             let mut probes = vec![layout.cancel, layout.continue_button];
-            if creation.stage == CharacterCreationStage::Protocol {
+            if app
+                .ux
+                .creation_details
+                .as_ref()
+                .is_some_and(|p| p.tooltip.is_some())
+            {
+                let popup = character_creation_details::tooltip_rect(&layout);
+                probes.push(Rect::new(popup.x + 12., popup.y + 10., popup.w - 24., 54.));
+            } else if creation.stage == CharacterCreationStage::Protocol {
                 probes.extend(layout.class_rows);
             } else {
                 probes.push(layout.preset);
@@ -7589,7 +7687,6 @@ impl AsciiApp {
             self.graphics.active.reduced_motion,
         );
         crate::ui_theme::set_high_contrast(self.graphics.active.high_contrast);
-        crate::ui_theme::set_interface_theme(self.graphics.active.interface_theme);
         crate::ui_theme::set_interface_style(self.graphics.active.interface_style);
         self.ux.hud_points.set(None);
         self.ux.hud_objective.set(None);
@@ -20179,7 +20276,7 @@ impl AsciiApp {
     ) -> crate::game_art::Visual {
         let mut visual =
             crate::game_art::player(Some(class.id().as_str()), PlayerWeaponPose::Unarmed, None);
-        // The five agent portraits use the exact accepted unarmed class drawings.
+        // Agent portraits use the exact accepted unarmed class drawings.
         // Starter weapon grips are reviewed separately from class selection art.
         if class.agent_start().is_some() {
             return visual;
@@ -20209,7 +20306,8 @@ impl AsciiApp {
         let classes = self.character_classes.iter().collect::<Vec<_>>();
         let layout = CharacterCreationLayout::new(self.ui_width(), self.ui_height(), classes.len());
         let panel = layout.panel;
-        let left_width = panel.w * 0.43;
+        let content_y = panel.y + layout.body_offset;
+        let left_width = layout.sidebar_width();
         let detail_x = panel.x + left_width + 24.0;
         let detail_width = panel.w - left_width - 48.0;
         let rules = self.rules.primary_attribute_rules;
@@ -20239,7 +20337,7 @@ impl AsciiApp {
             },
             panel.x + 24.0,
             panel.y + 40.0,
-            28.0,
+            32.0,
             theme.text(),
         );
         draw_text(
@@ -20271,11 +20369,12 @@ impl AsciiApp {
                     .texts
                     .resolve(DISPLAY_LOCALE, class.role_key())
                     .unwrap_or("");
-                draw_text_bold(name, row.x + 72.0, row.y + 25.0, 20.0, theme.text());
+                let label_y = row.y + (row.h - 44.) * 0.5;
+                draw_text_bold(name, row.x + 72.0, label_y + 18., 20.0, theme.text());
                 draw_wrapped_text(
                     role,
                     row.x + 72.0,
-                    row.y + 46.0,
+                    label_y + 40.,
                     row.w - 84.0,
                     1,
                     14,
@@ -20289,7 +20388,7 @@ impl AsciiApp {
                     if remaining > 1 { "s" } else { "" }
                 ),
                 panel.x + 28.0,
-                panel.y + 98.0,
+                content_y + 98.0,
                 17.0,
                 if remaining > 0 {
                     theme.attention()
@@ -20356,7 +20455,7 @@ impl AsciiApp {
                 .texts
                 .resolve(DISPLAY_LOCALE, class.name_key())
                 .unwrap_or("Profil");
-            draw_text_bold(name, detail_x, panel.y + 110.0, 25.0, theme.accent());
+            draw_text_bold(name, detail_x, content_y + 110.0, 28.0, theme.accent());
             let profile = creation.attributes;
             if customizing {
                 let recommended = profile == class.recommended_attributes();
@@ -20367,7 +20466,7 @@ impl AsciiApp {
                         "Répartition personnalisée"
                     },
                     detail_x,
-                    panel.y + 139.0,
+                    content_y + 139.0,
                     16.0,
                     theme.muted(),
                 );
@@ -20375,14 +20474,14 @@ impl AsciiApp {
                 draw_text_bold(
                     primary_attribute_label(attr),
                     detail_x,
-                    panel.y + 180.0,
+                    content_y + 180.0,
                     19.0,
                     theme.text(),
                 );
                 let bottom = draw_wrapped_text(
                     primary_attribute_description(attr),
                     detail_x,
-                    panel.y + 206.0,
+                    content_y + 206.0,
                     detail_width,
                     6,
                     15,
@@ -20398,64 +20497,16 @@ impl AsciiApp {
                     .texts
                     .resolve(DISPLAY_LOCALE, class.description_key())
                     .unwrap_or("");
-                let y = draw_wrapped_text(
+                draw_wrapped_text(
                     description,
                     detail_x,
-                    panel.y + 143.0,
-                    (detail_width - 192.0).max(100.0),
-                    4,
+                    content_y + 143.0,
+                    detail_width,
+                    3,
                     16,
                     theme.text(),
                 );
-                crate::game_art::draw_portrait(
-                    Rect::new(panel.right() - 210.0, panel.y + 104.0, 192.0, 192.0),
-                    self.class_creation_visual(class),
-                );
-                let equipment = class
-                    .starting_weapons()
-                    .iter()
-                    .map(|id| self.item_name(id))
-                    .chain(
-                        class
-                            .starting_items()
-                            .iter()
-                            .filter(|item| !equipment_generation::is_retired_test_item(item.item()))
-                            .map(|item| {
-                                format!("{} ×{}", self.item_name(item.item()), item.quantity())
-                            }),
-                    )
-                    .collect::<Vec<_>>()
-                    .join(" · ");
-                draw_text_bold(
-                    "Équipement de départ",
-                    detail_x,
-                    (y + 26.0).max(panel.y + 304.0),
-                    16.0,
-                    theme.muted(),
-                );
-                let y = draw_wrapped_text(
-                    &equipment,
-                    detail_x,
-                    (y + 49.0).max(panel.y + 327.0),
-                    detail_width,
-                    3,
-                    15,
-                    theme.text(),
-                );
-                let profile_text = PrimaryAttribute::ALL
-                    .into_iter()
-                    .map(|a| format!("{} {}", primary_attribute_label(a), profile.value(a)))
-                    .collect::<Vec<_>>()
-                    .join(" · ");
-                draw_wrapped_text(
-                    &profile_text,
-                    detail_x,
-                    y + 28.0,
-                    detail_width,
-                    2,
-                    14,
-                    theme.accent(),
-                );
+                self.draw_creation_starting_details(creation, &layout);
             }
         }
         if selected.is_none_or(|class| class.agent_start().is_none()) {
@@ -20510,6 +20561,9 @@ impl AsciiApp {
                 14,
                 theme.attention(),
             );
+        }
+        if !customizing {
+            self.draw_creation_details_tooltip(&layout);
         }
     }
 
@@ -21636,7 +21690,7 @@ impl AsciiApp {
         self.level_up_notice = None;
         self.report_open = false;
         self.legend_open = false;
-        self.character_creation = Some(CharacterCreation {
+        let creation = CharacterCreation {
             seed,
             stage: CharacterCreationStage::Protocol,
             selected_class: 0,
@@ -21645,7 +21699,10 @@ impl AsciiApp {
             replace_suspension,
             message: String::new(),
             hovered: None,
-        });
+        };
+        self.ux.creation_details = None;
+        self.refresh_creation_details(&creation)?;
+        self.character_creation = Some(creation);
         Ok(())
     }
 
@@ -21659,6 +21716,8 @@ impl AsciiApp {
         creation.hovered = input
             .pointer
             .and_then(|pointer| layout.hit(pointer, creation.stage));
+        let popup_blocks_pointer =
+            self.update_creation_details_hover(&mut creation, input, &layout);
         self.menu_focus.hovered = creation.hovered.map(|_| 0);
 
         if input.pause {
@@ -21672,7 +21731,8 @@ impl AsciiApp {
             return;
         }
 
-        let clicked = input.pressed.contains(&controls::Binding::MouseLeft);
+        let clicked =
+            input.pressed.contains(&controls::Binding::MouseLeft) && !popup_blocks_pointer;
         let activate = self.controls.pressed(Action::Learn, input) && !clicked;
         match creation.stage {
             CharacterCreationStage::Protocol => {
@@ -21837,6 +21897,10 @@ impl AsciiApp {
                     }
                 }
             }
+        }
+        if let Err(error) = self.refresh_creation_details(&creation) {
+            eprintln!("[CREATION PREVIEW] {error}");
+            creation.message = "Impossible de commencer cette partie pour le moment.".to_owned();
         }
         self.character_creation = Some(creation);
     }
@@ -22090,7 +22154,7 @@ impl AsciiApp {
         if ((clicked && hovered.is_some()) || activate)
             && self.menu_row_enabled(self.menu_selection)
         {
-            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection, 0..=10) {
+            if self.menu == MenuScreen::Graphics && matches!(self.menu_selection, 0..=9) {
                 let rect = MenuLayout::for_screen(
                     self.menu,
                     input.viewport.unwrap_or((1280.0, 800.0)).0,
@@ -22149,14 +22213,14 @@ impl AsciiApp {
                 (MenuScreen::Options, 1) => self.open_menu(MenuScreen::Graphics),
                 (MenuScreen::Options, 2) => self.open_menu(self.options_return),
                 (MenuScreen::ConfirmAbandon, 0) => self.open_menu(MenuScreen::Pause),
-                (MenuScreen::Graphics, row @ 0..=10) => self.graphics.draft.cycle(row, true),
-                (MenuScreen::Graphics, 11) => self.graphics.draft = GraphicsSettings::default(),
-                (MenuScreen::Graphics, 12) => {
+                (MenuScreen::Graphics, row @ 0..=9) => self.graphics.draft.cycle(row, true),
+                (MenuScreen::Graphics, 10) => self.graphics.draft = GraphicsSettings::default(),
+                (MenuScreen::Graphics, 11) => {
                     if self.graphics.begin_preview() {
                         self.open_menu(MenuScreen::ConfirmGraphics);
                     }
                 }
-                (MenuScreen::Graphics, 13) => self.open_menu(MenuScreen::Options),
+                (MenuScreen::Graphics, 12) => self.open_menu(MenuScreen::Options),
                 (MenuScreen::ConfirmGraphics, 0) => self.open_menu(MenuScreen::Graphics),
                 (MenuScreen::ConfirmGraphics, 1) => {
                     self.graphics.confirm();
@@ -22258,8 +22322,8 @@ impl AsciiApp {
                 },
                 format!("Taille de l'interface : {} %", settings.ui_scale_percent),
                 format!(
-                    "Thème de l'interface : {}",
-                    settings.interface_theme.label()
+                    "Habillage de l'interface : {}",
+                    settings.interface_style.label()
                 ),
                 format!(
                     "Contraste renforcé : {}",
@@ -22272,10 +22336,6 @@ impl AsciiApp {
                     } else {
                         "non"
                     }
-                ),
-                format!(
-                    "Habillage de l’interface : {}",
-                    settings.interface_style.label()
                 ),
                 format!(
                     "Vie au survol : {}",
@@ -22488,13 +22548,13 @@ impl AsciiApp {
         for (index, (label, rect)) in buttons.iter().zip(&layout.buttons).enumerate() {
             let enabled = self.menu_row_enabled(index);
             let selected = enabled && self.menu_focus.highlighted(index, self.menu_selection);
-            if self.menu == MenuScreen::Graphics && index <= 10 {
+            if self.menu == MenuScreen::Graphics && index <= 9 {
                 let toggle = match index {
                     4 => Some(self.graphics.draft.high_contrast),
                     5 => Some(self.graphics.draft.reduced_motion),
-                    7 => Some(self.graphics.draft.hover_monster_health),
-                    8 => Some(self.graphics.draft.actor_ground_markers),
-                    9 => Some(self.graphics.draft.world_grayscale),
+                    6 => Some(self.graphics.draft.hover_monster_health),
+                    7 => Some(self.graphics.draft.actor_ground_markers),
+                    8 => Some(self.graphics.draft.world_grayscale),
                     _ => None,
                 };
                 theme.setting_row(*rect, label, selected, enabled, toggle);
@@ -22578,7 +22638,7 @@ impl AsciiApp {
         let height = self.ui_height();
         let wide = width >= 1100.0 && height >= 620.0;
         let margin = (width * 0.065).clamp(30.0, 110.0);
-        let accent = Color::new(0.35, 0.87, 0.80, 1.0);
+        let accent = theme.accent();
         let background = Color::new(0.012, 0.035, 0.050, 1.0);
 
         // Warm the font atlas before drawing geometry, as for the shared menu.
@@ -22629,8 +22689,8 @@ impl AsciiApp {
             } else {
                 vec2(margin, height - 265.0)
             };
-            let phosphor = Color::new(0.34, 0.79, 0.74, 0.74);
-            let muted_phosphor = Color::new(0.27, 0.57, 0.56, 0.30);
+            let phosphor = Color { a: 0.74, ..accent };
+            let muted_phosphor = Color { a: 0.22, ..accent };
             let chevron = [
                 "#....", ".#...", "..#..", "...#.", "..#..", ".#...", "#....",
             ];
@@ -22657,7 +22717,10 @@ impl AsciiApp {
                 origin.y + 6.0 * pixel,
                 pixel * 4.0 - 2.0,
                 pixel - 2.0,
-                Color::new(0.34, 0.79, 0.74, cursor_alpha),
+                Color {
+                    a: cursor_alpha,
+                    ..accent
+                },
             );
 
             // Square signal cells suggest an old text display without implying live game data.
@@ -25807,7 +25870,7 @@ const fn menu_button_tone(menu: MenuScreen, index: usize, has_suspension: bool) 
         }
         MenuScreen::Pause if index == 0 => ButtonTone::Primary,
         MenuScreen::Pause if index == 3 => ButtonTone::Danger,
-        MenuScreen::Graphics if index == 12 => ButtonTone::Primary,
+        MenuScreen::Graphics if index == 11 => ButtonTone::Primary,
         MenuScreen::ConfirmGraphics if index == 1 => ButtonTone::Primary,
         MenuScreen::ConfirmAbandon | MenuScreen::ConfirmNewRun | MenuScreen::ConfirmRestart
             if index == 1 =>
@@ -25835,12 +25898,12 @@ const fn menu_button_icon(menu: MenuScreen, index: usize) -> UiIcon {
         (MenuScreen::Graphics, 2) => UiIcon::Character,
         (MenuScreen::Graphics, 4) => UiIcon::Contrast,
         (MenuScreen::Graphics, 5) => UiIcon::Motion,
-        (MenuScreen::Graphics, 7 | 8) => UiIcon::Target,
-        (MenuScreen::Graphics, 9) => UiIcon::Contrast,
-        (MenuScreen::Graphics, 6) => UiIcon::Display,
-        (MenuScreen::Graphics, 11) => UiIcon::Reset,
-        (MenuScreen::Graphics, 12) => UiIcon::Confirm,
-        (MenuScreen::Graphics, 13) => UiIcon::Back,
+        (MenuScreen::Graphics, 6 | 7) => UiIcon::Target,
+        (MenuScreen::Graphics, 8) => UiIcon::Contrast,
+        (MenuScreen::Graphics, 9) => UiIcon::Motion,
+        (MenuScreen::Graphics, 10) => UiIcon::Reset,
+        (MenuScreen::Graphics, 11) => UiIcon::Confirm,
+        (MenuScreen::Graphics, 12) => UiIcon::Back,
         (MenuScreen::ConfirmGraphics, 0) => UiIcon::Reset,
         (MenuScreen::ConfirmGraphics, 1) => UiIcon::Confirm,
         (MenuScreen::ConfirmAbandon, 0) | (MenuScreen::ConfirmNewRun, 0) => UiIcon::Cancel,
@@ -28449,7 +28512,7 @@ mod tests {
         app.open_menu(MenuScreen::Options);
         app.update_input(&menu_pointer(MenuScreen::Options, 1, true));
         assert_eq!(app.menu, MenuScreen::Graphics);
-        // The automatic desktop resolution is skipped; the theme is editable.
+        // The automatic desktop resolution is skipped; the interface style is editable.
         app.update_input(&input("Down"));
         assert_eq!(app.menu_selection, 2);
         app.update_input(&input("Right"));
@@ -28460,18 +28523,17 @@ mod tests {
         app.update_input(&menu_pointer(MenuScreen::Graphics, 3, true));
         assert_eq!(app.menu_selection, 3);
         assert_eq!(
-            app.graphics.draft.interface_theme,
-            graphics::InterfaceTheme::Green
+            app.graphics.draft.interface_style,
+            graphics::InterfaceStyle::Terminal
         );
         assert_eq!(
-            app.graphics.active.interface_theme,
-            graphics::InterfaceTheme::Violet
+            app.graphics.active.interface_style,
+            graphics::InterfaceStyle::Metal
         );
         app.update_input(&menu_pointer(MenuScreen::Graphics, 0, true));
         assert_eq!(app.graphics.draft.mode, WindowMode::Windowed);
         app.update_input(&menu_pointer(MenuScreen::Graphics, 1, true));
         assert_eq!(app.graphics.draft.windowed_size, [1600, 900]);
-        app.update_input(&menu_pointer(MenuScreen::Graphics, 6, true));
         assert_eq!(
             app.graphics.draft.interface_style,
             graphics::InterfaceStyle::Terminal
@@ -28480,7 +28542,7 @@ mod tests {
             app.graphics.active.interface_style,
             graphics::InterfaceStyle::Metal
         );
-        app.update_input(&menu_pointer(MenuScreen::Graphics, 12, true));
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 11, true));
         assert_eq!(app.menu, MenuScreen::ConfirmGraphics);
         assert!(app.graphics.previewing());
         assert!(!app.graphics.path.exists());
@@ -28526,7 +28588,7 @@ mod tests {
             app.open_menu(MenuScreen::Graphics);
             app.update_input(&input("Enter")); // Borderless -> windowed draft.
             assert_eq!(app.graphics.active.mode, WindowMode::Borderless);
-            app.update_input(&menu_pointer(MenuScreen::Graphics, 12, true));
+            app.update_input(&menu_pointer(MenuScreen::Graphics, 11, true));
             assert_eq!(app.menu, MenuScreen::ConfirmGraphics);
             for key in ["W", "Space", "F", "R"] {
                 app.update_input(&input(key));
@@ -28545,6 +28607,26 @@ mod tests {
         app.open_menu(MenuScreen::Graphics);
         app.update_input(&input("Enter"));
         app.update_input(&input("Escape")); // Discard an unapplied draft too.
+        app.open_menu(MenuScreen::Graphics);
+        assert_eq!(app.graphics.draft, app.graphics.active);
+        // The final rows still reset and leave the draft after merging palettes
+        // and styles into one choice; neither row applies pending changes.
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 3, true));
+        assert_eq!(
+            app.graphics.draft.interface_style,
+            graphics::InterfaceStyle::Terminal
+        );
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 10, true));
+        assert_eq!(app.graphics.draft, GraphicsSettings::default());
+        assert_eq!(app.menu, MenuScreen::Graphics);
+        assert!(!app.graphics.previewing());
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 3, true));
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 12, true));
+        assert_eq!(app.menu, MenuScreen::Options);
+        assert_eq!(
+            app.graphics.active.interface_style,
+            graphics::InterfaceStyle::Metal
+        );
         app.open_menu(MenuScreen::Graphics);
         assert_eq!(app.graphics.draft, app.graphics.active);
         assert_eq!(suspension::fingerprint(&app.game), before);
@@ -28598,7 +28680,7 @@ mod tests {
         let display = app.graphics.active;
         app.open_menu(MenuScreen::Graphics);
         app.update_input(&input("Enter"));
-        app.update_input(&menu_pointer(MenuScreen::Graphics, 12, true));
+        app.update_input(&menu_pointer(MenuScreen::Graphics, 11, true));
         assert!(app.graphics.previewing());
         app.request_quit();
         assert!(app.should_quit());
@@ -28817,7 +28899,7 @@ mod tests {
             Some(CharacterCreationStage::Protocol)
         );
 
-        app.update_input(&input("Down")); // Bastion -> Technomancien.
+        app.update_input(&input("Down")); // Bastion -> Traqueuse; Technomancien retired.
         app.update_input(&input("Tab"));
         assert_eq!(
             app.character_creation.as_ref().unwrap().stage,
@@ -28828,19 +28910,24 @@ mod tests {
         assert!(app.character_creation.is_none());
         assert_eq!(
             app.character_class.as_ref().map(ContentId::as_str),
-            Some("core:technomancien")
+            Some("core:traqueur")
         );
         assert_eq!(
             app.game.player_primary_attributes(),
-            Some(PrimaryAttributes::new(4, 5, 5, 6, 8).with_willpower(6))
+            Some(PrimaryAttributes::new(4, 8, 5, 7, 4).with_willpower(6))
         );
         assert_eq!(app.game.turn(), 0);
-        assert!(app.game.equipped_player_weapon(1).is_none());
+        assert_eq!(
+            app.game.equipped_player_weapon_item(0),
+            app.game.equipped_player_weapon_item(1),
+            "the Traqueuse's starting rifle occupies both hands"
+        );
+        assert!(app.game.equipped_player_weapon(2).is_none());
         assert_eq!(
             app.game
                 .equipped_player_weapon(0)
                 .map(|weapon| weapon.id().as_str()),
-            Some("core:modele_cogneur_p01")
+            Some("core:fusil_de_patrouille")
         );
         assert_eq!(app.active_weapon_slot, 0);
     }
@@ -29336,13 +29423,7 @@ mod tests {
 
     #[test]
     fn agent_skills_u_and_k_open_one_catalogue_without_spending_points_or_time() {
-        for slug in [
-            "bastion",
-            "technomancien",
-            "traqueur",
-            "arcaniste",
-            "metamorphe",
-        ] {
+        for slug in ["bastion", "traqueur", "arcaniste", "metamorphe"] {
             let mut app = app_with_test_controls();
             app.begin_character_creation_with_seed(false, app.seed)
                 .unwrap();

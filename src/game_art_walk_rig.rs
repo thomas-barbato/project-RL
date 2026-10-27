@@ -75,6 +75,64 @@ thread_local! {
 // Only the explicit, ignored source-compositor diagnostic reads this proposal.
 #[cfg(test)]
 thread_local! { static PROPORTIONS10: std::cell::Cell<bool> = const { std::cell::Cell::new(false) }; }
+// Accepted ARM14 correction. Tests can retain the exact pre-integration recipe
+// for comparisons; ordinary Debug/Release use the current walking projection.
+#[cfg(test)]
+thread_local! { static ARM_PROJECTION14: std::cell::Cell<bool> = const { std::cell::Cell::new(true) }; }
+
+#[derive(Deserialize)]
+struct Approved {
+    frame: u8,
+    sheet_row: u16,
+    #[serde(flatten)]
+    rig: Rig,
+}
+
+fn gait12_entries() -> &'static Vec<Approved> {
+    static ACCEPTED12: OnceLock<Vec<Approved>> = OnceLock::new();
+    ACCEPTED12.get_or_init(|| {
+        serde_json::from_str(include_str!(
+            "../assets/animations/walk-12/player/manifest.json"
+        ))
+        .expect("WALK12 accepted complete figures")
+    })
+}
+
+fn walking_arm_reference(key: Key, pose: Pose) -> u8 {
+    if pose.frame >= 6 || !crate::game_art::walking::gait12_enabled() {
+        return 8;
+    }
+    #[cfg(test)]
+    if !ARM_PROJECTION14.get() {
+        return 8;
+    }
+    let Some(id) = id(key) else {
+        return 8;
+    };
+    // Shared metadata only: never decode six images on a movement cache miss.
+    // One stable reference per outfit/direction, independent of weapon/helmet.
+    static REFERENCES: OnceLock<std::collections::BTreeMap<(String, i8), u8>> = OnceLock::new();
+    let references = REFERENCES.get_or_init(|| {
+        let mut best = std::collections::BTreeMap::<(String, i8), (u8, f32)>::new();
+        for entry in gait12_entries().iter().filter(|entry| entry.frame < 6) {
+            let reach = entry
+                .rig
+                .pivots
+                .iter()
+                .zip(entry.rig.palms)
+                .map(|(pivot, palm)| (palm[0] - pivot[0]).hypot(palm[1] - pivot[1]))
+                .fold(0.0_f32, f32::max);
+            let key = (entry.rig.id.clone(), entry.rig.facing);
+            if best.get(&key).is_none_or(|(_, previous)| reach < *previous) {
+                best.insert(key, (entry.frame, reach));
+            }
+        }
+        best.into_iter()
+            .map(|(key, (frame, _))| (key, frame))
+            .collect()
+    });
+    references.get(&(id, pose.facing)).copied().unwrap_or(8)
+}
 fn parts(rig: &Rig) -> Option<Vec<Image>> {
     PARTS.with_borrow_mut(|cache| {
         if let Some(parts) = cache.get(&rig.file) {
@@ -278,13 +336,6 @@ fn direction_parts(key: Key, pose: Pose) -> Option<(&'static Rig, Vec<Image>, bo
         return Some((&entry.rig, parts, true));
     }
     if decode(key.0).is_some() && [-1, 1].contains(&pose.facing) {
-        #[derive(Deserialize)]
-        struct Approved {
-            frame: u8,
-            sheet_row: u16,
-            #[serde(flatten)]
-            rig: Rig,
-        }
         static APPROVED: OnceLock<Vec<Approved>> = OnceLock::new();
         static COMMON: OnceLock<Vec<Approved>> = OnceLock::new();
         let common = crate::game_art::walking::common_cycle_enabled();
@@ -308,13 +359,7 @@ fn direction_parts(key: Key, pose: Pose) -> Option<(&'static Rig, Vec<Image>, bo
             entries
         };
         let entries = if crate::game_art::walking::gait12_enabled() {
-            static ACCEPTED12: OnceLock<Vec<Approved>> = OnceLock::new();
-            let accepted = ACCEPTED12.get_or_init(|| {
-                serde_json::from_str(include_str!(
-                    "../assets/animations/walk-12/player/manifest.json"
-                ))
-                .expect("WALK12 accepted complete figures")
-            });
+            let accepted = gait12_entries();
             if accepted.iter().any(|e| e.rig.id == id) {
                 accepted
             } else {
@@ -581,11 +626,15 @@ pub(super) fn layers(key: Key, pose: Pose) -> Option<Vec<Image>> {
         drawn(&p[0], key, pose)
             .unwrap_or_else(|| gait(&p[0], rig.hip, rig.bottom, rig.center, pose))
     };
-    if fixed_grips && pose.frame != 8 && key.1.iter().any(Option::is_some) {
+    let arm_reference = walking_arm_reference(key, pose);
+    if fixed_grips && pose.frame != arm_reference && key.1.iter().any(Option::is_some) {
         // The carried assembly keeps one authored arm pose for this exact
         // outfit, direction and loadout. Only the body's small root motion is
         // shared; elbows and grips no longer change with each leg drawing.
-        let idle = Pose { frame: 8, ..pose };
+        let idle = Pose {
+            frame: arm_reference,
+            ..pose
+        };
         let (reference, _, _) = direction_parts(key, idle)?;
         let delta = [
             (rig.center - reference.center).round(),
@@ -951,7 +1000,10 @@ mod tests {
             for held in loadouts {
                 let key = (BASE + index, held, [EquipmentPalette::Original; 3]);
                 for facing in [-1, 1] {
-                    let idle = Pose { facing, frame: 8 };
+                    let idle = Pose {
+                        facing,
+                        frame: walking_arm_reference(key, Pose { facing, frame: 0 }),
+                    };
                     let reference = layers(key, idle).unwrap();
                     let (base, _, _) = direction_parts(key, idle).unwrap();
                     let mut bodies = std::collections::BTreeSet::new();

@@ -49,31 +49,8 @@ impl InterfaceStyle {
     pub const ALL: [Self; 2] = [Self::Metal, Self::Terminal];
     pub const fn label(self) -> &'static str {
         match self {
-            Self::Metal => "Métal sombre",
+            Self::Metal => "Classique bleu",
             Self::Terminal => "Terminal PC",
-        }
-    }
-}
-
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(rename_all = "snake_case")]
-pub enum InterfaceTheme {
-    Blue,
-    #[default]
-    Violet,
-    Green,
-    Red,
-}
-
-impl InterfaceTheme {
-    pub const ALL: [Self; 4] = [Self::Blue, Self::Violet, Self::Green, Self::Red];
-
-    pub const fn label(self) -> &'static str {
-        match self {
-            Self::Blue => "Bleu électrique",
-            Self::Violet => "Violet ultraviolet",
-            Self::Green => "Vert néon",
-            Self::Red => "Rouge néon",
         }
     }
 }
@@ -105,8 +82,6 @@ pub struct GraphicsSettings {
     #[serde(default = "default_cell_size")]
     pub world_cell_px: u16,
     #[serde(default)]
-    pub interface_theme: InterfaceTheme,
-    #[serde(default)]
     pub interface_style: InterfaceStyle,
     #[serde(default)]
     pub high_contrast: bool,
@@ -130,7 +105,6 @@ impl Default for GraphicsSettings {
             windowed_size: [1280, 800],
             ui_scale_percent: 100,
             world_cell_px: default_cell_size(),
-            interface_theme: InterfaceTheme::default(),
             interface_style: InterfaceStyle::default(),
             high_contrast: false,
             reduced_motion: false,
@@ -159,7 +133,18 @@ impl GraphicsSettings {
     }
 
     fn decode(source: &str) -> Result<Self, String> {
-        let mut settings: Self = serde_json::from_str(source).map_err(|e| e.to_string())?;
+        let mut document: serde_json::Value =
+            serde_json::from_str(source).map_err(|e| e.to_string())?;
+        // Retire only the known legacy palette field. Preserve strict decoding
+        // and all other display preferences, including the Terminal style.
+        if let Some(theme) = document
+            .as_object_mut()
+            .and_then(|object| object.remove("interface_theme"))
+            && !matches!(theme.as_str(), Some("blue" | "violet" | "green" | "red"))
+        {
+            return Err("Ancien thème d'interface non reconnu.".to_owned());
+        }
+        let mut settings: Self = serde_json::from_value(document).map_err(|e| e.to_string())?;
         if LEGACY_CELL_SIZES.contains(&settings.world_cell_px) {
             settings.world_cell_px = default_cell_size();
         }
@@ -244,19 +229,15 @@ impl GraphicsSettings {
             }
             2 => self.ui_scale_percent = cycle_value(UI_SCALES, self.ui_scale_percent, forward),
             3 => {
-                self.interface_theme =
-                    cycle_value(&InterfaceTheme::ALL, self.interface_theme, forward)
-            }
-            4 => self.high_contrast = !self.high_contrast,
-            5 => self.reduced_motion = !self.reduced_motion,
-            6 => {
                 self.interface_style =
                     cycle_value(&InterfaceStyle::ALL, self.interface_style, forward)
             }
-            7 => self.hover_monster_health = !self.hover_monster_health,
-            8 => self.actor_ground_markers = !self.actor_ground_markers,
-            9 => self.world_grayscale = !self.world_grayscale,
-            10 => {
+            4 => self.high_contrast = !self.high_contrast,
+            5 => self.reduced_motion = !self.reduced_motion,
+            6 => self.hover_monster_health = !self.hover_monster_health,
+            7 => self.actor_ground_markers = !self.actor_ground_markers,
+            8 => self.world_grayscale = !self.world_grayscale,
+            9 => {
                 self.walk_duration_ms =
                     cycle_value(&[120, 200, 400], self.walk_duration_ms, forward)
             }
@@ -430,7 +411,6 @@ mod tests {
     #[test]
     fn interface_styles_migrate_cycle_and_roundtrip_without_changing_other_preferences() {
         let mut settings = GraphicsSettings {
-            interface_theme: InterfaceTheme::Red,
             world_cell_px: 64,
             ..Default::default()
         };
@@ -442,13 +422,12 @@ mod tests {
         );
         let original = settings;
         for style in [InterfaceStyle::Terminal, InterfaceStyle::Metal] {
-            settings.cycle(6, true);
+            settings.cycle(3, true);
             assert_eq!(settings.interface_style, style);
             assert_eq!(
                 GraphicsSettings::decode(&serde_json::to_string(&settings).unwrap()).unwrap(),
                 settings
             );
-            assert_eq!(settings.interface_theme, original.interface_theme);
             assert_eq!(settings.world_cell_px, original.world_cell_px);
         }
         assert_eq!(settings, original);
@@ -480,7 +459,6 @@ mod tests {
     fn readability_preferences_migrate_toggle_independently_and_revert_together() {
         let original = GraphicsSettings {
             ui_scale_percent: 150,
-            interface_theme: InterfaceTheme::Green,
             ..Default::default()
         };
         let mut legacy = serde_json::to_value(original).unwrap();
@@ -494,9 +472,9 @@ mod tests {
             original
         );
         let mut changed = original;
-        changed.cycle(8, true);
+        changed.cycle(7, true);
         assert!(!changed.actor_ground_markers && !changed.world_grayscale);
-        changed.cycle(9, true);
+        changed.cycle(8, true);
         assert!(!changed.actor_ground_markers && changed.world_grayscale);
         assert_eq!(
             GraphicsSettings::decode(&serde_json::to_string(&changed).unwrap()).unwrap(),
@@ -572,7 +550,6 @@ mod tests {
     fn legacy_tile_sizes_migrate_to_native64_without_resetting_other_preferences() {
         let original = GraphicsSettings {
             ui_scale_percent: 150,
-            interface_theme: InterfaceTheme::Red,
             interface_style: InterfaceStyle::Terminal,
             high_contrast: true,
             reduced_motion: true,
@@ -604,7 +581,6 @@ mod tests {
     fn walk_duration_migrates_cycles_and_roundtrips_without_resetting_preferences() {
         let mut settings = GraphicsSettings {
             ui_scale_percent: 150,
-            interface_theme: InterfaceTheme::Red,
             ..Default::default()
         };
         let mut legacy = serde_json::to_value(settings).unwrap();
@@ -619,42 +595,45 @@ mod tests {
                 GraphicsSettings::decode(&serde_json::to_string(&settings).unwrap()).unwrap(),
                 settings
             );
-            settings.cycle(10, true);
+            settings.cycle(9, true);
             assert_eq!(settings.ui_scale_percent, 150);
-            assert_eq!(settings.interface_theme, InterfaceTheme::Red);
         }
         settings.walk_duration_ms = 0;
         assert!(settings.validate().is_err());
     }
 
     #[test]
-    fn themes_roundtrip_and_preserve_existing_display_preferences() {
-        let mut settings = GraphicsSettings {
-            world_cell_px: 64,
+    fn retired_palettes_migrate_without_resetting_other_display_preferences() {
+        let settings = GraphicsSettings {
             ui_scale_percent: 150,
             mode: WindowMode::Windowed,
+            windowed_size: [1600, 900],
+            high_contrast: true,
+            reduced_motion: true,
+            hover_monster_health: false,
+            actor_ground_markers: false,
+            world_grayscale: true,
+            walk_duration_ms: 200,
             ..Default::default()
         };
-        let mut legacy = serde_json::to_value(settings).unwrap();
-        legacy.as_object_mut().unwrap().remove("interface_theme");
-        assert_eq!(
-            GraphicsSettings::decode(&legacy.to_string()).unwrap(),
-            settings
-        );
-        for theme in InterfaceTheme::ALL {
-            settings.interface_theme = theme;
-            let encoded = serde_json::to_string(&settings).unwrap();
-            assert_eq!(GraphicsSettings::decode(&encoded).unwrap(), settings);
-            settings.cycle(3, true);
-            assert_ne!(settings.interface_theme, theme);
-            settings.cycle(3, false);
-            assert_eq!(settings.interface_theme, theme);
-            assert_eq!(settings.world_cell_px, 64);
-            assert_eq!(settings.ui_scale_percent, 150);
+        for style in InterfaceStyle::ALL {
+            let expected = GraphicsSettings {
+                interface_style: style,
+                ..settings
+            };
+            for theme in ["blue", "violet", "green", "red"] {
+                let mut legacy = serde_json::to_value(expected).unwrap();
+                legacy["interface_theme"] = serde_json::json!(theme);
+                let migrated = GraphicsSettings::decode(&legacy.to_string()).unwrap();
+                assert_eq!(migrated, expected);
+                let encoded = serde_json::to_value(migrated).unwrap();
+                assert!(encoded.get("interface_theme").is_none());
+                assert_eq!(
+                    GraphicsSettings::decode(&encoded.to_string()).unwrap(),
+                    expected
+                );
+            }
         }
-        settings.interface_theme = InterfaceTheme::Red;
-        settings.cycle(3, true);
-        assert_eq!(settings.interface_theme, InterfaceTheme::Blue);
     }
 
     #[test]

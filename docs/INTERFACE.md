@@ -10,9 +10,13 @@ au rendu existant, dans leurs cases actuelles. Aucun gros objet, tuyau ou nouvel
 obstacle n'est ajouté. Les portes reprennent les montants et les panneaux des
 captures de l'éditeur ; l'état ouvert conserve un passage visuellement dégagé.
 
-L'interface propose quatre accents persistants : bleu électrique, violet
-ultraviolet, vert néon et rouge néon. Ce choix ne recolore ni les personnages,
-ni les matériaux, ni les lumières des décors. Les surfaces restent presque
+Depuis la décision du 26 octobre 2026, l'interface propose uniquement deux
+habillages : **Classique bleu**, avec un accent bleu électrique, et **Terminal PC**,
+avec sa présentation phosphore. Le choix séparé de couleur est supprimé.
+Les anciennes couleurs enregistrées sont ignorées sans réinitialiser les autres
+préférences ; un habillage Terminal enregistré reste Terminal. Ce choix ne
+recolore ni les personnages, ni les matériaux, ni les lumières des décors.
+Les surfaces restent presque
 noires et les panneaux du HUD n'ajoutent pas de rails décoratifs près des PV,
 du secteur ou de l'objectif. Depuis la décision du 17 octobre 2026, les cases
 du jeu sont affichées uniquement en 64 px, indépendamment de la taille de
@@ -76,6 +80,13 @@ L'interface de Project RL est une couche de présentation indépendante du moteu
 
 L'interface utilise Atkinson Hyperlegible en graisses normale et forte, embarquée dans l'exécutable sous licence SIL Open Font License 1.1. Les acteurs et les principaux décors utilisent un atlas de symboles dessinés ; les marqueurs textuels conservent la police terminal, sans faire dépendre la simulation de leur disponibilité.
 
+Depuis le 26 octobre 2026, l'habillage Terminal utilise JetBrains Mono, en
+graisses normale et forte, pour rendre les petits textes, chiffres et accents
+plus lisibles. Les deux polices sont embarquées avec leur licence SIL OFL 1.1 ;
+aucune installation système n'est nécessaire. Les mesures et le dessin
+emploient la même police, avec préchargement des caractères français dans les
+deux habillages. L'interface classique conserve Atkinson Hyperlegible.
+
 `ui_theme.rs` centralise les couleurs sémantiques, les surfaces, les états de sélection, les mesures de texte et les composants communs. Les écrans ne doivent pas coder la signification d'un état par la couleur seule : texte, bordure, symbole ou motif doivent rester suffisants en niveaux de gris.
 
 L'interface doit se lire comme un jeu tactique, pas comme un logiciel d'administration. L'action ou la décision du moment domine visuellement ; les références techniques, compteurs secondaires et explications viennent ensuite. Les cadres servent à regrouper une information réellement liée et ne doivent pas transformer chaque ligne en widget équivalent. Un titre et son contenu restent dans la même surface, et une donnée critique comme l'état du personnage ne peut pas être remplacée par des points de suspension.
@@ -85,6 +96,13 @@ Le menu principal emploie une composition d'accueil propre : fond uniforme et mo
 L'interface normale ne montre jamais les informations de mise au point du développement : graine de génération, version interne, empreinte, identifiant de contenu brut, nom d'énumération ou commentaire sur l'état d'un prototype. À la demande de l'utilisateur, les coordonnées locales du joueur restent visibles en bas du bloc de droite, sous l'objectif, sous la forme « X … · Y … », dans les présentations large et compacte. Un autre emplacement est décrit relativement au joueur lorsque cette précision aide à agir. Les mesures utiles aux règles — portée, coût, dégâts, durée, profondeur ou résultat d'un jet — restent visibles. Une référence comme `REC-01` est conservée uniquement lorsqu'elle a été volontairement intégrée à la fiction et placée en second niveau visuel.
 
 Les composants interactifs partagent un langage visuel de jeu commun : surface légèrement surélevée, ombre courte, angles adoucis et accent discret plutôt que cadres complets systématiques. Le texte d'un bouton est centré à partir des limites réellement rendues par la police, horizontalement et verticalement. Les actions principales, secondaires et destructrices sont distinguées par leur forme d'accentuation, leur libellé et leur couleur ; le survol, le focus clavier et l'état désactivé restent cohérents dans tous les écrans.
+
+Depuis la demande du 26 octobre 2026, les boutons d'abandon et de remplacement
+utilisent le même fond anthracite et le même survol dans la couleur du thème que
+les actions secondaires. Leur texte reste clair ; seule l'icône conserve un accent
+cuivré discret. Les anciens fonds et contours rouges sont retirés. Les libellés,
+les confirmations et le choix initial d'annulation restent inchangés. Cette règle
+concerne les boutons, sans modifier les couleurs des alertes ou des dégâts.
 
 Une sélection ne cumule pas une bordure avec une barre décorative latérale. Les cartes conservent un seul contour ; les listes utilisent leur fond de sélection et leur libellé. Les deux lignes d'une compétence restent dans le même fond, avec des marges au-dessus et au-dessous. Les libellés des boutons sont mesurés dans leur zone intérieure ; dans un filtre étroit, le nom complet prime sur l'icône redondante.
 
@@ -134,7 +152,7 @@ Les événements immédiatement perceptibles peuvent produire un message flottan
 Les options d'affichage proposent :
 
 - une taille d'interface persistante, en plus de l'adaptation automatique ;
-- un thème d'interface bleu, violet, vert ou rouge et le choix de l'habillage ;
+- un choix d'habillage entre Classique bleu et Terminal PC ;
 - un contraste renforcé, qui épaissit et accentue les contours porteurs d'information ;
 - des animations réduites, qui suppriment notamment la pulsation des alertes sans masquer leur bandeau, leur texte ni leur symbole.
 
@@ -184,7 +202,7 @@ L'onglet F1 « Statistiques et jauges » remplace « Règles utiles » et prése
 
 ## HUD natif HUD-07 — 16 octobre 2026
 
-Métal sombre est l’habillage par défaut ; Terminal PC se choisit dans Options,
+Classique bleu est l’habillage par défaut ; Terminal PC se choisit dans Options,
 Affichage, Habillage de l’interface. Les préférences antérieures sont conservées.
 La zone jouable est agrandie, la barre de compétences et le changement d’arme
 restent centrés, et les commandes du bas occupent deux rangées plus discrètes.

@@ -20,11 +20,17 @@ pub(super) fn ensure_class_weapon_supplies(rules: &mut GameRules, version: u8) {
 
 impl AsciiApp {
     pub(super) fn weapon_supply_label(&self, weapon: &ContentId) -> Option<String> {
+        Self::weapon_supply_label_for_game(&self.game, weapon)
+    }
+
+    pub(super) fn weapon_supply_label_for_game(
+        game: &GameState,
+        weapon: &ContentId,
+    ) -> Option<String> {
         use project_rl::weapon::WeaponSupply;
-        match self.game.weapon_supply(weapon) {
+        match game.weapon_supply(weapon) {
             Some(WeaponSupply::Matter { amount }) => Some(
-                self.game
-                    .rules()
+                game.rules()
                     .weapons
                     .get(weapon)
                     .and_then(|weapon| weapon.power_draw())
@@ -44,8 +50,7 @@ impl AsciiApp {
                     ),
             ),
             Some(WeaponSupply::Energy { amount }) => Some(format!("{amount} énergie par tir")),
-            None => self
-                .game
+            None => game
                 .player_weapon_ammunition(weapon)
                 .map(|(left, capacity)| format!("MUN. {left}/{capacity}")),
         }

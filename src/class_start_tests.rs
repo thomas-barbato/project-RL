@@ -25,8 +25,71 @@ fn normal_start(index: usize) -> AsciiApp {
 }
 
 #[test]
+fn retired_technomancien_is_not_offered_but_existing_campaigns_resume() {
+    let classes = ascii_character_class_catalog().unwrap();
+    assert_eq!(
+        classes
+            .iter()
+            .map(|(id, _)| id.as_str())
+            .collect::<Vec<_>>(),
+        [
+            "core:bastion",
+            "core:traqueur",
+            "core:arcaniste",
+            "core:metamorphe"
+        ]
+    );
+    let class_id: CharacterClassId = "core:technomancien".parse().unwrap();
+    let retired = classes.get(&class_id).unwrap();
+    assert!(!retired.available_at_creation());
+
+    // Build the exact former starting rules in memory, as a pre-retirement save.
+    let (mut rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    retired
+        .apply_to_rules(&mut rules, retired.recommended_attributes())
+        .unwrap();
+    weapon_supplies_app::ensure_class_weapon_supplies(&mut rules, CURRENT_GENERATION_VERSION);
+    let mut old = AsciiApp::from_seed(1872, rules, texts, loot, expeditions).unwrap();
+    old.crash_recovery_enabled = false;
+    old.character_class = Some(class_id.clone());
+    old.game.drain_events();
+    let visual = old.front_player_visual();
+    let before = suspension::fingerprint(&old.game);
+    let saved = old.suspension().unwrap();
+    let input_bytes = serde_json::to_vec(&saved).unwrap();
+    for replay in [false, true] {
+        let mut candidate = saved.clone();
+        if replay {
+            candidate.build = format!(
+                "{:016x}",
+                u64::from_str_radix(env!("PROJECT_RL_BUILD_FINGERPRINT"), 16).unwrap() ^ 1
+            );
+        }
+        let (r, t, l, e) = ascii_game_content().unwrap();
+        let resumed = AsciiApp::restore_suspension(&candidate, r, t, l, e).unwrap();
+        assert_eq!(resumed.character_class.as_ref(), Some(&class_id));
+        assert_eq!(suspension::fingerprint(&resumed.game), before);
+        assert_eq!(resumed.front_player_visual(), visual);
+        assert_eq!(resumed.game.player_agent_skill_rank("D59"), 1);
+        assert_eq!(resumed.game.player_agent_skill_rank("O03"), 1);
+        assert_eq!(resumed.ux.skill_bar, old.ux.skill_bar);
+        assert!(
+            !resumed
+                .character_classes
+                .iter()
+                .any(|(id, _)| id == &class_id)
+        );
+    }
+    assert_eq!(serde_json::to_vec(&saved).unwrap(), input_bytes);
+}
+
+#[test]
 fn class_start_uses_class_skin_without_an_item_and_first_active_can_be_removed_and_restored() {
-    for (index, skill) in ["B01", "D59", "T01", "FE01", "M01"].into_iter().enumerate() {
+    // Body IDs are stable even though the retired Technomancien is no longer a choice.
+    for (index, (skill, expected_body)) in [("B01", 3), ("T01", 5), ("FE01", 6), ("M01", 7)]
+        .into_iter()
+        .enumerate()
+    {
         let mut app = normal_start(index);
         assert_eq!(app.generation_version, CURRENT_GENERATION_VERSION);
         assert!(
@@ -43,7 +106,7 @@ fn class_start_uses_class_skin_without_an_item_and_first_active_can_be_removed_a
         else {
             panic!("missing class visual")
         };
-        assert_eq!(body, 3 + index as u8);
+        assert_eq!(body, expected_body);
         assert_eq!(equipment[0], None);
         assert_eq!(app.front_actor_visual(app.game.player_id()), Some(original));
         assert_eq!(
@@ -103,7 +166,7 @@ fn class_start_uses_class_skin_without_an_item_and_first_active_can_be_removed_a
 
 #[test]
 fn class_start_equipped_armor_overrides_the_class_skin_and_removal_restores_it() {
-    for index in 0..5 {
+    for index in 0..ascii_character_class_catalog().unwrap().iter().count() {
         let mut app = normal_start(index);
         let original = app.front_player_visual();
         app.game
@@ -144,7 +207,7 @@ fn class_start_weapon_and_active_work_with_real_initial_resources() {
         social::PlayerRelation,
         world::{Map, Terrain},
     };
-    for (index, skill) in ["B01", "D59", "T01", "FE01", "M01"].into_iter().enumerate() {
+    for (index, skill) in ["B01", "T01", "FE01", "M01"].into_iter().enumerate() {
         let app = normal_start(index);
         let mut game = GameState::new_with_rules(
             Map::filled(12, 10, Terrain::Floor).unwrap(),
@@ -182,7 +245,12 @@ fn class_start_weapon_and_active_work_with_real_initial_resources() {
 #[test]
 fn class_start_historical_campaigns_keep_their_outfit_instances_and_saved_bar() {
     let classes = ascii_character_class_catalog().unwrap();
-    for (id, class) in classes.iter() {
+    let retired_id: CharacterClassId = "core:technomancien".parse().unwrap();
+    let retired = classes.get(&retired_id).unwrap();
+    for (id, class) in classes
+        .iter()
+        .chain(std::iter::once((&retired_id, retired)))
+    {
         let (mut r, t, l, e) = ascii_game_content().unwrap();
         class
             .apply_to_rules(&mut r, class.recommended_attributes())

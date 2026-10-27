@@ -1,0 +1,705 @@
+{
+  "review_id": "PLAYER-CONSISTENCY13-r02",
+  "status": "pending_visual_approval",
+  "reported_left_facing_inversion_reproduced_in_C13_sources": false,
+  "diagnosis": "No EXIF orientation; source top row, packed columns1..6 and leftward journeys agree. Source bottom row, columns7..12 and rightward journeys agree. New review removes current/candidate moving-pane comparison and shows explicit opposite lanes.",
+  "art_revisions": "Outfit1 whole front and twelve whole walking figures redrawn fuller; other four Tech cycles unchanged.",
+  "automated_check_limit": "Amber marker proves row order only. Complete head, chest and boot orientation also requires visual inspection.",
+  "outfits": [
+    {
+      "candidate": "TE-C13-01",
+      "left_columns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "right_columns": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "left_amber_front_offsets_px": [
+        -5.383,
+        -5.179,
+        -5.79,
+        -5.189,
+        -5.003,
+        -5.393
+      ],
+      "right_amber_front_offsets_px": [
+        4.336,
+        4.059,
+        4.825,
+        4.06,
+        3.963,
+        4.405
+      ],
+      "atlas_sha256": "d4303b189b7c93fdd42f5e25e87319c60e230176711d5bbf1350158a2ef07224"
+    },
+    {
+      "candidate": "TE-C13-02",
+      "left_columns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "right_columns": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "left_amber_front_offsets_px": [
+        -5.212,
+        -5.241,
+        -5.404,
+        -6.059,
+        -5.691,
+        -5.26
+      ],
+      "right_amber_front_offsets_px": [
+        4.122,
+        4.615,
+        4.578,
+        4.459,
+        4.478,
+        4.203
+      ],
+      "atlas_sha256": "7033683aa422ba0cb1695eeadab8613f06924f8ddaee25f3b6cb9df47a056c6f"
+    },
+    {
+      "candidate": "TE-C13-03",
+      "left_columns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "right_columns": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "left_amber_front_offsets_px": [
+        -5.435,
+        -6.682,
+        -6.193,
+        -6.755,
+        -6.197,
+        -5.715
+      ],
+      "right_amber_front_offsets_px": [
+        5.241,
+        5.121,
+        5.048,
+        3.678,
+        6.06,
+        4.222
+      ],
+      "atlas_sha256": "a1f737a625e8c03d04b8662067fe0d4fa599ac14424bdb5ff9f10cfe7e2b95d4"
+    },
+    {
+      "candidate": "TE-C13-04",
+      "left_columns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "right_columns": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "left_amber_front_offsets_px": [
+        -5.726,
+        -5.717,
+        -5.769,
+        -5.708,
+        -6.667,
+        -6.055
+      ],
+      "right_amber_front_offsets_px": [
+        5.546,
+        4.12,
+        5.556,
+        4.665,
+        5.068,
+        5.191
+      ],
+      "atlas_sha256": "0ad6d70f30a21e5d09c25f3dae4c02d4b2149b9db9a176b0b7eff0f525219788"
+    },
+    {
+      "candidate": "TE-C13-05",
+      "left_columns": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "right_columns": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "left_amber_front_offsets_px": [
+        -5.117,
+        -5.526,
+        -5.672,
+        -5.238,
+        -5.667,
+        -5.055
+      ],
+      "right_amber_front_offsets_px": [
+        5.177,
+        4.715,
+        4.754,
+        4.895,
+        4.787,
+        3.474
+      ],
+      "atlas_sha256": "589438b6f6dc84735ac8c24db5e185bc21c058bc1435d4c4988bdd7a6aa5cc86"
+    }
+  ],
+  "front1_before_after": [
+    {
+      "bounds": [
+        51,
+        38,
+        77,
+        96
+      ],
+      "height": 58,
+      "width": 26,
+      "opaque_area": 776,
+      "upper_body_mean_occupied_width": 19.0
+    },
+    {
+      "bounds": [
+        50,
+        38,
+        77,
+        96
+      ],
+      "height": 58,
+      "width": 27,
+      "opaque_area": 898,
+      "upper_body_mean_occupied_width": 22.31
+    }
+  ],
+  "movement_ms_per_cell": 400,
+  "preview_rest_ms": 300,
+  "timeline": [
+    {
+      "step": 0,
+      "sample": 0,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 128,
+          "atlas_column": 1
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 0,
+          "atlas_column": 7
+        }
+      ]
+    },
+    {
+      "step": 0,
+      "sample": 1,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 122,
+          "atlas_column": 1
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 6,
+          "atlas_column": 7
+        }
+      ]
+    },
+    {
+      "step": 0,
+      "sample": 2,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 115,
+          "atlas_column": 1
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 13,
+          "atlas_column": 7
+        }
+      ]
+    },
+    {
+      "step": 0,
+      "sample": 3,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 109,
+          "atlas_column": 1
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 19,
+          "atlas_column": 7
+        }
+      ]
+    },
+    {
+      "step": 0,
+      "sample": 4,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 102,
+          "atlas_column": 2
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 26,
+          "atlas_column": 8
+        }
+      ]
+    },
+    {
+      "step": 0,
+      "sample": 5,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 96,
+          "atlas_column": 2
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 32,
+          "atlas_column": 8
+        }
+      ]
+    },
+    {
+      "step": 0,
+      "sample": 6,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 90,
+          "atlas_column": 2
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 38,
+          "atlas_column": 8
+        }
+      ]
+    },
+    {
+      "step": 0,
+      "sample": 7,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 83,
+          "atlas_column": 3
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 45,
+          "atlas_column": 9
+        }
+      ]
+    },
+    {
+      "step": 0,
+      "sample": 8,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 77,
+          "atlas_column": 3
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 51,
+          "atlas_column": 9
+        }
+      ]
+    },
+    {
+      "step": 0,
+      "sample": 9,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 70,
+          "atlas_column": 3
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 58,
+          "atlas_column": 9
+        }
+      ]
+    },
+    {
+      "step": 0,
+      "sample": 10,
+      "moving": false,
+      "duration_ms": 300,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 2,
+          "end_cell": 1,
+          "relative_x_px": 64,
+          "atlas_column": 0
+        },
+        {
+          "facing": 1,
+          "start_cell": 0,
+          "end_cell": 1,
+          "relative_x_px": 64,
+          "atlas_column": 0
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 0,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 64,
+          "atlas_column": 4
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 64,
+          "atlas_column": 10
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 1,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 58,
+          "atlas_column": 4
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 70,
+          "atlas_column": 10
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 2,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 51,
+          "atlas_column": 4
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 77,
+          "atlas_column": 10
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 3,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 45,
+          "atlas_column": 4
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 83,
+          "atlas_column": 10
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 4,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 38,
+          "atlas_column": 5
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 90,
+          "atlas_column": 11
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 5,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 32,
+          "atlas_column": 5
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 96,
+          "atlas_column": 11
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 6,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 26,
+          "atlas_column": 5
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 102,
+          "atlas_column": 11
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 7,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 19,
+          "atlas_column": 6
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 109,
+          "atlas_column": 12
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 8,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 13,
+          "atlas_column": 6
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 115,
+          "atlas_column": 12
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 9,
+      "moving": true,
+      "duration_ms": 40,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 6,
+          "atlas_column": 6
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 122,
+          "atlas_column": 12
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "sample": 10,
+      "moving": false,
+      "duration_ms": 300,
+      "lanes": [
+        {
+          "facing": -1,
+          "start_cell": 1,
+          "end_cell": 0,
+          "relative_x_px": 0,
+          "atlas_column": 0
+        },
+        {
+          "facing": 1,
+          "start_cell": 1,
+          "end_cell": 2,
+          "relative_x_px": 128,
+          "atlas_column": 0
+        }
+      ]
+    }
+  ],
+  "runtime_changed": false
+}

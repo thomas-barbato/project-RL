@@ -1,5 +1,38 @@
 # Classes et création de personnage
 
+## Catalogue actuel — 26 octobre 2026
+
+Les nouvelles parties proposent quatre classes, dans cet ordre : **Bastion**,
+**Traqueuse**, **Arcaniste** et **Métamorphe**. Le joueur demande explicitement
+de supprimer la classe jouable Technomancien. Les profils, dessins et règles
+des quatre classes restantes conservent leurs identifiants et leur fonctionnement.
+
+Le Technomancien n'est plus proposé à la création, à la souris comme au clavier.
+Le grand portrait à droite est retiré, à la demande du joueur ; les vignettes
+64px dans les choix, la description, l'équipement et les attributs sont conservés.
+L'équipement et les deux compétences de départ sont présentés en cartes avec
+leurs icônes, noms, quantités et rangs. Le survol ouvre les statistiques ou les
+descriptions et effets actuels ; les fiches longues défilent à la molette et
+le prochain rang n'affiche que les valeurs qui changent. Les valeurs proviennent
+du véritable départ de la classe sélectionnée, sans modifier la partie ouverte.
+Finition et vérifications : `reviews/creation-starting-cards-01/`.
+La mise en page occupe presque toute la fenêtre et équilibre les deux colonnes
+verticalement ; les boutons restent en bas. Le thème, les marges, les icônes
+encadrées et la hiérarchie des textes sont communs aux cartes et aux fiches.
+Sa définition garde `available_at_creation: false` afin de résoudre les anciens
+identifiants de sauvegarde avec leurs règles exactes. Les anciennes parties
+restent reprenables sans conversion de classe, de statistiques ou d'équipement.
+Les compétences de drones et d'affaiblissement restent dans le catalogue commun,
+accessibles aux autres agents ; retirer ce départ ne les supprime pas.
+
+Le champ optionnel `available_at_creation` des fichiers `classes/*.json5` vaut
+`true` par défaut, y compris pour les mods existants. Le catalogue de création
+filtre les profils retirés ; la recherche par identifiant garde la compatibilité.
+Décision et contrôles : `reviews/technomancien-retirement-01/`.
+
+Les sections ci-dessous documentent les premiers jalons historiques et leurs
+formats de suspension, et ne décrivent pas le catalogue jouable actuel.
+
 ## Statut du premier jalon
 
 Une nouvelle partie passe désormais par la création du personnage avant le premier tour. Le joueur choisit un **protocole de restauration**, puis confirme ou modifie sa répartition de statistiques. Cette appellation relie les classes au protagoniste — une IA restaurée dans un châssis — sans transformer la classe en faction, en peuple ou en métier définitif.

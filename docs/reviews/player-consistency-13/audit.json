@@ -1,0 +1,6138 @@
+{
+  "revision": "PLAYER-CONSISTENCY13-AUDIT-r01",
+  "native_tile": 64,
+  "method": "Current unarmed front bank vs complete WALK12 figures; alpha>=96 and upper band27..55 percent; occupied widths are 2D silhouettes, not physical volume or art-quality scores.",
+  "runtime_changed": false,
+  "classes": 5,
+  "outfits": [
+    {
+      "index": 0,
+      "name": "Bastion",
+      "outfit": 1,
+      "front": {
+        "bounds": [
+          47,
+          36,
+          80,
+          94
+        ],
+        "height": 58,
+        "width": 33,
+        "opaque_area": 1081,
+        "upper_body_mean_occupied_width": 26.94
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1175,
+          "upper_body_mean_occupied_width": 25.12,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9324424647364513
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 899,
+          "upper_body_mean_occupied_width": 18.62,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6911655530809205
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 25,
+          "opaque_area": 867,
+          "upper_body_mean_occupied_width": 19.5,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7238307349665924
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 898,
+          "upper_body_mean_occupied_width": 19.69,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7308834446919079
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            49,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 30,
+          "opaque_area": 907,
+          "upper_body_mean_occupied_width": 18.44,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6844840386043058
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            37,
+            76,
+            96
+          ],
+          "height": 59,
+          "width": 24,
+          "opaque_area": 803,
+          "upper_body_mean_occupied_width": 19.06,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.7074981440237564
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 932,
+          "upper_body_mean_occupied_width": 20.19,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7494432071269488
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            49,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 30,
+          "opaque_area": 1103,
+          "upper_body_mean_occupied_width": 24.0,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.8908685968819599
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 941,
+          "upper_body_mean_occupied_width": 20.25,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7516703786191536
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 861,
+          "upper_body_mean_occupied_width": 20.31,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7538975501113585
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 938,
+          "upper_body_mean_occupied_width": 20.38,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7564959168522642
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 946,
+          "upper_body_mean_occupied_width": 20.25,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7516703786191536
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 814,
+          "upper_body_mean_occupied_width": 20.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7631774313288789
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 958,
+          "upper_body_mean_occupied_width": 21.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7817371937639197
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "name": "Bastion",
+      "outfit": 2,
+      "front": {
+        "bounds": [
+          48,
+          36,
+          80,
+          94
+        ],
+        "height": 58,
+        "width": 32,
+        "opaque_area": 1125,
+        "upper_body_mean_occupied_width": 27.5
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1186,
+          "upper_body_mean_occupied_width": 26.62,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9680000000000001
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 993,
+          "upper_body_mean_occupied_width": 20.06,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.7294545454545454
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 934,
+          "upper_body_mean_occupied_width": 20.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7567272727272727
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1016,
+          "upper_body_mean_occupied_width": 21.38,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.7774545454545454
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 31,
+          "opaque_area": 988,
+          "upper_body_mean_occupied_width": 19.62,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.7134545454545455
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            51,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 26,
+          "opaque_area": 874,
+          "upper_body_mean_occupied_width": 20.62,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.7498181818181818
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1017,
+          "upper_body_mean_occupied_width": 21.12,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.768
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 1249,
+          "upper_body_mean_occupied_width": 27.75,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.009090909090909
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1034,
+          "upper_body_mean_occupied_width": 22.25,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8090909090909091
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 957,
+          "upper_body_mean_occupied_width": 22.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8021818181818181
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1026,
+          "upper_body_mean_occupied_width": 22.38,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8138181818181818
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1031,
+          "upper_body_mean_occupied_width": 22.44,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8160000000000001
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 914,
+          "upper_body_mean_occupied_width": 23.25,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8454545454545455
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1029,
+          "upper_body_mean_occupied_width": 22.44,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8160000000000001
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "name": "Bastion",
+      "outfit": 3,
+      "front": {
+        "bounds": [
+          47,
+          36,
+          81,
+          94
+        ],
+        "height": 58,
+        "width": 34,
+        "opaque_area": 1157,
+        "upper_body_mean_occupied_width": 28.75
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 1236,
+          "upper_body_mean_occupied_width": 26.94,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9370434782608696
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1029,
+          "upper_body_mean_occupied_width": 22.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7673043478260869
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 985,
+          "upper_body_mean_occupied_width": 22.62,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7867826086956522
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1054,
+          "upper_body_mean_occupied_width": 23.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8020869565217391
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 1047,
+          "upper_body_mean_occupied_width": 22.12,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7693913043478261
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 916,
+          "upper_body_mean_occupied_width": 22.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.784695652173913
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1074,
+          "upper_body_mean_occupied_width": 23.19,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.806608695652174
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 1264,
+          "upper_body_mean_occupied_width": 28.0,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9739130434782609
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1099,
+          "upper_body_mean_occupied_width": 24.12,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8389565217391305
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 993,
+          "upper_body_mean_occupied_width": 23.5,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8173913043478261
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1118,
+          "upper_body_mean_occupied_width": 24.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8629565217391304
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1113,
+          "upper_body_mean_occupied_width": 24.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8542608695652173
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            49,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 30,
+          "opaque_area": 997,
+          "upper_body_mean_occupied_width": 24.25,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.8434782608695652
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1100,
+          "upper_body_mean_occupied_width": 24.19,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8413913043478262
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "name": "Bastion",
+      "outfit": 4,
+      "front": {
+        "bounds": [
+          46,
+          36,
+          82,
+          94
+        ],
+        "height": 58,
+        "width": 36,
+        "opaque_area": 1303,
+        "upper_body_mean_occupied_width": 31.5
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1339,
+          "upper_body_mean_occupied_width": 30.75,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9761904761904762
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1041,
+          "upper_body_mean_occupied_width": 21.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6844444444444444
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 978,
+          "upper_body_mean_occupied_width": 22.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7263492063492063
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 1034,
+          "upper_body_mean_occupied_width": 22.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7241269841269841
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 1033,
+          "upper_body_mean_occupied_width": 21.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6844444444444444
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 923,
+          "upper_body_mean_occupied_width": 22.62,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7180952380952381
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1060,
+          "upper_body_mean_occupied_width": 22.5,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7142857142857143
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            46,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 37,
+          "opaque_area": 1394,
+          "upper_body_mean_occupied_width": 30.75,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9761904761904762
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            46,
+            37,
+            82,
+            96
+          ],
+          "height": 59,
+          "width": 36,
+          "opaque_area": 1141,
+          "upper_body_mean_occupied_width": 24.06,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.7638095238095237
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 1070,
+          "upper_body_mean_occupied_width": 25.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8234920634920635
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1146,
+          "upper_body_mean_occupied_width": 24.69,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.7838095238095238
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            46,
+            37,
+            82,
+            96
+          ],
+          "height": 59,
+          "width": 36,
+          "opaque_area": 1165,
+          "upper_body_mean_occupied_width": 25.31,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.8034920634920635
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1038,
+          "upper_body_mean_occupied_width": 25.5,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.8095238095238095
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            46,
+            37,
+            82,
+            96
+          ],
+          "height": 59,
+          "width": 36,
+          "opaque_area": 1167,
+          "upper_body_mean_occupied_width": 25.44,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.8076190476190477
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "name": "Bastion",
+      "outfit": 5,
+      "front": {
+        "bounds": [
+          43,
+          36,
+          85,
+          94
+        ],
+        "height": 58,
+        "width": 42,
+        "opaque_area": 1606,
+        "upper_body_mean_occupied_width": 38.19
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            46,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 35,
+          "opaque_area": 1355,
+          "upper_body_mean_occupied_width": 30.69,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.8036135113904164
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1067,
+          "upper_body_mean_occupied_width": 22.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6006808064938466
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 990,
+          "upper_body_mean_occupied_width": 23.69,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.620319455354805
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1079,
+          "upper_body_mean_occupied_width": 24.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6300078554595444
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 1087,
+          "upper_body_mean_occupied_width": 23.38,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6122021471589422
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            50,
+            37,
+            78,
+            96
+          ],
+          "height": 59,
+          "width": 28,
+          "opaque_area": 940,
+          "upper_body_mean_occupied_width": 23.06,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.6038229903115999
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1085,
+          "upper_body_mean_occupied_width": 24.12,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6315789473684211
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            46,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 37,
+          "opaque_area": 1493,
+          "upper_body_mean_occupied_width": 32.69,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.8559832416863054
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 1106,
+          "upper_body_mean_occupied_width": 24.38,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6383870123068867
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 986,
+          "upper_body_mean_occupied_width": 23.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6268656716417911
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            46,
+            37,
+            82,
+            96
+          ],
+          "height": 59,
+          "width": 36,
+          "opaque_area": 1130,
+          "upper_body_mean_occupied_width": 24.56,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.6431002880335166
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            46,
+            37,
+            83,
+            96
+          ],
+          "height": 59,
+          "width": 37,
+          "opaque_area": 1134,
+          "upper_body_mean_occupied_width": 24.5,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.64152919612464
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            49,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 30,
+          "opaque_area": 982,
+          "upper_body_mean_occupied_width": 24.5,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.64152919612464
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            46,
+            38,
+            82,
+            96
+          ],
+          "height": 58,
+          "width": 36,
+          "opaque_area": 1119,
+          "upper_body_mean_occupied_width": 24.44,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.6399581042157634
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "name": "Technomancien",
+      "outfit": 1,
+      "front": {
+        "bounds": [
+          50,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 28,
+        "opaque_area": 644,
+        "upper_body_mean_occupied_width": 15.62
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            52,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 25,
+          "opaque_area": 731,
+          "upper_body_mean_occupied_width": 15.94,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0204865556978233
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 822,
+          "upper_body_mean_occupied_width": 16.88,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0806658130601792
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 25,
+          "opaque_area": 754,
+          "upper_body_mean_occupied_width": 16.12,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.032010243277849
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 31,
+          "opaque_area": 808,
+          "upper_body_mean_occupied_width": 16.56,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0601792573623559
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 822,
+          "upper_body_mean_occupied_width": 16.81,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0761843790012804
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            38,
+            76,
+            96
+          ],
+          "height": 58,
+          "width": 24,
+          "opaque_area": 722,
+          "upper_body_mean_occupied_width": 16.69,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0685019206145967
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 809,
+          "upper_body_mean_occupied_width": 16.75,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0723431498079385
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            52,
+            37,
+            76,
+            96
+          ],
+          "height": 59,
+          "width": 24,
+          "opaque_area": 837,
+          "upper_body_mean_occupied_width": 17.12,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0960307298335468
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 827,
+          "upper_body_mean_occupied_width": 17.25,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.1043533930857876
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            78,
+            96
+          ],
+          "height": 58,
+          "width": 28,
+          "opaque_area": 811,
+          "upper_body_mean_occupied_width": 17.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.144686299615877
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 837,
+          "upper_body_mean_occupied_width": 17.62,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.1280409731113958
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 851,
+          "upper_body_mean_occupied_width": 17.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.1485275288092192
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 748,
+          "upper_body_mean_occupied_width": 17.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.1241997439180538
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 849,
+          "upper_body_mean_occupied_width": 17.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.1485275288092192
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "name": "Technomancien",
+      "outfit": 2,
+      "front": {
+        "bounds": [
+          50,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 28,
+        "opaque_area": 674,
+        "upper_body_mean_occupied_width": 16.12
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            51,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 26,
+          "opaque_area": 823,
+          "upper_body_mean_occupied_width": 19.12,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.186104218362283
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 824,
+          "upper_body_mean_occupied_width": 16.75,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0390818858560793
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 769,
+          "upper_body_mean_occupied_width": 16.44,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0198511166253101
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            49,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 30,
+          "opaque_area": 865,
+          "upper_body_mean_occupied_width": 17.62,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0930521091811414
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            49,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 30,
+          "opaque_area": 852,
+          "upper_body_mean_occupied_width": 16.44,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0198511166253101
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 25,
+          "opaque_area": 781,
+          "upper_body_mean_occupied_width": 17.69,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.097394540942928
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 853,
+          "upper_body_mean_occupied_width": 17.62,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0930521091811414
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            52,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 25,
+          "opaque_area": 808,
+          "upper_body_mean_occupied_width": 18.06,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.1203473945409428
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            47,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 34,
+          "opaque_area": 902,
+          "upper_body_mean_occupied_width": 18.25,
+          "height_ratio": 0.9827586206896551,
+          "upper_width_ratio": 1.1321339950372207
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 810,
+          "upper_body_mean_occupied_width": 17.62,
+          "height_ratio": 0.9827586206896551,
+          "upper_width_ratio": 1.0930521091811414
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 906,
+          "upper_body_mean_occupied_width": 18.31,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.1358560794044663
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            47,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 34,
+          "opaque_area": 895,
+          "upper_body_mean_occupied_width": 17.94,
+          "height_ratio": 0.9827586206896551,
+          "upper_width_ratio": 1.1129032258064515
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 763,
+          "upper_body_mean_occupied_width": 18.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.1203473945409428
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            47,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 34,
+          "opaque_area": 889,
+          "upper_body_mean_occupied_width": 18.12,
+          "height_ratio": 0.9827586206896551,
+          "upper_width_ratio": 1.1240694789081886
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "name": "Technomancien",
+      "outfit": 3,
+      "front": {
+        "bounds": [
+          49,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 29,
+        "opaque_area": 763,
+        "upper_body_mean_occupied_width": 18.94
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 905,
+          "upper_body_mean_occupied_width": 20.69,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0923970432946146
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 889,
+          "upper_body_mean_occupied_width": 19.0,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0031678986272439
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 850,
+          "upper_body_mean_occupied_width": 20.19,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0659978880675818
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            38,
+            80,
+            96
+          ],
+          "height": 58,
+          "width": 32,
+          "opaque_area": 916,
+          "upper_body_mean_occupied_width": 20.62,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.08870116156283
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 31,
+          "opaque_area": 929,
+          "upper_body_mean_occupied_width": 19.62,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0359028511087645
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 25,
+          "opaque_area": 806,
+          "upper_body_mean_occupied_width": 19.69,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0395987328405492
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 939,
+          "upper_body_mean_occupied_width": 20.62,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.08870116156283
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            51,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 26,
+          "opaque_area": 872,
+          "upper_body_mean_occupied_width": 19.31,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.019535374868004
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 959,
+          "upper_body_mean_occupied_width": 20.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.1024287222808868
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 883,
+          "upper_body_mean_occupied_width": 20.75,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0955649419218585
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 958,
+          "upper_body_mean_occupied_width": 20.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.105596620908131
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            47,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 34,
+          "opaque_area": 926,
+          "upper_body_mean_occupied_width": 20.38,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0760295670538542
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 831,
+          "upper_body_mean_occupied_width": 20.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0855332629355858
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            46,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 35,
+          "opaque_area": 949,
+          "upper_body_mean_occupied_width": 21.0,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.1087645195353748
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "name": "Technomancien",
+      "outfit": 4,
+      "front": {
+        "bounds": [
+          50,
+          36,
+          78,
+          94
+        ],
+        "height": 58,
+        "width": 28,
+        "opaque_area": 836,
+        "upper_body_mean_occupied_width": 20.56
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            52,
+            37,
+            76,
+            96
+          ],
+          "height": 59,
+          "width": 24,
+          "opaque_area": 911,
+          "upper_body_mean_occupied_width": 19.81,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9635214007782101
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 968,
+          "upper_body_mean_occupied_width": 19.94,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9698443579766538
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 909,
+          "upper_body_mean_occupied_width": 20.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0184824902723737
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 986,
+          "upper_body_mean_occupied_width": 21.12,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0272373540856032
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 977,
+          "upper_body_mean_occupied_width": 19.88,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9669260700389105
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 25,
+          "opaque_area": 858,
+          "upper_body_mean_occupied_width": 19.94,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9698443579766538
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 965,
+          "upper_body_mean_occupied_width": 20.06,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.97568093385214
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            50,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 27,
+          "opaque_area": 985,
+          "upper_body_mean_occupied_width": 21.81,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0607976653696498
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 949,
+          "upper_body_mean_occupied_width": 20.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.01215953307393
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            51,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 26,
+          "opaque_area": 889,
+          "upper_body_mean_occupied_width": 21.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0243190661478598
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 985,
+          "upper_body_mean_occupied_width": 21.25,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0335603112840468
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 33,
+          "opaque_area": 986,
+          "upper_body_mean_occupied_width": 21.06,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0243190661478598
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            50,
+            38,
+            77,
+            96
+          ],
+          "height": 58,
+          "width": 27,
+          "opaque_area": 880,
+          "upper_body_mean_occupied_width": 21.69,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0549610894941635
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            47,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 34,
+          "opaque_area": 1013,
+          "upper_body_mean_occupied_width": 21.69,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0549610894941635
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "name": "Technomancien",
+      "outfit": 5,
+      "front": {
+        "bounds": [
+          49,
+          36,
+          79,
+          94
+        ],
+        "height": 58,
+        "width": 30,
+        "opaque_area": 950,
+        "upper_body_mean_occupied_width": 22.0
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            50,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 29,
+          "opaque_area": 1001,
+          "upper_body_mean_occupied_width": 22.44,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.02
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1059,
+          "upper_body_mean_occupied_width": 23.0,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0454545454545454
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            50,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 29,
+          "opaque_area": 997,
+          "upper_body_mean_occupied_width": 22.75,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0340909090909092
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            38,
+            81,
+            96
+          ],
+          "height": 58,
+          "width": 33,
+          "opaque_area": 1043,
+          "upper_body_mean_occupied_width": 23.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.048181818181818
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            38,
+            79,
+            96
+          ],
+          "height": 58,
+          "width": 31,
+          "opaque_area": 1019,
+          "upper_body_mean_occupied_width": 22.0,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            51,
+            37,
+            77,
+            96
+          ],
+          "height": 59,
+          "width": 26,
+          "opaque_area": 925,
+          "upper_body_mean_occupied_width": 21.75,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 0.9886363636363636
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            37,
+            80,
+            96
+          ],
+          "height": 59,
+          "width": 32,
+          "opaque_area": 1037,
+          "upper_body_mean_occupied_width": 22.12,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0054545454545456
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            50,
+            37,
+            78,
+            96
+          ],
+          "height": 59,
+          "width": 28,
+          "opaque_area": 984,
+          "upper_body_mean_occupied_width": 22.06,
+          "height_ratio": 1.0172413793103448,
+          "upper_width_ratio": 1.0027272727272727
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            47,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 34,
+          "opaque_area": 1029,
+          "upper_body_mean_occupied_width": 22.88,
+          "height_ratio": 0.9827586206896551,
+          "upper_width_ratio": 1.04
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 963,
+          "upper_body_mean_occupied_width": 22.75,
+          "height_ratio": 0.9827586206896551,
+          "upper_width_ratio": 1.0340909090909092
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 1017,
+          "upper_body_mean_occupied_width": 22.62,
+          "height_ratio": 0.9827586206896551,
+          "upper_width_ratio": 1.0281818181818183
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 1025,
+          "upper_body_mean_occupied_width": 22.81,
+          "height_ratio": 0.9827586206896551,
+          "upper_width_ratio": 1.0368181818181819
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 916,
+          "upper_body_mean_occupied_width": 23.0,
+          "height_ratio": 0.9827586206896551,
+          "upper_width_ratio": 1.0454545454545454
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 1019,
+          "upper_body_mean_occupied_width": 22.81,
+          "height_ratio": 0.9827586206896551,
+          "upper_width_ratio": 1.0368181818181819
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "name": "Traqueuse",
+      "outfit": 1,
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 716,
+        "upper_body_mean_occupied_width": 18.31
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            52,
+            39,
+            76,
+            96
+          ],
+          "height": 57,
+          "width": 24,
+          "opaque_area": 779,
+          "upper_body_mean_occupied_width": 17.44,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9524849808847625
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 752,
+          "upper_body_mean_occupied_width": 15.5,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8465319497542327
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            40,
+            76,
+            96
+          ],
+          "height": 56,
+          "width": 24,
+          "opaque_area": 718,
+          "upper_body_mean_occupied_width": 16.19,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8842162752594213
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 771,
+          "upper_body_mean_occupied_width": 16.44,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8978700163844895
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 762,
+          "upper_body_mean_occupied_width": 15.62,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8530857454942654
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            39,
+            75,
+            96
+          ],
+          "height": 57,
+          "width": 23,
+          "opaque_area": 673,
+          "upper_body_mean_occupied_width": 15.88,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8672856362643365
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 31,
+          "opaque_area": 782,
+          "upper_body_mean_occupied_width": 16.38,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.894593118514473
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 778,
+          "upper_body_mean_occupied_width": 16.88,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9219006007646096
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            39,
+            80,
+            96
+          ],
+          "height": 57,
+          "width": 32,
+          "opaque_area": 812,
+          "upper_body_mean_occupied_width": 16.75,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9148006553795741
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 764,
+          "upper_body_mean_occupied_width": 16.75,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9148006553795741
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            39,
+            80,
+            96
+          ],
+          "height": 57,
+          "width": 32,
+          "opaque_area": 817,
+          "upper_body_mean_occupied_width": 17.0,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9284543965046423
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            39,
+            80,
+            96
+          ],
+          "height": 57,
+          "width": 32,
+          "opaque_area": 819,
+          "upper_body_mean_occupied_width": 16.81,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9180775532495904
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 709,
+          "upper_body_mean_occupied_width": 16.44,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8978700163844895
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 833,
+          "upper_body_mean_occupied_width": 17.25,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9421081376297106
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "name": "Traqueuse",
+      "outfit": 2,
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 733,
+        "upper_body_mean_occupied_width": 18.94
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 887,
+          "upper_body_mean_occupied_width": 19.5,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 1.0295670538542765
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 806,
+          "upper_body_mean_occupied_width": 17.12,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9039070749736008
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 764,
+          "upper_body_mean_occupied_width": 17.69,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9340021119324182
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 816,
+          "upper_body_mean_occupied_width": 17.69,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9340021119324182
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 811,
+          "upper_body_mean_occupied_width": 16.81,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8875395987328404
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            39,
+            76,
+            96
+          ],
+          "height": 57,
+          "width": 24,
+          "opaque_area": 721,
+          "upper_body_mean_occupied_width": 17.12,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9039070749736008
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 31,
+          "opaque_area": 832,
+          "upper_body_mean_occupied_width": 18.06,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9535374868004223
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 866,
+          "upper_body_mean_occupied_width": 18.25,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9635691657866947
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 838,
+          "upper_body_mean_occupied_width": 18.25,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9635691657866947
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 807,
+          "upper_body_mean_occupied_width": 18.69,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9868004223864837
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 828,
+          "upper_body_mean_occupied_width": 18.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9535374868004223
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 810,
+          "upper_body_mean_occupied_width": 17.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9403379091869059
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 748,
+          "upper_body_mean_occupied_width": 18.44,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9736008447729673
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            48,
+            40,
+            81,
+            96
+          ],
+          "height": 56,
+          "width": 33,
+          "opaque_area": 852,
+          "upper_body_mean_occupied_width": 18.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9968321013727559
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "name": "Traqueuse",
+      "outfit": 3,
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 755,
+        "upper_body_mean_occupied_width": 19.25
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 830,
+          "upper_body_mean_occupied_width": 17.56,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9122077922077921
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 780,
+          "upper_body_mean_occupied_width": 16.38,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8509090909090908
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            40,
+            76,
+            96
+          ],
+          "height": 56,
+          "width": 24,
+          "opaque_area": 720,
+          "upper_body_mean_occupied_width": 16.38,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8509090909090908
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 795,
+          "upper_body_mean_occupied_width": 17.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9122077922077921
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 770,
+          "upper_body_mean_occupied_width": 15.5,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8051948051948052
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            53,
+            39,
+            75,
+            96
+          ],
+          "height": 57,
+          "width": 22,
+          "opaque_area": 708,
+          "upper_body_mean_occupied_width": 16.62,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8633766233766235
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 793,
+          "upper_body_mean_occupied_width": 17.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8862337662337662
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 837,
+          "upper_body_mean_occupied_width": 18.5,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.961038961038961
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 818,
+          "upper_body_mean_occupied_width": 18.19,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.944935064935065
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 767,
+          "upper_body_mean_occupied_width": 17.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9251948051948051
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 813,
+          "upper_body_mean_occupied_width": 18.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9381818181818181
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 834,
+          "upper_body_mean_occupied_width": 18.44,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.957922077922078
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 724,
+          "upper_body_mean_occupied_width": 18.19,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.944935064935065
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 828,
+          "upper_body_mean_occupied_width": 18.62,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9672727272727273
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "name": "Traqueuse",
+      "outfit": 4,
+      "front": {
+        "bounds": [
+          50,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 28,
+        "opaque_area": 813,
+        "upper_body_mean_occupied_width": 20.69
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            51,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 26,
+          "opaque_area": 884,
+          "upper_body_mean_occupied_width": 19.94,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9637506041565974
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 799,
+          "upper_body_mean_occupied_width": 17.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8608023199613338
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 756,
+          "upper_body_mean_occupied_width": 18.44,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8912518124697921
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 823,
+          "upper_body_mean_occupied_width": 19.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9212179797003383
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 816,
+          "upper_body_mean_occupied_width": 18.31,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8849685838569356
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 744,
+          "upper_body_mean_occupied_width": 19.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9212179797003383
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 828,
+          "upper_body_mean_occupied_width": 18.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9091348477525374
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 881,
+          "upper_body_mean_occupied_width": 19.31,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9333011116481391
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 870,
+          "upper_body_mean_occupied_width": 19.62,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9482841952634122
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 808,
+          "upper_body_mean_occupied_width": 19.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.960850652489125
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            40,
+            81,
+            96
+          ],
+          "height": 56,
+          "width": 33,
+          "opaque_area": 858,
+          "upper_body_mean_occupied_width": 19.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9574673755437408
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 33,
+          "opaque_area": 874,
+          "upper_body_mean_occupied_width": 19.62,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9482841952634122
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 805,
+          "upper_body_mean_occupied_width": 20.25,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9787336877718704
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            47,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 34,
+          "opaque_area": 880,
+          "upper_body_mean_occupied_width": 19.62,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9482841952634122
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "name": "Traqueuse",
+      "outfit": 5,
+      "front": {
+        "bounds": [
+          50,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 28,
+        "opaque_area": 884,
+        "upper_body_mean_occupied_width": 21.94
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 947,
+          "upper_body_mean_occupied_width": 22.44,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 1.0227894257064722
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 31,
+          "opaque_area": 897,
+          "upper_body_mean_occupied_width": 19.12,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8714676390154968
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 860,
+          "upper_body_mean_occupied_width": 20.31,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9257064721969005
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 858,
+          "upper_body_mean_occupied_width": 19.12,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8714676390154968
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 870,
+          "upper_body_mean_occupied_width": 18.62,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8486782133090246
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 787,
+          "upper_body_mean_occupied_width": 20.25,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9229717411121239
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            39,
+            80,
+            96
+          ],
+          "height": 57,
+          "width": 32,
+          "opaque_area": 908,
+          "upper_body_mean_occupied_width": 19.56,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8915223336371922
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            50,
+            39,
+            78,
+            96
+          ],
+          "height": 57,
+          "width": 28,
+          "opaque_area": 996,
+          "upper_body_mean_occupied_width": 23.44,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 1.0683682771194165
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            41,
+            80,
+            96
+          ],
+          "height": 55,
+          "width": 32,
+          "opaque_area": 895,
+          "upper_body_mean_occupied_width": 20.33,
+          "height_ratio": 0.9821428571428571,
+          "upper_width_ratio": 0.9266180492251594
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            51,
+            41,
+            77,
+            96
+          ],
+          "height": 55,
+          "width": 26,
+          "opaque_area": 836,
+          "upper_body_mean_occupied_width": 20.6,
+          "height_ratio": 0.9821428571428571,
+          "upper_width_ratio": 0.9389243391066545
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            41,
+            80,
+            96
+          ],
+          "height": 55,
+          "width": 32,
+          "opaque_area": 897,
+          "upper_body_mean_occupied_width": 20.2,
+          "height_ratio": 0.9821428571428571,
+          "upper_width_ratio": 0.9206927985414767
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            41,
+            80,
+            96
+          ],
+          "height": 55,
+          "width": 32,
+          "opaque_area": 886,
+          "upper_body_mean_occupied_width": 20.27,
+          "height_ratio": 0.9821428571428571,
+          "upper_width_ratio": 0.9238833181403828
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 789,
+          "upper_body_mean_occupied_width": 20.38,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9288969917958066
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            48,
+            41,
+            80,
+            96
+          ],
+          "height": 55,
+          "width": 32,
+          "opaque_area": 881,
+          "upper_body_mean_occupied_width": 20.2,
+          "height_ratio": 0.9821428571428571,
+          "upper_width_ratio": 0.9206927985414767
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "name": "Arcaniste",
+      "outfit": 1,
+      "front": {
+        "bounds": [
+          47,
+          34,
+          81,
+          94
+        ],
+        "height": 60,
+        "width": 34,
+        "opaque_area": 946,
+        "upper_body_mean_occupied_width": 20.06
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            50,
+            35,
+            78,
+            96
+          ],
+          "height": 61,
+          "width": 28,
+          "opaque_area": 1081,
+          "upper_body_mean_occupied_width": 21.22,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 1.0578265204386839
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 961,
+          "upper_body_mean_occupied_width": 17.56,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8753738783649053
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            36,
+            77,
+            96
+          ],
+          "height": 60,
+          "width": 25,
+          "opaque_area": 861,
+          "upper_body_mean_occupied_width": 18.12,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9032901296111666
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 970,
+          "upper_body_mean_occupied_width": 19.0,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9471585244267199
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 947,
+          "upper_body_mean_occupied_width": 18.35,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9147557328015954
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            36,
+            77,
+            96
+          ],
+          "height": 60,
+          "width": 25,
+          "opaque_area": 852,
+          "upper_body_mean_occupied_width": 18.82,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9381854436689931
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 962,
+          "upper_body_mean_occupied_width": 18.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9411764705882353
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            50,
+            35,
+            78,
+            96
+          ],
+          "height": 61,
+          "width": 28,
+          "opaque_area": 1121,
+          "upper_body_mean_occupied_width": 22.5,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 1.1216350947158524
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 984,
+          "upper_body_mean_occupied_width": 19.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9501495513459621
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            50,
+            35,
+            77,
+            96
+          ],
+          "height": 61,
+          "width": 27,
+          "opaque_area": 904,
+          "upper_body_mean_occupied_width": 18.89,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.9416749750747757
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 985,
+          "upper_body_mean_occupied_width": 19.18,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9561316051844467
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            46,
+            35,
+            83,
+            96
+          ],
+          "height": 61,
+          "width": 37,
+          "opaque_area": 1022,
+          "upper_body_mean_occupied_width": 19.33,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.9636091724825523
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            50,
+            35,
+            78,
+            96
+          ],
+          "height": 61,
+          "width": 28,
+          "opaque_area": 940,
+          "upper_body_mean_occupied_width": 20.11,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 1.002492522432702
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 995,
+          "upper_body_mean_occupied_width": 19.47,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9705882352941176
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "name": "Arcaniste",
+      "outfit": 2,
+      "front": {
+        "bounds": [
+          46,
+          34,
+          82,
+          94
+        ],
+        "height": 60,
+        "width": 36,
+        "opaque_area": 1135,
+        "upper_body_mean_occupied_width": 24.18
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            49,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 30,
+          "opaque_area": 1237,
+          "upper_body_mean_occupied_width": 23.44,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.9693961952026469
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1060,
+          "upper_body_mean_occupied_width": 19.76,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8172043010752689
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            50,
+            36,
+            77,
+            96
+          ],
+          "height": 60,
+          "width": 27,
+          "opaque_area": 1002,
+          "upper_body_mean_occupied_width": 20.82,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8610421836228288
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 33,
+          "opaque_area": 1106,
+          "upper_body_mean_occupied_width": 21.67,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8961952026468156
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            35,
+            80,
+            96
+          ],
+          "height": 61,
+          "width": 32,
+          "opaque_area": 1081,
+          "upper_body_mean_occupied_width": 20.39,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8432588916459884
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            50,
+            35,
+            77,
+            96
+          ],
+          "height": 61,
+          "width": 27,
+          "opaque_area": 984,
+          "upper_body_mean_occupied_width": 20.89,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8639371381306865
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1122,
+          "upper_body_mean_occupied_width": 21.78,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.9007444168734492
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            48,
+            35,
+            80,
+            96
+          ],
+          "height": 61,
+          "width": 32,
+          "opaque_area": 1320,
+          "upper_body_mean_occupied_width": 25.67,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 1.0616211745244004
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1122,
+          "upper_body_mean_occupied_width": 21.76,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8999172870140613
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            50,
+            36,
+            78,
+            96
+          ],
+          "height": 60,
+          "width": 28,
+          "opaque_area": 1017,
+          "upper_body_mean_occupied_width": 22.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.91232423490488
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1148,
+          "upper_body_mean_occupied_width": 22.59,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.93424317617866
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1131,
+          "upper_body_mean_occupied_width": 21.82,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.902398676592225
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            50,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 29,
+          "opaque_area": 1007,
+          "upper_body_mean_occupied_width": 22.29,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9218362282878412
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 1162,
+          "upper_body_mean_occupied_width": 22.65,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9367245657568237
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "name": "Arcaniste",
+      "outfit": 3,
+      "front": {
+        "bounds": [
+          45,
+          34,
+          82,
+          94
+        ],
+        "height": 60,
+        "width": 37,
+        "opaque_area": 1187,
+        "upper_body_mean_occupied_width": 25.29
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            48,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 33,
+          "opaque_area": 1310,
+          "upper_body_mean_occupied_width": 24.44,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.966389877421906
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1151,
+          "upper_body_mean_occupied_width": 21.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8675365757216292
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            50,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 29,
+          "opaque_area": 1100,
+          "upper_body_mean_occupied_width": 22.33,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8829576907868723
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            46,
+            35,
+            82,
+            96
+          ],
+          "height": 61,
+          "width": 36,
+          "opaque_area": 1186,
+          "upper_body_mean_occupied_width": 22.33,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8829576907868723
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1161,
+          "upper_body_mean_occupied_width": 21.67,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8568604191379993
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            49,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 30,
+          "opaque_area": 1053,
+          "upper_body_mean_occupied_width": 22.17,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8766310794780546
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            46,
+            35,
+            82,
+            96
+          ],
+          "height": 61,
+          "width": 36,
+          "opaque_area": 1200,
+          "upper_body_mean_occupied_width": 22.67,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.89640173981811
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1337,
+          "upper_body_mean_occupied_width": 26.5,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 1.047844998022934
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 1173,
+          "upper_body_mean_occupied_width": 23.18,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9165678133649664
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            49,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 30,
+          "opaque_area": 1081,
+          "upper_body_mean_occupied_width": 23.44,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.9268485567417952
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 1162,
+          "upper_body_mean_occupied_width": 22.53,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8908659549228946
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            46,
+            36,
+            83,
+            96
+          ],
+          "height": 60,
+          "width": 37,
+          "opaque_area": 1183,
+          "upper_body_mean_occupied_width": 23.24,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.918940292605773
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            48,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 31,
+          "opaque_area": 1071,
+          "upper_body_mean_occupied_width": 23.61,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.933570581257414
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            46,
+            36,
+            83,
+            96
+          ],
+          "height": 60,
+          "width": 37,
+          "opaque_area": 1196,
+          "upper_body_mean_occupied_width": 23.53,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9304072756030052
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "name": "Arcaniste",
+      "outfit": 4,
+      "front": {
+        "bounds": [
+          44,
+          34,
+          84,
+          94
+        ],
+        "height": 60,
+        "width": 40,
+        "opaque_area": 1323,
+        "upper_body_mean_occupied_width": 29.24
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            46,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 35,
+          "opaque_area": 1396,
+          "upper_body_mean_occupied_width": 27.39,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.9367305061559508
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            47,
+            37,
+            81,
+            96
+          ],
+          "height": 59,
+          "width": 34,
+          "opaque_area": 1193,
+          "upper_body_mean_occupied_width": 23.69,
+          "height_ratio": 0.9833333333333333,
+          "upper_width_ratio": 0.8101915184678523
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            49,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 30,
+          "opaque_area": 1111,
+          "upper_body_mean_occupied_width": 23.65,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8088235294117647
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            47,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 34,
+          "opaque_area": 1231,
+          "upper_body_mean_occupied_width": 24.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8508891928864569
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1192,
+          "upper_body_mean_occupied_width": 21.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.750341997264022
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            50,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 29,
+          "opaque_area": 1091,
+          "upper_body_mean_occupied_width": 22.78,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.7790697674418605
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1214,
+          "upper_body_mean_occupied_width": 23.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8166894664842681
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            48,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 33,
+          "opaque_area": 1380,
+          "upper_body_mean_occupied_width": 25.89,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8854309165526676
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1241,
+          "upper_body_mean_occupied_width": 23.65,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8088235294117647
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            49,
+            37,
+            79,
+            96
+          ],
+          "height": 59,
+          "width": 30,
+          "opaque_area": 1109,
+          "upper_body_mean_occupied_width": 24.19,
+          "height_ratio": 0.9833333333333333,
+          "upper_width_ratio": 0.8272913816689468
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            46,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 35,
+          "opaque_area": 1241,
+          "upper_body_mean_occupied_width": 24.35,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8327633378932969
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            46,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 35,
+          "opaque_area": 1257,
+          "upper_body_mean_occupied_width": 23.33,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.7978796169630643
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            48,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 31,
+          "opaque_area": 1153,
+          "upper_body_mean_occupied_width": 24.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8508891928864569
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 1239,
+          "upper_body_mean_occupied_width": 24.0,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8207934336525308
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "name": "Arcaniste",
+      "outfit": 5,
+      "front": {
+        "bounds": [
+          45,
+          34,
+          84,
+          94
+        ],
+        "height": 60,
+        "width": 39,
+        "opaque_area": 1363,
+        "upper_body_mean_occupied_width": 28.24
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            48,
+            35,
+            80,
+            96
+          ],
+          "height": 61,
+          "width": 32,
+          "opaque_area": 1342,
+          "upper_body_mean_occupied_width": 25.83,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.9146600566572238
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1199,
+          "upper_body_mean_occupied_width": 22.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8101983002832861
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            50,
+            36,
+            78,
+            96
+          ],
+          "height": 60,
+          "width": 28,
+          "opaque_area": 1065,
+          "upper_body_mean_occupied_width": 22.41,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.7935552407932012
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 1254,
+          "upper_body_mean_occupied_width": 24.24,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.858356940509915
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            48,
+            36,
+            81,
+            96
+          ],
+          "height": 60,
+          "width": 33,
+          "opaque_area": 1206,
+          "upper_body_mean_occupied_width": 22.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8123229461756375
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            50,
+            36,
+            78,
+            96
+          ],
+          "height": 60,
+          "width": 28,
+          "opaque_area": 1026,
+          "upper_body_mean_occupied_width": 22.76,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8059490084985836
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            46,
+            36,
+            82,
+            96
+          ],
+          "height": 60,
+          "width": 36,
+          "opaque_area": 1235,
+          "upper_body_mean_occupied_width": 23.47,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8310906515580737
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            47,
+            35,
+            81,
+            96
+          ],
+          "height": 61,
+          "width": 34,
+          "opaque_area": 1445,
+          "upper_body_mean_occupied_width": 28.06,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.9936260623229461
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            45,
+            36,
+            83,
+            96
+          ],
+          "height": 60,
+          "width": 38,
+          "opaque_area": 1311,
+          "upper_body_mean_occupied_width": 24.29,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8601274787535411
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            49,
+            36,
+            79,
+            96
+          ],
+          "height": 60,
+          "width": 30,
+          "opaque_area": 1125,
+          "upper_body_mean_occupied_width": 24.53,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8686260623229463
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            46,
+            35,
+            83,
+            96
+          ],
+          "height": 61,
+          "width": 37,
+          "opaque_area": 1304,
+          "upper_body_mean_occupied_width": 24.17,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8558781869688387
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            46,
+            36,
+            83,
+            96
+          ],
+          "height": 60,
+          "width": 37,
+          "opaque_area": 1267,
+          "upper_body_mean_occupied_width": 24.0,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8498583569405099
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            48,
+            35,
+            79,
+            96
+          ],
+          "height": 61,
+          "width": 31,
+          "opaque_area": 1130,
+          "upper_body_mean_occupied_width": 25.0,
+          "height_ratio": 1.0166666666666666,
+          "upper_width_ratio": 0.8852691218130312
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            44,
+            36,
+            83,
+            96
+          ],
+          "height": 60,
+          "width": 39,
+          "opaque_area": 1314,
+          "upper_body_mean_occupied_width": 23.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8477337110481588
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "name": "Metamorphe",
+      "outfit": 1,
+      "front": {
+        "bounds": [
+          49,
+          38,
+          76,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 732,
+        "upper_body_mean_occupied_width": 19.31
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 879,
+          "upper_body_mean_occupied_width": 20.19,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 1.0455722423614708
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 743,
+          "upper_body_mean_occupied_width": 16.31,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8446400828586225
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            40,
+            76,
+            96
+          ],
+          "height": 56,
+          "width": 24,
+          "opaque_area": 682,
+          "upper_body_mean_occupied_width": 15.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8187467633350596
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            40,
+            81,
+            96
+          ],
+          "height": 56,
+          "width": 33,
+          "opaque_area": 755,
+          "upper_body_mean_occupied_width": 16.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8772656654583119
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 730,
+          "upper_body_mean_occupied_width": 16.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.831693423096841
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            40,
+            75,
+            96
+          ],
+          "height": 56,
+          "width": 23,
+          "opaque_area": 675,
+          "upper_body_mean_occupied_width": 16.75,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8674262040393579
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 753,
+          "upper_body_mean_occupied_width": 16.75,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8674262040393579
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            50,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 27,
+          "opaque_area": 924,
+          "upper_body_mean_occupied_width": 20.38,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 1.0554117037804247
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            39,
+            80,
+            96
+          ],
+          "height": 57,
+          "width": 32,
+          "opaque_area": 780,
+          "upper_body_mean_occupied_width": 17.25,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8933195235629209
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 711,
+          "upper_body_mean_occupied_width": 17.25,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8933195235629209
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            40,
+            81,
+            96
+          ],
+          "height": 56,
+          "width": 33,
+          "opaque_area": 782,
+          "upper_body_mean_occupied_width": 17.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9093733816675298
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            47,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 34,
+          "opaque_area": 795,
+          "upper_body_mean_occupied_width": 17.5,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9062661833247023
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 694,
+          "upper_body_mean_occupied_width": 17.44,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9031589849818749
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            47,
+            39,
+            81,
+            96
+          ],
+          "height": 57,
+          "width": 34,
+          "opaque_area": 808,
+          "upper_body_mean_occupied_width": 17.81,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9223200414293112
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "name": "Metamorphe",
+      "outfit": 2,
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 713,
+        "upper_body_mean_occupied_width": 18.44
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            52,
+            40,
+            76,
+            96
+          ],
+          "height": 56,
+          "width": 24,
+          "opaque_area": 825,
+          "upper_body_mean_occupied_width": 19.44,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.054229934924078
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 825,
+          "upper_body_mean_occupied_width": 18.0,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9761388286334056
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            40,
+            76,
+            96
+          ],
+          "height": 56,
+          "width": 24,
+          "opaque_area": 738,
+          "upper_body_mean_occupied_width": 18.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9793926247288501
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 31,
+          "opaque_area": 815,
+          "upper_body_mean_occupied_width": 18.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9793926247288501
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            49,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 30,
+          "opaque_area": 823,
+          "upper_body_mean_occupied_width": 17.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9696312364425161
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            39,
+            76,
+            96
+          ],
+          "height": 57,
+          "width": 24,
+          "opaque_area": 744,
+          "upper_body_mean_occupied_width": 18.06,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9793926247288501
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 824,
+          "upper_body_mean_occupied_width": 17.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.972885032537961
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 856,
+          "upper_body_mean_occupied_width": 19.06,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 1.0336225596529283
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 844,
+          "upper_body_mean_occupied_width": 18.5,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0032537960954446
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 739,
+          "upper_body_mean_occupied_width": 18.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0065075921908893
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 845,
+          "upper_body_mean_occupied_width": 18.69,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0135574837310195
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 851,
+          "upper_body_mean_occupied_width": 18.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.027114967462039
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 735,
+          "upper_body_mean_occupied_width": 18.75,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0168112798264641
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            48,
+            40,
+            81,
+            96
+          ],
+          "height": 56,
+          "width": 33,
+          "opaque_area": 845,
+          "upper_body_mean_occupied_width": 18.62,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.009761388286334
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "name": "Metamorphe",
+      "outfit": 3,
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 761,
+        "upper_body_mean_occupied_width": 20.06
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 844,
+          "upper_body_mean_occupied_width": 18.88,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9411764705882353
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 807,
+          "upper_body_mean_occupied_width": 17.06,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8504486540378864
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 800,
+          "upper_body_mean_occupied_width": 17.81,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8878364905284147
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 825,
+          "upper_body_mean_occupied_width": 17.5,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8723828514456631
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 814,
+          "upper_body_mean_occupied_width": 16.75,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8349950149551346
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            39,
+            76,
+            96
+          ],
+          "height": 57,
+          "width": 24,
+          "opaque_area": 720,
+          "upper_body_mean_occupied_width": 17.5,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8723828514456631
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 856,
+          "upper_body_mean_occupied_width": 18.06,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9002991026919243
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 838,
+          "upper_body_mean_occupied_width": 20.5,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.0219341974077767
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 847,
+          "upper_body_mean_occupied_width": 18.88,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9411764705882353
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 785,
+          "upper_body_mean_occupied_width": 18.69,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9317048853439682
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 842,
+          "upper_body_mean_occupied_width": 18.69,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9317048853439682
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 852,
+          "upper_body_mean_occupied_width": 18.94,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9441674975074776
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 775,
+          "upper_body_mean_occupied_width": 19.56,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9750747756729811
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 847,
+          "upper_body_mean_occupied_width": 19.06,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9501495513459621
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "name": "Metamorphe",
+      "outfit": 4,
+      "front": {
+        "bounds": [
+          51,
+          38,
+          78,
+          94
+        ],
+        "height": 56,
+        "width": 27,
+        "opaque_area": 794,
+        "upper_body_mean_occupied_width": 20.69
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            50,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 29,
+          "opaque_area": 1032,
+          "upper_body_mean_occupied_width": 23.94,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 1.1570807153214113
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 819,
+          "upper_body_mean_occupied_width": 17.69,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8550024166263895
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 778,
+          "upper_body_mean_occupied_width": 17.44,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8429192846785887
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            48,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 31,
+          "opaque_area": 843,
+          "upper_body_mean_occupied_width": 18.38,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8883518608023199
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 844,
+          "upper_body_mean_occupied_width": 18.5,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8941517641372643
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            39,
+            75,
+            96
+          ],
+          "height": 57,
+          "width": 23,
+          "opaque_area": 718,
+          "upper_body_mean_occupied_width": 18.0,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8699855002416625
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 844,
+          "upper_body_mean_occupied_width": 18.5,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8941517641372643
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 886,
+          "upper_body_mean_occupied_width": 19.75,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.9545674238762687
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            41,
+            80,
+            96
+          ],
+          "height": 55,
+          "width": 32,
+          "opaque_area": 828,
+          "upper_body_mean_occupied_width": 18.67,
+          "height_ratio": 0.9821428571428571,
+          "upper_width_ratio": 0.902368293861769
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            52,
+            41,
+            77,
+            96
+          ],
+          "height": 55,
+          "width": 25,
+          "opaque_area": 799,
+          "upper_body_mean_occupied_width": 19.07,
+          "height_ratio": 0.9821428571428571,
+          "upper_width_ratio": 0.9217013049782503
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            41,
+            81,
+            96
+          ],
+          "height": 55,
+          "width": 33,
+          "opaque_area": 849,
+          "upper_body_mean_occupied_width": 19.6,
+          "height_ratio": 0.9821428571428571,
+          "upper_width_ratio": 0.9473175447075882
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            40,
+            81,
+            96
+          ],
+          "height": 56,
+          "width": 33,
+          "opaque_area": 869,
+          "upper_body_mean_occupied_width": 19.5,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9424842919284678
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            52,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 25,
+          "opaque_area": 759,
+          "upper_body_mean_occupied_width": 19.38,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9366843885935233
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            48,
+            40,
+            81,
+            96
+          ],
+          "height": 56,
+          "width": 33,
+          "opaque_area": 868,
+          "upper_body_mean_occupied_width": 19.62,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9482841952634122
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "name": "Metamorphe",
+      "outfit": 5,
+      "front": {
+        "bounds": [
+          49,
+          38,
+          79,
+          94
+        ],
+        "height": 56,
+        "width": 30,
+        "opaque_area": 863,
+        "upper_body_mean_occupied_width": 22.75
+      },
+      "poses": [
+        {
+          "facing": -1,
+          "frame": 8,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 1130,
+          "upper_body_mean_occupied_width": 25.56,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 1.1235164835164835
+        },
+        {
+          "facing": -1,
+          "frame": 0,
+          "bounds": [
+            48,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 31,
+          "opaque_area": 894,
+          "upper_body_mean_occupied_width": 19.19,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8435164835164836
+        },
+        {
+          "facing": -1,
+          "frame": 1,
+          "bounds": [
+            51,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 26,
+          "opaque_area": 850,
+          "upper_body_mean_occupied_width": 20.19,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8874725274725276
+        },
+        {
+          "facing": -1,
+          "frame": 2,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 897,
+          "upper_body_mean_occupied_width": 19.81,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8707692307692307
+        },
+        {
+          "facing": -1,
+          "frame": 3,
+          "bounds": [
+            49,
+            39,
+            79,
+            96
+          ],
+          "height": 57,
+          "width": 30,
+          "opaque_area": 919,
+          "upper_body_mean_occupied_width": 19.81,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8707692307692307
+        },
+        {
+          "facing": -1,
+          "frame": 4,
+          "bounds": [
+            52,
+            39,
+            77,
+            96
+          ],
+          "height": 57,
+          "width": 25,
+          "opaque_area": 810,
+          "upper_body_mean_occupied_width": 19.5,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8571428571428571
+        },
+        {
+          "facing": -1,
+          "frame": 5,
+          "bounds": [
+            48,
+            39,
+            80,
+            96
+          ],
+          "height": 57,
+          "width": 32,
+          "opaque_area": 925,
+          "upper_body_mean_occupied_width": 20.25,
+          "height_ratio": 1.0178571428571428,
+          "upper_width_ratio": 0.8901098901098901
+        },
+        {
+          "facing": 1,
+          "frame": 8,
+          "bounds": [
+            50,
+            40,
+            79,
+            96
+          ],
+          "height": 56,
+          "width": 29,
+          "opaque_area": 1100,
+          "upper_body_mean_occupied_width": 25.19,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 1.1072527472527474
+        },
+        {
+          "facing": 1,
+          "frame": 0,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 890,
+          "upper_body_mean_occupied_width": 20.44,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8984615384615385
+        },
+        {
+          "facing": 1,
+          "frame": 1,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 874,
+          "upper_body_mean_occupied_width": 20.75,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9120879120879121
+        },
+        {
+          "facing": 1,
+          "frame": 2,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 900,
+          "upper_body_mean_occupied_width": 20.12,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.8843956043956044
+        },
+        {
+          "facing": 1,
+          "frame": 3,
+          "bounds": [
+            48,
+            40,
+            80,
+            96
+          ],
+          "height": 56,
+          "width": 32,
+          "opaque_area": 921,
+          "upper_body_mean_occupied_width": 20.69,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9094505494505495
+        },
+        {
+          "facing": 1,
+          "frame": 4,
+          "bounds": [
+            50,
+            40,
+            77,
+            96
+          ],
+          "height": 56,
+          "width": 27,
+          "opaque_area": 832,
+          "upper_body_mean_occupied_width": 20.81,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9147252747252747
+        },
+        {
+          "facing": 1,
+          "frame": 5,
+          "bounds": [
+            48,
+            40,
+            81,
+            96
+          ],
+          "height": 56,
+          "width": 33,
+          "opaque_area": 925,
+          "upper_body_mean_occupied_width": 21.19,
+          "height_ratio": 1.0,
+          "upper_width_ratio": 0.9314285714285715
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "assets/animations/walk-12/player/CLASS-00-left.png": "c75ffc23e8c02c3a6b053c2d7a39d620c747473198b2dadca0e85cc571c27a4f",
+    "assets/animations/walk-12/player/CLASS-00-right.png": "923449569d4f5503d87b59f648e0ce51cdbd9c17e18150afd8cc532fade50a50",
+    "assets/animations/walk-12/player/CLASS-01-left.png": "91a1f5ba3ee4812da585996018c57c66e83e0115b8dcb3a29d7a48615869cbde",
+    "assets/animations/walk-12/player/CLASS-01-right.png": "b2c3850f52a2af8567c5da719513a4494ed4f5bf8d40c05450d7500644516fdc",
+    "assets/animations/walk-12/player/CLASS-02-left.png": "97ded3b0e016a548d74f71f6ce12078a43af9babe4ba4788ae47ce34a661afeb",
+    "assets/animations/walk-12/player/CLASS-02-right.png": "e1bafae597609491a6ec6d9cb8ced98f875bee723034104b324cd873d51f3ea8",
+    "assets/animations/walk-12/player/CLASS-03-left.png": "1c9aa05e48bd33371ccea181cd4931ffc7f42e841a50b12a83da5e11d7bf6db1",
+    "assets/animations/walk-12/player/CLASS-03-right.png": "af49b8aa555f83b3f6f695338f5124b763ba3c04c61d6e95fd8e89246f8184d6",
+    "assets/animations/walk-12/player/CLASS-04-left.png": "88c432f3d030bbe655000303a8137929c5215f035206c4c29221f9732a80cb9c",
+    "assets/animations/walk-12/player/CLASS-04-right.png": "6c3370a40d350e5bfebfcc66217dfce931b724aaeb160c7725a9f10fd05cc1fa",
+    "assets/animations/walk-12/player/CLASS-05-left.png": "4d571706c5eace94b4d2e8b3ab7f31e1dd86447134572d60f1f354343134cb4d",
+    "assets/animations/walk-12/player/CLASS-05-right.png": "53d495a29a54b7b3083d11d76e6be41a9823306a63200dbe653b0fa3981d2f2a",
+    "assets/animations/walk-12/player/CLASS-06-left.png": "f611cc43af21de4bcfc7f9daa092aa994c3efea3020a9462100949251c0a510f",
+    "assets/animations/walk-12/player/CLASS-06-right.png": "8efe38f7f5574296c1e5e4baff381a25623d2119bcf583bfe9a229a7d849782b",
+    "assets/animations/walk-12/player/CLASS-07-left.png": "070e9ead1316a96486e7772beddf1d74a6a8691755f4df648ba50013011e19c5",
+    "assets/animations/walk-12/player/CLASS-07-right.png": "dfb56662708ab272f8c44338183e3dba15b6c9efe7682bb8abb7707a67cef50c",
+    "assets/animations/walk-12/player/CLASS-08-left.png": "e3d9198aaf47e5f1b6ac988fd168b2330218d73c8135836c9a7386d6f838f8c4",
+    "assets/animations/walk-12/player/CLASS-08-right.png": "c485c83d31cd3c8299202a2d48b3e6d61097a5bf606f76cc74ab08979a655b73",
+    "assets/animations/walk-12/player/CLASS-09-left.png": "4d547b06f0c5e4a413061ef1f11c082d1a6d785619f397eb288f1987df54af5a",
+    "assets/animations/walk-12/player/CLASS-09-right.png": "aa22bdfffa82a8d126ee0579bb10ba793ffccf523ae6d9a312858ca953c868ae",
+    "assets/animations/walk-12/player/CLASS-10-left.png": "f6cefcdbd061b844fe9dade066cf9083afcdb230917d03d386dc7a797730919a",
+    "assets/animations/walk-12/player/CLASS-10-right.png": "bbfbea95fc06ee64f80f988caca52f1da761423f824fb99ab4206212767908b5",
+    "assets/animations/walk-12/player/CLASS-11-left.png": "13f7197e4c64f07e4ab122f0d365f48068754565876785a07167744b50842e9f",
+    "assets/animations/walk-12/player/CLASS-11-right.png": "e65ac0a1bf64d26c77dedc5a9cd812893ae9301205195dca88d978c3bdca57c8",
+    "assets/animations/walk-12/player/CLASS-12-left.png": "75757b2309d7c2ebdedd16718f4ce425d2b026c4010ed3bc241805097417abe7",
+    "assets/animations/walk-12/player/CLASS-12-right.png": "0021ee4d1c22a3d9ab5f6b82a0d1edccc098d42cd15f3558c7b14f2921fe0610",
+    "assets/animations/walk-12/player/CLASS-13-left.png": "2dc98c22cb8990537c4998af67ea6cbd69c8b66d248856cc8fa58cda6c9206cd",
+    "assets/animations/walk-12/player/CLASS-13-right.png": "6bbbc8fec15afaf81d05249303d9165a15d416a1f4c1f081afde2ac3f23e3c04",
+    "assets/animations/walk-12/player/CLASS-14-left.png": "b614f7291e9c4f8be30ca2181df968b5246a776c2510fe864d0ca9ae97aabceb",
+    "assets/animations/walk-12/player/CLASS-14-right.png": "a2aa5985cd77f553c1aa9898d51824d7db8e4e026f58be57e8330790bb736152",
+    "assets/animations/walk-12/player/CLASS-15-left.png": "f823862be499b1b4942d64b9f0a222e98b18c3f5be52c70bc2a8635a7b55797c",
+    "assets/animations/walk-12/player/CLASS-15-right.png": "e071ff4280b00d64f072d42e5a3cb3eae3a716e6aa0d498897951da623dd7511",
+    "assets/animations/walk-12/player/CLASS-16-left.png": "1f9b86467497147f31b34f5d4d88f88b4c23d5f349bb778a08b7236fe5223f46",
+    "assets/animations/walk-12/player/CLASS-16-right.png": "c63f75d81ebdedf15c09c8c2c73eaedc822b2a30bfba1edfdc144487ba094990",
+    "assets/animations/walk-12/player/CLASS-17-left.png": "26f3e6297d2a109501bdffc0c80d8be8bd0193a4ef4990fc6f73131f6a25d363",
+    "assets/animations/walk-12/player/CLASS-17-right.png": "eadae1c75207f624b718f1bbc2d49fd7bfb407d36a0065ac3ce53b7458ec9b1d",
+    "assets/animations/walk-12/player/CLASS-18-left.png": "f31213d84dea43e25bab8774ceb69d7194cb2cf5d23772e300df59cb917a373d",
+    "assets/animations/walk-12/player/CLASS-18-right.png": "1cded9c365233dec74d3b21eaacdade7ce8493c9d7b4d9f27b04c80004d1237d",
+    "assets/animations/walk-12/player/CLASS-19-left.png": "4a2b3e13e59a52e49e9bd578e99245d4da76099a327575e1ce5f7e89b9f85454",
+    "assets/animations/walk-12/player/CLASS-19-right.png": "0e23a77e9355b94e400fd23f8ad4710c78bbd825ff803ccd340bae7af369337a",
+    "assets/animations/walk-12/player/CLASS-20-left.png": "a8a69425898da2b9cbbddbb5b0bbe24c40f780b650365dd4258efc02091f168c",
+    "assets/animations/walk-12/player/CLASS-20-right.png": "9082cdbcc8fbac9da56c0349a2880146a941a26a8f78e1460fd0a5d9e0f04c13",
+    "assets/animations/walk-12/player/CLASS-21-left.png": "fbf4007f0ff9b9eb4888009bcbf3a70cb0eb77c382adf73a8921f78589ad7430",
+    "assets/animations/walk-12/player/CLASS-21-right.png": "b69bb126515cb7194b6f3e3d6e3f5a3e911a889ef8a8e086513a451008ce199e",
+    "assets/animations/walk-12/player/CLASS-22-left.png": "0c7c78841fae68508dda13e5d52af667317a7de17d480968e1c5ca676fe25e3a",
+    "assets/animations/walk-12/player/CLASS-22-right.png": "7fc020458e95b2fe84e4ff5fdaf0b2c9591708446ea815210a4ac70565b0c09b",
+    "assets/animations/walk-12/player/CLASS-23-left.png": "fcc1dfbc17dac3bad7ccbed729ec73a64d97bcfc027e8f07a71010ce1aacfe84",
+    "assets/animations/walk-12/player/CLASS-23-right.png": "699b61b7380450c4fcb4af346430c3027a8966495899f690d50d90f3aa4c3978",
+    "assets/animations/walk-12/player/CLASS-24-left.png": "48b09ba9c1ee77e8e4aab75756aaf7f0d4575ad21001d42661423376fb3393ce",
+    "assets/animations/walk-12/player/CLASS-24-right.png": "d367221dfd95cd20bb64cab9c6e5a1c0eba38d0624b600841b7be0939699e300",
+    "assets/animations/walk-12/player/manifest.json": "4dfdcd7f5be9c098d6b8f9c93ae6d713239518ae81d4a801a3c79c7bbaf89190",
+    "assets/sprites/class-armors-01/base.png": "a892fe61b48545d3ed6dba00a8ab32f261cbae109e992593b026e79a309cd1bc"
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "review_id": "INTERFACE-BLUE-TERMINAL01",
+  "date": "2026-10-26",
+  "status": "integrated_and_checked",
+  "choices": [
+    "Classique bleu",
+    "Terminal PC"
+  ],
+  "legacy_palette_migration": "Four known legacy palettes are discarded; all other settings and the Terminal style are preserved. Retired field is omitted on save; unknown values/fields remain invalid.",
+  "terminal_font": {
+    "upstream": "https://github.com/JetBrains/JetBrainsMono",
+    "commit": "19371302b95d218af43299bce79ddbddd0bc364d",
+    "files": [
+      {
+        "file": "JetBrainsMono-Regular.ttf",
+        "source": "https://raw.githubusercontent.com/JetBrains/JetBrainsMono/19371302b95d218af43299bce79ddbddd0bc364d/fonts/ttf/JetBrainsMono-Regular.ttf",
+        "sha256": "e6fd0d7e91550b3ed2b735d4312474362c4716edc4fc0577a0f61ed782d5aed1",
+        "bytes": 270224
+      },
+      {
+        "file": "JetBrainsMono-Bold.ttf",
+        "source": "https://raw.githubusercontent.com/JetBrains/JetBrainsMono/19371302b95d218af43299bce79ddbddd0bc364d/fonts/ttf/JetBrainsMono-Bold.ttf",
+        "sha256": "d22c4f3821d725eb01210d278d95dfcfcaadc34699a06658d47c8a5cc5830ada",
+        "bytes": 274096
+      },
+      {
+        "file": "OFL.txt",
+        "source": "https://raw.githubusercontent.com/JetBrains/JetBrainsMono/19371302b95d218af43299bce79ddbddd0bc364d/OFL.txt",
+        "sha256": "a76abf002c49097d146e86740a3105a5d00450b1592e820a1109a8c5680cd697",
+        "bytes": 4399
+      },
+      {
+        "file": "AUTHORS.txt",
+        "source": "https://raw.githubusercontent.com/JetBrains/JetBrainsMono/19371302b95d218af43299bce79ddbddd0bc364d/AUTHORS.txt",
+        "sha256": "33f99c94ef0a0909d7584a5d4bde1fb9b1630daa620f5a788c28c43327e79412",
+        "bytes": 350
+      }
+    ]
+  },
+  "targeted_tests_passed": 22,
+  "test_groups": {
+    "graphics_preferences_and_migration": 14,
+    "graphics_menu_and_layout": 5,
+    "inventory_readers_in_both_styles": 1,
+    "text_measurement_and_cache": 2
+  },
+  "full_suite_run": false,
+  "cargo_check_locked_all_targets": "passed",
+  "cargo_fmt_all_check": "passed",
+  "git_diff_check": "passed",
+  "debug_build": "passed",
+  "release_build": "passed",
+  "release_sha256": "75005a1b874a1b7bebc05edb70a1ce22642b94ad5dcf2b0311d4d3c436207541",
+  "native_captures": [
+    {
+      "file": "artifacts/interface-blue-terminal-01/graphics-blue/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "559c5890027d368f25b24a1e70679a7455dca963e44765ff27047b6eabd633f5",
+      "exit_code": 0,
+      "visually_inspected": true,
+      "font_revision": "unchanged classic Atkinson"
+    },
+    {
+      "file": "artifacts/interface-blue-terminal-01/graphics-blue-small/cold-start.png",
+      "pixels": [
+        960,
+        540
+      ],
+      "sha256": "58707a305067cf01a692d4475a23e7d37219b954e5d1e10fccb46c632c0717f9",
+      "exit_code": 0,
+      "visually_inspected": true,
+      "font_revision": "unchanged classic Atkinson"
+    },
+    {
+      "file": "artifacts/interface-blue-terminal-01/main-blue/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "3ae9af16429cf2c578925f42d5bbbb3883b1e1e02cc08b58eb9284676cc2caa6",
+      "exit_code": 0,
+      "visually_inspected": true,
+      "font_revision": "unchanged classic Atkinson"
+    },
+    {
+      "file": "artifacts/interface-blue-terminal-01/terminal-font-menu/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "a3ec125af67e5ab638d7d5242209f2cdbc17a95c0013953cbed9409a3f1c6df7",
+      "exit_code": 0,
+      "visually_inspected": true,
+      "font_revision": "JetBrainsMono"
+    },
+    {
+      "file": "artifacts/interface-blue-terminal-01/terminal-font-small/cold-start.png",
+      "pixels": [
+        960,
+        540
+      ],
+      "sha256": "abeee8273640187a88c0ed7db7a3a96c8ab2be50917a8d90b6ce06f7a76a3e70",
+      "exit_code": 0,
+      "visually_inspected": true,
+      "font_revision": "JetBrainsMono"
+    },
+    {
+      "file": "artifacts/interface-blue-terminal-01/terminal-font-largeui/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "d42142a518d6ad3e6a71a95e163696703f7e91081364a4ea9fdaf3fdd9c618e0",
+      "exit_code": 0,
+      "visually_inspected": true,
+      "font_revision": "JetBrainsMono"
+    },
+    {
+      "file": "artifacts/interface-blue-terminal-01/terminal-font-creation/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "af5337915f6d50ed4f9f80bb6514b4f6ed6d5a3f94205316de93cc647d082c1e",
+      "exit_code": 0,
+      "visually_inspected": true,
+      "font_revision": "JetBrainsMono"
+    },
+    {
+      "file": "artifacts/interface-blue-terminal-01/terminal-font-inventory-live/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "f6db3f042f6b05b7ab6b3c0d2d0ae262c273a6d673a2d14354baf74ee1cf0bcc",
+      "exit_code": 0,
+      "visually_inspected": true,
+      "font_revision": "JetBrainsMono"
+    }
+  ],
+  "known_diagnostic_failure": {
+    "scene": "inventory-terminal",
+    "reason": "Pre-existing generic fixture selects the retired core:breche class.",
+    "replacement": "terminal-inventory-live-terminal succeeded; state_unchanged true; screenshot inspected."
+  },
+  "runtime_inventory": {
+    "valid": true,
+    "files": 1815,
+    "new_font_notices_included": true
+  },
+  "portable_package_rebuilt": false,
+  "personal_preferences_or_saves_written": false
+}

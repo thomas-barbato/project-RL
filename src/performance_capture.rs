@@ -101,7 +101,6 @@ impl AsciiApp {
         app.suspension_path = output.join("diagnostic-run.json");
         app.graphics.active.mode = WindowMode::Windowed;
         app.graphics.active.world_cell_px = 20;
-        app.graphics.active.interface_theme = graphics::InterfaceTheme::Violet;
         request_new_screen_size(1280., 800.);
         for _ in 0..5 {
             next_frame().await;
@@ -495,7 +494,6 @@ impl AsciiApp {
             app.suspension_path = folder.join("diagnostic-run.json");
             app.graphics.active.mode = WindowMode::Windowed;
             app.graphics.active.world_cell_px = 20;
-            app.graphics.active.interface_theme = graphics::InterfaceTheme::Violet;
             app.walk_fixture_out_of_recycling()?;
             app.walk_fixture_to(app.home_position(GridPos::new(65, 21)))?;
             let origin = app.game.player_position().ok_or("Missing player")?;

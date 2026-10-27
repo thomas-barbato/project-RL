@@ -571,11 +571,11 @@ mod tests {
     }
 
     #[test]
-    fn inventory_gauges_keep_resource_colors_and_follow_all_interface_themes() {
+    fn inventory_gauges_keep_resource_colors_in_both_interface_styles() {
         let app = fixture();
         let before = suspension::fingerprint(&app.game);
-        for theme in graphics::InterfaceTheme::ALL {
-            crate::ui_theme::set_interface_theme(theme);
+        for style in graphics::InterfaceStyle::ALL {
+            crate::ui_theme::set_interface_style(style);
             let inventory = app.inventory_resource_gauges();
             let hud = app.resource_gauges();
             for label in ["PV", "Énergie"] {
@@ -598,7 +598,7 @@ mod tests {
             }
             assert_eq!(suspension::fingerprint(&app.game), before);
         }
-        crate::ui_theme::set_interface_theme(graphics::InterfaceTheme::default());
+        crate::ui_theme::set_interface_style(graphics::InterfaceStyle::default());
     }
 
     fn layout(app: &AsciiApp, width: f32, height: f32) -> InventoryLayout {
@@ -845,19 +845,30 @@ mod tests {
 
 impl AsciiApp {
     pub(super) fn inventory_item_lines(&self, instance: ItemInstanceId) -> Vec<String> {
-        let Some(entry) = self.game.player_inventory().get(instance) else {
+        self.inventory_item_lines_for_game(&self.game, instance, true)
+    }
+
+    pub(super) fn inventory_item_lines_for_game(
+        &self,
+        game: &GameState,
+        instance: ItemInstanceId,
+        compare_equipped: bool,
+    ) -> Vec<String> {
+        let Some(entry) = game.player_inventory().get(instance) else {
             return Vec::new();
         };
-        let resolved_weapon = self.game.player_item_weapon(entry.instance());
+        let resolved_weapon = game.player_item_weapon(entry.instance());
         let weapon = resolved_weapon.as_ref();
-        let item_definition = self.game.rules().items.get(entry.item());
+        let item_definition = game.rules().items.get(entry.item());
         let mut lines = Vec::new();
         if let Some(weapon) = weapon {
-            lines.push(self.weapon_category_label(weapon));
+            lines.push(Self::weapon_category_label_for_game(game, weapon));
         }
-        if let Some(label) = self.inventory_equipped_label(instance) {
-            let slot = self
-                .game
+        if let Some(label) = compare_equipped
+            .then(|| self.inventory_equipped_label(instance))
+            .flatten()
+        {
+            let slot = game
                 .player_equipment()
                 .slot_of(instance)
                 .map(ContentId::as_str);
@@ -896,14 +907,12 @@ impl AsciiApp {
         }
         let mut rows = Vec::new();
         if let Some(weapon) = weapon {
-            let attack = self
-                .game
+            let attack = game
                 .player_item_attack_profile(entry.instance())
                 .unwrap_or_else(|| weapon.attack());
             let authored_damage = attack.damage();
-            let damage = self
-                .game
-                .resolved_attack_damage(self.game.player_id(), attack)
+            let damage = game
+                .resolved_attack_damage(game.player_id(), attack)
                 .unwrap_or(authored_damage);
             let damage_label = attack.melee_impact().map_or_else(
                 || damage.raw_total().to_string(),
@@ -1003,10 +1012,9 @@ impl AsciiApp {
                     ),
                 ));
             }
-            if let Some(supply) = self
-                .game
+            if let Some(supply) = game
                 .weapon_supply(weapon.id())
-                .and_then(|_| self.weapon_supply_label(weapon.id()))
+                .and_then(|_| Self::weapon_supply_label_for_game(game, weapon.id()))
             {
                 rows.push(("Coût du tir", supply));
             }
@@ -1070,7 +1078,7 @@ impl AsciiApp {
         if let Some(owner) = entry.owner() {
             rows.push((
                 "Propriété",
-                if self.game.player_may_take_property_of(owner) {
+                if game.player_may_take_property_of(owner) {
                     "Attribué · autorisé"
                 } else {
                     "Attribué · non autorisé"
@@ -1086,14 +1094,14 @@ impl AsciiApp {
             let effect_affix = bonuses
                 .as_ref()
                 .and_then(|b| b.effect_affix())
-                .and_then(|id| self.game.rules().weapons.effect_affix(id));
+                .and_then(|id| game.rules().weapons.effect_affix(id));
             if let Some(description) = self.texts.resolve(
                 DISPLAY_LOCALE,
                 effect_affix.map_or(weapon.description_key(), |effect| effect.description_key()),
             ) {
                 lines.push(description.to_owned());
             }
-            let limits = self.weapon_effect_limits(weapon);
+            let limits = Self::weapon_effect_limits_for_game(game, weapon);
             if !limits.is_empty() {
                 lines.push(limits);
             }
@@ -1102,21 +1110,24 @@ impl AsciiApp {
                 lines.push(description.to_owned());
             }
         }
+        if !compare_equipped {
+            lines.retain(|line| !line.is_empty());
+            return lines;
+        }
         let slot = item_definition
             .and_then(|item| item.equipment())
             .map(|profile| profile.slot())
             .or_else(|| {
                 weapon.and_then(|_| {
-                    self.game
-                        .rules()
+                    game.rules()
                         .player_weapon_slots
                         .get(usize::from(self.active_weapon_slot))
                 })
             });
         if let Some(current) = slot
-            .and_then(|slot| self.game.player_equipment().equipped(slot))
+            .and_then(|slot| game.player_equipment().equipped(slot))
             .filter(|current| *current != instance)
-            .and_then(|current| self.game.player_inventory().get(current))
+            .and_then(|current| game.player_inventory().get(current))
         {
             lines.push(format!(
                 "Actuellement : {}",
@@ -1124,8 +1135,7 @@ impl AsciiApp {
             ));
             if let Some(profile) = item_definition.and_then(|item| item.equipment()) {
                 let new_armor = profile.armor() + bonuses.as_ref().map_or(0, |b| b.armor_bonus());
-                if let Some(current_profile) = self
-                    .game
+                if let Some(current_profile) = game
                     .rules()
                     .items
                     .get(current.item())

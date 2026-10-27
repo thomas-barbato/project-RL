@@ -40,3 +40,22 @@ pattes et formes sans jambes ne reçoivent pas la démarche humaine. Les variant
 de couleur conservent leurs identités et leur emprise. Les petits monstres
 restent centrés verticalement. La banque rejetée WALK04 et les neuf propositions
 de formes/drones WALK08 ne sont pas activées par cet accord.
+
+## Bras et prises — ARM14, 27 octobre 2026
+
+Après comparaison du rendu actuel et du candidat ARM14, le joueur autorise sa
+généralisation à tous les personnages. Les bras stables d'un équipement doivent
+provenir du **même cycle et de la même projection que le corps**. Ne pas plaquer
+des manches ou des gants d'une ancienne pose de repos plus volumineuse sur un
+corps de marche plus fin. La largeur des manches ne se corrige pas en étirant
+leur portée jusqu'à l'arme.
+
+Pour WALK12, choisir une pose compacte complète parmi les six poses de la tenue
+et de la direction, puis garder ses deux bras, ses gants et leurs repères pendant
+le cycle. Les vrais dessins d'armes restent indépendants ; leurs prises suivent
+ces repères. Le petit déplacement du torse translate l'assemblage entier.
+Les six dessins du corps et des jambes restent inchangés. Le retour de face,
+le mouvement vertical et les casques conservent leurs règles acceptées.
+
+Accord et contrôles : `../walk-arm-projection-14/acceptance.json` et
+`../walk-arm-projection-14/integration-validation.json`.

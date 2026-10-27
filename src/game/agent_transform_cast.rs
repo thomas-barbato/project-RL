@@ -241,6 +241,10 @@ impl GameState {
         if self.player_agent_form().is_none() {
             return 0;
         }
+        self.agent_form_damage_bonus_percent()
+    }
+
+    fn agent_form_damage_bonus_percent(&self) -> u16 {
         let rank = self.player_agent_skill_rank("M03");
         self.rules
             .agent_class_start
@@ -254,6 +258,38 @@ impl GameState {
                 0
             })
     }
+    /// Read the same form values as execution, without activating a form or spending a turn.
+    pub fn agent_transformation_parameter_value(
+        &self,
+        id: &str,
+        key: &str,
+        rank: u8,
+    ) -> Option<u16> {
+        if !is_agent_transformation(id) {
+            return None;
+        }
+        if key == "duration_rank_turns" {
+            let definition = agent::definition(id)?;
+            let duration = definition
+                .value("duration_rank_turns", rank)
+                .saturating_add(self.player_effective_primary_attributes().map_or(0, |a| {
+                    (a.value(PrimaryAttribute::Willpower).saturating_sub(5) / 20).min(3)
+                }))
+                .saturating_add(
+                    self.rules
+                        .agent_class_start
+                        .as_ref()
+                        .map_or(0, |s| s.transformation_duration_bonus),
+                );
+            return Some(duration);
+        }
+        let action = FORM_ACTIONS
+            .iter()
+            .find(|action| action.form == id && action.damage == key)?;
+        self.agent_form_action_profile_at_rank(action, rank)
+            .map(|profile| profile.damage_before_defenses())
+    }
+
     pub(super) fn agent_transformation_profile(
         &self,
         id: &str,
@@ -323,19 +359,9 @@ impl GameState {
         self.agent_transformation_preview(id, target)?;
         let rank = self.player_agent_skill_rank(id);
         let p = self.agent_skill_ready(id)?;
-        let s = agent::definition(id).unwrap();
-        let attrs = self.player_effective_primary_attributes();
-        let duration = s
-            .value("duration_rank_turns", rank)
-            .saturating_add(attrs.map_or(0, |a| {
-                (a.value(PrimaryAttribute::Willpower).saturating_sub(5) / 20).min(3)
-            }))
-            .saturating_add(
-                self.rules
-                    .agent_class_start
-                    .as_ref()
-                    .map_or(0, |s| s.transformation_duration_bonus),
-            );
+        let duration = self
+            .agent_transformation_parameter_value(id, "duration_rank_turns", rank)
+            .unwrap();
         let old = self
             .actors
             .get(self.player)
@@ -569,13 +595,21 @@ impl GameState {
             .active
             .as_ref()
             .filter(|f| f.skill == a.form)?;
+        self.agent_form_action_profile_at_rank(&a, f.rank)
+    }
+
+    fn agent_form_action_profile_at_rank(
+        &self,
+        a: &FormAction,
+        rank: u8,
+    ) -> Option<AgentSpellProfile> {
         let s = agent::definition(a.form)?;
         let start = self.rules.agent_class_start.as_ref()?;
         let attrs = self.player_effective_primary_attributes()?;
         let base = if a.damage.is_empty() {
             0
         } else {
-            s.value(a.damage, f.rank)
+            s.value(a.damage, rank)
         };
         let pool = if a.magic {
             u64::from(start.spell_damage_percent)
@@ -584,9 +618,9 @@ impl GameState {
             u64::from(start.melee_damage_percent)
                 + u64::from(attrs.value(PrimaryAttribute::Power).saturating_sub(5))
         };
-        let pool = pool + u64::from(self.agent_transform_bonus_percent());
+        let pool = pool + u64::from(self.agent_form_damage_bonus_percent());
         let coefficient = if a.suffix == "crushing" {
-            s.value("crushing_damage_coefficient_percent", f.rank)
+            s.value("crushing_damage_coefficient_percent", rank)
         } else {
             100
         };
@@ -594,9 +628,9 @@ impl GameState {
             range: if a.area == 4 {
                 0
             } else {
-                s.value(a.range, f.rank)
+                s.value(a.range, rank)
             },
-            energy: s.value(a.energy, f.rank),
+            energy: s.value(a.energy, rank),
             cooldown: 1,
             base_damage: base,
             multiplier_numerator: (u64::from(self.player_progression.level().saturating_sub(1))

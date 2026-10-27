@@ -2,17 +2,22 @@
 use crate::ui_theme::{self, UiTheme};
 use macroquad::prelude::*;
 
-/// Fill the two existing font atlases before the first rendered frame. Preparing
+/// Fill both styles' regular and bold atlases before the first rendered frame. Preparing
 /// labels one at a time during inventory opening otherwise repeatedly uploads
 /// an atlas that is still being used by the world/HUD from the same frame.
 pub(crate) fn prepare_text() {
     const GLYPHS: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ÀÂÄÇÉÈÊËÎÏÔÖÙÛÜàâäçéèêëîïôöùûüœŒ·…%+-/:()[]'’";
-    for size in [12, 13, 14, 15, 20, 22] {
-        let _ = ui_theme::measure_text(GLYPHS, None, size, 1.0);
+    let previous = ui_theme::interface_style();
+    for style in crate::graphics::InterfaceStyle::ALL {
+        ui_theme::set_interface_style(style);
+        for size in [12, 13, 14, 15, 20, 22] {
+            let _ = ui_theme::measure_text(GLYPHS, None, size, 1.0);
+        }
+        for size in [12, 13, 14, 17] {
+            let _ = ui_theme::measure_text_bold(GLYPHS, size);
+        }
     }
-    for size in [12, 13, 14, 17] {
-        let _ = ui_theme::measure_text_bold(GLYPHS, size);
-    }
+    ui_theme::set_interface_style(previous);
 }
 
 pub(crate) fn tint(alpha: f32) -> Color {

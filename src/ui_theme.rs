@@ -12,12 +12,13 @@ use macroquad::prelude::{
 
 static REGULAR_FONT: OnceLock<Font> = OnceLock::new();
 static BOLD_FONT: OnceLock<Font> = OnceLock::new();
+static TERMINAL_REGULAR_FONT: OnceLock<Font> = OnceLock::new();
+static TERMINAL_BOLD_FONT: OnceLock<Font> = OnceLock::new();
 
 thread_local! {
     static TEXT_PANE: std::cell::Cell<Option<(Rect, f32)>> = const { std::cell::Cell::new(None) };
     static HIGH_CONTRAST: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
     static INTERFACE_STYLE: std::cell::Cell<crate::graphics::InterfaceStyle> = const { std::cell::Cell::new(crate::graphics::InterfaceStyle::Metal) };
-    static INTERFACE_THEME: std::cell::Cell<crate::graphics::InterfaceTheme> = const { std::cell::Cell::new(crate::graphics::InterfaceTheme::Violet) };
     static TEXT_MEASUREMENTS: std::cell::RefCell<TextMeasurements> = std::cell::RefCell::new(TextMeasurements::default());
 }
 
@@ -86,9 +87,6 @@ fn measure_builtin(text: &str, bold: bool, size: u16, scale: f32) -> TextDimensi
 pub fn set_high_contrast(enabled: bool) {
     HIGH_CONTRAST.set(enabled);
 }
-pub fn set_interface_theme(theme: crate::graphics::InterfaceTheme) {
-    INTERFACE_THEME.set(theme);
-}
 pub fn set_interface_style(style: crate::graphics::InterfaceStyle) {
     if INTERFACE_STYLE.replace(style) != style {
         TEXT_MEASUREMENTS.with_borrow_mut(|cache| *cache = TextMeasurements::default());
@@ -110,24 +108,31 @@ pub fn text_pane_active() -> bool {
 
 const REGULAR_BYTES: &[u8] = include_bytes!("../assets/fonts/AtkinsonHyperlegible-Regular.ttf");
 const BOLD_BYTES: &[u8] = include_bytes!("../assets/fonts/AtkinsonHyperlegible-Bold.ttf");
+const TERMINAL_REGULAR_BYTES: &[u8] =
+    include_bytes!("../assets/fonts/JetBrainsMono/JetBrainsMono-Regular.ttf");
+const TERMINAL_BOLD_BYTES: &[u8] =
+    include_bytes!("../assets/fonts/JetBrainsMono/JetBrainsMono-Bold.ttf");
 
 /// Must be called once after Macroquad has created its graphics context.
 /// Headless tests intentionally use the built-in fallback instead.
 pub fn initialize_fonts() -> Result<(), String> {
-    if REGULAR_FONT.get().is_none() {
-        let font = load_ttf_font_from_bytes(REGULAR_BYTES).map_err(|error| error.to_string())?;
-        let _ = REGULAR_FONT.set(font);
-    }
-    if BOLD_FONT.get().is_none() {
-        let font = load_ttf_font_from_bytes(BOLD_BYTES).map_err(|error| error.to_string())?;
-        let _ = BOLD_FONT.set(font);
+    for (slot, bytes) in [
+        (&REGULAR_FONT, REGULAR_BYTES),
+        (&BOLD_FONT, BOLD_BYTES),
+        (&TERMINAL_REGULAR_FONT, TERMINAL_REGULAR_BYTES),
+        (&TERMINAL_BOLD_FONT, TERMINAL_BOLD_BYTES),
+    ] {
+        if slot.get().is_none() {
+            let font = load_ttf_font_from_bytes(bytes).map_err(|error| error.to_string())?;
+            let _ = slot.set(font);
+        }
     }
     Ok(())
 }
 
 pub fn regular_font() -> Option<&'static Font> {
     if interface_style() == crate::graphics::InterfaceStyle::Terminal {
-        None
+        TERMINAL_REGULAR_FONT.get()
     } else {
         REGULAR_FONT.get()
     }
@@ -135,7 +140,7 @@ pub fn regular_font() -> Option<&'static Font> {
 
 pub fn bold_font() -> Option<&'static Font> {
     if interface_style() == crate::graphics::InterfaceStyle::Terminal {
-        None
+        TERMINAL_BOLD_FONT.get()
     } else {
         BOLD_FONT.get()
     }
@@ -415,13 +420,7 @@ impl UiTheme {
         if interface_style() == crate::graphics::InterfaceStyle::Terminal {
             return Color::from_rgba(208, 233, 175, 255);
         }
-        use crate::graphics::InterfaceTheme;
-        match INTERFACE_THEME.get() {
-            InterfaceTheme::Blue => Color::from_rgba(54, 185, 255, 255),
-            InterfaceTheme::Violet => Color::from_rgba(151, 128, 255, 255),
-            InterfaceTheme::Green => Color::from_rgba(135, 232, 117, 255),
-            InterfaceTheme::Red => Color::from_rgba(255, 110, 138, 255),
-        }
+        Color::from_rgba(54, 185, 255, 255)
     }
 
     pub fn focus(self) -> Color {
@@ -621,10 +620,6 @@ impl UiTheme {
         enabled: bool,
         tone: ButtonTone,
     ) {
-        let semantic = match tone {
-            ButtonTone::Secondary | ButtonTone::Primary => self.accent(),
-            ButtonTone::Danger => self.danger(),
-        };
         let fill = if !enabled {
             self.surface()
         } else {
@@ -642,17 +637,18 @@ impl UiTheme {
                         self.accent()
                     }
                 }
-                ButtonTone::Danger => Color::new(0.25, 0.085, 0.08, 1.0),
-                ButtonTone::Secondary if focused || active => self.surface_selected(),
-                ButtonTone::Secondary => self.surface_raised(),
+                ButtonTone::Secondary | ButtonTone::Danger if focused || active => {
+                    self.surface_selected()
+                }
+                ButtonTone::Secondary | ButtonTone::Danger => self.surface_raised(),
             }
         };
         let outline = if !enabled {
             subdued(self.muted(), 0.15)
         } else if focused {
             self.text()
-        } else if active || tone != ButtonTone::Secondary {
-            semantic
+        } else if active || tone == ButtonTone::Primary {
+            self.accent()
         } else {
             subdued(self.muted(), 0.15)
         };
@@ -694,6 +690,13 @@ impl UiTheme {
             state.tone,
         );
         let color = button_foreground(self, state.focused, state.active, state.enabled, state.tone);
+        // Keep destructive actions within the common dark button style. Their
+        // icon carries a quiet warning accent; the label stays easy to read.
+        let icon_color = if state.enabled && state.tone == ButtonTone::Danger {
+            Color::from_rgba(224, 163, 145, 255)
+        } else {
+            color
+        };
         let compact = rect.w < 140.0;
         let icon_size = if compact {
             (rect.h - 14.0).clamp(12.0, 15.0)
@@ -730,7 +733,7 @@ impl UiTheme {
                 icon_size,
                 icon_size,
             ),
-            color,
+            icon_color,
         );
         let label_rect = Rect::new(
             rect.x + label_start,
@@ -876,7 +879,7 @@ fn button_foreground(
     } else if tone == ButtonTone::Primary {
         theme.surface()
     } else if tone == ButtonTone::Danger {
-        theme.danger()
+        theme.text()
     } else if focused || active {
         theme.accent()
     } else {

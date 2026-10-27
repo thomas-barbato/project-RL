@@ -1,0 +1,110 @@
+{
+  "review_id": "CREATION-STARTING-CARDS01",
+  "date": "2026-10-26",
+  "status": "integrated_and_checked",
+  "authorization": "User requested starting equipment and skill images, hover statistics/descriptions/effects, polished right-panel layout, and use of the full screen.",
+  "classes": [
+    "core:bastion",
+    "core:traqueur",
+    "core:arcaniste",
+    "core:metamorphe"
+  ],
+  "new_or_repainted_art_assets": 0,
+  "native_icon_px": 64,
+  "layout": "Near full-window height, readable maximum width1560 logical pixels, bounded class sidebar, two columns of cards, vertically balanced content, fixed bottom actions. Native64 art is preserved.",
+  "details": "Actual starting inventory including shared reserve; both starting skills with active/passive type and rank. Item statistics and skill descriptions/current effects/changed next-rank values on hover. Interactive scrollable tooltip retains focus without activating the covered class.",
+  "preview_model": "Cached isolated3x3 GameState with the same class, attributes, seed and current-generation starting rules as creation. Only immutable data is copied out; no current-run mutation.",
+  "runtime_rules_changed": false,
+  "starting_items_or_skills_changed": false,
+  "numeric_reader_fix": "Transformation duration and intrinsic damage include existing attributes/class/passive bonuses by reusing execution calculations. Bleed percentage keeps its percent unit. No balance formula changed.",
+  "unique_targeted_tests_passed": 40,
+  "test_groups": {
+    "creation_preview_data_and_input": 3,
+    "ordinary_inventory_reader_regressions": 6,
+    "ordinary_skill_reader_regressions": 15,
+    "percentage_unit": 1,
+    "starting_profiles_and_saved_games": 5,
+    "creation_keyboard_navigation": 1,
+    "transformation_execution_and_reader": 9
+  },
+  "full_suite_run": false,
+  "repeat_validation": "Creation data/input/layout tests repeated after final full-window layout changes; final typography verified in engine.",
+  "cargo_check_locked_all_targets": "passed",
+  "cargo_fmt_all_check": "passed",
+  "git_diff_check": "passed",
+  "debug_build": "passed",
+  "release_build": "passed",
+  "release_executable": "target/release/project-rl.exe",
+  "release_sha256": "a945ae3a9e9f3f11839b1dba9cd9e30a99b4613e14c5d14a5f6acf6eda508ad0",
+  "native_ui_capture_engine": "fresh Debug executable; isolated fixture; no browser or web mockup",
+  "capture_checks": [
+    {
+      "file": "artifacts/creation-starting-cards-01/release-main/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "text_probes": "passed",
+      "sha256": "29a182845487867f33f0602e50ba333f624df4b56d35f85123b0180e91cc453a"
+    },
+    {
+      "file": "artifacts/creation-starting-cards-01/final-wide/cold-start.png",
+      "pixels": [
+        1920,
+        1061
+      ],
+      "text_probes": "passed",
+      "sha256": "c5fb16a04e6f26c28e232ad6d5998dd953e06fa1305eaa402d0a44c48f091268"
+    },
+    {
+      "file": "artifacts/creation-starting-cards-01/final-small/cold-start.png",
+      "pixels": [
+        960,
+        540
+      ],
+      "text_probes": "passed",
+      "sha256": "415ad4c76dd36d210e669dd80810b117594d91eb7c3dd1812cb0f8c394592b03"
+    },
+    {
+      "file": "artifacts/creation-starting-cards-01/final-skill-card/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "text_probes": "passed",
+      "sha256": "ecd8c37ec620554c808144316cc7fad5875f1be80352e49ae932950e3a49165e"
+    },
+    {
+      "file": "artifacts/creation-starting-cards-01/final-item-card/cold-start.png",
+      "pixels": [
+        960,
+        540
+      ],
+      "text_probes": "passed",
+      "sha256": "425dd560be47a11b5d71889935198073d97ab9e8006617191681569eb77922fa"
+    },
+    {
+      "file": "artifacts/creation-starting-cards-01/final-meta-scroll/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "text_probes": "passed",
+      "sha256": "14d9b69a87d6c5c65088391623cfaa095dd3d75dbb4d7213f6521b950b94fe67"
+    },
+    {
+      "file": "artifacts/creation-starting-cards-01/final-ui150-typography/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "text_probes": "passed",
+      "sha256": "d8cce16b1e0e4a31e16621b8a3aa44c4f1e3b5f7b3b8a883addb9e8e6f0e93af"
+    }
+  ],
+  "reviewed_viewports": "960x540,1280x800,1920x1080;1280x800 at150% interface scaling",
+  "user_save_files_modified": false,
+  "portable_distribution_rebuilt": false,
+  "retired_technomancien_preserved": true,
+  "large_right_character_portrait_restored": false
+}

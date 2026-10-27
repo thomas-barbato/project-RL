@@ -1,0 +1,20 @@
+{
+  "review_id": "ARM14-r01",
+  "date": "2026-10-27",
+  "timezone": "Europe/Paris",
+  "status": "accepted_for_generalization",
+  "user_quote": "ok tu peux le faire pour tous les personnages ? Sait-on jamais :)",
+  "scope": "Generalize and integrate the shown ARM14 arm/hand/weapon attachment method to player characters and all their outfits, preserving compatibility visuals for existing saves.",
+  "approved_method": "Keep one stable arm pose per outfit and walking direction; take it from that outfit's current WALK12 cycle, rather than the larger WALK11 idle. Translate the arms, hands and shared weapons together with the torso.",
+  "reference_review": "REVUE.md",
+  "reference_validation": "validation.json",
+  "preserved": [
+    "accepted complete body and leg drawings",
+    "front view at arrival",
+    "one cell per movement and adjustable default 400 ms",
+    "shared weapon drawings and geometry",
+    "existing helmet attachments",
+    "vertical player presentation and monster morphologies",
+    "retirement of the playable Technomancien"
+  ]
+}

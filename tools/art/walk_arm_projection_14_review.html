@@ -1,0 +1,39 @@
+<!doctype html><html lang="fr"><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARM14 · Bras et prises pendant la marche</title>
+<style>
+:root{color-scheme:dark;font:15px system-ui,sans-serif;background:#0b1118;color:#e7edf5}body{max-width:1120px;margin:36px auto;padding:0 24px}h1{font-size:27px;margin:8px 0}p{color:#adb8c7;line-height:1.6;max-width:940px}.tag{color:#55c3ff;font-size:12px;letter-spacing:1px}.controls{display:flex;flex-wrap:wrap;gap:16px;margin:24px 0}label{display:grid;gap:7px;font-size:13px;color:#adb8c7}select,button{font:inherit;background:#1c2937;color:#e7edf5;padding:9px 14px;border:1px solid #425368;border-radius:6px}button{cursor:pointer;align-self:end}.stage{background:#26333e;border:1px solid #465764;border-radius:8px;padding:12px;overflow:auto}canvas{display:block;margin:auto;image-rendering:pixelated}#state{color:#80d2ff;font-size:14px;min-height:22px}.legend{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:#aebcc9;margin-top:12px}footer{color:#94a5b5;margin:20px 0;font-size:13px;line-height:1.7}.note{border-left:2px solid #55c3ff;padding-left:14px}
+</style>
+<span class="tag">CANDIDAT ARM14-r01 · APERÇU AVANT INTÉGRATION</span>
+<h1>Bras et armes pendant la marche</h1>
+<p>Compare la vue de face, la version actuelle et le candidat. Le candidat reprend les bras du cycle de marche actuel et leurs points d’attache. Le corps, les jambes et les dessins des armes sont conservés.</p>
+<div class="controls">
+<label>Personnage<select id="character"><option value="0">Bastion</option><option value="10">Traqueuse</option><option value="15">Arcaniste</option><option value="20">Métamorphe</option></select></label>
+<label>Tenue<select id="outfit"><option value="0">1 / 5</option><option value="1">2 / 5</option><option value="2">3 / 5</option><option value="3">4 / 5</option><option value="4">5 / 5</option></select></label>
+<label>Équipement<select id="weapon"><option value="axe">Hache 067</option><option value="rifle">Fusil 002</option><option value="dual">Deux armes 068 + 101</option></select></label>
+<label>Affichage<select id="zoom"><option value="1">Taille native · 64 px</option><option value="2" selected>Zoom ×2</option></select></label>
+<label>Durée d’un déplacement<select id="pace"><option value="120">120 ms</option><option value="200">200 ms</option><option value="400" selected>400 ms</option></select></label>
+<label>Lecture<select id="phase"><option value="auto">Marche puis retour de face</option><option value="0">Phase 1</option><option value="1">Phase 2</option><option value="2">Phase 3</option><option value="3">Phase 4</option><option value="4">Phase 5</option><option value="5">Phase 6</option></select></label>
+<button id="pause">Pause</button>
+</div>
+<div id="state" aria-live="polite"></div><div class="stage"><canvas id="view" role="img" aria-label="Comparaison des bras actuels et candidats, marche à gauche puis à droite"></canvas></div>
+<div class="legend"><span>← Ligne du haut : déplacement à gauche</span><span>→ Ligne du bas : déplacement à droite</span><span>La grille indique des cases de 64 pixels.</span></div>
+<p class="note">Chaque déplacement parcourt une seule case, avec trois phases. Le déplacement suivant utilise les trois autres. À l’arrêt, le personnage reprend sa vraie vue de face. La pause de lecture de cet aperçu n’ajoute aucun délai au jeu.</p>
+<footer>20 tenues · quatre classes · trois configurations d’armes · deux directions.<br>Comparaison issue du compositeur Rust. Ce candidat est isolé des parties normales ; aucune ressource acceptée n’est remplacée.</footer>
+<script>
+'use strict';
+const records=/*RENDER_DATA*/[];
+const get=id=>document.getElementById(id), canvas=get('view'), ctx=canvas.getContext('2d');
+const sprites=new Map();let current=null, candidate=null, start=performance.now(), stopped=false, freeze=0, error='';
+const W=488,H=338;
+async function picture(src){if(!sprites.has(src)){const im=new Image();im.src=src;sprites.set(src,im.decode().then(()=>im));}return sprites.get(src);}
+async function select(){const index=+get('character').value + +get('outfit').value;const entry=records.find(r=>r.index===index&&r.loadout===get('weapon').value);if(!entry){error='Cas indisponible';return;}[current,candidate]=await Promise.all([picture(entry.current),picture(entry.candidate)]);start=performance.now();freeze=0;error='';}
+function figure(im,col,x,y){ctx.save();ctx.translate(x,y+128);ctx.scale(1,-1);ctx.drawImage(im,col*128,0,128,128,0,0,128,128);ctx.restore();}
+function draw(now){const zoom=+get('zoom').value;if(canvas.width!==W*zoom){canvas.width=W*zoom;canvas.height=H*zoom;}ctx.setTransform(zoom,0,0,zoom,0,0);ctx.imageSmoothingEnabled=false;ctx.fillStyle='#26333e';ctx.fillRect(0,0,W,H);ctx.font='bold 12px system-ui';ctx.textAlign='center';
+const centers=[92,252,412];['Vue de face','Actuel','Candidat ARM14'].forEach((s,i)=>{ctx.fillStyle=i===2?'#7dd2ff':'#e7edf5';ctx.fillText(s,centers[i],22);});
+if(current&&candidate){const duration=+get('pace').value, elapsed=stopped?freeze:now-start, span=duration+600, move=Math.floor(elapsed/span), local=elapsed%span, manual=get('phase').value!=='auto', moving=manual||local<duration;const f=manual?+get('phase').value:Math.min(2,Math.floor(local/duration*3))+(move%2)*3;const progress=manual?.5:Math.min(1,local/duration);
+[-1,1].forEach((direction,row)=>{const y=48+row*142;ctx.strokeStyle='#425766';ctx.lineWidth=1;for(let i=0;i<3;i++){ctx.strokeRect(centers[i]-64,y+32,64,64);ctx.strokeRect(centers[i],y+32,64,64);}ctx.textAlign='left';ctx.fillStyle='#bbc9d5';ctx.font='12px system-ui';ctx.fillText(direction===-1?'← Gauche':'Droite →',12,y+5);figure(current,0,centers[0]-64,y);const col=moving?1+(direction===1?6:0)+f:0, dx=direction*(progress-.5)*64;figure(current,col,centers[1]-64+dx,y);figure(candidate,col,centers[2]-64+dx,y);});get('state').textContent=manual?`Arrêt sur la phase ${f+1} · bras, mains et armes comparables à la même pose`:(moving?`Déplacement d’une case · phase ${f+1}`:'Arrivée · retour au dessin de face');}else{get('state').textContent=error||'Chargement…';}
+requestAnimationFrame(draw);}
+['character','outfit','weapon'].forEach(id=>get(id).addEventListener('change',()=>select().catch(e=>error=String(e))));get('pace').addEventListener('change',()=>{start=performance.now();freeze=0;});get('pause').onclick=()=>{const now=performance.now();if(!stopped)freeze=now-start;else start=now-freeze;stopped=!stopped;get('pause').textContent=stopped?'Reprendre':'Pause';};select().catch(e=>error=String(e));requestAnimationFrame(draw);
+</script></html>

@@ -19,6 +19,45 @@ fn target(g: &mut GameState, at: GridPos, hp: u16) -> EntityId {
 fn technique(id: &str) -> TechniqueId {
     format!("agent:{id}").parse().unwrap()
 }
+
+#[test]
+fn agent_transform_parameter_reader_matches_execution_with_class_and_passive_bonuses() {
+    for rank in [1, 4, 10] {
+        let mut g = arena("M01");
+        g.player_skills.set_agent_skill_rank("M01", rank);
+        g.player_skills.set_agent_skill_rank("M03", 3);
+        let start = g.rules.agent_class_start.as_mut().unwrap();
+        start.transformation_duration_bonus = 2;
+        start.transformed_damage_percent = 140;
+        let before = format!("{g:?}");
+        let duration = g
+            .agent_transformation_parameter_value("M01", "duration_rank_turns", rank)
+            .unwrap();
+        let claw = g
+            .agent_transformation_parameter_value("M01", "raw_claw_damage", rank)
+            .unwrap();
+        let laceration = g
+            .agent_transformation_parameter_value("M01", "raw_laceration_damage_per_target", rank)
+            .unwrap();
+        assert_eq!(format!("{g:?}"), before);
+        let origin = g.player_position().unwrap();
+        g.cast_agent_transformation("M01", origin, 0).unwrap();
+        assert_eq!(g.player_agent_form_remaining_turns(), duration);
+        assert_eq!(
+            g.agent_form_action_profile(&technique("m01_claw"))
+                .unwrap()
+                .damage_before_defenses(),
+            claw
+        );
+        assert_eq!(
+            g.agent_form_action_profile(&technique("m01_laceration"))
+                .unwrap()
+                .damage_before_defenses(),
+            laceration
+        );
+    }
+}
+
 #[test]
 fn agent_transform_forms_offer_distinct_actions_and_reject_other_skills() {
     for form in ["M01", "TR61", "TR63", "TR64", "TR65"] {

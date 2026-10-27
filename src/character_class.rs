@@ -38,6 +38,7 @@ pub struct CharacterClassDefinition {
     name_key: String,
     role_key: String,
     description_key: String,
+    available_at_creation: bool,
     recommended_attributes: PrimaryAttributes,
     starting_weapons: Vec<WeaponId>,
     starting_items: Vec<ClassStartingItem>,
@@ -114,6 +115,7 @@ impl CharacterClassDefinition {
             name_key,
             role_key,
             description_key,
+            available_at_creation: true,
             recommended_attributes,
             starting_weapons,
             starting_items,
@@ -124,6 +126,16 @@ impl CharacterClassDefinition {
 
     pub const fn id(&self) -> &CharacterClassId {
         &self.id
+    }
+
+    /// Retired starts remain resolvable by ID for saved campaigns and tools.
+    pub fn with_creation_availability(mut self, available: bool) -> Self {
+        self.available_at_creation = available;
+        self
+    }
+
+    pub const fn available_at_creation(&self) -> bool {
+        self.available_at_creation
     }
     pub fn with_agent_start(mut self, start: crate::agent_class::AgentClassStart) -> Self {
         self.agent_start = Some(start);
@@ -321,20 +333,26 @@ impl CharacterClassCatalog {
         self.definitions.get(id)
     }
 
+    /// Starting profiles offered for new characters. Use `get` to resolve a
+    /// historical class without changing a saved campaign's rules or identity.
     pub fn iter(&self) -> impl Iterator<Item = (&CharacterClassId, &CharacterClassDefinition)> {
-        const ORDER: [&str; 5] = [
+        const ORDER: [&str; 4] = [
             "core:bastion",
-            "core:technomancien",
             "core:traqueur",
             "core:arcaniste",
             "core:metamorphe",
         ];
-        let agents = self.definitions.values().any(|d| d.agent_start.is_some());
+        let agents = self
+            .definitions
+            .values()
+            .any(|d| d.available_at_creation && d.agent_start.is_some());
         let mut definitions: Vec<_> = self
             .definitions
             .iter()
-            .filter(|(id, _)| {
-                !agents || !matches!(id.as_str(), "core:breche" | "core:vigie" | "core:creuset")
+            .filter(|(id, definition)| {
+                definition.available_at_creation
+                    && (!agents
+                        || !matches!(id.as_str(), "core:breche" | "core:vigie" | "core:creuset"))
             })
             .collect();
         definitions.sort_by_key(|(id, _)| {

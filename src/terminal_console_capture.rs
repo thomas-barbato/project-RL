@@ -9,7 +9,6 @@ impl AsciiApp {
 
     pub(super) fn draw_idle_integration_review(&self, phase: f64, reduced: bool) {
         clear_background(Color::from_rgba(16, 23, 29, 255));
-        crate::ui_theme::set_interface_theme(self.graphics.active.interface_theme);
         let time = (!reduced).then_some(phase);
         draw_text_bold(
             "RESPIRATION INTÉGRÉE / RENDU DU JEU",

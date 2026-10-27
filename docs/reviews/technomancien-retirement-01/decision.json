@@ -1,0 +1,23 @@
+{
+  "decision_id": "TECHNOMANCIEN-RETIREMENT01",
+  "date": "2026-10-26",
+  "user_request": "je pense qu'on va supprimer le technomancien.",
+  "clarification": "Supprimer la classe jouable",
+  "scope": "Remove Technomancien from new-character class selection, keeping exact historical definitions for existing saves.",
+  "remaining_playable_classes": [
+    "core:bastion",
+    "core:traqueur",
+    "core:arcaniste",
+    "core:metamorphe"
+  ],
+  "retired_class_id": "core:technomancien",
+  "historical_definition_preserved": true,
+  "existing_saves_converted_or_deleted": false,
+  "shared_skills_removed": false,
+  "other_class_art_ids_renumbered": false,
+  "C13_technomancien_art": "withdrawn_without_visual_approval_or_integration",
+  "C13_bastion_art": "still_pending_visual_review",
+  "additional_user_request": "quand on selectionne un personnage à la création de partie on devrait supprimer l'affichage du personnage en gros sur la droite",
+  "creation_ui": "Remove only the large right-side portrait, keep native64 list thumbnails and class information; description uses the freed width.",
+  "validation": "passed_for_workspace; see validation.json"
+}

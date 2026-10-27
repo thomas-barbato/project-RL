@@ -1,0 +1,65 @@
+{
+  "decision_id": "TECHNOMANCIEN-RETIREMENT01",
+  "date": "2026-10-26",
+  "status": "passed_for_workspace",
+  "targeted_tests_passed": 18,
+  "targeted_tests_failed": 0,
+  "test_groups": {
+    "agent_class_starts": 1,
+    "class_start_tests_including_retired_technomancien_resume": 5,
+    "new_game_protocol_navigation": 1,
+    "common_agent_skill_catalogue": 1,
+    "normal_campaign_four_starts": 1,
+    "cryogenic_all_protocols": 1,
+    "agent_resume_compatibility": 5,
+    "character_class_definition": 2,
+    "core_content_loader": 1
+  },
+  "format_check": "cargo fmt --all -- --check: passed",
+  "locked_check": "cargo check --locked --all-targets: passed",
+  "diff_check": "git diff --check: passed",
+  "debug_build": "cargo build --locked --bin project-rl: passed",
+  "release_build": "cargo build --locked --release --bin project-rl: passed",
+  "release_sha256": "f750a0f2625958410910fa406b019c31c859a1e7938269743e6f14f5a42306d5",
+  "historical_technomancien_definition_other_fields_equal_HEAD": true,
+  "old_save_compatibility": "cache and cross-build replay; class, game fingerprint, visual, skills D59/O03 and action bar preserved",
+  "no_user_save_modified": true,
+  "source_art_removed": false,
+  "shared_skills_removed": false,
+  "remaining_new_game_classes": [
+    "core:bastion",
+    "core:traqueur",
+    "core:arcaniste",
+    "core:metamorphe"
+  ],
+  "final_render_checks": [
+    {
+      "path": "artifacts/technomancien-retirement-01/creation-final/cold-start.png",
+      "size": [
+        1280,
+        800
+      ],
+      "text_probes": "passed",
+      "visually_checked": "four classes; no large right portrait; native list thumbnails and full class information retained",
+      "sha256": "780b50ac0746e97794fa41602df91275fd2c90d0de37ff23131653256f29ce7c"
+    },
+    {
+      "path": "artifacts/technomancien-retirement-01/creation-small-final/cold-start.png",
+      "size": [
+        960,
+        540
+      ],
+      "text_probes": "passed",
+      "visually_checked": "four classes; no large right portrait; native list thumbnails and full class information retained",
+      "sha256": "009a1273bfe9122f3de98cd8bab951782e162d9980886fe06e43aa304624d2a7"
+    }
+  ],
+  "render_only_followup": "Final portrait removal verified by fresh Debug/Release builds and both cold-UI captures; gameplay regression tests concern the class-removal change.",
+  "packaged_data_verification": {
+    "command": "target/release/project-rl.exe --verify-assets",
+    "exit": 1,
+    "scope": "Requires a packaged data manifest; development workspace has no manifest, by design. Not used as a runtime-art or packaging success claim."
+  },
+  "portable_distribution_rebuilt": false,
+  "capture_cleanup": "Deletion of the first generated capture was blocked by automatic review. It was preserved; final captures use new dedicated subfolders."
+}

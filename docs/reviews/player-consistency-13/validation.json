@@ -1,0 +1,50 @@
+{
+  "review_id": "PLAYER-CONSISTENCY13-r02",
+  "date": "2026-10-26",
+  "status": "ready_for_visual_review",
+  "visual_approval": "pending",
+  "runtime_integrated": false,
+  "audited_classes": 5,
+  "audited_outfits": 25,
+  "audited_accepted_walk_poses": 350,
+  "proposed_technomancien_outfits": 5,
+  "proposed_bastion_outfits": [
+    3,
+    4,
+    5
+  ],
+  "new_whole_figures": 101,
+  "new_fronts": 5,
+  "new_walking_poses": 96,
+  "source_sheet_decomposition": "all eight cycles yield twelve complete figures without component warnings; clipped final Tech05 figure replaced by complete drawn repair",
+  "native_geometry": "one isotropic scale per walking cycle; frontal drawings normalized separately to the reference height",
+  "movement_ms_per_cell": 400,
+  "preview_rest_ms": 300,
+  "current_runtime_asset_hashes_verified": 52,
+  "changed_current_runtime_assets": [],
+  "release_rebuilt_by_this_task": false,
+  "current_release_sha256_observed": "1d9a9743f8550580bf5ea97d2aa20c0d90a24157d1786c1c60b16114865fc72d",
+  "equipment_on_candidate_bodies": "not reviewed; current body review is unarmed; real weapon and helmet composites required before runtime integration",
+  "actual_game_window_executed": false,
+  "generation_tool": "built-in image_gen",
+  "prompts": [
+    "generation.json",
+    "bastion-generation.json",
+    "tech05-frame11-repair.json",
+    "generation-r02.json"
+  ],
+  "outputs": [
+    "Technomancien-C13-r02-directions-native64.gif",
+    "Technomancien-C13-r02-face-01-avant-apres.png",
+    "Technomancien-C13-r02-toutes-phases-native64.png",
+    "Technomancien-C13-r02-toutes-phases-zoom2.png",
+    "Bastion-blindages-face-marche-native64.gif",
+    "Bastion-blindages-avant-apres-native64.png"
+  ],
+  "runtime_or_saved_game_rules_changed_by_this_task": false,
+  "outfit1_revision": "whole frontal figure and twelve whole walking figures redrawn fuller; no bitmap stretch or grafted parts",
+  "direction_review": "direction-review-r02.json",
+  "reported_C13_facing_inversion_reproduced": false,
+  "direction_check": "all60 native heads have amber front marker on correct facing side; entire head/chest/boots visually inspected; upper source row/columns1..6 left, lower row/columns7..12 right",
+  "direction_animation": "22 frames; simultaneous left/right journeys, two one-cell steps each; each step64px/400ms; front rest300ms"
+}

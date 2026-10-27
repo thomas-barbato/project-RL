@@ -16,7 +16,7 @@ fn street_geometry(seed: u64) -> AsciiApp {
 fn normal_character_creation_enables_validated_outfits_city_and_sewer_without_trial_mode() {
     assert!(!crate::street_population::enabled());
     assert!(crate::terminal_fire::enabled());
-    for selected in 0..5 {
+    for selected in 0..ascii_character_class_catalog().unwrap().iter().count() {
         let mut app = current(1872);
         app.crash_recovery_enabled = false;
         app.suspension_path = std::env::temp_dir().join(format!(
@@ -53,7 +53,7 @@ fn normal_character_creation_enables_validated_outfits_city_and_sewer_without_tr
         );
         assert_eq!(
             app.ux.skill_bar[0].as_deref(),
-            Some(["B01", "D59", "T01", "FE01", "M01"][selected])
+            Some(["B01", "T01", "FE01", "M01"][selected])
         );
         let exit = pos(camp::scene().exits[0]);
         app.walk_fixture_to_unchecked(exit).unwrap();

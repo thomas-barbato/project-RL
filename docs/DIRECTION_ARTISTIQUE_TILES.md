@@ -4684,3 +4684,17 @@ Les ressources exactes, l'accord, la règle et les contrôles sont dans
 `docs/reviews/player-walk-12/acceptance.json`, `REGLE-MARCHE-12.md` et
 `integration-validation.json`. Les sources antérieures, les cartes de l'éditeur
 et les propositions de formes/drones non validées restent conservées.
+
+### ARM14 — proportions des bras en marche, 27 octobre 2026
+
+Le joueur signale que les bras équipés restent trop volumineux pendant la
+marche. La comparaison ARM14 montre qu'ils provenaient du repos WALK11 tandis
+que le corps employait WALK12. Après cet aperçu, le joueur autorise la
+généralisation à tous les personnages. Les bras, les gants et leurs repères
+doivent venir du même cycle de marche et de la même projection que le corps.
+Une pose compacte est conservée pendant les six phases ; la translation du
+torse emporte ensemble les bras, les mains et les armes communes. Aucun dessin
+de jambe, de torse ou d'arme n'est remplacé. Les 25 tenues techniques gardent
+leurs identités, y compris celles nécessaires aux anciennes sauvegardes.
+Le repos frontal, les casques et les vitesses acceptées restent conservés.
+Accord, références et contrôles : `reviews/walk-arm-projection-14/`.

@@ -29,14 +29,18 @@ impl AsciiApp {
         &self,
         weapon: &project_rl::weapon::WeaponDefinition,
     ) -> String {
+        Self::weapon_category_label_for_game(&self.game, weapon)
+    }
+
+    pub(super) fn weapon_category_label_for_game(
+        game: &GameState,
+        weapon: &project_rl::weapon::WeaponDefinition,
+    ) -> String {
         let delivery = match weapon.attack().delivery() {
             AttackDelivery::Melee => "Mêlée",
             AttackDelivery::Ranged => "Tir",
         };
-        format!(
-            "{delivery} · {}",
-            self.game.rules().weapon_hands(weapon).label()
-        )
+        format!("{delivery} · {}", game.rules().weapon_hands(weapon).label())
     }
     pub(super) fn preferred_starting_weapon_slot(&self) -> u8 {
         self.game

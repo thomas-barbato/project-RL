@@ -63,7 +63,7 @@ mod tests {
     use semver::Version;
 
     #[test]
-    fn five_agent_starts_have_fixed_attributes_no_armor_and_full_resources() {
+    fn four_available_agent_starts_have_fixed_attributes_no_armor_and_full_resources() {
         let loaded = ContentLoader::load(
             &[std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("content")],
             &Version::new(0, 1, 0),
@@ -71,7 +71,6 @@ mod tests {
         .unwrap();
         let expected = [
             ("bastion", 45, 27), // 41 base HP plus its learned B03 rank-1 passive.
-            ("technomancien", 30, 38),
             ("traqueur", 30, 30),
             ("arcaniste", 30, 36),
             ("metamorphe", 34, 32),

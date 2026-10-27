@@ -94,7 +94,7 @@ fn value_label(key: &str, value: f64) -> String {
     if key == "detection_range_multiplier" {
         return format!("{} cases", (8.0 * value).ceil().max(1.0) as u32);
     }
-    if key.ends_with("_percent") || key.ends_with("_points") {
+    if key.ends_with("_percent") || key.ends_with("_points") || key.contains("_percent_of_") {
         let number = if value.fract().abs() < 0.001 {
             format!("{value:.0}")
         } else {
@@ -979,6 +979,7 @@ impl AsciiApp {
         self.ux.skill_scroll.finish(pane, y + 12.0);
     }
 
+    #[cfg(test)]
     fn agent_parameter_value(
         &self,
         skill: &Skill,
@@ -986,16 +987,29 @@ impl AsciiApp {
         parameter: &serde_json::Value,
         rank: u8,
     ) -> f64 {
-        if let Some(value) = self.game.agent_device_parameter_value(&skill.id, key, rank) {
+        Self::agent_parameter_value_for_game(&self.game, skill, key, parameter, rank)
+    }
+
+    fn agent_parameter_value_for_game(
+        game: &GameState,
+        skill: &Skill,
+        key: &str,
+        parameter: &serde_json::Value,
+        rank: u8,
+    ) -> f64 {
+        if let Some(value) = game.agent_transformation_parameter_value(&skill.id, key, rank) {
+            return f64::from(value);
+        }
+        if let Some(value) = game.agent_device_parameter_value(&skill.id, key, rank) {
             return f64::from(value);
         }
         if skill.id == "DR01" && key == "raw_robot_heal_HP" {
-            return f64::from(self.game.agent_drone_repair_amount(rank));
+            return f64::from(game.agent_drone_repair_amount(rank));
         }
         if skill.id == "HY07" && key == "raw_fire_explosion_damage" {
-            return f64::from(self.game.agent_drone_self_destruct_damage(rank));
+            return f64::from(game.agent_drone_self_destruct_damage(rank));
         }
-        if let Some(profile) = self.game.agent_spell_profile(&skill.id, rank) {
+        if let Some(profile) = game.agent_spell_profile(&skill.id, rank) {
             match key {
                 "raw_occult_damage"
                 | "raw_fire_damage"
@@ -1004,8 +1018,7 @@ impl AsciiApp {
                     return f64::from(profile.damage_before_defenses());
                 }
                 "raw_burn_damage_per_turn" => {
-                    if let Some((power, _, _)) = self.game.agent_spell_burn_profile(&skill.id, rank)
-                    {
+                    if let Some((power, _, _)) = game.agent_spell_burn_profile(&skill.id, rank) {
                         return (f64::from(power.base_damage) * power.numerator as f64
                             / power.denominator.max(1) as f64)
                             .floor();
@@ -1021,14 +1034,14 @@ impl AsciiApp {
                 skill.id.as_str(),
                 "B01" | "D56" | "D57" | "D58" | "D59" | "D66" | "DR01" | "HY04" | "HY07"
             )
-            && let Some(start) = &self.game.rules().agent_class_start
+            && let Some(start) = &game.rules().agent_class_start
         {
             return (value * f64::from(start.human_skill_energy_percent) / 100.)
                 .ceil()
                 .clamp(1., 65535.);
         }
         if parameter["current_level_binding"].as_str().is_some() {
-            value * (1. + f64::from(self.game.player_progression().level().saturating_sub(1)) / 10.)
+            value * (1. + f64::from(game.player_progression().level().saturating_sub(1)) / 10.)
         } else {
             value
         }
@@ -1044,96 +1057,148 @@ impl AsciiApp {
         width: f32,
         heading: &str,
     ) -> f32 {
-        let hidden = [
-            "positive_payable_cost_floor",
-            "application_power_rank_base",
-            "minimum_detection_cells",
-        ];
-        let values: Vec<_> = skill
-            .parameters
-            .iter()
-            .filter(|(key, p)| {
-                !key.contains("cooldown")
-                    && p["historical_only"] != true
-                    && !(skill.id == "SM00"
-                        && self.game.player_agent_mine_variant()
-                            != project_rl::game::AgentMineVariant::Fire
-                        && key.as_str() == "raw_fire_explosion_damage")
-                    && !(skill.id == "SG00"
-                        && self.game.player_agent_grenade_variant()
-                            != project_rl::game::AgentGrenadeVariant::Explosive
-                        && key.as_str() == "raw_physical_explosion_damage")
-                    && !(skill.id == "SG00"
-                        && self.game.player_agent_grenade_variant()
-                            == project_rl::game::AgentGrenadeVariant::Decoy
-                        && key.as_str() == "radius_cells")
-                    && !hidden.contains(&key.as_str())
-                    && previous.is_none_or(|old| {
-                        (self.agent_parameter_value(skill, key, p, old)
-                            - self.agent_parameter_value(skill, key, p, rank))
-                        .abs()
-                            > 0.00001
-                    })
-            })
-            .collect();
-        if values.is_empty() {
+        let lines = parameter_lines(&self.game, skill, rank, previous);
+        if lines.is_empty() {
             return y;
         }
         draw_text_bold(heading, x, y, 15.0, UiTheme.text());
         y += 24.0;
-        for (key, p) in values {
-            let value = self.agent_parameter_value(skill, key, p, rank);
-            let label = if p["selection"] == "up_to_maximum" {
-                "Déplacement maximum"
-            } else {
-                p["display_label"]
-                    .as_str()
-                    .unwrap_or(&catalogue().labels[key])
-            };
-            if skill.id == "SG00" && key == "radius_cells" {
-                let side = (value.floor() as u32).saturating_mul(2).saturating_add(1);
-                y = draw_wrapped_text(
-                    &format!("Carré de {side} × {side} cases"),
-                    x,
-                    y,
-                    width,
-                    4,
-                    14,
-                    UiTheme.text(),
-                ) + 7.0;
-                continue;
-            }
-            if let Some(binding) = &skill.centred_damage
-                && binding.damage_key == *key
-            {
-                let centre = value.floor().clamp(0.0, f64::from(u16::MAX)) as u16;
-                // The farthest occupied cell of every supported shape is at 50%.
-                // Preserve all existing caster/equipment modifiers above this stage.
-                for text in [
-                    format!("{label} au centre : {centre}"),
-                    format!("{label} en bordure : {}", centre / 2),
-                ] {
-                    y = draw_wrapped_text(&text, x, y, width, 4, 14, UiTheme.text()) + 7.0;
-                }
-                continue;
-            }
-            y = draw_wrapped_text(
-                &format!("{label} : {}", value_label(key, value)),
-                x,
-                y,
-                width,
-                4,
-                14,
-                UiTheme.text(),
-            ) + 7.0;
+        for line in lines {
+            y = draw_wrapped_text(&line, x, y, width, 4, 14, UiTheme.text()) + 7.0;
         }
         y
     }
 }
 
+fn parameter_lines(game: &GameState, skill: &Skill, rank: u8, previous: Option<u8>) -> Vec<String> {
+    let hidden = [
+        "positive_payable_cost_floor",
+        "application_power_rank_base",
+        "minimum_detection_cells",
+    ];
+    let values: Vec<_> = skill
+        .parameters
+        .iter()
+        .filter(|(key, p)| {
+            !key.contains("cooldown")
+                && p["historical_only"] != true
+                && !(skill.id == "SM00"
+                    && game.player_agent_mine_variant() != project_rl::game::AgentMineVariant::Fire
+                    && key.as_str() == "raw_fire_explosion_damage")
+                && !(skill.id == "SG00"
+                    && game.player_agent_grenade_variant()
+                        != project_rl::game::AgentGrenadeVariant::Explosive
+                    && key.as_str() == "raw_physical_explosion_damage")
+                && !(skill.id == "SG00"
+                    && game.player_agent_grenade_variant()
+                        == project_rl::game::AgentGrenadeVariant::Decoy
+                    && key.as_str() == "radius_cells")
+                && !hidden.contains(&key.as_str())
+                && previous.is_none_or(|old| {
+                    (AsciiApp::agent_parameter_value_for_game(game, skill, key, p, old)
+                        - AsciiApp::agent_parameter_value_for_game(game, skill, key, p, rank))
+                    .abs()
+                        > 0.00001
+                })
+        })
+        .collect();
+    let mut lines = Vec::new();
+    for (key, p) in values {
+        let value = AsciiApp::agent_parameter_value_for_game(game, skill, key, p, rank);
+        let label = if p["selection"] == "up_to_maximum" {
+            "Déplacement maximum"
+        } else {
+            p["display_label"]
+                .as_str()
+                .unwrap_or(&catalogue().labels[key])
+        };
+        if skill.id == "SG00" && key == "radius_cells" {
+            let side = (value.floor() as u32).saturating_mul(2).saturating_add(1);
+            lines.push(format!("Carré de {side} × {side} cases"));
+        } else if let Some(binding) = &skill.centred_damage
+            && binding.damage_key == *key
+        {
+            let centre = value.floor().clamp(0.0, f64::from(u16::MAX)) as u16;
+            lines.push(format!("{label} au centre : {centre}"));
+            lines.push(format!("{label} en bordure : {}", centre / 2));
+        } else {
+            lines.push(format!("{label} : {}", value_label(key, value)));
+        }
+    }
+    lines
+}
+
+#[derive(Clone, Debug)]
+pub(super) struct StartingSkillCard {
+    pub id: String,
+    pub title: String,
+    pub kind: &'static str,
+    pub rank: u8,
+    pub lines: Vec<String>,
+}
+
+pub(super) fn starting_skill_card(game: &GameState, id: &str) -> Option<StartingSkillCard> {
+    let skill = catalogue().skills.iter().find(|s| s.id == id)?;
+    let rank = game.player_agent_skill_rank(id);
+    if rank == 0 {
+        return None;
+    }
+    let mut lines = vec![skill.roleplay.clone()];
+    lines.extend(skill.common_rules.iter().cloned());
+    if skill.kind == "active" {
+        match skill.branch.as_str() {
+            "Mêlée" => lines.push("Arme de mêlée en main requise.".into()),
+            "Attaques à distance" | "Armes lourdes" => {
+                lines.push("Arme à distance en main requise.".into())
+            }
+            _ => {}
+        }
+    }
+    let current = parameter_lines(game, skill, rank, None);
+    if !current.is_empty() {
+        lines.push("Effet".into());
+        lines.extend(current);
+    }
+    let learned = game.player_skills().agent_skill_rank(id);
+    if learned < skill.learned_cap {
+        let next_rank = learned
+            .saturating_add(1)
+            .max(game.player_agent_equipment_skill_rank(id))
+            .max(1);
+        let next = parameter_lines(game, skill, next_rank, Some(rank));
+        if !next.is_empty() {
+            lines.push("Prochain rang".into());
+            lines.extend(next);
+        }
+    } else {
+        lines.push("Plafond atteint".into());
+    }
+    Some(StartingSkillCard {
+        id: id.into(),
+        title: skill.title.clone(),
+        kind: if skill.kind == "active" {
+            "Actif"
+        } else {
+            "Passif"
+        },
+        rank,
+        lines,
+    })
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn percentage_of_damage_keeps_its_unit_in_skill_cards() {
+        assert_eq!(
+            value_label("bleed_percent_of_actual_hit_per_turn", 10.),
+            "10 %"
+        );
+        assert_eq!(value_label("bleed_duration_turns", 3.), "3 tours");
+        assert_eq!(value_label("raw_claw_damage", 12.), "12");
+    }
 
     #[test]
     fn icon_press_and_release_are_free_and_one_button_press_buys_only_one_rank() {

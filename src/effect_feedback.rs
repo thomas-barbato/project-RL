@@ -331,6 +331,13 @@ impl AsciiApp {
 
     /// Essential limits belong beside the description, not in its prose.
     pub(super) fn weapon_effect_limits(&self, weapon: &WeaponDefinition) -> String {
+        Self::weapon_effect_limits_for_game(&self.game, weapon)
+    }
+
+    pub(super) fn weapon_effect_limits_for_game(
+        game: &GameState,
+        weapon: &WeaponDefinition,
+    ) -> String {
         weapon
             .effects()
             .iter()
@@ -341,7 +348,7 @@ impl AsciiApp {
                     "Soin : {maximum_per_attack} PV maximum par attaque"
                 )),
                 WeaponEffectKind::ApplyBearerStatus(status) => {
-                    let definition = self.game.rules().statuses.get(status.status())?;
+                    let definition = game.rules().statuses.get(status.status())?;
                     definition
                         .modifiers()
                         .iter()
