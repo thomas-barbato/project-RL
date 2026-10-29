@@ -1,0 +1,122 @@
+{
+  "review": "SOL-CONT01-r01",
+  "exterior_integrated": true,
+  "no_gameplay_change": true,
+  "native_engine_proof": [
+    {
+      "scene": "street-arrival",
+      "native_world_crop_matches_accepted_r01": true,
+      "crop": [
+        341,
+        133,
+        981,
+        581
+      ],
+      "source_reference": "assets/source-art/floor-continuous-01/accepted-r01/references/street-arrival-after.png",
+      "normal_game_mode": true
+    },
+    {
+      "scene": "street-plaza",
+      "native_world_crop_matches_accepted_r01": true,
+      "crop": [
+        341,
+        133,
+        981,
+        581
+      ],
+      "source_reference": "assets/source-art/floor-continuous-01/accepted-r01/references/street-plaza-after.png",
+      "normal_game_mode": true
+    },
+    {
+      "scene": "street-north",
+      "native_world_crop_matches_accepted_r01": true,
+      "crop": [
+        341,
+        133,
+        981,
+        581
+      ],
+      "source_reference": "assets/source-art/floor-continuous-01/accepted-r01/references/street-north-after.png",
+      "normal_game_mode": true
+    }
+  ],
+  "runtime_checks": [
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "street-arrival",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 0
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "street-plaza",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 0
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "street-north",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 0
+    }
+  ],
+  "release_sha256": "fbd3a40a0465fc0925b5453d42d9140f0a24d7f45427c58874d9e0ef28481370",
+  "package": {
+    "verify_assets_exit_code": 0,
+    "statistics": {
+      "logical_input_files": 1819,
+      "original_data_bytes": 113341164,
+      "deduplicated_bytes": 2167802,
+      "lossless_compression_saved_bytes": 1459252,
+      "unpacked_data_bytes": 109714110,
+      "packaged_data_bytes": 103163089
+    },
+    "archive": {
+      "path": "data.rlpak",
+      "format": "zip",
+      "bytes": 103163089,
+      "sha256": "143e9a8bd6ce194ab9d8814c4d31799d7065c40b77bf07536b5be05565edd694"
+    },
+    "executable": {
+      "path": "project-rl.exe",
+      "bytes": 59787264,
+      "sha256": "fbd3a40a0465fc0925b5453d42d9140f0a24d7f45427c58874d9e0ef28481370"
+    },
+    "native_smoke": {
+      "atmospheres": 7,
+      "content_and_menu": true,
+      "dialogue_audio_loaded": true,
+      "files": 1764,
+      "packed": true,
+      "pngs_decoded_and_uploaded": 1369,
+      "root": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\floor-continuous-review-01\\package-check",
+      "shared_animation_texture": true,
+      "status": "passed"
+    },
+    "loose_assets_directory_present": false,
+    "loose_content_directory_present": false,
+    "temporary_package_removed_after_verification": true,
+    "existing_dist_modified": false
+  }
+}

@@ -25,8 +25,8 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def compose(paving=None, grass=(), *, warehouse=None, asphalt=None, repair_join=False, omit_modules=(), paving_overrides=None, omit_decor=()):
-    original = Image.open(ROOT / 'assets/maps/prison-street-01/street.png').convert('RGBA')
+def compose(paving=None, grass=(), *, warehouse=None, asphalt=None, repair_join=False, omit_modules=(), paving_overrides=None, omit_decor=(), arrival_override=None):
+    original = Image.open(ROOT / 'assets/maps/prison-street-01/street.png').convert('RGBA') if arrival_override is None else arrival_override.copy()
     ground, _ = unified.ground(original, paving, asphalt, paving_overrides)
     image = Image.new('RGBA', (1664, 4224), (0, 0, 0, 255))
     image.paste(ground.crop((64, 64, 1632, 4064)), (64, 64))

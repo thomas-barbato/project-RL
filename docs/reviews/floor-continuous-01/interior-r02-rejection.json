@@ -1,0 +1,31 @@
+{
+  "review": "SOL-CONT01-r02",
+  "candidate_number": 3,
+  "status": "rejected",
+  "date": "2026-10-28",
+  "user_statement": "bon je suis pas fan de la grille, désolé.",
+  "decision": "Abandonner le caillebotis ; garder le béton continu accepté et réparer les pieds de décor et les restes de damier.",
+  "material_source_sha256": "49d9d948954c90891972cb3720af0a8bcffb4716cce50e73d6f15819d0434182",
+  "removed": [
+    {
+      "path": "assets/source-art/floor-continuous-01/interior-r02",
+      "files": 3,
+      "bytes": 3415426
+    },
+    {
+      "path": "artifacts/floor-continuous-review-01/interior-r02",
+      "files": 27,
+      "bytes": 22129245
+    },
+    {
+      "path": "tools/art/build_camp_floor_review_02.py",
+      "files": 1,
+      "bytes": 4439
+    },
+    {
+      "path": "docs/reviews/floor-continuous-01/interior-r02-conditioning.json",
+      "files": 1,
+      "bytes": 1294
+    }
+  ]
+}

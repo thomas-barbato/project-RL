@@ -1,0 +1,58 @@
+{
+  "review": "SOL-FUT01-r03",
+  "candidate_number": 7,
+  "status": "accepted_and_integrated",
+  "date": "2026-10-28",
+  "user_statement": "euh oui :) ca me va bien :)",
+  "scope": "Exact wear finish 07 accepted and integrated into existing circulation. Rooms 05, mesh geometry 06, lighting and gameplay preserved.",
+  "assets": [
+    {
+      "path": "assets/maps/cryogenic-camp-01/floor.png",
+      "before_sha256": "ae0097dd95a8cb370828f6ac9888dac35d048328165988d57e806e0ee8413802",
+      "after_sha256": "594f9373eae1b3cb516092ccf3856f6ed3a65276c85d04bf0401f9bb6e97911e"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/structure.png",
+      "before_sha256": "6548be8bc47a466af93ec2998d85b09993a37b75484b8a48e14c296b75a92eb7",
+      "after_sha256": "c37647e39063a8a1f2394c7f48c6863e1513e35633cc316a37d21f59020118b3"
+    }
+  ],
+  "references": [
+    {
+      "path": "assets/source-art/floor-future-01/accepted-07/references/camp-arrival-after.png",
+      "sha256": "4898135da0c2b914527d7e951cd293dbfce43385bb2ac4af9e65418cffa7573b"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-07/references/camp-corridor-after.png",
+      "sha256": "257496e8cbe3f1e3be3d4242e333eed0f3b2d07e06addb2f6c0d44f64ce274d7"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-07/references/camp-storage-after.png",
+      "sha256": "0aca156474a179fe210051c1b805bad28f409a7a334a09ad6ba11474220465da"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-07/references/camp-security-after.png",
+      "sha256": "903c0e01801324a3edde0a2db7d2eaab0588a3176a0897fe1899f4c796229379"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-07/references/camp-medical-after.png",
+      "sha256": "dd54f2a93c75fac22ca8bdb02d672d0da0f842762f3ad67348b5b1fa52a8b457"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-07/references/camp-workshop-after.png",
+      "sha256": "a36dd9289d6e105e6a17b1c0d9527d705f2a4f562310f89e940bf86c3287f7b5"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-07/references/camp-doorway-after.png",
+      "sha256": "28d996a6bda7a452688b5ecbffec83ecfaa8dada01a7956b30b5c9f28e65347b"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-07/references/camp-threshold-after.png",
+      "sha256": "832df674ea66240737609ed3f0028ff47039f3d7a38b5b95d79836205b889aaa"
+    }
+  ],
+  "no_gameplay_change": true,
+  "utf8_metadata_preserved": true,
+  "image_generation_mode": "built-in imagegen, previously reviewed; no new generation at integration",
+  "prompt": "PROMPT-USURE07.md"
+}

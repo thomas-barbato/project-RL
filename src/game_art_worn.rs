@@ -271,6 +271,7 @@ fn draw_key(rect: Rect, key: Key, side: u16, opacity: f32, idle_time: Option<f64
     CACHE.with(|cache| {
         let mut cache = cache.borrow_mut();
         if !cache.contains_key(&cache_key) {
+            let _loading = project_rl::loading_profile::Span::caller("prepare_player_sprite", 0);
             let image = SOURCES
                 .with(|source| compose_pose_at_resolution(source, key, cache_key.1, resolution));
             let sheet = portrait::Sheet::from_image(&image, image.width);

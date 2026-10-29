@@ -120,7 +120,7 @@ mod spectral;
 pub(crate) mod walking;
 
 fn texture(bytes: &[u8], filter: FilterMode) -> Texture2D {
-    let texture = Texture2D::from_file_with_format(bytes, Some(ImageFormat::Png));
+    let texture = crate::asset_loading::texture(bytes, Some(ImageFormat::Png));
     texture.set_filter(filter);
     texture
 }

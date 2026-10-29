@@ -165,7 +165,7 @@ pub(super) fn draw(game: &WorldState, camera: &GridCamera, known: impl Fn(GridPo
     MASK.with(|slot| {
         let mut slot = slot.borrow_mut();
         let material = slot.get_or_insert_with(|| {
-            crate::world_readability::material(
+            crate::world_readability::mask_material(
                 ShaderSource::Glsl {
                     vertex: VERTEX,
                     fragment: FRAGMENT,

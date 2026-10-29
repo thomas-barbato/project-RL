@@ -1,0 +1,91 @@
+{
+  "review": "SOL-FUT01-r01",
+  "status": "integrated",
+  "assets": [
+    {
+      "path": "assets/maps/cryogenic-camp-01/floor.png",
+      "before_sha256": "ccfeb28cbdad5ceb2083ce9a41ff44d7d5d62ad395b2df76d6b4b9d806bb72f7",
+      "after_sha256": "ce84b82bd2eed07400d324fe568df8976016c1585e844954a0eb55c254202bae"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/structure.png",
+      "before_sha256": "1aaa53acde69204dff95f72592d1b932a33e83ca8af4752932a85d0236c6e597",
+      "after_sha256": "dfc45d1d0748144636444709451be31443b5df6256659336c1a2a699c1b5ca2c"
+    }
+  ],
+  "eight_native_production_views_match_approved_05": [
+    {
+      "scene": "camp-arrival",
+      "production_05_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-corridor",
+      "production_05_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-storage",
+      "production_05_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-security",
+      "production_05_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-medical",
+      "production_05_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-workshop",
+      "production_05_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-doorway",
+      "production_05_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-threshold",
+      "production_05_matches_accepted_pixels": true
+    }
+  ],
+  "camp_config_except_visual_references_unchanged": true,
+  "utf8_labels_preserved": true,
+  "release_sha256": "bc10ef383b9af421bf9c8fb79ccc904bfc2610c605e35ec7744ac9a74290e28f",
+  "packaged_05_runtime": {
+    "verified_at": "2026-10-28T11:28:32.029216+00:00",
+    "verify_assets_exit_code": 0,
+    "native_smoke": {
+      "atmospheres": 7,
+      "content_and_menu": true,
+      "dialogue_audio_loaded": true,
+      "files": 1764,
+      "packed": true,
+      "pngs_decoded_and_uploaded": 1369,
+      "root": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\floor-continuous-review-01\\corridor-grate-06\\package-check",
+      "shared_animation_texture": true,
+      "status": "passed"
+    },
+    "archive": {
+      "path": "data.rlpak",
+      "format": "zip",
+      "bytes": 103477186,
+      "sha256": "7686858dc376a444e3f472ed2f0ab6068086f55797c9bf4c5fe28a84a65b1077"
+    },
+    "statistics": {
+      "logical_input_files": 1819,
+      "original_data_bytes": 113752732,
+      "deduplicated_bytes": 2167802,
+      "lossless_compression_saved_bytes": 1559159,
+      "unpacked_data_bytes": 110025771,
+      "packaged_data_bytes": 103477186
+    },
+    "executable": {
+      "path": "project-rl.exe",
+      "bytes": 59787264,
+      "sha256": "bc10ef383b9af421bf9c8fb79ccc904bfc2610c605e35ec7744ac9a74290e28f"
+    },
+    "no_loose_assets_or_content": true,
+    "unapproved_06_and_source_art_excluded": true,
+    "existing_dist_modified": false,
+    "temporary_installation_removed_after_verification": true
+  }
+}

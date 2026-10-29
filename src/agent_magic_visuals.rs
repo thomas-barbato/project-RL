@@ -165,7 +165,7 @@ gl_FragColor=vec4(colour.rgb,colour.a*visibility);}"#},MaterialParams{uniforms:v
             if self.masks.len() == 16 {
                 self.masks.remove(0);
             }
-            let texture = Texture2D::from_image(&mask);
+            let texture = crate::asset_loading::from_image(&mask);
             texture.set_filter(FilterMode::Nearest);
             self.masks.push((key, texture));
             self.masks.len() - 1

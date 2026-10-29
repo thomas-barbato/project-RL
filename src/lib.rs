@@ -24,6 +24,7 @@ pub mod game;
 pub mod intrusion;
 pub mod item;
 pub mod localization;
+pub mod loading_profile;
 pub mod loot;
 pub mod monster_art;
 pub mod monster_modifiers;

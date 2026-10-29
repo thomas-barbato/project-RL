@@ -180,7 +180,7 @@ pub fn on_floor(
             for p in &cells {
                 image.set_pixel((p.x - min_x) as u32, (p.y - min_y) as u32, WHITE);
             }
-            let texture = Texture2D::from_image(&image);
+            let texture = crate::asset_loading::from_image(&image);
             texture.set_filter(FilterMode::Nearest);
             if art.masks.len() >= 16 {
                 art.masks.remove(0);

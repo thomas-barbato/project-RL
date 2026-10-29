@@ -15,6 +15,9 @@ struct ArmorRig {
     corrected_arms: bool,
 }
 include!("game_art_class_armor_catalog.rs");
+#[cfg(any(debug_assertions, test))]
+#[path = "game_art_dual_review17.rs"]
+mod dual_review17;
 #[path = "game_art_walk_rig.rs"]
 mod walk_rig;
 
@@ -294,6 +297,19 @@ pub(super) fn render_layers(key: Key) -> Option<Vec<Image>> {
 }
 
 pub(super) fn layers(key: Key) -> Option<Vec<Image>> {
+    #[cfg(any(debug_assertions, test))]
+    if crate::game_art::walking::dual17_enabled()
+        && key.1.iter().all(|held| {
+            held.is_some_and(|held| {
+                matches!(
+                    weapon_hold(held.model),
+                    WeaponHold::Side | WeaponHold::Raised
+                )
+            })
+        })
+    {
+        return dual_review17::front(key);
+    }
     if !supports(key) {
         return None;
     }

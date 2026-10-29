@@ -139,6 +139,9 @@ mod familiar_window;
 #[path = "inventory_terminal.rs"]
 mod inventory_terminal;
 #[cfg(debug_assertions)]
+#[path = "loading_capture.rs"]
+mod loading_capture;
+#[cfg(debug_assertions)]
 #[path = "performance_capture.rs"]
 mod performance_capture;
 #[path = "recovery_worker.rs"]
@@ -349,7 +352,8 @@ const CLASS_BASE_APPEARANCE_GENERATION_VERSION: u8 =
     COSMETIC_STARTING_OUTFITS_GENERATION_VERSION + 1;
 const LEATHER_APRON_RETIREMENT_GENERATION_VERSION: u8 =
     CLASS_BASE_APPEARANCE_GENERATION_VERSION + 1;
-const CURRENT_GENERATION_VERSION: u8 = LEATHER_APRON_RETIREMENT_GENERATION_VERSION;
+const CONNECTED_SEWER_GENERATION_VERSION: u8 = LEATHER_APRON_RETIREMENT_GENERATION_VERSION + 1;
+const CURRENT_GENERATION_VERSION: u8 = CONNECTED_SEWER_GENERATION_VERSION;
 
 #[cfg(any(test, debug_assertions))]
 #[path = "combat_fixes_review.rs"]
@@ -473,6 +477,9 @@ pub(crate) mod first_layer_landscapes;
 #[cfg(test)]
 #[path = "first_layer_plan_tests.rs"]
 mod first_layer_plan_tests;
+#[cfg(debug_assertions)]
+#[path = "floor_surface_capture.rs"]
+mod floor_surface_capture;
 #[cfg(test)]
 #[path = "gameplay_review_tests.rs"]
 mod gameplay_review_tests;
@@ -518,6 +525,9 @@ mod tactical_reading_proposal;
 #[cfg(debug_assertions)]
 #[path = "terminal_console_capture.rs"]
 mod terminal_console_capture;
+#[cfg(debug_assertions)]
+#[path = "visual_polish_capture.rs"]
+mod visual_polish_capture;
 #[cfg(debug_assertions)]
 #[path = "walk_capture.rs"]
 mod walk_capture;
@@ -12584,7 +12594,11 @@ impl AsciiApp {
             }
             if self.generation_version >= SEWER_GENERATION_VERSION {
                 crate::sewer::prepare_street(&mut generated.map)?;
-                let connection = crate::sewer::connection(self.seed, generated.info.depth);
+                let connection = if self.generation_version >= CONNECTED_SEWER_GENERATION_VERSION {
+                    crate::sewer::connected_connection(self.seed, generated.info.depth)
+                } else {
+                    crate::sewer::connection(self.seed, generated.info.depth)
+                };
                 self.game.materialize_passage_destination_with_connections(
                     *target,
                     generated,

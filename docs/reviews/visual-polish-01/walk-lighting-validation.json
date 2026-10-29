@@ -1,0 +1,81 @@
+{
+  "review": "POLISH01-WALK-LIGHT01",
+  "status": "fixed_and_checked",
+  "date": "2026-10-27",
+  "cause": "CampNpc zero-breath world poses inherited scenery material; breathing poses used the actor material.",
+  "correction": "All CampNpc world poses bind the actor material; UI portraits retain their existing rendering.",
+  "source_art_changed": false,
+  "gameplay_or_save_format_changed": false,
+  "baseline": {
+    "checked_states": 576,
+    "wrong_material_states": 120,
+    "affected_actors": [
+      "CampNpc(1)",
+      "CampNpc(2)",
+      "CampNpc(3)",
+      "CampNpc(4)"
+    ],
+    "checks": "artifacts/visual-polish-review-01/walk-lighting-fix/before/checks.json",
+    "checks_sha256": "3ad4c6f39e42debb4b3401aab03a41a9d410e452b209737d211c517d26339d4f"
+  },
+  "fixed": {
+    "checked_states": 576,
+    "actors": 18,
+    "lighting_contexts": 2,
+    "presentation_states": 16,
+    "failures": 0,
+    "aligned_breathing_pixel_checks": 8,
+    "aligned_breathing_different_pixels": 0.0,
+    "checks": "artifacts/visual-polish-review-01/walk-lighting-fix/after/checks.json",
+    "checks_sha256": "3b2382dda1be6cc611b70a92dca371e2dcc9ae155e3ff0e4ac7d55b8d1603451"
+  },
+  "player_checked": [
+    "bastion",
+    "traqueur",
+    "arcaniste",
+    "metamorphe"
+  ],
+  "player_material_switch_reproduced": false,
+  "saved_campaign_access": false,
+  "settings_written": false,
+  "native_cell": 64,
+  "map_regression": {
+    "scenarios": 17,
+    "state_changes": 0,
+    "ui_pixels_changed_outside_pointer": 0,
+    "black_pixels_changed_above_one_lsb": 0,
+    "checks": "artifacts/visual-polish-review-01/integration/checks.json",
+    "checks_sha256": "ab214a86bf3ac04362c0c1b2e6682b760c1153ffe37973b4cbe11441e49aa583"
+  },
+  "tests": {
+    "camp_npc_review": 2,
+    "combat_visuals": 16,
+    "failed": 0,
+    "full_suite_run": false
+  },
+  "debug_build": "passed",
+  "all_targets_locked_check": "passed",
+  "format_check": "passed",
+  "git_diff_check": "passed",
+  "release_build": "passed",
+  "release_path": "target/release/project-rl.exe",
+  "release_sha256": "9606fb875786c0a6e38e824446edb4256c1be33c93255601dc135ef77f26e58c",
+  "release_bytes": 59696128,
+  "release_last_write_utc": "2026-10-27T22:29:17.9298960Z",
+  "launcher": "Jouer.cmd",
+  "portable_package_rebuilt": false,
+  "accepted_visual_hashes_unchanged": true,
+  "visually_inspected": [
+    "before/CAMP-2-lit.png",
+    "before/bastion-lit.png",
+    "after/CAMP-2-lit.png",
+    "after/CAMP-4-lit.png",
+    "after/traqueur-lit.png"
+  ],
+  "source_sha256": {
+    "src/cryogenic_camp_render.rs": "3c22c893a9e3b622f7b6426984d1e29cb78bdeba9231d2ea89e9be6ebba92568",
+    "src/world_readability.rs": "341720151fa8a95eb9da4867a9ab74848c9685323dc3c3f22a2592d06c8c7f26",
+    "src/walk_lighting_capture.rs": "cb7778d1680a5e5cbd2f33668af21fbcba4c60da69a7ea7caf0f1bd0335f9c0b",
+    "src/main.rs": "4e2a5167f77a027360cf201cee53f3cea548c3bb6f8484a9c05ed93ee935f6a1"
+  }
+}

@@ -96,6 +96,8 @@ impl ContentLoader {
         source: Arc<crate::data_paths::DataSource>,
         game_version: &Version,
     ) -> Result<LoadedContent, ContentLoadError> {
+        let _loading =
+            crate::loading_profile::Span::new("content_catalog_load", "content and mods", 0);
         if !source.is_packed() {
             return Self::load(
                 &[source.root().join("content"), source.root().join("mods")],
@@ -3799,6 +3801,8 @@ fn ensure_path_inside_package(path: &Path, package_root: &Path) -> Result<(), Co
 }
 
 fn read_limited_utf8(path: &Path, maximum_bytes: u64) -> Result<String, ContentLoadError> {
+    #[cfg(debug_assertions)]
+    let _loading = crate::loading_profile::Span::new("read_resource", &path.to_string_lossy(), 0);
     let metadata = path.metadata().map_err(|error| ContentLoadError::Io {
         path: path.to_path_buf(),
         explanation: error.to_string(),

@@ -7,16 +7,36 @@ use macroquad::prelude::*;
 use project_rl::world::GridPos;
 use std::cell::RefCell;
 thread_local! {
+    #[cfg(debug_assertions)]
     static WATER:RefCell<Option<(Texture2D,Material)>>=const {RefCell::new(None)};
     static RATS:RefCell<Option<Texture2D>>=const {RefCell::new(None)};
 }
 pub fn water(camera: &GridCamera, plan: &Plan, time: f32) {
+    #[cfg(debug_assertions)]
+    if crate::sewer_water_review::active() {
+        let time = crate::sewer_water_review::time(time);
+        if crate::sewer_water_review::enabled() {
+            crate::sewer_water_review::water(camera, plan, time);
+        } else {
+            legacy_water(camera, plan, time);
+        }
+        return;
+    }
+    let base = (1..=3)
+        .map(crate::sewer::plan)
+        .find(|base| base.seed == plan.seed)
+        .unwrap_or(plan);
+    crate::sewer_water::draw(camera, base, plan, time);
+}
+
+#[cfg(debug_assertions)]
+fn legacy_water(camera: &GridCamera, plan: &Plan, time: f32) {
     WATER.with(|bank| {
         let mut bank = bank.borrow_mut();
         let (texture, material) = bank.get_or_insert_with(|| {
             let bytes =
                 project_rl::data_paths::read("assets/maps/prison-sewer-01/water.png").unwrap();
-            let t = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
+            let t = crate::asset_loading::texture(&bytes, Some(ImageFormat::Png));
             t.set_filter(FilterMode::Nearest);
             let material = crate::world_readability::material(
                 ShaderSource::Glsl {
@@ -35,7 +55,7 @@ pub fn water(camera: &GridCamera, plan: &Plan, time: f32) {
             (t, material)
         });
         material.set_uniform("Clock", time);
-        crate::world_readability::use_material(material);
+        crate::world_readability::use_surface_material(material, Some(texture.size()));
         for (y, row) in plan.layout.iter().enumerate() {
             for (x, c) in row.bytes().enumerate() {
                 if c != b'~' {
@@ -69,7 +89,7 @@ pub fn rats(camera: &GridCamera, plan: &Plan, time: f32) {
         let texture = bank.get_or_insert_with(|| {
             let bytes =
                 project_rl::data_paths::read("assets/maps/prison-sewer-01/rats.png").unwrap();
-            let t = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
+            let t = crate::asset_loading::texture(&bytes, Some(ImageFormat::Png));
             t.set_filter(FilterMode::Nearest);
             t
         });
@@ -145,10 +165,12 @@ fn rat_pose(rat: &RatRoute, time: f32) -> Option<([f32; 2], f32, bool)> {
     }
     None
 }
+#[cfg(debug_assertions)]
 const VERTEX: &str = r#"#version 100
 attribute vec3 position;attribute vec2 texcoord;attribute vec4 color0;
 uniform mat4 Model;uniform mat4 Projection;varying highp vec2 uv;
 void main(){gl_Position=Projection*Model*vec4(position,1.0);uv=texcoord;}"#;
+#[cfg(debug_assertions)]
 const FRAGMENT: &str = r#"#version 100
 precision highp float;varying highp vec2 uv;uniform sampler2D Texture;uniform float Clock;
 void main(){vec2 p=uv+vec2(sin(uv.y*35.0+Clock*0.8)*0.0015,Clock*0.003);

@@ -1,0 +1,187 @@
+{
+  "review": "SOL-CONT01-r03",
+  "candidate_number": 4,
+  "status": "awaiting_visual_approval",
+  "material": "accepted continuous concrete only; grating 03 rejected",
+  "source_floor": {
+    "path": "assets/maps/cryogenic-camp-01/floor.png",
+    "sha256": "ccfeb28cbdad5ceb2083ce9a41ff44d7d5d62ad395b2df76d6b4b9d806bb72f7"
+  },
+  "source_structure": {
+    "path": "assets/maps/cryogenic-camp-01/structure.png",
+    "sha256": "1aaa53acde69204dff95f72592d1b932a33e83ca8af4752932a85d0236c6e597"
+  },
+  "protected_source_pixels_changed": 0,
+  "outside_ground_mask_pixels_changed": 0,
+  "source_layer_alpha_unchanged": true,
+  "light_housing_rectangles": [
+    [
+      1081,
+      96,
+      1169,
+      111
+    ],
+    [
+      1091,
+      111,
+      1159,
+      135
+    ],
+    [
+      1906,
+      96,
+      1994,
+      111
+    ],
+    [
+      1916,
+      111,
+      1984,
+      135
+    ],
+    [
+      193,
+      263,
+      274,
+      278
+    ],
+    [
+      203,
+      278,
+      264,
+      303
+    ],
+    [
+      204,
+      750,
+      264,
+      789
+    ],
+    [
+      10,
+      481,
+      25,
+      565
+    ],
+    [
+      25,
+      493,
+      47,
+      553
+    ],
+    [
+      477,
+      457,
+      543,
+      472
+    ],
+    [
+      487,
+      472,
+      533,
+      494
+    ],
+    [
+      742,
+      409,
+      819,
+      424
+    ],
+    [
+      752,
+      424,
+      809,
+      447
+    ],
+    [
+      1496,
+      409,
+      1575,
+      424
+    ],
+    [
+      1506,
+      424,
+      1565,
+      447
+    ],
+    [
+      2252,
+      409,
+      2330,
+      424
+    ],
+    [
+      2262,
+      424,
+      2320,
+      447
+    ],
+    [
+      664,
+      464,
+      724,
+      479
+    ],
+    [
+      674,
+      479,
+      714,
+      501
+    ],
+    [
+      2348,
+      463,
+      2408,
+      478
+    ],
+    [
+      2358,
+      478,
+      2398,
+      501
+    ],
+    [
+      1162,
+      724,
+      1234,
+      739
+    ],
+    [
+      1172,
+      739,
+      1224,
+      762
+    ],
+    [
+      1992,
+      724,
+      2066,
+      739
+    ],
+    [
+      2002,
+      739,
+      2056,
+      762
+    ]
+  ],
+  "light_housing_pixels_changed": 0,
+  "hardware_regions_preserved": 758,
+  "largest_hardware_region": 2864,
+  "ground_pixels_in_floor_layer": 785254,
+  "ground_pixels_in_structure_layer": 40614,
+  "outputs": [
+    {
+      "candidate": "assets/source-art/floor-continuous-01/interior-r03/floor.png",
+      "sha256": "1080005c549c4a4d8b49c9096ef4eeee353a4518af77679dc8a3a287d951f97f",
+      "alpha_unchanged": true
+    },
+    {
+      "candidate": "assets/source-art/floor-continuous-01/interior-r03/structure.png",
+      "sha256": "aa624fab92f01f899918852b21b6b7fa39d3cefc5fe14c58341555d7b68027ad",
+      "alpha_unchanged": true
+    }
+  ],
+  "no_gameplay_change": true
+}

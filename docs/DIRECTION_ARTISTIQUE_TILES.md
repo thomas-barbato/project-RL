@@ -1,5 +1,61 @@
 # Définition du contenu visuel de Project RL
 
+## Règle commune de dessin — VIS-COH01-RULE01
+
+Pour toute création ou reprise de carte, décor ou personnage, appliquer la
+[règle de cohérence visuelle](STYLE_VISUEL_REFERENCE.md), consignée le
+29 octobre 2026. Les cartes et les acteurs partagent les mêmes références
+de projection, d'échelle native64 et de finition. Un personnage conserve son
+identité et son équipement entre ses poses ; ses prises, couches et lumières
+restent cohérentes dans le moteur. Contrôler les éléments ensemble à taille
+native et suivre la procédure de validation avant intégration. Les accords
+particuliers et leurs limites restent consignés dans les sections suivantes.
+
+### DUAL15-r01 — ambidextrie en marche, accord du 28 octobre 2026
+
+Après le comparatif natif, le joueur valide le port à deux armes par
+« oui ca me semble bien mieux :) ». Les deux assemblages bras / main / arme
+ont un léger balancement opposé ; les pistolets s'orientent ensemble avec
+leur gant au poignet. Le bras éloigné passe derrière le torse et le proche
+devant. Les corps, jambes, armures et dessins communs d'armes restent ceux
+de WALK12 / ARM14. Les poses et transformations montrées sont conservées,
+avec le retour frontal et la cadence existants. Les prises à une arme, les
+armes à deux mains et les déplacements verticaux gardent leur rendu.
+Accord, références natives et contrôles : `reviews/dual-walk-15/`.
+
+Le signalement de bras / arme doublés et de textures parasites reste ouvert.
+L'essai technique DUAL16 a été retiré après le retour du joueur : le doublon
+restait visible et une texture marron supplémentaire était signalée. Les tests
+de prise ne constituent pas une validation visuelle. L'accord DUAL15 initial
+reste conservé ; les nouveaux essais doivent être comparés avant intégration.
+Historique : `reviews/dual-walk-15/texture-investigation-16.json`.
+
+### EG-EAU01 / EG-CAN02 — accord du 28 octobre 2026
+
+Le joueur valide les trois réseaux de canaux montrés, avec l'eau lente et les
+grilles franchissables. Il exige aussi que le décor ne puisse coincer ni le
+joueur ni les monstres. Chaque nouveau plan doit garder un réseau d'eau unique,
+continu sous les grilles, et toutes ses cases praticables reliées à l'escalier.
+Les emplacements de personnages et les traversées sont contrôlés avant de
+publier la carte. La génération 167 utilise les nouveaux tracés ; les anciens
+identifiants de zone conservent leur géométrie lors des reprises de sauvegarde.
+Le rendu réemploie les dessins et l'éclairage existants à taille native64.
+Accord et contrôles : `reviews/sewer-water-01/`.
+
+### POLISH01-02 — finition intégrée à tous les types de cartes, 27 octobre 2026
+
+Après le comparatif natif, le joueur autorise l'intégration de la version 02
+avec les éclats d'impact, puis demande son adaptation à toutes les cartes.
+L01 (surfaces/lumières), A01 (présence des acteurs) et FX01 (contact de B01)
+sont acceptés ensemble. Le rendu passe par les matériaux communs, en conservant
+les dessins, teintes sources, poses, couches d'équipement et cases de 64 px.
+Les fonds générés déjà sombres et les acteurs sans passe d'éclairage gardent
+leurs détails et leur exposition. L'interface, les effets colorés et les masques
+de perception conservent leurs passes distinctes. Le nouvel accent de contact
+ne traverse pas les murs et disparaît en mouvement réduit. Aucune règle de
+combat ou de sauvegarde n'est modifiée. Les dessins d'armure restent un chantier
+distinct de cette finition. Accord et contrôles : `reviews/visual-polish-01/`.
+
 Version 1 — 5 octobre 2026.
 
 ### WEAPON-READABILITY03 — six dessins intégrés le 22 octobre 2026

@@ -1,0 +1,60 @@
+{
+  "review": "SOL-CONT01-r01",
+  "status": "candidate_not_integrated",
+  "native_cell": 64,
+  "generated_material": "material-source.png",
+  "conditioning": "512px native material, mirrored atlas without seams; broad original source illumination retained; original geometry and alpha unchanged",
+  "gameplay_layout_or_collision_changed": false,
+  "records": [
+    {
+      "source": "assets/maps/cryogenic-camp-01/floor.png",
+      "source_sha256": "ccfeb28cbdad5ceb2083ce9a41ff44d7d5d62ad395b2df76d6b4b9d806bb72f7",
+      "candidate": "assets/source-art/floor-continuous-01/camp-floor.png",
+      "candidate_sha256": "3cd6a9e0a4f6e5b5fb6de393042e1ae6635190ef006d98f50e97ed8e371e860b",
+      "size": [
+        2432,
+        1152
+      ],
+      "outside_mask_changed": false,
+      "alpha_unchanged": true
+    },
+    {
+      "source": "assets/maps/prison-street-01/street.png",
+      "source_sha256": "1dd45907310699da19977f8e86ebaa79f374dcc8df1086b6d5a456e30562346a",
+      "candidate": "assets/source-art/floor-continuous-01/arrival-source.png",
+      "candidate_sha256": "e983225d59de3cf89550cf78616d0f86a4329795f60c3ad1373cf2febeaab0b0",
+      "size": [
+        1536,
+        1024
+      ],
+      "outside_mask_changed": false,
+      "alpha_unchanged": true
+    },
+    {
+      "source": "assets/maps/prison-street-expanded-01/street.png",
+      "source_sha256": "d87bc87c6e7f59ef3af6808f7abe56ef54a491f69e883446771c9b98b6e4af22",
+      "candidate": "assets/source-art/floor-continuous-01/street-0.png",
+      "candidate_sha256": "9d148ec217b112f3f276b324c72e86d18cb80ca0515fd4a2968002cef062f62a",
+      "size": [
+        1664,
+        4224
+      ],
+      "whole_source_modules_preserved": true,
+      "baseline_recomposition_byte_identical": true,
+      "sewer_entry_patch_preserved": true
+    },
+    {
+      "source": "assets/maps/prison-sewer-01/art/background-afe7b21dff4c.png",
+      "source_sha256": "afe7b21dff4c187d77ac6f202f64fddb6036b824b1b89912d957d5d54a059a34",
+      "candidate": "assets/source-art/floor-continuous-01/street-1.png",
+      "candidate_sha256": "b3fe8948652ddfa37fd886be4d11e296e617f4a21d180455005b294034677c41",
+      "size": [
+        1664,
+        4224
+      ],
+      "whole_source_modules_preserved": true,
+      "baseline_recomposition_byte_identical": true,
+      "sewer_entry_patch_preserved": true
+    }
+  ]
+}

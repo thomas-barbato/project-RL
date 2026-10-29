@@ -9,11 +9,13 @@ pub(super) struct Sheet {
 
 impl Sheet {
     pub fn load(bytes: &[u8], side: u16) -> Self {
-        let image = Image::from_file_with_format(bytes, Some(ImageFormat::Png)).unwrap();
+        let image = crate::asset_loading::image(bytes, Some(ImageFormat::Png)).unwrap();
         Self::from_image(&image, side)
     }
 
     pub fn from_image(image: &Image, side: u16) -> Self {
+        let bounds_loading =
+            project_rl::loading_profile::Span::caller("prepare_alpha_bounds", image.bytes.len());
         let columns = image.width / side;
         let bounds = (0..columns * (image.height / side))
             .map(|i| {
@@ -28,7 +30,8 @@ impl Sheet {
                 )
             })
             .collect();
-        let texture = Texture2D::from_image(image);
+        drop(bounds_loading);
+        let texture = crate::asset_loading::from_image(image);
         texture.set_filter(FilterMode::Nearest);
         Self { texture, bounds }
     }

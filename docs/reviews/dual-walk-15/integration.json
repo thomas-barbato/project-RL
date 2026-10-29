@@ -1,0 +1,1487 @@
+{
+  "review": "DUAL15-r01",
+  "date": "2026-10-28",
+  "status": "integrated",
+  "acceptance": "acceptance.json",
+  "normal_game_activation": true,
+  "source_audit": {
+    "accepted_source_atlases_byte_identical": 36,
+    "bounded_owned_arm_cache_bytes": 8388608,
+    "contact_cases": 23400,
+    "contact_failures": [],
+    "normal_game_activation": true,
+    "one_handed_models": [
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112
+    ],
+    "review": "DUAL15-r01",
+    "status": "integrated",
+    "technical_outfits": 25,
+    "unaffected_single_two_handed_front_and_vertical_cases": 475
+  },
+  "native_engine": {
+    "campaign_loaded": false,
+    "exported_pngs_need_vertical_flip": false,
+    "front_idle_unchanged": true,
+    "native_tile_px": 64,
+    "normal_game_activation": true,
+    "normal_matches_accepted_recipe": true,
+    "preferences_written": false,
+    "records": [
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 0,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-00-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 0,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-00-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 0,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-00-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 0,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-00-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 4,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-04-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 4,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-04-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 4,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-04-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 4,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-04-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 10,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-10-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 10,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-10-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 10,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-10-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 10,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-10-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 14,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-14-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 14,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-14-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 14,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-14-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 14,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-14-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 15,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-15-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 15,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-15-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 15,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-15-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 15,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-15-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 20,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-20-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 20,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-20-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 20,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-20-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 20,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-20-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 0,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-00-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 0,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-00-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 0,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-00-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 0,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-00-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 4,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-04-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 4,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-04-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 4,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-04-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 4,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-04-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 10,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-10-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 10,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-10-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 10,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-10-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 10,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-10-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 14,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-14-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 14,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-14-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 14,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-14-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 14,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-14-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 15,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-15-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 15,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-15-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 15,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-15-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 15,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-15-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 20,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-20-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 20,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-20-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 20,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-20-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 20,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-20-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      }
+    ],
+    "restored_normal_pixels_after_every_comparison": true,
+    "review": "DUAL15-r01",
+    "status": "integrated"
+  },
+  "normal_native_atlases_match_accepted": [
+    {
+      "index": 0,
+      "loadout": "pistols",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "d6f6c7d97623e74aa0c5b16a03cd4cc4f1698fd3d4ed1db7e15ced6bce640523"
+    },
+    {
+      "index": 0,
+      "loadout": "blades",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "d4af5995db1226f30c578f9e26acf7799591c033dbaf89f95c5615add2aa5954"
+    },
+    {
+      "index": 0,
+      "loadout": "mixed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "d2d8ea35c19c5792641391f2bc1c3e724692f5363c44aafc3d0aecd1c64f5861"
+    },
+    {
+      "index": 0,
+      "loadout": "mixed-reversed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "77c5a5aa42b3a8280fb6b6cbfd88468d70b4dd34f877fd8efa7ad4cc100d51b7"
+    },
+    {
+      "index": 4,
+      "loadout": "pistols",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "100f50668f00838846961d04d5abd17f8af0551661edf6c620f0a7d39be3cf4f"
+    },
+    {
+      "index": 4,
+      "loadout": "blades",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "27444a05698829897a087bc416a9ce00bff50c70a8bb9ec141f3b3af7bde36dc"
+    },
+    {
+      "index": 4,
+      "loadout": "mixed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "6e498a2183023661042849984dfb7778185779faa6f32e47a63034c1a5d32479"
+    },
+    {
+      "index": 4,
+      "loadout": "mixed-reversed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "3917fcd0e75603c6a28c00bd79b10b29dbc4f825944b201521829311eb88d374"
+    },
+    {
+      "index": 10,
+      "loadout": "pistols",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "20560b5b50ed1b242c592136b901421b411b24f2d1683b283962f617ccc26336"
+    },
+    {
+      "index": 10,
+      "loadout": "blades",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "cfb2f0064602def15b9bf5dbbd3f9087fcd3ed47ad6dd7c348272e6e6649ebf8"
+    },
+    {
+      "index": 10,
+      "loadout": "mixed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "8cd0be7c7b3f858f952e1c13dcbf35d40b671dcf97eeccb278a257ff94773278"
+    },
+    {
+      "index": 10,
+      "loadout": "mixed-reversed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "8a9fabeb6a6dad32474fc43d0057866714986d437b5746781d3d8637bf16c552"
+    },
+    {
+      "index": 14,
+      "loadout": "pistols",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "820f2a9eddeccc4def6c07a26fb43a9d50c7f66251cb4a9b8f8d5fbb8afec92a"
+    },
+    {
+      "index": 14,
+      "loadout": "blades",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "456a5b67de4e40b133b0e46e2db17671cb0cd360e55d6f5b6059237704db1b54"
+    },
+    {
+      "index": 14,
+      "loadout": "mixed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "0e2ee01c995c785bc97532ba0606511648c9e11736a19ee86967d3b195066c12"
+    },
+    {
+      "index": 14,
+      "loadout": "mixed-reversed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "12655ec9d9da09ab6f2584c0d61d7864f9715563a4cfbd75ceba46af6a32efb7"
+    },
+    {
+      "index": 15,
+      "loadout": "pistols",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "e966b80a666ccbf1788c03a4dbc1ab92e4a47c9265f8bba47152b337de592e5f"
+    },
+    {
+      "index": 15,
+      "loadout": "blades",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "fbf6802dadf59651d565f0b00268aab416c5013452feacd046ecb86ebf2e8ad0"
+    },
+    {
+      "index": 15,
+      "loadout": "mixed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "5709822f03b3b94e4d4f1c4d974c336fa88be9d66752d8c806c7cf94567f3c22"
+    },
+    {
+      "index": 15,
+      "loadout": "mixed-reversed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "237c5c8334416f04823434e0caf2a12c837d8fa69205c8054dbe7c27ac9ef76f"
+    },
+    {
+      "index": 20,
+      "loadout": "pistols",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "5e712e97607c0e00f8e1184b63a1705ce2afa6d1c86a06e5d775e535bc0f397a"
+    },
+    {
+      "index": 20,
+      "loadout": "blades",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "d6cf7b8598342788d4642b8164f9fe433d25cff6821636d1281810851fdb5c54"
+    },
+    {
+      "index": 20,
+      "loadout": "mixed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "a1de9bff9a99abcd4454cc8867d913ab4a349e084e9bc38f5cbfc99f27687057"
+    },
+    {
+      "index": 20,
+      "loadout": "mixed-reversed",
+      "lighting": false,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "775e4ce524ead3fa50d28a06c252ef41eec11d8cca0cae3c62324eb06fdad704"
+    },
+    {
+      "index": 0,
+      "loadout": "pistols",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "d44e602ed86ad100f0a4249515a7daf775f3da8839a2421291eb224bf579888b"
+    },
+    {
+      "index": 0,
+      "loadout": "blades",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "ad9fa5cf895b2782e91be9a4387cfd62fc187b14e47bd45bd0bcfaa1bf7fc22b"
+    },
+    {
+      "index": 0,
+      "loadout": "mixed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "a19cb55751a1416c9818b30d1b4946f953c0f28eef41744daec2781d5fd8b5d6"
+    },
+    {
+      "index": 0,
+      "loadout": "mixed-reversed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "04dd3f298e2d38347a5708afe58ef5eb3b16740f9d8f90b5c7ea830651da8505"
+    },
+    {
+      "index": 4,
+      "loadout": "pistols",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "fe0260675e47977daa98e26e2872f4f403e483cdfe7462a2b84c2f845d52321f"
+    },
+    {
+      "index": 4,
+      "loadout": "blades",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "a4a60ad72e0d07c62083c9fcc92bb7bebd1e4802d17e9a7d18fc87f6b9076bdc"
+    },
+    {
+      "index": 4,
+      "loadout": "mixed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "53cdd9d8d3582a017c9c297da1d2f3dafbf984662bb7f7b88adc311d7ba6cd5b"
+    },
+    {
+      "index": 4,
+      "loadout": "mixed-reversed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "20d1892791de4ee16d9f877f74956dc063cf1e04fd2a9c8fafd842808a6ce049"
+    },
+    {
+      "index": 10,
+      "loadout": "pistols",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "5ddb12f2510df0324a7e129d598351212f742ab4f41bd0efdf9a8f67ad191ded"
+    },
+    {
+      "index": 10,
+      "loadout": "blades",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "2266123407040a46ad7b45e20d8d3bef1be8d8ba2d836971716e44cf9d73cb29"
+    },
+    {
+      "index": 10,
+      "loadout": "mixed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "58ec820c871760a08d7edd1d1ca6a4eb5ab4ec245912bab87d786534d5a8feeb"
+    },
+    {
+      "index": 10,
+      "loadout": "mixed-reversed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "dfe07ef5aaadf422b29febac0d4a228bb3c8e5aaf8f9a57d50eb003747bcf0b4"
+    },
+    {
+      "index": 14,
+      "loadout": "pistols",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "7139a11f8753b84fc1519b2d6bd5c7d24df77accd94883ede901e13718f05f65"
+    },
+    {
+      "index": 14,
+      "loadout": "blades",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "7d885af051d6f678936a06c0588cfa2c1f15de5ded25db4af91e22b00f691412"
+    },
+    {
+      "index": 14,
+      "loadout": "mixed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "5ccc40025701f594d447cd40c0691b32aeaf13054dd5d67ad71724d63a342ceb"
+    },
+    {
+      "index": 14,
+      "loadout": "mixed-reversed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "b8bc77ef4f66e94fce1182ab21a75293da13cc1e207d3d259228efce28398512"
+    },
+    {
+      "index": 15,
+      "loadout": "pistols",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "e2b68ce13cc0d7fc364a07965cc53e004f0cfd45aa68e82c964dd8faefd38719"
+    },
+    {
+      "index": 15,
+      "loadout": "blades",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "97346cc782e26201c2b41c265959a0130886eafe2dfc18142278afcf9bb38fb4"
+    },
+    {
+      "index": 15,
+      "loadout": "mixed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "9a8f94dd86409f1fd6eb50e179c8226f59709d359edfcb6722d79c743f413187"
+    },
+    {
+      "index": 15,
+      "loadout": "mixed-reversed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "0307a794ccc68a23ecfce91ffdf8813f3c9bda65861e8aa579a7f00c7b7c6cda"
+    },
+    {
+      "index": 20,
+      "loadout": "pistols",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "aa1aeaf92652f381f23afa567e72d0a12b78f6c8309baa2728078e3da8ca0bef"
+    },
+    {
+      "index": 20,
+      "loadout": "blades",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "ad11f61f355d27da4922336ff9631b2f41d6d9bf45e3863303a64afc1e5b3639"
+    },
+    {
+      "index": 20,
+      "loadout": "mixed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "f90c5453aafe1a03a7f5568aa48c078fa61265c09e3c859ef131d93b6ca00da0"
+    },
+    {
+      "index": 20,
+      "loadout": "mixed-reversed",
+      "lighting": true,
+      "normal_atlas_byte_identical_to_accepted": true,
+      "native_cell": 64,
+      "sha256": "984e758fd1e67843bee69309ab53500c956f49bc40ec5f29fc4abd05d18e669d"
+    }
+  ],
+  "unchanged_source_drawing_inputs": [
+    {
+      "path": "assets/animations/walk-12/player/CLASS-00-left.png",
+      "sha256": "c75ffc23e8c02c3a6b053c2d7a39d620c747473198b2dadca0e85cc571c27a4f"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-00-right.png",
+      "sha256": "923449569d4f5503d87b59f648e0ce51cdbd9c17e18150afd8cc532fade50a50"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-04-left.png",
+      "sha256": "88c432f3d030bbe655000303a8137929c5215f035206c4c29221f9732a80cb9c"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-04-right.png",
+      "sha256": "6c3370a40d350e5bfebfcc66217dfce931b724aaeb160c7725a9f10fd05cc1fa"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-10-left.png",
+      "sha256": "f6cefcdbd061b844fe9dade066cf9083afcdb230917d03d386dc7a797730919a"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-10-right.png",
+      "sha256": "bbfbea95fc06ee64f80f988caca52f1da761423f824fb99ab4206212767908b5"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-11-left.png",
+      "sha256": "13f7197e4c64f07e4ab122f0d365f48068754565876785a07167744b50842e9f"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-11-right.png",
+      "sha256": "e65ac0a1bf64d26c77dedc5a9cd812893ae9301205195dca88d978c3bdca57c8"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-12-left.png",
+      "sha256": "75757b2309d7c2ebdedd16718f4ce425d2b026c4010ed3bc241805097417abe7"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-12-right.png",
+      "sha256": "0021ee4d1c22a3d9ab5f6b82a0d1edccc098d42cd15f3558c7b14f2921fe0610"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-13-left.png",
+      "sha256": "2dc98c22cb8990537c4998af67ea6cbd69c8b66d248856cc8fa58cda6c9206cd"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-13-right.png",
+      "sha256": "6bbbc8fec15afaf81d05249303d9165a15d416a1f4c1f081afde2ac3f23e3c04"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-14-left.png",
+      "sha256": "b614f7291e9c4f8be30ca2181df968b5246a776c2510fe864d0ca9ae97aabceb"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-14-right.png",
+      "sha256": "a2aa5985cd77f553c1aa9898d51824d7db8e4e026f58be57e8330790bb736152"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-15-left.png",
+      "sha256": "f823862be499b1b4942d64b9f0a222e98b18c3f5be52c70bc2a8635a7b55797c"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-15-right.png",
+      "sha256": "e071ff4280b00d64f072d42e5a3cb3eae3a716e6aa0d498897951da623dd7511"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-20-left.png",
+      "sha256": "a8a69425898da2b9cbbddbb5b0bbe24c40f780b650365dd4258efc02091f168c"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-20-right.png",
+      "sha256": "9082cdbcc8fbac9da56c0349a2880146a941a26a8f78e1460fd0a5d9e0f04c13"
+    },
+    {
+      "path": "assets/animations/walk-12/player/manifest.json",
+      "sha256": "4dfdcd7f5be9c098d6b8f9c93ae6d713239518ae81d4a801a3c79c7bbaf89190"
+    },
+    {
+      "path": "assets/sprites/held-native64/weapons-128.png",
+      "sha256": "549e584842ce988303bc7aefd1996067048cecda8697c3903e4c8c84711978a3"
+    }
+  ],
+  "mechanics_unchanged": true,
+  "draw_cache": "Prepared owned arms, gloves and weapons, bounded at 8 MiB; frozen output unchanged.",
+  "passed_commands": [
+    "cargo fmt --all -- --check",
+    "cargo check --locked --all-targets",
+    "cargo build --locked --bin project-rl",
+    "cargo test --locked --bin project-rl validate_dual15_integration -- --ignored --nocapture",
+    "target/debug/project-rl.exe --ui-cold-dual-walk-integration artifacts/dual-walk-review-15/integration/engine",
+    "cargo test --locked --bin project-rl every_weapon_uses_real_rigid_layers_and_every_outfit_has_two_rigs -- --nocapture",
+    "cargo test --locked --bin project-rl walking::approved::tests:: -- --nocapture",
+    "cargo build --locked --release --bin project-rl",
+    "git diff --check"
+  ],
+  "test_notes": [
+    "The initial rig module run passed 7 tests and exposed an old rigid-weapon assertion comparing sleeve layer 1 without torso registration. The corrected check uses weapon layer 3 and its stable translated reference; the targeted rerun passes.",
+    "All 4 approved-walk tests pass. The normal renderer reproduces 36 frozen source atlases and 48 frozen engine atlases exactly."
+  ],
+  "regression_tests": {
+    "rig_tests_passed": 8,
+    "rig_ignored_historical_diagnostics": 3,
+    "approved_walk_tests_passed": 4,
+    "failed_legacy_rigid_weapon_assertion_fixed_and_targeted_rerun_passed": true,
+    "source_audit_passed": true,
+    "full_suite_run": false
+  },
+  "runtime_inventory": {
+    "valid": true,
+    "runtime_files": 1819,
+    "no_source_art_or_review_dependencies": true,
+    "portable_package_rebuilt": false
+  },
+  "release_sha256": "6a9fdc19e6011a2fe1acf11dc151d449d832676f1e1ca188792388185ab4fe10",
+  "release_build": "passed",
+  "cleanup": "cleanup-integration.json"
+}

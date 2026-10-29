@@ -23,7 +23,7 @@ impl std::ops::Deref for LazyImage {
 use std::collections::BTreeMap;
 include!("game_art_equipment_catalog.rs");
 pub(super) fn decoded(bytes: &[u8]) -> Image {
-    Image::from_file_with_format(bytes, Some(ImageFormat::Png)).expect("valid embedded sprite")
+    crate::asset_loading::image(bytes, Some(ImageFormat::Png)).expect("valid embedded sprite")
 }
 pub(super) fn cell(source: &Image, index: u16, side: u16) -> Image {
     source.sub_image(Rect::new(
@@ -265,7 +265,7 @@ pub(super) fn draw_item(rect: Rect, art: ItemArt, palette: EquipmentPalette, opa
                     recolor(&mut image, &mask, palette);
                     image
                 };
-            let sprite = Texture2D::from_image(&image);
+            let sprite = crate::asset_loading::from_image(&image);
             sprite.set_filter(FilterMode::Nearest);
             evict(&mut sources.cache, 256);
             sources.cache.insert(key, (sprite, get_time()));

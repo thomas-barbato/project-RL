@@ -33,6 +33,7 @@ pub struct Atmosphere {
     // Material::set_texture retains the raw GPU handle, not its owner.
     _correction: Texture2D,
     _irradiance: Texture2D,
+    ambient: [f32; 3],
     surface: Option<surface_wear::Surface>,
     #[cfg(debug_assertions)]
     surface_override: std::cell::Cell<Option<bool>>,
@@ -40,8 +41,8 @@ pub struct Atmosphere {
 
 fn load(path: &str, filter: FilterMode) -> Texture2D {
     let im =
-        Image::from_file_with_format(&project_rl::data_paths::read(path).unwrap(), None).unwrap();
-    let t = Texture2D::from_image(&im);
+        crate::asset_loading::image(&project_rl::data_paths::read(path).unwrap(), None).unwrap();
+    let t = crate::asset_loading::from_image(&im);
     t.set_filter(filter);
     t
 }
@@ -79,7 +80,15 @@ fn material(fragment: &str, textures: &[&str], uniforms: &[(&str, mq::UniformTyp
 
 impl Atmosphere {
     pub fn new(config: &Config, width: u32, height: u32) -> Self {
+        let _loading =
+            project_rl::loading_profile::Span::new("prepare_atmosphere", "atmosphere", 0);
+        let target_loading = project_rl::loading_profile::Span::new(
+            "render_target_create_cpu",
+            "atmosphere framebuffer",
+            width as usize * height as usize * 4,
+        );
         let frame = render_target(width, height);
+        drop(target_loading);
         frame.texture.set_filter(FilterMode::Nearest);
         let background = material(
             BACKGROUND,
@@ -146,7 +155,7 @@ impl Atmosphere {
                 plume.bytes[i..i + 4].copy_from_slice(&[175, 187, 185, a]);
             }
         }
-        let steam = Texture2D::from_image(&plume);
+        let steam = crate::asset_loading::from_image(&plume);
         steam.set_filter(FilterMode::Linear);
         let surface = config.surface_wear.as_deref().map(|path| {
             surface_wear::Surface::new(
@@ -168,6 +177,7 @@ impl Atmosphere {
             steam,
             _correction: correction,
             _irradiance: irradiance,
+            ambient: config.ambient,
             surface,
             #[cfg(debug_assertions)]
             surface_override: std::cell::Cell::new(None),
@@ -180,19 +190,32 @@ impl Atmosphere {
         camera.render_target = Some(self.frame.clone());
         set_camera(&camera);
         clear_background(BLACK);
+        crate::world_readability::begin_lighting(
+            &self._irradiance,
+            self.frame.texture.size(),
+            self.ambient,
+            true,
+        );
     }
 
     pub fn begin_background(&self, lights: bool) {
+        crate::world_readability::lighting_enabled(lights);
         if let Some(surface) = self.active_surface() {
             surface
                 .background
                 .set_uniform("LightOn", if lights { 1.0_f32 } else { 0.0_f32 });
-            crate::world_readability::use_material(&surface.background);
+            crate::world_readability::use_surface_material(
+                &surface.background,
+                Some(self.frame.texture.size()),
+            );
             return;
         }
         self.background
             .set_uniform("LightOn", if lights { 1.0_f32 } else { 0.0_f32 });
-        crate::world_readability::use_material(&self.background);
+        crate::world_readability::use_surface_material(
+            &self.background,
+            Some(self.frame.texture.size()),
+        );
     }
 
     pub fn background_time(&self, time: f32) {
@@ -218,7 +241,7 @@ impl Atmosphere {
     pub fn begin_surface(&self, size: Vec2) {
         if let Some(surface) = self.active_surface() {
             surface.isolated.set_uniform("ReviewSize", (size.x, size.y));
-            crate::world_readability::use_material(&surface.isolated);
+            crate::world_readability::use_surface_material(&surface.isolated, Some(size));
         }
     }
 
@@ -286,7 +309,7 @@ impl Atmosphere {
         self.animated_prop.set_uniform("Clock", time);
         self.animated_prop.set_uniform("Phase", phase);
         self.animated_prop.set_uniform("Panel", panel);
-        crate::world_readability::use_material(&self.animated_prop);
+        crate::world_readability::use_surface_material(&self.animated_prop, None);
     }
 
     pub fn steam(&self, foot: Vec2, time: f32) {
@@ -338,6 +361,7 @@ impl Atmosphere {
                 ..Default::default()
             },
         );
+        crate::world_readability::end_lighting();
         crate::world_readability::restore();
     }
 }

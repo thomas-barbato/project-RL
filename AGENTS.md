@@ -1,5 +1,10 @@
 # Contenu visuel
 
+Pour les cartes, décors et personnages, appliquer la règle de cohérence visuelle
+`VIS-COH01-RULE01` dans `docs/STYLE_VISUEL_REFERENCE.md`. Lire ce guide avec
+`docs/DIRECTION_ARTISTIQUE_TILES.md` avant tout nouveau dessin ou reprise.
+Comparer décors et acteurs ensemble à taille native avec les références validées.
+
 Avant de créer ou modifier des personnages, armes, équipements portés ou monstres,
 lire `docs/DIRECTION_ARTISTIQUE_TILES.md` et appliquer sa procédure de revue.
 Dungeon Crawl Stone Soup reste la référence de lisibilité et de qualité.
@@ -55,6 +60,29 @@ Les armes doivent avoir une variance de dégâts ; les valeurs actuelles des
 compétences d'arme doivent afficher une plage minimum–maximum calculée avec
 l'arme active et les modificateurs applicables. Ne pas inventer une amplitude
 ou une distribution générale de variance sans revue.
+
+# Chargement et fluidité
+
+Appliquer à tout le jeu la règle `LOAD01-RULE01`, validée le 29 octobre 2026.
+Faire évoluer un mécanisme commun de préparation des ressources et de cache,
+réutilisable par les cartes actuelles et futures, les animations, les effets
+et les interfaces.
+
+Préparer les ressources nécessaires à la destination avant son premier affichage
+et anticiper les besoins proches. Conserver les ressources et décors récemment
+utilisés dans un cache borné en mémoire, avec libération des éléments éloignés
+ou inutilisés. Limiter le préchargement aux besoins utiles et proches.
+
+Sortir les lectures et décompressions lourdes du chemin de dessin. Respecter
+le thread du contexte graphique pour la création des textures et répartir
+les préparations restantes afin de limiter les pointes de charge.
+Conserver l'état des zones, les règles de jeu et les sauvegardes indépendamment
+du cache de présentation.
+
+Vérifier les premières visites, les allers-retours et les premières utilisations
+des effets, en distinguant lecture, décodage, création des textures et rendu.
+Les décisions et l'état d'intégration sont dans
+`docs/reviews/loading-study-01/REGLE.json` et `ANALYSE.json`.
 
 # Fichiers générés et rangement
 

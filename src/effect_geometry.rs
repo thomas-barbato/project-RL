@@ -56,7 +56,7 @@ impl std::ops::Deref for LazyTexture {
             let value = if self.fitted {
                 texture(self.bytes, self.filter)
             } else {
-                let value = Texture2D::from_file_with_format(self.bytes, Some(ImageFormat::Png));
+                let value = crate::asset_loading::texture(self.bytes, Some(ImageFormat::Png));
                 value.set_filter(self.filter);
                 value
             };
@@ -222,9 +222,11 @@ struct Atlas {
 thread_local! { static ATLASES:RefCell<HashMap<macroquad::miniquad::TextureId,Atlas>>=RefCell::new(HashMap::new()); }
 // Decode once on the CPU, upload once; fitting never reads a texture back mid-frame.
 pub fn texture(bytes: &[u8], filter: FilterMode) -> Texture2D {
-    let image = Image::from_file_with_format(bytes, Some(ImageFormat::Png))
-        .expect("packaged animation PNG");
+    let image =
+        crate::asset_loading::image(bytes, Some(ImageFormat::Png)).expect("packaged animation PNG");
     let side = usize::from(image.height);
+    let bounds_loading =
+        project_rl::loading_profile::Span::caller("prepare_alpha_bounds", image.bytes.len());
     let mut low = (side, side);
     let mut high = (0, 0);
     let mut any = false;
@@ -248,7 +250,8 @@ pub fn texture(bytes: &[u8], filter: FilterMode) -> Texture2D {
     } else {
         Rect::new(0., 0., side as f32, side as f32)
     };
-    let texture = Texture2D::from_image(&image);
+    drop(bounds_loading);
+    let texture = crate::asset_loading::from_image(&image);
     texture.set_filter(filter);
     ATLASES.with_borrow_mut(|cache| {
         cache.insert(

@@ -1,0 +1,596 @@
+{
+  "review": "SOL-FUT01-r03",
+  "candidate_number": 7,
+  "status": "awaiting_visual_approval",
+  "verified_at": "2026-10-28T12:33:49.723601+00:00",
+  "normal_game_activation_06": true,
+  "normal_game_activation_07": false,
+  "conditioning": {
+    "review": "SOL-FUT01-r03",
+    "candidate_number": 7,
+    "status": "awaiting_visual_approval",
+    "accepted_baseline": 6,
+    "wear_source_sha256": "efda142e4e5adaa28b2928c94dfa7f52ddbece33529f1fa702c950b5f7b96beb",
+    "source_has_genuine_transparency": true,
+    "rooms_05_unchanged": true,
+    "outside_circulation_changed_pixels": 0,
+    "mesh_apertures_changed_pixels": 0,
+    "aperture_pixels_preserved": 169723,
+    "changed_pixels": 75869,
+    "changed_edge_pixels": 13650,
+    "changed_centre_pixels": 62219,
+    "source_alphas_unchanged": true,
+    "sections": [
+      [
+        [
+          704,
+          447,
+          2368,
+          642
+        ],
+        false
+      ],
+      [
+        [
+          444,
+          490,
+          718,
+          580
+        ],
+        false
+      ],
+      [
+        [
+          2358,
+          490,
+          2432,
+          580
+        ],
+        true
+      ],
+      [
+        [
+          1080,
+          328,
+          1162,
+          447
+        ],
+        true
+      ],
+      [
+        [
+          1912,
+          328,
+          1994,
+          447
+        ],
+        true
+      ],
+      [
+        [
+          1080,
+          643,
+          1162,
+          739
+        ],
+        true
+      ],
+      [
+        [
+          1912,
+          643,
+          1994,
+          739
+        ],
+        true
+      ]
+    ],
+    "outputs": [
+      {
+        "path": "assets/source-art/floor-future-01/corridor-wear-07/floor.png",
+        "sha256": "594f9373eae1b3cb516092ccf3856f6ed3a65276c85d04bf0401f9bb6e97911e"
+      },
+      {
+        "path": "assets/source-art/floor-future-01/corridor-wear-07/structure.png",
+        "sha256": "c37647e39063a8a1f2394c7f48c6863e1513e35633cc316a37d21f59020118b3"
+      }
+    ],
+    "gameplay_changed": false
+  },
+  "native_captures": [
+    {
+      "camera_world_origin": [
+        469.0,
+        -187.0
+      ],
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-arrival",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 1277
+    },
+    {
+      "camera_world_origin": [
+        -811.0,
+        -187.0
+      ],
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-corridor",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 26964
+    },
+    {
+      "camera_world_origin": [
+        -491.0,
+        133.0
+      ],
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-storage",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 2285
+    },
+    {
+      "camera_world_origin": [
+        -1323.0,
+        133.0
+      ],
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-security",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 2258
+    },
+    {
+      "camera_world_origin": [
+        -491.0,
+        -507.0
+      ],
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-medical",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 11041
+    },
+    {
+      "camera_world_origin": [
+        -1323.0,
+        -507.0
+      ],
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-workshop",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 10847
+    },
+    {
+      "camera_world_origin": [
+        21.0,
+        -187.0
+      ],
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-doorway",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 14775
+    },
+    {
+      "camera_world_origin": [
+        -491.0,
+        -315.0
+      ],
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-threshold",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 29389
+    }
+  ],
+  "normal_06_integration": [
+    {
+      "scene": "camp-arrival",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-corridor",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-storage",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-security",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-medical",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-workshop",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-doorway",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-threshold",
+      "production_06_matches_accepted_pixels": true
+    }
+  ],
+  "rooms_05_unchanged_in_engine": [
+    {
+      "scene": "camp-arrival",
+      "room": "cryo",
+      "screen_crop": [
+        511,
+        133,
+        918,
+        566
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-corridor",
+      "room": "storage",
+      "screen_crop": [
+        341,
+        133,
+        523,
+        140
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-corridor",
+      "room": "security",
+      "screen_crop": [
+        931,
+        133,
+        981,
+        140
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-corridor",
+      "room": "medical",
+      "screen_crop": [
+        341,
+        553,
+        523,
+        581
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-corridor",
+      "room": "workshop",
+      "screen_crop": [
+        931,
+        553,
+        981,
+        581
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-storage",
+      "room": "storage",
+      "screen_crop": [
+        419,
+        259,
+        843,
+        460
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-security",
+      "room": "security",
+      "screen_crop": [
+        419,
+        259,
+        843,
+        460
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-medical",
+      "room": "medical",
+      "screen_crop": [
+        419,
+        233,
+        843,
+        454
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-workshop",
+      "room": "workshop",
+      "screen_crop": [
+        419,
+        233,
+        843,
+        454
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-doorway",
+      "room": "cryo",
+      "screen_crop": [
+        341,
+        133,
+        470,
+        566
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-doorway",
+      "room": "storage",
+      "screen_crop": [
+        931,
+        133,
+        981,
+        140
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-doorway",
+      "room": "medical",
+      "screen_crop": [
+        931,
+        553,
+        981,
+        581
+      ],
+      "pixels_changed": 0
+    },
+    {
+      "scene": "camp-threshold",
+      "room": "medical",
+      "screen_crop": [
+        419,
+        425,
+        843,
+        581
+      ],
+      "pixels_changed": 0
+    }
+  ],
+  "all_five_rooms_verified": true,
+  "camp_config_except_visual_references_unchanged": true,
+  "utf8_labels_preserved": true,
+  "publication": {
+    "review": "SOL-FUT01-r03",
+    "native_cell": 64,
+    "resampled_engine_pixels": false,
+    "whole_starting_room_in_future_review": true,
+    "outputs": [
+      {
+        "file": "camp-arrival-comparison-native64.png",
+        "bytes": 440513,
+        "sha256": "78efc6a676bdc2bff63b6202f23878a86a8f98fb5cfd53ac0272666cc18693d1",
+        "comparison_size": [
+          1104,
+          640
+        ],
+        "source_crop": [
+          469,
+          69,
+          512,
+          528
+        ]
+      },
+      {
+        "file": "camp-corridor-comparison-native64.png",
+        "bytes": 487273,
+        "sha256": "9280dc3f88432f7e2fb8b8e6adb4bd8f110ff4bcda135214dfab73b063c888fe",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-storage-comparison-native64.png",
+        "bytes": 397262,
+        "sha256": "a25e5c4db24501cc6dc82d39af800ac38a819c816264fcf1cdebf0e37bc8b2fe",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-security-comparison-native64.png",
+        "bytes": 397150,
+        "sha256": "1058d0535b25fb18d4963fd83a1a8e36b753c6effd5d2315d9147dc31fca035c",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-medical-comparison-native64.png",
+        "bytes": 380620,
+        "sha256": "eb19171af8280a6d23ea6a1b850d44a70329bfd22b7b2589c0d207ce37f1ad2a",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-workshop-comparison-native64.png",
+        "bytes": 378748,
+        "sha256": "80b79415169c37dd83887d55ff68f459c42eaf7963b475190bf715ed4dc2a143",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-doorway-comparison-native64.png",
+        "bytes": 476015,
+        "sha256": "6502a5a80343faa5cd407c201e9e25a9080b3f85b7b638e013e2cee60f87e10d",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-threshold-comparison-native64.png",
+        "bytes": 529862,
+        "sha256": "4388b98cf413c3f91d391e6440f077c6838c6e4af2957b47e2830896d233ab37",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      }
+    ]
+  },
+  "release_sha256": "3a049770594e2bad193de5d7b758607ac6a6b94744ee8045ce0d65f6552b1fa9",
+  "image_generation_mode": "built-in imagegen, transparent wear layer then color edit",
+  "prompt": "PROMPT-USURE07.md",
+  "source": "assets/source-art/floor-future-01/corridor-wear-07/wear-source.png",
+  "packaged_06_runtime": {
+    "verify_assets_exit_code": 0,
+    "native_smoke": {
+      "atmospheres": 7,
+      "content_and_menu": true,
+      "dialogue_audio_loaded": true,
+      "files": 1764,
+      "packed": true,
+      "pngs_decoded_and_uploaded": 1369,
+      "root": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\floor-continuous-review-01\\corridor-wear-07\\package-check",
+      "shared_animation_texture": true,
+      "status": "passed"
+    },
+    "archive": {
+      "path": "data.rlpak",
+      "format": "zip",
+      "bytes": 103479531,
+      "sha256": "c45fa5e4301d82861c45b5079aac82b90d2d1f5bed7d8eb643e1ef33baa9bb34"
+    },
+    "statistics": {
+      "logical_input_files": 1819,
+      "original_data_bytes": 113752715,
+      "deduplicated_bytes": 2167802,
+      "lossless_compression_saved_bytes": 1555821,
+      "unpacked_data_bytes": 110029092,
+      "packaged_data_bytes": 103479531
+    },
+    "executable": {
+      "path": "project-rl.exe",
+      "bytes": 59787264,
+      "sha256": "3a049770594e2bad193de5d7b758607ac6a6b94744ee8045ce0d65f6552b1fa9"
+    },
+    "no_loose_assets_or_content": true,
+    "unapproved_07_and_source_art_excluded": true,
+    "existing_dist_modified": false,
+    "temporary_installation_removed_after_verification": true
+  },
+  "passed_commands": [
+    "cargo build --locked --bin project-rl",
+    "cargo fmt --all -- --check",
+    "cargo check --locked --all-targets",
+    "cargo build --locked --release --bin project-rl",
+    "git diff --check"
+  ]
+}

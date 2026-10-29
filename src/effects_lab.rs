@@ -3582,6 +3582,12 @@ mod tests {
 
 impl AsciiApp {
     pub fn new_agent_skill_laboratory() -> Result<Self, String> {
+        Self::new_agent_skill_laboratory_with_bonus_seed(None)
+    }
+
+    pub(super) fn new_agent_skill_laboratory_with_bonus_seed(
+        bonus_seed: Option<u64>,
+    ) -> Result<Self, String> {
         let (mut rules, texts, loot, expeditions) = ascii_game_content()?;
         let classes = ascii_character_class_catalog()?;
         let class_id: CharacterClassId = "core:arcaniste".parse().unwrap();
@@ -3600,6 +3606,10 @@ impl AsciiApp {
         base.graphics.active = *settings;
         base.graphics.draft = *settings;
         base.graphics.message = message.clone();
-        base.build_test_lab()
+        if let Some(seed) = bonus_seed {
+            base.build_test_lab_with_equipment(seed, false)
+        } else {
+            base.build_test_lab()
+        }
     }
 }

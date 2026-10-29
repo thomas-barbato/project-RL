@@ -111,6 +111,7 @@ pub struct DataSource {
 
 impl DataSource {
     pub fn open(root: &Path) -> Result<Self, String> {
+        let _loading = crate::loading_profile::Span::new("open_data_source", "data root", 0);
         let manifest = if root
             .join(MANIFEST)
             .try_exists()
@@ -202,6 +203,7 @@ impl DataSource {
     pub fn read_limited(&self, path: &str, maximum: u64) -> Result<Vec<u8>, String> {
         let target = self.target(path)?;
         let expected = self.size(path)?;
+        let _loading = crate::loading_profile::Span::new("read_resource", path, expected as usize);
         if expected > maximum {
             return Err(format!("Resource too large: {path} ({expected} bytes)"));
         }

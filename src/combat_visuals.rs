@@ -668,6 +668,16 @@ impl CombatMotion {
                 );
             }
         });
+        for strike in &self.strikes {
+            crate::visual_polish::draw_contact(
+                game,
+                strike.origin,
+                strike.target,
+                crate::visual_polish::contact_age(now, strike.started),
+                reduced,
+                rect,
+            );
+        }
     }
     pub fn play(
         &mut self,

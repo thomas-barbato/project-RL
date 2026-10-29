@@ -5,6 +5,7 @@ use serde_json::{Value, json};
 #[test]
 #[ignore = "Read-only arm projection review; RL_ARM14_OUTPUT required"]
 fn export_arm_projection14_review() {
+    let _legacy_dual = crate::game_art::walking::review_dual15(false);
     struct Restore(bool);
     impl Drop for Restore {
         fn drop(&mut self) {

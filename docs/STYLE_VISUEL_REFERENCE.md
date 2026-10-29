@@ -1,5 +1,141 @@
 # Style visuel de référence
 
+## Règle commune de cohérence visuelle — VIS-COH01-RULE01
+
+Consignée le **29 octobre 2026**, à la demande du joueur. Cette règle rassemble
+les décisions visuelles déjà acceptées pour les cartes, décors, personnages,
+monstres et équipements actuels et futurs. Elle sert aussi lors des retouches.
+
+**Chaque nouvelle carte, silhouette ou pose doit rester cohérente avec les
+références validées et avec les autres éléments visibles dans le jeu.**
+La qualité se juge sur leur composition à taille native, dans le moteur.
+Dungeon Crawl Stone Soup reste la référence de lisibilité et de qualité ;
+les images acceptées du projet fixent sa projection et son traitement exacts.
+
+### Projection, échelle et dessin communs
+
+- Conserver la projection `STYLE-RL-2026-10-18-r01` : axes du sol horizontaux
+  et verticaux parallèles, cases carrées, murs courts et faces avant visibles.
+  Comparer directement au camp et à la rue acceptés ; ne pas inventer un
+  autre angle de caméra pour une nouvelle carte.
+- Garder **64 × 64 px par case**, les proportions relatives des acteurs,
+  des ouvertures et des équipements. Une toile plus grande permet les marges
+  ou un décor sur plusieurs cases ; elle ne change pas l'échelle du monde.
+- Accorder les contours, les masses de couleur, les ombres et la densité
+  de détails des décors à ceux des personnages. Privilégier les silhouettes
+  lisibles, les matières mates et l'usure située et irrégulière. Les surfaces
+  calmes et les détails utiles doivent rester nets à taille de jeu.
+- Une ambiance ou un matériau peut varier selon le lieu en conservant cette
+  cohérence. La simplification ne se fait ni par flou ni par agrandissement
+  d'un ancien petit dessin.
+
+### Cartes et raccords
+
+Les sols, murs, coins, portes, seuils et meubles suivent les mêmes repères
+de projection et d'échelle. Dessiner les éléments entiers, avec leurs pieds
+et leurs contours, puis vérifier leurs raccords et leur superposition.
+Le décor doit conserver des passages lisibles et praticables pour le joueur
+et les monstres. Sa boîte d'image ne définit pas une collision.
+
+À l'extérieur, conserver les sols sans quadrillage décoratif ni damier
+suggérant de fausses cases. Les matériaux intérieurs restent ceux de leurs
+lots validés ; l'accord sur les plaques des salles et le caillebotis usé du
+camp ne transforme pas tous les lieux en copies de ce camp.
+
+### Personnages, équipement et animation
+
+Un même personnage conserve son identité, son gabarit, ses vêtements,
+ses protections, ses matières et ses accessoires asymétriques entre la face,
+la marche et les différentes orientations. Les changements de pose ou de
+recouvrement des volumes ne justifient pas une autre tenue ou une variation
+arbitraire de taille ou de niveau de détail.
+
+Conserver les figures entières et cohérentes : tête, torse, membres et appuis
+suivent l'orientation montrée. Les nouvelles phases ne se fabriquent pas par
+greffe de jambes, cisaillement ou déplacement de bandes. Chaque morphologie
+de monstre conserve ses supports et ses appendices propres.
+
+Les bras, gants et repères de prise proviennent du même cycle et de la même
+projection que le corps. Composer séparément le corps, les équipements portés,
+les armes communes et les mains, avec des attaches stables et un ordre de
+profondeur cohérent. Le casque suit la tête réellement dessinée. L'armure du
+joueur s'adapte à sa classe ; le dessin d'une arme reste partagé, avec sa
+prise et son placement adaptés. Les règles acceptées de marche et de retour
+de face restent celles de WALK12, ARM14 et DUAL15.
+
+### Éclairage et contrôle avant intégration
+
+Les acteurs et les décors restent cohérents dans les lumières réelles du
+lieu. À position et éclairage identiques, un passage entre repos, respiration
+et marche doit conserver une exposition et des matières cohérentes ; un
+changement de chemin de rendu ne doit pas éclaircir ou assombrir soudainement
+le personnage. L'ambiance peut évoluer avec le lieu ou le déplacement réel.
+
+Présenter les candidats numérotés à taille native avant intégration, sauf
+accord explicite déjà reçu pour ces candidats. Pour une carte, montrer le
+décor avec les acteurs et objets existants. Pour un personnage, comparer face,
+marche gauche/droite, équipement et retour au repos dans les mêmes conditions.
+Vérifier les raccords, les prises, les occultations et l'exposition dans le
+moteur, puis conserver les sources et la preuve de validation.
+
+Cette règle ne modifie pas le statut des anciennes propositions : les accords
+restent limités à leurs dessins et à leur périmètre. Les identités de contenu,
+les règles de jeu et les sauvegardes restent conservées. Les dessins sources
+appartiennent à `assets/`, les décisions à `docs/reviews/` et les captures
+reproductibles à `artifacts/`, selon [la règle de rangement](GESTION_FICHIERS_GENERES.md).
+
+Références complémentaires : [direction artistique](DIRECTION_ARTISTIQUE_TILES.md),
+[marche WALK12](reviews/player-walk-12/REGLE-MARCHE-12.md),
+[bras ARM14](reviews/walk-arm-projection-14/acceptance.json),
+[ambidextrie DUAL15](reviews/dual-walk-15/acceptance.json) et
+[exposition des poses](reviews/visual-polish-01/WALK-LIGHT01.md).
+
+### Sols continus — accord extérieur du 28 octobre 2026
+
+Le joueur valide SOL-CONT01-r01, version 02, sans quadrillage décoratif à
+l'extérieur : béton continu pour les cheminements et asphalte sans grandes
+fausses dalles. Les bordures physiques, objets et marquages restent conservés.
+La matière du camp est acceptée avec une demande de réparer les pieds de décor
+et les fragments de damier restants. La suggestion de caillebotis 03 est ensuite
+refusée ; elle ne fait pas partie du style retenu. Le béton corrigé 04 est
+ensuite écarté : des restes de dallage subsistent aux extrémités. Le joueur
+demande une direction plus futuriste pour l'intérieur, puis valide 05, pont
+technique, maintenant intégré. Les cinq salles gardent leurs grandes plaques
+métalliques bleu-gris mates. Le caillebotis des couloirs 06 est ensuite validé
+et intégré ; le joueur demande de l'user davantage par endroits. La finition
+07 est ensuite validée et intégrée à l'identique : patine irrégulière sur les
+barres, plus présente près des murs. Les salles 05, les ouvertures sombres de
+la maille 06 et l'éclairage sont conservés. Les accords et contrôles sont dans
+`reviews/floor-future-01/`. Accord extérieur et contrôles :
+`reviews/floor-continuous-01/`.
+
+### Égouts — réseau d'eau continu demandé le 28 octobre 2026
+
+Le joueur demande de relier toutes les portions d'eau et de conserver quelques
+passages praticables pour lui et les monstres. La construction doit produire
+un réseau unique par jonctions cardinales, continu sous les grilles ; le sol
+praticable doit rester relié depuis l'escalier. Le contrôle porte sur chaque
+plan utilisé par le tirage aléatoire. La nouvelle eau EG-EAU01 reçoit un retour
+positif, puis les nouveaux tracés EG-CAN02 sont validés explicitement. La
+génération 167 les utilise avec un contrôle des cases praticables et des
+emplacements du joueur et des monstres. Les sauvegardes antérieures gardent
+leurs anciens tracés, avec le traitement d'eau accepté.
+Règle, candidats et vérifications : `reviews/sewer-water-01/CANAUX02.md`.
+
+### Finition commune POLISH01-02 — accord du 27 octobre 2026
+
+Le joueur valide la version 02 avec les éclats d'impact et demande son adaptation
+à toutes les cartes. Le rendu commun renforce la présence des silhouettes, les
+volumes et les lumières existantes, avec des surfaces plus calmes. Les décors
+peints conservent leur éclairage calculé ; les sols générés très sombres et les
+acteurs déjà en pleine exposition reçoivent une adaptation préservant leurs
+détails et teintes. Le dessin, la projection et les cases de 64 px sont conservés.
+
+La Frappe de rupture reçoit le bref accent lumineux et les six éclats montrés,
+désactivés en mouvement réduit. La lumière ne traverse ni les murs ni les zones
+non perçues. Les sources et les règles de jeu restent conservées. Accord, pixels
+acceptés et contrôles : `reviews/visual-polish-01/`.
+
 ### Finition des acteurs — ART-FINISH-01, accord du 19 octobre 2026
 
 Le lot pilote complet est validé : treize dessins, six configurations de mains

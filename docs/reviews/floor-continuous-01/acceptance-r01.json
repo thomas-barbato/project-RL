@@ -1,0 +1,44 @@
+{
+  "review": "SOL-CONT01-r01",
+  "date": "2026-10-28",
+  "user_statement": "oui je valide parcontre attention, dans lâ€™interieur certains dÃ©cors nâ€™ont pas de bas",
+  "accepted_scope": "Exterior floor 02, continuous concrete and asphalt; interior concrete direction accepted with defects to repair and a new room-grating proposal requested.",
+  "exterior_integrated": true,
+  "interior_r01_integrated": false,
+  "new_interior_review": "SOL-CONT01-r03",
+  "prior_entry_background": "assets/maps/prison-sewer-01/art/background-afe7b21dff4c.png",
+  "entry_background": "assets/maps/prison-sewer-01/art/background-b3fe8948652d.png",
+  "assets": [
+    {
+      "path": "assets/maps/prison-street-01/street.png",
+      "before_sha256": "1dd45907310699da19977f8e86ebaa79f374dcc8df1086b6d5a456e30562346a",
+      "after_sha256": "e983225d59de3cf89550cf78616d0f86a4329795f60c3ad1373cf2febeaab0b0"
+    },
+    {
+      "path": "assets/maps/prison-street-expanded-01/street.png",
+      "before_sha256": "d87bc87c6e7f59ef3af6808f7abe56ef54a491f69e883446771c9b98b6e4af22",
+      "after_sha256": "9d148ec217b112f3f276b324c72e86d18cb80ca0515fd4a2968002cef062f62a"
+    },
+    {
+      "path": "assets/maps/prison-sewer-01/art/background-b3fe8948652d.png",
+      "before_sha256": null,
+      "after_sha256": "b3fe8948652ddfa37fd886be4d11e296e617f4a21d180455005b294034677c41"
+    }
+  ],
+  "references": [
+    {
+      "file": "assets/source-art/floor-continuous-01/accepted-r01/references/street-arrival-after.png",
+      "sha256": "8658b89b303f6747afb4547e9028ca5e4689e63de1ed2ec759a25430a5ec7b8b"
+    },
+    {
+      "file": "assets/source-art/floor-continuous-01/accepted-r01/references/street-north-after.png",
+      "sha256": "604c7c23942075597d36be15c384f4b26fd5678714af455cb4040dd0f7ab4e0d"
+    },
+    {
+      "file": "assets/source-art/floor-continuous-01/accepted-r01/references/street-plaza-after.png",
+      "sha256": "466da0d15b5a6af876eaee7c5104e7fd92b4b0085054ad8224d0a2cb0f4440d3"
+    }
+  ],
+  "gameplay_or_collision_changes": false,
+  "rejected_interior_candidate": 3
+}

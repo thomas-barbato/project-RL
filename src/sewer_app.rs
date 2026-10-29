@@ -15,6 +15,71 @@ impl AsciiApp {
     fn sewer_trial_variant(index: usize) -> Result<Self, String> {
         Self::sewer_trial_start(index, true)
     }
+    // Isolated near-hatch fixture: exercises the real current-version entry
+    // without simulating a combat march through the populated city.
+    pub(super) fn connected_sewer_fixture(index: usize) -> Result<Self, String> {
+        Self::isolated_sewer_fixture(index, CURRENT_GENERATION_VERSION)
+    }
+    fn isolated_sewer_fixture(index: usize, version: u8) -> Result<Self, String> {
+        let seed = (1872..2000)
+            .find(|&seed| crate::sewer::variant(seed) == index)
+            .ok_or("Unknown sewer index")?;
+        let (mut rules, texts, loot, expeditions) = ascii_game_content()?;
+        let classes = ascii_character_class_catalog()?;
+        let id: CharacterClassId = "core:bastion".parse().unwrap();
+        let class = classes.get(&id).ok_or("Bastion profile absent")?;
+        class
+            .apply_to_rules(&mut rules, class.recommended_attributes())
+            .map_err(|e| e.to_string())?;
+        weapon_supplies_app::ensure_class_weapon_supplies(&mut rules, version);
+        let mut app = Self::from_seed_version(seed, rules, texts, loot, expeditions, version)?;
+        app.character_class = Some(id);
+        app.select_weapon_slot(app.preferred_starting_weapon_slot());
+        app.crash_recovery_enabled = false;
+        app.suspension_path =
+            std::path::PathBuf::from("artifacts/sewer-water-review-01/isolated-resume.json");
+        let info =
+            crate::prison_street::info(app.game.current_zone().ok_or("Camp absent")?.clone());
+        let mut street =
+            crate::prison_street::blueprint(info.clone(), seed, true, true, true, true, true)?;
+        crate::sewer::prepare_street(&mut street.map)?;
+        let game = GameState::new_with_rules(
+            street.map,
+            GridPos::new(2, 15),
+            app.seed,
+            app.game.rules().clone(),
+        )
+        .map_err(|e| e.to_string())?;
+        app.game = WorldState::single(game);
+        app.game.enable(info.clone())?;
+        let connection = if version >= CONNECTED_SEWER_GENERATION_VERSION {
+            crate::sewer::connected_connection(app.seed, info.depth)
+        } else {
+            crate::sewer::connection(app.seed, info.depth)
+        };
+        app.game.declare_deferred_connection_at(
+            info.id,
+            connection.at,
+            connection.destination,
+            connection.arrival,
+        )?;
+        app.terminal = TerminalView::new(
+            SectorDecor::default(),
+            app.game.map(),
+            app.game.player_visibility(),
+        );
+        app.zone_decor.clear();
+        app.zone_views.clear();
+        app.log.clear();
+        app.refresh_zone_title();
+        app.combat_motion = crate::combat_visuals::CombatMotion::default();
+        app.open_menu(MenuScreen::Hidden);
+        app.character_creation = None;
+        app.graphics.active.world_cell_px = 64;
+        app.game.drain_events();
+        app.capture_events_at(Some(0.));
+        Ok(app)
+    }
     pub(super) fn sewer_trial_start(index: usize, near_hatch: bool) -> Result<Self, String> {
         if !(1..=3).contains(&index) {
             return Err("Sewer variant must be 1, 2 or 3".into());
@@ -167,6 +232,80 @@ impl AsciiApp {
             records.push(serde_json::json!({"variant":index,"monsters":count,"snapshot_restore":true,"entry_and_return":true}));
         }
         std::fs::write(output.join("checks.json"),serde_json::to_vec_pretty(&serde_json::json!({"review":"EG-COMP-04 / EG-POP-04","integration":true,"generation":SEWER_GENERATION_VERSION,"variants":records,"resurrection_active":false})).unwrap()).map_err(|e|e.to_string())?;
+        Ok(())
+    }
+
+    #[cfg(debug_assertions)]
+    pub async fn capture_sewer_canals_integration(output: &std::path::Path) -> Result<(), String> {
+        std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
+        request_new_screen_size(1280., 800.);
+        for _ in 0..3 {
+            next_frame().await;
+        }
+        let mut rows = Vec::new();
+        for index in 1..=3 {
+            let mut app = Self::connected_sewer_fixture(index)?;
+            if app.execute_command(GameCommand::Interact {
+                target: crate::sewer::ENTRY,
+            }) != CommandOutcome::Applied
+            {
+                return Err("Connected sewer entry failed".into());
+            }
+            if !crate::sewer::connected_id(app.game.current_zone().unwrap().id.as_str()) {
+                return Err("New game used a legacy sewer".into());
+            }
+            app.world_fix_frame(output, &format!("variant-{index}-arrival"))
+                .await?;
+            app.capture_events_at(Some(0.));
+            let saved = app.suspension()?;
+            let (r, t, l, e) = ascii_game_content()?;
+            let restored = Self::restore_suspension(&saved, r, t, l, e)?;
+            if suspension::fingerprint(&restored.game) != suspension::fingerprint(&app.game) {
+                return Err("Connected sewer resume changed world".into());
+            }
+            let exit = crate::prison_street::pos(crate::sewer::connected_plan(index).spawn);
+            if app.execute_command(GameCommand::Interact { target: exit })
+                != CommandOutcome::Applied
+            {
+                return Err("Connected sewer return failed".into());
+            }
+            app.world_fix_frame(output, &format!("variant-{index}-return"))
+                .await?;
+            let info = crate::sewer::connected_connection(app.seed, 1).destination;
+            let blueprint = crate::sewer::blueprint(info.clone(), app.seed, &app.regional_worlds)?;
+            let at = if index == 3 {
+                GridPos::new(13, 35)
+            } else {
+                GridPos::new(22, 19)
+            };
+            let game = GameState::new_with_rules(
+                blueprint.map,
+                at,
+                blueprint.seed,
+                app.game.rules().clone(),
+            )
+            .map_err(|e| e.to_string())?;
+            app.game = WorldState::single(game);
+            app.game.enable(info)?;
+            for actor in blueprint.actors {
+                app.game.spawn_actor(actor).map_err(|e| e.to_string())?;
+            }
+            app.game.drain_events();
+            app.terminal = TerminalView::new(
+                SectorDecor::default(),
+                app.game.map(),
+                app.game.player_visibility(),
+            );
+            app.log.clear();
+            app.refresh_zone_title();
+            app.world_fix_frame(output, &format!("variant-{index}-channels"))
+                .await?;
+            app.graphics.active.reduced_motion = true;
+            app.world_fix_frame(output, &format!("variant-{index}-reduced-motion"))
+                .await?;
+            rows.push(serde_json::json!({"variant":index,"normal_renderer":true,"connected_zone_id":true,"state_unchanged_during_render":true,"entry_return_and_resume":true,"monsters_and_player_walkable":app.game.actors().iter().all(|(_,a)|app.game.map().is_walkable(a.position()))}));
+        }
+        std::fs::write(output.join("checks.json"),serde_json::to_vec_pretty(&serde_json::json!({"review":"EG-CAN02-INTEGRATION01","generation":CURRENT_GENERATION_VERSION,"variants":rows,"saved_campaign_access":false,"settings_written":false,"scope":"Real entry/return from isolated near-hatch street fixture, resume and native production-renderer views; no city combat traversal or balance claim"})).map_err(|e|e.to_string())?).map_err(|e|e.to_string())?;
         Ok(())
     }
 }

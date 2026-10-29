@@ -16,6 +16,11 @@ const IDS: [&str; 3] = [
     "core:prison_sewer_02",
     "core:prison_sewer_03",
 ];
+const CONNECTED_IDS: [&str; 3] = [
+    "core:prison_sewer_canals_01",
+    "core:prison_sewer_canals_02",
+    "core:prison_sewer_canals_03",
+];
 
 #[derive(Deserialize)]
 pub struct Member {
@@ -64,7 +69,24 @@ pub struct Plan {
 }
 
 pub fn index_for_id(id: &str) -> Option<usize> {
-    IDS.iter().position(|&s| s == id).map(|i| i + 1)
+    IDS.iter()
+        .chain(CONNECTED_IDS.iter())
+        .position(|&s| s == id)
+        .map(|i| i % 3 + 1)
+}
+pub fn connected_id(id: &str) -> bool {
+    CONNECTED_IDS.contains(&id)
+}
+fn plan_for_id(id: &str) -> Option<&'static Plan> {
+    let index = index_for_id(id)?;
+    Some(if connected_id(id) {
+        connected_plan(index)
+    } else {
+        plan(index)
+    })
+}
+pub fn current_plan(game: &WorldState) -> Option<&'static Plan> {
+    plan_for_id(game.current_zone()?.id.as_str())
 }
 pub fn index(game: &WorldState) -> Option<usize> {
     index_for_id(game.current_zone()?.id.as_str())
@@ -154,6 +176,11 @@ pub fn connection(seed: u64, sector_depth: u16) -> ZoneConnectionBlueprint {
         },
         arrival: pos(plan(index).spawn),
     }
+}
+pub fn connected_connection(seed: u64, sector_depth: u16) -> ZoneConnectionBlueprint {
+    let mut result = connection(seed, sector_depth);
+    result.destination.id = CONNECTED_IDS[variant(seed) - 1].parse().unwrap();
+    result
 }
 pub fn prepare_street(map: &mut Map) -> Result<(), String> {
     #[derive(Deserialize)]
@@ -263,7 +290,27 @@ pub fn blueprint(
     catalog: &RegionalWorldCatalog,
 ) -> Result<ZoneBlueprint, String> {
     let index = index_for_id(info.id.as_str()).ok_or("Unknown accepted sewer variant")?;
-    let plan = plan(index);
+    let connected = connected_id(info.id.as_str());
+    let plan = if connected {
+        connected_plan(index)
+    } else {
+        plan(index)
+    };
+    let map = construct_map(plan, connected)?;
+    Ok(ZoneBlueprint {
+        info,
+        map,
+        entrance: pos(plan.spawn),
+        seed: seed ^ plan.seed,
+        actors: actors(plan, catalog)?,
+        loot: Vec::new(),
+        threat_sources: Vec::new(),
+    })
+}
+
+// Historical layouts keep their exact geometry. Every connected-sewer build
+// must pass the water and navigable-floor invariants before being published.
+fn construct_map(plan: &Plan, connected_channels: bool) -> Result<Map, String> {
     let mut map = Map::filled(plan.width, plan.height, Terrain::Wall).map_err(|e| e.to_string())?;
     for (y, row) in plan.layout.iter().enumerate() {
         for (x, c) in row.bytes().enumerate() {
@@ -280,15 +327,104 @@ pub fn blueprint(
     let entrance = pos(plan.spawn);
     map.set_protected(entrance, true)
         .map_err(|e| e.to_string())?;
-    Ok(ZoneBlueprint {
-        info,
-        map,
-        entrance,
-        seed: seed ^ plan.seed,
-        actors: actors(plan, catalog)?,
-        loot: Vec::new(),
-        threat_sources: Vec::new(),
-    })
+    if connected_channels {
+        validate_channels(plan, &map)?;
+    }
+    Ok(map)
+}
+
+// The network continues under walkable grates. Cardinal joins match the
+// actual movement graph; diagonal contact is insufficient for either graph.
+fn validate_channels(plan: &Plan, map: &Map) -> Result<(), String> {
+    use std::collections::{BTreeSet, VecDeque};
+    fn flood(cells: &BTreeSet<GridPos>, start: GridPos) -> BTreeSet<GridPos> {
+        let mut seen = BTreeSet::new();
+        let mut todo = VecDeque::new();
+        if cells.contains(&start) {
+            seen.insert(start);
+            todo.push_back(start);
+        }
+        while let Some(at) = todo.pop_front() {
+            for next in at.cardinal_neighbors() {
+                if cells.contains(&next) && seen.insert(next) {
+                    todo.push_back(next);
+                }
+            }
+        }
+        seen
+    }
+    let channels: BTreeSet<_> = plan
+        .layout
+        .iter()
+        .enumerate()
+        .flat_map(|(y, row)| {
+            row.bytes().enumerate().filter_map(move |(x, c)| {
+                matches!(c, b'~' | b'=').then_some(GridPos::new(x as i32, y as i32))
+            })
+        })
+        .collect();
+    let Some(&first) = channels.first() else {
+        return Err("Sewer construction requires a water network".into());
+    };
+    if flood(&channels, first) != channels {
+        return Err("Sewer construction left disconnected water channels".into());
+    }
+    let dry: BTreeSet<_> = (0..map.height() as i32)
+        .flat_map(|y| (0..map.width() as i32).map(move |x| GridPos::new(x, y)))
+        .filter(|&at| map.is_walkable(at))
+        .collect();
+    let start = pos(plan.spawn);
+    if dry.len() < 2 || !dry.contains(&start) || flood(&dry, start) != dry {
+        return Err("Sewer construction cut a dry route".into());
+    }
+    for at in plan
+        .groups
+        .iter()
+        .flat_map(|g| g.members.iter().map(|m| m.at))
+        .chain(plan.views.iter().map(|v| v.at))
+    {
+        if !dry.contains(&pos(at)) {
+            return Err("Sewer construction blocked a character or room access".into());
+        }
+    }
+    for (y, row) in plan.layout.iter().enumerate() {
+        for (x, c) in row.bytes().enumerate() {
+            if c == b'=' && !map.is_walkable(GridPos::new(x as i32, y as i32)) {
+                return Err("Sewer grate is not a usable crossing".into());
+            }
+        }
+    }
+    Ok(())
+}
+
+pub fn connected_plan(index: usize) -> &'static Plan {
+    static PLANS: OnceLock<[Plan; 3]> = OnceLock::new();
+    &PLANS.get_or_init(|| {
+        [
+            serde_json::from_str(include_str!(
+                "../assets/maps/prison-sewer-canals-02/variant-1-plan.json"
+            ))
+            .unwrap(),
+            serde_json::from_str(include_str!(
+                "../assets/maps/prison-sewer-canals-02/variant-2-plan.json"
+            ))
+            .unwrap(),
+            serde_json::from_str(include_str!(
+                "../assets/maps/prison-sewer-canals-02/variant-3-plan.json"
+            ))
+            .unwrap(),
+        ]
+    })[index - 1]
+}
+
+#[cfg(any(test, debug_assertions))]
+pub(crate) fn canal_candidate(index: usize) -> &'static Plan {
+    connected_plan(index)
+}
+
+#[cfg(any(test, debug_assertions))]
+pub(crate) fn canal_candidate_map(index: usize) -> Result<Map, String> {
+    construct_map(canal_candidate(index), true)
 }
 pub fn restore_obstructions(world: &mut WorldState) -> Result<(), String> {
     if has_street_entry(world) {
@@ -308,10 +444,14 @@ pub fn restore_obstructions(world: &mut WorldState) -> Result<(), String> {
             world.restore_static_zone_obstructions(&id, &fields)?;
         }
     }
-    for (i, id) in IDS.iter().enumerate() {
-        let id = id.parse().unwrap();
+    for &name in IDS.iter().chain(CONNECTED_IDS.iter()) {
+        let id = name.parse().unwrap();
         if world.map_in_zone(&id).is_some() {
-            world.restore_static_zone_obstructions(&id, &obstacles(plan(i + 1)))?;
+            let plan = plan_for_id(name).unwrap();
+            world.restore_static_zone_obstructions(&id, &obstacles(plan))?;
+            if connected_id(name) {
+                validate_channels(plan, world.map_in_zone(&id).unwrap())?;
+            }
         }
     }
     Ok(())

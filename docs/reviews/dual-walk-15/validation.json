@@ -1,0 +1,2107 @@
+{
+  "review": "DUAL15-r01",
+  "candidate": 1,
+  "date": "2026-10-28",
+  "status": "awaiting_visual_approval",
+  "runtime_integration": false,
+  "normal_debug_and_release_changed": false,
+  "normal_release_sha256_preserved": "f7dfe806d750ed9861e3868fdaf948e79530e7404b83e9f8903e6a47cf8fc2e5",
+  "source_compositor": {
+    "body_and_legs_unchanged": true,
+    "cases": [
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 0,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-00-pistols-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-pistols-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 0,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-00-blades-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-blades-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 0,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-00-mixed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-mixed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 0,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-00-mixed-reversed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-mixed-reversed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 4,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-04-pistols-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-pistols-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 4,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-04-blades-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-blades-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 4,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-04-mixed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-mixed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 4,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-04-mixed-reversed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-mixed-reversed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 10,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-10-pistols-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-pistols-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 10,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-10-blades-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-blades-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 10,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-10-mixed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-mixed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 10,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-10-mixed-reversed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-mixed-reversed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 11,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-11-pistols-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-11-pistols-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 11,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-11-blades-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-11-blades-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 11,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-11-mixed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-11-mixed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 11,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-11-mixed-reversed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-11-mixed-reversed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 12,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-12-pistols-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-12-pistols-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 12,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-12-blades-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-12-blades-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 12,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-12-mixed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-12-mixed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 12,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-12-mixed-reversed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-12-mixed-reversed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 13,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-13-pistols-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-13-pistols-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 13,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-13-blades-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-13-blades-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 13,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-13-mixed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-13-mixed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 13,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-13-mixed-reversed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-13-mixed-reversed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 14,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-14-pistols-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-pistols-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 14,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-14-blades-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-blades-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 14,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-14-mixed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-mixed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 14,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-14-mixed-reversed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-mixed-reversed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 15,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-15-pistols-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-pistols-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 15,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-15-blades-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-blades-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 15,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-15-mixed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-mixed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 15,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-15-mixed-reversed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-mixed-reversed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 20,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-20-pistols-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-pistols-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 20,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-20-blades-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-blades-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 20,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-20-mixed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-mixed-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 20,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-20-mixed-reversed-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-mixed-reversed-candidate.png",
+            "proposed": true
+          }
+        ]
+      }
+    ],
+    "contact_failures": [],
+    "contacts": 864,
+    "exported_pngs_need_vertical_flip": true,
+    "native_tile_px": 64,
+    "normal_game_changed": false,
+    "review": "DUAL15-r01",
+    "rigid_arm_weapon_glove_transform": true,
+    "status": "awaiting_visual_approval"
+  },
+  "engine": {
+    "campaign_loaded": false,
+    "exported_pngs_need_vertical_flip": false,
+    "front_idle_unchanged": true,
+    "native_tile_px": 64,
+    "normal_game_changed": false,
+    "preferences_written": false,
+    "records": [
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 0,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-00-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 0,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-00-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 0,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-00-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 0,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-00-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 4,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-04-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 4,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-04-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 4,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-04-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 4,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-04-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 10,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-10-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 10,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-10-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 10,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-10-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 10,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-10-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 14,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-14-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 14,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-14-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 14,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-14-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 14,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-14-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 15,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-15-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 15,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-15-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 15,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-15-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 15,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-15-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 20,
+        "lighting": false,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-20-pistols-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-pistols-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 20,
+        "lighting": false,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-20-blades-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-blades-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 20,
+        "lighting": false,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-20-mixed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-mixed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 20,
+        "lighting": false,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-20-mixed-reversed-plain-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-mixed-reversed-plain-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 0,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-00-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 0,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-00-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 0,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-00-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 0,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-00-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-00-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 4,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-04-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 4,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-04-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 4,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-04-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 4,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-04-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-04-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 10,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-10-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 10,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-10-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 10,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-10-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 10,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-10-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-10-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 14,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-14-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 14,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-14-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 14,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-14-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 14,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-14-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-14-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 15,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-15-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 15,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-15-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 15,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-15-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 15,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-15-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-15-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          101
+        ],
+        "index": 20,
+        "lighting": true,
+        "loadout": "pistols",
+        "variants": [
+          {
+            "file": "CLASS-20-pistols-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-pistols-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          79
+        ],
+        "index": 20,
+        "lighting": true,
+        "loadout": "blades",
+        "variants": [
+          {
+            "file": "CLASS-20-blades-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-blades-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          68,
+          101
+        ],
+        "index": 20,
+        "lighting": true,
+        "loadout": "mixed",
+        "variants": [
+          {
+            "file": "CLASS-20-mixed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-mixed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      },
+      {
+        "hands": [
+          101,
+          68
+        ],
+        "index": 20,
+        "lighting": true,
+        "loadout": "mixed-reversed",
+        "variants": [
+          {
+            "file": "CLASS-20-mixed-reversed-lit-current.png",
+            "proposed": false
+          },
+          {
+            "file": "CLASS-20-mixed-reversed-lit-candidate.png",
+            "proposed": true
+          }
+        ]
+      }
+    ],
+    "restored_normal_pixels_after_every_comparison": true,
+    "review": "DUAL15-r01",
+    "status": "awaiting_visual_approval"
+  },
+  "source_inputs": [
+    {
+      "path": "assets/animations/walk-12/player/CLASS-00-left.png",
+      "sha256": "c75ffc23e8c02c3a6b053c2d7a39d620c747473198b2dadca0e85cc571c27a4f"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-00-right.png",
+      "sha256": "923449569d4f5503d87b59f648e0ce51cdbd9c17e18150afd8cc532fade50a50"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-04-left.png",
+      "sha256": "88c432f3d030bbe655000303a8137929c5215f035206c4c29221f9732a80cb9c"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-04-right.png",
+      "sha256": "6c3370a40d350e5bfebfcc66217dfce931b724aaeb160c7725a9f10fd05cc1fa"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-10-left.png",
+      "sha256": "f6cefcdbd061b844fe9dade066cf9083afcdb230917d03d386dc7a797730919a"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-10-right.png",
+      "sha256": "bbfbea95fc06ee64f80f988caca52f1da761423f824fb99ab4206212767908b5"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-11-left.png",
+      "sha256": "13f7197e4c64f07e4ab122f0d365f48068754565876785a07167744b50842e9f"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-11-right.png",
+      "sha256": "e65ac0a1bf64d26c77dedc5a9cd812893ae9301205195dca88d978c3bdca57c8"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-12-left.png",
+      "sha256": "75757b2309d7c2ebdedd16718f4ce425d2b026c4010ed3bc241805097417abe7"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-12-right.png",
+      "sha256": "0021ee4d1c22a3d9ab5f6b82a0d1edccc098d42cd15f3558c7b14f2921fe0610"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-13-left.png",
+      "sha256": "2dc98c22cb8990537c4998af67ea6cbd69c8b66d248856cc8fa58cda6c9206cd"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-13-right.png",
+      "sha256": "6bbbc8fec15afaf81d05249303d9165a15d416a1f4c1f081afde2ac3f23e3c04"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-14-left.png",
+      "sha256": "b614f7291e9c4f8be30ca2181df968b5246a776c2510fe864d0ca9ae97aabceb"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-14-right.png",
+      "sha256": "a2aa5985cd77f553c1aa9898d51824d7db8e4e026f58be57e8330790bb736152"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-15-left.png",
+      "sha256": "f823862be499b1b4942d64b9f0a222e98b18c3f5be52c70bc2a8635a7b55797c"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-15-right.png",
+      "sha256": "e071ff4280b00d64f072d42e5a3cb3eae3a716e6aa0d498897951da623dd7511"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-20-left.png",
+      "sha256": "a8a69425898da2b9cbbddbb5b0bbe24c40f780b650365dd4258efc02091f168c"
+    },
+    {
+      "path": "assets/animations/walk-12/player/CLASS-20-right.png",
+      "sha256": "9082cdbcc8fbac9da56c0349a2880146a941a26a8f78e1460fd0a5d9e0f04c13"
+    },
+    {
+      "path": "assets/animations/walk-12/player/manifest.json",
+      "sha256": "4dfdcd7f5be9c098d6b8f9c93ae6d713239518ae81d4a801a3c79c7bbaf89190"
+    },
+    {
+      "path": "assets/sprites/held-native64/weapons-128.png",
+      "sha256": "549e584842ce988303bc7aefd1996067048cecda8697c3903e4c8c84711978a3"
+    }
+  ],
+  "drawing_method": "Existing accepted native figures, arm/glove and independent weapon pixels; rigid rotations and depth composition; no image generation or changed PNG source.",
+  "parameters": {
+    "pistol_wrist_rotation_degrees": 90,
+    "far_pistol_arm_rotation_degrees": 18,
+    "near_pistol_arm_rotation_degrees": 32,
+    "pistol_swing_degrees": 4,
+    "melee_swing_degrees": 8,
+    "swing_phases": [
+      -1,
+      -0.15,
+      0.85,
+      1,
+      0.15,
+      -0.85
+    ],
+    "far_arm": {
+      "facing_right": 1,
+      "facing_left": 0
+    },
+    "normal_preview_flag": false
+  },
+  "passed_commands": [
+    "cargo fmt --all -- --check",
+    "cargo check --locked --all-targets",
+    "cargo test --locked --bin project-rl export_dual15_review -- --ignored --nocapture",
+    "cargo test --locked --bin project-rl equipped_arms_and_weapons_keep_the_same_pose_through_all_steps -- --nocapture",
+    "cargo build --locked --bin project-rl",
+    "target/debug/project-rl.exe --ui-cold-dual-walk artifacts/dual-walk-review-15/r01/engine",
+    "git diff --check"
+  ],
+  "limits": [
+    "Explicit scoped preview, not activated during normal play.",
+    "Four playable base classes and two heavy outfits captured in engine; all five Traqueuse outfits also audited in the source compositor.",
+    "Exact native engine frames assembled into a review timeline; no real campaign executed.",
+    "No new gait, weapon art, gameplay rule, vertical presentation or front idle pose."
+  ],
+  "publication": {
+    "review": "DUAL15-r01",
+    "status": "awaiting_visual_approval",
+    "engine_capture": "engine/checks.json",
+    "outputs": [
+      {
+        "path": "pistols-natif64.gif",
+        "sha256": "81c99a595596a3e4527d610f995fa0792eb87e291c95b4eeafeebe66bd292e32",
+        "native_cell_px": 64,
+        "presentation_zoom": 1,
+        "engine_pixels_resampled": false
+      },
+      {
+        "path": "blades-natif64.gif",
+        "sha256": "cc82dbff6c12d28faf636ab3edccd8410f1b264a42d299e55f73580b303100a1",
+        "native_cell_px": 64,
+        "presentation_zoom": 1,
+        "engine_pixels_resampled": false
+      },
+      {
+        "path": "mixed-natif64.gif",
+        "sha256": "a6b227305c7ab649a5d8760873c8b2836f107f77ed7baf919034402b561f6907",
+        "native_cell_px": 64,
+        "presentation_zoom": 1,
+        "engine_pixels_resampled": false
+      },
+      {
+        "path": "mixed-reversed-natif64.gif",
+        "sha256": "798e3cf3a6ab079c2087b6908ad1fd7d524c41fbefd21efb358630b2f36e03f1",
+        "native_cell_px": 64,
+        "presentation_zoom": 1,
+        "engine_pixels_resampled": false
+      },
+      {
+        "path": "armures-lourdes-natif64.gif",
+        "sha256": "ebd32114528630552c65f35266ec1ae32d72e4666343225f7097a9079b18c200",
+        "native_cell_px": 64,
+        "presentation_zoom": 1,
+        "engine_pixels_resampled": false
+      },
+      {
+        "path": "pistols-detail-x3.gif",
+        "sha256": "1aeef738cf78938b81890f714c8c83c5716abde53ab9ee51b8fd1c8f6a2dea3a",
+        "native_cell_px": 64,
+        "presentation_zoom": 3,
+        "engine_pixels_resampled": true
+      }
+    ]
+  },
+  "orientation_audit": [
+    {
+      "index": 0,
+      "loadout": "pistols",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9953917050691244,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 0,
+      "loadout": "pistols",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9956850053937433,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 0,
+      "loadout": "blades",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9938650306748467,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 0,
+      "loadout": "blades",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9947589098532494,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 0,
+      "loadout": "mixed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9940179461615155,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 0,
+      "loadout": "mixed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9950445986124876,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 0,
+      "loadout": "mixed-reversed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9957537154989384,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 0,
+      "loadout": "mixed-reversed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9940417080436942,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 4,
+      "loadout": "pistols",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.98914223669924,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 4,
+      "loadout": "pistols",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.990909090909091,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 4,
+      "loadout": "blades",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9907597535934292,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 4,
+      "loadout": "blades",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9907786885245902,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 4,
+      "loadout": "mixed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9910179640718563,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 4,
+      "loadout": "mixed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9912109375,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 4,
+      "loadout": "mixed-reversed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9887514060742407,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 4,
+      "loadout": "mixed-reversed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9900771775082691,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 10,
+      "loadout": "pistols",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9635036496350365,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 10,
+      "loadout": "pistols",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9682899207248018,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 10,
+      "loadout": "blades",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.960618846694796,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 10,
+      "loadout": "blades",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9607293127629734,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 10,
+      "loadout": "mixed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9646153846153847,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 10,
+      "loadout": "mixed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9657458563535911,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 10,
+      "loadout": "mixed-reversed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9622166246851386,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 10,
+      "loadout": "mixed-reversed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.965389369592089,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 14,
+      "loadout": "pistols",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.96875,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 14,
+      "loadout": "pistols",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9692874692874693,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 14,
+      "loadout": "blades",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9585492227979274,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 14,
+      "loadout": "blades",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9638709677419355,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 14,
+      "loadout": "mixed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9614583333333333,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 14,
+      "loadout": "mixed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9651442307692307,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 14,
+      "loadout": "mixed-reversed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9649941656942824,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 14,
+      "loadout": "mixed-reversed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9642857142857143,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 15,
+      "loadout": "pistols",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 1.0,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 15,
+      "loadout": "pistols",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9990421455938697,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 15,
+      "loadout": "blades",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9990291262135922,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 15,
+      "loadout": "blades",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.999034749034749,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 15,
+      "loadout": "mixed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 1.0,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 15,
+      "loadout": "mixed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9989754098360656,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 15,
+      "loadout": "mixed-reversed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9990494296577946,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 15,
+      "loadout": "mixed-reversed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9989572471324296,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 20,
+      "loadout": "pistols",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9974905897114178,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 20,
+      "loadout": "pistols",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9976331360946745,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 20,
+      "loadout": "blades",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9974968710888611,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 20,
+      "loadout": "blades",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9975520195838433,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 20,
+      "loadout": "mixed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9973404255319149,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 20,
+      "loadout": "mixed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9974193548387097,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 20,
+      "loadout": "mixed-reversed",
+      "proposed": false,
+      "minimum_source_silhouette_coverage": 0.9973753280839895,
+      "vertical_orientation_matches_source": true
+    },
+    {
+      "index": 20,
+      "loadout": "mixed-reversed",
+      "proposed": true,
+      "minimum_source_silhouette_coverage": 0.9974489795918368,
+      "vertical_orientation_matches_source": true
+    }
+  ],
+  "publication_sprite_regions_exact": 76,
+  "final_native_pngs_visually_inspected": [
+    "mixed-natif64.png",
+    "pistols-detail-x3.png"
+  ],
+  "html_execution_verified": false,
+  "gif_presentation": "Native geometry, 26 timeline frames, GIF indexed palette; exact engine colors in static native PNGs."
+}

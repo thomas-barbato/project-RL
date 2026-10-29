@@ -1,0 +1,359 @@
+{
+  "review": "SOL-FUT01-r03",
+  "status": "integrated",
+  "date": "2026-10-28",
+  "assets": [
+    {
+      "path": "assets/maps/cryogenic-camp-01/floor.png",
+      "before_sha256": "ae0097dd95a8cb370828f6ac9888dac35d048328165988d57e806e0ee8413802",
+      "after_sha256": "594f9373eae1b3cb516092ccf3856f6ed3a65276c85d04bf0401f9bb6e97911e"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/structure.png",
+      "before_sha256": "6548be8bc47a466af93ec2998d85b09993a37b75484b8a48e14c296b75a92eb7",
+      "after_sha256": "c37647e39063a8a1f2394c7f48c6863e1513e35633cc316a37d21f59020118b3"
+    }
+  ],
+  "native_production_views_match_accepted_07": [
+    {
+      "scene": "camp-arrival",
+      "native_cell": 64,
+      "normal_matches_accepted_pixels": true,
+      "changed_crop_pixels": 0,
+      "normal_vs_source_world_changed_pixels": 0,
+      "ui_pixels_changed": 0,
+      "simulation_unchanged": true
+    },
+    {
+      "scene": "camp-corridor",
+      "native_cell": 64,
+      "normal_matches_accepted_pixels": true,
+      "changed_crop_pixels": 0,
+      "normal_vs_source_world_changed_pixels": 0,
+      "ui_pixels_changed": 0,
+      "simulation_unchanged": true
+    },
+    {
+      "scene": "camp-storage",
+      "native_cell": 64,
+      "normal_matches_accepted_pixels": true,
+      "changed_crop_pixels": 0,
+      "normal_vs_source_world_changed_pixels": 0,
+      "ui_pixels_changed": 0,
+      "simulation_unchanged": true
+    },
+    {
+      "scene": "camp-security",
+      "native_cell": 64,
+      "normal_matches_accepted_pixels": true,
+      "changed_crop_pixels": 0,
+      "normal_vs_source_world_changed_pixels": 0,
+      "ui_pixels_changed": 0,
+      "simulation_unchanged": true
+    },
+    {
+      "scene": "camp-medical",
+      "native_cell": 64,
+      "normal_matches_accepted_pixels": true,
+      "changed_crop_pixels": 0,
+      "normal_vs_source_world_changed_pixels": 0,
+      "ui_pixels_changed": 0,
+      "simulation_unchanged": true
+    },
+    {
+      "scene": "camp-workshop",
+      "native_cell": 64,
+      "normal_matches_accepted_pixels": true,
+      "changed_crop_pixels": 0,
+      "normal_vs_source_world_changed_pixels": 0,
+      "ui_pixels_changed": 0,
+      "simulation_unchanged": true
+    },
+    {
+      "scene": "camp-doorway",
+      "native_cell": 64,
+      "normal_matches_accepted_pixels": true,
+      "changed_crop_pixels": 0,
+      "normal_vs_source_world_changed_pixels": 0,
+      "ui_pixels_changed": 0,
+      "simulation_unchanged": true
+    },
+    {
+      "scene": "camp-threshold",
+      "native_cell": 64,
+      "normal_matches_accepted_pixels": true,
+      "changed_crop_pixels": 0,
+      "normal_vs_source_world_changed_pixels": 0,
+      "ui_pixels_changed": 0,
+      "simulation_unchanged": true
+    }
+  ],
+  "room_layer_checks_against_05": [
+    {
+      "layer": "floor.png",
+      "box": [
+        42,
+        295,
+        449,
+        753
+      ],
+      "changed_pixels_from_05": 0
+    },
+    {
+      "layer": "floor.png",
+      "box": [
+        910,
+        126,
+        1334,
+        327
+      ],
+      "changed_pixels_from_05": 0
+    },
+    {
+      "layer": "floor.png",
+      "box": [
+        1742,
+        126,
+        2166,
+        327
+      ],
+      "changed_pixels_from_05": 0
+    },
+    {
+      "layer": "floor.png",
+      "box": [
+        910,
+        740,
+        1334,
+        961
+      ],
+      "changed_pixels_from_05": 0
+    },
+    {
+      "layer": "floor.png",
+      "box": [
+        1742,
+        740,
+        2166,
+        961
+      ],
+      "changed_pixels_from_05": 0
+    },
+    {
+      "layer": "structure.png",
+      "box": [
+        42,
+        295,
+        449,
+        753
+      ],
+      "changed_pixels_from_05": 0
+    },
+    {
+      "layer": "structure.png",
+      "box": [
+        910,
+        126,
+        1334,
+        327
+      ],
+      "changed_pixels_from_05": 0
+    },
+    {
+      "layer": "structure.png",
+      "box": [
+        1742,
+        126,
+        2166,
+        327
+      ],
+      "changed_pixels_from_05": 0
+    },
+    {
+      "layer": "structure.png",
+      "box": [
+        910,
+        740,
+        1334,
+        961
+      ],
+      "changed_pixels_from_05": 0
+    },
+    {
+      "layer": "structure.png",
+      "box": [
+        1742,
+        740,
+        2166,
+        961
+      ],
+      "changed_pixels_from_05": 0
+    }
+  ],
+  "native_capture": {
+    "native_cell": 64,
+    "normal_game_activation": true,
+    "records": [
+      {
+        "camera_world_origin": [
+          469.0,
+          -187.0
+        ],
+        "crop": [
+          341.0,
+          133.0,
+          640.0,
+          448.0
+        ],
+        "native_cell": 64,
+        "scene": "camp-arrival",
+        "simulation_unchanged": true,
+        "ui_pixels_changed": 0,
+        "world_pixels_changed": 0
+      },
+      {
+        "camera_world_origin": [
+          -811.0,
+          -187.0
+        ],
+        "crop": [
+          341.0,
+          133.0,
+          640.0,
+          448.0
+        ],
+        "native_cell": 64,
+        "scene": "camp-corridor",
+        "simulation_unchanged": true,
+        "ui_pixels_changed": 0,
+        "world_pixels_changed": 0
+      },
+      {
+        "camera_world_origin": [
+          -491.0,
+          133.0
+        ],
+        "crop": [
+          341.0,
+          133.0,
+          640.0,
+          448.0
+        ],
+        "native_cell": 64,
+        "scene": "camp-storage",
+        "simulation_unchanged": true,
+        "ui_pixels_changed": 0,
+        "world_pixels_changed": 0
+      },
+      {
+        "camera_world_origin": [
+          -1323.0,
+          133.0
+        ],
+        "crop": [
+          341.0,
+          133.0,
+          640.0,
+          448.0
+        ],
+        "native_cell": 64,
+        "scene": "camp-security",
+        "simulation_unchanged": true,
+        "ui_pixels_changed": 0,
+        "world_pixels_changed": 0
+      },
+      {
+        "camera_world_origin": [
+          -491.0,
+          -507.0
+        ],
+        "crop": [
+          341.0,
+          133.0,
+          640.0,
+          448.0
+        ],
+        "native_cell": 64,
+        "scene": "camp-medical",
+        "simulation_unchanged": true,
+        "ui_pixels_changed": 0,
+        "world_pixels_changed": 0
+      },
+      {
+        "camera_world_origin": [
+          -1323.0,
+          -507.0
+        ],
+        "crop": [
+          341.0,
+          133.0,
+          640.0,
+          448.0
+        ],
+        "native_cell": 64,
+        "scene": "camp-workshop",
+        "simulation_unchanged": true,
+        "ui_pixels_changed": 0,
+        "world_pixels_changed": 0
+      },
+      {
+        "camera_world_origin": [
+          21.0,
+          -187.0
+        ],
+        "crop": [
+          341.0,
+          133.0,
+          640.0,
+          448.0
+        ],
+        "native_cell": 64,
+        "scene": "camp-doorway",
+        "simulation_unchanged": true,
+        "ui_pixels_changed": 0,
+        "world_pixels_changed": 0
+      },
+      {
+        "camera_world_origin": [
+          -491.0,
+          -315.0
+        ],
+        "crop": [
+          341.0,
+          133.0,
+          640.0,
+          448.0
+        ],
+        "native_cell": 64,
+        "scene": "camp-threshold",
+        "simulation_unchanged": true,
+        "ui_pixels_changed": 0,
+        "world_pixels_changed": 0
+      }
+    ],
+    "review": "SOL-FUT01-r03",
+    "saved_campaign_access": false,
+    "settings_written": false,
+    "status": "integrated"
+  },
+  "camp_gameplay_config_unchanged": true,
+  "utf8_labels_preserved": true,
+  "native_references": "assets/source-art/floor-future-01/accepted-07/references/",
+  "runtime_inventory": {
+    "valid": true,
+    "logical_files": 1819,
+    "production_art_included": true,
+    "source_art_and_reviews_excluded": true
+  },
+  "passed_commands": [
+    "cargo build --locked --bin project-rl",
+    "target/debug/project-rl.exe --ui-cold-corridor-wear-integration artifacts/floor-continuous-review-01/corridor-wear-07/integration",
+    "cargo fmt --all -- --check",
+    "cargo check --locked --all-targets",
+    "git diff --check",
+    "cargo build --locked --release --bin project-rl"
+  ],
+  "cleanup": "cleanup-07-integration.json",
+  "release_sha256": "f7dfe806d750ed9861e3868fdaf948e79530e7404b83e9f8903e6a47cf8fc2e5",
+  "release_build": "passed"
+}

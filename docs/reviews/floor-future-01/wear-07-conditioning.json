@@ -1,0 +1,92 @@
+{
+  "review": "SOL-FUT01-r03",
+  "candidate_number": 7,
+  "status": "awaiting_visual_approval",
+  "accepted_baseline": 6,
+  "wear_source_sha256": "efda142e4e5adaa28b2928c94dfa7f52ddbece33529f1fa702c950b5f7b96beb",
+  "source_has_genuine_transparency": true,
+  "rooms_05_unchanged": true,
+  "outside_circulation_changed_pixels": 0,
+  "mesh_apertures_changed_pixels": 0,
+  "aperture_pixels_preserved": 169723,
+  "changed_pixels": 75869,
+  "changed_edge_pixels": 13650,
+  "changed_centre_pixels": 62219,
+  "source_alphas_unchanged": true,
+  "sections": [
+    [
+      [
+        704,
+        447,
+        2368,
+        642
+      ],
+      false
+    ],
+    [
+      [
+        444,
+        490,
+        718,
+        580
+      ],
+      false
+    ],
+    [
+      [
+        2358,
+        490,
+        2432,
+        580
+      ],
+      true
+    ],
+    [
+      [
+        1080,
+        328,
+        1162,
+        447
+      ],
+      true
+    ],
+    [
+      [
+        1912,
+        328,
+        1994,
+        447
+      ],
+      true
+    ],
+    [
+      [
+        1080,
+        643,
+        1162,
+        739
+      ],
+      true
+    ],
+    [
+      [
+        1912,
+        643,
+        1994,
+        739
+      ],
+      true
+    ]
+  ],
+  "outputs": [
+    {
+      "path": "assets/source-art/floor-future-01/corridor-wear-07/floor.png",
+      "sha256": "594f9373eae1b3cb516092ccf3856f6ed3a65276c85d04bf0401f9bb6e97911e"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/corridor-wear-07/structure.png",
+      "sha256": "c37647e39063a8a1f2394c7f48c6863e1513e35633cc316a37d21f59020118b3"
+    }
+  ],
+  "gameplay_changed": false
+}

@@ -1,0 +1,91 @@
+{
+  "review": "SOL-FUT01-r02",
+  "status": "integrated",
+  "assets": [
+    {
+      "path": "assets/maps/cryogenic-camp-01/floor.png",
+      "before_sha256": "ce84b82bd2eed07400d324fe568df8976016c1585e844954a0eb55c254202bae",
+      "after_sha256": "ae0097dd95a8cb370828f6ac9888dac35d048328165988d57e806e0ee8413802"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/structure.png",
+      "before_sha256": "dfc45d1d0748144636444709451be31443b5df6256659336c1a2a699c1b5ca2c",
+      "after_sha256": "6548be8bc47a466af93ec2998d85b09993a37b75484b8a48e14c296b75a92eb7"
+    }
+  ],
+  "native_production_views_match_accepted_06": [
+    {
+      "scene": "camp-arrival",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-corridor",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-storage",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-security",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-medical",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-workshop",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-doorway",
+      "production_06_matches_accepted_pixels": true
+    },
+    {
+      "scene": "camp-threshold",
+      "production_06_matches_accepted_pixels": true
+    }
+  ],
+  "rooms_05_preserved": true,
+  "camp_gameplay_config_unchanged": true,
+  "utf8_labels_preserved": true,
+  "release_sha256": "3a049770594e2bad193de5d7b758607ac6a6b94744ee8045ce0d65f6552b1fa9",
+  "packaged_runtime": {
+    "verify_assets_exit_code": 0,
+    "native_smoke": {
+      "atmospheres": 7,
+      "content_and_menu": true,
+      "dialogue_audio_loaded": true,
+      "files": 1764,
+      "packed": true,
+      "pngs_decoded_and_uploaded": 1369,
+      "root": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\floor-continuous-review-01\\corridor-wear-07\\package-check",
+      "shared_animation_texture": true,
+      "status": "passed"
+    },
+    "archive": {
+      "path": "data.rlpak",
+      "format": "zip",
+      "bytes": 103479531,
+      "sha256": "c45fa5e4301d82861c45b5079aac82b90d2d1f5bed7d8eb643e1ef33baa9bb34"
+    },
+    "statistics": {
+      "logical_input_files": 1819,
+      "original_data_bytes": 113752715,
+      "deduplicated_bytes": 2167802,
+      "lossless_compression_saved_bytes": 1555821,
+      "unpacked_data_bytes": 110029092,
+      "packaged_data_bytes": 103479531
+    },
+    "executable": {
+      "path": "project-rl.exe",
+      "bytes": 59787264,
+      "sha256": "3a049770594e2bad193de5d7b758607ac6a6b94744ee8045ce0d65f6552b1fa9"
+    },
+    "no_loose_assets_or_content": true,
+    "unapproved_07_and_source_art_excluded": true,
+    "existing_dist_modified": false,
+    "temporary_installation_removed_after_verification": true
+  }
+}

@@ -6,6 +6,7 @@ mod animation_readability_review;
 #[cfg(debug_assertions)]
 mod art_quality_capture;
 mod ascii_app;
+mod asset_loading;
 mod asset_smoke;
 mod attack_preview_visuals;
 mod camp_atmosphere;
@@ -16,7 +17,11 @@ mod combat_visuals;
 mod controls;
 mod cryogenic_camp;
 mod cryogenic_camp_render;
+#[cfg(debug_assertions)]
+mod dual_walk_capture;
 mod effect_geometry;
+#[cfg(debug_assertions)]
+mod floor_surface_review;
 mod game_art;
 mod graphics;
 mod guardian_taunt_visuals;
@@ -31,6 +36,9 @@ mod sewer;
 mod sewer_ambience;
 #[cfg(debug_assertions)]
 mod sewer_review;
+mod sewer_water;
+#[cfg(debug_assertions)]
+mod sewer_water_review;
 mod skill_learn_button;
 #[cfg(debug_assertions)]
 mod street_defense_review;
@@ -50,6 +58,11 @@ mod ui_capture;
 mod ui_skin;
 mod ui_theme;
 mod visual_effects;
+mod visual_polish;
+#[cfg(debug_assertions)]
+mod visual_polish_review;
+#[cfg(debug_assertions)]
+mod walk_lighting_capture;
 #[cfg(debug_assertions)]
 mod walk_review;
 mod watcher_signals;
@@ -60,17 +73,48 @@ use macroquad::prelude::*;
 
 fn window_conf() -> Conf {
     let settings = graphics::startup().0;
-    let reviewing =
-        cfg!(debug_assertions) && std::env::args().nth(1).as_deref() == Some("--apercu-animations");
+    let polish_review = cfg!(debug_assertions)
+        && matches!(
+            std::env::args().nth(1).as_deref(),
+            Some("--apercu-finition-visuelle" | "--ui-cold-visual-polish")
+        );
+    let water_review = cfg!(debug_assertions)
+        && matches!(
+            std::env::args().nth(1).as_deref(),
+            Some(
+                "--apercu-eau-egouts"
+                    | "--ui-cold-sewer-water"
+                    | "--apercu-canaux-egouts"
+                    | "--ui-cold-sewer-canals"
+            )
+        );
+    let reviewing = polish_review
+        || water_review
+        || (cfg!(debug_assertions)
+            && std::env::args().nth(1).as_deref() == Some("--apercu-animations"));
     Conf {
-        window_title: if reviewing {
+        window_title: if water_review {
+            "Project RL — EG-EAU01 · Revue des égouts"
+        } else if polish_review {
+            "Project RL — POLISH01 · Revue de finition"
+        } else if reviewing {
             "Project RL — Revue des animations"
         } else {
             "Project RL — Terminal"
         }
         .to_owned(),
-        window_width: settings.windowed_size[0] as i32,
-        window_height: settings.windowed_size[1] as i32,
+        window_width: if polish_review || water_review {
+            1360
+        } else {
+            settings.windowed_size[0] as i32
+        },
+        window_height: if water_review {
+            672
+        } else if polish_review {
+            800
+        } else {
+            settings.windowed_size[1] as i32
+        },
         // Miniquad's desktop fullscreen is borderless, not an exclusive mode.
         fullscreen: !reviewing && settings.mode == graphics::WindowMode::Borderless,
         window_resizable: true,
@@ -97,6 +141,16 @@ fn main() {
 }
 
 async fn game_main() {
+    #[cfg(debug_assertions)]
+    let loading_start =
+        if std::env::args().nth(1).as_deref() == Some("--ui-cold-performance-loading") {
+            if !std::env::args().any(|arg| arg == "--no-loading-trace") {
+                project_rl::loading_profile::start();
+            }
+            Some(std::time::Instant::now())
+        } else {
+            None
+        };
     show_mouse(true);
     miniquad::window::set_mouse_cursor(miniquad::CursorIcon::Default);
     prevent_quit();
@@ -106,6 +160,59 @@ async fn game_main() {
     terminal_chrome::prepare_text();
     terminal_view::initialize_player_art();
     game_art::prewarm();
+    #[cfg(debug_assertions)]
+    if let Some(started) = loading_start {
+        let output = graphics::ui_smoke_output().expect("loading diagnostic output");
+        if let Err(error) =
+            AsciiApp::capture_loading_performance(&output, started.elapsed().as_secs_f64() * 1000.)
+                .await
+        {
+            eprintln!("[LOADING] {error}");
+            std::process::exit(1);
+        }
+        return;
+    }
+    #[cfg(debug_assertions)]
+    if matches!(
+        std::env::args().nth(1).as_deref(),
+        Some(
+            "--apercu-eau-egouts"
+                | "--ui-cold-sewer-water"
+                | "--apercu-canaux-egouts"
+                | "--ui-cold-sewer-canals"
+        )
+    ) {
+        let output = matches!(
+            std::env::args().nth(1).as_deref(),
+            Some("--ui-cold-sewer-water" | "--ui-cold-sewer-canals")
+        )
+        .then(|| std::env::args_os().nth(2).map(std::path::PathBuf::from))
+        .flatten();
+        if let Err(error) = sewer_water_review::run(output.as_deref()).await {
+            eprintln!("[EG-EAU01] {error}");
+            std::process::exit(1);
+        }
+        return;
+    }
+    #[cfg(debug_assertions)]
+    if matches!(
+        std::env::args().nth(1).as_deref(),
+        Some("--apercu-finition-visuelle" | "--ui-cold-visual-polish")
+    ) {
+        let capture = std::env::args().nth(1).as_deref() == Some("--ui-cold-visual-polish");
+        let output = capture
+            .then(|| std::env::args_os().nth(2).map(std::path::PathBuf::from))
+            .flatten();
+        if capture && output.is_none() {
+            eprintln!("[POLISH01] --ui-cold-visual-polish OUTPUT");
+            std::process::exit(1);
+        }
+        if let Err(error) = visual_polish_review::run(output.as_deref()).await {
+            eprintln!("[POLISH01] {error}");
+            std::process::exit(1);
+        }
+        return;
+    }
     #[cfg(debug_assertions)]
     if matches!(
         std::env::args().nth(1).as_deref(),
@@ -131,7 +238,44 @@ async fn game_main() {
     #[cfg(debug_assertions)]
     if let Some(output) = graphics::ui_smoke_output() {
         let mode = std::env::args().nth(1).unwrap_or_default();
-        let result = if mode == "--ui-cold-proportions-npcs" {
+        let result = if mode == "--ui-cold-dual-texture"
+            || mode == "--ui-cold-dual-texture-candidate"
+        {
+            let _review = (mode == "--ui-cold-dual-texture-candidate")
+                .then(|| game_art::walking::review_dual17(true));
+            match std::env::var_os("RL_WALK_SAVED_RUN") {
+                Some(path) => {
+                    AsciiApp::capture_saved_walk_live(&std::path::PathBuf::from(path), &output)
+                        .await
+                }
+                None => Err("RL_WALK_SAVED_RUN required for isolated texture diagnostic".into()),
+            }
+        } else if matches!(
+            mode.as_str(),
+            "--ui-cold-dual-walk" | "--ui-cold-dual-walk-integration"
+        ) {
+            dual_walk_capture::capture(&output).await
+        } else if mode == "--ui-cold-corridor-wear-integration" {
+            AsciiApp::capture_corridor_wear_integration(&output).await
+        } else if mode == "--ui-cold-corridor-wear" {
+            AsciiApp::capture_corridor_wear(&output).await
+        } else if mode == "--ui-cold-corridor-grate" {
+            AsciiApp::capture_corridor_grate(&output).await
+        } else if mode == "--ui-cold-future-floor" {
+            AsciiApp::capture_future_floor(&output).await
+        } else if mode == "--ui-cold-camp-floor-03" {
+            AsciiApp::capture_camp_floor_03(&output).await
+        } else if mode == "--ui-cold-exterior-floor-integration" {
+            AsciiApp::capture_exterior_floor_integration(&output).await
+        } else if mode == "--ui-cold-continuous-floor" {
+            AsciiApp::capture_continuous_floor(&output).await
+        } else if mode == "--ui-cold-sewer-canals-integration" {
+            AsciiApp::capture_sewer_canals_integration(&output).await
+        } else if mode == "--ui-cold-walk-lighting" {
+            walk_lighting_capture::capture(&output).await
+        } else if mode == "--ui-cold-polish-integration" {
+            AsciiApp::capture_polish_integration(&output).await
+        } else if mode == "--ui-cold-proportions-npcs" {
             AsciiApp::capture_npc_proportions(&output).await
         } else if matches!(
             mode.as_str(),

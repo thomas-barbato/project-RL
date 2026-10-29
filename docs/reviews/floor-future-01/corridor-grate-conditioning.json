@@ -1,0 +1,57 @@
+{
+  "review": "SOL-FUT01-r02",
+  "candidate_number": 6,
+  "status": "awaiting_visual_approval",
+  "accepted_baseline": 5,
+  "rooms_unchanged_pixels": true,
+  "unchanged_room_boxes": [
+    [
+      42,
+      295,
+      449,
+      753
+    ],
+    [
+      910,
+      126,
+      1334,
+      327
+    ],
+    [
+      1742,
+      126,
+      2166,
+      327
+    ],
+    [
+      910,
+      740,
+      1334,
+      961
+    ],
+    [
+      1742,
+      740,
+      2166,
+      961
+    ]
+  ],
+  "preserved_05_threshold_rim_px": 1,
+  "outside_corridor_changed_pixels": 0,
+  "corridor_pixels": 370706,
+  "source_alphas_unchanged": true,
+  "grating_source_sha256": "49d9d948954c90891972cb3720af0a8bcffb4716cce50e73d6f15819d0434182",
+  "grating_reused_from": "existing built-in imagegen source, formerly tested in rooms as 03; now limited to circulation",
+  "native_conditioning": "192px source, mirrored 384px atlas, contrast 0.5, steel tint 1.0/1.08/1.18",
+  "outputs": [
+    {
+      "path": "assets/source-art/floor-future-01/corridor-grate-01/floor.png",
+      "sha256": "ae0097dd95a8cb370828f6ac9888dac35d048328165988d57e806e0ee8413802"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/corridor-grate-01/structure.png",
+      "sha256": "6548be8bc47a466af93ec2998d85b09993a37b75484b8a48e14c296b75a92eb7"
+    }
+  ],
+  "new_obstacles_or_gameplay_changes": false
+}

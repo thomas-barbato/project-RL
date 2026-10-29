@@ -2,6 +2,107 @@ use super::*;
 use crate::{cryogenic_camp as camp, sewer};
 
 #[test]
+fn sewer_connected_generation_keeps_all_characters_mobile_after_entry_return_and_resume() {
+    for index in 1..=3 {
+        let mut app = AsciiApp::connected_sewer_fixture(index).unwrap();
+        let mut zone_id = None;
+        let mut occupants = Vec::new();
+        for stage in 0..3 {
+            if stage == 1 {
+                enter(&mut app);
+                assert!(sewer::connected_id(
+                    app.game.current_zone().unwrap().id.as_str()
+                ));
+                zone_id = Some(app.game.current_zone().unwrap().id.clone());
+                occupants = app
+                    .game
+                    .actors()
+                    .iter()
+                    .map(|(_, a)| a.position())
+                    .collect();
+                assert!(occupants.iter().all(|&at| app.game.map().is_walkable(at)));
+            }
+            if stage == 2 {
+                let exit = crate::prison_street::pos(sewer::connected_plan(index).spawn);
+                assert_eq!(
+                    app.execute_command(GameCommand::Interact { target: exit }),
+                    CommandOutcome::Applied
+                );
+            }
+            app.capture_events_at(Some(0.));
+            let saved = app.suspension().unwrap();
+            let (r, t, l, e) = ascii_game_content().unwrap();
+            let restored = AsciiApp::restore_suspension(&saved, r, t, l, e).unwrap();
+            assert_eq!(
+                suspension::fingerprint(&app.game),
+                suspension::fingerprint(&restored.game),
+                "variant {index}, stage {stage}"
+            );
+            if let Some(id) = &zone_id {
+                let map = restored.game.map_in_zone(id).unwrap();
+                assert!(occupants.iter().all(|&at| map.is_walkable(at)));
+            }
+        }
+    }
+}
+
+#[test]
+fn sewer_legacy_resume_never_floods_the_player_or_a_monster() {
+    let mut app =
+        AsciiApp::isolated_sewer_fixture(1, CONNECTED_SEWER_GENERATION_VERSION - 1).unwrap();
+    enter(&mut app);
+    let old = sewer::plan(1);
+    let new = sewer::connected_plan(1);
+    let additions: Vec<_> = new
+        .layout
+        .iter()
+        .enumerate()
+        .flat_map(|(y, row)| {
+            row.bytes().enumerate().filter_map(move |(x, c)| {
+                (c == b'~' && old.layout[y].as_bytes()[x] == b'.')
+                    .then_some(GridPos::new(x as i32, y as i32))
+            })
+        })
+        .collect();
+    let info = app.game.current_zone().unwrap().clone();
+    let game = GameState::new_with_rules(
+        app.game.map().clone(),
+        additions[0],
+        app.seed,
+        app.game.rules().clone(),
+    )
+    .unwrap();
+    app.game = WorldState::single(game);
+    app.game.enable(info).unwrap();
+    let monster = app
+        .game
+        .spawn_actor(
+            Actor::new(additions[1], 40)
+                .unwrap()
+                .with_player_relation(PlayerRelation::Neutral),
+        )
+        .unwrap();
+    app.capture_events_at(Some(0.));
+    let saved = app.suspension().unwrap();
+    let (r, t, l, e) = ascii_game_content().unwrap();
+    let restored = AsciiApp::restore_suspension(&saved, r, t, l, e).unwrap();
+    assert!(!sewer::connected_id(
+        restored.game.current_zone().unwrap().id.as_str()
+    ));
+    assert_eq!(restored.game.player_position(), Some(additions[0]));
+    assert_eq!(
+        restored.game.actors().get(monster).unwrap().position(),
+        additions[1]
+    );
+    assert!(restored.game.map().is_walkable(additions[0]));
+    assert!(restored.game.map().is_walkable(additions[1]));
+    assert_eq!(
+        suspension::fingerprint(&app.game),
+        suspension::fingerprint(&restored.game)
+    );
+}
+
+#[test]
 fn sewer_hostile_combat_diagnostic_uses_real_starting_defenses() {
     let app = AsciiApp::sewer_trial_variant(1).unwrap();
     let (mut rules, _, _, _) = ascii_game_content().unwrap();

@@ -8,6 +8,8 @@ struct Art {
     height: usize,
     background_file: String,
     background: Texture2D,
+    #[cfg(debug_assertions)]
+    review_background: Option<Texture2D>,
     car: Texture2D,
     flame: Texture2D,
     atmosphere: Option<crate::camp_atmosphere::Atmosphere>,
@@ -16,7 +18,7 @@ struct Art {
 }
 fn load(file: &str) -> Texture2D {
     let bytes = project_rl::data_paths::read(file).expect("accepted street texture");
-    let texture = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
+    let texture = crate::asset_loading::texture(&bytes, Some(ImageFormat::Png));
     texture.set_filter(FilterMode::Nearest);
     texture
 }
@@ -205,6 +207,8 @@ pub fn draw(camera: &GridCamera, game: &WorldState, known: impl Fn(GridPos) -> b
             } else {
                 &s.background
             }),
+            #[cfg(debug_assertions)]
+            review_background: None,
             car: load(&s.car_file),
             flame: load("assets/animations/agent/skill-animation-review-06/flame-atlas.png"),
             roofs: s.roofs.iter().map(|roof| load(&roof.file)).collect(),
@@ -234,8 +238,17 @@ pub fn draw(camera: &GridCamera, game: &WorldState, known: impl Fn(GridPos) -> b
         let mut origin = camera.rect(street::pos(s.image_origin));
         origin.x += s.image_offset_px[0] as f32 * origin.w / 64.;
         origin.y += s.image_offset_px[1] as f32 * origin.h / 64.;
+        #[cfg(debug_assertions)]
+        let background = if let Some(path) = crate::floor_surface_review::street_path(&s.background)
+        {
+            art.review_background.get_or_insert_with(|| load(path))
+        } else {
+            &art.background
+        };
+        #[cfg(not(debug_assertions))]
+        let background = &art.background;
         draw_texture_ex(
-            &art.background,
+            background,
             origin.x,
             origin.y,
             WHITE,
@@ -249,16 +262,16 @@ pub fn draw(camera: &GridCamera, game: &WorldState, known: impl Fn(GridPos) -> b
         );
         #[cfg(debug_assertions)]
         crate::sewer_review::water(camera, game, time);
-        if let Some(index) = crate::sewer::index(game) {
-            crate::sewer_ambience::water(camera, crate::sewer::plan(index), time);
+        if let Some(plan) = crate::sewer::current_plan(game) {
+            crate::sewer_ambience::water(camera, plan, time);
         }
         // Approved static bodies belong below living actors.
         // The existing lighting material and visibility pass apply to both.
         draw_scenery_props(camera, s, art, game);
         #[cfg(debug_assertions)]
         crate::sewer_review::rats(camera, game, time);
-        if let Some(index) = crate::sewer::index(game) {
-            crate::sewer_ambience::rats(camera, crate::sewer::plan(index), time);
+        if let Some(plan) = crate::sewer::current_plan(game) {
+            crate::sewer_ambience::rats(camera, plan, time);
         }
         #[cfg(debug_assertions)]
         if crate::street_defense_review::enabled() {

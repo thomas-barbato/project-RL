@@ -1,0 +1,189 @@
+{
+  "review": "SOL-CONT01-r01",
+  "status": "awaiting_visual_approval",
+  "verified_at": "2026-10-28T07:46:41.737723+00:00",
+  "normal_game_activation": false,
+  "release_unchanged_sha256": "6e3e9bf222489975dee564a181821a2251b689322fa3939827b7a327eac8e02e",
+  "active_source_assets_unchanged": true,
+  "compilation_and_formatting": [
+    {
+      "command": "cargo fmt --all -- --check",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo check --locked --all-targets",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo check --locked --release --bin project-rl",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "execution": "target/debug/project-rl.exe --ui-cold-continuous-floor artifacts/floor-continuous-review-01",
+  "captures": [
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-arrival",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 110956
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-corridor",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 150872
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "street-arrival",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 99615
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "street-plaza",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 154326
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "street-north",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 253325
+    }
+  ],
+  "publication": {
+    "review": "SOL-CONT01-r01",
+    "native_cell": 64,
+    "resampled_engine_pixels": false,
+    "comparison_size": [
+      1360,
+      560
+    ],
+    "outputs": [
+      {
+        "file": "camp-arrival-comparison-native64.png",
+        "bytes": 539333,
+        "sha256": "fc7c9ec17b8409d06d893e3cc1d23cb0b20f9b5b1f0c33a255b1b5c527781f6c"
+      },
+      {
+        "file": "camp-corridor-comparison-native64.png",
+        "bytes": 563546,
+        "sha256": "beac77a6556018913ba57132221b327d6166f24d77eeb72d21fe25a1af0e731d"
+      },
+      {
+        "file": "street-arrival-comparison-native64.png",
+        "bytes": 453131,
+        "sha256": "c6082623d93af3406fbabc019d7840c6b75634291570ade36d202d8e66643b30"
+      },
+      {
+        "file": "street-plaza-comparison-native64.png",
+        "bytes": 721351,
+        "sha256": "df00b615c40f5810ea4a1b98fa47f12f2c33f03f5c5bb0170ef53c81eb89cdaa"
+      },
+      {
+        "file": "street-north-comparison-native64.png",
+        "bytes": 893520,
+        "sha256": "17bf4a2a5c9217560ae7995b73a8c10eb209388a315d5e5bc6bfaffa08c23280"
+      }
+    ]
+  },
+  "sources_and_candidates": [
+    {
+      "source": "assets/maps/cryogenic-camp-01/floor.png",
+      "source_sha256": "ccfeb28cbdad5ceb2083ce9a41ff44d7d5d62ad395b2df76d6b4b9d806bb72f7",
+      "candidate": "assets/source-art/floor-continuous-01/camp-floor.png",
+      "candidate_sha256": "3cd6a9e0a4f6e5b5fb6de393042e1ae6635190ef006d98f50e97ed8e371e860b",
+      "size": [
+        2432,
+        1152
+      ],
+      "outside_mask_changed": false,
+      "alpha_unchanged": true
+    },
+    {
+      "source": "assets/maps/prison-street-01/street.png",
+      "source_sha256": "1dd45907310699da19977f8e86ebaa79f374dcc8df1086b6d5a456e30562346a",
+      "candidate": "assets/source-art/floor-continuous-01/arrival-source.png",
+      "candidate_sha256": "e983225d59de3cf89550cf78616d0f86a4329795f60c3ad1373cf2febeaab0b0",
+      "size": [
+        1536,
+        1024
+      ],
+      "outside_mask_changed": false,
+      "alpha_unchanged": true
+    },
+    {
+      "source": "assets/maps/prison-street-expanded-01/street.png",
+      "source_sha256": "d87bc87c6e7f59ef3af6808f7abe56ef54a491f69e883446771c9b98b6e4af22",
+      "candidate": "assets/source-art/floor-continuous-01/street-0.png",
+      "candidate_sha256": "9d148ec217b112f3f276b324c72e86d18cb80ca0515fd4a2968002cef062f62a",
+      "size": [
+        1664,
+        4224
+      ],
+      "whole_source_modules_preserved": true,
+      "baseline_recomposition_byte_identical": true,
+      "sewer_entry_patch_preserved": true
+    },
+    {
+      "source": "assets/maps/prison-sewer-01/art/background-afe7b21dff4c.png",
+      "source_sha256": "afe7b21dff4c187d77ac6f202f64fddb6036b824b1b89912d957d5d54a059a34",
+      "candidate": "assets/source-art/floor-continuous-01/street-1.png",
+      "candidate_sha256": "b3fe8948652ddfa37fd886be4d11e296e617f4a21d180455005b294034677c41",
+      "size": [
+        1664,
+        4224
+      ],
+      "whole_source_modules_preserved": true,
+      "baseline_recomposition_byte_identical": true,
+      "sewer_entry_patch_preserved": true
+    }
+  ],
+  "imagegen": {
+    "mode": "built-in",
+    "prompt": "PROMPT.md",
+    "source": "assets/source-art/floor-continuous-01/material-source.png",
+    "sha256": "3f032e628966441d179c1fdc01479b5024853ed0983a1fecee14ccbd85c94d50"
+  },
+  "scope": "Floor proposal only; no collisions, generation, saves, actors or normal-game assets changed."
+}

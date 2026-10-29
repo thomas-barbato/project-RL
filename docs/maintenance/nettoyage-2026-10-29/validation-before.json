@@ -1,0 +1,36 @@
+{
+  "runtime_inventory_files": 1819,
+  "existing_distribution": {
+    "status": "passed",
+    "files": 1758,
+    "aliases": 55,
+    "archive": {
+      "path": "data.rlpak",
+      "format": "zip",
+      "bytes": 99392004,
+      "sha256": "1c176a061bcc5b9ae87589e589c29d781a4382f50cf069349d5245d6ed7889fa"
+    },
+    "executable": {
+      "path": "project-rl.exe",
+      "bytes": 59056640,
+      "sha256": "1d9a9743f8550580bf5ea97d2aa20c0d90a24157d1786c1c60b16114865fc72d"
+    }
+  },
+  "temporary_loading_install": {
+    "status": "passed",
+    "files": 1764,
+    "aliases": 55,
+    "archive": {
+      "path": "data.rlpak",
+      "format": "zip",
+      "bytes": 103514266,
+      "sha256": "b409c9ed3f2b7d0dcb4002c5fa8cead7996b72407ba433f404837112c2a63789"
+    },
+    "executable": {
+      "path": "project-rl.exe",
+      "bytes": 104230400,
+      "sha256": "55a3a5e1acb932b805f3a8c4a3b7ad5ef22efa0a652c6125dcc925f0741f9e64"
+    }
+  },
+  "release_sha256": "76383f3c5ef02911cdb462561a6fbbf50ed50562ab4ed2a538cfb4f0c334da80"
+}

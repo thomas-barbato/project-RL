@@ -1,0 +1,19 @@
+{
+  "review_id": "LOAD01-RULE01",
+  "accepted_on": "2026-10-29",
+  "status": "Principe general valide pour tout le jeu",
+  "user_acceptance": "ok on fera donc cette regle pour tout le jeu :) (là on est qu'au début de la création des cartes :)  )",
+  "scope": "Toutes les cartes actuelles et futures et leurs ressources, animations, effets et interfaces.",
+  "principles": [
+    "Un mecanisme commun de preparation et de cache, reutilisable lors de la creation de nouvelles cartes.",
+    "Preparer les ressources de la destination avant leur premier affichage et anticiper les besoins proches.",
+    "Conserver les decors et ressources recents dans un cache borne en memoire, avec liberation des elements eloignes ou inutilises.",
+    "Limiter le prechargement aux besoins utiles et proches.",
+    "Sortir les lectures et decompressions lourdes du chemin de dessin ; respecter le thread graphique et repartir les preparations restantes.",
+    "Preserver independamment l'etat des zones, la simulation et les sauvegardes.",
+    "Mesurer les premieres visites, les retours et les premieres utilisations d'effets en separant les couts."
+  ],
+  "implementation_status": "Diagnostic integre ; cache commun et prechargement encore a implementer.",
+  "memory_budget": "A determiner par mesure ; aucun montant global valide a ce stade.",
+  "evidence": "ANALYSE.json"
+}

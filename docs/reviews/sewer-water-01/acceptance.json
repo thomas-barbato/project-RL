@@ -1,0 +1,27 @@
+{
+  "review": "EG-EAU01 / EG-CAN02-r01",
+  "date": "2026-10-28",
+  "status": "approved_for_runtime_integration",
+  "user_reply": "je les valides, parcontre le constructeur doit s'assurer que le joueur ne puisse pas se coincer dans le décors :)",
+  "user_clarification": "(ou les monstres évidement)",
+  "approved": [
+    "shown connected water layouts in all three variants",
+    "previously shown slow water and fixed banks",
+    "walkable grate crossings"
+  ],
+  "additional_required_guarantee": "Every walkable cell and every player or monster placement must connect to the arrival; preserve old saves without changing their channel collisions.",
+  "reference_sha256": {
+    "docs/reviews/sewer-water-01/references/accepted-canals-02-comparaison-native64.gif": "fa3f67539a7ceddfc0c84eae37353d7c1a18391c45441d2489687d419e3fbd26",
+    "docs/reviews/sewer-water-01/references/accepted-canals-02-variant-1-native64.png": "ff01f29a409b92f12e8811aae22fa6b693910a61dcaf7171f9ef65efc1d4c71c",
+    "docs/reviews/sewer-water-01/references/accepted-canals-02-variant-2-native64.png": "aa8997ec7b078df524120f6bd8bff9d46f6c7e3c2513853ff11f57b3ff3c0b9e",
+    "docs/reviews/sewer-water-01/references/accepted-canals-02-variant-3-native64.png": "8c6d0163597c591e18eed1d1a2aafa8f44da45e84c06769a40a85a1799470c29"
+  },
+  "runtime_sha256": {
+    "assets/maps/prison-sewer-canals-02/grate.png": "2dfab78e68dc2a467b5e1c7d7557124dc8f31160c465bb81a04862ce34e7e6b6",
+    "assets/maps/prison-sewer-canals-02/variant-1-plan.json": "27b19d1045bf1fdfc9011571b34b17e0dcc44fa82b4c704462b86790fd35e47b",
+    "assets/maps/prison-sewer-canals-02/variant-2-plan.json": "df7688795729b4b06d7b0e3a115efedfeacb1cb17551008e45ea5ccdd7cf5dd2",
+    "assets/maps/prison-sewer-canals-02/variant-3-plan.json": "654b4adcb9ab81a3a9dfb7d32ebdb0cb2f4e053e24773d8b78a30fb62088226a"
+  },
+  "runtime_inventory_files": 1819,
+  "legacy_plan_hashes_preserved": true
+}

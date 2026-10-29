@@ -2749,7 +2749,8 @@ fn draw_sensor_scope(
 
     // The moving sweep and its fading tail are feedback only: all reliable
     // information is drawn before it and is available immediately.
-    let sweep = area.x + (get_time() as f32 * 0.19).fract() * area.w;
+    let sweep = area.x
+        + (crate::effect_geometry::presentation_time(get_time()) as f32 * 0.19).fract() * area.w;
     draw_rectangle(
         (sweep - 8.0).max(area.x),
         area.y + 1.0,
@@ -2959,7 +2960,8 @@ fn draw_sensor_contact(cell: Rect, contact: SensorContact) {
         }
     }
     if contact.alerted {
-        let pulse = ((get_time() * 5.0).sin() * 0.5 + 0.5) as f32;
+        let pulse = ((crate::effect_geometry::presentation_time(get_time()) * 5.0).sin() * 0.5
+            + 0.5) as f32;
         draw_circle_lines(
             center.x,
             center.y,

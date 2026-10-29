@@ -1,0 +1,257 @@
+{
+  "review": "EG-CAN02-r01",
+  "date": "2026-10-28",
+  "status": "awaiting_new_layout_visual_approval",
+  "normal_game_activation": false,
+  "normal_game_map_assets_modified": false,
+  "existing_raster_sources_modified": false,
+  "new_candidate_layout_assets": 3,
+  "construction_rule": "One cardinally connected water network continuing under walkable grates; every dry cell, actor and viewpoint reachable from arrival.",
+  "current_random_selection": "Seed selects one of three authored layouts; this does not claim arbitrary procedural room generation.",
+  "candidate_constructed_with_shared_strict_map_builder": true,
+  "tested_random_seeds": 1000,
+  "tests": {
+    "sewer_tests_filter_passed": 5,
+    "sewer_regression_filter_passed": 11,
+    "unique_tests_passed": 13,
+    "failed": 0,
+    "isolated_pool_rejected": true,
+    "diagonal_join_rejected": true,
+    "uncrossable_channel_rejected": true,
+    "grate_crossing_usable": true,
+    "historical_entry_return_restore_and_combat_regressions_passed": true
+  },
+  "full_test_suite_run": false,
+  "debug_build": "passed",
+  "all_targets_locked_check": "passed",
+  "release_configuration_locked_check": "passed",
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "engine_capture": {
+    "fps": 20,
+    "frames": 80,
+    "game_state_unchanged": true,
+    "height": 672,
+    "native_cell": 64,
+    "normal_game_activation": false,
+    "panel_height": 448,
+    "panel_origins": [
+      [
+        24,
+        90
+      ],
+      [
+        696,
+        90
+      ]
+    ],
+    "panel_width": 640,
+    "reduced_motion_static": true,
+    "review": "EG-CAN02-r01",
+    "saved_campaign_access": false,
+    "scope": "Controlled native crop of production sewer renderer; fixed lamps, rats and actor; no full HUD or combat simulation",
+    "settings_written": false,
+    "source_art_unchanged": true,
+    "status": "awaiting_visual_approval",
+    "variants": [
+      {
+        "state_unchanged": true,
+        "variant": 1
+      },
+      {
+        "state_unchanged": true,
+        "variant": 2
+      },
+      {
+        "state_unchanged": true,
+        "variant": 3
+      }
+    ],
+    "width": 1360
+  },
+  "publication": {
+    "review": "EG-CAN02-r01",
+    "native_geometry_verified": true,
+    "frames_submitted": 80,
+    "encoded_frames": 80,
+    "duration_ms": 4000,
+    "animated_pixels_between_0_and_3_seconds": 60142,
+    "comparisons": [
+      {
+        "variant": 1,
+        "changed_water_pixels": 57344,
+        "changed_pixels_outside_water": 0,
+        "focus": [
+          22,
+          19
+        ],
+        "full_native_map_size": [
+          3008,
+          2816
+        ],
+        "full_map_pixels_outside_channels_changed": 0
+      },
+      {
+        "variant": 2,
+        "changed_water_pixels": 63362,
+        "changed_pixels_outside_water": 0,
+        "focus": [
+          22,
+          19
+        ],
+        "full_native_map_size": [
+          3008,
+          2816
+        ],
+        "full_map_pixels_outside_channels_changed": 0
+      },
+      {
+        "variant": 3,
+        "changed_water_pixels": 45030,
+        "changed_pixels_outside_water": 0,
+        "focus": [
+          13,
+          35
+        ],
+        "full_native_map_size": [
+          3008,
+          2816
+        ],
+        "full_map_pixels_outside_channels_changed": 0
+      }
+    ],
+    "temporary_bytes_removed": 292454400,
+    "outputs": [
+      {
+        "file": "01-native64.png",
+        "sha256": "966959e627114d0fed157c1fe5da44b12e73f5ab82054e4275462607c56428ca",
+        "bytes": 286902
+      },
+      {
+        "file": "02-native64.png",
+        "sha256": "05b0da599a96c8bd99e46bd7b06d25e3abec14f3923549d8e4b7758fcbfb95d0",
+        "bytes": 322355
+      },
+      {
+        "file": "apercu.html",
+        "sha256": "424cbd09e4da1fefc5ec706eb2e084e4a6bb3fe80854466127107e5e94169db5",
+        "bytes": 1498
+      },
+      {
+        "file": "capture.json",
+        "sha256": "63c355bdd2ebb8ee3ccc11ee25a5b59e985930b16b3336178b1ef1cc802b5b37",
+        "bytes": 822
+      },
+      {
+        "file": "comparaison-native64.gif",
+        "sha256": "fa3f67539a7ceddfc0c84eae37353d7c1a18391c45441d2489687d419e3fbd26",
+        "bytes": 832457
+      },
+      {
+        "file": "comparaison-native64.png",
+        "sha256": "5f4f6fe45bb8c1b83ecd9a51ab94243bdd12f8f4dc005589a52bc8679008959f",
+        "bytes": 439353
+      },
+      {
+        "file": "encoded-motion.json",
+        "sha256": "4cb5130b47748c7e6c1d915e163e142295efacc72ac5c8108a028545fc6e2466",
+        "bytes": 133
+      },
+      {
+        "file": "reduced-motion.png",
+        "sha256": "0d8219ac7c53aa8266c4e496eae461a5c6a2a11a4555ee731d5ba2d534907857",
+        "bytes": 956038
+      },
+      {
+        "file": "variant-1-before-world-native64.png",
+        "sha256": "07d0e13c2db5ff509c5c05452b41d7310d5303b038a9372775f82a1fee71920a",
+        "bytes": 9234391
+      },
+      {
+        "file": "variant-1-native64.png",
+        "sha256": "ff01f29a409b92f12e8811aae22fa6b693910a61dcaf7171f9ef65efc1d4c71c",
+        "bytes": 989598
+      },
+      {
+        "file": "variant-1-overview.png",
+        "sha256": "f756f1673ad68d6f1d8c1f271e946364b030fbe540f7bf1f84edb3f393428890",
+        "bytes": 395924
+      },
+      {
+        "file": "variant-1-proposed-world-native64.png",
+        "sha256": "7ba906bcf2b19028cc44ba84fa6d113295cc9b48ad3df693025417e5d7368205",
+        "bytes": 9026939
+      },
+      {
+        "file": "variant-2-before-world-native64.png",
+        "sha256": "eee3f60b35105b0466dc177d1235424951a25e3b55afc0540c1b7c145c6a06ca",
+        "bytes": 8904838
+      },
+      {
+        "file": "variant-2-native64.png",
+        "sha256": "aa8997ec7b078df524120f6bd8bff9d46f6c7e3c2513853ff11f57b3ff3c0b9e",
+        "bytes": 960437
+      },
+      {
+        "file": "variant-2-overview.png",
+        "sha256": "454ed49899215e235de7a2568ff42bdff81c4eee1082855a7d941ac773ad1a25",
+        "bytes": 385313
+      },
+      {
+        "file": "variant-2-proposed-world-native64.png",
+        "sha256": "8dc736429b2346e4e0166ffd4e9e87fb179a2cb50f9fc2c80005ed79732012f2",
+        "bytes": 8710533
+      },
+      {
+        "file": "variant-3-before-world-native64.png",
+        "sha256": "b0e135fea7d1d97a0d3694bb1360c92f9b4519fb0be016be354cdbf1cfaa04ae",
+        "bytes": 8544564
+      },
+      {
+        "file": "variant-3-native64.png",
+        "sha256": "8c6d0163597c591e18eed1d1a2aafa8f44da45e84c06769a40a85a1799470c29",
+        "bytes": 917363
+      },
+      {
+        "file": "variant-3-overview.png",
+        "sha256": "a4bc998ecc170c2db9001cecdd506b89fc4c0cc532740b19bf00f7e979008a5b",
+        "bytes": 367020
+      },
+      {
+        "file": "variant-3-proposed-world-native64.png",
+        "sha256": "40241699b36f5a76f8ac481cf605caa6e1a8be1c91a3410643725f70bae21e0e",
+        "bytes": 8329476
+      },
+      {
+        "file": "water-phases-native64.png",
+        "sha256": "f9f2f257426ed7d05e88d9b0a20e3f1069e4e8f8e6b58302a974ea8fd9b5189f",
+        "bytes": 342294
+      }
+    ],
+    "lossless_gif_optimization": {
+      "before_bytes": 20381838,
+      "after_bytes": 832457,
+      "all_decoded_frames_byte_identical": true
+    }
+  },
+  "plan_validation": "canals-plan-validation.json",
+  "visually_inspected": [
+    "variant-1-overview.png",
+    "variant-2-overview.png",
+    "variant-3-overview.png",
+    "variant-1-native64.png",
+    "variant-2-native64.png",
+    "variant-3-native64.png"
+  ],
+  "normal_release_rebuilt": false,
+  "normal_release_sha256": "9606fb875786c0a6e38e824446edb4256c1be33c93255601dc135ef77f26e58c",
+  "source_sha256": {
+    "src/sewer.rs": "93f5e56fb6cce8bbf1faf11f6f16caf8ddef3196379f7dd8d676db70433868e7",
+    "src/sewer_tests.rs": "4656c4340bdd7c841e783ab2b0f4ffa7240914f7edc9c55759d57227ae1266ea",
+    "src/sewer_water_review.rs": "f335429d786c33ad9b267f4e6dd01917c7aba19c3d9c7902eba1ed315b68a7b5",
+    "src/sewer_ambience.rs": "ae13592b4e9166eb330330abd05fb652c82a4b70a88b57ed6121af574af9f9a9",
+    "src/main.rs": "e37e5bdae36766aca9d10a293fe7f1f6a91e214519957c26aa41a6bf3bd2e604",
+    "tools/reviews/build_sewer_canals_02.py": "39ad5a59d62969b07c4fac668a4c342c40b0209c18251d43d7273fb71588e77c",
+    "tools/art/publish_sewer_water_review_01.py": "ca7dc381e88d8fd629c9f208d3aec6903e552e537dfe3bfcc840ce524b53f0e0"
+  }
+}

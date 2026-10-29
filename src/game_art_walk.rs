@@ -18,6 +18,57 @@ mod rifle;
 const PLAYER_WALK_ACCEPTED: bool = true;
 const PROPORTIONS_ACCEPTED: bool = true;
 const GAIT12_ACCEPTED: bool = true;
+// DUAL15-r01 accepted on 28 October 2026. The scoped override retains ARM14
+// solely for historical comparisons; normal Debug and Release enable DUAL15.
+const DUAL15_ACCEPTED: bool = true;
+pub(crate) fn dual17_enabled() -> bool {
+    #[cfg(any(debug_assertions, test))]
+    {
+        return DUAL17.get();
+    }
+    #[cfg(not(any(debug_assertions, test)))]
+    {
+        false
+    }
+}
+#[cfg(any(debug_assertions, test))]
+thread_local! { static DUAL17: Cell<bool> = const { Cell::new(false) }; }
+#[cfg(any(debug_assertions, test))]
+pub(crate) struct Dual17ReviewGuard(bool);
+#[cfg(any(debug_assertions, test))]
+impl Drop for Dual17ReviewGuard {
+    fn drop(&mut self) {
+        DUAL17.set(self.0);
+    }
+}
+#[cfg(any(debug_assertions, test))]
+pub(crate) fn review_dual17(enabled: bool) -> Dual17ReviewGuard {
+    Dual17ReviewGuard(DUAL17.replace(enabled))
+}
+pub(crate) fn dual15_enabled() -> bool {
+    #[cfg(any(debug_assertions, test))]
+    {
+        return DUAL15.get().unwrap_or(DUAL15_ACCEPTED);
+    }
+    #[cfg(not(any(debug_assertions, test)))]
+    {
+        DUAL15_ACCEPTED
+    }
+}
+#[cfg(any(debug_assertions, test))]
+thread_local! { static DUAL15: Cell<Option<bool>> = const { Cell::new(None) }; }
+#[cfg(any(debug_assertions, test))]
+pub(crate) struct DualReviewGuard(Option<bool>);
+#[cfg(any(debug_assertions, test))]
+impl Drop for DualReviewGuard {
+    fn drop(&mut self) {
+        DUAL15.set(self.0);
+    }
+}
+#[cfg(any(debug_assertions, test))]
+pub(crate) fn review_dual15(enabled: bool) -> DualReviewGuard {
+    DualReviewGuard(DUAL15.replace(Some(enabled)))
+}
 pub(crate) fn player_enabled() -> bool {
     PLAYER_WALK_ACCEPTED || corrections_enabled()
 }
@@ -281,9 +332,7 @@ pub(super) fn draw(cell: Rect, visual: Visual, opacity: f32) -> bool {
         if cache.get(&key).is_none() {
             let loaded = project_rl::data_paths::read(&entry.file)
                 .ok()
-                .and_then(|bytes| {
-                    Image::from_file_with_format(&bytes, Some(ImageFormat::Png)).ok()
-                });
+                .and_then(|bytes| crate::asset_loading::image(&bytes, Some(ImageFormat::Png)).ok());
             let bytes = loaded.as_ref().map_or(0, |i| i.bytes.len());
             let texture = loaded.map(|i| {
                 assert_eq!(
@@ -293,7 +342,7 @@ pub(super) fn draw(cell: Rect, visual: Visual, opacity: f32) -> bool {
                         entry.side * 3 * u16::from(entry.configurations)
                     )
                 );
-                let texture = Texture2D::from_image(&i);
+                let texture = crate::asset_loading::from_image(&i);
                 texture.set_filter(FilterMode::Nearest);
                 texture
             });

@@ -1,0 +1,146 @@
+{
+  "review": "EG-CAN02-INTEGRATION01",
+  "date": "2026-10-28",
+  "status": "integrated_and_checked",
+  "authorization": "acceptance.json",
+  "generation": 167,
+  "previous_generation": 166,
+  "new_zone_ids": [
+    "core:prison_sewer_canals_01",
+    "core:prison_sewer_canals_02",
+    "core:prison_sewer_canals_03"
+  ],
+  "new_games_use_connected_channels": true,
+  "old_zone_geometry_and_collisions_preserved": true,
+  "anti_trap_rules": [
+    "one cardinally connected water network including channels under grates",
+    "all walkable cells reachable from arrival",
+    "player and monster starting cells walkable and reachable",
+    "all grates walkable",
+    "single-cell isolated spawn rejected",
+    "restore uses the template selected by the saved zone id"
+  ],
+  "map_checks_random_seeds": 1000,
+  "random_layout_scope": "Three seed-selected authored layouts; no claim of arbitrary procedural room creation.",
+  "tests": {
+    "sewer": 17,
+    "previous_generation_compatibility": 1,
+    "suspension": 12,
+    "total_passed": 30,
+    "failed": 0,
+    "full_suite_run": false
+  },
+  "debug_build": "passed",
+  "locked_all_targets_check": "passed",
+  "release_build": "passed",
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "real_game_renderer": {
+    "generation": 167,
+    "review": "EG-CAN02-INTEGRATION01",
+    "saved_campaign_access": false,
+    "scope": "Real entry/return from isolated near-hatch street fixture, resume and native production-renderer views; no city combat traversal or balance claim",
+    "settings_written": false,
+    "variants": [
+      {
+        "connected_zone_id": true,
+        "entry_return_and_resume": true,
+        "monsters_and_player_walkable": true,
+        "normal_renderer": true,
+        "state_unchanged_during_render": true,
+        "variant": 1
+      },
+      {
+        "connected_zone_id": true,
+        "entry_return_and_resume": true,
+        "monsters_and_player_walkable": true,
+        "normal_renderer": true,
+        "state_unchanged_during_render": true,
+        "variant": 2
+      },
+      {
+        "connected_zone_id": true,
+        "entry_return_and_resume": true,
+        "monsters_and_player_walkable": true,
+        "normal_renderer": true,
+        "state_unchanged_during_render": true,
+        "variant": 3
+      }
+    ]
+  },
+  "production_capture_pngs": 12,
+  "approved_native_render_reproduction": [
+    {
+      "variant": 1,
+      "png_byte_identical": true,
+      "sha256": "ff01f29a409b92f12e8811aae22fa6b693910a61dcaf7171f9ef65efc1d4c71c"
+    },
+    {
+      "variant": 2,
+      "png_byte_identical": true,
+      "sha256": "aa8997ec7b078df524120f6bd8bff9d46f6c7e3c2513853ff11f57b3ff3c0b9e"
+    },
+    {
+      "variant": 3,
+      "png_byte_identical": true,
+      "sha256": "8c6d0163597c591e18eed1d1a2aafa8f44da45e84c06769a40a85a1799470c29"
+    }
+  ],
+  "source_raster_art_changed": false,
+  "actor_roster_stats_or_save_schema_changed": false,
+  "new_runtime_resources": 4,
+  "runtime_logical_resources": 1819,
+  "isolated_release_installation": {
+    "status": "passed",
+    "archive_integrity": true,
+    "native_release_asset_smoke": {
+      "atmospheres": 7,
+      "content_and_menu": true,
+      "dialogue_audio_loaded": true,
+      "files": 1764,
+      "packed": true,
+      "pngs_decoded_and_uploaded": 1369,
+      "root": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\sewer-water-review-01\\integration\\rl-sewer-install-sxpyd0vl\\installation",
+      "shared_animation_texture": true,
+      "status": "passed"
+    },
+    "loose_assets_absent": true,
+    "checkout_fallback_not_used": true,
+    "statistics": {
+      "logical_input_files": 1819,
+      "original_data_bytes": 109747670,
+      "deduplicated_bytes": 2167802,
+      "lossless_compression_saved_bytes": 1602203,
+      "unpacked_data_bytes": 105977665,
+      "packaged_data_bytes": 99412375
+    },
+    "temporary_installation_removed_after_check": true,
+    "normal_dist_directory_changed": false
+  },
+  "checkout_verify_assets_context": "The development checkout has no installation manifest. The packaged-only verify-assets command was then run successfully in the isolated archive installation.",
+  "portable_dist_rebuilt": false,
+  "current_launcher": "Jouer.cmd",
+  "release_bytes": 59787264,
+  "release_sha256": "6e3e9bf222489975dee564a181821a2251b689322fa3939827b7a327eac8e02e",
+  "release_last_write_utc": "2026-10-28T00:02:24.7240335Z",
+  "saved_user_campaign_read_or_written": false,
+  "settings_written": false,
+  "large_intermediate_captures_removed": 6,
+  "large_intermediate_bytes_removed": 52750741.0,
+  "current_native_preview": "artifacts/sewer-water-review-01/apercu.html",
+  "html_browser_execution_verified": false,
+  "source_sha256": {
+    "src/sewer.rs": "360b8485cc5a6c2c3e262b1bfb1686a33bbc903757bb079b3f5049033c48aa09",
+    "src/sewer_water.rs": "859f35a41d673c1f61199d23a7c749e57ec083bab2a710122b8000536cf1cce9",
+    "src/sewer_ambience.rs": "8041448dd5d1656089a0416100327687345615a74e1b8534e3d711b650a2663a",
+    "src/prison_street_render.rs": "1308708d656bfe36744431e5d67675e9f294b5e38f689e14adce973bcaff9755",
+    "src/ascii_app.rs": "b47772fadb2152b28ba708dff2d905d832562218ebe9a74095316bd9b2839405",
+    "src/main.rs": "8130aa4572e1e335645fb0eba3cd5cc78e94f04826cd4ab27f0c4c84cb4f5aca",
+    "src/suspension.rs": "ef9c4697126202122debca985f97993182b65ec311eb905ed1b011eb64ffeefb",
+    "src/sewer_tests.rs": "e31e7db9def19c94567cdd89409a1fa7d7ad0941cf1ed2e1f15a6f35b7311dce",
+    "src/sewer_app.rs": "98cc546df235d085bd19623ad93da3bdd9205def0e9d3465e1af2a3f829b02f0",
+    "src/sewer_app_tests.rs": "e543878bef26c5bc5cc0a058bd7268f72cfbd2381364cfb19a235eff27f23be6",
+    "src/sewer_water_review.rs": "f913c60999df38d95b8e7573c01596d572db13ab18f94c2e3be974ad485e94ff",
+    "tools/distribution/runtime-assets.json": "d06cafb2f2a9c8439e4a4b551612c1776df8b8b75b201dafb2e6ff013da14398"
+  }
+}

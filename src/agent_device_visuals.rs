@@ -125,7 +125,7 @@ void main(){vec4 c=texture2D(Texture,uv)*tint;if(uv.x>0.46&&uv.x<0.69&&uv.y>0.34
             for p in &visible {
                 image.set_pixel((p.x - min_x) as u32, (p.y - min_y) as u32, WHITE);
             }
-            let texture = Texture2D::from_image(&image);
+            let texture = crate::asset_loading::from_image(&image);
             texture.set_filter(FilterMode::Nearest);
             self.masks.push(Mask {
                 cells: visible,

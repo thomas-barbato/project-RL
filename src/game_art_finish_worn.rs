@@ -147,6 +147,7 @@ fn breathed(image: Image, index: usize, breath: u8) -> Image {
     posed
 }
 pub(super) fn compose(key: Key, breath: u8) -> Option<Image> {
+    let _loading = project_rl::loading_profile::Span::caller("compose_player", 0);
     let layers = layers(key, breath)?;
     let mut composed = Image::gen_image_color(128, 128, BLANK);
     for layer in layers {
@@ -158,7 +159,7 @@ struct Pack {
     portrait: portrait::Sheet,
 }
 thread_local! {
-    static CACHE: std::cell::RefCell<BTreeMap<(Key,u8,Option<crate::game_art::walking::Pose>),(Pack,f64)>> = const {std::cell::RefCell::new(BTreeMap::new())};
+    static CACHE: std::cell::RefCell<BTreeMap<(Key,u8,Option<crate::game_art::walking::Pose>,bool),(Pack,f64)>> = const {std::cell::RefCell::new(BTreeMap::new())};
 }
 #[cfg(debug_assertions)]
 pub(super) fn cache_len() -> usize {
@@ -190,6 +191,7 @@ pub(super) fn draw(rect: Rect, key: Key, side: u16, opacity: f32, breath: u8) ->
             } else {
                 crate::game_art::walking::pose()
             },
+            crate::game_art::walking::dual17_enabled(),
         );
         if !cache.contains_key(&cache_key) {
             let image =

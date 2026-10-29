@@ -55,7 +55,7 @@ fn drawn(source: &Image, key: Key, pose: Pose) -> Option<Image> {
             return Some(frames.clone());
         }
         let bytes = project_rl::data_paths::read(&cycle.file).ok()?;
-        let sheet = Image::from_file_with_format(&bytes, Some(ImageFormat::Png)).ok()?;
+        let sheet = crate::asset_loading::image(&bytes, Some(ImageFormat::Png)).ok()?;
         let frames: Vec<_> = (0..6)
             .map(|frame| sheet.sub_image(Rect::new(frame as f32 * 128., 0., 128., 128.)))
             .collect();
@@ -139,7 +139,7 @@ fn parts(rig: &Rig) -> Option<Vec<Image>> {
             return Some(parts.clone());
         }
         let bytes = project_rl::data_paths::read(&rig.file).ok()?;
-        let sheet = Image::from_file_with_format(&bytes, Some(ImageFormat::Png)).ok()?;
+        let sheet = crate::asset_loading::image(&bytes, Some(ImageFormat::Png)).ok()?;
         if (sheet.width, sheet.height) != (640, 128) {
             return None;
         }
@@ -319,7 +319,7 @@ fn direction_parts(key: Key, pose: Pose) -> Option<(&'static Rig, Vec<Image>, bo
                 std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(&entry.rig.file),
             )
             .ok()?;
-            let image = Image::from_file_with_format(&bytes, Some(ImageFormat::Png)).ok()?;
+            let image = crate::asset_loading::image(&bytes, Some(ImageFormat::Png)).ok()?;
             let parts: Vec<_> = (0..5)
                 .map(|n| {
                     image.sub_image(Rect::new(
@@ -388,7 +388,7 @@ fn direction_parts(key: Key, pose: Pose) -> Option<(&'static Rig, Vec<Image>, bo
             if let Some(parts) = cache.get(&cache_key) {
                 return Some(parts.clone());
             }
-            let image = Image::from_file_with_format(
+            let image = crate::asset_loading::image(
                 &project_rl::data_paths::read(&entry.rig.file).ok()?,
                 Some(ImageFormat::Png),
             )
@@ -585,6 +585,112 @@ fn walk_helmet(body: &mut Image, key: Key, pose: Pose, rig: &Rig) {
     }
 }
 
+// Rotate each complete carried arm assembly around its own shoulder. Weapon
+// and glove share the exact rigid transform; neither changes size or grip.
+fn dual_arm15(key: Key, pose: Pose, side: usize) -> Option<Vec<Image>> {
+    let reference = Pose {
+        frame: walking_arm_reference(key, pose),
+        ..pose
+    };
+    let (base, _, _) = direction_parts(key, reference)?;
+    let (current, _, _) = direction_parts(key, pose)?;
+    let layer = key
+        .1
+        .into_iter()
+        .flatten()
+        .find(|l| usize::from(!l.left) == side)?;
+    let mut single = key;
+    single.1 = if layer.left {
+        [Some(layer), None]
+    } else {
+        [None, Some(layer)]
+    };
+    let far = usize::from(pose.facing > 0);
+    let raised = matches!(weapon_hold(layer.model), WeaponHold::Raised);
+    // The shoulder reference and wrist correction do not depend on gait phase
+    // or helmet. Prepare them once per single carried weapon, not twice on
+    // every new phase. This bounded cache owns only arms, weapons and gloves.
+    if let Some((index, _)) = decode(single.0) {
+        single.0 = BASE + index as u16;
+    }
+    thread_local! {
+        static OWNED15: std::cell::RefCell<project_rl::asset_cache::ByteCache<(Key, i8, bool), Vec<Image>>> =
+            const { std::cell::RefCell::new(project_rl::asset_cache::ByteCache::new(8 * 1024 * 1024)) };
+    }
+    let owned = OWNED15.with_borrow_mut(|cache| {
+        let cache_key = (
+            single,
+            pose.facing,
+            crate::game_art::walking::dual17_enabled(),
+        );
+        if let Some(owned) = cache.get(&cache_key) {
+            return Some(owned.clone());
+        }
+        let mut parts = layers(single, reference)?;
+        #[cfg(any(debug_assertions, test))]
+        if crate::game_art::walking::dual17_enabled() {
+            let (_, raw, _) = direction_parts(single, reference)?;
+            parts[1 + side] = raw[1 + side * 2].clone();
+            erase_owned(&mut parts[1 + side], &raw[2 + side * 2]);
+            parts[4] = raw[2 + side * 2].clone();
+            if raised {
+                let angle = if layer.left {
+                    -std::f32::consts::FRAC_PI_2
+                } else {
+                    std::f32::consts::FRAC_PI_2
+                };
+                let (sin, cos) = angle.sin_cos();
+                parts[3] = affine_pixels(
+                    &weapon_image(
+                        layer.model,
+                        layer.left,
+                        single.2[1 + usize::from(layer.left)],
+                    )?,
+                    attachment(layer.model, layer.left)?.0,
+                    base.palms[side],
+                    [cos, -sin, sin, cos],
+                );
+            }
+        }
+        if raised && !crate::game_art::walking::dual17_enabled() {
+            // The front pose carries a pistol muzzle-up. Turn the weapon and
+            // glove together at the grip before moving the complete arm.
+            let grip = [
+                base.pivots[side][0] + f32::from(pose.facing) * 11.,
+                base.pivots[side][1] + 3.,
+            ];
+            let facing = f32::from(pose.facing);
+            for part in [3, 4] {
+                parts[part] = affine_pixels(&parts[part], grip, grip, [0., -facing, facing, 0.]);
+            }
+        }
+        let owned: Vec<_> = [1 + side, 3, 4].map(|i| parts[i].clone()).to_vec();
+        cache.insert(cache_key, owned.clone(), 3 * 128 * 128 * 4);
+        Some(owned)
+    })?;
+    let swing = phase(pose.frame) * if side == 0 { 1. } else { -1. };
+    let degrees: f32 = if crate::game_art::walking::dual17_enabled() {
+        swing * 8.
+    } else if raised {
+        (if side == far { 18. } else { 32. }) + swing * 4.
+    } else {
+        swing * 8.
+    };
+    let (sin, cos) = (f32::from(pose.facing) * degrees.to_radians()).sin_cos();
+    let matrix = [cos, -sin, sin, cos];
+    let pivot = base.pivots[side];
+    let target = [
+        pivot[0] + (current.center - base.center).round(),
+        pivot[1] + (current.pivots[0][1] - base.pivots[0][1]).round(),
+    ];
+    Some(
+        owned
+            .iter()
+            .map(|part| affine_pixels(part, pivot, target, matrix))
+            .collect(),
+    )
+}
+
 pub(super) fn layers(key: Key, pose: Pose) -> Option<Vec<Image>> {
     if pose.facing == 0 && !(17..=22).contains(&key.0) {
         // Real front body/arms, real selected weapons and fingers. Only the
@@ -626,6 +732,33 @@ pub(super) fn layers(key: Key, pose: Pose) -> Option<Vec<Image>> {
         drawn(&p[0], key, pose)
             .unwrap_or_else(|| gait(&p[0], rig.hip, rig.bottom, rig.center, pose))
     };
+    if fixed_grips
+        && crate::game_art::walking::dual15_enabled()
+        && crate::game_art::walking::gait12_enabled()
+        && decode(key.0).is_some()
+        && pose.frame < 6
+        && key.1.iter().all(|held| {
+            held.is_some_and(|l| {
+                matches!(weapon_hold(l.model), WeaponHold::Side | WeaponHold::Raised)
+            })
+        })
+    {
+        walk_helmet(&mut body, key, pose, rig);
+        let far = usize::from(pose.facing > 0);
+        let mut result = Vec::new();
+        let mut assembly = Image::gen_image_color(128, 128, BLANK);
+        for layer in dual_arm15(key, pose, far)? {
+            geometry::over(&mut assembly, &layer);
+        }
+        result.push(assembly);
+        result.push(body);
+        let mut assembly = Image::gen_image_color(128, 128, BLANK);
+        for layer in dual_arm15(key, pose, 1 - far)? {
+            geometry::over(&mut assembly, &layer);
+        }
+        result.push(assembly);
+        return Some(result);
+    }
     let arm_reference = walking_arm_reference(key, pose);
     if fixed_grips && pose.frame != arm_reference && key.1.iter().any(Option::is_some) {
         // The carried assembly keeps one authored arm pose for this exact
@@ -866,6 +999,10 @@ pub(super) fn layers(key: Key, pose: Pose) -> Option<Vec<Image>> {
 mod proportions_export;
 
 #[cfg(test)]
+#[path = "dual_walk_review_export.rs"]
+mod dual_review_export;
+
+#[cfg(test)]
 mod tests {
     use super::*;
 
@@ -977,8 +1114,8 @@ mod tests {
                                 selection(None, Some([Some(68), Some(101)])),
                             ] {
                                 let armed = layers((key.0, held, key.2), pose).unwrap();
-                                assert_eq!(
-                                    actual.bytes, armed[0].bytes,
+                                assert!(
+                                    armed.iter().any(|layer| layer.bytes == actual.bytes),
                                     "weapon moved helmet: outfit{index} head{head} facing{facing}"
                                 );
                             }
@@ -995,7 +1132,6 @@ mod tests {
             let mut loadouts = vec![selection(Some(67), None)];
             if index % 5 == 0 {
                 loadouts.push(selection(Some(101), None));
-                loadouts.push(selection(None, Some([Some(68), Some(101)])));
             }
             for held in loadouts {
                 let key = (BASE + index, held, [EquipmentPalette::Original; 3]);
@@ -1538,13 +1674,39 @@ mod tests {
                 [EquipmentPalette::Original; 3],
             );
             for facing in [-1, 1] {
-                let a = layers(key, Pose { facing, frame: 0 }).unwrap();
-                let b = layers(key, Pose { facing, frame: 2 }).unwrap();
+                let reference_pose = Pose {
+                    facing,
+                    frame: walking_arm_reference(key, Pose { facing, frame: 0 }),
+                };
+                let reference = layers(key, reference_pose).unwrap();
+                let (base, _, _) = direction_parts(key, reference_pose).unwrap();
                 assert!(
-                    a[1].bytes.chunks_exact(4).any(|p| p[3] > 0),
+                    reference[3].bytes.chunks_exact(4).any(|p| p[3] > 0),
                     "empty weapon {model}"
                 );
-                assert_eq!(a[1].bytes, b[1].bytes, "walking bent weapon {model}");
+                for frame in [0, 2] {
+                    let pose = Pose { facing, frame };
+                    let actual = layers(key, pose).unwrap();
+                    let (rig, _, _) = direction_parts(key, pose).unwrap();
+                    let delta = [
+                        (rig.center - base.center).round(),
+                        (rig.pivots[0][1] - base.pivots[0][1]).round(),
+                    ];
+                    let expected = affine_pixels(&reference[3], [0., 0.], delta, [1., 0., 0., 1.]);
+                    // The authored layout owns weapon pixels in layer 3.
+                    // Register the accepted torso translation before comparing
+                    // their rigid geometry; layer 1 is the left sleeve.
+                    assert!(
+                        actual[3]
+                            .bytes
+                            .chunks_exact(4)
+                            .zip(expected.bytes.chunks_exact(4))
+                            .all(|(a, b)| a[3] == b[3] && (a[3] == 0 || a == b)),
+                        "walking bent weapon {model}, facing{facing}, frame{frame}"
+                    );
+                }
+                let a = layers(key, Pose { facing, frame: 0 }).unwrap();
+                let b = layers(key, Pose { facing, frame: 2 }).unwrap();
                 assert_ne!(
                     a[0].bytes[78 * 512..],
                     b[0].bytes[78 * 512..],

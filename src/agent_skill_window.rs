@@ -275,7 +275,7 @@ pub(super) fn art(id: &str, category: &str, rect: Rect, clip: Option<Rect>) -> b
                 let bytes =
                     project_rl::data_paths::read(&format!("assets/skills/agent/{filename}"))
                         .expect("packaged accepted skill drawing");
-                let texture = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
+                let texture = crate::asset_loading::texture(&bytes, Some(ImageFormat::Png));
                 texture.set_filter(FilterMode::Nearest);
                 texture
             });

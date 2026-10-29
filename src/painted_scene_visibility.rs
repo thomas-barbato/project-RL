@@ -76,7 +76,7 @@ pub(super) fn draw(game: &WorldState, camera: &GridCamera, known: impl Fn(GridPo
             .as_ref()
             .is_none_or(|(old, _)| old.width != image.width || old.height != image.height)
         {
-            let texture = Texture2D::from_image(&image);
+            let texture = crate::asset_loading::from_image(&image);
             texture.set_filter(FilterMode::Linear);
             *slot = Some((image.clone(), texture));
         } else if let Some((old, texture)) = slot.as_mut() {
@@ -90,7 +90,7 @@ pub(super) fn draw(game: &WorldState, camera: &GridCamera, known: impl Fn(GridPo
     MATERIAL.with(|slot| {
         let mut slot = slot.borrow_mut();
         let material = slot.get_or_insert_with(|| {
-            crate::world_readability::material(
+            crate::world_readability::mask_material(
                 ShaderSource::Glsl {
                     vertex: VERTEX,
                     fragment: FRAGMENT,

@@ -306,7 +306,7 @@ fn build_atlas() -> Texture2D {
             }
         }
     }
-    let texture = Texture2D::from_image(&image);
+    let texture = crate::asset_loading::from_image(&image);
     texture.set_filter(FilterMode::Nearest);
     texture
 }
@@ -352,7 +352,7 @@ fn draw_surface(rect: Rect, surface: Surface, visible: bool, position: GridPos) 
     let x = position.x.rem_euclid(PATCH / CELL) * CELL;
     let y = position.y.rem_euclid(PATCH / CELL) * CELL;
     FLOOR_ATLAS.with(|texture| {
-        draw_texture_ex(
+        crate::world_readability::texture(
             texture,
             rect.x,
             rect.y,

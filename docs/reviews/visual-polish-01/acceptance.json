@@ -1,0 +1,24 @@
+{
+  "review": "POLISH01-02",
+  "date": "2026-10-27",
+  "status": "approved_for_integration",
+  "approval_prompt": "Tu valides l’intégration de la version 02 au jeu, avec ou sans les éclats d’impact ?",
+  "user_reply": "avec .",
+  "scope_extension": "il faut donc l’adapter à toutes les map du jeu :)",
+  "approved_components": [
+    "POLISH01-L01",
+    "POLISH01-A01",
+    "POLISH01-FX01"
+  ],
+  "scope": "Common world renderer on all maps; preserve their lighting, simulation and native64 artwork. New contact belongs to B01 and respects reduced motion.",
+  "accepted_visuals": [
+    {
+      "path": "docs/reviews/visual-polish-01/references/comparaison-native64.gif",
+      "sha256": "3027bb1bfebdf7b9bf54585ce8279f03b8e6472c28d49c0d8d26a174ddf7fa67"
+    },
+    {
+      "path": "docs/reviews/visual-polish-01/references/comparison-20.png",
+      "sha256": "999f4c779812b5f8f98b30f55d6ba2b9c341b1bc7222c2e739821e5d25507223"
+    }
+  ]
+}

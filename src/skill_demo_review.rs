@@ -3,7 +3,13 @@ use super::*;
 
 impl AsciiApp {
     pub(super) fn new_skill_demo_review() -> Result<Self, String> {
-        let mut app = Self::new_agent_skill_laboratory()?;
+        Self::new_skill_demo_review_with_bonus_seed(None)
+    }
+
+    pub(super) fn new_skill_demo_review_with_bonus_seed(
+        bonus_seed: Option<u64>,
+    ) -> Result<Self, String> {
+        let mut app = Self::new_agent_skill_laboratory_with_bonus_seed(bonus_seed)?;
         app.graphics.active.ui_scale_percent = 100;
         app.graphics.active.interface_style = crate::graphics::InterfaceStyle::Metal;
         app.graphics.active.reduced_motion = false;

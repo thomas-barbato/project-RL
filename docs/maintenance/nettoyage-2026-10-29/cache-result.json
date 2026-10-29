@@ -1,0 +1,30 @@
+{
+  "debug": {
+    "before": {
+      "files": 1192,
+      "bytes": 1129125975
+    },
+    "after": {
+      "files": 0,
+      "bytes": 0
+    },
+    "exit_code": 0,
+    "cargo_output": "Removed 1192 files, 1.1GiB total"
+  },
+  "loading": {
+    "before": {
+      "files": 766,
+      "bytes": 633436738
+    },
+    "after": {
+      "files": 0,
+      "bytes": 0
+    },
+    "exit_code": 0,
+    "cargo_output": "Removed 766 files, 604.1MiB total"
+  },
+  "bytes_removed": 1762562713,
+  "release_preserved": true,
+  "explicit_target_dir_mode_refused": "Missing CACHEDIR.TAG; no files changed by that attempt",
+  "workspace_default_mode": "Dry run passed; native Cargo cleanup used the verified workspace target without a target-dir override"
+}

@@ -1,0 +1,33 @@
+{
+  "review": "POLISH01-r01",
+  "status": "awaiting_visual_approval",
+  "debug_build": "passed",
+  "release_configuration_check": "passed",
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "engine_capture": "passed",
+  "simulation_snapshot_before_after": "byte_identical",
+  "gif_frames": 75,
+  "gif_seconds": 3,
+  "native_cell": 64,
+  "publication_hashes": "passed",
+  "temporary_rgba_stream_removed": true,
+  "visually_inspected": [
+    "comparison-20.png",
+    "comparison-34.png",
+    "reduced-motion.png",
+    "phase-check-native64.png"
+  ],
+  "normal_game_activation": false,
+  "existing_release_sha256": "86d2ce1c7f32931a8c74124a750fa7adca91dbaf820559b60d566453f3b350b6",
+  "source_sha256": {
+    "src/main.rs": "472039a86b95a2e8a3ca56de700a93bf0a2518b2b4c47dad192a896df8534698",
+    "src/visual_polish_review.rs": "e39c5c51d2d454a5dd528aa6c36ab589f9e0f3158e9e3cb3ee68c022abf00501",
+    "tools/art/publish_visual_polish_review_01.py": "3341b82237dc3c34aec135d7901eff4e1096ab1e201f5e86d35ab91685b4be04",
+    "tools/reviews/show_visual_polish_review_01.cmd": "dbdfe969ea2a4427089a6213987dc3f4ddffa61cce9a64434d329f9c56a2642d"
+  },
+  "full_test_suite_run": false,
+  "html_browser_execution_verified": false,
+  "live_preview_keyboard_controls_manually_tested": false,
+  "native_preview_resize": "Source pixels retain native size; a smaller window crops the comparison rather than scaling sprites."
+}

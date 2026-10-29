@@ -1,0 +1,11 @@
+# SOL-FUT01 — matière 05
+
+Mode : outil intégré imagegen, édition de matière opaque.
+
+Cible : assets/source-art/floor-continuous-01/material-source.png.
+Référence de style : assets/source-art/floor-future-01/architecture-source.png.
+Source finale : assets/source-art/floor-future-01/deck-source.png, conservée à sa résolution originale.
+
+Prompt exact :
+
+Use case: precise-object-edit. Asset: a top-down futuristic technical deck FLOOR MATERIAL for Project RL, a stylized native64 2D game. Image 1 is the edit target, an existing concrete material swatch; replace its material and surface design completely. Image 2 is supporting style/palette context only: the existing camp architecture; do not recreate a room, walls, props, perspective or its checkerboard. Create a single square edge-to-edge material/design swatch, ideally 1024x1024, of a sober futuristic maintenance deck: muted slate blue-gray matte coated metal, broad shallow flat plates in varied long rectangular proportions, extremely thin recessed dark joints, a few offset clipped corners, one restrained flush service hatch, tiny sparse amber PAINTED maintenance ticks or small desaturated cyan PAINTED inset identification strokes. The colored details are not lights: no glow and no illumination baked into them. Use very few long seams, a generous uninterrupted central walking area, asymmetric but practical panel division. No checkerboard, no equal square tiles, no regular 64px cell-sized panels, no dense grid, no grating, no perforation, no repetitive bolts, no ornamental circuit-board pattern. Calm hand-painted game finish, confident clean shapes and dark slim outlines, mild broad localized scuffs; keep a subdued worn industrial atmosphere that fits the reference architecture. Flat orthographic top down with parallel horizontal/vertical axes, no isometric diamond, no perspective, no bevelled 3D extrusion, no photorealistic grain, no chrome, no glossy reflections, no baked shadows, no vignette, no wall borders, no pipes, no props, no text, no letters or digits, no people. Fill the whole image. Edges should join quietly when a larger field is needed, without a square border or an obvious decorative repeating motif. The finished material must remain readable underneath 64px human sprites and equipment.

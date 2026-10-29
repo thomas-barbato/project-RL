@@ -1,0 +1,544 @@
+{
+  "review_id": "LOAD01",
+  "date": "2026-10-29",
+  "status": "Principe general valide pour tout le jeu ; diagnostic integre ; cache et prechargement non integres",
+  "purpose": "Etude du chargement et des pauses au premier affichage, inspiree des principes de Diablo II classique.",
+  "machine": {
+    "cpu": "AMD Ryzen 7 5700X, 8 coeurs / 16 threads",
+    "gpu": "NVIDIA GeForce RTX 5060",
+    "driver": "32.0.16.1714",
+    "os": "Windows 11 Professionnel 10.0.26200",
+    "ram_gib": 23.92
+  },
+  "build": {
+    "command": "cargo build --locked --bin project-rl --profile loading --config profile.loading.inherits=\"release\" --config profile.loading.debug-assertions=true",
+    "optimization": "opt-level=3 ; assertions de diagnostic actives",
+    "executable_sha256": "55a3a5e1acb932b805f3a8c4a3b7ad5ef22efa0a652c6125dcc925f0741f9e64",
+    "normal_release_executable_replaced": false
+  },
+  "method": {
+    "window": [
+      1280,
+      800
+    ],
+    "native_cell_px": 64,
+    "traced_runs_per_fixture_per_layout": 3,
+    "untraced_control_runs_per_fixture_per_layout": 1,
+    "fixtures": [
+      "route",
+      "effects"
+    ],
+    "frames_per_zone": 90,
+    "frames_per_effect": 420,
+    "effect_host_bonus_seed": 1872,
+    "fresh_process_per_fixture": true,
+    "os_caches_flushed": false,
+    "runs_sequential_without_compilation": true,
+    "near_hatch_fixture_separate_from_camp_route": true
+  },
+  "validation": {
+    "resource_tests": {
+      "command": "cargo test --locked --lib data_paths::",
+      "passed": 6
+    },
+    "content_tests": {
+      "command": "cargo test --locked --lib content::",
+      "passed": 55
+    },
+    "release_check": "cargo check --locked --release --bin project-rl : OK",
+    "optimized_native_execution": "2 layouts x 4 repetitions x 2 fixtures = 16 processus ; 72 sequences de rendu ; 14400 images",
+    "state": "Octets moteur, terminal et longueur historique inchanges pendant chaque sequence ; empreintes identiques entre repetitions, controles et layouts",
+    "personal_files": {
+      "checked": 7,
+      "hashes_unchanged": true
+    },
+    "archive": "1764 fichiers et catalogues verifies ; 1819 entrees logiques de depart ; archive 103514266 octets",
+    "formatting": "Nouveaux modules et fichiers Rust propres modifies verifies avec rustfmt ; git diff --check : OK"
+  },
+  "findings": [
+    {
+      "id": "LOAD01-F01",
+      "confidence": "confirme",
+      "observation": "Les decors rue/egouts sont recrees dans la fonction de dessin quand le decor courant change. Le retour reconstruit et redecompresse les memes gros fonds.",
+      "source": "src/prison_street_render.rs : ART, get_or_insert_with, remplacement selon height/background_file",
+      "evidence": "packed: retour rue median 131.25 ms ; retour egouts 100.64 ms ; transition logique de retour inferieure a 1.3 ms dans ces essais."
+    },
+    {
+      "id": "LOAD01-F02",
+      "confidence": "confirme",
+      "observation": "Le decodage des PNG explique la majorite du cout du premier dessin de la rue.",
+      "evidence": "packed rue/frame-0: median lecture/extraction 14.30 ms, decodage 91.21 ms, creation des textures cote CPU/pilote 9.41 ms ; dessin total 128.03 ms."
+    },
+    {
+      "id": "LOAD01-F03",
+      "confidence": "confirme dans ces series",
+      "observation": "Le paquet archive ne supprime pas les pauses de rendu.",
+      "evidence": "Premier dessin rue: loose 128.64 ms, packed 128.03 ms. Les catalogues et leur decouverte sont une phase distincte, plus rapide dans la serie archivee."
+    },
+    {
+      "id": "LOAD01-F04",
+      "confidence": "partiellement attribue",
+      "observation": "La fenetre des competences et le depart des demonstrations ont un cout distinct, largement hors des seuls chargements de textures mesures.",
+      "evidence": "packed FE02 premier dessin median 121.71 ms ; FR02 58.24 ms ; D58 59.62 ms. Fenetre agent: 149.96 a 540.29 ms, forte variabilite. Les atlas seuls coutent bien moins ; leur prechargement seul ne garantit pas la suppression de ces pics."
+    }
+  ],
+  "priorities": [
+    {
+      "order": 1,
+      "proposal": "Conserver les scenes recentes (textures et ambiance) dans un cache borne par un budget memoire, pour eviter leur reconstruction au retour.",
+      "implemented": false
+    },
+    {
+      "order": 2,
+      "proposal": "Preparer les ressources de la destination avant son premier affichage ; distinguer decodage CPU et creation progressive des textures sur le thread graphique.",
+      "implemented": false
+    },
+    {
+      "order": 3,
+      "proposal": "Completer le profil du premier affichage de la fenetre des competences et de la construction des demonstrations.",
+      "implemented": false
+    }
+  ],
+  "limits": [
+    "Mesures CPU locales, pas une garantie de FPS ni un temps GPU direct.",
+    "texture_create_cpu couvre appel processeur/pilote ; frame_with_present inclut swap, vsync et attente.",
+    "read_resource couvre lecture et extraction archive, avec des limites de perimetre differentes pour les catalogues libres.",
+    "Les portions imbriquees (ambiance, composition) sont inclusives et ne doivent pas etre additionnees a leurs enfants.",
+    "Instrumentation non exhaustive ; une part du cout UI reste a attribuer.",
+    "Ordre loose puis packed, caches OS non purges : pas de conclusion generale sur la vitesse relative des formats.",
+    "Les premieres series de laboratoire a graine aleatoire sont ecartees du bilan ; graine fixe uniquement dans le diagnostic."
+  ],
+  "scenes": [
+    {
+      "scene": "camp",
+      "loose": {
+        "first_cpu_ms": [
+          185.6259,
+          119.02250000000001,
+          153.3492
+        ],
+        "median_first_cpu_ms": 153.3492,
+        "steady_cpu_median_ms": 1.4729
+      },
+      "packed": {
+        "first_cpu_ms": [
+          112.4504,
+          95.9725,
+          116.7878
+        ],
+        "median_first_cpu_ms": 112.4504,
+        "steady_cpu_median_ms": 1.6187
+      }
+    },
+    {
+      "scene": "street",
+      "loose": {
+        "first_cpu_ms": [
+          128.6376,
+          133.3096,
+          117.59179999999999
+        ],
+        "median_first_cpu_ms": 128.6376,
+        "steady_cpu_median_ms": 1.4102999999999999
+      },
+      "packed": {
+        "first_cpu_ms": [
+          121.7075,
+          128.0307,
+          129.3651
+        ],
+        "median_first_cpu_ms": 128.0307,
+        "steady_cpu_median_ms": 1.6086
+      }
+    },
+    {
+      "scene": "sewer",
+      "loose": {
+        "first_cpu_ms": [
+          120.8597,
+          116.6345,
+          109.6689
+        ],
+        "median_first_cpu_ms": 116.6345,
+        "steady_cpu_median_ms": 4.2806
+      },
+      "packed": {
+        "first_cpu_ms": [
+          114.5779,
+          113.5493,
+          108.8537
+        ],
+        "median_first_cpu_ms": 113.5493,
+        "steady_cpu_median_ms": 4.7189
+      }
+    },
+    {
+      "scene": "street_return",
+      "loose": {
+        "first_cpu_ms": [
+          122.5271,
+          121.35369999999999,
+          114.6681
+        ],
+        "median_first_cpu_ms": 121.35369999999999,
+        "steady_cpu_median_ms": 1.3732
+      },
+      "packed": {
+        "first_cpu_ms": [
+          122.04429999999999,
+          131.25310000000002,
+          135.0971
+        ],
+        "median_first_cpu_ms": 131.25310000000002,
+        "steady_cpu_median_ms": 1.5471000000000001
+      }
+    },
+    {
+      "scene": "sewer_return",
+      "loose": {
+        "first_cpu_ms": [
+          101.07860000000001,
+          99.1134,
+          98.78359999999999
+        ],
+        "median_first_cpu_ms": 99.1134,
+        "steady_cpu_median_ms": 4.250900000000001
+      },
+      "packed": {
+        "first_cpu_ms": [
+          103.2979,
+          98.43159999999999,
+          100.64059999999999
+        ],
+        "median_first_cpu_ms": 100.64059999999999,
+        "steady_cpu_median_ms": 4.4239
+      }
+    },
+    {
+      "scene": "agent_window",
+      "loose": {
+        "first_cpu_ms": [
+          372.3286,
+          108.8974,
+          424.2418
+        ],
+        "median_first_cpu_ms": 372.3286,
+        "steady_cpu_median_ms": 2.6248
+      },
+      "packed": {
+        "first_cpu_ms": [
+          152.7954,
+          149.9557,
+          540.289
+        ],
+        "median_first_cpu_ms": 152.7954,
+        "steady_cpu_median_ms": 2.8691
+      }
+    },
+    {
+      "scene": "effect_FE02",
+      "loose": {
+        "first_cpu_ms": [
+          122.4609,
+          120.5556,
+          119.1336
+        ],
+        "median_first_cpu_ms": 120.5556,
+        "steady_cpu_median_ms": 2.8617
+      },
+      "packed": {
+        "first_cpu_ms": [
+          121.71369999999999,
+          121.29990000000001,
+          124.78540000000001
+        ],
+        "median_first_cpu_ms": 121.71369999999999,
+        "steady_cpu_median_ms": 2.8687
+      }
+    },
+    {
+      "scene": "effect_FR02",
+      "loose": {
+        "first_cpu_ms": [
+          80.13850000000001,
+          50.191,
+          85.8826
+        ],
+        "median_first_cpu_ms": 80.13850000000001,
+        "steady_cpu_median_ms": 2.7877
+      },
+      "packed": {
+        "first_cpu_ms": [
+          58.2385,
+          60.911699999999996,
+          51.3221
+        ],
+        "median_first_cpu_ms": 58.2385,
+        "steady_cpu_median_ms": 2.937
+      }
+    },
+    {
+      "scene": "effect_D58",
+      "loose": {
+        "first_cpu_ms": [
+          81.7015,
+          52.8741,
+          90.9652
+        ],
+        "median_first_cpu_ms": 81.7015,
+        "steady_cpu_median_ms": 2.7545
+      },
+      "packed": {
+        "first_cpu_ms": [
+          59.623200000000004,
+          59.3483,
+          80.5534
+        ],
+        "median_first_cpu_ms": 59.623200000000004,
+        "steady_cpu_median_ms": 2.7529999999999997
+      }
+    }
+  ],
+  "first_frame_stage_medians": [
+    {
+      "layout": "loose",
+      "scene": "camp",
+      "read_resource_ms": 4.577,
+      "decode_image_ms": 53.0287,
+      "texture_create_cpu_ms": 11.799299999999999,
+      "shader_build_cpu_ms": 1.9005,
+      "render_target_create_cpu_ms": 1.1477
+    },
+    {
+      "layout": "loose",
+      "scene": "street",
+      "read_resource_ms": 11.7102,
+      "decode_image_ms": 84.04690000000001,
+      "texture_create_cpu_ms": 9.0945,
+      "shader_build_cpu_ms": 1.7776,
+      "render_target_create_cpu_ms": 0.30479999999999996
+    },
+    {
+      "layout": "loose",
+      "scene": "sewer",
+      "read_resource_ms": 10.1336,
+      "decode_image_ms": 65.1343,
+      "texture_create_cpu_ms": 10.6768,
+      "shader_build_cpu_ms": 1.4378,
+      "render_target_create_cpu_ms": 0.3635
+    },
+    {
+      "layout": "loose",
+      "scene": "street_return",
+      "read_resource_ms": 10.9442,
+      "decode_image_ms": 84.5621,
+      "texture_create_cpu_ms": 7.9691,
+      "shader_build_cpu_ms": 1.8564,
+      "render_target_create_cpu_ms": 0.28640000000000004
+    },
+    {
+      "layout": "loose",
+      "scene": "sewer_return",
+      "read_resource_ms": 9.41,
+      "decode_image_ms": 65.3066,
+      "texture_create_cpu_ms": 10.8869,
+      "shader_build_cpu_ms": 1.2581,
+      "render_target_create_cpu_ms": 0.25930000000000003
+    },
+    {
+      "layout": "packed",
+      "scene": "camp",
+      "read_resource_ms": 11.8017,
+      "decode_image_ms": 67.252,
+      "texture_create_cpu_ms": 8.8278,
+      "shader_build_cpu_ms": 2.6826000000000003,
+      "render_target_create_cpu_ms": 1.1087
+    },
+    {
+      "layout": "packed",
+      "scene": "street",
+      "read_resource_ms": 14.2969,
+      "decode_image_ms": 91.21319999999999,
+      "texture_create_cpu_ms": 9.406600000000001,
+      "shader_build_cpu_ms": 1.9266,
+      "render_target_create_cpu_ms": 0.3217
+    },
+    {
+      "layout": "packed",
+      "scene": "sewer",
+      "read_resource_ms": 14.4214,
+      "decode_image_ms": 67.5333,
+      "texture_create_cpu_ms": 11.0123,
+      "shader_build_cpu_ms": 1.6427,
+      "render_target_create_cpu_ms": 0.35790000000000005
+    },
+    {
+      "layout": "packed",
+      "scene": "street_return",
+      "read_resource_ms": 14.7348,
+      "decode_image_ms": 92.417,
+      "texture_create_cpu_ms": 9.978000000000002,
+      "shader_build_cpu_ms": 1.9445000000000001,
+      "render_target_create_cpu_ms": 0.3512
+    },
+    {
+      "layout": "packed",
+      "scene": "sewer_return",
+      "read_resource_ms": 13.7824,
+      "decode_image_ms": 66.23859999999999,
+      "texture_create_cpu_ms": 10.7508,
+      "shader_build_cpu_ms": 1.3006,
+      "render_target_create_cpu_ms": 0.25310000000000005
+    }
+  ],
+  "setup_and_transition_medians": [
+    {
+      "layout": "loose",
+      "phase": "camp_setup",
+      "median_cpu_ms": 603.3555,
+      "cpu_ms": [
+        603.3555,
+        605.3627,
+        598.0499
+      ]
+    },
+    {
+      "layout": "loose",
+      "phase": "camp_to_street",
+      "median_cpu_ms": 92.3814,
+      "cpu_ms": [
+        93.22500000000001,
+        92.3814,
+        91.8732
+      ]
+    },
+    {
+      "layout": "loose",
+      "phase": "near_hatch_fixture_setup",
+      "median_cpu_ms": 223.2256,
+      "cpu_ms": [
+        223.2256,
+        224.5404,
+        218.98919999999998
+      ]
+    },
+    {
+      "layout": "loose",
+      "phase": "street_to_sewer",
+      "median_cpu_ms": 92.81150000000001,
+      "cpu_ms": [
+        94.8038,
+        92.81150000000001,
+        91.791
+      ]
+    },
+    {
+      "layout": "loose",
+      "phase": "sewer_to_street",
+      "median_cpu_ms": 0.8251000000000001,
+      "cpu_ms": [
+        0.8742,
+        0.8251000000000001,
+        0.8088000000000001
+      ]
+    },
+    {
+      "layout": "loose",
+      "phase": "street_to_sewer_return",
+      "median_cpu_ms": 0.5172,
+      "cpu_ms": [
+        0.5172,
+        0.5333,
+        0.5018
+      ]
+    },
+    {
+      "layout": "packed",
+      "phase": "camp_setup",
+      "median_cpu_ms": 407.6316,
+      "cpu_ms": [
+        407.6316,
+        409.8515,
+        392.2001
+      ]
+    },
+    {
+      "layout": "packed",
+      "phase": "camp_to_street",
+      "median_cpu_ms": 92.7371,
+      "cpu_ms": [
+        92.20150000000001,
+        99.53829999999999,
+        92.7371
+      ]
+    },
+    {
+      "layout": "packed",
+      "phase": "near_hatch_fixture_setup",
+      "median_cpu_ms": 180.7522,
+      "cpu_ms": [
+        207.4727,
+        180.7522,
+        178.042
+      ]
+    },
+    {
+      "layout": "packed",
+      "phase": "street_to_sewer",
+      "median_cpu_ms": 95.0572,
+      "cpu_ms": [
+        97.0432,
+        91.4816,
+        95.0572
+      ]
+    },
+    {
+      "layout": "packed",
+      "phase": "sewer_to_street",
+      "median_cpu_ms": 0.8907,
+      "cpu_ms": [
+        0.8811,
+        0.8907,
+        1.2144
+      ]
+    },
+    {
+      "layout": "packed",
+      "phase": "street_to_sewer_return",
+      "median_cpu_ms": 0.5774,
+      "cpu_ms": [
+        0.6647,
+        0.5173000000000001,
+        0.5774
+      ]
+    }
+  ],
+  "reproduction": {
+    "runner": "tools/diagnostics/profile_loading.py",
+    "mode": "--ui-cold-performance-loading OUTPUT --loading-fixture=route|effects",
+    "control_flag": "--no-loading-trace",
+    "raw_summaries": [
+      "artifacts/loading-study-01/loose-fixed/summary.json",
+      "artifacts/loading-study-01/packed/summary.json"
+    ]
+  },
+  "cleanup": {
+    "discarded_series_sent_to_recycle_bin": [
+      "pilot-route",
+      "pilot-effects",
+      "loose"
+    ],
+    "valid_series_retained": [
+      "loose-fixed",
+      "packed"
+    ],
+    "permanent_deletion_blocked_by_automatic_review": true,
+    "reversible_cleanup_completed": true
+  },
+  "accepted_rule": {
+    "id": "LOAD01-RULE01",
+    "reference": "REGLE.json",
+    "scope": "Tout le jeu, cartes actuelles et futures",
+    "accepted_on": "2026-10-29"
+  }
+}

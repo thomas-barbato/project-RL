@@ -1,0 +1,56 @@
+{
+  "review": "SOL-FUT01-r01",
+  "candidate_number": 5,
+  "status": "accepted_and_integrated",
+  "date": "2026-10-28",
+  "user_statement": "oui c'est bien mieux , parcontre pourquoi pas mettre dans le couloir un sol en grille :)",
+  "scope": "Version 05 accepted; new grating in circulation areas will be reviewed separately as 06.",
+  "assets": [
+    {
+      "path": "assets/maps/cryogenic-camp-01/floor.png",
+      "before_sha256": "ccfeb28cbdad5ceb2083ce9a41ff44d7d5d62ad395b2df76d6b4b9d806bb72f7",
+      "after_sha256": "ce84b82bd2eed07400d324fe568df8976016c1585e844954a0eb55c254202bae"
+    },
+    {
+      "path": "assets/maps/cryogenic-camp-01/structure.png",
+      "before_sha256": "1aaa53acde69204dff95f72592d1b932a33e83ca8af4752932a85d0236c6e597",
+      "after_sha256": "dfc45d1d0748144636444709451be31443b5df6256659336c1a2a699c1b5ca2c"
+    }
+  ],
+  "references": [
+    {
+      "path": "assets/source-art/floor-future-01/accepted-05/references/camp-arrival-after.png",
+      "sha256": "9cf6759337d0e5e49f252f8a3c9fae5a9965833bef71eeb6dc60b0affaa1f005"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-05/references/camp-corridor-after.png",
+      "sha256": "389dba8c12f78a5ca1772343af86a4a36066efb1c6282fc63b681665387683ed"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-05/references/camp-storage-after.png",
+      "sha256": "25c5f3a86cb6855f183203ea130faf9343e13470baffe4fdd6928c5e8a7fd83b"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-05/references/camp-security-after.png",
+      "sha256": "7034bcce282549e64405b30f2be4c5096cc5c807a5f8c293f38bf6ea8ac8dab1"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-05/references/camp-medical-after.png",
+      "sha256": "f4909acd41339302052e8500377f28b493ac6a819f48b00294ad0461c0d03579"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-05/references/camp-workshop-after.png",
+      "sha256": "317d0fd13c2c229a86c4631a0002e21d09a90fae874a7e7765a868b681ea37e0"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-05/references/camp-doorway-after.png",
+      "sha256": "12251d1587a386fc1c23341ea7f57408c9bdafcd2fe5763f2d02162f3c299793"
+    },
+    {
+      "path": "assets/source-art/floor-future-01/accepted-05/references/camp-threshold-after.png",
+      "sha256": "ae49440565de4cf69569eba1e0f5385dfedfd8de2599ad6e1d3f4e5495454187"
+    }
+  ],
+  "no_gameplay_change": true,
+  "new_review": "SOL-FUT01-r02"
+}

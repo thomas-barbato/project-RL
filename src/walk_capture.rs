@@ -92,7 +92,7 @@ async fn save(
 }
 
 impl AsciiApp {
-    async fn capture_saved_walk_live(
+    pub async fn capture_saved_walk_live(
         path: &std::path::Path,
         output: &std::path::Path,
     ) -> Result<(), String> {

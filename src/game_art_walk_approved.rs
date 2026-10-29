@@ -13,6 +13,8 @@ type Key = (
     bool,
     bool,
     bool,
+    bool,
+    bool,
 );
 thread_local! {
     static CACHE: RefCell<ByteCache<Key, Option<Texture2D>>> =
@@ -66,6 +68,8 @@ pub(super) fn draw(cell: Rect, visual: Visual, opacity: f32, pose: Option<Pose>)
         common_cycle_enabled(),
         proportions_enabled(),
         gait12_enabled(),
+        dual15_enabled(),
+        dual17_enabled(),
     );
     CACHE.with_borrow_mut(|cache| {
         if cache.get(&key).is_none() {

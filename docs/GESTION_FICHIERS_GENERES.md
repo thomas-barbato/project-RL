@@ -142,3 +142,54 @@ supprimé avec `cargo clean --profile dev` ; `Jouer.cmd` conserve son Release pr
 à lancer. Le prochain lancement Debug ou d'un outil Debug recompilera son cache.
 
 Périmètre, empreintes et contrôles : `docs/maintenance/nettoyage-2026-10-25/`.
+
+## Sorties remplacées et cache — nettoyage du 27 octobre 2026
+
+Les anciennes itérations de création et de police Terminal, les fragments
+temporaires du Technomancien retiré, les atlas de comparaison ARM14 et les
+captures répétées sont réduits aux références finales utiles. Les sources,
+comparaisons acceptées, propositions encore en attente et données de l'éditeur
+de cartes restent conservées. Les atlas détaillés ARM14 se régénèrent avec le
+diagnostic du compositeur et `tools/art/build_walk_arm_projection_14_review.py`.
+
+381 fichiers (79,8 Mo) passent dans la Corbeille sans vidage après refus de leur
+suppression définitive par le contrôle automatique. Cargo retire séparément le
+cache Debug (environ 1,15 Go avant nettoyage). Le Release reste disponible et sa
+compilation réussit après l'opération. Le prochain travail Debug reconstruira
+son cache. Registre : `docs/maintenance/nettoyage-2026-10-27/`.
+
+## Exports et profils de diagnostic — nettoyage du 29 octobre 2026
+
+À la demande du joueur, 151 fichiers générés, soit 276 153 943 octets,
+passent dans la Corbeille sans vidage : installation temporaire de l'étude
+de chargement, captures répétitives de finition et d'exposition, anciennes
+comparaisons de sols, vues d'intégration redondantes et caches Python.
+Les trois anciens aperçus de sols renvoient vers la finition courante 07.
+Les séries de mesures valides `loose-fixed/` et `packed/`, leurs synthèses
+et les décisions LOAD01-RULE01 restent conservées.
+
+Après recompilation du Release, Cargo retire les profils Debug et `loading` :
+1 958 fichiers, représentant 1 762 562 713 octets avant nettoyage. La version
+Release, son cache de compilation et le paquet existant dans `dist/` restent
+disponibles. Le prochain lancement d'un outil Debug ou du diagnostic de
+chargement reconstruira son profil ; le lancement normal garde son Release.
+
+Le mode Cargo avec `--target-dir` explicite refuse le cache sans marqueur
+`CACHEDIR.TAG`, sans retirer de fichier. Le nettoyage utilise ensuite le mode
+normal du workspace, après vérification du répertoire cible et simulation
+réussie. Aucun marqueur n'est fabriqué et aucun forçage n'est utilisé.
+
+Le contrôle avant/après porte sur 25 410 fichiers protégés et réussit :
+sources, ressources, décisions, références acceptées, aperçus actuels ou encore
+en attente, données de `artifacts/map-editor/`, préférences et sauvegardes du
+joueur, Release et distribution. Les références et l'index Git sont inchangés.
+Les mises à jour documentaires de ce nettoyage sont identifiées séparément.
+L'inventaire du jeu contient toujours 1 819 ressources, et l'intégrité des
+paquets existants est contrôlée avant retrait de l'installation temporaire.
+
+Les 1,76 Go de caches sont retirés du disque par Cargo. Les 276 Mo d'exports
+restent dans la Corbeille ; ils ne constituent pas de l'espace disque libéré.
+Le périmètre, les empreintes et les résultats sont dans
+`docs/maintenance/nettoyage-2026-10-29/` : `plan.json`, `exports-result.json`,
+`cache-result.json`, `preservation-before.json`, `preservation-after.json` et
+`preservation-check.json`.

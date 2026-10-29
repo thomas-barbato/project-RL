@@ -1,0 +1,307 @@
+{
+  "review": "POLISH01-INTEGRATION01",
+  "status": "integrated_and_checked",
+  "authorization": "acceptance.json",
+  "applies_to": "All maps through the common world renderer, without a map-id whitelist",
+  "components": [
+    "POLISH01-L01",
+    "POLISH01-A01",
+    "POLISH01-FX01"
+  ],
+  "runtime_assets": 1815,
+  "source_art_changed": false,
+  "gameplay_or_save_format_changed": false,
+  "settings_or_user_campaign_written": false,
+  "normal_game_activation": true,
+  "debug_build": "passed",
+  "release_build": "passed",
+  "all_targets_check": "passed",
+  "combat_presentation_tests": {
+    "passed": 16,
+    "failed": 0
+  },
+  "polish_tests": {
+    "passed": 3,
+    "failed": 0
+  },
+  "full_suite_run": false,
+  "native_capture_scenarios": 17,
+  "native_captures": "artifacts/visual-polish-review-01/integration/",
+  "capture_checks": {
+    "cursor_exclusion_px": 48,
+    "normal_game_activation": true,
+    "production_renderer": true,
+    "review": "POLISH01-INTEGRATION01",
+    "saved_campaign_access": false,
+    "scenes": [
+      {
+        "black_feather_rounding_one_lsb": 36,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 24352,
+        "draw_cpu_ms_before_after": [
+          5.1493,
+          5.2829
+        ],
+        "native_cell": 64,
+        "scene": "camp",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 353282
+      },
+      {
+        "black_feather_rounding_one_lsb": 20,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 24665,
+        "draw_cpu_ms_before_after": [
+          5.4713,
+          5.1028
+        ],
+        "native_cell": 64,
+        "scene": "street",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 346301
+      },
+      {
+        "black_feather_rounding_one_lsb": 29,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 24675,
+        "draw_cpu_ms_before_after": [
+          5.4194,
+          5.2368
+        ],
+        "native_cell": 64,
+        "scene": "interior",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 349615
+      },
+      {
+        "black_feather_rounding_one_lsb": 4,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 24431,
+        "draw_cpu_ms_before_after": [
+          6.4906,
+          7.0316
+        ],
+        "native_cell": 64,
+        "scene": "sewer-1",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 356401
+      },
+      {
+        "black_feather_rounding_one_lsb": 1,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 24753,
+        "draw_cpu_ms_before_after": [
+          6.6539,
+          7.025499999999999
+        ],
+        "native_cell": 64,
+        "scene": "sewer-2",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 357074
+      },
+      {
+        "black_feather_rounding_one_lsb": 0,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 24537,
+        "draw_cpu_ms_before_after": [
+          6.0476,
+          6.7112
+        ],
+        "native_cell": 64,
+        "scene": "sewer-3",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 356525
+      },
+      {
+        "black_feather_rounding_one_lsb": 0,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 30670,
+        "draw_cpu_ms_before_after": [
+          4.2334,
+          5.8814
+        ],
+        "native_cell": 64,
+        "scene": "generated-surface-2701",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 294948
+      },
+      {
+        "black_feather_rounding_one_lsb": 0,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 30670,
+        "draw_cpu_ms_before_after": [
+          4.7421,
+          5.5959
+        ],
+        "native_cell": 64,
+        "scene": "generated-surface-2717",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 294948
+      },
+      {
+        "black_feather_rounding_one_lsb": 0,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 30670,
+        "draw_cpu_ms_before_after": [
+          4.1842,
+          6.891
+        ],
+        "native_cell": 64,
+        "scene": "underground",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 293876
+      },
+      {
+        "black_feather_rounding_one_lsb": 0,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 30670,
+        "draw_cpu_ms_before_after": [
+          4.1804,
+          5.6953000000000005
+        ],
+        "native_cell": 64,
+        "scene": "organic",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 287531
+      },
+      {
+        "black_feather_rounding_one_lsb": 0,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 30670,
+        "draw_cpu_ms_before_after": [
+          4.1557,
+          5.6518999999999995
+        ],
+        "native_cell": 64,
+        "scene": "occult",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 297993
+      },
+      {
+        "black_feather_rounding_one_lsb": 0,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 30670,
+        "draw_cpu_ms_before_after": [
+          4.338299999999999,
+          6.1576
+        ],
+        "native_cell": 64,
+        "scene": "grayscale",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 265831
+      },
+      {
+        "black_feather_rounding_one_lsb": 0,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 30670,
+        "draw_cpu_ms_before_after": [
+          4.8098,
+          10.3972
+        ],
+        "native_cell": 64,
+        "scene": "contact",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 300085
+      },
+      {
+        "black_feather_rounding_one_lsb": 0,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 30670,
+        "draw_cpu_ms_before_after": [
+          4.6361,
+          6.2318
+        ],
+        "native_cell": 64,
+        "scene": "contact-reduced-motion",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 297937
+      },
+      {
+        "black_feather_rounding_one_lsb": 4,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 126939,
+        "draw_cpu_ms_before_after": [
+          6.9487000000000005,
+          5.1672
+        ],
+        "native_cell": 64,
+        "scene": "traqueur",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 254178
+      },
+      {
+        "black_feather_rounding_one_lsb": 4,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 126939,
+        "draw_cpu_ms_before_after": [
+          4.9988,
+          5.3555
+        ],
+        "native_cell": 64,
+        "scene": "arcaniste",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 254177
+      },
+      {
+        "black_feather_rounding_one_lsb": 4,
+        "black_pixels_changed_above_one_lsb": 0,
+        "black_pixels_checked": 126939,
+        "draw_cpu_ms_before_after": [
+          4.6312999999999995,
+          4.8873
+        ],
+        "native_cell": 64,
+        "scene": "metamorphe",
+        "simulation_unchanged": true,
+        "ui_pixels_changed_outside_pointer": 0,
+        "world_pixels_changed": 254178
+      }
+    ],
+    "settings_written": false
+  },
+  "accepted_visual_hashes_unchanged": true,
+  "visual_inspection": [
+    "camp",
+    "street",
+    "interior",
+    "sewer-2",
+    "generated-surface-2701",
+    "contact",
+    "grayscale",
+    "contact-reduced-motion"
+  ],
+  "native_cell": 64,
+  "release_sha256": "34e27edf617ee9d902339e18415dacf4cf874a7a07e24aa874532a21f52a6281",
+  "portable_package_rebuilt": false,
+  "draw_timing_scope": "Single-frame CPU submission samples, not an FPS/GPU benchmark",
+  "source_sha256": {
+    "src/visual_polish.rs": "8f016250ae5bc2afa864ebd50ecebd98d4db60009c5d2551d7d0f1eb288fe2ad",
+    "src/world_readability.rs": "8883a1f40d9ad8e84730d5be222801be8f317942909a218c397e226993e3ee42",
+    "src/camp_atmosphere.rs": "2acc3976393200c703fa0d48f30c98ee3616d31a1dfbea1827d28966312170db",
+    "src/combat_visuals.rs": "990b95e3f3d5463e4a5e83ca0f2e18699c94e0686cfa93dff2460369ed303ce6",
+    "src/terminal_floor.rs": "68a631d8dde4ecb820ae3e63ee5fb43e5991ff18790374aca3196d1ae5474941",
+    "src/sewer_ambience.rs": "19b61f16f26a873a177cb3483f7996715add5023d40c4f6ac08d790d249e34ee",
+    "src/painted_scene_visibility.rs": "e93167310908fc17f2aefa947a86c4ab8e52e9362f69ca25855398b68fb54d69",
+    "src/terminal_vision.rs": "fb5376fd2edb96dca5f710287ac3812803121a90a4989674f3349626d1095750",
+    "src/terminal_view.rs": "51375fba7b52654d8d5a32e44bafed356b04c72a1719c1673e68d25a36f7e563",
+    "src/visual_polish_capture.rs": "0589394934bab5554e91a64a6c3f42ba2bc1787b135fd108920050b4deeaba8b",
+    "src/visual_polish_review.rs": "a588ed5c63d1920a66af7530e67917b6320725b13bd17e0bf4fb2378c6b12b77",
+    "src/main.rs": "b08f80b3e0e9d67ec84e3f0d9419fb6e1b08b1622874d160a1f682733cf16b6f"
+  }
+}

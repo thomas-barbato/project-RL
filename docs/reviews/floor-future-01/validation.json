@@ -1,0 +1,370 @@
+{
+  "review": "SOL-FUT01-r01",
+  "candidate_number": 5,
+  "status": "awaiting_visual_approval",
+  "verified_at": "2026-10-28T10:09:11.976011+00:00",
+  "normal_game_activation": false,
+  "active_camp_images_unchanged": true,
+  "accepted_exterior_unchanged": true,
+  "release_unchanged_sha256": "fbd3a40a0465fc0925b5453d42d9140f0a24d7f45427c58874d9e0ef28481370",
+  "image_generation_mode": "built-in imagegen",
+  "prompt": "PROMPT.md",
+  "material_source": "assets/source-art/floor-future-01/deck-source.png",
+  "material_source_sha256": "2495b71b4185cd6f7aa678f9197ace729f8eac6d2ec03f7288906f5ed682797d",
+  "condition": {
+    "review": "SOL-FUT01-r01",
+    "candidate_number": 5,
+    "status": "awaiting_visual_approval",
+    "source_floor_sha256": "ccfeb28cbdad5ceb2083ce9a41ff44d7d5d62ad395b2df76d6b4b9d806bb72f7",
+    "source_structure_sha256": "1aaa53acde69204dff95f72592d1b932a33e83ca8af4752932a85d0236c6e597",
+    "deck_source_sha256": "2495b71b4185cd6f7aa678f9197ace729f8eac6d2ec03f7288906f5ed682797d",
+    "outputs": [
+      {
+        "path": "assets/source-art/floor-future-01/floor.png",
+        "sha256": "ce84b82bd2eed07400d324fe568df8976016c1585e844954a0eb55c254202bae"
+      },
+      {
+        "path": "assets/source-art/floor-future-01/structure.png",
+        "sha256": "dfc45d1d0748144636444709451be31443b5df6256659336c1a2a699c1b5ca2c"
+      }
+    ],
+    "outside_ground_mask_pixels_changed": 0,
+    "protected_hardware_pixels_changed": 0,
+    "source_alphas_unchanged": true,
+    "ground_pixels": 864618,
+    "ground_in_structure_layer_pixels": 54899,
+    "native_cell": 64,
+    "gameplay_changed": false
+  },
+  "critical_edge_probes": [
+    [
+      "cryo-lower-edge",
+      [
+        116,
+        738,
+        180,
+        748
+      ]
+    ],
+    [
+      "storage-lower-edge",
+      [
+        960,
+        317,
+        1024,
+        324
+      ]
+    ],
+    [
+      "security-lower-edge",
+      [
+        1792,
+        317,
+        1856,
+        324
+      ]
+    ],
+    [
+      "medical-lower-edge",
+      [
+        960,
+        950,
+        1024,
+        958
+      ]
+    ],
+    [
+      "workshop-lower-edge",
+      [
+        1792,
+        950,
+        1856,
+        958
+      ]
+    ]
+  ],
+  "all_critical_edge_probes_replaced": true,
+  "captures": [
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-arrival",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 153607
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-corridor",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 171675
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-storage",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 80939
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-security",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 79079
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-medical",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 119270
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-workshop",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 121013
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-doorway",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 135470
+    },
+    {
+      "crop": [
+        341.0,
+        133.0,
+        640.0,
+        448.0
+      ],
+      "native_cell": 64,
+      "scene": "camp-threshold",
+      "simulation_unchanged": true,
+      "ui_pixels_changed": 0,
+      "world_pixels_changed": 193375
+    }
+  ],
+  "review_texture_cache": [
+    {
+      "scene": "camp-arrival",
+      "before_matches_previous_04_in_engine": true
+    },
+    {
+      "scene": "camp-corridor",
+      "before_matches_previous_04_in_engine": true
+    },
+    {
+      "scene": "camp-storage",
+      "before_matches_previous_04_in_engine": true
+    },
+    {
+      "scene": "camp-security",
+      "before_matches_previous_04_in_engine": true
+    },
+    {
+      "scene": "camp-medical",
+      "before_matches_previous_04_in_engine": true
+    },
+    {
+      "scene": "camp-workshop",
+      "before_matches_previous_04_in_engine": true
+    },
+    {
+      "scene": "camp-doorway",
+      "before_matches_previous_04_in_engine": true
+    },
+    {
+      "scene": "camp-threshold",
+      "before_matches_previous_04_in_engine": true
+    }
+  ],
+  "publication": {
+    "review": "SOL-FUT01-r01",
+    "native_cell": 64,
+    "resampled_engine_pixels": false,
+    "whole_starting_room_in_future_review": true,
+    "outputs": [
+      {
+        "file": "camp-arrival-comparison-native64.png",
+        "bytes": 688134,
+        "sha256": "df8ef1b525ae19e02c71c5291cf19c87072714b4fd51233bd23524029935a526",
+        "comparison_size": [
+          1104,
+          640
+        ],
+        "source_crop": [
+          469,
+          69,
+          512,
+          528
+        ]
+      },
+      {
+        "file": "camp-corridor-comparison-native64.png",
+        "bytes": 613490,
+        "sha256": "505965944f7d4027dcd7c616114d2ebbeec20a0b7abe621438e8ca0affbb9928",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-storage-comparison-native64.png",
+        "bytes": 524785,
+        "sha256": "7fbe456c2e7875e82b9412b346e06e5086538f9aa3d7d2447534ec3277cab2ae",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-security-comparison-native64.png",
+        "bytes": 521789,
+        "sha256": "db2a1a97de210f1ee493e16582d55da15865905b8742148ba2cc467bcc069004",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-medical-comparison-native64.png",
+        "bytes": 504204,
+        "sha256": "b885ac2265e37a92a4cd6e7e3f0b39c4a966b5556b9336229d565568ffa66a7d",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-workshop-comparison-native64.png",
+        "bytes": 503060,
+        "sha256": "500eb36ce8d7d4e20208c502ea6ab4d8e0618105aabaa2a893aad6792fda8de1",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-doorway-comparison-native64.png",
+        "bytes": 608022,
+        "sha256": "86aa34ccb4d515bbd7727e68af57e01fc761ece158d220bdcef70b33f7c97ddc",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      },
+      {
+        "file": "camp-threshold-comparison-native64.png",
+        "bytes": 723277,
+        "sha256": "57974431a6f73a0e99e759bdcfb3995eb124fbf40114e29c7bd51d8f2561f25d",
+        "comparison_size": [
+          1360,
+          560
+        ],
+        "source_crop": [
+          341,
+          133,
+          640,
+          448
+        ]
+      }
+    ]
+  },
+  "single_full_room": {
+    "file": "artifacts/floor-continuous-review-01/future-r04/camp-arrival-05-native64.png",
+    "size": [
+      512,
+      564
+    ],
+    "sha256": "6682b188dbb36aa7a95d8b0cdb16a261cb7b4701811528c7aa8c1caa0a8268af"
+  },
+  "passed_commands": [
+    "cargo build --locked --bin project-rl",
+    "cargo fmt --all -- --check",
+    "cargo check --locked --all-targets",
+    "cargo check --locked --release --bin project-rl",
+    "git diff --check"
+  ]
+}

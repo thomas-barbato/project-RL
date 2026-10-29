@@ -9,7 +9,11 @@ use std::cell::RefCell;
 
 struct Scene {
     floor: Texture2D,
+    #[cfg(debug_assertions)]
+    review_floor: Option<(&'static str, Texture2D)>,
     structure: Texture2D,
+    #[cfg(debug_assertions)]
+    review_structure: Option<(&'static str, Texture2D)>,
     props: Vec<Texture2D>,
     npcs: Vec<Texture2D>,
     order: Vec<usize>,
@@ -18,7 +22,7 @@ struct Scene {
 }
 fn load(file: &str) -> Texture2D {
     let bytes = project_rl::data_paths::read(file).expect("accepted camp texture");
-    let t = Texture2D::from_file_with_format(&bytes, Some(ImageFormat::Png));
+    let t = crate::asset_loading::texture(&bytes, Some(ImageFormat::Png));
     t.set_filter(FilterMode::Nearest);
     t
 }
@@ -29,7 +33,11 @@ impl Scene {
         order.sort_by_key(|&i| (c.props[i].at[1] + c.props[i].height, c.props[i].at[0]));
         Self {
             floor: load(&c.floor),
+            #[cfg(debug_assertions)]
+            review_floor: None,
             structure: load(&c.structure),
+            #[cfg(debug_assertions)]
+            review_structure: None,
             props: c.props.iter().map(|p| load(&p.file)).collect(),
             npcs: c.actors[1..].iter().map(|a| load(&a.file)).collect(),
             order,
@@ -89,8 +97,39 @@ pub fn begin(camera: &GridCamera) {
         let r = world_rect(camera);
         s.atmosphere.begin(r);
         s.atmosphere.begin_background(true);
-        draw(&s.floor, r, 1.);
-        draw(&s.structure, r, 1.);
+        #[cfg(debug_assertions)]
+        let floor = if let Some(path) = crate::floor_surface_review::camp_path() {
+            if s.review_floor
+                .as_ref()
+                .is_none_or(|(current, _)| *current != path)
+            {
+                s.review_floor = Some((path, load(path)));
+            }
+            &s.review_floor.as_ref().expect("review floor loaded").1
+        } else {
+            &s.floor
+        };
+        #[cfg(not(debug_assertions))]
+        let floor = &s.floor;
+        draw(floor, r, 1.);
+        #[cfg(debug_assertions)]
+        let structure = if let Some(path) = crate::floor_surface_review::structure_path() {
+            if s.review_structure
+                .as_ref()
+                .is_none_or(|(current, _)| *current != path)
+            {
+                s.review_structure = Some((path, load(path)));
+            }
+            &s.review_structure
+                .as_ref()
+                .expect("review structure loaded")
+                .1
+        } else {
+            &s.structure
+        };
+        #[cfg(not(debug_assertions))]
+        let structure = &s.structure;
+        draw(structure, r, 1.);
         s.atmosphere.end_material();
         s.next_prop = 0;
     });
@@ -193,14 +232,25 @@ pub fn draw_npc(cell: Rect, index: u8, opacity: f32, world: bool, idle_time: Opt
         } else {
             0.
         };
-        if breath == 0. {
+        if !world {
             draw(t, r, opacity);
         } else {
             // The 64 px body starts at (32,32) in its transparent 128 px
             // canvas. Native row 46 is the accepted humanoid waist seam.
             // The fixed lower strip covers the overlap; feet and shadow stay put.
             let scale = r.w / 128.;
-            for (y, height, offset) in [(0., 78., breath), (78., 50., 0.)] {
+            // Every world pose must bind the same actor material. A direct
+            // draw at breath=0 inherited the scenery material and changed
+            // exposure when breathing started or movement suppressed it.
+            let strips = if breath == 0. {
+                [(0., 128., 0.), (0., 0., 0.)]
+            } else {
+                [(0., 78., breath), (78., 50., 0.)]
+            };
+            for (y, height, offset) in strips {
+                if height == 0. {
+                    continue;
+                }
                 crate::world_readability::texture(
                     t,
                     r.x,

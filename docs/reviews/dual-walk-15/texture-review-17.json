@@ -1,0 +1,72 @@
+{
+  "review": "DUAL17-C02",
+  "date": "2026-10-29",
+  "status": "awaiting_visual_approval",
+  "normal_game_enabled": false,
+  "reason": "User still sees the duplicated arm/weapon after DUAL16 and reports an additional brown texture on both front and moving poses.",
+  "withdrawn_attempt": "texture-investigation-16.json",
+  "normal_renderer": {
+    "restored": "DUAL15-r01",
+    "original_accepted_atlases_byte_identical": 36,
+    "contact_cases": 23400,
+    "contact_failures": [],
+    "unaffected_cases": 475
+  },
+  "candidate": {
+    "source_art_changed": false,
+    "front": "Complete accepted lowered arms; original open hands replaced only by existing closed grips. Pistols carried muzzle-down.",
+    "walking": "Complete authored arm and hand keep one rigid shoulder transform. No independent pistol-wrist turn; no detached contour transfer onto the glove.",
+    "gameplay_and_save_rules_changed": false,
+    "native_tile_px": 64
+  },
+  "checks": {
+    "source_review_cases": 64,
+    "review_guard_restores_original_pixels": true,
+    "connections": {
+      "cases": 1200,
+      "review": "DUAL17-C02",
+      "sleeve_gaps_over_one_pixel": [],
+      "weapon_contact_failures": [],
+      "original_diagnostic_label": "DUAL16",
+      "front_contacts_checked": 1950,
+      "front_contact_failures": []
+    },
+    "native_baseline": {
+      "all_actors_front_at_arrival": true,
+      "original_save_unchanged": true,
+      "player_front_at_arrival": true,
+      "source": "isolated restoration of actual saved scene",
+      "status": "passed",
+      "walkers": []
+    },
+    "native_candidate": {
+      "all_actors_front_at_arrival": true,
+      "original_save_unchanged": true,
+      "player_front_at_arrival": true,
+      "source": "isolated restoration of actual saved scene",
+      "status": "passed",
+      "walkers": []
+    },
+    "debug_build": "passed",
+    "release_build": "passed; DUAL17 remains disabled",
+    "complete_test_module_compilation": "passed",
+    "normal_player_crop_identical_to_before_DUAL16": {
+      "front": true,
+      "walk_100ms": true,
+      "walk_200ms": true
+    }
+  },
+  "current_preview": "../../../artifacts/dual-texture-review-17/current/apercu.html",
+  "native_animation": "../../../artifacts/dual-texture-review-17/current/actual-natif64.gif",
+  "native_two_pistols": "../../../artifacts/dual-texture-review-17/current/pistols-natif64.gif",
+  "engine_detail_x3": "../../../artifacts/dual-texture-review-17/current/C02-moteur-detail-x3.png",
+  "release_sha256": "d6607493e2cae88733df4e79795937651cfe1ed3657ce938e3c0b7a1b3a51bda",
+  "next_step": "User visual review of 17-C02 before integration; no claim that the reported defect is visually resolved.",
+  "preview_browser": "http://127.0.0.1:50190/apercu.html",
+  "native_display_order": [
+    "Arcaniste",
+    "Bastion",
+    "Traqueuse",
+    "Metamorphe"
+  ]
+}

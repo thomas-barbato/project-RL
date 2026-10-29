@@ -1,0 +1,174 @@
+{
+  "review": "EG-EAU01-r01",
+  "status": "awaiting_visual_approval",
+  "request_date": "2026-10-27",
+  "capture_date": "2026-10-28",
+  "normal_game_activation": false,
+  "review_policy": "AGENTS.md:14-20; present new visual effects before integration and obtain explicit visual approval.",
+  "debug_build": "passed",
+  "locked_all_targets_check": "passed",
+  "locked_release_configuration_check": "passed",
+  "cargo_fmt_check": "passed",
+  "git_diff_check": "passed",
+  "engine_capture": {
+    "fps": 20,
+    "frames": 80,
+    "game_state_unchanged": true,
+    "height": 672,
+    "native_cell": 64,
+    "normal_game_activation": false,
+    "panel_height": 448,
+    "panel_origins": [
+      [
+        24,
+        90
+      ],
+      [
+        696,
+        90
+      ]
+    ],
+    "panel_width": 640,
+    "reduced_motion_static": true,
+    "review": "EG-EAU01-r01",
+    "saved_campaign_access": false,
+    "scope": "Controlled native crop of production sewer renderer; fixed lamps, rats and actor; no full HUD or combat simulation",
+    "settings_written": false,
+    "source_art_unchanged": true,
+    "status": "awaiting_visual_approval",
+    "variants": [
+      {
+        "state_unchanged": true,
+        "variant": 1
+      },
+      {
+        "state_unchanged": true,
+        "variant": 2
+      },
+      {
+        "state_unchanged": true,
+        "variant": 3
+      }
+    ],
+    "width": 1360
+  },
+  "publication": {
+    "review": "EG-EAU01-r01",
+    "native_geometry_verified": true,
+    "frames_submitted": 80,
+    "encoded_frames": 80,
+    "duration_ms": 4000,
+    "animated_pixels_between_0_and_3_seconds": 25107,
+    "comparisons": [
+      {
+        "variant": 1,
+        "changed_water_pixels": 33856,
+        "changed_pixels_outside_water": 0,
+        "focus": [
+          10,
+          17
+        ]
+      },
+      {
+        "variant": 2,
+        "changed_water_pixels": 28224,
+        "changed_pixels_outside_water": 0,
+        "focus": [
+          31,
+          17
+        ]
+      },
+      {
+        "variant": 3,
+        "changed_water_pixels": 7200,
+        "changed_pixels_outside_water": 0,
+        "focus": [
+          6,
+          18
+        ]
+      }
+    ],
+    "temporary_bytes_removed": 292454400,
+    "outputs": [
+      {
+        "file": "01-native64.png",
+        "sha256": "c6458146c862a017bcef78fecdb2e1b03262d79571e13df54ea6e9e86d1d7451",
+        "bytes": 319462
+      },
+      {
+        "file": "02-native64.png",
+        "sha256": "1e14e7daaaa2c82f4c680836a82c5373fc998288377f578e4e8a39aff25613d9",
+        "bytes": 318554
+      },
+      {
+        "file": "apercu.html",
+        "sha256": "60b2070c0321af56b881e86fcc687f88d4b3ed4460c904834d76228b5814c5a4",
+        "bytes": 1061
+      },
+      {
+        "file": "capture.json",
+        "sha256": "6a648de7af231ca03d14044d8f6ffacb96dbdce88e5fb4d0bd3d9377183b5c97",
+        "bytes": 822
+      },
+      {
+        "file": "comparaison-native64.gif",
+        "sha256": "2031acedb1c9cb23aba470f36cc7a798315cc782151914d5e22816843faa3329",
+        "bytes": 1346301
+      },
+      {
+        "file": "comparaison-native64.png",
+        "sha256": "f9ceaf779b64b825d117deb829cef1bb36d85dbe86c247a11d5d1cc85df865cc",
+        "bytes": 421698
+      },
+      {
+        "file": "reduced-motion.png",
+        "sha256": "abe8111c12bc42bafb1f0413bce4ab323cb7a00d58c95b72b70cc3d92cfdf333",
+        "bytes": 1074029
+      },
+      {
+        "file": "variant-1-native64.png",
+        "sha256": "3d872db17799f36bc0e3d6a04e5f2fc9de94293ab49f30cca3a836c74206b57e",
+        "bytes": 1020750
+      },
+      {
+        "file": "variant-2-native64.png",
+        "sha256": "66ef80b6526c14147e77aa14b17005254c738d58f137b6e91211464fe2e89c3d",
+        "bytes": 1076425
+      },
+      {
+        "file": "variant-3-native64.png",
+        "sha256": "b85acdcd3dc6315dc2d2c3cb9b1de01ae3313d3fcc160a064ae571f6ba7cec4f",
+        "bytes": 969565
+      }
+    ]
+  },
+  "encoded_animation_check": {
+    "encoded_water_different_pixels_between_0_and_3_seconds": 17024,
+    "native_water_crop": [
+      640,
+      64
+    ],
+    "temporary_rgba_stream_removed": true
+  },
+  "visually_inspected": [
+    "variant-1-native64.png",
+    "variant-2-native64.png",
+    "variant-3-native64.png",
+    "water-phases-native64.png"
+  ],
+  "ordinary_release_rebuilt": false,
+  "ordinary_release_sha256": "9606fb875786c0a6e38e824446edb4256c1be33c93255601dc135ef77f26e58c",
+  "runtime_art_modified": false,
+  "mechanical_changes": false,
+  "full_test_suite_run": false,
+  "new_unit_tests_written": false,
+  "native_preview_keyboard_controls_manually_tested": false,
+  "html_browser_execution_verified": false,
+  "source_sha256": {
+    "src/sewer_water_review.rs": "956e46818e704fb6081c47bd53a3092140e0b53a65445a9bc6c2d05a0cd28ef9",
+    "src/sewer_ambience.rs": "ae13592b4e9166eb330330abd05fb652c82a4b70a88b57ed6121af574af9f9a9",
+    "src/main.rs": "9e81771b74cc4da30aa95a765bb616e8a01abb29f44bf17d1e8e026c8c9b2b69",
+    "tools/art/publish_sewer_water_review_01.py": "a20dee5ab4bf754be11aaa147c698661756ff1b0846ed819c388cc8fca03cc8d",
+    "tools/reviews/show_sewer_water_review_01.cmd": "ced2414b3981d4b4795e9101acc6018acfc1506fb65490b4a83a1b97f52392c3"
+  }
+}

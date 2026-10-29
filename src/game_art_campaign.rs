@@ -140,7 +140,7 @@ fn proposed_front(number: u16, variant: u8) -> Option<Image> {
         return None;
     }
     let path = format!("assets/animations/walk-11/fronts/MON-{number:03}-{variant}.png");
-    Image::from_file_with_format(
+    crate::asset_loading::image(
         &project_rl::data_paths::read(&path).ok()?,
         Some(ImageFormat::Png),
     )
