@@ -10,6 +10,90 @@ mod finish_worn;
 mod flat_agents;
 #[path = "game_art_held_geometry.rs"]
 mod held_geometry;
+#[cfg(all(debug_assertions, test))]
+pub(super) fn vertical_review_weapon(
+    model: u16,
+    left: bool,
+    color: EquipmentPalette,
+) -> Option<(Image, [f32; 2], Option<[f32; 2]>)> {
+    finish_worn::vertical_review_weapon(model, left, color)
+}
+
+#[cfg(debug_assertions)]
+pub(super) fn vertical_review_composition(
+    source: &Image,
+    visual: Visual,
+    palms: [[f32; 2]; 2],
+    back: bool,
+) -> Option<Image> {
+    if let Visual::Player {
+        weapon,
+        hands,
+        palettes,
+        ..
+    } = visual
+    {
+        finish_worn::vertical_review_composition(
+            source,
+            palms,
+            back,
+            selection(weapon, hands),
+            palettes,
+        )
+    } else {
+        Some(source.clone())
+    }
+}
+#[cfg(debug_assertions)]
+pub(super) fn vertical_review_standing(visual: Visual) -> Option<Image> {
+    if let Visual::Player {
+        body,
+        equipment,
+        weapon,
+        hands,
+        palettes,
+    } = visual
+    {
+        crate::game_art::walking::with_pose(None, || {
+            finish_worn::compose(
+                (
+                    outfit_index(body, equipment),
+                    selection(weapon, hands),
+                    palettes,
+                ),
+                0,
+            )
+        })
+    } else {
+        None
+    }
+}
+#[cfg(debug_assertions)]
+pub(super) fn vertical_review_standing_head(
+    visual: Visual,
+    apply: impl FnOnce(&mut Image),
+) -> Option<Image> {
+    let Visual::Player {
+        body,
+        equipment,
+        weapon,
+        hands,
+        palettes,
+    } = visual
+    else {
+        return None;
+    };
+    crate::game_art::walking::with_pose(None, || {
+        finish_worn::vertical_review_standing_head(
+            (
+                outfit_index(body, equipment),
+                selection(weapon, hands),
+                palettes,
+            ),
+            apply,
+        )
+    })
+}
 pub(super) fn approved_walking_image(
     body: u8,
     equipment: [Option<u16>; 4],

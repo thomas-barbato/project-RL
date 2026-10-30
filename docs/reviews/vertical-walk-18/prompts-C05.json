@@ -1,0 +1,16 @@
+{
+  "review": "VERT18-C05",
+  "mode": "builtin_image_gen",
+  "calls": [
+    {
+      "id": "traqueuse-lourde-back-size05-r01",
+      "use_case": "identity-preserve",
+      "references": [
+        "assets/source-art/vertical-walk-review-18/traqueuse-lourde-r01-source.png"
+      ],
+      "output": "assets/source-art/vertical-walk-review-18/traqueuse-lourde-back-size05-r01-source.png",
+      "transparent_background": true,
+      "prompt": "Use case: identity-preserve. Asset type: corrected complete back-view sprite cycles for the existing native64 RPG. Image 1 is the edit/reference source. Its FIRST TWO FRONT ROWS are the correct character anatomy, scale, helmet size and slim adult proportions; its last two BACK rows are WRONG: they have oversized heads, shortened legs and become shorter/squatter between rows. Redraw ONLY the BACK poses as a new separate sheet of EIGHT figures in FOUR columns and TWO rows, true transparent background. All eight figures must have the SAME slim adult female anatomy and consistent seven-head-height proportions as the FRONT figures in the reference. Match the front helmet physical diameter, shoulder armor width, torso length, pelvis location, long leg length and boot sizes. Do not solve this by making the whole squat rear figure larger: correct the anatomy. Keep EXACT existing cool silver-blue full plate armor over navy flex joints, its panel forms, upper-left matte game lighting and restrained outlined pixel-art finish. Every figure is a TRUE BACK view: rear helmet no visor/face, corresponding rear panels/fasteners rather than a front breastplate, no front knee caps on the rear knee bends. No new equipment, straps, icons, bare skin, weapons or accessories. ROW1: back neutral both feet grounded, left-foot contact, left-foot recoil, left support/right foot passing. ROW2: same back neutral, right-foot contact, right-foot recoil, right support/left foot passing. Restrained real walking in place, small knee/foot changes, minimal torso bob, hands closed low in the same positions for independent weapons. All figures are complete and separated, identically scaled, generous transparent margins in equal cells; head/shoulders/waist at the same height throughout both rows. No text, labels, grid lines, ground shadows, scenery or crops. Whole coherent bodies, no grafted limbs, no anisotropic stretching."
+    }
+  ]
+}

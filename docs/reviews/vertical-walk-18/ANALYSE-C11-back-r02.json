@@ -1,0 +1,56 @@
+{
+  "review": "VERT18-C11-BACK-R02",
+  "status": "visual_accepted_integrated",
+  "normal_game_enabled": true,
+  "front_only_approval": "decision-C11.json",
+  "front_and_idle_exact_copies": 1176,
+  "rear_configurations": 168,
+  "rear_body_pixels_changed": true,
+  "rear_pose": "whole authored C12 forward-carry back, with separate weapons and no arm graft",
+  "rear_depth_corrected": true,
+  "rear_pistol_target_corrected": true,
+  "rear_weapon_anatomical_reflection": true,
+  "unused_imagegen_rear_studies": 2,
+  "sources": "assets/source-art/vertical-walk-review-18/knife-contact-C11/back-r02/",
+  "verified_front_exact_copies": 1176,
+  "engine": {
+    "native_configurations": 192,
+    "native_draws": 2496,
+    "front_returns": 768,
+    "camp_pose_records": 624,
+    "camp_front_returns": 48,
+    "same_actor_finish": true,
+    "normal_game_enabled": false,
+    "saved_game_loaded": false,
+    "preferences_written": false
+  },
+  "preserved_hash_banks": {
+    "runtime-assets-C09": 1604,
+    "candidate-resources-C06": 3272,
+    "candidate-resources-C08": 113,
+    "candidate-resources-C09": 169,
+    "candidate-resources-C10": 487,
+    "candidate-resources-C11": 174,
+    "candidate-resources-C11-back-r02": 197
+  },
+  "rear_metadata_aligned_with_authored_pose": true,
+  "png_hashes_preserved_after_metadata_update": 194,
+  "browser_review": {
+    "url": "http://127.0.0.1:63780/knife-contact-C11/apercu.html",
+    "checked": [
+      "rear A/B at native size and magnified grip",
+      "front identical A/B",
+      "12 outfit and 7 head selections"
+    ],
+    "screenshot": "artifacts/vertical-walk-review-18/current/knife-contact-C11/C11-back-r02-browser-review.png"
+  },
+  "validation": {
+    "debug_build": "cargo build --locked passed",
+    "python_compile": "passed for changed art tools",
+    "diff_check": "passed; existing line-ending notices only",
+    "full_test_suite_run": false,
+    "release_build_run": false
+  },
+  "visual_acceptance": "acceptance-C11-back-r02.json",
+  "integration": "integration-C12.json"
+}

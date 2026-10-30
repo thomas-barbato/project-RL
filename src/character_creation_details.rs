@@ -1,6 +1,51 @@
 //! Read-only, cached starting-loadout cards. Never use or modify the current run.
 use super::*;
 
+#[cfg(any(debug_assertions, test))]
+thread_local! {pub(super) static COMPACT_REVIEW: std::cell::Cell<bool> = const {std::cell::Cell::new(false)};}
+
+pub(super) fn compact_review() -> bool {
+    if super::character_creation_industrial::enabled() {
+        return true;
+    }
+    #[cfg(any(debug_assertions, test))]
+    {
+        static ARG: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+        COMPACT_REVIEW.get()
+            || *ARG.get_or_init(|| std::env::args().any(|arg| arg == "--review-creation-compact"))
+    }
+    #[cfg(not(any(debug_assertions, test)))]
+    {
+        false
+    }
+}
+
+// The reserved reader accompanies the normal CREATION-UI02-B finish.
+pub(super) fn docked_review() -> bool {
+    true
+}
+
+fn reader_width(layout: &CharacterCreationLayout) -> f32 {
+    let available = layout.panel.w - layout.sidebar_width() - 48.;
+    if compact_review() {
+        return (available * 0.46)
+            .clamp(300., 480.)
+            .min((available - 220.).max(160.));
+    }
+    (available * 0.4)
+        .clamp(280., 390.)
+        .min((available - 180.).max(160.))
+}
+
+pub(super) fn content_width(layout: &CharacterCreationLayout) -> f32 {
+    let available = layout.panel.w - layout.sidebar_width() - 48.;
+    if docked_review() {
+        available - reader_width(layout) - 20.
+    } else {
+        available
+    }
+}
+
 pub(super) struct StartingItem {
     pub id: ContentId,
     pub title: String,
@@ -35,22 +80,33 @@ impl DetailsLayout {
     pub fn new(layout: &CharacterCreationLayout, items: usize, skills: usize, offset: f32) -> Self {
         let panel = layout.panel;
         let x = panel.x + layout.sidebar_width() + 24.;
+        let compact = compact_review();
+        let top = panel.y + if compact { 188. } else { 198. } + layout.body_offset;
         let body = Rect::new(
             x,
-            panel.y + 198. + layout.body_offset,
-            panel.right() - x - 24.,
-            layout.continue_button.y - 14. - (panel.y + 198. + layout.body_offset),
+            top,
+            content_width(layout),
+            layout.continue_button.y - 14. - top,
         );
-        let columns = ((body.w + 8.) / 204.).floor().clamp(1., 2.) as usize;
+        let card_width = if compact {
+            156.
+        } else if docked_review() {
+            172.
+        } else {
+            204.
+        };
+        let columns = ((body.w + 8.) / card_width).floor().clamp(1., 2.) as usize;
         let width = (body.w - (columns - 1) as f32 * 8.) / columns as f32;
-        let height = if body.h >= 350. {
+        let height = if compact {
+            if body.h >= 350. { 64. } else { 56. }
+        } else if body.h >= 350. {
             96.
         } else if body.h >= 250. {
             72.
         } else {
             64.
         };
-        let stride = height + 8.;
+        let stride = height + if compact { 6. } else { 8. };
         let grid = |count: usize, y: f32| {
             (0..count)
                 .map(|i| {
@@ -63,10 +119,17 @@ impl DetailsLayout {
                 })
                 .collect()
         };
-        let item_y = body.y + 24.;
-        let skill_heading = item_y + items.div_ceil(columns) as f32 * stride + 12.;
-        let skill_y = skill_heading + 12.;
-        let footer_gap = if body.h >= 250. { 18. } else { 12. };
+        let item_y = body.y + if compact { 22. } else { 24. };
+        let skill_heading =
+            item_y + items.div_ceil(columns) as f32 * stride + if compact { 8. } else { 12. };
+        let skill_y = skill_heading + if compact { 8. } else { 12. };
+        let footer_gap = if compact {
+            14.
+        } else if body.h >= 250. {
+            18.
+        } else {
+            12.
+        };
         let attributes_y = skill_y + skills.div_ceil(columns) as f32 * stride + footer_gap;
         Self {
             body,
@@ -105,6 +168,14 @@ impl DetailsLayout {
 }
 
 pub(super) fn tooltip_rect(layout: &CharacterCreationLayout) -> Rect {
+    if docked_review() {
+        return Rect::new(
+            layout.panel.right() - 24. - reader_width(layout),
+            layout.panel.y + 88.,
+            reader_width(layout),
+            layout.continue_button.y - layout.panel.y - 102.,
+        );
+    }
     Rect::new(
         layout.panel.x + 16.,
         layout.panel.y + 88.,
@@ -114,6 +185,10 @@ pub(super) fn tooltip_rect(layout: &CharacterCreationLayout) -> Rect {
 }
 
 fn section_heading(title: &str, x: f32, y: f32, width: f32) {
+    if super::character_creation_polish::enabled() {
+        draw_text_bold(title, x, y, 14., UiTheme.muted());
+        return;
+    }
     draw_text_bold(title, x, y, 16., UiTheme.muted());
     let start = x + measure_text_bold(title, 16).width + 16.;
     if start < x + width - 8. {
@@ -124,6 +199,10 @@ fn section_heading(title: &str, x: f32, y: f32, width: f32) {
 }
 
 fn frame_icon(rect: Rect) {
+    if super::character_creation_polish::enabled() {
+        super::character_creation_polish::icon_frame(rect);
+        return;
+    }
     draw_rectangle(
         rect.x,
         rect.y,
@@ -144,13 +223,21 @@ fn frame_icon(rect: Rect) {
 }
 
 fn icon_frame(tile: Rect) -> Rect {
-    let rect = Rect::new(tile.x + 5., tile.y + (tile.h - 64.) * 0.5, 64., 64.);
+    let size = if compact_review() {
+        if tile.h >= 64. { 48. } else { 40. }
+    } else {
+        64.
+    };
+    let rect = Rect::new(tile.x + 5., tile.y + (tile.h - size) * 0.5, size, size);
     frame_icon(rect);
     rect
 }
 
 // Keep an attribute label and its number together when the footer wraps.
 fn attribute_summary(attributes: PrimaryAttributes, x: f32, mut y: f32, width: f32) -> f32 {
+    if super::character_creation_industrial::enabled() {
+        return super::character_creation_industrial::attributes(attributes, x, y, width);
+    }
     let mut line = String::new();
     for attribute in PrimaryAttribute::ALL {
         let pair = format!(
@@ -207,6 +294,88 @@ fn bold_wrapped(title: &str, x: f32, mut y: f32, width: f32, size: u16, maximum:
 }
 
 impl AsciiApp {
+    #[cfg(debug_assertions)]
+    pub(super) async fn capture_compact_creation_audit(
+        &mut self,
+        output: &std::path::Path,
+    ) -> Result<(), String> {
+        let before = (
+            suspension::fingerprint(&self.game),
+            self.game.turn(),
+            self.game.rng_state(),
+        );
+        let layout = CharacterCreationLayout::new(
+            self.ui_width(),
+            self.ui_height(),
+            self.character_classes.iter().count(),
+        );
+        let viewport = Some((self.ui_width(), self.ui_height()));
+        let click = |rect: Rect| InputFrame {
+            pointer: Some(rect.center().into()),
+            pressed: [controls::Binding::MouseLeft].into(),
+            viewport,
+            ..Default::default()
+        };
+        let mut records = Vec::new();
+        for class in 0..layout.class_rows.len() {
+            self.update_character_creation(&click(layout.class_rows[class]));
+            let p = self.ux.creation_details.as_ref().unwrap();
+            let details = DetailsLayout::new(&layout, p.items.len(), p.skills.len(), 0.);
+            let cards = details
+                .items
+                .iter()
+                .chain(&details.skills)
+                .copied()
+                .collect::<Vec<_>>();
+            for (card, rect) in cards.iter().enumerate() {
+                self.update_character_creation(&click(*rect));
+                let resources_before = crate::asset_preparation::stats();
+                self.draw();
+                next_frame().await;
+                let resources_after = crate::asset_preparation::stats();
+                if resources_before["source_reads"] != resources_after["source_reads"]
+                    || resources_before["uploads"] != resources_after["uploads"]
+                {
+                    return Err("Creation draw prepared resources".into());
+                }
+                let p = self.ux.creation_details.as_ref().unwrap();
+                records.push(serde_json::json!({
+                    "class":p.class.as_str(), "card":card, "items":p.items.len(), "skills":p.skills.len(),
+                    "cards_overflow_px":p.scroll.maximum.get(), "reader_overflow_px":p.tooltip_scroll.maximum.get(),
+                    "all_card_rects_visible":cards.iter().all(|r| r.y>=details.body.y && r.bottom()<=details.body.bottom()),
+                    "new_presentation_io_or_uploads_in_draw":false,
+                    "scene_visible":super::character_creation_industrial::enabled() && super::character_creation_industrial::scene_rect(details.body,details.attributes_y+21.).is_some(),
+                }));
+            }
+        }
+        let lifecycle = if super::character_creation_industrial::enabled() {
+            Some(super::character_creation_industrial::audit_lifecycle(self).await?)
+        } else {
+            None
+        };
+        if (
+            suspension::fingerprint(&self.game),
+            self.game.turn(),
+            self.game.rng_state(),
+        ) != before
+        {
+            return Err("Compact creation audit modified the run".into());
+        }
+        std::fs::write(
+            output.join("compact-checks.json"),
+            serde_json::to_vec_pretty(&serde_json::json!({
+                "review":if super::character_creation_industrial::enabled() {"CREATION-UI02-D-r03"} else {"CREATION-UI02-C"}, "normal_game_enabled":super::character_creation_industrial::enabled(),
+                "viewport":[self.ui_width(),self.ui_height()], "records":records,
+                "game_fingerprint_turn_rng_unchanged":true,
+                "resource_preparation":crate::asset_preparation::stats(),
+                "lifecycle":lifecycle,
+            }))
+            .unwrap(),
+        )
+        .map_err(|e| e.to_string())?;
+        Ok(())
+    }
+
     pub(super) fn refresh_creation_details(
         &mut self,
         creation: &CharacterCreation,
@@ -252,12 +421,17 @@ impl AsciiApp {
                 lines: self.inventory_item_lines_for_game(&game, entry.instance(), false),
             })
             .collect();
-        let skills = class
+        let skills: Vec<_> = class
             .agent_start()
             .into_iter()
             .flat_map(|start| &start.skills)
             .filter_map(|id| agent_skill_window::starting_skill_card(&game, id))
             .collect();
+        let initial = if docked_review() && !skills.is_empty() {
+            Some(CharacterCreationHover::StartingSkill(0))
+        } else {
+            None
+        };
         self.ux.creation_details = Some(Preview {
             class: class.id().clone(),
             attributes: creation.attributes,
@@ -266,7 +440,7 @@ impl AsciiApp {
             skills,
             scroll: Default::default(),
             tooltip_scroll: Default::default(),
-            tooltip: None,
+            tooltip: initial,
         });
         Ok(())
     }
@@ -314,6 +488,18 @@ impl AsciiApp {
             }
         }
         let hit = point.and_then(|p| details.hit(p));
+        if docked_review() {
+            if let Some(hit) = hit {
+                creation.hovered = Some(hit);
+                if input.pressed.contains(&controls::Binding::MouseLeft)
+                    && preview.tooltip != Some(hit)
+                {
+                    preview.tooltip = Some(hit);
+                    preview.tooltip_scroll = Default::default();
+                }
+            }
+            return in_popup;
+        }
         let bridge = preview
             .tooltip
             .and_then(|h| details.anchor(h))
@@ -361,25 +547,47 @@ impl AsciiApp {
             if !tile.overlaps(&body) {
                 continue;
             }
-            UiTheme.card(
+            self.creation_card(
                 *tile,
+                1000 + i as u16,
                 preview.tooltip == Some(CharacterCreationHover::StartingItem(i)),
+                creation.hovered == Some(CharacterCreationHover::StartingItem(i)),
             );
             let icon = icon_frame(*tile);
             crate::game_art::draw_item_variant(icon, item.id.as_str(), item.palette);
             let roomy = tile.h >= 88.;
+            let compact = compact_review();
+            let text_x = if compact {
+                icon.right() + 9.
+            } else {
+                tile.x + 80.
+            };
             bold_wrapped(
                 &item.title,
-                tile.x + 80.,
-                tile.y + if roomy { 32. } else { 24. },
-                tile.w - 88.,
+                text_x,
+                tile.y
+                    + if compact {
+                        18.
+                    } else if roomy {
+                        32.
+                    } else {
+                        24.
+                    },
+                tile.right() - text_x - 8.,
                 if roomy { 16 } else { 14 },
                 2,
             );
             draw_text(
                 &item.subtitle,
-                tile.x + 80.,
-                tile.bottom() - if roomy { 16. } else { 10. },
+                text_x,
+                tile.bottom()
+                    - if compact {
+                        7.
+                    } else if roomy {
+                        16.
+                    } else {
+                        10.
+                    },
                 if roomy { 13. } else { 12. },
                 UiTheme.muted(),
             );
@@ -394,25 +602,47 @@ impl AsciiApp {
             if !tile.overlaps(&body) {
                 continue;
             }
-            UiTheme.card(
+            self.creation_card(
                 *tile,
+                2000 + i as u16,
                 preview.tooltip == Some(CharacterCreationHover::StartingSkill(i)),
+                creation.hovered == Some(CharacterCreationHover::StartingSkill(i)),
             );
             let icon = icon_frame(*tile);
             agent_skill_window::art(&skill.id, "compact", icon, Some(body));
             let roomy = tile.h >= 88.;
+            let compact = compact_review();
+            let text_x = if compact {
+                icon.right() + 9.
+            } else {
+                tile.x + 80.
+            };
             bold_wrapped(
                 &skill.title,
-                tile.x + 80.,
-                tile.y + if roomy { 32. } else { 24. },
-                tile.w - 88.,
+                text_x,
+                tile.y
+                    + if compact {
+                        18.
+                    } else if roomy {
+                        32.
+                    } else {
+                        24.
+                    },
+                tile.right() - text_x - 8.,
                 if roomy { 16 } else { 14 },
                 2,
             );
             draw_text(
                 format!("{} · Rang {}", skill.kind, skill.rank),
-                tile.x + 80.,
-                tile.bottom() - if roomy { 16. } else { 10. },
+                text_x,
+                tile.bottom()
+                    - if compact {
+                        7.
+                    } else if roomy {
+                        16.
+                    } else {
+                        10.
+                    },
                 if roomy { 13. } else { 12. },
                 UiTheme.muted(),
             );
@@ -441,6 +671,15 @@ impl AsciiApp {
             body,
             layout.bottom.max(attributes_bottom + preview.scroll.offset),
         );
+        if super::character_creation_industrial::enabled() && preview.scroll.maximum.get() == 0. {
+            if let Some((_, class)) = self.character_classes.iter().nth(creation.selected_class) {
+                super::character_creation_industrial::scene(
+                    body,
+                    attributes_bottom,
+                    self.class_creation_visual(class),
+                );
+            }
+        }
     }
 
     pub(super) fn draw_creation_details_tooltip(&self, layout: &CharacterCreationLayout) {
@@ -474,8 +713,19 @@ impl AsciiApp {
             _ => return,
         };
         let rect = tooltip_rect(layout);
-        UiTheme.panel(rect);
-        let icon = Rect::new(rect.right() - 76., rect.y + 12., 64., 64.);
+        let compact = compact_review();
+        if super::character_creation_polish::enabled() {
+            super::character_creation_polish::panel(rect);
+        } else {
+            UiTheme.panel(rect);
+        }
+        let icon_size = if compact { 40. } else { 64. };
+        let icon = Rect::new(
+            rect.right() - icon_size - 12.,
+            rect.y + 12.,
+            icon_size,
+            icon_size,
+        );
         frame_icon(icon);
         match hover {
             CharacterCreationHover::StartingItem(i) => {
@@ -487,15 +737,23 @@ impl AsciiApp {
             }
             _ => {}
         }
-        let title_end = bold_wrapped(title, rect.x + 14., rect.y + 28., rect.w - 104., 18, 3);
+        let title_end = bold_wrapped(
+            title,
+            rect.x + 14.,
+            rect.y + 28.,
+            rect.w - icon_size - 40.,
+            18,
+            3,
+        );
         draw_text(
             subtitle,
             rect.x + 12.,
-            title_end + 18.,
+            title_end + if compact { 16. } else { 18. },
             13.,
             UiTheme.muted(),
         );
-        let top = (title_end + 36.).max(rect.y + 94.);
+        let top = (title_end + if compact { 28. } else { 36. })
+            .max(rect.y + if compact { 64. } else { 94. });
         let mut divider = UiTheme.muted();
         divider.a = 0.22;
         draw_line(
@@ -506,34 +764,141 @@ impl AsciiApp {
             1.,
             divider,
         );
-        let body = Rect::new(rect.x + 12., top, rect.w - 28., rect.bottom() - top - 26.);
+        let body = Rect::new(
+            rect.x + 12.,
+            top,
+            rect.w - 28.,
+            rect.bottom() - top - if compact { 22. } else { 26. },
+        );
         crate::ui_theme::begin_text_pane(body, preview.tooltip_scroll.offset);
         let mut y = body.y + 16.;
         for line in lines {
             if matches!(line.as_str(), "Effet" | "Prochain rang" | "Plafond atteint") {
                 draw_text_bold(line, body.x, y, 15., UiTheme.accent());
-                y += 24.;
+                y += if compact { 22. } else { 24. };
             } else {
-                y = draw_wrapped_text(line, body.x, y, body.w - 8., 40, 14, UiTheme.text()) + 8.;
+                y = draw_wrapped_text(line, body.x, y, body.w - 8., 40, 14, UiTheme.text())
+                    + if compact { 2. } else { 8. };
             }
         }
         crate::ui_theme::end_text_pane();
-        preview.tooltip_scroll.finish(body, y + 8.);
-        if preview.tooltip_scroll.maximum.get() > 0. {
+        // Wrapped text returns the next baseline. In the compact reader, count
+        // the last drawn baseline once; ScrollState already adds bottom padding.
+        preview
+            .tooltip_scroll
+            .finish(body, if compact { y - 21. } else { y + 8. });
+        if (!compact && docked_review()) || preview.tooltip_scroll.maximum.get() > 0. {
             draw_text(
-                "Molette",
+                if docked_review() {
+                    "Clic : choisir · Molette : lire"
+                } else {
+                    "Molette"
+                },
                 rect.x + 12.,
                 rect.bottom() - 9.,
                 12.,
                 UiTheme.muted(),
             );
         }
+        self.creation_content_cover(
+            Rect::new(rect.x + 2., rect.y + 2., rect.w - 4., rect.h - 28.),
+            true,
+        );
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn docked_reader_never_covers_classes_cards_or_creation_buttons() {
+        for (w, h) in [
+            (960., 540.),
+            (1280., 800.),
+            (1600., 900.),
+            (1920., 1080.),
+            (853., 533.),
+        ] {
+            let main = CharacterCreationLayout::new(w, h, 4);
+            let details = DetailsLayout::new(&main, 8, 8, 0.);
+            let reader = tooltip_rect(&main);
+            assert!(details.body.w >= 240.);
+            assert!(reader.w >= 280.);
+            assert!(!reader.overlaps(&details.body));
+            for rect in main
+                .class_rows
+                .iter()
+                .chain([&main.cancel, &main.continue_button])
+            {
+                assert!(!reader.overlaps(rect));
+                assert!(!details.body.overlaps(rect));
+            }
+            assert!(reader.bottom() < main.continue_button.y);
+        }
+    }
+
+    #[test]
+    fn docked_selection_stays_readable_and_classes_remain_clickable() {
+        let mut app = fixture();
+        choose(&mut app, 3);
+        let before = (
+            suspension::fingerprint(&app.game),
+            app.game.turn(),
+            app.game.rng_state(),
+        );
+        let main = CharacterCreationLayout::new(1280., 800., 4);
+        let p = app.ux.creation_details.as_ref().unwrap();
+        let layout = DetailsLayout::new(&main, p.items.len(), p.skills.len(), 0.);
+        let at = |r: Rect, click: bool| InputFrame {
+            pointer: Some(r.center().into()),
+            pressed: if click {
+                [controls::Binding::MouseLeft].into()
+            } else {
+                Default::default()
+            },
+            viewport: Some((1280., 800.)),
+            ..Default::default()
+        };
+        app.update_character_creation(&at(layout.items[0], false));
+        assert_eq!(
+            app.ux.creation_details.as_ref().unwrap().tooltip,
+            Some(CharacterCreationHover::StartingSkill(0))
+        );
+        app.update_character_creation(&at(layout.items[0], true));
+        app.update_character_creation(&InputFrame {
+            pointer: Some((5., 5.)),
+            viewport: Some((1280., 800.)),
+            ..Default::default()
+        });
+        assert_eq!(
+            app.ux.creation_details.as_ref().unwrap().tooltip,
+            Some(CharacterCreationHover::StartingItem(0))
+        );
+        app.ux
+            .creation_details
+            .as_ref()
+            .unwrap()
+            .tooltip_scroll
+            .maximum
+            .set(400.);
+        let mut wheel = at(tooltip_rect(&main), false);
+        wheel.wheel_y = -1.;
+        app.update_character_creation(&wheel);
+        let p = app.ux.creation_details.as_ref().unwrap();
+        assert_eq!(p.tooltip_scroll.offset, 36.);
+        assert_eq!(p.scroll.offset, 0.);
+        app.update_character_creation(&at(main.class_rows[0], true));
+        assert_eq!(app.character_creation.as_ref().unwrap().selected_class, 0);
+        assert_eq!(
+            (
+                suspension::fingerprint(&app.game),
+                app.game.turn(),
+                app.game.rng_state()
+            ),
+            before
+        );
+    }
 
     fn fixture() -> AsciiApp {
         let (r, t, l, e) = ascii_game_content().unwrap();
@@ -638,7 +1003,7 @@ mod tests {
     }
 
     #[test]
-    fn creation_hover_clicks_and_long_tooltip_scroll_are_readers_and_clear_on_class_change() {
+    fn creation_clicks_pin_the_reader_and_class_changes_reset_its_scroll() {
         let mut app = fixture();
         choose(&mut app, 3); // Mue prédatrice has a long description and several effects.
         let before = (suspension::fingerprint(&app.game), app.history.len());
@@ -651,6 +1016,13 @@ mod tests {
             ..Default::default()
         };
         app.update_character_creation(&at(layout.items[0]));
+        assert_eq!(
+            app.ux.creation_details.as_ref().unwrap().tooltip,
+            Some(CharacterCreationHover::StartingSkill(0))
+        );
+        let mut item = at(layout.items[0]);
+        item.pressed.insert(controls::Binding::MouseLeft);
+        app.update_character_creation(&item);
         assert_eq!(
             app.ux.creation_details.as_ref().unwrap().tooltip,
             Some(CharacterCreationHover::StartingItem(0))
@@ -691,7 +1063,8 @@ mod tests {
         assert_eq!(app.character_creation.as_ref().unwrap().selected_class, 0);
         let p = app.ux.creation_details.as_ref().unwrap();
         assert_eq!(p.class.as_str(), "core:bastion");
-        assert!(p.tooltip.is_none());
+        assert_eq!(p.tooltip, Some(CharacterCreationHover::StartingSkill(0)));
+        assert_eq!(p.tooltip_scroll.offset, 0.);
         assert_eq!(
             (suspension::fingerprint(&app.game), app.history.len()),
             before

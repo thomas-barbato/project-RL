@@ -1,0 +1,40 @@
+{
+  "review": "VERT18-C11",
+  "date": "2026-10-30",
+  "mode": "builtin_imagegen",
+  "normal_game_enabled": false,
+  "scope": "Two hand-orientation studies; the selected C11-B technical correction uses original C10 fingers, corrected actual palm landmarks and foreground ownership",
+  "jobs": [
+    {
+      "id": "bastion-armor1-knife-grip-r01",
+      "number": 1,
+      "profile": "bastion-armor1",
+      "references": [
+        "assets/source-art/vertical-walk-review-18/armor-C10/bastion-armor1-one-r01-source.png",
+        "assets/source-art/vertical-walk-review-18/extension-C06/references/weapon-palettes/W-070-1-p0.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: corrected whole-figure sprite-sheet source for a native64 RPG. EDIT Image1. Preserve its exact sixteen complete figures, same 4 columns x 4 rows, same poses and physical size, torso, head, armor, clothing, feet, camera, matte game finish, upper-left light, and transparent background. Change ONLY the low wrists and hands in every cell to a REAL FORWARD SABER KNIFE GRIP, for a blade pointing OUTWARD and twenty degrees down from horizontal. The existing fists in Image1 show the BACK of the glove and put their thumb on the INNER side near the torso. This is the defect: a blade to the outside would appear to pierce the knuckles/back of the hand. Correct the ANATOMY: rotate/supinate the wrists so, in the front view, the PALM and curled fingers face the viewer and the THUMB/INDEX EXIT is on the OUTER side, away from the torso. The index and other fingers curl UNDER and AROUND a nearly horizontal knife handle; the thumb lies across the top/near side of that handle, with its tip toward the blade exit. The top thumb-index opening faces outward and slightly downward. Do not draw a flat closed boxing fist or knuckle plate on the visible palm. Keep each hand compact, matching the original hand size, firmly attached to its own wrist/gauntlet, with no added fingers, arms or fragments. Make the front-facing finger/palm side and outward thumb readable with restrained broad shading, not tiny lines. BOTH hands must have this anatomy, mirrored appropriately. The metal prosthetic hand, if present, remains mechanical with articulated gripping fingers and palm, not a human glove. The opposite hand keeps its existing glove material. For the TRUE BACK rows, show the same anatomical grip from behind with correct thumb side and wrist orientation; do not reuse a front palm or put a face on the back. Image2 is the independent shared knife design, ONLY to understand handle thickness and that the blade continues BEYOND the thumb/index and guard, never through the hand. DO NOT paint any knife, blade, hilt or object into the body source. Leave a narrow transparent grip opening where the independently drawn handle will pass through the hand; fingers curl under it and thumb caps it. Empty-hand source, NOT a weapon source. Arms remain low with very slight natural wrist rotation, no raised elbows or new stance. Preserve exactly the gait row order in Image1: rows1/2 FRONT, rows3/4 BACK; first column neutral, other columns quiet walking phases. Every figure stays whole and separate with transparent padding. Do not alter heads, gear, garment lengths, body proportions or any other part of the sheet. Genuine alpha; no text, grid, labels, scenery, shadows or weapons.",
+      "output": "assets/source-art/vertical-walk-review-18/knife-contact-C11/bastion-armor1-grip-r01-source.png",
+      "status": "diagnostic_only_not_consumed",
+      "transparent_background": true,
+      "source_sha256": "10d3e0a4055287d3a7dd62b318dc69d95c0f64968ce36f543b95a64174dc2692",
+      "selected_sha256": "10d3e0a4055287d3a7dd62b318dc69d95c0f64968ce36f543b95a64174dc2692"
+    },
+    {
+      "id": "traqueuse-armor1-knife-grip-r01",
+      "number": 2,
+      "profile": "traqueuse-armor1",
+      "references": [
+        "assets/source-art/vertical-walk-review-18/armor-C10/traqueuse-armor1-one-r01-source.png",
+        "assets/source-art/vertical-walk-review-18/extension-C06/references/weapon-palettes/W-070-1-p0.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: corrected whole-figure sprite-sheet source for a native64 RPG. EDIT Image1. Preserve its exact sixteen complete figures, same 4 columns x 4 rows, same poses and physical size, torso, head, armor, clothing, feet, camera, matte game finish, upper-left light, and transparent background. Change ONLY the low wrists and hands in every cell to a REAL FORWARD SABER KNIFE GRIP, for a blade pointing OUTWARD and twenty degrees down from horizontal. The existing fists in Image1 show the BACK of the glove and put their thumb on the INNER side near the torso. This is the defect: a blade to the outside would appear to pierce the knuckles/back of the hand. Correct the ANATOMY: rotate/supinate the wrists so, in the front view, the PALM and curled fingers face the viewer and the THUMB/INDEX EXIT is on the OUTER side, away from the torso. The index and other fingers curl UNDER and AROUND a nearly horizontal knife handle; the thumb lies across the top/near side of that handle, with its tip toward the blade exit. The top thumb-index opening faces outward and slightly downward. Do not draw a flat closed boxing fist or knuckle plate on the visible palm. Keep each hand compact, matching the original hand size, firmly attached to its own wrist/gauntlet, with no added fingers, arms or fragments. Make the front-facing finger/palm side and outward thumb readable with restrained broad shading, not tiny lines. BOTH hands must have this anatomy, mirrored appropriately. The metal prosthetic hand, if present, remains mechanical with articulated gripping fingers and palm, not a human glove. The opposite hand keeps its existing glove material. For the TRUE BACK rows, show the same anatomical grip from behind with correct thumb side and wrist orientation; do not reuse a front palm or put a face on the back. Image2 is the independent shared knife design, ONLY to understand handle thickness and that the blade continues BEYOND the thumb/index and guard, never through the hand. DO NOT paint any knife, blade, hilt or object into the body source. Leave a narrow transparent grip opening where the independently drawn handle will pass through the hand; fingers curl under it and thumb caps it. Empty-hand source, NOT a weapon source. Arms remain low with very slight natural wrist rotation, no raised elbows or new stance. Preserve exactly the gait row order in Image1: rows1/2 FRONT, rows3/4 BACK; first column neutral, other columns quiet walking phases. Every figure stays whole and separate with transparent padding. Do not alter heads, gear, garment lengths, body proportions or any other part of the sheet. Genuine alpha; no text, grid, labels, scenery, shadows or weapons.",
+      "output": "assets/source-art/vertical-walk-review-18/knife-contact-C11/traqueuse-armor1-grip-r01-source.png",
+      "status": "diagnostic_only_not_consumed",
+      "transparent_background": true,
+      "source_sha256": "b3207c722985ab7e40ac6001ba65ba19506358f21fbd9c43a0860d6f0b9a9396",
+      "selected_sha256": "b3207c722985ab7e40ac6001ba65ba19506358f21fbd9c43a0860d6f0b9a9396"
+    }
+  ],
+  "status": "diagnostic_drawings_not_used"
+}

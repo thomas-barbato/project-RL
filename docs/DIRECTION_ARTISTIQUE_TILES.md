@@ -11,6 +11,177 @@ restent cohérentes dans le moteur. Contrôler les éléments ensemble à taille
 native et suivre la procédure de validation avant intégration. Les accords
 particuliers et leurs limites restent consignés dans les sections suivantes.
 
+### VERT18-C01 — marche verticale, accord du 29 octobre 2026
+
+Après l'aperçu natif et la séquence dans le camp, le joueur répond
+« ca me plai bien :) ». Il valide le premier cycle présenté : vrai dos vers
+le haut, face vers le bas, puis dessin frontal habituel à l'arrêt. Le lot
+montre l'Arcaniste sans armure portée, avec et sans sa paire pistolet 104 /
+couteau 70, ainsi que le PNJ du camp NPC-01. Les figures restent entières,
+les armes indépendantes et les appuis alternent entre deux pas.
+
+Cet accord fixe la référence pour décliner les autres personnages. Il ne
+valide pas des dessins encore absents ni les autres prises d'équipement.
+Les prochaines déclinaisons suivent la revue native avant leur intégration.
+VERT18 reste un prototype isolé tant que son intégration n'est pas consignée.
+Cet accord est distinct de la proposition DUAL17-C02, toujours en revue.
+Références et périmètre exact : `reviews/vertical-walk-18/acceptance-C01.json`.
+
+### VERT18-CONT01 — continuité du déplacement, accord du 30 octobre 2026
+
+La précision **VERT18-CONT01**, acceptée le 30 octobre 2026 après la synthèse
+du joueur, distingue fin d'un pas et arrêt du déplacement. Tant que la touche
+reste maintenue, les pas s'enchaînent sans retour frontal intermédiaire. La pose
+de fin de pas garde son orientation jusqu'au suivant ; le repos frontal revient
+à l'arrêt réel. Aucun nouveau dessin, déplacement ou tour n'est ajouté.
+État et vérifications : `reviews/vertical-walk-18/continuity-CONT01.json`.
+
+### VERT18-C02 — autres tenues de base, accord du 29 octobre 2026
+
+Le joueur répond « je valide :) » au comparatif numéroté du Bastion, de la
+Traqueuse et du Métamorphe, sans arme, casque ajouté ni armure supplémentaire.
+Les six phases frontales et six phases de dos de chaque silhouette sont figées
+dans `reviews/vertical-walk-18/acceptance-C02.json`. L'intégration reste un état
+distinct de la validation des dessins.
+
+Il précise ensuite : « il faudra évidement faire aussi toutes les version avec
+armure / armes etc :) ». Le chantier couvre donc toutes les tenues et les
+configurations d'équipement compatibles : armures propres à chaque classe,
+casques, armes indépendantes, une main, deux mains et ambidextrie, avec leurs
+palettes applicables. Le catalogue et la couverture sont suivis dans
+`reviews/vertical-walk-18/COUVERTURE-EQUIPEMENT.json`. Cet objectif n'est pas une
+validation de dessins encore absents ; les nouveaux lots suivent la même revue.
+
+Le joueur précise aussi : « faudra aussi faire évidement les versions casquées /
+non casquées . ». Chaque tenue doit donc proposer les deux états, de face et de
+dos. Une protection de tête incluse dans une source d'armure lourde n'est pas à
+confondre avec une vraie variante non casquée. Les changements de tête et les
+retours au repos suivent l'équipement porté ; les capuches et parties de vêtement
+conservent leur identité propre et sont contrôlées avec les casques.
+
+### VERT18-C03 — armures lourdes et armes, accord du 29 octobre 2026
+
+Le joueur répond « je valide :) » au comparatif C03 des quatre armures lourdes,
+avec leurs cinq configurations sans arme / pistolet / deux couteaux / deux
+pistolets / pistolet et couteau. Les figures, prises et sources montrées sont
+figées dans `reviews/vertical-walk-18/acceptance-C03.json`. La protection de tête
+d'origine de chaque tenue appartient à ce lot ; cet accord ne vaut pas revue
+des futures variantes réellement non casquées ou des six casques équipables.
+Les prises à deux mains, les autres niveaux d'armure et la revue DUAL17 restent
+distincts. L'intégration normale de VERT18 reste à consigner séparément.
+
+### VERT18-C05 — gabarits cohérents, accord du 29 octobre 2026
+
+Après le comparatif complet, le joueur répond : « pour l'instant ca m'a l'air
+bien alors je valide :) ». Il valide C05 : les neuf silhouettes présentées,
+leur calibrage face/dos, le dos redessiné de la Traqueuse lourde et le vrai
+repos frontal issu du même cycle que la marche. Pour ces profils, ce nouveau
+repos remplace la référence à l'ancien corps frontal lors de l'intégration.
+
+Le lot comprend l'Arcaniste de base sans arme ou avec pistolet 104 / couteau 70,
+NPC-01, les trois autres classes de base sans arme, puis les quatre armures
+lourdes et leurs cinq ports d'armes montrés. Les quatre tenues lourdes sont
+également acceptées tête découverte ou avec chacun des six casques, sans arme
+ou avec la paire 104 / 70, soit 56 combinaisons. Les figures restent entières,
+les armes indépendantes et le calibrage uniforme sur X et Y reste préparé
+avant affichage ; aucun zoom en cours de marche ne corrige le gabarit.
+
+C04 conserve son statut historique non validé pour ses anciens gabarits ; ses
+têtes modulaires et casques montrés sur les corps corrigés sont acceptés par C05.
+Les fichiers C01, C02 et C03 restent conservés. Les autres niveaux d'armure,
+prises à deux mains, palettes et autres PNJ restent à décliner et à revoir.
+L'intégration normale est un état distinct et reste à consigner séparément.
+L'accord DUAL17-C02 reste distinct et en attente.
+
+Dessins exacts et périmètre : `reviews/vertical-walk-18/acceptance-C05.json`.
+Audit et contrôles : `SIZE-AUDIT-C05.json`, `ANALYSE-C05.json` et `REVUE-C05.md`.
+
+### VERT18-C06 — extension des armes et du bestiaire, accord du 29 octobre 2026
+
+À la demande du joueur, C06 décline les 113 modèles d’armes et les 129 modèles
+actuels du bestiaire, avec leurs471 couples modèle/couleur. Les huit tenues
+présentes dans C05 disposent de figures entières pour les prises à une ou deux
+mains, des six casques, des couleurs d’armes partagées et des paires compatibles.
+L’échelle d’une arme reste fixe sur tout le cycle ; les doigts appartiennent à
+la pose, et les armes tenues devant le torse sont occultées par celui-ci de dos.
+Les monstres conservent leur anatomie propre et un véritable retour frontal.
+
+Après l’aperçu, le joueur répond « ok, :) je valide :) ». Ce lot est intégré
+au rendu normal Debug et Release : vrai dos vers le haut, face vers le bas,
+puis repos frontal du même cycle. Les huit tenues utilisent les sept couleurs
+d’armes et les sept états de tête présentés ; le torse reste dans sa palette
+d’origine. NPC-01 reprend le cycle accepté C05. La marche latérale conserve
+WALK12, ARM14 et DUAL15, sans activation de DUAL17.
+
+Cet accord ne valide pas les tenues intermédiaires encore absentes de C05,
+les autres palettes de torse ni les autres catégories de personnages. Les
+ressources normales sont dans `assets/animations/vertical-18/`, préparées avant
+affichage par le service commun et son cache borné. Sources, périmètre,
+exceptions morphologiques et contrôles : `reviews/vertical-walk-18/REVUE-C06.md`,
+`acceptance-C06.json` et `integration-C06.json`.
+
+Le joueur signale ensuite que le pistolet pointe vers le bas. Le comparatif
+**VERT18-C07** propose une prise horizontale, avec les mêmes corps, mains,
+armes et échelles. Le 30 octobre 2026, le joueur choisit finalement de
+conserver **A**, la prise actuelle du pistolet ; B horizontale n’est pas
+retenue. La décision est dans `decision-C07.json` et ne modifie pas les
+ressources normales C06.
+
+Il précise que le couteau doit, de face, pointer légèrement vers le bas ou
+vers le haut. **VERT18-C08** compare A actuelle, B inclinée vers le bas et C
+inclinée vers le haut, avec le pistolet A conservé. Les couteaux et dagues
+W068–W079 restent des dessins partagés, tournés rigidement autour des prises
+existantes, sans changer le corps ni la taille de l’arme. Le joueur choisit
+« B · légèrement vers le bas » le 30 octobre 2026. L’accord C08-B fixe une
+lame dirigée vers l’extérieur à 20° sous l’horizontale, dans les deux mains,
+pour les 13 poses des huit tenues C06, avec les sept couleurs d’arme et les
+sept états de tête présentés. Il conserve C07-A pour les pistolets et les
+marches latérales déjà acceptées. Les angles validés sont figés séparément
+des sources C06 ; voir `acceptance-C08.json` et `integration-C08.json`.
+
+### VERT18-C09 — pistolet légèrement vers l’extérieur, accord du 30 octobre 2026
+
+Le joueur demande ensuite d’incliner très légèrement le pistolet vers
+l’extérieur, comme le couteau. C09 compare la prise actuelle à une ouverture
+de 10° vers l’extérieur, en conservant le canon dirigé vers le bas. La rotation
+est symétrique dans les deux mains et entre face et dos ; les mêmes pivots,
+tailles, corps et doigts sont conservés. Le couteau reste exactement en C08-B.
+
+Après le comparatif natif, le joueur répond « Oui, intégrer B ». L’accord
+C09-B concerne les douze pistolets W101–W112 des huit tenues présentées,
+dans les deux mains et les 13 poses, avec les sept couleurs d’arme et les
+sept états de tête. La palette de torse reste celle d’origine. Il révise
+seulement l’inclinaison de C07-A et conserve exactement le couteau C08-B.
+Les marches latérales et les autres prises restent celles déjà acceptées.
+La décision, les géométries figées et l’état d’intégration sont dans
+`reviews/vertical-walk-18/acceptance-C09.json`, `candidate-resources-C09.json`
+et `integration-C09.json`.
+
+### VERT18-C10/C11/C12 — tenues intermédiaires et reprises en revue
+
+Le 30 octobre 2026, C10 présente les douze armures intermédiaires des quatre
+classes actuelles. Après le signalement d'un couteau semblant sortir du dos
+de la main, C11 reprend ses attaches sur les vrais doigts et leur superposition.
+Le joueur valide B pour la descente et la face, puis demande encore une reprise
+des bras et des armes de dos. L'accord est partiel : conserver exactement la
+face et le repos validés. Après la reprise, il répond « ca me va pour le moment :),
+il faut aussi faire les armes à deux mains :) » : le dos B C11-BACK-R02 est
+accepté pour les deux configurations montrées, sur les douze tenues. Les pixels
+correspondants sont figés dans `acceptance-C11-back-r02.json` ; cet accord ne
+valide pas les nouvelles prises à deux mains C12.
+
+À sa demande, C12 présente aussi les trois prises à deux mains de ces douze
+tenues, les 74 modèles partagés, leurs couleurs et les six casques. Les nouvelles
+poses sont intégrées en Debug et Release pour leurs configurations acceptées.
+Les huit profils C09, les marches latérales et les identités de contenu sont
+conservés. Décisions, sources et contrôles :
+`reviews/vertical-walk-18/decision-C11.json`, `REVUE-C11-back-r02.md` et
+`REVUE-C12.md`. Le joueur répond ensuite « oui on continue » après la présentation
+de C12 : ses trois prises, 74 modèles, sept couleurs et sept états de tête sont
+acceptés sur les douze tenues, avec le torse d'origine. L'accord est figé dans
+`acceptance-C12.json` et l'intégration est suivie dans `integration-C12.json`.
+Les autres armes à une main et les autres palettes de torse C10 restent distinctes.
+
 ### DUAL15-r01 — ambidextrie en marche, accord du 28 octobre 2026
 
 Après le comparatif natif, le joueur valide le port à deux armes par

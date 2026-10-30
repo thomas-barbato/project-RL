@@ -83,6 +83,11 @@ pub(crate) fn corrections_enabled() -> bool {
         false
     }
 }
+
+#[cfg(all(debug_assertions, test))]
+pub(super) fn vertical_palette(number: u16, variant: u8, image: &mut Image) -> Option<()> {
+    creatures::vertical_palette(number, variant, image)
+}
 #[cfg(any(debug_assertions, test))]
 thread_local! { static REVIEW08: Cell<bool> = const { Cell::new(false) }; }
 #[cfg(any(debug_assertions, test))]
@@ -181,7 +186,7 @@ pub(crate) fn review_gait12(enabled: bool) -> GaitReviewGuard {
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub(crate) struct Pose {
-    /// -1 left three quarters, 0 front, +1 right three quarters.
+    /// -1 left, 0 legacy front, +1 right; -2 true back and +2 true front.
     pub facing: i8,
     /// Six movement poses, three per cell; marker8 selects the separate idle.
     pub frame: u8,
@@ -295,6 +300,13 @@ fn binding(visual: Visual) -> Option<(String, u8)> {
     Some((id, configuration))
 }
 pub(super) fn draw(cell: Rect, visual: Visual, opacity: f32) -> bool {
+    #[cfg(debug_assertions)]
+    if crate::vertical_walk_review18::draw(cell, visual, opacity, POSE.get()) {
+        return true;
+    }
+    if super::vertical::draw(cell, visual, opacity, POSE.get()) {
+        return true;
+    }
     if extras::draw(cell, visual, opacity, POSE.get()) {
         return true;
     }

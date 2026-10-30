@@ -1,0 +1,838 @@
+{
+  "review": "VERT18-C02",
+  "status": "review_only",
+  "normal_game_enabled": false,
+  "native_tile_px": 64,
+  "canvas_px": 128,
+  "whole_authored_figures_only": true,
+  "profiles": [
+    {
+      "id": "bastion",
+      "selector": {
+        "kind": "player",
+        "body": 3,
+        "equipment": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C02/bastion.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C02/bastion-standing-original.png",
+      "source": "assets/source-art/vertical-walk-review-18/bastion-r01-source.png",
+      "source_sha256": "8fe5a7351bb2f44748107e53c779c5312922364c967525604bb0c2732c595efc",
+      "source_scale_xy_uniform": 0.21454545454545454,
+      "original_height_px": 59,
+      "original_foot_y": 95,
+      "equipment_scope": "unarmed_only_pending_authored_grip_review",
+      "unarmed_only": true,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            48,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            47,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            47,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            48,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            47,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            46,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            47,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            46,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            46,
+            34,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            46,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            46,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            46,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        }
+      ]
+    },
+    {
+      "id": "traqueuse",
+      "selector": {
+        "kind": "player",
+        "body": 5,
+        "equipment": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C02/traqueuse.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C02/traqueuse-standing-original.png",
+      "source": "assets/source-art/vertical-walk-review-18/traqueuse-r02-source.png",
+      "source_sha256": "30c0bc3b39aeb2bf63cd55d4dd0be229c46785f840631d8045eb15e8105cec2d",
+      "source_scale_xy_uniform": 0.2,
+      "original_height_px": 58,
+      "original_foot_y": 95,
+      "equipment_scope": "unarmed_only_pending_authored_grip_review",
+      "unarmed_only": true,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            48,
+            36,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            48,
+            36,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            48,
+            36,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            48,
+            36,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            48,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            48,
+            36,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            48,
+            37,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            48,
+            36,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            48,
+            36,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            48,
+            36,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            48,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            48,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        }
+      ]
+    },
+    {
+      "id": "metamorphe",
+      "selector": {
+        "kind": "player",
+        "body": 7,
+        "equipment": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C02/metamorphe.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C02/metamorphe-standing-original.png",
+      "source": "assets/source-art/vertical-walk-review-18/metamorphe-r02-source.png",
+      "source_sha256": "7394fa4cb1799771ea82e0cba3a9e779c0c441c31eed282961881dd308bb1897",
+      "source_scale_xy_uniform": 0.19826086956521738,
+      "original_height_px": 57,
+      "original_foot_y": 95,
+      "equipment_scope": "unarmed_only_pending_authored_grip_review",
+      "unarmed_only": true,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            48,
+            40,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            48,
+            37,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            48,
+            37,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            48,
+            37,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            48,
+            37,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            48,
+            37,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            48,
+            38,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            48,
+            37,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            48,
+            37,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            48,
+            38,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            48,
+            37,
+            79,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            48,
+            37,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51,
+              68
+            ],
+            [
+              77,
+              68
+            ]
+          ],
+          "palms_reviewed": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>18 — C10 · Armures intermédiaires</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#151e26;color:#e8edf0;font:16px system-ui,sans-serif}main{max-width:1120px;margin:auto;padding:26px}h1{font-size:29px;margin:8px 0 12px}h2{font-size:20px;margin:24px 0 12px}p{line-height:1.5;max-width:850px;color:#bdcbd4}small,.eyebrow{color:#f4c785}.eyebrow{font-size:12px;letter-spacing:2px}.controls{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0}label{display:grid;gap:7px;font-size:13px}select,button{font:inherit;color:#edf2f5;background:#273642;border:1px solid #526472;border-radius:6px;padding:9px 12px}button{cursor:pointer}a{color:#93cbe9}canvas,img{image-rendering:pixelated}figure{margin:0}figcaption{font-size:13px;color:#c9d6df;margin:10px 0}.selected{display:flex;gap:16px;flex-wrap:wrap}.selected canvas{background:#1e2831;border-radius:5px;width:168px;height:288px}.strip{display:flex;gap:10px;overflow:auto;margin:12px 0}.phase{display:grid;gap:4px;text-align:center;font-size:12px}.phase canvas{width:80px;height:96px;background:#1e2831}.overview{display:grid;grid-template-columns:repeat(4,minmax(180px,1fr));gap:12px}.card{background:#202d37;border:1px solid #40515f;border-radius:6px;padding:10px;cursor:pointer}.card[aria-pressed=true]{border-color:#f4c785}.card canvas{display:block;margin:auto;width:180px;height:120px}.card strong{font-size:14px;font-weight:500}.legend{font-size:12px;color:#acbecb}.native-board{max-width:100%;height:auto;display:block}.camp{width:576px;max-width:100%;height:auto;display:block}.status{min-height:26px}.proofs{display:flex;gap:20px;flex-wrap:wrap}.note{border-left:3px solid #f4c785;padding-left:14px}.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}@media(max-width:850px){.overview{grid-template-columns:repeat(2,minmax(180px,1fr))}}@media(max-width:440px){main{padding:16px}.overview{grid-template-columns:1fr}}
+</style>
+<main>
+<div class="eyebrow">18 · C10 · PROPOSITION À VALIDER</div>
+<h1>Les douze armures intermédiaires</h1>
+<p>Trois tenues par classe, avec un vrai dos vers le haut, une marche de face vers le bas, puis le retour au repos frontal. Les figures sont affichées à leur taille de jeu : 64 pixels par case.</p>
+<p class="note">Cette étape porte sur les silhouettes et leurs cycles. Les cinq ports d’armes ci-dessous utilisent les dessins partagés, le couteau B et le pistolet B déjà validés. Les prises à deux mains seront préparées après cette revue. Ces nouvelles tenues ne sont pas encore activées dans le jeu.</p>
+<h2>Toutes les tenues</h2><p class="legend">Dans chaque vignette : repos · face · dos. Cliquez sur une tenue pour l’examiner.</p>
+<div id="overview" class="overview"></div>
+<h2 id="subject">Préparation…</h2>
+<div class="controls">
+<label>Tenue<select id="body"></select></label>
+<label>Armes<select id="loadout"><option value="unarmed">Sans arme</option><option value="pistol">Pistolet</option><option value="dual-knives">Deux couteaux</option><option value="dual-pistols">Deux pistolets</option><option value="pistol-knife" selected>Pistolet + couteau</option></select></label>
+<label>Tête<select id="head"><option value="0">Sans casque équipé</option><option value="115">Casque 115</option><option value="116">Casque 116</option><option value="117">Casque 117</option><option value="118">Casque 118</option><option value="119">Casque 119</option><option value="120">Casque 120</option></select></label>
+<label>Phase<select id="frame"><option value="-1">Animation</option></select></label>
+<label>Lecture<button id="pause">Pause</button></label>
+</div>
+<p id="status" class="status" role="status">Préparation des images…</p>
+<div class="selected"><figure><figcaption>Vers le haut · dos, puis repos de face</figcaption><canvas id="up" width="168" height="288"></canvas></figure><figure><figcaption>Vers le bas · face, puis repos</figcaption><canvas id="down" width="168" height="288"></canvas></figure><figure><figcaption>Repos frontal du même cycle</figcaption><canvas id="idle" width="168" height="288"></canvas></figure></div>
+<h2>Les treize poses</h2><div id="strip" class="strip"></div>
+<p class="proofs"><a id="engine" href="#">Planche native dans le moteur</a><a id="camp-link" href="#">Capture entière dans le camp</a></p>
+<h2>Avec le décor du jeu</h2><p>Capture du vrai rendu du camp, avec sa lumière et ses matériaux. Les trois rangs de la classe sélectionnée sont côte à côte.</p><div style="overflow:auto"><img id="camp" class="camp" style="max-width:none" alt="Les trois armures dans le vrai rendu du camp"></div>
+<h2>Comparer à la base et à l’armure lourde validées</h2><p>Les trois colonnes centrales sont les nouvelles propositions numérotées. Les colonnes des extrémités sont les références déjà validées. Faites défiler horizontalement si nécessaire : l’image conserve sa taille native.</p><div style="overflow:auto"><img class="native-board" style="max-width:none" src="C10-native64.png" width="840" height="688" alt="Comparaison native des vingt tenues, par classe et par rang"></div>
+</main><script type="module" src="app.js"></script></html>

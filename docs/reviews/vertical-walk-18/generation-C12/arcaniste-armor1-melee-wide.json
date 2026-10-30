@@ -1,0 +1,27 @@
+{
+  "id": "arcaniste-armor1-melee-wide",
+  "number": 7,
+  "profile": "arcaniste-armor1",
+  "index": 16,
+  "class_id": "core:arcaniste",
+  "rank": 1,
+  "family": "melee-wide",
+  "references": [
+    "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor1-idle.png",
+    "assets/source-art/vertical-walk-review-18/armor-C10/arcaniste-armor1-one-r03-source.png",
+    "assets/source-art/vertical-walk-review-18/grips-C12/references/arcaniste-melee-wide-idle.png"
+  ],
+  "prompt": "Use case: identity-preserve. Edit the EXACT SAME character shown in Image1 (the canonical neutral front at native game size) and Image2 (the sixteen complete frontal/back figures of the exact intermediate armor outfit). Change ONLY the coherent arm/hand pose to the two-handed empty grip described below. Preserve head, torso identity and proportions, clothing, armor, all knees/boots, gait/support sequence, matte materials, upper-left lighting, colors and body stature. The same garment must not get wider or shorter between directions or at rest. Output a FOUR-column by FOUR-row sheet of sixteen COMPLETE separate figures on genuinely transparent background, generous margins in each equal cell. Every figure has exactly two complete coherent arms and hands, no ghosts or loose cloth/weapon remnants, and the same equipment design as the input. No weapon is baked into the drawing: closed fists only, prepared for the existing shared weapon art. No new armor, props, ground shadow, scenery, text or grid. Do not crop extremities or construct a gait from sheared strips or grafted legs.\nOrder: row1 FRONT real neutral both feet grounded, first support contact, recoil, passing; row2 FRONT same neutral, opposite support contact, recoil, passing; row3 true BACK neutral, first support contact, recoil, passing; row4 true BACK same neutral, opposite support contact, recoil, passing. True back shows rear armor/head/joints rather than face, front plates or front kneecaps. All anatomy and asymmetric details turn together; the physical scale is identical across all16 poses, with only tiny natural gait bob. Keep the arms in the SAME calm grip across the whole cycle. No upward aiming or changing grip between rest and movement.\nGrip: Two separate closed empty fists grip an imaginary horizontal two-handed axe or hammer handle across the lower chest/waist, separated by about one-third of the body height. Preserve the whole bent arms and relaxed shoulders. No handle or weapon painted in the fists.\nImage3 supplies ONLY the empty two-handed ARM POSE, fist separation and native body scale of the same class. Do NOT copy Image3 clothing, helmet, head, hair, armor rank, skin exposure or garment length. Keep the exact outfit/head state in Images1 and2, especially any raised garment hood and long red sleeves/robe. Preserve the original anatomical asymmetries and the actual mechanical hand where present. The fists must close around the future independent HANDLE, not present the wrist or flat back of the hand as the grip point. Keep the palms and curled fingers unambiguous. No weapon, barrel, blade, hilt, placeholder cylinder or loose prop may be painted into this source. Six front and six back walking phases plus matching real front neutral. All sixteen figures remain complete and consistently lit, at equal physical scale.",
+  "output": "assets/source-art/vertical-walk-review-18/grips-C12/arcaniste-armor1-melee-wide-r01-source.png",
+  "status": "drawn_pending_native_review",
+  "transparent_background": true,
+  "source_sha256": "7a879b898255c14a31d915ef0542245a7907aaccba7f4f530eb6472e9ac7812a",
+  "selected_sha256": "7a879b898255c14a31d915ef0542245a7907aaccba7f4f530eb6472e9ac7812a",
+  "mode": "builtin_imagegen",
+  "generated_source": "C:\\Users\\User\\.codex\\generated_images\\01a17e6a-663f-7731-868d-07589969d8cf\\exec-dca237d2-fec3-4d4c-abe7-420687d80ac9.png",
+  "dimensions": [
+    1266,
+    1243
+  ],
+  "sha256": "7a879b898255c14a31d915ef0542245a7907aaccba7f4f530eb6472e9ac7812a"
+}

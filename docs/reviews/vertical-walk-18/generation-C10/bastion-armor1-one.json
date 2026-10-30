@@ -1,0 +1,27 @@
+{
+  "id": "bastion-armor1-one",
+  "number": 1,
+  "profile": "bastion-armor1",
+  "index": 1,
+  "class_id": "core:bastion",
+  "rank": 1,
+  "family": "one",
+  "references": [
+    "assets/source-art/player-walk-review-11/CLASS-01-front-native128.png",
+    "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/sources/BA-STYLE01-r02-source.png",
+    "assets/source-art/vertical-walk-review-18/arcaniste-r01-source.png"
+  ],
+  "prompt": "Use case: identity-preserve. Asset type: production source sprite sheet for a native64 pixel-art RPG. Make one 4-column by 4-row contact sheet of SIXTEEN SEPARATE COMPLETE figures of the SAME character on genuinely transparent background. Every equal cell contains one centered full body with generous transparent padding, identical physical scale and stable foot baseline. No text, labels, grid lines, scenery, shadows on the ground, weapons in hands, perspective camera changes or cropped extremities.\nCamera and finish: match the approved native game reference, straight frontal/back view for a square-grid game, not side view, not isometric. Compact hand-painted pixel-art masses, readable at 64x64, matte worn materials, restrained dark outlines, consistent upper-left light and exact outfit identity. No new accessories, decorations, logos, straps or armor upgrades. Draw each entire coherent walking figure; do not shift leg strips or distort the torso.\nExact cell order:\nROW 1: FRONT neutral standing, FRONT left-foot contact, FRONT left-foot recoil, FRONT left support/right foot passing.\nROW 2: FRONT neutral standing again, FRONT right-foot contact, FRONT right-foot recoil, FRONT right support/left foot passing.\nROW 3: TRUE BACK neutral standing, BACK left-foot contact, BACK left-foot recoil, BACK left support/right foot passing.\nROW 4: TRUE BACK neutral standing again, BACK right-foot contact, BACK right-foot recoil, BACK right support/left foot passing.\nFront means walking DOWN toward the viewer. Back means walking UP away from the viewer, no visible face or eyes. Six front and six back poses must make an understated readable walking-in-place cycle, with alternate supporting knees and feet, gentle coat motion and very small torso bob. Keep both arms relaxed low with closed hands, separated from the torso enough for independent held equipment; minimal arm swing. Exactly two arms, two hands, two legs per figure; no ghost limbs or floating clothing. Preserve anatomical left/right of asymmetrical outfit details across front/back.\n\nInput roles: Image1 is the authoritative native silhouette, stature and costume. Image2 is the exact armor design and material detail reference ONLY. Image3 is ONLY the approved layout, compact matte game finish, quiet gait and light direction, NOT the character or clothing. All sixteen figures must depict the same intermediate armor outfit from Images1/2, not the lighter or heavier outfit of Image3. Keep all existing costume pieces, garment lengths and anatomical asymmetries. Hands are empty, closed, low, clearly attached to coherent wrists, separated from the torso for independent shared weapons. No weapon, prop, ghost limb, loose fragment, new insignia or ground shadow. Do not crop any head, coat, boot or hand. Keep the same physical proportions across the entire sheet. Preserve genuine alpha transparency.\nSubject: The exact broad adult Bastion: short brown hair and beard; copper chest plate, ONE large grey pauldron on his anatomical LEFT shoulder (screen right in front), black short-sleeved shirt, exposed upper right arm, steel forearm protection, olive cargo trousers, front knee plates and dark heavy boots. No helmet, backpack or additional armor. The rear shoulder asymmetry turns with the wearer.",
+  "output": "assets/source-art/vertical-walk-review-18/armor-C10/bastion-armor1-one-r01-source.png",
+  "status": "drawn_pending_native_review",
+  "transparent_background": true,
+  "source_sha256": "1b0ec7c5a0d6c7ee65617143e17bd412d82253a13b30598a866134b3f301d045",
+  "selected_sha256": "1b0ec7c5a0d6c7ee65617143e17bd412d82253a13b30598a866134b3f301d045",
+  "mode": "builtin_imagegen",
+  "generated_source": "C:\\Users\\User\\.codex\\generated_images\\01a17e6a-663f-7731-868d-07589969d8cf\\exec-cbc6c0eb-dc61-4932-8b43-a92e89950316.png",
+  "dimensions": [
+    1266,
+    1243
+  ],
+  "sha256": "1b0ec7c5a0d6c7ee65617143e17bd412d82253a13b30598a866134b3f301d045"
+}

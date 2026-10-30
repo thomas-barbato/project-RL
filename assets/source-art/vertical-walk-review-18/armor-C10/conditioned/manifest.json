@@ -1,0 +1,4364 @@
+{
+  "review": "VERT18-C10",
+  "normal_game_enabled": false,
+  "native_tile_px": 64,
+  "profiles": [
+    {
+      "id": "bastion-armor1",
+      "number": 1,
+      "class_id": "core:bastion",
+      "outfit": 1,
+      "rank": 1,
+      "selector": {
+        "kind": "player",
+        "body": 3,
+        "equipment": [
+          110,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/bastion-armor1-one-r01-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-01-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/sources/BA-STYLE01-r02-source.png",
+      "target_height": 58,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.20279720279720279,
+        0.20567375886524822,
+        0.20714285714285716,
+        0.2078853046594982
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor1-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor1-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor1-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor1-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  50.08,
+                  67.04
+                ],
+                [
+                  76.53,
+                  66.94
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                37,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  50.71,
+                  67.94
+                ],
+                [
+                  77.38,
+                  68.02
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                37,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  49.54,
+                  67.06
+                ],
+                [
+                  76.52,
+                  66.92
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                37,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  49.62,
+                  67.82
+                ],
+                [
+                  76.56,
+                  67.88
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                37,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  51.5,
+                  67.81
+                ],
+                [
+                  78.32,
+                  67.84
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                36,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  50.39,
+                  67.93
+                ],
+                [
+                  77.48,
+                  67.93
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                36,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  50.43,
+                  68.15
+                ],
+                [
+                  77.4,
+                  68.2
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                36,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  50.33,
+                  66.91
+                ],
+                [
+                  77.51,
+                  67.38
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                36,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  50.2,
+                  68.32
+                ],
+                [
+                  77.78,
+                  68.16
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                36,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  52.87,
+                  68.18
+                ],
+                [
+                  78.15,
+                  68.43
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                38,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  50.27,
+                  68.25
+                ],
+                [
+                  77.59,
+                  68.36
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                38,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  50.15,
+                  68.02
+                ],
+                [
+                  77.71,
+                  68.28
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                36,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  49.79,
+                  67.42
+                ],
+                [
+                  77.78,
+                  67.47
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                44,
+                38,
+                83,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bastion-armor2",
+      "number": 2,
+      "class_id": "core:bastion",
+      "outfit": 2,
+      "rank": 2,
+      "selector": {
+        "kind": "player",
+        "body": 3,
+        "equipment": [
+          102,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/bastion-armor2-one-r01-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-02-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/sources/BA-STYLE02-r02-source.png",
+      "target_height": 58,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.20422535211267606,
+        0.20567375886524822,
+        0.20714285714285716,
+        0.20640569395017794
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor2-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor2-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor2-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor2-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  49.8,
+                  67.4
+                ],
+                [
+                  76.44,
+                  67.41
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                36,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  50.83,
+                  68.07
+                ],
+                [
+                  77.28,
+                  67.92
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                37,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  49.75,
+                  67.41
+                ],
+                [
+                  76.24,
+                  67.14
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                36,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  49.52,
+                  68.37
+                ],
+                [
+                  76.55,
+                  68.39
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                38,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  51.46,
+                  68.36
+                ],
+                [
+                  78.24,
+                  68.42
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                38,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  50.84,
+                  68.31
+                ],
+                [
+                  77.19,
+                  68.37
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                38,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  50.38,
+                  68.39
+                ],
+                [
+                  77.2,
+                  68.31
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                37,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  50.37,
+                  67.6
+                ],
+                [
+                  77.36,
+                  67.53
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                36,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  50.35,
+                  68.75
+                ],
+                [
+                  77.62,
+                  68.64
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                38,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  53.1,
+                  68.35
+                ],
+                [
+                  78.04,
+                  68.22
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                37,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  50.55,
+                  68.48
+                ],
+                [
+                  77.29,
+                  68.41
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                36,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  50.26,
+                  68.31
+                ],
+                [
+                  77.5,
+                  68.48
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                37,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  49.9,
+                  67.94
+                ],
+                [
+                  77.78,
+                  67.94
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                37,
+                83,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bastion-armor3",
+      "number": 3,
+      "class_id": "core:bastion",
+      "outfit": 3,
+      "rank": 3,
+      "selector": {
+        "kind": "player",
+        "body": 3,
+        "equipment": [
+          101,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/bastion-armor3-one-r01-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-03-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/sources/BA-CU01-P04-r01-source.png",
+      "target_height": 58,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.20422535211267606,
+        0.20422535211267606,
+        0.20863309352517986,
+        0.20640569395017794
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor3-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor3-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor3-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/bastion-armor3-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  49.76,
+                  67.27
+                ],
+                [
+                  76.08,
+                  67.66
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                37,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  50.57,
+                  68.2
+                ],
+                [
+                  76.97,
+                  68.46
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                38,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  49.71,
+                  67.16
+                ],
+                [
+                  76.21,
+                  67.77
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                38,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  50.07,
+                  68.07
+                ],
+                [
+                  76.17,
+                  67.8
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                36,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  51.59,
+                  68.31
+                ],
+                [
+                  78.01,
+                  68.27
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                38,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  50.85,
+                  68.04
+                ],
+                [
+                  77.01,
+                  67.99
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                37,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  50.61,
+                  68.24
+                ],
+                [
+                  77.13,
+                  68.17
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                36,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  50.7,
+                  67.76
+                ],
+                [
+                  76.98,
+                  67.98
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                37,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  50.78,
+                  68.27
+                ],
+                [
+                  77.33,
+                  68.31
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                36,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  52.88,
+                  68.52
+                ],
+                [
+                  78.06,
+                  68.6
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                38,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  50.66,
+                  68.79
+                ],
+                [
+                  76.99,
+                  68.57
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                38,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  50.74,
+                  67.93
+                ],
+                [
+                  76.9,
+                  67.97
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                36,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  49.89,
+                  67.63
+                ],
+                [
+                  77.66,
+                  67.7
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                37,
+                82,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "traqueuse-armor1",
+      "number": 4,
+      "class_id": "core:traqueur",
+      "outfit": 11,
+      "rank": 1,
+      "selector": {
+        "kind": "player",
+        "body": 5,
+        "equipment": [
+          110,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/traqueuse-armor1-one-r01-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-11-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/sources/TR-SN01-P02-r01-source.png",
+      "target_height": 56,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.1848184818481848,
+        0.18360655737704917,
+        0.19377162629757785,
+        0.19649122807017544
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor1-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor1-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor1-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor1-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  52.26,
+                  68.57
+                ],
+                [
+                  74.98,
+                  68.12
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                37,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  52.71,
+                  68.54
+                ],
+                [
+                  75.1,
+                  68.32
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                51,
+                38,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  51.92,
+                  68.4
+                ],
+                [
+                  75.05,
+                  68.41
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                38,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  51.76,
+                  67.89
+                ],
+                [
+                  74.8,
+                  67.58
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  52.07,
+                  68.4
+                ],
+                [
+                  75.25,
+                  68.2
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                38,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  51.67,
+                  68.45
+                ],
+                [
+                  74.97,
+                  68.22
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                38,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  51.64,
+                  67.62
+                ],
+                [
+                  75.41,
+                  68.13
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  51.36,
+                  69.15
+                ],
+                [
+                  75.56,
+                  69.45
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                38,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  51.66,
+                  68.27
+                ],
+                [
+                  75.84,
+                  68.77
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                38,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  51.52,
+                  69.16
+                ],
+                [
+                  75.55,
+                  69.62
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  51.5,
+                  68.14
+                ],
+                [
+                  75.5,
+                  68.66
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                38,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  51.78,
+                  68.28
+                ],
+                [
+                  75.77,
+                  68.76
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                40,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  53.14,
+                  68.52
+                ],
+                [
+                  75.13,
+                  68.52
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                38,
+                78,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "traqueuse-armor2",
+      "number": 5,
+      "class_id": "core:traqueur",
+      "outfit": 12,
+      "rank": 2,
+      "selector": {
+        "kind": "player",
+        "body": 5,
+        "equipment": [
+          102,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/traqueuse-armor2-one-r01-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-12-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/sources/TR-SN01-P03-r01-source.png",
+      "target_height": 56,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.18791946308724833,
+        0.18791946308724833,
+        0.19377162629757785,
+        0.1951219512195122
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor2-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor2-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor2-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor2-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  52.09,
+                  68.77
+                ],
+                [
+                  74.38,
+                  68.32
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                38,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  52.85,
+                  68.7
+                ],
+                [
+                  74.55,
+                  68.6
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                38,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  52.97,
+                  68.64
+                ],
+                [
+                  75.74,
+                  68.43
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                38,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  51.62,
+                  67.89
+                ],
+                [
+                  74.32,
+                  67.81
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                38,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  51.97,
+                  68.43
+                ],
+                [
+                  74.95,
+                  68.11
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  52.58,
+                  68.72
+                ],
+                [
+                  75.0,
+                  68.28
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  51.52,
+                  67.44
+                ],
+                [
+                  74.7,
+                  67.95
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  51.37,
+                  69.18
+                ],
+                [
+                  75.11,
+                  69.46
+                ]
+              ],
+              "head_anchor": [
+                64,
+                43
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                37,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  52.78,
+                  68.21
+                ],
+                [
+                  75.44,
+                  68.15
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                40,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  51.56,
+                  69.19
+                ],
+                [
+                  75.52,
+                  69.53
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                38,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  51.93,
+                  67.9
+                ],
+                [
+                  75.04,
+                  67.99
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  51.88,
+                  67.98
+                ],
+                [
+                  75.05,
+                  68.33
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  53.42,
+                  68.43
+                ],
+                [
+                  75.37,
+                  68.67
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                38,
+                79,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "traqueuse-armor3",
+      "number": 6,
+      "class_id": "core:traqueur",
+      "outfit": 13,
+      "rank": 3,
+      "selector": {
+        "kind": "player",
+        "body": 5,
+        "equipment": [
+          101,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/traqueuse-armor3-one-r01-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-13-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/traqueuse-sniper-wave-01/accepted/sources/TR-SN01-P04-r01-source.png",
+      "target_height": 56,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.17891373801916932,
+        0.1794871794871795,
+        0.19112627986348124,
+        0.19377162629757785
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor3-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor3-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor3-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor3-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  51.57,
+                  68.32
+                ],
+                [
+                  74.93,
+                  68.12
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                39,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  52.55,
+                  68.0
+                ],
+                [
+                  75.78,
+                  68.35
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  52.58,
+                  68.12
+                ],
+                [
+                  75.18,
+                  68.48
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                38,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  51.69,
+                  67.51
+                ],
+                [
+                  74.94,
+                  67.48
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                38,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  52.11,
+                  68.08
+                ],
+                [
+                  74.96,
+                  68.11
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  52.1,
+                  68.05
+                ],
+                [
+                  75.2,
+                  68.06
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                39,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  51.74,
+                  67.12
+                ],
+                [
+                  75.68,
+                  67.45
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                38,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  51.48,
+                  68.87
+                ],
+                [
+                  75.23,
+                  69.1
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                39,
+                81,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  52.1,
+                  67.91
+                ],
+                [
+                  75.4,
+                  67.94
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                39,
+                81,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  51.7,
+                  68.93
+                ],
+                [
+                  76.27,
+                  68.8
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                39,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  51.54,
+                  67.76
+                ],
+                [
+                  75.57,
+                  68.14
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                39,
+                81,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  51.63,
+                  67.75
+                ],
+                [
+                  75.22,
+                  68.14
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                39,
+                81,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  53.4,
+                  68.01
+                ],
+                [
+                  75.88,
+                  68.61
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                39,
+                79,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "arcaniste-armor1",
+      "number": 7,
+      "class_id": "core:arcaniste",
+      "outfit": 16,
+      "rank": 1,
+      "selector": {
+        "kind": "player",
+        "body": 6,
+        "equipment": [
+          110,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/arcaniste-armor1-one-r03-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-16-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/sources/AR-RR05-P02-r01-source.png",
+      "target_height": 60,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.20618556701030927,
+        0.20761245674740483,
+        0.21201413427561838,
+        0.2112676056338028
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor1-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor1-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor1-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor1-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  51.1,
+                  65.63
+                ],
+                [
+                  76.19,
+                  66.51
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                34,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  50.9,
+                  65.6
+                ],
+                [
+                  76.63,
+                  66.4
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                34,
+                81,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  51.02,
+                  65.63
+                ],
+                [
+                  76.19,
+                  66.53
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                34,
+                81,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  50.63,
+                  65.68
+                ],
+                [
+                  76.32,
+                  66.22
+                ]
+              ],
+              "head_anchor": [
+                64,
+                39
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                33,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  51.09,
+                  65.86
+                ],
+                [
+                  76.98,
+                  66.55
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                35,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  50.98,
+                  66.1
+                ],
+                [
+                  76.67,
+                  66.39
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                35,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  50.87,
+                  65.81
+                ],
+                [
+                  76.55,
+                  66.68
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                35,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  50.87,
+                  64.98
+                ],
+                [
+                  76.98,
+                  65.85
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                35,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  50.43,
+                  65.56
+                ],
+                [
+                  76.21,
+                  66.48
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                34,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  50.57,
+                  64.81
+                ],
+                [
+                  76.35,
+                  65.46
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                34,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  50.94,
+                  65.0
+                ],
+                [
+                  76.32,
+                  65.3
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                34,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  50.8,
+                  65.09
+                ],
+                [
+                  76.7,
+                  65.28
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                34,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  51.07,
+                  65.19
+                ],
+                [
+                  76.38,
+                  65.98
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                34,
+                81,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "arcaniste-armor2",
+      "number": 8,
+      "class_id": "core:arcaniste",
+      "outfit": 17,
+      "rank": 2,
+      "selector": {
+        "kind": "player",
+        "body": 6,
+        "equipment": [
+          102,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/arcaniste-armor2-one-r02-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-17-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/sources/AR-RR05-P03-r01-source.png",
+      "target_height": 60,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.2054794520547945,
+        0.20761245674740483,
+        0.21201413427561838,
+        0.2112676056338028
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor2-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor2-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor2-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor2-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  50.93,
+                  65.65
+                ],
+                [
+                  76.1,
+                  66.5
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                35,
+                81,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  50.96,
+                  65.68
+                ],
+                [
+                  76.85,
+                  66.33
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                35,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  50.98,
+                  65.47
+                ],
+                [
+                  76.47,
+                  66.25
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                35,
+                81,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  50.97,
+                  65.76
+                ],
+                [
+                  76.31,
+                  66.2
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                35,
+                81,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  50.78,
+                  65.4
+                ],
+                [
+                  76.88,
+                  66.06
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                34,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  50.98,
+                  65.9
+                ],
+                [
+                  76.66,
+                  66.19
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                35,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  50.64,
+                  66.13
+                ],
+                [
+                  76.4,
+                  67.06
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                36,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  50.86,
+                  65.32
+                ],
+                [
+                  77.09,
+                  66.08
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                35,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  50.64,
+                  66.33
+                ],
+                [
+                  76.34,
+                  66.98
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                36,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  50.81,
+                  65.21
+                ],
+                [
+                  76.59,
+                  65.6
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                34,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  50.76,
+                  65.17
+                ],
+                [
+                  76.41,
+                  65.49
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                34,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  50.7,
+                  65.19
+                ],
+                [
+                  76.71,
+                  65.41
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                44,
+                34,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  50.95,
+                  65.18
+                ],
+                [
+                  76.09,
+                  66.08
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                47,
+                35,
+                80,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "arcaniste-armor3",
+      "number": 9,
+      "class_id": "core:arcaniste",
+      "outfit": 18,
+      "rank": 3,
+      "selector": {
+        "kind": "player",
+        "body": 6,
+        "equipment": [
+          101,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/arcaniste-armor3-one-r02-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-18-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/sources/AR-RR05-P04-r01-source.png",
+      "target_height": 60,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.2127659574468085,
+        0.2158273381294964,
+        0.2222222222222222,
+        0.2247191011235955
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor3-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor3-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor3-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/arcaniste-armor3-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  50.93,
+                  65.64
+                ],
+                [
+                  76.34,
+                  66.6
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                34,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  50.88,
+                  65.95
+                ],
+                [
+                  76.93,
+                  66.57
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                34,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  51.03,
+                  66.08
+                ],
+                [
+                  76.69,
+                  66.76
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                34,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  50.84,
+                  66.38
+                ],
+                [
+                  76.34,
+                  66.72
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                34,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  51.06,
+                  66.19
+                ],
+                [
+                  77.18,
+                  66.88
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                34,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  50.78,
+                  66.06
+                ],
+                [
+                  76.32,
+                  66.26
+                ]
+              ],
+              "head_anchor": [
+                64,
+                39
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                33,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  50.67,
+                  66.07
+                ],
+                [
+                  76.27,
+                  66.95
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                35,
+                82,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  50.87,
+                  65.53
+                ],
+                [
+                  77.0,
+                  66.04
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                34,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  50.78,
+                  66.18
+                ],
+                [
+                  76.26,
+                  66.72
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                44,
+                34,
+                84,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  50.73,
+                  65.59
+                ],
+                [
+                  76.7,
+                  65.88
+                ]
+              ],
+              "head_anchor": [
+                64,
+                41
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                44,
+                35,
+                84,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  50.67,
+                  65.79
+                ],
+                [
+                  76.34,
+                  66.08
+                ]
+              ],
+              "head_anchor": [
+                64,
+                40
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                34,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  50.83,
+                  65.16
+                ],
+                [
+                  76.73,
+                  65.28
+                ]
+              ],
+              "head_anchor": [
+                64,
+                39
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                45,
+                33,
+                83,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  50.83,
+                  65.83
+                ],
+                [
+                  76.48,
+                  66.68
+                ]
+              ],
+              "head_anchor": [
+                64,
+                42
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                46,
+                36,
+                83,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "metamorphe-armor1",
+      "number": 10,
+      "class_id": "core:metamorphe",
+      "outfit": 21,
+      "rank": 1,
+      "selector": {
+        "kind": "player",
+        "body": 7,
+        "equipment": [
+          110,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/metamorphe-armor1-one-r01-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-21-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/sources/ME-BD03-P02-r01-source.png",
+      "target_height": 56,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.1848184818481848,
+        0.18241042345276873,
+        0.1891891891891892,
+        0.1917808219178082
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor1-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor1-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor1-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor1-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  52.88,
+                  67.87
+                ],
+                [
+                  76.01,
+                  67.49
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                38,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  53.3,
+                  68.25
+                ],
+                [
+                  75.93,
+                  67.87
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                38,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  53.23,
+                  67.67
+                ],
+                [
+                  76.68,
+                  67.76
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                38,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  52.16,
+                  69.07
+                ],
+                [
+                  75.71,
+                  68.83
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  52.34,
+                  68.38
+                ],
+                [
+                  75.35,
+                  68.33
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                40,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  52.73,
+                  68.84
+                ],
+                [
+                  75.89,
+                  68.91
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  51.51,
+                  68.12
+                ],
+                [
+                  75.8,
+                  68.09
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  51.33,
+                  68.31
+                ],
+                [
+                  75.95,
+                  68.03
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  51.72,
+                  68.95
+                ],
+                [
+                  75.76,
+                  69.21
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                39,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  51.13,
+                  68.39
+                ],
+                [
+                  75.91,
+                  67.68
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                40,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  51.44,
+                  68.2
+                ],
+                [
+                  75.89,
+                  68.15
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  51.46,
+                  67.89
+                ],
+                [
+                  76.03,
+                  67.67
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                40,
+                81,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  53.13,
+                  67.9
+                ],
+                [
+                  76.33,
+                  67.61
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                79,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "metamorphe-armor2",
+      "number": 11,
+      "class_id": "core:metamorphe",
+      "outfit": 22,
+      "rank": 2,
+      "selector": {
+        "kind": "player",
+        "body": 7,
+        "equipment": [
+          102,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/metamorphe-armor2-one-r01-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-22-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/sources/ME-BD02-P03-r01-source.png",
+      "target_height": 56,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.18604651162790697,
+        0.18543046357615894,
+        0.1917808219178082,
+        0.19243986254295534
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor2-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor2-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor2-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor2-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  53.33,
+                  67.89
+                ],
+                [
+                  74.63,
+                  68.06
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  53.11,
+                  68.14
+                ],
+                [
+                  75.01,
+                  68.35
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  54.26,
+                  68.05
+                ],
+                [
+                  75.5,
+                  68.32
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                51,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  52.01,
+                  68.98
+                ],
+                [
+                  75.64,
+                  69.18
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  51.82,
+                  67.92
+                ],
+                [
+                  75.52,
+                  68.23
+                ]
+              ],
+              "head_anchor": [
+                64,
+                44
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                38,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  52.55,
+                  68.85
+                ],
+                [
+                  74.78,
+                  69.67
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  51.71,
+                  67.95
+                ],
+                [
+                  75.48,
+                  68.07
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  51.82,
+                  67.98
+                ],
+                [
+                  75.26,
+                  68.38
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                40,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  51.59,
+                  68.85
+                ],
+                [
+                  75.5,
+                  69.05
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  51.9,
+                  67.74
+                ],
+                [
+                  75.79,
+                  67.79
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  51.91,
+                  68.16
+                ],
+                [
+                  75.77,
+                  68.23
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                40,
+                80,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  51.8,
+                  67.72
+                ],
+                [
+                  75.59,
+                  67.97
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                48,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  53.31,
+                  67.77
+                ],
+                [
+                  74.35,
+                  67.85
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                40,
+                78,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "metamorphe-armor3",
+      "number": 12,
+      "class_id": "core:metamorphe",
+      "outfit": 23,
+      "rank": 3,
+      "selector": {
+        "kind": "player",
+        "body": 7,
+        "equipment": [
+          101,
+          null,
+          null,
+          null
+        ]
+      },
+      "source": "assets/source-art/vertical-walk-review-18/armor-C10/metamorphe-armor3-one-r01-source.png",
+      "reference_front": "assets/source-art/player-walk-review-11/CLASS-23-front-native128.png",
+      "original_armor": "assets/source-art/class-readability-01/metamorphe-biodruid-wave-03/accepted/sources/ME-BD03-P04-r01-source.png",
+      "target_height": 56,
+      "foot_y": 95,
+      "row_static_scales": [
+        0.19243986254295534,
+        0.19310344827586207,
+        0.19310344827586207,
+        0.19243986254295534
+      ],
+      "idle": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor3-idle.png",
+      "family_poses": {
+        "one": {
+          "body": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor3-one-body.png",
+          "hands": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor3-one-hands.png",
+          "complete": "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/metamorphe-armor3-one-complete.png",
+          "frames": [
+            {
+              "direction": "front",
+              "phase": 0,
+              "grips": [
+                [
+                  52.96,
+                  67.44
+                ],
+                [
+                  74.71,
+                  67.71
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                40,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 1,
+              "grips": [
+                [
+                  53.29,
+                  67.89
+                ],
+                [
+                  75.48,
+                  67.81
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                40,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 2,
+              "grips": [
+                [
+                  53.59,
+                  67.67
+                ],
+                [
+                  74.9,
+                  68.34
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                40,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 3,
+              "grips": [
+                [
+                  52.0,
+                  69.03
+                ],
+                [
+                  76.08,
+                  68.95
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 4,
+              "grips": [
+                [
+                  52.26,
+                  67.99
+                ],
+                [
+                  75.62,
+                  67.96
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "front",
+              "phase": 5,
+              "grips": [
+                [
+                  52.9,
+                  69.04
+                ],
+                [
+                  75.9,
+                  69.19
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 0,
+              "grips": [
+                [
+                  52.24,
+                  67.92
+                ],
+                [
+                  75.47,
+                  67.88
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 1,
+              "grips": [
+                [
+                  51.69,
+                  67.81
+                ],
+                [
+                  74.8,
+                  68.0
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 2,
+              "grips": [
+                [
+                  52.04,
+                  68.87
+                ],
+                [
+                  75.69,
+                  68.94
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 3,
+              "grips": [
+                [
+                  52.1,
+                  67.65
+                ],
+                [
+                  75.62,
+                  67.64
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 4,
+              "grips": [
+                [
+                  51.75,
+                  67.91
+                ],
+                [
+                  75.54,
+                  67.97
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                78,
+                95
+              ]
+            },
+            {
+              "direction": "back",
+              "phase": 5,
+              "grips": [
+                [
+                  52.3,
+                  67.67
+                ],
+                [
+                  75.77,
+                  67.57
+                ]
+              ],
+              "head_anchor": [
+                64,
+                45
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                49,
+                39,
+                79,
+                95
+              ]
+            },
+            {
+              "direction": "idle",
+              "phase": 0,
+              "grips": [
+                [
+                  53.6,
+                  67.6
+                ],
+                [
+                  76.59,
+                  67.49
+                ]
+              ],
+              "head_anchor": [
+                64,
+                46
+              ],
+              "grips_occluded": false,
+              "bounds": [
+                50,
+                40,
+                79,
+                95
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "conditioning_errors": []
+}

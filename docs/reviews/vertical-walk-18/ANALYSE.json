@@ -1,0 +1,115 @@
+{
+  "review": "VERT18-C01",
+  "date": "2026-10-29",
+  "status": "visual_accepted_pending_integration",
+  "normal_game_enabled": false,
+  "requested_behavior": {
+    "north": "true_back_walk",
+    "south": "front_walk",
+    "stop": "existing_front_idle",
+    "subjects": [
+      "player",
+      "NPC"
+    ]
+  },
+  "coverage": {
+    "authored_profiles": 2,
+    "authored_moving_figures": 24,
+    "player": "Arcaniste body6, no worn armor or helmet",
+    "held_loadouts": [
+      "unarmed",
+      "left104/right70"
+    ],
+    "npc": "Camp NPC-01",
+    "other_roster_authored": false,
+    "two_handed_grips_reviewed": false
+  },
+  "source": {
+    "mode": "builtin_image_gen",
+    "prompts": "prompts.json",
+    "manifest": "assets/source-art/vertical-walk-review-18/candidate-r01/manifest.json",
+    "conditioning": "tools/art/pack_vertical_walk_review18.py",
+    "whole_figures_only": true,
+    "uniform_scale_per_profile": true,
+    "native_tile_px": 64,
+    "canvas_px": 128
+  },
+  "presentation": {
+    "shared_player_npc_motion": true,
+    "step_duration_ms": 400,
+    "phases_per_step": 3,
+    "phases_per_direction": 6,
+    "front_on_arrival": true,
+    "front_on_cancel": true,
+    "reduced_motion_unchanged": true,
+    "paused_gif_idle_ms": 650,
+    "animation_export": "lossless_animated_webp",
+    "limited_palette_gif_withdrawn": "Changed coat colors against detailed camp floor; not a game-render defect"
+  },
+  "checks": {
+    "debug_build_locked": "passed",
+    "release_build_locked": "passed (proposal compiled out); before last debug-only capture additions",
+    "targeted_formatting": "passed",
+    "git_diff_check": "passed",
+    "cargo_fmt_all": "pre-existing module-order difference in src/lib.rs, unrelated and preserved",
+    "tests_passed": [
+      "vertical18_player_and_npc_face_the_route_then_return_to_front",
+      "every_actor_returns_to_front_on_arrival_at_all_supported_speeds",
+      "vertical_creature_steps_keep_an_authored_cycle_and_last_lateral_orientation",
+      "vertical_monster_and_npc_steps_return_to_front_at_every_speed"
+    ],
+    "full_suite_run": false,
+    "engine_capture_exit_code": 0,
+    "neutral_scene_front_returns": 12,
+    "held_weapon_contacts_verified": 24,
+    "camp_front_returns": 8,
+    "camp_exposure_records": 104,
+    "moving_and_idle_actor_gain": 1.48,
+    "camp_material_and_irradiance": true,
+    "decoded_animation_pixels_verified": true,
+    "lossless_animation_frames_verified": 156
+  },
+  "loading": {
+    "read_or_decode_during_draw": false,
+    "source_cache_limit_bytes": 4194304,
+    "prepared_texture_cache_limit_bytes": 8388608,
+    "gpu_upload_on_context_thread": true,
+    "camp_resources_prepared_before_sequence": true,
+    "campaign_loaded": false,
+    "user_preferences_written": false
+  },
+  "capture": {
+    "command": "target/debug/project-rl.exe --ui-cold-vertical-walk artifacts/vertical-walk-review-18/current/engine",
+    "native_frames": 26,
+    "camp_frames": 52,
+    "checks": "artifacts/vertical-walk-review-18/current/engine/checks.json",
+    "camp_checks": "artifacts/vertical-walk-review-18/current/engine/camp-checks.json",
+    "normal_save_used": false,
+    "full_gameplay_campaign_run": false,
+    "browser_preview": "http://127.0.0.1:63780/apercu.html",
+    "browser_screenshot": "artifacts/vertical-walk-review-18/current/apercu-navigateur.png",
+    "browser_scene_screenshot": "artifacts/vertical-walk-review-18/current/apercu-camp-navigateur.png"
+  },
+  "next_scope_after_visual_review": [
+    "Other class-specific outfits and helmets with authored front/back figures",
+    "Camp and town NPC figures with own anatomy and clothes",
+    "Equipment-specific grips and layering for each supported loadout",
+    "Native light and return-to-front checks before normal integration"
+  ],
+  "separate_review": "DUAL17-C02 remains awaiting_visual_approval; this proposal does not approve or integrate it",
+  "fingerprints": {
+    "target/debug/project-rl.exe": "b75bb712e1b992a1fa3af630c750d58b886e406b6c08774f653dd50fa148ea2b",
+    "target/release/project-rl.exe": "3cae80e2f09751d5441e352ae20db13e1f708fdd420e77969c58af2a89946ccf",
+    "assets/source-art/vertical-walk-review-18/candidate-r01/manifest.json": "2f00964f50ad52a234baf7e478378c6d46a6cc82989648def91eb8466611da61"
+  },
+  "acceptance": "acceptance-C01.json",
+  "size_followup": {
+    "review": "VERT18-C05",
+    "user_requested_correction_of_all_presented_variants": true,
+    "old_accepted_sources_preserved": true,
+    "normal_integration_waits_for_new_size_and_idle_review": false,
+    "status": "visual_accepted_pending_integration",
+    "acceptance": "acceptance-C05.json",
+    "normal_integration_still_pending": true
+  }
+}

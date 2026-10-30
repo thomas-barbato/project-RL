@@ -1,0 +1,58 @@
+{
+  "review": "VERT18-C04",
+  "status": "sources_conditioned_pending_native_review",
+  "mode": "builtin_image_gen",
+  "normal_game_enabled": false,
+  "calls": [
+    {
+      "id": "bastion-unhelmeted",
+      "profile": "bastion-lourd",
+      "prompt": "Use case: precise-object-edit / identity-preserve. Edit Image1, the exact transparent FOUR COLUMN x FOUR ROW full-figure walk sheet. Change ONLY the head, neck and immediately connected collar/hood area of each of its16 complete figures into its true UNHELMETED variant. Image2 and Image3 provide ONLY the same character's uncovered head/face/hair identity, not the lighter clothes. Keep ALL body armor, shoulders below the neck, arms, gauntlets, empty closed hands, torso, belts, legs, boots, gait phase, scale, position and transparent margins exactly from Image1. Same camera in every existing cell: first8 face front, last8 true back. Keep head size and nape placement consistent with the existing helmet's underlying head and adult proportions. No new costume details, no weapon, text, grid, floor, shadow or background. Preserve true transparent alpha and original 4x4 layout. Do not borrow a helmet from another character. The same uncovered face must be recognizable at native64 and when returning to a frontal idle.\nRemove the complete gray/copper enclosed helmet from every front and back figure. Restore the exact short brown hair, short brown beard and adult male face from Image2/3. Back views show short brown hair and the nape, no face. Preserve the existing heavy copper/steel armor collar and neck connection. No helmet, hood, mask, headband or new device remains.",
+      "references": [
+        "assets/source-art/vertical-walk-review-18/bastion-lourd-r01-source.png",
+        "assets/source-art/vertical-walk-review-18/bastion-r01-source.png",
+        "assets/source-art/player-walk-review-11/CLASS-00-front-native128.png"
+      ],
+      "output": "assets/source-art/vertical-walk-review-18/headgear-C04/bastion-unhelmeted-r01-source.png",
+      "transparent_background": true,
+      "sha256": "3fe7dff8f263e58cb498ac2ccd5f2859024068e10342f318e51f66b05ad9ae7d"
+    },
+    {
+      "id": "traqueuse-unhelmeted",
+      "profile": "traqueuse-lourde",
+      "prompt": "Use case: precise-object-edit / identity-preserve. Edit Image1, the exact transparent FOUR COLUMN x FOUR ROW full-figure walk sheet. Change ONLY the head, neck and immediately connected collar/hood area of each of its16 complete figures into its true UNHELMETED variant. Image2 and Image3 provide ONLY the same character's uncovered head/face/hair identity, not the lighter clothes. Keep ALL body armor, shoulders below the neck, arms, gauntlets, empty closed hands, torso, belts, legs, boots, gait phase, scale, position and transparent margins exactly from Image1. Same camera in every existing cell: first8 face front, last8 true back. Keep head size and nape placement consistent with the existing helmet's underlying head and adult proportions. No new costume details, no weapon, text, grid, floor, shadow or background. Preserve true transparent alpha and original 4x4 layout. Do not borrow a helmet from another character. The same uncovered face must be recognizable at native64 and when returning to a frontal idle.\nRemove the complete silver/cyan enclosed helmet from every front and back figure. Restore the exact slim adult female face, short swept brown hairstyle and small existing side optical piece from Image2/3, on the correct anatomical side. Back views show brown hair/nape with no face or cyan visor. Preserve the heavy silver armor collar and neck connection. No helmet, hood or new head protection remains.",
+      "references": [
+        "assets/source-art/vertical-walk-review-18/traqueuse-lourde-r01-source.png",
+        "assets/source-art/vertical-walk-review-18/traqueuse-r02-source.png",
+        "assets/source-art/player-walk-review-11/CLASS-10-front-native128.png"
+      ],
+      "output": "assets/source-art/vertical-walk-review-18/headgear-C04/traqueuse-unhelmeted-r01-source.png",
+      "transparent_background": true,
+      "sha256": "9e5c63108adf998746a72df79ad6d6e67a6cbc377c93e8536f0f459e8a1e21b5"
+    },
+    {
+      "id": "arcaniste-unhelmeted",
+      "profile": "arcaniste-lourd",
+      "prompt": "Use case: precise-object-edit / identity-preserve. Edit Image1, the exact transparent FOUR COLUMN x FOUR ROW full-figure walk sheet. Change ONLY the head, neck and immediately connected collar/hood area of each of its16 complete figures into its true UNHELMETED variant. Image2 and Image3 provide ONLY the same character's uncovered head/face/hair identity, not the lighter clothes. Keep ALL body armor, shoulders below the neck, arms, gauntlets, empty closed hands, torso, belts, legs, boots, gait phase, scale, position and transparent margins exactly from Image1. Same camera in every existing cell: first8 face front, last8 true back. Keep head size and nape placement consistent with the existing helmet's underlying head and adult proportions. No new costume details, no weapon, text, grid, floor, shadow or background. Preserve true transparent alpha and original 4x4 layout. Do not borrow a helmet from another character. The same uncovered face must be recognizable at native64 and when returning to a frontal idle.\nLower the red hood behind the neck and remove the entire pale face mask from every front and back figure. Restore the exact white-haired adult male Arcaniste face from Image2/3. In back views show white hair/nape above the lowered red hood, no face. The heavy red robe, layered red shoulders and pale chest V remain exactly those of Image1; do not turn it into the bare-arm light outfit from Image2. Show the same lowered red hood at the collar in every phase, with a natural neck connection. No helmet, raised hood, face mask or new device remains.",
+      "references": [
+        "assets/source-art/vertical-walk-review-18/arcaniste-lourd-r01-source.png",
+        "assets/source-art/vertical-walk-review-18/arcaniste-r01-source.png",
+        "assets/source-art/player-walk-review-11/CLASS-15-front-native128.png"
+      ],
+      "output": "assets/source-art/vertical-walk-review-18/headgear-C04/arcaniste-unhelmeted-r01-source.png",
+      "transparent_background": true,
+      "sha256": "65b4ebaa6db4e4c98f6e80979139e168ec3d36f1f4f43105d7392b477f86a6ab"
+    },
+    {
+      "id": "helmet-backs",
+      "prompt": "Use case: identity-preserve. Asset type: modular BACK-view helmet overlays for a native64 pixel-art game. References1 and2 show the SAME six existing FRONT helmet designs, in a 3-column x2-row contact sheet, labeled115..120; labels identify the order only. Draw ONLY the six corresponding TRUE BACK views, from directly behind, on genuine transparent alpha, one complete isolated head-protection overlay per equal cell, same3-column x2-row order. No front views, visible face, eyes, mouth, visor across the back, faceplate copied behind the head, shoulders, neck, torso, generic human head, hair painted into gaps, text, labels, grids, floor or shadows. All six overlays same physical head scale and generous padding, centered at same head baseline. Match the existing shapes, matte worn pixel-painted materials, dark outlines and upper-left light; read cleanly at11px helmet height after reduction. Do not invent ornaments, antennas, backpacks, spikes, logos, glowing back windows or a new helmet design.\nTOP LEFT115: the light cream metal military cap with ear-side protection, open-face front; rear shows its simple cream shell, short lower rim and existing ear-side parts, with any open area below genuinely transparent.\nTOP MIDDLE116: the plain brown cloth hood, closed draped rear, same cloth and modest folds, no face hole on the back.\nTOP RIGHT117: the dark gray tactical helmet with cream crown and orange FRONT visor plus respirator; rear shows the corresponding plain dark/cream shell and restrained rear seams, no orange face visor or respirator on the back.\nBOTTOM LEFT118: the heavy gray/cream enclosed helm with gold FRONT visor; rear shell retains the same materials and plain panel divisions, no face visor or mouth plate on the back.\nBOTTOM MIDDLE119: the pale cream shell and dark harness of the Chrysalide mask with cyan FRONT mouth panel; rear view uses only its corresponding fastening shell/harness, with any exposed scalp areas transparent so the character's own hair can show through. No cyan mouth on the back.\nBOTTOM RIGHT120: the charcoal Phantom visor helmet with cyan FRONT face band; rear shows its dark shell and fastening band, no cyan faceplate on the back.\nReference1 is the original larger front asset catalogue. Reference2 is the exact native-game reduction; preserve those six identities. Output one transparent3x2 sheet with six back overlays only.",
+      "references": [
+        "assets/source-art/vertical-walk-review-18/headgear-C04/helmets-original-front-reference.png",
+        "assets/source-art/vertical-walk-review-18/headgear-C04/helmets-front-reference-x6.png"
+      ],
+      "output": "assets/source-art/vertical-walk-review-18/headgear-C04/helmet-backs-r01-source.png",
+      "transparent_background": true,
+      "sha256": "2eaa4dc7ac6d20f418f9ac8c24bfc4148eabe640b51d17b6d7ca8775e813afa4"
+    }
+  ]
+}

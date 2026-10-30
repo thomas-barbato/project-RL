@@ -1,0 +1,27 @@
+{
+  "id": "MON-022-r02",
+  "number": 22,
+  "name": "Cultiste",
+  "role": "CultistMelee",
+  "reference_image_px": [
+    64,
+    64
+  ],
+  "native_side": 64,
+  "foot": [
+    32,
+    60
+  ],
+  "variants": [
+    0,
+    1
+  ],
+  "references": [
+    "assets/source-art/vertical-walk-review-18/extension-C06/references/MON-022-front.png",
+    "assets/source-art/vertical-walk-review-18/extension-C06/MON-022-r01-source.png"
+  ],
+  "prompt": "Use case: identity-preserve. Asset type: native64 RPG complete-figure animation source sheet. Image1 is the exact CURRENT frontal game drawing and the authority for identity, proportions, physical size, materials, colors and lighting. Image2 is the already established lateral locomotion of the SAME specimen, useful for its real limb count, joints, supports and gait; do not copy its side-view camera. Draw the exact same creature in a new FOUR-column by FOUR-row sheet of SIXTEEN separate COMPLETE figures, true transparent background, equal cells with generous padding. Keep the physical head/torso/limb scale identical throughout ALL rows, with the same head/body ratio, appendage count, armor and asymmetrical details. Constant upper-left game lighting, readable compact painted pixel-art masses matching the reference, no added photorealistic detail, no glow changes, and no brown or colored fringe around the transparent edge. Preserve large and small morphologies, never humanize nonhumanoids or give a floating/worm creature human legs. Match limb count and actual articulations from both references. The new cycle faces UP with a true BACK, DOWN with a true FRONT, then returns to a FRONT neutral of the SAME body. Back must show genuine rear anatomy, rear helmet/armor/panels and rear joints rather than a second face or front kneecaps; retain radial anatomy if appropriate. Preserve every existing carried object and attach it to the correct limb without duplicates. No new gear, powers, species features, ground shadow, scenery, text, labels or grid lines. Draw whole coherent figures, not shifted leg strips, shears or grafted limbs. Keep torso proportions, scale and foot/support baseline consistent; a tiny natural gait bob is allowed. Bipeds alternate compact grounded steps; quadrupeds/many-legged creatures alternate their own actual supports; continuous bodies progress by gentle coherent body undulation; floating ones drift gently without invented feet.\nExact order: ROW1 FRONT neutral standing/resting, FRONT first support contact, FRONT recoil, FRONT passing/support. ROW2 FRONT same neutral, FRONT opposite support contact, FRONT recoil, FRONT passing/support. ROW3 TRUE BACK neutral/resting, BACK first support contact, BACK recoil, BACK passing/support. ROW4 TRUE BACK same neutral, BACK opposite support contact, BACK recoil, BACK passing/support. Neutral means the creature's actual coherent rest pose with supports grounded or its normal hover posture. Keep limbs distinct, no duplicates, no crops. This is the SAME existing specimen in all16 cells, not a redesigned species.\nSpecimen identity for traceability: MON-022, Cultiste. The images, not this generic label, define its exact anatomy.\nCritical rear-view check: Image2 provides limb anatomy but is NOT a rear reference. Rows3/4 must actually rotate the creature180degrees. All eyes, mouth, front visor and frontal markings are on the FAR side hidden by the rear body; draw the actual rear surfaces. Anatomical left/right asymmetries change screen side. Preserve the source width/height silhouette ratio and actual limb proportions.\nCRITICAL HANDEDNESS CORRECTION of Image2: the rifle switches sides between front neutral and walking figures. Fix this throughout ALL16figures. For EVERY FRONT figure in rows1and2, the RIFLE MUZZLE points to the LEFT side of the image, stock to the RIGHT, exactly as Image1 and the neutral source. For EVERY TRUE BACK figure in rows3and4, the muzzle points to the RIGHT side of the image, stock hidden in front of the torso on the LEFT. One fixed anatomical hand holds the trigger, the other holds the fore-end; they NEVER exchange roles at rest or between steps. Do not mirror front walking poses to make the second support. All front/back/rest figures preserve the same physical rifle length and identical carry height. Same red hood, diagonal sling, sash, dark trousers, complete boots, clothing cut, neutral matte lighting, canonical stature and slender width as Image1. Fourcolumns×fourrows of16complete coherent figures. Generous transparent gutters and margins. Same complete body proportions in all16cells, tiny bob only.",
+  "output": "assets/source-art/vertical-walk-review-18/extension-C06/MON-022-r02-source.png",
+  "status": "pending",
+  "base_id": "MON-022"
+}

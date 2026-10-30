@@ -227,3 +227,123 @@ contrôle aussi l'identité de chaque pixel opaque dans ces montages. Les ancien
 lots gardent leurs sorties inchangées. `expected_new_numbers`,
 `expected_catalogue_count` et `preservation_snapshot` explicitent le périmètre
 de validation du nouveau manifeste, sans changer les contrôles précédents.
+
+## VERT18-C06 : armes et bestiaire, revue verticale
+
+`pack_vertical_monsters18.py` conditionne les figures entières des 129 monstres.
+Son option `--only NUMERO` reprend un modèle sans toucher les autres sorties.
+`pack_vertical_weapons18.py` prépare les corps et doigts des huit tenues de C05
+pour les prises à une main et les trois familles à deux mains.
+`compose_vertical_extension18.py` conserve les armes partagées et leur échelle
+fixe pendant tout le cycle ; `verify_vertical_extension18.py` contrôle les
+palettes, les casques et les paires compatibles.
+
+`audit_vertical_extension18.py` produit les comparatifs natifs.
+`publish_vertical_extension18.py` réutilise l’aperçu courant sous
+`artifacts/vertical-walk-review-18/current/extension-C06/`. Le diagnostic Debug
+`--ui-cold-vertical-extension` prépare ses ressources depuis `assets/`, puis
+dessine les figures dans le vrai passage de finition d’acteur. Le filtre
+`RL_VERTICAL_REVIEW_PREFIX` limite une reprise aux identifiants concernés.
+`publish_vertical_extension_engine18.py` produit les copies WebP sans perte ;
+`--only IDENTIFIANT` reprend une capture. Les PNG et les dessins sources restent
+conservés tant que la revue est en cours.
+
+Les outils de composition d’armes utilisent Pillow et NumPy du runtime Python
+de travail. Les prompts exacts, la provenance builtin_imagegen, les décisions
+et les limites sont dans `docs/reviews/vertical-walk-18/REVUE-C06.md`.
+Le catalogue seul reste un aperçu. Après l’accord C06, `install_vertical18.py`
+vérifie les empreintes acceptées C05/C06 et installe des atlas compacts, sans
+rééchantillonnage, dans `assets/animations/vertical-18/`. Le rendu normal utilise
+ces ressources et le service commun `asset_preparation`, avec préparation CPU
+avant dessin et création des textures sur le thread graphique. Les sources
+de revue et captures ne sont pas distribuées. L’intégration et les limites
+de couverture sont consignées dans `integration-C06.json`.
+
+Les tests `game_art::vertical::tests` vérifient la sélection et la conformité
+des pixels. `--ui-cold-vertical-integration DOSSIER` vérifie le rendu normal
+sans activer de remplacement de revue, les retours frontaux, le cache et le
+vrai rendu du camp. Ce diagnostic exige les assertions Debug.
+
+`publish_pistol_orientation18.py` prépare le comparatif C07 du pistolet
+horizontal avec les pixels C06 figés ; il ne modifie pas le jeu normal.
+
+`pack_vertical_armor18.py` et `publish_vertical_armor18.py` préparent C10 :
+les douze tenues intermédiaires, leurs cycles entiers, six casques partagés
+et cinq ports représentatifs à une main. `record_vertical_armor18.py` conserve
+les sources Imagegen intégrées et leur provenance. Les prises à deux mains
+de ces nouvelles tenues restent une étape distincte après revue des silhouettes.
+Le diagnostic `--ui-cold-vertical-extension` accepte
+`RL_VERTICAL_REVIEW_CASES=assets/source-art/vertical-walk-review-18/armor-C10/engine-cases.json`
+pour cette fixture isolée, sans remplacer les ressources C06/C09 du jeu normal.
+`audit_vertical_armor18.py` contrôle les 420 compositions, les retours frontaux,
+les quatre groupes dans le vrai camp et les empreintes des banques acceptées.
+Périmètre et limites : `docs/reviews/vertical-walk-18/REVUE-C10.md`.
+
+`publish_knife_contact18.py` prépare le comparatif initial C11 sur les vrais
+doigts. L'accord du joueur concerne sa face seulement. `publish_knife_back18.py`
+prépare la reprise arrière sans modifier les sept cellules frontales validées ;
+`audit_knife_back18.py` vérifie les 1 176 copies exactes et les captures natives.
+La reprise arrière réutilise des figures entières C12, sans greffe de bras.
+
+`pack_vertical_twohand18.py` et `compose_vertical_twohand18.py` préparent C12 :
+36 cycles, ouvertures de prise examinées sur les doigts, suivi commun des deux
+attaches et 74 armes partagées par tenue. `vertical_pose_fast18.py` est vérifié
+contre le calcul scalaire C08. `audit_vertical_twohand18.py` contrôle 1 104
+configurations natives et douze groupes dans le vrai camp. Le catalogue isolé
+est `assets/source-art/vertical-walk-review-18/grips-C12/engine-cases.json`, passé
+via `RL_VERTICAL_REVIEW_CASES` au diagnostic `--ui-cold-vertical-extension`.
+Le catalogue nommé conserve la compatibilité des anciennes listes C06/C10.
+`publish_vertical_review_updates18.py` publie les pages après leurs audits.
+Les décisions et limites restent séparées dans `REVUE-C11-back-r02.md` et
+`REVUE-C12.md`. Après les accords C11/C12, `install_vertical_intermediate18.py`
+ajoute douze profils : 74 armes à deux mains, avec sept couleurs et sept états
+de tête, et les deux configurations C11 figées en palette d'origine. Le rendu
+normal utilise des couches compactes et des compositions C11 exactes sous
+`assets/animations/vertical-18/intermediate/`, sans dépendance aux aperçus.
+Les huit profils C09 et leurs images sont préservés ; les autres prises à une
+main restent sur leur rendu précédent. Les générateurs refusent d'écraser C12
+après acceptation. État et vérifications : `integration-C12.json`.
+Le choix de conserver A est consigné dans `decision-C07.json` ; le script
+préserve cette décision lors d’une republication.
+
+`publish_knife_grip18.py` prépare C08 : couteau actuel, lame légèrement vers
+le bas ou vers le haut, en conservant le pistolet A. Les trois compositions
+partagent les sources C06, les mêmes mains et points d’attache ; seules les
+rotations des couteaux/dagues W068–W079 changent. La page prépare ses atlas
+avant l’animation et utilise un cache borné. Ce comparatif n’active aucun
+nouveau candidat dans le rendu normal.
+
+Après l’accord C08-B, `finalize_knife_grip18.py` fige les 24 axes de lame
+présentés et 112 atlas de référence, sans nouveau dessin, sous
+`assets/source-art/vertical-walk-review-18/candidate-C08/`. Il utilise un
+échantillonneur bilinéaire scalaire indépendant pour les compositions de
+contrôle. `install_vertical18.py` vérifie l’accord et son empreinte, puis
+applique seulement les rotations acceptées au manifeste normal. Les 1604
+images du lot et les autres prises restent identiques. Les empreintes du
+manifeste C06 initial restent conservées ; celles de l’installation C08
+sont dans `runtime-assets-C08.json`.
+
+Le test complet de `game_art::vertical::tests` compare les 112 configurations
+affectées aux références C08 et les 1479 autres aux références C06. Le test
+d’attaches compare aussi tous les champs aux recettes C06, pour préserver
+les points de prise, les tailles, les couches et la prise A des pistolets.
+
+`publish_pistol_tilt18.py` dérive C09 du même aperçu pour comparer le pistolet
+actuel avec une ouverture rigide de 10° vers l’extérieur. Les deux colonnes
+conservent le couteau C08-B. Le script vérifie les banques C06/C08 et les
+ressources normales, réutilise leurs images et ne modifie aucun fichier du
+jeu. La proposition et les contrôles sont dans `proposal-C09.json` et
+`checks-C09.json` ; son activation attend un accord distinct.
+
+Cet accord C09-B est désormais dans `acceptance-C09.json`.
+`finalize_pistol_tilt18.py` fige les angles et 168 atlas de référence sous
+`assets/source-art/vertical-walk-review-18/candidate-C09/`. Il conserve le
+couteau C08-B et reprend l’échantillonneur indépendant de C08, y compris les
+six casques. `install_vertical18.py` applique les deux corrections acceptées
+dans cet ordre, puis écrit `runtime-assets-C09.json` sans remplacer les
+empreintes historiques C06/C08. Seul le manifeste d’angles du jeu change.
+
+Le contrôle complet compare 1599 configurations : 168 références C09,
+104 références C08 et 1327 références C06. Il comprend maintenant la paire
+104/69 de l’aperçu validé, en plus de 104/70, 104/104 et 68/79. Le diagnostic
+normal couvre ces configurations et NPC-01, sans remplacement de revue.

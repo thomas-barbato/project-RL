@@ -1,0 +1,45 @@
+{
+  "runtime_files": 3664,
+  "runtime_vertical_bank_hashes_verified": 1845,
+  "runtime_hash_mismatches": [],
+  "distribution_archive_verified": true,
+  "distribution_inventory_files": 1758,
+  "distribution_rebuilt": false,
+  "release_build": "cargo build --locked --release --bin project-rl: passed",
+  "release_executable_preserved": true,
+  "current_preview_http_checks": [
+    {
+      "path": "apercu.html",
+      "http_status": 200
+    },
+    {
+      "path": "knife-contact-C11/apercu.html",
+      "http_status": 200
+    },
+    {
+      "path": "grips-C12/apercu.html",
+      "http_status": 200
+    },
+    {
+      "path": "extension-C06/apercu.html",
+      "http_status": 200
+    },
+    {
+      "path": "pistol-C09/apercu.html",
+      "http_status": 200
+    }
+  ],
+  "current_preview_resource_references_checked": 930,
+  "git_status_delta": {
+    "added_status_lines": [
+      " M docs/GESTION_FICHIERS_GENERES.md"
+    ],
+    "removed_status_lines": []
+  },
+  "ui_02B_status": "still awaiting explicit visual approval; normal game disabled",
+  "source_provenance_references_checked": 84,
+  "missing_preview_resources": [],
+  "status": "passed",
+  "preview_path_resolution": "Browser resources are relative to the page; source provenance is relative to the checkout.",
+  "git_diff_check": "passed; existing Windows line-ending notices only"
+}

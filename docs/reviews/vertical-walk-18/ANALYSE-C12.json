@@ -1,0 +1,522 @@
+{
+  "review": "VERT18-C12",
+  "status": "visual_accepted_integrated",
+  "normal_game_enabled": true,
+  "whole_body_families": 36,
+  "body_profiles": 12,
+  "two_handed_models": 74,
+  "binding_configurations": 888,
+  "engine_configurations": 1104,
+  "contact_checks": 12432,
+  "contact_failures": [],
+  "contact_max_px": 0.0,
+  "palette_geometry_checks": 518,
+  "weapon_colors": 7,
+  "head_choices": 7,
+  "sampler_validation": {
+    "cases": 42,
+    "max_premultiplied_color_alpha_delta": [
+      1,
+      1
+    ],
+    "color_limit": 2,
+    "alpha_limit": 1
+  },
+  "body_size_audit": [
+    {
+      "profile": "bastion-armor1",
+      "family": "ranged",
+      "target": 58,
+      "idle": 58,
+      "moving_range": [
+        57,
+        59
+      ]
+    },
+    {
+      "profile": "bastion-armor1",
+      "family": "melee-wide",
+      "target": 58,
+      "idle": 58,
+      "moving_range": [
+        57,
+        59
+      ]
+    },
+    {
+      "profile": "bastion-armor1",
+      "family": "melee-close",
+      "target": 58,
+      "idle": 59,
+      "moving_range": [
+        56,
+        59
+      ]
+    },
+    {
+      "profile": "bastion-armor2",
+      "family": "ranged",
+      "target": 58,
+      "idle": 58,
+      "moving_range": [
+        56,
+        59
+      ]
+    },
+    {
+      "profile": "bastion-armor2",
+      "family": "melee-wide",
+      "target": 58,
+      "idle": 57,
+      "moving_range": [
+        57,
+        59
+      ]
+    },
+    {
+      "profile": "bastion-armor2",
+      "family": "melee-close",
+      "target": 58,
+      "idle": 59,
+      "moving_range": [
+        57,
+        59
+      ]
+    },
+    {
+      "profile": "bastion-armor3",
+      "family": "ranged",
+      "target": 58,
+      "idle": 57,
+      "moving_range": [
+        56,
+        59
+      ]
+    },
+    {
+      "profile": "bastion-armor3",
+      "family": "melee-wide",
+      "target": 58,
+      "idle": 58,
+      "moving_range": [
+        57,
+        59
+      ]
+    },
+    {
+      "profile": "bastion-armor3",
+      "family": "melee-close",
+      "target": 58,
+      "idle": 57,
+      "moving_range": [
+        57,
+        60
+      ]
+    },
+    {
+      "profile": "traqueuse-armor1",
+      "family": "ranged",
+      "target": 56,
+      "idle": 57,
+      "moving_range": [
+        56,
+        58
+      ]
+    },
+    {
+      "profile": "traqueuse-armor1",
+      "family": "melee-wide",
+      "target": 56,
+      "idle": 57,
+      "moving_range": [
+        56,
+        57
+      ]
+    },
+    {
+      "profile": "traqueuse-armor1",
+      "family": "melee-close",
+      "target": 56,
+      "idle": 57,
+      "moving_range": [
+        56,
+        58
+      ]
+    },
+    {
+      "profile": "traqueuse-armor2",
+      "family": "ranged",
+      "target": 56,
+      "idle": 55,
+      "moving_range": [
+        55,
+        58
+      ]
+    },
+    {
+      "profile": "traqueuse-armor2",
+      "family": "melee-wide",
+      "target": 56,
+      "idle": 57,
+      "moving_range": [
+        55,
+        58
+      ]
+    },
+    {
+      "profile": "traqueuse-armor2",
+      "family": "melee-close",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        54,
+        57
+      ]
+    },
+    {
+      "profile": "traqueuse-armor3",
+      "family": "ranged",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        55,
+        58
+      ]
+    },
+    {
+      "profile": "traqueuse-armor3",
+      "family": "melee-wide",
+      "target": 56,
+      "idle": 57,
+      "moving_range": [
+        55,
+        57
+      ]
+    },
+    {
+      "profile": "traqueuse-armor3",
+      "family": "melee-close",
+      "target": 56,
+      "idle": 55,
+      "moving_range": [
+        55,
+        56
+      ]
+    },
+    {
+      "profile": "arcaniste-armor1",
+      "family": "ranged",
+      "target": 60,
+      "idle": 59,
+      "moving_range": [
+        60,
+        62
+      ]
+    },
+    {
+      "profile": "arcaniste-armor1",
+      "family": "melee-wide",
+      "target": 60,
+      "idle": 59,
+      "moving_range": [
+        60,
+        62
+      ]
+    },
+    {
+      "profile": "arcaniste-armor1",
+      "family": "melee-close",
+      "target": 60,
+      "idle": 60,
+      "moving_range": [
+        59,
+        63
+      ]
+    },
+    {
+      "profile": "arcaniste-armor2",
+      "family": "ranged",
+      "target": 60,
+      "idle": 60,
+      "moving_range": [
+        59,
+        62
+      ]
+    },
+    {
+      "profile": "arcaniste-armor2",
+      "family": "melee-wide",
+      "target": 60,
+      "idle": 61,
+      "moving_range": [
+        59,
+        62
+      ]
+    },
+    {
+      "profile": "arcaniste-armor2",
+      "family": "melee-close",
+      "target": 60,
+      "idle": 61,
+      "moving_range": [
+        59,
+        62
+      ]
+    },
+    {
+      "profile": "arcaniste-armor3",
+      "family": "ranged",
+      "target": 60,
+      "idle": 59,
+      "moving_range": [
+        60,
+        61
+      ]
+    },
+    {
+      "profile": "arcaniste-armor3",
+      "family": "melee-wide",
+      "target": 60,
+      "idle": 59,
+      "moving_range": [
+        60,
+        61
+      ]
+    },
+    {
+      "profile": "arcaniste-armor3",
+      "family": "melee-close",
+      "target": 60,
+      "idle": 59,
+      "moving_range": [
+        60,
+        61
+      ]
+    },
+    {
+      "profile": "metamorphe-armor1",
+      "family": "ranged",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        55,
+        57
+      ]
+    },
+    {
+      "profile": "metamorphe-armor1",
+      "family": "melee-wide",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        55,
+        57
+      ]
+    },
+    {
+      "profile": "metamorphe-armor1",
+      "family": "melee-close",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        54,
+        57
+      ]
+    },
+    {
+      "profile": "metamorphe-armor2",
+      "family": "ranged",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        55,
+        56
+      ]
+    },
+    {
+      "profile": "metamorphe-armor2",
+      "family": "melee-wide",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        55,
+        56
+      ]
+    },
+    {
+      "profile": "metamorphe-armor2",
+      "family": "melee-close",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        55,
+        57
+      ]
+    },
+    {
+      "profile": "metamorphe-armor3",
+      "family": "ranged",
+      "target": 56,
+      "idle": 55,
+      "moving_range": [
+        55,
+        56
+      ]
+    },
+    {
+      "profile": "metamorphe-armor3",
+      "family": "melee-wide",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        55,
+        56
+      ]
+    },
+    {
+      "profile": "metamorphe-armor3",
+      "family": "melee-close",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        55,
+        56
+      ]
+    }
+  ],
+  "engine": {
+    "native_configurations": 1104,
+    "native_draws": 14352,
+    "front_returns": 4416,
+    "saved_contact_boards": 72,
+    "camp_groups": [
+      {
+        "class": "bastion",
+        "family": "ranged",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "bastion",
+        "family": "melee-wide",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "bastion",
+        "family": "melee-close",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "traqueuse",
+        "family": "ranged",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "traqueuse",
+        "family": "melee-wide",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "traqueuse",
+        "family": "melee-close",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "arcaniste",
+        "family": "ranged",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "arcaniste",
+        "family": "melee-wide",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "arcaniste",
+        "family": "melee-close",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "metamorphe",
+        "family": "ranged",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "metamorphe",
+        "family": "melee-wide",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "metamorphe",
+        "family": "melee-close",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      }
+    ],
+    "camp_pose_records": 1872,
+    "camp_front_returns": 144,
+    "normal_game_enabled": false,
+    "saved_game_loaded": false,
+    "preferences_written": false,
+    "read_decode_in_draw": false
+  },
+  "preserved_hash_banks": {
+    "runtime-assets-C09": 1604,
+    "candidate-resources-C06": 3272,
+    "candidate-resources-C08": 113,
+    "candidate-resources-C09": 169,
+    "candidate-resources-C10": 487,
+    "candidate-resources-C11": 174,
+    "candidate-resources-C12": 1265
+  },
+  "browser_review": {
+    "url": "http://127.0.0.1:63780/grips-C12/apercu.html",
+    "checked": [
+      "three grip family buttons",
+      "74 weapon options, 12 outfits, 7 colors, 7 head states",
+      "model 0 with Traqueuse armor 2, blue palette and helmet 120",
+      "engine board and camp image loaded",
+      "animation resumed",
+      "ranged manual rear phase 07 inspected",
+      "wide grip with helmet 120 selected",
+      "close grip front inspected, then animation restored"
+    ],
+    "console_errors": [],
+    "screenshots": [
+      "artifacts/vertical-walk-review-18/current/grips-C12/C12-browser-review.jpg",
+      "artifacts/vertical-walk-review-18/current/grips-C12/C12-browser-poses.jpg"
+    ],
+    "checked_on": "2026-10-30"
+  },
+  "validation": {
+    "debug_build": "cargo build --locked passed",
+    "python_compile": "passed for changed art tools",
+    "diff_check": "passed; existing line-ending notices only",
+    "full_test_suite_run": false,
+    "release_build_run": false
+  },
+  "visual_acceptance": "acceptance-C12.json",
+  "integration": "integration-C12.json"
+}

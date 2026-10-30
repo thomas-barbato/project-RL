@@ -1,0 +1,137 @@
+{
+  "review": "CREATION-UI02-A",
+  "date": "2026-10-30",
+  "status": "layout_visually_accepted_refinement_requested",
+  "normal_game_enabled": false,
+  "debug_opt_in_argument": "--review-creation-details",
+  "cold_capture_prefix": "--ui-cold-character-creation-docked",
+  "problem": "the description reader overlays the selectable class list",
+  "proposal": [
+    "fixed class column, loadout cards in the center, reserved reader on the right",
+    "click a card to retain its description after the pointer leaves",
+    "independent card-list and description scrolling",
+    "keep class choice and creation buttons visible"
+  ],
+  "existing_item_and_skill_texts_changed": false,
+  "gameplay_or_starting_loadout_changed": false,
+  "new_ui_copy": [
+    "Clic : choisir · Molette : lire"
+  ],
+  "normal_capture_byte_identical": true,
+  "captures": [
+    {
+      "case": "before",
+      "path": "artifacts/character-creation-review-02/current/before/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "b9734481889fdd4b38fb08c8312cddbbbc5096a19cfc92e0d030f0b6e086cd9c"
+    },
+    {
+      "case": "normal-check",
+      "path": "artifacts/character-creation-review-02/current/normal-check/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "b9734481889fdd4b38fb08c8312cddbbbc5096a19cfc92e0d030f0b6e086cd9c"
+    },
+    {
+      "case": "candidate-02A",
+      "path": "artifacts/character-creation-review-02/current/candidate-02A/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "97708f9f0deef560232a050d8ee75dd2f11a41784216c3623dbb31ef5bf9aaab"
+    },
+    {
+      "case": "bastion-skill",
+      "path": "artifacts/character-creation-review-02/current/bastion-skill/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "49af0cc2775023e9407f3fe6138a692721d3ed2f8fdcae1f0b8dde32b2de75f5"
+    },
+    {
+      "case": "traqueur-item",
+      "path": "artifacts/character-creation-review-02/current/traqueur-item/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "0d2665f27e7f8e74261b759285a3935c48a067ee3ce11c1e90cee670f0c2eefa"
+    },
+    {
+      "case": "metamorphe-scroll-small",
+      "path": "artifacts/character-creation-review-02/current/metamorphe-scroll-small/cold-start.png",
+      "pixels": [
+        960,
+        540
+      ],
+      "sha256": "bc39edee8a837dc09a31c91c6add1b51cb9a3d5336b9ef572500489ec07e1f43"
+    },
+    {
+      "case": "arcaniste-small",
+      "path": "artifacts/character-creation-review-02/current/arcaniste-small/cold-start.png",
+      "pixels": [
+        960,
+        540
+      ],
+      "sha256": "ad3e6f69542087a64ad5334cb039482f90b1439ae18a00ff0974edf352859060"
+    },
+    {
+      "case": "arcaniste-largeui",
+      "path": "artifacts/character-creation-review-02/current/arcaniste-largeui/cold-start.png",
+      "pixels": [
+        1280,
+        800
+      ],
+      "sha256": "4789ad2d721cc0e7e78a94676703c2a973c31653616a9ab19791dd7bb858e6f6"
+    }
+  ],
+  "validation": {
+    "cargo_check_locked_all_targets": "passed",
+    "debug_build": "passed",
+    "targeted_tests": 5,
+    "full_suite_run": false,
+    "layout_sizes_tested": [
+      [
+        960,
+        540
+      ],
+      [
+        1280,
+        800
+      ],
+      [
+        1600,
+        900
+      ],
+      [
+        1920,
+        1080
+      ],
+      [
+        853,
+        533
+      ]
+    ],
+    "native_compact_capture": [
+      960,
+      540
+    ],
+    "native_large_ui_capture": "1280 x 800, 150 percent",
+    "formatting": "changed Rust files passed",
+    "git_diff_check": "passed; existing LF/CRLF notices only"
+  },
+  "native_rendering": true,
+  "implementation_files": [
+    "src/character_creation_details.rs",
+    "src/ascii_app.rs"
+  ],
+  "approval_rule": "AGENTS.md: show and obtain explicit approval of new/modified player-facing visual effects in the agent redesign before integration",
+  "user_quote": "oui c'est bien mieux :) , est-ce que tu peux rendre le visuel encore plus moderne s'il te plais ? avec des transitions douces etc :)"
+}

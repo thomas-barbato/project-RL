@@ -1267,7 +1267,7 @@ fn rounded_outline(rect: Rect, radius: f32, thickness: f32, outline: Color, fill
     }
 }
 
-fn rounded_rectangle(rect: Rect, radius: f32, color: Color) {
+pub(crate) fn rounded_rectangle(rect: Rect, radius: f32, color: Color) {
     let radius = radius.max(0.0).min(rect.w * 0.5).min(rect.h * 0.5);
     if radius <= 0.0 {
         draw_rectangle(rect.x, rect.y, rect.w, rect.h, color);

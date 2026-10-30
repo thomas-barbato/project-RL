@@ -6,6 +6,11 @@ use std::{cell::RefCell, collections::BTreeMap, sync::OnceLock};
 #[path = "game_art_walk_palette.rs"]
 mod palette;
 
+#[cfg(all(debug_assertions, test))]
+pub(super) fn vertical_palette(number: u16, variant: u8, image: &mut Image) -> Option<()> {
+    palette::apply(number, variant, image)
+}
+
 #[derive(Deserialize)]
 struct Creature {
     id: String,

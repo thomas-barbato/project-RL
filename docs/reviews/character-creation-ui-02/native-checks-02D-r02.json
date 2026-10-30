@@ -1,0 +1,748 @@
+{
+  "review": "CREATION-UI02-D-r02",
+  "audits": {
+    "audit-1280": {
+      "game_fingerprint_turn_rng_unchanged": true,
+      "lifecycle": {
+        "after_reopen": {
+          "decode_ms": 471.7148,
+          "decoded_source_budget": 67108864,
+          "decoded_source_peak_bytes": 11337728,
+          "jobs": 3,
+          "pending": 0,
+          "read_bytes": 1503868,
+          "read_ms": 2.4908,
+          "source_reads": 3,
+          "texture_budget": 134217728,
+          "texture_bytes": 278528,
+          "texture_create_ms": 0.2702,
+          "uploads": 3,
+          "worker_build_ms_including_sources": 476.3315
+        },
+        "before_reopen": {
+          "decode_ms": 471.7148,
+          "decoded_source_budget": 67108864,
+          "decoded_source_peak_bytes": 11337728,
+          "jobs": 3,
+          "pending": 0,
+          "read_bytes": 1503868,
+          "read_ms": 2.4908,
+          "source_reads": 3,
+          "texture_budget": 134217728,
+          "texture_bytes": 278528,
+          "texture_create_ms": 0.2702,
+          "uploads": 3,
+          "worker_build_ms_including_sources": 476.3315
+        },
+        "resize": null,
+        "reuse_verified": true
+      },
+      "normal_game_enabled": false,
+      "records": [
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        }
+      ],
+      "resource_preparation": {
+        "decode_ms": 471.7148,
+        "decoded_source_budget": 67108864,
+        "decoded_source_peak_bytes": 11337728,
+        "jobs": 3,
+        "pending": 0,
+        "read_bytes": 1503868,
+        "read_ms": 2.4908,
+        "source_reads": 3,
+        "texture_budget": 134217728,
+        "texture_bytes": 278528,
+        "texture_create_ms": 0.2702,
+        "uploads": 3,
+        "worker_build_ms_including_sources": 476.3315
+      },
+      "review": "CREATION-UI02-D",
+      "viewport": [
+        1280.0,
+        800.0
+      ]
+    },
+    "audit-960": {
+      "game_fingerprint_turn_rng_unchanged": true,
+      "lifecycle": {
+        "after_reopen": {
+          "decode_ms": 0.0,
+          "decoded_source_budget": 67108864,
+          "decoded_source_peak_bytes": 0,
+          "jobs": 0,
+          "pending": 0,
+          "read_bytes": 0,
+          "read_ms": 0.0,
+          "source_reads": 0,
+          "texture_budget": 134217728,
+          "texture_bytes": 0,
+          "texture_create_ms": 0.0,
+          "uploads": 0,
+          "worker_build_ms_including_sources": 0.0
+        },
+        "before_reopen": {
+          "decode_ms": 0.0,
+          "decoded_source_budget": 67108864,
+          "decoded_source_peak_bytes": 0,
+          "jobs": 0,
+          "pending": 0,
+          "read_bytes": 0,
+          "read_ms": 0.0,
+          "source_reads": 0,
+          "texture_budget": 134217728,
+          "texture_bytes": 0,
+          "texture_create_ms": 0.0,
+          "uploads": 0,
+          "worker_build_ms_including_sources": 0.0
+        },
+        "resize": {
+          "prepared": {
+            "decode_ms": 510.0554,
+            "decoded_source_budget": 67108864,
+            "decoded_source_peak_bytes": 11337728,
+            "jobs": 3,
+            "pending": 0,
+            "read_bytes": 1503868,
+            "read_ms": 3.3821,
+            "source_reads": 3,
+            "texture_budget": 134217728,
+            "texture_bytes": 278528,
+            "texture_create_ms": 0.2755,
+            "uploads": 3,
+            "worker_build_ms_including_sources": 515.997
+          },
+          "resource_work_in_draw": false,
+          "small_to_large_then_back": true
+        },
+        "reuse_verified": true
+      },
+      "normal_game_enabled": false,
+      "records": [
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 208.0,
+          "scene_visible": false,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": false,
+          "skills": 2
+        }
+      ],
+      "resource_preparation": {
+        "decode_ms": 510.0554,
+        "decoded_source_budget": 67108864,
+        "decoded_source_peak_bytes": 11337728,
+        "jobs": 3,
+        "pending": 0,
+        "read_bytes": 1503868,
+        "read_ms": 3.3821,
+        "source_reads": 3,
+        "texture_budget": 134217728,
+        "texture_bytes": 278528,
+        "texture_create_ms": 0.2755,
+        "uploads": 3,
+        "worker_build_ms_including_sources": 515.997
+      },
+      "review": "CREATION-UI02-D",
+      "viewport": [
+        960.0,
+        540.0
+      ]
+    },
+    "audit-terminal": {
+      "game_fingerprint_turn_rng_unchanged": true,
+      "lifecycle": {
+        "after_reopen": {
+          "decode_ms": 433.7005,
+          "decoded_source_budget": 67108864,
+          "decoded_source_peak_bytes": 11337728,
+          "jobs": 3,
+          "pending": 0,
+          "read_bytes": 1503868,
+          "read_ms": 1.9222,
+          "source_reads": 3,
+          "texture_budget": 134217728,
+          "texture_bytes": 278528,
+          "texture_create_ms": 0.1701,
+          "uploads": 3,
+          "worker_build_ms_including_sources": 437.3201
+        },
+        "before_reopen": {
+          "decode_ms": 433.7005,
+          "decoded_source_budget": 67108864,
+          "decoded_source_peak_bytes": 11337728,
+          "jobs": 3,
+          "pending": 0,
+          "read_bytes": 1503868,
+          "read_ms": 1.9222,
+          "source_reads": 3,
+          "texture_budget": 134217728,
+          "texture_bytes": 278528,
+          "texture_create_ms": 0.1701,
+          "uploads": 3,
+          "worker_build_ms_including_sources": 437.3201
+        },
+        "resize": null,
+        "reuse_verified": true
+      },
+      "normal_game_enabled": false,
+      "records": [
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:bastion",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:traqueur",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:arcaniste",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 0,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 1,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 2,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        },
+        {
+          "all_card_rects_visible": true,
+          "card": 3,
+          "cards_overflow_px": 0.0,
+          "class": "core:metamorphe",
+          "items": 2,
+          "new_presentation_io_or_uploads_in_draw": false,
+          "reader_overflow_px": 0.0,
+          "scene_visible": true,
+          "skills": 2
+        }
+      ],
+      "resource_preparation": {
+        "decode_ms": 433.7005,
+        "decoded_source_budget": 67108864,
+        "decoded_source_peak_bytes": 11337728,
+        "jobs": 3,
+        "pending": 0,
+        "read_bytes": 1503868,
+        "read_ms": 1.9222,
+        "source_reads": 3,
+        "texture_budget": 134217728,
+        "texture_bytes": 278528,
+        "texture_create_ms": 0.1701,
+        "uploads": 3,
+        "worker_build_ms_including_sources": 437.3201
+      },
+      "review": "CREATION-UI02-D",
+      "viewport": [
+        1280.0,
+        800.0
+      ]
+    }
+  },
+  "parity": {
+    "compiled_source_matches_current": true,
+    "changed_since_capture": [],
+    "normal_ui_pixel_identical": true,
+    "reduced_motion_endpoint_identical": false,
+    "actor_and_scenery_pixels_unchanged": true,
+    "release_executable_unchanged": true,
+    "reduced_motion_different_pixels": 12,
+    "reduced_motion_difference_bounds": [
+      415,
+      220,
+      744,
+      333
+    ],
+    "reduced_motion_scene_pixel_identical": true,
+    "reduced_motion_note": "Endpoint visually matches; 12 pixels differ around card/section lettering. No exact whole-image equality claim."
+  }
+}

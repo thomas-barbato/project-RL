@@ -1,0 +1,528 @@
+{
+  "review": "VERT18-C01",
+  "status": "review_only",
+  "native_tile_px": 64,
+  "canvas_px": 128,
+  "normal_game_enabled": false,
+  "whole_authored_figures_only": true,
+  "profiles": [
+    {
+      "id": "arcaniste",
+      "selector": {
+        "kind": "player",
+        "body": 6,
+        "equipment": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-r01/arcaniste.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-r01/arcaniste-standing-original.png",
+      "source": "assets/source-art/vertical-walk-review-18/arcaniste-r01-source.png",
+      "source_sha256": "ebfaef663553b1dc04bdf2cfe6af3f4e64419bc57a0417375f31f77f8731cc71",
+      "source_scale_xy_uniform": 0.21070811744386875,
+      "original_height_px": 61,
+      "original_foot_y": 95,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            48,
+            33,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              50.86,
+              65.77
+            ],
+            [
+              76.42,
+              66.9
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            48,
+            33,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              50.84,
+              65.88
+            ],
+            [
+              77.13,
+              66.69
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            48,
+            33,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              50.98,
+              65.89
+            ],
+            [
+              76.58,
+              66.84
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            48,
+            33,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              50.83,
+              65.88
+            ],
+            [
+              76.41,
+              66.35
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            48,
+            34,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.03,
+              66.05
+            ],
+            [
+              77.13,
+              66.83
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            48,
+            33,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              50.91,
+              65.96
+            ],
+            [
+              76.6,
+              66.3
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            48,
+            33,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              50.74,
+              65.7
+            ],
+            [
+              76.43,
+              66.89
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            48,
+            33,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              50.98,
+              65.84
+            ],
+            [
+              77.09,
+              66.77
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            48,
+            33,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              50.93,
+              65.92
+            ],
+            [
+              77.15,
+              66.74
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            48,
+            33,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              50.93,
+              65.94
+            ],
+            [
+              76.51,
+              66.35
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            48,
+            33,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              50.92,
+              65.93
+            ],
+            [
+              77.11,
+              66.3
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            48,
+            33,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              50.96,
+              66.03
+            ],
+            [
+              76.68,
+              66.1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "npc-garde",
+      "selector": {
+        "kind": "camp_npc",
+        "index": 1
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-r01/npc-garde.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-r01/npc-garde-standing-original.png",
+      "source": "assets/source-art/vertical-walk-review-18/npc-garde-r02-source.png",
+      "source_sha256": "e95d05c6bc1eac248e9155c4d17cc6d96b82c225e6c2481d6f082fb37637f0b2",
+      "source_scale_xy_uniform": 0.21937842778793418,
+      "original_height_px": 60,
+      "original_foot_y": 96,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            45,
+            35,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              51.0,
+              71.0
+            ],
+            [
+              77.0,
+              71.0
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            44,
+            35,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              51.0,
+              71.0
+            ],
+            [
+              76.99,
+              71.0
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            45,
+            35,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              51.11,
+              70.87
+            ],
+            [
+              76.99,
+              71.0
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            44,
+            35,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              51.0,
+              71.0
+            ],
+            [
+              77.0,
+              71.0
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            45,
+            35,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              51.0,
+              71.0
+            ],
+            [
+              77.03,
+              70.91
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            44,
+            35,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              51.0,
+              71.0
+            ],
+            [
+              77.0,
+              71.0
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            44,
+            35,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              51.13,
+              70.7
+            ],
+            [
+              76.99,
+              71.0
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            44,
+            35,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              51.01,
+              70.86
+            ],
+            [
+              77.0,
+              71.0
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            44,
+            35,
+            84,
+            96
+          ],
+          "palms": [
+            [
+              50.97,
+              70.79
+            ],
+            [
+              77.0,
+              71.0
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            44,
+            36,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              51.0,
+              71.0
+            ],
+            [
+              76.99,
+              70.99
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            44,
+            36,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              51.0,
+              71.0
+            ],
+            [
+              77.0,
+              71.0
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            44,
+            35,
+            83,
+            96
+          ],
+          "palms": [
+            [
+              50.99,
+              70.94
+            ],
+            [
+              77.0,
+              71.0
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

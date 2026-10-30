@@ -8,6 +8,26 @@ mod generic;
 pub(super) fn class_outfit(body: u8, equipment: [Option<u16>; 4]) -> Option<u16> {
     class_armor::outfit_index(body, equipment)
 }
+
+#[cfg(all(debug_assertions, test))]
+pub(super) fn vertical_review_weapon(
+    model: u16,
+    left: bool,
+    color: EquipmentPalette,
+) -> Option<(Image, [f32; 2], Option<[f32; 2]>)> {
+    class_armor::vertical_review_weapon(model, left, color)
+}
+
+#[cfg(debug_assertions)]
+pub(super) fn vertical_review_composition(
+    source: &Image,
+    palms: [[f32; 2]; 2],
+    back: bool,
+    held: [Option<HeldLayer>; 2],
+    colors: [EquipmentPalette; 3],
+) -> Option<Image> {
+    class_armor::vertical_review_composition(source, palms, back, held, colors)
+}
 pub(super) fn approved_walking_layers(
     key: Key,
     pose: crate::game_art::walking::Pose,
@@ -149,6 +169,19 @@ fn breathed(image: Image, index: usize, breath: u8) -> Image {
 pub(super) fn compose(key: Key, breath: u8) -> Option<Image> {
     let _loading = project_rl::loading_profile::Span::caller("compose_player", 0);
     let layers = layers(key, breath)?;
+    let mut composed = Image::gen_image_color(128, 128, BLANK);
+    for layer in layers {
+        flat_agents::alpha_over(&mut composed, &layer);
+    }
+    Some(composed)
+}
+#[cfg(debug_assertions)]
+pub(super) fn vertical_review_standing_head(
+    key: Key,
+    apply: impl FnOnce(&mut Image),
+) -> Option<Image> {
+    let mut layers = layers(key, 0)?;
+    apply(layers.first_mut()?);
     let mut composed = Image::gen_image_color(128, 128, BLANK);
     for layer in layers {
         flat_agents::alpha_over(&mut composed, &layer);

@@ -7,6 +7,7 @@ mod animation_readability_review;
 mod art_quality_capture;
 mod ascii_app;
 mod asset_loading;
+mod asset_preparation;
 mod asset_smoke;
 mod attack_preview_visuals;
 mod camp_atmosphere;
@@ -57,6 +58,16 @@ mod test_sector;
 mod ui_capture;
 mod ui_skin;
 mod ui_theme;
+#[cfg(all(debug_assertions, test))]
+mod vertical_walk_catalog18;
+#[cfg(debug_assertions)]
+mod vertical_walk_extension18;
+#[cfg(debug_assertions)]
+mod vertical_walk_integration18;
+#[cfg(all(debug_assertions, test))]
+mod vertical_walk_palette18;
+#[cfg(debug_assertions)]
+mod vertical_walk_review18;
 mod visual_effects;
 mod visual_polish;
 #[cfg(debug_assertions)]
@@ -154,6 +165,7 @@ async fn game_main() {
     show_mouse(true);
     miniquad::window::set_mouse_cursor(miniquad::CursorIcon::Default);
     prevent_quit();
+    asset_preparation::initialize_graphics_thread();
     if let Err(error) = ui_theme::initialize_fonts() {
         eprintln!("[UI] Police embarquée indisponible, police de secours utilisée : {error}");
     }
@@ -238,9 +250,21 @@ async fn game_main() {
     #[cfg(debug_assertions)]
     if let Some(output) = graphics::ui_smoke_output() {
         let mode = std::env::args().nth(1).unwrap_or_default();
-        let result = if mode == "--ui-cold-dual-texture"
-            || mode == "--ui-cold-dual-texture-candidate"
-        {
+        let result = if mode == "--ui-cold-vertical-integration" {
+            vertical_walk_integration18::capture(&output).await
+        } else if mode == "--ui-cold-vertical-extension" {
+            vertical_walk_extension18::capture(&output).await
+        } else if mode == "--ui-cold-vertical-size" {
+            vertical_walk_review18::capture_sizes(&output).await
+        } else if mode == "--ui-cold-vertical-headgear" {
+            vertical_walk_review18::capture_heads(&output).await
+        } else if mode == "--ui-cold-vertical-equipment" {
+            vertical_walk_review18::capture_equipment(&output).await
+        } else if mode == "--ui-cold-vertical-roster" {
+            vertical_walk_review18::capture_roster(&output).await
+        } else if mode == "--ui-cold-vertical-walk" {
+            vertical_walk_review18::capture(&output).await
+        } else if mode == "--ui-cold-dual-texture" || mode == "--ui-cold-dual-texture-candidate" {
             let _review = (mode == "--ui-cold-dual-texture-candidate")
                 .then(|| game_art::walking::review_dual17(true));
             match std::env::var_os("RL_WALK_SAVED_RUN") {
@@ -565,6 +589,10 @@ async fn game_main() {
             app.update();
         }
         if app.should_quit() {
+            break;
+        }
+        if let Err(error) = app.prepare_presentation() {
+            run_error_screen(&error).await;
             break;
         }
         if let Err(error) = dialogue.draw(&mut app, get_time()) {

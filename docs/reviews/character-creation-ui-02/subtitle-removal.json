@@ -1,0 +1,25 @@
+{
+  "review": "CREATION-UI02-TEXT01",
+  "date": "2026-10-30",
+  "status": "integrated_release",
+  "authorized_by": "User explicitly requested removal of the introductory sentence.",
+  "removed_sentence": "Un équipement de départ et une façon d'aborder l'expédition.",
+  "replacement_text": null,
+  "scope": "class selection heading only; attribute customization instructions retained",
+  "normal_and_compact_paths_share_removal": true,
+  "release_build": "cargo build --locked --release --bin project-rl: passed",
+  "release_sha256": "ef6a76b2225bc660837fb47426fb6cb9246944daa743590ac4afe0cfb8ab5543",
+  "source_sha256": "d3797eb7930869392aceaf6056078e30be64133c6e5675664c53a326641a0859",
+  "verification": {
+    "sentence_absent_from_source": true,
+    "sentence_absent_from_release_binary": true,
+    "attribute_customization_instruction_preserved": true,
+    "changed_file_rustfmt": "passed",
+    "git_diff_check": "passed",
+    "new_tests_added": false,
+    "native_capture_rerun": false
+  },
+  "art_direction_study": "ETUDE-02D.md",
+  "study_habillage_integrated": false,
+  "debug_cache_recreated": false
+}

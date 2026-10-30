@@ -1,0 +1,30 @@
+{
+  "review": "VERT18-C11-BACK-R02",
+  "date": "2026-10-30",
+  "status": "visual_accepted_integrated",
+  "selected": "B",
+  "user_quote": "ca me va pour le moment :), il faut aussi faire les armes à deux mains :)",
+  "normal_game_enabled": true,
+  "scope": {
+    "body_profiles": 12,
+    "loadouts": [
+      "dual-knives: W070/W070",
+      "pistol-knife: W104/W070"
+    ],
+    "headgear_choices": 7,
+    "poses": 13,
+    "torso_palette": "Original",
+    "weapon_palette": "Original",
+    "front_and_idle_preserved_exactly": 1176
+  },
+  "candidate_resources": "candidate-resources-C11-back-r02.json",
+  "candidate_resources_sha256": "0bcd97ad3263d1b03f47aeaa75567c15ade64e2c8c881213575404e6556cd6d9",
+  "approved_composites": 168,
+  "excluded": [
+    "C12 two-handed poses",
+    "other C10 loadouts",
+    "unused Imagegen rear studies"
+  ],
+  "next_review": "VERT18-C12",
+  "integration": "integration-C12.json"
+}

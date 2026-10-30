@@ -1,0 +1,27 @@
+{
+  "id": "arcaniste-armor2-one-r02",
+  "number": 8,
+  "profile": "arcaniste-armor2",
+  "index": 17,
+  "class_id": "core:arcaniste",
+  "rank": 2,
+  "family": "one",
+  "references": [
+    "assets/source-art/player-walk-review-11/CLASS-17-front-native128.png",
+    "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/sources/AR-RR05-P03-r01-source.png",
+    "assets/source-art/vertical-walk-review-18/armor-C10/arcaniste-armor2-one-r01-source.png"
+  ],
+  "prompt": "Use case: identity-preserve. Correct Image3, the full 4x4 transparent sixteen-figure sprite sheet, to match the exact original Arcaniste rank2 LONG CLOTH ROBE silhouette from Images1 and2. Image3 incorrectly shortened the robe into a knee-length coat. Every one of the sixteen whole figures must instead have the original full-length red split robe extending DOWN TO THE ANKLES just above the boots, with long red full sleeves to the dark gloves, and face mostly covered in deep hood shadow, long ivory central front cloth panel bordered by red robe. Keep the exact original garment lengths, silhouette and armor design in Images1 and2, not a new costume. The red skirt panels must cover most of the legs in EVERY phase including both neutral poses; no bare biceps, no cropped vest, no high thigh-length tails. At the front, the split coat can expose a slim dark inner garment, knees only glimpsed during gait; at the back, the long red robe has a coherent full fabric panel and no copied front lapels or face. Preserve the RAISED RED CLOTH HOOD on both front AND back, no hair or face visible from the back. Keep the same head, belt, gloves, wrists, boots, adult proportions and compact matte pixel-art finish. Maintain the 4-column/4-row layout, sixteen COMPLETE separate full-body figures, true alpha transparency, equal scale and foot baseline. Rows1/2 front, rows3/4 trueback; first column standing, other three columns quiet alternating walking phases. Hands empty and low, no weapons, no ghost arms or costume fragments. The whole pose, boots and moving cloth must remain coherent; do not graft strips. No text, labels, grid, shadows or scenery. This is solely a correction to preserve original long-robe clothing identity.",
+  "output": "assets/source-art/vertical-walk-review-18/armor-C10/arcaniste-armor2-one-r02-source.png",
+  "status": "drawn_pending_native_review",
+  "transparent_background": true,
+  "source_sha256": "10dea44a71a7d46ce056d86ce15c11300955acd08f8592ef4f4286251c06893a",
+  "selected_sha256": "10dea44a71a7d46ce056d86ce15c11300955acd08f8592ef4f4286251c06893a",
+  "mode": "builtin_imagegen",
+  "generated_source": "C:\\Users\\User\\.codex\\generated_images\\01a17e6a-663f-7731-868d-07589969d8cf\\exec-1f73bc52-4fe0-4b00-8c80-183f2f479664.png",
+  "dimensions": [
+    1266,
+    1243
+  ],
+  "sha256": "10dea44a71a7d46ce056d86ce15c11300955acd08f8592ef4f4286251c06893a"
+}

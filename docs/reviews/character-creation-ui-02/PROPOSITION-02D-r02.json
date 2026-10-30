@@ -1,0 +1,170 @@
+{
+  "review": "CREATION-UI02-D-r02",
+  "date": "2026-10-30",
+  "status": "native_prototype_awaiting_visual_approval",
+  "normal_game_enabled": false,
+  "normal_game_version": "CREATION-UI02-B with requested subtitle removal",
+  "request_for_prototype": "oui je veux bien :)",
+  "line_correction_request": "j'aime mais il y a des traits plus epais que les autres et qui parasites un peu tout .",
+  "changes": [
+    "same compact 02-C geometry",
+    "matte chamfered plates and recessed icon slots",
+    "one contour without 3 px offset shadows",
+    "edge highlights coincide with the contour",
+    "decorative accents narrowed from 2-3 px to 1 px",
+    "outer class-well outline and edge nicks removed",
+    "six attributes presented in two rows with stronger values",
+    "192x192 camp scene with an unarmed native64 class figure, hidden when space is insufficient"
+  ],
+  "debug_opt_in_argument": "--review-creation-industrial",
+  "source_art_and_gameplay_changed": false,
+  "new_player_copy": false,
+  "subtitle_remains_removed": true,
+  "native_audit_summary": {
+    "audit-1280": {
+      "viewport": [
+        1280.0,
+        800.0
+      ],
+      "cards": 16,
+      "all_cards_visible": true,
+      "cards_scroll_max_px": 0.0,
+      "readers_without_scroll": 16,
+      "remaining_readers_scroll": [],
+      "scene_visible_count": 16,
+      "game_fingerprint_turn_rng_unchanged": true,
+      "no_presentation_io_or_uploads_in_draw": true,
+      "cache_reuse_on_reopen": true,
+      "jobs_before_reopen": 3,
+      "resize_checked": false,
+      "texture_bytes": 278528,
+      "texture_budget": 134217728,
+      "decoded_source_peak_bytes": 11337728
+    },
+    "audit-960": {
+      "viewport": [
+        960.0,
+        540.0
+      ],
+      "cards": 16,
+      "all_cards_visible": true,
+      "cards_scroll_max_px": 0.0,
+      "readers_without_scroll": 15,
+      "remaining_readers_scroll": [
+        {
+          "class": "core:metamorphe",
+          "pixels": 208.0
+        }
+      ],
+      "scene_visible_count": 0,
+      "game_fingerprint_turn_rng_unchanged": true,
+      "no_presentation_io_or_uploads_in_draw": true,
+      "cache_reuse_on_reopen": true,
+      "jobs_before_reopen": 0,
+      "resize_checked": true,
+      "texture_bytes": 278528,
+      "texture_budget": 134217728,
+      "decoded_source_peak_bytes": 11337728
+    },
+    "audit-terminal": {
+      "viewport": [
+        1280.0,
+        800.0
+      ],
+      "cards": 16,
+      "all_cards_visible": true,
+      "cards_scroll_max_px": 0.0,
+      "readers_without_scroll": 16,
+      "remaining_readers_scroll": [],
+      "scene_visible_count": 16,
+      "game_fingerprint_turn_rng_unchanged": true,
+      "no_presentation_io_or_uploads_in_draw": true,
+      "cache_reuse_on_reopen": true,
+      "jobs_before_reopen": 3,
+      "resize_checked": false,
+      "texture_bytes": 278528,
+      "texture_budget": 134217728,
+      "decoded_source_peak_bytes": 11337728
+    }
+  },
+  "parity": {
+    "compiled_source_matches_current": true,
+    "changed_since_capture": [],
+    "normal_ui_pixel_identical": true,
+    "reduced_motion_endpoint_identical": false,
+    "actor_and_scenery_pixels_unchanged": true,
+    "release_executable_unchanged": true,
+    "reduced_motion_different_pixels": 12,
+    "reduced_motion_difference_bounds": [
+      415,
+      220,
+      744,
+      333
+    ],
+    "reduced_motion_scene_pixel_identical": true,
+    "reduced_motion_note": "Endpoint visually matches; 12 pixels differ around card/section lettering. No exact whole-image equality claim."
+  },
+  "resource_preparation": {
+    "service": "src/asset_preparation.rs",
+    "useful_only_when_scene_fits": true,
+    "small_initial_scene_jobs": 0,
+    "resize_to_large_prepares_before_scene_draw": true,
+    "sources": {
+      "assets/maps/cryogenic-camp-01/floor.png": "594f9373eae1b3cb516092ccf3856f6ed3a65276c85d04bf0401f9bb6e97911e",
+      "assets/maps/cryogenic-camp-01/DEC-CAMP-11-r05.png": "926bcdea4933c7b061ed820b4f15fecda264abbd4f0491c2e0424323bcee83fc",
+      "assets/maps/cryogenic-camp-01/DEC-CAMP-14-r05.png": "6efe0714d8244393af57d066a71e7c0d860affd2f025cdd53730e3292c2a0499"
+    },
+    "sources_unchanged_from_cleanup": true,
+    "runtime_inventory_count": 3664
+  },
+  "personal_files": {
+    "verified": 7,
+    "unchanged": true
+  },
+  "validation": {
+    "debug_build": "passed after retry once native processes exited",
+    "release_check": "cargo check --locked --release --bin project-rl: passed",
+    "targeted_tests": {
+      "command": "cargo test --locked --bin project-rl character_creation -- --test-threads=1",
+      "passed": 10,
+      "scope": "normal-path regressions before line-weight-only revision; current r02 additionally has 48 native card checks"
+    },
+    "full_test_suite_run": false,
+    "rustfmt_changed_files": "passed",
+    "git_diff_check": "passed",
+    "browser_or_desktop_visual_execution": false,
+    "native_framebuffer_capture_execution": true
+  },
+  "source_hashes_at_capture": {
+    "src/ascii_app.rs": "7a406b7f07d395205f50503d1d7ac84b316166304ea449a80c78d035e8798009",
+    "src/character_creation_industrial.rs": "637829f1106ae054bec5da688d3362f218a7f26d9fb3660abffb969b3c2940c8",
+    "src/character_creation_polish.rs": "6493483809941b977079ed9ed82f43fa523cd8ad6d7b54c33c972fddb611ecf3",
+    "src/character_creation_details.rs": "f8cc5259b6cdf6673b8e0e8dd8ced318fb50bef576bdb4e319903ab87f01f002",
+    "target/debug/project-rl.exe": "54c062a8722aac56750939fd838320c9a08e57bc527595fb40615327161b3ce5"
+  },
+  "captures": {
+    "metamorphe": {
+      "path": "artifacts/character-creation-review-02/current/industrial-02D/r02/metamorphe/cold-start.png",
+      "sha256": "0bc9fe4cd685e17f5899b634fb2fd60ef0dc092dc3b8007fadad75a4529d55f4"
+    },
+    "arcaniste-small": {
+      "path": "artifacts/character-creation-review-02/current/industrial-02D/r02/arcaniste-small/cold-start.png",
+      "sha256": "f54da52b92991e99501558568c03e99b627c12f25105fe600b1f98229e8d3951"
+    },
+    "terminal": {
+      "path": "artifacts/character-creation-review-02/current/industrial-02D/r02/terminal/cold-start.png",
+      "sha256": "c106dfb5df5c847ae1a39c929c12560cc23659976ea99ec99f0ab9b0efd7c542"
+    },
+    "reduced": {
+      "path": "artifacts/character-creation-review-02/current/industrial-02D/r02/reduced/cold-start.png",
+      "sha256": "4ad1765c96073dc936f3c67d78676aa26181645bf7fa38fa5188e2282ae83731"
+    },
+    "normal-control": {
+      "path": "artifacts/character-creation-review-02/current/industrial-02D/r02/normal-control/cold-start.png",
+      "sha256": "940744ce815c0e811930a0b904bb5937e20e7de4155316f3c6a599af68006fcf"
+    }
+  },
+  "capture_script": "tools/reviews/capture_creation_industrial02.ps1",
+  "cleanup": "cleanup-02D.json",
+  "temporary_debug_cache_cleanup": "cleanup-debug-02D.json"
+}

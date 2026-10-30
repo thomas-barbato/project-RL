@@ -24,6 +24,9 @@ impl<K: Ord + Clone, V> ByteCache<K, V> {
             &*value
         })
     }
+    pub fn bytes_used(&self) -> usize {
+        self.bytes
+    }
     pub fn insert(&mut self, key: K, value: V, bytes: usize) {
         if let Some((_, old, _)) = self.entries.remove(&key) {
             self.bytes -= old;

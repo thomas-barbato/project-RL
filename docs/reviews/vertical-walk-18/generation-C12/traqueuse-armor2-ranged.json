@@ -1,0 +1,27 @@
+{
+  "id": "traqueuse-armor2-ranged",
+  "number": 5,
+  "profile": "traqueuse-armor2",
+  "index": 12,
+  "class_id": "core:traqueur",
+  "rank": 2,
+  "family": "ranged",
+  "references": [
+    "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor2-idle.png",
+    "assets/source-art/vertical-walk-review-18/armor-C10/traqueuse-armor2-one-r01-source.png",
+    "assets/source-art/vertical-walk-review-18/grips-C12/references/traqueuse-ranged-idle.png"
+  ],
+  "prompt": "Use case: identity-preserve. Edit the EXACT SAME character shown in Image1 (the canonical neutral front at native game size) and Image2 (the sixteen complete frontal/back figures of the exact intermediate armor outfit). Change ONLY the coherent arm/hand pose to the two-handed empty grip described below. Preserve head, torso identity and proportions, clothing, armor, all knees/boots, gait/support sequence, matte materials, upper-left lighting, colors and body stature. The same garment must not get wider or shorter between directions or at rest. Output a FOUR-column by FOUR-row sheet of sixteen COMPLETE separate figures on genuinely transparent background, generous margins in each equal cell. Every figure has exactly two complete coherent arms and hands, no ghosts or loose cloth/weapon remnants, and the same equipment design as the input. No weapon is baked into the drawing: closed fists only, prepared for the existing shared weapon art. No new armor, props, ground shadow, scenery, text or grid. Do not crop extremities or construct a gait from sheared strips or grafted legs.\nOrder: row1 FRONT real neutral both feet grounded, first support contact, recoil, passing; row2 FRONT same neutral, opposite support contact, recoil, passing; row3 true BACK neutral, first support contact, recoil, passing; row4 true BACK same neutral, opposite support contact, recoil, passing. True back shows rear armor/head/joints rather than face, front plates or front kneecaps. All anatomy and asymmetric details turn together; the physical scale is identical across all16 poses, with only tiny natural gait bob. Keep the arms in the SAME calm grip across the whole cycle. No upward aiming or changing grip between rest and movement.\nGrip: Both elbows bent low, two separate closed empty fists held across the upper waist as if carrying a rifle. Main anatomical right fist near the body midline; support fist in front of the anatomical left waist. Keep the fists at nearly the same vertical level, separated by about one-quarter of the body height. No rifle or placeholder painted between the fists.\nImage3 supplies ONLY the empty two-handed ARM POSE, fist separation and native body scale of the same class. Do NOT copy Image3 clothing, helmet, head, hair, armor rank, skin exposure or garment length. Keep the exact outfit/head state in Images1 and2, especially any raised garment hood and long red sleeves/robe. Preserve the original anatomical asymmetries and the actual mechanical hand where present. The fists must close around the future independent HANDLE, not present the wrist or flat back of the hand as the grip point. Keep the palms and curled fingers unambiguous. No weapon, barrel, blade, hilt, placeholder cylinder or loose prop may be painted into this source. Six front and six back walking phases plus matching real front neutral. All sixteen figures remain complete and consistently lit, at equal physical scale.",
+  "output": "assets/source-art/vertical-walk-review-18/grips-C12/traqueuse-armor2-ranged-r01-source.png",
+  "status": "drawn_pending_native_review",
+  "transparent_background": true,
+  "source_sha256": "de65f7f966fb488ad1feb72fc2f7ddce09eaf88816b2aa3b277d4d5c94c239ec",
+  "selected_sha256": "de65f7f966fb488ad1feb72fc2f7ddce09eaf88816b2aa3b277d4d5c94c239ec",
+  "mode": "builtin_imagegen",
+  "generated_source": "C:\\Users\\User\\.codex\\generated_images\\01a17e6a-663f-7731-868d-07589969d8cf\\exec-1385225f-4e98-4a4f-9716-6564037a18ba.png",
+  "dimensions": [
+    1266,
+    1243
+  ],
+  "sha256": "de65f7f966fb488ad1feb72fc2f7ddce09eaf88816b2aa3b277d4d5c94c239ec"
+}

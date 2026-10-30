@@ -685,6 +685,11 @@ impl MovementRepeater {
     pub const INITIAL_DELAY_SECONDS: f64 = 0.28;
     pub const INTERVAL_SECONDS: f64 = 0.085;
 
+    /// Presentation may bridge consecutive steps without producing another turn.
+    pub fn held_action(&self, controls: &Controls, frame: &InputFrame) -> Option<Action> {
+        self.active.filter(|action| controls.held(*action, frame))
+    }
+
     pub fn clear(&mut self) {
         self.active = None;
         self.repeat_at = 0.0;

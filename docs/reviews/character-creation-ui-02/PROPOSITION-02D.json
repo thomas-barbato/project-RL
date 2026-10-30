@@ -1,0 +1,80 @@
+{
+  "review": "CREATION-UI02-D-r03",
+  "date": "2026-10-30",
+  "status": "integrated_normal_debug_and_release",
+  "normal_game_enabled": true,
+  "user_quote": "c'est mieux mais je pense que tu peux supprimer la petite barre tout en haut sous le titre et tout en bas au dessus des boutons : )",
+  "changes": [
+    "remove header separator and its short blue accent",
+    "remove horizontal separator above footer buttons"
+  ],
+  "layout_text_values_scene_assets_and_hitboxes_changed": false,
+  "previous_revision": "PROPOSITION-02D-r02.json",
+  "previous_native_audits_still_reference_unchanged_geometry": "native-checks-02D-r02.json",
+  "current_checks": "bar-removal-checks-02D-r03.json",
+  "captures": {
+    "metamorphe": {
+      "size": [
+        1280,
+        800
+      ],
+      "difference_bounds": [
+        44,
+        107,
+        1236,
+        699
+      ],
+      "different_pixels_outside_bar_rows": 12,
+      "path": "artifacts/character-creation-review-02/current/industrial-02D/r03/metamorphe/cold-start.png",
+      "sha256": "8b39d3a95ff1156c8f5c7139be131bfcb41a88cd19273a35d53f4e8b80a29331"
+    },
+    "arcaniste-small": {
+      "size": [
+        960,
+        540
+      ],
+      "difference_bounds": [
+        36,
+        99,
+        924,
+        447
+      ],
+      "different_pixels_outside_bar_rows": 0,
+      "path": "artifacts/character-creation-review-02/current/industrial-02D/r03/arcaniste-small/cold-start.png",
+      "sha256": "f287cfbba018ea0ce7db53f26e84b62e70137a83acc71acabf5b7ed3c5bb3952"
+    },
+    "terminal": {
+      "size": [
+        1280,
+        800
+      ],
+      "difference_bounds": [
+        44,
+        107,
+        1236,
+        699
+      ],
+      "different_pixels_outside_bar_rows": 0,
+      "path": "artifacts/character-creation-review-02/current/industrial-02D/r03/terminal/cold-start.png",
+      "sha256": "ce6e253571ac5b5df871505a34e74ecf7648406d6dd89cc6c5ae6d0aa8ec2084"
+    }
+  },
+  "validation": {
+    "debug_build": "passed",
+    "native_captures": 4,
+    "pixel_comparisons": "Only bar rows differ in small and Terminal captures; blue 1280 capture has 12 additional glyph-edge pixels different.",
+    "full_test_suite_run": false,
+    "new_tests_added": false
+  },
+  "source_hashes_at_capture": {
+    "src/ascii_app.rs": "7a406b7f07d395205f50503d1d7ac84b316166304ea449a80c78d035e8798009",
+    "src/character_creation_industrial.rs": "789eb00c052e5e941fd7a396a927e5f42cf906a0f29f1ea6558319339fbd1deb",
+    "src/character_creation_polish.rs": "6493483809941b977079ed9ed82f43fa523cd8ad6d7b54c33c972fddb611ecf3",
+    "src/character_creation_details.rs": "f8cc5259b6cdf6673b8e0e8dd8ced318fb50bef576bdb4e319903ab87f01f002",
+    "target/debug/project-rl.exe": "ddda8428f63d9ee8ef6d79e38018953010e62ff0f4f114e6677a8f07890c958d"
+  },
+  "capture_script": "tools/reviews/capture_creation_industrial02.ps1 -Revision r03 -Quick",
+  "debug_cache": "temporary cache cleaned after integration; Release retained",
+  "acceptance": "acceptance-02D-r03.json",
+  "integration_evidence": "integration-02D-r03.json"
+}

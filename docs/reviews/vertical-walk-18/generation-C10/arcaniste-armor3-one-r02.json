@@ -1,0 +1,27 @@
+{
+  "id": "arcaniste-armor3-one-r02",
+  "number": 9,
+  "profile": "arcaniste-armor3",
+  "index": 18,
+  "class_id": "core:arcaniste",
+  "rank": 3,
+  "family": "one",
+  "references": [
+    "assets/source-art/player-walk-review-11/CLASS-18-front-native128.png",
+    "assets/source-art/class-readability-01/arcaniste-red-robe-wave-05/accepted/sources/AR-RR05-P04-r01-source.png",
+    "assets/source-art/vertical-walk-review-18/armor-C10/arcaniste-armor3-one-r01-source.png"
+  ],
+  "prompt": "Use case: identity-preserve. Correct the FULL 4 by 4 transparent sprite sheet in Image3 to depict the EXACT intermediate rank3 Arcaniste robe in Images1 and2. Images1/2 are the authoritative clothing and silhouette. Image3 is ONLY the required sixteen full-body cell layout and gait. All sixteen figures currently have the WRONG short sleeveless base outfit. Replace the WHOLE OUTFIT consistently in every cell: LONG DARK RED ROBE reaching to the ankles, full-length red cloth sleeves covering upper arms and forearms to the wrists, dark closed gloves, broad flared sleeve cuffs, black/charcoal vertical center under-robe from neck to hem, matching dark waist belt. Raised dark crimson soft hood on front AND back, pale face with the same white hair/fringe in front; from back only the raised red cloth hood, no face, eyes or exposed hair. Preserve the exact original silhouette and garments of Images1/2. NO bare biceps, NO exposed elbow skin, NO sleeveless vest, NO short knee coat, NO added shoulder armor. Front dark under-robe opening is not to be repeated as an opening on the back: the back is the full long red cloth robe. The boots may peek below the full-length robe. Keep the same adult proportions, stable physical scale, matte compact game finish, upper-left light, camera, sixteen separate COMPLETE figures with transparent padding and cell ordering from Image3: rows1/2 FRONT walking down, rows3/4 TRUE BACK walking up; first column neutral, other columns alternating quiet gait. Both hands empty and closed low, coherent wrists and exactly two arms/legs. The robe moves with the whole gait but stays long on EVERY pose. Genuine transparent background. No text, shadows, labels, weapons or grid. This is a correction of costume identity, not an armor redesign.",
+  "output": "assets/source-art/vertical-walk-review-18/armor-C10/arcaniste-armor3-one-r02-source.png",
+  "status": "drawn_pending_native_review",
+  "transparent_background": true,
+  "source_sha256": "46df9aa982ba0449cfb735aa788d0936cb4121b99fd6f2854851d33731f504e4",
+  "selected_sha256": "46df9aa982ba0449cfb735aa788d0936cb4121b99fd6f2854851d33731f504e4",
+  "mode": "builtin_imagegen",
+  "generated_source": "C:\\Users\\User\\.codex\\generated_images\\01a17e6a-663f-7731-868d-07589969d8cf\\exec-5bac2c86-881f-4e32-957f-0acde292a4a5.png",
+  "dimensions": [
+    1266,
+    1243
+  ],
+  "sha256": "46df9aa982ba0449cfb735aa788d0936cb4121b99fd6f2854851d33731f504e4"
+}

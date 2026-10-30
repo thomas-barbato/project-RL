@@ -1,0 +1,507 @@
+{
+  "review": "VERT18-C05",
+  "date": "2026-10-29",
+  "user_request": "compare les toutes; oui donc il faut corriger tout ca",
+  "status": "technical_checks_passed_visual_accepted_pending_integration",
+  "normal_game_enabled": false,
+  "measurement": "alpha>=128; connected silhouette components; bare body, excluding weapon and helmet extents",
+  "root_causes": [
+    "old front idle belongs to a different drawing than the new walk",
+    "one median scale for all16 figures ignored per-row authored scale drift",
+    "heavy Traqueuse rear body had squat anatomy, corrected by whole-figure redraw"
+  ],
+  "correction": [
+    "uniform static scale per authored row measured against its true neutral figure",
+    "front idle is cell0 from the same coherent whole-figure source",
+    "heavy Traqueuse rear figures redrawn, original front figures preserved",
+    "weapons still independent; palms mapped with the complete figure",
+    "existing helmet fronts and modular heads preserved"
+  ],
+  "accepted_reference_files_unchanged": 30,
+  "profiles": [
+    {
+      "profile": "arcaniste",
+      "before": {
+        "idle_height": 60,
+        "front_heights": [
+          60,
+          60,
+          60,
+          60,
+          59,
+          60
+        ],
+        "back_heights": [
+          60,
+          60,
+          60,
+          61,
+          60,
+          61
+        ],
+        "idle_from_other_body": true
+      },
+      "candidate_C05": {
+        "id": "arcaniste",
+        "target_height": 60,
+        "idle_height": 60,
+        "front_heights": [
+          60,
+          60,
+          60,
+          59,
+          59,
+          59
+        ],
+        "back_heights": [
+          59,
+          60,
+          59,
+          60,
+          60,
+          60
+        ],
+        "row_scale_xy_uniform": [
+          0.2097902097902098,
+          0.20905923344947736,
+          0.20905923344947736,
+          0.20761245674740483
+        ],
+        "whole_figure_static_conditioning": true
+      }
+    },
+    {
+      "profile": "npc-garde",
+      "before": {
+        "idle_height": 60,
+        "front_heights": [
+          60,
+          59,
+          60,
+          59,
+          60,
+          61
+        ],
+        "back_heights": [
+          60,
+          60,
+          60,
+          58,
+          58,
+          59
+        ],
+        "idle_from_other_body": true
+      },
+      "candidate_C05": {
+        "id": "npc-garde",
+        "target_height": 60,
+        "idle_height": 59,
+        "front_heights": [
+          61,
+          60,
+          61,
+          59,
+          60,
+          62
+        ],
+        "back_heights": [
+          61,
+          60,
+          61,
+          60,
+          60,
+          60
+        ],
+        "row_scale_xy_uniform": [
+          0.22058823529411764,
+          0.22140221402214022,
+          0.22304832713754646,
+          0.22388059701492538
+        ],
+        "whole_figure_static_conditioning": true
+      }
+    },
+    {
+      "profile": "bastion",
+      "before": {
+        "idle_height": 58,
+        "front_heights": [
+          60,
+          59,
+          60,
+          58,
+          57,
+          57
+        ],
+        "back_heights": [
+          58,
+          59,
+          59,
+          58,
+          58,
+          58
+        ],
+        "idle_from_other_body": true
+      },
+      "candidate_C05": {
+        "id": "bastion",
+        "target_height": 58,
+        "idle_height": 58,
+        "front_heights": [
+          60,
+          59,
+          60,
+          58,
+          57,
+          57
+        ],
+        "back_heights": [
+          57,
+          59,
+          58,
+          57,
+          57,
+          57
+        ],
+        "row_scale_xy_uniform": [
+          0.2140221402214022,
+          0.2140221402214022,
+          0.21323529411764705,
+          0.21245421245421245
+        ],
+        "whole_figure_static_conditioning": true
+      }
+    },
+    {
+      "profile": "traqueuse",
+      "before": {
+        "idle_height": 56,
+        "front_heights": [
+          58,
+          58,
+          58,
+          58,
+          58,
+          58
+        ],
+        "back_heights": [
+          58,
+          57,
+          58,
+          57,
+          59,
+          57
+        ],
+        "idle_from_other_body": true
+      },
+      "candidate_C05": {
+        "id": "traqueuse",
+        "target_height": 56,
+        "idle_height": 56,
+        "front_heights": [
+          56,
+          56,
+          56,
+          57,
+          56,
+          57
+        ],
+        "back_heights": [
+          57,
+          55,
+          56,
+          55,
+          57,
+          56
+        ],
+        "row_scale_xy_uniform": [
+          0.19377162629757785,
+          0.1951219512195122,
+          0.1951219512195122,
+          0.19444444444444445
+        ],
+        "whole_figure_static_conditioning": true
+      }
+    },
+    {
+      "profile": "metamorphe",
+      "before": {
+        "idle_height": 56,
+        "front_heights": [
+          55,
+          56,
+          57,
+          56,
+          57,
+          57
+        ],
+        "back_heights": [
+          57,
+          58,
+          57,
+          57,
+          58,
+          58
+        ],
+        "idle_from_other_body": true
+      },
+      "candidate_C05": {
+        "id": "metamorphe",
+        "target_height": 56,
+        "idle_height": 55,
+        "front_heights": [
+          55,
+          56,
+          56,
+          55,
+          57,
+          56
+        ],
+        "back_heights": [
+          56,
+          57,
+          56,
+          57,
+          57,
+          58
+        ],
+        "row_scale_xy_uniform": [
+          0.1958041958041958,
+          0.1951219512195122,
+          0.19718309859154928,
+          0.19649122807017544
+        ],
+        "whole_figure_static_conditioning": true
+      }
+    },
+    {
+      "profile": "bastion-lourd",
+      "before": {
+        "idle_height": 58,
+        "front_heights": [
+          59,
+          60,
+          60,
+          58,
+          60,
+          59
+        ],
+        "back_heights": [
+          61,
+          60,
+          59,
+          60,
+          61,
+          60
+        ],
+        "idle_from_other_body": true
+      },
+      "candidate_C05": {
+        "id": "bastion-lourd",
+        "target_height": 58,
+        "idle_height": 58,
+        "front_heights": [
+          57,
+          58,
+          59,
+          57,
+          59,
+          57
+        ],
+        "back_heights": [
+          60,
+          60,
+          58,
+          59,
+          60,
+          58
+        ],
+        "row_scale_xy_uniform": [
+          0.21561338289962825,
+          0.21481481481481482,
+          0.2188679245283019,
+          0.21561338289962825
+        ],
+        "whole_figure_static_conditioning": true
+      }
+    },
+    {
+      "profile": "traqueuse-lourde",
+      "before": {
+        "idle_height": 56,
+        "front_heights": [
+          61,
+          60,
+          61,
+          60,
+          59,
+          59
+        ],
+        "back_heights": [
+          56,
+          56,
+          57,
+          53,
+          53,
+          52
+        ],
+        "idle_from_other_body": true
+      },
+      "candidate_C05": {
+        "id": "traqueuse-lourde",
+        "target_height": 56,
+        "idle_height": 57,
+        "front_heights": [
+          57,
+          57,
+          57,
+          57,
+          57,
+          56
+        ],
+        "back_heights": [
+          58,
+          57,
+          57,
+          57,
+          56,
+          56
+        ],
+        "row_scale_xy_uniform": [
+          0.18241042345276873,
+          0.1830065359477124,
+          0.12253829321663019,
+          0.12200435729847495
+        ],
+        "whole_figure_static_conditioning": true
+      }
+    },
+    {
+      "profile": "arcaniste-lourd",
+      "before": {
+        "idle_height": 60,
+        "front_heights": [
+          62,
+          61,
+          61,
+          61,
+          60,
+          60
+        ],
+        "back_heights": [
+          61,
+          60,
+          60,
+          61,
+          61,
+          61
+        ],
+        "idle_from_other_body": true
+      },
+      "candidate_C05": {
+        "id": "arcaniste-lourd",
+        "target_height": 60,
+        "idle_height": 60,
+        "front_heights": [
+          62,
+          61,
+          61,
+          61,
+          60,
+          59
+        ],
+        "back_heights": [
+          61,
+          60,
+          60,
+          59,
+          60,
+          59
+        ],
+        "row_scale_xy_uniform": [
+          0.21897810218978103,
+          0.21818181818181817,
+          0.21818181818181817,
+          0.21428571428571427
+        ],
+        "whole_figure_static_conditioning": true
+      }
+    },
+    {
+      "profile": "metamorphe-lourd",
+      "before": {
+        "idle_height": 56,
+        "front_heights": [
+          58,
+          59,
+          59,
+          58,
+          56,
+          58
+        ],
+        "back_heights": [
+          55,
+          56,
+          55,
+          55,
+          57,
+          56
+        ],
+        "idle_from_other_body": true
+      },
+      "candidate_C05": {
+        "id": "metamorphe-lourd",
+        "target_height": 56,
+        "idle_height": 56,
+        "front_heights": [
+          56,
+          56,
+          57,
+          56,
+          56,
+          56
+        ],
+        "back_heights": [
+          56,
+          57,
+          57,
+          55,
+          57,
+          56
+        ],
+        "row_scale_xy_uniform": [
+          0.18855218855218855,
+          0.19112627986348124,
+          0.2,
+          0.1951219512195122
+        ],
+        "whole_figure_static_conditioning": true
+      }
+    }
+  ],
+  "scope_limit": "all nine bodies already presented; other armor ranks, two-handed grips and other NPCs remain pending",
+  "engine_checks": {
+    "review": "VERT18-C05",
+    "status": "passed",
+    "normal_game_enabled": false,
+    "approved_source_files_unchanged": 30,
+    "head_choices": 7,
+    "headgear_loadouts": 2,
+    "heavy_profiles": 4,
+    "body_region_comparisons_across_head_choices": 624,
+    "body_region": "native y60..127 in all12 phases plus authored front idle",
+    "flat_front_returns": 328,
+    "camp_front_returns": 68,
+    "total_front_returns": 396,
+    "one_handed_contacts_including_idle": 4056,
+    "headgear_sampled_weapon_contacts": 672,
+    "head_operations_preserving_lower_body": 832,
+    "saved_game_loaded": false,
+    "user_preferences_written": false,
+    "limits": "Body geometry and contacts are technical checks; visual approval is still separate."
+  },
+  "browser_verified": true,
+  "all_animations_lossless": true,
+  "decoded_animation_frames_verified": 1196,
+  "acceptance": "acceptance-C05.json"
+}

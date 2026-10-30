@@ -1,0 +1,19 @@
+{
+  "review": "VERT18-C07",
+  "date": "2026-10-30",
+  "status": "closed_A_retained",
+  "user_quote": "On va conserver la prise A mais alors la prise du couteau est mauvaise ...",
+  "selected": "A",
+  "meaning": "Keep the existing C06 downward pistol orientation, alone and in dual wielding.",
+  "candidate_B_horizontal_accepted": false,
+  "candidate_B_normal_game_activated": false,
+  "runtime_assets_modified": false,
+  "followup": "proposal-C08.json",
+  "knife_clarification": "c'est un couteau, il devrait de face soit etre legerement incliné vers le bas soit un peu vers le haut.",
+  "latest_accepted_pistol_revision": {
+    "review": "VERT18-C09-B",
+    "integration": "integration-C09.json",
+    "current_runtime_hashes": "runtime-assets-C09.json",
+    "scope": "10 degrees outward from the downward carry; knife C08-B unchanged"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "review": "CREATION-UI02-C",
+  "date": "2026-10-30",
+  "status": "layout_preferred_as_basis_art_direction_study_requested",
+  "normal_game_enabled": false,
+  "normal_current_version": "CREATION-UI02-B, integrated and available through Jouer.cmd",
+  "debug_opt_in_argument": "--review-creation-compact",
+  "scope": [
+    "48 px class portraits",
+    "40-48 px item/skill icons",
+    "56-64 px cards",
+    "wider reserved reader",
+    "14 px description body retained",
+    "shorter paragraph gaps and accurate scroll extent",
+    "scroll fallback for genuinely long text in small windows"
+  ],
+  "existing_text_values_and_starting_content_changed": false,
+  "source_art_changed": false,
+  "native_audits": {
+    "audit-1280": {
+      "viewport": [
+        1280.0,
+        800.0
+      ],
+      "cards_checked": 16,
+      "main_cards_overflow_max_px": 0.0,
+      "readers_without_scroll": 16,
+      "all_card_rects_visible": true,
+      "remaining_scroll": [],
+      "game_fingerprint_turn_rng_unchanged": true
+    },
+    "audit-960": {
+      "viewport": [
+        960.0,
+        540.0
+      ],
+      "cards_checked": 16,
+      "main_cards_overflow_max_px": 0.0,
+      "readers_without_scroll": 15,
+      "all_card_rects_visible": true,
+      "remaining_scroll": [
+        {
+          "class": "core:metamorphe",
+          "card": 2,
+          "pixels": 208.0
+        }
+      ],
+      "game_fingerprint_turn_rng_unchanged": true
+    }
+  },
+  "captures": {
+    "metamorphe": {
+      "path": "artifacts/character-creation-review-02/current/compact-02C/metamorphe/cold-start.png",
+      "sha256": "f50a0535f0ee2d10450347a0b38fde7f48da444189b2baeffb58703accb6d3da"
+    },
+    "arcaniste-small": {
+      "path": "artifacts/character-creation-review-02/current/compact-02C/arcaniste-small/cold-start.png",
+      "sha256": "cb026d6e856d9ccceb669c268652b747b7b076840e723004d05a7c60ac25132e"
+    },
+    "audit-1280": {
+      "path": "artifacts/character-creation-review-02/current/compact-02C/audit-1280/cold-start.png",
+      "sha256": "2a7c4285a30c0cdf9adcc0ccbedea501d79e02d14a8ef770e20779aa89428f8a"
+    },
+    "audit-960": {
+      "path": "artifacts/character-creation-review-02/current/compact-02C/audit-960/cold-start.png",
+      "sha256": "3c82d19165dc708c11622db88c9961daddb1b79b634d7eb3e80d6a3b41b1d7fd"
+    }
+  },
+  "prototype_cleanup": {
+    "superseded_capture_directories_recycled": 4,
+    "reason": "Permanent deletion rejected by automatic approval review; safer Recycle Bin fallback completed.",
+    "recycle_bin_emptied": false
+  },
+  "latest_feedback": "feedback-02C.json",
+  "next_study": "ETUDE-02D.md",
+  "historical_captures_note": "Native captures predate explicit subtitle removal TEXT01."
+}

@@ -1,0 +1,165 @@
+{
+  "review": "VERT18-C06",
+  "date": "2026-10-29",
+  "status": "visual_accepted_integrated",
+  "normal_game_enabled": true,
+  "scope": {
+    "player_profiles": 8,
+    "weapon_models": 113,
+    "weapon_palette_choices": 7,
+    "one_handed_models": 39,
+    "two_handed_models": 74,
+    "headgear_choices": 7,
+    "monster_models": 129,
+    "monster_palette_pairs": 471
+  },
+  "geometry": {
+    "review": "VERT18-C06",
+    "conditioned_models": 129,
+    "conditioning_errors": [],
+    "size_flags": [],
+    "visual_approval": true
+  },
+  "modular": {
+    "review": "VERT18-C06",
+    "normal_game_enabled": true,
+    "weapon_binding_cases": 1216,
+    "binding_pose_cases": 15808,
+    "all_palette_alpha_checks": 1064,
+    "dual_pair_choices_checked": 12168,
+    "dual_coverage_method": "compositional: each two-layer choice references independently verified left/right whole-pose contacts; no extra body or arm pass",
+    "helmet_pose_checks_lower_body_unchanged": 2496,
+    "extra_engine_cases": 216,
+    "normal_game_integration": true
+  },
+  "weapon_contact_checks": {
+    "binding_pose_cases": 15808,
+    "visible_fist_pixel_contacts": 16400,
+    "hidden_two_handed_back_grips_reported_separately": true,
+    "max_visible_contact_distance_px": 0.707,
+    "failures": 0,
+    "weapon_scale_changes_within_a_cycle": 0
+  },
+  "engine": {
+    "front_returns": 6364,
+    "gpu_upload_on_context_thread": true,
+    "native_draws": 20683,
+    "native_tile_px": 64,
+    "neutral_actor_gain": 1.0,
+    "normal_game_enabled": false,
+    "preferences_written": false,
+    "prepared_atlases": 1591,
+    "read_decode_in_draw": false,
+    "review": "VERT18-C06",
+    "same_actor_finish_every_pose": true,
+    "saved_contact_boards": 342,
+    "saved_game_loaded": false,
+    "texture_cache_limit_bytes": 33554432,
+    "evidence_phase": "isolated prototype before normal integration; retained as historical evidence"
+  },
+  "focused_engine_rechecks": {
+    "MON-141": {
+      "front_returns": 20,
+      "gpu_upload_on_context_thread": true,
+      "native_draws": 65,
+      "native_tile_px": 64,
+      "neutral_actor_gain": 1.0,
+      "normal_game_enabled": false,
+      "preferences_written": false,
+      "prepared_atlases": 5,
+      "read_decode_in_draw": false,
+      "review": "VERT18-C06",
+      "same_actor_finish_every_pose": true,
+      "saved_contact_boards": 1,
+      "saved_game_loaded": false,
+      "texture_cache_limit_bytes": 33554432
+    },
+    "MON-022": {
+      "front_returns": 8,
+      "gpu_upload_on_context_thread": true,
+      "native_draws": 26,
+      "native_tile_px": 64,
+      "neutral_actor_gain": 1.0,
+      "normal_game_enabled": false,
+      "preferences_written": false,
+      "prepared_atlases": 2,
+      "read_decode_in_draw": false,
+      "review": "VERT18-C06",
+      "same_actor_finish_every_pose": true,
+      "saved_contact_boards": 1,
+      "saved_game_loaded": false,
+      "texture_cache_limit_bytes": 33554432
+    }
+  },
+  "browser": {
+    "cases": 315,
+    "failures": 0,
+    "tested_in_app_browser": true,
+    "proofs": [
+      "browser-weapons-proof.png",
+      "browser-monsters-proof.png"
+    ]
+  },
+  "lossless_engine_contact_boards": 342,
+  "preservation": {
+    "protected_files": 118,
+    "mismatches": [],
+    "accepted_resources_unchanged": true
+  },
+  "build_validation": {
+    "debug_build": "passed",
+    "release_check_locked": "passed",
+    "targeted_rustfmt": "passed",
+    "git_diff_check": "passed",
+    "python_py_compile": "passed",
+    "full_test_suite_run": false
+  },
+  "resource_count": 3272,
+  "resource_hashes": "candidate-resources-C06.json",
+  "source_mode": "builtin_imagegen",
+  "source_location": "assets/source-art/vertical-walk-review-18/extension-C06",
+  "not_claimed_complete": [
+    "12 current intermediate armor outfits absent from C05",
+    "5 legacy Technomancien outfits",
+    "transformations and drones",
+    "other NPCs or fallback art"
+  ],
+  "review_document": "REVUE-C06.md",
+  "approval": "acceptance-C06.json",
+  "isolated_fixture_timings_ms": {
+    "read_ms": {
+      "median": 5.2074,
+      "p95": 6.4818999999999996,
+      "max": 11.154499999999999
+    },
+    "decode_ms": {
+      "median": 85.57629999999999,
+      "p95": 95.0831,
+      "max": 163.5694
+    },
+    "upload_ms": {
+      "median": 0.6043999999999999,
+      "p95": 0.8628,
+      "max": 3.1335
+    },
+    "board_ms_including_frame_wait": {
+      "median": 10.402800000000001,
+      "p95": 433.96909999999997,
+      "max": 575.9037000000001
+    }
+  },
+  "timings_are_not_gameplay_fps": true,
+  "normal_integration": "integration-C06.json",
+  "subsequent_accepted_override": {
+    "review": "VERT18-C08-B",
+    "integration": "integration-C08.json",
+    "current_runtime_hashes": "runtime-assets-C08.json",
+    "scope": "Knife angles only; source artwork and pistol A unchanged"
+  },
+  "latest_accepted_pistol_revision": {
+    "review": "VERT18-C09-B",
+    "integration": "integration-C09.json",
+    "current_runtime_hashes": "runtime-assets-C09.json",
+    "scope": "10 degrees outward from the downward carry; knife C08-B unchanged"
+  }
+}

@@ -1,5 +1,5 @@
 //! Combat presentation. No simulation RNG, movement, time or collision changes.
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 use macroquad::prelude::*;
 use project_rl::entity::EntityId;
@@ -140,8 +140,10 @@ pub(crate) struct CombatMotion {
     motions: BTreeMap<EntityId, Motion>,
     glides: BTreeMap<EntityId, TileGlide>,
     walk_facings: BTreeMap<EntityId, i8>,
+    walk_vertical_facings: BTreeMap<EntityId, i8>,
     walk_lateral_facings: BTreeMap<EntityId, i8>,
     walk_supports: BTreeMap<EntityId, u8>,
+    continuing_walks: BTreeSet<EntityId>,
     travels: BTreeMap<EntityId, (Vec2, f64)>,
     spells: Vec<agent_spells::SpellFlight>,
     blasts: Vec<agent_spells::SpellBlast>,
@@ -155,6 +157,24 @@ pub(crate) struct CombatMotion {
 }
 
 impl CombatMotion {
+    /// Keep the last moving pose across the input/render boundary between steps.
+    /// This intent never advances an actor or starts an uncommitted step.
+    pub fn continue_walk(&mut self, entity: EntityId, continuing: bool) {
+        if continuing {
+            self.continuing_walks.insert(entity);
+        } else {
+            self.continuing_walks.remove(&entity);
+        }
+    }
+    /// Resource preparation precedes first display and must not consume a step's
+    /// visible animation time. These timestamps are presentation-only.
+    pub fn delay_glides(&mut self, seconds: f64) {
+        if seconds > 0. {
+            for glide in self.glides.values_mut() {
+                glide.started += seconds;
+            }
+        }
+    }
     #[cfg(any(debug_assertions, test))]
     pub fn glide(&mut self, entity: EntityId, from: GridPos, to: GridPos, now: f64) {
         self.glide_timed(entity, from, to, now, 120);
@@ -178,12 +198,20 @@ impl CombatMotion {
         {
             self.glides.remove(&entity);
             self.walk_facings.remove(&entity);
+            self.walk_vertical_facings.remove(&entity);
             self.walk_lateral_facings.remove(&entity);
             self.walk_supports.remove(&entity);
+            self.continuing_walks.remove(&entity);
             return;
         }
         self.walk_facings
             .insert(entity, (to.x - from.x).signum() as i8);
+        if to.x == from.x {
+            self.walk_vertical_facings
+                .insert(entity, (to.y - from.y).signum() as i8 * 2);
+        } else {
+            self.walk_vertical_facings.remove(&entity);
+        }
         if to.x != from.x {
             self.walk_lateral_facings
                 .insert(entity, (to.x - from.x).signum() as i8);
@@ -234,8 +262,10 @@ impl CombatMotion {
     }
 
     pub fn stop_glide(&mut self, entity: EntityId) {
+        self.continuing_walks.remove(&entity);
         self.glides.remove(&entity);
         self.walk_facings.remove(&entity);
+        self.walk_vertical_facings.remove(&entity);
         self.walk_lateral_facings.remove(&entity);
         self.walk_supports.remove(&entity);
     }
@@ -253,7 +283,11 @@ impl CombatMotion {
         let frame = self.glides.get(&entity).map_or(8, |g| {
             let progress = g.progress(now);
             if progress >= 1. {
-                8
+                if self.continuing_walks.contains(&entity) {
+                    g.support * 3 + 2
+                } else {
+                    8
+                }
             } else {
                 g.support * 3 + (progress * 3.) as u8
             }
@@ -280,6 +314,23 @@ impl CombatMotion {
         // At arrival actors use their ordinary frontal equipment renderer.
         self.walk_pose(entity, now, reduced)
             .filter(|pose| pose.frame != 8)
+    }
+
+    /// Accepted VERT18: same phase/timing for player and NPC, true Y heading.
+    pub fn vertical_walk_pose(
+        &self,
+        entity: EntityId,
+        now: f64,
+        reduced: bool,
+    ) -> Option<crate::game_art::walking::Pose> {
+        let pose = self
+            .walk_pose(entity, now, reduced)
+            .filter(|p| p.frame != 8)?;
+        let facing = *self.walk_vertical_facings.get(&entity)?;
+        matches!(facing, -2 | 2).then_some(crate::game_art::walking::Pose {
+            facing,
+            frame: pose.frame,
+        })
     }
 
     pub fn creature_walk_pose(
@@ -309,8 +360,10 @@ impl CombatMotion {
         target: GridPos,
         now: f64,
     ) {
+        self.continuing_walks.remove(&entity);
         self.glides.remove(&entity);
         self.walk_facings.remove(&entity);
+        self.walk_vertical_facings.remove(&entity);
         self.walk_lateral_facings.remove(&entity);
         self.travels.insert(
             entity,
@@ -731,8 +784,9 @@ impl CombatMotion {
     }
 
     pub fn prune(&mut self, now: f64) {
-        self.glides
-            .retain(|_, glide| now - glide.started < glide.seconds);
+        self.glides.retain(|entity, glide| {
+            now - glide.started < glide.seconds || self.continuing_walks.contains(entity)
+        });
         self.travels
             .retain(|_, (_, started)| crate::animation_policy::age("travel", now, *started) < 0.18);
         self.fireballs
@@ -759,8 +813,10 @@ impl CombatMotion {
         self.prepared_cast = None;
         self.glides.clear();
         self.walk_facings.clear();
+        self.walk_vertical_facings.clear();
         self.walk_lateral_facings.clear();
         self.walk_supports.clear();
+        self.continuing_walks.clear();
         self.fireballs.clear();
         self.embers.clear();
         self.magic.clear();
@@ -1233,6 +1289,139 @@ mod tests {
                 assert!(motion.player_walk_pose(id, 2., false).is_none());
                 assert!(motion.creature_walk_pose(id, 2., false).is_none());
                 assert_eq!(motion.glide_offset(id, 2., false), Vec2::ZERO);
+            }
+        }
+    }
+
+    #[test]
+    fn vertical18_player_and_npc_face_the_route_then_return_to_front() {
+        let ids: [EntityId; 2] = [
+            serde_json::from_str("1").unwrap(),
+            serde_json::from_str("2").unwrap(),
+        ];
+        for milliseconds in [120, 200, 400] {
+            for dy in [-1, 1] {
+                let mut motion = CombatMotion::default();
+                let seconds = f64::from(milliseconds) / 1000.;
+                for step in 0..2 {
+                    let started = 1. + f64::from(step);
+                    for id in ids {
+                        motion.glide_timed(
+                            id,
+                            GridPos::new(4, 4 + step * dy),
+                            GridPos::new(4, 4 + (step + 1) * dy),
+                            started,
+                            milliseconds,
+                        );
+                        let pose = motion
+                            .vertical_walk_pose(id, started + seconds * 0.5, false)
+                            .unwrap();
+                        assert_eq!(pose.facing, dy as i8 * 2);
+                        assert_eq!(pose.frame, step as u8 * 3 + 1);
+                        assert!(
+                            motion
+                                .vertical_walk_pose(id, started + seconds + 0.001, false)
+                                .is_none()
+                        );
+                        assert!(
+                            motion
+                                .vertical_walk_pose(id, started + seconds * 0.5, true)
+                                .is_none()
+                        );
+                        // The normal renderer keeps its accepted route until
+                        // an explicitly prepared vertical profile is enabled.
+                        assert_eq!(
+                            motion
+                                .player_walk_pose(id, started + seconds * 0.5, false)
+                                .unwrap()
+                                .facing,
+                            0
+                        );
+                    }
+                }
+                for id in ids {
+                    motion.stop_glide(id);
+                    assert!(motion.vertical_walk_pose(id, 3., false).is_none());
+                    assert!(!motion.walk_vertical_facings.contains_key(&id));
+                    motion.glide_timed(
+                        id,
+                        GridPos::new(4, 4),
+                        GridPos::new(4, 3),
+                        4.,
+                        milliseconds,
+                    );
+                    motion.glide_timed(
+                        id,
+                        GridPos::new(4, 3),
+                        GridPos::new(5, 3),
+                        5.,
+                        milliseconds,
+                    );
+                    assert!(
+                        motion
+                            .vertical_walk_pose(id, 5. + seconds * 0.5, false)
+                            .is_none()
+                    );
+                }
+                motion.clear();
+                assert!(motion.walk_vertical_facings.is_empty());
+            }
+        }
+    }
+
+    #[test]
+    fn held_walk_bridges_step_boundaries_without_front_frames_or_extra_distance() {
+        let id: EntityId = serde_json::from_str("1").unwrap();
+        for milliseconds in [120, 200, 400] {
+            for (dx, dy) in [(0, -1), (0, 1), (-1, 0), (1, 0)] {
+                let mut motion = CombatMotion::default();
+                let seconds = f64::from(milliseconds) / 1000.;
+                motion.continue_walk(id, true);
+                for step in 0..4 {
+                    let now = 1. + f64::from(step) * (seconds + 0.02);
+                    motion.glide_timed(
+                        id,
+                        GridPos::new(5 + step * dx, 5 + step * dy),
+                        GridPos::new(5 + (step + 1) * dx, 5 + (step + 1) * dy),
+                        now,
+                        milliseconds,
+                    );
+                    let before = motion
+                        .player_walk_pose(id, now + seconds - 0.001, false)
+                        .unwrap();
+                    motion.prune(now + seconds + 0.016);
+                    let after = motion
+                        .player_walk_pose(id, now + seconds + 0.016, false)
+                        .unwrap();
+                    assert_eq!(before, after);
+                    assert_eq!(after.frame, (step % 2) as u8 * 3 + 2);
+                    assert_eq!(
+                        motion.glide_offset(id, now + seconds + 0.016, false),
+                        Vec2::ZERO
+                    );
+                    if dy != 0 {
+                        assert_eq!(
+                            motion
+                                .vertical_walk_pose(id, now + seconds + 0.016, false)
+                                .unwrap()
+                                .facing,
+                            dy as i8 * 2
+                        );
+                    }
+                    assert!(
+                        motion
+                            .player_walk_pose(id, now + seconds + 0.016, true)
+                            .is_none()
+                    );
+                }
+                motion.continue_walk(id, false);
+                assert!(motion.player_walk_pose(id, 9., false).is_none());
+                assert!(motion.vertical_walk_pose(id, 9., false).is_none());
+                motion.prune(9.);
+                assert!(motion.glides.is_empty());
+                motion.continue_walk(id, true);
+                motion.stop_glide(id);
+                assert!(!motion.continuing_walks.contains(&id));
             }
         }
     }

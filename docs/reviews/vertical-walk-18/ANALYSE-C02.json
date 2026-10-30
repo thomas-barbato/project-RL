@@ -1,0 +1,102 @@
+{
+  "review": "VERT18-C02",
+  "date": "2026-10-29",
+  "status": "visual_accepted_pending_integration",
+  "normal_game_enabled": false,
+  "accepted_reference": "acceptance-C01.json",
+  "coverage": {
+    "new_player_profiles": [
+      "01 Bastion body3",
+      "02 Traqueuse body5",
+      "03 Metamorphe body7"
+    ],
+    "authored_whole_moving_figures": 36,
+    "directions": [
+      "front",
+      "back"
+    ],
+    "phases_per_direction": 6,
+    "equipment": "unarmed only, no added armor or helmet",
+    "weapon_preparation_refused": true,
+    "other_NPCs_authored": false
+  },
+  "sources": {
+    "mode": "builtin_image_gen",
+    "prompts": "prompts-C02.json",
+    "manifest": "assets/source-art/vertical-walk-review-18/candidate-C02/manifest.json",
+    "conditioner": "tools/art/pack_vertical_walk_roster18.py",
+    "native_tile_px": 64,
+    "uniform_scale_per_profile": true,
+    "whole_figures_only": true,
+    "selected": [
+      "bastion-r01",
+      "traqueuse-r02",
+      "metamorphe-r02"
+    ]
+  },
+  "checks": {
+    "cargo_build_locked": "passed",
+    "targeted_rustfmt": "passed",
+    "git_diff_check": "passed",
+    "engine_capture_exit_code": 0,
+    "neutral_front_returns": 12,
+    "camp_front_returns": 12,
+    "neutral_pose_records": 156,
+    "camp_pose_records": 156,
+    "neutral_actor_gain": 1.0,
+    "camp_actor_gain": 1.48,
+    "same_material_for_moving_and_standing": true,
+    "lossless_export_frames_verified": 156,
+    "approved_C01_fingerprints_unchanged": 7,
+    "motion_timing_tests": "Existing C01 targeted tests cover unchanged shared motion; not rerun for new drawings",
+    "release_build": "Not repeated for these debug-only review changes",
+    "full_suite_run": false,
+    "full_campaign_run": false,
+    "source_hashes": {
+      "assets/source-art/vertical-walk-review-18/candidate-C02/bastion-standing-original.png": "83be0805956667f17620a014204055262f793bb671fb2b7c6cd68499ab414be1",
+      "assets/source-art/vertical-walk-review-18/candidate-C02/bastion.png": "3df0381c32644a85a1a13d835b01d488286c8dce4467ec93cd0fce84c73c78cf",
+      "assets/source-art/vertical-walk-review-18/candidate-C02/metamorphe-standing-original.png": "a06100c052eb7bfe1f5d8dcf7a58135ed4763f457337ab0496ba6ac7df9fd59e",
+      "assets/source-art/vertical-walk-review-18/candidate-C02/metamorphe.png": "dc3d0ba088361c303bf8507759783ffee73960ea344dff80fdd9947e06391d2a",
+      "assets/source-art/vertical-walk-review-18/candidate-C02/traqueuse-standing-original.png": "d4778a9151d9eec6de9a04a1aa985a588565f5f0b34c2597ec41e756796c4557",
+      "assets/source-art/vertical-walk-review-18/candidate-C02/traqueuse.png": "aa40bc3e1ddf54febc5ab59a873940150f244a4de8cacc839f475c93859ce7fa"
+    }
+  },
+  "loading": {
+    "read_or_decode_during_draw": false,
+    "source_cache_bytes": 4194304,
+    "prepared_texture_cache_bytes": 8388608,
+    "gpu_upload_before_sequence_on_context_thread": true,
+    "camp_resources_prepared_before_sequence": true,
+    "normal_save_loaded": false,
+    "user_preferences_written": false
+  },
+  "preview": {
+    "path": "artifacts/vertical-walk-review-18/current/roster-C02/apercu.html",
+    "url": "http://127.0.0.1:63780/roster-C02/apercu.html",
+    "native_previews": 2,
+    "detail_previews": 3,
+    "capture_frames": 78,
+    "native_step_ms": 400,
+    "preview_reading_pause_ms": 650,
+    "browser_screenshot": "artifacts/vertical-walk-review-18/current/roster-C02/apercu-navigateur.png",
+    "browser_tab_reused": "existing tab 4"
+  },
+  "next": [
+    "Review these three new silhouettes",
+    "Draw other class armor and headgear with correct orientation",
+    "Review independent weapon grips",
+    "Draw remaining camp and urban NPCs",
+    "Integrate accepted supported profiles through shared resource preparation"
+  ],
+  "separate_DUAL17_review_still_pending": true,
+  "acceptance": "acceptance-C02.json",
+  "size_followup": {
+    "review": "VERT18-C05",
+    "user_requested_correction_of_all_presented_variants": true,
+    "old_accepted_sources_preserved": true,
+    "normal_integration_waits_for_new_size_and_idle_review": false,
+    "status": "visual_accepted_pending_integration",
+    "acceptance": "acceptance-C05.json",
+    "normal_integration_still_pending": true
+  }
+}

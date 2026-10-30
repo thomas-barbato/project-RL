@@ -115,6 +115,81 @@ fn weapon_image(model: u16, left: bool, color: EquipmentPalette) -> Option<Image
     Some(corrected)
 }
 
+#[cfg(all(debug_assertions, test))]
+pub(super) fn vertical_review_weapon(
+    model: u16,
+    left: bool,
+    color: EquipmentPalette,
+) -> Option<(Image, [f32; 2], Option<[f32; 2]>)> {
+    let (anchor, support) = attachment(model, left)?;
+    Some((weapon_image(model, left, color)?, anchor, support))
+}
+
+#[cfg(debug_assertions)]
+pub(super) fn vertical_review_composition(
+    source: &Image,
+    palms: [[f32; 2]; 2],
+    back: bool,
+    held: [Option<HeldLayer>; 2],
+    colors: [EquipmentPalette; 3],
+) -> Option<Image> {
+    let mut body = source.clone();
+    let mut weapons = Image::gen_image_color(128, 128, BLANK);
+    let mut fingers = weapons.clone();
+    for layer in held.into_iter().flatten() {
+        if !matches!(
+            weapon_hold(layer.model),
+            WeaponHold::Side | WeaponHold::Raised
+        ) {
+            return None;
+        }
+        let logical_side = usize::from(!layer.left);
+        let screen_side = if back { 1 - logical_side } else { logical_side };
+        let palm = palms[screen_side];
+        // The hand remains an exact part of this authored pose. Only its
+        // foreground ownership changes; no wrist or sleeve is moved alone.
+        for y in palm[1].round() as usize - 2..=palm[1].round() as usize + 2 {
+            for x in palm[0].round() as usize - 2..=palm[0].round() as usize + 2 {
+                let p = (y * 128 + x) * 4;
+                fingers.bytes[p..p + 4].copy_from_slice(&source.bytes[p..p + 4]);
+                body.bytes[p..p + 4].fill(0);
+            }
+        }
+        let left = screen_side == 0;
+        let (anchor, _) = attachment(layer.model, left)?;
+        let weapon = weapon_image(layer.model, left, colors[1 + usize::from(layer.left)])?;
+        let angle = if matches!(weapon_hold(layer.model), WeaponHold::Raised) {
+            if left {
+                -std::f32::consts::FRAC_PI_2
+            } else {
+                std::f32::consts::FRAC_PI_2
+            }
+        } else {
+            0.
+        };
+        let posed = geometry::transformed(&weapon, anchor, palm, 1., angle);
+        let mut contact = false;
+        for y in palm[1].round() as usize - 2..=palm[1].round() as usize + 2 {
+            for x in palm[0].round() as usize - 2..=palm[0].round() as usize + 2 {
+                if fingers.bytes[(y * 128 + x) * 4 + 3] >= 32
+                    && (y - 1..=y + 1).any(|yy| {
+                        (x - 1..=x + 1).any(|xx| posed.bytes[(yy * 128 + xx) * 4 + 3] >= 32)
+                    })
+                {
+                    contact = true;
+                }
+            }
+        }
+        if !contact {
+            return None;
+        }
+        geometry::over(&mut weapons, &posed);
+    }
+    geometry::over(&mut body, &weapons);
+    geometry::over(&mut body, &fingers);
+    Some(body)
+}
+
 pub(super) fn supports(key: Key) -> bool {
     decode(key.0).is_some()
         && key

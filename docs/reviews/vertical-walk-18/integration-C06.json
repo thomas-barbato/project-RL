@@ -1,0 +1,200 @@
+{
+  "review": "VERT18-C06",
+  "date": "2026-10-29",
+  "status": "integrated_normal_debug_and_release",
+  "acceptance": "acceptance-C06.json",
+  "normal_game_enabled": true,
+  "sources_unchanged": true,
+  "scope": {
+    "player_profiles": 8,
+    "weapon_models": 113,
+    "weapon_palette_choices": 7,
+    "one_handed_models": 39,
+    "two_handed_models": 74,
+    "headgear_choices": 7,
+    "monster_models": 129,
+    "monster_palette_pairs": 471
+  },
+  "torso_palette": "Original only",
+  "camp_NPC_profiles": [
+    "NPC-01 (C05)"
+  ],
+  "lateral_walk": "existing WALK12/ARM14/DUAL15; DUAL17 not activated",
+  "excluded": [
+    "intermediate armor bodies absent from C05",
+    "legacy Technomancien",
+    "other NPC bodies",
+    "forms and drones",
+    "new drawings beyond the frozen C06 bank",
+    "non-original torso palettes"
+  ],
+  "runtime_assets": "assets/animations/vertical-18/manifest.json",
+  "runtime_asset_hashes": "runtime-assets-C06.json",
+  "runtime_files": 1605,
+  "distribution_logical_files": 3424,
+  "source_art_or_capture_runtime_dependencies": 0,
+  "preparation": {
+    "service": "src/asset_preparation.rs",
+    "cpu_worker": true,
+    "source_cache_limit_bytes": 67108864,
+    "texture_cache_limit_bytes": 134217728,
+    "nearby_actors_prefetched": 4,
+    "graphics_upload_batch_limit": 2,
+    "heavy_read_decode_compose_outside_draw": true,
+    "presentation_state_independent_of_simulation_and_saves": true,
+    "global_legacy_resource_migration_complete": false
+  },
+  "pixel_parity": {
+    "alpha_limit": 1,
+    "color_limit": 2,
+    "configurations": 1591,
+    "max_premultiplied_rgba_delta": 2,
+    "source_art_unchanged": true,
+    "whole_pose_comparisons": 20683
+  },
+  "normal_engine": {
+    "configurations": 1592,
+    "front_returns_at_120_200_400_ms": 19104,
+    "new_jobs_or_uploads_during_draw": 0,
+    "normal_game_enabled": true,
+    "normal_native_draws": 41392,
+    "preferences_written": false,
+    "resource_cache": {
+      "decode_ms": 380.9787,
+      "decoded_source_budget": 67108864,
+      "decoded_source_peak_bytes": 67108608,
+      "jobs": 1593,
+      "pending": 0,
+      "read_bytes": 60364460,
+      "read_ms": 182.5818,
+      "source_reads": 698,
+      "texture_budget": 134217728,
+      "texture_bytes": 133938432,
+      "texture_create_ms": 174.0742,
+      "uploads": 1593,
+      "worker_build_ms_including_sources": 4498.1856
+    },
+    "return_visit_reused_cache": true,
+    "review": "VERT18-C06",
+    "review_override_used": false,
+    "same_actor_finish": true,
+    "saved_boards": 74,
+    "saved_game_loaded": false
+  },
+  "camp_engine": {
+    "actual_terminal_map_renderer": true,
+    "native_cell": 64,
+    "normal_actor_draws": [
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6
+    ],
+    "normal_game_enabled": true,
+    "saved_campaign_loaded": false,
+    "user_preferences_written": false
+  },
+  "preservation": {
+    "previous_approvals": {
+      "files": 78,
+      "mismatches": []
+    },
+    "C06_sources": {
+      "files": 3272,
+      "mismatches": []
+    }
+  },
+  "validation": {
+    "check_locked_bin": "passed",
+    "optimized_targeted_vertical_tests": {
+      "passed": 3,
+      "command": "cargo test --locked --bin project-rl --profile loading --config profile.loading.inherits=release --config profile.loading.debug-assertions=true game_art::vertical::tests -- --include-ignored --nocapture"
+    },
+    "release_build_locked": "passed",
+    "full_test_suite_run": false,
+    "distribution_unit_tests_passed": 5,
+    "archive_only_runtime_recheck": "passed; current optimized diagnostic build with canonical contact-shadow metadata",
+    "combat_motion_vertical_tests_passed": 3,
+    "targeted_rustfmt": "passed",
+    "git_diff_check": "passed",
+    "python_py_compile": "passed",
+    "optimized_diagnostic_build_locked": "passed"
+  },
+  "release_executable_sha256": "292a0284c4d1160e6959768453a07892bd9a26501f1da2cbb4023e01c46773da",
+  "later_pistol_feedback": {
+    "decision": "decision-C07.json",
+    "status": "A retained explicitly; horizontal B not selected",
+    "normal_game_changed": false,
+    "knife_followup": "proposal-C08.json"
+  },
+  "archive_verification": {
+    "strict_archive_only": true,
+    "no_loose_assets_or_content": true,
+    "logical_files": 3424,
+    "package_verification_passed": true,
+    "normal_engine_checks": {
+      "configurations": 1592,
+      "front_returns_at_120_200_400_ms": 19104,
+      "new_jobs_or_uploads_during_draw": 0,
+      "normal_game_enabled": true,
+      "normal_native_draws": 41392,
+      "preferences_written": false,
+      "resource_cache": {
+        "decode_ms": 380.9787,
+        "decoded_source_budget": 67108864,
+        "decoded_source_peak_bytes": 67108608,
+        "jobs": 1593,
+        "pending": 0,
+        "read_bytes": 60364460,
+        "read_ms": 182.5818,
+        "source_reads": 698,
+        "texture_budget": 134217728,
+        "texture_bytes": 133938432,
+        "texture_create_ms": 174.0742,
+        "uploads": 1593,
+        "worker_build_ms_including_sources": 4498.1856
+      },
+      "return_visit_reused_cache": true,
+      "review": "VERT18-C06",
+      "review_override_used": false,
+      "same_actor_finish": true,
+      "saved_boards": 74,
+      "saved_game_loaded": false
+    },
+    "seconds_including_package": 107.991,
+    "executable_sha256": "d31ba82555994236a029031c4ec8a8f42ba5b5d3f0e869f1f95354d9373b6edf",
+    "output": "artifacts/vertical-walk-review-18/integration/archive-C06-20261029-2343"
+  },
+  "native_proofs": [
+    "integration-proof/arcaniste-DUAL-104-104.png",
+    "integration-proof/arcaniste-W066.png",
+    "integration-proof/MON-022-v0.png",
+    "integration-proof/MON-141-v0.png",
+    "integration-proof/camp-direction-1-pose1.png",
+    "integration-proof/camp-direction1-pose3.png"
+  ],
+  "optimized_diagnostic_executable_sha256": "d31ba82555994236a029031c4ec8a8f42ba5b5d3f0e869f1f95354d9373b6edf",
+  "temporary_package_cleanup": {
+    "temporary_package": "artifacts/vertical-walk-review-18/integration/archive-C06-20261029-2343",
+    "status": "sent_to_recycle_bin_after_successful_strict_archive_validation",
+    "bytes_removed_from_workspace": 290526814,
+    "disk_space_freed_claimed": false,
+    "sources_and_normal_executables_preserved": true
+  },
+  "subsequent_accepted_override": {
+    "review": "VERT18-C08-B",
+    "integration": "integration-C08.json",
+    "current_runtime_hashes": "runtime-assets-C08.json",
+    "scope": "Knife angles only; source artwork and pistol A unchanged"
+  },
+  "latest_accepted_pistol_revision": {
+    "review": "VERT18-C09-B",
+    "integration": "integration-C09.json",
+    "current_runtime_hashes": "runtime-assets-C09.json",
+    "scope": "10 degrees outward from the downward carry; knife C08-B unchanged"
+  }
+}

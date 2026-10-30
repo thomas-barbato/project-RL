@@ -1,0 +1,342 @@
+{
+  "review": "VERT18-CONT01",
+  "date": "2026-10-30",
+  "status": "integrated_normal_debug_and_release",
+  "user_request": "maintenir une touche de déplacement doit enchaîner les pas sans retour frontal intermédiaire; revenir de face uniquement à l’arrêt réel",
+  "user_approval": "oui :)",
+  "scope": "player held keyboard movement; common presentation pose, lateral and vertical",
+  "normal_debug_enabled": true,
+  "normal_release_enabled": true,
+  "simulation_or_input_cadence_changed": false,
+  "new_art": false,
+  "assets_changed": false,
+  "behavior": [
+    "preserve final walking phase and orientation while held between committed steps",
+    "finish current step after release, then frontal idle",
+    "clear continuation on blocked movement, attack without displacement, other command, menu, graphics modal, travel or stop",
+    "no extra distance, predicted step or turn"
+  ],
+  "preview_pages": [
+    "knife-contact-C11",
+    "grips-C12"
+  ],
+  "preview_timing": "two consecutive 400 ms steps, then one 650 ms frontal rest",
+  "targeted_tests": {
+    "unique_passed": 45,
+    "combat_motion": 18,
+    "controls": 24,
+    "app_input": 3,
+    "full_test_suite_run": false,
+    "historical_test_fixture": "120 ms walk selected explicitly for the existing 280 ms initial key-delay regression"
+  },
+  "native_checks": {
+    "actual_terminal_map_renderer": true,
+    "held_samples_without_front_flash": 36,
+    "new_art": false,
+    "normal_game_enabled": true,
+    "records": [
+      {
+        "direction": -1,
+        "duration_ms": 120,
+        "facing": -2,
+        "frame": 2,
+        "sample": 0,
+        "step": 0
+      },
+      {
+        "direction": -1,
+        "duration_ms": 120,
+        "facing": -2,
+        "frame": 2,
+        "sample": 1,
+        "step": 0
+      },
+      {
+        "direction": -1,
+        "duration_ms": 120,
+        "facing": -2,
+        "frame": 5,
+        "sample": 0,
+        "step": 1
+      },
+      {
+        "direction": -1,
+        "duration_ms": 120,
+        "facing": -2,
+        "frame": 5,
+        "sample": 1,
+        "step": 1
+      },
+      {
+        "direction": -1,
+        "duration_ms": 120,
+        "facing": -2,
+        "frame": 2,
+        "sample": 0,
+        "step": 2
+      },
+      {
+        "direction": -1,
+        "duration_ms": 120,
+        "facing": -2,
+        "frame": 2,
+        "sample": 1,
+        "step": 2
+      },
+      {
+        "direction": -1,
+        "duration_ms": 200,
+        "facing": -2,
+        "frame": 2,
+        "sample": 0,
+        "step": 0
+      },
+      {
+        "direction": -1,
+        "duration_ms": 200,
+        "facing": -2,
+        "frame": 2,
+        "sample": 1,
+        "step": 0
+      },
+      {
+        "direction": -1,
+        "duration_ms": 200,
+        "facing": -2,
+        "frame": 5,
+        "sample": 0,
+        "step": 1
+      },
+      {
+        "direction": -1,
+        "duration_ms": 200,
+        "facing": -2,
+        "frame": 5,
+        "sample": 1,
+        "step": 1
+      },
+      {
+        "direction": -1,
+        "duration_ms": 200,
+        "facing": -2,
+        "frame": 2,
+        "sample": 0,
+        "step": 2
+      },
+      {
+        "direction": -1,
+        "duration_ms": 200,
+        "facing": -2,
+        "frame": 2,
+        "sample": 1,
+        "step": 2
+      },
+      {
+        "direction": -1,
+        "duration_ms": 400,
+        "facing": -2,
+        "frame": 2,
+        "sample": 0,
+        "step": 0
+      },
+      {
+        "direction": -1,
+        "duration_ms": 400,
+        "facing": -2,
+        "frame": 2,
+        "sample": 1,
+        "step": 0
+      },
+      {
+        "direction": -1,
+        "duration_ms": 400,
+        "facing": -2,
+        "frame": 5,
+        "sample": 0,
+        "step": 1
+      },
+      {
+        "direction": -1,
+        "duration_ms": 400,
+        "facing": -2,
+        "frame": 5,
+        "sample": 1,
+        "step": 1
+      },
+      {
+        "direction": -1,
+        "duration_ms": 400,
+        "facing": -2,
+        "frame": 2,
+        "sample": 0,
+        "step": 2
+      },
+      {
+        "direction": -1,
+        "duration_ms": 400,
+        "facing": -2,
+        "frame": 2,
+        "sample": 1,
+        "step": 2
+      },
+      {
+        "direction": 1,
+        "duration_ms": 120,
+        "facing": 2,
+        "frame": 2,
+        "sample": 0,
+        "step": 0
+      },
+      {
+        "direction": 1,
+        "duration_ms": 120,
+        "facing": 2,
+        "frame": 2,
+        "sample": 1,
+        "step": 0
+      },
+      {
+        "direction": 1,
+        "duration_ms": 120,
+        "facing": 2,
+        "frame": 5,
+        "sample": 0,
+        "step": 1
+      },
+      {
+        "direction": 1,
+        "duration_ms": 120,
+        "facing": 2,
+        "frame": 5,
+        "sample": 1,
+        "step": 1
+      },
+      {
+        "direction": 1,
+        "duration_ms": 120,
+        "facing": 2,
+        "frame": 2,
+        "sample": 0,
+        "step": 2
+      },
+      {
+        "direction": 1,
+        "duration_ms": 120,
+        "facing": 2,
+        "frame": 2,
+        "sample": 1,
+        "step": 2
+      },
+      {
+        "direction": 1,
+        "duration_ms": 200,
+        "facing": 2,
+        "frame": 2,
+        "sample": 0,
+        "step": 0
+      },
+      {
+        "direction": 1,
+        "duration_ms": 200,
+        "facing": 2,
+        "frame": 2,
+        "sample": 1,
+        "step": 0
+      },
+      {
+        "direction": 1,
+        "duration_ms": 200,
+        "facing": 2,
+        "frame": 5,
+        "sample": 0,
+        "step": 1
+      },
+      {
+        "direction": 1,
+        "duration_ms": 200,
+        "facing": 2,
+        "frame": 5,
+        "sample": 1,
+        "step": 1
+      },
+      {
+        "direction": 1,
+        "duration_ms": 200,
+        "facing": 2,
+        "frame": 2,
+        "sample": 0,
+        "step": 2
+      },
+      {
+        "direction": 1,
+        "duration_ms": 200,
+        "facing": 2,
+        "frame": 2,
+        "sample": 1,
+        "step": 2
+      },
+      {
+        "direction": 1,
+        "duration_ms": 400,
+        "facing": 2,
+        "frame": 2,
+        "sample": 0,
+        "step": 0
+      },
+      {
+        "direction": 1,
+        "duration_ms": 400,
+        "facing": 2,
+        "frame": 2,
+        "sample": 1,
+        "step": 0
+      },
+      {
+        "direction": 1,
+        "duration_ms": 400,
+        "facing": 2,
+        "frame": 5,
+        "sample": 0,
+        "step": 1
+      },
+      {
+        "direction": 1,
+        "duration_ms": 400,
+        "facing": 2,
+        "frame": 5,
+        "sample": 1,
+        "step": 1
+      },
+      {
+        "direction": 1,
+        "duration_ms": 400,
+        "facing": 2,
+        "frame": 2,
+        "sample": 0,
+        "step": 2
+      },
+      {
+        "direction": 1,
+        "duration_ms": 400,
+        "facing": 2,
+        "frame": 2,
+        "sample": 1,
+        "step": 2
+      }
+    ],
+    "release_checks": 6,
+    "review": "VERT18-CONT01",
+    "saved_campaign_loaded": false,
+    "user_preferences_written": false
+  },
+  "capture_path": "artifacts/vertical-walk-review-18/current/continuity-CONT01",
+  "formatting": "changed Rust files checked; existing unrelated lib module order retained",
+  "debug_build": "passed",
+  "release_build": "passed",
+  "js_syntax_checks": "C11 and C12 passed",
+  "diff_check": "passed; existing LF/CRLF notices only",
+  "executables_sha256": {
+    "target\\debug\\project-rl.exe": "95288025ce233b6c608feb81638f9aec59af61643b7a231311f03197fda0df7a",
+    "target\\release\\project-rl.exe": "cb95c8dce3b4511406bda41acf318abed824d67cc41ad5b0390a6c0f910e3ada"
+  }
+}

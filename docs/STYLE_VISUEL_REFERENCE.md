@@ -55,6 +55,13 @@ suivent l'orientation montrée. Les nouvelles phases ne se fabriquent pas par
 greffe de jambes, cisaillement ou déplacement de bandes. Chaque morphologie
 de monstre conserve ses supports et ses appendices propres.
 
+Le contrôle inclut chaque phase et son retour au repos, avec et sans casque
+et arme. La taille de la toile ou des pixels de frange ne suffit pas à mesurer
+le gabarit : comparer aussi la tête, le torse, la longueur des membres et les
+appuis. Une pose de repos issue d'un autre dessin peut changer la morphologie
+même lorsque la hauteur totale est proche. La reprise VERT18-C05, validée le 29 octobre 2026,
+consigne ce défaut et le correctif accepté pour les neuf profils présentés.
+
 Les bras, gants et repères de prise proviennent du même cycle et de la même
 projection que le corps. Composer séparément le corps, les équipements portés,
 les armes communes et les mains, avec des attaches stables et un ordre de
@@ -62,6 +69,60 @@ profondeur cohérent. Le casque suit la tête réellement dessinée. L'armure du
 joueur s'adapte à sa classe ; le dessin d'une arme reste partagé, avec sa
 prise et son placement adaptés. Les règles acceptées de marche et de retour
 de face restent celles de WALK12, ARM14 et DUAL15.
+
+Précision CONT01, validée le 30 octobre 2026 : un maintien de la touche de
+déplacement enchaîne les pas sans passage frontal intermédiaire. Conserver
+l'orientation du dernier pas pendant l'attente du suivant, sans ajouter de
+distance ni de tour. Le relâchement laisse finir le pas déjà engagé, puis
+reprend le repos frontal ; un déplacement bloqué ou une autre action termine
+également cet enchaînement. Les phases et les dessins acceptés sont conservés.
+
+Placer les attaches sur les doigts et l'ouverture de prise réellement dessinés,
+pas sur une manchette ou un protège-poignet voisin. Les doigts doivent entourer
+le manche ; le simple contact entre pixels d'arme et de main ne valide pas cette
+anatomie. De dos, réorienter les prises et respecter le passage des armes derrière
+les bras et le corps lorsqu'elles sont portées devant le personnage. Les deux
+attaches d'une arme à deux mains suivent ensemble la pose, sans faire varier
+arbitrairement sa taille ou son inclinaison entre phases.
+
+Pour les nouvelles marches verticales, le cycle VERT18-C01 validé le
+29 octobre 2026 fixe le vrai dos vers le haut et la face vers le bas.
+L'accord VERT18-C05 valide ensuite, pour ses neuf profils, un vrai repos frontal
+issu du même dessin entier que la marche et le calibrage cohérent des orientations.
+Le gabarit et l'équipement restent stables au retour de face. Le périmètre exact
+est figé dans `reviews/vertical-walk-18/acceptance-C05.json` ; les silhouettes et
+équipements encore absents suivent leur revue avant intégration.
+
+L’accord VERT18-C06 du 29 octobre 2026 étend ce cycle aux 113 modèles d’armes
+sur les huit tenues de base/lourdes acceptées, avec les sept couleurs d’armes,
+les six casques ou la tête nue, et aux 129 modèles de monstres courants
+(471 couples modèle/couleur). Ce périmètre est intégré au rendu normal ;
+NPC-01 conserve son cycle C05. La palette de torse reste celle d’origine,
+les tenues et acteurs non couverts gardent leur rendu précédent. Les marches
+latérales restent celles déjà acceptées. L’état précis et les contrôles sont
+dans `reviews/vertical-walk-18/integration-C06.json`.
+
+Le 30 octobre 2026, C08-B précise le port des couteaux et dagues W068–W079
+sur ce périmètre : lame vers l’extérieur, légèrement vers le bas (20° sous
+l’horizontale), avec les mêmes prises, tailles et doigts. La rotation reste
+rigide et cohérente entre face, dos et repos, dans chaque main. La prise A
+du pistolet est conservée. Références : `acceptance-C08.json` et
+`integration-C08.json` dans `reviews/vertical-walk-18/`.
+
+L’accord C09-B du même jour précise ensuite les pistolets W101–W112 :
+ouvrir leur canon de 10° vers l’extérieur depuis le port dirigé vers le bas,
+symétriquement selon le côté visible de la main. Les pivots, les tailles,
+les doigts et le couteau C08-B sont conservés. La règle couvre les mêmes
+huit tenues et 13 poses, sans remplacer leur marche latérale acceptée.
+Références : `acceptance-C09.json` et `integration-C09.json`.
+
+Les accords C11-BACK-R02 et C12 du 30 octobre 2026 ajoutent les douze tenues
+intermédiaires actuelles : deux configurations à deux armes à une main figées
+en couleur d'origine, puis les 74 modèles à deux mains, leurs sept couleurs
+et sept états de tête. Les trois prises à deux mains suivent les vrais doigts
+de leur cycle. Le torse reste en palette d'origine et les autres ports à une
+main gardent leur rendu précédent. Les sources acceptées sont figées ; leur
+intégration et les contrôles sont dans `reviews/vertical-walk-18/integration-C12.json`.
 
 ### Éclairage et contrôle avant intégration
 

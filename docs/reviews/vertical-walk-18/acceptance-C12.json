@@ -1,0 +1,27 @@
+{
+  "review": "VERT18-C12",
+  "date": "2026-10-30",
+  "status": "visual_accepted_integrated",
+  "user_quote": "oui on continue",
+  "interpretation": "acceptance of the C12 preview just presented, then continuation with integration",
+  "normal_game_enabled": true,
+  "scope": {
+    "player_profiles": 12,
+    "two_handed_models": 74,
+    "families": 3,
+    "headgear_choices": 7,
+    "weapon_palette_choices": 7,
+    "torso_palette": "Original",
+    "poses": 13
+  },
+  "candidate_resources": "candidate-resources-C12.json",
+  "candidate_resources_sha256": "a2746e9d328b68de4755aa515a54630e3b8f4712b8319346ce5b62116df84c77",
+  "excluded": [
+    "other one-handed models and loadouts absent from C11",
+    "other torso palettes",
+    "legacy Technomancien",
+    "other NPC bodies",
+    "lateral walking"
+  ],
+  "integration": "integration-C12.json"
+}

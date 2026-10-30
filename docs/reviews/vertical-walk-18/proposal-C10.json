@@ -1,0 +1,36 @@
+{
+  "review": "VERT18-C10",
+  "date": "2026-10-30",
+  "status": "native_candidates_awaiting_visual_approval",
+  "scope": "12 intermediate armor silhouettes and front/back/idle cycles; six existing shared helmets; five representative one-hand loadouts; Original palette",
+  "outfit_indices": [
+    1,
+    2,
+    3,
+    11,
+    12,
+    13,
+    16,
+    17,
+    18,
+    21,
+    22,
+    23
+  ],
+  "normal_game_activated": false,
+  "previous_approvals_preserved": true,
+  "drawn_sources": "assets/source-art/vertical-walk-review-18/armor-C10/",
+  "prompts": "prompts-C10.json",
+  "excluded": [
+    "legacy Technomancien compatibility outfits",
+    "other NPC bodies",
+    "forms and drones",
+    "new class or equipment identities"
+  ],
+  "scope_stage": "silhouette_review_before_two_hand_drawing",
+  "native_draws": 5460,
+  "camp_pose_records": 624,
+  "preview": "armor-C10/apercu.html",
+  "analysis": "ANALYSE-C10.json",
+  "next_step_after_silhouette_approval": "author and review the three two-handed grip families, then complete weapon models/palettes before integration"
+}

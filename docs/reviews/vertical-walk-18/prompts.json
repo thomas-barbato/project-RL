@@ -1,0 +1,45 @@
+{
+  "review": "VERT18-C01",
+  "mode": "builtin_image_gen",
+  "status": "review_only",
+  "normal_game_enabled": false,
+  "calls": [
+    {
+      "id": "arcaniste-r01",
+      "selected": true,
+      "prompt": "Use case: identity-preserve. Asset type: production source sprite sheet for a native64 pixel-art RPG. Make one 4-column by 4-row contact sheet of SIXTEEN SEPARATE COMPLETE figures of the SAME character on genuinely transparent background. Every equal cell contains one centered full body with generous transparent padding, identical physical scale and stable foot baseline. No text, labels, grid lines, scenery, shadows on the ground, weapons in hands, perspective camera changes or cropped extremities.\nCamera and finish: match the approved native game reference, straight frontal/back view for a square-grid game, not side view, not isometric. Compact hand-painted pixel-art masses, readable at 64x64, matte worn materials, restrained dark outlines, consistent upper-left light and exact outfit identity. No new accessories, decorations, logos, straps or armor upgrades. Draw each entire coherent walking figure; do not shift leg strips or distort the torso.\nExact cell order:\nROW 1: FRONT neutral standing, FRONT left-foot contact, FRONT left-foot recoil, FRONT left support/right foot passing.\nROW 2: FRONT neutral standing again, FRONT right-foot contact, FRONT right-foot recoil, FRONT right support/left foot passing.\nROW 3: TRUE BACK neutral standing, BACK left-foot contact, BACK left-foot recoil, BACK left support/right foot passing.\nROW 4: TRUE BACK neutral standing again, BACK right-foot contact, BACK right-foot recoil, BACK right support/left foot passing.\nFront means walking DOWN toward the viewer. Back means walking UP away from the viewer, no visible face or eyes. Six front and six back poses must make an understated readable walking-in-place cycle, with alternate supporting knees and feet, gentle coat motion and very small torso bob. Keep both arms relaxed low with closed hands, separated from the torso enough for independent held equipment; minimal arm swing. Exactly two arms, two hands, two legs per figure; no ghost limbs or floating clothing. Preserve anatomical left/right of asymmetrical outfit details across front/back.\n\nSubject: the exact white-haired male Arcaniste in the references: long sleeveless red split coat/robe, red draped collar with its hood resting behind the neck, black undershirt and trousers, brown-black forearm wraps and boots, simple belt. Image 1 is the approved game silhouette, proportions and palette; image 2 supplies garment/face detail only, do NOT copy its raised boxing arms. The back view has white hair/nape and the SAME red coat, not an invented backpack or cape. Keep original lean adult proportions and bare upper arms. The robe opens to reveal the existing dark trousers as he steps. All sixteen figures are this one character only.",
+      "references": [
+        "assets/source-art/player-walk-review-11/CLASS-15-front-native128.png",
+        "assets/source-art/class-armor-pose-fixes-03/outfit-15-raised-source.png"
+      ],
+      "output": "assets/source-art/vertical-walk-review-18/arcaniste-r01-source.png",
+      "sha256": "ebfaef663553b1dc04bdf2cfe6af3f4e64419bc57a0417375f31f77f8731cc71",
+      "transparent_background": true
+    },
+    {
+      "id": "npc-garde-r01",
+      "selected": false,
+      "prompt": "Use case: identity-preserve. Asset type: production source sprite sheet for a native64 pixel-art RPG. Make one 4-column by 4-row contact sheet of SIXTEEN SEPARATE COMPLETE figures of the SAME character on genuinely transparent background. Every equal cell contains one centered full body with generous transparent padding, identical physical scale and stable foot baseline. No text, labels, grid lines, scenery, shadows on the ground, weapons in hands, perspective camera changes or cropped extremities.\nCamera and finish: match the approved native game reference, straight frontal/back view for a square-grid game, not side view, not isometric. Compact hand-painted pixel-art masses, readable at 64x64, matte worn materials, restrained dark outlines, consistent upper-left light and exact outfit identity. No new accessories, decorations, logos, straps or armor upgrades. Draw each entire coherent walking figure; do not shift leg strips or distort the torso.\nExact cell order:\nROW 1: FRONT neutral standing, FRONT left-foot contact, FRONT left-foot recoil, FRONT left support/right foot passing.\nROW 2: FRONT neutral standing again, FRONT right-foot contact, FRONT right-foot recoil, FRONT right support/left foot passing.\nROW 3: TRUE BACK neutral standing, BACK left-foot contact, BACK left-foot recoil, BACK left support/right foot passing.\nROW 4: TRUE BACK neutral standing again, BACK right-foot contact, BACK right-foot recoil, BACK right support/left foot passing.\nFront means walking DOWN toward the viewer. Back means walking UP away from the viewer, no visible face or eyes. Six front and six back poses must make an understated readable walking-in-place cycle, with alternate supporting knees and feet, gentle coat motion and very small torso bob. Keep both arms relaxed low with closed hands, separated from the torso enough for independent held equipment; minimal arm swing. Exactly two arms, two hands, two legs per figure; no ghost limbs or floating clothing. Preserve anatomical left/right of asymmetrical outfit details across front/back.\n\nSubject: the exact older moustached camp guard NPC in the references. Olive military coat and high collar, black helmet and amber visor, cream diagonal shoulder strap, cream armband, black gloves, dark navy trousers, black heavy boots, existing small holstered pistol. Image 1 is the approved native game silhouette and palette; image 2 supplies garment detail only. Hands are empty and relaxed low during walking; keep the existing holster attached on the same anatomical hip, with no added gun, backpack, cape, rifle or new equipment. Preserve the cream armband on the SAME anatomical upper arm: from front it is on viewer LEFT, from back on viewer RIGHT. The strap similarly follows the same physical shoulders, and the back of the helmet has no amber visor or face. All sixteen figures are this one NPC only.",
+      "references": [
+        "assets/maps/cryogenic-camp-01/actors/NPC-01-r03-native64.png",
+        "assets/source-art/refonte-histoire-2026-10-16/npc-monsters-review-01/NPC-01-r03.png"
+      ],
+      "output": "assets/source-art/vertical-walk-review-18/npc-garde-r01-source.png",
+      "sha256": "fe86dc2719a5633f45c7e6bf508f992b76d4d922c5315d3a77c334f0f1f2fee2",
+      "transparent_background": true
+    },
+    {
+      "id": "npc-garde-r02",
+      "selected": true,
+      "prompt": "Use case: precise-object-edit. Correct only anatomical side consistency in this exact transparent 4x4 game-sprite sheet. Preserve all 16 complete poses, their locations, sizes, outfit colors, helmet, moustache, coat, boots, lighting, style, true back views and transparent margins. In the first TWO rows (front views), the single cream upper-arm band MUST be on viewer LEFT for every one of the 8 figures, with NO cream band on viewer right. In the last TWO rows (back views), it MUST be on viewer RIGHT for every one of the 8 figures, with NO cream band on viewer left. The existing holstered pistol is on the same anatomical right hip: viewer LEFT in front rows, viewer RIGHT in back rows. Correct a missing or wrongly sided band/holster consistently; retain one holster and one armband per figure. Keep the existing diagonal strap exactly as drawn, no new equipment or weapons in hands. Do not redraw heads, proportions, walking phases, or camera. No text, lines, floor or background.",
+      "references": [
+        "assets/source-art/vertical-walk-review-18/npc-garde-r01-source.png"
+      ],
+      "output": "assets/source-art/vertical-walk-review-18/npc-garde-r02-source.png",
+      "sha256": "e95d05c6bc1eac248e9155c4d17cc6d96b82c225e6c2481d6f082fb37637f0b2",
+      "transparent_background": true
+    }
+  ],
+  "conditioning_script": "tools/art/pack_vertical_walk_review18.py",
+  "whole_figures_only": true
+}

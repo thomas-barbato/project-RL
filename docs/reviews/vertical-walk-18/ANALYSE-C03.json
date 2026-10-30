@@ -1,0 +1,85 @@
+{
+  "review": "VERT18-C03",
+  "date": "2026-10-29",
+  "status": "visual_accepted_pending_integration",
+  "normal_game_enabled": false,
+  "user_scope": "all armor and weapons, helmeted and unhelmeted",
+  "coverage_document": "COUVERTURE-EQUIPEMENT.json",
+  "source_mode": "builtin_image_gen",
+  "prompts": "prompts-C03.json",
+  "manifest": "assets/source-art/vertical-walk-review-18/candidate-C03/manifest.json",
+  "checks": {
+    "cargo_build_locked": "passed",
+    "targeted_rustfmt": "passed",
+    "git_diff_check": "passed",
+    "engine_capture_exit_code": 0,
+    "all_39_one_handed_models_both_hands_front_back_all_phases": 3744,
+    "sampled_loadout_contacts": 336,
+    "neutral_front_returns": 80,
+    "camp_front_returns": 16,
+    "moving_and_standing_neutral_actor_gain": 1.0,
+    "moving_and_standing_camp_actor_gain": 1.48,
+    "approved_files_unchanged": 17,
+    "shared_motion_tests": "unchanged C01 behavior; not repeated for these new assets",
+    "full_suite_run": false,
+    "release_build": "not repeated; changes confined to debug review",
+    "full_campaign_run": false,
+    "lossless_animation_frames_verified": 754,
+    "browser_selection_and_camp_controls": "passed; scene and equipment selectors remain synchronized",
+    "source_hashes": {
+      "assets/source-art/vertical-walk-review-18/candidate-C03/arcaniste-lourd-standing-original.png": "1cf879747d81ef8f643e85ec485004a0a46915297c64bb3bec5fb1adf86b2430",
+      "assets/source-art/vertical-walk-review-18/candidate-C03/arcaniste-lourd.png": "9373e6330522969a6730d69f4827ad5dd32fa873897d0aa4c459fd57c674ae4a",
+      "assets/source-art/vertical-walk-review-18/candidate-C03/bastion-lourd-standing-original.png": "f720714d0adeb2df941801041862d7ab5da89b55e2d6f1109ea1b91c4ef284d5",
+      "assets/source-art/vertical-walk-review-18/candidate-C03/bastion-lourd.png": "e34be8ee20848c10ed8588c1ce1bb448ed163fafac91b3360054c0d6f9e6a045",
+      "assets/source-art/vertical-walk-review-18/candidate-C03/manifest.json": "a8c7935c4ad91ac2fb9dc270e3d2c126275deb28c85cb378fecc0d9535f348cf",
+      "assets/source-art/vertical-walk-review-18/candidate-C03/metamorphe-lourd-standing-original.png": "7bd136e89e6000141a3f4ef8b2df807687b7510e673c4f3af99876bd99f7ea6e",
+      "assets/source-art/vertical-walk-review-18/candidate-C03/metamorphe-lourd.png": "ffcbbc530d07367810c1cc54677b770d2f8e2de331830d6a97489ae3cbd24a81",
+      "assets/source-art/vertical-walk-review-18/candidate-C03/traqueuse-lourde-standing-original.png": "78c56f4c1c56a53a6f0216bfc4cfa2ab6f7eb9f957efb0e944e0a0f376c04315",
+      "assets/source-art/vertical-walk-review-18/candidate-C03/traqueuse-lourde.png": "5e1cc9709b3f4041ce15b004dde60b90ac583a6ff2caa35b9b113d698bfd3928"
+    }
+  },
+  "limits": {
+    "true_unhelmeted_heavy_heads_prepared": false,
+    "six_equipped_helmet_back_views_prepared": false,
+    "two_handed_grips_prepared": false,
+    "other_armor_ranks_prepared": false,
+    "legacy_technomancien_prepared": false,
+    "material_palettes_reviewed": "Original only",
+    "all_ordered_dual_pairs_visually_reviewed": false,
+    "remaining_NPCs_prepared": false
+  },
+  "preparation": {
+    "read_or_decode_during_draw": false,
+    "source_cache_limit_bytes": 4194304,
+    "texture_cache_limit_bytes": 8388608,
+    "next_loadout_prepared_before_display": true,
+    "no_saved_game_loaded": true,
+    "no_preferences_written": true
+  },
+  "preview": {
+    "url": "http://127.0.0.1:63780/equipment-C03/apercu.html",
+    "raw_engine_frames": 234,
+    "loadouts": 5,
+    "native_tile_px": 64,
+    "read_pause_ms": 650,
+    "lossless_animations": 27,
+    "browser_screenshot": "artifacts/vertical-walk-review-18/current/equipment-C03/apercu-navigateur.png",
+    "browser_scene_screenshot": "artifacts/vertical-walk-review-18/current/equipment-C03/apercu-camp-navigateur.png",
+    "browser_tab": "5, marked deliverable"
+  },
+  "notes": [
+    "Head protection originally drawn into heavy torso artwork is retained in this first equipment comparison; it does not fulfill the explicit true-unhelmeted requirement",
+    "Two-handed source-arm poses must be authored and reviewed separately",
+    "C01/C02 approvals do not approve C03 or DUAL17-C02"
+  ],
+  "acceptance": "acceptance-C03.json",
+  "size_followup": {
+    "review": "VERT18-C05",
+    "user_requested_correction_of_all_presented_variants": true,
+    "old_accepted_sources_preserved": true,
+    "normal_integration_waits_for_new_size_and_idle_review": false,
+    "status": "visual_accepted_pending_integration",
+    "acceptance": "acceptance-C05.json",
+    "normal_integration_still_pending": true
+  }
+}

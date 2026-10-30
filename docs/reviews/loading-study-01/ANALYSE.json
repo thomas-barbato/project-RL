@@ -1,7 +1,7 @@
 {
   "review_id": "LOAD01",
   "date": "2026-10-29",
-  "status": "Principe general valide pour tout le jeu ; diagnostic integre ; cache et prechargement non integres",
+  "status": "Accepted global policy; diagnostics and first shared actor preparation/cache integrated; global migration incomplete",
   "purpose": "Etude du chargement et des pauses au premier affichage, inspiree des principes de Diablo II classique.",
   "machine": {
     "cpu": "AMD Ryzen 7 5700X, 8 coeurs / 16 threads",
@@ -540,5 +540,18 @@
     "reference": "REGLE.json",
     "scope": "Tout le jeu, cartes actuelles et futures",
     "accepted_on": "2026-10-29"
+  },
+  "vertical18_integration": {
+    "review": "VERT18-C06",
+    "decision": "../vertical-walk-18/integration-C06.json",
+    "code": "src/asset_preparation.rs",
+    "decoded_source_budget_bytes": 67108864,
+    "texture_budget_bytes": 134217728,
+    "budgets_are_service_local_not_global_memory_approval": true,
+    "visible_preparation_before_draw": true,
+    "nearby_prefetch_actors": 4,
+    "heavy_reads_and_decodes_on_cpu_worker": true,
+    "gpu_upload_on_context_thread": true,
+    "legacy_scene_effect_ui_migration_complete": false
   }
 }

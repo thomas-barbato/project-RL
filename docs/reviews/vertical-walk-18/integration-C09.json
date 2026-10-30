@@ -1,0 +1,145 @@
+{
+  "review": "VERT18-C09",
+  "date": "2026-10-30",
+  "selected": "B",
+  "status": "integrated_normal_debug_and_release",
+  "normal_debug_enabled": true,
+  "normal_release_enabled": true,
+  "acceptance": "acceptance-C09.json",
+  "scope": {
+    "player_profiles": 8,
+    "pistol_models": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112
+    ],
+    "hands": 2,
+    "poses": 13,
+    "weapon_palette_choices": 7,
+    "headgear_choices": 7,
+    "torso_palette": "Original"
+  },
+  "knife_C08_B_unchanged": true,
+  "all_other_attachment_fields_unchanged": true,
+  "runtime_changed_files": [
+    "assets/animations/vertical-18/manifest.json"
+  ],
+  "runtime_images_unchanged": 1604,
+  "normal_renderer_code_changed": false,
+  "source_art_redrawn": false,
+  "source_and_runtime_hashes_verified": {
+    "candidate-resources-C06": 3272,
+    "candidate-resources-C08": 113,
+    "candidate-resources-C09": 169,
+    "runtime-assets-C09": 1605
+  },
+  "source_gold_bank": "candidate-resources-C09.json",
+  "runtime_hashes": "runtime-assets-C09.json",
+  "installer_override_idempotent": true,
+  "targeted_tests": {
+    "passed": 4,
+    "command": "cargo test --locked --bin project-rl --profile loading --config profile.loading.inherits=release --config profile.loading.debug-assertions=true game_art::vertical::tests -- --include-ignored --nocapture",
+    "full_test_suite_run": false
+  },
+  "pixel_parity": {
+    "alpha_limit": 1,
+    "c06_unchanged_configurations": 1327,
+    "c08_configurations": 104,
+    "c09_configurations": 168,
+    "color_limit": 2,
+    "configurations": 1599,
+    "max_premultiplied_rgba_delta": 2,
+    "review": "VERT18-C06+C08-B+C09-B",
+    "source_art_unchanged": true,
+    "whole_pose_comparisons": 20787
+  },
+  "normal_engine": {
+    "configurations": 1600,
+    "front_returns_at_120_200_400_ms": 19200,
+    "new_jobs_or_uploads_during_draw": 0,
+    "normal_game_enabled": true,
+    "normal_native_draws": 41600,
+    "preferences_written": false,
+    "resource_cache": {
+      "decode_ms": 12218.431,
+      "decoded_source_budget": 67108864,
+      "decoded_source_peak_bytes": 67108608,
+      "jobs": 1601,
+      "pending": 0,
+      "read_bytes": 60447757,
+      "read_ms": 632.3831,
+      "source_reads": 698,
+      "texture_budget": 134217728,
+      "texture_bytes": 134002944,
+      "texture_create_ms": 340.3699,
+      "uploads": 1601,
+      "worker_build_ms_including_sources": 131918.9941
+    },
+    "return_visit_reused_cache": true,
+    "review": "VERT18-C06+C08-B+C09-B",
+    "review_override_used": false,
+    "same_actor_finish": true,
+    "saved_boards": 82,
+    "saved_game_loaded": false
+  },
+  "camp_engine": {
+    "actual_terminal_map_renderer": true,
+    "native_cell": 64,
+    "normal_actor_draws": [
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6
+    ],
+    "normal_game_enabled": true,
+    "saved_campaign_loaded": false,
+    "user_preferences_written": false
+  },
+  "preserved_native_proofs": [
+    "integration-proof/C09-B-native64.png",
+    "integration-proof/C09-arcaniste-DUAL-104-69.png",
+    "integration-proof/C09-bastion-lourd-DUAL-104-104.png",
+    "integration-proof/C09-traqueuse-lourde-W104-H118.png"
+  ],
+  "builds": {
+    "debug": "passed",
+    "release": "passed"
+  },
+  "runtime_inventory": {
+    "logical_files": 3424,
+    "authoring_or_capture_dependencies": 0,
+    "strict_archive_execution_rerun_for_C09": false,
+    "previous_archive_validation": "integration-archive-C06.json",
+    "reason": "Only existing numeric attachment metadata changed; no runtime image, path, reader or packaging code changed."
+  },
+  "profiling_limit": "Unoptimized Debug capture concurrent with compilation: timings are not a performance comparison. Correctness, cache bounds and absence of reads/uploads during drawing are asserted.",
+  "preferences_or_campaign_written": false,
+  "targeted_rustfmt": "passed",
+  "python_compile": "passed",
+  "git_diff_check": "passed",
+  "release_executable_sha256": "aa65039bfa8a99744e4dad2621caac53d829be9dd35fd4067d7ad07862a8cd10",
+  "debug_executable_sha256": "b78901c1b9f0eea6a37cea4096ee1617f3a8a8d8faf998f8d660323780bd2289",
+  "cleanup": {
+    "reproducible_captures_sent_to_recycle_bin": {
+      "Path": "integration-C09/normal",
+      "Files": 92,
+      "Bytes": 16047572.0,
+      "Recycled": true
+    },
+    "source_art_runtime_assets_accepted_preview_and_executables_preserved": true,
+    "disk_space_freed_claimed": false
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "traqueuse-armor3-melee-close-r02",
+  "number": 6,
+  "profile": "traqueuse-armor3",
+  "index": 13,
+  "class_id": "core:traqueur",
+  "rank": 3,
+  "family": "melee-close",
+  "references": [
+    "assets/source-art/vertical-walk-review-18/grips-C12/traqueuse-armor3-melee-close-r01-source.png",
+    "assets/source-art/vertical-walk-review-18/armor-C10/conditioned/traqueuse-armor3-idle.png"
+  ],
+  "prompt": "Use case: identity-preserve. Re-layout the EXACT sixteen whole character figures in Image1 into a clean 4-column by 4-row transparent sprite sheet with MUCH MORE EMPTY SPACE between rows. Image2 is the exact same armor identity at native game size. Preserve the character, outfit, true unhelmeted head, mechanical anatomical left arm, compact two-handed vertically stacked empty fists on the anatomical right waist, proportions, all sixteen quiet walking poses and true back views. Do not add a weapon. UNIFORMLY reduce every complete figure about 15 percent within its existing cell, keeping equal physical scale across all sixteen, and center it with at least 25 source pixels of EMPTY TRANSPARENT VERTICAL GUTTER between the lowest boot of each row and the highest head of the following row. No boot, hair, outline, armor, fringe or hand may touch or overlap any adjacent figure. All bodies must be COMPLETE and entirely inside their own cell. Do not crop a body or stretch a limb to create the margin. Same exact order, first column neutral standing, remaining columns gait phases; rows1/2 FRONT, rows3/4 TRUE BACK, no front face in back view. Same upper-left light, matte game finish and uniform physical size. Genuine alpha, no grid lines, labels, scenery or ground shadows. This is a clean spacing correction of the source sheet, not a new costume or grip.",
+  "output": "assets/source-art/vertical-walk-review-18/grips-C12/traqueuse-armor3-melee-close-r02-source.png",
+  "status": "drawn_pending_native_review",
+  "transparent_background": true,
+  "source_sha256": "5fe2b12c54f98d72404a233f90639f5ffe19809175a97f4dc9e898abf93486d2",
+  "selected_sha256": "5fe2b12c54f98d72404a233f90639f5ffe19809175a97f4dc9e898abf93486d2",
+  "mode": "builtin_imagegen",
+  "generated_source": "C:\\Users\\User\\.codex\\generated_images\\01a17e6a-663f-7731-868d-07589969d8cf\\exec-eb9af044-13c0-47a7-8830-200f26f5560c.png",
+  "dimensions": [
+    1266,
+    1243
+  ],
+  "sha256": "5fe2b12c54f98d72404a233f90639f5ffe19809175a97f4dc9e898abf93486d2"
+}

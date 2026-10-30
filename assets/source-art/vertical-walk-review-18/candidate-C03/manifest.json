@@ -1,0 +1,1066 @@
+{
+  "review": "VERT18-C03",
+  "status": "review_only",
+  "normal_game_enabled": false,
+  "native_tile_px": 64,
+  "canvas_px": 128,
+  "whole_authored_figures_only": true,
+  "profiles": [
+    {
+      "id": "bastion-lourd",
+      "selector": {
+        "kind": "player",
+        "body": 3,
+        "equipment": [
+          103,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C03/bastion-lourd.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C03/bastion-lourd-standing-original.png",
+      "source": "assets/source-art/vertical-walk-review-18/bastion-lourd-r01-source.png",
+      "source_sha256": "ad3f60d2386a91d45663ac99f799504b7cdf53d97852e16c5ad4fdd1df50963e",
+      "source_scale_xy_uniform": 0.22140221402214022,
+      "original_height_px": 60,
+      "original_foot_y": 95,
+      "equipment_scope": "one_handed_grips_review_only",
+      "unarmed_only": false,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            42,
+            34,
+            86,
+            95
+          ],
+          "palms": [
+            [
+              47.37,
+              69.9
+            ],
+            [
+              80.41,
+              69.76
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            42,
+            34,
+            85,
+            95
+          ],
+          "palms": [
+            [
+              47.24,
+              69.38
+            ],
+            [
+              79.98,
+              69.25
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            42,
+            35,
+            86,
+            95
+          ],
+          "palms": [
+            [
+              47.15,
+              70.14
+            ],
+            [
+              80.54,
+              70.12
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            42,
+            35,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              47.22,
+              69.37
+            ],
+            [
+              80.74,
+              69.95
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            42,
+            34,
+            86,
+            95
+          ],
+          "palms": [
+            [
+              47.34,
+              69.14
+            ],
+            [
+              80.34,
+              68.65
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            42,
+            34,
+            86,
+            95
+          ],
+          "palms": [
+            [
+              47.31,
+              69.12
+            ],
+            [
+              80.32,
+              69.21
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            40,
+            33,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.54,
+              69.35
+            ],
+            [
+              80.59,
+              69.32
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            40,
+            34,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.66,
+              69.38
+            ],
+            [
+              80.66,
+              69.35
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            40,
+            34,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.66,
+              69.59
+            ],
+            [
+              80.73,
+              69.38
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            40,
+            35,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.88,
+              70.09
+            ],
+            [
+              80.58,
+              70.01
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            41,
+            34,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.95,
+              69.17
+            ],
+            [
+              80.44,
+              69.1
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            40,
+            33,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.4,
+              68.66
+            ],
+            [
+              80.6,
+              68.63
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "traqueuse-lourde",
+      "selector": {
+        "kind": "player",
+        "body": 5,
+        "equipment": [
+          103,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C03/traqueuse-lourde.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C03/traqueuse-lourde-standing-original.png",
+      "source": "assets/source-art/vertical-walk-review-18/traqueuse-lourde-r01-source.png",
+      "source_sha256": "2c69bfbd497492846241075e111511ab61741d0c00199232937236c183d10a47",
+      "source_scale_xy_uniform": 0.19365609348914858,
+      "original_height_px": 58,
+      "original_foot_y": 95,
+      "equipment_scope": "one_handed_grips_review_only",
+      "unarmed_only": false,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            48,
+            34,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.77,
+              68.72
+            ],
+            [
+              75.92,
+              68.69
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            48,
+            34,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.73,
+              68.63
+            ],
+            [
+              76.03,
+              68.57
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            48,
+            34,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.75,
+              68.73
+            ],
+            [
+              75.89,
+              68.72
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            48,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.7,
+              68.78
+            ],
+            [
+              76.33,
+              68.66
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            47,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.64,
+              68.73
+            ],
+            [
+              76.27,
+              68.71
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            48,
+            35,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.67,
+              68.8
+            ],
+            [
+              75.88,
+              68.7
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            48,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.88,
+              69.16
+            ],
+            [
+              76.11,
+              69.18
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            48,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.81,
+              69.1
+            ],
+            [
+              76.15,
+              69.14
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            48,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.86,
+              69.14
+            ],
+            [
+              76.12,
+              69.12
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            48,
+            42,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              52.33,
+              69.44
+            ],
+            [
+              75.66,
+              69.42
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            48,
+            42,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              52.25,
+              69.27
+            ],
+            [
+              75.76,
+              69.51
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            48,
+            42,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              52.45,
+              69.3
+            ],
+            [
+              75.76,
+              69.38
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arcaniste-lourd",
+      "selector": {
+        "kind": "player",
+        "body": 6,
+        "equipment": [
+          103,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C03/arcaniste-lourd.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C03/arcaniste-lourd-standing-original.png",
+      "source": "assets/source-art/vertical-walk-review-18/arcaniste-lourd-r01-source.png",
+      "source_sha256": "0bc28123263684e2d280a1d5b89462eee154d4fbbe622c99c90dc8dc1e6ec31c",
+      "source_scale_xy_uniform": 0.21942446043165467,
+      "original_height_px": 61,
+      "original_foot_y": 95,
+      "equipment_scope": "one_handed_grips_review_only",
+      "unarmed_only": false,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            46,
+            33,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.17,
+              67.28
+            ],
+            [
+              78.51,
+              67.26
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            46,
+            33,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.2,
+              67.48
+            ],
+            [
+              78.49,
+              67.45
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            46,
+            33,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.16,
+              67.32
+            ],
+            [
+              78.5,
+              67.49
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            46,
+            33,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.21,
+              67.11
+            ],
+            [
+              78.45,
+              67.04
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            46,
+            34,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.23,
+              67.49
+            ],
+            [
+              78.5,
+              67.5
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            46,
+            33,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.22,
+              67.25
+            ],
+            [
+              78.49,
+              67.45
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            45,
+            33,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              48.88,
+              67.51
+            ],
+            [
+              78.85,
+              67.47
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            45,
+            33,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              48.87,
+              67.72
+            ],
+            [
+              78.8,
+              67.62
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            46,
+            33,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              49.21,
+              67.66
+            ],
+            [
+              78.88,
+              67.68
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            45,
+            32,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              48.85,
+              67.15
+            ],
+            [
+              78.72,
+              67.19
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            45,
+            32,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              48.9,
+              67.18
+            ],
+            [
+              78.79,
+              67.07
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            45,
+            32,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              48.87,
+              67.12
+            ],
+            [
+              78.79,
+              67.08
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "metamorphe-lourd",
+      "selector": {
+        "kind": "player",
+        "body": 7,
+        "equipment": [
+          103,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C03/metamorphe-lourd.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C03/metamorphe-lourd-standing-original.png",
+      "source": "assets/source-art/vertical-walk-review-18/metamorphe-lourd-r01-source.png",
+      "source_sha256": "abbc161a0e071ecb43320be812e9993f6a3e4271177fa4b307f2a9dad6fdd6e3",
+      "source_scale_xy_uniform": 0.1952054794520548,
+      "original_height_px": 57,
+      "original_foot_y": 95,
+      "equipment_scope": "one_handed_grips_review_only",
+      "unarmed_only": false,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            48,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.49,
+              69.03
+            ],
+            [
+              76.64,
+              68.99
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            48,
+            36,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.37,
+              68.94
+            ],
+            [
+              76.32,
+              69.0
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            48,
+            36,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.4,
+              69.05
+            ],
+            [
+              76.38,
+              68.95
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            47,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.13,
+              69.11
+            ],
+            [
+              76.59,
+              68.99
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            48,
+            37,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.31,
+              68.95
+            ],
+            [
+              76.74,
+              68.99
+            ]
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            48,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.53,
+              69.19
+            ],
+            [
+              76.7,
+              69.01
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            47,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.02,
+              69.02
+            ],
+            [
+              76.62,
+              69.06
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            48,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.31,
+              68.98
+            ],
+            [
+              76.73,
+              68.98
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            48,
+            39,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.3,
+              69.05
+            ],
+            [
+              76.7,
+              69.1
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            47,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              50.95,
+              68.98
+            ],
+            [
+              76.68,
+              68.98
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            46,
+            37,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              50.78,
+              69.05
+            ],
+            [
+              76.68,
+              68.98
+            ]
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            47,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              50.99,
+              69.03
+            ],
+            [
+              76.71,
+              69.0
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

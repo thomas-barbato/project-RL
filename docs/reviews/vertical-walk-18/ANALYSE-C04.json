@@ -1,0 +1,87 @@
+{
+  "review": "VERT18-C04",
+  "date": "2026-10-29",
+  "status": "needs_size_rework",
+  "normal_game_enabled": false,
+  "accepted_reference": "acceptance-C03.json",
+  "sources": {
+    "mode": "builtin_image_gen",
+    "prompts": "prompts-C04.json",
+    "manifest": "assets/source-art/vertical-walk-review-18/candidate-C04/manifest.json",
+    "headgear": "assets/source-art/vertical-walk-review-18/candidate-C04/headgear.json",
+    "uncovered_heads_edited": 3,
+    "existing_uncovered_head_reused": "Metamorphe",
+    "helmet_front_art": "exact current assets",
+    "new_back_overlays": 6
+  },
+  "coverage": {
+    "heavy_profiles": 4,
+    "head_choices": 7,
+    "head_models": [
+      null,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120
+    ],
+    "held_loadouts": [
+      "unarmed",
+      "mixed104+70"
+    ],
+    "other_armor_ranks": false,
+    "legacy_technomancien": false,
+    "two_handed_grips": false,
+    "other_NPCs": false,
+    "material_palettes": "Original only"
+  },
+  "checks": {
+    "cargo_build_locked": "passed",
+    "targeted_rustfmt": "passed",
+    "git_diff_check": "passed",
+    "headgear04_uses_distinct_keys_and_restores_accepted_c03_selection": "passed",
+    "engine_capture_exit_code": 0,
+    "neutral_front_returns": 224,
+    "camp_front_returns": 32,
+    "sampled_weapon_contacts": 672,
+    "head_operations_preserving_arms_and_lower_body": 832,
+    "body_frames_byte_identical_below_y60": 48,
+    "front_helmet_cells_exact": 6,
+    "approved_files_unchanged": 30,
+    "full_suite_run": false,
+    "release_build": "not repeated; review code is debug-only",
+    "normal_campaign_run": false
+  },
+  "preparation": {
+    "source_cache_limit_bytes": 4194304,
+    "texture_cache_limit_bytes": 8388608,
+    "head_bank_cell_px": 32,
+    "native_world_tile_px": 64,
+    "read_or_decode_during_draw": false,
+    "gpu_upload_before_sequence_on_context_thread": true,
+    "head_before_weapon_layers_in_moving_and_standing": true,
+    "no_save_or_preferences_written": true
+  },
+  "preview": {
+    "url": "http://127.0.0.1:63780/headgear-C04/apercu.html",
+    "raw_capture_frames": 572,
+    "native_step_ms": 400,
+    "reading_pause_ms": 650
+  },
+  "separate_DUAL17_review_still_pending": true,
+  "user_report": "Images change size between walking and standing; compare all variants.",
+  "blocking_visual_issue": {
+    "different_original_idle_body": true,
+    "inconsistent_authored_row_scale": true,
+    "most_visible": "Traqueuse heavy back row 2",
+    "followup_review": "VERT18-C05",
+    "previous_checks_do_not_prove_size_coherence": true
+  },
+  "corrected_followup": {
+    "review": "VERT18-C05",
+    "status": "visual_accepted_pending_integration",
+    "acceptance": "acceptance-C05.json",
+    "original_C04_conditioning_not_approved": true
+  }
+}

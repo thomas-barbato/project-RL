@@ -1,0 +1,40 @@
+{
+  "review": "VERT18-C08",
+  "date": "2026-10-30",
+  "status": "visual_accepted_integrated",
+  "pistol_decision": "A retained, decision-C07.json",
+  "candidate_A": "current knife C06 unchanged",
+  "candidate_B": "blade outward, 20 degrees below horizontal",
+  "candidate_C": "blade outward, 20 degrees above horizontal",
+  "scope": {
+    "player_profiles": 8,
+    "knife_models": [
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79
+    ],
+    "hands": 2,
+    "poses": 13,
+    "weapon_palette_choices": 7,
+    "headgear_choices": 7
+  },
+  "method": "rigid rotation around the existing grip; blade axis measured from the top two opaque rows of original shared art; no body, hand, weapon pixel, scale or attachment change",
+  "pistol_angles_unchanged": true,
+  "normal_game_activated": true,
+  "source_bank": "candidate-resources-C06.json",
+  "source_hashes_verified": 3272,
+  "preview": "knife-C08/apercu.html",
+  "checks": "checks-C08.json",
+  "native_proof": "artifacts/vertical-walk-review-18/current/knife-C08/comparatif-natif-C08.png",
+  "selected": "B",
+  "acceptance": "acceptance-C08.json"
+}

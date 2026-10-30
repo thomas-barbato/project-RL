@@ -1,0 +1,42 @@
+{
+  "review": "VERT18 extension",
+  "request": "ok maintenant il faut faire la meme chose pour toutes les variantes d’armes et tous les monstres",
+  "date": "2026-10-29",
+  "status": "visual_accepted_integrated",
+  "normal_game_enabled": true,
+  "weapons": {
+    "models": 113,
+    "one_handed": 39,
+    "two_handed": 74,
+    "ordered_dual_pairs": 1521,
+    "bindings_exported": 152,
+    "art_shared": true,
+    "body_basis": "accepted C05",
+    "two_handed_pose_status": "visual_accepted_integrated",
+    "profile_count": 8,
+    "colors": 7,
+    "one_handed_pose_families": 8,
+    "new_two_handed_pose_sheets": 24,
+    "helmet_choices": 7
+  },
+  "campaign_monsters": {
+    "models": 129,
+    "model_palette_pairs": 471,
+    "reserved_casters": 13,
+    "reserved_casters_art_only_no_abilities_added": true,
+    "jobs": "prompts-C06-monsters.json",
+    "status": "129_models_471_palette_pairs_visual_accepted_integrated"
+  },
+  "compatibility_and_other_actors": "audit separately; no automatic replacement of deferred bosses, retired art, invocations or NPCs",
+  "approval": "acceptance-C06.json",
+  "sources": "assets/source-art/vertical-walk-review-18/extension-C06",
+  "review_document": "REVUE-C06.md",
+  "analysis": "ANALYSE-C06.json",
+  "not_claimed_complete": [
+    "12 current intermediate armor ranks absent from C05",
+    "5 legacy Technomancien outfits",
+    "transformations and drones",
+    "other NPCs and fallback art"
+  ],
+  "integration": "integration-C06.json"
+}

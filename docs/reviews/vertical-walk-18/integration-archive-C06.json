@@ -1,0 +1,45 @@
+{
+  "strict_archive_only": true,
+  "no_loose_assets_or_content": true,
+  "logical_files": 3424,
+  "package_verification_passed": true,
+  "normal_engine_checks": {
+    "configurations": 1592,
+    "front_returns_at_120_200_400_ms": 19104,
+    "new_jobs_or_uploads_during_draw": 0,
+    "normal_game_enabled": true,
+    "normal_native_draws": 41392,
+    "preferences_written": false,
+    "resource_cache": {
+      "decode_ms": 380.9787,
+      "decoded_source_budget": 67108864,
+      "decoded_source_peak_bytes": 67108608,
+      "jobs": 1593,
+      "pending": 0,
+      "read_bytes": 60364460,
+      "read_ms": 182.5818,
+      "source_reads": 698,
+      "texture_budget": 134217728,
+      "texture_bytes": 133938432,
+      "texture_create_ms": 174.0742,
+      "uploads": 1593,
+      "worker_build_ms_including_sources": 4498.1856
+    },
+    "return_visit_reused_cache": true,
+    "review": "VERT18-C06",
+    "review_override_used": false,
+    "same_actor_finish": true,
+    "saved_boards": 74,
+    "saved_game_loaded": false
+  },
+  "seconds_including_package": 107.991,
+  "executable_sha256": "d31ba82555994236a029031c4ec8a8f42ba5b5d3f0e869f1f95354d9373b6edf",
+  "output": "artifacts/vertical-walk-review-18/integration/archive-C06-20261029-2343",
+  "temporary_package_cleanup": {
+    "temporary_package": "artifacts/vertical-walk-review-18/integration/archive-C06-20261029-2343",
+    "status": "sent_to_recycle_bin_after_successful_strict_archive_validation",
+    "bytes_removed_from_workspace": 290526814,
+    "disk_space_freed_claimed": false,
+    "sources_and_normal_executables_preserved": true
+  }
+}

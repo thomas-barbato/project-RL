@@ -1,0 +1,19 @@
+{
+  "review": "CREATION-UI02-B",
+  "date": "2026-10-30",
+  "status": "activation_requested_after_review",
+  "user_quote": "euh, quand j'appuis sur jouer.cmd je tombe toujours sur l'ancienne version de l'interface qui sert à créer un personnage",
+  "authorization": "The player expects the reviewed interface in the normal launcher and requests correction of the old screen. Activate the existing 02-A layout and 02-B finish without further visual redesign.",
+  "accepted_layout": "acceptance-02A.json",
+  "reviewed_finish": "PROPOSITION-02B.json",
+  "scope": [
+    "reserved description column and click-pinned selection",
+    "independent card and description scrolling",
+    "existing matte panels and 140/180 ms transitions",
+    "instant transitions with reduced motion",
+    "normal Debug and Release activation, without review arguments"
+  ],
+  "new_art_or_player_text": false,
+  "gameplay_or_save_rules_changed": false,
+  "integration_evidence": "integration-02B.json"
+}

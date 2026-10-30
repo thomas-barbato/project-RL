@@ -21,7 +21,8 @@
     "assets/maps/prison-sewer-01/variant-1/street.json",
     "assets/maps/prison-sewer-01/variant-2/street.json",
     "assets/maps/prison-sewer-01/variant-3/street.json",
-    "assets/maps/prison-sewer-01/entry.json"
+    "assets/maps/prison-sewer-01/entry.json",
+    "assets/animations/vertical-18/manifest.json"
   ],
   "files": [
     "assets/maps/prison-sewer-canals-02/variant-1-plan.json",
@@ -39,5 +40,10 @@
     "assets/fonts/JetBrainsMono/OFL.txt",
     "assets/fonts/JetBrainsMono/AUTHORS.txt"
   ],
-  "directories": ["content", "mods", "assets/skills/agent"]
+  "directories": [
+    "content",
+    "mods",
+    "assets/skills/agent",
+    "assets/animations/vertical-18"
+  ]
 }

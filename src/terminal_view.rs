@@ -1300,6 +1300,19 @@ impl TerminalView {
                         combat_motion.draw_burn(id, actor_rect, combat_time, reduced_motion, true);
                     }
                     let walk = game.actors().entity_at(position).and_then(|entity| {
+                        let vertical = crate::game_art::vertical::supports(cell.visual);
+                        #[cfg(debug_assertions)]
+                        let vertical =
+                            vertical || crate::vertical_walk_review18::supports(cell.visual);
+                        if vertical
+                            && let Some(pose) = combat_motion.vertical_walk_pose(
+                                entity,
+                                combat_time,
+                                reduced_motion,
+                            )
+                        {
+                            return Some(pose);
+                        }
                         if entity == game.player_id() {
                             combat_motion.player_walk_pose(entity, combat_time, reduced_motion)
                         } else {

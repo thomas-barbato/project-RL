@@ -1,0 +1,43 @@
+{
+  "review": "VERT18-C09",
+  "date": "2026-10-30",
+  "status": "visual_accepted_integrated",
+  "selected": "B",
+  "user_quote": "Oui, intégrer B",
+  "normal_game_enabled": true,
+  "scope": {
+    "player_profiles": 8,
+    "pistol_models": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112
+    ],
+    "hands": 2,
+    "poses": 13,
+    "weapon_palette_choices": 7,
+    "headgear_choices": 7,
+    "torso_palette": "Original"
+  },
+  "angle": "10 degrees outward from the existing downward carry",
+  "knife_choice": "C08-B unchanged",
+  "source_art_redrawn": false,
+  "excluded": [
+    "lateral walking",
+    "intermediate armor ranks absent from C06",
+    "other actor categories",
+    "new weapon or body drawings"
+  ],
+  "approved_geometry": "assets/source-art/vertical-walk-review-18/candidate-C09/pistol-angles.json",
+  "approved_geometry_sha256": "8d5e4ad23a6d56769779584d08e5da4639a10af0fd51ce8d8ae4dcda6eaf55c1",
+  "candidate_resources": "candidate-resources-C09.json",
+  "integration": "integration-C09.json"
+}

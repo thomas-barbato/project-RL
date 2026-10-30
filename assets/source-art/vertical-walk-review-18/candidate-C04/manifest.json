@@ -1,0 +1,1301 @@
+{
+  "review": "VERT18-C04",
+  "status": "review_only",
+  "normal_game_enabled": false,
+  "native_tile_px": 64,
+  "profiles": [
+    {
+      "id": "bastion-lourd-headgear",
+      "selector": {
+        "kind": "player",
+        "body": 3,
+        "equipment": [
+          103,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C04/bastion-lourd-unhelmeted.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C04/bastion-lourd-unhelmeted-standing.png",
+      "source": "assets/source-art/vertical-walk-review-18/headgear-C04/bastion-unhelmeted-r01-source.png",
+      "source_sha256": "3fe7dff8f263e58cb498ac2ccd5f2859024068e10342f318e51f66b05ad9ae7d",
+      "source_scale_xy_uniform": 0.22140221402214022,
+      "original_height_px": 60,
+      "original_foot_y": 95,
+      "equipment_scope": "one_handed_grips_review_only",
+      "unarmed_only": false,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            42,
+            34,
+            86,
+            95
+          ],
+          "palms": [
+            [
+              47.37,
+              69.9
+            ],
+            [
+              80.41,
+              69.76
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            42,
+            34,
+            85,
+            95
+          ],
+          "palms": [
+            [
+              47.24,
+              69.38
+            ],
+            [
+              79.98,
+              69.25
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            42,
+            35,
+            86,
+            95
+          ],
+          "palms": [
+            [
+              47.15,
+              70.14
+            ],
+            [
+              80.54,
+              70.12
+            ]
+          ],
+          "head_anchor": [
+            64,
+            41
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            42,
+            35,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              47.22,
+              69.37
+            ],
+            [
+              80.74,
+              69.95
+            ]
+          ],
+          "head_anchor": [
+            64,
+            41
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            42,
+            34,
+            86,
+            95
+          ],
+          "palms": [
+            [
+              47.34,
+              69.14
+            ],
+            [
+              80.34,
+              68.65
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            42,
+            34,
+            86,
+            95
+          ],
+          "palms": [
+            [
+              47.31,
+              69.12
+            ],
+            [
+              80.32,
+              69.21
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            40,
+            33,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.54,
+              69.35
+            ],
+            [
+              80.59,
+              69.32
+            ]
+          ],
+          "head_anchor": [
+            64,
+            39
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            40,
+            34,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.66,
+              69.38
+            ],
+            [
+              80.66,
+              69.35
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            40,
+            34,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.66,
+              69.59
+            ],
+            [
+              80.73,
+              69.38
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            40,
+            35,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.88,
+              70.09
+            ],
+            [
+              80.58,
+              70.01
+            ]
+          ],
+          "head_anchor": [
+            64,
+            41
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            41,
+            34,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.95,
+              69.17
+            ],
+            [
+              80.44,
+              69.1
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            40,
+            33,
+            87,
+            95
+          ],
+          "palms": [
+            [
+              46.4,
+              68.66
+            ],
+            [
+              80.6,
+              68.63
+            ]
+          ],
+          "head_anchor": [
+            64,
+            39
+          ]
+        }
+      ],
+      "head_variants": true,
+      "head_parts": {
+        "front": "assets/source-art/vertical-walk-review-18/candidate-C04/bastion-lourd-head-front.png",
+        "back": "assets/source-art/vertical-walk-review-18/candidate-C04/bastion-lourd-head-back.png",
+        "replace_mask": "assets/source-art/vertical-walk-review-18/candidate-C04/bastion-lourd-replace-mask.png",
+        "standing_anchor": [
+          64,
+          41.0
+        ]
+      },
+      "accepted_body_reference": "assets/source-art/vertical-walk-review-18/candidate-C03/bastion-lourd.png"
+    },
+    {
+      "id": "traqueuse-lourde-headgear",
+      "selector": {
+        "kind": "player",
+        "body": 5,
+        "equipment": [
+          103,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C04/traqueuse-lourde-unhelmeted.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C04/traqueuse-lourde-unhelmeted-standing.png",
+      "source": "assets/source-art/vertical-walk-review-18/headgear-C04/traqueuse-unhelmeted-r01-source.png",
+      "source_sha256": "9e5c63108adf998746a72df79ad6d6e67a6cbc377c93e8536f0f459e8a1e21b5",
+      "source_scale_xy_uniform": 0.19365609348914858,
+      "original_height_px": 58,
+      "original_foot_y": 95,
+      "equipment_scope": "one_handed_grips_review_only",
+      "unarmed_only": false,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            48,
+            34,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.77,
+              68.72
+            ],
+            [
+              75.92,
+              68.69
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            48,
+            34,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.73,
+              68.63
+            ],
+            [
+              76.03,
+              68.57
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            48,
+            34,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.75,
+              68.73
+            ],
+            [
+              75.89,
+              68.72
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            48,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.7,
+              68.78
+            ],
+            [
+              76.33,
+              68.66
+            ]
+          ],
+          "head_anchor": [
+            64,
+            41
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            47,
+            35,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.64,
+              68.73
+            ],
+            [
+              76.27,
+              68.71
+            ]
+          ],
+          "head_anchor": [
+            64,
+            41
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            48,
+            35,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.67,
+              68.8
+            ],
+            [
+              75.88,
+              68.7
+            ]
+          ],
+          "head_anchor": [
+            64,
+            41
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            48,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.88,
+              69.16
+            ],
+            [
+              76.11,
+              69.18
+            ]
+          ],
+          "head_anchor": [
+            64,
+            44
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            48,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.81,
+              69.1
+            ],
+            [
+              76.15,
+              69.14
+            ]
+          ],
+          "head_anchor": [
+            64,
+            44
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            48,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.86,
+              69.14
+            ],
+            [
+              76.12,
+              69.12
+            ]
+          ],
+          "head_anchor": [
+            64,
+            44
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            48,
+            42,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              52.33,
+              69.44
+            ],
+            [
+              75.66,
+              69.42
+            ]
+          ],
+          "head_anchor": [
+            64,
+            48
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            48,
+            42,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              52.25,
+              69.27
+            ],
+            [
+              75.76,
+              69.51
+            ]
+          ],
+          "head_anchor": [
+            64,
+            48
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            48,
+            42,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              52.45,
+              69.3
+            ],
+            [
+              75.76,
+              69.38
+            ]
+          ],
+          "head_anchor": [
+            64,
+            48
+          ]
+        }
+      ],
+      "head_variants": true,
+      "head_parts": {
+        "front": "assets/source-art/vertical-walk-review-18/candidate-C04/traqueuse-lourde-head-front.png",
+        "back": "assets/source-art/vertical-walk-review-18/candidate-C04/traqueuse-lourde-head-back.png",
+        "replace_mask": "assets/source-art/vertical-walk-review-18/candidate-C04/traqueuse-lourde-replace-mask.png",
+        "standing_anchor": [
+          64,
+          43.0
+        ]
+      },
+      "accepted_body_reference": "assets/source-art/vertical-walk-review-18/candidate-C03/traqueuse-lourde.png"
+    },
+    {
+      "id": "arcaniste-lourd-headgear",
+      "selector": {
+        "kind": "player",
+        "body": 6,
+        "equipment": [
+          103,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C04/arcaniste-lourd-unhelmeted.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C04/arcaniste-lourd-unhelmeted-standing.png",
+      "source": "assets/source-art/vertical-walk-review-18/headgear-C04/arcaniste-unhelmeted-r01-source.png",
+      "source_sha256": "65b4ebaa6db4e4c98f6e80979139e168ec3d36f1f4f43105d7392b477f86a6ab",
+      "source_scale_xy_uniform": 0.21942446043165467,
+      "original_height_px": 61,
+      "original_foot_y": 95,
+      "equipment_scope": "one_handed_grips_review_only",
+      "unarmed_only": false,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            46,
+            33,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.17,
+              67.28
+            ],
+            [
+              78.51,
+              67.26
+            ]
+          ],
+          "head_anchor": [
+            64,
+            39
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            46,
+            33,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.2,
+              67.48
+            ],
+            [
+              78.49,
+              67.45
+            ]
+          ],
+          "head_anchor": [
+            64,
+            39
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            46,
+            33,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.16,
+              67.32
+            ],
+            [
+              78.5,
+              67.49
+            ]
+          ],
+          "head_anchor": [
+            64,
+            39
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            46,
+            33,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.21,
+              67.11
+            ],
+            [
+              78.45,
+              67.04
+            ]
+          ],
+          "head_anchor": [
+            64,
+            39
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            46,
+            34,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.23,
+              67.49
+            ],
+            [
+              78.5,
+              67.5
+            ]
+          ],
+          "head_anchor": [
+            64,
+            40
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            46,
+            33,
+            82,
+            95
+          ],
+          "palms": [
+            [
+              49.22,
+              67.25
+            ],
+            [
+              78.49,
+              67.45
+            ]
+          ],
+          "head_anchor": [
+            64,
+            39
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            45,
+            33,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              48.88,
+              67.51
+            ],
+            [
+              78.85,
+              67.47
+            ]
+          ],
+          "head_anchor": [
+            64,
+            39
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            45,
+            33,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              48.87,
+              67.72
+            ],
+            [
+              78.8,
+              67.62
+            ]
+          ],
+          "head_anchor": [
+            64,
+            39
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            46,
+            33,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              49.21,
+              67.66
+            ],
+            [
+              78.88,
+              67.68
+            ]
+          ],
+          "head_anchor": [
+            64,
+            39
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            45,
+            32,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              48.85,
+              67.15
+            ],
+            [
+              78.72,
+              67.19
+            ]
+          ],
+          "head_anchor": [
+            64,
+            38
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            45,
+            32,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              48.9,
+              67.18
+            ],
+            [
+              78.79,
+              67.07
+            ]
+          ],
+          "head_anchor": [
+            64,
+            38
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            45,
+            32,
+            83,
+            95
+          ],
+          "palms": [
+            [
+              48.87,
+              67.12
+            ],
+            [
+              78.79,
+              67.08
+            ]
+          ],
+          "head_anchor": [
+            64,
+            38
+          ]
+        }
+      ],
+      "head_variants": true,
+      "head_parts": {
+        "front": "assets/source-art/vertical-walk-review-18/candidate-C04/arcaniste-lourd-head-front.png",
+        "back": "assets/source-art/vertical-walk-review-18/candidate-C04/arcaniste-lourd-head-back.png",
+        "replace_mask": "assets/source-art/vertical-walk-review-18/candidate-C04/arcaniste-lourd-replace-mask.png",
+        "standing_anchor": [
+          64,
+          39.0
+        ]
+      },
+      "accepted_body_reference": "assets/source-art/vertical-walk-review-18/candidate-C03/arcaniste-lourd.png"
+    },
+    {
+      "id": "metamorphe-lourd-headgear",
+      "selector": {
+        "kind": "player",
+        "body": 7,
+        "equipment": [
+          103,
+          null,
+          null,
+          null
+        ]
+      },
+      "file": "assets/source-art/vertical-walk-review-18/candidate-C04/metamorphe-lourd-unhelmeted.png",
+      "standing": "assets/source-art/vertical-walk-review-18/candidate-C04/metamorphe-lourd-unhelmeted-standing.png",
+      "source": "assets/source-art/vertical-walk-review-18/metamorphe-lourd-r01-source.png",
+      "source_sha256": "abbc161a0e071ecb43320be812e9993f6a3e4271177fa4b307f2a9dad6fdd6e3",
+      "source_scale_xy_uniform": 0.1952054794520548,
+      "original_height_px": 57,
+      "original_foot_y": 95,
+      "equipment_scope": "one_handed_grips_review_only",
+      "unarmed_only": false,
+      "frames": [
+        {
+          "direction": "front",
+          "phase": 0,
+          "box": [
+            48,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.49,
+              69.03
+            ],
+            [
+              76.64,
+              68.99
+            ]
+          ],
+          "head_anchor": [
+            64,
+            42
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 1,
+          "box": [
+            48,
+            36,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.37,
+              68.94
+            ],
+            [
+              76.32,
+              69.0
+            ]
+          ],
+          "head_anchor": [
+            64,
+            42
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 2,
+          "box": [
+            48,
+            36,
+            80,
+            95
+          ],
+          "palms": [
+            [
+              51.4,
+              69.05
+            ],
+            [
+              76.38,
+              68.95
+            ]
+          ],
+          "head_anchor": [
+            64,
+            42
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 3,
+          "box": [
+            47,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.13,
+              69.11
+            ],
+            [
+              76.59,
+              68.99
+            ]
+          ],
+          "head_anchor": [
+            64,
+            42
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 4,
+          "box": [
+            48,
+            37,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.31,
+              68.95
+            ],
+            [
+              76.74,
+              68.99
+            ]
+          ],
+          "head_anchor": [
+            64,
+            43
+          ]
+        },
+        {
+          "direction": "front",
+          "phase": 5,
+          "box": [
+            48,
+            36,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.53,
+              69.19
+            ],
+            [
+              76.7,
+              69.01
+            ]
+          ],
+          "head_anchor": [
+            64,
+            42
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 0,
+          "box": [
+            47,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.02,
+              69.02
+            ],
+            [
+              76.62,
+              69.06
+            ]
+          ],
+          "head_anchor": [
+            64,
+            44
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 1,
+          "box": [
+            48,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.31,
+              68.98
+            ],
+            [
+              76.73,
+              68.98
+            ]
+          ],
+          "head_anchor": [
+            64,
+            44
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 2,
+          "box": [
+            48,
+            39,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              51.3,
+              69.05
+            ],
+            [
+              76.7,
+              69.1
+            ]
+          ],
+          "head_anchor": [
+            64,
+            45
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 3,
+          "box": [
+            47,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              50.95,
+              68.98
+            ],
+            [
+              76.68,
+              68.98
+            ]
+          ],
+          "head_anchor": [
+            64,
+            44
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 4,
+          "box": [
+            46,
+            37,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              50.78,
+              69.05
+            ],
+            [
+              76.68,
+              68.98
+            ]
+          ],
+          "head_anchor": [
+            64,
+            43
+          ]
+        },
+        {
+          "direction": "back",
+          "phase": 5,
+          "box": [
+            47,
+            38,
+            81,
+            95
+          ],
+          "palms": [
+            [
+              50.99,
+              69.03
+            ],
+            [
+              76.71,
+              69.0
+            ]
+          ],
+          "head_anchor": [
+            64,
+            44
+          ]
+        }
+      ],
+      "head_variants": true,
+      "head_parts": {
+        "front": "assets/source-art/vertical-walk-review-18/candidate-C04/metamorphe-lourd-head-front.png",
+        "back": "assets/source-art/vertical-walk-review-18/candidate-C04/metamorphe-lourd-head-back.png",
+        "replace_mask": "assets/source-art/vertical-walk-review-18/candidate-C04/metamorphe-lourd-replace-mask.png",
+        "standing_anchor": [
+          64,
+          43.0
+        ]
+      },
+      "accepted_body_reference": "assets/source-art/vertical-walk-review-18/candidate-C03/metamorphe-lourd.png"
+    }
+  ],
+  "body_frames_byte_identical_below_y60": 48
+}

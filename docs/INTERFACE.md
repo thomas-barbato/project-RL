@@ -2,6 +2,34 @@
 
 > **Refonte demandée le 16 octobre 2026 :** une interface moins chargée doit être proposée avec la nouvelle direction visuelle. Les descriptions ci-dessous documentent le rendu antérieur et ne sont pas une maquette de cette refonte. Voir [HUD-01](reviews/refonte-histoire-2026-10-16/CADRAGE.md#hud-01--allègement-à-étudier).
 
+## Création de personnage — 30 octobre 2026
+
+La disposition compacte et la finition CREATION-UI02-D r03 sont activées
+dans le lancement normal Debug et Release, y compris `Jouer.cmd`, après
+validation du joueur le 30 octobre 2026. Aucun
+argument d'aperçu n'est nécessaire. Les classes, cartes d'équipement et de
+compétences, et descriptions occupent des colonnes réservées. Un clic conserve
+la fiche choisie ; la liste et la description défilent séparément.
+
+Les cadres industriels ont des contours fins ; les séparations sous le titre
+et au-dessus des boutons sont retirées. Les attributs sont présentés en deux
+lignes. Une scène de 192 × 192 px réutilise le sol et les objets du camp, avec
+le personnage en native64 ; elle se masque lorsque la place manque.
+
+Les panneaux mats et les changements de sélection utilisent des transitions
+de 140 ms ; le contenu apparaît sur 180 ms sans disparaître pendant les clics
+rapides. Le réglage de mouvement réduit désactive ces transitions. Les textes,
+valeurs, règles de création et sauvegardes conservent leur fonctionnement.
+Les ressources de scène passent par le service de préparation commun et son
+cache borné, avant leur affichage. Les tests logiques sans fenêtre ne créent
+pas de ressources graphiques. La décision et les contrôles sont dans
+`reviews/character-creation-ui-02/acceptance-02D-r03.json` et
+`reviews/character-creation-ui-02/integration-02D-r03.json`.
+
+À la demande du joueur, le sous-titre « Un équipement de départ et une façon
+d'aborder l'expédition. » est retiré le 30 octobre 2026. Les étapes de la revue
+02-C et l'étude `ETUDE-02D.md` documentent la préparation de cette finition.
+
 ## Rendu du jeu — 3 octobre 2026
 
 Le jeu utilise des symboles dessinés vus de dessus sur un fond noir. Les

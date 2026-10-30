@@ -1,0 +1,34 @@
+{
+  "review": "VERT18-C09",
+  "tilted_pistol_pose_cases": 2496,
+  "other_weapon_pose_cases_preserved": 5616,
+  "accepted_knife_B_pose_cases_preserved": 2496,
+  "max_angle_error_radians": 2.7755575615628914e-17,
+  "recipe_mutations": 0,
+  "normal_game_activated": false,
+  "contact_checks": {
+    "review": "VERT18-C09",
+    "pistol_hand_pose_contacts": 2496,
+    "max_contact_distance_px": 0.3974,
+    "limit_px": 2.25,
+    "failures": 0
+  },
+  "evidence_phase": "preintegration native preview checks",
+  "browser_loadout_cases": 96,
+  "additional_inspected_cases": [
+    "Arcaniste pistol104/knife69 front idle",
+    "Bastion heavy helmet118 pistols104/104 palettes3/4 rear pose6",
+    "Arcaniste pistol104 alone, front walking pose1"
+  ],
+  "browser_console_errors": [],
+  "source_and_runtime_hashes_verified": {
+    "candidate-resources-C06": 3272,
+    "candidate-resources-C08": 113,
+    "runtime-assets-C08": 1605
+  },
+  "python_compile": "passed",
+  "javascript_syntax": "passed",
+  "screenshot_limit": "Browser captures are JPEG, used for visual inspection rather than exact pixel comparison.",
+  "release_executable_unchanged": true,
+  "current_integration": "integration-C09.json"
+}

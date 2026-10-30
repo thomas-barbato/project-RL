@@ -1,5 +1,34 @@
 //! Human wireframe and the posed, interchangeable player artwork.
 use super::*;
+#[cfg(all(debug_assertions, test))]
+pub(super) fn vertical_review_weapon(
+    model: u16,
+    left: bool,
+    color: EquipmentPalette,
+) -> Option<(Image, [f32; 2], Option<[f32; 2]>)> {
+    worn::vertical_review_weapon(model, left, color)
+}
+
+#[cfg(debug_assertions)]
+pub(super) fn vertical_review_composition(
+    source: &Image,
+    visual: Visual,
+    palms: [[f32; 2]; 2],
+    back: bool,
+) -> Option<Image> {
+    worn::vertical_review_composition(source, visual, palms, back)
+}
+#[cfg(debug_assertions)]
+pub(super) fn vertical_review_standing(visual: Visual) -> Option<Image> {
+    worn::vertical_review_standing(visual)
+}
+#[cfg(debug_assertions)]
+pub(super) fn vertical_review_standing_head(
+    visual: Visual,
+    apply: impl FnOnce(&mut Image),
+) -> Option<Image> {
+    worn::vertical_review_standing_head(visual, apply)
+}
 #[path = "game_art_worn.rs"]
 mod worn;
 pub(super) fn approved_walking_image(

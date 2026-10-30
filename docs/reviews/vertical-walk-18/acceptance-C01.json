@@ -1,0 +1,32 @@
+{
+  "review": "VERT18-C01",
+  "date": "2026-10-29",
+  "status": "visual_accepted",
+  "user_quote": "ca me plai bien :)",
+  "normal_game_enabled": false,
+  "accepted_behavior": [
+    "north_true_back",
+    "south_front",
+    "existing_front_on_stop"
+  ],
+  "accepted_profiles": [
+    "Arcaniste body6, no worn armor/helmet, unarmed or left104/right70",
+    "Camp NPC-01"
+  ],
+  "next_action": "Prepare other character variants for native review using this accepted cycle",
+  "not_approved_by_this_response": [
+    "unseen class outfits",
+    "unseen NPC drawings",
+    "two-handed grips",
+    "DUAL17-C02"
+  ],
+  "sha256": {
+    "assets\\source-art\\vertical-walk-review-18\\candidate-r01\\manifest.json": "2f00964f50ad52a234baf7e478378c6d46a6cc82989648def91eb8466611da61",
+    "assets/source-art/vertical-walk-review-18/candidate-r01/arcaniste.png": "574c63d5fe14ea1313a3d3330aa18a6ef5bd7761364b2bc3afebaf637dee19dc",
+    "assets/source-art/vertical-walk-review-18/candidate-r01/arcaniste-standing-original.png": "795d8ba2d0d2594393e098a9fcc4d528279e4c0f1ac60398b58cbd0977f897d8",
+    "assets/source-art/vertical-walk-review-18/arcaniste-r01-source.png": "ebfaef663553b1dc04bdf2cfe6af3f4e64419bc57a0417375f31f77f8731cc71",
+    "assets/source-art/vertical-walk-review-18/candidate-r01/npc-garde.png": "5695004de73da1cdd7d24f277029485d87227447752394881259eb75e29f54b9",
+    "assets/source-art/vertical-walk-review-18/candidate-r01/npc-garde-standing-original.png": "42f51cb08bf0cb245742c44dc4738e3c0016e3c25da87d55d652625b33b2e365",
+    "assets/source-art/vertical-walk-review-18/npc-garde-r02-source.png": "e95d05c6bc1eac248e9155c4d17cc6d96b82c225e6c2481d6f082fb37637f0b2"
+  }
+}

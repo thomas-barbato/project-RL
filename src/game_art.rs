@@ -25,6 +25,8 @@ pub(crate) mod finish_review_04;
 pub(crate) mod finish_review_05;
 #[path = "game_art_palette.rs"]
 mod palettes;
+#[path = "game_art_vertical.rs"]
+pub(crate) mod vertical;
 
 use crate::terminal_view::PlayerWeaponPose;
 use crate::test_sector::Decor;
@@ -138,6 +140,7 @@ thread_local! {
 }
 
 pub(crate) fn prewarm() {
+    vertical::init();
     TEXTURES.with(|_| {});
     palettes::prewarm();
     player_layers::prewarm();
@@ -345,6 +348,45 @@ fn draw_actor(art: &ArtTextures, rect: Rect, index: u8, opacity: f32) {
 
 pub(crate) fn draw_world(rect: Rect, visual: Visual, opacity: f32) {
     draw_world_animated(rect, visual, opacity, None);
+}
+
+#[cfg(all(debug_assertions, test))]
+pub(crate) fn vertical_review_weapon(
+    model: u16,
+    left: bool,
+    color: EquipmentPalette,
+) -> Option<(Image, [f32; 2], Option<[f32; 2]>)> {
+    player_layers::vertical_review_weapon(model, left, color)
+}
+#[cfg(all(debug_assertions, test))]
+pub(crate) fn vertical_monster_reference(number: u16, variant: u8) -> Option<Image> {
+    campaign::reference_image(number, variant)
+}
+#[cfg(all(debug_assertions, test))]
+pub(crate) fn vertical_monster_palette(number: u16, variant: u8, image: &mut Image) -> Option<()> {
+    walking::vertical_palette(number, variant, image)
+}
+
+#[cfg(debug_assertions)]
+pub(crate) fn vertical_review_composition(
+    source: &Image,
+    visual: Visual,
+    palms: [[f32; 2]; 2],
+    back: bool,
+) -> Option<Image> {
+    player_layers::vertical_review_composition(source, visual, palms, back)
+}
+
+#[cfg(debug_assertions)]
+pub(crate) fn vertical_review_standing(visual: Visual) -> Option<Image> {
+    player_layers::vertical_review_standing(visual)
+}
+#[cfg(debug_assertions)]
+pub(crate) fn vertical_review_standing_head(
+    visual: Visual,
+    apply: impl FnOnce(&mut Image),
+) -> Option<Image> {
+    player_layers::vertical_review_standing_head(visual, apply)
 }
 
 pub(crate) fn draw_world_animated(

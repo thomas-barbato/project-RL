@@ -42,6 +42,10 @@ mod attack_aim_input_tests;
 mod campaign_aggression_tests;
 #[path = "character_creation_details.rs"]
 mod character_creation_details;
+#[path = "character_creation_industrial.rs"]
+mod character_creation_industrial;
+#[path = "character_creation_polish.rs"]
+mod character_creation_polish;
 #[cfg(test)]
 #[path = "class_start_tests.rs"]
 mod class_start_tests;
@@ -1386,7 +1390,11 @@ impl CharacterCreationLayout {
             ((panel.h - 190.0) / PrimaryAttribute::ALL.len() as f32).clamp(43.0, 58.0);
         let content_height = (row_height * class_count as f32)
             .max(attribute_stride * PrimaryAttribute::ALL.len() as f32);
-        let body_offset = ((panel.h - 210. - content_height) * 0.5).max(0.);
+        let body_offset = if character_creation_details::docked_review() {
+            0.
+        } else {
+            ((panel.h - 210. - content_height) * 0.5).max(0.)
+        };
         let class_rows = (0..class_count)
             .map(|index| {
                 Rect::new(
@@ -1439,7 +1447,14 @@ impl CharacterCreationLayout {
     }
 
     fn sidebar_width_for(panel: Rect) -> f32 {
-        (panel.w * 0.34).clamp(280., 460.)
+        if character_creation_details::compact_review() {
+            return (panel.w * 0.23).clamp(200., 260.);
+        }
+        if character_creation_details::docked_review() {
+            (panel.w * 0.25).clamp(220., 300.)
+        } else {
+            (panel.w * 0.34).clamp(280., 460.)
+        }
     }
 
     fn sidebar_width(&self) -> f32 {
@@ -1743,6 +1758,9 @@ impl AsciiApp {
         if !self.tick_graphics(now) {
             let input = self.graphics.active.transform_input(InputFrame::capture());
             self.update_input_at(&input, Some(now));
+        } else {
+            self.combat_motion
+                .continue_walk(self.game.player_id(), false);
         }
         self.apply_graphics_window_change();
         let hover_step = if self.graphics.active.reduced_motion {
@@ -3311,6 +3329,140 @@ impl AsciiApp {
         };
         app.suspension_path = output.join("diagnostic-run.json");
         app.graphics.active.mode = WindowMode::Windowed;
+        if scene.starts_with("character-creation-compact") {
+            character_creation_details::COMPACT_REVIEW.set(true);
+        }
+        if scene.starts_with("character-creation") && scene.contains("-reduced") {
+            app.graphics.active.reduced_motion = true;
+        }
+        if matches!(scene, "vertical18-integration-camp" | "walk-continuity") {
+            app.character_class = Some("core:arcaniste".parse().unwrap());
+            app.character_creation = None;
+            app.menu = MenuScreen::Hidden;
+            app.graphics.active.world_cell_px = 64;
+            request_new_screen_size(1280., 800.);
+            for _ in 0..3 {
+                next_frame().await;
+            }
+            app.prepare_presentation()?;
+            let player = app.game.player_id();
+            let position = app
+                .game
+                .player_position()
+                .ok_or("Missing diagnostic player")?;
+            if scene == "walk-continuity" {
+                let mut records = Vec::new();
+                for direction in [-1, 1] {
+                    for milliseconds in [120, 200, 400] {
+                        app.combat_motion.stop_glide(player);
+                        app.combat_motion.continue_walk(player, true);
+                        let seconds = f64::from(milliseconds) / 1000.;
+                        for step in 0..3 {
+                            let started = 10. + f64::from(step) * (seconds + 0.02);
+                            app.combat_motion.glide_timed(
+                                player,
+                                GridPos::new(position.x, position.y - direction),
+                                position,
+                                started,
+                                milliseconds,
+                            );
+                            for (sample, now) in
+                                [started + seconds - 0.001, started + seconds + 0.016]
+                                    .into_iter()
+                                    .enumerate()
+                            {
+                                app.combat_motion.prune(now);
+                                let pose = app
+                                    .combat_motion
+                                    .vertical_walk_pose(player, now, false)
+                                    .ok_or("Front flash between held steps")?;
+                                if pose.facing != direction as i8 * 2
+                                    || pose.frame != ((step % 2) * 3 + 2) as u8
+                                {
+                                    return Err("Wrong continued walking pose".into());
+                                }
+                                let _time = crate::effect_geometry::frame_time(now);
+                                let before = crate::game_art::vertical::draw_count();
+                                for _ in 0..2 {
+                                    app.draw();
+                                    next_frame().await;
+                                }
+                                app.draw();
+                                if crate::game_art::vertical::draw_count() == before {
+                                    return Err("Continuity capture missed normal renderer".into());
+                                }
+                                if milliseconds == 400 {
+                                    crate::ui_capture::framebuffer()?.export_png(
+                                        output
+                                            .join(format!(
+                                                "direction{direction}-step{step}-sample{sample}.png"
+                                            ))
+                                            .to_str()
+                                            .unwrap(),
+                                    );
+                                }
+                                records.push(serde_json::json!({"direction":direction,"duration_ms":milliseconds,"step":step,"sample":sample,"facing":pose.facing,"frame":pose.frame}));
+                            }
+                        }
+                        app.combat_motion.continue_walk(player, false);
+                        if app
+                            .combat_motion
+                            .vertical_walk_pose(player, 20., false)
+                            .is_some()
+                        {
+                            return Err("Front idle missing after release".into());
+                        }
+                        let _time = crate::effect_geometry::frame_time(20.);
+                        for _ in 0..2 {
+                            app.draw();
+                            next_frame().await;
+                        }
+                        app.draw();
+                        if milliseconds == 400 {
+                            crate::ui_capture::framebuffer()?.export_png(
+                                output
+                                    .join(format!("direction{direction}-released.png"))
+                                    .to_str()
+                                    .unwrap(),
+                            );
+                        }
+                    }
+                }
+                std::fs::write(output.join("checks.json"),serde_json::to_vec_pretty(&serde_json::json!({"review":"VERT18-CONT01","normal_game_enabled":true,"records":records,"held_samples_without_front_flash":36,"release_checks":6,"actual_terminal_map_renderer":true,"new_art":false,"saved_campaign_loaded":false,"user_preferences_written":false})).unwrap()).map_err(|e|e.to_string())?;
+                return Ok(());
+            }
+            let mut counts = Vec::new();
+            for direction in [-1, 1] {
+                app.combat_motion.glide_timed(
+                    player,
+                    GridPos::new(position.x, position.y - direction),
+                    position,
+                    10.,
+                    400,
+                );
+                for (n, now) in [10.066, 10.200, 10.333, 10.401].into_iter().enumerate() {
+                    let _time = crate::effect_geometry::frame_time(now);
+                    let before = crate::game_art::vertical::draw_count();
+                    for _ in 0..2 {
+                        app.draw();
+                        next_frame().await;
+                    }
+                    app.draw();
+                    counts.push(crate::game_art::vertical::draw_count() - before);
+                    crate::ui_capture::framebuffer()?.export_png(
+                        output
+                            .join(format!("direction{direction}-pose{n}.png"))
+                            .to_str()
+                            .unwrap(),
+                    );
+                }
+            }
+            if counts.iter().any(|n| *n == 0) {
+                return Err("Live map did not use VERT18".into());
+            }
+            std::fs::write(output.join("checks.json"),serde_json::to_vec_pretty(&serde_json::json!({"normal_game_enabled":true,"actual_terminal_map_renderer":true,"native_cell":64,"normal_actor_draws":counts,"user_preferences_written":false,"saved_campaign_loaded":false})).unwrap()).map_err(|e|e.to_string())?;
+            return Ok(());
+        }
         for _ in 0..60 {
             app.draw();
             next_frame().await;
@@ -4663,6 +4815,16 @@ impl AsciiApp {
                 app.character_open = true;
             }
             scene if scene.starts_with("character-creation") => {
+                // Commit the capture viewport before anticipating its resources.
+                if character_creation_industrial::enabled() {
+                    if let Some((width, height, scale)) = size {
+                        app.graphics.active.ui_scale_percent = scale;
+                        request_new_screen_size(width, height);
+                        for _ in 0..3 {
+                            next_frame().await;
+                        }
+                    }
+                }
                 app.begin_character_creation_with_seed(false, app.seed)?;
                 let slug = std::env::args().find_map(|arg| {
                     arg.strip_prefix("--capture-creation-class=")
@@ -4711,6 +4873,11 @@ impl AsciiApp {
                         &mut creation,
                         &InputFrame {
                             pointer: Some(target.center().into()),
+                            pressed: if character_creation_details::docked_review() {
+                                [controls::Binding::MouseLeft].into()
+                            } else {
+                                Default::default()
+                            },
                             viewport: Some((app.ui_width(), app.ui_height())),
                             ..Default::default()
                         },
@@ -5873,6 +6040,28 @@ impl AsciiApp {
         if let Some(creation) = app.character_creation.as_ref().cloned() {
             app.refresh_creation_details(&creation)?;
         }
+        if scene == "character-creation-modern-animation" {
+            return app.capture_creation_polish_animation(output).await;
+        }
+        if matches!(
+            scene,
+            "character-creation-audit"
+                | "character-creation-compact-audit"
+                | "character-creation-industrial-audit"
+        ) {
+            app.capture_compact_creation_audit(output).await?;
+        }
+        let _creation_capture_time =
+            if character_creation_polish::enabled() && app.character_creation.is_some() {
+                for _ in 0..2 {
+                    let _time = crate::effect_geometry::frame_time(100.);
+                    app.draw();
+                    next_frame().await;
+                }
+                Some(crate::effect_geometry::frame_time(101.))
+            } else {
+                None
+            };
         let shadow_fingerprint = scene
             .starts_with("vision-shadows")
             .then(|| suspension::fingerprint(&app.game));
@@ -6860,6 +7049,8 @@ impl AsciiApp {
     }
 
     fn update_input_at(&mut self, input: &InputFrame, captured_at: Option<f64>) {
+        self.combat_motion
+            .continue_walk(self.game.player_id(), false);
         if let Some(now) = captured_at {
             self.world_presentation_time.set(now);
         }
@@ -7596,6 +7787,16 @@ impl AsciiApp {
                 )
                 .and_then(movement_direction)
         });
+        self.combat_motion.continue_walk(
+            self.game.player_id(),
+            captured_at.is_some()
+                && crate::game_art::walking::player_enabled()
+                && !self.graphics.active.reduced_motion
+                && self
+                    .movement_repeat
+                    .held_action(&self.controls, input)
+                    .is_some(),
+        );
 
         for (action, direction) in [
             (Action::MoveNorth, Direction::North),
@@ -7663,10 +7864,21 @@ impl AsciiApp {
                 command
             };
             let movement_attempt = matches!(command, GameCommand::Move(_));
+            let movement_origin = self.game.player_position();
+            if !movement_attempt {
+                self.combat_motion
+                    .continue_walk(self.game.player_id(), false);
+            }
             let outcome = self.execute_command(command);
+            if movement_attempt && self.game.player_position() == movement_origin {
+                self.combat_motion
+                    .continue_walk(self.game.player_id(), false);
+            }
             if let CommandOutcome::Rejected(reason) = outcome {
                 if movement_attempt {
                     self.movement_repeat.clear();
+                    self.combat_motion
+                        .continue_walk(self.game.player_id(), false);
                 }
                 self.push_log(command_rejection_message(reason).to_owned());
             }
@@ -7687,6 +7899,49 @@ impl AsciiApp {
                 .player_preparation_continuation_command()
                 .unwrap_or(GameCommand::Wait)
         }
+    }
+
+    /// LOAD01: prepare only perceived actors and a small nearby lookahead before
+    /// first display. Presentation resources never modify the world or save.
+    pub fn prepare_presentation(&mut self) -> Result<(), String> {
+        crate::asset_preparation::pump();
+        if self.is_main_menu_flow()
+            || self.character_creation.is_some()
+            || self.resume_requested
+            || self.game.status() != RunStatus::Active
+        {
+            return Ok(());
+        }
+        let mut needed = vec![self.front_player_visual()];
+        let mut nearby = Vec::new();
+        let player = self.game.player_position();
+        for (entity, actor) in self.game.actors().iter() {
+            let Some(visual) = self.front_actor_visual(entity) else {
+                continue;
+            };
+            if !crate::game_art::vertical::supports(Some(visual)) {
+                continue;
+            }
+            if self.game.player_visibility().is_visible(actor.position()) {
+                needed.push(visual);
+            } else if let Some(player) = player {
+                let at = actor.position();
+                let distance = (at.x - player.x).abs().max((at.y - player.y).abs());
+                if distance <= 12 {
+                    nearby.push((distance, visual));
+                }
+            }
+        }
+        let waited = crate::game_art::vertical::prepare(&needed)?;
+        self.combat_motion.delay_glides(waited.as_secs_f64());
+        nearby.sort_by_key(|(distance, _)| *distance);
+        let nearby: Vec<_> = nearby
+            .into_iter()
+            .take(4)
+            .map(|(_, visual)| visual)
+            .collect();
+        crate::game_art::vertical::anticipate(&nearby);
+        Ok(())
     }
 
     pub fn draw(&self) {
@@ -20316,6 +20571,7 @@ impl AsciiApp {
         let Some(creation) = &self.character_creation else {
             return;
         };
+        self.creation_polish_begin(creation);
         let theme = UiTheme;
         let classes = self.character_classes.iter().collect::<Vec<_>>();
         let layout = CharacterCreationLayout::new(self.ui_width(), self.ui_height(), classes.len());
@@ -20323,7 +20579,13 @@ impl AsciiApp {
         let content_y = panel.y + layout.body_offset;
         let left_width = layout.sidebar_width();
         let detail_x = panel.x + left_width + 24.0;
-        let detail_width = panel.w - left_width - 48.0;
+        let detail_width = if creation.stage == CharacterCreationStage::Protocol
+            && character_creation_details::docked_review()
+        {
+            character_creation_details::content_width(&layout)
+        } else {
+            panel.w - left_width - 48.
+        };
         let rules = self.rules.primary_attribute_rules;
         let remaining = if classes
             .get(creation.selected_class)
@@ -20342,7 +20604,11 @@ impl AsciiApp {
             self.ui_height(),
             Color::new(0.012, 0.026, 0.037, 1.0),
         );
-        theme.panel(panel);
+        if character_creation_polish::enabled() {
+            character_creation_polish::shell(panel);
+        } else {
+            theme.panel(panel);
+        }
         draw_text_bold(
             if customizing {
                 "Personnaliser les attributs"
@@ -20354,25 +20620,42 @@ impl AsciiApp {
             32.0,
             theme.text(),
         );
-        draw_text(
-            if customizing {
-                "Retirez un point avec − pour le réattribuer avec +."
-            } else {
-                "Un équipement de départ et une façon d'aborder l'expédition."
-            },
-            panel.x + 24.0,
-            panel.y + 66.0,
-            16.0,
-            theme.muted(),
-        );
+        if customizing {
+            draw_text(
+                "Retirez un point avec − pour le réattribuer avec +.",
+                panel.x + 24.0,
+                panel.y + 66.0,
+                16.0,
+                theme.muted(),
+            );
+        }
         let selected = classes
             .get(creation.selected_class)
             .map(|(_, class)| *class);
         if !customizing {
+            if character_creation_industrial::enabled() {
+                character_creation_industrial::class_well(&layout.class_rows);
+            }
             for (index, ((_, class), row)) in classes.iter().zip(&layout.class_rows).enumerate() {
-                theme.card(*row, index == creation.selected_class);
+                let portrait_size = if character_creation_details::compact_review() {
+                    48.
+                } else {
+                    64.
+                };
+                let text_x = row.x + portrait_size + 8.;
+                self.creation_card(
+                    *row,
+                    index as u16,
+                    index == creation.selected_class,
+                    creation.hovered == Some(CharacterCreationHover::Class(index)),
+                );
                 crate::game_art::draw_portrait(
-                    Rect::new(row.x + 2.0, row.y + (row.h - 64.0) * 0.5, 64.0, 64.0),
+                    Rect::new(
+                        row.x + 2.0,
+                        row.y + (row.h - portrait_size) * 0.5,
+                        portrait_size,
+                        portrait_size,
+                    ),
                     self.class_creation_visual(class),
                 );
                 let name = self
@@ -20384,12 +20667,22 @@ impl AsciiApp {
                     .resolve(DISPLAY_LOCALE, class.role_key())
                     .unwrap_or("");
                 let label_y = row.y + (row.h - 44.) * 0.5;
-                draw_text_bold(name, row.x + 72.0, label_y + 18., 20.0, theme.text());
+                draw_text_bold(
+                    name,
+                    text_x,
+                    label_y + 18.,
+                    if character_creation_details::docked_review() && row.w < 220. {
+                        18.
+                    } else {
+                        20.
+                    },
+                    theme.text(),
+                );
                 draw_wrapped_text(
                     role,
-                    row.x + 72.0,
+                    text_x,
                     label_y + 40.,
-                    row.w - 84.0,
+                    row.right() - text_x - 12.,
                     1,
                     14,
                     theme.muted(),
@@ -20514,10 +20807,19 @@ impl AsciiApp {
                 draw_wrapped_text(
                     description,
                     detail_x,
-                    content_y + 143.0,
+                    content_y
+                        + if character_creation_details::compact_review() {
+                            136.
+                        } else {
+                            143.
+                        },
                     detail_width,
                     3,
-                    16,
+                    if character_creation_details::compact_review() {
+                        15
+                    } else {
+                        16
+                    },
                     theme.text(),
                 );
                 self.draw_creation_starting_details(creation, &layout);
@@ -20540,23 +20842,32 @@ impl AsciiApp {
                 ButtonTone::Secondary,
             );
         }
-        theme.button(
+        self.creation_content_cover(
+            Rect::new(
+                detail_x,
+                content_y + 88.,
+                detail_width,
+                layout.continue_button.y - (content_y + 88.) - 14.,
+            ),
+            false,
+        );
+        self.creation_button(
             layout.cancel,
             if customizing {
                 "Retour aux profils"
             } else {
                 "Retour"
             },
+            3000,
             creation.hovered == Some(CharacterCreationHover::Cancel),
-            false,
             true,
             ButtonTone::Secondary,
         );
-        theme.button(
+        self.creation_button(
             layout.continue_button,
             "Commencer la partie",
+            3001,
             creation.hovered == Some(CharacterCreationHover::Continue),
-            false,
             remaining == 0,
             ButtonTone::Primary,
         );
@@ -21716,11 +22027,13 @@ impl AsciiApp {
         };
         self.ux.creation_details = None;
         self.refresh_creation_details(&creation)?;
+        character_creation_industrial::prepare(self)?;
         self.character_creation = Some(creation);
         Ok(())
     }
 
     fn update_character_creation(&mut self, input: &InputFrame) {
+        character_creation_industrial::tick(self);
         let Some(mut creation) = self.character_creation.take() else {
             return;
         };
@@ -28248,6 +28561,9 @@ mod tests {
     #[test]
     fn holding_a_movement_binding_repeats_real_turns_after_a_short_delay() {
         let mut app = app_with_test_controls();
+        // Exercise the initial 280 ms key delay with a shorter 120 ms step.
+        app.graphics.active.walk_duration_ms = 120;
+        app.graphics.active.reduced_motion = false;
         let start = app.game.player_position().unwrap();
         let pressed = InputFrame {
             pressed: [Binding::key("D")].into(),
@@ -28305,6 +28621,66 @@ mod tests {
                 .glide_offset(app.game.player_id(), 5.02, false),
             Vec2::ZERO
         );
+    }
+
+    #[test]
+    fn held_walk_has_no_front_flash_at_a_render_boundary_and_stops_on_release() {
+        for milliseconds in [120, 200, 400] {
+            let mut app = app_with_test_controls();
+            app.graphics.active.reduced_motion = false;
+            app.graphics.active.walk_duration_ms = milliseconds;
+            let id = app.game.player_id();
+            let duration = f64::from(milliseconds) / 1000.;
+            let binding = app.controls.binding(Action::MoveEast).clone();
+            let pressed = InputFrame {
+                pressed: [binding.clone()].into(),
+                held: [binding.clone()].into(),
+                ..Default::default()
+            };
+            let held = InputFrame {
+                held: [binding].into(),
+                ..Default::default()
+            };
+            app.update_input_at(&pressed, Some(5.));
+            let first = app.game.player_position();
+            let turn = app.game.turn();
+            app.update_input_at(&held, Some(5. + duration - 0.001));
+            app.combat_motion.prune(5. + duration + 0.016);
+            assert!(
+                app.combat_motion
+                    .player_walk_pose(id, 5. + duration + 0.016, false)
+                    .is_some()
+            );
+            assert_eq!(app.game.player_position(), first);
+            assert_eq!(app.game.turn(), turn);
+            let repeated =
+                5. + duration.max(controls::MovementRepeater::INITIAL_DELAY_SECONDS) + 0.02;
+            app.update_input_at(&held, Some(repeated));
+            assert_eq!(app.game.turn(), turn + 1);
+            assert_eq!(
+                app.combat_motion
+                    .player_walk_pose(id, repeated + 0.001, false)
+                    .unwrap()
+                    .frame,
+                3
+            );
+            app.update_input_at(&InputFrame::default(), Some(repeated + 0.02));
+            assert!(
+                app.combat_motion
+                    .player_walk_pose(id, repeated + 0.03, false)
+                    .is_some()
+            );
+            assert!(
+                app.combat_motion
+                    .player_walk_pose(id, repeated + duration + 0.001, false)
+                    .is_none()
+            );
+            assert!(
+                app.movement_repeat
+                    .held_action(&app.controls, &held)
+                    .is_none()
+            );
+        }
     }
 
     fn held_menu_key(key: &str, pressed: bool) -> InputFrame {

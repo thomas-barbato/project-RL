@@ -1,0 +1,24 @@
+{
+  "review": "VERT18-C05",
+  "date": "2026-10-29",
+  "status": "moved_to_windows_recycle_bin",
+  "approval": "acceptance-C05.json",
+  "scope": "Only reproducible raw PNG frames and prepared debug atlases under C04/engine and C05/engine",
+  "validated_resource_and_presentation_hashes": 127,
+  "count": 1688,
+  "bytes": 386677133,
+  "protected": [
+    "all assets/",
+    "all docs/",
+    "all WebP comparisons",
+    "browser proof PNGs",
+    "engine JSON checks",
+    "all map-editor data"
+  ],
+  "recycled_count": 1688,
+  "recycle_bin_emptied": false,
+  "manifest": "artifacts/vertical-walk-review-18/current/size-C05/cleanup-approved-raw-manifest.json",
+  "sources_and_accepted_comparisons_preserved": true,
+  "engine_json_checks_preserved": true,
+  "disk_space_reclaimed_not_claimed": true
+}

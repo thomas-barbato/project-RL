@@ -1,0 +1,107 @@
+{
+  "review": "VERT18-C05",
+  "date": "2026-10-29",
+  "status": "visual_accepted_pending_integration",
+  "normal_game_enabled": false,
+  "reason": "Correct all already presented variants after idle/walk stature regression reported in C04.",
+  "source_manifest": "assets/source-art/vertical-walk-review-18/candidate-C05/manifest.json",
+  "prompts": "prompts-C05.json",
+  "generation_mode": "builtin_image_gen",
+  "new_drawn_source": "assets/source-art/vertical-walk-review-18/traqueuse-lourde-back-size05-r01-source.png",
+  "existing_sources_reconditioned": 9,
+  "coherent_idle_source": "authored front neutral cell0 from each original cycle",
+  "static_scale": "one XY-uniform scale per authored row, calibrated against that row neutral figure",
+  "runtime_size_scaling": false,
+  "scope": {
+    "body_profiles": 9,
+    "headgear_heavy_profiles": 4,
+    "head_choices": 7,
+    "headgear_loadouts": 2,
+    "headgear_combinations": 56,
+    "heavy_weapon_loadouts": 5,
+    "base_arcaniste_mixed_pair": true,
+    "other_armor_ranks": false,
+    "two_handed": false,
+    "other_NPCs": false,
+    "palettes": "Original only"
+  },
+  "checks": {
+    "review": "VERT18-C05",
+    "status": "passed",
+    "normal_game_enabled": false,
+    "approved_source_files_unchanged": 30,
+    "head_choices": 7,
+    "headgear_loadouts": 2,
+    "heavy_profiles": 4,
+    "body_region_comparisons_across_head_choices": 624,
+    "body_region": "native y60..127 in all12 phases plus authored front idle",
+    "flat_front_returns": 328,
+    "camp_front_returns": 68,
+    "total_front_returns": 396,
+    "one_handed_contacts_including_idle": 4056,
+    "headgear_sampled_weapon_contacts": 672,
+    "head_operations_preserving_lower_body": 832,
+    "saved_game_loaded": false,
+    "user_preferences_written": false,
+    "limits": "Body geometry and contacts are technical checks; visual approval is still separate."
+  },
+  "build_and_tests": {
+    "cargo_build_locked": "passed",
+    "size05_selects_all_thirteen_profiles_without_reusing_old_cache_keys": "passed",
+    "headgear04_uses_distinct_keys_and_restores_accepted_c03_selection": "passed",
+    "targeted_rustfmt": "passed",
+    "git_diff_check": "passed",
+    "full_suite_run": false,
+    "release_build": "not repeated; new review code is debug only",
+    "normal_campaign_run": false
+  },
+  "preview": {
+    "url": "http://127.0.0.1:63780/size-C05/apercu.html",
+    "native_tile_px": 64,
+    "engine_capture_exit_code": 0,
+    "raw_capture_frames": 962,
+    "native_step_ms": 400,
+    "reading_pause_ms": 650,
+    "browser_verification": "passed",
+    "browser_tab": 7,
+    "decoded_animation_frames_verified": 1196,
+    "animations": 38,
+    "native_image_dimensions_preserved": [
+      [
+        380,
+        290
+      ],
+      [
+        380,
+        315
+      ]
+    ],
+    "browser_controls_checked": [
+      "body/npc",
+      "headgear",
+      "weapon_loadouts",
+      "camp_selector"
+    ],
+    "browser_proof": [
+      "artifacts/vertical-walk-review-18/current/size-C05/apercu-comparatif-navigateur.png",
+      "artifacts/vertical-walk-review-18/current/size-C05/apercu-casques-navigateur.png"
+    ]
+  },
+  "cache": {
+    "source_limit_bytes": 4194304,
+    "prepared_texture_limit_bytes": 8388608,
+    "read_or_decode_during_draw": false,
+    "gpu_upload_before_sequence_on_context_thread": true
+  },
+  "approval_scope": "C05 figures, coherent front idle and the shown head/loadout variants; normal integration remains a separate state.",
+  "separate_DUAL17_review_still_pending": true,
+  "user_quote": "pour l'instant ca m'a l'air bien alors je valide :)",
+  "acceptance": "acceptance-C05.json",
+  "cleanup_after_acceptance": {
+    "report": "cleanup-approved-C05-raw.json",
+    "raw_pngs_recycled": 1688,
+    "bytes_moved_to_recycle_bin": 386677133,
+    "recycle_bin_emptied": false,
+    "source_and_presentation_hashes_verified_after_cleanup": 97
+  }
+}

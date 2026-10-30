@@ -1,0 +1,977 @@
+{
+  "review": "CREATION-UI02-B",
+  "date": "2026-10-30",
+  "status": "integrated_normal_debug_and_release",
+  "normal_game_enabled": true,
+  "accepted_layout": "acceptance-02A.json",
+  "scope": "creation screen only, same three-column layout and click-pinned descriptions",
+  "finish": [
+    "flat matte panels with thin subdued borders",
+    "tonal selected cards with a slim accent rail",
+    "quiet icon frames and flat action buttons"
+  ],
+  "motion": {
+    "selection_hover_ms": 140,
+    "class_and_description_reveal_ms": 180,
+    "curve": "smoothstep, absolute presentation time",
+    "layout_or_hitbox_movement": false,
+    "permanent_pulsing": false,
+    "reduced_motion": "instant state changes, no content fade",
+    "maximum_reveal_veil_opacity": 0.3
+  },
+  "content_text_or_values_changed": false,
+  "new_art_or_textures": false,
+  "bounded_scalar_cache_entries": 128,
+  "targeted_tests": 7,
+  "normal_gameplay_or_save_changes": false,
+  "animation_checks": {
+    "fade_ms": 180,
+    "frames": 145,
+    "game_fingerprint_unchanged": true,
+    "normal_game_enabled": false,
+    "observations": [
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.0,
+        "detail_progress": 0.0,
+        "frame": 0
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.09017933905124664,
+        "detail_progress": 0.09017933905124664,
+        "frame": 1
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.3099120855331421,
+        "detail_progress": 0.3099120855331421,
+        "frame": 2
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.5829904079437256,
+        "detail_progress": 0.5829904079437256,
+        "frame": 3
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.833206295967102,
+        "detail_progress": 0.833206295967102,
+        "frame": 4
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.9843519926071167,
+        "detail_progress": 0.9843519926071167,
+        "frame": 5
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 6
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 7
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 8
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 9
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 10
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 11
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 12
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 13
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 14
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 15
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 16
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 17
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 18
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 19
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 20
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 21
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 22
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 23
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 24
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.0,
+        "detail_progress": 0.0,
+        "frame": 25
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.09017933905124664,
+        "detail_progress": 0.09017933905124664,
+        "frame": 26
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.3099120855331421,
+        "detail_progress": 0.3099120855331421,
+        "frame": 27
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.5829904079437256,
+        "detail_progress": 0.5829904079437256,
+        "frame": 28
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.833206295967102,
+        "detail_progress": 0.833206295967102,
+        "frame": 29
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.9843519926071167,
+        "detail_progress": 0.9843519926071167,
+        "frame": 30
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 31
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 32
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 33
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 34
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 35
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 36
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 37
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 38
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 39
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 40
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 41
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 42
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 43
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 44
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 45
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 46
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 47
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 48
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 49
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 50
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 51
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 52
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 53
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 54
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.0,
+        "frame": 55
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.09017933905124664,
+        "frame": 56
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.3099120855331421,
+        "frame": 57
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.5829904079437256,
+        "frame": 58
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.833206295967102,
+        "frame": 59
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.9843519926071167,
+        "frame": 60
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 61
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 62
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 63
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 64
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 65
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 66
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 67
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 68
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 69
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 70
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 71
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 72
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 73
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 74
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 75
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 76
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 77
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 78
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 79
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.0,
+        "frame": 80
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.09017933905124664,
+        "frame": 81
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.3099120855331421,
+        "frame": 82
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.5829904079437256,
+        "frame": 83
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.833206295967102,
+        "frame": 84
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 0.9843519926071167,
+        "frame": 85
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 86
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 87
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 88
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 89
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 90
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 91
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 92
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 93
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 94
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 95
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 96
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 97
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 98
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 99
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 100
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 101
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 102
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 103
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 104
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.0,
+        "detail_progress": 0.0,
+        "frame": 105
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.09017933905124664,
+        "detail_progress": 0.09017933905124664,
+        "frame": 106
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.3099120855331421,
+        "detail_progress": 0.3099120855331421,
+        "frame": 107
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.5829904079437256,
+        "detail_progress": 0.5829904079437256,
+        "frame": 108
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.833206295967102,
+        "detail_progress": 0.833206295967102,
+        "frame": 109
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 0.9843519926071167,
+        "detail_progress": 0.9843519926071167,
+        "frame": 110
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 111
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 112
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 113
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 114
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 115
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 116
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 117
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 118
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 119
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 120
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 121
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 122
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 123
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 124
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 125
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 126
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 127
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 128
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 129
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 130
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 131
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 132
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 133
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 134
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 135
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 136
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 137
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 138
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 139
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 140
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 141
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 142
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 143
+      },
+      {
+        "cached_scalars": 18,
+        "class_progress": 1.0,
+        "detail_progress": 1.0,
+        "frame": 144
+      }
+    ],
+    "real_input_selection_used": true,
+    "reduced_motion_supported": true,
+    "review": "CREATION-UI02-B",
+    "sample_fps": 30,
+    "selection_ms": 140,
+    "turn_and_rng_unchanged": true
+  },
+  "encoded_animation_frames": {
+    "webp": 35,
+    "gif": 35,
+    "source_time_samples_verified": 145
+  },
+  "media": {
+    "modern-02B.webp": {
+      "path": "artifacts/character-creation-review-02/current/modern-02B.webp",
+      "bytes": 1208234,
+      "sha256": "274f6226a514895756b68132b5fdf7b24784885bc6e4b9287b8ec9a7aec6c6e7"
+    },
+    "modern-02B.gif": {
+      "path": "artifacts/character-creation-review-02/current/modern-02B.gif",
+      "bytes": 871623,
+      "sha256": "71b95b2cb1353bca9024ada21e46704bd836007e9c1b9e9e92aef6ec09380780"
+    },
+    "modern-02B.png": {
+      "path": "artifacts/character-creation-review-02/current/modern-02B.png",
+      "bytes": 208014,
+      "sha256": "d65d63c73baac88a6e7eb801806b629592d2c7c74475dd7e2b6fe58f677b2f5a"
+    }
+  },
+  "reader_never_blank_samples": 145,
+  "validation": {
+    "targeted_tests": 7,
+    "cargo_check_all_targets": "passed",
+    "debug_build": "passed",
+    "full_test_suite_run": false,
+    "default_creation_image_unchanged": true,
+    "reduced_motion_endpoint_identical": true,
+    "native_compact_capture": [
+      960,
+      540
+    ],
+    "terminal_theme_native_capture": true,
+    "native_animation_time_samples_verified": 145,
+    "reader_never_blank_samples": 145,
+    "formatting": "changed Rust files passed",
+    "git_diff_check": "passed; existing LF/CRLF notices only",
+    "cargo_check_release": "passed",
+    "raw_frame_cleanup": "cleanup-02B.json; lossless native animation and key PNGs retained"
+  },
+  "captures": [
+    {
+      "path": "artifacts/character-creation-review-02/current/modern-readable/cold-start.png",
+      "sha256": "d65d63c73baac88a6e7eb801806b629592d2c7c74475dd7e2b6fe58f677b2f5a"
+    },
+    {
+      "path": "artifacts/character-creation-review-02/current/modern-readable-reduced/cold-start.png",
+      "sha256": "d65d63c73baac88a6e7eb801806b629592d2c7c74475dd7e2b6fe58f677b2f5a"
+    },
+    {
+      "path": "artifacts/character-creation-review-02/current/modern-final-small/cold-start.png",
+      "sha256": "1bf3057c3d240ff7fbd74f7e463b0008fa817701d83bd51242a230fcab624103"
+    },
+    {
+      "path": "artifacts/character-creation-review-02/current/modern-final-terminal/cold-start.png",
+      "sha256": "60157cbfa25c5edd5add2a0ce6b260e55b19747a124e804d5e7a14fc33b13585"
+    },
+    {
+      "path": "artifacts/character-creation-review-02/current/polish-normal-check/cold-start.png",
+      "sha256": "b9734481889fdd4b38fb08c8312cddbbbc5096a19cfc92e0d030f0b6e086cd9c"
+    }
+  ],
+  "integration_evidence": "integration-02B.json",
+  "historical_animation_capture": "animation_checks was recorded before normal activation"
+}

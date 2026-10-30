@@ -1,0 +1,61 @@
+{
+  "review": "VERT18-C11",
+  "status": "native_candidates_awaiting_visual_review",
+  "normal_game_enabled": false,
+  "body_profiles": 12,
+  "knife_models_contact_checked": 12,
+  "hilt_finger_contact_checks": 3744,
+  "hilt_finger_contact_failures": [],
+  "body_fingers_reassemblies_exact": 312,
+  "original_body_pixels_changed": false,
+  "knife_source_pixels_angles_and_scale_changed": false,
+  "pistol_pixels_angle_and_target_changed": false,
+  "candidate_compositions": 168,
+  "baseline_configurations": 24,
+  "engine_configurations": 192,
+  "authored_hand_experiments": "Two builtin_imagegen sources retained for diagnosis; not consumed. C11-B corrects landmark and foreground ownership using the original C10 fingers.",
+  "engine": {
+    "native_configurations": 192,
+    "native_draws": 2496,
+    "front_returns": 768,
+    "saved_contact_boards": 72,
+    "camp_groups": [
+      {
+        "class": "bastion",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "traqueuse",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "arcaniste",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      },
+      {
+        "class": "metamorphe",
+        "pose_records": 156,
+        "front_returns": 12,
+        "native_captures": 6
+      }
+    ],
+    "camp_pose_records": 624,
+    "camp_front_returns": 48,
+    "normal_game_enabled": false,
+    "saved_game_loaded": false,
+    "preferences_written": false
+  },
+  "preserved_hash_banks": {
+    "runtime-assets-C09": 1605,
+    "candidate-resources-C06": 3272,
+    "candidate-resources-C08": 113,
+    "candidate-resources-C09": 169,
+    "candidate-resources-C10": 487
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "review": "CREATION-UI02-D-r03",
+  "date": "2026-10-30",
+  "status": "integrated_normal_debug_and_release",
+  "acceptance": "acceptance-02D-r03.json",
+  "normal_game_enabled": true,
+  "launcher": "Jouer.cmd",
+  "review_arguments_required": false,
+  "approved_renderer_and_compact_layout_enabled_by_default": true,
+  "source_art_and_gameplay_rules_changed": false,
+  "subtitle_removed": true,
+  "header_and_footer_separators_removed": true,
+  "validation": {
+    "release_build": "cargo build --locked --release --bin project-rl: passed",
+    "debug_build": "cargo build --locked --bin project-rl: passed",
+    "targeted_tests_passed": 11,
+    "tests": [
+      "character_creation (10 tests)",
+      "new_game_selects_a_protocol_and_distributes_attributes_before_turn_zero (1 test)"
+    ],
+    "full_test_suite_run": false,
+    "native_captures_without_review_flags": 8,
+    "native_card_checks": 48,
+    "approved_native_pixel_parity": {
+      "metamorphe": {
+        "size": [
+          1280,
+          800
+        ],
+        "different_pixels": 0,
+        "difference_bounds": null
+      },
+      "arcaniste-small": {
+        "size": [
+          960,
+          540
+        ],
+        "different_pixels": 0,
+        "difference_bounds": null
+      },
+      "terminal": {
+        "size": [
+          1280,
+          800
+        ],
+        "different_pixels": 0,
+        "difference_bounds": null
+      },
+      "reduced_motion_endpoint": {
+        "different_pixels": 0,
+        "difference_bounds": null
+      }
+    },
+    "browser_or_desktop_ui_visual_execution": false,
+    "native_framebuffer_execution": true,
+    "changed_file_rustfmt": "passed",
+    "git_diff_check": "passed"
+  },
+  "normal_audit_summary": {
+    "audit-1280": {
+      "cards_checked": 16,
+      "readers_without_scroll": 16,
+      "scene_visible_count": 16,
+      "cache_jobs_before_reopen": 3,
+      "cache_texture_bytes": 278528,
+      "reopen_reuses_cache": true,
+      "resize_checked": false,
+      "no_resource_work_in_draw": true
+    },
+    "audit-960": {
+      "cards_checked": 16,
+      "readers_without_scroll": 15,
+      "scene_visible_count": 0,
+      "cache_jobs_before_reopen": 0,
+      "cache_texture_bytes": 278528,
+      "reopen_reuses_cache": true,
+      "resize_checked": true,
+      "no_resource_work_in_draw": true
+    },
+    "audit-terminal": {
+      "cards_checked": 16,
+      "readers_without_scroll": 16,
+      "scene_visible_count": 16,
+      "cache_jobs_before_reopen": 3,
+      "cache_texture_bytes": 278528,
+      "reopen_reuses_cache": true,
+      "resize_checked": false,
+      "no_resource_work_in_draw": true
+    }
+  },
+  "loading_rule": {
+    "service": "src/asset_preparation.rs",
+    "graphics_thread_marked_after_context_creation": true,
+    "headless_logic_never_uploads_textures": true,
+    "resource_loading_during_draw": false,
+    "bounded_cache_bytes": 134217728,
+    "scene_gpu_bytes": 278528,
+    "small_to_large_and_back_verified": true
+  },
+  "sources": {
+    "assets/maps/cryogenic-camp-01/floor.png": "594f9373eae1b3cb516092ccf3856f6ed3a65276c85d04bf0401f9bb6e97911e",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-11-r05.png": "926bcdea4933c7b061ed820b4f15fecda264abbd4f0491c2e0424323bcee83fc",
+    "assets/maps/cryogenic-camp-01/DEC-CAMP-14-r05.png": "6efe0714d8244393af57d066a71e7c0d860affd2f025cdd53730e3292c2a0499"
+  },
+  "sources_unchanged": true,
+  "runtime_inventory_count": 3664,
+  "temporary_output_or_source_art_dependency": false,
+  "personal_files_verified_unchanged": 7,
+  "native_records": "native-checks-integration-02D-r03.json",
+  "source_hashes_at_capture": {
+    "src/ascii_app.rs": "51a8d7d13d26f9d37528ea550a946cf918d64e8809eb9c839e3ce3a16d4e39b3",
+    "src/character_creation_industrial.rs": "a3790a25b1e34142887ffde6905a6a74baa580142c3f6499496858402a6507c7",
+    "src/character_creation_polish.rs": "6493483809941b977079ed9ed82f43fa523cd8ad6d7b54c33c972fddb611ecf3",
+    "src/character_creation_details.rs": "b9be686dfe5630fa58cbf51d7d50ae5bdb2d28c616a68c15e6f71aa7acddba4b",
+    "src/asset_preparation.rs": "1b911a79fcce32a86431389f7889cf108a0a0445a80487d795017423b084e641",
+    "src/main.rs": "ce0125e25a78efc05a993b72bdc7a06ab77a33c3794393dbf4fbf7e9790651c4",
+    "target/debug/project-rl.exe": "80e82e852fac2fce863ca7e25f53bf20f034da5c1ede13d921a61648c3c56c26"
+  },
+  "release_executable": {
+    "path": "target/release/project-rl.exe",
+    "bytes": 72545280,
+    "sha256": "8dd8153395e4b1b38d7467bd6f561f5132f6a54117a7f4a1a1ebb5bc9834cccc"
+  },
+  "distribution_rebuilt": false,
+  "debug_cache_cleanup": "cleanup-integration-02D-r03.json"
+}

@@ -1,0 +1,42 @@
+{
+  "review": "VERT18-C09",
+  "date": "2026-10-30",
+  "status": "visual_accepted_integrated",
+  "request": "tu peux incliner tres legerement le pistolet vers l'exterieur :) en faite comme le couteau :)",
+  "candidate_A": "current C06/C07-A pistol with accepted C08-B knife",
+  "candidate_B": "same pistol, rigid 10-degree outward tilt from current downward carry; accepted C08-B knife unchanged",
+  "scope": {
+    "player_profiles": 8,
+    "pistol_models": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112
+    ],
+    "hands": 2,
+    "poses": 13,
+    "weapon_palette_choices": 7,
+    "headgear_choices": 7,
+    "torso_palette": "Original"
+  },
+  "knife_acceptance": "acceptance-C08.json",
+  "pistol_C07_decision_revised_only_if_B_approved": true,
+  "pivot_scale_targets_hands_and_body_unchanged": true,
+  "normal_game_activated": true,
+  "source_art_redrawn": false,
+  "preview": "pistol-C09/apercu.html",
+  "checks": "checks-C09.json",
+  "native_proof": "artifacts/vertical-walk-review-18/current/pistol-C09/comparatif-natif-C09.png",
+  "selected": "B",
+  "acceptance": "acceptance-C09.json",
+  "pistol_C07_revision_accepted": true,
+  "integration": "integration-C09.json"
+}

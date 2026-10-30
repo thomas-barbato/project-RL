@@ -1,0 +1,76 @@
+{
+  "review": "CREATION-UI02-B",
+  "status": "integrated_normal_debug_and_release",
+  "date": "2026-10-30",
+  "authorization": "acceptance-02B.json",
+  "normal_game_enabled": true,
+  "launcher": "Jouer.cmd",
+  "review_arguments_required": false,
+  "root_cause": "Modern finish and reserved reader were gated behind Debug-only review flags and returned false in Release.",
+  "change": "Enable existing 02-A layout and 02-B finish in the normal path; remove temporary review switches.",
+  "release_build_passed": true,
+  "debug_build_passed": true,
+  "targeted_debug_tests_passed": 11,
+  "full_suite_run": false,
+  "release_test_harness_limitation": "Release unit-test compilation fails in unrelated modules that reference Debug-only diagnostics (154 errors); normal Release build succeeds.",
+  "formatting": "Changed Rust files pass rustfmt; full cargo fmt check reports existing module order in src/lib.rs.",
+  "normal_native_captures": {
+    "normal-blue": {
+      "path": "artifacts/character-creation-review-02/integration-02B/normal-blue/cold-start.png",
+      "sha256": "d65d63c73baac88a6e7eb801806b629592d2c7c74475dd7e2b6fe58f677b2f5a",
+      "matches_review_pixels": true,
+      "visually_checked": "pixel equality checked"
+    },
+    "normal-small": {
+      "path": "artifacts/character-creation-review-02/integration-02B/normal-small/cold-start.png",
+      "sha256": "05c514f940311198387a4779342ecd569126358b473993c17a961f8ba4ecb452",
+      "matches_review_pixels": false,
+      "visually_checked": true,
+      "note": "Layout visually inspected at 960x540; transient class/card label pixels differ from earlier capture."
+    },
+    "normal-terminal": {
+      "path": "artifacts/character-creation-review-02/integration-02B/normal-terminal/cold-start.png",
+      "sha256": "60157cbfa25c5edd5add2a0ce6b260e55b19747a124e804d5e7a14fc33b13585",
+      "matches_review_pixels": true,
+      "visually_checked": "pixel equality checked"
+    },
+    "normal-reduced": {
+      "path": "artifacts/character-creation-review-02/integration-02B/normal-reduced/cold-start.png",
+      "sha256": "d65d63c73baac88a6e7eb801806b629592d2c7c74475dd7e2b6fe58f677b2f5a",
+      "matches_review_pixels": true,
+      "visually_checked": "pixel equality checked"
+    }
+  },
+  "desktop_check": {
+    "launcher_started_release_without_review_flags": true,
+    "isolated_appdata": true,
+    "gui_visual_verified": false,
+    "reason": "Sky could not activate the captured game window; refreshed capture did not show the target. Used native framebuffer captures instead."
+  },
+  "gameplay_rules_changed": false,
+  "release_sha256": "b03af6b67f17d9c6ddb19ec96a3d1cdd0ba254617e049ed9bfab58c81b81e023",
+  "source_sha256_before_compact_prototype": {
+    "src/character_creation_polish.rs": "18c606842d8a5ef7f17cf892b5192022705f1357363bc77e33cc983f67282fe9",
+    "src/character_creation_details.rs": "3e7be0d8adbe3af6dc3900a3e4bdd0ccfaabc36042d703dbdcefb889a40726e9",
+    "src/ascii_app.rs": "858a6e71c26fc5c686d3fa7511f07b1cc39424eada22aebbfa6681e4add158fe"
+  },
+  "compact_prototype_normal_path_byte_identical": true,
+  "compact_prototype": "PROPOSITION-02C.json, separately awaiting approval",
+  "temporary_debug_cache_removed": {
+    "files": 1184,
+    "logical_bytes": 1124081943.0,
+    "mode": "cargo clean --profile dev",
+    "release_preserved": true
+  },
+  "source_sha256_current": {
+    "src/character_creation_polish.rs": "18c606842d8a5ef7f17cf892b5192022705f1357363bc77e33cc983f67282fe9",
+    "src/character_creation_details.rs": "9c27702cb41505a1ae214716445a381c344ca14659e7512e307a451ae00372ea",
+    "src/ascii_app.rs": "8ca9c7f6bb24dc8f62ee6d355654273b782b842454f654ff29839d69bb46f2ef"
+  },
+  "personal_files_checked_against_prior_cleanup": {
+    "files": 7,
+    "changed": []
+  },
+  "runtime_inventory_count": 3664,
+  "latest_text_revision": "subtitle-removal.json"
+}

@@ -1,0 +1,142 @@
+{
+  "review": "VERT18-C11-BACK-R02+C12",
+  "date": "2026-10-30",
+  "status": "integrated_normal_debug_and_release",
+  "acceptances": [
+    "acceptance-C11-back-r02.json",
+    "acceptance-C12.json"
+  ],
+  "normal_debug_enabled": true,
+  "normal_release_enabled": true,
+  "source_art_redrawn": false,
+  "scope": {
+    "added_player_profiles": 12,
+    "total_supported_player_profiles": 20,
+    "two_handed_models_per_added_profile": 74,
+    "two_handed_weapon_colors": 7,
+    "headgear_choices": 7,
+    "C11_loadouts": [
+      "W070/W070",
+      "W104/W070"
+    ],
+    "C11_weapon_palette": "Original",
+    "torso_palette": "Original",
+    "poses": 13
+  },
+  "preserved": {
+    "C09_runtime_images": 1604,
+    "C09_profile_metadata": 8,
+    "monsters": 471,
+    "camp_NPC_profiles": 1,
+    "lateral_walking": true,
+    "saves_and_preferences": true
+  },
+  "fallbacks": [
+    "other one-handed loadouts on the twelve intermediate outfits",
+    "other torso palettes",
+    "legacy Technomancien and other uncovered actors"
+  ],
+  "runtime_hashes": "runtime-assets-C12.json",
+  "installer_idempotent_runtime_hashes": 1845,
+  "source_art_or_capture_runtime_dependency": false,
+  "distribution_inventory": {
+    "new_runtime_images": 240,
+    "total_files": 3664,
+    "source_art_or_captures": false
+  },
+  "targeted_tests": {
+    "passed": 6,
+    "failed": 0,
+    "full_suite_run": false,
+    "profile": "loading: release inheritance, debug assertions enabled"
+  },
+  "pixel_parity": {
+    "C11_C12": {
+      "C11_exact_configurations": 168,
+      "C12_configurations": 1104,
+      "alpha_limit": 1,
+      "color_limit": 2,
+      "max_premultiplied_rgba_delta": 2,
+      "review": "VERT18-C11-BACK-R02+C12",
+      "whole_pose_comparisons": 16536
+    },
+    "preserved_C06_C08_C09": {
+      "alpha_limit": 1,
+      "c06_unchanged_configurations": 1327,
+      "c08_configurations": 104,
+      "c09_configurations": 168,
+      "color_limit": 2,
+      "configurations": 1599,
+      "max_premultiplied_rgba_delta": 2,
+      "review": "VERT18-C06+C08-B+C09-B",
+      "source_art_unchanged": true,
+      "whole_pose_comparisons": 20787
+    }
+  },
+  "cargo_check_locked_all_targets": "passed",
+  "formatting": {
+    "changed_rust_files": "passed",
+    "full_cargo_fmt_check": "pre-existing module ordering difference in src/lib.rs; left unchanged"
+  },
+  "debug_build": "cargo build --locked --bin project-rl passed",
+  "release_build": "cargo build --locked --release --bin project-rl passed",
+  "packaged_installation_verification": {
+    "performed_on_packaged_installation": false,
+    "development_checkout_probe": "--verify-assets rejected as expected: Installation has no data manifest",
+    "runtime_distribution_inventory": "3664 paths validated, including all 240 new images"
+  },
+  "normal_native_checks": {
+    "C11_fixed_loadouts": 168,
+    "C12_weapon_bindings": 888,
+    "configurations": 2872,
+    "front_returns_at_120_200_400_ms": 34464,
+    "intermediate_profiles": 12,
+    "new_jobs_or_uploads_during_draw": 0,
+    "normal_game_enabled": true,
+    "normal_native_draws": 74672,
+    "preferences_written": false,
+    "resource_cache": {
+      "decode_ms": 9772.6802,
+      "decoded_source_budget": 67108864,
+      "decoded_source_peak_bytes": 67108608,
+      "jobs": 2873,
+      "pending": 0,
+      "read_bytes": 72138585,
+      "read_ms": 368.9799,
+      "source_reads": 938,
+      "texture_budget": 134217728,
+      "texture_bytes": 134002944,
+      "texture_create_ms": 360.0173,
+      "uploads": 2873,
+      "worker_build_ms_including_sources": 211407.3055
+    },
+    "return_visit_reused_cache": true,
+    "review": "VERT18-C06+C08-B+C09-B+C11-BACK-R02+C12",
+    "review_override_used": false,
+    "same_actor_finish": true,
+    "saved_boards": 178,
+    "saved_game_loaded": false
+  },
+  "normal_camp_checks": {
+    "actual_terminal_map_renderer": true,
+    "native_cell": 64,
+    "normal_actor_draws": [
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6
+    ],
+    "normal_game_enabled": true,
+    "saved_campaign_loaded": false,
+    "user_preferences_written": false
+  },
+  "release_runtime_executed": false,
+  "executables_sha256": {
+    "target\\debug\\project-rl.exe": "32326c1a2121f0e8cc9892bc9a374bdc3bb3b3438ef7469907bd55b04cc784a9",
+    "target\\release\\project-rl.exe": "5beb16d40c6c8ae2587073df66562b3b65de65d328fc4ecc510bf07caa737e98"
+  }
+}

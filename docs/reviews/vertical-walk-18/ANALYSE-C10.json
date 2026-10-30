@@ -1,0 +1,287 @@
+{
+  "review": "VERT18-C10",
+  "status": "native_candidates_awaiting_visual_approval",
+  "normal_game_enabled": false,
+  "body_profiles": 12,
+  "moving_and_idle_poses": 156,
+  "head_choices": 7,
+  "representative_one_hand_loadouts": 5,
+  "prepared_reference_atlases": 420,
+  "reference_poses": 5460,
+  "whole_figure_reassembly_exact": true,
+  "hand_contacts": 624,
+  "hand_contact_failures": 0,
+  "heights": [
+    {
+      "profile": "bastion-armor1",
+      "target": 58,
+      "idle": 57,
+      "moving_range": [
+        57,
+        59
+      ],
+      "row_uniform_xy_scales": [
+        0.20279720279720279,
+        0.20567375886524822,
+        0.20714285714285716,
+        0.2078853046594982
+      ]
+    },
+    {
+      "profile": "bastion-armor2",
+      "target": 58,
+      "idle": 58,
+      "moving_range": [
+        57,
+        59
+      ],
+      "row_uniform_xy_scales": [
+        0.20422535211267606,
+        0.20567375886524822,
+        0.20714285714285716,
+        0.20640569395017794
+      ]
+    },
+    {
+      "profile": "bastion-armor3",
+      "target": 58,
+      "idle": 58,
+      "moving_range": [
+        57,
+        59
+      ],
+      "row_uniform_xy_scales": [
+        0.20422535211267606,
+        0.20422535211267606,
+        0.20863309352517986,
+        0.20640569395017794
+      ]
+    },
+    {
+      "profile": "traqueuse-armor1",
+      "target": 56,
+      "idle": 57,
+      "moving_range": [
+        55,
+        58
+      ],
+      "row_uniform_xy_scales": [
+        0.1848184818481848,
+        0.18360655737704917,
+        0.19377162629757785,
+        0.19649122807017544
+      ]
+    },
+    {
+      "profile": "traqueuse-armor2",
+      "target": 56,
+      "idle": 57,
+      "moving_range": [
+        55,
+        58
+      ],
+      "row_uniform_xy_scales": [
+        0.18791946308724833,
+        0.18791946308724833,
+        0.19377162629757785,
+        0.1951219512195122
+      ]
+    },
+    {
+      "profile": "traqueuse-armor3",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        56,
+        57
+      ],
+      "row_uniform_xy_scales": [
+        0.17891373801916932,
+        0.1794871794871795,
+        0.19112627986348124,
+        0.19377162629757785
+      ]
+    },
+    {
+      "profile": "arcaniste-armor1",
+      "target": 60,
+      "idle": 61,
+      "moving_range": [
+        60,
+        62
+      ],
+      "row_uniform_xy_scales": [
+        0.20618556701030927,
+        0.20761245674740483,
+        0.21201413427561838,
+        0.2112676056338028
+      ]
+    },
+    {
+      "profile": "arcaniste-armor2",
+      "target": 60,
+      "idle": 60,
+      "moving_range": [
+        59,
+        61
+      ],
+      "row_uniform_xy_scales": [
+        0.2054794520547945,
+        0.20761245674740483,
+        0.21201413427561838,
+        0.2112676056338028
+      ]
+    },
+    {
+      "profile": "arcaniste-armor3",
+      "target": 60,
+      "idle": 59,
+      "moving_range": [
+        60,
+        62
+      ],
+      "row_uniform_xy_scales": [
+        0.2127659574468085,
+        0.2158273381294964,
+        0.2222222222222222,
+        0.2247191011235955
+      ]
+    },
+    {
+      "profile": "metamorphe-armor1",
+      "target": 56,
+      "idle": 56,
+      "moving_range": [
+        55,
+        57
+      ],
+      "row_uniform_xy_scales": [
+        0.1848184818481848,
+        0.18241042345276873,
+        0.1891891891891892,
+        0.1917808219178082
+      ]
+    },
+    {
+      "profile": "metamorphe-armor2",
+      "target": 56,
+      "idle": 55,
+      "moving_range": [
+        55,
+        57
+      ],
+      "row_uniform_xy_scales": [
+        0.18604651162790697,
+        0.18543046357615894,
+        0.1917808219178082,
+        0.19243986254295534
+      ]
+    },
+    {
+      "profile": "metamorphe-armor3",
+      "target": 56,
+      "idle": 55,
+      "moving_range": [
+        55,
+        56
+      ],
+      "row_uniform_xy_scales": [
+        0.19243986254295534,
+        0.19310344827586207,
+        0.19310344827586207,
+        0.19243986254295534
+      ]
+    }
+  ],
+  "source_grip_landmarks": "C06 same-class hints locally fitted to the actual C10 pixels; visually inspected, not a new weapon model",
+  "two_handed_grips": "not authored in this stage",
+  "torso_palettes": "Original only",
+  "engine": {
+    "command": "RL_VERTICAL_REVIEW_CASES=assets/source-art/vertical-walk-review-18/armor-C10/engine-cases.json target/debug/project-rl.exe --ui-cold-vertical-extension artifacts/vertical-walk-review-18/current/armor-C10/engine",
+    "prepared_atlases": 420,
+    "native_draws": 5460,
+    "front_returns": 1680,
+    "saved_native_contact_boards": 36,
+    "camp_groups": [
+      {
+        "class": "bastion",
+        "full_native_captures": [
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-bastion/camp-step0-tick00.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-bastion/camp-step0-tick06.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-bastion/camp-step0-tick12.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-bastion/camp-step2-tick00.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-bastion/camp-step2-tick06.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-bastion/camp-step2-tick12.png"
+        ],
+        "moving_idle_returns": 12
+      },
+      {
+        "class": "traqueuse",
+        "full_native_captures": [
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-traqueuse/camp-step0-tick00.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-traqueuse/camp-step0-tick06.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-traqueuse/camp-step0-tick12.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-traqueuse/camp-step2-tick00.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-traqueuse/camp-step2-tick06.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-traqueuse/camp-step2-tick12.png"
+        ],
+        "moving_idle_returns": 12
+      },
+      {
+        "class": "arcaniste",
+        "full_native_captures": [
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-arcaniste/camp-step0-tick00.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-arcaniste/camp-step0-tick06.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-arcaniste/camp-step0-tick12.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-arcaniste/camp-step2-tick00.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-arcaniste/camp-step2-tick06.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-arcaniste/camp-step2-tick12.png"
+        ],
+        "moving_idle_returns": 12
+      },
+      {
+        "class": "metamorphe",
+        "full_native_captures": [
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-metamorphe/camp-step0-tick00.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-metamorphe/camp-step0-tick06.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-metamorphe/camp-step0-tick12.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-metamorphe/camp-step2-tick00.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-metamorphe/camp-step2-tick06.png",
+          "artifacts/vertical-walk-review-18/current/armor-C10/engine/camp-metamorphe/camp-step2-tick12.png"
+        ],
+        "moving_idle_returns": 12
+      }
+    ],
+    "camp_pose_records": 624,
+    "camp_front_returns": 48,
+    "same_actor_finish_and_exposure": true,
+    "read_decode_in_draw": false,
+    "normal_game_enabled": false,
+    "saved_game_loaded": false,
+    "preferences_written": false
+  },
+  "preserved_hash_banks": {
+    "runtime-assets-C09": 1605,
+    "candidate-resources-C06": 3272,
+    "candidate-resources-C08": 113,
+    "candidate-resources-C09": 169
+  },
+  "validation": {
+    "cargo_build_locked": "passed",
+    "python_compile": "passed",
+    "git_diff_check": "passed (existing LF/CRLF notices only)",
+    "full_test_suite_run": false
+  },
+  "browser": {
+    "url": "http://127.0.0.1:63780/armor-C10/apercu.html",
+    "executed": true,
+    "cards": 12,
+    "phase_canvases": 13,
+    "camp_image_loaded": true,
+    "native_comparison_image_loaded": true,
+    "tested_selector": "Metamorphe armor3, helmet120, dual knives, manual back pose07; then reset to Bastion armor1, no equipped helmet, pistol+knife, animated",
+    "viewport": "default; no override",
+    "proof": "artifacts/vertical-walk-review-18/current/armor-C10/C10-browser-review.png",
+    "normal_game_enabled": false
+  }
+}

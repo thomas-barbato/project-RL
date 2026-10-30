@@ -193,3 +193,29 @@ Le périmètre, les empreintes et les résultats sont dans
 `docs/maintenance/nettoyage-2026-10-29/` : `plan.json`, `exports-result.json`,
 `cache-result.json`, `preservation-before.json`, `preservation-after.json` et
 `preservation-check.json`.
+
+## Exports d'animation et caches — nettoyage du 30 octobre 2026
+
+Après reconstruction réussie du Release, 6 541 anciens fichiers générés sont
+supprimés : exports des étapes verticales C02 à C10 terminées, captures
+d'intégration répétées, essai DUAL16 retiré, variantes ARM14 redondantes et
+anciennes itérations de l'interface de création. Leurs sources, accords et
+références natives représentatives restent conservés. Les anciennes pages
+renvoient aux références conservées et aux aperçus intégrés C11/C12.
+
+Cargo retire également les 1 959 fichiers des caches Debug et `loading`.
+L'ensemble représente 2 559 319 787 octets de fichiers supprimés, dont
+448 969 676 octets d'exports et 2 110 350 111 octets de caches. Ces nombres
+mesurent les tailles logiques ; l'espace physique récupéré peut différer,
+notamment avec les liens physiques des sorties Cargo. Aucun vidage de la
+Corbeille ni nouvelle archive n'est effectué.
+
+Les sources graphiques, ressources du jeu, décisions, sauvegardes, préférences
+et données de `artifacts/map-editor/` restent protégées. Les démonstrations
+actuelles C11/C12, les propositions encore en attente et les médias finaux
+de CREATION-UI02-B sont conservés. Ce nettoyage ne valide ni n'active cette
+finition de l'interface. Le Release et la distribution existante sont conservés ;
+le prochain outil Debug reconstruira son cache.
+
+Le périmètre, les empreintes et les contrôles avant/après sont dans
+`docs/maintenance/nettoyage-2026-10-30/`.

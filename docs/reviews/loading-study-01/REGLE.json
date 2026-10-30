@@ -13,7 +13,20 @@
     "Preserver independamment l'etat des zones, la simulation et les sauvegardes.",
     "Mesurer les premieres visites, les retours et les premieres utilisations d'effets en separant les couts."
   ],
-  "implementation_status": "Diagnostic integre ; cache commun et prechargement encore a implementer.",
+  "implementation_status": "Shared resource preparation/cache integrated for accepted VERT18 actors; legacy maps, effects and interfaces still require migration.",
   "memory_budget": "A determiner par mesure ; aucun montant global valide a ce stade.",
-  "evidence": "ANALYSE.json"
+  "evidence": "ANALYSE.json",
+  "vertical18_integration": {
+    "review": "VERT18-C06",
+    "decision": "../vertical-walk-18/integration-C06.json",
+    "code": "src/asset_preparation.rs",
+    "decoded_source_budget_bytes": 67108864,
+    "texture_budget_bytes": 134217728,
+    "budgets_are_service_local_not_global_memory_approval": true,
+    "visible_preparation_before_draw": true,
+    "nearby_prefetch_actors": 4,
+    "heavy_reads_and_decodes_on_cpu_worker": true,
+    "gpu_upload_on_context_thread": true,
+    "legacy_scene_effect_ui_migration_complete": false
+  }
 }
