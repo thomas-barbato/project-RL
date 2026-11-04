@@ -1,0 +1,85 @@
+{
+  "review": "CLASS-LATERAL02-r02",
+  "date": "2026-11-02",
+  "status": "native_candidate_awaiting_visual_approval",
+  "supersedes": "CLASS-LATERAL02-r01",
+  "player_feedback_addressed": [
+    "Technomancien retire de la creation, presente par erreur dans r01",
+    "Cadence jugee trop rapide",
+    "Jambes ne formant pas un pas lisible"
+  ],
+  "roster": {
+    "source": "ascii_character_class_catalog / CharacterClassCatalog::iter / available_at_creation",
+    "included": ["core:bastion", "core:arcaniste", "core:metamorphe"],
+    "traqueuse_unchanged": true,
+    "retired_technomancien_excluded": true,
+    "historical_save_compatibility_preserved": true,
+    "historical_preview_publishers_redirect_to_current": true
+  },
+  "proposal": {
+    "armor_stage": 3,
+    "unarmed_only": true,
+    "native_cell_px": 64,
+    "walking_poses_per_direction": 8,
+    "lateral_idle_poses_per_direction": 1,
+    "total_walking_drawings": 48,
+    "total_drawings_including_lateral_idle": 54,
+    "step_ms": 650,
+    "cycle_ms": 1300,
+    "phase_durations_ms": [180, 180, 170, 120, 180, 180, 170, 120],
+    "review_travel_px_per_cycle": 40,
+    "review_travel_samples_per_direction": 32,
+    "review_frontal_rest_ms": 650,
+    "previous_candidate_same_cadence": true,
+    "whole_figure_drawings_without_procedural_limb_deformation": true,
+    "normal_game_enabled": false,
+    "changes_game_command_duration": false
+  },
+  "assets": {
+    "mode": "built-in image_gen",
+    "directory": "assets/source-art/animation-polish-01/class-lateral-02/r02",
+    "atlas_files": ["bastion-atlas.png", "arcaniste-atlas.png", "metamorphe-atlas.png"],
+    "prompts": "docs/reviews/animation-polish-01/CLASS-LATERAL02-PROMPTS-r02.md"
+  },
+  "validation": {
+    "cargo_check_locked_bin": "passed",
+    "cargo_build_locked_bin": "passed",
+    "targeted_test": {
+      "command": "cargo test --locked --bin project-rl review_roster_follows_creation -- --nocapture",
+      "result": "passed, 1 test"
+    },
+    "git_diff_check": "passed",
+    "python_preview_publishers_compile": "passed",
+    "native_capture": {
+      "command": "target/debug/project-rl.exe --ui-cold-class-lateral-r02 artifacts/animation-polish-01/class-lateral-02/r02/current",
+      "result": "completed, 84 captures",
+      "board_px": [384, 480],
+      "distinct_walking_poses_each_class_and_direction": 8,
+      "checks": "artifacts/animation-polish-01/class-lateral-02/r02/current/checks.json"
+    },
+    "browser": {
+      "url": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=CLASS-LATERAL02-r02#reprise-laterale",
+      "captures_loaded": 84,
+      "retired_name_absent_from_dom": true,
+      "default_step_ms": 650,
+      "cadence_options_800_and_400_checked": true,
+      "native_canvas_px": [384, 480],
+      "native_canvas_css_px": [384, 480],
+      "zoom_canvas_px": [768, 960],
+      "left_and_right_detail_checked": true,
+      "manual_frontal_rest_and_next_pose_checked": true,
+      "pause_resume_and_changing_travel_phases_checked": true,
+      "console_errors": [],
+      "left_playing": true,
+      "proof": "artifacts/animation-polish-01/class-lateral-02/r02/browser-proof.png",
+      "checks": "artifacts/animation-polish-01/class-lateral-02/r02/browser-checks.json"
+    }
+  },
+  "limitations": [
+    "Dessin et cadence proposes, sans acceptation visuelle du joueur",
+    "Trois tenues lourdes sans arme seulement",
+    "Autres armures, prises d'armes et bipedes non couverts",
+    "L'aller-retour est une etude visuelle et ne simule pas la distance d'une commande du jeu",
+    "Aucune integration du nouveau cycle dans le jeu normal"
+  ]
+}

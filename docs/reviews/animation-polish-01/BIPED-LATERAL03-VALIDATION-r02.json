@@ -1,0 +1,126 @@
+{
+  "review": "BIPED-LATERAL03-r02",
+  "status": "moving_identity_preferred_frontal_harmonization_requested",
+  "revised_models": [
+    164,
+    165
+  ],
+  "unchanged_models": [
+    145,
+    5,
+    14,
+    156,
+    144
+  ],
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "normal_game_enabled": false,
+  "generation": {
+    "mode": "built-in image_gen",
+    "prompts": "docs/reviews/animation-polish-01/BIPED-LATERAL03-PROMPTS-r02.md",
+    "profiles": [
+      {
+        "number": 145,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-atlas.png",
+        "sha256": "4b06b4b43342443ff47bbc8d7711337dc4d54fd4fc2567e8251942db59fb0219",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-right-source.png"
+        ],
+        "accepted": false
+      },
+      {
+        "number": 164,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r02/MON-164-atlas.png",
+        "sha256": "535894352fe4424361c803d61ba586e649f5bb19b82276a14cef3fbca73e9c1f",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-03/r02/MON-164-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-03/r02/MON-164-right-source.png"
+        ],
+        "accepted": false
+      },
+      {
+        "number": 165,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r02/MON-165-atlas.png",
+        "sha256": "74501c23283e8d1016777b78811dc572ab844070de0fa0fcb2e682352a126286",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-03/r02/MON-165-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-03/r02/MON-165-right-source.png"
+        ],
+        "accepted": false
+      },
+      {
+        "number": 5,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-atlas.png",
+        "sha256": "6de6ed7e994eee5f703ebacf571a80fa374818fbc6fc966f5f8d3ddbf23565bd",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-right-source.png"
+        ],
+        "accepted": true
+      },
+      {
+        "number": 14,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-atlas.png",
+        "sha256": "bb13de5c1f9a911830649a84cf586a04c65081b675cab9bb541fd3c02d6335f4",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-right-source.png"
+        ],
+        "accepted": true
+      },
+      {
+        "number": 156,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-atlas.png",
+        "sha256": "af27fc9f303cbe787130660f320f9cc4470df5057951b09a9ee109d288f34c25",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-right-source.png"
+        ],
+        "accepted": true
+      },
+      {
+        "number": 144,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-atlas.png",
+        "sha256": "def77b1f9d572afb7c3460e1403febe5d7f6d172fc0efc989a23af037e587361",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-right-source.png"
+        ],
+        "accepted": true
+      }
+    ]
+  },
+  "validation": {
+    "debug_build": "passed",
+    "targeted_rustfmt": "passed",
+    "native_capture": {
+      "review": "BIPED-LATERAL03-r02",
+      "captures": 462,
+      "synchronized_phase_samples": 448,
+      "unchanged_models": [
+        145,
+        5,
+        14,
+        156,
+        144
+      ],
+      "unchanged_atlases_checked": 5,
+      "unchanged_native_captures": 330,
+      "r01_comparison_panels_pixel_identical": 132,
+      "step_ms": 400,
+      "cycle_ms": 800,
+      "webp_loop_ms": 2400,
+      "normal_game_enabled": false,
+      "head_direction_visual_review": "pending player review; inspect all 32 moving heads, not inferred from hashes"
+    },
+    "browser": "passed: two revised models, both directions, true rest, native sizing, integer zoom, before/after comparison and active 400ms playback",
+    "python_compile": "passed",
+    "git_diff_check": "passed",
+    "browser_checks": "artifacts/animation-polish-01/biped-lateral-03/r02/browser-checks.json",
+    "browser_proof": "artifacts/animation-polish-01/biped-lateral-03/r02/browser-proof.png"
+  },
+  "head_direction_accepted": false,
+  "weapon_contacts_accepted": false,
+  "follow_up": "BIPED-LATERAL03-DIRECTION-r03.json"
+}

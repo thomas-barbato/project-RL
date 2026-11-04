@@ -18,6 +18,9 @@ serde_json = "1"
 toml = "0.9"
 zip = { version = "8.6", default-features = false, features = ["deflate-flate2-zlib-rs"] }
 
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["winuser", "wingdi"] }
+
 [patch.crates-io]
 # Keep OpenGL's texture-binding cache coherent when the font atlas grows.
 miniquad = { path = "vendor/miniquad" }

@@ -1,0 +1,133 @@
+{
+  "review": "BIPED-LATERAL03-r04",
+  "status": "visually_accepted_and_integrated",
+  "new_walk_models": [
+    164,
+    165
+  ],
+  "accepted_complete_models": [
+    145,
+    5,
+    14,
+    156,
+    144
+  ],
+  "retained_fronts": [
+    164,
+    165
+  ],
+  "normal_game_enabled": true,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "generation": {
+    "mode": "built-in image_gen",
+    "prompts": "docs/reviews/animation-polish-01/BIPED-LATERAL03-PROMPTS-r04.md",
+    "profiles": [
+      {
+        "number": 145,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-atlas.png",
+        "sha256": "4b06b4b43342443ff47bbc8d7711337dc4d54fd4fc2567e8251942db59fb0219",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-right-source.png"
+        ],
+        "accepted": true
+      },
+      {
+        "number": 164,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-164-atlas.png",
+        "sha256": "7f99c8ec6c9b94bb30463a53a6b3782905df036c4d0c04a82682c84cab79356b",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-164-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-164-right-source.png"
+        ],
+        "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-164-front.png",
+        "idle_sha256": "d5a3f5a2854d35eaee9be15655f48b1c02e92852f18b2cce0a16760d846ab2a4",
+        "accepted": false,
+        "front_accepted": true
+      },
+      {
+        "number": 165,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-165-atlas.png",
+        "sha256": "2d4defd900e5c9f2138a41b5b994ddc7d97fa57a052e870abd8d090c4d1716ac",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-165-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-165-right-source.png"
+        ],
+        "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-165-front.png",
+        "idle_sha256": "b3b4c6460d2ef829b4539ec000aa56bb728ae60b6815d751d6101cf34c1d8252",
+        "accepted": false,
+        "front_accepted": true
+      },
+      {
+        "number": 5,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-atlas.png",
+        "sha256": "6de6ed7e994eee5f703ebacf571a80fa374818fbc6fc966f5f8d3ddbf23565bd",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-right-source.png"
+        ],
+        "accepted": true
+      },
+      {
+        "number": 14,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-atlas.png",
+        "sha256": "bb13de5c1f9a911830649a84cf586a04c65081b675cab9bb541fd3c02d6335f4",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-right-source.png"
+        ],
+        "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-014-front.png",
+        "idle_sha256": "d50c525da854a3968e9beae17504b4d5d9816507a9e5fa011b144eb075f7dd10",
+        "accepted": true,
+        "front_accepted": true
+      },
+      {
+        "number": 156,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-atlas.png",
+        "sha256": "af27fc9f303cbe787130660f320f9cc4470df5057951b09a9ee109d288f34c25",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-right-source.png"
+        ],
+        "accepted": true
+      },
+      {
+        "number": 144,
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-atlas.png",
+        "sha256": "def77b1f9d572afb7c3460e1403febe5d7f6d172fc0efc989a23af037e587361",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-right-source.png"
+        ],
+        "accepted": true
+      }
+    ]
+  },
+  "validation": {
+    "debug_build": "passed",
+    "targeted_rustfmt": "passed",
+    "python_compile": "passed",
+    "native_capture": {
+      "review": "BIPED-LATERAL03-r04",
+      "captures": 462,
+      "frozen_asset_hashes_checked": 18,
+      "accepted_model_captures_identical": 330,
+      "retained_front_captures_identical": 132,
+      "r03_walk_comparison_panels_identical": 132,
+      "retained_frontal_arrivals": 4,
+      "step_ms": 400,
+      "cycle_ms": 800,
+      "webp_loop_ms": 2400,
+      "normal_game_enabled": false,
+      "new_walks_accepted": false
+    },
+    "browser": "passed: seven models, two revised walks, both directions, retained idle, native sizing, integer zoom and active 400ms playback with no console errors",
+    "git_diff_check": "passed",
+    "browser_checks": "artifacts/animation-polish-01/biped-lateral-03/r04/browser-checks.json",
+    "browser_proof": "artifacts/animation-polish-01/biped-lateral-03/r04/browser-proof.png"
+  },
+  "new_walks_accepted": true,
+  "acceptance": "BIPED-LATERAL03-ACCEPTANCE-r04.json",
+  "integration": "docs/reviews/animation-polish-01/BIPED-INTEGRATION01-VALIDATION.json"
+}

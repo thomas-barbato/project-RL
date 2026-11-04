@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-026-0",
+    "number": 26,
+    "name": "Possédé à la tunique ocre",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 43,
+    "vertical_offset": -10,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-front.png",
+    "idle_sha256": "6e3636411721da5c83397e494b5c69aa6586f3abf7eba4cd6a1d2e187170e30e",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-026-v0.png",
+    "front_shadow": 28,
+    "current_vertical": {
+      "number": 26,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-026-v0.png",
+      "cell": [
+        55,
+        49
+      ],
+      "anchor": [
+        27,
+        47
+      ],
+      "offset": -10,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-028-0",
+    "number": 28,
+    "name": "Démon massif aux longs bras",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 64,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-028-front.png",
+    "idle_sha256": "8583faadc19b4d92c9930dd42eedf2c90d5210ac15a469e10ef686026a0f073b",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-028-v0.png",
+    "front_shadow": 40,
+    "current_vertical": {
+      "number": 28,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-028-v0.png",
+      "cell": [
+        78,
+        70
+      ],
+      "anchor": [
+        39,
+        68
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-032-0",
+    "number": 32,
+    "name": "Petit démon à crête courbe",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 40,
+    "vertical_offset": -12,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-front.png",
+    "idle_sha256": "1bd9dcba364707e6ab8190140f8c744513c2ab0df1444b52dc0c8fad0061fe07",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-032-v0.png",
+    "front_shadow": 22,
+    "current_vertical": {
+      "number": 32,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-032-v0.png",
+      "cell": [
+        42,
+        43
+      ],
+      "anchor": [
+        21,
+        41
+      ],
+      "offset": -12,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

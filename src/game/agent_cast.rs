@@ -580,7 +580,7 @@ impl GameState {
         } else {
             target
         };
-        if !self.map.is_walkable(target) {
+        if self.map.blocks_vision(target) {
             return Err(CommandRejection::AbilityTargetBlocked(target));
         }
         let area = self.agent_spell_area(id, self.player_agent_skill_rank(id));

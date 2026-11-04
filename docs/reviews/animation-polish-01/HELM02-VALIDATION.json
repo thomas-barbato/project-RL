@@ -1,0 +1,26 @@
+{
+  "review": "ANIM-POLISH01-HELM02-INVENTAIRE",
+  "date": "2026-10-31",
+  "head_slot_items_verified": 6,
+  "native_contact_sheets": 48,
+  "static_reference_sheets": 2,
+  "engine_capture_fragments_verified_pixel_identical": 1152,
+  "input_hashes_unchanged": true,
+  "review_json_valid": true,
+  "reader_javascript_syntax": "passed node --check",
+  "http_preview_and_images": "200 OK",
+  "visual_inspection": [
+    "Bastion heavy phase1 native",
+    "Traqueuse base phase4 native",
+    "six icons and front/back shell references"
+  ],
+  "browser_interaction_tested": false,
+  "new_drawings_created": false,
+  "normal_game_changed": false,
+  "rust_build_or_tests_rerun": false,
+  "scope": "Reuses existing engine captures and approved 04 proportions; documents future armor-aware size request without implementing new sizes",
+  "pending": [
+    "choose visual models to retain or group",
+    "review class-specific designs and armor-aware fit in every orientation"
+  ]
+}

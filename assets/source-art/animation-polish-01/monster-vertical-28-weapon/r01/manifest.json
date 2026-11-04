@@ -1,0 +1,271 @@
+{
+  "review": "MONSTER-VERTICAL28-WEAPON01-r01",
+  "normal_game_enabled": false,
+  "native_cell_px": 64,
+  "panel_width": 192,
+  "panel_height": 320,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "phase_weights": [
+    180,
+    180,
+    170,
+    120,
+    180,
+    180,
+    170,
+    120
+  ],
+  "frozen_source_hashes_verified": 171,
+  "profiles": [
+    {
+      "id": "MON-060-0",
+      "number": 60,
+      "name": "Démon rouge élancé · lame rétablie",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 47,
+      "vertical_offset": -8,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-front.png",
+      "idle_sha256": "f6d764e3b19a7e264ae865b5b3881fef722891a8560a99869c24bcba9ecdb01a",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-060-v0.png",
+      "front_shadow": 25,
+      "current_vertical": {
+        "number": 60,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-060-v0.png",
+        "cell": [
+          44,
+          54
+        ],
+        "anchor": [
+          22,
+          52
+        ],
+        "offset": -8,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-atlas.png",
+      "sha256": "d81f86c7201914b281280089cb13eb23e71f843e3937fdcb69762268ee4ce9fe",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-down-source.png",
+        "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-up-source.png"
+      ],
+      "bounds": [
+        {
+          "direction": "down",
+          "phase": 0,
+          "whole_figure_scale": 0.11823899371069183,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            92,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 1,
+          "whole_figure_scale": 0.11823899371069183,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            92,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 2,
+          "whole_figure_scale": 0.11823899371069183,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            69,
+            65,
+            93,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 3,
+          "whole_figure_scale": 0.11823899371069183,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            92,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 4,
+          "whole_figure_scale": 0.11823899371069183,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            91,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 5,
+          "whole_figure_scale": 0.11823899371069183,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            92,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 6,
+          "whole_figure_scale": 0.11823899371069183,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            92,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 7,
+          "whole_figure_scale": 0.11823899371069183,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            93,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 0,
+          "whole_figure_scale": 0.13803230543318648,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            94,
+            111
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 1,
+          "whole_figure_scale": 0.13803230543318648,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            94,
+            111
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 2,
+          "whole_figure_scale": 0.13803230543318648,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            94,
+            111
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 3,
+          "whole_figure_scale": 0.13803230543318648,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            94,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 4,
+          "whole_figure_scale": 0.13803230543318648,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            95,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 5,
+          "whole_figure_scale": 0.13803230543318648,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            94,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 6,
+          "whole_figure_scale": 0.13803230543318648,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            94,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 7,
+          "whole_figure_scale": 0.13803230543318648,
+          "whole_cycle_translation_x": 1,
+          "bounds": [
+            68,
+            65,
+            94,
+            112
+          ]
+        }
+      ],
+      "support_root_aligned": true,
+      "review_number": 28,
+      "locomotion": "biped",
+      "locomotor_legs": 2,
+      "weapon": {
+        "identity": "Original short steel blade",
+        "anatomical_hand": "right",
+        "image_side": {
+          "down": "left",
+          "up": "right"
+        }
+      },
+      "material_palette": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-material-palette.json",
+      "comparison": "original_weapon_restored",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-28-arms/r01/MON-060-atlas.png",
+      "previous_material_palette": "assets/source-art/animation-polish-01/monster-vertical-28-color/r01/MON-060-material-palette.json",
+      "previous_atlas_sha256": "e3239043a0e0d3aa83b4480168b97361b8bbe4dbc017b5fa148c63c418425f16",
+      "previous_material_palette_sha256": "2a316ab7cdec7ba242bb54a9427ddd3bd6e5ea7be0ea25596e6a431cae86072c"
+    }
+  ]
+}

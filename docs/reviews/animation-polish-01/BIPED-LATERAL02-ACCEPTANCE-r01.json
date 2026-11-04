@@ -1,0 +1,66 @@
+{
+  "review": "BIPED-LATERAL02-r01",
+  "date": "2026-11-02",
+  "status": "accepted",
+  "player_quote": "ok on peut continuer",
+  "shown_url": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=BIPED-LATERAL02-r01#bipedes",
+  "scope": {
+    "monsters": [
+      5,
+      14,
+      156
+    ],
+    "variant": 0,
+    "directions": [
+      "left",
+      "right"
+    ],
+    "walking_poses_per_direction": 8,
+    "weapons": null,
+    "palette": "original",
+    "gait_reference": "CLASS-LATERAL02-r02 / Bastion heavy unarmed"
+  },
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "normal_game_enabled": false,
+  "other_monsters_accepted": false,
+  "weapon_contacts_accepted": false,
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-left-source.png",
+      "sha256": "843b6bc19cc6c0883927fabf53bb4bd23826114616b1ce4aa405e12c93a57be6"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-right-source.png",
+      "sha256": "4803ae21917857fbbe7c438ada4ff51a2490ab70d3404b45ec31b20278de4882"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-atlas.png",
+      "sha256": "6de6ed7e994eee5f703ebacf571a80fa374818fbc6fc966f5f8d3ddbf23565bd"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-left-source.png",
+      "sha256": "6124baa93ef8949b292ca82e15e9250966604af12d83cb721580f4af43dadf62"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-right-source.png",
+      "sha256": "a78b54d72df8c42f6881b204c0562cebccde1b477a030fe2fe452ecf477df1be"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-atlas.png",
+      "sha256": "bb13de5c1f9a911830649a84cf586a04c65081b675cab9bb541fd3c02d6335f4"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-left-source.png",
+      "sha256": "3db00d3d4cdde6d3bbbbe27a53c41853926d5b1c612c03b0b171b566614a52a5"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-right-source.png",
+      "sha256": "3a0e238762c06d7ea4d251a71e890aa7a1ebda41aedfb8b2163c146e3e02ba4a"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-atlas.png",
+      "sha256": "af27fc9f303cbe787130660f320f9cc4470df5057951b09a9ee109d288f34c25"
+    }
+  ]
+}

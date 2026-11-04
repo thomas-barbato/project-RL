@@ -1,0 +1,7649 @@
+{
+  "review": "HELM05-MOTION03",
+  "base_height_px": 12.5,
+  "final_height_range_px": [
+    12,
+    16
+  ],
+  "world_tile_px": 64,
+  "resampling": "single premultiplied Lanczos reduction from original authored art to final integer size; binary alpha128; integer pixel copy at runtime",
+  "old_head_sources_preserved": true,
+  "models": [
+    {
+      "model": 1,
+      "atlas": "assets/source-art/animation-polish-01/helmet-head-fit-r03/H03-W01-atlas.png",
+      "sha256": "57c19071505721530e7c2a14bb05c63ed378e354af1eb21bf7a795eb5fdfb812",
+      "views": [
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            10,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            10,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            10,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            10,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            11,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W01-heads-r01.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "model": 2,
+      "atlas": "assets/source-art/animation-polish-01/helmet-head-fit-r03/H03-W02-atlas.png",
+      "sha256": "2f9b213ad8b403eac6ce10e99d315ea6d9823b20446e6a5d427be86710a53985",
+      "views": [
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-head-units-r02/H02-W02-heads-r03.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "model": 3,
+      "atlas": "assets/source-art/animation-polish-01/helmet-head-fit-r03/H03-W03-atlas.png",
+      "sha256": "efe307ac5b66d99c11af1bdaee7ad5c5999da3f6f6db4b9c0bdea0c4a0fe5daf",
+      "views": [
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            12,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            12,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            12,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            15
+          ],
+          "origin": [
+            11,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            12,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            15
+          ],
+          "origin": [
+            12,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            15
+          ],
+          "origin": [
+            11,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            12,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            15
+          ],
+          "origin": [
+            12,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            12,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            13,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            12,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            13,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            12,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            13,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            12,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            12,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            12,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            12
+          ],
+          "origin": [
+            13,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            12,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            12,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            12,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            12,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            12,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            9,
+            13
+          ],
+          "origin": [
+            12,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            12,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            10,
+            14
+          ],
+          "origin": [
+            12,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            15
+          ],
+          "origin": [
+            11,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            12,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "size": [
+            11,
+            15
+          ],
+          "origin": [
+            12,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "model": 4,
+      "atlas": "assets/source-art/animation-polish-01/helmet-head-fit-r03/H03-W04-atlas.png",
+      "sha256": "391a96c33ba05dc6496aab150667c33d52e2cb266dd1e8742108a9e3d382a17e",
+      "views": [
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            8,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            8,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            8,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            8,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            7,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            8,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            7,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            9,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            9,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            9,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            9,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            9,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            11,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            9,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            9,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            9,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            9,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            8,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            9,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            9,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            8,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            8,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            8,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            7,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "model": 5,
+      "atlas": "assets/source-art/animation-polish-01/helmet-head-fit-r03/H03-W05-atlas.png",
+      "sha256": "5771b83dbd6e900ae485cd3f8d545f6a344441dedd63324d160c8135b5594d7d",
+      "views": [
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            7,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 0,
+          "class_row": 0,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            7,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 1,
+          "class_row": 0,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            7,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 2,
+          "class_row": 0,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            16,
+            16
+          ],
+          "origin": [
+            8,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            16
+          ],
+          "origin": [
+            8,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            16,
+            16
+          ],
+          "origin": [
+            6,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 3,
+          "class_row": 0,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            16,
+            16
+          ],
+          "origin": [
+            9,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            16,
+            16
+          ],
+          "origin": [
+            8,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            16
+          ],
+          "origin": [
+            8,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            16,
+            16
+          ],
+          "origin": [
+            6,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 4,
+          "class_row": 0,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            16,
+            16
+          ],
+          "origin": [
+            9,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 10,
+          "class_row": 1,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 11,
+          "class_row": 1,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 12,
+          "class_row": 1,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            7,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 13,
+          "class_row": 1,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            7,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 14,
+          "class_row": 1,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            8,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 15,
+          "class_row": 2,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            13
+          ],
+          "origin": [
+            11,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            7,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 16,
+          "class_row": 2,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            7,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 17,
+          "class_row": 2,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            7,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 18,
+          "class_row": 2,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            7,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 19,
+          "class_row": 2,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            7,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 20,
+          "class_row": 3,
+          "armor_stage": 0,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            13,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            7,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 21,
+          "class_row": 3,
+          "armor_stage": 1,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            7,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 22,
+          "class_row": 3,
+          "armor_stage": 2,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            14,
+            15
+          ],
+          "origin": [
+            9,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            7,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 23,
+          "class_row": 3,
+          "armor_stage": 3,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            15
+          ],
+          "origin": [
+            10,
+            9
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "front",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            16,
+            16
+          ],
+          "origin": [
+            8,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "back",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            15,
+            16
+          ],
+          "origin": [
+            8,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "left",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            16,
+            16
+          ],
+          "origin": [
+            6,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "outfit": 24,
+          "class_row": 3,
+          "armor_stage": 4,
+          "direction": "right",
+          "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "size": [
+            16,
+            16
+          ],
+          "origin": [
+            9,
+            8
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        }
+      ]
+    }
+  ],
+  "normal_game_enabled": false
+}

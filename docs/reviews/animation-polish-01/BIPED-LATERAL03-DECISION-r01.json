@@ -1,0 +1,11 @@
+{
+  "review": "BIPED-LATERAL03-r01",
+  "status": "correction_requested",
+  "player_quote": "quand les cultistes bougent leurs têtes ne pivotent pas :)",
+  "models_to_correct": [164, 165],
+  "revision": "BIPED-LATERAL03-r02",
+  "required_change": "La tête et le volume de la capuche suivent l'orientation du corps et des appuis, dans les deux sens. Éviter une ouverture frontale identique pendant la marche.",
+  "step_ms": 400,
+  "other_models_accepted_by_this_message": false,
+  "normal_game_enabled": false
+}

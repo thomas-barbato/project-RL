@@ -117,7 +117,7 @@ pub(super) fn draw(
                         let Some(r) = rect(p) else {
                             continue;
                         };
-                        if !map.is_walkable(p) || !has_line_of_sight(map, flight.target, p, true) {
+                        if map.blocks_vision(p) || !has_line_of_sight(map, flight.target, p, true) {
                             continue;
                         }
                         let Some(crop) = whole.intersect(r) else {

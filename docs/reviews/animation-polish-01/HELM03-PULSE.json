@@ -1,0 +1,75 @@
+{
+  "review": "ANIM-POLISH01-HELM03-ICONS-r01",
+  "native_tile_px": 64,
+  "icons": [
+    {
+      "id": "H03-I01",
+      "native": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I01-native64.png",
+      "native_sha256": "d506f06ba033eb41c4d8630884cbd4f47e204e95862340396b8c4a846bc484c4",
+      "visor_mask": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I01-visor-mask.png",
+      "mask_sha256": "4635a021f8032152630aa3612a3d6109f0f8392289dfa205cd0880d4318821e3",
+      "visor_pixels": 16,
+      "visor_bounds": [
+        36,
+        31,
+        53,
+        34
+      ],
+      "native_alpha16_bounds": [
+        5,
+        5,
+        59,
+        59
+      ]
+    },
+    {
+      "id": "H03-I02",
+      "native": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I02-native64.png",
+      "native_sha256": "697b1062b15e48c4cc2a22078e4c89ca3e2613505a4eabae3aee8ea5c8ba2d71",
+      "visor_mask": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I02-visor-mask.png",
+      "mask_sha256": "7a510930e27f82ad28d7a76fcf99bc2dc9e7ccbdc4704ec30920e9de43a45c32",
+      "visor_pixels": 39,
+      "visor_bounds": [
+        26,
+        29,
+        35,
+        35
+      ],
+      "native_alpha16_bounds": [
+        5,
+        5,
+        59,
+        59
+      ]
+    },
+    {
+      "id": "H03-I03",
+      "native": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I03-native64.png",
+      "native_sha256": "453dd071c44f949d03fbd45c7067178f63538b15cf8b7a346fdd7199eb9b69c8",
+      "visor_mask": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I03-visor-mask.png",
+      "mask_sha256": "2a7afcb5ba0b39773260938f0acd7dc43a815910618ac6b7d3d58c4efc17cedd",
+      "visor_pixels": 8,
+      "visor_bounds": [
+        31,
+        33,
+        47,
+        37
+      ],
+      "native_alpha16_bounds": [
+        13,
+        5,
+        50,
+        59
+      ]
+    }
+  ],
+  "effect": "H03-P01",
+  "period_ms": 3600,
+  "pulse_start_ms": 3000,
+  "dim_duration_ms": 400,
+  "minimum_brightness": 0.62,
+  "shape_position_alpha_constant": true,
+  "scope": "visor pixels only",
+  "normal_game_enabled": false,
+  "visual_acceptance_received": false
+}

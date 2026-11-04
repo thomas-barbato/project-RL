@@ -1,0 +1,48 @@
+{
+  "review": "ANIM-POLISH01-HELM04-WEIGHTS-r01",
+  "date": "2026-10-31",
+  "status": "complete_five_icon_candidates_await_joint_review",
+  "visual_weight_stages": 5,
+  "icons_native64": 5,
+  "new_generated_drawings": 2,
+  "reused_pixel_identical_drawings": 3,
+  "native_icon_size": [
+    64,
+    64
+  ],
+  "source_and_prior_hash_checks": "passed",
+  "visor_only_changed_pixels": [
+    0,
+    39,
+    8,
+    16,
+    21
+  ],
+  "alpha_constant_during_pulse": true,
+  "light_dark_and_silhouette_sheets": "inspected",
+  "common_design_for_all_classes": true,
+  "javascript_syntax": "passed node --check",
+  "python_compile": "passed",
+  "html_ids": "unique",
+  "http_png_inputs": "10 responses 200 OK",
+  "browser_ui_test_current_revision": false,
+  "browser_limitation": "Existing IAB tabs were listed, but both bound and fresh documented tab access reported browser.user unavailable. No current browser screenshot or control success is claimed",
+  "presentation_webp": {
+    "stored_frames": 5,
+    "duration_ms": 3600,
+    "size": [
+      480,
+      110
+    ]
+  },
+  "normal_game_enabled": false,
+  "runtime_sources_unchanged_since_HELM03": true,
+  "rust_build_or_tests_rerun": false,
+  "worn_variants_created": false,
+  "pending": [
+    "joint visual review of five icons",
+    "separate visor animation decision",
+    "mapping six existing items to the proposed five visuals",
+    "common-design worn views fitted to wearer and armor"
+  ]
+}

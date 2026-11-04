@@ -1,0 +1,92 @@
+[
+  {
+    "id": "MON-039-0",
+    "number": 39,
+    "name": "Petit démon ailé",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 42,
+    "vertical_offset": -10,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-03/r01/MON-039-front.png",
+    "idle_sha256": "60f0e1e600d42df21ff2847b41ae9b5221007808834a45fac242581ed5147566",
+    "accepted_front_source": "assets/animations/biped-lateral-01/MON-039-0.png",
+    "front_shadow": 31,
+    "current_vertical": {
+      "number": 39,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-039-v0.png",
+      "cell": [
+        55,
+        47
+      ],
+      "anchor": [
+        27,
+        45
+      ],
+      "offset": -10,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "accepted": false
+  },
+  {
+    "id": "MON-146-0",
+    "number": 146,
+    "name": "Ailé doré",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 80,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-03/r01/MON-146-front.png",
+    "idle_sha256": "8a914bddbfde69b370db265ef669f22ced324fddf675b8c6a22aea96bb08f194",
+    "accepted_front_source": "assets/animations/biped-lateral-01/MON-146-0.png",
+    "front_shadow": 63,
+    "current_vertical": {
+      "number": 146,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-146-v0.png",
+      "cell": [
+        110,
+        86
+      ],
+      "anchor": [
+        55,
+        84
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "accepted": false
+  },
+  {
+    "id": "MON-151-0",
+    "number": 151,
+    "name": "Ailé pâle au brassard",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 94,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-03/r01/MON-151-front.png",
+    "idle_sha256": "59bd85aa9e141a4fe52d16ceb82654ddb01452f8b94e93faa47907221fb75c26",
+    "accepted_front_source": "assets/animations/biped-lateral-01/MON-151-0.png",
+    "front_shadow": 63,
+    "current_vertical": {
+      "number": 151,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-151-v0.png",
+      "cell": [
+        121,
+        102
+      ],
+      "anchor": [
+        61,
+        100
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "accepted": false
+  }
+]

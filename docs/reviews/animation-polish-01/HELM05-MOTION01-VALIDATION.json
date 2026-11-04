@@ -1,0 +1,50 @@
+{
+  "review": "HELM05-MOTION01",
+  "date": "2026-10-31",
+  "status": "technical_evidence_only_candidate_visually_rejected",
+  "normal_game_enabled": false,
+  "visual_approval_received": false,
+  "scope": "20 outfits x five helmets x four views; weapon31 pilot",
+  "engine_capture_exit_code": 0,
+  "engine_sheets": 140,
+  "bare_rows_rgb_identical": 140,
+  "lower_anatomy_arm_weapon_rgb_crops_identical": 2800,
+  "whole_rest_sheets_rgb_identical": 20,
+  "source_art_and_accepted_icon_file_hashes_unchanged": 25,
+  "painted_body_source_hashes_unchanged": 20,
+  "anchor_frames": 260,
+  "moving_anchor_corrections": 93,
+  "max_vertical_correction_px": 2,
+  "tests": {
+    "polish_group_before_neck_overlap_fix": {
+      "passed": 13,
+      "failed": 0
+    },
+    "worn_group_after_neck_overlap_fix": {
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "debug_build": "passed after final overlap fix",
+  "release_check": "passed; later overlap fix is in Debug-only review module",
+  "full_suite_run": false,
+  "limitations": [
+    "Chest registration is a 2D measured candidate, not a 3D rig",
+    "The technical checks do not replace judging the motion at native scale",
+    "Other weapon pose families are outside this pilot"
+  ],
+  "browser": {
+    "same_tab_reused": true,
+    "four_views_checked": true,
+    "native_and_integer_zoom_pair": true,
+    "pause_phase_slider_and_real_frontal_rest_checked": true,
+    "continuous_walk_left_playing": true,
+    "console_errors": 0,
+    "screenshot": "artifacts/animation-polish-01/helmet-worn-r01/current/motion01/browser-motion-focused.png",
+    "screenshot_is_crop_of_browser_capture": true
+  },
+  "python_compile": "passed",
+  "javascript_syntax": "passed node --check",
+  "git_diff_check": "passed",
+  "followup": "HELM05-MOTION02-REVUE.md"
+}

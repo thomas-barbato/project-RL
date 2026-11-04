@@ -24,6 +24,7 @@ fn saved_game_walking_audit() {
         actors.push(serde_json::json!({"id":id.get(),"player":id==app.game.player_id(),
             "position":actor.position(),"visible":app.game.player_visibility().is_visible(actor.position()),
             "visual":format!("{visual:?}"),"normal_creature_cycle":binding.map(|b|b.0),
+            "normal_vertical_cycle":crate::game_art::vertical::supports(visual),
             "tags":actor.tags().iter().map(|t|t.as_str()).collect::<Vec<_>>()}));
     }
     let mut trials = Vec::new();
@@ -45,6 +46,15 @@ fn saved_game_walking_audit() {
                 let mut motion = crate::combat_visuals::CombatMotion::default();
                 motion.glide_timed(entity, from, to, 1., 400);
                 let corrected = motion.creature_walk_pose(entity, 1.2, false).unwrap();
+                let actual = walking::world_pose(
+                    &motion,
+                    entity,
+                    visual,
+                    entity == game.player_id(),
+                    1.2,
+                    false,
+                )
+                .unwrap_or(corrected);
                 let active_binding = visual.and_then(|v| walking::creature_selection(v, corrected));
                 let binding = visual.and_then(|v| {
                     walking::creature_selection(v, walking::Pose { facing, frame: 1 })
@@ -54,7 +64,7 @@ fn saved_game_walking_audit() {
                     "both_ends_visible":game.player_visibility().is_visible(from)&&game.player_visibility().is_visible(to),
                     "visual":format!("{visual:?}"),"motion_facing":facing,
                     "old_cycle_for_this_direction":binding.map(|b|b.0),
-                    "active_render_facing":corrected.facing,"cycle_for_this_direction":active_binding.map(|b|b.0)}));
+                    "active_render_facing":actual.facing,"cycle_for_this_direction":active_binding.map(|b|b.0)}));
             }
         }
     }
@@ -301,10 +311,19 @@ impl AsciiApp {
         app.menu = MenuScreen::Hidden;
         let complete_review = walking::corrections_enabled();
         let accepted_player = walking::player_enabled();
-        let expected_model = if accepted_player { 67 } else { 2 };
-        let weapon_slot = if accepted_player { 0 } else { 2 };
+        let rifle_check = std::env::args().any(|a| a == "--walk-rifle");
+        let expected_model = if accepted_player && !rifle_check {
+            67
+        } else {
+            2
+        };
+        let weapon_slot = if accepted_player && !rifle_check {
+            0
+        } else {
+            2
+        };
         let rifle = app.game.grant_colored_equipment_for_diagnostic(
-            if accepted_player {
+            if accepted_player && !rifle_check {
                 "core:melee_hachette"
             } else {
                 "core:fusil_d_assaut"
@@ -358,6 +377,32 @@ impl AsciiApp {
             return Err("moving player switched away from the reviewed rifle".into());
         }
         app.capture_events_at(Some(1.));
+        let mut motion_phases = Vec::new();
+        for at in [1.01, 1.15, 1.29] {
+            let pose = app
+                .combat_motion
+                .player_walk_pose(app.game.player_id(), at, false)
+                .ok_or("missing live lateral pose")?;
+            if pose.facing.abs() != 1 {
+                return Err("live horizontal move lost its facing".into());
+            }
+            motion_phases.push((pose.facing, pose.frame));
+        }
+        if motion_phases
+            .iter()
+            .collect::<std::collections::BTreeSet<_>>()
+            .len()
+            != 3
+        {
+            return Err("live first step did not advance its phases".into());
+        }
+        if app
+            .combat_motion
+            .player_walk_pose(app.game.player_id(), 1.401, false)
+            .is_some()
+        {
+            return Err("live player did not return to frontal rest".into());
+        }
         let fingerprint = suspension::fingerprint(&app.game);
         for frame in 0..15 {
             save(
@@ -389,6 +434,25 @@ impl AsciiApp {
             return Err("return move rejected".into());
         }
         app.capture_events_at(Some(2.));
+        for at in [2.01, 2.15, 2.29] {
+            let pose = app
+                .combat_motion
+                .player_walk_pose(app.game.player_id(), at, false)
+                .ok_or("missing return-step pose")?;
+            if pose.facing.abs() != 1 || pose.facing == motion_phases[0].0 {
+                return Err("live return step did not reverse its facing".into());
+            }
+            motion_phases.push((pose.facing, pose.frame));
+        }
+        if motion_phases
+            .iter()
+            .map(|p| p.1)
+            .collect::<std::collections::BTreeSet<_>>()
+            .len()
+            != 6
+        {
+            return Err("two real lateral steps did not use six phases".into());
+        }
         for frame in 0..15 {
             save(
                 &app,
@@ -702,7 +766,7 @@ impl AsciiApp {
         }
         std::fs::write(output.join("checks.json"),serde_json::to_vec_pretty(&serde_json::json!({
             "status":"passed","live_world_renderer":true,"real_move_command":true,"logical_distance":1,
-            "duration_ms":400,"native_cell":64,"class_outfits":25,"loadouts_per_outfit":6,
+            "duration_ms":400,"native_cell":64,"class_outfits":25,"loadouts_per_outfit":6,"real_player_motion_phases":motion_phases,
             "review_id":if complete_review{"WALK08-REVIEW"}else{"WALK12-INTEGRATION-r01"},"actual_moving_player_weapon_model":expected_model,"accepted_rifle_model":2,"accepted_class_outfits":25,
             "accepted_common_gait12_enabled":walking::gait12_enabled(),"all_actors_front_at_arrival":true,
             "facings":["left-quarter","front-unchanged","right-quarter"],"light_and_dark":true,

@@ -1,0 +1,128 @@
+{
+  "review": "BIPED-INTEGRATION01",
+  "date": "2026-11-02",
+  "status": "integrated",
+  "authorization_quote": "tu peux integrer :)",
+  "normal_game_enabled": true,
+  "models": [
+    5,
+    14,
+    39,
+    144,
+    145,
+    146,
+    151,
+    156,
+    164,
+    165
+  ],
+  "variant": 0,
+  "palette": "original",
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "runtime_manifest": "assets/animations/biped-lateral-01/manifest.json",
+  "native": {
+    "review": "BIPED-INTEGRATION01",
+    "normal_game_enabled": true,
+    "models": [
+      5,
+      14,
+      39,
+      144,
+      145,
+      146,
+      151,
+      156,
+      164,
+      165
+    ],
+    "frozen_source_hashes_verified": 38,
+    "moving_poses_pixel_identical": 160,
+    "identical_left_right_fronts": 20,
+    "normal_render_captures_identical": 660,
+    "vertical_frames_unchanged": 120,
+    "draw_resource_work": false,
+    "cold_prepare_ms": 357.8451,
+    "warm_prepare_ms": 0,
+    "step_ms": 400,
+    "cycle_ms": 800,
+    "other_variants_enabled": false,
+    "runtime_inventory_verified": true
+  },
+  "tests": {
+    "biped_filter_passed": 3,
+    "combat_motion_passed": 19,
+    "overlap_test_count": 1,
+    "debug_build": true,
+    "release_build": true,
+    "targeted_rustfmt": true,
+    "python_compile": true,
+    "diff_check": true
+  },
+  "portable_distribution_updated": true,
+  "package_statistics": {
+    "logical_input_files": 3675,
+    "original_data_bytes": 202230308,
+    "deduplicated_bytes": 2209688,
+    "lossless_compression_saved_bytes": 1941396,
+    "unpacked_data_bytes": 198079224,
+    "packaged_data_bytes": 179405777
+  },
+  "actual_launchers": {
+    "status": "passed",
+    "actual_launchers": [
+      {
+        "case": "checkout",
+        "launcher": "C:\\Users\\User\\Desktop\\project-RL\\Jouer.cmd",
+        "exit_code": 0,
+        "argument": "--verify-assets"
+      },
+      {
+        "case": "portable",
+        "launcher": "C:\\Users\\User\\Desktop\\project-RL\\dist\\Project-RL\\Jouer.cmd",
+        "exit_code": 0,
+        "argument": "--verify-assets"
+      },
+      {
+        "case": "missing-data",
+        "launcher": "C:\\Users\\User\\Desktop\\project-RL\\Jouer.cmd",
+        "exit_code": 1,
+        "argument": "--verify-assets"
+      }
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\project-RL\\artifacts\\animation-polish-01\\biped-integration-01",
+    "saved_runs_unchanged": true,
+    "changed_user_files": [
+      "graphics.json"
+    ],
+    "authorized_preference_change": {
+      "authorized_by": "400 ms per step accepted earlier in this session",
+      "previous_walk_duration_ms": 200,
+      "walk_duration_ms": 400,
+      "other_preferences_unchanged": true
+    },
+    "release_sha256": "08fb26f3dfbd7f25b1e9436f44870c3fb439d875bb9914f2a719fa7940aab174"
+  },
+  "normal_gui_launch": {
+    "launcher": "Jouer.cmd",
+    "window_title": "Project RL — Terminal",
+    "process_started": true,
+    "exit_code": 0,
+    "menu_visual_check": false,
+    "reason": "Windows window activation failed; occluded screenshot discarded"
+  },
+  "post_gui_changed_user_files": [
+    "city-test-run.json",
+    "graphics.json"
+  ],
+  "post_gui_save_update": {
+    "file": "city-test-run.json",
+    "before_sha256": "8f41ce29d8b47d60b1e891d93abbcceac687fc96d34dff9d626d1a77e310e9fe",
+    "after_sha256": "e19df5bb2b966bba0b1b3c6a27fce13105955d8f3aff53ad80bbbd1adab6bc4a",
+    "observed_during_normal_client_launch": true,
+    "valid_json": true,
+    "rollback_performed": false
+  },
+  "other_saves_unchanged": true,
+  "native_proof": "artifacts/animation-polish-01/biped-integration-01/native-proof.png"
+}

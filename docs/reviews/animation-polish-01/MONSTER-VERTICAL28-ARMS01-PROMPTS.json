@@ -1,0 +1,34 @@
+{
+  "review": "MONSTER-VERTICAL28-ARMS01-r01",
+  "tool": "built-in image_gen",
+  "mode": "edit / identity-preserve / arm posture only",
+  "transparent_background": true,
+  "jobs": [
+    {
+      "number": 60,
+      "dir": "down",
+      "paths": [
+        "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\animation-polish-01\\monster-vertical-10\\r01\\MON-060-down-broad-source.png",
+        "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\animation-polish-01\\monster-vertical-10\\r01\\MON-060-appearance-reference.png"
+      ],
+      "prompt": "Use case: identity-preserve / precise-object-edit. EDIT INPUT1, the existing transparent 3x3 whole-figure pixel-art walk sheet. INPUT2 is the original identity/material/proportion reference for the SAME FRONT view. The ONLY requested change is the posture of BOTH ARMS in every figure. Keep the exact 3 columns x3 rows, the same first8 ordered walking phases and ninth grounded idle, cell margins, apparent height, head and swept horns, face/back orientation, neck/spine, slim ribbed dark torso, hips, knees, entire compact low footstep motion, and all colors and lighting of input1. Preserve native64 crisp matte pixel clusters. Do not redesign this demon.\nCORRECTION: The current arms are held rigidly out in a wide A shape with elbows projecting sideways and large clenched hook-like fists; this looks unnatural. RELAX the shoulders. Let upper arms descend mostly DOWN alongside the torso, close to the rib cage with only a small gap. Give elbows a soft natural bend; forearms hang predominantly VERTICAL, not diagonally flared sideways. Wrists neutral, palms facing inward toward thighs, hands OPEN and LONG with slender existing dark tapered claws pointing DOWN, not round clenched fists or inward hooks. Keep the existing long forearm length and the creature's slender volume. Show a very SMALL relaxed front/back counter-swing opposite the legs across the cycle, with hands around mid-thigh/knee level. No shrugged shoulders, elbows winging out, chicken-wing posture, rigid triangular arm arch or bodybuilding pose. Both arms remain connected naturally shoulder-to-elbow-to-wrist-to-fingers in each WHOLE figure. They never bear weight. Do NOT compensate for the closer arms by widening the legs, bulking the torso, enlarging the hands/head, stretching forearms sideways or forcing the total width to match an old wide pose. Natural articulation matters more than total horizontal span. Maintain readable silhouette gaps.\nPreserve the same muted rust-red flesh, charcoal belly/horns/claws/feet and deep matte shadows from input1, no brighter/redder recolor. Exactly two walking legs, two free arms; no extra anatomy or held weapons. Keep the same front/slight frontal three-quarter view and the small original demon head.\nGenuine transparent alphaZERO outside each complete figure and through gaps. No opaque matte, checkerboard, floor, shadow, grid, labels, text, glow, blur, smooth 3D or clipping.",
+      "input_sha256": [
+        "996010f93f08c82cc40bd548a25f929139009d80fd9efe72a7ac9ccb77347649",
+        "7fb9e233e9550780d58e4edaa2f976b489306d9819382ea02496eb920a5f042b"
+      ]
+    },
+    {
+      "number": 60,
+      "dir": "up",
+      "paths": [
+        "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\animation-polish-01\\monster-vertical-10\\r01\\MON-060-up-broad-source.png",
+        "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\animation-polish-01\\monster-vertical-10\\r01\\MON-060-current-back-guide.png"
+      ],
+      "prompt": "Use case: identity-preserve / precise-object-edit. EDIT INPUT1, the existing transparent 3x3 whole-figure pixel-art walk sheet. INPUT2 is the original identity/material/proportion reference for the SAME TRUE REAR view. The ONLY requested change is the posture of BOTH ARMS in every figure. Keep the exact 3 columns x3 rows, the same first8 ordered walking phases and ninth grounded idle, cell margins, apparent height, head and swept horns, face/back orientation, neck/spine, slim ribbed dark torso, hips, knees, entire compact low footstep motion, and all colors and lighting of input1. Preserve native64 crisp matte pixel clusters. Do not redesign this demon.\nCORRECTION: The current arms are held rigidly out in a wide A shape with elbows projecting sideways and large clenched hook-like fists; this looks unnatural. RELAX the shoulders. Let upper arms descend mostly DOWN alongside the torso, close to the rib cage with only a small gap. Give elbows a soft natural bend; forearms hang predominantly VERTICAL, not diagonally flared sideways. Wrists neutral, palms facing inward toward thighs, hands OPEN and LONG with slender existing dark tapered claws pointing DOWN, not round clenched fists or inward hooks. Keep the existing long forearm length and the creature's slender volume. Show a very SMALL relaxed front/back counter-swing opposite the legs across the cycle, with hands around mid-thigh/knee level. No shrugged shoulders, elbows winging out, chicken-wing posture, rigid triangular arm arch or bodybuilding pose. Both arms remain connected naturally shoulder-to-elbow-to-wrist-to-fingers in each WHOLE figure. They never bear weight. Do NOT compensate for the closer arms by widening the legs, bulking the torso, enlarging the hands/head, stretching forearms sideways or forcing the total width to match an old wide pose. Natural articulation matters more than total horizontal span. Maintain readable silhouette gaps.\nPreserve the same muted rust-red flesh, charcoal belly/horns/claws/feet and deep matte shadows from input1, no brighter/redder recolor. Exactly two walking legs, two free arms; no extra anatomy or held weapons. Keep the TRUE REAR: back, dark spine, rear of head and horns; NO face, eyes, chest or frontal abs painted on the back.\nGenuine transparent alphaZERO outside each complete figure and through gaps. No opaque matte, checkerboard, floor, shadow, grid, labels, text, glow, blur, smooth 3D or clipping.",
+      "input_sha256": [
+        "29d53c193617009595f105781caf91f52b665c108d000f64ed93d57a902c230b",
+        "a2f544065445e743b3df39d04731dc499328ed6f1294b96141cb10f52ef8d03a"
+      ]
+    }
+  ]
+}

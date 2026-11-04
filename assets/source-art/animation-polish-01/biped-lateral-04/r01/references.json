@@ -1,0 +1,101 @@
+[
+  {
+    "id": "MON-039-0",
+    "number": 39,
+    "name": "Petit démon ailé",
+    "frame_width": 160,
+    "vertical_offset": -10,
+    "reference_height": 42,
+    "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-front.png",
+    "idle_sha256": "60f0e1e600d42df21ff2847b41ae9b5221007808834a45fac242581ed5147566",
+    "front_source": "assets/animations/vertical-18/monsters/MON-039-v0.png",
+    "front_cell": [
+      55,
+      47
+    ],
+    "front_anchor": [
+      27,
+      45
+    ],
+    "front_bounds": [
+      1,
+      3,
+      52,
+      45
+    ],
+    "motion_identity": "Exactly two walking hind legs, two arms and two wings. Preserve the small reddish-brown demon with its ochre chest/belly, tall pointed ears/horns, dark wing membranes, long fingers and clawed feet. No tail or equipment absent from the canonical input; do not copy the reference demon's bulky proportions. Compact grounded two-foot walk; wings carried with tiny joint motion, never flight.",
+    "front_accepted": true,
+    "accepted": false,
+    "review_headers": [
+      "Référence du jeu",
+      "Frontal conservé",
+      "Marche proposée"
+    ]
+  },
+  {
+    "id": "MON-146-0",
+    "number": 146,
+    "name": "Ailé doré",
+    "frame_width": 160,
+    "vertical_offset": 0,
+    "reference_height": 80,
+    "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-front.png",
+    "idle_sha256": "8a914bddbfde69b370db265ef669f22ced324fddf675b8c6a22aea96bb08f194",
+    "front_source": "assets/animations/vertical-18/monsters/MON-146-v0.png",
+    "front_cell": [
+      110,
+      86
+    ],
+    "front_anchor": [
+      55,
+      84
+    ],
+    "front_bounds": [
+      2,
+      4,
+      108,
+      84
+    ],
+    "motion_identity": "Exactly two hind walking legs, two arms and two broad wings. Preserve the existing golden/ochre plated surfaces, large horns, dark membranes, dark waist cloth and dark claw tips. Keep the original broad wingspan well outside both arms. No new tail, weapon, costume, red skin or blue skin. Heavy but compact grounded alternating two-foot walk; wings remain carried spread with slight joint movement, no flight.",
+    "front_accepted": true,
+    "accepted": false,
+    "review_headers": [
+      "Référence du jeu",
+      "Frontal conservé",
+      "Marche proposée"
+    ]
+  },
+  {
+    "id": "MON-151-0",
+    "number": 151,
+    "name": "Ailé pâle au brassard",
+    "frame_width": 160,
+    "vertical_offset": 0,
+    "reference_height": 94,
+    "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-front.png",
+    "idle_sha256": "59bd85aa9e141a4fe52d16ceb82654ddb01452f8b94e93faa47907221fb75c26",
+    "front_source": "assets/animations/vertical-18/monsters/MON-151-v0.png",
+    "front_cell": [
+      121,
+      102
+    ],
+    "front_anchor": [
+      61,
+      100
+    ],
+    "front_bounds": [
+      4,
+      6,
+      117,
+      100
+    ],
+    "motion_identity": "Exactly TWO walking legs, TWO muscular arms and TWO separate RED bat wings. Preserve the pale athletic body, ivory skull-like face, TWO original dark curved horns, dark waist cloth, dark feet and claws. CRITICAL ASYMMETRY: the SINGLE CHARCOAL BRACER covers ONLY the creature RIGHT forearm, seen on the VIEWER LEFT in INPUT1. It stays on that SAME anatomical arm in EVERY pose in BOTH near-front directions, remaining on viewer LEFT; the viewer RIGHT forearm stays PALE and uncovered. Never mirror the whole figure, swap the bracer, put it on both arms, remove it or turn just the head. Correct complete left-facing AND right-facing bodies, face/chest/knees/toes aligned together, compact grounded two-foot steps with restrained bob. Preserve the athletic torso and leg lengths; no purple skin, new tail, weapon or armor from INPUT2.",
+    "front_accepted": true,
+    "accepted": false,
+    "review_headers": [
+      "Référence du jeu",
+      "Frontal conservé",
+      "Marche proposée"
+    ]
+  }
+]

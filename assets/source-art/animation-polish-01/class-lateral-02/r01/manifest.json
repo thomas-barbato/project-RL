@@ -1,0 +1,117 @@
+{
+  "review": "CLASS-LATERAL02-r01",
+  "native_cell_px": 64,
+  "anchor": [
+    48,
+    81
+  ],
+  "frame": [
+    96,
+    96
+  ],
+  "layout": "row0 left / row1 right; six walk poses + lateral idle",
+  "unarmed_only": true,
+  "normal_game_enabled": false,
+  "profiles": [
+    {
+      "anchor": [
+        64,
+        96
+      ],
+      "armor": 101,
+      "body": 3,
+      "class": "bastion",
+      "file": "bastion-t3-front.png",
+      "name": "Bastion",
+      "origin": "normal static fallback",
+      "tier": 3,
+      "reference_height": 58,
+      "bounds": [
+        46,
+        36,
+        82,
+        94
+      ],
+      "sha256": "415a40e17916bbdd7babc0ed5e66504784077780b50b0fce7977d031b665219b",
+      "source": "assets/source-art/animation-polish-01/class-lateral-02/r01/bastion-t3-source.png",
+      "atlas": "assets/source-art/animation-polish-01/class-lateral-02/r01/bastion-t3-atlas.png",
+      "scale": 0.27230046948356806,
+      "whole_figures_only": true
+    },
+    {
+      "anchor": [
+        64,
+        96
+      ],
+      "armor": 101,
+      "body": 4,
+      "class": "technomancien",
+      "file": "technomancien-t3-front.png",
+      "name": "Technomancien",
+      "origin": "normal static fallback",
+      "tier": 3,
+      "reference_height": 58,
+      "bounds": [
+        50,
+        36,
+        78,
+        94
+      ],
+      "sha256": "68abef08f0192b4e0ca8e5fbf73e8f17601cf1e56189dd0551c6d0fa056bd3f4",
+      "source": "assets/source-art/animation-polish-01/class-lateral-02/r01/technomancien-t3-source.png",
+      "atlas": "assets/source-art/animation-polish-01/class-lateral-02/r01/technomancien-t3-atlas.png",
+      "scale": 0.24369747899159663,
+      "whole_figures_only": true
+    },
+    {
+      "anchor": [
+        64,
+        96
+      ],
+      "armor": 101,
+      "body": 6,
+      "class": "arcaniste",
+      "file": "arcaniste-t3-front.png",
+      "name": "Arcaniste",
+      "origin": "normal static fallback",
+      "tier": 3,
+      "reference_height": 60,
+      "bounds": [
+        44,
+        34,
+        84,
+        94
+      ],
+      "sha256": "ff613d740bac0381d0cab5cc624063553a2f4e046b39cab74be8f5da706345cf",
+      "source": "assets/source-art/animation-polish-01/class-lateral-02/r01/arcaniste-t3-source.png",
+      "atlas": "assets/source-art/animation-polish-01/class-lateral-02/r01/arcaniste-t3-atlas.png",
+      "scale": 0.2702702702702703,
+      "whole_figures_only": true
+    },
+    {
+      "anchor": [
+        64,
+        96
+      ],
+      "armor": 101,
+      "body": 7,
+      "class": "metamorphe",
+      "file": "metamorphe-t3-front.png",
+      "name": "Métamorphe",
+      "origin": "normal static fallback",
+      "tier": 3,
+      "reference_height": 56,
+      "bounds": [
+        51,
+        38,
+        78,
+        94
+      ],
+      "sha256": "1e69f1cc1be5746bae86c0bbd297497c0c3007bf23605de10ed7c7bf41a012b7",
+      "source": "assets/source-art/animation-polish-01/class-lateral-02/r01/metamorphe-t3-source.png",
+      "atlas": "assets/source-art/animation-polish-01/class-lateral-02/r01/metamorphe-t3-atlas.png",
+      "scale": 0.2978723404255319,
+      "whole_figures_only": true
+    }
+  ]
+}

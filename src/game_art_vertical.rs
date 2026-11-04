@@ -38,6 +38,13 @@ struct Profile {
 fn default_player_anchor() -> [f32; 2] {
     [128., 160.]
 }
+fn unarmed_family(profile: &Profile) -> &'static str {
+    if profile.families.contains_key("one") {
+        "one"
+    } else {
+        "ranged"
+    }
+}
 #[derive(Deserialize)]
 struct FixedLoadout {
     main: u16,
@@ -155,9 +162,10 @@ fn selection(visual: Visual) -> Option<Selection> {
             hands,
             palettes,
         } => {
-            if palettes[0] != EquipmentPalette::Original
-                || equipment[1].is_some_and(|n| !(115..=120).contains(&n))
-            {
+            let equipment = super::player_visual_equipment(equipment);
+            // Class outfits keep their approved painted colors in every heading.
+            // An item's palette must not disable its existing vertical poses.
+            if equipment[1].is_some_and(|n| !(115..=120).contains(&n)) {
                 return None;
             }
             let outfit = super::player_layers::outfit_index(body, equipment).checked_sub(512)? % 32;
@@ -176,7 +184,7 @@ fn selection(visual: Visual) -> Option<Selection> {
                 Some(model) => Some(p.cases.iter().find(|c| c.model == model && !c.left)?),
                 None => None,
             };
-            if main_case.is_none() && !p.families.contains_key("one") {
+            if main_case.is_none() && !p.families.contains_key(unarmed_family(p)) {
                 return None;
             }
             if left.is_some() && main_case.is_some_and(|c| c.two_handed) {
@@ -230,8 +238,15 @@ fn key(s: &Selection) -> String {
             helmet,
             colors,
         } => format!(
-            "vertical18/player/{}/{main:?}/{left:?}/{helmet:?}/{colors:?}",
-            manifest().profiles[*profile].id
+            "vertical18/player/{}/{main:?}/{left:?}/{helmet:?}/{colors:?}/rifle{}",
+            manifest().profiles[*profile].id,
+            if main.is_some_and(crate::rifle_visuals::rifle)
+                || left.is_some_and(crate::rifle_visuals::rifle)
+            {
+                crate::rifle_visuals::variant()
+            } else {
+                0
+            }
         ),
         Selection::Monster(i) => format!("vertical18/monster/{i}"),
         Selection::Npc => "vertical18/npc/1".into(),
@@ -243,15 +258,38 @@ pub fn supports(visual: Option<Visual>) -> bool {
 fn request(visual: Visual) -> Option<Request> {
     let s = selection(visual)?;
     let id = key(&s);
-    Some((id, Box::new(move || prepare_image(&s))))
+    #[cfg(debug_assertions)]
+    let review = crate::animation_polish_review::source_override();
+    Some((
+        id,
+        Box::new(move || {
+            #[cfg(debug_assertions)]
+            if let Some(style) = review {
+                return crate::animation_polish_review::with_source(style, || prepare_image(&s));
+            }
+            prepare_image(&s)
+        }),
+    ))
 }
 pub fn prepare(visuals: &[Visual]) -> Result<std::time::Duration, String> {
-    preparation::prepare(|| visuals.iter().filter_map(|v| request(*v)).collect())
+    preparation::prepare(|| {
+        visuals
+            .iter()
+            .flat_map(|&visual| {
+                [request(visual), super::monster_vertical::request(visual)]
+                    .into_iter()
+                    .flatten()
+            })
+            .collect()
+    })
 }
 pub fn anticipate(visuals: &[Visual]) {
     preparation::pump();
-    for visual in visuals.iter().take(4) {
-        if let Some((id, build)) = request(*visual) {
+    for &visual in visuals.iter().take(4) {
+        for (id, build) in [request(visual), super::monster_vertical::request(visual)]
+            .into_iter()
+            .flatten()
+        {
             preparation::request(id, build);
         }
     }
@@ -285,7 +323,9 @@ fn prepare_image(s: &Selection) -> Result<PreparedImage, String> {
                 main.and_then(|n| p.cases.iter().find(|c| c.model == n && !c.left)),
                 left.and_then(|n| p.cases.iter().find(|c| c.model == n && c.left)),
             ];
-            let family = cases[0].map_or("one", |c| c.family.as_str());
+            // The intermediate banks already contain complete body/hand poses.
+            // Reuse those figures without adding a weapon when unarmed.
+            let family = cases[0].map_or_else(|| unarmed_family(p), |c| c.family.as_str());
             let pose = &p.families[family];
             let core = preparation::image(&pose.body_file)?;
             let fingers = preparation::image(&pose.hands_file)?;
@@ -327,6 +367,36 @@ fn prepare_image(s: &Selection) -> Result<PreparedImage, String> {
                             .ok_or("VERT18 missing weapon palette")?
                             .file;
                         let source = preparation::image(file)?;
+                        let mut candidate = None;
+                        if crate::rifle_visuals::rifle(case.model) {
+                            let (a, b) = crate::game_art::firearm_grips(case.model)
+                                .ok_or("FIREARM02 missing authored grips")?;
+                            candidate =
+                                Some(crate::rifle_visuals::prepare(&source, case.model, a, b));
+                        }
+                        #[cfg(debug_assertions)]
+                        if !crate::rifle_visuals::rifle(case.model)
+                            && crate::animation_polish_review::source_style() > 0
+                        {
+                            candidate = Some(crate::animation_polish_review::vertical_weapon(
+                                &source, case.model,
+                            ));
+                        }
+                        let source = candidate.as_ref().unwrap_or(source.as_ref());
+                        let separation = crate::rifle_visuals::enabled(case.model);
+                        #[cfg(debug_assertions)]
+                        let separation = separation
+                            || crate::animation_polish_review::local_separation(case.model);
+                        if separation {
+                            let mut held = Image::gen_image_color(256, 256, BLANK);
+                            geometry::weapon(&mut held, &source, t);
+                            // A rear-carried weapon remains behind the body;
+                            // only ink already in this depth layer is shaded.
+                            let shadow = crate::rifle_visuals::contact_shadow(&frame, &held);
+                            geometry::over(&mut frame, &shadow, [0, 0]);
+                            geometry::over(&mut frame, &held, [0, 0]);
+                            continue;
+                        }
                         geometry::weapon(&mut frame, &source, t);
                     }
                 }
@@ -337,6 +407,27 @@ fn prepare_image(s: &Selection) -> Result<PreparedImage, String> {
             Ok(geometry::compact(&frames, p.anchor))
         }
     }
+}
+#[cfg(debug_assertions)]
+pub(crate) fn review_image(visual: Visual) -> Result<PreparedImage, String> {
+    prepare_image(&selection(visual).ok_or("ANIM-POLISH01 unsupported profile")?)
+}
+#[cfg(debug_assertions)]
+pub(crate) fn review_heads(visual: Visual) -> Option<Vec<[f32; 2]>> {
+    let Selection::Player { profile, main, .. } = selection(visual)? else {
+        return None;
+    };
+    let p = &manifest().profiles[profile];
+    let family = main
+        .and_then(|m| p.cases.iter().find(|c| c.model == m && !c.left))
+        .map_or_else(|| unarmed_family(p), |c| c.family.as_str());
+    Some(
+        p.families[family]
+            .frames
+            .iter()
+            .map(|f| f.head_anchor)
+            .collect(),
+    )
 }
 pub fn draw(cell: Rect, visual: Visual, opacity: f32, pose: Option<Pose>) -> bool {
     let frame = match pose {

@@ -1,0 +1,50 @@
+{
+  "review": "MONSTER-VERTICAL13-r01",
+  "tool": "built-in image_gen",
+  "mode": "edit / anatomy and rear view correction",
+  "transparent_background": true,
+  "jobs": [
+    {
+      "number": 70,
+      "dir": "up",
+      "revision": "anatomy",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-13/r01/MON-070-up-initial-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-13/r01/MON-070-current-back-guide.png"
+      ],
+      "prompt": "Use case: identity-preserve / precise-object-edit. Correct the specified anatomical defect ONLY in INPUT1, a 3x3 whole-figure walking sheet. INPUT2 is the same creature's canonical appearance/view master. Keep exactly THREE equal columns and THREE equal rows, eight ordered compact walking phases then a ninth supported idle. Identical native64 scale/camera/materials/proportions in all cells. Redraw coherent WHOLE FIGURES, never graft detached body parts or stretch/shear segments. Large transparent cell margins, complete silhouette safely within each cell.\nCrisp matte pixel clusters, original dark contours, no brighter highlights, glow, blur or colored export fringe. Genuine alphaZERO around real silhouettes and through gaps. No ground, shadow, matte, checkerboard, grid, labels, text or watermark. No clothing or held weapons.\nDEFECT: INPUT1 is still too FRONTAL. Redraw ALL NINE poses as a TRUE REAR VIEW walking UP/AWAY from viewer, matching INPUT2's orientation. Back toward camera, face completely hidden, dorsal thorax ridges/plates and rear joints visible. The long tapered head/thorax tip curves to IMAGE RIGHT exactly as canonical rear INPUT2, not left like INPUT1's frontal head. Do not simply mirror the current frontal drawing: turn the whole anatomy and reconstruct the real back. No front chest/rib panels, mouth or eyes painted on rear.\nKeep the same OLIVE/OCHRE plated creature, upright tapered thorax, pale pink segmented seams, EXACTLY FOUR long angular supporting legs and TWO raised separate curved scythe-like upper forelimbs, six limbs total. Forearms remain scythes carried in front of thorax, partly occluded where appropriate from behind; not supporting feet, a tail or extra weapons. Four feet have pale joints and dark original claw tips, no human boots. Head, thorax, scythes and legs all face the same rear direction.\nCompact four-support walk beneath stable upright thorax: low short foot reaches, planted loading intervals, delayed rear-paw follow-through, negligible bob. Keep the original body breadth: canonical rear76wide x75high, ratio1.013±0.05. Do not slim or enlarge body or legs, spread feet into a split, wave scythes or crouch torso.",
+      "input_sha256": [
+        "616ee05e427205e2316eee6719b958225dd4716bf5eb87ef58897e1d8fbc3774",
+        "19733465cfeaff9254f365129388bbc74ee8c923cc5b25a4c880630a06cdb31e"
+      ]
+    },
+    {
+      "number": 71,
+      "dir": "down",
+      "revision": "anatomy",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-13/r01/MON-071-down-initial-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-13/r01/MON-071-appearance-reference.png"
+      ],
+      "prompt": "Use case: identity-preserve / precise-object-edit. Correct the specified anatomical defect ONLY in INPUT1, a 3x3 whole-figure walking sheet. INPUT2 is the same creature's canonical appearance/view master. Keep exactly THREE equal columns and THREE equal rows, eight ordered compact walking phases then a ninth supported idle. Identical native64 scale/camera/materials/proportions in all cells. Redraw coherent WHOLE FIGURES, never graft detached body parts or stretch/shear segments. Large transparent cell margins, complete silhouette safely within each cell.\nCrisp matte pixel clusters, original dark contours, no brighter highlights, glow, blur or colored export fringe. Genuine alphaZERO around real silhouettes and through gaps. No ground, shadow, matte, checkerboard, grid, labels, text or watermark. No clothing or held weapons.\nDEFECT: INPUT1 visually shows only THREE walking-foot tips on each side, so it reads as six-legged. The species is an EIGHT-LEGGED ARACHNID. Reveal the missing FOURTH walking-leg pair without changing the abdomen, small head, palette or overall silhouette size. In EVERY cell draw FOUR CLEAR DISTINCT walking legs down the LEFT flank and FOUR down the RIGHT flank: EIGHT TOTAL, each with its own attached root, elbow/knee and pale OCHRE pointed contact tip. At least a recognizable part of each leg and ALL EIGHT separate golden tip ends must be visible. Neither hide the fourth pair fully behind abdomen nor count the short mouth mandibles/palps as walking legs. Mouth parts remain mouth parts, distinct from eight supporting legs. No extra ninth/tenth legs.\nKeep INPUT2's original large RED AND CHARCOAL abdomen, broad red central stripe/bands, small low head and native leg lengths. Arrange four limb pairs in front-to-back order with compact spacing along flanks; the newly readable rear pair emerges from the rear lateral root behind the third pair. Do not create a second body, long antenna, scythe arms, tail, enlarged head, humanoid feet or wings.\nVIEW EXACTLY FRONT/down toward viewer, small head/mandibles in front of abdomen; native81wide x57high. Keep these width/height proportions within 5-8%; do not make a taller or wider starfish.\nEight compact gait phases alternate two four-foot support groups, with small front-to-rear ripple in the low swing group. Four feet remain grounded, abdomen nearly level; no simultaneous rowing, hopping, foot fusion, clipping or wide split. Preserve current pose order and draw the eight attached legs consistently through every phase.",
+      "input_sha256": [
+        "08a9730777e4550f1f5281d377319b0f6b33009a8e7bbeac515ab750a0fed8b7",
+        "c4664dc9534924f78553d5e2e489f4c52da918fcaeb3b0bfd3949f18bc998bd3"
+      ]
+    },
+    {
+      "number": 71,
+      "dir": "up",
+      "revision": "anatomy",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-13/r01/MON-071-up-initial-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-13/r01/MON-071-current-back-guide.png"
+      ],
+      "prompt": "Use case: identity-preserve / precise-object-edit. Correct the specified anatomical defect ONLY in INPUT1, a 3x3 whole-figure walking sheet. INPUT2 is the same creature's canonical appearance/view master. Keep exactly THREE equal columns and THREE equal rows, eight ordered compact walking phases then a ninth supported idle. Identical native64 scale/camera/materials/proportions in all cells. Redraw coherent WHOLE FIGURES, never graft detached body parts or stretch/shear segments. Large transparent cell margins, complete silhouette safely within each cell.\nCrisp matte pixel clusters, original dark contours, no brighter highlights, glow, blur or colored export fringe. Genuine alphaZERO around real silhouettes and through gaps. No ground, shadow, matte, checkerboard, grid, labels, text or watermark. No clothing or held weapons.\nDEFECT: INPUT1 visually shows only THREE walking-foot tips on each side, so it reads as six-legged. The species is an EIGHT-LEGGED ARACHNID. Reveal the missing FOURTH walking-leg pair without changing the abdomen, small head, palette or overall silhouette size. In EVERY cell draw FOUR CLEAR DISTINCT walking legs down the LEFT flank and FOUR down the RIGHT flank: EIGHT TOTAL, each with its own attached root, elbow/knee and pale OCHRE pointed contact tip. At least a recognizable part of each leg and ALL EIGHT separate golden tip ends must be visible. Neither hide the fourth pair fully behind abdomen nor count the short mouth mandibles/palps as walking legs. Mouth parts remain mouth parts, distinct from eight supporting legs. No extra ninth/tenth legs.\nKeep INPUT2's original large RED AND CHARCOAL abdomen, broad red central stripe/bands, small low head and native leg lengths. Arrange four limb pairs in front-to-back order with compact spacing along flanks; the newly readable rear pair emerges from the rear lateral root behind the third pair. Do not create a second body, long antenna, scythe arms, tail, enlarged head, humanoid feet or wings.\nVIEW EXACTLY REAR/up away from viewer, broad dorsal abdomen and red midline, no frontal head or mouth; native88wide x57high. Keep these width/height proportions within 5-8%; do not make a taller or wider starfish.\nEight compact gait phases alternate two four-foot support groups, with small front-to-rear ripple in the low swing group. Four feet remain grounded, abdomen nearly level; no simultaneous rowing, hopping, foot fusion, clipping or wide split. Preserve current pose order and draw the eight attached legs consistently through every phase.",
+      "input_sha256": [
+        "ccacacd2b7ced53f2737ca1504195e7e68f9efb22b67a38bdcadc63df147896d",
+        "caedc1fbc655d4e2446bd52af0cb00b092bba148605ef95d6661982fc2eeddf7"
+      ]
+    }
+  ]
+}

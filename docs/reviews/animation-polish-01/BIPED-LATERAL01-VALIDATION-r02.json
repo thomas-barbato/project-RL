@@ -1,0 +1,64 @@
+{
+  "review": "BIPED-LATERAL01-r02",
+  "date": "2026-11-02",
+  "status": "native_candidate_awaiting_visual_approval",
+  "supersedes_rejected": "BIPED-LATERAL01-r01",
+  "feedback": [
+    "knees too high or pedaling",
+    "whole body artificial"
+  ],
+  "scope": {
+    "number": 144,
+    "variant": 0,
+    "directions": [
+      "left",
+      "right"
+    ],
+    "weapon": null
+  },
+  "normal_game_enabled": false,
+  "other_creatures": "r01 rejected, await revised gait review",
+  "weapons": "Bastion r01 unvalidated, remain to review",
+  "generation": {
+    "mode": "built-in image_gen",
+    "source_files": [
+      "assets/source-art/animation-polish-01/biped-lateral-01/r02/MON-144-left-source.png",
+      "assets/source-art/animation-polish-01/biped-lateral-01/r02/MON-144-right-source.png"
+    ],
+    "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r02/MON-144-atlas.png",
+    "prompts": "docs/reviews/animation-polish-01/BIPED-LATERAL01-PROMPTS-r02.md"
+  },
+  "validation": {
+    "debug_build": "passed",
+    "native_capture": "passed, 66 captures",
+    "source_poses_distinct": [
+      8,
+      8
+    ],
+    "left_and_right_frontal_rest_columns_identical": true,
+    "source_alpha": "transparent RGBA",
+    "class_r02_frozen_atlas_hashes": "unchanged",
+    "git_diff_check": "passed",
+    "targeted_rustfmt": "passed",
+    "python_compile": "passed",
+    "browser_checks": "artifacts/animation-polish-01/biped-lateral-01/r02/browser-checks.json",
+    "browser_proof": "artifacts/animation-polish-01/biped-lateral-01/r02/browser-proof.png"
+  },
+  "timing": {
+    "step_ms": 650,
+    "phase_ms": [
+      180,
+      180,
+      170,
+      120,
+      180,
+      180,
+      170,
+      120
+    ],
+    "review_travel_px": 12,
+    "review_rest_ms": 650
+  },
+  "alignment": "whole-figure upper-body crown and horizontal upper-body centroid, fixed scale",
+  "visual_acceptance": false
+}

@@ -1,0 +1,120 @@
+{
+  "review": "MONSTER-VERTICAL02-r01",
+  "status": "accepted",
+  "models_total": 129,
+  "variants_total": 471,
+  "batch_models": [
+    5,
+    156,
+    165
+  ],
+  "first_batch": [
+    14,
+    164,
+    144
+  ],
+  "normal_game_enabled": false,
+  "native_inventory_cards": 129,
+  "whole_figure_walk_poses": 48,
+  "retained_frontal_cells_exact": 6,
+  "native_motion_captures": 198,
+  "frozen_approval_hashes_verified": 38,
+  "first_batch_assets_preserved": 12,
+  "accepted_lot02_assets_preserved": 12,
+  "installed_lateral_atlases_unchanged": 10,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "webp_full_roundtrip_ms": 2400,
+  "phase_varying_scaling": false,
+  "selected_sources": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-005-down-source.png",
+      "sha256": "b8cf17d4ae144b2661004e13991eb3d0db0af4eed411250bdb5bbb4f32d902c0"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-005-up-source.png",
+      "sha256": "9b63396ac60b2b7fa016b76180553bc872f19a79499f706f85e6d34bfcf3c4f2"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-156-down-source.png",
+      "sha256": "751cbdf859f9c61b70125f56b58bf4c32f55043b462d864ebdcbb513cb356d7b"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-156-up-source.png",
+      "sha256": "49805fa06f50938f1d9546fb1d78ba8e156f3f4ef6e7066fb6a9c8c6b98ab9c1"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-165-down-source.png",
+      "sha256": "27f8eca96ae28079a3f09ddfce33dea5cc87e8528bd4fce012fcc76695860b02"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-165-up-occlusion-source.png",
+      "sha256": "40e7d00a5b08de0b677cf666b67961ad0724865445883dbef456c265c01adad3"
+    }
+  ],
+  "checks": {
+    "native_capture_completed": true,
+    "atlas_pose_and_front_checks": true,
+    "frozen_hashes": true
+  },
+  "user_data_loaded": false,
+  "remaining_models": 123,
+  "variants_awaiting_new_art_review": 471,
+  "browser_validation": {
+    "review": "MONSTER-VERTICAL02-r01",
+    "url": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=MONSTER-VERTICAL02-r01#monstres-vertical",
+    "checked_models": [
+      {
+        "id": "MON-005-0",
+        "status": "66 / 66 captures prêtes · Possédé · taille native.",
+        "animation": "monster-vertical-02/r01/current/MON-005-0/native.webp"
+      },
+      {
+        "id": "MON-156-0",
+        "status": "66 / 66 captures prêtes · Démon massif · taille native.",
+        "animation": "monster-vertical-02/r01/current/MON-156-0/native.webp"
+      },
+      {
+        "id": "MON-165-0",
+        "status": "66 / 66 captures prêtes · Cultiste à la hache · taille native.",
+        "animation": "monster-vertical-02/r01/current/MON-165-0/native.webp"
+      },
+      {
+        "id": "MON-014-0",
+        "status": "66 / 66 captures prêtes · Cultiste sans arme · taille native.",
+        "animation": "monster-vertical-01/r01/current/MON-014-0/native.webp"
+      },
+      {
+        "id": "MON-164-0",
+        "status": "66 / 66 captures prêtes · Cultiste au fusil · taille native.",
+        "animation": "monster-vertical-01/r01/current/MON-164-0/native.webp"
+      },
+      {
+        "id": "MON-144-0",
+        "status": "66 / 66 captures prêtes · Démon ailé au sol · taille native.",
+        "animation": "monster-vertical-01/r01/current/MON-144-0/native.webp"
+      }
+    ],
+    "options": 6,
+    "captures_loaded_per_selection": 66,
+    "native_pair": {
+      "height": 320,
+      "width": 384
+    },
+    "native_three_columns": {
+      "height": 320,
+      "width": 576
+    },
+    "zoom_three_columns": [
+      1152,
+      640
+    ],
+    "inventory_cards_in_dom": 129,
+    "automatic_up_down_checked": true,
+    "manual_up_down_frontal_stops_checked": true,
+    "pace_ms": 400,
+    "errors_after_final_reload": [],
+    "proof": "browser-proof.png",
+    "native_art_integrated": false
+  }
+}

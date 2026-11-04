@@ -1,0 +1,107 @@
+{
+  "review": "BIPED-LATERAL03-r03",
+  "status": "partial_acceptance",
+  "player_quotes": [
+    "02 et 03 n'ont pas les memes de face que lors d'un mouvement, et je préfère de face :)",
+    "sinon le reste est ok"
+  ],
+  "shown_url": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=BIPED-LATERAL03-r03#bipedes",
+  "accepted_complete_models": [
+    145,
+    5,
+    14,
+    156,
+    144
+  ],
+  "directions": [
+    "left",
+    "right"
+  ],
+  "variant": 0,
+  "palette": "original",
+  "step_ms": 400,
+  "front_references_retained": [
+    {
+      "number": 164,
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-164-front.png",
+      "sha256": "d5a3f5a2854d35eaee9be15655f48b1c02e92852f18b2cce0a16760d846ab2a4"
+    },
+    {
+      "number": 165,
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-165-front.png",
+      "sha256": "b3b4c6460d2ef829b4539ec000aa56bb728ae60b6815d751d6101cf34c1d8252"
+    }
+  ],
+  "walks_to_redraw": [
+    164,
+    165
+  ],
+  "new_walks_accepted": false,
+  "normal_game_enabled": false,
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-left-source.png",
+      "sha256": "c202dfd6f617825239738e01a376895b9768fdab5ac3c0d4d5659bdad4acf0f1"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-right-source.png",
+      "sha256": "9190904fe04279d9238769f930bd34243fc4fa1b21761e37a7e44ebfb24292be"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-atlas.png",
+      "sha256": "4b06b4b43342443ff47bbc8d7711337dc4d54fd4fc2567e8251942db59fb0219"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-left-source.png",
+      "sha256": "843b6bc19cc6c0883927fabf53bb4bd23826114616b1ce4aa405e12c93a57be6"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-right-source.png",
+      "sha256": "4803ae21917857fbbe7c438ada4ff51a2490ab70d3404b45ec31b20278de4882"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-atlas.png",
+      "sha256": "6de6ed7e994eee5f703ebacf571a80fa374818fbc6fc966f5f8d3ddbf23565bd"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-left-source.png",
+      "sha256": "6124baa93ef8949b292ca82e15e9250966604af12d83cb721580f4af43dadf62"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-right-source.png",
+      "sha256": "a78b54d72df8c42f6881b204c0562cebccde1b477a030fe2fe452ecf477df1be"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-atlas.png",
+      "sha256": "bb13de5c1f9a911830649a84cf586a04c65081b675cab9bb541fd3c02d6335f4"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-014-front.png",
+      "sha256": "d50c525da854a3968e9beae17504b4d5d9816507a9e5fa011b144eb075f7dd10"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-left-source.png",
+      "sha256": "3db00d3d4cdde6d3bbbbe27a53c41853926d5b1c612c03b0b171b566614a52a5"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-right-source.png",
+      "sha256": "3a0e238762c06d7ea4d251a71e890aa7a1ebda41aedfb8b2163c146e3e02ba4a"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-atlas.png",
+      "sha256": "af27fc9f303cbe787130660f320f9cc4470df5057951b09a9ee109d288f34c25"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-left-source.png",
+      "sha256": "5893d6dfe738680e97ff8954184dbdf074e8ec2e8d926380231bcc50e155d822"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-right-source.png",
+      "sha256": "581dedf832553df3fc744b3f48870727f893173cfa91192532d0c1b69f7f5628"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-atlas.png",
+      "sha256": "def77b1f9d572afb7c3460e1403febe5d7f6d172fc0efc989a23af037e587361"
+    }
+  ]
+}

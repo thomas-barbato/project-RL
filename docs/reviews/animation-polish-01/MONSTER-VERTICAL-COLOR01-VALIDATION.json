@@ -1,0 +1,89 @@
+{
+  "review": "MONSTER-VERTICAL-COLOR01-r01",
+  "status": "accepted",
+  "models_total": 129,
+  "variants_total": 471,
+  "batch_models": [
+    144
+  ],
+  "first_batch": [
+    14,
+    164,
+    144
+  ],
+  "normal_game_enabled": false,
+  "native_inventory_cards": 129,
+  "whole_figure_walk_poses": 16,
+  "retained_frontal_cells_exact": 2,
+  "native_motion_captures": 66,
+  "frozen_approval_hashes_verified": 38,
+  "first_batch_assets_preserved": 12,
+  "accepted_lot02_assets_preserved": 12,
+  "accepted_color_rule_assets_preserved": 4,
+  "installed_lateral_atlases_unchanged": 10,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "webp_full_roundtrip_ms": 2400,
+  "phase_varying_scaling": false,
+  "selected_sources": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-144-down-broad-source.png",
+      "sha256": "62004440cd22b5a4c9bd60f98ff1e2b73dd0ef4750c7173abaa09d3bdca4552d"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-144-up-broad-source.png",
+      "sha256": "e9cab1cc01ae5474e7b847a48c6d8d04648d0add4d7d9b24e50102b7021052ac"
+    }
+  ],
+  "checks": {
+    "native_capture_completed": true,
+    "atlas_pose_and_front_checks": true,
+    "frozen_hashes": true
+  },
+  "user_data_loaded": false,
+  "remaining_models": 123,
+  "variants_awaiting_new_art_review": 467,
+  "browser_validation": {
+    "review": "MONSTER-VERTICAL-COLOR01-r01",
+    "url": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=MONSTER-VERTICAL-COLOR01-r01#monstres-vertical",
+    "checked_models": [
+      {
+        "id": "MON-005-0",
+        "animation": "monster-vertical-02/r01/current/MON-005-0/native.webp"
+      },
+      {
+        "id": "MON-156-0",
+        "animation": "monster-vertical-02/r01/current/MON-156-0/native.webp"
+      },
+      {
+        "id": "MON-165-0",
+        "animation": "monster-vertical-02/r01/current/MON-165-0/native.webp"
+      },
+      {
+        "id": "MON-014-0",
+        "animation": "monster-vertical-01/r01/current/MON-014-0/native.webp"
+      },
+      {
+        "id": "MON-164-0",
+        "animation": "monster-vertical-01/r01/current/MON-164-0/native.webp"
+      },
+      {
+        "id": "MON-144-0",
+        "animation": "monster-vertical-color-01/r01/current/MON-144-0/native.webp"
+      }
+    ],
+    "captures_loaded_per_selection": 66,
+    "native_three_columns": {
+      "height": 320,
+      "width": 576
+    },
+    "inventory_cards_in_dom": 129,
+    "automatic_both_directions": true,
+    "manual_up_down_frontal_stops": true,
+    "unchanged_poses": true,
+    "pace_ms": 400,
+    "errors_after_final_reload": [],
+    "proof": "browser-proof.png",
+    "native_art_integrated": false
+  }
+}

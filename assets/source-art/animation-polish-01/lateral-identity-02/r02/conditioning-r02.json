@@ -1,0 +1,235 @@
+{
+  "review": "LATERAL02-r02",
+  "scope": "Traqueuse heavy only; Bastion unchanged",
+  "normal_game_enabled": false,
+  "cell_px": 64,
+  "frame_canvas": [
+    96,
+    96
+  ],
+  "anchor": [
+    48,
+    81
+  ],
+  "sources": [
+    {
+      "source": "half-a-source.png",
+      "scale": 0.12960893854748604,
+      "calibration_column": 3,
+      "sha256": "425403403b1ce1824e4eaa2992bfa63cff3ecd091290c7071c30a724103a5a20"
+    },
+    {
+      "source": "passing-a-source.png",
+      "scale": 0.0926517571884984,
+      "calibration_column": 0,
+      "sha256": "34b0c8858cf37d0648ebf14b352c5a8493161e09409e3f755eaa65249a79c469"
+    },
+    {
+      "source": "half-b-source.png",
+      "scale": 0.14268142681426815,
+      "calibration_column": 0,
+      "sha256": "061e680d357e09f0a9098fe5bcfbb4b4b6a9925c3d44adc96c4fb6c734afe18e"
+    }
+  ],
+  "whole_figures_only": true,
+  "sampling": "nearest",
+  "frames": [
+    {
+      "file": "candidate-02-left-0.png",
+      "row": 0,
+      "phase": 0,
+      "source": "half-a-source.png",
+      "source_column": 0,
+      "native_bbox": [
+        30,
+        23,
+        64,
+        81
+      ],
+      "upper_anchor_x": 47.80509065728988
+    },
+    {
+      "file": "candidate-02-left-1.png",
+      "row": 0,
+      "phase": 1,
+      "source": "passing-a-source.png",
+      "source_column": 0,
+      "native_bbox": [
+        38,
+        23,
+        58,
+        81
+      ],
+      "upper_anchor_x": 47.37209438463989
+    },
+    {
+      "file": "candidate-02-left-2.png",
+      "row": 0,
+      "phase": 2,
+      "source": "passing-a-source.png",
+      "source_column": 1,
+      "native_bbox": [
+        33,
+        23,
+        63,
+        81
+      ],
+      "upper_anchor_x": 46.98891480182187
+    },
+    {
+      "file": "candidate-02-left-3.png",
+      "row": 0,
+      "phase": 3,
+      "source": "half-b-source.png",
+      "source_column": 0,
+      "native_bbox": [
+        31,
+        23,
+        64,
+        81
+      ],
+      "upper_anchor_x": 47.386773611112446
+    },
+    {
+      "file": "candidate-02-left-4.png",
+      "row": 0,
+      "phase": 4,
+      "source": "half-b-source.png",
+      "source_column": 1,
+      "native_bbox": [
+        38,
+        23,
+        58,
+        81
+      ],
+      "upper_anchor_x": 47.01407866818092
+    },
+    {
+      "file": "candidate-02-left-5.png",
+      "row": 0,
+      "phase": 5,
+      "source": "half-b-source.png",
+      "source_column": 2,
+      "native_bbox": [
+        32,
+        23,
+        63,
+        81
+      ],
+      "upper_anchor_x": 47.825718052270275
+    },
+    {
+      "file": "candidate-02-left-6.png",
+      "row": 0,
+      "phase": 6,
+      "source": "half-a-source.png",
+      "source_column": 3,
+      "native_bbox": [
+        38,
+        23,
+        58,
+        81
+      ],
+      "upper_anchor_x": 47.41342366940765
+    },
+    {
+      "file": "candidate-02-right-0.png",
+      "row": 1,
+      "phase": 0,
+      "source": "half-a-source.png",
+      "source_column": 0,
+      "native_bbox": [
+        32,
+        24,
+        67,
+        81
+      ],
+      "upper_anchor_x": 48.871702671380135
+    },
+    {
+      "file": "candidate-02-right-1.png",
+      "row": 1,
+      "phase": 1,
+      "source": "passing-a-source.png",
+      "source_column": 0,
+      "native_bbox": [
+        38,
+        23,
+        58,
+        81
+      ],
+      "upper_anchor_x": 48.69578104149287
+    },
+    {
+      "file": "candidate-02-right-2.png",
+      "row": 1,
+      "phase": 2,
+      "source": "passing-a-source.png",
+      "source_column": 1,
+      "native_bbox": [
+        33,
+        24,
+        66,
+        81
+      ],
+      "upper_anchor_x": 49.49147968832339
+    },
+    {
+      "file": "candidate-02-right-3.png",
+      "row": 1,
+      "phase": 3,
+      "source": "half-b-source.png",
+      "source_column": 0,
+      "native_bbox": [
+        31,
+        23,
+        65,
+        81
+      ],
+      "upper_anchor_x": 48.85672891458587
+    },
+    {
+      "file": "candidate-02-right-4.png",
+      "row": 1,
+      "phase": 4,
+      "source": "half-b-source.png",
+      "source_column": 1,
+      "native_bbox": [
+        39,
+        23,
+        59,
+        81
+      ],
+      "upper_anchor_x": 49.20637115398681
+    },
+    {
+      "file": "candidate-02-right-5.png",
+      "row": 1,
+      "phase": 5,
+      "source": "half-b-source.png",
+      "source_column": 2,
+      "native_bbox": [
+        33,
+        23,
+        65,
+        81
+      ],
+      "upper_anchor_x": 48.903545438839345
+    },
+    {
+      "file": "candidate-02-right-6.png",
+      "row": 1,
+      "phase": 6,
+      "source": "half-a-source.png",
+      "source_column": 3,
+      "native_bbox": [
+        38,
+        23,
+        58,
+        81
+      ],
+      "upper_anchor_x": 49.08377062632401
+    }
+  ],
+  "anatomical_alternation": "contact near -> passing far -> reach far -> contact far -> passing near -> reach near; visual review required"
+}

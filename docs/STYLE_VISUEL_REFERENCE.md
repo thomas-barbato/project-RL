@@ -44,6 +44,78 @@ camp ne transforme pas tous les lieux en copies de ce camp.
 
 ### Personnages, équipement et animation
 
+**PLAYER-MOTION-FIX01, correction du 2 novembre 2026 :** une palette d'objet
+ne doit pas supprimer les poses haut/bas du joueur ni sélectionner un vieux
+frontal générique. Les tenues de classe gardent leur peinture validée dans les
+quatre directions. Les corps/mains verticaux existants servent aussi aux tenues
+intermédiaires à mains nues. Le traitement Discret reste identique de face et
+de côté. Bilan : `reviews/animation-polish-01/PLAYER-MOTION-FIX01-VALIDATION.json`.
+
+**BIPED-INTEGRATION01, intégration du 2 novembre 2026 :** « tu peux integrer :) »
+active dans le rendu normal les dix modèles validés MON-005/014/039/144/145/
+146/151/156/164/165, variante 0 et palette d'origine. Conserver leurs huit
+poses par cycle, frontaux retenus et cadence de 400 ms par pas. Les autres
+variantes et les marches haut/bas gardent leur rendu existant. Bilan :
+`reviews/animation-polish-01/BIPED-INTEGRATION01-VALIDATION.json`.
+
+**BIPED-LATERAL04-r01, accord du 2 novembre 2026 :** « je valide :) » accepte
+les marches de MON-039/146/151, en variante 0 et palette d'origine, dans les
+deux directions à 400 ms par pas. Les frontaux actuels et les retours au repos
+sont conservés ; le brassard de MON-151 reste sur son bras droit anatomique.
+Sources figées : `reviews/animation-polish-01/BIPED-LATERAL04-ACCEPTANCE-r01.json`.
+Cela porte à dix les modèles de monstres validés. L'intégration reste distincte.
+
+**BIPED-LATERAL03-r04, accord du 2 novembre 2026 :** « je valide on continue »
+accepte les marches reprises de MON-164/165, avec leurs deux prises, leurs
+frontaux retenus et les deux directions montrées à 400 ms par pas. Conserver
+pour la suite cette cohérence d'identité entre face, marche et repos.
+Sources figées : `reviews/animation-polish-01/BIPED-LATERAL03-ACCEPTANCE-r04.json`.
+Les nouvelles espèces et palettes gardent leur propre revue.
+
+**BIPED-LATERAL03-r03, accord partiel :** « sinon le reste est ok » valide
+les modèles 01/04/05/06/07 montrés, soit MON-145/005/014/156/144, dans leur
+périmètre de revue. Pour 02 MON-164 et 03 MON-165, le joueur préfère leur
+frontal harmonisé ; conserver exactement ces deux faces et reprendre leurs
+marches à partir de cette apparence. Les nouvelles marches restent en revue.
+Empreintes et portée : `reviews/animation-polish-01/BIPED-LATERAL03-ACCEPTANCE-r03-partial.json`.
+
+**BIPED-LATERAL02-r01, accord du 2 novembre 2026 :** « ok on peut continuer »
+accepte les marches du possédé MON-005-0, du cultiste MON-014-0 et du démon
+massif MON-156-0 montrées à 400 ms par pas, dans les deux directions, sans
+arme et en palette d'origine. Les empreintes des sources et atlas sont figées
+dans `reviews/animation-polish-01/BIPED-LATERAL02-ACCEPTANCE-r01.json`.
+Les autres identités, palettes et prises d'armes gardent leur revue propre.
+
+**BIPED-LATERAL01-r03, accord du 2 novembre 2026 :** le démon ailé MON-144-0,
+sans arme et en palette d'origine, reprend la démarche montrée à partir des
+vrais dessins du joueur. Le joueur valide ses deux côtés et retient **400 ms
+par pas**, soit 800 ms par cycle. Garder cette cadence pour la suite du chantier
+des marches latérales bipèdes ; chaque nouvelle silhouette et prise d'arme
+reste à présenter. Cet accord ne valide pas les autres monstres ni une nouvelle
+intégration. Voir `reviews/animation-polish-01/BIPED-LATERAL01-ACCEPTANCE-r03.json`.
+
+**FIREARM02-r01 / 02, accord du 1er novembre 2026 :** les fusils d'assaut,
+à pompe et similaires reprennent le léger agrandissement et la séparation
+visuelle montrés dans le comparatif natif. Garder un dessin partagé entre
+les classes et les prises, poses, angles et occultations acceptés. Cet accord
+concerne les fusils du joueur ; la revue des armes lourdes reste distincte.
+Voir `reviews/animation-polish-01/FIREARM02-ACCEPTANCE.json`.
+
+**LIGHT01-r01 / 01 « Discret », accord du 1er novembre 2026 :** conserver
+les matières et les ombres du joueur avec un éclaircissement réduit, selon le
+comparatif natif accepté. Le même réglage s'applique au repos et en marche.
+Il concerne uniquement le personnage humanoïde dans le monde ; les lumières
+du décor, les autres acteurs et les portraits gardent leur traitement.
+Voir `reviews/animation-polish-01/LIGHT01-ACCEPTANCE.json`.
+
+**HELM06, décision du 31 octobre 2026 :** l’apparence du personnage joueur
+est celle du dessin complet de sa tenue et de son armure, avec la tête et
+les protections déjà incluses. Le casque équipé ne modifie plus cette image,
+dans aucune orientation ni dans le portrait. Les objets et leurs effets
+restent inchangés. Cette décision remplace les anciennes demandes de variantes
+casquées indépendantes pour le joueur ; les PNJ et monstres gardent leur rendu.
+Voir `reviews/animation-polish-01/HELM06-ARMOR-ONLY.json`.
+
 Un même personnage conserve son identité, son gabarit, ses vêtements,
 ses protections, ses matières et ses accessoires asymétriques entre la face,
 la marche et les différentes orientations. Les changements de pose ou de
@@ -55,8 +127,9 @@ suivent l'orientation montrée. Les nouvelles phases ne se fabriquent pas par
 greffe de jambes, cisaillement ou déplacement de bandes. Chaque morphologie
 de monstre conserve ses supports et ses appendices propres.
 
-Le contrôle inclut chaque phase et son retour au repos, avec et sans casque
-et arme. La taille de la toile ou des pixels de frange ne suffit pas à mesurer
+Le contrôle inclut chaque phase et son retour au repos, avec les configurations
+d’armes applicables. Pour le joueur, HELM06 conserve la tête complète de la tenue.
+La taille de la toile ou des pixels de frange ne suffit pas à mesurer
 le gabarit : comparer aussi la tête, le torse, la longueur des membres et les
 appuis. Une pose de repos issue d'un autre dessin peut changer la morphologie
 même lorsque la hauteur totale est proche. La reprise VERT18-C05, validée le 29 octobre 2026,
@@ -65,10 +138,19 @@ consigne ce défaut et le correctif accepté pour les neuf profils présentés.
 Les bras, gants et repères de prise proviennent du même cycle et de la même
 projection que le corps. Composer séparément le corps, les équipements portés,
 les armes communes et les mains, avec des attaches stables et un ordre de
-profondeur cohérent. Le casque suit la tête réellement dessinée. L'armure du
+profondeur cohérent. Une protection incluse dans la tenue suit sa tête. L'armure du
 joueur s'adapte à sa classe ; le dessin d'une arme reste partagé, avec sa
 prise et son placement adaptés. Les règles acceptées de marche et de retour
 de face restent celles de WALK12, ARM14 et DUAL15.
+
+Historique HELM04, remplacé par HELM06 le 31 octobre 2026 : chaque casque équipable conservait le même
+dessin sur toutes les classes, fidèle à son icône (formes, matières, palette,
+visière et détails). Adapter ses dimensions et son placement à la carrure et
+à l'armure portée, puis sa projection et ses occultations à l'orientation.
+Cette décision remplace les demandes HELM02/HELM03 de dessin de casque propre
+à chaque classe. La gamme de cinq icônes par poids visuel reçoit « oui ca me va :) »
+le même jour ; ses nouvelles vues portées sont désormais abandonnées. Voir
+`reviews/animation-polish-01/HELM04-REGLE.json` et `HELM04-ACCEPTANCE.json`.
 
 Précision CONT01, validée le 30 octobre 2026 : un maintien de la touche de
 déplacement enchaîne les pas sans passage frontal intermédiaire. Conserver

@@ -6,12 +6,18 @@ use macroquad::{
 use std::cell::{Cell, RefCell};
 
 #[cfg(debug_assertions)]
+#[path = "player_exposure_review.rs"]
+pub(crate) mod player_exposure_review;
+
+#[cfg(debug_assertions)]
 #[derive(serde::Serialize)]
 pub(crate) struct TextureAudit {
     pub world: bool,
     pub actor: bool,
     pub finish: bool,
     pub gain: f32,
+    pub lift: f32,
+    pub edge: f32,
     pub texture_size: [f32; 2],
 }
 #[cfg(debug_assertions)]
@@ -33,12 +39,54 @@ struct State {
     gray: bool,
     actor: bool,
 }
+#[derive(Clone, Copy)]
+struct Exposure {
+    gain: f32,
+    lift: f32,
+    edge: f32,
+}
+const LEGACY_EXPOSURE: Exposure = Exposure {
+    gain: 1.48,
+    lift: 0.75,
+    edge: 0.035,
+};
+// LIGHT01-r01 / 01 « Discret », selected on 1 November 2026.
+const PLAYER_EXPOSURE: Exposure = Exposure {
+    gain: 1.18,
+    lift: 0.30,
+    edge: 0.012,
+};
 thread_local! {
     static STATE: Cell<State> = const { Cell::new(State { world:false, gray:false, actor:false }) };
+    static PLAYER: Cell<bool> = const { Cell::new(false) };
     static PLAIN: RefCell<Option<Material>> = const { RefCell::new(None) };
     static ACTOR: RefCell<Option<Material>> = const { RefCell::new(None) };
     static LIGHT: RefCell<Option<Lighting>> = const { RefCell::new(None) };
     static NEUTRAL: RefCell<Option<Texture2D>> = const { RefCell::new(None) };
+}
+pub(crate) struct PlayerScope(bool);
+impl Drop for PlayerScope {
+    fn drop(&mut self) {
+        PLAYER.set(self.0);
+    }
+}
+pub(crate) fn player_scope(player: bool) -> PlayerScope {
+    PlayerScope(PLAYER.replace(player))
+}
+fn actor_exposure() -> Exposure {
+    if PLAYER.get() && STATE.get().world && STATE.get().actor && crate::visual_polish::enabled() {
+        #[cfg(debug_assertions)]
+        if let Some(profile) = player_exposure_review::override_exposure() {
+            return profile;
+        }
+        PLAYER_EXPOSURE
+    } else {
+        LEGACY_EXPOSURE
+    }
+}
+fn actor_gain(exposure: Exposure) -> f32 {
+    // Generated unlit maps already draw actors at their source exposure.
+    LIGHT.with_borrow(|light| if light.is_some() { exposure.gain } else { 1. })
 }
 struct Lighting {
     texture: Texture2D,
@@ -110,16 +158,47 @@ precision highp float;varying highp vec2 uv;varying lowp vec4 tint;uniform sampl
 uniform vec2 texel;
 uniform float PolishActor;
 uniform float PolishActorGain;
+uniform float ActorLift;
+uniform float ActorEdge;
 void main(){vec4 c=texture2D(Texture,uv);float l=dot(c.rgb,vec3(0.2126,0.7152,0.0722));
 float rim=step(texture2D(Texture,uv-vec2(texel.x,0.0)).a,0.3765);
 rim=max(rim,step(texture2D(Texture,uv-vec2(0.0,texel.y)).a,0.3765));
-c.rgb=min(vec3(1.0),c.rgb+vec3((12.0/255.0)*(1.0-l+rim)*0.75));
+c.rgb=min(vec3(1.0),c.rgb+vec3((12.0/255.0)*(1.0-l+rim)*ActorLift));
 if(PolishActor>0.5){
  float solid=smoothstep(0.04,0.15,dot(c.rgb,vec3(0.2126,0.7152,0.0722)))*c.a;
  vec3 pigment=c.rgb/max(max(c.r,max(c.g,c.b)),0.001);
- c.rgb=c.rgb*PolishActorGain+solid*rim*pigment*0.035;
+ c.rgb=c.rgb*PolishActorGain+solid*rim*pigment*ActorEdge;
 }
 gl_FragColor=c*tint;}"#;
+
+// Called on the graphics thread before the first displayed frame. One cached
+// material serves all actors; only the player's approved coefficients differ.
+pub(crate) fn prepare_actor_material() -> Result<(), macroquad::Error> {
+    ACTOR.with_borrow_mut(|slot| {
+        if slot.is_none() {
+            *slot = Some(build(
+                ShaderSource::Glsl {
+                    vertex: VERTEX,
+                    fragment: ACTOR_FRAGMENT,
+                },
+                MaterialParams {
+                    uniforms: vec![
+                        UniformDesc::new("texel", UniformType::Float2),
+                        UniformDesc::new("PolishActor", UniformType::Float1),
+                        UniformDesc::new("PolishActorGain", UniformType::Float1),
+                        UniformDesc::new("ActorLift", UniformType::Float1),
+                        UniformDesc::new("ActorEdge", UniformType::Float1),
+                    ],
+                    pipeline_params: crate::animation_policy::blend(),
+                    ..Default::default()
+                },
+                true,
+                false,
+            )?);
+        }
+        Ok(())
+    })
+}
 
 fn build(
     source: ShaderSource<'_>,
@@ -262,7 +341,9 @@ pub fn texture(texture: &Texture2D, x: f32, y: f32, color: Color, params: DrawTe
                 world: state.world,
                 actor: state.actor,
                 finish: crate::visual_polish::enabled(),
-                gain: LIGHT.with_borrow(|light| if light.is_some() { 1.48 } else { 1. }),
+                gain: actor_gain(actor_exposure()),
+                lift: actor_exposure().lift,
+                edge: actor_exposure().edge,
                 texture_size: [texture.width(), texture.height()],
             });
         }
@@ -285,27 +366,11 @@ pub fn texture(texture: &Texture2D, x: f32, y: f32, color: Color, params: DrawTe
         }
         return;
     }
-    ACTOR.with_borrow_mut(|slot| {
-        let m = slot.get_or_insert_with(|| {
-            build(
-                ShaderSource::Glsl {
-                    vertex: VERTEX,
-                    fragment: ACTOR_FRAGMENT,
-                },
-                MaterialParams {
-                    uniforms: vec![
-                        UniformDesc::new("texel", UniformType::Float2),
-                        UniformDesc::new("PolishActor", UniformType::Float1),
-                        UniformDesc::new("PolishActorGain", UniformType::Float1),
-                    ],
-                    pipeline_params: crate::animation_policy::blend(),
-                    ..Default::default()
-                },
-                true,
-                false,
-            )
-            .expect("actor readability shader")
-        });
+    let exposure = actor_exposure();
+    ACTOR.with_borrow(|slot| {
+        let m = slot
+            .as_ref()
+            .expect("actor material prepared before display");
         m.set_uniform("texel", (1. / texture.width(), 1. / texture.height()));
         m.set_uniform(
             "PolishActor",
@@ -315,12 +380,9 @@ pub fn texture(texture: &Texture2D, x: f32, y: f32, color: Color, params: DrawTe
                 0.0_f32
             },
         );
-        // Unlit generated maps already draw actors at full source exposure.
-        // The approved 1.48 gain compensates the painted maps' later lighting.
-        m.set_uniform(
-            "PolishActorGain",
-            LIGHT.with_borrow(|light| if light.is_some() { 1.48_f32 } else { 1.0_f32 }),
-        );
+        m.set_uniform("PolishActorGain", actor_gain(exposure));
+        m.set_uniform("ActorLift", exposure.lift);
+        m.set_uniform("ActorEdge", exposure.edge);
         use_material(m);
         draw_texture_ex(texture, x, y, color, params);
     });

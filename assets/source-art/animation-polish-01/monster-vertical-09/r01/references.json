@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-035-0",
+    "number": 35,
+    "name": "Créature pâle aux griffes",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 31,
+    "vertical_offset": -17,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-035-front.png",
+    "idle_sha256": "7883a35d613ac50082a29f7063b66016d15cfe52f7a842ea3121597e3b892079",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-035-v0.png",
+    "front_shadow": 26,
+    "current_vertical": {
+      "number": 35,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-035-v0.png",
+      "cell": [
+        58,
+        36
+      ],
+      "anchor": [
+        29,
+        34
+      ],
+      "offset": -17,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-037-0",
+    "number": 37,
+    "name": "Petit quadrupède pâle",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 25,
+    "vertical_offset": -20,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-037-front.png",
+    "idle_sha256": "b3e9c91dcde94aa9b7d7b3b1a393c299001b2a024f98e11a19118e0c279e2de0",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-037-v0.png",
+    "front_shadow": 20,
+    "current_vertical": {
+      "number": 37,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-037-v0.png",
+      "cell": [
+        45,
+        29
+      ],
+      "anchor": [
+        23,
+        27
+      ],
+      "offset": -20,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-038-0",
+    "number": 38,
+    "name": "Créature à gueule orangée",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 33,
+    "vertical_offset": -16,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-038-front.png",
+    "idle_sha256": "dc2e35c05433c6d70c91c77694e80c4757750d54f865b752337c71ff380d7fc2",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-038-v0.png",
+    "front_shadow": 29,
+    "current_vertical": {
+      "number": 38,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-038-v0.png",
+      "cell": [
+        57,
+        37
+      ],
+      "anchor": [
+        29,
+        35
+      ],
+      "offset": -16,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "review": "MONSTER-VERTICAL08-r01",
+  "tool": "built-in image_gen",
+  "mode": "edit / identity-preserve",
+  "reason": "Initial up drawing repeated the front and crown direction; true rear master becomes input1.",
+  "transparent_background": true,
+  "job": {
+    "number": 8,
+    "dir": "up",
+    "revision": "true-back-r02",
+    "paths": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-08/r01/MON-008-current-back-guide.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-up-source.png"
+    ],
+    "prompt": "Use case: identity-preserve. Pixel-art sprite-sheet edit. Input1 is the EXACT REAR-VIEW appearance master. Preserve THIS REAR VIEW in every single pose. Input2 is an accepted rear walking guide ONLY for compact foot phases; never copy its head/body/skin, belly, legs or colors.\nSubject: dark MAROON red low hunchback biped, original large pale bony hooked crown crest, bone ribs across rear shoulders, central pale/red SPINE on back, long arms ending in huge ivory claws, TWO short bent legs. Match rear-master body proportions, near-square bounding silhouette61width by60height. Crown hook projects toward SCREEN RIGHT, exactly like the REAR master. Show rear of skull, shoulder blades, spine, back of forearms, bootless clawed heels and rear thighs. NO eye, face, mouth, frontal breastbone, chest or front toe row pasted on the back. Do not mirror the figure back toward viewer. All8 figures walk NORTH/UP AWAY, unequivocally TRUE REAR, never face/front/side camera. Keep connected head/crest with whole back.\nLayout EXACT3equal columns x3equal rows, first8 distinct ordered phases, ninth rear idle. Compact alternating TWO-leg steps:1leftfoot contact,2settleleft,3rightpasses low underhips,4rightreaches away,5rightcontact,6settleright,7leftpasses low,8leftreaches toloop.400ms/step800mscycle. Short original legs, no tall torso, no large lateral spread or extra arms. Arms remain non-weight-bearing, near ground but never crawling supports. Stable low height and body width, minimal bob, same camera/scale throughout. Draw whole coherent figures, no detached head, grafted legs or bandwarps.\nPreserve original dark maroon flesh, warm cream bone, deep shadows and crisp readable native64 pixel clusters. No new anatomy/equipment, brightening, skin whitening, rim light, glowing outline, blur, HDsmooth painting or3D.\nGENUINE transparent alpha ZERO background/limb gaps, ample empty cell margins around each complete figure. NO floor, shadow, matte, text, labels, grid, checkerboard, watermark or cropping.",
+    "input_sha256": [
+      "c41dec1943b1d74f044024f6843716463a0d43da681c52cb3122ac1284f746d5",
+      "393b5ed9e53ecfb67ef790c7a491f84bdb0c2580bf7c71c505435983c8d3b2d2"
+    ]
+  }
+}

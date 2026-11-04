@@ -1,0 +1,119 @@
+{
+  "review": "SPELL-OBST01",
+  "date": "2026-11-01",
+  "baseline": "Three regression tests failed before the fix: blocked adjacent water, non-walkable area centre, and empty propagation on deep water.",
+  "lib_tests": {
+    "passed": 1001,
+    "failed": 0,
+    "command": "cargo test --locked --lib"
+  },
+  "presentation_tests": {
+    "passed": 6,
+    "commands": [
+      "cargo test --locked --bin project-rl natural_effect -- --nocapture",
+      "cargo test --locked --bin project-rl effect_geometry -- --nocapture"
+    ],
+    "failed": 0
+  },
+  "build": {
+    "passed": true,
+    "command": "cargo build --locked --bin project-rl"
+  },
+  "formatting": {
+    "git_diff_check": "passed",
+    "changed_files_rustfmt_check": "passed",
+    "global_cargo_fmt_check": "Pre-existing module order in src/lib.rs: localization appears before loading_profile. Confirmed unchanged from HEAD; left intact."
+  },
+  "native_graphics": {
+    "review": "SPELL-OBST01",
+    "scenes": [
+      {
+        "mask_verified": true,
+        "matches_open_floor": true,
+        "painted_pixels": 37011,
+        "reduced_motion": false,
+        "terrain": "floor"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": true,
+        "painted_pixels": 37011,
+        "reduced_motion": false,
+        "terrain": "water"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": true,
+        "painted_pixels": 37011,
+        "reduced_motion": false,
+        "terrain": "low-decor"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": false,
+        "painted_pixels": 32475,
+        "reduced_motion": false,
+        "terrain": "wall"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": false,
+        "painted_pixels": 32475,
+        "reduced_motion": false,
+        "terrain": "closed-door"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": false,
+        "painted_pixels": 32475,
+        "reduced_motion": false,
+        "terrain": "opaque-decor"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": true,
+        "painted_pixels": 37011,
+        "reduced_motion": true,
+        "terrain": "floor"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": true,
+        "painted_pixels": 37011,
+        "reduced_motion": true,
+        "terrain": "water"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": true,
+        "painted_pixels": 37011,
+        "reduced_motion": true,
+        "terrain": "low-decor"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": false,
+        "painted_pixels": 32475,
+        "reduced_motion": true,
+        "terrain": "wall"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": false,
+        "painted_pixels": 32475,
+        "reduced_motion": true,
+        "terrain": "closed-door"
+      },
+      {
+        "mask_verified": true,
+        "matches_open_floor": false,
+        "painted_pixels": 32475,
+        "reduced_motion": true,
+        "terrain": "opaque-decor"
+      }
+    ],
+    "tile_pixels": 64
+  },
+  "scope_limit": "Synthetic native GPU mask and real occult blast checks; no manual playthrough of the authored sewer map.",
+  "generated_pngs": "Inspected then removed; regenerate with the documented command."
+}

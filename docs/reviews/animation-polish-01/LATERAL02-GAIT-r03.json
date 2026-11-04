@@ -1,0 +1,57 @@
+{
+  "review": "LATERAL02-r03",
+  "date": "2026-11-02",
+  "status": "awaiting_visual_review",
+  "normal_game_enabled": false,
+  "bastion_unchanged": true,
+  "class": "Traqueuse",
+  "profile": "traqueuse-armor3",
+  "body": 5,
+  "armor_model": 101,
+  "outfit": 13,
+  "candidate": 3,
+  "weapon": null,
+  "generation_mode": "built-in image_gen edit; whole figures; transparent",
+  "prompt": "LATERAL02-PROMPT-r03.md",
+  "native_checks": {
+    "armor_stage": 3,
+    "bastion_unchanged": true,
+    "boards": 14,
+    "candidate_has_weapon": false,
+    "class": "Traqueuse",
+    "comparison": "02 previous candidate / 03 gait revision",
+    "cycles": [
+      {
+        "direction": "left",
+        "distinct_engine_frames": 6
+      },
+      {
+        "direction": "right",
+        "distinct_engine_frames": 6
+      }
+    ],
+    "engine_scene": "approved camp / LIGHT01 Discret",
+    "native_cell_px": 64,
+    "normal_game_enabled": false,
+    "references_unchanged": true,
+    "review": "LATERAL02-r03",
+    "source_profile": "traqueuse-armor3"
+  },
+  "idle_unchanged_pixels": true,
+  "previous_candidate_engine_pixels_unchanged": true,
+  "lower_body_envelope_reduction_median": 0.3847248576850095,
+  "sha256": {
+    "assets/source-art/animation-polish-01/lateral-identity-02/r03/LATERAL02-r03-source.png": "e76f1a11c30754b54fc760bb900b7d1b107b973691bd7e51139f0135f3f44c39",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r03/candidate-03-atlas.png": "701a24b56f600c9301eeaee298256dcab7a69af7633e888ab27924099cf6197a",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r03/conditioning-r03.json": "33d8638cc8e338b5ce95978cb36acdc940b6a42640f65f7eea21a9de8cbbbf93",
+    "docs/reviews/animation-polish-01/LATERAL02-PROMPT-r03.md": "247450fab8d1525302880b387b0d37afcde4476bc83fc65cf94199c0f105f7f1"
+  },
+  "preview": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=LATERAL02-r03#identite-laterale",
+  "live_trial_enabled": true,
+  "live_trial": "LATERAL02-LIVE-r03.md",
+  "movement_feedback": {
+    "date": "2026-11-02",
+    "quote": "de ce que je vois c'est que ca semble bien fonctionner",
+    "extension_requested": "All Traqueuse armor stages; stationary identity must also match"
+  }
+}

@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-008-0",
+    "number": 8,
+    "name": "Créature rouge à crête osseuse",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 60,
+    "vertical_offset": -2,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-08/r01/MON-008-front.png",
+    "idle_sha256": "cdd6003c296b97feeee04786652a26f8de07294ce1e867c79080ce7c98f7cb02",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-008-v0.png",
+    "front_shadow": 37,
+    "current_vertical": {
+      "number": 8,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-008-v0.png",
+      "cell": [
+        67,
+        66
+      ],
+      "anchor": [
+        33,
+        64
+      ],
+      "offset": -2,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-034-0",
+    "number": 34,
+    "name": "Petit démon orangé",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 38,
+    "vertical_offset": -13,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-08/r01/MON-034-front.png",
+    "idle_sha256": "7ce8cbeff887bd96d5c790d8ac7899ec522c92263bcf3ac74c1953a4e8fc174d",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-034-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 34,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-034-v0.png",
+      "cell": [
+        50,
+        42
+      ],
+      "anchor": [
+        25,
+        40
+      ],
+      "offset": -13,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-036-0",
+    "number": 36,
+    "name": "Créature bleue effilée",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 50,
+    "vertical_offset": -6,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-08/r01/MON-036-front.png",
+    "idle_sha256": "4d95f833cfa42f7d808c27b1c34238130517714c6661b566354eeaca8f372327",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-036-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 36,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-036-v0.png",
+      "cell": [
+        52,
+        56
+      ],
+      "anchor": [
+        26,
+        54
+      ],
+      "offset": -6,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

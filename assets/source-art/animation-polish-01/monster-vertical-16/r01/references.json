@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-078-0",
+    "number": 78,
+    "name": "Colosse à carapace sombre",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 79,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-16/r01/MON-078-front.png",
+    "idle_sha256": "27d5d5611c8b3b7ae61437e2b354b6437129d853bf310b4c16e1f3b9dc51ee81",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-078-v0.png",
+    "front_shadow": 56,
+    "current_vertical": {
+      "number": 78,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-078-v0.png",
+      "cell": [
+        99,
+        86
+      ],
+      "anchor": [
+        49,
+        84
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-079-0",
+    "number": 79,
+    "name": "Démon rouge au bras-lame",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 62,
+    "vertical_offset": -1,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-16/r01/MON-079-front.png",
+    "idle_sha256": "e75ffa286c963ee482865426bcd7b7c9068892d0443d9438006cb8f3e401b1d0",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-079-v0.png",
+    "front_shadow": 34,
+    "current_vertical": {
+      "number": 79,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-079-v0.png",
+      "cell": [
+        65,
+        69
+      ],
+      "anchor": [
+        33,
+        67
+      ],
+      "offset": -1,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-080-0",
+    "number": 80,
+    "name": "Brute voûtée ivoire et rouge",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 78,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-16/r01/MON-080-front.png",
+    "idle_sha256": "16dcfc46474d9693743a97af7c20f320f998bf2c255e8977611d776a3cb62fdb",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-080-v0.png",
+    "front_shadow": 42,
+    "current_vertical": {
+      "number": 80,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-080-v0.png",
+      "cell": [
+        88,
+        86
+      ],
+      "anchor": [
+        44,
+        84
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

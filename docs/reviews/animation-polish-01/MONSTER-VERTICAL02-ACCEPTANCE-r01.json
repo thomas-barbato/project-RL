@@ -1,0 +1,74 @@
+{
+  "review": "MONSTER-VERTICAL02-r01",
+  "date": "2026-11-02",
+  "status": "accepted",
+  "player_quote": "je valide :) parcontre je note que 03 - démon ailé change de couleur quand il marche (il devient rouge plus clair) .",
+  "models": [
+    5,
+    156,
+    165
+  ],
+  "variant": 0,
+  "directions": [
+    "down",
+    "up"
+  ],
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "normal_game_enabled": false,
+  "exception": {
+    "model": 144,
+    "part": "moving red material palette",
+    "preserve": "poses, silhouette, timing and retained frontal"
+  },
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-005-atlas.png",
+      "sha256": "08ef5a988d128f05dc2468b5b7bc582af31c6f93902b54ce540c7e6926836cf9"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-005-front.png",
+      "sha256": "df6ebb1c0ea9da4403f2d2df546df52353d209646548d38afdf42e0cf7935f28"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-005-down-source.png",
+      "sha256": "b8cf17d4ae144b2661004e13991eb3d0db0af4eed411250bdb5bbb4f32d902c0"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-005-up-source.png",
+      "sha256": "9b63396ac60b2b7fa016b76180553bc872f19a79499f706f85e6d34bfcf3c4f2"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-156-atlas.png",
+      "sha256": "d909ae85f546366e30c4c68f934716cbb84e41c3bd62eec7c435c2d5d6a94ea8"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-156-front.png",
+      "sha256": "773b05d0d8773faf51748b82d7fe50ab265ad7eecd9687380cf750f376c5e49f"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-156-down-source.png",
+      "sha256": "751cbdf859f9c61b70125f56b58bf4c32f55043b462d864ebdcbb513cb356d7b"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-156-up-source.png",
+      "sha256": "49805fa06f50938f1d9546fb1d78ba8e156f3f4ef6e7066fb6a9c8c6b98ab9c1"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-165-atlas.png",
+      "sha256": "560c3406acb012df9d8499ee3610159ac847e5c23ac83635ab20831d1f892581"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-165-front.png",
+      "sha256": "f190f662304e46064edc2a11ffeca027145b8c2c7542d887536ad01334f76888"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-165-down-source.png",
+      "sha256": "27f8eca96ae28079a3f09ddfce33dea5cc87e8528bd4fce012fcc76695860b02"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-02/r01/MON-165-up-occlusion-source.png",
+      "sha256": "40e7d00a5b08de0b677cf666b67961ad0724865445883dbef456c265c01adad3"
+    }
+  ]
+}

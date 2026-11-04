@@ -1,0 +1,24 @@
+{
+  "review": "SPELL-OBST01",
+  "rule": "SPELL-OBST01-RULE01",
+  "date": "2026-11-01",
+  "status": "requested_bugfix_integrated",
+  "user_requests": [
+    "il est normal qu'un sort soit \"bloqué\" par un mur, mais pas par un obstacle au sol",
+    "je peux pas lancer un sort à X cases, si la case en face de moi n'est pas accessible . Exemple dans les égouts, si je suis devant une case \"eau\" je peux pas ciber ce qui se trouve derrière et ca c'est assez illogique"
+  ],
+  "mechanics": {
+    "propagation": "Les trajets et zones des sorts utilisent l'opacité de la carte, indépendamment des collisions de marche. L'eau et les décors bas ne coupent plus les lignes, vagues ou zones.",
+    "targeting": "Une case d'eau ou de décor bas peut servir de centre de zone. Une cible visible derrière reste visable dans la portée réelle du sort.",
+    "solid_obstacles": "Les murs, portes fermées, décors opaques, coins fermés et limites de carte restent bloquants. La boule de feu conserve ses interceptions par les acteurs.",
+    "physical_placement": "Les barrières physiques FR03 et OC04 conservent leur exigence de sol praticable et leurs contraintes d'occupation.",
+    "preserved": "Portées chiffrées, coûts, durées, valeurs de dégâts, déplacement, visibilité, zones protégées et format de sauvegarde."
+  },
+  "visuals": {
+    "correction": "Les masques communs, explosions, sorties de couloir et courbes de sort distinguent les obstacles de marche des obstacles opaques.",
+    "preserved": "Dessins, palettes, taille native64, temps de présentation et filtrage par la perception actuelle.",
+    "new_art": false
+  },
+  "player_text_changes": false,
+  "reproduce_graphics_check": "cargo run --locked --bin project-rl -- --ui-cold-spell-obstacles artifacts/spell-obstacles-01/current"
+}

@@ -1,0 +1,21 @@
+{
+  "review": "MONSTER-VERTICAL08-r01",
+  "tool": "built-in image_gen",
+  "mode": "edit / lighting-weather",
+  "reason": "Native comparison and material diagnostics show lighter slate-blue and pale ochre at front; match original darker material values.",
+  "transparent_background": true,
+  "job": {
+    "number": 36,
+    "dir": "down",
+    "revision": "color-r03",
+    "paths": [
+      "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-08/r01/MON-036-down-source.png",
+      "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-08/r01/MON-036-appearance-reference.png"
+    ],
+    "prompt": "Use case: lighting-weather. COLOR-ONLY correction to this pixel-art3x3 walking sheet, input1=EDIT TARGET, input2=EXACT ORIGINAL COLOR MASTER.\nKeep every pose, silhouette, connected head/body/arms/legs, proportions, pixel clusters, 3x3 equal-cell layout, frame order, transparent gaps and alpha shape of INPUT1. Do not redraw gait or change camera/scale, clothing, anatomy or detail. Only recolor existing materials to match darker matte INPUT2.\nThe native comparison shows INPUT1 slate-blue body too LIGHT/SILVERY/GRAY. Restore the original DARK NAVY/SLATE BLUE, deeper original shadows and darker restrained highlights. For the blue/gray material the current medianRGB is roughly67,72,85 versus target45,55,69: darken cool body noticeably by about20% and retain cool blue hue. Do NOT whiten it or make it shiny. The small ochre throat is also too PALE YELLOW: target original darker brown OCHRE, less beige/white, keep exact original patch size and shape. Current ochre is roughly18red/16green/24blue units too bright: match input2's darker ochre rather than pale cream. Preserve dark brown claws and feet, without making them disappear. NO uniform brightness applied to background: background stays genuine transparent alphaZERO.\n8 distinct original front walking phases first8cells, ninth original idle. Preserve all poses and 0.86 whole silhouette width/height proportion, thin torso, long outward thin arms and connected claws. Crisp native64 pixel art, no smoothing, blur, HDpainting, noise, added light, rimlight, glow, ground, shadow, text, labels, border or matte. This is strictly a MATERIAL PALETTE correction, not a new design.",
+    "input_sha256": [
+      "55a330387a1a785604d77dbb4c51dec21c3812a9e1056d219b8fdf07408b38b3",
+      "a1803648b7ee55a3bdb17cf1a832ee16ee6f039b3f1dc61a9358ced945f0192c"
+    ]
+  }
+}

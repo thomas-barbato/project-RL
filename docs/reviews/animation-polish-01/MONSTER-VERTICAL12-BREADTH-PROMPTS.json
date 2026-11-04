@@ -1,0 +1,36 @@
+{
+  "review": "MONSTER-VERTICAL12-r01",
+  "tool": "built-in image_gen",
+  "mode": "edit / body breadth correction",
+  "transparent_background": true,
+  "jobs": [
+    {
+      "number": 68,
+      "dir": "down",
+      "revision": "breadth",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-12/r01/MON-068-down-narrow-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-12/r01/MON-068-appearance-reference.png"
+      ],
+      "prompt": "Use case: identity-preserve / precise-object-edit. Correct ONLY the deficient BODY BREADTH of INPUT1, the complete 3x3 walking sprite sheet. INPUT2 is the exact canonical appearance and proportions master; it overrides the too-slender figures in INPUT1. This is the SAME LARGE MASSIVE ORANGE/BROWN PLATED BIPED, not a redesigned species.\nKeep INPUT1's exact THREE columns x THREE rows layout, eight ordered compact walking phases and ninth settled idle. Every entire figure must remain inside its own cell with transparent margins. Keep the HEIGHT, camera, step order, colors, shell, hands, taloned feet and limb count. Retain the head attached coherently to torso. Change body proportions by redrawing coherent anatomy, not by distorting, stretching, pasting detached body parts or changing scale per frame.\nCRITICAL FRONT SILHOUETTE: canonical complete figure is 69 pixels WIDE and 78 pixels HIGH, width/height ratio 0.885. Current figures are about 13% too narrow. Restore the original broad shoulder/hip volume and reach of the large hanging clawed hands; target 0.885 width/height ±0.025 in ALL poses.\nThe original body is HEAVY and broad, not a slim humanoid. Match INPUT2 torso width and limb thickness. Hands are massive dark curved claws anatomically attached to forearms, not weapons. Maintain relaxed shoulders, elbows lowered and forearms nearly vertical outside hips. Arms hang down beside the broad body; do not obtain width by raising elbows or holding arms in an unnatural arch. Do not draw a bodybuilder T-pose or spread legs widely.\nTwo feet carry the figure; compact deliberate alternating steps, low passing feet, narrow stance and a stable grounded support. No knee-high march, running, hopping, heavy head bob, claw waving or narrowing the figure on passing phases.\nVIEW EXACTLY FRONT/down toward viewer, preserving canonical curved dark face/head shell and orange folded chest.\nCrisp native64-readable pixel clusters, original matte orange/brown flesh and charcoal shell/claws. No added shine, brighter skin, rimlight, blur or colored export fringe specks. Genuine transparent alphaZERO outside real silhouettes and through gaps; no floor, shadow, matte, checkerboard, grid, text or watermark. No extra limb, held weapon, clothing, horns, tail or invented anatomy.",
+      "input_sha256": [
+        "54e4fec7fe86d5a5f425466e6c49da0767c3d9ba26f5bda59340f0671c62c854",
+        "109d41b83fb2ba6cec496f4dff3f4929b38f72b8e6702610b9b252dae282c026"
+      ]
+    },
+    {
+      "number": 68,
+      "dir": "up",
+      "revision": "breadth",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-12/r01/MON-068-up-narrow-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-12/r01/MON-068-current-back-guide.png"
+      ],
+      "prompt": "Use case: identity-preserve / precise-object-edit. Correct ONLY the deficient BODY BREADTH of INPUT1, the complete 3x3 walking sprite sheet. INPUT2 is the exact canonical appearance and proportions master; it overrides the too-slender figures in INPUT1. This is the SAME LARGE MASSIVE ORANGE/BROWN PLATED BIPED, not a redesigned species.\nKeep INPUT1's exact THREE columns x THREE rows layout, eight ordered compact walking phases and ninth settled idle. Every entire figure must remain inside its own cell with transparent margins. Keep the HEIGHT, camera, step order, colors, shell, hands, taloned feet and limb count. Retain the head attached coherently to torso. Change body proportions by redrawing coherent anatomy, not by distorting, stretching, pasting detached body parts or changing scale per frame.\nCRITICAL REAR SILHOUETTE: canonical complete figure is 76 pixels WIDE and 78 pixels HIGH, width/height ratio 0.974 (ALMOST AS WIDE AS TALL). Current figures are approximately 25% too narrow. Restore the canonical BIG broad deltoids and upper back, thick thighs and original lateral reach of hanging large black clawed hands; target 0.974 width/height ±0.025 in ALL poses.\nThe original body is HEAVY and broad, not a slim humanoid. Match INPUT2 torso width and limb thickness. Hands are massive dark curved claws anatomically attached to forearms, not weapons. Maintain relaxed shoulders, elbows lowered and forearms nearly vertical outside hips. Arms hang down beside the broad body; do not obtain width by raising elbows or holding arms in an unnatural arch. Do not draw a bodybuilder T-pose or spread legs widely.\nTwo feet carry the figure; compact deliberate alternating steps, low passing feet, narrow stance and a stable grounded support. No knee-high march, running, hopping, heavy head bob, claw waving or narrowing the figure on passing phases.\nVIEW EXACTLY REAR/up away from viewer, preserving the rigid long dark layered head/back shell. NO face or frontal chest drawn on back.\nCrisp native64-readable pixel clusters, original matte orange/brown flesh and charcoal shell/claws. No added shine, brighter skin, rimlight, blur or colored export fringe specks. Genuine transparent alphaZERO outside real silhouettes and through gaps; no floor, shadow, matte, checkerboard, grid, text or watermark. No extra limb, held weapon, clothing, horns, tail or invented anatomy.",
+      "input_sha256": [
+        "f1f0e3dc7d22e0dee9d094e2605f63676ca7ffb0267e0fc14efc12863338d5cd",
+        "3d763bdbc7d4bd99a35f2b0431ecbedeff1d13e1fdd5b84af162cb945df3f862"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "review": "HELM06-ARMOR-ONLY",
+  "date": "2026-10-31",
+  "status": "integrated_release_built_and_normal_menu_launched",
+  "live_test_request": "tu peux integrer ceci que je test en live . :)",
+  "user_quote": "bon , je pense qu'on va oublier cette histoire de casque et ne garder que le visuel des armures .",
+  "decision": "The complete existing body armor/outfit art alone determines the player's appearance, including any head or protection already drawn in that outfit.",
+  "independent_equipped_helmet_visual": false,
+  "player_only": true,
+  "views": ["front", "back", "left", "right", "standing", "walking", "aim_portrait", "terminal_schematic"],
+  "gameplay": "Helmet items, current item icons, equipped state, bonuses, saves and rules are unchanged. Only renderer inputs omit the head slot.",
+  "normal_game_enabled": true,
+  "source_art_changed": false,
+  "review_experiments_compiled": false,
+  "preview": "artifacts/animation-polish-01/apercu.html#armures",
+  "preview_helmet_sections_removed": true,
+  "supersedes": ["HELM01 independent helmet proportion variants", "HELM02/HELM03 class-dependent helmet redesign", "HELM04 five-icon future worn range", "HELM05 worn helmets, EYE01 and MOTION01-03", "VERT18 requests for independent equipped/unhelmeted player appearance"],
+  "historical_art_and_decisions": "Preserved as historical sources and evidence; prior icon approval does not keep the abandoned worn-helmet direction active.",
+  "other_polish_scope": "C01 movement, C02-A moderate heavy firearm reduction, C03 floor icons, C04 aim portrait and C05 grenade launcher retain their separate decisions and integration state.",
+  "validation": "HELM06-VALIDATION.md"
+}

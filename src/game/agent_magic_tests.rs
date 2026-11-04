@@ -39,6 +39,161 @@ fn hits(g: &GameState, e: EntityId) -> usize {
 }
 
 #[test]
+fn spell_obstacles_casts_cross_adjacent_water_and_low_decor_in_four_directions() {
+    let template = arena(&[]);
+    for id in ["FE02", "FE05", "FR04", "FR05", "A02"] {
+        for dir in [(1, 0), (-1, 0), (0, 1), (0, -1)] {
+            for low_decor in [false, true] {
+                let origin = GridPos::new(8, 8);
+                let at = |distance| GridPos::new(8 + dir.0 * distance, 8 + dir.1 * distance);
+                let mut map = Map::filled(17, 17, Terrain::Floor).unwrap();
+                if low_decor {
+                    map.set_obstruction(at(1), true, false).unwrap();
+                } else {
+                    map.set_terrain(at(1), Terrain::DeepWater).unwrap();
+                }
+                let mut g =
+                    GameState::new_with_rules(map, origin, 19, template.rules.clone()).unwrap();
+                g.player_skills.set_agent_skill_rank(id, 10);
+                g.player_energy = crate::resources::EnergyReserve::new(60000, 60000).unwrap();
+                let victim = enemy(&mut g, at(3), 5000);
+                let preview = g
+                    .agent_spell_preview(id, at(3))
+                    .unwrap_or_else(|e| panic!("{id}, {dir:?}, low decor: {low_decor}: {e:?}"));
+                if id == "FE05" {
+                    assert_eq!(preview.target(), at(3));
+                }
+                if id != "FR04" {
+                    assert!(preview.cells().iter().any(|c| c.position == at(3)), "{id}");
+                }
+                assert_eq!(
+                    g.process_player_command(cast(id, at(3))),
+                    CommandOutcome::Applied
+                );
+                for _ in 0..4 {
+                    g.process_player_command(GameCommand::Wait);
+                }
+                assert!(
+                    g.actors.get(victim).unwrap().integrity() < 5000,
+                    "{id}, {dir:?}, low decor: {low_decor}"
+                );
+                assert!(!g.map.is_walkable(at(1)));
+            }
+        }
+    }
+}
+
+#[test]
+fn spell_obstacles_area_can_be_centred_on_water_or_low_decor() {
+    for id in ["A02", "FE05", "FE04", "FR05"] {
+        for low_decor in [false, true] {
+            let mut g = arena(&[id]);
+            let target = GridPos::new(4, 3);
+            let victim = enemy(&mut g, GridPos::new(5, 3), 5000);
+            if low_decor {
+                g.map.set_obstruction(target, true, false).unwrap();
+            } else {
+                g.map.set_terrain(target, Terrain::DeepWater).unwrap();
+            }
+            g.refresh_player_visibility();
+            let preview = g.agent_spell_preview(id, target).unwrap();
+            assert_eq!(preview.target(), target, "{id}");
+            assert!(preview.cells().iter().any(|c| c.position == target), "{id}");
+            assert_eq!(
+                g.process_player_command(cast(id, target)),
+                CommandOutcome::Applied
+            );
+            for _ in 0..4 {
+                g.process_player_command(GameCommand::Wait);
+            }
+            assert!(g.actors.get(victim).unwrap().integrity() < 5000, "{id}");
+        }
+    }
+}
+
+#[test]
+fn spell_obstacles_walls_closed_doors_and_opaque_decor_still_reject_aim_atomically() {
+    use crate::world::DoorState;
+    for id in ["FE02", "FE05", "FR04", "FR05", "A02"] {
+        for kind in 0..3 {
+            let mut g = arena(&[id]);
+            g.player_skills.set_agent_skill_rank(id, 10);
+            let obstacle = GridPos::new(3, 3);
+            match kind {
+                0 => g.map.set_terrain(obstacle, Terrain::Wall).unwrap(),
+                1 => g
+                    .map
+                    .set_terrain(obstacle, Terrain::Door(DoorState::Closed))
+                    .unwrap(),
+                _ => g.map.set_obstruction(obstacle, true, true).unwrap(),
+            }
+            g.refresh_player_visibility();
+            let before = format!("{g:?}");
+            assert_eq!(
+                g.process_player_command(cast(id, GridPos::new(5, 3))),
+                CommandOutcome::Rejected(CommandRejection::AbilityNoLineOfSight(GridPos::new(
+                    5, 3
+                ))),
+                "{id}, obstacle {kind}"
+            );
+            assert_eq!(before, format!("{g:?}"));
+        }
+    }
+}
+
+#[test]
+fn spell_obstacles_physical_barriers_still_require_free_ground() {
+    for id in ["FR03", "OC04"] {
+        let mut g = arena(&[id]);
+        let target = GridPos::new(5, 3);
+        let preview = g.agent_spell_preview(id, target).unwrap();
+        let water = preview
+            .cells()
+            .iter()
+            .find(|c| c.position != target)
+            .unwrap()
+            .position;
+        g.map.set_terrain(water, Terrain::DeepWater).unwrap();
+        let actual = g.agent_spell_preview(id, target).unwrap();
+        assert_eq!(actual.cells().len() + 1, preview.cells().len());
+        assert!(!actual.cells().iter().any(|c| c.position == water));
+        assert_eq!(
+            g.process_player_command(cast(id, target)),
+            CommandOutcome::Applied
+        );
+        assert!(g.actors.entity_at(water).is_none());
+
+        let mut g = arena(&[id]);
+        g.map.set_terrain(target, Terrain::DeepWater).unwrap();
+        assert_eq!(
+            g.agent_spell_preview(id, target),
+            Err(CommandRejection::AbilityTargetBlocked(target))
+        );
+    }
+}
+
+#[test]
+fn spell_obstacles_fireball_crosses_low_diagonal_corners_but_not_opaque_ones() {
+    let origin = GridPos::new(2, 3);
+    let target = GridPos::new(4, 5);
+    let mut g = arena(&["FE05"]);
+    for at in [GridPos::new(3, 3), GridPos::new(2, 4), GridPos::new(3, 4)] {
+        g.map.set_obstruction(at, true, false).unwrap();
+    }
+    enemy(&mut g, target, 5000);
+    g.refresh_player_visibility();
+    assert_eq!(
+        g.agent_spell_preview("FE05", target).unwrap().target(),
+        target
+    );
+    assert_eq!(g.agent_fireball_impact(origin, target), target);
+    for at in [GridPos::new(3, 3), GridPos::new(2, 4)] {
+        g.map.set_obstruction(at, true, true).unwrap();
+    }
+    assert_eq!(g.agent_fireball_impact(origin, target), origin);
+}
+
+#[test]
 fn agent_magic_dense_areas_damage_every_recipient_and_apply_guaranteed_statuses() {
     let template = arena(&[]);
     for id in ["A02", "FE02", "FE03", "FE04", "FE05", "FR02", "FR04"] {

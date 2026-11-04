@@ -1,0 +1,92 @@
+{
+  "review": "MONSTER-VERTICAL07-r01",
+  "date": "2026-11-03",
+  "status": "partially_accepted",
+  "player_quote": "je valide et on continue :)",
+  "review_numbers": [
+    19,
+    20
+  ],
+  "models": [
+    26,
+    28
+  ],
+  "variant": 0,
+  "directions": [
+    "down",
+    "up"
+  ],
+  "native_cell_px": 64,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "poses_per_direction": 8,
+  "retained_frontal_exact": true,
+  "appearance_retained": {
+    "26": "short broad hunched hybrid, ochre jacket; massive dark right forearm and paler left forearm, anatomical ownership retained",
+    "28": "low broad olive heavy biped, long arms remain non weight bearing"
+  },
+  "normal_game_enabled": false,
+  "manifest": "assets/source-art/animation-polish-01/monster-vertical-07/r01/manifest.json",
+  "native_validation": "docs/reviews/animation-polish-01/MONSTER-VERTICAL07-VALIDATION.json",
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-atlas.png",
+      "sha256": "d8f3690a1358fc513fb640f12c9a9ee4e6c5ed30941d07743dc1fb8c29a1e079"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-front.png",
+      "sha256": "6e3636411721da5c83397e494b5c69aa6586f3abf7eba4cd6a1d2e187170e30e"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-down-source.png",
+      "sha256": "512294b5b346b996619e36a1374d8064a2486684667b6b9605c9a1f22112c4fc"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-up-source.png",
+      "sha256": "5f721c7d8e3243e0225a5f2ef06b5bc69e274f48ad8af8ed666e6f10c04c78c5"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-028-atlas.png",
+      "sha256": "23363ee473b9359f246e547613c8daf29b44bac644eb3d2eaa5944fa40db6fff"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-028-front.png",
+      "sha256": "8583faadc19b4d92c9930dd42eedf2c90d5210ac15a469e10ef686026a0f073b"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-028-down-source.png",
+      "sha256": "01ea6500f7eb2078cab215ff03f76342299a1cbc80d1e5428c6289f7ef8b7e0a"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-028-up-source.png",
+      "sha256": "a969b597b4d7d7f6ddb70a9ebdc37dec1df73f3e447bc45e71c07379e95248f3"
+    }
+  ],
+  "withdrawn_models": [
+    32
+  ],
+  "withdrawn_review_numbers": [
+    21
+  ],
+  "withdrawn_assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-atlas.png",
+      "sha256": "cf3ea86a23e33e1d397d7b72cde2c4e58bbaa997ca259322301d52a57c39eb88"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-front.png",
+      "sha256": "1bd9dcba364707e6ab8190140f8c744513c2ab0df1444b52dc0c8fad0061fe07"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-down-source.png",
+      "sha256": "db5ca13369659f73904894ff3529f2fe4683df3c872075afa00b1455bd33ab42"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-up-source.png",
+      "sha256": "393b5ed9e53ecfb67ef790c7a491f84bdb0c2580bf7c71c505435983c8d3b2d2"
+    }
+  ],
+  "amendment": "MONSTER-VERTICAL07-AMENDMENT-r02.json",
+  "latest_player_quote": "je valide sauf le 21 : il n'est pas bipede lui donc je sais pas pourquoi il se leve sur 2 jambes :) .",
+  "withdrawn_appearance": "compact rounded body, forward curved head attached to torso; rear hides eye and belly"
+}

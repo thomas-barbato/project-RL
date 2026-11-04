@@ -1,0 +1,336 @@
+{
+  "review": "LATERAL02-r03",
+  "class": "Traqueuse",
+  "armor_stage": 3,
+  "profile": "traqueuse-armor3",
+  "source_size": [
+    2172,
+    724
+  ],
+  "reference_opaque_height": 58,
+  "uniform_scale": 0.30687830687830686,
+  "sampling": "nearest",
+  "whole_figures_only": true,
+  "baseline_y": 81,
+  "upper_anchor": "one whole-figure translation, locked to each directional idle; no limb/head edits",
+  "native_cell_px": 64,
+  "frame_canvas": [
+    96,
+    96
+  ],
+  "anchor": [
+    48,
+    81
+  ],
+  "distinct_walk_frames_per_direction": 6,
+  "distinct_lower_body_frames_per_direction": 6,
+  "separate_directional_idle": true,
+  "normal_game_enabled": false,
+  "source_sha256": "e76f1a11c30754b54fc760bb900b7d1b107b973691bd7e51139f0135f3f44c39",
+  "frames": [
+    {
+      "file": "candidate-03-left-0.png",
+      "row": 0,
+      "phase": 0,
+      "source_bbox": [
+        121,
+        125,
+        189,
+        315
+      ],
+      "native_bbox": [
+        37,
+        23,
+        58,
+        81
+      ],
+      "upper_anchor_x": 47.33146571009168
+    },
+    {
+      "file": "candidate-03-left-1.png",
+      "row": 0,
+      "phase": 1,
+      "source_bbox": [
+        127,
+        125,
+        190,
+        315
+      ],
+      "native_bbox": [
+        38,
+        23,
+        57,
+        81
+      ],
+      "upper_anchor_x": 46.961117743972174
+    },
+    {
+      "file": "candidate-03-left-2.png",
+      "row": 0,
+      "phase": 2,
+      "source_bbox": [
+        128,
+        125,
+        192,
+        314
+      ],
+      "native_bbox": [
+        38,
+        23,
+        58,
+        81
+      ],
+      "upper_anchor_x": 46.9684891010338
+    },
+    {
+      "file": "candidate-03-left-3.png",
+      "row": 0,
+      "phase": 3,
+      "source_bbox": [
+        128,
+        125,
+        195,
+        312
+      ],
+      "native_bbox": [
+        37,
+        24,
+        58,
+        81
+      ],
+      "upper_anchor_x": 46.47957670881616
+    },
+    {
+      "file": "candidate-03-left-4.png",
+      "row": 0,
+      "phase": 4,
+      "source_bbox": [
+        132,
+        125,
+        194,
+        315
+      ],
+      "native_bbox": [
+        38,
+        23,
+        57,
+        81
+      ],
+      "upper_anchor_x": 46.55245334013487
+    },
+    {
+      "file": "candidate-03-left-5.png",
+      "row": 0,
+      "phase": 5,
+      "source_bbox": [
+        134,
+        125,
+        197,
+        314
+      ],
+      "native_bbox": [
+        38,
+        23,
+        57,
+        81
+      ],
+      "upper_anchor_x": 46.66750424126613
+    },
+    {
+      "file": "candidate-03-left-6.png",
+      "row": 0,
+      "phase": 6,
+      "source_bbox": [
+        132,
+        125,
+        196,
+        315
+      ],
+      "native_bbox": [
+        38,
+        23,
+        58,
+        81
+      ],
+      "upper_anchor_x": 46.845994527389124
+    },
+    {
+      "file": "candidate-03-right-0.png",
+      "row": 1,
+      "phase": 0,
+      "source_bbox": [
+        129,
+        79,
+        199,
+        267
+      ],
+      "native_bbox": [
+        38,
+        23,
+        59,
+        81
+      ],
+      "upper_anchor_x": 48.235797810414724
+    },
+    {
+      "file": "candidate-03-right-1.png",
+      "row": 1,
+      "phase": 1,
+      "source_bbox": [
+        129,
+        79,
+        192,
+        267
+      ],
+      "native_bbox": [
+        38,
+        23,
+        57,
+        81
+      ],
+      "upper_anchor_x": 48.15085576161855
+    },
+    {
+      "file": "candidate-03-right-2.png",
+      "row": 1,
+      "phase": 2,
+      "source_bbox": [
+        130,
+        79,
+        195,
+        265
+      ],
+      "native_bbox": [
+        38,
+        24,
+        58,
+        81
+      ],
+      "upper_anchor_x": 48.55172589475555
+    },
+    {
+      "file": "candidate-03-right-3.png",
+      "row": 1,
+      "phase": 3,
+      "source_bbox": [
+        129,
+        79,
+        201,
+        265
+      ],
+      "native_bbox": [
+        37,
+        24,
+        59,
+        81
+      ],
+      "upper_anchor_x": 48.2503494338277
+    },
+    {
+      "file": "candidate-03-right-4.png",
+      "row": 1,
+      "phase": 4,
+      "source_bbox": [
+        134,
+        79,
+        197,
+        267
+      ],
+      "native_bbox": [
+        38,
+        23,
+        57,
+        81
+      ],
+      "upper_anchor_x": 48.21139669068036
+    },
+    {
+      "file": "candidate-03-right-5.png",
+      "row": 1,
+      "phase": 5,
+      "source_bbox": [
+        135,
+        79,
+        202,
+        266
+      ],
+      "native_bbox": [
+        37,
+        24,
+        58,
+        81
+      ],
+      "upper_anchor_x": 47.94474933570792
+    },
+    {
+      "file": "candidate-03-right-6.png",
+      "row": 1,
+      "phase": 6,
+      "source_bbox": [
+        133,
+        79,
+        197,
+        267
+      ],
+      "native_bbox": [
+        38,
+        23,
+        58,
+        81
+      ],
+      "upper_anchor_x": 48.25301926764636
+    }
+  ],
+  "idle_reused_byte_identical": true,
+  "lower_body_envelope_px": [
+    {
+      "direction": "left",
+      "phase": 0,
+      "before": 34,
+      "after": 21
+    },
+    {
+      "direction": "left",
+      "phase": 2,
+      "before": 30,
+      "after": 18
+    },
+    {
+      "direction": "left",
+      "phase": 3,
+      "before": 33,
+      "after": 21
+    },
+    {
+      "direction": "left",
+      "phase": 5,
+      "before": 31,
+      "after": 19
+    },
+    {
+      "direction": "right",
+      "phase": 0,
+      "before": 35,
+      "after": 21
+    },
+    {
+      "direction": "right",
+      "phase": 2,
+      "before": 33,
+      "after": 20
+    },
+    {
+      "direction": "right",
+      "phase": 3,
+      "before": 34,
+      "after": 22
+    },
+    {
+      "direction": "right",
+      "phase": 5,
+      "before": 32,
+      "after": 21
+    }
+  ],
+  "median_envelope_reduction": 0.3847248576850095
+}

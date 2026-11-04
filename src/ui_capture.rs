@@ -8,6 +8,11 @@ pub fn framebuffer() -> Result<Image, String> {
         return Err("Dimensions de capture non prises en charge.".to_owned());
     }
     let mut image = macroquad::texture::get_screen_data();
+    if image.width < 2 || image.height < 2 {
+        return Err(
+            "Capture indisponible : la fenêtre est réduite ou son framebuffer est vide.".to_owned(),
+        );
+    }
     // A window is already composited. Framebuffer alpha is not PNG transparency.
     for pixel in image.bytes.as_chunks_mut::<4>().0 {
         pixel[3] = 255;

@@ -1,0 +1,89 @@
+{
+  "review": "MONSTER-VERTICAL09-r01",
+  "date": "2026-11-03",
+  "status": "accepted",
+  "player_quote": "je valide :)",
+  "continuation_quote": "et on continue",
+  "review_numbers": [
+    25,
+    26,
+    27
+  ],
+  "models": [
+    35,
+    37,
+    38
+  ],
+  "variant": 0,
+  "directions": [
+    "down",
+    "up"
+  ],
+  "native_cell_px": 64,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "poses_per_direction": 8,
+  "locomotion": "quadruped",
+  "locomotor_legs": 4,
+  "retained_frontal_exact": true,
+  "normal_game_enabled": false,
+  "material_palette_accepted": {
+    "35": "whole-cycle warm ivory balance; alpha, geometry, other materials and idles retained"
+  },
+  "manifest": "assets/source-art/animation-polish-01/monster-vertical-09/r01/manifest.json",
+  "native_validation": "docs/reviews/animation-polish-01/MONSTER-VERTICAL09-VALIDATION.json",
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-035-atlas.png",
+      "sha256": "d2c01e3a2ca251a44683f2ea5493220eb53d808edbc84aa7c54cafd73a55ad00"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-035-front.png",
+      "sha256": "7883a35d613ac50082a29f7063b66016d15cfe52f7a842ea3121597e3b892079"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-035-down-source.png",
+      "sha256": "d7e50e7292a28e61556c0228bc7ca39684985c78c19bd6599e6fba87b1914998"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-035-up-source.png",
+      "sha256": "bd85d2cd7a223ea65fd4a57df3a74a18b53829e22e6b2da7764dfdd150242142"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-035-ivory-palette.json",
+      "sha256": "9e41af8b8da98eb66723a1e4624a07a477eb5e1bcb4a22fcc1ddc7e4484b06b8"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-037-atlas.png",
+      "sha256": "c782df98e2f70a04fed38eea6116ba8fc7fadaee3c3a1ff6bb1647d28b584c88"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-037-front.png",
+      "sha256": "b3e9c91dcde94aa9b7d7b3b1a393c299001b2a024f98e11a19118e0c279e2de0"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-037-down-source.png",
+      "sha256": "34b2faf755513f50407700bc18a25df8b011d94c45831c2862aafc6e7c5aac3d"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-037-up-source.png",
+      "sha256": "0a88821c0658a8cbc71b9a273f8bdcc40594dadf740a2cbbf5e60eaf4bbabe1f"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-038-atlas.png",
+      "sha256": "ece9479fceea3aff566d6793a6776492bdddc612a8f48f679d2378fc1efc71cb"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-038-front.png",
+      "sha256": "dc2e35c05433c6d70c91c77694e80c4757750d54f865b752337c71ff380d7fc2"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-038-down-source.png",
+      "sha256": "e93570ec2d5ca36694e81e431d9025c6a837a731e83a1187893c8d9d8400a4a0"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-09/r01/MON-038-up-source.png",
+      "sha256": "593537dc0b30676948d4f95d3a3404eda29744d9979acd79f0faf7d470d4dcf4"
+    }
+  ]
+}

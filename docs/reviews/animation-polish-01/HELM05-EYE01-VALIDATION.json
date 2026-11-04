@@ -1,0 +1,47 @@
+{
+  "review": "HELM05-W02-EYE01",
+  "date": "2026-10-31",
+  "status": "r03_candidate_ready_for_visual_review",
+  "raw_candidate": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W02-views-r03.png",
+  "raw_previous": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W02-views-r02.png",
+  "creation_mode": "builtin_image_gen",
+  "prompt_manifest": "HELM05-EYE01-PROMPT.json",
+  "scope": "Helmet02 three front-facing views; original true back retained",
+  "glass_pixels_eye_band_before": {
+    "front": 4,
+    "near_three_quarter": 5,
+    "far_three_quarter": 0
+  },
+  "glass_pixels_eye_band_after": {
+    "front": 4,
+    "near_three_quarter": 6,
+    "far_three_quarter": 3
+  },
+  "optic_native_visibility_placements": 180,
+  "targeted_worn_tests": {
+    "passed": 3,
+    "failed": 0
+  },
+  "debug_build": "passed",
+  "engine_capture_exit_code": 0,
+  "engine_sheets": 140,
+  "outside_model02_row_rgb_identical_sheets": 140,
+  "entire_true_back_moving_sheets_identical": 30,
+  "changed_sheets_confined_to_model02_row": 110,
+  "native_back_tile_identical": true,
+  "accepted_icons_hashes_preserved": true,
+  "javascript_syntax": "passed node --check",
+  "python_compile": "passed",
+  "json_valid": "passed",
+  "browser": {
+    "same_tab_reused": true,
+    "three_angle_selector_verified": true,
+    "console_errors": 0,
+    "screenshot": "artifacts/animation-polish-01/helmet-worn-r01/current/eye01/browser-eye-focused.png",
+    "screenshot_is_crop_of_browser_capture": true
+  },
+  "normal_game_enabled": false,
+  "visual_acceptance_received": false,
+  "limitation": "Presence and native-scale tests do not establish geometric or artistic identity. The three-view comparison remains a visual candidate, not a proved 3D reconstruction",
+  "full_suite_run": false
+}

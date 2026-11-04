@@ -1,0 +1,87 @@
+{
+  "review": "BIPED-LATERAL02-r01",
+  "date": "2026-11-02",
+  "status": "visually_accepted_not_integrated",
+  "new_models": [
+    5,
+    14,
+    156
+  ],
+  "accepted_reference_model": 144,
+  "normal_game_enabled": false,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "generation": {
+    "mode": "built-in image_gen",
+    "profiles": [
+      {
+        "number": 5,
+        "name": "Possédé",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-atlas.png",
+        "sha256": "6de6ed7e994eee5f703ebacf571a80fa374818fbc6fc966f5f8d3ddbf23565bd",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-right-source.png"
+        ],
+        "accepted": false
+      },
+      {
+        "number": 14,
+        "name": "Cultiste",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-atlas.png",
+        "sha256": "bb13de5c1f9a911830649a84cf586a04c65081b675cab9bb541fd3c02d6335f4",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-right-source.png"
+        ],
+        "accepted": false
+      },
+      {
+        "number": 156,
+        "name": "Démon massif",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-atlas.png",
+        "sha256": "af27fc9f303cbe787130660f320f9cc4470df5057951b09a9ee109d288f34c25",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-right-source.png"
+        ],
+        "accepted": false
+      },
+      {
+        "number": 144,
+        "name": "Démon ailé validé",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-atlas.png",
+        "sha256": "def77b1f9d572afb7c3460e1403febe5d7f6d172fc0efc989a23af037e587361",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-right-source.png"
+        ],
+        "accepted": true
+      }
+    ],
+    "prompts": "docs/reviews/animation-polish-01/BIPED-LATERAL02-PROMPTS-r01.md"
+  },
+  "validation": {
+    "debug_build": "passed",
+    "native_capture": {
+      "review": "BIPED-LATERAL02-r01",
+      "captures": 264,
+      "synchronized_phase_samples": 256,
+      "accepted_demon_pixel_identical": 66,
+      "accepted_demon_sources_unchanged": true,
+      "webp_loop_ms": 2400,
+      "step_ms": 400,
+      "cycle_ms": 800,
+      "normal_game_enabled": false
+    },
+    "targeted_rustfmt": "passed",
+    "python_compile": "passed",
+    "git_diff_check": "passed",
+    "browser_validation": "passed: four banks ready, native 320x192, integer zoom, 400ms selected, manual idle and foot passage, playing, no console errors",
+    "browser_checks": "artifacts/animation-polish-01/biped-lateral-02/r01/browser-checks.json",
+    "browser_proof": "artifacts/animation-polish-01/biped-lateral-02/r01/browser-proof.png"
+  },
+  "weapon_contacts_accepted": false,
+  "other_palettes_accepted": false,
+  "acceptance": "BIPED-LATERAL02-ACCEPTANCE-r01.json"
+}

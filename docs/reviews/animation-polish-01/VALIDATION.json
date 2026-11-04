@@ -1,0 +1,54 @@
+{
+  "review": "ANIM-POLISH01",
+  "status": "prepared_for_visual_review",
+  "normal_game_enabled": false,
+  "ui_cold_capture_exit_code": 0,
+  "pilot_configurations": 40,
+  "comparison_frames": 280,
+  "native_summary_frames": 7,
+  "native_tile_px": 64,
+  "camp_returns": 12,
+  "camp_pose_records": 156,
+  "accepted_camp_material_and_irradiance": true,
+  "ground_scene": "accepted camp floor and structure, no furniture; native actors and 64/40px ground icons",
+  "prototype_tests": {
+    "passed": 5,
+    "failed": 0,
+    "opaque_grip_contact_cases": 112,
+    "straight_barrel_with_diagonal_grips": "passed",
+    "normal_cache_isolation": "passed"
+  },
+  "normal_renderer_regression_tests": {
+    "passed": 3,
+    "failed": 0,
+    "vertical_representative_accepted_pixels": "passed",
+    "lateral_accepted_proportions_and_scoped_comparison": "passed",
+    "accepted_selection_scope": "passed"
+  },
+  "cargo_build_locked_debug": "passed",
+  "cargo_check_locked_all_targets": "passed",
+  "cargo_check_locked_release_bin": "passed",
+  "release_binary_rebuilt": false,
+  "release_runtime_executed": false,
+  "full_test_suite_run": false,
+  "changed_rust_formatting": "passed",
+  "git_diff_check": "passed",
+  "browser_preview": "opened and exercised; final assets verified separately",
+  "lateral_crown_landmark_range_px": {
+    "max_before": [
+      3.064,
+      1.0
+    ],
+    "max_after": [
+      0.937,
+      1.0
+    ]
+  },
+  "limits": [
+    "Pilot only: four heavy outfits, four representative heavy weapons and assault-rifle control, two head choices",
+    "Head registration reduces whole-figure drift; it does not redraw changing source anatomy",
+    "Exact intermittent portrait symptom remains to isolate",
+    "Hand contact checks do not constitute anatomical or visual acceptance",
+    "Other outfits and remaining unusual poses await further review"
+  ]
+}

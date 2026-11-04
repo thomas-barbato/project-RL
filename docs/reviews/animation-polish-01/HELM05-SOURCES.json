@@ -1,0 +1,589 @@
+{
+  "review": "HELM05-WORN-r01",
+  "mode": "builtin_image_gen",
+  "conditioning": "four source cells cropped by alpha16, one common scale per model, centered at lower neck pivot; no repainting or view mirroring",
+  "native_world_tile_px": 64,
+  "models": [
+    {
+      "id": "H05-W01",
+      "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W01-views-r02.png",
+      "raw_sha256": "a9e3aa7a208feb3563df4f500aa25b4fd41d644e9c90c2cd773c6600469e4216",
+      "atlas": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W01-atlas.png",
+      "atlas_sha256": "bbe9bfe574c3a5b87e43164fe72ce9f18f3b872841f728bcebc9c714ae2d165a",
+      "view_scale": 0.02217741935483871,
+      "front_height": 11,
+      "grid": [
+        4,
+        1
+      ],
+      "cell": [
+        32,
+        32
+      ],
+      "neck_pivot": [
+        16,
+        24
+      ],
+      "same_artwork_for_all_classes": true,
+      "views": [
+        {
+          "direction": "front",
+          "source_cell": 0,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W01-views-r02.png",
+          "source_alpha16_bbox": [
+            86,
+            101,
+            587,
+            597
+          ],
+          "object_size": [
+            11,
+            11
+          ],
+          "origin": [
+            11,
+            13
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "back",
+          "source_cell": 1,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W01-views-r02.png",
+          "source_alpha16_bbox": [
+            39,
+            101,
+            528,
+            584
+          ],
+          "object_size": [
+            11,
+            11
+          ],
+          "origin": [
+            11,
+            13
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "left",
+          "source_cell": 3,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W01-views-r02.png",
+          "source_alpha16_bbox": [
+            39,
+            36,
+            539,
+            525
+          ],
+          "object_size": [
+            11,
+            11
+          ],
+          "origin": [
+            11,
+            13
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "right",
+          "source_cell": 2,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W01-views-r02.png",
+          "source_alpha16_bbox": [
+            81,
+            36,
+            589,
+            543
+          ],
+          "object_size": [
+            11,
+            11
+          ],
+          "origin": [
+            11,
+            13
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H05-W02",
+      "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W02-views-r03.png",
+      "raw_sha256": "23f784fa287da36a02d05935835bc7c423edcb9b513316e7497b898352e88ec3",
+      "atlas": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W02-atlas.png",
+      "atlas_sha256": "e98bb4afbb34fca0bc00fa63f57c2d94a25c804590c0fbc21cb481cc7b2815e6",
+      "view_scale": 0.025793650793650792,
+      "front_height": 13,
+      "grid": [
+        4,
+        1
+      ],
+      "cell": [
+        32,
+        32
+      ],
+      "neck_pivot": [
+        16,
+        24
+      ],
+      "same_artwork_for_all_classes": true,
+      "views": [
+        {
+          "direction": "front",
+          "source_cell": 0,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W02-views-r03.png",
+          "source_alpha16_bbox": [
+            106,
+            90,
+            581,
+            596
+          ],
+          "object_size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "back",
+          "source_cell": 1,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W02-views-r02.png",
+          "source_alpha16_bbox": [
+            57,
+            92,
+            518,
+            541
+          ],
+          "object_size": [
+            12,
+            12
+          ],
+          "origin": [
+            10,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "left",
+          "source_cell": 3,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W02-views-r03.png",
+          "source_alpha16_bbox": [
+            10,
+            33,
+            535,
+            545
+          ],
+          "object_size": [
+            14,
+            13
+          ],
+          "origin": [
+            9,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "right",
+          "source_cell": 2,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W02-views-r03.png",
+          "source_alpha16_bbox": [
+            92,
+            33,
+            617,
+            547
+          ],
+          "object_size": [
+            14,
+            13
+          ],
+          "origin": [
+            9,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H05-W03",
+      "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+      "raw_sha256": "59f557441c317dc11f56aefec47379ba33113209128ddc24e0adec9f1e93eeea",
+      "atlas": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-atlas.png",
+      "atlas_sha256": "0eb871fdb85a45fc5d00d9cda12b629ac853301bcfc7d66fe7877f3e30ce75e9",
+      "view_scale": 0.025,
+      "front_height": 13,
+      "grid": [
+        4,
+        1
+      ],
+      "cell": [
+        32,
+        32
+      ],
+      "neck_pivot": [
+        16,
+        24
+      ],
+      "same_artwork_for_all_classes": true,
+      "views": [
+        {
+          "direction": "front",
+          "source_cell": 0,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "source_alpha16_bbox": [
+            164,
+            79,
+            539,
+            599
+          ],
+          "object_size": [
+            9,
+            13
+          ],
+          "origin": [
+            12,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "back",
+          "source_cell": 1,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "source_alpha16_bbox": [
+            82,
+            79,
+            463,
+            562
+          ],
+          "object_size": [
+            10,
+            12
+          ],
+          "origin": [
+            11,
+            12
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "left",
+          "source_cell": 3,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "source_alpha16_bbox": [
+            67,
+            25,
+            463,
+            568
+          ],
+          "object_size": [
+            10,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "right",
+          "source_cell": 2,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+          "source_alpha16_bbox": [
+            159,
+            19,
+            553,
+            568
+          ],
+          "object_size": [
+            10,
+            14
+          ],
+          "origin": [
+            11,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H05-W04",
+      "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+      "raw_sha256": "720c436e4657c9b17318dccdfcffd39927b3f46e23735ce557a21b046a3bc419",
+      "atlas": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-atlas.png",
+      "atlas_sha256": "67b0fd3a83b05e23dfc989b183e6a0f506b75e77b01d04feaf80d1cedbf225d9",
+      "view_scale": 0.026262626262626262,
+      "front_height": 13,
+      "grid": [
+        4,
+        1
+      ],
+      "cell": [
+        32,
+        32
+      ],
+      "neck_pivot": [
+        16,
+        24
+      ],
+      "same_artwork_for_all_classes": true,
+      "views": [
+        {
+          "direction": "front",
+          "source_cell": 0,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "source_alpha16_bbox": [
+            87,
+            96,
+            561,
+            591
+          ],
+          "object_size": [
+            12,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "back",
+          "source_cell": 1,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "source_alpha16_bbox": [
+            53,
+            96,
+            546,
+            583
+          ],
+          "object_size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "left",
+          "source_cell": 3,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "source_alpha16_bbox": [
+            53,
+            48,
+            538,
+            537
+          ],
+          "object_size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "right",
+          "source_cell": 2,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r02.png",
+          "source_alpha16_bbox": [
+            85,
+            48,
+            575,
+            544
+          ],
+          "object_size": [
+            13,
+            13
+          ],
+          "origin": [
+            10,
+            11
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H05-W05",
+      "raw": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+      "raw_sha256": "f27358db628e09199489cdd0a93fa5a96f9849e953cf682b778817fe7ed08f1a",
+      "atlas": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-atlas.png",
+      "atlas_sha256": "98ccf6dbef0b8a4f2affd7a40f5d32058478dfd5ad8dd6c00517e889824c3c37",
+      "view_scale": 0.0275049115913556,
+      "front_height": 14,
+      "grid": [
+        4,
+        1
+      ],
+      "cell": [
+        32,
+        32
+      ],
+      "neck_pivot": [
+        16,
+        24
+      ],
+      "same_artwork_for_all_classes": true,
+      "views": [
+        {
+          "direction": "front",
+          "source_cell": 0,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "source_alpha16_bbox": [
+            90,
+            93,
+            585,
+            602
+          ],
+          "object_size": [
+            14,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "back",
+          "source_cell": 1,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "source_alpha16_bbox": [
+            46,
+            91,
+            531,
+            595
+          ],
+          "object_size": [
+            13,
+            14
+          ],
+          "origin": [
+            10,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "left",
+          "source_cell": 2,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "source_alpha16_bbox": [
+            69,
+            44,
+            607,
+            566
+          ],
+          "object_size": [
+            15,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        },
+        {
+          "direction": "right",
+          "source_cell": 3,
+          "raw_source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W05-views-r01.png",
+          "source_alpha16_bbox": [
+            21,
+            44,
+            558,
+            566
+          ],
+          "object_size": [
+            15,
+            14
+          ],
+          "origin": [
+            9,
+            10
+          ],
+          "neck_pivot": [
+            16,
+            24
+          ]
+        }
+      ]
+    }
+  ],
+  "normal_game_enabled": false
+}

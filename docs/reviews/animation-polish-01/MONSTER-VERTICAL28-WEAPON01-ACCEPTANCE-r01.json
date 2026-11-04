@@ -1,0 +1,63 @@
+{
+  "review": "MONSTER-VERTICAL28-WEAPON01-r01",
+  "date": "2026-11-03",
+  "status": "accepted",
+  "player_quote": "ok parfait c'est validé :)",
+  "review_numbers": [
+    28
+  ],
+  "models": [
+    60
+  ],
+  "variant": 0,
+  "directions": [
+    "down",
+    "up"
+  ],
+  "native_cell_px": 64,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "poses_per_direction": 8,
+  "locomotion": "biped",
+  "locomotor_legs": 2,
+  "retained_frontal_exact": true,
+  "normal_game_enabled": false,
+  "accepted_scope": {
+    "weapon": {
+      "identity": "Original short steel blade",
+      "anatomical_hand": "right",
+      "image_side": {
+        "down": "left",
+        "up": "right"
+      }
+    },
+    "arms": "Relaxed shoulders, lowered elbows and more vertical forearms.",
+    "colors": "Flesh and dark materials harmonized with the original frontal; steel pixels preserved.",
+    "gait": "Compact alternating steps, whole coherent figures and exact retained frontal idle."
+  },
+  "replaces_rejected_model_from": "MONSTER-VERTICAL10-ACCEPTANCE-r01.json",
+  "manifest": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/manifest.json",
+  "native_validation": "docs/reviews/animation-polish-01/MONSTER-VERTICAL28-WEAPON01-VALIDATION.json",
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-atlas.png",
+      "sha256": "d81f86c7201914b281280089cb13eb23e71f843e3937fdcb69762268ee4ce9fe"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-front.png",
+      "sha256": "f6d764e3b19a7e264ae865b5b3881fef722891a8560a99869c24bcba9ecdb01a"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-down-source.png",
+      "sha256": "7773217cea8e40228f7c36eec704f3d4d83ebdd097f1a968522e40c8ee1cfe92"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-up-source.png",
+      "sha256": "5f69108d7a15df11ed6d083598a051f237fb953fbdc5248be15886bce5ad2f15"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-material-palette.json",
+      "sha256": "26f4757f47bf9b0eb9c492a9df13cf698d37fcc0913ff702f52ab649daeb31b3"
+    }
+  ]
+}

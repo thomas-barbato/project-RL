@@ -1,0 +1,46 @@
+{
+  "review": "MONSTER-VERTICAL21-QUAD01-r01",
+  "date": "2026-11-03",
+  "status": "accepted",
+  "player_quote": "je valide :) on continue",
+  "review_numbers": [
+    21
+  ],
+  "models": [
+    32
+  ],
+  "variant": 0,
+  "directions": [
+    "down",
+    "up"
+  ],
+  "native_cell_px": 64,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "poses_per_direction": 8,
+  "locomotion": "quadruped",
+  "locomotor_legs": 4,
+  "retained_frontal_exact": true,
+  "normal_game_enabled": false,
+  "replaces_rejected_biped": "MONSTER-VERTICAL07-AMENDMENT-r02.json",
+  "manifest": "assets/source-art/animation-polish-01/monster-vertical-21-quad/r01/manifest.json",
+  "native_validation": "docs/reviews/animation-polish-01/MONSTER-VERTICAL21-QUAD01-VALIDATION.json",
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-21-quad/r01/MON-032-atlas.png",
+      "sha256": "90ea01827e050e52dc51dfa5a497f266d2c80a9af7283292d39d91781aa605c2"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-21-quad/r01/MON-032-front.png",
+      "sha256": "1bd9dcba364707e6ab8190140f8c744513c2ab0df1444b52dc0c8fad0061fe07"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-21-quad/r01/MON-032-down-source.png",
+      "sha256": "bdcb306b465f31767d43c01683ef4955c2a4bf2c763af0dadbb3537e77545b2f"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-21-quad/r01/MON-032-up-source.png",
+      "sha256": "d6e6bc36fde22fdecc2c2f9d0692292739a890e4f6044a85df359903e9b8602b"
+    }
+  ]
+}

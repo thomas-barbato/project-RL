@@ -1,0 +1,269 @@
+{
+  "review": "MONSTER-VERTICAL21-QUAD01-r01",
+  "normal_game_enabled": false,
+  "native_cell_px": 64,
+  "panel_width": 192,
+  "panel_height": 320,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "phase_weights": [
+    180,
+    180,
+    170,
+    120,
+    180,
+    180,
+    170,
+    120
+  ],
+  "frozen_source_hashes_verified": 142,
+  "profiles": [
+    {
+      "id": "MON-032-0",
+      "number": 32,
+      "name": "Créature à crête courbe · quatre appuis",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 40,
+      "vertical_offset": -12,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-21-quad/r01/MON-032-front.png",
+      "idle_sha256": "1bd9dcba364707e6ab8190140f8c744513c2ab0df1444b52dc0c8fad0061fe07",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-032-v0.png",
+      "front_shadow": 22,
+      "current_vertical": {
+        "number": 32,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-032-v0.png",
+        "cell": [
+          42,
+          43
+        ],
+        "anchor": [
+          21,
+          41
+        ],
+        "offset": -12,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-21-quad/r01/MON-032-atlas.png",
+      "sha256": "90ea01827e050e52dc51dfa5a497f266d2c80a9af7283292d39d91781aa605c2",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-21-quad/r01/MON-032-down-source.png",
+        "assets/source-art/animation-polish-01/monster-vertical-21-quad/r01/MON-032-up-source.png"
+      ],
+      "bounds": [
+        {
+          "direction": "down",
+          "phase": 0,
+          "whole_figure_scale": 0.128,
+          "whole_cycle_translation_x": 2,
+          "bounds": [
+            52,
+            72,
+            96,
+            114
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 1,
+          "whole_figure_scale": 0.128,
+          "whole_cycle_translation_x": 2,
+          "bounds": [
+            54,
+            72,
+            95,
+            111
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 2,
+          "whole_figure_scale": 0.128,
+          "whole_cycle_translation_x": 2,
+          "bounds": [
+            51,
+            72,
+            96,
+            111
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 3,
+          "whole_figure_scale": 0.128,
+          "whole_cycle_translation_x": 2,
+          "bounds": [
+            52,
+            72,
+            96,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 4,
+          "whole_figure_scale": 0.128,
+          "whole_cycle_translation_x": 2,
+          "bounds": [
+            53,
+            72,
+            96,
+            110
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 5,
+          "whole_figure_scale": 0.128,
+          "whole_cycle_translation_x": 2,
+          "bounds": [
+            52,
+            72,
+            97,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 6,
+          "whole_figure_scale": 0.128,
+          "whole_cycle_translation_x": 2,
+          "bounds": [
+            52,
+            72,
+            95,
+            113
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 7,
+          "whole_figure_scale": 0.128,
+          "whole_cycle_translation_x": 2,
+          "bounds": [
+            53,
+            72,
+            96,
+            113
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 0,
+          "whole_figure_scale": 0.1238390092879257,
+          "whole_cycle_translation_x": 8,
+          "bounds": [
+            64,
+            72,
+            101,
+            114
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 1,
+          "whole_figure_scale": 0.1238390092879257,
+          "whole_cycle_translation_x": 8,
+          "bounds": [
+            64,
+            72,
+            101,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 2,
+          "whole_figure_scale": 0.1238390092879257,
+          "whole_cycle_translation_x": 8,
+          "bounds": [
+            63,
+            72,
+            100,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 3,
+          "whole_figure_scale": 0.1238390092879257,
+          "whole_cycle_translation_x": 8,
+          "bounds": [
+            64,
+            72,
+            101,
+            111
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 4,
+          "whole_figure_scale": 0.1238390092879257,
+          "whole_cycle_translation_x": 8,
+          "bounds": [
+            63,
+            72,
+            100,
+            110
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 5,
+          "whole_figure_scale": 0.1238390092879257,
+          "whole_cycle_translation_x": 8,
+          "bounds": [
+            63,
+            72,
+            100,
+            110
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 6,
+          "whole_figure_scale": 0.1238390092879257,
+          "whole_cycle_translation_x": 8,
+          "bounds": [
+            64,
+            72,
+            101,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 7,
+          "whole_figure_scale": 0.1238390092879257,
+          "whole_cycle_translation_x": 8,
+          "bounds": [
+            64,
+            72,
+            101,
+            112
+          ]
+        }
+      ],
+      "support_root_aligned": true,
+      "review_number": 21,
+      "locomotion": "quadruped",
+      "locomotor_legs": 4,
+      "phase_names": [
+        "Contact A",
+        "Appuis bas A",
+        "Avancée des pattes B",
+        "Reprise des appuis B",
+        "Contact B",
+        "Appuis bas B",
+        "Avancée des pattes A",
+        "Reprise des appuis A",
+        "Repos frontal"
+      ]
+    }
+  ],
+  "anatomy_correction": "MONSTER-VERTICAL07-AMENDMENT-r02.json"
+}

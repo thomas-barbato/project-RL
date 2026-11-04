@@ -1,0 +1,34 @@
+{
+  "review": "MONSTER-VERTICAL28-WEAPON01-r01",
+  "tool": "built-in image_gen",
+  "mode": "edit / restore original right-hand weapon",
+  "transparent_background": true,
+  "jobs": [
+    {
+      "number": 60,
+      "dir": "down",
+      "paths": [
+        "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\animation-polish-01\\monster-vertical-28-arms\\r01\\MON-060-down-source.png",
+        "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\animation-polish-01\\monster-vertical-10\\r01\\MON-060-appearance-reference.png"
+      ],
+      "prompt": "Use case: identity-preserve / precise-object-edit. EDIT INPUT1, the existing transparent 3x3 pixel-art walking sheet for MON-060. INPUT2 is the ORIGINAL APPEARANCE AND WEAPON reference for the SAME view. Restore the SINGLE steel BLADE that input2 already shows in the creature's ANATOMICAL RIGHT HAND. It was mistakenly removed in input1. This is existing equipment, not a new design.\nKeep input1's exact three equal columns x three equal rows, first8 ordered walking phases and ninth idle, the head and horns, slim torso, hips and compact leg motion, apparent height and crisp pixel clusters. Keep relaxed shoulders and lowered elbows, arms naturally near the torso with small counter-swing. Change only the necessary right hand, grip and original weapon. The RIGHT HAND must close naturally around a dark handle; knuckles/fingers visibly grip it, with no detached weapon. The LEFT hand stays empty, relaxed, with its existing long dark claws. NEVER put blades in both hands.\nBLADE: reproduce input2's single short, broad triangular STEEL blade with a clear tapered point and dark grip. About ONE QUARTER of the whole creature's height, approximately 11–13 native pixels for a 47px-high figure. Blade about 2–3 native pixels wide, similar to original; not an oversized sword. It hangs point DOWN and slightly OUTWARD, away from the leg. The metal remains readable beside the thigh/knee with a small silhouette gap in EVERY one of the eight poses. Keep the point above the sole line so the creature does not shrink to fit it. Use neutral/cool gray steel, a restrained light gray edge and dark far edge; no white glow, gold/red blade, giant shine or bright colored outline. Do NOT confuse the blade with fingers or replace it with claws.\nVIEW: FRONT / slight front three-quarter walking toward viewer. Anatomical RIGHT HAND and its ONE blade are on the LEFT SIDE OF THE IMAGE in ALL9 figures. Empty left hand is image-right. Match input2's handedness.\nDraw each whole figure coherently. Rigid blade and closed grip travel together with the forearm; no floating handle, bent blade, hand swapping or disappearance during passing poses. Do not raise or splay arms to expose it. Preserve input1's matte rust flesh and charcoal body materials; a separate preparation palette will preserve their previously corrected appearance. No limb changes, extra weapon, tail, shield, armor or effects. Genuine alphaZERO outside figures and inside gaps, generous empty cell margins, no clipping, ground, shadow, checkerboard, grid, text or watermark.",
+      "input_sha256": [
+        "10116cf4ead0623a0121a5b147f8739c87086bffcbcd846b8c3153b98cf12adc",
+        "7fb9e233e9550780d58e4edaa2f976b489306d9819382ea02496eb920a5f042b"
+      ]
+    },
+    {
+      "number": 60,
+      "dir": "up",
+      "paths": [
+        "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\animation-polish-01\\monster-vertical-28-arms\\r01\\MON-060-up-source.png",
+        "C:\\Users\\User\\Desktop\\project-RL\\assets\\source-art\\animation-polish-01\\monster-vertical-10\\r01\\MON-060-current-back-guide.png"
+      ],
+      "prompt": "Use case: identity-preserve / precise-object-edit. EDIT INPUT1, the existing transparent 3x3 pixel-art walking sheet for MON-060. INPUT2 is the ORIGINAL APPEARANCE AND WEAPON reference for the SAME view. Restore the SINGLE steel BLADE that input2 already shows in the creature's ANATOMICAL RIGHT HAND. It was mistakenly removed in input1. This is existing equipment, not a new design.\nKeep input1's exact three equal columns x three equal rows, first8 ordered walking phases and ninth idle, the head and horns, slim torso, hips and compact leg motion, apparent height and crisp pixel clusters. Keep relaxed shoulders and lowered elbows, arms naturally near the torso with small counter-swing. Change only the necessary right hand, grip and original weapon. The RIGHT HAND must close naturally around a dark handle; knuckles/fingers visibly grip it, with no detached weapon. The LEFT hand stays empty, relaxed, with its existing long dark claws. NEVER put blades in both hands.\nBLADE: reproduce input2's single short, broad triangular STEEL blade with a clear tapered point and dark grip. About ONE QUARTER of the whole creature's height, approximately 11–13 native pixels for a 47px-high figure. Blade about 2–3 native pixels wide, similar to original; not an oversized sword. It hangs point DOWN and slightly OUTWARD, away from the leg. The metal remains readable beside the thigh/knee with a small silhouette gap in EVERY one of the eight poses. Keep the point above the sole line so the creature does not shrink to fit it. Use neutral/cool gray steel, a restrained light gray edge and dark far edge; no white glow, gold/red blade, giant shine or bright colored outline. Do NOT confuse the blade with fingers or replace it with claws.\nVIEW: TRUE REAR walking away. The SAME anatomical RIGHT HAND and its ONE blade are on the RIGHT SIDE OF THE IMAGE in ALL9 figures. Empty left hand is image-left. Back of head and dark spine remain visible, no face, eyes or frontal chest painted on the back.\nDraw each whole figure coherently. Rigid blade and closed grip travel together with the forearm; no floating handle, bent blade, hand swapping or disappearance during passing poses. Do not raise or splay arms to expose it. Preserve input1's matte rust flesh and charcoal body materials; a separate preparation palette will preserve their previously corrected appearance. No limb changes, extra weapon, tail, shield, armor or effects. Genuine alphaZERO outside figures and inside gaps, generous empty cell margins, no clipping, ground, shadow, checkerboard, grid, text or watermark.",
+      "input_sha256": [
+        "878a665d6fb674dd205d41a8e52459a97bb8fae221dcb3ac7865ffc5e402d64e",
+        "a2f544065445e743b3df39d04731dc499328ed6f1294b96141cb10f52ef8d03a"
+      ]
+    }
+  ]
+}

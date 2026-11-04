@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-069-0",
+    "number": 69,
+    "name": "Créature rouge à six pattes",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 36,
+    "vertical_offset": -14,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-13/r01/MON-069-front.png",
+    "idle_sha256": "f0e8a30ebedd34693d6a83297160289cf228f00f1b95db8ff8a336b71234b8e4",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-069-v0.png",
+    "front_shadow": 31,
+    "current_vertical": {
+      "number": 69,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-069-v0.png",
+      "cell": [
+        53,
+        42
+      ],
+      "anchor": [
+        27,
+        40
+      ],
+      "offset": -14,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-070-0",
+    "number": 70,
+    "name": "Créature aux avant-bras recourbés",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 74,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-13/r01/MON-070-front.png",
+    "idle_sha256": "13530b57f96c284efce65d9af001f5485f95ecc403ceef0da5785d4394193a92",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-070-v0.png",
+    "front_shadow": 44,
+    "current_vertical": {
+      "number": 70,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-070-v0.png",
+      "cell": [
+        82,
+        80
+      ],
+      "anchor": [
+        41,
+        78
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-071-0",
+    "number": 71,
+    "name": "Arachnide",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 57,
+    "vertical_offset": -3,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-13/r01/MON-071-front.png",
+    "idle_sha256": "94c229bc56586ed50d10cdcd3fed13be4329b4a459c3e46ca6839ac8a6c8f4ed",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-071-v0.png",
+    "front_shadow": 50,
+    "current_vertical": {
+      "number": 71,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-071-v0.png",
+      "cell": [
+        97,
+        64
+      ],
+      "anchor": [
+        49,
+        62
+      ],
+      "offset": -3,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

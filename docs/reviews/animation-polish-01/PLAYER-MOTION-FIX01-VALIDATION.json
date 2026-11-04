@@ -1,0 +1,83 @@
+{
+  "review": "PLAYER-MOTION-FIX01",
+  "date": "2026-11-02",
+  "status": "integrated",
+  "normal_game_enabled": true,
+  "scope": [
+    "colored player armor vertical animation selection",
+    "unarmed intermediate outfit vertical poses",
+    "Traqueuse frontal uses approved class outfit instead of old generic fallback"
+  ],
+  "source_art_changed": false,
+  "native": {
+    "review": "PLAYER-MOTION-FIX01",
+    "status": "native_validation_passed",
+    "player_cases": 14,
+    "directions_per_case": 4,
+    "distinct_drawings_per_direction": 6,
+    "same_player_exposure_checks": 364,
+    "traqueuse_outfit_palette_consistency_checks": 5,
+    "restored_saved_player_vertical_facings": [
+      -2,
+      2
+    ],
+    "biped_frozen_source_hashes": 38,
+    "monster_vertical_redrawing": "requested; separate visual review pending",
+    "step_ms": 400,
+    "source_art_changed": false
+  },
+  "tests": {
+    "vertical_tests_passed": 5,
+    "expensive_reference_tests_not_run": 2,
+    "combat_motion_tests_passed": 19,
+    "isolated_saved_scene_audit_passed": true,
+    "historical_rifle_reference_now_scoped_to_original_geometry": true,
+    "debug_build": true,
+    "release_build": true,
+    "rustfmt": true,
+    "python_compile": true,
+    "diff_check": true
+  },
+  "monster_regression": {
+    "lateral_captures_identical": 660,
+    "vertical_frames_unchanged": 120
+  },
+  "actual_launchers": {
+    "status": "passed",
+    "actual_launchers": [
+      {
+        "case": "checkout",
+        "exit_code": 0,
+        "args": [
+          "--verify-assets"
+        ]
+      },
+      {
+        "case": "portable",
+        "exit_code": 0,
+        "args": [
+          "--verify-assets"
+        ]
+      },
+      {
+        "case": "missing-data",
+        "exit_code": 1,
+        "args": [
+          "--verify-assets"
+        ]
+      }
+    ],
+    "user_files_unchanged": true,
+    "user_file_hashes_checked": 7,
+    "graphical_user_campaign_launched": false,
+    "release_sha256": "bbf1f95b79226443433043eac9d7c660a8dbb81424283b705c7840d0090ff3f3"
+  },
+  "portable_distribution_updated": true,
+  "user_saves_and_preferences_unchanged": true,
+  "native_proof": "artifacts/animation-polish-01/player-motion-fix-01/native-proof.png",
+  "monster_vertical_redesign": {
+    "requested": true,
+    "status": "awaiting_priority_model_identification",
+    "implemented_by_this_fix": false
+  }
+}

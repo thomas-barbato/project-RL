@@ -254,7 +254,11 @@ impl GameState {
         if self.map.is_protected(origin) || self.map.is_protected(target) {
             return Err(CommandRejection::ProtectedZone);
         }
-        if !self.map.is_walkable(target) {
+        // Only physical barrier placement needs walkable ground. Spell travel
+        // and areas use opacity, independently of the caster's movement rules.
+        if self.map.blocks_vision(target)
+            || (matches!(id, "FR03" | "OC04") && !self.map.is_walkable(target))
+        {
             return Err(CommandRejection::AbilityTargetBlocked(target));
         }
         let dir = direction(origin, target);
@@ -328,6 +332,7 @@ impl GameState {
             }
         }
         if matches!(id, "FR03" | "OC04") {
+            cells.retain(|at| self.map.is_walkable(*at));
             if cells.is_empty() {
                 return Err(CommandRejection::AbilityTargetBlocked(target));
             }
@@ -595,7 +600,7 @@ impl GameState {
                     .cells
                     .iter()
                     .map(|at| GridPos::new(at.x + e.direction.0, at.y + e.direction.1))
-                    .filter(|at| self.map.is_walkable(*at))
+                    .filter(|at| !self.map.blocks_vision(*at))
                     .collect();
                 if e.cells.is_empty() {
                     continue;
@@ -621,10 +626,10 @@ impl GameState {
         let mut cells = e.cells.clone();
         if id == "FR05" {
             // FR05-HITS02: every admissible cell receives its own roll each
-            // turn, including empty cells. A new obstacle/protected cell must
+            // turn, including empty cells. A new opaque/protected cell must
             // not consume an impact roll or keep exposure alive behind it.
             cells.retain(|at| {
-                self.map.is_walkable(*at)
+                !self.map.blocks_vision(*at)
                     && !self.map.is_protected(*at)
                     && has_line_of_sight(&self.map, e.target, *at, true)
             });

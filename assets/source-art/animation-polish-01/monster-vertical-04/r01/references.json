@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-006-0",
+    "number": 6,
+    "name": "Possédé voûté",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 51,
+    "vertical_offset": -6,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-04/r01/MON-006-front.png",
+    "idle_sha256": "6913ca644434f6da3a245e46a8121e52a3bcdb0d69b2a49b92155b73f0b9c5a3",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-006-v0.png",
+    "front_shadow": 38,
+    "current_vertical": {
+      "number": 6,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-006-v0.png",
+      "cell": [
+        79,
+        58
+      ],
+      "anchor": [
+        39,
+        56
+      ],
+      "offset": -6,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-007-0",
+    "number": 7,
+    "name": "Hybride au bras mécanique",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 71,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-04/r01/MON-007-front.png",
+    "idle_sha256": "055dac2bae1e7bee525770674057599f968fc534c9a64697a11b440ad72f955a",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-007-v0.png",
+    "front_shadow": 47,
+    "current_vertical": {
+      "number": 7,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-007-v0.png",
+      "cell": [
+        98,
+        78
+      ],
+      "anchor": [
+        49,
+        76
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-010-0",
+    "number": 10,
+    "name": "Hybride au canon",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 60,
+    "vertical_offset": -2,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-04/r01/MON-010-front.png",
+    "idle_sha256": "70005cdcf34b73b267c4b89c3e10dca8ccc6b3926be8131d3e38f5739f25fb3d",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-010-v0.png",
+    "front_shadow": 35,
+    "current_vertical": {
+      "number": 10,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-010-v0.png",
+      "cell": [
+        59,
+        65
+      ],
+      "anchor": [
+        29,
+        63
+      ],
+      "offset": -2,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

@@ -418,12 +418,21 @@ fn direction_parts(key: Key, pose: Pose) -> Option<(&'static Rig, Vec<Image>, bo
 }
 
 fn front_layers(key: Key) -> Option<Vec<Image>> {
+    // Candidate geometry must neither read nor populate the accepted cache.
+    #[cfg(debug_assertions)]
+    if crate::animation_polish_review::source_override().is_some() {
+        return super::layers(key);
+    }
     {
-        thread_local! { static FRONTS: std::cell::RefCell<project_rl::asset_cache::ByteCache<(bool,Key),Vec<Image>>> = const {
+        thread_local! { static FRONTS: std::cell::RefCell<project_rl::asset_cache::ByteCache<(u8,bool,Key),Vec<Image>>> = const {
             std::cell::RefCell::new(project_rl::asset_cache::ByteCache::new(24*1024*1024))
         }; }
         return FRONTS.with_borrow_mut(|cache| {
-            let cache_key = (crate::game_art::walking::corrections_enabled(), key);
+            let cache_key = (
+                crate::rifle_visuals::variant(),
+                crate::game_art::walking::corrections_enabled(),
+                key,
+            );
             if let Some(images) = cache.get(&cache_key) {
                 return Some(images.clone());
             }
@@ -573,6 +582,7 @@ fn walk_helmet(body: &mut Image, key: Key, pose: Pose, rig: &Rig) {
     {
         let head_image = turned_helmet(&part(head - 1, "helmets"), pose.facing);
         let (sin, cos) = walking_head_roll(body, at).sin_cos();
+
         geometry::over(
             body,
             &affine_pixels(

@@ -1,0 +1,94 @@
+{
+  "review": "BIPED-LATERAL04-r01",
+  "status": "visually_accepted_and_integrated",
+  "normal_game_enabled": true,
+  "new_models": [
+    39,
+    146,
+    151
+  ],
+  "accepted_reference": 144,
+  "accepted_models_frozen": [
+    145,
+    164,
+    165,
+    5,
+    14,
+    156,
+    144
+  ],
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "generation": {
+    "mode": "built-in image_gen",
+    "prompts": "docs/reviews/animation-polish-01/BIPED-LATERAL04-PROMPTS-r01.md",
+    "profiles": [
+      {
+        "number": 39,
+        "name": "Petit démon ailé",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-atlas.png",
+        "sha256": "2fb1cc813aeca0c3bee95fd892697c078ce0ce267a5748482cb5b5175332ef4c",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-right-source.png"
+        ],
+        "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-front.png",
+        "idle_sha256": "60f0e1e600d42df21ff2847b41ae9b5221007808834a45fac242581ed5147566",
+        "reference_height": 42,
+        "frame_width": 160,
+        "accepted": true
+      },
+      {
+        "number": 146,
+        "name": "Ailé doré",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-atlas.png",
+        "sha256": "900799969710fbe36bea3bc8d9b8d44ad9a2e1e44f96e5b0de18724a6b6e14a5",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-right-source.png"
+        ],
+        "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-front.png",
+        "idle_sha256": "8a914bddbfde69b370db265ef669f22ced324fddf675b8c6a22aea96bb08f194",
+        "reference_height": 80,
+        "frame_width": 160,
+        "accepted": true
+      },
+      {
+        "number": 151,
+        "name": "Ailé pâle au brassard",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-atlas.png",
+        "sha256": "61eeea8eb386eb3a62a5ca8acc149436893f32efaf46998c3c7699fcfe6b3c62",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-right-source.png"
+        ],
+        "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-front.png",
+        "idle_sha256": "59bd85aa9e141a4fe52d16ceb82654ddb01452f8b94e93faa47907221fb75c26",
+        "reference_height": 94,
+        "frame_width": 160,
+        "accepted": true
+      }
+    ]
+  },
+  "validation": {
+    "debug_build": true,
+    "targeted_rustfmt": true,
+    "python_compile": true,
+    "native_report": "artifacts/animation-polish-01/biped-lateral-04/r01/native-validation.json",
+    "browser_checked": true,
+    "browser_report": "artifacts/animation-polish-01/biped-lateral-04/r01/browser-checks.json",
+    "browser_proof": "artifacts/animation-polish-01/biped-lateral-04/r01/browser-proof.png",
+    "current_console_errors": 0,
+    "legacy_publisher_redirect": true,
+    "normal_game_enabled": false
+  },
+  "visual_inspection": [
+    "native camp and canonical fronts compared",
+    "two arms two walking legs and two wings retained",
+    "MON-151 bracer stays on anatomical right arm in both directions",
+    "player accepted the three shown cycles in original palette and both directions"
+  ],
+  "accepted": true,
+  "acceptance": "docs/reviews/animation-polish-01/BIPED-LATERAL04-ACCEPTANCE-r01.json",
+  "integration": "docs/reviews/animation-polish-01/BIPED-INTEGRATION01-VALIDATION.json"
+}

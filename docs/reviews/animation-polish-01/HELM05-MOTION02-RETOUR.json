@@ -1,0 +1,16 @@
+{
+  "review": "HELM05-MOTION02",
+  "date": "2026-10-31",
+  "status": "visually_rejected_head_too_large_and_soft",
+  "user_report": [
+    "le casque est décallé par rapport à la tête",
+    "on voit bien que tu places par dessus l'image de la tête le casque",
+    "la tête fait encore des mouvements bizarres"
+  ],
+  "evidence": "Some lateral bodies already have a baked helmet, and front/back keep old hair outside open helmet overlays. Per-phase head pixels also still change under the shell.",
+  "replacement": "Complete helmeted head modules replacing the previous head above the collar, reused rigidly throughout each orientation cycle",
+  "normal_game_enabled": false,
+  "visual_approval_received": false,
+  "validation": "HELM05-MOTION02-VALIDATION.json",
+  "followup": "HELM05-MOTION03-REVUE.md"
+}

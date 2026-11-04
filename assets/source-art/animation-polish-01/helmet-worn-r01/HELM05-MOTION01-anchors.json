@@ -1,0 +1,4147 @@
+{
+  "review": "HELM05-MOTION01",
+  "method": "integer chest-patch registration per orientation; fixed collar offset, no scaling of anatomy",
+  "profiles": [
+    {
+      "outfit": 15,
+      "id": "arcaniste",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/players/arcaniste-ranged-body.png",
+      "sha256": "c18c87bd9acbef2b051db14c806a491a7e3b4ffe3a58ac6e77c63bf4fe65e3bb",
+      "targets": [
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          127,
+          111
+        ],
+        [
+          128,
+          109
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          110
+        ],
+        [
+          128,
+          110
+        ],
+        [
+          128,
+          110
+        ],
+        [
+          128,
+          110
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 5.012,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            -1,
+            0
+          ],
+          "mean_rgba_error": 8.938,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            -2
+          ],
+          "mean_rgba_error": 9.713,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 7.254,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 10.146,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 3.694,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.765,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 5.198,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 7.25,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 6.479,
+          "head_shift": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 0,
+      "id": "bastion",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/players/bastion-ranged-body.png",
+      "sha256": "ce28ee07536e4638bf72a955635dde05da89521591db9a56c4942b9521c8039e",
+      "targets": [
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          129,
+          115
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          129,
+          112
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          113
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 10.533,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 10.142,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 9.383,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            1,
+            2
+          ],
+          "mean_rgba_error": 8.865,
+          "head_shift": [
+            1,
+            1
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            1,
+            1
+          ],
+          "mean_rgba_error": 10.169,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 3.308,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 3.825,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 3.64,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 3.985,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            2
+          ],
+          "mean_rgba_error": 3.831,
+          "head_shift": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 10,
+      "id": "traqueuse",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/players/traqueuse-ranged-body.png",
+      "sha256": "54cdb3d789b648a300f02692a975a00475709eb1d062a11ddd902e8b2c4e9459",
+      "targets": [
+        [
+          128,
+          115
+        ],
+        [
+          129,
+          115
+        ],
+        [
+          129,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 16.423,
+          "head_shift": [
+            1,
+            1
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            1,
+            1
+          ],
+          "mean_rgba_error": 15.119,
+          "head_shift": [
+            1,
+            1
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 13.158,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 13.012,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 10.121,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 6.812,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.679,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.429,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 5.863,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.779,
+          "head_shift": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 20,
+      "id": "metamorphe",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/players/metamorphe-ranged-body.png",
+      "sha256": "9a48697694e3cf559c42d3fef1b6d4d03a7ce8ac4a029225063d9db5ec3d9ea1",
+      "targets": [
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          116
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 10.175,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 8.954,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 8.187,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 7.596,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 13.15,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.54,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 6.571,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 6.902,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 6.129,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 3.492,
+          "head_shift": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 4,
+      "id": "bastion-lourd",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/players/bastion-lourd-ranged-body.png",
+      "sha256": "50a3d1b22b2aeccb31f3f464bde8951dd4f973c0170b11eb953bae19c4c52d17",
+      "targets": [
+        [
+          128,
+          112
+        ],
+        [
+          127,
+          114
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          127,
+          112
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          113
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            -1,
+            2
+          ],
+          "mean_rgba_error": 9.767,
+          "head_shift": [
+            -1,
+            1
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 11.402,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 7.156,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            -1,
+            0
+          ],
+          "mean_rgba_error": 8.352,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 8.396,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 4.425,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 5.16,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            -2
+          ],
+          "mean_rgba_error": 6.323,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            -2
+          ],
+          "mean_rgba_error": 5.046,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 4.015,
+          "head_shift": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 14,
+      "id": "traqueuse-lourde",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/players/traqueuse-lourde-ranged-body.png",
+      "sha256": "10b959850e3a1823d7c3a6de09cda3f9c91e6041a5750b3361a36f076f1654e9",
+      "targets": [
+        [
+          128,
+          116
+        ],
+        [
+          129,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          127,
+          116
+        ],
+        [
+          127,
+          115
+        ],
+        [
+          127,
+          116
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          118
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          118
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 13.969,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 8.758,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            -1,
+            0
+          ],
+          "mean_rgba_error": 17.0,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            -1,
+            -1
+          ],
+          "mean_rgba_error": 16.748,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            -1,
+            0
+          ],
+          "mean_rgba_error": 18.577,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            3
+          ],
+          "mean_rgba_error": 6.323,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 4.91,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            3
+          ],
+          "mean_rgba_error": 7.923,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 17.204,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 10.59,
+          "head_shift": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 19,
+      "id": "arcaniste-lourd",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/players/arcaniste-lourd-ranged-body.png",
+      "sha256": "2d575e619e1bb26ad0db83db1ed12ef6d98542b4cdbdb0d7e19f092f3fa60ad6",
+      "targets": [
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          109
+        ],
+        [
+          128,
+          109
+        ],
+        [
+          128,
+          109
+        ],
+        [
+          128,
+          112
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 9.535,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 14.173,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 11.137,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 7.59,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 8.373,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.042,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.323,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            -2
+          ],
+          "mean_rgba_error": 7.737,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            -2
+          ],
+          "mean_rgba_error": 8.513,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            -2
+          ],
+          "mean_rgba_error": 5.944,
+          "head_shift": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 24,
+      "id": "metamorphe-lourd",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/players/metamorphe-lourd-ranged-body.png",
+      "sha256": "e704aeebd789b921b56e495b17d1b80fede1f2dd1aca0a3e7968fd96e6a46609",
+      "targets": [
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          117
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          116
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 9.973,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 17.852,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 22.204,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            -2
+          ],
+          "mean_rgba_error": 21.5,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 20.333,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 4.829,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 8.817,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            1,
+            -2
+          ],
+          "mean_rgba_error": 11.015,
+          "head_shift": [
+            1,
+            1
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            -3
+          ],
+          "mean_rgba_error": 10.752,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 12.373,
+          "head_shift": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 1,
+      "id": "bastion-armor1",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/bastion-armor1-ranged-body.png",
+      "sha256": "3ea9c0ce0470dae34d0fbba79d895e6fa2dd9238766f20d70cc580d4f757164a",
+      "targets": [
+        [
+          128,
+          113
+        ],
+        [
+          129,
+          112
+        ],
+        [
+          130,
+          113
+        ],
+        [
+          129,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          130,
+          112
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          129,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          129,
+          113
+        ],
+        [
+          128,
+          113
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            1,
+            -1
+          ],
+          "mean_rgba_error": 4.183,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            2,
+            0
+          ],
+          "mean_rgba_error": 4.406,
+          "head_shift": [
+            2,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 8.171,
+          "head_shift": [
+            1,
+            -1
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 9.998,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            2,
+            -1
+          ],
+          "mean_rgba_error": 7.237,
+          "head_shift": [
+            2,
+            -1
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 7.613,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            1,
+            -1
+          ],
+          "mean_rgba_error": 5.662,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 6.673,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 6.2,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            1,
+            -1
+          ],
+          "mean_rgba_error": 7.552,
+          "head_shift": [
+            1,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 2,
+      "id": "bastion-armor2",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/bastion-armor2-ranged-body.png",
+      "sha256": "861376fc555924376bf17f51edc1647707d69133f7590f73b717129f9884f5e4",
+      "targets": [
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          127,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          127,
+          112
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          113
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 8.108,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 13.667,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            -1,
+            0
+          ],
+          "mean_rgba_error": 6.642,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 6.335,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            -1,
+            -1
+          ],
+          "mean_rgba_error": 6.848,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 8.275,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 6.394,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 9.462,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 7.037,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 4.227,
+          "head_shift": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 3,
+      "id": "bastion-armor3",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/bastion-armor3-ranged-body.png",
+      "sha256": "abede3da13647ff75bc9aff5bcc2ac68e098a8e5b2161ef52dc642ecd4f54da3",
+      "targets": [
+        [
+          128,
+          115
+        ],
+        [
+          127,
+          113
+        ],
+        [
+          127,
+          114
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          127,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          129,
+          111
+        ],
+        [
+          128,
+          114
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            -1,
+            -2
+          ],
+          "mean_rgba_error": 5.579,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            -1,
+            -1
+          ],
+          "mean_rgba_error": 9.9,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 9.79,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            -2
+          ],
+          "mean_rgba_error": 6.181,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            -1,
+            -2
+          ],
+          "mean_rgba_error": 5.888,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            1,
+            1
+          ],
+          "mean_rgba_error": 6.938,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 8.808,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 4.763,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 8.585,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            1,
+            -2
+          ],
+          "mean_rgba_error": 8.596,
+          "head_shift": [
+            1,
+            -1
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 11,
+      "id": "traqueuse-armor1",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/traqueuse-armor1-ranged-body.png",
+      "sha256": "07996a280752c2ea707993ae6926f06d73aee25836c194cf42d850472e30ad64",
+      "targets": [
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          129,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          129,
+          113
+        ],
+        [
+          129,
+          115
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          127,
+          114
+        ],
+        [
+          128,
+          114
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 8.017,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            1,
+            1
+          ],
+          "mean_rgba_error": 5.725,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 13.081,
+          "head_shift": [
+            1,
+            -1
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 14.273,
+          "head_shift": [
+            0,
+            -2
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 13.767,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 6.071,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            1,
+            2
+          ],
+          "mean_rgba_error": 14.083,
+          "head_shift": [
+            1,
+            1
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            1,
+            1
+          ],
+          "mean_rgba_error": 9.394,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            1,
+            1
+          ],
+          "mean_rgba_error": 11.487,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            -1,
+            1
+          ],
+          "mean_rgba_error": 17.385,
+          "head_shift": [
+            -1,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 12,
+      "id": "traqueuse-armor2",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/traqueuse-armor2-ranged-body.png",
+      "sha256": "cb273637404e522d8b8ce6b58cdff292faa3a81304afb2d04d5336f953553d37",
+      "targets": [
+        [
+          128,
+          114
+        ],
+        [
+          127,
+          114
+        ],
+        [
+          127,
+          114
+        ],
+        [
+          128,
+          113
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          127,
+          115
+        ],
+        [
+          127,
+          114
+        ],
+        [
+          127,
+          116
+        ],
+        [
+          127,
+          115
+        ],
+        [
+          128,
+          116
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            -1,
+            0
+          ],
+          "mean_rgba_error": 12.408,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            -1,
+            0
+          ],
+          "mean_rgba_error": 11.138,
+          "head_shift": [
+            -1,
+            -1
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 11.079,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 10.804,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 8.65,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 9.542,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            -1,
+            0
+          ],
+          "mean_rgba_error": 8.985,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            -1,
+            -1
+          ],
+          "mean_rgba_error": 14.763,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            -1,
+            1
+          ],
+          "mean_rgba_error": 12.327,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            -1,
+            0
+          ],
+          "mean_rgba_error": 15.567,
+          "head_shift": [
+            -1,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 13,
+      "id": "traqueuse-armor3",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/traqueuse-armor3-ranged-body.png",
+      "sha256": "e346090e2dfe4d2c4afb3568d3c68cfe351d16329047951c17c254a0d76345f8",
+      "targets": [
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          129,
+          113
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          127,
+          114
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          115
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 10.919,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 6.4,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 6.108,
+          "head_shift": [
+            1,
+            -1
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 6.952,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            1,
+            -1
+          ],
+          "mean_rgba_error": 16.115,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            -1,
+            -1
+          ],
+          "mean_rgba_error": 15.6,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 14.206,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 13.388,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 13.156,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 11.81,
+          "head_shift": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 16,
+      "id": "arcaniste-armor1",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/arcaniste-armor1-ranged-body.png",
+      "sha256": "7dd78919c31da6bf25c0853ebb153f7b3aed471bd7f142f3de44b14bbb410d34",
+      "targets": [
+        [
+          128,
+          110
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          129,
+          110
+        ],
+        [
+          129,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          129,
+          111
+        ],
+        [
+          128,
+          109
+        ],
+        [
+          130,
+          109
+        ],
+        [
+          129,
+          109
+        ],
+        [
+          128,
+          109
+        ],
+        [
+          128,
+          109
+        ],
+        [
+          128,
+          109
+        ],
+        [
+          128,
+          112
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 6.875,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 4.533,
+          "head_shift": [
+            1,
+            1
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            1,
+            1
+          ],
+          "mean_rgba_error": 8.933,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 11.813,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            1,
+            1
+          ],
+          "mean_rgba_error": 12.344,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            2,
+            0
+          ],
+          "mean_rgba_error": 6.463,
+          "head_shift": [
+            2,
+            -1
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 5.538,
+          "head_shift": [
+            1,
+            -1
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 7.09,
+          "head_shift": [
+            0,
+            -2
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 9.492,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 6.367,
+          "head_shift": [
+            0,
+            -2
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 17,
+      "id": "arcaniste-armor2",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/arcaniste-armor2-ranged-body.png",
+      "sha256": "72a306653871f66a443418806a0b9f5c9f8a90bd8acc34f5ed9796c4dc64ed80",
+      "targets": [
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          110
+        ],
+        [
+          128,
+          110
+        ],
+        [
+          127,
+          109
+        ],
+        [
+          128,
+          110
+        ],
+        [
+          128,
+          110
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          112
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 5.123,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 4.963,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            -1,
+            -2
+          ],
+          "mean_rgba_error": 12.096,
+          "head_shift": [
+            -1,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 12.05,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 12.887,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 4.704,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.287,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.038,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.752,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 7.242,
+          "head_shift": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 18,
+      "id": "arcaniste-armor3",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/arcaniste-armor3-ranged-body.png",
+      "sha256": "b104f5a0186d50d1625ed43d5cb59871726528ccc2197fcde97f80ada914690c",
+      "targets": [
+        [
+          128,
+          110
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          129,
+          110
+        ],
+        [
+          128,
+          110
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          129,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          128,
+          111
+        ],
+        [
+          129,
+          111
+        ],
+        [
+          129,
+          110
+        ],
+        [
+          128,
+          112
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 6.863,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 9.335,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 8.277,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.496,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 6.3,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 6.337,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 4.237,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 7.31,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 10.023,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            1,
+            -1
+          ],
+          "mean_rgba_error": 7.638,
+          "head_shift": [
+            1,
+            -1
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 21,
+      "id": "metamorphe-armor1",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/metamorphe-armor1-ranged-body.png",
+      "sha256": "18c75c166707fb40591b23978198eb4bb3c785b43281793131dc018678975017",
+      "targets": [
+        [
+          128,
+          114
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          129,
+          114
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          129,
+          116
+        ],
+        [
+          129,
+          115
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          115
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 8.644,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            1,
+            0
+          ],
+          "mean_rgba_error": 6.327,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 5.675,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            1,
+            2
+          ],
+          "mean_rgba_error": 6.723,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            1,
+            1
+          ],
+          "mean_rgba_error": 11.496,
+          "head_shift": [
+            1,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 6.01,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 4.185,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            -2
+          ],
+          "mean_rgba_error": 10.64,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 8.683,
+          "head_shift": [
+            0,
+            1
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 10.617,
+          "head_shift": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 22,
+      "id": "metamorphe-armor2",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/metamorphe-armor2-ranged-body.png",
+      "sha256": "56cca0810ae713bd0de04ab8d2e82d5aaef9a53f76b2dbfa1eae464e171a10e9",
+      "targets": [
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          114
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 11.531,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 6.296,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 11.835,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 11.815,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 13.24,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 6.41,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 7.192,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 10.229,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 10.867,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 9.602,
+          "head_shift": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "outfit": 23,
+      "id": "metamorphe-armor3",
+      "family": "ranged",
+      "file": "assets/animations/vertical-18/intermediate/metamorphe-armor3-ranged-body.png",
+      "sha256": "8f59b00875d651f6aeb662105254de7fb2d2f9a23b4c135394961590350beb7c",
+      "targets": [
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          115
+        ],
+        [
+          128,
+          116
+        ],
+        [
+          128,
+          116
+        ]
+      ],
+      "measurements": [
+        {
+          "frame": 0,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.458,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.477,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 3,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 15.6,
+          "head_shift": [
+            0,
+            -1
+          ]
+        },
+        {
+          "frame": 4,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 5.762,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 5,
+          "chest_delta": [
+            0,
+            1
+          ],
+          "mean_rgba_error": 7.048,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 6,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 0.0,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 7,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 3.562,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 8,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 5.365,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 9,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 7.008,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 10,
+          "chest_delta": [
+            0,
+            -1
+          ],
+          "mean_rgba_error": 5.767,
+          "head_shift": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 11,
+          "chest_delta": [
+            0,
+            0
+          ],
+          "mean_rgba_error": 6.85,
+          "head_shift": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "normal_game_enabled": false
+}

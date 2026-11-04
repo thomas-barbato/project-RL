@@ -1,0 +1,131 @@
+{
+  "review": "BIPED-LATERAL03-r01",
+  "date": "2026-11-02",
+  "status": "cultist_head_direction_revision_requested",
+  "new_models": [
+    145,
+    164,
+    165
+  ],
+  "accepted_reference_models": [
+    5,
+    14,
+    156,
+    144
+  ],
+  "normal_game_enabled": false,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "generation": {
+    "mode": "built-in image_gen",
+    "prompts": "docs/reviews/animation-polish-01/BIPED-LATERAL03-PROMPTS-r01.md",
+    "profiles": [
+      {
+        "number": 145,
+        "name": "Ailé d’obsidienne",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-atlas.png",
+        "sha256": "4b06b4b43342443ff47bbc8d7711337dc4d54fd4fc2567e8251942db59fb0219",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-right-source.png"
+        ],
+        "accepted": false
+      },
+      {
+        "number": 164,
+        "name": "Cultiste au fusil",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-164-atlas.png",
+        "sha256": "3fd026acd4a7fcc441e823f86ecae648cc45c5e2530cc1a7448764d8001d2605",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-164-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-164-right-source.png"
+        ],
+        "accepted": false
+      },
+      {
+        "number": 165,
+        "name": "Cultiste à la hache",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-165-atlas.png",
+        "sha256": "3ac6a30ffd9b3255144c2e6a4d6f8efb71ccfc078915aed580b0a7e746d776d6",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-165-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-165-right-source.png"
+        ],
+        "accepted": false
+      },
+      {
+        "number": 5,
+        "name": "Possédé",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-atlas.png",
+        "sha256": "6de6ed7e994eee5f703ebacf571a80fa374818fbc6fc966f5f8d3ddbf23565bd",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-right-source.png"
+        ],
+        "accepted": true
+      },
+      {
+        "number": 14,
+        "name": "Cultiste",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-atlas.png",
+        "sha256": "bb13de5c1f9a911830649a84cf586a04c65081b675cab9bb541fd3c02d6335f4",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-right-source.png"
+        ],
+        "accepted": true
+      },
+      {
+        "number": 156,
+        "name": "Démon massif",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-atlas.png",
+        "sha256": "af27fc9f303cbe787130660f320f9cc4470df5057951b09a9ee109d288f34c25",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-right-source.png"
+        ],
+        "accepted": true
+      },
+      {
+        "number": 144,
+        "name": "Démon ailé validé",
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-atlas.png",
+        "sha256": "def77b1f9d572afb7c3460e1403febe5d7f6d172fc0efc989a23af037e587361",
+        "sources": [
+          "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-left-source.png",
+          "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-right-source.png"
+        ],
+        "accepted": true
+      }
+    ]
+  },
+  "validation": {
+    "debug_build": "passed",
+    "targeted_rustfmt": "passed",
+    "python_compile": "passed",
+    "git_diff_check": "passed",
+    "native_capture": {
+      "review": "BIPED-LATERAL03-r01",
+      "captures": 462,
+      "synchronized_phase_samples": 448,
+      "accepted_pixel_identical_captures": 264,
+      "accepted_asset_hashes_checked": 12,
+      "webp_loop_ms": 2400,
+      "step_ms": 400,
+      "cycle_ms": 800,
+      "normal_game_enabled": false,
+      "new_models": [
+        145,
+        164,
+        165
+      ],
+      "new_weapon_contacts_accepted": false
+    },
+    "browser_checks": "artifacts/animation-polish-01/biped-lateral-03/r01/browser-checks.json",
+    "browser_validation": "passed: seven banks ready, native sizing, integer zoom, manual rest/foot passage, playback at 400ms and no console errors",
+    "browser_proof": "artifacts/animation-polish-01/biped-lateral-03/r01/browser-proof.png"
+  },
+  "new_weapon_contacts_accepted": false,
+  "other_palettes_accepted": false,
+  "decision": "BIPED-LATERAL03-DECISION-r01.json"
+}

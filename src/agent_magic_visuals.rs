@@ -153,7 +153,7 @@ gl_FragColor=vec4(colour.rgb,colour.a*visibility);}"#},MaterialParams{uniforms:v
                     let f = (at.x - exit.x) * direction.0 + (at.y - exit.y) * direction.1;
                     f >= 0 && has_line_of_sight(map, exit, at, true)
                 });
-                if map.is_walkable(at)
+                if !map.blocks_vision(at)
                     && cells.map_or_else(
                         || has_line_of_sight(map, source, at, true) || from_exit,
                         |cells| cells.contains(&at),
@@ -230,7 +230,7 @@ fn corridor_exit(game: &GameState, origin: GridPos, direction: (i32, i32)) -> Op
     let mut at = origin;
     for _ in 0..map.width().max(map.height()) {
         at = GridPos::new(at.x + direction.0, at.y + direction.1);
-        if !map.contains(at) || !map.is_walkable(at) {
+        if map.blocks_vision(at) {
             return None;
         }
         if !narrow(at) {
@@ -892,7 +892,7 @@ fn draw_contagion(
             flight.target.x + ((p.x - r.x) / r.w).floor() as i32,
             flight.target.y + ((p.y - r.y) / r.h).floor() as i32,
         );
-        game.map().is_walkable(at)
+        !game.map().blocks_vision(at)
     }) {
         requested
     } else {

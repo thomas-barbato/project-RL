@@ -1,0 +1,254 @@
+{
+  "review": "MONSTER-VERTICAL28-WEAPON01-r01",
+  "unchanged_shape_sources": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-atlas.png",
+      "sha256": "d81f86c7201914b281280089cb13eb23e71f843e3937fdcb69762268ee4ce9fe"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-front.png",
+      "sha256": "f6d764e3b19a7e264ae865b5b3881fef722891a8560a99869c24bcba9ecdb01a"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-down-source.png",
+      "sha256": "7773217cea8e40228f7c36eec704f3d4d83ebdd097f1a968522e40c8ee1cfe92"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-up-source.png",
+      "sha256": "5f69108d7a15df11ed6d083598a051f237fb953fbdc5248be15886bce5ad2f15"
+    }
+  ],
+  "materials": [
+    {
+      "direction": "down",
+      "material": "rust_flesh",
+      "moving_pixels": 1997,
+      "idle_pixels": 491,
+      "before": [
+        [
+          82,
+          54,
+          46
+        ],
+        [
+          141,
+          83,
+          66
+        ],
+        [
+          225,
+          136,
+          105
+        ]
+      ],
+      "retained_idle": [
+        [
+          51,
+          25,
+          15
+        ],
+        [
+          94,
+          42,
+          25
+        ],
+        [
+          193,
+          85,
+          46
+        ]
+      ],
+      "after": [
+        [
+          51,
+          25,
+          15
+        ],
+        [
+          94,
+          42,
+          25
+        ],
+        [
+          193,
+          85,
+          46
+        ]
+      ]
+    },
+    {
+      "direction": "down",
+      "material": "dark_materials",
+      "moving_pixels": 2735,
+      "idle_pixels": 239,
+      "before": [
+        [
+          40,
+          33,
+          30
+        ],
+        [
+          63,
+          48,
+          43
+        ],
+        [
+          133,
+          109,
+          99
+        ]
+      ],
+      "retained_idle": [
+        [
+          30,
+          17,
+          13
+        ],
+        [
+          48,
+          38,
+          31
+        ],
+        [
+          85,
+          73,
+          61
+        ]
+      ],
+      "after": [
+        [
+          30,
+          17,
+          13
+        ],
+        [
+          48,
+          38,
+          31
+        ],
+        [
+          85,
+          73,
+          61
+        ]
+      ]
+    },
+    {
+      "direction": "up",
+      "material": "rust_flesh",
+      "moving_pixels": 3209,
+      "idle_pixels": 491,
+      "before": [
+        [
+          80,
+          49,
+          39
+        ],
+        [
+          119,
+          66,
+          50
+        ],
+        [
+          200,
+          106,
+          75
+        ]
+      ],
+      "retained_idle": [
+        [
+          51,
+          25,
+          15
+        ],
+        [
+          94,
+          42,
+          25
+        ],
+        [
+          193,
+          85,
+          46
+        ]
+      ],
+      "after": [
+        [
+          51,
+          25,
+          15
+        ],
+        [
+          94,
+          42,
+          25
+        ],
+        [
+          193,
+          85,
+          46
+        ]
+      ]
+    },
+    {
+      "direction": "up",
+      "material": "dark_materials",
+      "moving_pixels": 1910,
+      "idle_pixels": 239,
+      "before": [
+        [
+          53,
+          42,
+          36
+        ],
+        [
+          76,
+          60,
+          52
+        ],
+        [
+          148,
+          119,
+          107
+        ]
+      ],
+      "retained_idle": [
+        [
+          30,
+          17,
+          13
+        ],
+        [
+          48,
+          38,
+          31
+        ],
+        [
+          85,
+          73,
+          61
+        ]
+      ],
+      "after": [
+        [
+          30,
+          17,
+          13
+        ],
+        [
+          48,
+          38,
+          31
+        ],
+        [
+          85,
+          73,
+          61
+        ]
+      ]
+    }
+  ],
+  "png_files_modified": false,
+  "world_gain_unchanged": 1.48,
+  "normal_game_enabled": false
+}

@@ -21,11 +21,11 @@ impl GameState {
                 error += dx;
                 next.y += sy;
             }
-            if !self.map.is_walkable(next)
+            if self.map.blocks_vision(next)
                 || (next.x != at.x
                     && next.y != at.y
-                    && !self.map.is_walkable(GridPos::new(next.x, at.y))
-                    && !self.map.is_walkable(GridPos::new(at.x, next.y)))
+                    && self.map.blocks_vision(GridPos::new(next.x, at.y))
+                    && self.map.blocks_vision(GridPos::new(at.x, next.y)))
             {
                 break;
             }

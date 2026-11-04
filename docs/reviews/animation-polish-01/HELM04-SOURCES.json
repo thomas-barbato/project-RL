@@ -1,0 +1,153 @@
+{
+  "review": "ANIM-POLISH01-HELM04-WEIGHTS-r01",
+  "native_tile_px": 64,
+  "icons": [
+    {
+      "number": 1,
+      "weight": "Très léger",
+      "label": "Protection ouverte",
+      "prior": null,
+      "description": "Arceaux, sangles et petites protections des tempes ; visage et mâchoire dégagés.",
+      "id": "H04-W01",
+      "raw": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W01-generated.png",
+      "raw_sha256": "6579218bafa40b9362cfb97f45e2b7ee8a63e3a3a0d619f9488a1cc5ee7c6b19",
+      "native": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W01-native64.png",
+      "native_sha256": "55bf4896c72502329723dcb199afd5d269b0ab160075ededb91f9f2a064764f0",
+      "source_alpha16_bounds": [
+        153,
+        177,
+        1118,
+        1054
+      ],
+      "conditioned_object_size": [
+        54,
+        49
+      ],
+      "native_origin": [
+        5,
+        7
+      ],
+      "conditioning": "premultiplied alpha, aspect-preserving Lanczos to max54px, centered on native64; no repainting",
+      "visor_mask": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W01-visor-mask.png",
+      "visor_pixels": 0,
+      "visor_bounds": null,
+      "mask_sha256": "052c48aa8b5e4f2c40bcd0d1bb7a4b93276276285dfa3e8a971b435dc88fdfee"
+    },
+    {
+      "number": 2,
+      "weight": "Léger",
+      "label": "Optique asymétrique",
+      "prior": "H03-I02",
+      "description": "Coque effilée, découpe ouverte sous la tempe, optique cyan décentrée.",
+      "id": "H04-W02",
+      "raw": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I02-generated.png",
+      "raw_sha256": "c845141549b4703b75d59d3bcbdfd26771aa1093d062b19fd805680a1330f89c",
+      "native": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W02-native64.png",
+      "native_sha256": "697b1062b15e48c4cc2a22078e4c89ca3e2613505a4eabae3aee8ea5c8ba2d71",
+      "native_reused_from": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I02-native64.png",
+      "pixel_identical_to_prior": true,
+      "visor_mask": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W02-visor-mask.png",
+      "visor_pixels": 39,
+      "visor_bounds": [
+        26,
+        29,
+        35,
+        35
+      ],
+      "mask_sha256": "7a510930e27f82ad28d7a76fcf99bc2dc9e7ccbdc4704ec30920e9de43a45c32"
+    },
+    {
+      "number": 3,
+      "weight": "Intermédiaire",
+      "label": "Coque organique",
+      "prior": "H03-I03",
+      "description": "Grandes plaques segmentées, crête courte et masque inférieur fendu.",
+      "id": "H04-W03",
+      "raw": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I03-generated.png",
+      "raw_sha256": "c8d72eb9c5ab2f1f47b3c163819ad1d2722f5d7fe2797660bf6e2e32d98a8c5b",
+      "native": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W03-native64.png",
+      "native_sha256": "453dd071c44f949d03fbd45c7067178f63538b15cf8b7a346fdd7199eb9b69c8",
+      "native_reused_from": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I03-native64.png",
+      "pixel_identical_to_prior": true,
+      "visor_mask": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W03-visor-mask.png",
+      "visor_pixels": 8,
+      "visor_bounds": [
+        31,
+        33,
+        47,
+        37
+      ],
+      "mask_sha256": "2a7afcb5ba0b39773260938f0acd7dc43a815910618ac6b7d3d58c4efc17cedd"
+    },
+    {
+      "number": 4,
+      "weight": "Lourd",
+      "label": "Coque industrielle",
+      "prior": "H03-I01",
+      "description": "Couronne large, front en gradins et mâchoire anguleuse ; cuivre mat et visière ambre.",
+      "id": "H04-W04",
+      "raw": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I01-generated.png",
+      "raw_sha256": "b7af4e502b03b57163df5207dc3d8ce9f554478718b8b47266005f48e895e919",
+      "native": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W04-native64.png",
+      "native_sha256": "d506f06ba033eb41c4d8630884cbd4f47e204e95862340396b8c4a846bc484c4",
+      "native_reused_from": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I01-native64.png",
+      "pixel_identical_to_prior": true,
+      "visor_mask": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W04-visor-mask.png",
+      "visor_pixels": 16,
+      "visor_bounds": [
+        36,
+        31,
+        53,
+        34
+      ],
+      "mask_sha256": "4635a021f8032152630aa3612a3d6109f0f8392289dfa205cd0880d4318821e3"
+    },
+    {
+      "number": 5,
+      "weight": "Très lourd",
+      "label": "Protection intégrale",
+      "prior": null,
+      "description": "Coque fermée enveloppante, front épais et large anneau de verrouillage de nuque.",
+      "id": "H04-W05",
+      "raw": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W05-generated.png",
+      "raw_sha256": "960098bece5f3b9dc68da7b534dec8eced9b72c7f9597942a65b3d46451b674e",
+      "native": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W05-native64.png",
+      "native_sha256": "ca5ccbb258caa74a309a319fba798b230e6485fe0efb93a7f8ab2451c8897123",
+      "source_alpha16_bounds": [
+        133,
+        153,
+        1124,
+        1095
+      ],
+      "conditioned_object_size": [
+        54,
+        51
+      ],
+      "native_origin": [
+        5,
+        6
+      ],
+      "conditioning": "premultiplied alpha, aspect-preserving Lanczos to max54px, centered on native64; no repainting",
+      "visor_mask": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W05-visor-mask.png",
+      "visor_pixels": 21,
+      "visor_bounds": [
+        37,
+        29,
+        51,
+        32
+      ],
+      "mask_sha256": "b6dc71ccef58d65d51f05674835560be7df7c092d151479e1a6e9487256515e9"
+    }
+  ],
+  "new_drawings": 2,
+  "reused_unchanged_drawings": 3,
+  "pulse": {
+    "period_ms": 3600,
+    "dim_duration_ms": 400,
+    "minimum_brightness": 0.62,
+    "scope": "visor material only"
+  },
+  "common_design_all_classes": true,
+  "normal_game_enabled": false,
+  "visual_acceptance_received": true
+}

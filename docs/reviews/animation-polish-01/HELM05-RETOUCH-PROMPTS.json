@@ -1,0 +1,22 @@
+{
+  "review": "HELM05-WORN-r01",
+  "mode": "builtin_image_gen",
+  "reason": "Correct front/back asymmetry while retaining lateral source views; orientation cell packing is explicit",
+  "prompts": [
+    {
+      "id": "H05-W01-r02",
+      "path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/helmet-worn-r01/H05-W01-views-r01.png",
+      "prompt": "Use case: precise-object-edit. Input1 is a four-view transparent 2x2 equipment sprite sheet. Fix ONLY the specifically named asymmetric fittings, preserving the approved helmet's shape, colors, materials, scale, transparent margin, pixel style and each view. Retain the four-cell layout; no labels, head, skin, body, background or halo. Keep BOTH BOTTOM CELLS pixel-identical in pose and design; their eventual orientation order will be handled by the engine packager. Only in the TOP LEFT FRONT cell, horizontally reflect the helmet's existing asymmetry so its large bone-white side temple plate is on the viewer's RIGHT and its smaller dark temple guard is on the viewer's LEFT. The open crown ribs, brow band and actual transparency remain unchanged. TOP RIGHT BACK cell must remain unchanged, with the bone-white temple plate on viewer's LEFT. These are front and rear of the same helmet, with the bone-white plate on its physical left temple. Do not add any face or fill the openings."
+    },
+    {
+      "id": "H05-W02-r02",
+      "path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/helmet-worn-r01/H05-W02-views-r01.png",
+      "prompt": "Use case: precise-object-edit. Input1 is a four-view transparent 2x2 equipment sprite sheet. Fix ONLY the specifically named asymmetric fittings, preserving the approved helmet's shape, colors, materials, scale, transparent margin, pixel style and each view. Retain the four-cell layout; no labels, head, skin, body, background or halo. Keep BOTH BOTTOM CELLS pixel-identical in pose and design; their eventual orientation order will be handled by the engine packager. Correct the TOP LEFT FRONT and TOP RIGHT BACK only: in FRONT the single cyan rectangular eyepiece and its upright sensor tab must be on viewer's RIGHT (the helmet's physical LEFT). In BACK the same sensor tab must be on viewer's LEFT. Essentially reflect the asymmetry of each of the two TOP cells, preserving the exact same structural parts and colors. Keep the lower-left right-facing near-optic cell and lower-right left-facing far-optic cell unchanged. Do not duplicate the eyepiece on the opposite temple or introduce a back visor. All actual face/ear openings stay transparent."
+    },
+    {
+      "id": "H05-W04-r02",
+      "path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/helmet-worn-r01/H05-W04-views-r01.png",
+      "prompt": "Use case: precise-object-edit. Input1 is a four-view transparent 2x2 equipment sprite sheet. Fix ONLY the specifically named asymmetric fittings, preserving the approved helmet's shape, colors, materials, scale, transparent margin, pixel style and each view. Retain the four-cell layout; no labels, head, skin, body, background or halo. Keep BOTH BOTTOM CELLS pixel-identical in pose and design; their eventual orientation order will be handled by the engine packager. Correct the cooling module placement in TOP cells. In TOP LEFT FRONT the existing ivory-framed stacked orange cooling block must be at viewer's RIGHT temple, with the plain ivory mechanical side guard at viewer's LEFT temple; the amber frontal visor stays centered. In TOP RIGHT BACK remove the invented central protruding vent box, restoring a quiet dark ribbed nape under the copper rear crown; place the same stacked cooling block on the viewer's LEFT side temple so it is the rear view of the front's physical-left module. The rear must have no bright face or glowing horizontal visor; the module's small vent slits can remain warm orange like its existing material. Keep every other feature unchanged. Both bottom cells must preserve their current designs and poses exactly."
+    }
+  ]
+}

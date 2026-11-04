@@ -1,0 +1,396 @@
+{
+  "review": "MONSTER-VERTICAL11-r01",
+  "status": "accepted",
+  "accepted_batch_models": [
+    63,
+    64,
+    65
+  ],
+  "withdrawn_from_this_review": [],
+  "models_total": 129,
+  "variants_total": 471,
+  "batch_models": [
+    63,
+    64,
+    65
+  ],
+  "first_batch": [
+    14,
+    164,
+    144
+  ],
+  "normal_game_enabled": false,
+  "native_inventory_cards": 129,
+  "whole_figure_walk_poses": 48,
+  "retained_frontal_cells_exact": 6,
+  "native_motion_captures": 198,
+  "frozen_approval_hashes_verified": 38,
+  "first_batch_assets_preserved": 12,
+  "accepted_lot02_assets_preserved": 12,
+  "accepted_color_rule_assets_preserved": 4,
+  "installed_lateral_atlases_unchanged": 10,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "webp_full_roundtrip_ms": 2400,
+  "phase_varying_scaling": false,
+  "selected_sources": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-11/r01/MON-063-down-source.png",
+      "sha256": "1c076a3195cddb67e415182b181ceaebafc72f9d45f281b56a4fa7acbe544bc0"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-11/r01/MON-063-up-source.png",
+      "sha256": "89e67d9738ee1e3b4c1f02128b49489f4975b84ad05888cd914aa0464bb72c92"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-11/r01/MON-064-down-source.png",
+      "sha256": "1201ad800f8a1da24b8eea9a5c2a1dd4f9760ed2d3f20ed89bfb9a640713525d"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-11/r01/MON-064-up-source.png",
+      "sha256": "d4273fd552bdf0dcab3d36d185fd8bbbb17acb200c8d8aee3814a52a0b1d17c2"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-11/r01/MON-065-down-source.png",
+      "sha256": "b3d73eec720ca83877bc0b7961c868c57253a19e408cab5768ace246b9820493"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-11/r01/MON-065-up-source.png",
+      "sha256": "95cf7a0acba7c98337ec9c863d94e76b08ecb1c0098b871885c611e51876f541"
+    }
+  ],
+  "checks": {
+    "native_capture_completed": true,
+    "atlas_pose_and_front_checks": true,
+    "frozen_hashes": true
+  },
+  "user_data_loaded": false,
+  "remaining_models": 96,
+  "variants_awaiting_new_art_review": 440,
+  "accepted_lot03_assets_preserved": 13,
+  "accepted_lot04_assets_preserved": 13,
+  "accepted_lot05_assets_preserved": 12,
+  "accepted_lot06_assets_preserved": 13,
+  "accepted_lot07_assets_preserved": 8,
+  "accepted_lot08_assets_preserved": 13,
+  "accepted_lot09_assets_preserved": 13,
+  "accepted_lot10_assets_preserved": 8,
+  "rejected_assets_retained": 3,
+  "front_reference_assets_retained": 1,
+  "rejected_from_this_review": [],
+  "accepted_quad21_assets_preserved": 4,
+  "accepted_weapon28_assets_preserved": 5,
+  "accepted_lot11_assets_preserved": 18,
+  "withdrawn_assets_retained": 4,
+  "browser_validation": {
+    "review": "MONSTER-VERTICAL11-r01",
+    "url": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=MONSTER-VERTICAL11-r01#monstres-vertical",
+    "checked_models": [
+      {
+        "animation": "monster-vertical-11/r01/current/MON-063-0/native.webp",
+        "id": "MON-063-0",
+        "status": "66 / 66 captures prêtes · Quadrupède à queue · taille native."
+      },
+      {
+        "animation": "monster-vertical-11/r01/current/MON-064-0/native.webp",
+        "id": "MON-064-0",
+        "status": "66 / 66 captures prêtes · Quadrupède trapu · taille native."
+      },
+      {
+        "animation": "monster-vertical-11/r01/current/MON-065-0/native.webp",
+        "id": "MON-065-0",
+        "status": "66 / 66 captures prêtes · Créature au corps enroulé · taille native."
+      },
+      {
+        "animation": "monster-vertical-28-weapon/r01/current/MON-060-0/native.webp",
+        "id": "MON-060-0",
+        "status": "66 / 66 captures prêtes · Démon rouge élancé · lame rétablie · taille native."
+      },
+      {
+        "animation": "monster-vertical-10/r01/current/MON-061-0/native.webp",
+        "id": "MON-061-0",
+        "status": "66 / 66 captures prêtes · Démon cornu aux sabots · taille native."
+      },
+      {
+        "animation": "monster-vertical-10/r01/current/MON-062-0/native.webp",
+        "id": "MON-062-0",
+        "status": "66 / 66 captures prêtes · Démon aux plaques osseuses · taille native."
+      },
+      {
+        "animation": "monster-vertical-09/r01/current/MON-035-0/native.webp",
+        "id": "MON-035-0",
+        "status": "66 / 66 captures prêtes · Créature pâle aux griffes · taille native."
+      },
+      {
+        "animation": "monster-vertical-09/r01/current/MON-037-0/native.webp",
+        "id": "MON-037-0",
+        "status": "66 / 66 captures prêtes · Petit quadrupède pâle · taille native."
+      },
+      {
+        "animation": "monster-vertical-09/r01/current/MON-038-0/native.webp",
+        "id": "MON-038-0",
+        "status": "66 / 66 captures prêtes · Créature à gueule orangée · taille native."
+      },
+      {
+        "animation": "monster-vertical-21-quad/r01/current/MON-032-0/native.webp",
+        "id": "MON-032-0",
+        "status": "66 / 66 captures prêtes · Créature à crête courbe · quatre appuis · taille native."
+      },
+      {
+        "animation": "monster-vertical-08/r01/current/MON-008-0/native.webp",
+        "id": "MON-008-0",
+        "status": "66 / 66 captures prêtes · Créature rouge à crête osseuse · taille native."
+      },
+      {
+        "animation": "monster-vertical-08/r01/current/MON-034-0/native.webp",
+        "id": "MON-034-0",
+        "status": "66 / 66 captures prêtes · Petit démon orangé · taille native."
+      },
+      {
+        "animation": "monster-vertical-08/r01/current/MON-036-0/native.webp",
+        "id": "MON-036-0",
+        "status": "66 / 66 captures prêtes · Créature bleue effilée · taille native."
+      },
+      {
+        "animation": "monster-vertical-07/r01/current/MON-026-0/native.webp",
+        "id": "MON-026-0",
+        "status": "66 / 66 captures prêtes · Possédé à la tunique ocre · taille native."
+      },
+      {
+        "animation": "monster-vertical-07/r01/current/MON-028-0/native.webp",
+        "id": "MON-028-0",
+        "status": "66 / 66 captures prêtes · Démon massif aux longs bras · taille native."
+      },
+      {
+        "animation": "monster-vertical-06/r01/current/MON-022-0/native.webp",
+        "id": "MON-022-0",
+        "status": "66 / 66 captures prêtes · Cultiste armé 022 · taille native."
+      },
+      {
+        "animation": "monster-vertical-06/r01/current/MON-024-0/native.webp",
+        "id": "MON-024-0",
+        "status": "66 / 66 captures prêtes · Cultiste armé 024 · taille native."
+      },
+      {
+        "animation": "monster-vertical-06/r01/current/MON-025-0/native.webp",
+        "id": "MON-025-0",
+        "status": "66 / 66 captures prêtes · Possédé en haillons · taille native."
+      },
+      {
+        "animation": "monster-vertical-05/r01/current/MON-015-0/native.webp",
+        "id": "MON-015-0",
+        "status": "66 / 66 captures prêtes · Cultiste au bâton violet · taille native."
+      },
+      {
+        "animation": "monster-vertical-05/r01/current/MON-016-0/native.webp",
+        "id": "MON-016-0",
+        "status": "66 / 66 captures prêtes · Cultiste au bouclier · taille native."
+      },
+      {
+        "animation": "monster-vertical-05/r01/current/MON-017-0/native.webp",
+        "id": "MON-017-0",
+        "status": "66 / 66 captures prêtes · Cultiste au bâton orné · taille native."
+      },
+      {
+        "animation": "monster-vertical-04/r01/current/MON-006-0/native.webp",
+        "id": "MON-006-0",
+        "status": "66 / 66 captures prêtes · Possédé voûté · taille native."
+      },
+      {
+        "animation": "monster-vertical-04/r01/current/MON-007-0/native.webp",
+        "id": "MON-007-0",
+        "status": "66 / 66 captures prêtes · Hybride au bras mécanique · taille native."
+      },
+      {
+        "animation": "monster-vertical-04/r01/current/MON-010-0/native.webp",
+        "id": "MON-010-0",
+        "status": "66 / 66 captures prêtes · Hybride au canon · taille native."
+      },
+      {
+        "animation": "monster-vertical-03/r01/current/MON-039-0/native.webp",
+        "id": "MON-039-0",
+        "status": "66 / 66 captures prêtes · Petit démon ailé · taille native."
+      },
+      {
+        "animation": "monster-vertical-03/r01/current/MON-146-0/native.webp",
+        "id": "MON-146-0",
+        "status": "66 / 66 captures prêtes · Ailé doré · taille native."
+      },
+      {
+        "animation": "monster-vertical-03/r01/current/MON-151-0/native.webp",
+        "id": "MON-151-0",
+        "status": "66 / 66 captures prêtes · Ailé pâle au brassard · taille native."
+      },
+      {
+        "animation": "monster-vertical-color-01/r01/current/MON-144-0/native.webp",
+        "id": "MON-144-0",
+        "status": "66 / 66 captures prêtes · Démon ailé au sol · taille native."
+      },
+      {
+        "animation": "monster-vertical-02/r01/current/MON-005-0/native.webp",
+        "id": "MON-005-0",
+        "status": "66 / 66 captures prêtes · Possédé · taille native."
+      },
+      {
+        "animation": "monster-vertical-02/r01/current/MON-156-0/native.webp",
+        "id": "MON-156-0",
+        "status": "66 / 66 captures prêtes · Démon massif · taille native."
+      },
+      {
+        "animation": "monster-vertical-02/r01/current/MON-165-0/native.webp",
+        "id": "MON-165-0",
+        "status": "66 / 66 captures prêtes · Cultiste à la hache · taille native."
+      },
+      {
+        "animation": "monster-vertical-01/r01/current/MON-014-0/native.webp",
+        "id": "MON-014-0",
+        "status": "66 / 66 captures prêtes · Cultiste sans arme · taille native."
+      },
+      {
+        "animation": "monster-vertical-01/r01/current/MON-164-0/native.webp",
+        "id": "MON-164-0",
+        "status": "66 / 66 captures prêtes · Cultiste au fusil · taille native."
+      }
+    ],
+    "manual_stops": [
+      {
+        "direction": "down",
+        "id": "MON-063-0",
+        "phase": "8",
+        "text": "Bas · face · Repos frontal"
+      },
+      {
+        "direction": "up",
+        "id": "MON-063-0",
+        "phase": "8",
+        "text": "Haut · dos · Repos frontal"
+      },
+      {
+        "direction": "down",
+        "id": "MON-064-0",
+        "phase": "8",
+        "text": "Bas · face · Repos frontal"
+      },
+      {
+        "direction": "up",
+        "id": "MON-064-0",
+        "phase": "8",
+        "text": "Haut · dos · Repos frontal"
+      },
+      {
+        "direction": "down",
+        "id": "MON-065-0",
+        "phase": "8",
+        "text": "Bas · face · Repos frontal"
+      },
+      {
+        "direction": "up",
+        "id": "MON-065-0",
+        "phase": "8",
+        "text": "Haut · dos · Repos frontal"
+      }
+    ],
+    "automatic_models": [
+      {
+        "id": "MON-063-0",
+        "direction": "both",
+        "step_ms": 400,
+        "observed": [
+          "Bas · face · contact avant gauche",
+          "Haut · dos · Repos frontal"
+        ]
+      },
+      {
+        "id": "MON-064-0",
+        "direction": "both",
+        "step_ms": 400,
+        "observed": [
+          "Bas · face · contact avant gauche",
+          "Haut · dos · charge gauche"
+        ]
+      },
+      {
+        "id": "MON-065-0",
+        "direction": "both",
+        "step_ms": 400,
+        "observed": [
+          "Bas · face · appui de la spire gauche",
+          "Haut · dos · onde vers l’avant"
+        ]
+      }
+    ],
+    "errors_after_final_reload": [],
+    "inventory_cards_in_dom": 129,
+    "canvas": {
+      "css_width": 576,
+      "height": 320,
+      "width": 576
+    },
+    "final_selection": {
+      "canvas": {
+        "css_width": 576,
+        "height": 320,
+        "width": 576
+      },
+      "direction": "both",
+      "id": "MON-063-0",
+      "inventory_cards_in_dom": 129,
+      "phase": "Bas · face · contact avant gauche",
+      "playing": "Pause",
+      "step_ms": 400,
+      "viewport": {
+        "height": 884,
+        "width": 654
+      }
+    },
+    "proof_files": [
+      "browser-proof.png",
+      "browser-proof-32.png",
+      "browser-proof-33.png"
+    ],
+    "reduced_scale": false,
+    "normal_game_enabled": false
+  },
+  "silhouette_breadth": [
+    {
+      "id": "MON-063-0",
+      "direction": "down",
+      "median_width_to_installed_view": 0.8880597014925373
+    },
+    {
+      "id": "MON-063-0",
+      "direction": "up",
+      "median_width_to_installed_view": 0.9336384439359268
+    },
+    {
+      "id": "MON-064-0",
+      "direction": "down",
+      "median_width_to_installed_view": 0.8680555555555556
+    },
+    {
+      "id": "MON-064-0",
+      "direction": "up",
+      "median_width_to_installed_view": 0.8714096332302254
+    },
+    {
+      "id": "MON-065-0",
+      "direction": "down",
+      "median_width_to_installed_view": 0.96875
+    },
+    {
+      "id": "MON-065-0",
+      "direction": "up",
+      "median_width_to_installed_view": 0.9109141791044777
+    }
+  ],
+  "anatomy_scope": {
+    "MON-063-0": "quadruped / four supports",
+    "MON-064-0": "quadruped / four supports",
+    "MON-065-0": "serpentine / no legs"
+  },
+  "generation_provenance_verified": {
+    "selected_outputs": 6,
+    "hashed_inputs": 12
+  },
+  "material_reference_policy": "Actual installed view per direction; one fixed palette per material for all eight poses; no per-phase gain; Rust pixels/alpha/rest test."
+}

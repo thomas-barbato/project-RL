@@ -1,0 +1,140 @@
+{
+  "review": "MONSTER-VERTICAL03-r01",
+  "status": "accepted",
+  "models_total": 129,
+  "variants_total": 471,
+  "batch_models": [
+    39,
+    146,
+    151
+  ],
+  "first_batch": [
+    14,
+    164,
+    144
+  ],
+  "normal_game_enabled": false,
+  "native_inventory_cards": 129,
+  "whole_figure_walk_poses": 48,
+  "retained_frontal_cells_exact": 6,
+  "native_motion_captures": 198,
+  "frozen_approval_hashes_verified": 38,
+  "first_batch_assets_preserved": 12,
+  "accepted_lot02_assets_preserved": 12,
+  "accepted_color_rule_assets_preserved": 4,
+  "installed_lateral_atlases_unchanged": 10,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "webp_full_roundtrip_ms": 2400,
+  "phase_varying_scaling": false,
+  "selected_sources": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-03/r01/MON-039-down-source.png",
+      "sha256": "0f49a636da101aeac5802a72eb3371e1d2eb03fb6a7477d374785b99511c9062"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-03/r01/MON-039-up-source.png",
+      "sha256": "8e9fbb415a763ef77c0b6433019e0516b5c00d6d876da9883dfb47887d07f403"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-03/r01/MON-146-down-source.png",
+      "sha256": "d45acbec5f1be2d898934e48f31794b31168d043f9166c0dd9ae7fe88489dc34"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-03/r01/MON-146-up-source.png",
+      "sha256": "cf058b0f42a655d3618e42161f655acea47e535dc6b66223a0cfb833f0b83c8c"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-03/r01/MON-151-down-palette-source.png",
+      "sha256": "8c0bafb85f5d3dc3d9bc0851ab4add99b1410655f953519209904afab0648e88"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-03/r01/MON-151-up-palette-source.png",
+      "sha256": "f05cdc9925ed4240d3745df7edb27c9dc2a201ad138a562b9f3f86ccb6851f01"
+    }
+  ],
+  "checks": {
+    "native_capture_completed": true,
+    "atlas_pose_and_front_checks": true,
+    "frozen_hashes": true
+  },
+  "user_data_loaded": false,
+  "remaining_models": 120,
+  "variants_awaiting_new_art_review": 464,
+  "accepted_lot03_assets_preserved": 13,
+  "browser_validation": {
+    "review": "MONSTER-VERTICAL03-r01",
+    "url": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=MONSTER-VERTICAL03-r01#monstres-vertical",
+    "checked_models": [
+      {
+        "id": "MON-039-0",
+        "status": "66 / 66 captures prêtes · Petit démon ailé · taille native.",
+        "animation": "monster-vertical-03/r01/current/MON-039-0/native.webp"
+      },
+      {
+        "id": "MON-146-0",
+        "status": "66 / 66 captures prêtes · Ailé doré · taille native.",
+        "animation": "monster-vertical-03/r01/current/MON-146-0/native.webp"
+      },
+      {
+        "id": "MON-151-0",
+        "status": "66 / 66 captures prêtes · Ailé pâle au brassard · taille native.",
+        "animation": "monster-vertical-03/r01/current/MON-151-0/native.webp"
+      },
+      {
+        "id": "MON-144-0",
+        "status": "66 / 66 captures prêtes · Démon ailé au sol · taille native.",
+        "animation": "monster-vertical-color-01/r01/current/MON-144-0/native.webp"
+      },
+      {
+        "id": "MON-005-0",
+        "status": "66 / 66 captures prêtes · Possédé · taille native.",
+        "animation": "monster-vertical-02/r01/current/MON-005-0/native.webp"
+      },
+      {
+        "id": "MON-156-0",
+        "status": "66 / 66 captures prêtes · Démon massif · taille native.",
+        "animation": "monster-vertical-02/r01/current/MON-156-0/native.webp"
+      },
+      {
+        "id": "MON-165-0",
+        "status": "66 / 66 captures prêtes · Cultiste à la hache · taille native.",
+        "animation": "monster-vertical-02/r01/current/MON-165-0/native.webp"
+      },
+      {
+        "id": "MON-014-0",
+        "status": "66 / 66 captures prêtes · Cultiste sans arme · taille native.",
+        "animation": "monster-vertical-01/r01/current/MON-014-0/native.webp"
+      },
+      {
+        "id": "MON-164-0",
+        "status": "66 / 66 captures prêtes · Cultiste au fusil · taille native.",
+        "animation": "monster-vertical-01/r01/current/MON-164-0/native.webp"
+      }
+    ],
+    "inventory_cards_in_dom": 129,
+    "captures_loaded_per_selection": 66,
+    "automatic_both_directions": true,
+    "manual_stops": [
+      {
+        "direction": "down",
+        "phase": "Bas · face · Repos frontal"
+      },
+      {
+        "direction": "up",
+        "phase": "Haut · dos · Repos frontal"
+      }
+    ],
+    "pace_ms": 400,
+    "canvas": {
+      "width": 576,
+      "height": 320,
+      "css_width": 576,
+      "css_height": 320
+    },
+    "errors_after_final_reload": [],
+    "proof": "browser-proof.png",
+    "back_proof": "browser-back-proof.png",
+    "normal_game_enabled": false
+  }
+}

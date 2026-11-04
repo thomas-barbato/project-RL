@@ -1,0 +1,33 @@
+[
+  {
+    "id": "MON-060-0",
+    "number": 60,
+    "name": "Démon rouge élancé · lame rétablie",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 47,
+    "vertical_offset": -8,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-28-weapon/r01/MON-060-front.png",
+    "idle_sha256": "f6d764e3b19a7e264ae865b5b3881fef722891a8560a99869c24bcba9ecdb01a",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-060-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 60,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-060-v0.png",
+      "cell": [
+        44,
+        54
+      ],
+      "anchor": [
+        22,
+        52
+      ],
+      "offset": -8,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

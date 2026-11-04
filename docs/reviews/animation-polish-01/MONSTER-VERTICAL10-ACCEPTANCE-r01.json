@@ -1,0 +1,88 @@
+{
+  "review": "MONSTER-VERTICAL10-r01",
+  "date": "2026-11-03",
+  "status": "partially_accepted",
+  "player_quote": "euh , alors pour le coup, concernant le démon - 28 démon rouge élancé, j'aime pas trop la position de ses bras qui fait trop ... etrange . Mais sinon, je valide le reste",
+  "review_numbers": [
+    29,
+    30
+  ],
+  "models": [
+    61,
+    62
+  ],
+  "variant": 0,
+  "directions": [
+    "down",
+    "up"
+  ],
+  "native_cell_px": 64,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "poses_per_direction": 8,
+  "retained_frontal_exact": true,
+  "normal_game_enabled": false,
+  "rejected_models": [
+    60
+  ],
+  "rejected_review_numbers": [
+    28
+  ],
+  "reason": "Arm posture of review28 is not accepted; redraw arms only, retain head, torso, compact gait and original frontal idle.",
+  "manifest": "assets/source-art/animation-polish-01/monster-vertical-10/r01/manifest.json",
+  "native_validation": "docs/reviews/animation-polish-01/MONSTER-VERTICAL10-VALIDATION.json",
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-061-atlas.png",
+      "sha256": "c3c475e75d6fc421f647a7a24914dd60655c77c8f8316679ff9b03108d7c17ea"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-061-front.png",
+      "sha256": "097e9830261a168fcd9542b3eaf8a175d06b9464c11a7c2985161484cc97392e"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-061-down-source.png",
+      "sha256": "d1666822a6846f38a4dde9de0fda1ba49255bcbc14202c411e01249f932d6535"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-061-up-source.png",
+      "sha256": "2e30c0e8f07f05794ea10d6b9425548f0b4a9ef4181c62087a0a31b314bb5ffb"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-062-atlas.png",
+      "sha256": "c45781cec23c1043fbd55ecac75cec2d3670f365f9d46fcd0bf394e54bb821d6"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-062-front.png",
+      "sha256": "93d093de80570aa2a21a91daf204c7b16860f6c8a407ba5fd3e5d0fc981a089c"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-062-down-source.png",
+      "sha256": "c4874c0eaef8eeccd244f2833cc238fc7d8f0c721679406cc39a6b4267974227"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-062-up-source.png",
+      "sha256": "66acd477ccc22369b9f51a7888462435a629bba19b3b7b887225ba618c9b416d"
+    }
+  ],
+  "rejected_assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-060-atlas.png",
+      "sha256": "9297233bacc53ba3160e7c8ca5ad96b544351897f35271348788873fe928a30f"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-060-down-broad-source.png",
+      "sha256": "996010f93f08c82cc40bd548a25f929139009d80fd9efe72a7ac9ccb77347649"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-060-up-broad-source.png",
+      "sha256": "29d53c193617009595f105781caf91f52b665c108d000f64ed93d57a902c230b"
+    }
+  ],
+  "front_references_retained": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-10/r01/MON-060-front.png",
+      "sha256": "f6d764e3b19a7e264ae865b5b3881fef722891a8560a99869c24bcba9ecdb01a"
+    }
+  ]
+}

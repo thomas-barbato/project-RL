@@ -8,8 +8,11 @@ mod generic;
 pub(super) fn class_outfit(body: u8, equipment: [Option<u16>; 4]) -> Option<u16> {
     class_armor::outfit_index(body, equipment)
 }
+pub(super) fn firearm_grips(model: u16) -> Option<([f32; 2], [f32; 2])> {
+    class_armor::firearm_grips(model)
+}
 
-#[cfg(all(debug_assertions, test))]
+#[cfg(debug_assertions)]
 pub(super) fn vertical_review_weapon(
     model: u16,
     left: bool,
@@ -32,7 +35,7 @@ pub(super) fn approved_walking_layers(
     key: Key,
     pose: crate::game_art::walking::Pose,
 ) -> Option<Vec<Image>> {
-    class_armor::walking_layers(key, pose)
+    class_armor::walking_render_layers(key, pose)
 }
 
 fn binding(key: Key) -> Option<(&'static str, Option<&'static str>)> {
@@ -192,7 +195,7 @@ struct Pack {
     portrait: portrait::Sheet,
 }
 thread_local! {
-    static CACHE: std::cell::RefCell<BTreeMap<(Key,u8,Option<crate::game_art::walking::Pose>,bool),(Pack,f64)>> = const {std::cell::RefCell::new(BTreeMap::new())};
+    static CACHE: std::cell::RefCell<BTreeMap<(Key,u8,Option<crate::game_art::walking::Pose>,bool,u8),(Pack,f64)>> = const {std::cell::RefCell::new(BTreeMap::new())};
 }
 #[cfg(debug_assertions)]
 pub(super) fn cache_len() -> usize {
@@ -225,6 +228,7 @@ pub(super) fn draw(rect: Rect, key: Key, side: u16, opacity: f32, breath: u8) ->
                 crate::game_art::walking::pose()
             },
             crate::game_art::walking::dual17_enabled(),
+            crate::rifle_visuals::variant(),
         );
         if !cache.contains_key(&cache_key) {
             let image =

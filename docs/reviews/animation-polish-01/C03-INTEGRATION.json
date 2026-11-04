@@ -1,0 +1,21 @@
+{
+  "review": "ANIM-POLISH01-C03",
+  "date": "2026-11-01",
+  "status": "normal_world_renderer_enabled",
+  "user_report": "la taille des icones d'objet au sol n'a pas changé .",
+  "accepted_direction": "C03 in acceptance-partial.json: 40 px ground icons inside the unchanged native64 cell",
+  "cause": "The accepted preview manually drew item icons at 40 px; the normal world's ColoredItem branch still used the complete 64 px cell.",
+  "normal_game_enabled": true,
+  "native_cell_px": 64,
+  "ground_icon_px": 40,
+  "centered_margin_px": 12,
+  "scale_with_world_cell": true,
+  "interface_and_portrait_icons_unchanged": true,
+  "content_palettes_and_opacity_preserved": true,
+  "pickup_hit_test_and_loot_rules_unchanged": true,
+  "corpse_and_item_draw_order_unchanged": true,
+  "new_art_or_resources": false,
+  "other_polish_candidates_enabled": false,
+  "scope": "Only the normal world rendering of ColoredItem, in Debug and Release. Equipped weapons and armor are unaffected.",
+  "validation": "C03-VALIDATION.md"
+}

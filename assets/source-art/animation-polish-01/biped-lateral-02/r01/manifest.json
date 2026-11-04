@@ -1,0 +1,703 @@
+{
+  "review": "BIPED-LATERAL02-r01",
+  "native_cell_px": 64,
+  "normal_game_enabled": false,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "phase_weights": [
+    180,
+    180,
+    170,
+    120,
+    180,
+    180,
+    170,
+    120
+  ],
+  "phase_ms_integer_allocation": [
+    111,
+    111,
+    104,
+    74,
+    111,
+    111,
+    104,
+    74
+  ],
+  "frame": [
+    128,
+    128
+  ],
+  "anchor": [
+    64,
+    112
+  ],
+  "reference": "assets/source-art/animation-polish-01/class-lateral-02/r02/bastion-atlas.png",
+  "accepted_reference": "docs/reviews/animation-polish-01/BIPED-LATERAL01-ACCEPTANCE-r03.json",
+  "profiles": [
+    {
+      "id": "MON-005-0",
+      "number": 5,
+      "name": "Possédé",
+      "reference_height": 56,
+      "front_file": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-005-front.png",
+      "front_source": "assets/animations/vertical-18/monsters/MON-005-v0.png",
+      "vertical_offset": -4,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-atlas.png",
+      "sha256": "6de6ed7e994eee5f703ebacf571a80fa374818fbc6fc966f5f8d3ddbf23565bd",
+      "sources": [
+        "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-left-source.png",
+        "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-right-source.png"
+      ],
+      "bounds": [
+        {
+          "side": 0,
+          "phase": 0,
+          "whole_figure_scale": 0.20588235294117646,
+          "bounds": [
+            44,
+            56,
+            85,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 1,
+          "whole_figure_scale": 0.2066420664206642,
+          "bounds": [
+            46,
+            56,
+            79,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 2,
+          "whole_figure_scale": 0.2066420664206642,
+          "bounds": [
+            49,
+            56,
+            79,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 3,
+          "whole_figure_scale": 0.21212121212121213,
+          "bounds": [
+            43,
+            56,
+            82,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 4,
+          "whole_figure_scale": 0.2153846153846154,
+          "bounds": [
+            39,
+            56,
+            86,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 5,
+          "whole_figure_scale": 0.208955223880597,
+          "bounds": [
+            45,
+            56,
+            82,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 6,
+          "whole_figure_scale": 0.2074074074074074,
+          "bounds": [
+            47,
+            56,
+            81,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 7,
+          "whole_figure_scale": 0.21132075471698114,
+          "bounds": [
+            40,
+            56,
+            82,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 8,
+          "whole_figure_scale": 0.20973782771535582,
+          "bounds": [
+            42,
+            56,
+            86,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 0,
+          "whole_figure_scale": 0.2074074074074074,
+          "bounds": [
+            43,
+            56,
+            82,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 1,
+          "whole_figure_scale": 0.20973782771535582,
+          "bounds": [
+            46,
+            56,
+            79,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 2,
+          "whole_figure_scale": 0.208955223880597,
+          "bounds": [
+            48,
+            56,
+            77,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 3,
+          "whole_figure_scale": 0.21292775665399238,
+          "bounds": [
+            43,
+            56,
+            83,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 4,
+          "whole_figure_scale": 0.2153846153846154,
+          "bounds": [
+            40,
+            56,
+            82,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 5,
+          "whole_figure_scale": 0.21212121212121213,
+          "bounds": [
+            46,
+            56,
+            80,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 6,
+          "whole_figure_scale": 0.21374045801526717,
+          "bounds": [
+            45,
+            56,
+            77,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 7,
+          "whole_figure_scale": 0.21455938697318008,
+          "bounds": [
+            41,
+            56,
+            82,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 8,
+          "whole_figure_scale": 0.21705426356589147,
+          "bounds": [
+            39,
+            56,
+            87,
+            112
+          ]
+        }
+      ],
+      "accepted": false
+    },
+    {
+      "id": "MON-014-0",
+      "number": 14,
+      "name": "Cultiste",
+      "reference_height": 60,
+      "front_file": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-014-front.png",
+      "front_source": "assets/animations/vertical-18/monsters/MON-014-v0.png",
+      "vertical_offset": -2,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-atlas.png",
+      "sha256": "bb13de5c1f9a911830649a84cf586a04c65081b675cab9bb541fd3c02d6335f4",
+      "sources": [
+        "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-left-source.png",
+        "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-right-source.png"
+      ],
+      "bounds": [
+        {
+          "side": 0,
+          "phase": 0,
+          "whole_figure_scale": 0.21201413427561838,
+          "bounds": [
+            46,
+            52,
+            81,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 1,
+          "whole_figure_scale": 0.21201413427561838,
+          "bounds": [
+            49,
+            52,
+            79,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 2,
+          "whole_figure_scale": 0.21201413427561838,
+          "bounds": [
+            51,
+            52,
+            78,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 3,
+          "whole_figure_scale": 0.2127659574468085,
+          "bounds": [
+            47,
+            52,
+            80,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 4,
+          "whole_figure_scale": 0.2158273381294964,
+          "bounds": [
+            46,
+            52,
+            83,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 5,
+          "whole_figure_scale": 0.2127659574468085,
+          "bounds": [
+            52,
+            52,
+            81,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 6,
+          "whole_figure_scale": 0.21428571428571427,
+          "bounds": [
+            52,
+            52,
+            78,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 7,
+          "whole_figure_scale": 0.21739130434782608,
+          "bounds": [
+            39,
+            52,
+            81,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 8,
+          "whole_figure_scale": 0.2127659574468085,
+          "bounds": [
+            41,
+            52,
+            80,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 0,
+          "whole_figure_scale": 0.2112676056338028,
+          "bounds": [
+            45,
+            52,
+            84,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 1,
+          "whole_figure_scale": 0.21201413427561838,
+          "bounds": [
+            47,
+            52,
+            75,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 2,
+          "whole_figure_scale": 0.2112676056338028,
+          "bounds": [
+            48,
+            52,
+            74,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 3,
+          "whole_figure_scale": 0.2127659574468085,
+          "bounds": [
+            45,
+            52,
+            82,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 4,
+          "whole_figure_scale": 0.2112676056338028,
+          "bounds": [
+            42,
+            52,
+            80,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 5,
+          "whole_figure_scale": 0.21052631578947367,
+          "bounds": [
+            48,
+            52,
+            76,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 6,
+          "whole_figure_scale": 0.21201413427561838,
+          "bounds": [
+            48,
+            52,
+            76,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 7,
+          "whole_figure_scale": 0.2127659574468085,
+          "bounds": [
+            46,
+            52,
+            83,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 8,
+          "whole_figure_scale": 0.20833333333333334,
+          "bounds": [
+            43,
+            52,
+            79,
+            112
+          ]
+        }
+      ],
+      "accepted": false
+    },
+    {
+      "id": "MON-156-0",
+      "number": 156,
+      "name": "Démon massif",
+      "reference_height": 91,
+      "front_file": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-156-front.png",
+      "front_source": "assets/animations/vertical-18/monsters/MON-156-v0.png",
+      "vertical_offset": 0,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-atlas.png",
+      "sha256": "af27fc9f303cbe787130660f320f9cc4470df5057951b09a9ee109d288f34c25",
+      "sources": [
+        "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-left-source.png",
+        "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-right-source.png"
+      ],
+      "bounds": [
+        {
+          "side": 0,
+          "phase": 0,
+          "whole_figure_scale": 0.29449838187702265,
+          "bounds": [
+            29,
+            21,
+            98,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 1,
+          "whole_figure_scale": 0.2916666666666667,
+          "bounds": [
+            35,
+            21,
+            98,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 2,
+          "whole_figure_scale": 0.29449838187702265,
+          "bounds": [
+            39,
+            21,
+            93,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 3,
+          "whole_figure_scale": 0.30333333333333334,
+          "bounds": [
+            31,
+            21,
+            100,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 4,
+          "whole_figure_scale": 0.30132450331125826,
+          "bounds": [
+            28,
+            21,
+            99,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 5,
+          "whole_figure_scale": 0.2993421052631579,
+          "bounds": [
+            32,
+            21,
+            100,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 6,
+          "whole_figure_scale": 0.2983606557377049,
+          "bounds": [
+            36,
+            21,
+            94,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 7,
+          "whole_figure_scale": 0.2993421052631579,
+          "bounds": [
+            24,
+            21,
+            95,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 8,
+          "whole_figure_scale": 0.2983606557377049,
+          "bounds": [
+            22,
+            21,
+            107,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 0,
+          "whole_figure_scale": 0.2852664576802508,
+          "bounds": [
+            29,
+            21,
+            97,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 1,
+          "whole_figure_scale": 0.2852664576802508,
+          "bounds": [
+            31,
+            21,
+            88,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 2,
+          "whole_figure_scale": 0.2879746835443038,
+          "bounds": [
+            37,
+            21,
+            87,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 3,
+          "whole_figure_scale": 0.29073482428115016,
+          "bounds": [
+            26,
+            21,
+            94,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 4,
+          "whole_figure_scale": 0.2879746835443038,
+          "bounds": [
+            27,
+            21,
+            96,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 5,
+          "whole_figure_scale": 0.29073482428115016,
+          "bounds": [
+            29,
+            21,
+            92,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 6,
+          "whole_figure_scale": 0.28173374613003094,
+          "bounds": [
+            32,
+            21,
+            91,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 7,
+          "whole_figure_scale": 0.284375,
+          "bounds": [
+            27,
+            21,
+            98,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 8,
+          "whole_figure_scale": 0.2791411042944785,
+          "bounds": [
+            22,
+            21,
+            107,
+            112
+          ]
+        }
+      ],
+      "accepted": false
+    },
+    {
+      "id": "MON-144-0",
+      "number": 144,
+      "name": "Démon ailé validé",
+      "reference_height": 78,
+      "front_file": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-144-front.png",
+      "front_source": "assets/animations/vertical-18/monsters/MON-144-v0.png",
+      "vertical_offset": 0,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-atlas.png",
+      "sha256": "def77b1f9d572afb7c3460e1403febe5d7f6d172fc0efc989a23af037e587361",
+      "sources": [
+        "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-left-source.png",
+        "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-right-source.png"
+      ],
+      "accepted": true
+    }
+  ]
+}

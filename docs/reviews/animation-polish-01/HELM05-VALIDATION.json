@@ -1,0 +1,75 @@
+{
+  "review": "HELM05-WORN-r01",
+  "date": "2026-10-31",
+  "status": "MOTION03_native_size_sharpness_candidate_awaits_visual_review",
+  "visual_limitation": "User-reported optic inconsistency; technical tests below do not validate eye attachment or viewpoint fidelity. See HELM05-EYE01-RETOUR.json",
+  "accepted_icons": "HELM04-ACCEPTANCE.json",
+  "new_worn_approval_received": false,
+  "new_atlases": 5,
+  "authored_directions_per_model": 4,
+  "source_mode": "builtin_image_gen",
+  "source_retouches": "01/02 front asymmetry and 04 cooling module; 03 opaque central face shield",
+  "player_classes": 4,
+  "armor_stages": 5,
+  "outfit_helmet_combinations": 100,
+  "weapon_model_in_capture": 31,
+  "other_weapon_pose_families": "not covered in this helmet pilot",
+  "moving_phases_per_direction": 6,
+  "frontal_return": true,
+  "engine_capture_exit_code": 0,
+  "engine_sheets": 140,
+  "engine_sheet_size": [
+    600,
+    730
+  ],
+  "camp_sheet_size": [
+    640,
+    610
+  ],
+  "native_summary_size": [
+    336,
+    730
+  ],
+  "native_summary_frames": 7,
+  "compact_rgb_figure_crops_verified_identical": 24,
+  "all_atlas_sources_and_accepted_icon_hashes": "verified",
+  "polish_targeted_tests": {
+    "passed": 11,
+    "failed": 0,
+    "new_helmet_tests": 2,
+    "vertical_head_region_pairs": 52,
+    "lateral_pairs": 8
+  },
+  "normal_source_and_cache_restoration": "passed targeted tests",
+  "cargo_build_locked_debug": "passed",
+  "cargo_check_locked_all_targets": "passed",
+  "cargo_check_locked_release_bin": "passed",
+  "release_executable_rebuilt": false,
+  "rustfmt_edition2024": "passed",
+  "reader_javascript_syntax": "passed node --check",
+  "python_compile": "passed",
+  "json_valid": "passed",
+  "browser": {
+    "actual_current_revision_tested": true,
+    "front_back_left_right_selection": true,
+    "armor_selection": [
+      "base",
+      "intermediate",
+      "very heavy"
+    ],
+    "phase_slider_frontal_return": true,
+    "console_errors": 0,
+    "screenshot": "artifacts/animation-polish-01/helmet-worn-r01/current/browser-worn-review.png",
+    "screenshot_size": [
+      373,
+      1065
+    ],
+    "proof_source": "full-page browser screenshot cropped to review controls and all five native rows; no viewport override"
+  },
+  "normal_game_enabled": false,
+  "existing_gameplay_or_item_mapping_changed": false,
+  "full_suite_run": false,
+  "latest_correction_validation": "HELM05-EYE01-VALIDATION.json",
+  "prior_test_scope_note": "The eleven tests below are the original HELM05 technical baseline. EYE01 reran three worn tests including native optic visibility; none is a substitute for visual judgment.",
+  "latest_motion_correction": "HELM05-MOTION03-VALIDATION.json"
+}

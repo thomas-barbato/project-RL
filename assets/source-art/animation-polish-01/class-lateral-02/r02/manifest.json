@@ -1,0 +1,94 @@
+{
+  "review": "CLASS-LATERAL02-r02",
+  "normal_game_enabled": false,
+  "native_cell_px": 64,
+  "walk_frames": 8,
+  "lateral_idle_frame": 8,
+  "proposal_step_ms": 650,
+  "cycle_ms": 1300,
+  "frame": [
+    96,
+    96
+  ],
+  "anchor": [
+    48,
+    81
+  ],
+  "profiles": [
+    {
+      "anchor": [
+        64,
+        96
+      ],
+      "armor": 101,
+      "body": 3,
+      "class": "bastion",
+      "file": "bastion-t3-front.png",
+      "name": "Bastion",
+      "origin": "normal static fallback",
+      "tier": 3,
+      "reference_height": 58,
+      "bounds": [
+        46,
+        36,
+        82,
+        94
+      ],
+      "sha256": "6ce7ae91835bbbb544c93fdc17c56a0073e1421b1571693a2577523ff21601d8",
+      "atlas": "assets/source-art/animation-polish-01/class-lateral-02/r02/bastion-atlas.png",
+      "source": "assets/source-art/animation-polish-01/class-lateral-02/r02/bastion-source.png",
+      "scale": 0.22350674373795762,
+      "whole_figures_only": true
+    },
+    {
+      "anchor": [
+        64,
+        96
+      ],
+      "armor": 101,
+      "body": 6,
+      "class": "arcaniste",
+      "file": "arcaniste-t3-front.png",
+      "name": "Arcaniste",
+      "origin": "normal static fallback",
+      "tier": 3,
+      "reference_height": 60,
+      "bounds": [
+        44,
+        34,
+        84,
+        94
+      ],
+      "sha256": "c3ae7f99a12331967593bd5d39957d4ce03e3d5ebcb61dbcd3c3be49f87566e2",
+      "atlas": "assets/source-art/animation-polish-01/class-lateral-02/r02/arcaniste-atlas.png",
+      "source": "assets/source-art/animation-polish-01/class-lateral-02/r02/arcaniste-source.png",
+      "scale": 0.24896265560165975,
+      "whole_figures_only": true
+    },
+    {
+      "anchor": [
+        64,
+        96
+      ],
+      "armor": 101,
+      "body": 7,
+      "class": "metamorphe",
+      "file": "metamorphe-t3-front.png",
+      "name": "Métamorphe",
+      "origin": "normal static fallback",
+      "tier": 3,
+      "reference_height": 56,
+      "bounds": [
+        51,
+        38,
+        78,
+        94
+      ],
+      "sha256": "7244e61f53fc91c2377ce7daae485dbacf7775876c20ce9e8ac3980701a24dee",
+      "atlas": "assets/source-art/animation-polish-01/class-lateral-02/r02/metamorphe-atlas.png",
+      "source": "assets/source-art/animation-polish-01/class-lateral-02/r02/metamorphe-source.png",
+      "scale": 0.24347826086956523,
+      "whole_figures_only": true
+    }
+  ]
+}

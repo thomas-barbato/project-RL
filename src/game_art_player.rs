@@ -1,6 +1,9 @@
 //! Human wireframe and the posed, interchangeable player artwork.
 use super::*;
-#[cfg(all(debug_assertions, test))]
+pub(super) fn firearm_grips(model: u16) -> Option<([f32; 2], [f32; 2])> {
+    worn::firearm_grips(model)
+}
+#[cfg(debug_assertions)]
 pub(super) fn vertical_review_weapon(
     model: u16,
     left: bool,
@@ -116,6 +119,7 @@ pub(super) fn draw_npc(
 }
 
 pub(super) fn draw_wireframe(rect: Rect, equipment: [Option<u16>; 4], color: Color) {
+    let equipment = super::player_visual_equipment(equipment);
     let point = |x: f32, y: f32| vec2(rect.x + x * rect.w / 32.0, rect.y + y * rect.h / 32.0);
     let edge = |from: (f32, f32), to: (f32, f32), opacity: f32| {
         let a = point(from.0, from.1);

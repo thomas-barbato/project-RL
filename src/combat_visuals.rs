@@ -333,6 +333,56 @@ impl CombatMotion {
         })
     }
 
+    /// Four reviewed poses per committed step, then the opposite support.
+    /// The selected glide duration remains presentation-only (400ms by default).
+    pub fn biped_walk_pose(
+        &self,
+        entity: EntityId,
+        now: f64,
+        reduced: bool,
+    ) -> Option<crate::game_art::walking::Pose> {
+        let facing = *self.walk_facings.get(&entity)?;
+        if ![-1, 1].contains(&facing) {
+            return None;
+        }
+        self.reviewed_walk_pose(entity, now, reduced, facing)
+    }
+
+    pub fn monster_vertical_walk_pose(
+        &self,
+        entity: EntityId,
+        now: f64,
+        reduced: bool,
+    ) -> Option<crate::game_art::walking::Pose> {
+        let facing = *self.walk_vertical_facings.get(&entity)?;
+        self.reviewed_walk_pose(entity, now, reduced, facing)
+    }
+
+    fn reviewed_walk_pose(
+        &self,
+        entity: EntityId,
+        now: f64,
+        reduced: bool,
+        facing: i8,
+    ) -> Option<crate::game_art::walking::Pose> {
+        if reduced {
+            return None;
+        }
+        let g = self.glides.get(&entity)?;
+        let progress = g.progress(now);
+        if progress >= 1. && !self.continuing_walks.contains(&entity) {
+            return None;
+        }
+        let phase = [180., 360., 530., 650.]
+            .iter()
+            .position(|end| progress * 650. < *end)
+            .unwrap_or(3) as u8;
+        Some(crate::game_art::walking::Pose {
+            facing,
+            frame: g.support * 4 + phase,
+        })
+    }
+
     pub fn creature_walk_pose(
         &self,
         entity: EntityId,
@@ -1004,6 +1054,43 @@ pub(crate) fn draw_residue(rect: Rect, cell: &ResidueCell, visible: bool) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn accepted_biped_takes_four_weighted_poses_per_step_and_returns_to_idle() {
+        let id: EntityId = serde_json::from_str("1").unwrap();
+        for direction in [-1, 1] {
+            let mut motion = CombatMotion::default();
+            for step in 0..2 {
+                let start = 1. + f64::from(step) * 0.4;
+                motion.glide_timed(
+                    id,
+                    GridPos::new(step * direction, 0),
+                    GridPos::new((step + 1) * direction, 0),
+                    start,
+                    400,
+                );
+                for (phase, weight) in [90., 270., 445., 590.].into_iter().enumerate() {
+                    let now = start + weight / 650. * 0.4;
+                    let pose = motion.biped_walk_pose(id, now, false).unwrap();
+                    assert_eq!(
+                        (pose.facing, pose.frame),
+                        (direction as i8, step as u8 * 4 + phase as u8)
+                    );
+                    assert!(motion.biped_walk_pose(id, now, true).is_none());
+                    assert_eq!(motion.glides[&id].seconds, 0.4);
+                }
+                assert!(motion.biped_walk_pose(id, start + 0.4, false).is_none());
+            }
+            motion.glide_timed(
+                id,
+                GridPos::new(2 * direction, 0),
+                GridPos::new(2 * direction, 1),
+                2.,
+                400,
+            );
+            assert!(motion.biped_walk_pose(id, 2.2, false).is_none());
+            assert!(motion.vertical_walk_pose(id, 2.2, false).is_some());
+        }
+    }
     use project_rl::world::Terrain;
 
     #[test]

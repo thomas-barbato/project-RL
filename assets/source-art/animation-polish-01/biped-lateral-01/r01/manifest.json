@@ -1,0 +1,80 @@
+{
+  "review": "BIPED-LATERAL01-r01",
+  "normal_game_enabled": false,
+  "frame": [
+    128,
+    128
+  ],
+  "anchor": [
+    64,
+    112
+  ],
+  "native_cell_px": 64,
+  "walk_frames": 8,
+  "idle_frame": 8,
+  "step_ms": 650,
+  "phase_durations_ms": [
+    180,
+    180,
+    170,
+    120,
+    180,
+    180,
+    170,
+    120
+  ],
+  "profiles": [
+    {
+      "id": "MON-005-0",
+      "number": 5,
+      "name": "Possédé",
+      "reference_height": 56,
+      "front_file": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-005-front.png",
+      "front_source": "assets/animations/vertical-18/monsters/MON-005-v0.png",
+      "vertical_offset": -4,
+      "source": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-005-source.png",
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-005-atlas.png",
+      "scale": 0.2660332541567696,
+      "sha256": "44868afa75a9fff703ca7b12aabaa7d06145ed0e780bf5fa137177b9be30de99"
+    },
+    {
+      "id": "MON-014-0",
+      "number": 14,
+      "name": "Cultiste",
+      "reference_height": 60,
+      "front_file": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-014-front.png",
+      "front_source": "assets/animations/vertical-18/monsters/MON-014-v0.png",
+      "vertical_offset": -2,
+      "source": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-014-source.png",
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-014-atlas.png",
+      "scale": 0.25,
+      "sha256": "5503792dc03953d842ab0c43d008face2f7b40b923da3de2b080c7e0258edcbd"
+    },
+    {
+      "id": "MON-156-0",
+      "number": 156,
+      "name": "Démon",
+      "reference_height": 91,
+      "front_file": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-156-front.png",
+      "front_source": "assets/animations/vertical-18/monsters/MON-156-v0.png",
+      "vertical_offset": 0,
+      "source": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-156-source.png",
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-156-atlas.png",
+      "scale": 0.3930885529157667,
+      "sha256": "7a40421a456bf05e283c4e8b5984ba50854a9258e2903b95228654df184b65d1"
+    },
+    {
+      "id": "MON-144-0",
+      "number": 144,
+      "name": "Démon",
+      "reference_height": 78,
+      "front_file": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-144-front.png",
+      "front_source": "assets/animations/vertical-18/monsters/MON-144-v0.png",
+      "vertical_offset": 0,
+      "source": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-144-source.png",
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-144-atlas.png",
+      "scale": 0.35135135135135137,
+      "sha256": "028a0241d741bbb186884e3948b4d4f7d90dfbe7d937cc9eeb962e6d2260cdb7"
+    }
+  ]
+}

@@ -1,6 +1,63 @@
 use super::*;
 use std::path::Path;
 
+#[test]
+fn colored_player_outfits_keep_real_vertical_poses_and_the_same_painted_armor() {
+    let id = serde_json::from_str("1").unwrap();
+    for p in &manifest().profiles {
+        let main = p
+            .cases
+            .iter()
+            .find(|c| !c.left && c.model == 67)
+            .or_else(|| p.cases.iter().find(|c| !c.left))
+            .map(|c| c.model);
+        for main in [None, main] {
+            let original = player(p, main, None, None);
+            let expected_key = key(&selection(original).unwrap());
+            for color in EquipmentPalette::ALL {
+                let mut visual = original;
+                if let Visual::Player { palettes, .. } = &mut visual {
+                    palettes[0] = color;
+                }
+                assert_eq!(key(&selection(visual).unwrap()), expected_key);
+                for (facing, dy) in [(-2, -1), (2, 1)] {
+                    let mut motion = crate::combat_visuals::CombatMotion::default();
+                    motion.glide_timed(
+                        id,
+                        project_rl::world::GridPos::new(0, 0),
+                        project_rl::world::GridPos::new(0, dy),
+                        1.,
+                        400,
+                    );
+                    for now in [1.01, 1.15, 1.29] {
+                        let pose = super::super::walking::world_pose(
+                            &motion,
+                            id,
+                            Some(visual),
+                            true,
+                            now,
+                            false,
+                        )
+                        .unwrap();
+                        assert_eq!(pose.facing, facing, "{} {color:?}", p.id);
+                    }
+                    assert!(
+                        super::super::walking::world_pose(
+                            &motion,
+                            id,
+                            Some(visual),
+                            true,
+                            1.401,
+                            false
+                        )
+                        .is_none()
+                    );
+                }
+            }
+        }
+    }
+}
+
 fn player(p: &Profile, main: Option<u16>, left: Option<u16>, helmet: Option<u16>) -> Visual {
     Visual::Player {
         body: (p.outfit / 5) as u8 + 3,
@@ -122,7 +179,7 @@ fn accepted_scope_covers_weapons_colors_heads_and_pairs_without_changing_other_b
         if let Visual::Player { palettes, .. } = &mut v {
             palettes[0] = EquipmentPalette::SlateBlue;
         }
-        assert!(selection(v).is_none());
+        assert!(selection(v).is_some());
     }
     for p in &m.monsters {
         assert!(supports(Some(Visual::CampaignMonster {
@@ -150,7 +207,10 @@ fn accepted_scope_covers_weapons_colors_heads_and_pairs_without_changing_other_b
 }
 
 #[test]
-fn representative_runtime_compositions_match_the_accepted_pixels() {
+fn representative_vertical18_compositions_match_the_pre_firearm02_reference_bank() {
+    // C06/C08/C09 references predate the separately approved FIREARM02 change.
+    // Compare their historical weapon geometry explicitly, without changing runtime.
+    let _original_weapons = crate::rifle_visuals::original_scope(true);
     let root = Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("assets/source-art/vertical-walk-review-18/extension-C06");
     for p in manifest()
@@ -331,8 +391,8 @@ fn intermediate_outfits_select_only_accepted_two_hand_and_c11_loadouts() {
                 Some(Selection::FixedPlayer { .. })
             ));
         }
+        assert!(selection(player(p, None, None, None)).is_some());
         for (main, left) in [
-            (None, None),
             (Some(104), None),
             (Some(104), Some(104)),
             (Some(2), Some(70)),

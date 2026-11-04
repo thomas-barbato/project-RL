@@ -1,0 +1,62 @@
+{
+  "review": "BIPED-LATERAL03-r04",
+  "status": "accepted",
+  "date": "2026-11-02",
+  "player_quote": "je valide on continue",
+  "scope": {
+    "models": [
+      164,
+      165
+    ],
+    "variant": 0,
+    "palette": "original",
+    "directions": [
+      "left",
+      "right"
+    ],
+    "walk_poses_per_direction": 8,
+    "weapons": [
+      "original rifle in two hands",
+      "original axe in two hands"
+    ],
+    "retained_fronts": true
+  },
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "normal_game_enabled": false,
+  "other_models_accepted_by_extension": false,
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-164-left-source.png",
+      "sha256": "573fe49c2f71344a26ac2e10cae328852275e5bc2e6947190aba2dc6fc70d648"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-164-right-source.png",
+      "sha256": "dc0cbfca665b15371f31cbb32ab8036703b605bdbe366852d50225a7c58a1efe"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-164-atlas.png",
+      "sha256": "7f99c8ec6c9b94bb30463a53a6b3782905df036c4d0c04a82682c84cab79356b"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-164-front.png",
+      "sha256": "d5a3f5a2854d35eaee9be15655f48b1c02e92852f18b2cce0a16760d846ab2a4"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-165-left-source.png",
+      "sha256": "2a9e3c403cde1a83af986ef48abba1bf53af34f1081601ccdbad6a17aa2f7c8b"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-165-right-source.png",
+      "sha256": "082ce804796590e8c588f7a82d7cb6fa18f168ef620196c0bc7478345fd35a51"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r04/MON-165-atlas.png",
+      "sha256": "2d4defd900e5c9f2138a41b5b994ddc7d97fa57a052e870abd8d090c4d1716ac"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-165-front.png",
+      "sha256": "b3b4c6460d2ef829b4539ec000aa56bb728ae60b6815d751d6101cf34c1d8252"
+    }
+  ]
+}

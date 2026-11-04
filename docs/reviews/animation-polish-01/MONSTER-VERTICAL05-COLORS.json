@@ -1,0 +1,157 @@
+{
+  "review": "MONSTER-VERTICAL05-r01",
+  "source_pngs_modified": false,
+  "method": "Read-only material HSV bins; supplements native visual comparison",
+  "materials": [
+    {
+      "model": 15,
+      "material": "red_cloth",
+      "moving": {
+        "pixels": 3850,
+        "median_rgb": [
+          114,
+          50,
+          47
+        ]
+      },
+      "retained_front": {
+        "pixels": 373,
+        "median_rgb": [
+          96,
+          38,
+          35
+        ]
+      },
+      "median_rgb_delta": [
+        18,
+        12,
+        12
+      ]
+    },
+    {
+      "model": 15,
+      "material": "light_mask_or_metal",
+      "moving": {
+        "pixels": 155,
+        "median_rgb": [
+          224,
+          208,
+          199
+        ]
+      },
+      "retained_front": {
+        "pixels": 13,
+        "median_rgb": [
+          217,
+          189,
+          192
+        ]
+      },
+      "median_rgb_delta": [
+        7,
+        19,
+        7
+      ]
+    },
+    {
+      "model": 16,
+      "material": "red_cloth",
+      "moving": {
+        "pixels": 4361,
+        "median_rgb": [
+          112,
+          49,
+          47
+        ]
+      },
+      "retained_front": {
+        "pixels": 463,
+        "median_rgb": [
+          106,
+          39,
+          34
+        ]
+      },
+      "median_rgb_delta": [
+        6,
+        10,
+        13
+      ]
+    },
+    {
+      "model": 16,
+      "material": "light_mask_or_metal",
+      "moving": {
+        "pixels": 584,
+        "median_rgb": [
+          135,
+          118,
+          112
+        ]
+      },
+      "retained_front": {
+        "pixels": 40,
+        "median_rgb": [
+          133,
+          121,
+          112
+        ]
+      },
+      "median_rgb_delta": [
+        2,
+        -3,
+        0
+      ]
+    },
+    {
+      "model": 17,
+      "material": "red_cloth",
+      "moving": {
+        "pixels": 7411,
+        "median_rgb": [
+          105,
+          43,
+          40
+        ]
+      },
+      "retained_front": {
+        "pixels": 548,
+        "median_rgb": [
+          107,
+          37,
+          31
+        ]
+      },
+      "median_rgb_delta": [
+        -2,
+        6,
+        9
+      ]
+    },
+    {
+      "model": 17,
+      "material": "light_mask_or_metal",
+      "moving": {
+        "pixels": 144,
+        "median_rgb": [
+          161,
+          145,
+          157
+        ]
+      },
+      "retained_front": {
+        "pixels": 14,
+        "median_rgb": [
+          186,
+          184,
+          180
+        ]
+      },
+      "median_rgb_delta": [
+        -25,
+        -39,
+        -23
+      ]
+    }
+  ]
+}

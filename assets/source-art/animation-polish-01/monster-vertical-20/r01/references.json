@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-090-0",
+    "number": 90,
+    "name": "Créature brune à six pattes claires",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 29,
+    "vertical_offset": -18,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-20/r01/MON-090-front.png",
+    "idle_sha256": "f3abe481bc8e6bdbeb152a05ddbc91da9d1030ff9e435e6d74ef753efd98e0b5",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-090-v0.png",
+    "front_shadow": 29,
+    "current_vertical": {
+      "number": 90,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-090-v0.png",
+      "cell": [
+        55,
+        33
+      ],
+      "anchor": [
+        27,
+        31
+      ],
+      "offset": -18,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-092-0",
+    "number": 92,
+    "name": "Quadrupède pâle aux larges griffes",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 43,
+    "vertical_offset": -10,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-20/r01/MON-092-front.png",
+    "idle_sha256": "a39ac019491a13ead7b268669257c2331d15eba954717e3aa617f8be1d3ead12",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-092-v0.png",
+    "front_shadow": 32,
+    "current_vertical": {
+      "number": 92,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-092-v0.png",
+      "cell": [
+        61,
+        50
+      ],
+      "anchor": [
+        31,
+        48
+      ],
+      "offset": -10,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-093-0",
+    "number": 93,
+    "name": "Colosse aux poignets enchaînés",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 78,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-20/r01/MON-093-front.png",
+    "idle_sha256": "02335bf9e2d28e64af57590379336510939bc6b85283f5456a8b48f4c130a6c5",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-093-v0.png",
+    "front_shadow": 34,
+    "current_vertical": {
+      "number": 93,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-093-v0.png",
+      "cell": [
+        80,
+        84
+      ],
+      "anchor": [
+        40,
+        82
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

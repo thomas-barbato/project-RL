@@ -529,6 +529,8 @@ mod tactical_reading_proposal;
 #[cfg(debug_assertions)]
 #[path = "terminal_console_capture.rs"]
 mod terminal_console_capture;
+#[path = "traqueuse_walk_trial.rs"]
+mod traqueuse_walk_trial;
 #[cfg(debug_assertions)]
 #[path = "visual_polish_capture.rs"]
 mod visual_polish_capture;
@@ -1720,6 +1722,10 @@ pub struct AsciiApp {
 }
 
 impl AsciiApp {
+    pub(crate) fn pointer_icon(&self) -> miniquad::CursorIcon {
+        self.cursor_icon
+    }
+
     pub fn new() -> Result<Self, String> {
         Self::new_with_session_path(controls::config_path().with_file_name("city-test-run.json"))
     }
@@ -1788,7 +1794,7 @@ impl AsciiApp {
         };
         // Restore the native pointer even when the logical icon has not changed
         // (startup, fullscreen transitions and returning from another window).
-        miniquad::window::show_mouse(true);
+        miniquad::window::show_mouse(!crate::software_cursor::active());
         miniquad::window::set_mouse_cursor(cursor_icon);
         self.cursor_icon = cursor_icon;
     }
@@ -7932,7 +7938,8 @@ impl AsciiApp {
                 }
             }
         }
-        let waited = crate::game_art::vertical::prepare(&needed)?;
+        let waited = crate::game_art::vertical::prepare(&needed)?
+            + crate::game_art::biped::prepare(&needed)?;
         self.combat_motion.delay_glides(waited.as_secs_f64());
         nearby.sort_by_key(|(distance, _)| *distance);
         let nearby: Vec<_> = nearby
@@ -7941,6 +7948,7 @@ impl AsciiApp {
             .map(|(_, visual)| visual)
             .collect();
         crate::game_art::vertical::anticipate(&nearby);
+        crate::game_art::biped::anticipate(&nearby);
         Ok(())
     }
 
@@ -12421,6 +12429,16 @@ impl AsciiApp {
     }
 
     fn primary_objective(&self) -> Option<String> {
+        if self.test_lab && crate::game_art::traqueuse_trial::enabled() {
+            let tier =
+                crate::game_art::traqueuse_trial::selection(self.front_player_visual(), None)
+                    .map_or(3, |selected| selected[0]);
+            let label = ["Base", "Légère", "Intermédiaire", "Lourde", "Très lourde"][tier];
+            return Some(format!(
+                "ESSAI TRAQUEUSE · {label} ({}/5) · F6 : tenue suivante",
+                tier + 1
+            ));
+        }
         if self.test_lab {
             return Some(format!(
                 "LABORATOIRE · {} : choisir un essai · {} : équipement",
@@ -25748,7 +25766,7 @@ fn ascii_regional_world_catalog() -> Result<RegionalWorldCatalog, String> {
         .clone()
 }
 
-fn ascii_character_class_catalog() -> Result<CharacterClassCatalog, String> {
+pub(crate) fn ascii_character_class_catalog() -> Result<CharacterClassCatalog, String> {
     static CATALOG: std::sync::OnceLock<Result<CharacterClassCatalog, String>> =
         std::sync::OnceLock::new();
     CATALOG

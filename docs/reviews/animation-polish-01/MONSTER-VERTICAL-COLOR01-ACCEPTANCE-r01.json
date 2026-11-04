@@ -1,0 +1,38 @@
+{
+  "review": "MONSTER-VERTICAL-COLOR01-r01",
+  "date": "2026-11-02",
+  "status": "accepted",
+  "player_quote": "parfait on peut continuer",
+  "models": [
+    144
+  ],
+  "variant": 0,
+  "directions": [
+    "down",
+    "up"
+  ],
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "poses_per_direction": 8,
+  "palette_accepted": true,
+  "source_geometry_retained": true,
+  "normal_game_enabled": false,
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-color-01/r01/manifest.json",
+      "sha256": "0a0f68e1951904dc67cc6812a9f9c2ad09a3f06c179920aa466a216ce87bf121"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-color-01/r01/red-material-palette.json",
+      "sha256": "b0faa4d7610028296fb134ea6395e6aa82231acdb6fcc9310a88e4725b65d854"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-144-atlas.png",
+      "sha256": "2fa2c1cf0f16c8b7a781ae64fb002633fdff6ff8209152256c10794d5530a07b"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-144-front.png",
+      "sha256": "c7050f93bbc9ef52a2a3ce02dda008ccf018f6930b87636adb7e08078b558711"
+    }
+  ]
+}

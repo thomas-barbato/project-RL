@@ -1,0 +1,84 @@
+{
+  "review": "ANIM-POLISH01-HELM02-INVENTAIRE",
+  "date": "2026-10-31",
+  "status": "inventory_only_no_model_selection",
+  "native_tile_px": 64,
+  "equipable_helmet_count": 6,
+  "helmets": [
+    {
+      "number": 1,
+      "model": 115,
+      "id": "core:calotte_cognefer",
+      "name": "Calotte Cognefer",
+      "icon_cell": 131,
+      "item_file": "content/core/items/calotte_cognefer.json5"
+    },
+    {
+      "number": 2,
+      "model": 116,
+      "id": "core:capuche_de_mue",
+      "name": "Capuche de mue",
+      "icon_cell": 132,
+      "item_file": "content/core/items/capuche_de_mue.json5"
+    },
+    {
+      "number": 3,
+      "model": 117,
+      "id": "core:casque_cerbere",
+      "name": "Casque Cerbère",
+      "icon_cell": 133,
+      "item_file": "content/core/items/casque_cerbere.json5"
+    },
+    {
+      "number": 4,
+      "model": 118,
+      "id": "core:heaume_bastion",
+      "name": "Heaume Bastion",
+      "icon_cell": 134,
+      "item_file": "content/core/items/heaume_bastion.json5"
+    },
+    {
+      "number": 5,
+      "model": 119,
+      "id": "core:masque_chrysalide",
+      "name": "Masque Chrysalide",
+      "icon_cell": 135,
+      "item_file": "content/core/items/masque_chrysalide.json5"
+    },
+    {
+      "number": 6,
+      "model": 120,
+      "id": "core:visiere_fantome",
+      "name": "Visière Fantôme",
+      "icon_cell": 136,
+      "item_file": "content/core/items/visiere_fantome.json5"
+    }
+  ],
+  "wearer_profiles": 8,
+  "phase_count": 6,
+  "directions": 4,
+  "contact_sheets": 48,
+  "source_capture_count": 288,
+  "source_capture_scope": "C06-HELM01-r01: four classes, base/heavy, original palette; fitted row",
+  "retained_model_count": null,
+  "new_designs_created": false,
+  "normal_game_changed": false,
+  "view_sources": {
+    "front": "authored front shell",
+    "back": "authored back shell",
+    "left_right": "front shell projected by turned_helmet; not independent side drawings"
+  },
+  "legacy_technomancer": "existing equipment supports it; outside the current four-class orientation capture pilot",
+  "default_outfit_heads": "separate class/torso appearance; not additional equipable helmet items",
+  "inputs": {
+    "src/game_art_catalog.rs": "d3ecd4c35371fd45bb702f48a26ddb9f79e17be73f5c18fab8ca040c030865be",
+    "src/game_art_equipment_catalog.rs": "cd287db3265d925c40b5afa303e08493449b1369ccd3b6a1be1608f051c93cce",
+    "src/game_art_class_armor.rs": "f966811043b9e3f1deac984d2a9a9585705cb4db7d3eade775be736bc394fa01",
+    "src/game_art_walk_rig.rs": "c87df10b5db864e001be5494140d5ba7534db8cbace6530b22d99b0cee56cf7b",
+    "src/game_art_vertical_geometry.rs": "a6ea8bb7730771a0e1e32a79d2f73726e274e3e9a786e4dde30b58af29d088a6",
+    "assets/sprites/equipment-native64/icons-64.png": "0f6264d4caad227dc3936e6b0cdfd3f98ff7c9a49ae3e9ac223a4450eef66c0f",
+    "assets/sprites/class-armors-01/helmets.png": "a600b158b1e5af2bdc33990c819653b4b0013633e067a635b12824317b1cb9e2",
+    "assets/animations/vertical-18/heads/helmets-front.png": "663d20111a5e2390668ae93e2fd4d4553fe2dcd2fc07efe86c83fa4551533f6c",
+    "assets/animations/vertical-18/heads/helmets-back.png": "4e642b08bd96e89899d5eb27f7c3a38c51c78182db4ef0c4e2c557ff3b8ce276"
+  }
+}

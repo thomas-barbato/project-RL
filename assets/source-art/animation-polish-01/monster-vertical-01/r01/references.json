@@ -1,0 +1,92 @@
+[
+  {
+    "id": "MON-014-0",
+    "number": 14,
+    "name": "Cultiste sans arme",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 60,
+    "vertical_offset": -2,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-014-front.png",
+    "idle_sha256": "6c21d5a2030e2d3ea13da7c8d47101e5caf157679b2c9ec15ad82758fa304160",
+    "accepted_front_source": "assets/animations/biped-lateral-01/MON-014-0.png",
+    "front_shadow": 17,
+    "current_vertical": {
+      "number": 14,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-014-v0.png",
+      "cell": [
+        45,
+        64
+      ],
+      "anchor": [
+        23,
+        62
+      ],
+      "offset": -2,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "accepted": false
+  },
+  {
+    "id": "MON-164-0",
+    "number": 164,
+    "name": "Cultiste au fusil",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 60,
+    "vertical_offset": -2,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-164-front.png",
+    "idle_sha256": "d3e24bbe7f914f45b1dea8cc2c19101c38510922647b59d9ac527f21e4264741",
+    "accepted_front_source": "assets/animations/biped-lateral-01/MON-164-0.png",
+    "front_shadow": 17,
+    "current_vertical": {
+      "number": 164,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-164-v0.png",
+      "cell": [
+        50,
+        64
+      ],
+      "anchor": [
+        25,
+        62
+      ],
+      "offset": -2,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "accepted": false
+  },
+  {
+    "id": "MON-144-0",
+    "number": 144,
+    "name": "Démon ailé au sol",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 78,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-144-front.png",
+    "idle_sha256": "c7050f93bbc9ef52a2a3ce02dda008ccf018f6930b87636adb7e08078b558711",
+    "accepted_front_source": "assets/animations/biped-lateral-01/MON-144-0.png",
+    "front_shadow": 63,
+    "current_vertical": {
+      "number": 144,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-144-v0.png",
+      "cell": [
+        108,
+        86
+      ],
+      "anchor": [
+        54,
+        84
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "accepted": false
+  }
+]

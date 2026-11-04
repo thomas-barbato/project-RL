@@ -3,6 +3,8 @@
 use macroquad::prelude::*;
 use project_rl::entity::EquipmentPalette;
 use project_rl::world::GridPos;
+#[path = "game_art_biped.rs"]
+pub(crate) mod biped;
 #[path = "game_art_finish.rs"]
 mod finish;
 #[cfg(debug_assertions)]
@@ -23,6 +25,8 @@ pub(crate) mod finish_review_04;
 #[cfg(debug_assertions)]
 #[path = "art_finish_review_05.rs"]
 pub(crate) mod finish_review_05;
+#[path = "game_art_monster_vertical.rs"]
+mod monster_vertical;
 #[path = "game_art_palette.rs"]
 mod palettes;
 #[path = "game_art_vertical.rs"]
@@ -88,6 +92,17 @@ pub(crate) enum Visual {
     },
 }
 
+/// HELM06: the body armor's complete outfit determines the player's look.
+/// This only normalizes renderer inputs; the actor's equipped items and
+/// their gameplay effects are untouched.
+pub(crate) fn player_visual_equipment(mut equipment: [Option<u16>; 4]) -> [Option<u16>; 4] {
+    equipment[1] = None;
+    equipment
+}
+#[cfg(all(test, debug_assertions))]
+#[path = "game_art_armor_only_tests.rs"]
+mod armor_only_tests;
+
 include!("game_art_catalog.rs");
 #[cfg(all(test, debug_assertions))]
 #[path = "walk_proportions_campaign_export.rs"]
@@ -118,6 +133,8 @@ mod player_layers;
 mod portrait;
 #[path = "game_art_spectral.rs"]
 mod spectral;
+#[path = "game_art_traqueuse_trial.rs"]
+pub(crate) mod traqueuse_trial;
 #[path = "game_art_walk.rs"]
 pub(crate) mod walking;
 
@@ -140,6 +157,7 @@ thread_local! {
 }
 
 pub(crate) fn prewarm() {
+    traqueuse_trial::prepare();
     vertical::init();
     TEXTURES.with(|_| {});
     palettes::prewarm();
@@ -285,6 +303,7 @@ pub(crate) fn wear(
                 .filter(|art| art.icon == 2)
                 .map(|art| art.illustration);
         }
+        *equipment = player_visual_equipment(*equipment);
     }
     visual
 }
@@ -350,7 +369,7 @@ pub(crate) fn draw_world(rect: Rect, visual: Visual, opacity: f32) {
     draw_world_animated(rect, visual, opacity, None);
 }
 
-#[cfg(all(debug_assertions, test))]
+#[cfg(debug_assertions)]
 pub(crate) fn vertical_review_weapon(
     model: u16,
     left: bool,
@@ -382,6 +401,31 @@ pub(crate) fn vertical_review_standing(visual: Visual) -> Option<Image> {
     player_layers::vertical_review_standing(visual)
 }
 #[cfg(debug_assertions)]
+pub(crate) fn polish_review_lateral(visual: Visual, pose: walking::Pose) -> Option<Image> {
+    let Visual::Player {
+        body,
+        equipment,
+        weapon,
+        hands,
+        palettes,
+    } = visual
+    else {
+        return None;
+    };
+    player_layers::approved_walking_image(body, equipment, weapon, hands, palettes, pose)
+}
+pub(crate) fn firearm_grips(model: u16) -> Option<([f32; 2], [f32; 2])> {
+    player_layers::firearm_grips(model)
+}
+#[cfg(debug_assertions)]
+pub(crate) fn polish_review_shadow(rect: Rect) {
+    polish_review_shadow_width(rect, 17);
+}
+#[cfg(debug_assertions)]
+pub(crate) fn polish_review_shadow_width(rect: Rect, width: u8) {
+    draw_contact_shadow(rect, [32, 63, width], 64, 1.);
+}
+#[cfg(debug_assertions)]
 pub(crate) fn vertical_review_standing_head(
     visual: Visual,
     apply: impl FnOnce(&mut Image),
@@ -395,6 +439,7 @@ pub(crate) fn draw_world_animated(
     opacity: f32,
     idle_time: Option<f64>,
 ) {
+    let _exposure = crate::world_readability::player_scope(matches!(visual, Visual::Player { .. }));
     let _actor = crate::world_readability::actor(!matches!(
         visual,
         Visual::Terrain { .. }
@@ -475,7 +520,17 @@ pub(crate) fn draw_world_animated(
         Visual::CampaignMonster { number, variant } => {
             campaign::draw(rect, number, variant, opacity, true)
         }
-        Visual::ColoredItem(item, palette) => palettes::draw_item(rect, item, palette, opacity),
+        // C03: only dropped items use the accepted 40/64 footprint.
+        Visual::ColoredItem(item, palette) => {
+            let size = rect.size() * (40.0 / 64.0);
+            let ground = Rect::new(
+                rect.center().x - size.x * 0.5,
+                rect.center().y - size.y * 0.5,
+                size.x,
+                size.y,
+            );
+            palettes::draw_item(ground, item, palette, opacity);
+        }
         Visual::Terrain { kind, position } => {
             crate::terminal_view::draw_scenery_preview(rect, kind, position)
         }
@@ -483,6 +538,9 @@ pub(crate) fn draw_world_animated(
 }
 
 pub(crate) fn draw_portrait(rect: Rect, visual: Visual) {
+    if traqueuse_trial::draw_portrait(rect, visual) {
+        return;
+    }
     TEXTURES.with(|art| match visual {
         Visual::AgentForm(index) => draw_agent_form_portrait(rect, index, 1.0),
         Visual::DroneScout => drones::draw_portrait(rect, Visual::DroneScout),

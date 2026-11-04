@@ -1,0 +1,20 @@
+{
+  "review": "ANIM-POLISH01-HELM02",
+  "date": "2026-10-31",
+  "status": "inventory_and_direction_authorized_no_new_drawings_accepted",
+  "inventory_request_quote": "j'aimerais déjà lister tous les visuels de casque, et voir si ensuite on peut faire en sorte de limiter leur nombre et de faire ensuite en sorte qu'une fois équipé, il \"aille\" avec le style visuel de la classe qui la porte, je sais pas si je suis clair :) synthetise ma demadne",
+  "orientation_request_quote": "oui c'est ca :) et faire en sorte aussi que le visuel du casque équipé soit logique, quel que soit l'angle d'affichage du perso (de face, de dos, de coté)",
+  "armor_fit_request_quote": "il faudra aussi adapter la taille des casques à la morphologie du personnage (et de l'armure qu'il porte) que le casque ne soit pas ridiculement petit :D",
+  "workflow": ["Inventory existing equipable helmet visuals", "Review which visual models to retain or group", "Prepare class-specific worn variants", "Review front, back, left, right and movement together before integration"],
+  "accepted_proportions": "C06-HELM01-r01 / 04; HELM01-ACCEPTANCE.json",
+  "next_fit_direction": "Judge helmet size against the complete wearer and worn armor silhouette; keep size stable for the same loadout across angles and movement",
+  "prior_fixed_factor_scope": "HELM01 remains an accepted historical baseline. The request for armor-aware fitting revises its constant-factor-across-armor-tiers direction for future candidates, without accepting unshown values or changing the baseline drawings",
+  "armor_specific_factors_accepted": false,
+  "orientation_invariants": ["Recognizable helmet identity", "Coherent shell volume and size for its wearer", "Same materials, openings, visor and asymmetric details seen from the appropriate side", "Attachment to the painted head and neck", "Consistent layers and occlusion during movement and return to rest"],
+  "retained_visual_model_count": null,
+  "next_review": "HELM03-PROPOSITION.json; redraw icon candidates first, class-specific worn views afterwards",
+  "later_scope_revision": "HELM04-REGLE.json replaces class-specific helmet drawing with a common icon-faithful design and wearer/armor fit; five-weight icon roster requested",
+  "new_class_variants_accepted": false,
+  "normal_game_integration_performed": false,
+  "item_definitions_and_gameplay": "unchanged by this visual inventory"
+}

@@ -1,0 +1,335 @@
+{
+  "review": "MONSTER-VERTICAL08-r01",
+  "source_pngs_modified": false,
+  "method": "Read-only HSV material bins per direction; different visible material areas are not a lighting measurement; supplement to native visual review",
+  "materials": [
+    {
+      "model": 8,
+      "direction": "down",
+      "material": "maroon_flesh",
+      "moving_source": {
+        "pixels": 12298,
+        "median_rgb": [
+          79,
+          36,
+          32
+        ]
+      },
+      "moving_prepared": {
+        "pixels": 12298,
+        "median_rgb": [
+          79,
+          36,
+          32
+        ]
+      },
+      "retained_front": {
+        "pixels": 1059,
+        "median_rgb": [
+          86,
+          35,
+          28
+        ]
+      },
+      "median_rgb_delta": [
+        -7,
+        1,
+        4
+      ]
+    },
+    {
+      "model": 8,
+      "direction": "down",
+      "material": "warm_bone",
+      "moving_source": {
+        "pixels": 3098,
+        "median_rgb": [
+          218,
+          187,
+          154
+        ]
+      },
+      "moving_prepared": {
+        "pixels": 3098,
+        "median_rgb": [
+          218,
+          187,
+          154
+        ]
+      },
+      "retained_front": {
+        "pixels": 363,
+        "median_rgb": [
+          213,
+          184,
+          144
+        ]
+      },
+      "median_rgb_delta": [
+        5,
+        3,
+        10
+      ]
+    },
+    {
+      "model": 8,
+      "direction": "up",
+      "material": "maroon_flesh",
+      "moving_source": {
+        "pixels": 10773,
+        "median_rgb": [
+          81,
+          35,
+          35
+        ]
+      },
+      "moving_prepared": {
+        "pixels": 10773,
+        "median_rgb": [
+          81,
+          35,
+          35
+        ]
+      },
+      "retained_front": {
+        "pixels": 1059,
+        "median_rgb": [
+          86,
+          35,
+          28
+        ]
+      },
+      "median_rgb_delta": [
+        -5,
+        0,
+        7
+      ]
+    },
+    {
+      "model": 8,
+      "direction": "up",
+      "material": "warm_bone",
+      "moving_source": {
+        "pixels": 2058,
+        "median_rgb": [
+          218,
+          190,
+          156
+        ]
+      },
+      "moving_prepared": {
+        "pixels": 2058,
+        "median_rgb": [
+          218,
+          190,
+          156
+        ]
+      },
+      "retained_front": {
+        "pixels": 363,
+        "median_rgb": [
+          213,
+          184,
+          144
+        ]
+      },
+      "median_rgb_delta": [
+        5,
+        6,
+        12
+      ]
+    },
+    {
+      "model": 34,
+      "direction": "down",
+      "material": "orange_flesh",
+      "moving_source": {
+        "pixels": 4899,
+        "median_rgb": [
+          149,
+          57,
+          30
+        ]
+      },
+      "moving_prepared": {
+        "pixels": 4899,
+        "median_rgb": [
+          149,
+          57,
+          30
+        ]
+      },
+      "retained_front": {
+        "pixels": 570,
+        "median_rgb": [
+          156,
+          53,
+          20
+        ]
+      },
+      "median_rgb_delta": [
+        -7,
+        4,
+        10
+      ]
+    },
+    {
+      "model": 34,
+      "direction": "up",
+      "material": "orange_flesh",
+      "moving_source": {
+        "pixels": 4802,
+        "median_rgb": [
+          145,
+          59,
+          32
+        ]
+      },
+      "moving_prepared": {
+        "pixels": 4802,
+        "median_rgb": [
+          145,
+          59,
+          32
+        ]
+      },
+      "retained_front": {
+        "pixels": 570,
+        "median_rgb": [
+          156,
+          53,
+          20
+        ]
+      },
+      "median_rgb_delta": [
+        -11,
+        6,
+        12
+      ]
+    },
+    {
+      "model": 36,
+      "direction": "down",
+      "material": "blue_gray",
+      "moving_source": {
+        "pixels": 1543,
+        "median_rgb": [
+          86,
+          88,
+          98
+        ]
+      },
+      "moving_prepared": {
+        "pixels": 1538,
+        "median_rgb": [
+          64,
+          71,
+          82
+        ]
+      },
+      "retained_front": {
+        "pixels": 287,
+        "median_rgb": [
+          64,
+          71,
+          82
+        ]
+      },
+      "median_rgb_delta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "model": 36,
+      "direction": "down",
+      "material": "ochre_throat",
+      "moving_source": {
+        "pixels": 436,
+        "median_rgb": [
+          194,
+          151,
+          88
+        ]
+      },
+      "moving_prepared": {
+        "pixels": 436,
+        "median_rgb": [
+          176,
+          135,
+          64
+        ]
+      },
+      "retained_front": {
+        "pixels": 69,
+        "median_rgb": [
+          176,
+          135,
+          64
+        ]
+      },
+      "median_rgb_delta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "model": 36,
+      "direction": "up",
+      "material": "blue_gray",
+      "moving_source": {
+        "pixels": 3066,
+        "median_rgb": [
+          68,
+          69,
+          80
+        ]
+      },
+      "moving_prepared": {
+        "pixels": 3066,
+        "median_rgb": [
+          68,
+          69,
+          80
+        ]
+      },
+      "retained_front": {
+        "pixels": 287,
+        "median_rgb": [
+          64,
+          71,
+          82
+        ]
+      },
+      "median_rgb_delta": [
+        4,
+        -2,
+        -2
+      ]
+    },
+    {
+      "model": 36,
+      "direction": "up",
+      "material": "ochre_throat",
+      "moving_source": {
+        "pixels": 0,
+        "median_rgb": null
+      },
+      "moving_prepared": {
+        "pixels": 0,
+        "median_rgb": null
+      },
+      "retained_front": {
+        "pixels": 69,
+        "median_rgb": [
+          176,
+          135,
+          64
+        ]
+      },
+      "median_rgb_delta": null
+    }
+  ]
+}

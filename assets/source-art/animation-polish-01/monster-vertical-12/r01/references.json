@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-066-0",
+    "number": 66,
+    "name": "Créature aux bras ailés",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 58,
+    "vertical_offset": -3,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-12/r01/MON-066-front.png",
+    "idle_sha256": "1b33e203622fadfb7f1b8e529844816f160c970f6434dac103853fe77bb4d452",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-066-v0.png",
+    "front_shadow": 49,
+    "current_vertical": {
+      "number": 66,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-066-v0.png",
+      "cell": [
+        82,
+        66
+      ],
+      "anchor": [
+        41,
+        64
+      ],
+      "offset": -3,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-067-0",
+    "number": 67,
+    "name": "Rampant sombre à bouche ronde",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 27,
+    "vertical_offset": -18,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-12/r01/MON-067-front.png",
+    "idle_sha256": "3e34abcf125dbaa950042db2cba94fc3d3305f6db8196b49d72e50734507f9fa",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-067-v0.png",
+    "front_shadow": 29,
+    "current_vertical": {
+      "number": 67,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-067-v0.png",
+      "cell": [
+        53,
+        34
+      ],
+      "anchor": [
+        27,
+        32
+      ],
+      "offset": -18,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-068-0",
+    "number": 68,
+    "name": "Démon massif 068",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 78,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-12/r01/MON-068-front.png",
+    "idle_sha256": "df0d69379d58511bd8414e1ccb09cbb3622646a6fc04dfac04c73d64caf54f64",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-068-v0.png",
+    "front_shadow": 41,
+    "current_vertical": {
+      "number": 68,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-068-v0.png",
+      "cell": [
+        80,
+        84
+      ],
+      "anchor": [
+        40,
+        82
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

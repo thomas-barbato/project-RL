@@ -1,0 +1,89 @@
+{
+  "review": "MONSTER-VERTICAL01-r01",
+  "status": "native_candidate_awaiting_visual_approval",
+  "models_total": 129,
+  "variants_total": 471,
+  "first_batch": [
+    14,
+    164,
+    144
+  ],
+  "normal_game_enabled": false,
+  "native_inventory_cards": 129,
+  "whole_figure_walk_poses": 48,
+  "retained_frontal_cells_exact": 6,
+  "native_motion_captures": 198,
+  "frozen_approval_hashes_verified": 38,
+  "installed_lateral_atlases_unchanged": 10,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "webp_full_roundtrip_ms": 2400,
+  "phase_varying_scaling": false,
+  "selected_sources": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-014-down-source.png",
+      "sha256": "62b8892d919495eea8f48be39d63b5b6a22586c55add3689c45e1195a2fe8f2d"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-014-up-source.png",
+      "sha256": "221b67532a142c652b8610fe892f8997e63dd50b367db9988f2aa0570e02097f"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-164-down-source.png",
+      "sha256": "530a63d745b0615da70ba226da3992dab9a86871739b74560de90baf4b4836d0"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-164-up-source.png",
+      "sha256": "6f71ff75edfc9ae4a17b13cd40f0e24eff6db6f470bee83f14ff270ba2e90520"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-144-down-broad-source.png",
+      "sha256": "62004440cd22b5a4c9bd60f98ff1e2b73dd0ef4750c7173abaa09d3bdca4552d"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-01/r01/MON-144-up-broad-source.png",
+      "sha256": "e9cab1cc01ae5474e7b847a48c6d8d04648d0add4d7d9b24e50102b7021052ac"
+    }
+  ],
+  "checks": {
+    "native_capture_completed": true,
+    "atlas_pose_and_front_checks": true,
+    "frozen_hashes": true
+  },
+  "user_data_loaded": false,
+  "remaining_models": 126,
+  "variants_awaiting_new_art_review": 471,
+  "browser_validation": {
+    "review": "MONSTER-VERTICAL01-r01",
+    "url": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=MONSTER-VERTICAL01-r01#monstres-vertical",
+    "checked_models": [
+      "MON-014-0",
+      "MON-164-0",
+      "MON-144-0"
+    ],
+    "captures_loaded_per_selection": 66,
+    "native_panel": [
+      192,
+      320
+    ],
+    "native_pair": [
+      384,
+      320
+    ],
+    "native_three_columns": [
+      576,
+      320
+    ],
+    "zoom_three_columns": [
+      1152,
+      640
+    ],
+    "inventory_cards_in_dom": 129,
+    "manual_pass_and_frontal_stop_checked": true,
+    "automatic_down_then_up_checked": true,
+    "pace_ms": 400,
+    "errors_after_final_reload": [],
+    "proof": "browser-proof.png",
+    "native_art_integrated": false
+  }
+}

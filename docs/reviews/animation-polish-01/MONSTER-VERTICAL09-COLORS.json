@@ -1,0 +1,371 @@
+{
+  "review": "MONSTER-VERTICAL09-r01",
+  "source_pngs_modified": false,
+  "method": "Read-only HSV material bins by direction; changing visible material areas is not a lighting measurement; supplement to native visual review",
+  "materials": [
+    {
+      "model": 35,
+      "direction": "down",
+      "material": "warm_flesh",
+      "moving": {
+        "pixels": 3352,
+        "median_rgb": [
+          206,
+          144,
+          113
+        ]
+      },
+      "retained_front": {
+        "pixels": 423,
+        "median_rgb": [
+          188,
+          129,
+          92
+        ]
+      },
+      "median_rgb_delta": [
+        18,
+        15,
+        21
+      ]
+    },
+    {
+      "model": 35,
+      "direction": "down",
+      "material": "red_creases",
+      "moving": {
+        "pixels": 3889,
+        "median_rgb": [
+          119,
+          56,
+          50
+        ]
+      },
+      "retained_front": {
+        "pixels": 327,
+        "median_rgb": [
+          116,
+          49,
+          40
+        ]
+      },
+      "median_rgb_delta": [
+        3,
+        7,
+        10
+      ]
+    },
+    {
+      "model": 35,
+      "direction": "up",
+      "material": "warm_flesh",
+      "moving": {
+        "pixels": 3417,
+        "median_rgb": [
+          207,
+          144,
+          115
+        ]
+      },
+      "retained_front": {
+        "pixels": 423,
+        "median_rgb": [
+          188,
+          129,
+          92
+        ]
+      },
+      "median_rgb_delta": [
+        19,
+        15,
+        23
+      ]
+    },
+    {
+      "model": 35,
+      "direction": "up",
+      "material": "red_creases",
+      "moving": {
+        "pixels": 4065,
+        "median_rgb": [
+          124,
+          58,
+          53
+        ]
+      },
+      "retained_front": {
+        "pixels": 327,
+        "median_rgb": [
+          116,
+          49,
+          40
+        ]
+      },
+      "median_rgb_delta": [
+        8,
+        9,
+        13
+      ]
+    },
+    {
+      "model": 37,
+      "direction": "down",
+      "material": "warm_flesh",
+      "moving": {
+        "pixels": 2301,
+        "median_rgb": [
+          203,
+          141,
+          112
+        ]
+      },
+      "retained_front": {
+        "pixels": 242,
+        "median_rgb": [
+          198,
+          133,
+          99
+        ]
+      },
+      "median_rgb_delta": [
+        5,
+        8,
+        13
+      ]
+    },
+    {
+      "model": 37,
+      "direction": "down",
+      "material": "red_creases",
+      "moving": {
+        "pixels": 2082,
+        "median_rgb": [
+          115,
+          60,
+          54
+        ]
+      },
+      "retained_front": {
+        "pixels": 243,
+        "median_rgb": [
+          110,
+          48,
+          43
+        ]
+      },
+      "median_rgb_delta": [
+        5,
+        12,
+        11
+      ]
+    },
+    {
+      "model": 37,
+      "direction": "up",
+      "material": "warm_flesh",
+      "moving": {
+        "pixels": 1015,
+        "median_rgb": [
+          159,
+          109,
+          88
+        ]
+      },
+      "retained_front": {
+        "pixels": 242,
+        "median_rgb": [
+          198,
+          133,
+          99
+        ]
+      },
+      "median_rgb_delta": [
+        -39,
+        -24,
+        -11
+      ]
+    },
+    {
+      "model": 37,
+      "direction": "up",
+      "material": "red_creases",
+      "moving": {
+        "pixels": 1608,
+        "median_rgb": [
+          91,
+          44,
+          45
+        ]
+      },
+      "retained_front": {
+        "pixels": 243,
+        "median_rgb": [
+          110,
+          48,
+          43
+        ]
+      },
+      "median_rgb_delta": [
+        -19,
+        -4,
+        2
+      ]
+    },
+    {
+      "model": 38,
+      "direction": "down",
+      "material": "warm_flesh",
+      "moving": {
+        "pixels": 2522,
+        "median_rgb": [
+          196,
+          116,
+          80
+        ]
+      },
+      "retained_front": {
+        "pixels": 208,
+        "median_rgb": [
+          200,
+          125,
+          87
+        ]
+      },
+      "median_rgb_delta": [
+        -4,
+        -9,
+        -7
+      ]
+    },
+    {
+      "model": 38,
+      "direction": "down",
+      "material": "blue_gray",
+      "moving": {
+        "pixels": 1717,
+        "median_rgb": [
+          64,
+          74,
+          78
+        ]
+      },
+      "retained_front": {
+        "pixels": 221,
+        "median_rgb": [
+          44,
+          56,
+          60
+        ]
+      },
+      "median_rgb_delta": [
+        20,
+        18,
+        18
+      ]
+    },
+    {
+      "model": 38,
+      "direction": "down",
+      "material": "orange_rim",
+      "moving": {
+        "pixels": 2922,
+        "median_rgb": [
+          159,
+          86,
+          59
+        ]
+      },
+      "retained_front": {
+        "pixels": 351,
+        "median_rgb": [
+          149,
+          76,
+          44
+        ]
+      },
+      "median_rgb_delta": [
+        10,
+        10,
+        15
+      ]
+    },
+    {
+      "model": 38,
+      "direction": "up",
+      "material": "warm_flesh",
+      "moving": {
+        "pixels": 2337,
+        "median_rgb": [
+          187,
+          112,
+          93
+        ]
+      },
+      "retained_front": {
+        "pixels": 208,
+        "median_rgb": [
+          200,
+          125,
+          87
+        ]
+      },
+      "median_rgb_delta": [
+        -13,
+        -13,
+        6
+      ]
+    },
+    {
+      "model": 38,
+      "direction": "up",
+      "material": "blue_gray",
+      "moving": {
+        "pixels": 3114,
+        "median_rgb": [
+          55,
+          61,
+          67
+        ]
+      },
+      "retained_front": {
+        "pixels": 221,
+        "median_rgb": [
+          44,
+          56,
+          60
+        ]
+      },
+      "median_rgb_delta": [
+        11,
+        5,
+        7
+      ]
+    },
+    {
+      "model": 38,
+      "direction": "up",
+      "material": "orange_rim",
+      "moving": {
+        "pixels": 1828,
+        "median_rgb": [
+          166,
+          95,
+          72
+        ]
+      },
+      "retained_front": {
+        "pixels": 351,
+        "median_rgb": [
+          149,
+          76,
+          44
+        ]
+      },
+      "median_rgb_delta": [
+        17,
+        19,
+        28
+      ]
+    }
+  ]
+}

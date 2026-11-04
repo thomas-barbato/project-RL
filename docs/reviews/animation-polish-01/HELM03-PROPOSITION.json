@@ -1,0 +1,40 @@
+{
+  "review": "ANIM-POLISH01-HELM03-ICONS-r01",
+  "date": "2026-10-31",
+  "status": "awaiting_native_icon_and_pulse_review",
+  "superseded_by": "HELM04-REGLE.json: complete five-weight icon set; common helmet design across classes, wearer/armor fitting only",
+  "user_feedback_quote": "ok je vois, la capuche est assez moche et globalement tous les casques sont similaires (à part la capuche, en faite ce ne sont que des amélioration, mais vu à cette distance on voit peu de differences, aussi peut-être que pour les casques qui ont une visière colorée on pourrait faire une petite animation de clignottement ? quelque chose comme ca tu sais :) , enfin donc il faut redessiner ces casques :) quelque chose de moins generique quoi",
+  "user_priority_quote": "bref n'oublie pas d'adapter le visuel (une fois équipé) à la classe qui la porte :) . Mais je pense qu'il vaut mieux d'abord s'interesser aux icones des objets :) enfin, je pense que c'est ce que tu vas faire .",
+  "priority": "Review inventory icons first; class-specific worn views follow after the icon direction is chosen",
+  "visual_roster": {
+    "current_model_count": 6,
+    "proposed_family_count": 3,
+    "count_accepted": false,
+    "existing_item_mapping": "not decided; no item identities, names or stats are changed"
+  },
+  "candidates": [
+    {"id":"H03-I01","number":"01","working_label":"Coque industrielle","direction":"Wide flat crown, stepped brow, projecting angular jaw; copper and iron with recessed amber visor"},
+    {"id":"H03-I02","number":"02","working_label":"Optique asymétrique","direction":"Swept-back lean crown, offset cyan eyepiece, short sensor tab, tapered lower guard"},
+    {"id":"H03-I03","number":"03","working_label":"Coque organique","direction":"Tall segmented carapace, broad bone plates, short ridge and split lower mask; olive/ochre and pale green eye slits"}
+  ],
+  "working_labels_are_not_item_renames": true,
+  "pulse_candidate": {
+    "id":"H03-P01",
+    "status":"optional review alongside fixed icons; not accepted",
+    "scope":"Colored visor pixels only; no helmet motion, no whole-object flashing, no gameplay effect",
+    "period_ms":3600,
+    "dim_duration_ms":400,
+    "minimum_brightness":0.62,
+    "material_masks":"HELM03-PULSE.json"
+  },
+  "worn_followup": {
+    "each_visual_family_adapts_to_all_supported_classes": true,
+    "class_specific_design_required": true,
+    "wearer_and_armor_morphology_fit_required": true,
+    "front_back_left_right_coherence_required": true,
+    "same_loadout_size_stable_during_animation": true,
+    "worn_candidates_in_this_icon_lot": false
+  },
+  "visual_acceptance_received": false,
+  "normal_game_enabled": false
+}

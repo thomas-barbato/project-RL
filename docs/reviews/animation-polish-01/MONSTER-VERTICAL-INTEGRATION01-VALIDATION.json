@@ -1,0 +1,241 @@
+{
+  "cycle_ms": 800,
+  "draw_time_reads_or_uploads": 0,
+  "exact_stops": 258,
+  "models": 129,
+  "native_comparisons": 258,
+  "native_tile_px": 64,
+  "normal_game_enabled": true,
+  "pose_pixels_verified": 2064,
+  "resource_cache": {
+    "decode_ms": 10861.0621,
+    "decoded_source_budget": 67108864,
+    "decoded_source_peak_bytes": 67106992,
+    "jobs": 268,
+    "pending": 0,
+    "read_bytes": 71161273,
+    "read_ms": 164.0195,
+    "source_reads": 538,
+    "texture_budget": 134217728,
+    "texture_bytes": 93745328,
+    "texture_create_ms": 41.7561,
+    "uploads": 268,
+    "worker_build_ms_including_sources": 3642.7585
+  },
+  "review": "MONSTER-VERTICAL-INTEGRATION01",
+  "routing_checks": 8514,
+  "step_ms": 400,
+  "warm_returns": 129,
+  "approval": "MONSTER-VERTICAL-ALL-ACCEPTANCE-r02.json",
+  "scope": {
+    "base_models": 129,
+    "secondary_variants": 342
+  },
+  "release_build": "passed",
+  "root_jouer_cmd_verify_assets": "passed",
+  "packed_assets": {
+    "atmospheres": 7,
+    "content_and_menu": true,
+    "dialogue_audio_loaded": true,
+    "files": 3726,
+    "packed": true,
+    "pngs_decoded_and_uploaded": 3328,
+    "shared_animation_texture": true,
+    "status": "passed"
+  },
+  "new_packaged_resources": 130,
+  "user_and_editor_fingerprints_verified": 16,
+  "tests": {
+    "library_passed": 1001,
+    "binary_passed": 1111,
+    "binary_failed": 38,
+    "binary_ignored": 45,
+    "failed_also_on_earlier_binary": [
+      "ascii_app::agent_spell_trial::tests::mixed_weapon_out_of_ammunition_refuses_without_time_movement_or_melee_fallback",
+      "ascii_app::city_feedback_tests::city_feedback_real_carriers_and_caches_roll_different_models_and_independent_bonuses",
+      "ascii_app::combat_visuals_app::tests::equipped_pieces_reach_both_player_views_and_weapon_switch_keeps_them",
+      "ascii_app::effects_lab::tests::catalytic_weapon_opens_preview_before_keyboard_confirmation_and_allows_cancel",
+      "ascii_app::effects_lab::tests::lab_parallax_keyboard_fire_chains_without_movement_or_waiting",
+      "ascii_app::effects_lab::tests::playable_laboratory_uses_current_equipment_and_keeps_rank_learning_and_return",
+      "ascii_app::effects_lab::tests::single_target_attack_is_direct_and_tab_still_changes_selection",
+      "ascii_app::narrative::tests::markers_follow_active_objectives_hide_unseen_records_and_clear_on_discovery",
+      "ascii_app::narrative::tests::relay_coordinates_require_current_sight_and_an_active_investigation",
+      "ascii_app::playable_trial::tests::playable_trial_guidance_uses_real_travel_and_keeps_returned_loot",
+      "ascii_app::tests::breche_armor_can_be_equipped_by_click_and_survives_replay",
+      "ascii_app::tests::equipment_merchant_keyboard_mouse_scroll_and_hidden_gambles_work_together",
+      "ascii_app::tests::expedition_round_trip_replays_every_zone_and_its_visual_memory",
+      "ascii_app::tests::exploration_objective_uses_real_travel_progress_in_the_global_journal",
+      "ascii_app::tests::installed_security_alarm_is_visible_and_survives_replay",
+      "ascii_app::tests::interactions_use_the_binding_and_replay_door_console_and_remembered_states",
+      "ascii_app::tests::player_can_deliver_the_requested_material_and_replay_the_intervention",
+      "ascii_app::tests::suspension_rebuilds_the_selected_protocol_before_replay",
+      "ascii_app::tests::suspension_replays_active_r1_and_version_forty_strips_recovery_metadata",
+      "ascii_app::tests::suspension_replays_buy_sell_and_weighted_gamble",
+      "ascii_app::tests::ux_inventory_hover_and_readers_never_equip_or_spend_a_turn",
+      "ascii_app::tests::ux_objective_card_opens_journal_without_a_turn_or_world_click",
+      "ascii_app::tests::ux_personalized_attributes_survive_back_and_forward",
+      "ascii_app::tests::ux_resource_gauges_follow_heat_bandwidth_and_energy_after_real_actions",
+      "ascii_app::weapon_families_app::tests::weapon_families_lab_has_white_models_and_correct_inventory_icons",
+      "ascii_app::weapon_supplies_app::tests::creuset_creation_keeps_ammunition_and_confirms_flamethrower_preview",
+      "ascii_app::world_context::tests::world_context_area_attack_approaches_then_waits_for_confirmation",
+      "ascii_app::world_context::tests::world_context_attack_approaches_at_weapon_maximum_range_on_both_axes",
+      "ascii_app::world_context::tests::world_context_attack_without_ammo_never_walks",
+      "ascii_app::world_context::tests::world_context_held_menu_shortcut_completes_attack_once",
+      "ascii_app::world_context::tests::world_context_keyboard_attack_approaches_and_fires",
+      "ascii_app::world_context::tests::world_context_keyboard_door_detours_around_wall",
+      "ascii_app::world_context::tests::world_context_known_door_survives_temporary_occlusion",
+      "ascii_app::world_context::tests::world_context_shortcut_uses_menu_cell_not_previous_target",
+      "ascii_app::world_context::tests::world_context_tab_exits_cell_cursor_and_keeps_target_for_attack",
+      "game_art::player_layers::worn::finish_worn::class_armor::tests::item_model_selects_the_same_stage_but_each_class_keeps_its_identity"
+    ],
+    "other_failures": [
+      "game_art::player_layers::worn::finish_worn::class_armor::readable::tests::existing_paints_preserve_steel_edges_and_geometry_on_all_six_weapons",
+      "game_art::player_layers::worn::finish_worn::class_armor::tests::active_single_edged_knife_bevels_face_away_from_the_body_in_both_hands"
+    ]
+  },
+  "formatting": {
+    "changed_rust_files": "passed",
+    "git_diff_check": "passed",
+    "workspace": "Pre-existing module order in src/lib.rs"
+  },
+  "cleanup": {
+    "mode": "Windows Recycle Bin",
+    "review_outputs": [
+      {
+        "Folder": "monster-vertical-01",
+        "Files": 334,
+        "Bytes": 34657671.0
+      },
+      {
+        "Folder": "monster-vertical-02",
+        "Files": 334,
+        "Bytes": 36472788.0
+      },
+      {
+        "Folder": "monster-vertical-03",
+        "Files": 335,
+        "Bytes": 39713539.0
+      },
+      {
+        "Folder": "monster-vertical-04",
+        "Files": 335,
+        "Bytes": 36538254.0
+      },
+      {
+        "Folder": "monster-vertical-05",
+        "Files": 335,
+        "Bytes": 32473022.0
+      },
+      {
+        "Folder": "monster-vertical-06",
+        "Files": 335,
+        "Bytes": 32407646.0
+      },
+      {
+        "Folder": "monster-vertical-07",
+        "Files": 335,
+        "Bytes": 33490883.0
+      },
+      {
+        "Folder": "monster-vertical-08",
+        "Files": 335,
+        "Bytes": 33181411.0
+      },
+      {
+        "Folder": "monster-vertical-09",
+        "Files": 335,
+        "Bytes": 31625078.0
+      },
+      {
+        "Folder": "monster-vertical-10",
+        "Files": 335,
+        "Bytes": 33375442.0
+      },
+      {
+        "Folder": "monster-vertical-11",
+        "Files": 336,
+        "Bytes": 34362549.0
+      },
+      {
+        "Folder": "monster-vertical-12",
+        "Files": 337,
+        "Bytes": 35310057.0
+      },
+      {
+        "Folder": "monster-vertical-13",
+        "Files": 337,
+        "Bytes": 35743847.0
+      },
+      {
+        "Folder": "monster-vertical-14",
+        "Files": 667,
+        "Bytes": 72471813.0
+      },
+      {
+        "Folder": "monster-vertical-15",
+        "Files": 333,
+        "Bytes": 37695336.0
+      },
+      {
+        "Folder": "monster-vertical-16",
+        "Files": 333,
+        "Bytes": 38508756.0
+      },
+      {
+        "Folder": "monster-vertical-17",
+        "Files": 333,
+        "Bytes": 34342527.0
+      },
+      {
+        "Folder": "monster-vertical-18",
+        "Files": 333,
+        "Bytes": 36139057.0
+      },
+      {
+        "Folder": "monster-vertical-19",
+        "Files": 333,
+        "Bytes": 33781928.0
+      },
+      {
+        "Folder": "monster-vertical-20",
+        "Files": 333,
+        "Bytes": 34648676.0
+      },
+      {
+        "Folder": "monster-vertical-21-quad",
+        "Files": 201,
+        "Bytes": 15952661.0
+      },
+      {
+        "Folder": "monster-vertical-28-arms",
+        "Files": 201,
+        "Bytes": 15944825.0
+      },
+      {
+        "Folder": "monster-vertical-28-color",
+        "Files": 201,
+        "Bytes": 15914244.0
+      },
+      {
+        "Folder": "monster-vertical-28-weapon",
+        "Files": 200,
+        "Bytes": 15779915.0
+      },
+      {
+        "Folder": "monster-vertical-all",
+        "Files": 6765,
+        "Bytes": 1073939108.0
+      },
+      {
+        "Folder": "monster-vertical-color-01",
+        "Files": 200,
+        "Bytes": 18351583.0
+      }
+    ],
+    "diagnostics": {
+      "Folder": "monster-vertical-integration01",
+      "Files": 32,
+      "Bytes": 452166447.0
+    }
+  }
+}

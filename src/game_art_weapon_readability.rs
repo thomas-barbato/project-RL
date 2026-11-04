@@ -44,6 +44,25 @@ thread_local! {
 }
 
 pub(super) fn binding(model: u16) -> Option<&'static ReviewedWeapon> {
+    #[cfg(debug_assertions)]
+    if model == 23 && crate::animation_polish_review::source_style() == 3 {
+        static REDRAW: ReviewedWeapon = ReviewedWeapon {
+            model: 23,
+            bytes: include_bytes!(
+                "../assets/source-art/animation-polish-01/grenade-launcher-r01/GL01-r01-native.png"
+            ),
+            material: include_bytes!(
+                "../assets/sprites/weapon-readability-03/WR-GL02-materials.png"
+            ),
+            anchor: [59., 68.],
+            support: [77., 68.],
+            angle: -0.035,
+            grip_angle: -0.035,
+            scales: [0.78, 0.70, 0.64, 0.68, 0.72],
+            shift: [2., -2.],
+        };
+        return Some(&REDRAW);
+    }
     if model == 67 && crate::game_art::walking::player_enabled() {
         return Some(&AXE67_REVIEW);
     }
@@ -51,6 +70,17 @@ pub(super) fn binding(model: u16) -> Option<&'static ReviewedWeapon> {
 }
 
 pub(super) fn image(model: u16, color: EquipmentPalette) -> Option<Image> {
+    #[cfg(debug_assertions)]
+    if model == 23 && crate::animation_polish_review::source_style() == 3 {
+        if color != EquipmentPalette::Original {
+            return None;
+        }
+        return Image::from_file_with_format(
+            binding(model)?.bytes,
+            Some(macroquad::prelude::ImageFormat::Png),
+        )
+        .ok();
+    }
     binding(model)?;
     let color = match color {
         EquipmentPalette::ReviewedVariant1 => EquipmentPalette::Blue,
@@ -61,7 +91,26 @@ pub(super) fn image(model: u16, color: EquipmentPalette) -> Option<Image> {
         let (source, mask) = &images[&model];
         let mut out = (**source).clone();
         palettes::recolor(&mut out, mask, color);
-        Some(out)
+        #[cfg(debug_assertions)]
+        if crate::animation_polish_review::source_style() > 0
+            && crate::animation_polish_review::revising(model)
+        {
+            let weapon = binding(model)?;
+            return Some(crate::animation_polish_review::compact_weapon(
+                &out,
+                model,
+                weapon.anchor,
+                weapon.support,
+                crate::animation_polish_review::source_style(),
+            ));
+        }
+        let weapon = binding(model)?;
+        Some(crate::rifle_visuals::prepare(
+            &out,
+            model,
+            weapon.anchor,
+            weapon.support,
+        ))
     })
 }
 

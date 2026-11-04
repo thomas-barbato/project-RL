@@ -1,0 +1,17 @@
+{
+  "review": "ANIM-POLISH01-C06-HELM01-r01",
+  "status": "visually_accepted_not_integrated",
+  "user_quote": "aussi il faudrait faire en sorte que la taille des casques correspondent à la corpulence du personnage :D",
+  "direction_authorized": true,
+  "numeric_factors_accepted": true,
+  "acceptance": "HELM01-ACCEPTANCE.json",
+  "normal_game_enabled": false,
+  "candidate_number": "04",
+  "constant_wearer_factors": {"Bastion":1.15,"Traqueuse":0.86,"Arcaniste":0.96,"Metamorphe":1.06},
+  "same_factor_across_armor_tiers_and_phases": true,
+  "anchor": "lower shell edge on the neck",
+  "models": [115,116,117,118,119,120],
+  "pilot": "four current player classes, base and heavy outfits; front/back/left/right and frontal rest",
+  "accepted_other_changes": ["C01", "C02-A", "C03", "C04"],
+  "grenade_launcher_C05": "still pending separate approval"
+}

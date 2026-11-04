@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-063-0",
+    "number": 63,
+    "name": "Quadrupède à queue",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 46,
+    "vertical_offset": -9,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-11/r01/MON-063-front.png",
+    "idle_sha256": "5dc5e96eb036f8a522c9b2e2092a6a771b7c8a68e3c0196e0f8314a400bce5eb",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-063-v0.png",
+    "front_shadow": 41,
+    "current_vertical": {
+      "number": 63,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-063-v0.png",
+      "cell": [
+        72,
+        53
+      ],
+      "anchor": [
+        36,
+        51
+      ],
+      "offset": -9,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-064-0",
+    "number": 64,
+    "name": "Quadrupède trapu",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 31,
+    "vertical_offset": -16,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-11/r01/MON-064-front.png",
+    "idle_sha256": "59ed8db8dadd77c3a10f10f770486f19777360c6447c0d75a567b3d34e0d0c0b",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-064-v0.png",
+    "front_shadow": 43,
+    "current_vertical": {
+      "number": 64,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-064-v0.png",
+      "cell": [
+        79,
+        39
+      ],
+      "anchor": [
+        39,
+        37
+      ],
+      "offset": -16,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-065-0",
+    "number": 65,
+    "name": "Créature au corps enroulé",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 64,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-11/r01/MON-065-front.png",
+    "idle_sha256": "ae69b873bca72780e372591a725f14a792ec9b20f5d5d7246c3bd12cb575d1c1",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-065-v0.png",
+    "front_shadow": 40,
+    "current_vertical": {
+      "number": 65,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-065-v0.png",
+      "cell": [
+        72,
+        67
+      ],
+      "anchor": [
+        36,
+        65
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

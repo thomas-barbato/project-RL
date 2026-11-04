@@ -1,0 +1,65 @@
+{
+  "review": "ANIM-POLISH01-HELM04-WEIGHTS-r01",
+  "mode": "builtin_image_gen",
+  "transparent_background": true,
+  "new_prompts": [
+    {
+      "id": "H04-W01",
+      "prompt": "Use case: stylized-concept. Asset type: ONE new transparent pixel-art inventory headgear icon for Project RL, gritty industrial science-fiction with a native 64 by 64 pixel grid. Artist-painted economical pixel clusters, matte worn materials, large readable forms, dark nuanced outlines, very few details; must read clearly at 64 pixels. Slight front three-quarter view facing viewer's RIGHT with a little upper surface visible. One EMPTY wearable headgear only: no wearer, face, mannequin, neck, torso, hands or weapons. Keep complete silhouette centered in a logical 64 by 64 square, within x6..58 and y6..58, generous fully transparent margin. True transparent background, no floor or cast shadow outside the object, no glow halo, no text, labels, border or logo. No photorealism, glossy toy render, dithering, microtexture, pink or HUD graphics. Design 01: VERY LIGHT OPEN PROTECTOR. A radically open lightweight industrial headpiece, visibly much less enclosing than a full helmet. A thin but sturdy segmented brow band, two small temple guards and only three curved narrow metal/composite ribs arching over the crown; large open gaps between ribs and a completely open lower face. Small compact asymmetrical bone-white impact plate on one temple; no goggles or glowing visor. Woven dark charcoal suspension straps inside the open frame, desaturated olive and warm bone-white structural plates, a little exposed dark copper fastening. Strong readable low open cage silhouette with no solid dome, no jaw mask, no shoulder collar. It must look like practical futuristic protective headgear, not headphones, a crown, a baseball cap, medieval chainmail or a soft hood. Large central transparent opening where a head would fit, keep straps sparse and readable at icon size. Make the open shell a single coherent believable wearable object. No face. One headpiece only."
+    },
+    {
+      "id": "H04-W05",
+      "prompt": "Use case: stylized-concept. Asset type: ONE new transparent pixel-art inventory headgear icon for Project RL, gritty industrial science-fiction with a native 64 by 64 pixel grid. Artist-painted economical pixel clusters, matte worn materials, large readable forms, dark nuanced outlines, very few details; must read clearly at 64 pixels. Slight front three-quarter view facing viewer's RIGHT with a little upper surface visible. One EMPTY wearable headgear only: no wearer, face, mannequin, neck, torso, hands or weapons. Keep complete silhouette centered in a logical 64 by 64 square, within x6..58 and y6..58, generous fully transparent margin. True transparent background, no floor or cast shadow outside the object, no glow halo, no text, labels, border or logo. No photorealism, glossy toy render, dithering, microtexture, pink or HUD graphics. Design 05: VERY HEAVY SEALED PROTECTOR. An unmistakably broad fully enclosed pressure-style protective helmet with a continuous low bell-shaped armored rear shell, a thick integrated horseshoe neck-lock ring, and a very deep short rectangular front jaw block. The sweeping curved rear armor and chunky circular neck-lock base must give a fundamentally different contour from a flat-topped angular copper combat helmet, a pointed scout visor, or an organic ridge mask. A tiny recessed warm RED-ORANGE horizontal vision slit protected by a heavy bone-white overhanging eyebrow; matte charcoal main shell with large warm gray and aged ivory ceramic plates, dark steel joints, very restrained ochre hardware. Visually heavy through wide enclosing protective volumes and the sealed collar, rather than by adding random spikes or vents. Complete empty helmet including its own short locking collar only, no body or shoulders. No gas-mask hoses, antenna, horns, cloth, human skull motifs, branding or bright chrome. The red-orange slit is one small coherent saturated glass strip that can later be animated separately; no bloom. Silhouette should be wide and squat, broad curved rear and strong lower ring, not an astronaut fishbowl. One helmet only."
+    }
+  ],
+  "reused_candidates": [
+    {
+      "id": "H04-W02",
+      "source": "H03-I02",
+      "prompt_manifest": "HELM03-PROMPTS.json"
+    },
+    {
+      "id": "H04-W03",
+      "source": "H03-I03",
+      "prompt_manifest": "HELM03-PROMPTS.json"
+    },
+    {
+      "id": "H04-W04",
+      "source": "H03-I01",
+      "prompt_manifest": "HELM03-PROMPTS.json"
+    }
+  ],
+  "source_manifest": "HELM04-SOURCES.json",
+  "sources": [
+    {
+      "id": "H04-W01",
+      "raw": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W01-generated.png",
+      "native": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W01-native64.png",
+      "prior": null
+    },
+    {
+      "id": "H04-W02",
+      "raw": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I02-generated.png",
+      "native": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W02-native64.png",
+      "prior": "H03-I02"
+    },
+    {
+      "id": "H04-W03",
+      "raw": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I03-generated.png",
+      "native": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W03-native64.png",
+      "prior": "H03-I03"
+    },
+    {
+      "id": "H04-W04",
+      "raw": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I01-generated.png",
+      "native": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W04-native64.png",
+      "prior": "H03-I01"
+    },
+    {
+      "id": "H04-W05",
+      "raw": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W05-generated.png",
+      "native": "assets/source-art/animation-polish-01/helmet-weight-r01/H04-W05-native64.png",
+      "prior": null
+    }
+  ]
+}

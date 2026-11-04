@@ -1,0 +1,53 @@
+{
+  "review": "MONSTER-VERTICAL07-r01",
+  "revision": "compact-r02",
+  "reason": "First MON-032 draft narrowed the near-square retained body (27px vs39px at40px height); redraw whole figures with original breadth and a true rear skull.",
+  "tool": "built-in image_gen",
+  "transparent_background": true,
+  "jobs": [
+    {
+      "number": 32,
+      "dir": "down",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-appearance-reference.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-down-source.png"
+      ],
+      "prompt": "Use case: identity-preserve. EDIT this pixel-art sprite sheet to correct a proportion error. Image1 is the precise existing IDENTITY MASTER (native bounding box 39px WIDE by 40px HIGH, nearly SQUARE). Image2 is the first walk-sheet draft, whose figures are REJECTED because they became much TOO NARROW and tall-legged. Preserve only its 3x3 layout, phase order, dark palette and genuine transparency. REDRAW coherent whole figures with the MASTER's almost-square, LOW WIDE squashed body. Do not stretch pixels.\nCritical measurable proportion: EVERY moving figure silhouette must be about 0.95 to 1.0 times as WIDE as it is TALL, not the draft's skinny 0.65 ratio. Target about 300px width and 310px height inside each equal square cell. Round broad belly/back, wider low shoulders, small squat TWO legs with knees under belly, short broad feet, tiny hanging TWO clawed arms; restore the master's wide low stance without spreading the feet. Head/curved neck is compact and at most upper quarter of figure height. Keep visible heavy charcoal back and peach/brown folds, dark claw tips, original eye placement and forward head hook, no added material, brighter light or new features.\nALL first 8 figures FRONT / slight front-three-quarter walking DOWN toward viewer. Same curved hooked head and small dark eye as master, same broad low rounded belly.\nEXACT 3 equal columns x 3 equal rows, row-major first8 phases and ninth idle. 8 DISTINCT whole poses: 1 left contact,2 settleleft,3 right passes LOW UNDER belly,4 rightreaches,5 rightcontact,6 settleright,7 leftpasses low,8 leftreaches next contact. Compact alternating walking, 400ms per step 800ms full cycle, minimal coherent bob, constant body height/build/camera and pixel construction. No jumping, high knees, splaying or side camera. Arms NEVER become extra legs. Head stays connected and rigid with torso. No detached head, grafted legs or band deformations.\nPreserve muted original matte values and crisp native64 pixel clusters. NO outline glow, rim light, glossy highlights, HD smoothing, blur, grain or realistic painting. Generous transparent margins, all figures complete and uncropped. GENUINE alpha ZERO background and limb gaps. NO floor, shadow, text, grid, labels, matte, checkerboard or watermark.",
+      "revision": "compact-r02",
+      "input_snapshots": [
+        {
+          "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-appearance-reference.png",
+          "sha256": "20e786aae1ae053608fd9a0c35110f19859dffe20e2ebbdaf2f600c5304360b4",
+          "tool_call_path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-appearance-reference.png"
+        },
+        {
+          "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-down-initial-source.png",
+          "sha256": "a8c37bf6956f8284db3196582bd6ad5e351e32da8d407bd64e044bfae7daf0bf",
+          "tool_call_path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-down-source.png"
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "dir": "up",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-appearance-reference.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-up-source.png"
+      ],
+      "prompt": "Use case: identity-preserve. EDIT this pixel-art sprite sheet to correct a proportion error. Image1 is the precise existing IDENTITY MASTER (native bounding box 39px WIDE by 40px HIGH, nearly SQUARE). Image2 is the first walk-sheet draft, whose figures are REJECTED because they became much TOO NARROW and tall-legged. Preserve only its 3x3 layout, phase order, dark palette and genuine transparency. REDRAW coherent whole figures with the MASTER's almost-square, LOW WIDE squashed body. Do not stretch pixels.\nCritical measurable proportion: EVERY moving figure silhouette must be about 0.95 to 1.0 times as WIDE as it is TALL, not the draft's skinny 0.65 ratio. Target about 300px width and 310px height inside each equal square cell. Round broad belly/back, wider low shoulders, small squat TWO legs with knees under belly, short broad feet, tiny hanging TWO clawed arms; restore the master's wide low stance without spreading the feet. Head/curved neck is compact and at most upper quarter of figure height. Keep visible heavy charcoal back and peach/brown folds, dark claw tips, original eye placement and forward head hook, no added material, brighter light or new features.\nALL first 8 figures TRUE REAR walking UP AWAY. Broad rounded dark charcoal back covers belly; heels and rear of arms visible. Head's hook curves FORWARD away from viewer: its tip is partly hidden by the rear skull and outer curve. Unlike the failed draft, do NOT repeat the front-facing hook silhouette pointing down toward viewer. Show a compact rounded rear skull/crest attached at top of back. If a slight three-quarter side projects, curl projects to SCREEN LEFT (front master points screen right). NO eye, face, mouth or front belly on the rear.\nEXACT 3 equal columns x 3 equal rows, row-major first8 phases and ninth idle. 8 DISTINCT whole poses: 1 left contact,2 settleleft,3 right passes LOW UNDER belly,4 rightreaches,5 rightcontact,6 settleright,7 leftpasses low,8 leftreaches next contact. Compact alternating walking, 400ms per step 800ms full cycle, minimal coherent bob, constant body height/build/camera and pixel construction. No jumping, high knees, splaying or side camera. Arms NEVER become extra legs. Head stays connected and rigid with torso. No detached head, grafted legs or band deformations.\nPreserve muted original matte values and crisp native64 pixel clusters. NO outline glow, rim light, glossy highlights, HD smoothing, blur, grain or realistic painting. Generous transparent margins, all figures complete and uncropped. GENUINE alpha ZERO background and limb gaps. NO floor, shadow, text, grid, labels, matte, checkerboard or watermark.",
+      "revision": "compact-r02",
+      "input_snapshots": [
+        {
+          "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-appearance-reference.png",
+          "sha256": "20e786aae1ae053608fd9a0c35110f19859dffe20e2ebbdaf2f600c5304360b4",
+          "tool_call_path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-appearance-reference.png"
+        },
+        {
+          "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-up-initial-source.png",
+          "sha256": "11131295a8b5e2f4b3496545036f677a50ff3e5270b2f9d34bd2877f33b92c5d",
+          "tool_call_path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-032-up-source.png"
+        }
+      ]
+    }
+  ]
+}

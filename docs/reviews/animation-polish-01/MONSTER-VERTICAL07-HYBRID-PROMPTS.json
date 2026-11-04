@@ -1,0 +1,53 @@
+{
+  "review": "MONSTER-VERTICAL07-r01",
+  "revision": "hybrid-compact-r02",
+  "reason": "Native comparison showed the first hybrid draft too narrow (37px vs45px at43px height); whole-figure redraw preserving asymmetric forearms.",
+  "tool": "built-in image_gen",
+  "transparent_background": true,
+  "jobs": [
+    {
+      "number": 26,
+      "dir": "down",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-appearance-reference.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-down-source.png"
+      ],
+      "prompt": "Use case: identity-preserve. EDIT a pixel-art walk sheet to correct proportions. Input1 is the EXACT existing identity master, with squat bounding dimensions 45px WIDE by43px HIGH, width/height1.05, almost square. Input2 is the first draft; preserve its transparent 3x3 equal-cell layout and phase order but its TOO NARROW body must be redrawn.\nReturn this short hunched pale bald hybrid to the master's broad compact proportions. At SAME overall figure height, make shoulder span and upper torso/jacket broader, stout gray trouser hips, short bent legs and short heavy dark brown boots, long hanging arms. Do not make a tall human or spread legs; redraw coherent anatomy. Every complete silhouette approximately 1.0–1.05times as wide as tall, about315px W by310px H inside equal square cells. The head retains its original size, bent down and attached between shoulders, without independent bob.\nExact ochre/mustard open short-sleeved jacket over dark brown torso. Character's anatomical RIGHT forearm is massive dark gray/brown mutated claw, with long dark fingers; anatomical LEFT forearm and hand are paler, smaller bare human skin. Preserve this asymmetry and exact ownership: dark big claw SCREEN LEFT in front, SCREEN RIGHT from back. Short gray trousers and heavy boots unchanged. NO armor, glove added to bare hand, weapon, hood, horn or other equipment.\nAll first8poses FRONT/slight front-three-quarter walking DOWN toward viewer, same head angle and upper-body appearance as master.\n8 DISTINCT meaningful compact walking phases in row-major order:1leftcontact,2settleleft,3rightpasses LOW underhips,4rightreaches,5rightcontact,6settleright,7leftpasses,8leftreaches toloop. Ninth relaxed idle. 400ms per step,800ms full cycle. Constant camera, height, compact body proportions and palette; little coherent bob. Arms pendulous, NEVER additional ground supports. No highknees, splaying, running, jumps, zoom or leg grafts. Draw WHOLE figures.\nCrisp deliberate pixel-art clusters matching the master's native64 finish and dark matte original colors. No brighter lighting, glowing outline, rim lights, glossy highlights, HDpainting, blur or grain. Genuine transparent alpha ZERO background/limbgaps, generous empty margins so nothing clips or overlaps. NO floor, shadow, grid, text, labels, matte or watermark.",
+      "revision": "compact-r02",
+      "input_snapshots": [
+        {
+          "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-appearance-reference.png",
+          "sha256": "d3c1bfe762f253adbcd703b5d0b7f7080af96c05a13cfa0b2873f916304abd9d",
+          "tool_call_path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-appearance-reference.png"
+        },
+        {
+          "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-down-initial-source.png",
+          "sha256": "7cedf4bff75498c5df81d267fdc915af5e89918b45362d6d21d4d2c4e7209fa2",
+          "tool_call_path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-down-source.png"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "dir": "up",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-appearance-reference.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-up-source.png"
+      ],
+      "prompt": "Use case: identity-preserve. EDIT a pixel-art walk sheet to correct proportions. Input1 is the EXACT existing identity master, with squat bounding dimensions 45px WIDE by43px HIGH, width/height1.05, almost square. Input2 is the first draft; preserve its transparent 3x3 equal-cell layout and phase order but its TOO NARROW body must be redrawn.\nReturn this short hunched pale bald hybrid to the master's broad compact proportions. At SAME overall figure height, make shoulder span and upper torso/jacket broader, stout gray trouser hips, short bent legs and short heavy dark brown boots, long hanging arms. Do not make a tall human or spread legs; redraw coherent anatomy. Every complete silhouette approximately 1.0–1.05times as wide as tall, about315px W by310px H inside equal square cells. The head retains its original size, bent down and attached between shoulders, without independent bob.\nExact ochre/mustard open short-sleeved jacket over dark brown torso. Character's anatomical RIGHT forearm is massive dark gray/brown mutated claw, with long dark fingers; anatomical LEFT forearm and hand are paler, smaller bare human skin. Preserve this asymmetry and exact ownership: dark big claw SCREEN LEFT in front, SCREEN RIGHT from back. Short gray trousers and heavy boots unchanged. NO armor, glove added to bare hand, weapon, hood, horn or other equipment.\nAll first8poses TRUE BACK walking UP AWAY, back of bald skull/jacket/trouser seat and boot heels visible. No face/chest painted at rear. Dark huge anatomical right forearm SCREEN RIGHT, pale smaller left arm SCREEN LEFT.\n8 DISTINCT meaningful compact walking phases in row-major order:1leftcontact,2settleleft,3rightpasses LOW underhips,4rightreaches,5rightcontact,6settleright,7leftpasses,8leftreaches toloop. Ninth relaxed idle. 400ms per step,800ms full cycle. Constant camera, height, compact body proportions and palette; little coherent bob. Arms pendulous, NEVER additional ground supports. No highknees, splaying, running, jumps, zoom or leg grafts. Draw WHOLE figures.\nCrisp deliberate pixel-art clusters matching the master's native64 finish and dark matte original colors. No brighter lighting, glowing outline, rim lights, glossy highlights, HDpainting, blur or grain. Genuine transparent alpha ZERO background/limbgaps, generous empty margins so nothing clips or overlaps. NO floor, shadow, grid, text, labels, matte or watermark.",
+      "revision": "compact-r02",
+      "input_snapshots": [
+        {
+          "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-appearance-reference.png",
+          "sha256": "d3c1bfe762f253adbcd703b5d0b7f7080af96c05a13cfa0b2873f916304abd9d",
+          "tool_call_path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-appearance-reference.png"
+        },
+        {
+          "file": "assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-up-initial-source.png",
+          "sha256": "f13ac7cca6365b488b43fbe1bdaa434ae015eb0462512859cfc1c9d323903c4e",
+          "tool_call_path": "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-07/r01/MON-026-up-source.png"
+        }
+      ]
+    }
+  ]
+}

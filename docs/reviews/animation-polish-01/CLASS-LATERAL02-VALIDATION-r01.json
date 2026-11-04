@@ -1,0 +1,83 @@
+{
+  "review": "CLASS-LATERAL02-r01",
+  "date": "2026-11-02",
+  "status": "rejected_gait_and_retired_class",
+  "scope": "four classes / heavy armor / unarmed / two lateral directions",
+  "classes": 4,
+  "whole_authored_poses": 56,
+  "distinct_engine_walk_frames": 48,
+  "front_unchanged": true,
+  "normal_game_enabled": false,
+  "traqueuse_unchanged": true,
+  "source_manifest": "assets/source-art/animation-polish-01/class-lateral-02/r01/manifest.json",
+  "prompts": "docs/reviews/animation-polish-01/CLASS-LATERAL02-PROMPTS-r01.md",
+  "image_generation_mode": "built-in image_gen / guided edits / transparent alpha",
+  "checks": {
+    "browser": {
+      "review": "CLASS-LATERAL02-r01",
+      "sides": [
+        {
+          "side": "left",
+          "displayWidth": 384,
+          "height": 640,
+          "width": 384
+        },
+        {
+          "side": "right",
+          "displayWidth": 384,
+          "height": 640,
+          "width": 384
+        },
+        {
+          "side": "both",
+          "displayWidth": 640,
+          "height": 640,
+          "width": 640
+        }
+      ],
+      "idle": {
+        "phase": "Repos frontal actuel",
+        "button": "Lire les nouveaux cycles"
+      },
+      "zoom": {
+        "height": 1280,
+        "width": 768
+      },
+      "preloaded_frames": 7,
+      "playback_resumed": true,
+      "browser_errors": 0
+    },
+    "debug_build": "passed",
+    "python_compile": "passed",
+    "native_capture": "passed",
+    "rustfmt": "passed",
+    "git_diff_check": "passed",
+    "frontal_idle_pixel_equality": "passed"
+  },
+  "source_hashes": [
+    {
+      "class": "bastion",
+      "tier": 3,
+      "sha256": "415a40e17916bbdd7babc0ed5e66504784077780b50b0fce7977d031b665219b"
+    },
+    {
+      "class": "technomancien",
+      "tier": 3,
+      "sha256": "68abef08f0192b4e0ca8e5fbf73e8f17601cf1e56189dd0551c6d0fa056bd3f4"
+    },
+    {
+      "class": "arcaniste",
+      "tier": 3,
+      "sha256": "ff613d740bac0381d0cab5cc624063553a2f4e046b39cab74be8f5da706345cf"
+    },
+    {
+      "class": "metamorphe",
+      "tier": 3,
+      "sha256": "1e69f1cc1be5746bae86c0bbd297497c0c3007bf23605de10ed7c7bf41a012b7"
+    }
+  ],
+  "other_armor_stages": "current fronts prepared; new gait variants await first-lot visual review",
+  "armed_grips": "not covered by this unarmed lot",
+  "biped_inventory": "87 declared two-support creatures among 130 installed base cycles; visual inspection pending, NPCs separate",
+  "player_feedback": "Technomancien retiré ; animation trop rapide ; les jambes ne forment pas un vrai pas."
+}

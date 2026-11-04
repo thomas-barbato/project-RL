@@ -1,0 +1,43 @@
+{
+  "review": "MONSTER-VERTICAL14-r02",
+  "date": "2026-11-03",
+  "status": "accepted",
+  "player_quote": "oui la ca va, je valide et on continue",
+  "review_numbers": [
+    42
+  ],
+  "models": [
+    74
+  ],
+  "variant": 0,
+  "directions": [
+    "down",
+    "up"
+  ],
+  "step_ms": 400,
+  "normal_game_enabled": false,
+  "scope": "MON-074-0 in r02, including the corrected rear walk; no decision recorded here for 40 or 41",
+  "manifest": "assets/source-art/animation-polish-01/monster-vertical-14/r02/manifest.json",
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-14/r02/MON-074-atlas.png",
+      "sha256": "1e22efbb7c04243016bcf5bcd66e7b29eef2e1ce89eaf0a0f2c97a749a6a81a1"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-14/r01/MON-074-front.png",
+      "sha256": "85c515f2120d3ab921cdea24415ec7bd5edc21e8490159c83f4db2fbb35ffe00"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-14/r02/MON-074-material-palette.json",
+      "sha256": "6ac898574b46cb75a84d97f50ee612567d54452487547da20462decc2c380005"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-14/r01/MON-074-down-source.png",
+      "sha256": "e37540b37673eb1f20ed31c69bfc9d4b285ef572ecc4455d543d8a8fbf692842"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/monster-vertical-14/r02/MON-074-up-source.png",
+      "sha256": "8e6977e5af5518a3a546016ebc16d635817c5e42265461b6e08680eb6fea04e3"
+    }
+  ]
+}

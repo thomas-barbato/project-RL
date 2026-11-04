@@ -1,0 +1,23 @@
+{
+  "review": "FIREARM02-r01",
+  "date": "2026-11-01",
+  "status": "native_candidate_awaiting_visual_approval",
+  "user_scope": "fusils d'assaut / à pompe etc, pas des armes lourdes de tir",
+  "user_adjustment": "un tout petit peu trop petit",
+  "candidate": "02 / Légèrement agrandi",
+  "normal_game_enabled": false,
+  "state_scope": "Historical proposal snapshot; current approval and runtime state are recorded separately.",
+  "acceptance": "FIREARM02-ACCEPTANCE.json",
+  "integration": "FIREARM02-INTEGRATION.json",
+  "reference": "FIREARM01-r01 / candidate 01",
+  "rifle_models": "0..12, 35..46, 54..60; 32 shared source models",
+  "outer_extension_factor": 0.95,
+  "outer_thickness_factor": 1.08,
+  "previous_outer_extension_factor": 0.85,
+  "previous_outer_thickness_factor": 1.0,
+  "interpretation": "Source extensions outside the authored grip box; final pixel changes depend on the weapon and existing class scale, not a uniform final-screen percentage.",
+  "preserved": ["authored grip coordinates and their alpha", "hand poses", "weapon angle and placement", "class armor and head", "LIGHT01 Discret", "normal depth order", "heavy firearm review", "gameplay", "saves"],
+  "native_sample": "Four rifles on four classes in heavy armor; assault rifle and shotgun also shown in light and very heavy armor on each class; four directions and seven phases.",
+  "preview": "artifacts/animation-polish-01/apercu.html#fusils",
+  "validation": "FIREARM02-VALIDATION.md"
+}

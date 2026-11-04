@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-075-0",
+    "number": 75,
+    "name": "Bête brune aux épaules rouges",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 50,
+    "vertical_offset": -7,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-15/r01/MON-075-front.png",
+    "idle_sha256": "b173494147a7fca6f73b96294a58854d672bfd8c6a6ee4fe459876011cb06ffe",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-075-v0.png",
+    "front_shadow": 51,
+    "current_vertical": {
+      "number": 75,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-075-v0.png",
+      "cell": [
+        93,
+        57
+      ],
+      "anchor": [
+        47,
+        55
+      ],
+      "offset": -7,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-076-0",
+    "number": 76,
+    "name": "Aberration ivoire aux tentacules",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 62,
+    "vertical_offset": -1,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-15/r01/MON-076-front.png",
+    "idle_sha256": "28e1d1487f51903dafa234da606f676cc9d1fc8c6b989f6588d7cdd7649d6c99",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-076-v0.png",
+    "front_shadow": 50,
+    "current_vertical": {
+      "number": 76,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-076-v0.png",
+      "cell": [
+        103,
+        66
+      ],
+      "anchor": [
+        51,
+        64
+      ],
+      "offset": -1,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-077-0",
+    "number": 77,
+    "name": "Colosse ivoire sans tête",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 76,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-15/r01/MON-077-front.png",
+    "idle_sha256": "71d206f063b951790f25ea9474450cb1ae88560c522eaf3332bc67f1851f9866",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-077-v0.png",
+    "front_shadow": 42,
+    "current_vertical": {
+      "number": 77,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-077-v0.png",
+      "cell": [
+        85,
+        87
+      ],
+      "anchor": [
+        43,
+        85
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

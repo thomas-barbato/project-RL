@@ -2,6 +2,8 @@
 mod agent_skill_lab_review;
 mod animation_policy;
 #[cfg(debug_assertions)]
+mod animation_polish_review;
+#[cfg(debug_assertions)]
 mod animation_readability_review;
 #[cfg(debug_assertions)]
 mod art_quality_capture;
@@ -10,10 +12,18 @@ mod asset_loading;
 mod asset_preparation;
 mod asset_smoke;
 mod attack_preview_visuals;
+#[cfg(debug_assertions)]
+mod biped_integration_capture;
+#[cfg(debug_assertions)]
+mod biped_lateral_review;
 mod camp_atmosphere;
 mod camp_npc_review;
 #[cfg(debug_assertions)]
 mod class_armor_capture;
+#[cfg(debug_assertions)]
+mod class_lateral_r02;
+#[cfg(debug_assertions)]
+mod class_motion_review;
 mod combat_visuals;
 mod controls;
 mod cryogenic_camp;
@@ -22,17 +32,26 @@ mod cryogenic_camp_render;
 mod dual_walk_capture;
 mod effect_geometry;
 #[cfg(debug_assertions)]
+mod firearm_polish_review;
+#[cfg(debug_assertions)]
 mod floor_surface_review;
 mod game_art;
 mod graphics;
 mod guardian_taunt_visuals;
 mod hub_layout;
+#[cfg(debug_assertions)]
+mod lateral_identity_review;
 mod melee_strike_visuals;
+#[cfg(debug_assertions)]
+mod monster_vertical_review;
 mod natural_effect;
 mod pause_menu;
+#[cfg(debug_assertions)]
+mod player_motion_fix_capture;
 mod preview_markers;
 mod prison_street;
 mod prison_street_render;
+mod rifle_visuals;
 mod sewer;
 mod sewer_ambience;
 #[cfg(debug_assertions)]
@@ -41,6 +60,9 @@ mod sewer_water;
 #[cfg(debug_assertions)]
 mod sewer_water_review;
 mod skill_learn_button;
+mod software_cursor;
+#[cfg(debug_assertions)]
+mod spell_obstacle_review;
 #[cfg(debug_assertions)]
 mod street_defense_review;
 mod street_population;
@@ -84,10 +106,61 @@ use macroquad::prelude::*;
 
 fn window_conf() -> Conf {
     let settings = graphics::startup().0;
+    let traqueuse_trial = std::env::args().any(|a| {
+        matches!(
+            a.as_str(),
+            "--essai-marche-traqueuse" | "--ui-cold-lateral-trial"
+        )
+    });
     let polish_review = cfg!(debug_assertions)
         && matches!(
             std::env::args().nth(1).as_deref(),
-            Some("--apercu-finition-visuelle" | "--ui-cold-visual-polish")
+            Some(
+                "--apercu-finition-visuelle"
+                    | "--ui-cold-visual-polish"
+                    | "--ui-cold-class-motion"
+                    | "--ui-cold-class-lateral-refs"
+                    | "--ui-cold-class-lateral-candidates"
+                    | "--ui-cold-class-lateral-r02"
+                    | "--ui-cold-biped-lateral"
+                    | "--ui-cold-biped-lateral-r02"
+                    | "--ui-cold-biped-player-r03"
+                    | "--ui-cold-biped-nextlot"
+                    | "--ui-cold-biped-armedlot"
+                    | "--ui-cold-biped-hoods-r02"
+                    | "--ui-cold-biped-fronts-r03"
+                    | "--ui-cold-biped-frontmatch-r04"
+                    | "--ui-cold-biped-winged04"
+                    | "--ui-cold-biped-integration"
+                    | "--ui-cold-player-motion-fix"
+                    | "--ui-cold-monster-vertical01"
+                    | "--ui-cold-monster-vertical02"
+                    | "--ui-cold-monster-vertical-color01"
+                    | "--ui-cold-monster-vertical03"
+                    | "--ui-cold-monster-vertical04"
+                    | "--ui-cold-monster-vertical05"
+                    | "--ui-cold-monster-vertical06"
+                    | "--ui-cold-monster-vertical07"
+                    | "--ui-cold-monster-vertical08"
+                    | "--ui-cold-monster-vertical09"
+                    | "--ui-cold-monster-vertical10"
+                    | "--ui-cold-monster-vertical11"
+                    | "--ui-cold-monster-vertical12"
+                    | "--ui-cold-monster-vertical13"
+                    | "--ui-cold-monster-vertical14"
+                    | "--ui-cold-monster-vertical14-r02"
+                    | "--ui-cold-monster-vertical15"
+                    | "--ui-cold-monster-vertical16"
+                    | "--ui-cold-monster-vertical17"
+                    | "--ui-cold-monster-vertical18"
+                    | "--ui-cold-monster-vertical19"
+                    | "--ui-cold-monster-vertical20"
+                    | "--ui-cold-monster-vertical-all"
+                    | "--ui-cold-monster-vertical28-arms"
+                    | "--ui-cold-monster-vertical28-color"
+                    | "--ui-cold-monster-vertical28-weapon"
+                    | "--ui-cold-monster-vertical21-quad"
+            )
         );
     let water_review = cfg!(debug_assertions)
         && matches!(
@@ -99,12 +172,15 @@ fn window_conf() -> Conf {
                     | "--ui-cold-sewer-canals"
             )
         );
-    let reviewing = polish_review
+    let reviewing = traqueuse_trial
+        || polish_review
         || water_review
         || (cfg!(debug_assertions)
             && std::env::args().nth(1).as_deref() == Some("--apercu-animations"));
     Conf {
-        window_title: if water_review {
+        window_title: if traqueuse_trial {
+            "Project RL — Essai Traqueuse 04"
+        } else if water_review {
             "Project RL — EG-EAU01 · Revue des égouts"
         } else if polish_review {
             "Project RL — POLISH01 · Revue de finition"
@@ -114,14 +190,16 @@ fn window_conf() -> Conf {
             "Project RL — Terminal"
         }
         .to_owned(),
-        window_width: if polish_review || water_review {
+        window_width: if traqueuse_trial {
+            1280
+        } else if polish_review || water_review {
             1360
         } else {
             settings.windowed_size[0] as i32
         },
         window_height: if water_review {
             672
-        } else if polish_review {
+        } else if polish_review || traqueuse_trial {
             800
         } else {
             settings.windowed_size[1] as i32
@@ -135,6 +213,21 @@ fn window_conf() -> Conf {
 }
 
 fn main() {
+    if std::env::args().any(|a| {
+        matches!(
+            a.as_str(),
+            "--verify-lateral03-trial" | "--verify-lateral04-trial"
+        )
+    }) {
+        match AsciiApp::verify_traqueuse_walk_trial() {
+            Ok(report) => println!("{}", serde_json::to_string_pretty(&report).unwrap()),
+            Err(error) => {
+                eprintln!("[LATERAL04] {error}");
+                std::process::exit(1);
+            }
+        }
+        return;
+    }
     if std::env::args().nth(1).as_deref() == Some("--verify-assets") {
         match project_rl::data_paths::verify() {
             Ok(count) => println!(
@@ -166,6 +259,8 @@ async fn game_main() {
     miniquad::window::set_mouse_cursor(miniquad::CursorIcon::Default);
     prevent_quit();
     asset_preparation::initialize_graphics_thread();
+    world_readability::prepare_actor_material().expect("actor readability shader");
+    software_cursor::prepare();
     if let Err(error) = ui_theme::initialize_fonts() {
         eprintln!("[UI] Police embarquée indisponible, police de secours utilisée : {error}");
     }
@@ -250,7 +345,114 @@ async fn game_main() {
     #[cfg(debug_assertions)]
     if let Some(output) = graphics::ui_smoke_output() {
         let mode = std::env::args().nth(1).unwrap_or_default();
-        let result = if mode == "--ui-cold-vertical-integration" {
+        let result = if mode.starts_with("--ui-cold-helmet-") {
+            eprintln!("[HELM06] Helmet visual review closed; the armor outfit is retained.");
+            Ok(())
+        } else if mode == "--ui-cold-grenade-redraw" {
+            animation_polish_review::capture_grenade(&output).await
+        } else if mode == "--ui-cold-animation-polish" {
+            animation_polish_review::capture(&output).await
+        } else if mode == "--ui-cold-ground-icons" {
+            animation_polish_review::capture_ground_icons(&output).await
+        } else if mode == "--ui-cold-lateral-identity" {
+            lateral_identity_review::capture(&output).await
+        } else if mode == "--ui-cold-class-motion" {
+            class_motion_review::capture(&output).await
+        } else if mode == "--ui-cold-class-lateral-refs" {
+            class_motion_review::references(&output).await
+        } else if mode == "--ui-cold-class-lateral-candidates" {
+            class_motion_review::capture_lateral_candidates(&output).await
+        } else if mode == "--ui-cold-class-lateral-r02" {
+            class_lateral_r02::capture(&output).await
+        } else if mode == "--ui-cold-biped-lateral" {
+            biped_lateral_review::capture(&output).await
+        } else if mode == "--ui-cold-biped-lateral-r02" {
+            biped_lateral_review::capture_low(&output).await
+        } else if mode == "--ui-cold-biped-player-r03" {
+            biped_lateral_review::capture_player_reference(&output).await
+        } else if mode == "--ui-cold-biped-nextlot" {
+            biped_lateral_review::capture_next_batch(&output).await
+        } else if mode == "--ui-cold-biped-armedlot" {
+            biped_lateral_review::capture_armed_batch(&output).await
+        } else if mode == "--ui-cold-biped-hoods-r02" {
+            biped_lateral_review::capture_hoods(&output).await
+        } else if mode == "--ui-cold-biped-fronts-r03" {
+            biped_lateral_review::capture_fronts(&output).await
+        } else if mode == "--ui-cold-biped-frontmatch-r04" {
+            biped_lateral_review::capture_frontmatch(&output).await
+        } else if mode == "--ui-cold-biped-winged04" {
+            biped_lateral_review::capture_winged(&output).await
+        } else if mode == "--ui-cold-biped-integration" {
+            biped_integration_capture::capture(&output).await
+        } else if mode == "--ui-cold-player-motion-fix" {
+            player_motion_fix_capture::capture(&output).await
+        } else if mode == "--ui-cold-monster-vertical01" {
+            monster_vertical_review::capture(&output).await
+        } else if mode == "--ui-cold-monster-vertical02" {
+            monster_vertical_review::capture_next(&output).await
+        } else if mode == "--ui-cold-monster-vertical-color01" {
+            monster_vertical_review::capture_color(&output).await
+        } else if mode == "--ui-cold-monster-vertical03" {
+            monster_vertical_review::capture_third(&output).await
+        } else if mode == "--ui-cold-monster-vertical04" {
+            monster_vertical_review::capture_fourth(&output).await
+        } else if mode == "--ui-cold-monster-vertical05" {
+            monster_vertical_review::capture_fifth(&output).await
+        } else if mode == "--ui-cold-monster-vertical06" {
+            monster_vertical_review::capture_sixth(&output).await
+        } else if mode == "--ui-cold-monster-vertical07" {
+            monster_vertical_review::capture_seventh(&output).await
+        } else if mode == "--ui-cold-monster-vertical08" {
+            monster_vertical_review::capture_eighth(&output).await
+        } else if mode == "--ui-cold-monster-vertical09" {
+            monster_vertical_review::capture_ninth(&output).await
+        } else if mode == "--ui-cold-monster-vertical10" {
+            monster_vertical_review::capture_tenth(&output).await
+        } else if mode == "--ui-cold-monster-vertical11" {
+            monster_vertical_review::capture_eleventh(&output).await
+        } else if mode == "--ui-cold-monster-vertical12" {
+            monster_vertical_review::capture_twelfth(&output).await
+        } else if mode == "--ui-cold-monster-vertical13" {
+            monster_vertical_review::capture_thirteenth(&output).await
+        } else if mode == "--ui-cold-monster-vertical14" {
+            monster_vertical_review::capture_fourteenth(&output).await
+        } else if mode == "--ui-cold-monster-vertical14-r02" {
+            monster_vertical_review::capture_fourteenth_rear(&output).await
+        } else if mode == "--ui-cold-monster-vertical15" {
+            monster_vertical_review::capture_fifteenth(&output).await
+        } else if mode == "--ui-cold-monster-vertical16" {
+            monster_vertical_review::capture_sixteenth(&output).await
+        } else if mode == "--ui-cold-monster-vertical17" {
+            monster_vertical_review::capture_seventeenth(&output).await
+        } else if mode == "--ui-cold-monster-vertical18" {
+            monster_vertical_review::capture_eighteenth(&output).await
+        } else if mode == "--ui-cold-monster-vertical19" {
+            monster_vertical_review::capture_nineteenth(&output).await
+        } else if mode == "--ui-cold-monster-vertical20" {
+            monster_vertical_review::capture_twentieth(&output).await
+        } else if mode == "--ui-cold-monster-vertical-all" {
+            monster_vertical_review::capture_remaining(&output).await
+        } else if mode == "--ui-cold-monster-vertical28-arms" {
+            monster_vertical_review::capture_arms28(&output).await
+        } else if mode == "--ui-cold-monster-vertical28-color" {
+            monster_vertical_review::capture_color28(&output).await
+        } else if mode == "--ui-cold-monster-vertical28-weapon" {
+            monster_vertical_review::capture_weapon28(&output).await
+        } else if mode == "--ui-cold-monster-vertical21-quad" {
+            monster_vertical_review::capture_quadruped21(&output).await
+        } else if mode == "--ui-cold-lateral-gait" {
+            lateral_identity_review::capture_gait(&output).await
+        } else if mode == "--ui-cold-lateral-compact" {
+            lateral_identity_review::capture_compact(&output).await
+        } else if mode == "--ui-cold-lateral-trial" {
+            AsciiApp::capture_traqueuse_walk_trial(&output).await
+        } else if mode == "--ui-cold-rifle-size" {
+            firearm_polish_review::capture_rifles(&output).await
+        } else if mode == "--ui-cold-firearm-polish" {
+            firearm_polish_review::capture(&output).await
+        } else if mode == "--ui-cold-player-exposure" {
+            world_readability::player_exposure_review::capture(&output).await
+        } else if mode == "--ui-cold-vertical-integration" {
             vertical_walk_integration18::capture(&output).await
         } else if mode == "--ui-cold-vertical-extension" {
             vertical_walk_extension18::capture(&output).await
@@ -393,6 +595,8 @@ async fn game_main() {
             AsciiApp::capture_weapon_sets_review(&output).await
         } else if mode == "--ui-cold-skill-demo" {
             AsciiApp::capture_skill_demo(&output).await
+        } else if mode == "--ui-cold-spell-obstacles" {
+            spell_obstacle_review::capture(&output).await
         } else if matches!(
             mode.as_str(),
             "--ui-cold-effect-footprints"
@@ -512,6 +716,9 @@ async fn game_main() {
     let trial = std::env::args().any(|arg| arg == "--essai-expedition");
     let installation_trial = std::env::args().any(|arg| arg == "--essai-interactions");
     let mut app = match (|| {
+        if std::env::args().any(|arg| arg == "--essai-marche-traqueuse") {
+            return AsciiApp::new_traqueuse_walk_trial();
+        }
         #[cfg(debug_assertions)]
         if std::env::args().any(|arg| arg == "--essai-egouts") {
             return AsciiApp::new_sewer_trial();
@@ -583,6 +790,8 @@ async fn game_main() {
         } else if TerminalDialogue::officer(&app).is_some() {
             let mut input = controls::InputFrame::capture();
             dialogue.dismiss(&mut app, &mut input, get_time());
+        } else if app.handle_traqueuse_trial_shortcut() {
+            // The isolated visual trial changes only its appearance slot.
         } else {
             // Do not let input from the close frame dismiss a save error or
             // change the run after its suspension has been written.
@@ -600,6 +809,7 @@ async fn game_main() {
             dialogue.stop();
             app.draw();
         }
+        software_cursor::draw(app.pointer_icon());
         next_frame().await;
     }
 }
@@ -626,6 +836,7 @@ async fn run_error_screen(error: &str) {
             18.0,
             LIGHTGRAY,
         );
+        software_cursor::draw(miniquad::CursorIcon::Default);
         next_frame().await;
     }
 }

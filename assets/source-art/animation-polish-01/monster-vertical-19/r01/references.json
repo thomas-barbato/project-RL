@@ -1,0 +1,95 @@
+[
+  {
+    "id": "MON-087-0",
+    "number": 87,
+    "name": "Quadrupède trapu au ventre ocre",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 37,
+    "vertical_offset": -14,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-087-front.png",
+    "idle_sha256": "ff8970b705b0b99a6db5923cf92280ba3900c2d1ab4dc69f56c379b3b871192c",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-087-v0.png",
+    "front_shadow": 34,
+    "current_vertical": {
+      "number": 87,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-087-v0.png",
+      "cell": [
+        58,
+        43
+      ],
+      "anchor": [
+        29,
+        41
+      ],
+      "offset": -14,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-088-0",
+    "number": 88,
+    "name": "Oiseau aux ailes rouges",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 60,
+    "vertical_offset": -1,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-088-front.png",
+    "idle_sha256": "584c69abb5e2ac2a7df1a2d13ed590a0cd541c6022f26f5b67b44f3bd098f02d",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-088-v0.png",
+    "front_shadow": 32,
+    "current_vertical": {
+      "number": 88,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-088-v0.png",
+      "cell": [
+        61,
+        66
+      ],
+      "anchor": [
+        31,
+        64
+      ],
+      "offset": -1,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-089-0",
+    "number": 89,
+    "name": "Créature sombre aux pattes anguleuses",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 58,
+    "vertical_offset": -2,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-089-front.png",
+    "idle_sha256": "b81c9ede3b9526c211a376fb013648c4ca30f3072eab3b08fd0b2e9acb4c56a7",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-089-v0.png",
+    "front_shadow": 34,
+    "current_vertical": {
+      "number": 89,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-089-v0.png",
+      "cell": [
+        71,
+        65
+      ],
+      "anchor": [
+        35,
+        63
+      ],
+      "offset": -2,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

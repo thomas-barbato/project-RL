@@ -1,0 +1,62 @@
+{
+  "review": "HELM05-MOTION02",
+  "date": "2026-10-31",
+  "status": "visually_rejected_head_too_large_and_soft",
+  "normal_game_enabled": false,
+  "visual_approval_received": false,
+  "complete_head_modules": true,
+  "existing_painted_heads_masked_for_all_models": true,
+  "native_base_head_module_height_px": 17,
+  "models": 5,
+  "classes": 4,
+  "armor_stages": 5,
+  "views": 4,
+  "engine_capture_exit_code": 0,
+  "engine_sheets": 140,
+  "bare_rows_rgb_identical": 140,
+  "lower_body_arm_weapon_crops_rgb_identical": 2800,
+  "frontal_rest_sheets_with_replaced_head": 20,
+  "accepted_icons_and_previous_worn_source_files_unchanged": 25,
+  "original_body_source_files_unchanged": 20,
+  "current_head_atlases_verified": 5,
+  "polish_targeted_tests": {
+    "passed": 14,
+    "failed": 0,
+    "phase": "before final native alpha cleanup"
+  },
+  "worn_targeted_tests_after_final_asset_cleanup": {
+    "passed": 5,
+    "failed": 0
+  },
+  "baked_head_color_independence_test_cases": 40,
+  "debug_build": "passed final assets",
+  "release_bin_check": "passed",
+  "full_suite_run": false,
+  "source_mode": "builtin_image_gen",
+  "prompts": "HELM05-MOTION02-PROMPTS.json",
+  "limits": [
+    "Pilot weapon31 and original palette only",
+    "Native pose proportions and perspective require visual judgement",
+    "Tests verify composition and preservation, not artistic acceptance"
+  ],
+  "browser": {
+    "same_tab_reused": true,
+    "four_directions_checked": true,
+    "open_and_closed_models_checked": true,
+    "head_detail_selector_checked": true,
+    "pause_phase_and_real_rest_checked": true,
+    "continuous_walk_left_playing": true,
+    "console_errors": 0,
+    "screenshot": "artifacts/animation-polish-01/helmet-worn-r01/current/motion02/browser-head-units-focused.png",
+    "screenshot_is_crop_of_browser_capture": true
+  },
+  "normalized_head_crown_eye_rgb_in_engine": {
+    "case": "Bastion, armor3, model02, phases1..6",
+    "front_identical_after_chest_translation": 6,
+    "back_identical_after_chest_translation": 6
+  },
+  "python_compile": "passed",
+  "javascript_syntax": "passed node --check",
+  "git_diff_check": "passed",
+  "followup": "HELM05-MOTION03-REVUE.md"
+}

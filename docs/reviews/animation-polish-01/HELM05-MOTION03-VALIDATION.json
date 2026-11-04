@@ -1,0 +1,49 @@
+{
+  "review": "HELM05-MOTION03",
+  "date": "2026-10-31",
+  "status": "candidate_ready_for_visual_review",
+  "normal_game_enabled": false,
+  "visual_approval_received": false,
+  "native_glyphs": 400,
+  "native_height_range_px": [
+    12,
+    16
+  ],
+  "runtime_head_resampling": false,
+  "opaque_pixel_copy_test_cases": 160,
+  "targeted_worn_tests": {
+    "passed": 6,
+    "failed": 0
+  },
+  "debug_build": "passed",
+  "release_bin_check": "passed",
+  "full_suite_run": false,
+  "engine_sheets": 140,
+  "engine_capture_exit_code": 0,
+  "bare_rows_rgb_identical": 140,
+  "lower_body_arm_weapon_crops_rgb_identical": 2800,
+  "previous_authored_head_sources_and_icons_unchanged": true,
+  "native_alpha_binary": true,
+  "model02_eye_visible_source_glyphs": 60,
+  "max_source_cache_bytes": 1638400,
+  "limits": [
+    "Native proportions and sharpness remain a visual candidate",
+    "Pilot weapon31 and original palette only"
+  ],
+  "browser": {
+    "same_tab_reused": true,
+    "four_views_checked": true,
+    "thin_and_heavy_wearers_checked": true,
+    "armor_specific_head_detail_checked": true,
+    "pause_phase_and_real_rest_checked": true,
+    "console_errors": 0,
+    "continuous_walk_left_playing": true,
+    "screenshot": "artifacts/animation-polish-01/helmet-worn-r01/current/motion03/browser-native-fit-focused.png",
+    "screenshot_is_crop_of_browser_capture": true
+  },
+  "model02_eye_band_excludes_mast": true,
+  "model02_eye_source_glyph_minimum_cyan_pixels": 1,
+  "python_compile": "passed",
+  "javascript_syntax": "passed node --check",
+  "git_diff_check": "passed"
+}

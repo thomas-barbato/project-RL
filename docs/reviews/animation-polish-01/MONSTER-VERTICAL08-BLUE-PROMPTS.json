@@ -1,0 +1,37 @@
+{
+  "review": "MONSTER-VERTICAL08-r01",
+  "tool": "built-in image_gen",
+  "mode": "edit / precise-object-edit",
+  "reason": "Initial MON-036 drafts narrow the silhouette and up repeats gold frontal throat; redraw arms/body proportions and closed true rear.",
+  "transparent_background": true,
+  "jobs": [
+    {
+      "number": 36,
+      "dir": "down",
+      "revision": "breadth-and-rear-r02",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-08/r01/MON-036-down-initial-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-08/r01/MON-036-appearance-reference.png"
+      ],
+      "prompt": "Use case: precise-object-edit. EDIT the3x3 pixel-art sprite sheet in input1. It is an unaccepted draft with TWO concrete errors; correct them while keeping style, palette and compact foot phase order. Input2=identity and correct original silhouette proportions, native43px WIDE by50px HIGH, width/height0.86.\nFix1 PROPORTIONS: draft is much too narrow and tall-legged. REDRAW every whole figure to width/height0.86 (about280px WIDE by325px HIGH per equal cell), original modest bent leg length and original head size. Keep torso and limbs THIN. Restore overall width by the original arms extending slightly DIAGONALLY OUTWARD from shoulders, with long brown claws hanging at sides, not straight down glued to knees. Do not bulk up body, fatten limbs, stretch pixels, splay the LEGS or add new limbs.\nDirection FRONT/slight front-three-quarter walking SOUTH/DOWN toward viewer in ALL8moving cells. Preserve the original SMALL pale OCHRE THROAT/CHEST PATCH and dark angular layered blue skull crest at the same head angle as input2. Do NOT enlarge this patch. Narrow cool-blue torso remains connected to hips. Same recognizable head, arms, brown claws and blue/slate materials as master.\nExactly3equal columns x3equal rows, row-major first8DISTINCT poses and ninth idle. Poses1leftcontact,2settleleft,3rightpasses LOWunderhips,4rightreaches,5rightcontact,6settleright,7leftpassesLOW,8leftreaches toloop.400msperstep800mscycle. Meaningful compact connected steps, stable head/body construction, very little coherent bob; NO high knees, jumps, legscissors, zoom, detached head, grafts, bandwarp or hand ground supports.\nNative64 crisp deliberate pixel clusters and original dark matte BLUE/SLATE colors with brown claws. NOT a human in a hood/cape/coat; this is continuous creature anatomy. No clothing, armor, weapon, wings, tail, extra features, added white highlights, rimlight, glow, HDpainting, smoothing, blur or3D.\nGenuine transparent alpha ZERO background/limbgaps. Generous blank margins for every complete figure, no clipping/overlap. NO floor, shadow, grid, text, labels, checkerboard, matte or watermark.",
+      "input_sha256": [
+        "d85a5301de0d3f4c6d37592fdedf3d1ea1cedbd0dc37438b8fca832386a0ff10",
+        "a1803648b7ee55a3bdb17cf1a832ee16ee6f039b3f1dc61a9358ced945f0192c"
+      ]
+    },
+    {
+      "number": 36,
+      "dir": "up",
+      "revision": "breadth-and-rear-r02",
+      "paths": [
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-08/r01/MON-036-up-initial-source.png",
+        "C:/Users/User/Desktop/project-RL/assets/source-art/animation-polish-01/monster-vertical-08/r01/MON-036-appearance-reference.png"
+      ],
+      "prompt": "Use case: precise-object-edit. EDIT the3x3 pixel-art sprite sheet in input1. It is an unaccepted draft with TWO concrete errors; correct them while keeping style, palette and compact foot phase order. Input2=identity and correct original silhouette proportions, native43px WIDE by50px HIGH, width/height0.86.\nFix1 PROPORTIONS: draft is much too narrow and tall-legged. REDRAW every whole figure to width/height0.86 (about280px WIDE by325px HIGH per equal cell), original modest bent leg length and original head size. Keep torso and limbs THIN. Restore overall width by the original arms extending slightly DIAGONALLY OUTWARD from shoulders, with long brown claws hanging at sides, not straight down glued to knees. Do not bulk up body, fatten limbs, stretch pixels, splay the LEGS or add new limbs.\nFix2 TRUE REAR VIEW in ALL8moving cells. Input1 FAILS: it shows a yellow FACE/THROAT ON THE BACK. REMOVE EVERY GOLD/OCHRE/PALE PATCH from the ENTIRE head, neck and upper torso. Replace that exposed front region with the creature's closed dark BLUE-GRAY REAR SKULL, NAPE and continuous narrow cool-blue SPINE/SHOULDER-BLADE back. NO face, eye, mouth or yellow patch whatsoever visible on rear; do NOT recreate any of input2's frontal gold. We see back of solid layered skull crest, not an empty hood opening. Turn crest/head180degrees to point AWAY; layered points project SCREEN RIGHT from rear instead of the front's screen-left overhang. Back of long thin arms and legs, heels and rear talon surfaces face viewer, toes point away and are partly occluded. Each whole body walks NORTH/UP AWAY, never toward us.\nExactly3equal columns x3equal rows, row-major first8DISTINCT poses and ninth idle. Poses1leftcontact,2settleleft,3rightpasses LOWunderhips,4rightreaches,5rightcontact,6settleright,7leftpassesLOW,8leftreaches toloop.400msperstep800mscycle. Meaningful compact connected steps, stable head/body construction, very little coherent bob; NO high knees, jumps, legscissors, zoom, detached head, grafts, bandwarp or hand ground supports.\nNative64 crisp deliberate pixel clusters and original dark matte BLUE/SLATE colors with brown claws. NOT a human in a hood/cape/coat; this is continuous creature anatomy. No clothing, armor, weapon, wings, tail, extra features, added white highlights, rimlight, glow, HDpainting, smoothing, blur or3D.\nGenuine transparent alpha ZERO background/limbgaps. Generous blank margins for every complete figure, no clipping/overlap. NO floor, shadow, grid, text, labels, checkerboard, matte or watermark.",
+      "input_sha256": [
+        "816c3e0e1f76f278c38913e4d2af23affb3ddab9cce698a623ada1535b462637",
+        "a1803648b7ee55a3bdb17cf1a832ee16ee6f039b3f1dc61a9358ced945f0192c"
+      ]
+    }
+  ]
+}

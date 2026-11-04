@@ -1,0 +1,59 @@
+{
+  "review": "LATERAL02-r01",
+  "date": "2026-11-01",
+  "status": "motion_revision_requested",
+  "normal_game_enabled": false,
+  "generation_mode": "built-in image_gen, reference-guided, transparent background",
+  "prompt": "LATERAL02-PROMPT-r01.md",
+  "source_profile": "traqueuse-armor3",
+  "body": 5,
+  "armor_model": 101,
+  "outfit": 13,
+  "directions": [
+    "left",
+    "right"
+  ],
+  "walk_frames_per_direction": 6,
+  "idle_frames_per_direction": 1,
+  "weapon": null,
+  "cell_px": 64,
+  "preview": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=LATERAL02-r01#identite-laterale",
+  "capture_checks": {
+    "armor_stage": 3,
+    "boards": 14,
+    "candidate_has_weapon": false,
+    "class": "Traqueuse",
+    "cycles": [
+      {
+        "direction": "left",
+        "distinct_engine_frames": 6
+      },
+      {
+        "direction": "right",
+        "distinct_engine_frames": 6
+      }
+    ],
+    "engine_scene": "approved camp / LIGHT01 Discret",
+    "native_cell_px": 64,
+    "normal_game_enabled": false,
+    "references_unchanged": true,
+    "review": "LATERAL02-r01",
+    "source_profile": "traqueuse-armor3"
+  },
+  "sha256": {
+    "assets/source-art/animation-polish-01/lateral-identity-02/LATERAL02-r01-source.png": "b804bd21bd41c69d2016dfe9104abe024d9c53e6743286cb7707067b4914ac94",
+    "assets/source-art/animation-polish-01/lateral-identity-02/reference-front-back.png": "9d7f1db18966dfaa924c9e6b5885af2b367b652ddb4483ddeaf312b2edee3790",
+    "assets/source-art/animation-polish-01/lateral-identity-02/reference-12.png": "fd20451bdfc0ef6b2275aaf51e02c2a2b5643a728290d56c97a7700649f1544c",
+    "assets/source-art/animation-polish-01/lateral-identity-02/reference-09.png": "a6178358871f358866fe84a7a841244918038604b103c2bd709a45c340f77d41",
+    "assets/source-art/animation-polish-01/lateral-identity-02/candidate-01-atlas.png": "eef89639995a296d6afe0ae58df92f90b89f77af6c20ce5a4bf89d318f68b94f",
+    "assets/source-art/animation-polish-01/lateral-identity-02/conditioning-r01.json": "7a860b2a46ddc050d93702a630bd5acfbfe150add63c2205690d6a94c79f81e5",
+    "assets/animations/vertical-18/intermediate/traqueuse-armor3-ranged-body.png": "e346090e2dfe4d2c4afb3568d3c68cfe351d16329047951c17c254a0d76345f8",
+    "assets/animations/vertical-18/intermediate/traqueuse-armor3-ranged-hands.png": "af40d029c5180c9ce79741123be6fbec747a819c6940bc066e61059333ff1fa7"
+  },
+  "motion_feedback": {
+    "date": "2026-11-02",
+    "quote": "l'animation de marche n'est pas convainquante.",
+    "scope": "Traqueuse; Bastion kept unchanged",
+    "superseded_motion_candidate": "LATERAL02-r02"
+  }
+}

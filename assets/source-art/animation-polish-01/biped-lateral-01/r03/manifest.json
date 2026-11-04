@@ -1,0 +1,264 @@
+{
+  "review": "BIPED-LATERAL01-r03",
+  "normal_game_enabled": false,
+  "gait_source": {
+    "review": "BIPED-LATERAL01-r03",
+    "file": "assets/source-art/animation-polish-01/class-lateral-02/r02/bastion-atlas.png",
+    "sha256": "6ce7ae91835bbbb544c93fdc17c56a0073e1421b1571693a2577523ff21601d8",
+    "source_frame": [
+      96,
+      96
+    ],
+    "source_anchor": [
+      48,
+      81
+    ],
+    "padded_frame": [
+      128,
+      128
+    ],
+    "padded_anchor": [
+      64,
+      112
+    ],
+    "phase_durations_ms": [
+      180,
+      180,
+      170,
+      120,
+      180,
+      180,
+      170,
+      120
+    ],
+    "review_travel_px": 40,
+    "unaltered_player_pixels": true
+  },
+  "frame": [
+    128,
+    128
+  ],
+  "anchor": [
+    64,
+    112
+  ],
+  "conditioning": "whole-figure uniform resampling to canonical native height, fixed crown and sole registration; no runtime scaling",
+  "bounds": [
+    {
+      "side": 0,
+      "phase": 0,
+      "whole_figure_conditioning_scale": 0.26,
+      "bounds": [
+        26,
+        34,
+        104,
+        112
+      ]
+    },
+    {
+      "side": 0,
+      "phase": 1,
+      "whole_figure_conditioning_scale": 0.2591362126245847,
+      "bounds": [
+        27,
+        34,
+        103,
+        112
+      ]
+    },
+    {
+      "side": 0,
+      "phase": 2,
+      "whole_figure_conditioning_scale": 0.25742574257425743,
+      "bounds": [
+        27,
+        34,
+        102,
+        112
+      ]
+    },
+    {
+      "side": 0,
+      "phase": 3,
+      "whole_figure_conditioning_scale": 0.26621160409556316,
+      "bounds": [
+        26,
+        34,
+        105,
+        112
+      ]
+    },
+    {
+      "side": 0,
+      "phase": 4,
+      "whole_figure_conditioning_scale": 0.2635135135135135,
+      "bounds": [
+        26,
+        34,
+        104,
+        112
+      ]
+    },
+    {
+      "side": 0,
+      "phase": 5,
+      "whole_figure_conditioning_scale": 0.2635135135135135,
+      "bounds": [
+        27,
+        34,
+        104,
+        112
+      ]
+    },
+    {
+      "side": 0,
+      "phase": 6,
+      "whole_figure_conditioning_scale": 0.2708333333333333,
+      "bounds": [
+        25,
+        34,
+        105,
+        112
+      ]
+    },
+    {
+      "side": 0,
+      "phase": 7,
+      "whole_figure_conditioning_scale": 0.2736842105263158,
+      "bounds": [
+        23,
+        34,
+        106,
+        112
+      ]
+    },
+    {
+      "side": 0,
+      "phase": 8,
+      "whole_figure_conditioning_scale": 0.2708333333333333,
+      "bounds": [
+        19,
+        34,
+        109,
+        112
+      ]
+    },
+    {
+      "side": 1,
+      "phase": 0,
+      "whole_figure_conditioning_scale": 0.2746478873239437,
+      "bounds": [
+        24,
+        34,
+        102,
+        112
+      ]
+    },
+    {
+      "side": 1,
+      "phase": 1,
+      "whole_figure_conditioning_scale": 0.2746478873239437,
+      "bounds": [
+        24,
+        34,
+        102,
+        112
+      ]
+    },
+    {
+      "side": 1,
+      "phase": 2,
+      "whole_figure_conditioning_scale": 0.2746478873239437,
+      "bounds": [
+        25,
+        34,
+        100,
+        112
+      ]
+    },
+    {
+      "side": 1,
+      "phase": 3,
+      "whole_figure_conditioning_scale": 0.2785714285714286,
+      "bounds": [
+        22,
+        34,
+        102,
+        112
+      ]
+    },
+    {
+      "side": 1,
+      "phase": 4,
+      "whole_figure_conditioning_scale": 0.2736842105263158,
+      "bounds": [
+        22,
+        34,
+        105,
+        112
+      ]
+    },
+    {
+      "side": 1,
+      "phase": 5,
+      "whole_figure_conditioning_scale": 0.2775800711743772,
+      "bounds": [
+        22,
+        34,
+        105,
+        112
+      ]
+    },
+    {
+      "side": 1,
+      "phase": 6,
+      "whole_figure_conditioning_scale": 0.27956989247311825,
+      "bounds": [
+        22,
+        34,
+        107,
+        112
+      ]
+    },
+    {
+      "side": 1,
+      "phase": 7,
+      "whole_figure_conditioning_scale": 0.2765957446808511,
+      "bounds": [
+        20,
+        34,
+        107,
+        112
+      ]
+    },
+    {
+      "side": 1,
+      "phase": 8,
+      "whole_figure_conditioning_scale": 0.2727272727272727,
+      "bounds": [
+        19,
+        34,
+        110,
+        112
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "MON-144-0",
+      "number": 144,
+      "name": "Démon",
+      "reference_height": 78,
+      "front_file": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-144-front.png",
+      "front_source": "assets/animations/vertical-18/monsters/MON-144-v0.png",
+      "vertical_offset": 0,
+      "source": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-144-source.png",
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-atlas.png",
+      "sha256": "def77b1f9d572afb7c3460e1403febe5d7f6d172fc0efc989a23af037e587361",
+      "sources": [
+        "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-left-source.png",
+        "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-right-source.png"
+      ]
+    }
+  ]
+}

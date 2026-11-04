@@ -1,0 +1,3170 @@
+{
+  "review": "CLASS-MOTION01-r01",
+  "capture_status": "passed",
+  "visual_approval": false,
+  "normal_renderer_modified": false,
+  "traqueuse_excluded": true,
+  "native_cell_px": 64,
+  "step_ms": 400,
+  "boards": 140,
+  "engine_renders": 2000,
+  "classes": [
+    {
+      "body": 3,
+      "id": "bastion",
+      "name": "Bastion"
+    },
+    {
+      "body": 4,
+      "id": "technomancien",
+      "name": "Technomancien"
+    },
+    {
+      "body": 6,
+      "id": "arcaniste",
+      "name": "Arcaniste"
+    },
+    {
+      "body": 7,
+      "id": "metamorphe",
+      "name": "Métamorphe"
+    }
+  ],
+  "weapons": [
+    null,
+    2,
+    31,
+    66
+  ],
+  "armor_models": [
+    null,
+    110,
+    102,
+    101,
+    103
+  ],
+  "cases": [
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 0,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": null
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 0,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": null
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 0,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": null
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 1,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 2,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 3,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": null,
+      "armor_stage": 0,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Bastion",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Arcaniste",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Métamorphe",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 1,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 2,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 3,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 110,
+      "armor_stage": 1,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Bastion",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Arcaniste",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Métamorphe",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 1,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 2,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 3,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 102,
+      "armor_stage": 2,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Bastion",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Arcaniste",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Métamorphe",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 1,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 2,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 3,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 101,
+      "armor_stage": 3,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 0,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 0,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 0,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 0,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": null
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 1,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 1,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 2
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 2,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 2,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 31
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 3,
+      "class": "bastion",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Bastion",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 4,
+      "class": "technomancien",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 1,
+          "vertical_draws": 0
+        }
+      ],
+      "loadout": 3,
+      "name": "Technomancien",
+      "vertical_supported": false,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 6,
+      "class": "arcaniste",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Arcaniste",
+      "vertical_supported": true,
+      "weapon_model": 66
+    },
+    {
+      "armor_model": 103,
+      "armor_stage": 4,
+      "arrival": "normal frontal idle",
+      "body": 7,
+      "class": "metamorphe",
+      "directions": [
+        {
+          "direction": "left",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "right",
+          "distinct_frames": 6,
+          "vertical_draws": 0
+        },
+        {
+          "direction": "up",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        },
+        {
+          "direction": "down",
+          "distinct_frames": 6,
+          "vertical_draws": 6
+        }
+      ],
+      "loadout": 3,
+      "name": "Métamorphe",
+      "vertical_supported": true,
+      "weapon_model": 66
+    }
+  ],
+  "date": "2026-11-02",
+  "missing_vertical_cases": 29,
+  "incomplete_cycles": [
+    {
+      "class": "technomancien",
+      "armor_stage": 0,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 0,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 0,
+      "loadout": 1,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 0,
+      "loadout": 1,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 0,
+      "loadout": 2,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 0,
+      "loadout": 2,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 0,
+      "loadout": 3,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 0,
+      "loadout": 3,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "bastion",
+      "armor_stage": 1,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "bastion",
+      "armor_stage": 1,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 1,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 1,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "arcaniste",
+      "armor_stage": 1,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "arcaniste",
+      "armor_stage": 1,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "metamorphe",
+      "armor_stage": 1,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "metamorphe",
+      "armor_stage": 1,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 1,
+      "loadout": 1,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 1,
+      "loadout": 1,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 1,
+      "loadout": 2,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 1,
+      "loadout": 2,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 1,
+      "loadout": 3,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 1,
+      "loadout": 3,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "bastion",
+      "armor_stage": 2,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "bastion",
+      "armor_stage": 2,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 2,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 2,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "arcaniste",
+      "armor_stage": 2,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "arcaniste",
+      "armor_stage": 2,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "metamorphe",
+      "armor_stage": 2,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "metamorphe",
+      "armor_stage": 2,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 2,
+      "loadout": 1,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 2,
+      "loadout": 1,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 2,
+      "loadout": 2,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 2,
+      "loadout": 2,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 2,
+      "loadout": 3,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 2,
+      "loadout": 3,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "bastion",
+      "armor_stage": 3,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "bastion",
+      "armor_stage": 3,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 3,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 3,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "arcaniste",
+      "armor_stage": 3,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "arcaniste",
+      "armor_stage": 3,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "metamorphe",
+      "armor_stage": 3,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "metamorphe",
+      "armor_stage": 3,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 3,
+      "loadout": 1,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 3,
+      "loadout": 1,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 3,
+      "loadout": 2,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 3,
+      "loadout": 2,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 3,
+      "loadout": 3,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 3,
+      "loadout": 3,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 4,
+      "loadout": 0,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 4,
+      "loadout": 0,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 4,
+      "loadout": 1,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 4,
+      "loadout": 1,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 4,
+      "loadout": 2,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 4,
+      "loadout": 2,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 4,
+      "loadout": 3,
+      "direction": "up",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    },
+    {
+      "class": "technomancien",
+      "armor_stage": 4,
+      "loadout": 3,
+      "direction": "down",
+      "distinct_frames": 1,
+      "vertical_draws": 0
+    }
+  ],
+  "preview": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=CLASS-MOTION01-r01#revue-classes",
+  "browser_validation": {
+    "status": "passed",
+    "configurations": 20,
+    "axes_native_widths": [
+      384,
+      384,
+      640
+    ],
+    "manual_phase_and_idle": true,
+    "playback_observed": true,
+    "browser_errors": 0,
+    "screenshot": "artifacts/animation-polish-01/class-motion-01/preview-browser.png"
+  }
+}

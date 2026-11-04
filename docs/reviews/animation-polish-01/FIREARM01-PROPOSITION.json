@@ -1,0 +1,27 @@
+{
+  "review": "FIREARM01-r01",
+  "date": "2026-11-01",
+  "status": "native_candidate_awaiting_visual_approval",
+  "user_report": "les armes à deux mains de tir de type fusil ne sont pas assez lisibles / visibles sur le personnages, et les armes à deux mains de tirs sont encore trop grosses",
+  "finding": "C02-A moderate heavy reduction remains confined to the old review; its accepted direction has not been enabled in normal rendering. Rifles were outside that reduction.",
+  "normal_game_enabled": false,
+  "rifle_status": "superseded_by_FIREARM02-r01_after_feedback_too_small",
+  "heavy_firearm_status": "separate_candidate_still_awaiting_visual_approval",
+  "candidate": "01 / Compact et lisible",
+  "scope": "Shared firearm source models 0 through 60; player worn review only, original class armor/head and LIGHT01 Discret retained.",
+  "geometry": {
+    "authored_grip_box": "preserved, no source anchor relocation",
+    "heavy_outer_extension_factor": 0.60,
+    "heavy_outer_thickness_factor": 0.70,
+    "rifle_outer_extension_factor": 0.85,
+    "rifle_thickness_factor": 1.0,
+    "interpretation": "Factors affect only the source extensions outside the two authored grips, not a uniform final-screen scale percentage.",
+    "source_sampling": "nearest source pixels, then the existing orientation/scale compositor"
+  },
+  "readability": "Restrained contrast on neutral metal and upper steel edges inside the silhouette; one-pixel local contact shadow clipped to the body; normal depth ordering and hands retained.",
+  "unchanged": ["source art files", "class armor and head", "hand anchors", "map lighting", "NPCs", "monsters", "inventory and floor icons", "gameplay", "saves"],
+  "source_audit": "61 models and seven equipment colors",
+  "native_sample": "Eight firearm representatives on four classes in heavy armor, with all five armor stages additionally shown on Traqueuse for assault rifle and heavy machine gun; four directions and seven phases.",
+  "preview": "artifacts/animation-polish-01/apercu.html#armes-tir",
+  "validation": "FIREARM01-VALIDATION.md"
+}

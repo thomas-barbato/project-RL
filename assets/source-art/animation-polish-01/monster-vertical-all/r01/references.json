@@ -1,0 +1,2142 @@
+[
+  {
+    "id": "MON-009-0",
+    "number": 9,
+    "name": "Grande créature à six pattes",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 115,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-009-front.png",
+    "idle_sha256": "bc05e9af7a8c38f0f55953842cf74c81b522abc8c73ce54d72ed23162a140f52",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-009-v0.png",
+    "front_shadow": 63,
+    "current_vertical": {
+      "number": 9,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-009-v0.png",
+      "cell": [
+        128,
+        125
+      ],
+      "anchor": [
+        64,
+        122
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false,
+    "atlas_anchor_y": 122
+  },
+  {
+    "id": "MON-011-0",
+    "number": 11,
+    "name": "Possédés et hybrides 011",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 64,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-011-front.png",
+    "idle_sha256": "956bdebba574c812882d65fb343d635d3d046efece0dabd8e8d0c6151ba22d36",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-011-v0.png",
+    "front_shadow": 33,
+    "current_vertical": {
+      "number": 11,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-011-v0.png",
+      "cell": [
+        59,
+        70
+      ],
+      "anchor": [
+        29,
+        68
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-012-0",
+    "number": 12,
+    "name": "Possédés et hybrides 012",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 62,
+    "vertical_offset": -1,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-012-front.png",
+    "idle_sha256": "f882d82785678378e6a1a346b64b4963a4546f20c8f163ba53b48bdd64b17b67",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-012-v0.png",
+    "front_shadow": 42,
+    "current_vertical": {
+      "number": 12,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-012-v0.png",
+      "cell": [
+        84,
+        67
+      ],
+      "anchor": [
+        42,
+        65
+      ],
+      "offset": -1,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-020-0",
+    "number": 20,
+    "name": "Créature à base tentaculaire",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 72,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-020-front.png",
+    "idle_sha256": "160858bb2565dbd4e5d35286cb458ddfec8b6e5fa4a248c02defea17561566de",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-020-v0.png",
+    "front_shadow": 59,
+    "current_vertical": {
+      "number": 20,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-020-v0.png",
+      "cell": [
+        106,
+        80
+      ],
+      "anchor": [
+        53,
+        78
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-021-0",
+    "number": 21,
+    "name": "Arachnide",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 63,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-021-front.png",
+    "idle_sha256": "70abf5b7d06ba2f380e6c925227e9eb8bbc4bd0211f4c837e90c35294fe49a24",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-021-v0.png",
+    "front_shadow": 63,
+    "current_vertical": {
+      "number": 21,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-021-v0.png",
+      "cell": [
+        117,
+        71
+      ],
+      "anchor": [
+        59,
+        69
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-029-0",
+    "number": 29,
+    "name": "Larve",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 21,
+    "vertical_offset": -22,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-029-front.png",
+    "idle_sha256": "fe32d21da6b913af00c1cb1481b77d7de62272878f0c67d8055126d94acca766",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-029-v0.png",
+    "front_shadow": 21,
+    "current_vertical": {
+      "number": 29,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-029-v0.png",
+      "cell": [
+        37,
+        25
+      ],
+      "anchor": [
+        19,
+        23
+      ],
+      "offset": -22,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-030-0",
+    "number": 30,
+    "name": "Insecte",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 27,
+    "vertical_offset": -19,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-030-front.png",
+    "idle_sha256": "7ce7790d0d1b50caa9c35d6173ec23d79a6fe9edea9e9055cab041084169063b",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-030-v0.png",
+    "front_shadow": 23,
+    "current_vertical": {
+      "number": 30,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-030-v0.png",
+      "cell": [
+        50,
+        32
+      ],
+      "anchor": [
+        25,
+        30
+      ],
+      "offset": -19,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-031-0",
+    "number": 31,
+    "name": "Insecte",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 36,
+    "vertical_offset": -14,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-031-front.png",
+    "idle_sha256": "d66a8bbd2101e57c3960473d0a7b3498257b69e712a6eca3dde830840edb81ad",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-031-v0.png",
+    "front_shadow": 28,
+    "current_vertical": {
+      "number": 31,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-031-v0.png",
+      "cell": [
+        49,
+        41
+      ],
+      "anchor": [
+        24,
+        39
+      ],
+      "offset": -14,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-033-0",
+    "number": 33,
+    "name": "Forme rampante à épines",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 24,
+    "vertical_offset": -20,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-033-front.png",
+    "idle_sha256": "1f966a086ac7c3133791a31256c7b13dcdb2f98412c22021821538fca8990fe6",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-033-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 33,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-033-v0.png",
+      "cell": [
+        45,
+        28
+      ],
+      "anchor": [
+        22,
+        26
+      ],
+      "offset": -20,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-096-0",
+    "number": 96,
+    "name": "Possédés et hybrides 096",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 68,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-096-front.png",
+    "idle_sha256": "4690c562c5f6bf31431e10a08fc10570c7ca1d3d106ac8da5e5159e3fbc07422",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-096-v0.png",
+    "front_shadow": 27,
+    "current_vertical": {
+      "number": 96,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-096-v0.png",
+      "cell": [
+        58,
+        74
+      ],
+      "anchor": [
+        29,
+        72
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-098-0",
+    "number": 98,
+    "name": "Possédés et hybrides 098",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 52,
+    "vertical_offset": -6,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-098-front.png",
+    "idle_sha256": "acf6c1023168e23e4d2f2741c93b2b0f7f211b28077db6ce361ebbeab49e3bbc",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-098-v0.png",
+    "front_shadow": 44,
+    "current_vertical": {
+      "number": 98,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-098-v0.png",
+      "cell": [
+        83,
+        61
+      ],
+      "anchor": [
+        41,
+        59
+      ],
+      "offset": -6,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-099-0",
+    "number": 99,
+    "name": "Possédés et hybrides 099",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 72,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-099-front.png",
+    "idle_sha256": "d379cde99bd6cf3173b201dbca5eb88da9ed268e00fe80de5c9b03ef461c9a29",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-099-v0.png",
+    "front_shadow": 35,
+    "current_vertical": {
+      "number": 99,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-099-v0.png",
+      "cell": [
+        75,
+        78
+      ],
+      "anchor": [
+        37,
+        76
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-100-0",
+    "number": 100,
+    "name": "Démons et créations 100",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 67,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-100-front.png",
+    "idle_sha256": "d9b2d6f2908faf9afb5e9b67e5b81eebe172241a02227cf26a39a985ca032bab",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-100-v0.png",
+    "front_shadow": 22,
+    "current_vertical": {
+      "number": 100,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-100-v0.png",
+      "cell": [
+        51,
+        74
+      ],
+      "anchor": [
+        25,
+        72
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-101-0",
+    "number": 101,
+    "name": "Quadrupède à carapace côtelée",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 54,
+    "vertical_offset": -5,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-101-front.png",
+    "idle_sha256": "9341d7ae1ca24fab0e9dfd2efddef5fa96e5222f976f87aef6c019bb0559fe3a",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-101-v0.png",
+    "front_shadow": 46,
+    "current_vertical": {
+      "number": 101,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-101-v0.png",
+      "cell": [
+        81,
+        61
+      ],
+      "anchor": [
+        41,
+        59
+      ],
+      "offset": -5,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-102-0",
+    "number": 102,
+    "name": "Démons et créations 102",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 80,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-102-front.png",
+    "idle_sha256": "35f0d36805247158c68f2c26c1afe272a0805aa113a7a210c1214bd0aef0d79e",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-102-v0.png",
+    "front_shadow": 46,
+    "current_vertical": {
+      "number": 102,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-102-v0.png",
+      "cell": [
+        91,
+        85
+      ],
+      "anchor": [
+        45,
+        83
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-103-0",
+    "number": 103,
+    "name": "Quadrupède à plaques",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 45,
+    "vertical_offset": -9,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-103-front.png",
+    "idle_sha256": "33c0d2b31fe9c9cf7b0b87a7f3fe42749ace78ea6dbd379ec7caf55ccf3bbac1",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-103-v0.png",
+    "front_shadow": 43,
+    "current_vertical": {
+      "number": 103,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-103-v0.png",
+      "cell": [
+        82,
+        49
+      ],
+      "anchor": [
+        41,
+        47
+      ],
+      "offset": -9,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-104-0",
+    "number": 104,
+    "name": "Rampant massif pâle",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 36,
+    "vertical_offset": -13,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-104-front.png",
+    "idle_sha256": "2784d4f140de3a8e756a472fd62e63b935144635781664fbebfbc6a36813a84b",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-104-v0.png",
+    "front_shadow": 35,
+    "current_vertical": {
+      "number": 104,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-104-v0.png",
+      "cell": [
+        64,
+        42
+      ],
+      "anchor": [
+        32,
+        40
+      ],
+      "offset": -13,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-105-0",
+    "number": 105,
+    "name": "Démons et créations 105",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 70,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-105-front.png",
+    "idle_sha256": "22893e2347d4ab21326339f1c698bc3ab7f23cc25a495488fe45e897a1567a33",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-105-v0.png",
+    "front_shadow": 31,
+    "current_vertical": {
+      "number": 105,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-105-v0.png",
+      "cell": [
+        64,
+        74
+      ],
+      "anchor": [
+        32,
+        72
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-106-0",
+    "number": 106,
+    "name": "Démons et créations 106",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 47,
+    "vertical_offset": -8,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-106-front.png",
+    "idle_sha256": "1a02e526015a670657ae364b2985a936b5ecc94194361416e11a86db28c1dd0a",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-106-v0.png",
+    "front_shadow": 37,
+    "current_vertical": {
+      "number": 106,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-106-v0.png",
+      "cell": [
+        70,
+        54
+      ],
+      "anchor": [
+        35,
+        52
+      ],
+      "offset": -8,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-107-0",
+    "number": 107,
+    "name": "Créature à carapace ovale",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 56,
+    "vertical_offset": -4,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-107-front.png",
+    "idle_sha256": "1dc278cde68c8a00e24375cd07438d3ba5197a424f793d08cd6f671afee70c79",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-107-v0.png",
+    "front_shadow": 32,
+    "current_vertical": {
+      "number": 107,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-107-v0.png",
+      "cell": [
+        72,
+        65
+      ],
+      "anchor": [
+        36,
+        63
+      ],
+      "offset": -4,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-108-0",
+    "number": 108,
+    "name": "Démons et créations 108",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 62,
+    "vertical_offset": -1,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-108-front.png",
+    "idle_sha256": "d044c1194669cc0bb163d8268ce82aa8f8ade25bc5d4d864bf9846365bc42719",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-108-v0.png",
+    "front_shadow": 23,
+    "current_vertical": {
+      "number": 108,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-108-v0.png",
+      "cell": [
+        55,
+        70
+      ],
+      "anchor": [
+        27,
+        68
+      ],
+      "offset": -1,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-109-0",
+    "number": 109,
+    "name": "Créature brune aux longues pattes",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 40,
+    "vertical_offset": -12,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-109-front.png",
+    "idle_sha256": "3905ec03ef8f080a335f4929966be55f5301ea80412c4eec197742b95cbd5998",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-109-v0.png",
+    "front_shadow": 32,
+    "current_vertical": {
+      "number": 109,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-109-v0.png",
+      "cell": [
+        66,
+        44
+      ],
+      "anchor": [
+        33,
+        42
+      ],
+      "offset": -12,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-111-0",
+    "number": 111,
+    "name": "Démons et créations 111",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 70,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-111-front.png",
+    "idle_sha256": "b0276d34de835654250b368abd2280897529e0eca1c979c8529018d3973aa21e",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-111-v0.png",
+    "front_shadow": 44,
+    "current_vertical": {
+      "number": 111,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-111-v0.png",
+      "cell": [
+        79,
+        77
+      ],
+      "anchor": [
+        39,
+        75
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-112-0",
+    "number": 112,
+    "name": "Démons et créations 112",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 67,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-112-front.png",
+    "idle_sha256": "cfb13f581d620725c5ba7d411ebdc16cb5309f1a68e061774ad426ba8c67e09c",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-112-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 112,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-112-v0.png",
+      "cell": [
+        59,
+        73
+      ],
+      "anchor": [
+        29,
+        71
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-113-0",
+    "number": 113,
+    "name": "Créature pâle aux appuis écartés",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 39,
+    "vertical_offset": -13,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-113-front.png",
+    "idle_sha256": "a0632e07e6515b24a30e443e42d1932fff3993b81931f72e9e3259706fbeaa58",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-113-v0.png",
+    "front_shadow": 31,
+    "current_vertical": {
+      "number": 113,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-113-v0.png",
+      "cell": [
+        55,
+        43
+      ],
+      "anchor": [
+        27,
+        41
+      ],
+      "offset": -13,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-115-0",
+    "number": 115,
+    "name": "Démons et créations 115",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 78,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-115-front.png",
+    "idle_sha256": "16f0ef8ec38667d3d10d9ae02ac466162285b682b5d57f5ad7fb800e45ce00ba",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-115-v0.png",
+    "front_shadow": 24,
+    "current_vertical": {
+      "number": 115,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-115-v0.png",
+      "cell": [
+        58,
+        85
+      ],
+      "anchor": [
+        29,
+        83
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-116-0",
+    "number": 116,
+    "name": "Cultistes possédés 116",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 63,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-116-front.png",
+    "idle_sha256": "f1656262711b0007b9a5c3d4d684cb2539c87504a246fde25aebc97225f06b41",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-116-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 116,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-116-v0.png",
+      "cell": [
+        57,
+        68
+      ],
+      "anchor": [
+        29,
+        66
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-117-0",
+    "number": 117,
+    "name": "Cultistes possédés 117",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 69,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-117-front.png",
+    "idle_sha256": "30f09d7d2a67e004adc31ca053a099017285ca877c20e176504441925c59217b",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-117-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 117,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-117-v0.png",
+      "cell": [
+        53,
+        74
+      ],
+      "anchor": [
+        27,
+        72
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-118-0",
+    "number": 118,
+    "name": "Rampant à capuche rouge",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 37,
+    "vertical_offset": -13,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-118-front.png",
+    "idle_sha256": "ffc1cf29eae238703e31c1b5f10011318c29852a66f189504d21b225a7f62fa0",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-118-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 118,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-118-v0.png",
+      "cell": [
+        56,
+        45
+      ],
+      "anchor": [
+        28,
+        43
+      ],
+      "offset": -13,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-119-0",
+    "number": 119,
+    "name": "Cultistes possédés 119",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 67,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-119-front.png",
+    "idle_sha256": "6c7925eafa63f5269c7b223b1ae5053e8e35e191837438cf41d7ab659bc363bd",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-119-v0.png",
+    "front_shadow": 26,
+    "current_vertical": {
+      "number": 119,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-119-v0.png",
+      "cell": [
+        53,
+        73
+      ],
+      "anchor": [
+        27,
+        71
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-120-0",
+    "number": 120,
+    "name": "Zombies 120",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 62,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-120-front.png",
+    "idle_sha256": "00ca85bc4c53671e49bab148dd4f09cc5979b226954552ae929821c73db8c1c7",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-120-v0.png",
+    "front_shadow": 23,
+    "current_vertical": {
+      "number": 120,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-120-v0.png",
+      "cell": [
+        49,
+        68
+      ],
+      "anchor": [
+        25,
+        66
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-121-0",
+    "number": 121,
+    "name": "Zombies 121",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 61,
+    "vertical_offset": -1,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-121-front.png",
+    "idle_sha256": "acb5b9dcf782e68d091af3fcc4e1d5f01422f85ba56ee57f5a40cb113f621453",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-121-v0.png",
+    "front_shadow": 22,
+    "current_vertical": {
+      "number": 121,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-121-v0.png",
+      "cell": [
+        49,
+        67
+      ],
+      "anchor": [
+        25,
+        65
+      ],
+      "offset": -1,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-122-0",
+    "number": 122,
+    "name": "Rampant chauve en tenue sombre",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 30,
+    "vertical_offset": -17,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-122-front.png",
+    "idle_sha256": "6c2d6eff6d32fb3c8d529750a07243b19c8611f2d86aeb18f5bc1287f417c09a",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-122-v0.png",
+    "front_shadow": 34,
+    "current_vertical": {
+      "number": 122,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-122-v0.png",
+      "cell": [
+        64,
+        34
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "offset": -17,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-123-0",
+    "number": 123,
+    "name": "Zombies 123",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 74,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-123-front.png",
+    "idle_sha256": "3bd347bf357e8535a1444e61e533632706c629171a0d0b723547b8e01dc358d0",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-123-v0.png",
+    "front_shadow": 35,
+    "current_vertical": {
+      "number": 123,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-123-v0.png",
+      "cell": [
+        68,
+        81
+      ],
+      "anchor": [
+        34,
+        79
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-124-0",
+    "number": 124,
+    "name": "Esprit",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 69,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-124-front.png",
+    "idle_sha256": "2c200e8d6819000c087f763fadbfa17d2987c46e675ccc58484b86cf73abdfaf",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-124-v0.png",
+    "front_shadow": 16,
+    "current_vertical": {
+      "number": 124,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-124-v0.png",
+      "cell": [
+        42,
+        74
+      ],
+      "anchor": [
+        21,
+        72
+      ],
+      "offset": 0,
+      "shadow": false,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-125-0",
+    "number": 125,
+    "name": "Esprit",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 66,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-125-front.png",
+    "idle_sha256": "aa0adf6740ae84ba94d7ea1fbd664b3f8746affbeaf61af6fcace7ef29cab9d6",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-125-v0.png",
+    "front_shadow": 27,
+    "current_vertical": {
+      "number": 125,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-125-v0.png",
+      "cell": [
+        56,
+        71
+      ],
+      "anchor": [
+        28,
+        69
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-126-0",
+    "number": 126,
+    "name": "Esprit étroit",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 62,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-126-front.png",
+    "idle_sha256": "69ea1d11799f639bab67c9ddf3862020313441fae87f5f74a00458953ddf35fc",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-126-v0.png",
+    "front_shadow": 16,
+    "current_vertical": {
+      "number": 126,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-126-v0.png",
+      "cell": [
+        43,
+        69
+      ],
+      "anchor": [
+        21,
+        67
+      ],
+      "offset": 0,
+      "shadow": false,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-127-0",
+    "number": 127,
+    "name": "Esprit aux bras osseux",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 74,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-127-front.png",
+    "idle_sha256": "ed66bd629cb55b2bb26612681c49bc00a3b0c1594175036754ab19e1d7296bbe",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-127-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 127,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-127-v0.png",
+      "cell": [
+        53,
+        79
+      ],
+      "anchor": [
+        27,
+        77
+      ],
+      "offset": 0,
+      "shadow": false,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-128-0",
+    "number": 128,
+    "name": "Squelettes 128",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 63,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-128-front.png",
+    "idle_sha256": "fcbd13088f39ae329ba219f5280f2ec1f0cd6742e71e38b02d31dfa25851ae26",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-128-v0.png",
+    "front_shadow": 24,
+    "current_vertical": {
+      "number": 128,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-128-v0.png",
+      "cell": [
+        50,
+        70
+      ],
+      "anchor": [
+        25,
+        68
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-129-0",
+    "number": 129,
+    "name": "Squelettes 129",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 64,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-129-front.png",
+    "idle_sha256": "c3fb7f43e8e4ee6b4b9d64199ac50863d1739bc4932b60e8e72f830619b00544",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-129-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 129,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-129-v0.png",
+      "cell": [
+        49,
+        68
+      ],
+      "anchor": [
+        25,
+        66
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-130-0",
+    "number": 130,
+    "name": "Créatures enflammées 130",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 62,
+    "vertical_offset": -1,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-130-front.png",
+    "idle_sha256": "c92c1e94dd5f8b3b45738b64985b2d1caf7748977310d08194126846a808d127",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-130-v0.png",
+    "front_shadow": 37,
+    "current_vertical": {
+      "number": 130,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-130-v0.png",
+      "cell": [
+        70,
+        69
+      ],
+      "anchor": [
+        35,
+        67
+      ],
+      "offset": -1,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-131-0",
+    "number": 131,
+    "name": "Quadrupède sombre aux flammes",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 48,
+    "vertical_offset": -8,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-131-front.png",
+    "idle_sha256": "b83651d2368ddf723316d9ce48ff876ac0803311208c6993817b7838dd711c03",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-131-v0.png",
+    "front_shadow": 35,
+    "current_vertical": {
+      "number": 131,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-131-v0.png",
+      "cell": [
+        67,
+        55
+      ],
+      "anchor": [
+        33,
+        53
+      ],
+      "offset": -8,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-132-0",
+    "number": 132,
+    "name": "Nécromanciens scientifiques 132",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 62,
+    "vertical_offset": -1,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-132-front.png",
+    "idle_sha256": "3b9fc1f61a7cd48ebbc1d76a3d406320343df71fd7fba17275a1eeb63a2d545d",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-132-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 132,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-132-v0.png",
+      "cell": [
+        54,
+        69
+      ],
+      "anchor": [
+        27,
+        67
+      ],
+      "offset": -1,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-133-0",
+    "number": 133,
+    "name": "Nécromanciens scientifiques 133",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 65,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-133-front.png",
+    "idle_sha256": "8f619bc1cb34374d892b8b807788a52094df8bfb202f70f62736c760caf918d6",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-133-v0.png",
+    "front_shadow": 23,
+    "current_vertical": {
+      "number": 133,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-133-v0.png",
+      "cell": [
+        49,
+        71
+      ],
+      "anchor": [
+        25,
+        69
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-134-0",
+    "number": 134,
+    "name": "Nécromanciens scientifiques 134",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 62,
+    "vertical_offset": -1,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-134-front.png",
+    "idle_sha256": "1b9f8310cbe1932022378b562d306d72bdc32429859831688b2e7860514a8425",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-134-v0.png",
+    "front_shadow": 18,
+    "current_vertical": {
+      "number": 134,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-134-v0.png",
+      "cell": [
+        40,
+        68
+      ],
+      "anchor": [
+        20,
+        66
+      ],
+      "offset": -1,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-135-0",
+    "number": 135,
+    "name": "Nécromanciens scientifiques 135",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 65,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-135-front.png",
+    "idle_sha256": "c2ada28a18940db33c9bbae78ca9a75f4655e8582f805f12c7c611488ca48af3",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-135-v0.png",
+    "front_shadow": 20,
+    "current_vertical": {
+      "number": 135,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-135-v0.png",
+      "cell": [
+        45,
+        71
+      ],
+      "anchor": [
+        23,
+        69
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-136-0",
+    "number": 136,
+    "name": "Nécromanciens démoniaques 136",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 76,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-136-front.png",
+    "idle_sha256": "b508b3c98428e8a567baf265d3cb699b26ee6970ab49fe54246bc7e04e9e6e84",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-136-v0.png",
+    "front_shadow": 36,
+    "current_vertical": {
+      "number": 136,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-136-v0.png",
+      "cell": [
+        72,
+        84
+      ],
+      "anchor": [
+        36,
+        82
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-137-0",
+    "number": 137,
+    "name": "Nécromanciens démoniaques 137",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 70,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-137-front.png",
+    "idle_sha256": "afcc695ebfaa5fb78b99a36d9be7cb9ab7d922259dd3c771abd32814ba97f7ef",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-137-v0.png",
+    "front_shadow": 26,
+    "current_vertical": {
+      "number": 137,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-137-v0.png",
+      "cell": [
+        52,
+        75
+      ],
+      "anchor": [
+        26,
+        73
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-138-0",
+    "number": 138,
+    "name": "Nécromanciens démoniaques 138",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 63,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-138-front.png",
+    "idle_sha256": "7685a6ee030146df68f6bcef6d8f439906a8149dd553aff7b24f477c1518c080",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-138-v0.png",
+    "front_shadow": 44,
+    "current_vertical": {
+      "number": 138,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-138-v0.png",
+      "cell": [
+        74,
+        68
+      ],
+      "anchor": [
+        37,
+        66
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-139-0",
+    "number": 139,
+    "name": "Créature au livre",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 78,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-139-front.png",
+    "idle_sha256": "fa7a9dada7aa6c26d55908229f814b7e11e9c147801e1e82ae6cd6013c8f918d",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-139-v0.png",
+    "front_shadow": 31,
+    "current_vertical": {
+      "number": 139,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-139-v0.png",
+      "cell": [
+        65,
+        83
+      ],
+      "anchor": [
+        33,
+        81
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-140-0",
+    "number": 140,
+    "name": "Larve segmentée aux petits appuis",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 34,
+    "vertical_offset": -15,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-140-front.png",
+    "idle_sha256": "8159dff161d7767d3d666d562f4896b7831b63646f5183722404914469cf1dca",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-140-v0.png",
+    "front_shadow": 41,
+    "current_vertical": {
+      "number": 140,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-140-v0.png",
+      "cell": [
+        70,
+        39
+      ],
+      "anchor": [
+        35,
+        37
+      ],
+      "offset": -15,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-141-0",
+    "number": 141,
+    "name": "Ver",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 75,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-141-front.png",
+    "idle_sha256": "1a4869ac885fa9a3992fcef3b5b5a35ceb87f796e5d507c571c9da71defdf40f",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-141-v0.png",
+    "front_shadow": 40,
+    "current_vertical": {
+      "number": 141,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-141-v0.png",
+      "cell": [
+        86,
+        81
+      ],
+      "anchor": [
+        43,
+        79
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-142-0",
+    "number": 142,
+    "name": "Forme rampante violette",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 98,
+    "vertical_offset": -16,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-142-front.png",
+    "idle_sha256": "c36f3d7b55088a674c4021339accfd8118d036b385f206ba1590eb162a2c3a19",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-142-v0.png",
+    "front_shadow": 60,
+    "current_vertical": {
+      "number": 142,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-142-v0.png",
+      "cell": [
+        61,
+        104
+      ],
+      "anchor": [
+        31,
+        102
+      ],
+      "offset": -16,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-143-0",
+    "number": 143,
+    "name": "Créature pâle aux défenses",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 55,
+    "vertical_offset": -4,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-143-front.png",
+    "idle_sha256": "7578126b329124c209eeeab5b98ae54b38cfcb3a194d762f2c41e92b551f17a8",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-143-v0.png",
+    "front_shadow": 48,
+    "current_vertical": {
+      "number": 143,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-143-v0.png",
+      "cell": [
+        82,
+        61
+      ],
+      "anchor": [
+        41,
+        59
+      ],
+      "offset": -4,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-145-0",
+    "number": 145,
+    "name": "Créature ailée",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 89,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-145-front.png",
+    "idle_sha256": "bfc8d5e992c7e21f8f435fee4ba81dcae77f44ae1105eea1ff953b402a5b35f0",
+    "accepted_front_source": "assets/animations/biped-lateral-01/MON-145-0.png",
+    "front_shadow": 63,
+    "current_vertical": {
+      "number": 145,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-145-v0.png",
+      "cell": [
+        111,
+        96
+      ],
+      "anchor": [
+        55,
+        93
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "accepted_lateral_front",
+    "accepted": false
+  },
+  {
+    "id": "MON-147-0",
+    "number": 147,
+    "name": "Créature ailée violette",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 84,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-147-front.png",
+    "idle_sha256": "293aadc0b53bb1300059b3ef801a3a581e3d252d65414d0662af5fc6a70867e7",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-147-v0.png",
+    "front_shadow": 63,
+    "current_vertical": {
+      "number": 147,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-147-v0.png",
+      "cell": [
+        105,
+        91
+      ],
+      "anchor": [
+        53,
+        89
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-148-0",
+    "number": 148,
+    "name": "Créature ailée massive",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 94,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-148-front.png",
+    "idle_sha256": "5f03f3af73a22569ddc9e218091ff9719935cd6c4e4547ac18c4d8be69f8a09e",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-148-v0.png",
+    "front_shadow": 63,
+    "current_vertical": {
+      "number": 148,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-148-v0.png",
+      "cell": [
+        140,
+        103
+      ],
+      "anchor": [
+        70,
+        101
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-149-0",
+    "number": 149,
+    "name": "Créature ailée pâle massive",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 88,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-149-front.png",
+    "idle_sha256": "b41135c28232ed1d78a3fb6d87df679ba03d241d5fa02a2c5246f1acf0c3edb9",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-149-v0.png",
+    "front_shadow": 63,
+    "current_vertical": {
+      "number": 149,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-149-v0.png",
+      "cell": [
+        120,
+        97
+      ],
+      "anchor": [
+        60,
+        95
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-150-0",
+    "number": 150,
+    "name": "Créature ailée verte",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 91,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-150-front.png",
+    "idle_sha256": "03280ee3abdabf6ea5c18d3a02d8fda32f51149c930ffd3803278b2064d83081",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-150-v0.png",
+    "front_shadow": 63,
+    "current_vertical": {
+      "number": 150,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-150-v0.png",
+      "cell": [
+        117,
+        98
+      ],
+      "anchor": [
+        59,
+        96
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-152-0",
+    "number": 152,
+    "name": "Démons de peste 152",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 78,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-152-front.png",
+    "idle_sha256": "cbea2edb7b0bbb62dab15d6dace569a089b940c56ecaaa30a733f090d5bf7cfd",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-152-v0.png",
+    "front_shadow": 47,
+    "current_vertical": {
+      "number": 152,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-152-v0.png",
+      "cell": [
+        84,
+        83
+      ],
+      "anchor": [
+        42,
+        81
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-153-0",
+    "number": 153,
+    "name": "Créature ailée au visage allongé",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 80,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-153-front.png",
+    "idle_sha256": "f354a5d24c9fc8326adc5850d7c44999a8022b3a7622a3eff731ee338d398e3d",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-153-v0.png",
+    "front_shadow": 60,
+    "current_vertical": {
+      "number": 153,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-153-v0.png",
+      "cell": [
+        95,
+        87
+      ],
+      "anchor": [
+        47,
+        85
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-154-0",
+    "number": 154,
+    "name": "Quadrupède aux nodules dorsaux",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 57,
+    "vertical_offset": -3,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-154-front.png",
+    "idle_sha256": "6f15adc9faa2d6790f8e40ba8c98efe6b29eaec7cacccc561f027bb693bb95e8",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-154-v0.png",
+    "front_shadow": 53,
+    "current_vertical": {
+      "number": 154,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-154-v0.png",
+      "cell": [
+        89,
+        66
+      ],
+      "anchor": [
+        45,
+        64
+      ],
+      "offset": -3,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-155-0",
+    "number": 155,
+    "name": "Créature au large chapeau",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 86,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-155-front.png",
+    "idle_sha256": "55850ecd964d77591dffffff87de52c77e81bc4982ac8c052791acc019ea6cb3",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-155-v0.png",
+    "front_shadow": 43,
+    "current_vertical": {
+      "number": 155,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-155-v0.png",
+      "cell": [
+        91,
+        92
+      ],
+      "anchor": [
+        45,
+        90
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-157-0",
+    "number": 157,
+    "name": "Créature ailée grise à longue queue",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 79,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-157-front.png",
+    "idle_sha256": "eb5f58f3e7900586df620aa06adb8162aead2a1dae45138e5d9b4f6a4685b5b4",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-157-v0.png",
+    "front_shadow": 41,
+    "current_vertical": {
+      "number": 157,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-157-v0.png",
+      "cell": [
+        90,
+        86
+      ],
+      "anchor": [
+        45,
+        84
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-158-0",
+    "number": 158,
+    "name": "Créature bleue à deux pinces",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 60,
+    "vertical_offset": -2,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-158-front.png",
+    "idle_sha256": "be9535236b91d6e4e1928f25619f9c64fd836529a7c13df098c031e280aca517",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-158-v0.png",
+    "front_shadow": 57,
+    "current_vertical": {
+      "number": 158,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-158-v0.png",
+      "cell": [
+        110,
+        70
+      ],
+      "anchor": [
+        55,
+        68
+      ],
+      "offset": -2,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-159-0",
+    "number": 159,
+    "name": "Démons du froid 159",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 91,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-159-front.png",
+    "idle_sha256": "83c1ede4c17b38d90b52ada1b6bc30fceda65a2e3b1cb9ffd42c32550d057633",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-159-v0.png",
+    "front_shadow": 52,
+    "current_vertical": {
+      "number": 159,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-159-v0.png",
+      "cell": [
+        96,
+        98
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-160-0",
+    "number": 160,
+    "name": "Démons humanoïdes 160",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 70,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-160-front.png",
+    "idle_sha256": "4de725a3ef385e5e2c4a78f75969c1983d2f5c32a7a721503577011cef3a18f3",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-160-v0.png",
+    "front_shadow": 32,
+    "current_vertical": {
+      "number": 160,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-160-v0.png",
+      "cell": [
+        71,
+        76
+      ],
+      "anchor": [
+        35,
+        74
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-161-0",
+    "number": 161,
+    "name": "Démons humanoïdes 161",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 69,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-161-front.png",
+    "idle_sha256": "b7f0bbadac3c3b4faa35c52cc62202a7902e884f6a9378ee38e180ee2f14dc67",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-161-v0.png",
+    "front_shadow": 25,
+    "current_vertical": {
+      "number": 161,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-161-v0.png",
+      "cell": [
+        54,
+        74
+      ],
+      "anchor": [
+        27,
+        72
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  },
+  {
+    "id": "MON-162-0",
+    "number": 162,
+    "name": "Créature ailée en tenue rouge",
+    "frame_width": 160,
+    "frame_height": 128,
+    "reference_height": 75,
+    "vertical_offset": 0,
+    "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-162-front.png",
+    "idle_sha256": "227066ff64e1f717548ae0732ef1d5bf91a2522d2fb9597288acef08cee7295f",
+    "accepted_front_source": "assets/animations/vertical-18/monsters/MON-162-v0.png",
+    "front_shadow": 32,
+    "current_vertical": {
+      "number": 162,
+      "variant": 0,
+      "file": "assets/animations/vertical-18/monsters/MON-162-v0.png",
+      "cell": [
+        69,
+        81
+      ],
+      "anchor": [
+        35,
+        79
+      ],
+      "offset": 0,
+      "shadow": true,
+      "shadow_width": 17
+    },
+    "front_reference_kind": "installed_vertical_idle",
+    "accepted": false
+  }
+]

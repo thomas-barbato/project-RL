@@ -1,0 +1,60 @@
+{
+  "review": "BIPED-LATERAL01-r03",
+  "date": "2026-11-02",
+  "status": "accepted",
+  "player_quote": "je valide, on mettra ces animations en 400ms :)",
+  "scope": {
+    "monster_number": 144,
+    "variant": 0,
+    "directions": [
+      "left",
+      "right"
+    ],
+    "walking_poses_per_direction": 8,
+    "weapon": null,
+    "gait_reference": "CLASS-LATERAL02-r02 / Bastion heavy unarmed"
+  },
+  "timing": {
+    "step_ms": 400,
+    "cycle_ms": 800,
+    "relative_phase_weights": [
+      180,
+      180,
+      170,
+      120,
+      180,
+      180,
+      170,
+      120
+    ],
+    "phase_ms_integer_allocation": [
+      111,
+      111,
+      104,
+      74,
+      111,
+      111,
+      104,
+      74
+    ],
+    "preview_rest_ms": 400
+  },
+  "cadence_for_future_batches_ms_per_step": 400,
+  "normal_game_enabled": false,
+  "other_monsters_accepted": false,
+  "weapon_contacts_accepted": false,
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-left-source.png",
+      "sha256": "5893d6dfe738680e97ff8954184dbdf074e8ec2e8d926380231bcc50e155d822"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-right-source.png",
+      "sha256": "581dedf832553df3fc744b3f48870727f893173cfa91192532d0c1b69f7f5628"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-atlas.png",
+      "sha256": "def77b1f9d572afb7c3460e1403febe5d7f6d172fc0efc989a23af037e587361"
+    }
+  ]
+}

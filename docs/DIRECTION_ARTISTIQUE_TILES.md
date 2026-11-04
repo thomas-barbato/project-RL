@@ -11,6 +11,348 @@ restent cohérentes dans le moteur. Contrôler les éléments ensemble à taille
 native et suivre la procédure de validation avant intégration. Les accords
 particuliers et leurs limites restent consignés dans les sections suivantes.
 
+### MONSTER-VERTICAL01 — reprise haut/bas demandée pour tout le bestiaire
+
+Le 2 novembre 2026, le joueur étend la reprise des marches haut/bas à tous les
+monstres (« je dirais tous »), soit 129 modèles et 471 variantes actuelles.
+Les nouvelles figures entières suivent leur anatomie, gardent leur identité
+et leur équipement, puis sont revues à taille native avant intégration.
+Le lot r01 propose MON-014, MON-164 et MON-144 à 400 ms par pas ; les frontaux
+retenus et les dix marches latérales intégrées sont conservés. Les autres
+morphologies restent à traiter. Périmètre, sources et statut :
+`reviews/animation-polish-01/MONSTER-VERTICAL01.md`.
+
+Après le retour positif « c'est bien mieux oui :) », le lot 02 propose ensuite
+MON-005, MON-156 et MON-165 avec leurs frontaux conservés. L’ancrage porte sur
+les figures entières ; la hache portée devant le torse reste occultée par le
+corps de dos. Le premier lot reste disponible comme référence inchangée.
+Voir `reviews/animation-polish-01/MONSTER-VERTICAL02.md`.
+
+Le lot 02 reçoit ensuite « je valide :) », avec une réserve sur le rouge du
+démon ailé 03. MON-005/156/165 sont acceptés en variante 0 à 400 ms par pas.
+Pour MON-144, harmoniser la palette mobile avec le frontal en conservant les
+poses et leurs contours. La correction préparée dans le moteur est revue
+séparément : `reviews/animation-polish-01/MONSTER-VERTICAL-COLOR01.md`.
+
+« parfait on peut continuer » valide ensuite cette couleur harmonisée de
+MON-144, avec ses poses conservées à 400 ms par pas. La palette et les références
+sont figées dans `reviews/animation-polish-01/MONSTER-VERTICAL-COLOR01-ACCEPTANCE-r01.json`.
+Le lot 03 poursuit les marches haut/bas avec MON-039/146/151, en conservant
+leur frontal, leur carrure et le côté anatomique du brassard de MON-151.
+
+« c'est validé :) » accepte ensuite les trois marches haut/bas 07–09 du lot
+MONSTER-VERTICAL03-r01, soit MON-039/146/151 en variante 0, à 400 ms par pas.
+Les dessins et la palette ivoire préparée de MON-151 sont figés dans
+`reviews/animation-polish-01/MONSTER-VERTICAL03-ACCEPTANCE-r01.json`.
+Cet accord visuel n'active pas ces nouveaux cycles dans la partie normale.
+
+Le 3 novembre 2026, « ok on peut continuer :) » poursuit cette revue avec
+MON-006/007/010, numérotés 10–12. Garder la posture voûtée, le côté anatomique
+du bras mécanique et du canon, et le frontal installé à l’arrêt. Les nouveaux
+dessins sont soumis séparément :
+`reviews/animation-polish-01/MONSTER-VERTICAL04.md`.
+
+« on peut continuer » accepte ensuite ce lot 10–12, avec les dessins voûtés
+et la palette préparée de MON-006, les bras asymétriques de MON-007 et le
+canon droit de MON-010. Les treize ressources sont figées dans
+`reviews/animation-polish-01/MONSTER-VERTICAL04-ACCEPTANCE-r01.json`.
+La revue suivante porte sur les cultistes MON-015/016/017, numérotés 13–15,
+avec leurs bâtons, bouclier et lame courte, avant intégration :
+`reviews/animation-polish-01/MONSTER-VERTICAL05.md`.
+
+« je valide :) » accepte les trois cultistes 13–15 de MONSTER-VERTICAL05-r01,
+soit MON-015/016/017 en variante 0, de face et de dos à 400 ms par pas.
+Conserver les bâtons et le bouclier du côté gauche anatomique, la lame du
+côté droit, les capuches fermées de dos et les frontaux exacts au repos.
+Les douze ressources sont figées dans
+`reviews/animation-polish-01/MONSTER-VERTICAL05-ACCEPTANCE-r01.json`.
+Cet accord visuel n’active pas les nouveaux cycles dans la partie normale.
+
+« on continue :) » poursuit la reprise avec MON-022/024/025, numérotés 16–18.
+Conserver les deux fusils déjà présents dans les images, les prises, leur
+occultation par le torse vu de dos et la posture du possédé en haillons.
+Les rôles et règles de jeu ne changent pas. Revue native séparée :
+`reviews/animation-polish-01/MONSTER-VERTICAL06.md`.
+
+« ok je valide et on continue :) » accepte ensuite le lot 16–18, soit
+MON-022/024/025 en variante 0 à 400 ms par pas. Les deux fusils, leur côté
+anatomique, les frontaux et la palette préparée du possédé sont figés dans
+`reviews/animation-polish-01/MONSTER-VERTICAL06-ACCEPTANCE-r01.json`.
+L’accord visuel n’active pas ces cycles dans la partie normale. La suite
+propose MON-026/028/032, numérotés 19–21, avec leurs proportions basses et
+leurs bras non porteurs : `reviews/animation-polish-01/MONSTER-VERTICAL07.md`.
+
+« je valide et on continue :) » accepte le lot 19–21 de MONSTER-VERTICAL07-r01,
+soit MON-026/028/032 en variante 0, de face et de dos à 400 ms par pas.
+Leurs douze ressources finales, leurs gabarits et leurs frontaux sont figés
+dans `reviews/animation-polish-01/MONSTER-VERTICAL07-ACCEPTANCE-r01.json`.
+La revue suivante propose les bipèdes MON-008/034/036, numérotés 22–24,
+en conservant leurs proportions, crêtes et matériaux. La gorge claire de
+MON-036 ne doit pas apparaître au dos. Revue native séparée avant intégration :
+`reviews/animation-polish-01/MONSTER-VERTICAL08.md`.
+
+Rectification du joueur : « je valide sauf le 21 : il n'est pas bipede ».
+Les n°22–24 (MON-008/034/036) sont acceptés, avec la palette préparée de
+MON-036. Le n°21 (MON-032) est retiré de l’acceptation du lot 07 ; les n°19–20
+restent validés. L’ancien classement bipède était erroné. Reprendre MON-032
+sur ses quatre appuis, corps bas et pattes avant porteuses, sans modifier
+son identité ni ses règles. L’amendement conserve la décision précédente
+et les dessins rejetés : `reviews/animation-polish-01/MONSTER-VERTICAL07-AMENDMENT-r02.json`.
+Revue de la correction avant intégration :
+`reviews/animation-polish-01/MONSTER-VERTICAL21-QUAD01.md`.
+
+« je valide :) on continue » accepte ensuite MON-032 sur quatre appuis,
+corps bas et pattes avant porteuses. Les quatre ressources de cette correction
+sont figées dans `reviews/animation-polish-01/MONSTER-VERTICAL21-QUAD01-ACCEPTANCE-r01.json`.
+L’essai bipède rejeté reste retiré. La suite propose MON-035/037/038, numérotés
+25–27, après examen de leurs quatre membres porteurs et de leurs gabarits
+bas. Revue avant intégration : `reviews/animation-polish-01/MONSTER-VERTICAL09.md`.
+
+« je valide :) », suivi de « et on continue », accepte les n°25–27 du lot 09,
+MON-035/037/038 en variante 0, sur quatre appuis à 400 ms par avancée.
+Leurs douze dessins et la palette de chair préparée de MON-035 sont figés
+dans `reviews/animation-polish-01/MONSTER-VERTICAL09-ACCEPTANCE-r01.json`.
+La suite propose les bipèdes MON-060/061/062, n°28–30, en conservant leurs
+corps élancés, leurs sabots et leurs plaques osseuses. Revue native séparée :
+`reviews/animation-polish-01/MONSTER-VERTICAL10.md`.
+
+Le joueur valide les n°29 et 30, MON-061/062, mais refuse la posture des bras
+du n°28, MON-060. Les huit ressources acceptées, les trois ressources refusées
+et le frontal conservé sont figés dans
+`reviews/animation-polish-01/MONSTER-VERTICAL10-ACCEPTANCE-r01.json`.
+Reprendre seulement les bras du n°28 : épaules relâchées, coudes abaissés,
+avant-bras plus verticaux et longues griffes ouvertes vers le bas. Comparer
+directement l’ancien et le nouveau dessin à 400 ms, avant intégration :
+`reviews/animation-polish-01/MONSTER-VERTICAL28-ARMS01.md`.
+
+Le joueur signale ensuite un changement apparent de lumière du n°28 entre
+marche et repos. Les captures utilisent le même gain d’éclairage, mais les
+images de marche ont une chair plus claire et désaturée. Harmoniser leurs
+matériaux avec le frontal conservé, en gardant les poses et les bras de la
+reprise. Revue séparée de la couleur, sans acceptation implicite des bras :
+`reviews/animation-polish-01/MONSTER-VERTICAL28-COLOR01.md`.
+
+Le joueur signale ensuite l’arme absente pendant la marche du n°28.
+La lame claire de la main droite avait été mal identifiée comme une griffe.
+La rétablir dans les seize poses, à gauche de l’image de face et à droite
+de dos, avec une prise fermée et la pointe abaissée. Conserver les bras
+relâchés et la palette de chair harmonisée ; préserver l’acier de cette
+palette. Revue native séparée, sans changement des règles de jeu :
+`reviews/animation-polish-01/MONSTER-VERTICAL28-WEAPON01.md`.
+
+« ok parfait c'est validé :) » accepte ensuite le n°28, MON-060-0 : lame
+d’origine dans la main droite, bras relâchés et couleurs harmonisées, de
+face et de dos à 400 ms par avancée. Les cinq ressources sont figées dans
+`reviews/animation-polish-01/MONSTER-VERTICAL28-WEAPON01-ACCEPTANCE-r01.json`.
+Les n°29–30 restent validés ; la posture initiale refusée du n°28 reste
+archivée comme telle. Cet accord n’active pas les cycles en partie normale.
+
+« ok on peut continuer :) » poursuit ensuite la revue avec MON-063/064/065,
+n°31–33 : deux quadrupèdes à quatre appuis et un corps serpentin sans jambes.
+Conserver la posture basse, les côtés de la queue et de la plaque rouge,
+et les matériaux ventraux et dorsaux distincts. Les n°28–30 restent validés.
+Revue native des nouveaux cycles à 400 ms avant intégration :
+`reviews/animation-polish-01/MONSTER-VERTICAL11.md`.
+
+« je valide et on continue :) » accepte les n°31–33, MON-063/064/065, dans
+les deux directions à 400 ms par avancée. Les deux quadrupèdes conservent
+leurs quatre appuis et le serpentin son corps enroulé sans jambes. Dessins,
+palettes et références dorsales sont figés dans
+`reviews/animation-polish-01/MONSTER-VERTICAL11-ACCEPTANCE-r01.json`.
+L’accord visuel reste distinct de l’intégration. La suite propose MON-066/067/068,
+n°34–36 : bras ailés, rampant à quatre pattes et démon massif, en conservant
+les anatomies et les frontaux. Revue native avant intégration :
+`reviews/animation-polish-01/MONSTER-VERTICAL12.md`.
+
+« oui ok je valide et on contnue :) » accepte les n°34–36, MON-066/067/068,
+dans les deux directions à 400 ms par avancée, avec les bras ailés, les
+quatre appuis du rampant et la carrure corrigée du démon massif. Les dix-huit
+ressources sont figées dans
+`reviews/animation-polish-01/MONSTER-VERTICAL12-ACCEPTANCE-r01.json`.
+La suite propose les n°37–39, MON-069/070/071 : six pattes, quatre pattes
+avec deux avant-bras en faux, puis huit pattes. Garder leurs anatomies,
+leurs matériaux et leurs frontaux ; revue native séparée avant intégration :
+`reviews/animation-polish-01/MONSTER-VERTICAL13.md`.
+
+« ok je valide tu peux continuer » accepte les n°37–39, MON-069/070/071,
+dans les deux directions à 400 ms. Ressources figées :
+`reviews/animation-polish-01/MONSTER-VERTICAL13-ACCEPTANCE-r01.json`.
+Les n°40–42 reprennent trois bipèdes MON-072/073/074, en gardant leurs
+asymétries, leurs griffes et leur frontal. Revue avant intégration :
+`reviews/animation-polish-01/MONSTER-VERTICAL14.md`.
+
+Le joueur valide le n°42 (MON-074-0) avec le dos redessiné dans
+MONSTER-VERTICAL14-r02, à 400 ms par pas. Cet accord visuel est consigné dans
+`reviews/animation-polish-01/MONSTER-VERTICAL14-ACCEPTANCE-r02.json`.
+Les n°43–45 (MON-075/076/077) suivent en revue, avec quatre appuis pour la
+bête brune, deux pieds et des tentacules libres pour l'aberration, et une
+démarche lourde pour le colosse sans tête.
+
+« je valide tu peux continuer :) » valide les n°43–45, de face et de dos
+à 400 ms par pas. Les ressources sont figées dans
+`reviews/animation-polish-01/MONSTER-VERTICAL15-ACCEPTANCE-r01.json`.
+La suite propose les n°46–48 (MON-078/079/080) ; le démon rouge garde sa
+lame sur l'avant-bras droit anatomique dans les deux orientations.
+
+Le 4 novembre, le joueur valide les n°46 à 48 de face et de dos à 400 ms
+par pas. Leurs dessins sont figés dans
+`reviews/animation-polish-01/MONSTER-VERTICAL16-ACCEPTANCE-r01.json`.
+Le lot suivant présente les n°49 à 51. Le n°50 (MON-082) suit une démarche
+à quatre appuis, d'après les quatre sabots du dessin de référence.
+
+Le joueur valide les n°49 à 51 à 400 ms par pas. Les dessins sont figés dans
+`reviews/animation-polish-01/MONSTER-VERTICAL17-ACCEPTANCE-r01.json`.
+Les n°52 à 54 suivent en revue. Le n°52 garde ses deux pieds rapprochés
+sous les longs bras, le n°53 sa bosse rouge asymétrique et le n°54 les deux
+lames solidaires de ses avant-bras.
+
+Le joueur valide les n°52 à 54 à 400 ms par pas. Les dessins sont figés dans
+`reviews/animation-polish-01/MONSTER-VERTICAL18-ACCEPTANCE-r01.json`.
+Les n°55 à 57 suivent en revue. Le n°55 marche sur quatre appuis, le n°56
+sur ses deux serres, ailes repliées, et le n°57 sur ses quatre pattes anguleuses.
+
+Le joueur valide les n°55 à 57 à 400 ms par pas. Les dessins sont figés dans
+`reviews/animation-polish-01/MONSTER-VERTICAL19-ACCEPTANCE-r01.json`.
+Les n°58 à 60 suivent en revue avec respectivement six, quatre et deux appuis.
+
+Le joueur valide les n°58 à 60 et demande une revue groupée des 69 modèles
+de base restants, numérotés 61 à 129. Voir
+`reviews/animation-polish-01/MONSTER-VERTICAL-ALL.md`.
+
+Le joueur valide 118 modèles de base de la revue groupée. La reprise r02
+porte sur les tentacules du n°62, le demi-tour des n°78, 79 et 82, la robe du
+n°89, les bras occultés du n°95 et les attaches dorsales des ailes des n°115,
+116, 118, 127 et 129. Les ressources validées sont figées dans
+`reviews/animation-polish-01/MONSTER-VERTICAL-ALL-ACCEPTANCE-r01.json`.
+
+Le joueur valide les onze reprises et autorise l’intégration des marches
+haut/bas des 129 modèles de base, à 400 ms par pas par défaut. Le rendu normal
+utilise les atlas approuvés, à l’échelle native et avec le frontal au repos.
+Voir `reviews/animation-polish-01/MONSTER-VERTICAL-ALL-ACCEPTANCE-r02.json`
+et `reviews/animation-polish-01/MONSTER-VERTICAL-INTEGRATION01-ASSETS.json`.
+
+### PLAYER-MOTION-FIX01 — armures colorées et poses verticales du joueur
+
+La palette d'un objet ne doit pas faire perdre les animations verticales de
+sa tenue de classe. Conserver les couleurs peintes validées, comme pour la
+marche latérale, et garder les couleurs des armes indépendantes. À mains nues,
+les tenues intermédiaires réutilisent leurs corps/mains verticaux existants.
+Le frontal de la Traqueuse doit rester celui de sa tenue validée, avec les
+mêmes paramètres Discret que ses côtés. Bilan :
+`reviews/animation-polish-01/PLAYER-MOTION-FIX01-VALIDATION.json`.
+La reprise esthétique des marches haut/bas des monstres garde sa propre revue.
+
+### BIPED-INTEGRATION01 — intégration des dix modèles validés
+
+Après « tu peux integrer :) », les dix modèles MON-005/014/039/144/145/146/
+151/156/164/165 utilisent leurs cycles acceptés dans le rendu normal, uniquement
+en variante 0 et palette d'origine. Les huit poses mobiles et le vrai frontal
+de repos restent cohérents avec les revues. La cadence retenue est de 400 ms
+par pas ; les autres variantes, joueurs et déplacements haut/bas sont conservés.
+Les ressources passent par le préparateur et le cache commun avant affichage.
+Voir `reviews/animation-polish-01/BIPED-INTEGRATION01-VALIDATION.json`.
+
+### BIPED-LATERAL04-r01 — trois ailés acceptés
+
+« je valide :) » accepte MON-039, MON-146 et MON-151 montrés dans l'aperçu
+BIPED-LATERAL04-r01 : deux directions, palette d'origine, huit poses par cycle
+et frontal d'origine conservé au repos. Cadence : 400 ms par pas, 800 ms par
+cycle. Le brassard de MON-151 conserve son côté anatomique. Les sources et
+atlas sont figés dans `reviews/animation-polish-01/BIPED-LATERAL04-ACCEPTANCE-r01.json`.
+Cet accord visuel n'active pas de nouveau rendu dans le jeu normal.
+
+### BIPED-LATERAL01-r03 — cycle joueur, accord du 2 novembre 2026
+
+Le joueur valide les dessins du démon ailé MON-144-0 repris directement des
+poses du Bastion de référence : « je valide, on mettra ces animations en
+400ms :) ». La cadence retenue est de 400 ms par pas, 800 ms par cycle.
+Les deux orientations montrées, sans arme et en palette d'origine, sont
+figées dans `reviews/animation-polish-01/BIPED-LATERAL01-ACCEPTANCE-r03.json`.
+Les nouvelles déclinaisons bipèdes reprennent cette méthode et cette cadence
+avec leurs identités propres ; elles gardent leur revue avant intégration.
+Les autres monstres et les contacts d'armes ne sont pas acceptés par cet accord.
+
+### BIPED-LATERAL03-r03 — frontal retenu pour les cultistes armés
+
+Le joueur préfère le frontal de 02 MON-164 et 03 MON-165 à leur apparence
+en marche. Reprendre leurs figures mobiles depuis cette identité, sans
+remplacer leurs deux fronts retenus. « sinon le reste est ok » valide les
+cinq autres modèles montrés, y compris le frontal harmonisé de MON-014.
+Les marches reprises restent à présenter à 400 ms par pas avant intégration.
+Voir `reviews/animation-polish-01/BIPED-LATERAL03-ACCEPTANCE-r03-partial.json`.
+
+La reprise r04 reçoit ensuite « je valide on continue ». Les deux marches
+armées, leurs prises et les fronts montrés sont figés dans
+`reviews/animation-polish-01/BIPED-LATERAL03-ACCEPTANCE-r04.json`.
+Cette validation visuelle ne constitue pas une nouvelle intégration normale.
+
+### BIPED-LATERAL02-r01 — trois déclinaisons acceptées
+
+« ok on peut continuer » accepte le lot montré : MON-005-0 possédé,
+MON-014-0 cultiste et MON-156-0 démon massif, deux côtés, sans arme,
+palette d'origine et 400 ms par pas. Les sources et atlas sont figés dans
+`reviews/animation-polish-01/BIPED-LATERAL02-ACCEPTANCE-r01.json`.
+L'accord ne vaut pas intégration ni validation des prochains modèles armés.
+
+### FIREARM02 — fusils légèrement agrandis, accord du 1er novembre 2026
+
+Après le comparatif natif FIREARM02-r01, le joueur répond « ok bon je valide ».
+Le candidat 02 est retenu pour les fusils d'assaut, à pompe et similaires :
+légère augmentation par rapport à l'essai 01, contraste modéré des métaux et
+ombre de séparation. Les dessins restent communs aux classes, avec les mêmes
+prises, angles, poses et protections complètes de la tenue. Les occultations
+de dos sont conservées. L'accord ne valide pas les armes lourdes de FIREARM01.
+Voir `reviews/animation-polish-01/FIREARM02-ACCEPTANCE.json` et
+`FIREARM02-INTEGRATION.json` pour l'état du rendu normal et ses contrôles.
+
+### LIGHT01 — éclairage discret du joueur, accord du 1er novembre 2026
+
+Le joueur choisit « Je pense que discret est mieux » dans le comparatif natif
+LIGHT01-r01. Le réglage 01 « Discret » réduit l'éclaircissement du personnage
+humanoïde dans le monde, au repos et pendant chaque phase de marche. Les dessins
+et reflets peints de la tenue restent ceux acceptés. Le décor, ses lumières,
+les autres acteurs et les portraits conservent leur rendu.
+Voir `reviews/animation-polish-01/LIGHT01-ACCEPTANCE.json` et
+`LIGHT01-INTEGRATION.json` pour les contrôles et l'état d'intégration.
+
+### C03 — objets au sol, intégration du 1er novembre 2026
+
+La réduction validée dans ANIM-POLISH01 est appliquée au rendu normal des objets
+au sol : 40 px centrés dans la case native de 64 px, soit 12 px de marge de
+chaque côté. La case, le ramassage, les palettes et l’ordre de superposition
+avec les corps restent inchangés. Les icônes d’inventaire, de fiche et les
+équipements portés conservent leur taille. Il s’agit de l’intégration de C03,
+sans activation des autres propositions de cette revue.
+Voir `reviews/animation-polish-01/C03-INTEGRATION.json`.
+
+### HELM06 — apparence définie par l’armure, décision du 31 octobre 2026
+
+Le joueur abandonne le chantier des casques indépendants : « bon , je pense
+qu'on va oublier cette histoire de casque et ne garder que le visuel des
+armures . ». Le personnage joueur conserve le dessin complet de sa tenue et
+de l’armure portée, avec la tête ou les protections déjà dessinées dans cette
+tenue. Équiper un casque ne change plus son apparence, au repos, en marche
+dans chaque direction et dans le portrait « Visée ». Les objets casques,
+leurs icônes actuelles, leurs bonus et les sauvegardes sont conservés.
+
+Cette décision remplace les demandes antérieures de variantes casquées pour
+le joueur, notamment HELM02 à HELM05 et les déclinaisons de VERT18. Les dessins
+et accords historiques restent archivés ; ils ne demandent plus une intégration.
+Les autres reprises d’animation et d’armes conservent leur périmètre propre.
+État courant : `reviews/animation-polish-01/HELM06-ARMOR-ONLY.json`.
+
+### HELM04 — identité commune des casques, historique remplacé par HELM06
+
+Le joueur demande une gamme de casques correspondant aux cinq degrés de poids
+visuel des armures, puis retient un dessin commun par modèle, fidèle à l'icône.
+Les dimensions, le placement et la perspective s'adaptent au porteur et à son
+armure ; les formes, matières, visières et détails restent ceux du même objet.
+La demande de casque redessiné selon la classe de HELM02/HELM03 est remplacée.
+Les cinq icônes reçoivent ensuite « oui ca me va :) ». Les nouvelles vues portées
+fidèles aux icônes restent à présenter, avec leur ajustement au personnage et
+à l'armure. Règle et accord : `reviews/animation-polish-01/HELM04-REGLE.json`
+et `HELM04-ACCEPTANCE.json` dans la même revue.
+
 ### VERT18-C01 — marche verticale, accord du 29 octobre 2026
 
 Après l'aperçu natif et la séquence dans le camp, le joueur répond

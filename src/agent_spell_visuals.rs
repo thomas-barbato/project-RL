@@ -155,7 +155,7 @@ pub(super) struct SpellBlast {
     pub radius: u16,
     pub started: f64,
 }
-/// Floor/obstacle clipping only: the painted image can spill beyond nominal area edges.
+/// Opaque-terrain clipping only: the painted image can spill beyond nominal area edges.
 pub(super) fn draw_blasts(
     blasts: &[SpellBlast],
     map: &project_rl::world::Map,
@@ -235,7 +235,7 @@ pub(super) fn draw_blasts(
                     let Some(r) = rect(p) else {
                         continue;
                     };
-                    if !map.is_walkable(p)
+                    if map.blocks_vision(p)
                         || !project_rl::world::has_line_of_sight(map, blast.centre, p, true)
                     {
                         continue;

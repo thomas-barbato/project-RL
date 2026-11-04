@@ -1,0 +1,19 @@
+{
+  "review": "ANIM-POLISH01-C06-HELM01-r01",
+  "candidate_number": "04",
+  "date": "2026-10-31",
+  "user_quote": "oui ca me convient, ensuite on va faire des modifications sur les casques",
+  "status": "visually_accepted_not_integrated",
+  "accepted_scope": {
+    "constant_wearer_factors": {"Bastion":1.15,"Traqueuse":0.86,"Arcaniste":0.96,"Metamorphe":1.06},
+    "same_factor_across_armor_tiers_and_phases": true,
+    "anchor": "lower shell edge on the neck",
+    "models": [115,116,117,118,119,120],
+    "pilot": "four current player classes, base and heavy outfits; front/back/left/right and frontal rest"
+  },
+  "evidence": "HELM01-VALIDATION.json",
+  "normal_game_integration_performed": false,
+  "next_request": "HELM02: inventory all equipable helmet visuals, review a reduced visual roster, adapt to class style and wearer/armor morphology, preserve coherence front/back/left/right; baseline remains accepted, future armor-aware fit pending review",
+  "future_helmet_redesigns_accepted": false,
+  "grenade_launcher_C05": "still pending separate approval"
+}

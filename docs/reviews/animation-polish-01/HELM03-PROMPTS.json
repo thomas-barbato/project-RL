@@ -1,0 +1,36 @@
+{
+  "review": "ANIM-POLISH01-HELM03-ICONS-r01",
+  "mode": "builtin_image_gen",
+  "transparent_background": true,
+  "prompts": [
+    {
+      "id": "I01",
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent pixel-art inventory helmet icon for Project RL, a gritty industrial science-fiction roguelike with a native 64 by 64 pixel grid. Create a NEW less generic design, not an upgrade tier of the same rounded dome. Strong readable silhouette and large connected pixel clusters, economical detail, artist-painted pixel art with restrained matte shading, dark nuanced one-pixel contours, a few worn edges. It must still read clearly when reduced to 64 by 64. Show only the empty helmet/headgear, no head, no mannequin, no neck, no body, no hands, no weapons. Slight front three-quarter view facing viewer's right, upper surface slightly visible, consistent inventory icon projection. Treat the square canvas as a logical 64x64 grid: center the entire silhouette within x7..57 and y7..57, about 48 logical pixels tall, generous fully transparent margin. Keep silhouette complete and a compact footprint. True transparent background, no floor, no cast shadow outside the object, no glow halo, no text, no labels, no border or logo. No photorealism, no glossy toy render, no microtexture or dithering, no pink. No HUD or effects around the object. Design 01, INDUSTRIAL ARMORED SHELL: a broad, squat, almost rectangular flat-topped crown with a stepped wedge forehead and chunky separated cheek/lower-jaw armor. Its side profile should evoke a brutally practical industrial protective helmet, with a low brow over a narrow recessed AMBER rectangular visor. An offset small stacked cooling block at one temple and ribbed rear neck protection. Matte weathered dark iron, desaturated copper-orange main armored planes and a few warm ivory edge plates. Strong silhouette of a wide flat crown and projecting angular jaw, not a spherical dome, not a medieval knight visor, not a gas mask. Large structural forms matter more than rivets. The amber visor is a small saturated coherent strip, bright enough to identify a tiny emissive material mask later, but no bloom. One helmet only."
+    },
+    {
+      "id": "I02",
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent pixel-art inventory helmet icon for Project RL, a gritty industrial science-fiction roguelike with a native 64 by 64 pixel grid. Create a NEW less generic design, not an upgrade tier of the same rounded dome. Strong readable silhouette and large connected pixel clusters, economical detail, artist-painted pixel art with restrained matte shading, dark nuanced one-pixel contours, a few worn edges. It must still read clearly when reduced to 64 by 64. Show only the empty helmet/headgear, no head, no mannequin, no neck, no body, no hands, no weapons. Slight front three-quarter view facing viewer's right, upper surface slightly visible, consistent inventory icon projection. Treat the square canvas as a logical 64x64 grid: center the entire silhouette within x7..57 and y7..57, about 48 logical pixels tall, generous fully transparent margin. Keep silhouette complete and a compact footprint. True transparent background, no floor, no cast shadow outside the object, no glow halo, no text, no labels, no border or logo. No photorealism, no glossy toy render, no microtexture or dithering, no pink. No HUD or effects around the object. Design 02, ASYMMETRIC SCOUT OPTICS: a lean swept-back angular helmet with a clearly off-center rectangular CYAN optical eyepiece on the near side, a short rigid sensor tab rising from that side, and a sharply tapered compact lower face guard. The opposite face has a dark armored inset rather than a second identical eye. A lean pointed visor brow and open negative-space cutaway under the ear assembly give a clearly different outline from a heavy enclosed helmet. Matte graphite and muted slate-gray ceramic plates with restrained pale ivory edges and a few cool blue-gray panels. The single cyan optic is a compact bright rectangular glass surface, not a full horizontal visor band, no bloom. Functional irregular industrial design, no smooth motorcycle helmet, no superhero mask, no cloth hood. One helmet only."
+    },
+    {
+      "id": "I03",
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent pixel-art inventory helmet icon for Project RL, a gritty industrial science-fiction roguelike with a native 64 by 64 pixel grid. Create a NEW less generic design, not an upgrade tier of the same rounded dome. Strong readable silhouette and large connected pixel clusters, economical detail, artist-painted pixel art with restrained matte shading, dark nuanced one-pixel contours, a few worn edges. It must still read clearly when reduced to 64 by 64. Show only the empty helmet/headgear, no head, no mannequin, no neck, no body, no hands, no weapons. Slight front three-quarter view facing viewer's right, upper surface slightly visible, consistent inventory icon projection. Treat the square canvas as a logical 64x64 grid: center the entire silhouette within x7..57 and y7..57, about 48 logical pixels tall, generous fully transparent margin. Keep silhouette complete and a compact footprint. True transparent background, no floor, no cast shadow outside the object, no glow halo, no text, no labels, no border or logo. No photorealism, no glossy toy render, no microtexture or dithering, no pink. No HUD or effects around the object. Design 03, SEGMENTED ORGANIC SHELL: a taller, narrow layered carapace helmet with three broad overlapping chitin/bone plates over the crown, a short central swept-back ridge, and downward cheek plates forming a split pointed lower mask. The outer contour must read as a segmented living protective shell rather than metal helmet armor: asymmetrically grown ridge, broad smooth matte plates, no tiny scales, no long fantasy horns. Weathered bone/ochre main plates, muted olive-green and dark umber joints, very dark recessed front. Two small slanted PALE LIME-GREEN eye-glass slits set deep under the heavy brow are the only luminous accents, no halo. Coarse economical pixel forms and situated chipped edges. Do not make a skull, alien face or creature head: it is empty wearable headgear with a manufactured inner lining and a dark empty neck opening. No human face, no decorative filigree. One helmet only."
+    }
+  ],
+  "sources": [
+    {
+      "id": "I01",
+      "file": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I01-generated.png",
+      "native": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I01-native64.png"
+    },
+    {
+      "id": "I02",
+      "file": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I02-generated.png",
+      "native": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I02-native64.png"
+    },
+    {
+      "id": "I03",
+      "file": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I03-generated.png",
+      "native": "assets/source-art/animation-polish-01/helmet-icons-r01/H03-I03-native64.png"
+    }
+  ]
+}

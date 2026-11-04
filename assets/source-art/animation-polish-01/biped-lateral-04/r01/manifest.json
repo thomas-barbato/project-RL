@@ -1,0 +1,689 @@
+{
+  "review": "BIPED-LATERAL04-r01",
+  "normal_game_enabled": false,
+  "native_cell_px": 64,
+  "panel_width": 192,
+  "pixel_snap_candidates": true,
+  "match_native_shadows": true,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "phase_weights": [
+    180,
+    180,
+    170,
+    120,
+    180,
+    180,
+    170,
+    120
+  ],
+  "profiles": [
+    {
+      "id": "MON-039-0",
+      "number": 39,
+      "name": "Petit démon ailé",
+      "frame_width": 160,
+      "vertical_offset": -10,
+      "reference_height": 42,
+      "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-front.png",
+      "idle_sha256": "60f0e1e600d42df21ff2847b41ae9b5221007808834a45fac242581ed5147566",
+      "front_source": "assets/animations/vertical-18/monsters/MON-039-v0.png",
+      "front_cell": [
+        55,
+        47
+      ],
+      "front_anchor": [
+        27,
+        45
+      ],
+      "front_bounds": [
+        1,
+        3,
+        52,
+        45
+      ],
+      "motion_identity": "Exactly two walking hind legs, two arms and two wings. Preserve the small reddish-brown demon with its ochre chest/belly, tall pointed ears/horns, dark wing membranes, long fingers and clawed feet. No tail or equipment absent from the canonical input; do not copy the reference demon's bulky proportions. Compact grounded two-foot walk; wings carried with tiny joint motion, never flight.",
+      "front_accepted": true,
+      "accepted": false,
+      "review_headers": [
+        "Référence du jeu",
+        "Frontal conservé",
+        "Marche proposée"
+      ],
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-atlas.png",
+      "sha256": "2fb1cc813aeca0c3bee95fd892697c078ce0ce267a5748482cb5b5175332ef4c",
+      "sources": [
+        "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-left-source.png",
+        "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-right-source.png"
+      ],
+      "bounds": [
+        {
+          "side": 0,
+          "phase": 0,
+          "whole_figure_scale": 0.14736842105263157,
+          "bounds": [
+            65,
+            70,
+            102,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 1,
+          "whole_figure_scale": 0.14736842105263157,
+          "bounds": [
+            66,
+            70,
+            102,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 2,
+          "whole_figure_scale": 0.14383561643835616,
+          "bounds": [
+            69,
+            70,
+            101,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 3,
+          "whole_figure_scale": 0.14736842105263157,
+          "bounds": [
+            66,
+            70,
+            102,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 4,
+          "whole_figure_scale": 0.14383561643835616,
+          "bounds": [
+            66,
+            70,
+            101,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 5,
+          "whole_figure_scale": 0.14788732394366197,
+          "bounds": [
+            68,
+            70,
+            102,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 6,
+          "whole_figure_scale": 0.14334470989761092,
+          "bounds": [
+            69,
+            70,
+            102,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 7,
+          "whole_figure_scale": 0.14634146341463414,
+          "bounds": [
+            66,
+            70,
+            102,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 0,
+          "whole_figure_scale": 0.15,
+          "bounds": [
+            59,
+            70,
+            92,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 1,
+          "whole_figure_scale": 0.15217391304347827,
+          "bounds": [
+            59,
+            70,
+            91,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 2,
+          "whole_figure_scale": 0.15162454873646208,
+          "bounds": [
+            59,
+            70,
+            90,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 3,
+          "whole_figure_scale": 0.15,
+          "bounds": [
+            60,
+            70,
+            90,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 4,
+          "whole_figure_scale": 0.14840989399293286,
+          "bounds": [
+            59,
+            70,
+            90,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 5,
+          "whole_figure_scale": 0.15,
+          "bounds": [
+            58,
+            70,
+            92,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 6,
+          "whole_figure_scale": 0.14893617021276595,
+          "bounds": [
+            59,
+            70,
+            92,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 7,
+          "whole_figure_scale": 0.15217391304347827,
+          "bounds": [
+            57,
+            70,
+            90,
+            112
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MON-146-0",
+      "number": 146,
+      "name": "Ailé doré",
+      "frame_width": 160,
+      "vertical_offset": 0,
+      "reference_height": 80,
+      "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-front.png",
+      "idle_sha256": "8a914bddbfde69b370db265ef669f22ced324fddf675b8c6a22aea96bb08f194",
+      "front_source": "assets/animations/vertical-18/monsters/MON-146-v0.png",
+      "front_cell": [
+        110,
+        86
+      ],
+      "front_anchor": [
+        55,
+        84
+      ],
+      "front_bounds": [
+        2,
+        4,
+        108,
+        84
+      ],
+      "motion_identity": "Exactly two hind walking legs, two arms and two broad wings. Preserve the existing golden/ochre plated surfaces, large horns, dark membranes, dark waist cloth and dark claw tips. Keep the original broad wingspan well outside both arms. No new tail, weapon, costume, red skin or blue skin. Heavy but compact grounded alternating two-foot walk; wings remain carried spread with slight joint movement, no flight.",
+      "front_accepted": true,
+      "accepted": false,
+      "review_headers": [
+        "Référence du jeu",
+        "Frontal conservé",
+        "Marche proposée"
+      ],
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-atlas.png",
+      "sha256": "900799969710fbe36bea3bc8d9b8d44ad9a2e1e44f96e5b0de18724a6b6e14a5",
+      "sources": [
+        "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-left-source.png",
+        "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-right-source.png"
+      ],
+      "bounds": [
+        {
+          "side": 0,
+          "phase": 0,
+          "whole_figure_scale": 0.25236593059936907,
+          "bounds": [
+            32,
+            32,
+            128,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 1,
+          "whole_figure_scale": 0.25559105431309903,
+          "bounds": [
+            32,
+            32,
+            128,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 2,
+          "whole_figure_scale": 0.25316455696202533,
+          "bounds": [
+            33,
+            32,
+            129,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 3,
+          "whole_figure_scale": 0.25559105431309903,
+          "bounds": [
+            33,
+            32,
+            128,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 4,
+          "whole_figure_scale": 0.25396825396825395,
+          "bounds": [
+            34,
+            32,
+            128,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 5,
+          "whole_figure_scale": 0.2564102564102564,
+          "bounds": [
+            34,
+            32,
+            128,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 6,
+          "whole_figure_scale": 0.25236593059936907,
+          "bounds": [
+            35,
+            32,
+            127,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 7,
+          "whole_figure_scale": 0.2564102564102564,
+          "bounds": [
+            35,
+            32,
+            129,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 0,
+          "whole_figure_scale": 0.22662889518413598,
+          "bounds": [
+            33,
+            32,
+            123,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 1,
+          "whole_figure_scale": 0.22922636103151864,
+          "bounds": [
+            32,
+            32,
+            122,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 2,
+          "whole_figure_scale": 0.22857142857142856,
+          "bounds": [
+            33,
+            32,
+            123,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 3,
+          "whole_figure_scale": 0.22662889518413598,
+          "bounds": [
+            34,
+            32,
+            124,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 4,
+          "whole_figure_scale": 0.22408963585434175,
+          "bounds": [
+            35,
+            32,
+            124,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 5,
+          "whole_figure_scale": 0.22408963585434175,
+          "bounds": [
+            34,
+            32,
+            123,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 6,
+          "whole_figure_scale": 0.22598870056497175,
+          "bounds": [
+            34,
+            32,
+            123,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 7,
+          "whole_figure_scale": 0.22988505747126436,
+          "bounds": [
+            33,
+            32,
+            124,
+            112
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MON-151-0",
+      "number": 151,
+      "name": "Ailé pâle au brassard",
+      "frame_width": 160,
+      "vertical_offset": 0,
+      "reference_height": 94,
+      "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-front.png",
+      "idle_sha256": "59bd85aa9e141a4fe52d16ceb82654ddb01452f8b94e93faa47907221fb75c26",
+      "front_source": "assets/animations/vertical-18/monsters/MON-151-v0.png",
+      "front_cell": [
+        121,
+        102
+      ],
+      "front_anchor": [
+        61,
+        100
+      ],
+      "front_bounds": [
+        4,
+        6,
+        117,
+        100
+      ],
+      "motion_identity": "Exactly TWO walking legs, TWO muscular arms and TWO separate RED bat wings. Preserve the pale athletic body, ivory skull-like face, TWO original dark curved horns, dark waist cloth, dark feet and claws. CRITICAL ASYMMETRY: the SINGLE CHARCOAL BRACER covers ONLY the creature RIGHT forearm, seen on the VIEWER LEFT in INPUT1. It stays on that SAME anatomical arm in EVERY pose in BOTH near-front directions, remaining on viewer LEFT; the viewer RIGHT forearm stays PALE and uncovered. Never mirror the whole figure, swap the bracer, put it on both arms, remove it or turn just the head. Correct complete left-facing AND right-facing bodies, face/chest/knees/toes aligned together, compact grounded two-foot steps with restrained bob. Preserve the athletic torso and leg lengths; no purple skin, new tail, weapon or armor from INPUT2.",
+      "front_accepted": true,
+      "accepted": false,
+      "review_headers": [
+        "Référence du jeu",
+        "Frontal conservé",
+        "Marche proposée"
+      ],
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-atlas.png",
+      "sha256": "61eeea8eb386eb3a62a5ca8acc149436893f32efaf46998c3c7699fcfe6b3c62",
+      "sources": [
+        "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-left-source.png",
+        "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-right-source.png"
+      ],
+      "bounds": [
+        {
+          "side": 0,
+          "phase": 0,
+          "whole_figure_scale": 0.26038781163434904,
+          "bounds": [
+            37,
+            18,
+            123,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 1,
+          "whole_figure_scale": 0.26038781163434904,
+          "bounds": [
+            37,
+            18,
+            126,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 2,
+          "whole_figure_scale": 0.25753424657534246,
+          "bounds": [
+            38,
+            18,
+            125,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 3,
+          "whole_figure_scale": 0.26330532212885155,
+          "bounds": [
+            37,
+            18,
+            128,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 4,
+          "whole_figure_scale": 0.2647887323943662,
+          "bounds": [
+            36,
+            18,
+            128,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 5,
+          "whole_figure_scale": 0.2596685082872928,
+          "bounds": [
+            36,
+            18,
+            130,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 6,
+          "whole_figure_scale": 0.25824175824175827,
+          "bounds": [
+            37,
+            18,
+            128,
+            112
+          ]
+        },
+        {
+          "side": 0,
+          "phase": 7,
+          "whole_figure_scale": 0.2618384401114206,
+          "bounds": [
+            38,
+            18,
+            130,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 0,
+          "whole_figure_scale": 0.27485380116959063,
+          "bounds": [
+            36,
+            18,
+            118,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 1,
+          "whole_figure_scale": 0.2781065088757396,
+          "bounds": [
+            36,
+            18,
+            119,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 2,
+          "whole_figure_scale": 0.27976190476190477,
+          "bounds": [
+            38,
+            18,
+            118,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 3,
+          "whole_figure_scale": 0.2822822822822823,
+          "bounds": [
+            36,
+            18,
+            119,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 4,
+          "whole_figure_scale": 0.28484848484848485,
+          "bounds": [
+            36,
+            18,
+            121,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 5,
+          "whole_figure_scale": 0.2874617737003058,
+          "bounds": [
+            36,
+            18,
+            120,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 6,
+          "whole_figure_scale": 0.283987915407855,
+          "bounds": [
+            36,
+            18,
+            119,
+            112
+          ]
+        },
+        {
+          "side": 1,
+          "phase": 7,
+          "whole_figure_scale": 0.2789317507418398,
+          "bounds": [
+            36,
+            18,
+            144,
+            112
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MON-144-0",
+      "number": 144,
+      "name": "Démon ailé validé",
+      "reference_height": 78,
+      "front_file": "assets/source-art/animation-polish-01/biped-lateral-01/r01/MON-144-front.png",
+      "front_source": "assets/animations/vertical-18/monsters/MON-144-v0.png",
+      "vertical_offset": 0,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-atlas.png",
+      "sha256": "def77b1f9d572afb7c3460e1403febe5d7f6d172fc0efc989a23af037e587361",
+      "sources": [
+        "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-left-source.png",
+        "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-right-source.png"
+      ],
+      "accepted": true
+    }
+  ]
+}

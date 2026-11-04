@@ -107,7 +107,14 @@ pub async fn capture(output: &Path) -> Result<(), String> {
                     .count();
                 let pipeline_ok = !draws.is_empty()
                     && draws.iter().all(|d| {
-                        d.world && d.actor && d.finish && d.gain == if lit { 1.48 } else { 1. }
+                        let gain = if !lit {
+                            1.
+                        } else if matches!(visual, Visual::Player { .. }) {
+                            1.18
+                        } else {
+                            1.48
+                        };
+                        d.world && d.actor && d.finish && d.gain == gain
                     });
                 let same_clock = ![1, 15].contains(&index) || difference == 0;
                 let breathing_pixels = if index == 2 && matches!(visual, Visual::CampNpc(_)) {

@@ -1,0 +1,34 @@
+{
+  "review": "CLASS-LATERAL02-r02",
+  "date": "2026-11-02",
+  "status": "direction_favorably_reviewed",
+  "player_quote": "C'est bien mieux là tu ne trouve pas ? :) , bon du coup il faut faire la meme chose pour les monstres bipedes :) . (aussi il faudra s'assurer que cette demarche s'insere bien avec le port des armes :) )",
+  "scope": {
+    "classes": [
+      "core:bastion",
+      "core:arcaniste",
+      "core:metamorphe"
+    ],
+    "armor_stage": 3,
+    "unarmed": true,
+    "step_ms": 650,
+    "poses_per_direction": 8
+  },
+  "normal_game_enabled": false,
+  "weapon_configurations_not_yet_accepted": true,
+  "monster_extension_requested": true,
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/class-lateral-02/r02/arcaniste-atlas.png",
+      "sha256": "c3ae7f99a12331967593bd5d39957d4ce03e3d5ebcb61dbcd3c3be49f87566e2"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/class-lateral-02/r02/bastion-atlas.png",
+      "sha256": "6ce7ae91835bbbb544c93fdc17c56a0073e1421b1571693a2577523ff21601d8"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/class-lateral-02/r02/metamorphe-atlas.png",
+      "sha256": "7244e61f53fc91c2377ce7daae485dbacf7775876c20ce9e8ac3980701a24dee"
+    }
+  ]
+}

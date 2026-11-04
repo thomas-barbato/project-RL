@@ -1,0 +1,78 @@
+{
+  "review": "LATERAL02-r02",
+  "date": "2026-11-02",
+  "status": "stride_revision_requested",
+  "class": "Traqueuse",
+  "profile": "traqueuse-armor3",
+  "outfit": 13,
+  "armor_model": 101,
+  "body": 5,
+  "candidate": 2,
+  "normal_game_enabled": false,
+  "bastion_unchanged": true,
+  "weapon": null,
+  "generation_mode": "built-in image_gen, transparent reference-guided whole figures",
+  "prompt": "LATERAL02-PROMPT-r02.md",
+  "engine_checks": {
+    "armor_stage": 3,
+    "bastion_unchanged": true,
+    "boards": 14,
+    "candidate_has_weapon": false,
+    "class": "Traqueuse",
+    "comparison": "01 previous candidate / 02 gait revision",
+    "cycles": [
+      {
+        "direction": "left",
+        "distinct_engine_frames": 6
+      },
+      {
+        "direction": "right",
+        "distinct_engine_frames": 6
+      }
+    ],
+    "engine_scene": "approved camp / LIGHT01 Discret",
+    "native_cell_px": 64,
+    "normal_game_enabled": false,
+    "references_unchanged": true,
+    "review": "LATERAL02-r02",
+    "source_profile": "traqueuse-armor3"
+  },
+  "reference_hashes_verified": 8,
+  "sha256": {
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/attempt-01-rejected.png": "e1c1a0356d945fcdd2b553acd37e7ff1888788ce229a564dec9b11b548b5323c",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-atlas.png": "56663af3bb99a89bfef436f9d70a77af333083a9f1f4f4a6d8979c4f1353c3cb",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-left-0.png": "6faabb67e5d9c7fe2e2eded2bf713bccdf87c7859b68e85e26c6f8dd553f04f3",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-left-1.png": "806cb5b6af41de8a61ee8445cce218908bce8961c2e7f2216da0b542943e6593",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-left-2.png": "eacb14f4c066e1eb85e1af4595fa362ebc7efc74be9d379d81f28f2128b70c56",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-left-3.png": "af2358539269a82349b96692eda270b2e7ad13b7d49d8f12f448daa4b32b721a",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-left-4.png": "73eb41be61345bb708cd86c075505c1240cc8e5dd035dde3fc2dc02d8fbeff1d",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-left-5.png": "d700428b974445f6b195a0c2c9502ec8f5d9867e1cfcc7371bd5e945681b7975",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-left-6.png": "4f41bd49b2df97e1f674c89b9e1251b0d2d07a1d5b254892117d6cf7aae4ac9e",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-poses-zoom.png": "3fe6f7ad438b54695a01c673e6f4cf5ffabec493bd218377c7be2524320d6847",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-right-0.png": "ab5fa0943c7a31d8dc377225c834ff7ac196ae0406472fbb22fe4d27bde7a757",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-right-1.png": "d58f2740b897f4b3b26ead53079802cb31c47d6b1efc47c20d060a22d12acadb",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-right-2.png": "07d5df02a92e2e4486607ae7a6f47cb4bd9cdb6dd561d7aa829797cfb7a9f679",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-right-3.png": "d41f858e1d50b790a1d00f508ef13e15f3fd0aed365921fc6346998219edc3ee",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-right-4.png": "3878f91d4ae6cb110bd36e311e40fe06314427e30ccbeffbbf4796b11228e7bb",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-right-5.png": "034f6eb5c53351594590a6a2386d681cc309d9372d42cea5d0c55529ca9eaa10",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/candidate-02-right-6.png": "54d839bb63b404204d7ef207faedea94f29c43583edc4d4c1fc652b46ac4d4f3",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/half-a-and-idle-source.png": "6a561754bfc88707a0705cada2ddf70d07762035663ff6d2b8805b91f1147651",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/half-a-idle-guide.png": "09cada02af1b1ce29548cc5769a80388acd211f76efab1c286b141f0a2d2e9f8",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/half-a-source.png": "425403403b1ce1824e4eaa2992bfa63cff3ecd091290c7071c30a724103a5a20",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/half-b-guide.png": "c02d8f36fed1dd9edee30bbea25ae1e652744cd056a5e3bb6f836c165702b2a4",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/half-b-source.png": "061e680d357e09f0a9098fe5bcfbb4b4b6a9925c3d44adc96c4fb6c734afe18e",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/idle-reference.png": "f0648f483a9364ee12a2811dd28571dface9b53f43c6f2d10932d4405e987953",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/passing-a-guide.png": "40b866bf09eb14a759f64525a722c042343895ec3c0e36c98935ac78d3410cd1",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/passing-a-source.png": "34b0c8858cf37d0648ebf14b352c5a8493161e09409e3f755eaa65249a79c469",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/pose-guide.png": "d99943c8add9861ff3a652b2f50e0877f48dd4c4112f39689afa9ab42d56fc7d",
+    "assets/source-art/animation-polish-01/lateral-identity-02/r02/conditioning-r02.json": "ff89f546211c63b67ba4579634b5118f8f15c889611c5d6f7c889dc4e02ac08e",
+    "docs/reviews/animation-polish-01/LATERAL02-PROMPT-r02.md": "bdfc0f9bcf66e4ebb360958117df6e43bacadd61450d9b119eec8006f7209f35"
+  },
+  "preview": "http://127.0.0.1:8765/animation-polish-01/apercu.html?revision=LATERAL02-r02#identite-laterale",
+  "stride_feedback": {
+    "date": "2026-11-02",
+    "quote": "c'est mieux mais les jambes s'écartent trop",
+    "superseded_by": "LATERAL02-r03",
+    "integration_approved": false
+  }
+}

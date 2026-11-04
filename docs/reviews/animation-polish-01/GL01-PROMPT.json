@@ -1,0 +1,13 @@
+{
+  "review": "ANIM-POLISH01-C05-GL01-r01",
+  "mode": "builtin_image_gen",
+  "prompt": "Use case: precise-object-edit. Asset type: transparent native pixel-art equipment sprite for Project RL, a 64-pixel-grid roguelike. Input 1 is the current grenade launcher to redesign; inputs 2 and 3 are approved machine gun and rocket-launcher references for restrained materials, edge detail and relative visual mass. Redraw ONLY the grenade launcher as a noticeably less bulky, compact, plausible two-handed launcher. One weapon only, strict horizontal side view, stock to the LEFT, muzzle pointing RIGHT. Keep its muted olive skeletal stock and dark matte steel identity, but replace the huge light rectangular central block with a slim dark receiver and short compact large-bore barrel. Clear rear pistol grip and front supporting handguard; no hands or character. It must read as a grenade launcher at native size, not a bazooka or a machine gun. Crisp economical pixel clusters, restrained gray highlights, matte worn materials, no gleaming chrome, no glow, no outlines of hands, no ammo/cases around it. Match the visual language of the supplied small pixel sprites; do not turn it into a large smooth product illustration. Composition: square canvas, actual transparent background; use the same placement and sprite scale as input 1. Treat the canvas as a logical 128 by 128 pixel grid: entire new weapon silhouette approximately x44..88 and y52..71, maximum 44 pixels wide and 19 pixels tall, with much less central volume than the original x35..87 y48..72. Two grip contact centers at logical (52,66) and (79,68) must fall on real gripping surfaces: rear pistol grip at (52,66), handguard underneath barrel at (79,68). This empty margin and the two grips are needed for the game's modular equipment rig. Keep all pixels inside the intended silhouette, no text, no labels, no border, no shadow on the background. Produce a single clean sprite, preserving alpha.",
+  "generated_source": "assets/source-art/animation-polish-01/grenade-launcher-r01/GL01-r01-generated.png",
+  "native_candidate": "assets/source-art/animation-polish-01/grenade-launcher-r01/GL01-r01-native.png",
+  "further_grip_edit": {
+    "status": "rejected_by_image_tool",
+    "reason": "violence filter",
+    "output_created": false,
+    "work_continues_with_first_generated_drawing": true
+  }
+}

@@ -22,13 +22,19 @@ mod dual_review17;
 mod walk_rig;
 
 pub(super) fn walking_layers(key: Key, pose: crate::game_art::walking::Pose) -> Option<Vec<Image>> {
+    let _original = crate::rifle_visuals::original_scope(decode(key.0).is_none());
     walk_rig::layers(key, pose)
+}
+pub(super) fn firearm_grips(model: u16) -> Option<([f32; 2], [f32; 2])> {
+    let (a, b) = attachment(model, false)?;
+    Some((a, b?))
 }
 pub(super) fn walking_npc(key: Key) -> bool {
     crate::game_art::walking::active() && (17..=22).contains(&key.0)
 }
 
 pub(super) fn outfit_index(body: u8, equipment: [Option<u16>; 4]) -> Option<u16> {
+    let equipment = crate::game_art::player_visual_equipment(equipment);
     let class = body.checked_sub(3).filter(|v| *v < 5)?;
     // Physical item models select a coverage stage; bonuses and rarity never
     // change an item's silhouette or any gameplay property.
@@ -94,7 +100,24 @@ fn weapon_image(model: u16, left: bool, color: EquipmentPalette) -> Option<Image
         return readable::image(model, color);
     }
     let source = generic::weapon_image(model, left, color)?;
+    #[cfg(debug_assertions)]
+    if crate::animation_polish_review::source_style() > 0
+        && crate::animation_polish_review::revising(model)
+        && let (anchor, Some(support)) = attachment(model, left)?
+    {
+        return Some(crate::animation_polish_review::compact_weapon(
+            &source,
+            model,
+            anchor,
+            support,
+            crate::animation_polish_review::source_style(),
+        ));
+    }
     if !matches!(model, 68 | 79) {
+        if crate::rifle_visuals::enabled(model) {
+            let (a, b) = attachment(model, left)?;
+            return Some(crate::rifle_visuals::prepare(&source, model, a, b?));
+        }
         return Some(source);
     }
     // These two single-edged sources put the sharpened bevel towards the
@@ -115,7 +138,7 @@ fn weapon_image(model: u16, left: bool, color: EquipmentPalette) -> Option<Image
     Some(corrected)
 }
 
-#[cfg(all(debug_assertions, test))]
+#[cfg(debug_assertions)]
 pub(super) fn vertical_review_weapon(
     model: u16,
     left: bool,
@@ -354,21 +377,67 @@ fn two_hand_targets(
 }
 
 pub(super) fn render_layers(key: Key) -> Option<Vec<Image>> {
-    let mut layers = if let Some(pose) = crate::game_art::walking::pose() {
+    let layers = if let Some(pose) = crate::game_art::walking::pose() {
         walking_layers(key, pose)?
     } else {
         layers(key)?
     };
+    Some(with_contact_shadow(key, layers))
+}
+pub(super) fn walking_render_layers(
+    key: Key,
+    pose: crate::game_art::walking::Pose,
+) -> Option<Vec<Image>> {
+    // WALK12/ARM14 receives its pose directly. The optional legacy WALK04
+    // context stays disabled and must never select this accepted cycle.
+    let layers = walking_layers(key, pose)?;
+    let separate = key
+        .1
+        .iter()
+        .flatten()
+        .any(|held| crate::rifle_visuals::enabled(held.model));
+    #[cfg(debug_assertions)]
+    let separate = separate
+        || key
+            .1
+            .iter()
+            .flatten()
+            .any(|held| crate::animation_polish_review::local_separation(held.model));
+    Some(if separate {
+        with_contact_shadow(key, layers)
+    } else {
+        layers
+    })
+}
+fn with_contact_shadow(key: Key, mut layers: Vec<Image>) -> Vec<Image> {
     if let [Some(held), None] | [None, Some(held)] = key.1
-        && readable::binding(held.model).is_some()
+        && (readable::binding(held.model).is_some()
+            || crate::rifle_visuals::enabled(held.model)
+            || {
+                #[cfg(debug_assertions)]
+                {
+                    crate::animation_polish_review::local_separation(held.model)
+                }
+                #[cfg(not(debug_assertions))]
+                {
+                    false
+                }
+            })
     {
         // Keep the contact shadow separate from both the painted body and
         // weapon. Alpha rounding before actor lighting otherwise changes a
         // few edge highlights compared with the approved four-layer review.
-        let shadow = readable::contact_shadow(&layers[0], &layers[1]);
-        layers.insert(1, shadow);
+        // Lateral WALK12 layers include separate authored sleeves before the
+        // weapon. The last two layers own the weapon and foreground fingers.
+        let weapon = layers.len() - 2;
+        let mut body = layers[0].clone();
+        for arm in &layers[1..weapon] {
+            geometry::over(&mut body, arm);
+        }
+        let shadow = readable::contact_shadow(&body, &layers[weapon]);
+        layers.insert(weapon, shadow);
     }
-    Some(layers)
+    layers
 }
 
 pub(super) fn layers(key: Key) -> Option<Vec<Image>> {

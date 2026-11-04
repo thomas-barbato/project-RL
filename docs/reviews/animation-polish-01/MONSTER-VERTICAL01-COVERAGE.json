@@ -1,0 +1,4180 @@
+{
+  "review": "MONSTER-VERTICAL01",
+  "date": "2026-11-02",
+  "scope": "all current monster models and their existing variants",
+  "player_quote": "je dirais tous",
+  "models": 129,
+  "variants": 471,
+  "step_ms": 400,
+  "new_vertical_art_integrated": false,
+  "first_batch": [
+    14,
+    164,
+    144
+  ],
+  "morphology_policy": "Ground bipeds use alternating supports; other anatomies retain their own locomotion. Metadata is not visual proof.",
+  "entries": [
+    {
+      "number": 5,
+      "id": "MON-005-0",
+      "variants": [
+        0
+      ],
+      "label": "Possédés et hybrides 005",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 5,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-005-v0.png",
+        "cell": [
+          70,
+          64
+        ],
+        "anchor": [
+          35,
+          62
+        ],
+        "offset": -4,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL02-r01",
+      "acceptance": "MONSTER-VERTICAL02-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 6,
+      "id": "MON-006-0",
+      "variants": [
+        0
+      ],
+      "label": "Possédés et hybrides 006",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 6,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-006-v0.png",
+        "cell": [
+          79,
+          58
+        ],
+        "anchor": [
+          39,
+          56
+        ],
+        "offset": -6,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL04-r01",
+      "acceptance": "MONSTER-VERTICAL04-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 7,
+      "id": "MON-007-0",
+      "variants": [
+        0
+      ],
+      "label": "Possédés et hybrides 007",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 7,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-007-v0.png",
+        "cell": [
+          98,
+          78
+        ],
+        "anchor": [
+          49,
+          76
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL04-r01",
+      "acceptance": "MONSTER-VERTICAL04-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 8,
+      "id": "MON-008-0",
+      "variants": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 008",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 8,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-008-v0.png",
+        "cell": [
+          67,
+          66
+        ],
+        "anchor": [
+          33,
+          64
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL08-r01",
+      "acceptance": "MONSTER-VERTICAL08-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 9,
+      "id": "MON-009-0",
+      "variants": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "label": "Grande créature à six pattes",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 6,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 9,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-009-v0.png",
+        "cell": [
+          128,
+          125
+        ],
+        "anchor": [
+          64,
+          122
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 10,
+      "id": "MON-010-0",
+      "variants": [
+        0
+      ],
+      "label": "Possédés et hybrides 010",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 10,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-010-v0.png",
+        "cell": [
+          59,
+          65
+        ],
+        "anchor": [
+          29,
+          63
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL04-r01",
+      "acceptance": "MONSTER-VERTICAL04-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 11,
+      "id": "MON-011-0",
+      "variants": [
+        0
+      ],
+      "label": "Possédés et hybrides 011",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 11,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-011-v0.png",
+        "cell": [
+          59,
+          70
+        ],
+        "anchor": [
+          29,
+          68
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 12,
+      "id": "MON-012-0",
+      "variants": [
+        0
+      ],
+      "label": "Possédés et hybrides 012",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 12,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-012-v0.png",
+        "cell": [
+          84,
+          67
+        ],
+        "anchor": [
+          42,
+          65
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 14,
+      "id": "MON-014-0",
+      "variants": [
+        0
+      ],
+      "label": "Cultistes humains 014",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 14,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-014-v0.png",
+        "cell": [
+          45,
+          64
+        ],
+        "anchor": [
+          23,
+          62
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "native_candidate_awaiting_visual_approval",
+      "new_art_accepted": false
+    },
+    {
+      "number": 15,
+      "id": "MON-015-0",
+      "variants": [
+        0
+      ],
+      "label": "Cultistes humains 015",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 15,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-015-v0.png",
+        "cell": [
+          41,
+          63
+        ],
+        "anchor": [
+          21,
+          61
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL05-r01",
+      "acceptance": "MONSTER-VERTICAL05-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 16,
+      "id": "MON-016-0",
+      "variants": [
+        0
+      ],
+      "label": "Cultistes humains 016",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 16,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-016-v0.png",
+        "cell": [
+          49,
+          64
+        ],
+        "anchor": [
+          25,
+          62
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL05-r01",
+      "acceptance": "MONSTER-VERTICAL05-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 17,
+      "id": "MON-017-0",
+      "variants": [
+        0
+      ],
+      "label": "Cultistes humains 017",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 17,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-017-v0.png",
+        "cell": [
+          42,
+          66
+        ],
+        "anchor": [
+          21,
+          64
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL05-r01",
+      "acceptance": "MONSTER-VERTICAL05-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 20,
+      "id": "MON-020-0",
+      "variants": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature à base tentaculaire",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 20,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-020-v0.png",
+        "cell": [
+          106,
+          80
+        ],
+        "anchor": [
+          53,
+          78
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 21,
+      "id": "MON-021-0",
+      "variants": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "label": "Arachnide",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 8,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 21,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-021-v0.png",
+        "cell": [
+          117,
+          71
+        ],
+        "anchor": [
+          59,
+          69
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 22,
+      "id": "MON-022-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Cultistes humains 022",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 22,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-022-v0.png",
+        "cell": [
+          47,
+          65
+        ],
+        "anchor": [
+          23,
+          63
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL06-r01",
+      "acceptance": "MONSTER-VERTICAL06-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 24,
+      "id": "MON-024-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Cultistes humains 024",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 24,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-024-v0.png",
+        "cell": [
+          52,
+          63
+        ],
+        "anchor": [
+          26,
+          61
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL06-r01",
+      "acceptance": "MONSTER-VERTICAL06-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 25,
+      "id": "MON-025-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Possédés et hybrides 025",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 25,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-025-v0.png",
+        "cell": [
+          46,
+          59
+        ],
+        "anchor": [
+          23,
+          57
+        ],
+        "offset": -5,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL06-r01",
+      "acceptance": "MONSTER-VERTICAL06-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 26,
+      "id": "MON-026-0",
+      "variants": [
+        0
+      ],
+      "label": "Possédés et hybrides 026",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 26,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-026-v0.png",
+        "cell": [
+          55,
+          49
+        ],
+        "anchor": [
+          27,
+          47
+        ],
+        "offset": -10,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL07-r01",
+      "acceptance": "MONSTER-VERTICAL07-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 28,
+      "id": "MON-028-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 028",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 28,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-028-v0.png",
+        "cell": [
+          78,
+          70
+        ],
+        "anchor": [
+          39,
+          68
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL07-r01",
+      "acceptance": "MONSTER-VERTICAL07-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 29,
+      "id": "MON-029-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Larve",
+      "declared_rig": "serpent",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 29,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-029-v0.png",
+        "cell": [
+          37,
+          25
+        ],
+        "anchor": [
+          19,
+          23
+        ],
+        "offset": -22,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 30,
+      "id": "MON-030-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Insecte",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 6,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 30,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-030-v0.png",
+        "cell": [
+          50,
+          32
+        ],
+        "anchor": [
+          25,
+          30
+        ],
+        "offset": -19,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 31,
+      "id": "MON-031-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Insecte",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 6,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 31,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-031-v0.png",
+        "cell": [
+          49,
+          41
+        ],
+        "anchor": [
+          24,
+          39
+        ],
+        "offset": -14,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 32,
+      "id": "MON-032-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 032",
+      "declared_rig": "quadruped",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 32,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-032-v0.png",
+        "cell": [
+          42,
+          43
+        ],
+        "anchor": [
+          21,
+          41
+        ],
+        "offset": -12,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL21-QUAD01-r01",
+      "legacy_declared_rig": "biped",
+      "anatomy_correction": "MONSTER-VERTICAL07-AMENDMENT-r02.json",
+      "acceptance": "MONSTER-VERTICAL21-QUAD01-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 33,
+      "id": "MON-033-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Forme rampante à épines",
+      "declared_rig": "serpent",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 33,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-033-v0.png",
+        "cell": [
+          45,
+          28
+        ],
+        "anchor": [
+          22,
+          26
+        ],
+        "offset": -20,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 34,
+      "id": "MON-034-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 034",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 34,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-034-v0.png",
+        "cell": [
+          50,
+          42
+        ],
+        "anchor": [
+          25,
+          40
+        ],
+        "offset": -13,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL08-r01",
+      "acceptance": "MONSTER-VERTICAL08-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 35,
+      "id": "MON-035-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Petit quadrupède pâle",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 35,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-035-v0.png",
+        "cell": [
+          58,
+          36
+        ],
+        "anchor": [
+          29,
+          34
+        ],
+        "offset": -17,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL09-r01",
+      "acceptance": "MONSTER-VERTICAL09-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 36,
+      "id": "MON-036-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 036",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 36,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-036-v0.png",
+        "cell": [
+          52,
+          56
+        ],
+        "anchor": [
+          26,
+          54
+        ],
+        "offset": -6,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL08-r01",
+      "acceptance": "MONSTER-VERTICAL08-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 37,
+      "id": "MON-037-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Petit rampant pâle",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 37,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-037-v0.png",
+        "cell": [
+          45,
+          29
+        ],
+        "anchor": [
+          23,
+          27
+        ],
+        "offset": -20,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL09-r01",
+      "acceptance": "MONSTER-VERTICAL09-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 38,
+      "id": "MON-038-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature à ouverture cerclée",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 38,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-038-v0.png",
+        "cell": [
+          57,
+          37
+        ],
+        "anchor": [
+          29,
+          35
+        ],
+        "offset": -16,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL09-r01",
+      "acceptance": "MONSTER-VERTICAL09-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 39,
+      "id": "MON-039-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Petite créature ailée",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 39,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-039-v0.png",
+        "cell": [
+          55,
+          47
+        ],
+        "anchor": [
+          27,
+          45
+        ],
+        "offset": -10,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL03-r01",
+      "acceptance": "MONSTER-VERTICAL03-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 60,
+      "id": "MON-060-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 060",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 60,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-060-v0.png",
+        "cell": [
+          44,
+          54
+        ],
+        "anchor": [
+          22,
+          52
+        ],
+        "offset": -8,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL28-WEAPON01-r01",
+      "acceptance": "MONSTER-VERTICAL28-WEAPON01-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 61,
+      "id": "MON-061-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 061",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 61,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-061-v0.png",
+        "cell": [
+          53,
+          70
+        ],
+        "anchor": [
+          27,
+          68
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL10-r01",
+      "acceptance": "MONSTER-VERTICAL10-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 62,
+      "id": "MON-062-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 062",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 62,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-062-v0.png",
+        "cell": [
+          61,
+          69
+        ],
+        "anchor": [
+          31,
+          67
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL10-r01",
+      "acceptance": "MONSTER-VERTICAL10-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 63,
+      "id": "MON-063-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Quadrupède à queue",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 63,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-063-v0.png",
+        "cell": [
+          72,
+          53
+        ],
+        "anchor": [
+          36,
+          51
+        ],
+        "offset": -9,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL11-r01",
+      "acceptance": "MONSTER-VERTICAL11-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 64,
+      "id": "MON-064-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Quadrupède",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 64,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-064-v0.png",
+        "cell": [
+          79,
+          39
+        ],
+        "anchor": [
+          39,
+          37
+        ],
+        "offset": -16,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL11-r01",
+      "acceptance": "MONSTER-VERTICAL11-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 65,
+      "id": "MON-065-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature au corps enroulé",
+      "declared_rig": "serpent",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 65,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-065-v0.png",
+        "cell": [
+          72,
+          67
+        ],
+        "anchor": [
+          36,
+          65
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL11-r01",
+      "acceptance": "MONSTER-VERTICAL11-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 66,
+      "id": "MON-066-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature aux bras ailés",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 66,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-066-v0.png",
+        "cell": [
+          82,
+          66
+        ],
+        "anchor": [
+          41,
+          64
+        ],
+        "offset": -3,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL12-r01",
+      "acceptance": "MONSTER-VERTICAL12-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 67,
+      "id": "MON-067-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Rampant sombre à bouche ronde",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 67,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-067-v0.png",
+        "cell": [
+          53,
+          34
+        ],
+        "anchor": [
+          27,
+          32
+        ],
+        "offset": -18,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL12-r01",
+      "acceptance": "MONSTER-VERTICAL12-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 68,
+      "id": "MON-068-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 068",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 68,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-068-v0.png",
+        "cell": [
+          80,
+          84
+        ],
+        "anchor": [
+          40,
+          82
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL12-r01",
+      "acceptance": "MONSTER-VERTICAL12-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 69,
+      "id": "MON-069-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature rouge à six pattes",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 6,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 69,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-069-v0.png",
+        "cell": [
+          53,
+          42
+        ],
+        "anchor": [
+          27,
+          40
+        ],
+        "offset": -14,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL13-r01",
+      "acceptance": "MONSTER-VERTICAL13-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 70,
+      "id": "MON-070-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature aux avant-bras recourbés",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 70,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-070-v0.png",
+        "cell": [
+          82,
+          80
+        ],
+        "anchor": [
+          41,
+          78
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL13-r01",
+      "acceptance": "MONSTER-VERTICAL13-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 71,
+      "id": "MON-071-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Arachnide",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 8,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 71,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-071-v0.png",
+        "cell": [
+          97,
+          64
+        ],
+        "anchor": [
+          49,
+          62
+        ],
+        "offset": -3,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL13-r01",
+      "acceptance": "MONSTER-VERTICAL13-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 72,
+      "id": "MON-072-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 072",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 72,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-072-v0.png",
+        "cell": [
+          64,
+          67
+        ],
+        "anchor": [
+          32,
+          65
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "native_candidate_awaiting_visual_approval",
+      "new_art_accepted": false,
+      "latest_review": "MONSTER-VERTICAL14-r01"
+    },
+    {
+      "number": 73,
+      "id": "MON-073-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 073",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 73,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-073-v0.png",
+        "cell": [
+          63,
+          75
+        ],
+        "anchor": [
+          31,
+          73
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "native_candidate_awaiting_visual_approval",
+      "new_art_accepted": false,
+      "latest_review": "MONSTER-VERTICAL14-r01"
+    },
+    {
+      "number": 74,
+      "id": "MON-074-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 074",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 74,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-074-v0.png",
+        "cell": [
+          80,
+          76
+        ],
+        "anchor": [
+          40,
+          74
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "native_candidate_awaiting_visual_approval",
+      "new_art_accepted": false,
+      "latest_review": "MONSTER-VERTICAL14-r01"
+    },
+    {
+      "number": 75,
+      "id": "MON-075-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Quadrupède",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 75,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-075-v0.png",
+        "cell": [
+          93,
+          57
+        ],
+        "anchor": [
+          47,
+          55
+        ],
+        "offset": -7,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 76,
+      "id": "MON-076-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature aux appendices recourbés",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 76,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-076-v0.png",
+        "cell": [
+          103,
+          66
+        ],
+        "anchor": [
+          51,
+          64
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 77,
+      "id": "MON-077-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 077",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 77,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-077-v0.png",
+        "cell": [
+          85,
+          87
+        ],
+        "anchor": [
+          43,
+          85
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 78,
+      "id": "MON-078-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 078",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 78,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-078-v0.png",
+        "cell": [
+          99,
+          86
+        ],
+        "anchor": [
+          49,
+          84
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 79,
+      "id": "MON-079-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 079",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 79,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-079-v0.png",
+        "cell": [
+          65,
+          69
+        ],
+        "anchor": [
+          33,
+          67
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 80,
+      "id": "MON-080-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 080",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 80,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-080-v0.png",
+        "cell": [
+          88,
+          86
+        ],
+        "anchor": [
+          44,
+          84
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 81,
+      "id": "MON-081-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Quadrupède cuirassé",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 81,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-081-v0.png",
+        "cell": [
+          63,
+          40
+        ],
+        "anchor": [
+          31,
+          38
+        ],
+        "offset": -15,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 82,
+      "id": "MON-082-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 082",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 82,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-082-v0.png",
+        "cell": [
+          83,
+          76
+        ],
+        "anchor": [
+          41,
+          74
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 83,
+      "id": "MON-083-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Scorpion",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 8,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 83,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-083-v0.png",
+        "cell": [
+          60,
+          55
+        ],
+        "anchor": [
+          30,
+          53
+        ],
+        "offset": -8,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 84,
+      "id": "MON-084-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 084",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 84,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-084-v0.png",
+        "cell": [
+          71,
+          71
+        ],
+        "anchor": [
+          35,
+          69
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 85,
+      "id": "MON-085-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 085",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 85,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-085-v0.png",
+        "cell": [
+          74,
+          80
+        ],
+        "anchor": [
+          37,
+          78
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 86,
+      "id": "MON-086-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 086",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 86,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-086-v0.png",
+        "cell": [
+          64,
+          72
+        ],
+        "anchor": [
+          32,
+          70
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 87,
+      "id": "MON-087-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Quadrupède trapu",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 87,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-087-v0.png",
+        "cell": [
+          58,
+          43
+        ],
+        "anchor": [
+          29,
+          41
+        ],
+        "offset": -14,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 88,
+      "id": "MON-088-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Oiseau aux ailes rouges",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 88,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-088-v0.png",
+        "cell": [
+          61,
+          66
+        ],
+        "anchor": [
+          31,
+          64
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 89,
+      "id": "MON-089-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature à quatre pattes anguleuses",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 89,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-089-v0.png",
+        "cell": [
+          71,
+          65
+        ],
+        "anchor": [
+          35,
+          63
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 90,
+      "id": "MON-090-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature brune à six pattes claires",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 6,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 90,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-090-v0.png",
+        "cell": [
+          55,
+          33
+        ],
+        "anchor": [
+          27,
+          31
+        ],
+        "offset": -18,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 92,
+      "id": "MON-092-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Quadrupède pâle",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 92,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-092-v0.png",
+        "cell": [
+          61,
+          50
+        ],
+        "anchor": [
+          31,
+          48
+        ],
+        "offset": -10,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 93,
+      "id": "MON-093-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons et créations 093",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 93,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-093-v0.png",
+        "cell": [
+          80,
+          84
+        ],
+        "anchor": [
+          40,
+          82
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 96,
+      "id": "MON-096-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Possédés et hybrides 096",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 96,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-096-v0.png",
+        "cell": [
+          58,
+          74
+        ],
+        "anchor": [
+          29,
+          72
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 98,
+      "id": "MON-098-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Possédés et hybrides 098",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 98,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-098-v0.png",
+        "cell": [
+          83,
+          61
+        ],
+        "anchor": [
+          41,
+          59
+        ],
+        "offset": -6,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 99,
+      "id": "MON-099-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Possédés et hybrides 099",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 99,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-099-v0.png",
+        "cell": [
+          75,
+          78
+        ],
+        "anchor": [
+          37,
+          76
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 100,
+      "id": "MON-100-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 100",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 100,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-100-v0.png",
+        "cell": [
+          51,
+          74
+        ],
+        "anchor": [
+          25,
+          72
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 101,
+      "id": "MON-101-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Quadrupède à carapace côtelée",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 101,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-101-v0.png",
+        "cell": [
+          81,
+          61
+        ],
+        "anchor": [
+          41,
+          59
+        ],
+        "offset": -5,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 102,
+      "id": "MON-102-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 102",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 102,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-102-v0.png",
+        "cell": [
+          91,
+          85
+        ],
+        "anchor": [
+          45,
+          83
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 103,
+      "id": "MON-103-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Quadrupède à plaques",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 103,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-103-v0.png",
+        "cell": [
+          82,
+          49
+        ],
+        "anchor": [
+          41,
+          47
+        ],
+        "offset": -9,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 104,
+      "id": "MON-104-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Rampant massif pâle",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 104,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-104-v0.png",
+        "cell": [
+          64,
+          42
+        ],
+        "anchor": [
+          32,
+          40
+        ],
+        "offset": -13,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 105,
+      "id": "MON-105-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 105",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 105,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-105-v0.png",
+        "cell": [
+          64,
+          74
+        ],
+        "anchor": [
+          32,
+          72
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 106,
+      "id": "MON-106-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 106",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 106,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-106-v0.png",
+        "cell": [
+          70,
+          54
+        ],
+        "anchor": [
+          35,
+          52
+        ],
+        "offset": -8,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 107,
+      "id": "MON-107-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature à carapace ovale",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 107,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-107-v0.png",
+        "cell": [
+          72,
+          65
+        ],
+        "anchor": [
+          36,
+          63
+        ],
+        "offset": -4,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 108,
+      "id": "MON-108-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 108",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 108,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-108-v0.png",
+        "cell": [
+          55,
+          70
+        ],
+        "anchor": [
+          27,
+          68
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 109,
+      "id": "MON-109-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature brune aux longues pattes",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 109,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-109-v0.png",
+        "cell": [
+          66,
+          44
+        ],
+        "anchor": [
+          33,
+          42
+        ],
+        "offset": -12,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 111,
+      "id": "MON-111-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 111",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 111,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-111-v0.png",
+        "cell": [
+          79,
+          77
+        ],
+        "anchor": [
+          39,
+          75
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 112,
+      "id": "MON-112-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 112",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 112,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-112-v0.png",
+        "cell": [
+          59,
+          73
+        ],
+        "anchor": [
+          29,
+          71
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 113,
+      "id": "MON-113-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature pâle aux appuis écartés",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 113,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-113-v0.png",
+        "cell": [
+          55,
+          43
+        ],
+        "anchor": [
+          27,
+          41
+        ],
+        "offset": -13,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 115,
+      "id": "MON-115-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons et créations 115",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 115,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-115-v0.png",
+        "cell": [
+          58,
+          85
+        ],
+        "anchor": [
+          29,
+          83
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 116,
+      "id": "MON-116-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Cultistes possédés 116",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 116,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-116-v0.png",
+        "cell": [
+          57,
+          68
+        ],
+        "anchor": [
+          29,
+          66
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 117,
+      "id": "MON-117-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Cultistes possédés 117",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 117,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-117-v0.png",
+        "cell": [
+          53,
+          74
+        ],
+        "anchor": [
+          27,
+          72
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 118,
+      "id": "MON-118-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Rampant à capuche rouge",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 118,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-118-v0.png",
+        "cell": [
+          56,
+          45
+        ],
+        "anchor": [
+          28,
+          43
+        ],
+        "offset": -13,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 119,
+      "id": "MON-119-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Cultistes possédés 119",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 119,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-119-v0.png",
+        "cell": [
+          53,
+          73
+        ],
+        "anchor": [
+          27,
+          71
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 120,
+      "id": "MON-120-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Zombies 120",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 120,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-120-v0.png",
+        "cell": [
+          49,
+          68
+        ],
+        "anchor": [
+          25,
+          66
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 121,
+      "id": "MON-121-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Zombies 121",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 121,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-121-v0.png",
+        "cell": [
+          49,
+          67
+        ],
+        "anchor": [
+          25,
+          65
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 122,
+      "id": "MON-122-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Rampant chauve en tenue sombre",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 122,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-122-v0.png",
+        "cell": [
+          64,
+          34
+        ],
+        "anchor": [
+          32,
+          32
+        ],
+        "offset": -17,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 123,
+      "id": "MON-123-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Zombies 123",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 123,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-123-v0.png",
+        "cell": [
+          68,
+          81
+        ],
+        "anchor": [
+          34,
+          79
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 124,
+      "id": "MON-124-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Esprit",
+      "declared_rig": "float",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 124,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-124-v0.png",
+        "cell": [
+          42,
+          74
+        ],
+        "anchor": [
+          21,
+          72
+        ],
+        "offset": 0,
+        "shadow": false,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 125,
+      "id": "MON-125-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Esprit",
+      "declared_rig": "float",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 125,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-125-v0.png",
+        "cell": [
+          56,
+          71
+        ],
+        "anchor": [
+          28,
+          69
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 126,
+      "id": "MON-126-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Esprit étroit",
+      "declared_rig": "float",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 126,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-126-v0.png",
+        "cell": [
+          43,
+          69
+        ],
+        "anchor": [
+          21,
+          67
+        ],
+        "offset": 0,
+        "shadow": false,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 127,
+      "id": "MON-127-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Esprit aux bras osseux",
+      "declared_rig": "float",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 127,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-127-v0.png",
+        "cell": [
+          53,
+          79
+        ],
+        "anchor": [
+          27,
+          77
+        ],
+        "offset": 0,
+        "shadow": false,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 128,
+      "id": "MON-128-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Squelettes 128",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 128,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-128-v0.png",
+        "cell": [
+          50,
+          70
+        ],
+        "anchor": [
+          25,
+          68
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 129,
+      "id": "MON-129-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Squelettes 129",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 129,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-129-v0.png",
+        "cell": [
+          49,
+          68
+        ],
+        "anchor": [
+          25,
+          66
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 130,
+      "id": "MON-130-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Créatures enflammées 130",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 130,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-130-v0.png",
+        "cell": [
+          70,
+          69
+        ],
+        "anchor": [
+          35,
+          67
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 131,
+      "id": "MON-131-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Quadrupède sombre aux flammes",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 131,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-131-v0.png",
+        "cell": [
+          67,
+          55
+        ],
+        "anchor": [
+          33,
+          53
+        ],
+        "offset": -8,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 132,
+      "id": "MON-132-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Nécromanciens scientifiques 132",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 132,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-132-v0.png",
+        "cell": [
+          54,
+          69
+        ],
+        "anchor": [
+          27,
+          67
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 133,
+      "id": "MON-133-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Nécromanciens scientifiques 133",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 133,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-133-v0.png",
+        "cell": [
+          49,
+          71
+        ],
+        "anchor": [
+          25,
+          69
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 134,
+      "id": "MON-134-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Nécromanciens scientifiques 134",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 134,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-134-v0.png",
+        "cell": [
+          40,
+          68
+        ],
+        "anchor": [
+          20,
+          66
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 135,
+      "id": "MON-135-0",
+      "variants": [
+        0,
+        1
+      ],
+      "label": "Nécromanciens scientifiques 135",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 135,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-135-v0.png",
+        "cell": [
+          45,
+          71
+        ],
+        "anchor": [
+          23,
+          69
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 136,
+      "id": "MON-136-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Nécromanciens démoniaques 136",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 136,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-136-v0.png",
+        "cell": [
+          72,
+          84
+        ],
+        "anchor": [
+          36,
+          82
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 137,
+      "id": "MON-137-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Nécromanciens démoniaques 137",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 137,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-137-v0.png",
+        "cell": [
+          52,
+          75
+        ],
+        "anchor": [
+          26,
+          73
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 138,
+      "id": "MON-138-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Nécromanciens démoniaques 138",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 138,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-138-v0.png",
+        "cell": [
+          74,
+          68
+        ],
+        "anchor": [
+          37,
+          66
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 139,
+      "id": "MON-139-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature au livre",
+      "declared_rig": "float",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 139,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-139-v0.png",
+        "cell": [
+          65,
+          83
+        ],
+        "anchor": [
+          33,
+          81
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 140,
+      "id": "MON-140-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Larve segmentée aux petits appuis",
+      "declared_rig": "serpent",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 140,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-140-v0.png",
+        "cell": [
+          70,
+          39
+        ],
+        "anchor": [
+          35,
+          37
+        ],
+        "offset": -15,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 141,
+      "id": "MON-141-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Ver",
+      "declared_rig": "serpent",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 141,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-141-v0.png",
+        "cell": [
+          86,
+          81
+        ],
+        "anchor": [
+          43,
+          79
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 142,
+      "id": "MON-142-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Forme rampante violette",
+      "declared_rig": "serpent",
+      "declared_locomotor_legs": 0,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 142,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-142-v0.png",
+        "cell": [
+          61,
+          104
+        ],
+        "anchor": [
+          31,
+          102
+        ],
+        "offset": -16,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 143,
+      "id": "MON-143-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature pâle aux défenses",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 143,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-143-v0.png",
+        "cell": [
+          82,
+          61
+        ],
+        "anchor": [
+          41,
+          59
+        ],
+        "offset": -4,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 144,
+      "id": "MON-144-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature ailée",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 144,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-144-v0.png",
+        "cell": [
+          108,
+          86
+        ],
+        "anchor": [
+          54,
+          84
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL-COLOR01-r01",
+      "acceptance": "MONSTER-VERTICAL-COLOR01-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 145,
+      "id": "MON-145-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature ailée",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 145,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-145-v0.png",
+        "cell": [
+          111,
+          96
+        ],
+        "anchor": [
+          55,
+          93
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 146,
+      "id": "MON-146-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature ailée dorée",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 146,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-146-v0.png",
+        "cell": [
+          110,
+          86
+        ],
+        "anchor": [
+          55,
+          84
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL03-r01",
+      "acceptance": "MONSTER-VERTICAL03-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 147,
+      "id": "MON-147-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature ailée violette",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 147,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-147-v0.png",
+        "cell": [
+          105,
+          91
+        ],
+        "anchor": [
+          53,
+          89
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 148,
+      "id": "MON-148-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature ailée massive",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 148,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-148-v0.png",
+        "cell": [
+          140,
+          103
+        ],
+        "anchor": [
+          70,
+          101
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 149,
+      "id": "MON-149-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature ailée pâle massive",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 149,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-149-v0.png",
+        "cell": [
+          120,
+          97
+        ],
+        "anchor": [
+          60,
+          95
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 150,
+      "id": "MON-150-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature ailée verte",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 150,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-150-v0.png",
+        "cell": [
+          117,
+          98
+        ],
+        "anchor": [
+          59,
+          96
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 151,
+      "id": "MON-151-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature ailée pâle au brassard",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 151,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-151-v0.png",
+        "cell": [
+          121,
+          102
+        ],
+        "anchor": [
+          61,
+          100
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL03-r01",
+      "acceptance": "MONSTER-VERTICAL03-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 152,
+      "id": "MON-152-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons de peste 152",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 152,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-152-v0.png",
+        "cell": [
+          84,
+          83
+        ],
+        "anchor": [
+          42,
+          81
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 153,
+      "id": "MON-153-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature ailée au visage allongé",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 153,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-153-v0.png",
+        "cell": [
+          95,
+          87
+        ],
+        "anchor": [
+          47,
+          85
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 154,
+      "id": "MON-154-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Quadrupède aux nodules dorsaux",
+      "declared_rig": "quad",
+      "declared_locomotor_legs": 4,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 154,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-154-v0.png",
+        "cell": [
+          89,
+          66
+        ],
+        "anchor": [
+          45,
+          64
+        ],
+        "offset": -3,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 155,
+      "id": "MON-155-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature au large chapeau",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 155,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-155-v0.png",
+        "cell": [
+          91,
+          92
+        ],
+        "anchor": [
+          45,
+          90
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 156,
+      "id": "MON-156-0",
+      "variants": [
+        0,
+        2,
+        3
+      ],
+      "label": "Créature massive bleutée",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 156,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-156-v0.png",
+        "cell": [
+          92,
+          97
+        ],
+        "anchor": [
+          46,
+          95
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL02-r01",
+      "acceptance": "MONSTER-VERTICAL02-ACCEPTANCE-r01.json"
+    },
+    {
+      "number": 157,
+      "id": "MON-157-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature ailée grise à longue queue",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 157,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-157-v0.png",
+        "cell": [
+          90,
+          86
+        ],
+        "anchor": [
+          45,
+          84
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 158,
+      "id": "MON-158-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Créature bleue à deux pinces",
+      "declared_rig": "crawl",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 158,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-158-v0.png",
+        "cell": [
+          110,
+          70
+        ],
+        "anchor": [
+          55,
+          68
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 159,
+      "id": "MON-159-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons du froid 159",
+      "declared_rig": "heavy",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 159,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-159-v0.png",
+        "cell": [
+          96,
+          98
+        ],
+        "anchor": [
+          48,
+          96
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 160,
+      "id": "MON-160-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Démons humanoïdes 160",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 160,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-160-v0.png",
+        "cell": [
+          71,
+          76
+        ],
+        "anchor": [
+          35,
+          74
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 161,
+      "id": "MON-161-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "label": "Démons humanoïdes 161",
+      "declared_rig": "biped",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 161,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-161-v0.png",
+        "cell": [
+          54,
+          74
+        ],
+        "anchor": [
+          27,
+          72
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 162,
+      "id": "MON-162-0",
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "label": "Créature ailée en tenue rouge",
+      "declared_rig": "winged",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 162,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-162-v0.png",
+        "cell": [
+          69,
+          81
+        ],
+        "anchor": [
+          35,
+          79
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "pending_review",
+      "new_art_accepted": false
+    },
+    {
+      "number": 164,
+      "id": "MON-164-0",
+      "variants": [
+        0
+      ],
+      "label": "Cultistes humains 164",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 164,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-164-v0.png",
+        "cell": [
+          50,
+          64
+        ],
+        "anchor": [
+          25,
+          62
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "native_candidate_awaiting_visual_approval",
+      "new_art_accepted": false
+    },
+    {
+      "number": 165,
+      "id": "MON-165-0",
+      "variants": [
+        0
+      ],
+      "label": "Cultistes humains 165",
+      "declared_rig": "robe",
+      "declared_locomotor_legs": 2,
+      "anatomy_requires_native_review": true,
+      "current_vertical": {
+        "number": 165,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-165-v0.png",
+        "cell": [
+          53,
+          70
+        ],
+        "anchor": [
+          27,
+          68
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "status": "accepted",
+      "new_art_accepted": true,
+      "latest_review": "MONSTER-VERTICAL02-r01",
+      "acceptance": "MONSTER-VERTICAL02-ACCEPTANCE-r01.json"
+    }
+  ]
+}

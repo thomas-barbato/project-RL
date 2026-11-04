@@ -1,4 +1,4 @@
-//! Whole painted frames, clipped only by visible floor and physical occlusion.
+//! Whole painted frames, clipped by perception and opaque terrain/scenery.
 use crate::{animation_policy as policy, effect_geometry};
 use macroquad::{
     miniquad::{UniformDesc, UniformType},
@@ -161,12 +161,7 @@ pub fn on_floor(
         (max_x - min_x + 1) as u16,
         (max_y - min_y + 1) as u16,
     );
-    let cells: Vec<_> = (min_y..=max_y)
-        .flat_map(|y| (min_x..=max_x).map(move |x| GridPos::new(x, y)))
-        .filter(|at| {
-            rect(*at).is_some() && map.is_walkable(*at) && has_line_of_sight(map, origin, *at, true)
-        })
-        .collect();
+    let cells = mask_cells(bounds, origin, map, |at| rect(at).is_some());
     ART.with_borrow_mut(|cache| {
         let art = cache.get_or_insert_with(Art::load);
         let index = if let Some(i) = art
@@ -214,9 +209,46 @@ pub fn on_floor(
     });
 }
 
+fn mask_cells(
+    (min_x, min_y, width, height): (i32, i32, u16, u16),
+    origin: GridPos,
+    map: &Map,
+    visible: impl Fn(GridPos) -> bool,
+) -> Vec<GridPos> {
+    (min_y..min_y + i32::from(height))
+        .flat_map(|y| (min_x..min_x + i32::from(width)).map(move |x| GridPos::new(x, y)))
+        .filter(|at| {
+            visible(*at) && !map.blocks_vision(*at) && has_line_of_sight(map, origin, *at, true)
+        })
+        .collect()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn spell_obstacles_mask_covers_water_and_low_decor_but_keeps_wall_shadows_and_fog() {
+        use project_rl::world::{DoorState, Terrain};
+        let mut map = Map::filled(9, 7, Terrain::Floor).unwrap();
+        let origin = GridPos::new(2, 3);
+        let water = GridPos::new(3, 3);
+        let low_decor = GridPos::new(4, 3);
+        let wall = GridPos::new(5, 3);
+        let shadow = GridPos::new(6, 3);
+        let hidden = GridPos::new(2, 4);
+        map.set_terrain(water, Terrain::DeepWater).unwrap();
+        map.set_obstruction(low_decor, true, false).unwrap();
+        for terrain in [Terrain::Wall, Terrain::Door(DoorState::Closed)] {
+            map.set_terrain(wall, terrain).unwrap();
+            let cells = mask_cells((0, 0, 9, 7), origin, &map, |at| at != hidden);
+            assert!(cells.contains(&water));
+            assert!(cells.contains(&low_decor));
+            assert!(!cells.contains(&wall));
+            assert!(!cells.contains(&shadow));
+            assert!(!cells.contains(&hidden));
+        }
+    }
 
     #[test]
     fn a_partly_offscreen_effect_keeps_its_center_and_scale() {

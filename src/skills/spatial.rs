@@ -13,15 +13,16 @@ pub enum Area {
     Cone { length: u16 },
 }
 
-/// Walls stop the effect on rays from its centre, including isolated obstacles.
+/// Opaque terrain and scenery stop the effect on rays from its centre.
 /// An explosion cannot take a path around a wall to hit its shadow.
+/// Water and low scenery can block movement without blocking propagation.
 pub fn affected_cells(
     map: &Map,
     origin: GridPos,
     area: Area,
     direction: (i32, i32),
 ) -> Vec<GridPos> {
-    if !map.is_walkable(origin) {
+    if map.blocks_vision(origin) {
         return Vec::new();
     }
     if let Area::Line { length, width } = area {
@@ -32,7 +33,7 @@ pub fn affected_cells(
                     origin.x + forward * direction.0 - side * direction.1,
                     origin.y + forward * direction.1 + side * direction.0,
                 );
-                if !map.is_walkable(at) {
+                if map.blocks_vision(at) {
                     break;
                 }
                 result.push(at);
@@ -82,7 +83,7 @@ pub fn affected_cells(
                 }
             };
             let at = GridPos::new(x, y);
-            if inside && map.is_walkable(at) && has_line_of_sight(map, origin, at, true) {
+            if inside && !map.blocks_vision(at) && has_line_of_sight(map, origin, at, true) {
                 result.push(at);
             }
         }
@@ -99,6 +100,48 @@ pub fn in_cast_range(from: GridPos, to: GridPos, range: u16) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn spell_obstacles_water_and_low_decor_preserve_every_area_and_direction() {
+        use crate::world::Terrain;
+        let open = Map::filled(11, 11, Terrain::Floor).unwrap();
+        let origin = GridPos::new(5, 5);
+        for low_decor in [false, true] {
+            let mut map = open.clone();
+            for y in 0..11 {
+                for x in 0..11 {
+                    let at = GridPos::new(x, y);
+                    if low_decor {
+                        map.set_obstruction(at, true, false).unwrap();
+                    } else {
+                        map.set_terrain(at, Terrain::DeepWater).unwrap();
+                    }
+                }
+            }
+            for area in [
+                Area::Point,
+                Area::Square { radius: 3 },
+                Area::Disc { radius: 3 },
+                Area::Diamond { radius: 3 },
+                Area::Ring { radius: 3 },
+                Area::Wall { length: 5 },
+                Area::Line {
+                    length: 5,
+                    width: 3,
+                },
+                Area::Cone { length: 3 },
+            ] {
+                for dir in [(1, 0), (-1, 0), (0, 1), (0, -1)] {
+                    assert_eq!(
+                        affected_cells(&map, origin, area, dir),
+                        affected_cells(&open, origin, area, dir),
+                        "{area:?}, {dir:?}, low decor: {low_decor}"
+                    );
+                }
+            }
+            assert!(!map.is_walkable(origin));
+        }
+    }
     #[test]
     fn square_keeps_corners_and_a_partial_wall_casts_a_shadow() {
         let map = Map::from_ascii(

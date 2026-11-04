@@ -1,0 +1,55 @@
+{
+  "review": "ANIM-POLISH01-HELM03-ICONS-r01",
+  "date": "2026-10-31",
+  "status": "native_icon_candidates_and_optional_effect_await_review",
+  "creation_mode": "builtin_image_gen",
+  "raw_sources_copied_to_workspace": 3,
+  "native_icons": 3,
+  "native_icon_size": [
+    64,
+    64
+  ],
+  "conditioning": "HELM03-SOURCES.json",
+  "transparent_margins_verified": true,
+  "visor_only_changed_pixels_at_minimum": [
+    16,
+    39,
+    8
+  ],
+  "outside_mask_pixels_identical": true,
+  "alpha_identical_across_pulse": true,
+  "previous_runtime_art_and_render_source_hashes_unchanged": true,
+  "javascript_syntax": "passed node --check",
+  "http_png_inputs_verified": 6,
+  "browser": {
+    "loaded_native_overview_and_fixed_animated_pairs": true,
+    "light_background": true,
+    "dark_background": true,
+    "animation_stop_button": true,
+    "replay_button_restores_animation": true,
+    "console_errors": 0,
+    "screenshot": "artifacts/animation-polish-01/helmet-icons-r01/current/browser-native-review.png",
+    "screenshot_size": [
+      421,
+      649
+    ],
+    "canvas_pixel_readback": "not exposed by browser read-only inspection; per-material pixel checks performed on native assets"
+  },
+  "presentation_webp": {
+    "native_size": [
+      288,
+      104
+    ],
+    "stored_frames": 5,
+    "duration_ms": 3600
+  },
+  "normal_game_enabled": false,
+  "new_worn_variants_created": false,
+  "rust_build_or_tests_rerun": false,
+  "pending": [
+    "icon direction and proposed family count",
+    "optional visor effect",
+    "mapping to existing items",
+    "all-class worn variants with armor-aware fit and coherent front/back/left/right"
+  ]
+}

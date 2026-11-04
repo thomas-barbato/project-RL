@@ -1,0 +1,529 @@
+{
+  "review": "MONSTER-VERTICAL-ALL-r02",
+  "normal_game_enabled": false,
+  "native_cell_px": 64,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "profiles": [
+    {
+      "id": "MON-011-0",
+      "number": 11,
+      "name": "Possédés et hybrides 011",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 64,
+      "vertical_offset": 0,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-011-front.png",
+      "idle_sha256": "956bdebba574c812882d65fb343d635d3d046efece0dabd8e8d0c6151ba22d36",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-011-v0.png",
+      "front_shadow": 33,
+      "current_vertical": {
+        "number": 11,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-011-v0.png",
+        "cell": [
+          59,
+          70
+        ],
+        "anchor": [
+          29,
+          68
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "review_number": 62,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-011-atlas.png",
+      "sha256": "4f631275399b9501c6a248bf823b4550b38186863205d86ac604bbb81a57a09e",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-011-sheet.png"
+      ],
+      "source_sha256": "284f343284986cb3d8a468a0498d847f2bb59a96ea0c61c3374a1ac5bce2c5a8",
+      "casts_shadow": true,
+      "locomotion": "biped",
+      "locomotor_legs": 2,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-011-atlas.png",
+      "previous_sha256": "a228cb3c70d60463a4ba464b59ac3deeebc22a9e45b10159d24cc800f6a9bdcf",
+      "revised_directions": [
+        "down",
+        "up"
+      ]
+    },
+    {
+      "id": "MON-105-0",
+      "number": 105,
+      "name": "Démons et créations 105",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 70,
+      "vertical_offset": 0,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-105-front.png",
+      "idle_sha256": "22893e2347d4ab21326339f1c698bc3ab7f23cc25a495488fe45e897a1567a33",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-105-v0.png",
+      "front_shadow": 31,
+      "current_vertical": {
+        "number": 105,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-105-v0.png",
+        "cell": [
+          64,
+          74
+        ],
+        "anchor": [
+          32,
+          72
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "review_number": 78,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-105-atlas.png",
+      "sha256": "029ec942df77135b820521fe631634d26f247e59bd54f2b3999e8c41b651b73d",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-105-sheet.png"
+      ],
+      "source_sha256": "67b3e7af01f5cceff8ec05497a701d9f632e16d120bf96744bc01d4b15200c90",
+      "casts_shadow": true,
+      "locomotion": "biped",
+      "locomotor_legs": 2,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-105-atlas.png",
+      "previous_sha256": "59cc2667b6841455a5b04356046c9b3e4a79a548cad09c3b583c23d9a445c4bd",
+      "revised_directions": [
+        "up"
+      ]
+    },
+    {
+      "id": "MON-106-0",
+      "number": 106,
+      "name": "Démons et créations 106",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 47,
+      "vertical_offset": -8,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-106-front.png",
+      "idle_sha256": "1a02e526015a670657ae364b2985a936b5ecc94194361416e11a86db28c1dd0a",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-106-v0.png",
+      "front_shadow": 37,
+      "current_vertical": {
+        "number": 106,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-106-v0.png",
+        "cell": [
+          70,
+          54
+        ],
+        "anchor": [
+          35,
+          52
+        ],
+        "offset": -8,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "review_number": 79,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-106-atlas.png",
+      "sha256": "45a632b89773b8babb95354cb4ae4d540e3d999ccc4f851f79ecaf05e14b9dff",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-106-sheet.png"
+      ],
+      "source_sha256": "ae5f3fdd3ccf2942f4c558670af54c737a89c29ee8fac9e66a93ebc33f889a2d",
+      "casts_shadow": true,
+      "locomotion": "biped",
+      "locomotor_legs": 2,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-106-atlas.png",
+      "previous_sha256": "d7dbb22ce55e3c92c755c4c393d0651b6339586ad969b04942702443343ab115",
+      "revised_directions": [
+        "up"
+      ]
+    },
+    {
+      "id": "MON-109-0",
+      "number": 109,
+      "name": "Créature brune aux longues pattes",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 40,
+      "vertical_offset": -12,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-109-front.png",
+      "idle_sha256": "3905ec03ef8f080a335f4929966be55f5301ea80412c4eec197742b95cbd5998",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-109-v0.png",
+      "front_shadow": 32,
+      "current_vertical": {
+        "number": 109,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-109-v0.png",
+        "cell": [
+          66,
+          44
+        ],
+        "anchor": [
+          33,
+          42
+        ],
+        "offset": -12,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "review_number": 82,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-109-atlas.png",
+      "sha256": "4ab15be96714458e07549afbe3be04e76d44ff9db5606419f090fad23e9cd64a",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-109-sheet.png"
+      ],
+      "source_sha256": "11cf9282a16a493329005cc85924309978d468db1f99d71278c66ff018f080d3",
+      "casts_shadow": true,
+      "locomotion": "quad",
+      "locomotor_legs": 4,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-109-atlas.png",
+      "previous_sha256": "8a6e7d6c88ed731547e3a185a0dfb4fa55745d5b6da44c3251158e81dc6d6c47",
+      "revised_directions": [
+        "up"
+      ]
+    },
+    {
+      "id": "MON-118-0",
+      "number": 118,
+      "name": "Rampant à capuche rouge",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 37,
+      "vertical_offset": -13,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-118-front.png",
+      "idle_sha256": "ffc1cf29eae238703e31c1b5f10011318c29852a66f189504d21b225a7f62fa0",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-118-v0.png",
+      "front_shadow": 25,
+      "current_vertical": {
+        "number": 118,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-118-v0.png",
+        "cell": [
+          56,
+          45
+        ],
+        "anchor": [
+          28,
+          43
+        ],
+        "offset": -13,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "review_number": 89,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-118-atlas.png",
+      "sha256": "87f520cbd9f23341af913b008d68c0625c862989549d83b4180263170549b42d",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-118-sheet.png"
+      ],
+      "source_sha256": "67763ad9be03e3819dd29d7c1375d75ff84d479ed06a86b5307ef03c8d19d857",
+      "casts_shadow": true,
+      "locomotion": "quad",
+      "locomotor_legs": 2,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-118-atlas.png",
+      "previous_sha256": "b0af65e3762fe05578cb80b35ce0627c74e573dd6ca424964ff703766b90dc39",
+      "revised_directions": [
+        "up"
+      ]
+    },
+    {
+      "id": "MON-124-0",
+      "number": 124,
+      "name": "Esprit",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 69,
+      "vertical_offset": 0,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-124-front.png",
+      "idle_sha256": "2c200e8d6819000c087f763fadbfa17d2987c46e675ccc58484b86cf73abdfaf",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-124-v0.png",
+      "front_shadow": 16,
+      "current_vertical": {
+        "number": 124,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-124-v0.png",
+        "cell": [
+          42,
+          74
+        ],
+        "anchor": [
+          21,
+          72
+        ],
+        "offset": 0,
+        "shadow": false,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "review_number": 95,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-124-atlas.png",
+      "sha256": "8af7f390403f646224a43072dade5387647edc548488a39379aac47231ab4448",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-124-sheet.png"
+      ],
+      "source_sha256": "b9f60b2d995600d5f191cd6f6c5f6b998766837b0897bcd83803a1aa63ec7902",
+      "casts_shadow": false,
+      "locomotion": "float",
+      "locomotor_legs": 0,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-124-atlas.png",
+      "previous_sha256": "f36bb86eba1118bbf108897a86483e9384f7a7931fbb5981eace89294c6c53d6",
+      "revised_directions": [
+        "up"
+      ]
+    },
+    {
+      "id": "MON-145-0",
+      "number": 145,
+      "name": "Créature ailée",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 89,
+      "vertical_offset": 0,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-145-front.png",
+      "idle_sha256": "bfc8d5e992c7e21f8f435fee4ba81dcae77f44ae1105eea1ff953b402a5b35f0",
+      "accepted_front_source": "assets/animations/biped-lateral-01/MON-145-0.png",
+      "front_shadow": 63,
+      "current_vertical": {
+        "number": 145,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-145-v0.png",
+        "cell": [
+          111,
+          96
+        ],
+        "anchor": [
+          55,
+          93
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "accepted_lateral_front",
+      "accepted": false,
+      "review_number": 115,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-145-atlas.png",
+      "sha256": "dcedc8e182b6ef56be23b469063e71663e6fe0fef55cf9e156bed3cbecab6f9c",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-145-sheet.png"
+      ],
+      "source_sha256": "6efafd93ab2445834b2059bfee6ef8c92598d0cea3f8af991f039da6e854a222",
+      "casts_shadow": true,
+      "locomotion": "winged",
+      "locomotor_legs": 2,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-145-atlas.png",
+      "previous_sha256": "4fd02fbd9d2b5534dbf3699ed1b9bdf9993d0a01347472a9bb7b23dd082331fc",
+      "revised_directions": [
+        "up"
+      ]
+    },
+    {
+      "id": "MON-147-0",
+      "number": 147,
+      "name": "Créature ailée violette",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 84,
+      "vertical_offset": 0,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-147-front.png",
+      "idle_sha256": "293aadc0b53bb1300059b3ef801a3a581e3d252d65414d0662af5fc6a70867e7",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-147-v0.png",
+      "front_shadow": 63,
+      "current_vertical": {
+        "number": 147,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-147-v0.png",
+        "cell": [
+          105,
+          91
+        ],
+        "anchor": [
+          53,
+          89
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "review_number": 116,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-147-atlas.png",
+      "sha256": "f09eab65653073309e78b828742acc1da06a1e8c09dd65308554fa7425e5b0f2",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-147-sheet.png"
+      ],
+      "source_sha256": "02f73bce0f2176316a23d48d10b6a19df5880da7d68aa8f7f46eb2e9997d51ff",
+      "casts_shadow": true,
+      "locomotion": "winged",
+      "locomotor_legs": 2,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-147-atlas.png",
+      "previous_sha256": "2f2c8c54b559b1375332043a6cd62b44560fcf4432c42d913799512e103900a8",
+      "revised_directions": [
+        "up"
+      ]
+    },
+    {
+      "id": "MON-149-0",
+      "number": 149,
+      "name": "Créature ailée pâle massive",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 88,
+      "vertical_offset": 0,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-149-front.png",
+      "idle_sha256": "b41135c28232ed1d78a3fb6d87df679ba03d241d5fa02a2c5246f1acf0c3edb9",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-149-v0.png",
+      "front_shadow": 63,
+      "current_vertical": {
+        "number": 149,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-149-v0.png",
+        "cell": [
+          120,
+          97
+        ],
+        "anchor": [
+          60,
+          95
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "review_number": 118,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-149-atlas.png",
+      "sha256": "4f8ddbec254e72a6bf51df44ab3cbae33c232f889d2e3070671db0e99bb7267e",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-149-sheet.png"
+      ],
+      "source_sha256": "0aabe9f3607c68e5812f5348a19e3c030f1fbe539cad555158b45c3b8118afdb",
+      "casts_shadow": true,
+      "locomotion": "winged",
+      "locomotor_legs": 2,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-149-atlas.png",
+      "previous_sha256": "e578b06aa96f46d998141160b0a8c85bbd6f5bc8f63de47a0b34971cec03ed20",
+      "revised_directions": [
+        "up"
+      ]
+    },
+    {
+      "id": "MON-160-0",
+      "number": 160,
+      "name": "Démons humanoïdes 160",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 70,
+      "vertical_offset": 0,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-160-front.png",
+      "idle_sha256": "4de725a3ef385e5e2c4a78f75969c1983d2f5c32a7a721503577011cef3a18f3",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-160-v0.png",
+      "front_shadow": 32,
+      "current_vertical": {
+        "number": 160,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-160-v0.png",
+        "cell": [
+          71,
+          76
+        ],
+        "anchor": [
+          35,
+          74
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "review_number": 127,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-160-atlas.png",
+      "sha256": "eb857cc2656cf1488db41be14fefd9f4b4dc35156813a83fe86b6ecd943668bc",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-160-sheet.png"
+      ],
+      "source_sha256": "c89412a108d393d6739e071d7a819aa1ab983b89dd4451e5b84a361d11202e23",
+      "casts_shadow": true,
+      "locomotion": "biped",
+      "locomotor_legs": 2,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-160-atlas.png",
+      "previous_sha256": "be9decd4da3f231d160faa7bf841d5b4cc73eabd054c50beae25eebeab3d388a",
+      "revised_directions": [
+        "up"
+      ]
+    },
+    {
+      "id": "MON-162-0",
+      "number": 162,
+      "name": "Créature ailée en tenue rouge",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 75,
+      "vertical_offset": 0,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-162-front.png",
+      "idle_sha256": "227066ff64e1f717548ae0732ef1d5bf91a2522d2fb9597288acef08cee7295f",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-162-v0.png",
+      "front_shadow": 32,
+      "current_vertical": {
+        "number": 162,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-162-v0.png",
+        "cell": [
+          69,
+          81
+        ],
+        "anchor": [
+          35,
+          79
+        ],
+        "offset": 0,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "review_number": 129,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-162-atlas.png",
+      "sha256": "1ecc238fc5ac8d1e996e3696dac0675c6eb7707509a619eadd5e761bcc369f82",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-all/r02/MON-162-sheet.png"
+      ],
+      "source_sha256": "f133a4e49bda9d1327e5cd6cfe557a8f428c3161b991a2c7b9102771c086adf1",
+      "casts_shadow": true,
+      "locomotion": "winged",
+      "locomotor_legs": 2,
+      "comparison": "grouped_anatomy_revision",
+      "previous_atlas": "assets/source-art/animation-polish-01/monster-vertical-all/r01/MON-162-atlas.png",
+      "previous_sha256": "dfa72bd152ff3cba1d1bf7e99a9c7d7be7644a64b63e7729e994634d4dcb56c6",
+      "revised_directions": [
+        "up"
+      ]
+    }
+  ],
+  "missing": {},
+  "frozen_source_hashes_verified": 858
+}

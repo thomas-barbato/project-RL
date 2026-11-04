@@ -1,0 +1,7 @@
+{
+  "review": "HELM05-WORN-r01",
+  "mode": "builtin_image_gen",
+  "prompt": "Use case: precise-object-edit. Input1 is the four-view transparent 2x2 sprite sheet of a bone/ochre and olive wearable helmet. Input2 is its APPROVED inventory icon and exact identity reference. Correct ONLY the central inner lower FACE SHIELD in the FRONT (top left) and both bottom side views: the dark inner lower shield beneath the eyes and between the two bone cheek plates must be OPAQUE very dark olive/umber armor, as in input2, with subtle matte planes and the existing central split/seam. It must not be a transparent hole where a person's nose or mouth would show. Preserve every bone plate, ridge, lime eye slit, all outer contours, pose, scale and all other pixels. Keep the back view top right unchanged. Keep the true background and all margins outside the helmet actually transparent. No head, skin, face, neck, body, stand, extra openings, glow or text. This is a material-fill correction to match the approved wearable face shield, not a creature or skull.",
+  "source": "assets/source-art/animation-polish-01/helmet-worn-r01/H05-W03-views-r02.png",
+  "reason": "Opaque central face shield faithful to accepted icon"
+}

@@ -1,0 +1,111 @@
+{
+  "review": "BIPED-LATERAL03-r03",
+  "status": "partial_acceptance_two_walks_to_match_retained_front",
+  "revised_models": [
+    164,
+    165,
+    14
+  ],
+  "normal_game_enabled": false,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "artwork_mode": "reuse existing complete native frontal idle, no generation or redrawing",
+  "profiles": [
+    {
+      "number": 145,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r01/MON-145-atlas.png",
+      "sha256": "4b06b4b43342443ff47bbc8d7711337dc4d54fd4fc2567e8251942db59fb0219",
+      "accepted": false
+    },
+    {
+      "number": 164,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r02/MON-164-atlas.png",
+      "sha256": "535894352fe4424361c803d61ba586e649f5bb19b82276a14cef3fbca73e9c1f",
+      "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-164-front.png",
+      "idle_sha256": "d5a3f5a2854d35eaee9be15655f48b1c02e92852f18b2cce0a16760d846ab2a4",
+      "idle_source": {
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r02/MON-164-atlas.png",
+        "frame": 8,
+        "side": 0,
+        "whole_figure": true
+      },
+      "accepted": false,
+      "front_accepted": false
+    },
+    {
+      "number": 165,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r02/MON-165-atlas.png",
+      "sha256": "74501c23283e8d1016777b78811dc572ab844070de0fa0fcb2e682352a126286",
+      "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-165-front.png",
+      "idle_sha256": "b3b4c6460d2ef829b4539ec000aa56bb728ae60b6815d751d6101cf34c1d8252",
+      "idle_source": {
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-03/r02/MON-165-atlas.png",
+        "frame": 8,
+        "side": 0,
+        "whole_figure": true
+      },
+      "accepted": false,
+      "front_accepted": false
+    },
+    {
+      "number": 5,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-005-atlas.png",
+      "sha256": "6de6ed7e994eee5f703ebacf571a80fa374818fbc6fc966f5f8d3ddbf23565bd",
+      "accepted": true
+    },
+    {
+      "number": 14,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-atlas.png",
+      "sha256": "bb13de5c1f9a911830649a84cf586a04c65081b675cab9bb541fd3c02d6335f4",
+      "idle_sprite": "assets/source-art/animation-polish-01/biped-lateral-03/r03/MON-014-front.png",
+      "idle_sha256": "d50c525da854a3968e9beae17504b4d5d9816507a9e5fa011b144eb075f7dd10",
+      "idle_source": {
+        "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-014-atlas.png",
+        "frame": 8,
+        "side": 0,
+        "whole_figure": true
+      },
+      "accepted": true,
+      "front_accepted": false
+    },
+    {
+      "number": 156,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-02/r01/MON-156-atlas.png",
+      "sha256": "af27fc9f303cbe787130660f320f9cc4470df5057951b09a9ee109d288f34c25",
+      "accepted": true
+    },
+    {
+      "number": 144,
+      "atlas": "assets/source-art/animation-polish-01/biped-lateral-01/r03/MON-144-atlas.png",
+      "sha256": "def77b1f9d572afb7c3460e1403febe5d7f6d172fc0efc989a23af037e587361",
+      "accepted": true
+    }
+  ],
+  "validation": {
+    "debug_build": "passed",
+    "native_capture": {
+      "review": "BIPED-LATERAL03-r03",
+      "captures": 462,
+      "walk_atlases_unchanged": 7,
+      "cultist_moving_captures_identical": 192,
+      "other_model_captures_identical": 264,
+      "matching_frontal_arrivals": 6,
+      "original_frontal_panels_identical": 198,
+      "idle_source": "existing complete frontal frame 8, side 0, from the same atlas as the current walk",
+      "step_ms": 400,
+      "cycle_ms": 800,
+      "webp_loop_ms": 2400,
+      "normal_game_enabled": false
+    },
+    "browser": "passed: three cultists, six frontal arrivals, native sizing, integer zoom, comparison overview and active 400ms playback with no console errors",
+    "targeted_rustfmt": "passed",
+    "python_compile": "passed",
+    "git_diff_check": "passed",
+    "browser_checks": "artifacts/animation-polish-01/biped-lateral-03/r03/browser-checks.json",
+    "browser_proof": "artifacts/animation-polish-01/biped-lateral-03/r03/browser-proof.png"
+  },
+  "new_front_accepted": false,
+  "other_models_accepted_by_extension": false,
+  "accepted_field_applies_to_previous_walk_only": true,
+  "acceptance": "BIPED-LATERAL03-ACCEPTANCE-r03-partial.json"
+}

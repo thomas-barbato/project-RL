@@ -1,0 +1,727 @@
+{
+  "review": "MONSTER-VERTICAL19-r01",
+  "normal_game_enabled": false,
+  "native_cell_px": 64,
+  "panel_width": 192,
+  "panel_height": 320,
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "phase_weights": [
+    180,
+    180,
+    170,
+    120,
+    180,
+    180,
+    170,
+    120
+  ],
+  "frozen_source_hashes_verified": 283,
+  "profiles": [
+    {
+      "id": "MON-087-0",
+      "number": 87,
+      "name": "Quadrupède trapu au ventre ocre",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 37,
+      "vertical_offset": -14,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-087-front.png",
+      "idle_sha256": "ff8970b705b0b99a6db5923cf92280ba3900c2d1ab4dc69f56c379b3b871192c",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-087-v0.png",
+      "front_shadow": 34,
+      "current_vertical": {
+        "number": 87,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-087-v0.png",
+        "cell": [
+          58,
+          43
+        ],
+        "anchor": [
+          29,
+          41
+        ],
+        "offset": -14,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-087-atlas.png",
+      "sha256": "7ec04361c8489d90efaf135ad123775dfdfa7e9f1d4864104e2b70da26acabb2",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-087-down-source.png",
+        "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-087-up-source.png"
+      ],
+      "bounds": [
+        {
+          "direction": "down",
+          "phase": 0,
+          "whole_figure_scale": 0.15163934426229508,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            52,
+            75,
+            104,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 1,
+          "whole_figure_scale": 0.15163934426229508,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            54,
+            75,
+            106,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 2,
+          "whole_figure_scale": 0.15163934426229508,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            53,
+            75,
+            106,
+            110
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 3,
+          "whole_figure_scale": 0.15163934426229508,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            53,
+            75,
+            107,
+            111
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 4,
+          "whole_figure_scale": 0.15163934426229508,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            52,
+            75,
+            106,
+            113
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 5,
+          "whole_figure_scale": 0.15163934426229508,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            53,
+            75,
+            106,
+            113
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 6,
+          "whole_figure_scale": 0.15163934426229508,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            52,
+            75,
+            107,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 7,
+          "whole_figure_scale": 0.15163934426229508,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            51,
+            75,
+            106,
+            114
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 0,
+          "whole_figure_scale": 0.14741035856573706,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            57,
+            75,
+            100,
+            113
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 1,
+          "whole_figure_scale": 0.14741035856573706,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            57,
+            75,
+            100,
+            113
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 2,
+          "whole_figure_scale": 0.14741035856573706,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            58,
+            75,
+            101,
+            113
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 3,
+          "whole_figure_scale": 0.14741035856573706,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            57,
+            75,
+            100,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 4,
+          "whole_figure_scale": 0.14741035856573706,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            58,
+            75,
+            100,
+            110
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 5,
+          "whole_figure_scale": 0.14741035856573706,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            57,
+            75,
+            99,
+            109
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 6,
+          "whole_figure_scale": 0.14741035856573706,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            57,
+            75,
+            99,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 7,
+          "whole_figure_scale": 0.14741035856573706,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            57,
+            75,
+            99,
+            112
+          ]
+        }
+      ],
+      "support_root_aligned": true,
+      "review_number": 55,
+      "locomotion": "quadruped",
+      "locomotor_legs": 4
+    },
+    {
+      "id": "MON-088-0",
+      "number": 88,
+      "name": "Oiseau aux ailes rouges",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 60,
+      "vertical_offset": -1,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-088-front.png",
+      "idle_sha256": "584c69abb5e2ac2a7df1a2d13ed590a0cd541c6022f26f5b67b44f3bd098f02d",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-088-v0.png",
+      "front_shadow": 32,
+      "current_vertical": {
+        "number": 88,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-088-v0.png",
+        "cell": [
+          61,
+          66
+        ],
+        "anchor": [
+          31,
+          64
+        ],
+        "offset": -1,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-088-atlas.png",
+      "sha256": "1ea4b180b67a3e82b791a125bf209716aaa5db28308e93a53a25493e7ae73e40",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-088-down-source.png",
+        "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-088-up-source.png"
+      ],
+      "bounds": [
+        {
+          "direction": "down",
+          "phase": 0,
+          "whole_figure_scale": 0.15852047556142668,
+          "whole_cycle_translation_x": 4,
+          "bounds": [
+            56,
+            52,
+            102,
+            113
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 1,
+          "whole_figure_scale": 0.15852047556142668,
+          "whole_cycle_translation_x": 4,
+          "bounds": [
+            55,
+            52,
+            102,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 2,
+          "whole_figure_scale": 0.15852047556142668,
+          "whole_cycle_translation_x": 4,
+          "bounds": [
+            56,
+            52,
+            102,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 3,
+          "whole_figure_scale": 0.15852047556142668,
+          "whole_cycle_translation_x": 4,
+          "bounds": [
+            55,
+            52,
+            101,
+            111
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 4,
+          "whole_figure_scale": 0.15852047556142668,
+          "whole_cycle_translation_x": 4,
+          "bounds": [
+            55,
+            52,
+            102,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 5,
+          "whole_figure_scale": 0.15852047556142668,
+          "whole_cycle_translation_x": 4,
+          "bounds": [
+            55,
+            52,
+            103,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 6,
+          "whole_figure_scale": 0.15852047556142668,
+          "whole_cycle_translation_x": 4,
+          "bounds": [
+            55,
+            52,
+            102,
+            112
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 7,
+          "whole_figure_scale": 0.15852047556142668,
+          "whole_cycle_translation_x": 4,
+          "bounds": [
+            54,
+            52,
+            102,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 0,
+          "whole_figure_scale": 0.16216216216216217,
+          "whole_cycle_translation_x": -2,
+          "bounds": [
+            59,
+            52,
+            100,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 1,
+          "whole_figure_scale": 0.16216216216216217,
+          "whole_cycle_translation_x": -2,
+          "bounds": [
+            59,
+            52,
+            100,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 2,
+          "whole_figure_scale": 0.16216216216216217,
+          "whole_cycle_translation_x": -2,
+          "bounds": [
+            60,
+            52,
+            100,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 3,
+          "whole_figure_scale": 0.16216216216216217,
+          "whole_cycle_translation_x": -2,
+          "bounds": [
+            59,
+            52,
+            101,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 4,
+          "whole_figure_scale": 0.16216216216216217,
+          "whole_cycle_translation_x": -2,
+          "bounds": [
+            59,
+            52,
+            101,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 5,
+          "whole_figure_scale": 0.16216216216216217,
+          "whole_cycle_translation_x": -2,
+          "bounds": [
+            59,
+            52,
+            101,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 6,
+          "whole_figure_scale": 0.16216216216216217,
+          "whole_cycle_translation_x": -2,
+          "bounds": [
+            59,
+            52,
+            101,
+            113
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 7,
+          "whole_figure_scale": 0.16216216216216217,
+          "whole_cycle_translation_x": -2,
+          "bounds": [
+            59,
+            52,
+            101,
+            113
+          ]
+        }
+      ],
+      "support_root_aligned": true,
+      "review_number": 56,
+      "locomotion": "winged",
+      "locomotor_legs": 2
+    },
+    {
+      "id": "MON-089-0",
+      "number": 89,
+      "name": "Créature sombre aux pattes anguleuses",
+      "frame_width": 160,
+      "frame_height": 128,
+      "reference_height": 58,
+      "vertical_offset": -2,
+      "idle_sprite": "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-089-front.png",
+      "idle_sha256": "b81c9ede3b9526c211a376fb013648c4ca30f3072eab3b08fd0b2e9acb4c56a7",
+      "accepted_front_source": "assets/animations/vertical-18/monsters/MON-089-v0.png",
+      "front_shadow": 34,
+      "current_vertical": {
+        "number": 89,
+        "variant": 0,
+        "file": "assets/animations/vertical-18/monsters/MON-089-v0.png",
+        "cell": [
+          71,
+          65
+        ],
+        "anchor": [
+          35,
+          63
+        ],
+        "offset": -2,
+        "shadow": true,
+        "shadow_width": 17
+      },
+      "front_reference_kind": "installed_vertical_idle",
+      "accepted": false,
+      "atlas": "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-089-atlas.png",
+      "sha256": "9f2003b6b3161124d0a7a97c8e34df247b47584f7928df2beace1a9574d90582",
+      "sources": [
+        "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-089-down-source.png",
+        "assets/source-art/animation-polish-01/monster-vertical-19/r01/MON-089-up-source.png"
+      ],
+      "bounds": [
+        {
+          "direction": "down",
+          "phase": 0,
+          "whole_figure_scale": 0.18412698412698414,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            50,
+            54,
+            101,
+            114
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 1,
+          "whole_figure_scale": 0.18412698412698414,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            53,
+            54,
+            101,
+            114
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 2,
+          "whole_figure_scale": 0.18412698412698414,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            55,
+            54,
+            102,
+            106
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 3,
+          "whole_figure_scale": 0.18412698412698414,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            54,
+            54,
+            102,
+            110
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 4,
+          "whole_figure_scale": 0.18412698412698414,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            51,
+            54,
+            101,
+            115
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 5,
+          "whole_figure_scale": 0.18412698412698414,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            54,
+            54,
+            101,
+            111
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 6,
+          "whole_figure_scale": 0.18412698412698414,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            52,
+            54,
+            102,
+            109
+          ]
+        },
+        {
+          "direction": "down",
+          "phase": 7,
+          "whole_figure_scale": 0.18412698412698414,
+          "whole_cycle_translation_x": -1,
+          "bounds": [
+            52,
+            54,
+            101,
+            113
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 0,
+          "whole_figure_scale": 0.19627749576988154,
+          "whole_cycle_translation_x": 6,
+          "bounds": [
+            59,
+            54,
+            107,
+            114
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 1,
+          "whole_figure_scale": 0.19627749576988154,
+          "whole_cycle_translation_x": 6,
+          "bounds": [
+            60,
+            54,
+            108,
+            114
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 2,
+          "whole_figure_scale": 0.19627749576988154,
+          "whole_cycle_translation_x": 6,
+          "bounds": [
+            60,
+            54,
+            106,
+            110
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 3,
+          "whole_figure_scale": 0.19627749576988154,
+          "whole_cycle_translation_x": 6,
+          "bounds": [
+            61,
+            54,
+            108,
+            113
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 4,
+          "whole_figure_scale": 0.19627749576988154,
+          "whole_cycle_translation_x": 6,
+          "bounds": [
+            61,
+            54,
+            107,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 5,
+          "whole_figure_scale": 0.19627749576988154,
+          "whole_cycle_translation_x": 6,
+          "bounds": [
+            60,
+            54,
+            107,
+            112
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 6,
+          "whole_figure_scale": 0.19627749576988154,
+          "whole_cycle_translation_x": 6,
+          "bounds": [
+            61,
+            54,
+            108,
+            109
+          ]
+        },
+        {
+          "direction": "up",
+          "phase": 7,
+          "whole_figure_scale": 0.19627749576988154,
+          "whole_cycle_translation_x": 6,
+          "bounds": [
+            60,
+            54,
+            109,
+            112
+          ]
+        }
+      ],
+      "support_root_aligned": true,
+      "review_number": 57,
+      "locomotion": "crawl",
+      "locomotor_legs": 4
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "review": "ANIM-POLISH01",
+  "date": "2026-10-30",
+  "status": "partially_accepted_gl_pending_helmet_proportions_accepted",
+  "selected_heavy_variant": "C02-A / 01",
+  "helmet_review": "HELM01-PROPOSITION.json",
+  "normal_game_enabled": false,
+  "user_authorized_preparation": true,
+  "visual_acceptance_received": true,
+  "acceptance_scope": "C01 C02-A C03 C04 C06-HELM01-r01; W023 redesign pending; further helmet drawing changes requested but unspecified",
+  "native_tile_px": 64,
+  "candidates": {
+    "C01": "Whole-figure registration; maximum offset x=2px and y=1px",
+    "C02-A": {
+      "column": "01",
+      "revision": 2,
+      "extension_factor": 0.8,
+      "height_factor_outside_grip_band": 0.85,
+      "protected_axis_aligned_grip_box": true
+    },
+    "C02-B": {
+      "column": "02",
+      "revision": 2,
+      "extension_factor": 0.65,
+      "height_factor_outside_grip_band": 0.75,
+      "protected_axis_aligned_grip_box": true
+    },
+    "C03": "Ground icon destination 40px, centered within 64px cell",
+    "C04": "Portrait from the same complete frontal standing pose as the world actor"
+  },
+  "pilot": {
+    "outfits": "Bastion, Traqueuse, Arcaniste, Metamorphe; heavy armor",
+    "weapons": [13, 23, 31, 51],
+    "unchanged_weapon_control": 2,
+    "head_choices": [null, 120],
+    "configurations": 40,
+    "compaction_supported_models": 28
+  },
+  "remaining": [
+    "Visual acceptance of redesigned grenade launcher C05",
+    "HELM04: review the complete five-weight icon roster, then common-design worn helmets fitted to wearer and armor across all orientations; HELM02/HELM03 class-specific helmet drawings superseded",
+    "Isolate the exact intermittent portrait head/body symptom",
+    "Review remaining unusual hand and arm poses, especially other loadouts and dual wielding",
+    "Extend accepted corrections to other compatible outfits after their review",
+    "Integrate only accepted candidates"
+  ]
+}

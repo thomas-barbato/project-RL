@@ -1,0 +1,127 @@
+{
+  "review": "LATERAL02-r04",
+  "native_cell_px": 64,
+  "atlas": [
+    672,
+    384
+  ],
+  "frame": [
+    96,
+    96
+  ],
+  "anchor": [
+    48,
+    81
+  ],
+  "rows": [
+    "left",
+    "right",
+    "front + idle",
+    "back"
+  ],
+  "normal_game_default_enabled": false,
+  "trial_only": true,
+  "unarmed_only": true,
+  "profiles": [
+    {
+      "tier": 0,
+      "profile": "traqueuse",
+      "outfit": 10,
+      "family": "ranged",
+      "reference_height": 57,
+      "body": "assets/animations/vertical-18/players/traqueuse-ranged-body.png",
+      "hands": "assets/animations/vertical-18/players/traqueuse-ranged-hands.png",
+      "anchor": [
+        128,
+        160
+      ],
+      "candidate": 1,
+      "scale": 0.296875,
+      "whole_figures_only": true,
+      "runtime": "assets/animations/lateral-04/traqueuse-tier0.png",
+      "sha256": "42bcfee2d9828f27987c4222008330a4f1c6269496d4c6a177b5fa7aebfb8a47",
+      "canonical_front_back_reused": true,
+      "heavy_lateral_r03_unchanged": false
+    },
+    {
+      "tier": 1,
+      "profile": "traqueuse-armor1",
+      "outfit": 11,
+      "family": "ranged",
+      "reference_height": 57,
+      "body": "assets/animations/vertical-18/intermediate/traqueuse-armor1-ranged-body.png",
+      "hands": "assets/animations/vertical-18/intermediate/traqueuse-armor1-ranged-hands.png",
+      "anchor": [
+        128,
+        159
+      ],
+      "candidate": 2,
+      "scale": 0.2915601023017903,
+      "whole_figures_only": true,
+      "runtime": "assets/animations/lateral-04/traqueuse-tier1.png",
+      "sha256": "0650668100508f6e38ae84e6caf88a0f3b12a009898a9e2581314687d95b99d2",
+      "canonical_front_back_reused": true,
+      "heavy_lateral_r03_unchanged": false
+    },
+    {
+      "tier": 2,
+      "profile": "traqueuse-armor2",
+      "outfit": 12,
+      "family": "ranged",
+      "reference_height": 56,
+      "body": "assets/animations/vertical-18/intermediate/traqueuse-armor2-ranged-body.png",
+      "hands": "assets/animations/vertical-18/intermediate/traqueuse-armor2-ranged-hands.png",
+      "anchor": [
+        128,
+        159
+      ],
+      "candidate": 3,
+      "scale": 0.28865979381443296,
+      "whole_figures_only": true,
+      "runtime": "assets/animations/lateral-04/traqueuse-tier2.png",
+      "sha256": "648e1c5f9f136962c36cd4b7a69b30729affbc337781d878791066b67975cc16",
+      "canonical_front_back_reused": true,
+      "heavy_lateral_r03_unchanged": false
+    },
+    {
+      "tier": 3,
+      "profile": "traqueuse-armor3",
+      "outfit": 13,
+      "family": "ranged",
+      "reference_height": 58,
+      "body": "assets/animations/vertical-18/intermediate/traqueuse-armor3-ranged-body.png",
+      "hands": "assets/animations/vertical-18/intermediate/traqueuse-armor3-ranged-hands.png",
+      "anchor": [
+        128,
+        159
+      ],
+      "candidate": 4,
+      "scale": null,
+      "whole_figures_only": true,
+      "runtime": "assets/animations/lateral-04/traqueuse-tier3.png",
+      "sha256": "be45624d1245a93b4cb0da3a54d053e54fbc9b299cbc921cacbaf7a1def84924",
+      "canonical_front_back_reused": true,
+      "heavy_lateral_r03_unchanged": true
+    },
+    {
+      "tier": 4,
+      "profile": "traqueuse-lourde",
+      "outfit": 14,
+      "family": "ranged",
+      "reference_height": 55,
+      "body": "assets/animations/vertical-18/players/traqueuse-lourde-ranged-body.png",
+      "hands": "assets/animations/vertical-18/players/traqueuse-lourde-ranged-hands.png",
+      "anchor": [
+        128,
+        160
+      ],
+      "candidate": 5,
+      "scale": 0.2917771883289125,
+      "whole_figures_only": true,
+      "runtime": "assets/animations/lateral-04/traqueuse-tier4.png",
+      "sha256": "65329fd2290a8194524e33339cea0a5ac6286d08e615c6ca2c476192ae9109b8",
+      "canonical_front_back_reused": true,
+      "heavy_lateral_r03_unchanged": false
+    }
+  ]
+}

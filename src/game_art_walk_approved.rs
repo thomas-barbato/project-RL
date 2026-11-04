@@ -22,6 +22,11 @@ thread_local! {
 }
 
 pub(super) fn image(visual: Visual, pose: Pose) -> Option<Image> {
+    if crate::game_art::traqueuse_trial::enabled()
+        && let Some(image) = crate::game_art::traqueuse_trial::image(visual, pose)
+    {
+        return Some(image);
+    }
     let Visual::Player {
         body,
         equipment,
@@ -102,6 +107,47 @@ pub(super) fn draw(cell: Rect, visual: Visual, opacity: f32, pose: Option<Pose>)
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn normal_game_lateral_walk_keeps_six_phases_without_legacy_review_context() {
+        assert!(!REVIEW_ACCEPTED);
+        assert!(!corrections_enabled());
+        assert!(player_enabled() && proportions_enabled() && gait12_enabled());
+        for body in [3, 5, 6, 7] {
+            for torso in [None, Some(110), Some(102), Some(101), Some(103)] {
+                for weapon in [None, Some(2), Some(57), Some(31), Some(67)] {
+                    let mut visual = player(body, weapon);
+                    if let Visual::Player { equipment, .. } = &mut visual {
+                        equipment[0] = torso;
+                    }
+                    for facing in [-1, 1] {
+                        let phases: Vec<_> = (0..6)
+                            .map(|frame| image(visual, Pose { facing, frame }).unwrap().bytes)
+                            .collect();
+                        assert_eq!(
+                            phases
+                                .iter()
+                                .collect::<std::collections::BTreeSet<_>>()
+                                .len(),
+                            6,
+                            "frozen normal walk: {body} {torso:?} {weapon:?} {facing}"
+                        );
+                        // All feet/leg ink must vary too: a translated still
+                        // torso or changing weapon alone is not a walk cycle.
+                        let lower: Vec<_> = phases.iter().map(|p| &p[80 * 128 * 4..]).collect();
+                        assert!(
+                            lower
+                                .iter()
+                                .collect::<std::collections::BTreeSet<_>>()
+                                .len()
+                                >= 3,
+                            "frozen legs: {body} {torso:?} {weapon:?} {facing}"
+                        );
+                    }
+                }
+            }
+        }
+        assert!(!REVIEW_ACCEPTED);
+    }
     #[test]
     fn accepted_proportions_match_review_and_legacy_comparison_is_scoped() {
         assert!(proportions_enabled());

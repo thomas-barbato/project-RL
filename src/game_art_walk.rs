@@ -13,6 +13,10 @@ mod extras;
 #[path = "game_art_walk_rifle.rs"]
 mod rifle;
 
+pub(super) fn trial_contact_shadow(cell: Rect, opacity: f32) {
+    draw_contact_shadow(cell, [32, 63, 17], 64, opacity);
+}
+
 // WALK12 common gait, WALK11 proportions and rigid grips accepted on25 October2026.
 // The separate WALK08 forms/drone proposals keep their own review context.
 const PLAYER_WALK_ACCEPTED: bool = true;
@@ -188,8 +192,40 @@ pub(crate) fn review_gait12(enabled: bool) -> GaitReviewGuard {
 pub(crate) struct Pose {
     /// -1 left, 0 legacy front, +1 right; -2 true back and +2 true front.
     pub facing: i8,
-    /// Six movement poses, three per cell; marker8 selects the separate idle.
+    /// Six legacy poses or eight approved monster poses. Eight marks idle.
     pub frame: u8,
+}
+
+/// Shared by the actual map and native regression captures. Resolve the
+/// heading only after considering the actor's complete equipped appearance.
+pub(crate) fn world_pose(
+    motion: &crate::combat_visuals::CombatMotion,
+    entity: project_rl::entity::EntityId,
+    visual: Option<Visual>,
+    player: bool,
+    now: f64,
+    reduced: bool,
+) -> Option<Pose> {
+    if super::monster_vertical::supports(visual)
+        && let Some(pose) = motion.monster_vertical_walk_pose(entity, now, reduced)
+    {
+        return Some(pose);
+    }
+    let vertical = super::vertical::supports(visual)
+        || (super::traqueuse_trial::enabled()
+            && visual.is_some_and(|v| super::traqueuse_trial::selection(v, None).is_some()));
+    #[cfg(debug_assertions)]
+    let vertical = vertical || crate::vertical_walk_review18::supports(visual);
+    if vertical && let Some(pose) = motion.vertical_walk_pose(entity, now, reduced) {
+        return Some(pose);
+    }
+    if player {
+        motion.player_walk_pose(entity, now, reduced)
+    } else if super::biped::supports(visual) {
+        motion.biped_walk_pose(entity, now, reduced)
+    } else {
+        motion.creature_walk_pose(entity, now, reduced)
+    }
 }
 thread_local! {
     static POSE: Cell<Option<Pose>> = const {Cell::new(None)};
@@ -300,8 +336,17 @@ fn binding(visual: Visual) -> Option<(String, u8)> {
     Some((id, configuration))
 }
 pub(super) fn draw(cell: Rect, visual: Visual, opacity: f32) -> bool {
+    if super::traqueuse_trial::draw(cell, visual, opacity, POSE.get()) {
+        return true;
+    }
     #[cfg(debug_assertions)]
     if crate::vertical_walk_review18::draw(cell, visual, opacity, POSE.get()) {
+        return true;
+    }
+    if super::biped::draw(cell, visual, opacity, POSE.get()) {
+        return true;
+    }
+    if super::monster_vertical::draw(cell, visual, opacity, POSE.get()) {
         return true;
     }
     if super::vertical::draw(cell, visual, opacity, POSE.get()) {

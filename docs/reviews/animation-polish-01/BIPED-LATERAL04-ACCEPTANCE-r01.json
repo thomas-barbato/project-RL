@@ -1,0 +1,78 @@
+{
+  "review": "BIPED-LATERAL04-r01",
+  "status": "accepted",
+  "date": "2026-11-02",
+  "player_quote": "je valide :)",
+  "scope": {
+    "models": [
+      39,
+      146,
+      151
+    ],
+    "variant": 0,
+    "palette": "original",
+    "directions": [
+      "left",
+      "right"
+    ],
+    "walk_poses_per_direction": 8,
+    "canonical_fronts_retained": true,
+    "grounded_walk": true,
+    "weapons": [],
+    "asymmetry": "MON-151 single bracer stays on anatomical right forearm"
+  },
+  "step_ms": 400,
+  "cycle_ms": 800,
+  "normal_game_enabled": false,
+  "other_models_accepted_by_extension": false,
+  "assets": [
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-left-source.png",
+      "sha256": "6c93581d5548386d501efaf469f0b3f33fa422e45cf60da2fd1a0e836135fa45"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-right-source.png",
+      "sha256": "1b5f87430073f44138c5d1537152a240dcd053820245379a2d89296cca3fcbab"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-atlas.png",
+      "sha256": "2fb1cc813aeca0c3bee95fd892697c078ce0ce267a5748482cb5b5175332ef4c"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-039-front.png",
+      "sha256": "60f0e1e600d42df21ff2847b41ae9b5221007808834a45fac242581ed5147566"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-left-source.png",
+      "sha256": "0fd014efc002ae2cd394eabb36fa8c68222c92f9d1e7f2fd0ea6aaf38f3b8347"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-right-source.png",
+      "sha256": "6072858eafb30d406f30c7aeabbe38b9d24deab5c9f5a1885cf59a39988c939d"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-atlas.png",
+      "sha256": "900799969710fbe36bea3bc8d9b8d44ad9a2e1e44f96e5b0de18724a6b6e14a5"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-146-front.png",
+      "sha256": "8a914bddbfde69b370db265ef669f22ced324fddf675b8c6a22aea96bb08f194"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-left-source.png",
+      "sha256": "6d1f86f30a0b8ea67eefe1e5f42af19dcce0b119b974677a381d08d794c0a58c"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-right-source.png",
+      "sha256": "03c065e32798ecb73aeb6ebd754ea0e41b257abccd5c6578a181c0cc7c5034b1"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-atlas.png",
+      "sha256": "61eeea8eb386eb3a62a5ca8acc149436893f32efaf46998c3c7699fcfe6b3c62"
+    },
+    {
+      "file": "assets/source-art/animation-polish-01/biped-lateral-04/r01/MON-151-front.png",
+      "sha256": "59bd85aa9e141a4fe52d16ceb82654ddb01452f8b94e93faa47907221fb75c26"
+    }
+  ]
+}

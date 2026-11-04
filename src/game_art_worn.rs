@@ -10,7 +10,10 @@ mod finish_worn;
 mod flat_agents;
 #[path = "game_art_held_geometry.rs"]
 mod held_geometry;
-#[cfg(all(debug_assertions, test))]
+pub(super) fn firearm_grips(model: u16) -> Option<([f32; 2], [f32; 2])> {
+    finish_worn::firearm_grips(model)
+}
+#[cfg(debug_assertions)]
 pub(super) fn vertical_review_weapon(
     model: u16,
     left: bool,
