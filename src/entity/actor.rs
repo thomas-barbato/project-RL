@@ -255,6 +255,10 @@ impl Actor {
         self
     }
 
+    pub(crate) const fn set_ai_profile(&mut self, profile: AiProfile) {
+        self.ai = Some(profile);
+    }
+
     pub fn with_drone(mut self, drone: DroneState) -> Self {
         self.drone = Some(drone);
         self

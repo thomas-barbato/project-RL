@@ -1,0 +1,61 @@
+{
+  "review": "CITY-CYBERPUNK12-LITS-r01",
+  "status": "integrated-awaiting-in-game-validation",
+  "base": "assets/maps/prison-street-expanded-01/street-with-sewer-entry.png",
+  "base_sha256": "840335f5bfd387af2c2db714b308611a04fe7b8d79c747f55a10d61a51bef2fe",
+  "candidate": "assets/source-art/city-cyberpunk12/lits-r01/street-candidate-r01.png",
+  "candidate_sha256": "721e4c572de7a4741b0dfc46210b3723ca2e1eb509e3248f05a8c4699c5cd44c",
+  "authorized_mask": "assets/source-art/city-cyberpunk12/lits-r01/authorized-mask-r01.png",
+  "scale_reference": "docs/reviews/city-cyberpunk12/LIT-ACCEPTANCE-r05.json",
+  "items": [
+    {
+      "id": "V1-I03-maison-arrivee-lit",
+      "source": "assets/source-art/city-cyberpunk12/lits-r01/arrivee-source.png",
+      "source_sha256": "7ac75bab548d0026cbf01c1fe114f8c1bdf6f0d73711750b824d3626002a3947",
+      "source_uniform_scale": 0.17647058823529413,
+      "prompt": "docs/reviews/city-cyberpunk12/LITS-r01-ARRIVEE-PROMPT.txt",
+      "parts": [
+        {
+          "id": "V1-I03-maison-arrivee-lit-r01",
+          "label": "Lit simple compact",
+          "file": "assets/source-art/city-cyberpunk12/lits-r01/V1-I03-maison-arrivee-lit-native.png",
+          "sha256": "e86f708b33f020d83dc7438d4189d3b7bbb4cc4c27ef656090938be2717c7e15",
+          "native_size": [
+            65,
+            140
+          ],
+          "at_px": [
+            191,
+            3253
+          ]
+        }
+      ]
+    },
+    {
+      "id": "V1-I01-logement-D05-lit",
+      "source": "assets/source-art/city-cyberpunk12/lits-r01/intermediaire-source.png",
+      "source_sha256": "a45119a8e967d2e35cd4bd4f4082171acc4774ce6d3a4939885d54de1f13e8b8",
+      "source_uniform_scale": 0.18815896188158962,
+      "prompt": "docs/reviews/city-cyberpunk12/LITS-r01-INTERMEDIAIRE-PROMPT.txt",
+      "parts": [
+        {
+          "id": "V1-I01-logement-D05-lit-r01",
+          "label": "Lit simple compact",
+          "file": "assets/source-art/city-cyberpunk12/lits-r01/V1-I01-logement-D05-lit-native.png",
+          "sha256": "313a37ce15975076cd8e0cb537ccba586cd79b2c218892e7bcdb04a82f4ac31e",
+          "native_size": [
+            82,
+            195
+          ],
+          "at_px": [
+            861,
+            1223
+          ]
+        }
+      ]
+    }
+  ],
+  "roofs": [],
+  "campaign_integrated": true,
+  "presented_for_user_review": true
+}

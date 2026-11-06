@@ -31,6 +31,10 @@ les images acceptées du projet fixent sa projection et son traitement exacts.
 
 ### Cartes et raccords
 
+Le lit simple du logement r05 fixe l’échelle des lits ordinaires à 64 px par
+case. Adapter le cadre et les matières à la pièce. Comparer l’emprise au
+personnage et conserver la surface visible autour du lit. [Accord r05](reviews/city-cyberpunk12/LIT-ACCEPTANCE-r05.json)
+
 Les sols, murs, coins, portes, seuils et meubles suivent les mêmes repères
 de projection et d'échelle. Dessiner les éléments entiers, avec leurs pieds
 et leurs contours, puis vérifier leurs raccords et leur superposition.
@@ -41,6 +45,37 @@ et les monstres. Sa boîte d'image ne définit pas une collision.
 suggérant de fausses cases. Les matériaux intérieurs restent ceux de leurs
 lots validés ; l'accord sur les plaques des salles et le caillebotis usé du
 camp ne transforme pas tous les lieux en copies de ce camp.
+
+### Décors futuristes grimdark — accord B01 du 5 novembre 2026
+
+Le joueur pré-valide **B01 / 10-1 r04** (« oui c'est bien comme ca :) »).
+Cet immeuble fixe un exemple accepté de technologie urbaine avancée, sale
+et abîmée : réseaux et équipements intégrés, surveillance, accès électronique,
+pannes et réparations visibles. Garder la diversité des bâtiments et des usages,
+avec la projection et les proportions communes, plutôt que répéter son dessin.
+
+Source figée : `assets/source-art/north-city-01/production10/B01-cyberpunk-r04-source.png`.
+Portée et empreintes :
+[PRODUCTION10-B01-ACCEPTANCE-r04.json](reviews/north-city-01/PRODUCTION10-B01-ACCEPTANCE-r04.json).
+La reprise demandée concerne tous les décors **sauf les égouts**, conservés
+en l'état. Les futurs dessins gardent leur revue propre et la validation
+définitive de B01 en jeu reste à faire.
+
+Précision ultérieure du même jour : les scanners ne sont pas systématiques
+et leurs commandes doivent être dissimulées, sans calculateur exposé sur le
+toit. Cette retouche concerne les accessoires de sécurité de la référence,
+en conservant son style et ses proportions. Voir
+[SECURITE-r02.md](reviews/city-cyberpunk12/SECURITE-r02.md).
+
+Les pictogrammes doivent correspondre à un usage réel. Le joueur refuse
+les mêmes trois barres de signal répétées sur le lit, le réfrigérateur et
+l'évier. Retirer ces symboles gratuits en conservant les appareils et leur
+finition. Retouche ciblée : `reviews/city-cyberpunk12/SYMBOLES-r03.md`.
+
+Pour les réseaux apparents des bâtiments, choisir une finition adaptée à leur
+usage : gaine sombre pour les câbles, métal terni pour les tuyaux et cuivre
+patiné pour les raccords. Éviter les longues lignes rouges saturées qui prennent
+le dessus sur le décor. Exemple : [conduites du secteur d’arrivée](reviews/city-cyberpunk12/CONDUITES-r02.md).
 
 ### Personnages, équipement et animation
 

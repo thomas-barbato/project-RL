@@ -18,47 +18,89 @@ impl AsciiApp {
     pub(super) fn migrate_street_collisions(&mut self) -> Result<(), String> {
         self.street_collision_adoption_enabled = true;
         let zone = crate::prison_street::ZONE_ID.parse().unwrap();
-        if self.generation_version >= STREET_WAREHOUSE_CLEARANCE_GENERATION_VERSION
-            || self
-                .game
-                .passage_in(
-                    &zone,
-                    crate::prison_street::pos(crate::prison_street::expanded_scene().entrance),
-                )
-                .is_none()
+        if self
+            .game
+            .passage_in(
+                &zone,
+                crate::prison_street::pos(crate::prison_street::expanded_scene().entrance),
+            )
+            .is_none()
         {
             return Ok(());
         }
-        for (version, cells) in [
-            (
-                CIRCULAR_VISION_REPAIRS_GENERATION_VERSION,
-                crate::prison_street::collision_repair_cells()?,
-            ),
-            (
-                STREET_CONTACT_REPAIRS_GENERATION_VERSION,
-                crate::prison_street::contact_repair_cells()?,
-            ),
-            (
-                STREET_WAREHOUSE_CLEARANCE_GENERATION_VERSION,
-                crate::prison_street::warehouse_clearance_cells()?,
-            ),
-        ] {
-            if self.generation_version >= version {
-                continue;
+        if self.generation_version < STREET_WAREHOUSE_CLEARANCE_GENERATION_VERSION {
+            for (version, cells) in [
+                (
+                    CIRCULAR_VISION_REPAIRS_GENERATION_VERSION,
+                    crate::prison_street::collision_repair_cells()?,
+                ),
+                (
+                    STREET_CONTACT_REPAIRS_GENERATION_VERSION,
+                    crate::prison_street::contact_repair_cells()?,
+                ),
+                (
+                    STREET_WAREHOUSE_CLEARANCE_GENERATION_VERSION,
+                    crate::prison_street::warehouse_clearance_cells()?,
+                ),
+            ] {
+                if self.generation_version < version {
+                    self.repair_unrecorded_street_cells(&zone, cells)?;
+                }
             }
-            let cells: Vec<_> = cells.into_iter().filter(|cell| !self.history.iter().any(|command| {
-                matches!(command, RecordedCommand::RepairStaticZoneFloors { zone: id, cells } if id == crate::prison_street::ZONE_ID && cells.contains(&[cell.x, cell.y]))
-            })).collect();
-            if cells.is_empty() {
-                continue;
-            }
-            if self.execute_command(GameCommand::RepairStaticZoneFloors {
+        }
+        self.repair_unrecorded_street_cells(
+            &zone,
+            crate::prison_street::expanded_scene()
+                .courtyard_clearance
+                .iter()
+                .copied()
+                .map(crate::prison_street::pos),
+        )
+    }
+
+    fn repair_unrecorded_street_cells(
+        &mut self,
+        zone: &ContentId,
+        cells: impl IntoIterator<Item = GridPos>,
+    ) -> Result<(), String> {
+        let cells: Vec<_> = cells
+            .into_iter()
+            .filter(|cell| !Self::street_repair_recorded(&self.history, [cell.x, cell.y]))
+            .collect();
+        if !cells.is_empty()
+            && self.execute_command(GameCommand::RepairStaticZoneFloors {
                 zone: zone.clone(),
                 cells,
             }) != CommandOutcome::AppliedWithoutTime
-            {
-                return Err("Street collision adoption failed".into());
-            }
+        {
+            return Err("Street collision adoption failed".into());
+        }
+        Ok(())
+    }
+
+    fn street_repair_recorded(history: &[RecordedCommand], cell: [i32; 2]) -> bool {
+        history.iter().any(|command| {
+            matches!(command, RecordedCommand::RepairStaticZoneFloors { zone, cells }
+                if zone == crate::prison_street::ZONE_ID && cells.contains(&cell))
+        })
+    }
+
+    pub(super) fn restore_courtyard_clearance(
+        world: &mut WorldState,
+        history: &[RecordedCommand],
+    ) -> Result<(), String> {
+        // The map snapshot omits derived obstructions. Restore the recorded
+        // removal after the historical obstacles have been reconstructed.
+        let cells: Vec<_> = crate::prison_street::expanded_scene()
+            .courtyard_clearance
+            .iter()
+            .copied()
+            .filter(|&cell| Self::street_repair_recorded(history, cell))
+            .map(|cell| (crate::prison_street::pos(cell), false, false))
+            .collect();
+        if !cells.is_empty() {
+            let zone = crate::prison_street::ZONE_ID.parse().unwrap();
+            world.restore_static_zone_obstructions(&zone, &cells)?;
         }
         Ok(())
     }
@@ -84,6 +126,54 @@ impl AsciiApp {
 mod tests {
     use super::*;
     use crate::cryogenic_camp::{self as camp, pos};
+
+    #[test]
+    fn courtyard_clearance_survives_old_and_new_street_suspensions() {
+        let cells = [[11, 39], [11, 40], [12, 39], [12, 40]].map(pos);
+        for historical in [false, true] {
+            let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+            let mut app = AsciiApp::from_seed(1872, rules, texts, loot, expeditions).unwrap();
+            app.crash_recovery_enabled = false;
+            if historical {
+                app.street_collision_adoption_enabled = false;
+            }
+            let exit = pos(camp::scene().exits[0]);
+            app.walk_fixture_to_unchecked(exit).unwrap();
+            assert_eq!(
+                app.execute_command(GameCommand::Interact { target: exit }),
+                CommandOutcome::Applied
+            );
+            assert!(cells
+                .iter()
+                .all(|&cell| app.game.map().is_walkable(cell) != historical));
+            app.capture_events_at(Some(0.));
+            let saved = app.suspension().unwrap();
+            for replay in [false, true] {
+                let mut source = saved.clone();
+                if replay {
+                    source.recovery = Some(RecoveryPayload::replay(source.commands.len()).unwrap());
+                }
+                let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+                let mut restored =
+                    AsciiApp::restore_suspension(&source, rules, texts, loot, expeditions).unwrap();
+                assert_eq!(suspension::fingerprint(&restored.game), saved.state);
+                let turn = restored.game.turn();
+                restored.migrate_street_collisions().unwrap();
+                assert_eq!(restored.game.turn(), turn);
+                assert!(cells.iter().all(|&cell| restored.game.map().is_walkable(cell)));
+                assert!(!restored.game.map().is_walkable(pos([10, 42])));
+                let commands = restored.history.len();
+                restored.migrate_street_collisions().unwrap();
+                assert_eq!(restored.history.len(), commands);
+                let after = restored.suspension().unwrap();
+                let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+                let reopened =
+                    AsciiApp::restore_suspension(&after, rules, texts, loot, expeditions).unwrap();
+                assert_eq!(suspension::fingerprint(&reopened.game), after.state);
+                assert!(cells.iter().all(|&cell| reopened.game.map().is_walkable(cell)));
+            }
+        }
+    }
 
     #[test]
     fn contact_repairs_adopt_existing_streets_once_and_survive_snapshot_and_replay() {

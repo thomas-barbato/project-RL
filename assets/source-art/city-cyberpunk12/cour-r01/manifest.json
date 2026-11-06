@@ -1,0 +1,53 @@
+{
+  "review": "CITY-CYBERPUNK12-COUR-r01",
+  "status": "artwork-awaiting-user-prevalidation",
+  "base": "assets/maps/prison-street-expanded-01/street-with-sewer-entry-lits-r01.png",
+  "base_sha256": "721e4c572de7a4741b0dfc46210b3723ca2e1eb509e3248f05a8c4699c5cd44c",
+  "candidate": "assets/source-art/city-cyberpunk12/cour-r01/street-candidate-r01.png",
+  "candidate_sha256": "fc440b44ee58ab333e607c0e9b5b4ba4c58186938390030c51be62c31b686d1a",
+  "authorized_mask": "assets/source-art/city-cyberpunk12/cour-r01/authorized-mask-r01.png",
+  "source": "assets/source-art/city-cyberpunk12/cour-r01/station-source.png",
+  "source_sha256": "dd9d79a3591204ac79aace167af536824fdceafdda9c684c1487c8a7f8e169dc",
+  "source_uniform_scale": 0.17204301075268819,
+  "prompt": "docs/reviews/city-cyberpunk12/COUR-r01-PROMPT.txt",
+  "items": [
+    {
+      "id": "V1-C06-station-cour",
+      "original": "assets/source-art/first-sector-review-01/u01-expansion-r05/court-machines-native.png",
+      "original_sha256": "9df811695fac127601380ad6f411fdbac7ea5063ce852f4758895d00e7f6434a",
+      "parts": [
+        {
+          "id": "V1-C06-station-cour-flexible",
+          "label": "Cassette et flexible de diagnostic",
+          "file": "assets/source-art/city-cyberpunk12/cour-r01/V1-C06-station-cour-flexible-native.png",
+          "sha256": "d768c0f24ca55f34b674441190b5e606145d677168daa7950ecf56b22947cd7e",
+          "at_px": [
+            729,
+            2542
+          ],
+          "native_size": [
+            61,
+            36
+          ]
+        },
+        {
+          "id": "V1-C06-station-cour-ecran",
+          "label": "Panneau de diagnostic fêlé",
+          "file": "assets/source-art/city-cyberpunk12/cour-r01/V1-C06-station-cour-ecran-native.png",
+          "sha256": "2111e6e8f8e4bd9df06d9a45d4669d9b1e6b62a4a345efaed25a3b2b2b299f6c",
+          "at_px": [
+            732,
+            2578
+          ],
+          "native_size": [
+            56,
+            24
+          ]
+        }
+      ]
+    }
+  ],
+  "roofs": [],
+  "presented_for_user_review": true,
+  "campaign_integrated": false
+}

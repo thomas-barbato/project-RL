@@ -1797,6 +1797,8 @@ impl AsciiApp {
         miniquad::window::show_mouse(!crate::software_cursor::active());
         miniquad::window::set_mouse_cursor(cursor_icon);
         self.cursor_icon = cursor_icon;
+        self.combat_motion
+            .start_npc_glides_after_update(self.game.player_id(), now, get_time());
     }
 
     fn apply_graphics_window_change(&mut self) {
@@ -7925,7 +7927,9 @@ impl AsciiApp {
             let Some(visual) = self.front_actor_visual(entity) else {
                 continue;
             };
-            if !crate::game_art::vertical::supports(Some(visual)) {
+            if !crate::game_art::vertical::supports(Some(visual))
+                && crate::game_art::drones::motion(visual).is_none()
+            {
                 continue;
             }
             if self.game.player_visibility().is_visible(actor.position()) {
@@ -10757,6 +10761,16 @@ impl AsciiApp {
         )
     }
 
+    fn migrate_turn_flow(&mut self) -> Result<(), String> {
+        if !self.game.rules().turn_flow_corrections
+            && self.execute_command(GameCommand::EnableTurnFlowCorrections)
+                != CommandOutcome::AppliedWithoutTime
+        {
+            return Err("Impossible d’activer les corrections de tours.".into());
+        }
+        Ok(())
+    }
+
     fn from_seed_version(
         seed: u64,
         rules: GameRules,
@@ -11879,7 +11893,7 @@ impl AsciiApp {
             active_packages: ascii_active_packages()?,
             regional_zones: BTreeMap::new(),
             generation_version,
-            street_collision_adoption_enabled: false,
+            street_collision_adoption_enabled: generation_version >= CONNECTED_SEWER_GENERATION_VERSION,
             seed,
             home_placement: if generation_version >= RANDOM_HOME_GENERATION_VERSION {
                 crate::hub_layout::HomePlacement::for_seed(seed)
@@ -13341,7 +13355,8 @@ impl AsciiApp {
                         self.game.player_visibility(),
                     )
                 });
-                let old = std::mem::replace(&mut self.terminal, next);
+                let mut old = std::mem::replace(&mut self.terminal, next);
+                old.clear_presentation();
                 self.zone_views.insert(previous, old);
                 self.refresh_zone_title();
                 self.selected_target = None;
@@ -22308,6 +22323,7 @@ impl AsciiApp {
             self.expeditions.clone(),
         )?;
         fresh.character_class = Some(class_id);
+        fresh.migrate_turn_flow()?;
         fresh.select_weapon_slot(fresh.preferred_starting_weapon_slot());
         self.poll_crash_recovery_worker(true);
         if !creation.replace_suspension && self.has_resume_data() {
@@ -22355,6 +22371,7 @@ impl AsciiApp {
             self.loot.clone(),
             self.expeditions.clone(),
         )?;
+        fresh.migrate_turn_flow()?;
         self.remove_crash_recovery_files_except(None)?;
         if replace_suspension
             && self
@@ -22388,6 +22405,10 @@ impl AsciiApp {
             self.expeditions.clone(),
         ) {
             Ok(mut next_run) => {
+                if let Err(error) = next_run.migrate_turn_flow() {
+                    self.push_log(error);
+                    return;
+                }
                 if let Err(error) = self.remove_crash_recovery_files_except(None) {
                     eprintln!("[RECOVERY] Restart cleanup failed: {error}");
                     self.push_log(
@@ -23556,6 +23577,8 @@ impl AsciiApp {
                 saved.version,
             )?
         };
+        // The recorded repairs must run in their original order during replay.
+        restored.street_collision_adoption_enabled = false;
         let mut restored_from_snapshot = false;
         // Empty editor obstacles were briefly included in Debug even though
         // they add no map state. Verify both complete historical encodings.
@@ -23594,6 +23617,12 @@ impl AsciiApp {
         {
             snapshot_rules.circular_player_vision = true;
         }
+        if saved
+            .commands
+            .contains(&RecordedCommand::EnableTurnFlowCorrections)
+        {
+            snapshot_rules.turn_flow_corrections = true;
+        }
         // Only the exact agent catalogue delta above can open an old-build
         // cache. The full legacy state is checked before installing additions.
         fn has_agent_v14_engine(source: &str) -> bool {
@@ -23631,7 +23660,12 @@ impl AsciiApp {
                 .and_then(RecoveryPayload::snapshot_state)
             && (!legacy_agent_rules_match || has_agent_v14_engine(snapshot_source))
             && let Ok(mut snapshot) =
-                Self::decode_recovery_snapshot(snapshot_source, verification_rules)
+                Self::decode_recovery_snapshot(snapshot_source, verification_rules).and_then(
+                    |mut snapshot| {
+                        Self::restore_courtyard_clearance(&mut snapshot.game, &saved.commands)?;
+                        Ok(snapshot)
+                    },
+                )
         {
             if snapshot.game.status() == RunStatus::Active && matches_saved_state(&snapshot.game) {
                 if legacy_agent_rules_match {
@@ -23644,6 +23678,7 @@ impl AsciiApp {
                     crate::cryogenic_camp::restore_obstructions(&mut snapshot.game)?;
                     crate::prison_street::restore_obstructions(&mut snapshot.game)?;
                     crate::sewer::restore_obstructions(&mut snapshot.game)?;
+                    Self::restore_courtyard_clearance(&mut snapshot.game, &saved.commands)?;
                 }
                 restored.game = snapshot.game;
                 restored.terminal = snapshot.presentation.terminal;
@@ -23904,6 +23939,7 @@ impl AsciiApp {
         restored.migrate_player_vision()?;
         restored.migrate_circular_player_vision()?;
         restored.migrate_street_collisions()?;
+        restored.migrate_turn_flow()?;
         restored.last_crash_recovery_command_count = restored.history.len();
         restored.push_log(match source {
             ResumeSource::Suspension => "Partie reprise ; suspension consommée.".to_owned(),
@@ -29045,6 +29081,7 @@ mod tests {
     fn normal_exit_saves_once_and_no_input_can_change_the_saved_snapshot() {
         for exit in ["keyboard", "mouse", "window"] {
             let mut app = app_with_test_controls();
+            app.migrate_turn_flow().unwrap();
             apply(&mut app, GameCommand::Wait);
             let before = suspension::fingerprint(&app.game);
             let history = app.history.clone();
@@ -29106,6 +29143,7 @@ mod tests {
     #[test]
     fn failed_window_close_keeps_run_open_and_can_retry_without_losing_progress() {
         let mut app = app_with_test_controls();
+        app.migrate_turn_flow().unwrap();
         let folder = temporary_folder("close-failure");
         std::fs::create_dir(&folder).unwrap();
         let blocker = folder.join("not-a-directory");
@@ -30407,6 +30445,7 @@ mod tests {
         )
         .unwrap();
         let folder = temporary_folder("suspension");
+        app.migrate_turn_flow().unwrap();
         app.suspension_path = folder.join("suspended-run.json");
         app.session_lock = Some(suspension::session_lock(&folder.join("session.lock")).unwrap());
         for id in ["core:rec_01", "core:rec_02"] {
@@ -30541,6 +30580,7 @@ mod tests {
     #[test]
     fn resume_animates_before_consuming_the_suspension() {
         let mut app = app_with_test_controls();
+        app.migrate_turn_flow().unwrap();
         let before = suspension::fingerprint(&app.game);
         app.suspension()
             .unwrap()
@@ -30765,6 +30805,7 @@ mod tests {
     #[test]
     fn voluntary_suspension_supersedes_recovery_and_resume_rearms_it() {
         let mut app = app_with_test_controls();
+        app.migrate_turn_flow().unwrap();
         let folder = app.suspension_path.parent().unwrap().to_path_buf();
         let lock_path = folder.join("session.lock");
         app.session_lock = Some(suspension::session_lock(&lock_path).unwrap());
@@ -30856,6 +30897,7 @@ mod tests {
             saved.build = "617e393cfa1b13c7".to_owned();
             assert_ne!(saved.build, env!("PROJECT_RL_BUILD_FINGERPRINT"));
             saved.write(&app.suspension_path).unwrap();
+            app.migrate_turn_flow().unwrap();
             let mut next = app_with_test_controls();
             next.suspension_path = app.suspension_path.clone();
             next.open_menu(MenuScreen::Main);
@@ -30865,8 +30907,11 @@ mod tests {
                 menu_pointer(MenuScreen::Main, 0, true)
             });
             assert_eq!(next.menu, MenuScreen::Hidden, "{}", next.menu_message);
-            assert_eq!(suspension::fingerprint(&next.game), saved.state);
-            assert_eq!(next.history, saved.commands);
+            assert_eq!(
+                suspension::fingerprint(&next.game),
+                suspension::fingerprint(&app.game)
+            );
+            assert_eq!(next.history, app.history);
             assert_eq!(
                 next.game.map().tile(home.position(GridPos::new(32, 15))),
                 app.game.map().tile(home.position(GridPos::new(32, 15)))

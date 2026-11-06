@@ -72,6 +72,9 @@ impl AsciiApp {
         for _ in 0..3 {
             next_frame().await;
         }
+        if std::env::args().any(|arg| arg == "--rifle-walk") {
+            return Self::capture_street_rifle_walk(output).await;
+        }
         let mut records = Vec::new();
         let mut scene_records = Vec::new();
         for (label, at) in [
@@ -126,6 +129,88 @@ impl AsciiApp {
             serde_json::to_vec_pretty(&checks).unwrap(),
         )
         .map_err(|e| e.to_string())?;
+        Ok(())
+    }
+
+    async fn capture_street_rifle_walk(output: &std::path::Path) -> Result<(), String> {
+        use crate::game_art::{Visual, walking};
+
+        for (number, variant, from) in [
+            (22, 0, GridPos::new(19, 37)),
+            (22, 1, GridPos::new(17, 37)),
+            (24, 0, GridPos::new(19, 35)),
+            (24, 1, GridPos::new(19, 5)),
+        ] {
+            let mut captured = false;
+            for dx in [-2, 2, -1, 1, -3, 3] {
+                let at = GridPos::new(from.x + dx, from.y);
+                let Ok(mut app) = Self::street_population_fixture(Some(at)) else {
+                    continue;
+                };
+                let id = app
+                    .game
+                    .actors()
+                    .entity_at(from)
+                    .ok_or("Street rifle cultist missing")?;
+                let visual = app.front_actor_visual(id);
+                if visual != Some(Visual::CampaignMonster { number, variant }) {
+                    return Err(format!("Unexpected street cultist at {from:?}: {visual:?}"));
+                }
+                app.graphics.active.reduced_motion = false;
+                app.graphics.active.walk_duration_ms = 400;
+                app.prepare_presentation()?;
+                let input = InputFrame {
+                    pressed: [app.controls.binding(Action::Wait).clone()].into(),
+                    ..Default::default()
+                };
+                app.update_input_at(&input, Some(1.));
+                let to = app
+                    .game
+                    .actors()
+                    .get(id)
+                    .ok_or("Cultist missing after turn")?
+                    .position();
+                let facing = (to.x - from.x).signum() as i8;
+                let visible = app.game.player_visibility();
+                if facing == 0 || !visible.is_visible(from) || !visible.is_visible(to) {
+                    continue;
+                }
+                app.prepare_presentation()?;
+                app.combat_motion
+                    .start_npc_glides_after_update(app.game.player_id(), 1., 2.);
+                for (phase, elapsed) in [0.025, 0.13, 0.24, 0.36, 0.401].into_iter().enumerate() {
+                    let now = 2. + elapsed;
+                    let pose =
+                        walking::world_pose(&app.combat_motion, id, visual, false, now, false);
+                    if pose.map(|p| (p.facing, p.frame))
+                        != (phase < 4).then_some((facing, phase as u8))
+                    {
+                        return Err(format!(
+                            "Rifle cultist {number}-{variant}, {from:?} → {to:?}: phase {phase}, got {pose:?}"
+                        ));
+                    }
+                    let _time = crate::effect_geometry::frame_time(now);
+                    app.draw();
+                    crate::ui_capture::framebuffer()?.export_png(
+                        output
+                            .join(format!("rifle-{number}-{variant}-{phase}.png"))
+                            .to_str()
+                            .unwrap(),
+                    );
+                    next_frame().await;
+                }
+                println!(
+                    "Rifle cultist {number}-{variant}: {from:?} → {to:?}, four poses and rest"
+                );
+                captured = true;
+                break;
+            }
+            if !captured {
+                return Err(format!(
+                    "No visible lateral AI step for rifle cultist {number}-{variant}"
+                ));
+            }
+        }
         Ok(())
     }
 }

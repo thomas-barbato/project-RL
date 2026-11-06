@@ -1,0 +1,166 @@
+{
+  "review": "CITY-CYBERPUNK12-LIT-r05",
+  "status": "artwork-awaiting-user-prevalidation",
+  "parent_review": "assets/source-art/city-cyberpunk12/mobilier-r01/manifest.json",
+  "base": "assets/source-art/city-cyberpunk12/mobilier-r01/street-candidate-r01.png",
+  "base_sha256": "6af2c3b1ce5e2b12d93f07fafcf2ed56ecc1ac1959cf186e3fa89efc9e98e0b4",
+  "candidate": "assets/source-art/city-cyberpunk12/lit-r05/street-candidate-r05.png",
+  "candidate_sha256": "a4feb953be089326cdaa97fdf3e5ad06bdaa68805f996277aff64f849f39643a",
+  "authorized_mask": "assets/source-art/city-cyberpunk12/lit-r05/authorized-mask-r05.png",
+  "source": "assets/source-art/city-cyberpunk12/lit-r05/lit-source-r05.png",
+  "source_sha256": "5e683885c588b2f084193defa014d72f813ec6e90ad9c49ba175ffc9c5ba0f2b",
+  "source_uniform_scale": 0.2037351443123939,
+  "prompt": "docs/reviews/city-cyberpunk12/LIT-r05-PROMPT.txt",
+  "items": [
+    {
+      "id": "V1-I01-logement",
+      "parts": [
+        {
+          "id": "V1-I01-logement-D05-lit",
+          "label": "Lit simple compact r05",
+          "file": "assets/source-art/city-cyberpunk12/lit-r05/V1-I01-logement-D05-lit-native-r05.png",
+          "sha256": "e781cfc1111ae0ff6db83baa398723afd38de7a70c2e364ff75856a28894c750",
+          "at_px": [
+            864,
+            1252
+          ],
+          "native_size": [
+            78,
+            142
+          ]
+        }
+      ]
+    },
+    {
+      "id": "V1-RIOT-01",
+      "parts": [
+        {
+          "id": "V1-RIOT-01-retrait",
+          "label": "Retrait du décor antiémeute",
+          "at_px": [
+            1000,
+            832
+          ],
+          "file": "assets/source-art/city-cyberpunk12/mobilier-r01/V1-RIOT-01-retrait-native.png",
+          "sha256": "2fb4d630aa80fdde235160f1a75c472bb8bb10441464a2467ff4b1d777ca34d1"
+        }
+      ]
+    },
+    {
+      "id": "V1-RIOT-02",
+      "parts": [
+        {
+          "id": "V1-RIOT-02-retrait",
+          "label": "Retrait du décor antiémeute",
+          "at_px": [
+            936,
+            1536
+          ],
+          "file": "assets/source-art/city-cyberpunk12/mobilier-r01/V1-RIOT-02-retrait-native.png",
+          "sha256": "72b35f161c65db8a1a386d72ccd369d804f53863028de2cf45dcc2f2b786acd1"
+        }
+      ]
+    },
+    {
+      "id": "V1-RIOT-03",
+      "parts": [
+        {
+          "id": "V1-RIOT-03-retrait",
+          "label": "Retrait du décor antiémeute",
+          "at_px": [
+            816,
+            2160
+          ],
+          "file": "assets/source-art/city-cyberpunk12/mobilier-r01/V1-RIOT-03-retrait-native.png",
+          "sha256": "33c77bee31272742ff25dfabdc704ddded8a00fc4b60cd3f87b91498791a83a9"
+        }
+      ]
+    },
+    {
+      "id": "V1-RIOT-04",
+      "parts": [
+        {
+          "id": "V1-RIOT-04-retrait",
+          "label": "Retrait du décor antiémeute",
+          "at_px": [
+            1024,
+            2910
+          ],
+          "file": "assets/source-art/city-cyberpunk12/mobilier-r01/V1-RIOT-04-retrait-native.png",
+          "sha256": "73a9357df67bff3ded0a877eddf9f6b205f63d497c8555b7f43d47ff90dc0315"
+        }
+      ]
+    },
+    {
+      "id": "V1-RIOT-05",
+      "parts": [
+        {
+          "id": "V1-RIOT-05-retrait",
+          "label": "Retrait du décor antiémeute",
+          "at_px": [
+            636,
+            3694
+          ],
+          "file": "assets/source-art/city-cyberpunk12/mobilier-r01/V1-RIOT-05-retrait-native.png",
+          "sha256": "49e578ddb18a1100bc978c51ff1cf6698a13828be739709a3bf8f93386329bf2"
+        }
+      ]
+    }
+  ],
+  "roofs": [
+    {
+      "id": "V1-R01-logement",
+      "index": 2,
+      "original": "assets/maps/prison-street-expanded-01/roof-2.png",
+      "at_px": [
+        448,
+        1152
+      ],
+      "parts": [
+        {
+          "id": "V1-R01-logement-D01-distribution",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-R01-logement-D01-distribution-native-r01.png",
+          "sha256": "7eb3fc462bf3dda8dfefcde4f693c9f3c2b08cb028eeef1bdb76672f1ebfc5f5",
+          "bbox": [
+            230,
+            60,
+            295,
+            100
+          ],
+          "source": "assets/source-art/city-cyberpunk12/security-r02/HVAC-native-r02.png"
+        }
+      ],
+      "candidate": "assets/source-art/city-cyberpunk12/lot02/V1-R01-logement-native-r01.png",
+      "original_sha256": "2381e0b8139249ddefaf77b70ad14912556036df46900021a808ebc2a3efd37b",
+      "candidate_sha256": "a5b9d56bd7293b6f56ff0b7b9a293d244897077e482aa92705cfdd98d4b60d51"
+    },
+    {
+      "id": "V1-R02-boutique",
+      "index": 3,
+      "original": "assets/maps/prison-street-expanded-01/roof-3.png",
+      "at_px": [
+        464,
+        1648
+      ],
+      "parts": [
+        {
+          "id": "V1-R02-boutique-D01-relais",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-R02-boutique-D01-relais-native-r01.png",
+          "sha256": "c152d95189165002f778933f85d33fd1538c20bce823c4d0acf5ecd20fede875",
+          "bbox": [
+            245,
+            169,
+            320,
+            215
+          ],
+          "source": "assets/source-art/city-cyberpunk12/security-r02/HVAC-native-r02.png"
+        }
+      ],
+      "candidate": "assets/source-art/city-cyberpunk12/lot02/V1-R02-boutique-native-r01.png",
+      "original_sha256": "36f55710f3341eaed78d0a24b11a5a1a365d8d3e55b012e21f1bf74d43f0e636",
+      "candidate_sha256": "5de8cc9d4ec257dcd680f448862cb6f0578c7d0593a592502bfdf5790b13e0ed"
+    }
+  ],
+  "presented_for_user_review": true,
+  "campaign_integrated": false
+}

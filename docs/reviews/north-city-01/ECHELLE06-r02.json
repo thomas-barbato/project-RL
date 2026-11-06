@@ -1,0 +1,58 @@
+{
+  "review": "CITY-NORTH01-PROJECTION06-r02",
+  "before": {
+    "projection06-scene.png": {
+      "file": "artifacts/north-city-01/projection06-scene-r01.png",
+      "sha256": "e5a8bdae031501fd378d19e3b3ce75ee08f3a0ff0660f0e249b287c2f13c3934"
+    },
+    "projection06-comparaison.png": {
+      "file": "artifacts/north-city-01/projection06-comparaison-r01.png",
+      "sha256": "d147a1fa5847feb8088bd5ba13f0d6bb341582f55de50b9d12435f44513d498e"
+    },
+    "projection06-reperes.png": {
+      "file": "artifacts/north-city-01/projection06-reperes-r01.png",
+      "sha256": "4b4646f6aaa998bb2980c8b587f829e08f553e27d710c784328ea051de4de721"
+    }
+  },
+  "date": "2026-11-05",
+  "user_feedback": {
+    "perspective": "better",
+    "relative_scale": "character too small against new house/door"
+  },
+  "target": "right test building only",
+  "unchanged": [
+    "character source and 64px canvas",
+    "both character positions",
+    "left reference panel, pixel-identical",
+    "pavement and road outside old right-building bounds, pixel-identical",
+    "world/map data",
+    "perspective and original painting"
+  ],
+  "old_size": [
+    384,
+    376
+  ],
+  "new_size": [
+    288,
+    282
+  ],
+  "uniform_reduction": 0.75,
+  "source_unchanged": true,
+  "actor_visible_height": 58,
+  "door_opening_measurement": {
+    "kind": "approximate source opening, excluding stone frame",
+    "source_y": [
+      846,
+      1104
+    ],
+    "previous_native_height": 93.81818181818181,
+    "current_native_height": 70.36363636363636,
+    "current_ratio_to_actor": 1.213166144200627
+  },
+  "preservation_checks_passed": true,
+  "after": {
+    "projection06-comparaison.png": "47c5f86ee200a11db081ec46dbeede686b37ced3d6341e34a8515b02d6063bdf",
+    "projection06-scene.png": "6e621ccb5eba4378f9ab710f01a6ec82c54a951bc7d839ff9f55a14e2ed749ad",
+    "projection06-reperes.png": "8f425e9399b893ac12dd8ea1eb94f98a79edcd2930a10a27c807fbf99f6cb6e0"
+  }
+}

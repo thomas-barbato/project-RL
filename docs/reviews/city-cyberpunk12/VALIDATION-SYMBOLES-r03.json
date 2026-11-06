@@ -1,0 +1,42 @@
+{
+  "review": "CITY-CYBERPUNK12-LOT02-SYMBOLES-r03",
+  "status": "artwork-awaiting-user-prevalidation",
+  "changed_parts": 3,
+  "screen_regions": 4,
+  "unchanged_parts": 20,
+  "pixels_outside_displays_unchanged": true,
+  "native_capture_pixels_outside_displays_unchanged": true,
+  "native_image": [
+    704,
+    544
+  ],
+  "signal_pixel_checks": [
+    {
+      "name": "évier",
+      "cyan_signal_pixels_remaining": 0
+    },
+    {
+      "name": "réfrigérateur",
+      "cyan_signal_pixels_remaining": 0
+    },
+    {
+      "name": "lit",
+      "cyan_signal_pixels_remaining": 0
+    },
+    {
+      "name": "appareil sur la table",
+      "cyan_signal_pixels_remaining": 0
+    }
+  ],
+  "map_files_unchanged": 152,
+  "prior_accepted_sources_and_captures_preserved": true,
+  "manifest_sha256": "8bca6babcbfda2249cae0269b795b2e6a7d1c5439cb83fb3cee998fff54a0205",
+  "campaign_integrated": false,
+  "browser_qa": {
+    "before_after": "verified",
+    "delivered_view": "Logement intérieur, pictogrammes retirés",
+    "retained_tab": true,
+    "proof": "artifacts/city-cyberpunk12/symboles-r03-apercu-browser.png",
+    "proof_sha256": "ef4bc4db47137ca8469a77ba11bb3b45b5dfee4520cefccfc30390cc475fde07"
+  }
+}

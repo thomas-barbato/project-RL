@@ -103,6 +103,54 @@ mod world_readability;
 
 use ascii_app::{AsciiApp, TerminalDialogue};
 use macroquad::prelude::*;
+use std::time::{Duration, Instant};
+
+const FRAME_INTERVAL: Duration = Duration::from_nanos(1_000_000_000 / 60);
+
+struct FramePacer {
+    enabled: bool,
+    next_start: Instant,
+}
+
+impl FramePacer {
+    fn new(enabled: bool) -> Self {
+        Self {
+            enabled,
+            next_start: Instant::now(),
+        }
+    }
+
+    fn wait(&mut self) {
+        if self.enabled {
+            let now = Instant::now();
+            let deadline = self.next_start.max(now);
+            let remaining = deadline - now;
+            if !remaining.is_zero() {
+                std::thread::sleep(remaining);
+            }
+            // Keep the clock anchored through small sleep overshoots. A long
+            // stall resets the deadline instead of producing a burst of frames.
+            self.next_start = (deadline + FRAME_INTERVAL).max(Instant::now() + FRAME_INTERVAL / 2);
+        }
+    }
+}
+
+fn frame_limit_enabled() -> bool {
+    if !cfg!(windows)
+        || std::env::var_os("PROJECT_RL_DISABLE_FRAME_LIMIT").as_deref()
+            == Some(std::ffi::OsStr::new("1"))
+    {
+        return false;
+    }
+    match std::env::args().nth(1).as_deref() {
+        None | Some("--essai-expedition" | "--essai-interactions") => true,
+        #[cfg(debug_assertions)]
+        Some("--ui-cold-performance-loading") => {
+            std::env::args().any(|arg| arg == "--loading-limit-60")
+        }
+        _ => false,
+    }
+}
 
 fn window_conf() -> Conf {
     let settings = graphics::startup().0;
@@ -241,10 +289,16 @@ fn main() {
         }
         return;
     }
-    macroquad::Window::from_config(window_conf(), game_main());
+    let pace_frames = frame_limit_enabled();
+    let mut conf = window_conf();
+    if pace_frames {
+        // Avoid stacking the software cap and the display's refresh wait.
+        conf.platform.swap_interval = Some(0);
+    }
+    macroquad::Window::from_config(conf, game_main(pace_frames));
 }
 
-async fn game_main() {
+async fn game_main(pace_frames: bool) {
     #[cfg(debug_assertions)]
     let loading_start =
         if std::env::args().nth(1).as_deref() == Some("--ui-cold-performance-loading") {
@@ -784,7 +838,9 @@ async fn game_main() {
             TerminalDialogue::silent()
         }
     };
+    let mut frame_pacer = FramePacer::new(pace_frames);
     loop {
+        frame_pacer.wait();
         if is_quit_requested() {
             app.request_quit();
         } else if TerminalDialogue::officer(&app).is_some() {
@@ -816,7 +872,9 @@ async fn game_main() {
 
 async fn run_error_screen(error: &str) {
     eprintln!("[APP] Startup failed: {error}");
+    let mut frame_pacer = FramePacer::new(frame_limit_enabled());
     loop {
+        frame_pacer.wait();
         if is_quit_requested() || is_key_pressed(KeyCode::Escape) {
             return;
         }

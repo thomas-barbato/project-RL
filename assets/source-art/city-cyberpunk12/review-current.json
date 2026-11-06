@@ -1,0 +1,66 @@
+{
+  "review": "CITY-CYBERPUNK12-COUR-r03",
+  "status": "integrated-awaiting-in-game-validation",
+  "manifest": "assets/source-art/city-cyberpunk12/cour-r03/manifest.json",
+  "title": "Première ville · cour dégagée",
+  "summary": "Retrait de la machine au milieu de la cour.",
+  "intro": "Deux cadrages à 64 px par case avec le personnage de référence.",
+  "revision_note": "Cour dégagée intégrée à la carte jouable.",
+  "revision_note_detail": "Le comparatif garde les vues de prévalidation.",
+  "review_doc": "COUR-r03.md",
+  "before": "assets/maps/prison-street-expanded-01/street-with-sewer-entry-lits-r01.png",
+  "after": "assets/maps/prison-street-expanded-01/street-with-sewer-entry-lits-r01.png",
+  "before_label": "carte actuelle",
+  "after_label": "cour dégagée",
+  "default_view": "cour-r03-secteur",
+  "roof_overrides": {},
+  "before_roof_overrides": {},
+  "views": [
+    {
+      "id": "cour-r03-detail",
+      "name": "Emplacement de la machine",
+      "rect": [
+        560,
+        2384,
+        512,
+        400
+      ],
+      "actor": [
+        13,
+        41
+      ],
+      "hide_roofs": [],
+      "item": "V1-C06-station-cour",
+      "after_patch": {
+        "file": "assets/source-art/city-cyberpunk12/cour-r03/V1-C06-station-cour-retrait-native-r03.png",
+        "at_px": [
+          699,
+          2500
+        ]
+      }
+    },
+    {
+      "id": "cour-r03-secteur",
+      "name": "Cour centrale",
+      "rect": [
+        448,
+        2176,
+        768,
+        688
+      ],
+      "actor": [
+        13,
+        41
+      ],
+      "hide_roofs": [],
+      "item": "V1-C06-station-cour",
+      "after_patch": {
+        "file": "assets/source-art/city-cyberpunk12/cour-r03/V1-C06-station-cour-retrait-native-r03.png",
+        "at_px": [
+          699,
+          2500
+        ]
+      }
+    }
+  ]
+}

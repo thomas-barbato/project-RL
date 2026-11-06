@@ -1,0 +1,106 @@
+{
+  "review": "CITY-CYBERPUNK12-SORTIE-NORD-r01",
+  "status": "artwork-awaiting-user-prevalidation",
+  "base": "assets/maps/prison-street-expanded-01/street-with-sewer-entry.png",
+  "base_sha256": "840335f5bfd387af2c2db714b308611a04fe7b8d79c747f55a10d61a51bef2fe",
+  "candidate": "assets/source-art/city-cyberpunk12/sortie-nord-r01/street-candidate-r01.png",
+  "candidate_sha256": "1edd25e9f5e55c953b95083df56c1f4180c271342efb95f894cc7fa4a8cb368e",
+  "authorized_mask": "assets/source-art/city-cyberpunk12/sortie-nord-r01/authorized-mask-r01.png",
+  "items": [
+    {
+      "id": "V1-N01",
+      "source": "assets/source-art/city-cyberpunk12/sortie-nord-r01/poste-source.png",
+      "source_sha256": "5dfaebefce07770e85e906b80d62b22682133ecb0a82881473e4277a75216cf8",
+      "prompt": "docs/reviews/city-cyberpunk12/SORTIE-NORD-r01-POSTE-PROMPT.txt",
+      "source_uniform_scale": 0.3236994219653179,
+      "parts": [
+        {
+          "id": "V1-N01-toit",
+          "label": "Installation de distribution",
+          "file": "assets/source-art/city-cyberpunk12/sortie-nord-r01/V1-N01-toit-native.png",
+          "sha256": "aa1d63fba98a70db107bbe75d27239455b52a2d9b21ef6d36f69422c90100a2b",
+          "at_px": [
+            1375,
+            364
+          ],
+          "native_size": [
+            187,
+            168
+          ]
+        },
+        {
+          "id": "V1-N01-coffret",
+          "label": "Coffret de raccordement",
+          "file": "assets/source-art/city-cyberpunk12/sortie-nord-r01/V1-N01-coffret-native.png",
+          "sha256": "eba4528be7a3e8086540c9befe8598ebfdee8c295640c48cab14ac2873850df6",
+          "at_px": [
+            1513,
+            569
+          ],
+          "native_size": [
+            37,
+            33
+          ]
+        },
+        {
+          "id": "V1-N01-gaine",
+          "label": "Gaine sombre en façade",
+          "file": "assets/source-art/city-cyberpunk12/sortie-nord-r01/V1-N01-gaine-native.png",
+          "sha256": "b8e7ff8c8dbc5bb8cf48c01a27a7e6962b0483d46ed767e0d1f48efebd01d980",
+          "at_px": [
+            1451,
+            560
+          ],
+          "native_size": [
+            12,
+            54
+          ],
+          "source": "assets/source-art/city-cyberpunk12/sortie-nord-r01/gaine-source.png",
+          "source_sha256": "7a6f8b2cb33a33fac3e7a917bbfe904542956eab9bbe5538ebd018e8dd17b26f",
+          "prompt": "docs/reviews/city-cyberpunk12/SORTIE-NORD-r01-GAINE-PROMPT.txt",
+          "source_uniform_scale": 0.3236994219653179
+        }
+      ]
+    },
+    {
+      "id": "V1-N02",
+      "source": "assets/source-art/city-cyberpunk12/sortie-nord-r01/atelier-source.png",
+      "source_sha256": "a02d4442b1962699967f5b1dfb960d0d4ea8a55824b7f4e0f99641b759653475",
+      "prompt": "docs/reviews/city-cyberpunk12/SORTIE-NORD-r01-ATELIER-PROMPT.txt",
+      "source_uniform_scale": 0.27813357731015553,
+      "parts": [
+        {
+          "id": "V1-N02-ventilation",
+          "label": "Ventilation et gaines de l’atelier",
+          "file": "assets/source-art/city-cyberpunk12/sortie-nord-r01/V1-N02-ventilation-native.png",
+          "sha256": "f9e8243415a7f847e46bfa5b6891e16f828500916835bfb8c25f933e2805c0c6",
+          "at_px": [
+            872,
+            215
+          ],
+          "native_size": [
+            102,
+            88
+          ]
+        },
+        {
+          "id": "V1-N02-etabli",
+          "label": "Établi de diagnostic sous les gravats",
+          "file": "assets/source-art/city-cyberpunk12/sortie-nord-r01/V1-N02-etabli-native.png",
+          "sha256": "25b17076909491ca4a91c1300f7b61dd8fad87c16e76b77a3a7ae6a9fb45b187",
+          "at_px": [
+            926,
+            299
+          ],
+          "native_size": [
+            105,
+            122
+          ]
+        }
+      ]
+    }
+  ],
+  "roofs": [],
+  "campaign_integrated": false,
+  "presented_for_user_review": true
+}

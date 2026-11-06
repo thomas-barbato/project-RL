@@ -1,0 +1,96 @@
+{
+  "review": "CITY-CYBERPUNK12-DEPART-r01",
+  "status": "integrated-awaiting-in-game-validation",
+  "base": "assets/source-art/floor-continuous-01/street-0.png",
+  "base_sha256": "9d148ec217b112f3f276b324c72e86d18cb80ca0515fd4a2968002cef062f62a",
+  "candidate": "assets/source-art/city-cyberpunk12/depart-r01/street-candidate-r01.png",
+  "candidate_sha256": "fb0559d7a1d03001e779f22ff23b5da5644024fbfe8ef66373b4af920ee4f917",
+  "authorized_mask": "assets/source-art/city-cyberpunk12/depart-r01/authorized-mask-r01.png",
+  "items": [
+    {
+      "id": "DEP-I01",
+      "parts": [
+        {
+          "id": "DEP-I01-r01",
+          "label": "Intérieur choisi de la maison visitable",
+          "file": "assets/source-art/city-cyberpunk12/depart-r01/DEP-I01-native.png",
+          "sha256": "7085239efc2a9f2d867c727437ff1e8d68b04e6f848542d82fc87288a3125574",
+          "native_size": [
+            407,
+            234
+          ],
+          "at_px": [
+            173,
+            3193
+          ],
+          "source": "assets/source-art/city-cyberpunk12/lot03-conduites-r02/street-candidate-r02.png",
+          "source_sha256": "1648aded1408684c87f06a26441206bd0d2765780e9413454af61705efac9e65"
+        }
+      ]
+    },
+    {
+      "id": "DEP-B01",
+      "parts": [
+        {
+          "id": "DEP-B01-toit-r01",
+          "label": "Petite maison est · toit à verrière",
+          "file": "assets/source-art/city-cyberpunk12/depart-r01/DEP-B01-toit-native.png",
+          "sha256": "790c2f91736914b7a74c3c90424214f68f8006d8f34b1a2b32d16bcc53415655",
+          "native_size": [
+            191,
+            111
+          ],
+          "at_px": [
+            1368,
+            3157
+          ],
+          "source": "assets/source-art/city-cyberpunk12/depart-r01/maison-est-source.png",
+          "source_sha256": "5dfd12b20f115778b862699a1a7326721ede689d6c16153cc6b62e083e0ae12e",
+          "prompt": "docs/reviews/city-cyberpunk12/DEPART-r01-MAISON-EST-PROMPT.txt"
+        },
+        {
+          "id": "DEP-B01-facade-r01",
+          "label": "Petite maison est · façade",
+          "file": "assets/source-art/city-cyberpunk12/depart-r01/DEP-B01-facade-native.png",
+          "sha256": "3b05f581d94d09dc3dd1abf6bb614bdb1156471d77ede1bb16f6baa2276e216e",
+          "native_size": [
+            167,
+            68
+          ],
+          "at_px": [
+            1382,
+            3281
+          ],
+          "source": "assets/source-art/city-cyberpunk12/depart-r01/facade-est-source.png",
+          "source_sha256": "4124eed238a9bc215101a82a702225f67b9ad905eab84c67379d558b74c75299",
+          "prompt": "docs/reviews/city-cyberpunk12/DEPART-r01-FACADE-EST-PROMPT.txt"
+        }
+      ]
+    },
+    {
+      "id": "DEP-M01",
+      "parts": [
+        {
+          "id": "DEP-M01-r01",
+          "label": "Mur continu devant la ruine",
+          "file": "assets/source-art/city-cyberpunk12/depart-r01/DEP-M01-native.png",
+          "sha256": "d0cabc837fbecfc6442ae47acaced7081f48cf80a833a63d23cc6211c3bb25a8",
+          "native_size": [
+            779,
+            98
+          ],
+          "at_px": [
+            826,
+            3966
+          ],
+          "source": "assets/source-art/city-cyberpunk12/depart-r01/mur-source.png",
+          "source_sha256": "16d1c67c053fd876bf4995c0fd97f7d8c1be97fa57f7e1dc826451af1eca8d4d",
+          "prompt": "docs/reviews/city-cyberpunk12/DEPART-r01-MUR-PROMPT.txt"
+        }
+      ]
+    }
+  ],
+  "roofs": [],
+  "campaign_integrated": true,
+  "presented_for_user_review": true
+}

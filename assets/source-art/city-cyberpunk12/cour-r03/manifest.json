@@ -1,0 +1,52 @@
+{
+  "review": "CITY-CYBERPUNK12-COUR-r03",
+  "status": "integrated-awaiting-in-game-validation",
+  "base": "assets/maps/prison-street-expanded-01/street-with-sewer-entry-lits-r01.png",
+  "base_sha256": "721e4c572de7a4741b0dfc46210b3723ca2e1eb509e3248f05a8c4699c5cd44c",
+  "previous_review": "assets/source-art/city-cyberpunk12/cour-r02/manifest.json",
+  "items": [
+    {
+      "id": "V1-C06-station-cour",
+      "parts": [
+        {
+          "id": "V1-C06-station-cour-retrait-r03",
+          "label": "Retrait de la machine",
+          "sha256": "5b898f4fa3460177401dfd7dbd8c1e2e3a10e43b7641809691d1418e4a0ae769",
+          "file": "assets/source-art/city-cyberpunk12/cour-r03/V1-C06-station-cour-retrait-native-r03.png",
+          "at_px": [
+            699,
+            2500
+          ]
+        }
+      ]
+    }
+  ],
+  "roofs": [],
+  "exact_floor_recomposition": true,
+  "proposed_clearance": {
+    "remove_obstructions": [
+      [
+        11,
+        39
+      ],
+      [
+        11,
+        40
+      ],
+      [
+        12,
+        39
+      ],
+      [
+        12,
+        40
+      ]
+    ],
+    "scenes": [
+      "assets/maps/prison-street-expanded-01/street.json",
+      "assets/maps/prison-sewer-01/entry.json"
+    ]
+  },
+  "campaign_integrated": true,
+  "presented_for_user_review": true
+}

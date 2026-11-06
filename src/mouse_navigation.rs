@@ -101,6 +101,60 @@ mod tests {
     }
 
     #[test]
+    fn confirmed_route_finishes_each_glide_before_starting_the_next_step() {
+        for milliseconds in [120, 200, 400] {
+            let mut app = app();
+            app.graphics.active.reduced_motion = false;
+            app.graphics.active.walk_duration_ms = milliseconds;
+            let seconds = f64::from(milliseconds) / 1000.;
+            let player = app.game.player_id();
+            let start = app.game.player_position().unwrap();
+            let target = GridPos::new(8, 4);
+            let goal = click(&app, target);
+            app.update_input_at(&goal, Some(1.));
+            let cells = app.walk_preview.as_ref().unwrap().cells.clone();
+            assert_eq!(cells.first(), Some(&start));
+            assert!(cells.len() > 4);
+
+            let mut now = 2.;
+            let turn = app.game.turn();
+            app.update_input_at(&goal, Some(now));
+            for (i, pair) in cells.windows(2).enumerate() {
+                let [from, to] = [pair[0], pair[1]];
+                assert_eq!(app.game.player_position(), Some(to));
+                assert_eq!(app.game.turn(), turn + i as u64 + 1);
+                assert_eq!(
+                    app.combat_motion.glide_offset(player, now, false),
+                    vec2((from.x - to.x) as f32, (from.y - to.y) as f32),
+                );
+                let last_frame = now + seconds - 0.001;
+                app.update_input_at(&InputFrame::default(), Some(last_frame));
+                assert_eq!(app.game.player_position(), Some(to));
+                assert_eq!(
+                    app.combat_motion
+                        .walk_pose(player, last_frame, false)
+                        .unwrap()
+                        .frame,
+                    (i as u8 % 2) * 3 + 2,
+                );
+                now += seconds;
+                app.update_input_at(&InputFrame::default(), Some(now));
+            }
+            assert!(app.mouse_walk.is_none());
+            assert_eq!(app.game.player_position(), Some(target));
+            assert_eq!(
+                app.combat_motion.glide_offset(player, now, false),
+                Vec2::ZERO
+            );
+            assert!(
+                app.combat_motion
+                    .player_walk_pose(player, now, false)
+                    .is_none()
+            );
+        }
+    }
+
+    #[test]
     fn another_destination_replaces_preview_and_hover_or_held_click_never_confirms() {
         let mut app = app();
         let before = app.game.recovery_snapshot_bytes().unwrap();

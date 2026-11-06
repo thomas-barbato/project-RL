@@ -512,6 +512,7 @@ pub enum RecordedCommand {
         zone: String,
         cells: Vec<[i32; 2]>,
     },
+    EnableTurnFlowCorrections,
 }
 
 impl RecordedCommand {
@@ -519,6 +520,7 @@ impl RecordedCommand {
         match command {
             GameCommand::UpgradePlayerVision => Self::UpgradePlayerVision,
             GameCommand::EnableCircularPlayerVision => Self::EnableCircularPlayerVision,
+            GameCommand::EnableTurnFlowCorrections => Self::EnableTurnFlowCorrections,
             GameCommand::RepairStaticZoneFloors { zone, cells } => Self::RepairStaticZoneFloors {
                 zone: zone.to_string(),
                 cells: cells.iter().map(|at| [at.x, at.y]).collect(),
@@ -771,6 +773,7 @@ impl RecordedCommand {
             Self::UpgradeWeaponSets { set } => GameCommand::UpgradeWeaponSets { set: *set },
             Self::UpgradePlayerVision => GameCommand::UpgradePlayerVision,
             Self::EnableCircularPlayerVision => GameCommand::EnableCircularPlayerVision,
+            Self::EnableTurnFlowCorrections => GameCommand::EnableTurnFlowCorrections,
             Self::RepairStaticZoneFloors { zone, cells } => {
                 if cells.is_empty() || cells.len() > 256 {
                     return Err("Invalid static floor repair".into());

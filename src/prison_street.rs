@@ -23,6 +23,8 @@ pub struct Street {
     pub car_size: [i32; 2],
     pub obstructions: Vec<[i32; 2]>,
     #[serde(default)]
+    pub courtyard_clearance: Vec<[i32; 2]>,
+    #[serde(default)]
     pub atmosphere: Option<crate::camp_atmosphere::Config>,
     #[serde(default)]
     pub roofs: Vec<Roof>,

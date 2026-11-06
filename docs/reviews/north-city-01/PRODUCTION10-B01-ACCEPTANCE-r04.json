@@ -1,0 +1,59 @@
+{
+  "review": "CITY-NORTH01-PRODUCTION10-B01-ACCEPTANCE-r04",
+  "date": "2026-11-05",
+  "decision": "artwork-prevalidated",
+  "user_quote": "oui c'est bien comme ca :)",
+  "approved_candidate": "CITY-NORTH01-PRODUCTION10-B01-r04",
+  "scope": [
+    "Closed B01 r04 artwork as presented beside the original native64 actor",
+    "Futuristic cyberpunk grimdark direction with dirty and damaged equipment, as a reference for subsequent scenery"
+  ],
+  "source": "assets/source-art/north-city-01/production10/B01-cyberpunk-r04-source.png",
+  "source_sha256": "c78b574cd89e9aeb291801dc780304adb974878ae80c90dc853fa2e9e7fc284e",
+  "source_size": [
+    1350,
+    1165
+  ],
+  "crop": [
+    109,
+    111,
+    1131,
+    932
+  ],
+  "native": [
+    576,
+    474.6525198938992
+  ],
+  "uniform_scale": 0.5092838196286472,
+  "rect": [
+    12,
+    91,
+    20,
+    96
+  ],
+  "approach": [
+    13,
+    97
+  ],
+  "world_baseline": 6208,
+  "accepted_layout": "docs/reviews/north-city-01/PLAN09-ACCEPTANCE-r01.json",
+  "accepted_plan_sha256": "94657266c7c8b7b9cd6fbb96ee51186e5f8d20142de11a5359ee6674a4909a14",
+  "captures_presented": {
+    "artifacts/north-city-01/production10-B01-native.png": "19b905da3bff709810440a0209de5c8c21ed30f92c9dc1208f5521ddfbc25219",
+    "artifacts/north-city-01/production10-B01-comparaison.png": "7ed2c18ed9e977d923e3f91eb78ca3d5adb0cf3c280e96f38005ad161a8f9d72",
+    "artifacts/north-city-01/production10-B01-avant-apres.png": "cd5f648a9bb69770e273132ad6796257048749b3c849714bd57a0932103460c1",
+    "artifacts/north-city-01/production10-B01-emprise.png": "6c3f6ee2314a5aa3a34ef406dbb936ab248af922f8e1104f605592671ee0faab"
+  },
+  "technical_review": "docs/reviews/north-city-01/VALIDATION-PRODUCTION10-B01-r04.json",
+  "source_manifest": "assets/source-art/north-city-01/production10/manifest.json",
+  "direction_record": "docs/reviews/north-city-01/CYBERPUNK11.md",
+  "remaining_review": [
+    "Other future scenery artwork",
+    "B01 interior, roof occultation and movement collisions",
+    "Final visual validation in game"
+  ],
+  "scenery_revision_scope": "All scenery except sewers; preserve accepted layout and edit only requested elements/properties.",
+  "sewers": "preserved-as-is-excluded-from-redesign",
+  "campaign_integrated": false,
+  "final_in_game_validation": "pending"
+}

@@ -1,6 +1,7 @@
 //! Reviewed sprites and materials on the game's existing single-cell scenery.
 //! Only remembered terrain and currently perceived overlays
 //! reach the renderer.
+use std::cell::RefCell;
 use std::collections::{BTreeMap, BTreeSet};
 
 use crate::ui_theme::{
@@ -167,6 +168,9 @@ pub(crate) fn legacy_fire_review(rect: Rect, effect: crate::visual_effects::Term
 }
 #[path = "terminal_roads.rs"]
 mod terminal_roads;
+#[path = "terminal_presentation.rs"]
+mod terminal_presentation;
+use terminal_presentation::{PresentationCache, RadarTerrain, RadarTile, TerrainViewport, TerrainWindow};
 #[path = "terminal_scenery.rs"]
 mod terminal_scenery;
 
@@ -672,7 +676,7 @@ impl TerminalGlyphPalette {
     }
 }
 
-#[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(serde::Serialize, serde::Deserialize)]
 pub struct TerminalView {
     pub title: String,
     pub decor: SectorDecor,
@@ -680,7 +684,32 @@ pub struct TerminalView {
     // Stored in the optional recovery tail, preserving the original bincode layout.
     #[serde(skip)]
     pub(crate) combat_residue: crate::combat_visuals::CombatResidue,
+    #[serde(skip)]
+    presentation: RefCell<PresentationCache>,
 }
+
+impl Clone for TerminalView {
+    fn clone(&self) -> Self {
+        Self {
+            title: self.title.clone(),
+            decor: self.decor.clone(),
+            remembered: self.remembered.clone(),
+            combat_residue: self.combat_residue.clone(),
+            presentation: RefCell::default(),
+        }
+    }
+}
+
+impl PartialEq for TerminalView {
+    fn eq(&self, other: &Self) -> bool {
+        self.title == other.title
+            && self.decor == other.decor
+            && self.remembered == other.remembered
+            && self.combat_residue == other.combat_residue
+    }
+}
+
+impl Eq for TerminalView {}
 
 impl std::fmt::Debug for TerminalView {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -821,26 +850,33 @@ impl TerminalView {
             decor,
             remembered: BTreeMap::new(),
             combat_residue: crate::combat_visuals::CombatResidue::default(),
+            presentation: RefCell::default(),
         };
         view.observe(map, visibility);
         view
     }
 
     pub fn observe(&mut self, map: &Map, visibility: &VisibilityState) {
+        let mut changed = false;
         for position in visibility.visible_positions() {
             if let Some(tile) = map.tile(position) {
-                self.remembered.insert(
-                    position,
-                    KnownTile {
-                        terrain: tile.terrain,
-                        decor: terminal_scenery::variant(
-                            self.decor.at(position, tile.terrain),
-                            position,
-                        ),
-                    },
-                );
+                let known = KnownTile {
+                    terrain: tile.terrain,
+                    decor: terminal_scenery::variant(
+                        self.decor.at(position, tile.terrain),
+                        position,
+                    ),
+                };
+                changed |= self.remembered.insert(position, known) != Some(known);
             }
         }
+        if changed {
+            self.clear_presentation();
+        }
+    }
+
+    pub(crate) fn clear_presentation(&mut self) {
+        *self.presentation.get_mut() = PresentationCache::default();
     }
 
     pub fn known(&self, position: GridPos) -> Option<KnownTile> {
@@ -1073,36 +1109,20 @@ impl TerminalView {
         ));
         let focus = game.player_position().unwrap_or(GridPos::new(12, 12));
         let visibility = game.player_visibility();
-        // Read saved scenery once for this frame, including the six-cell road
-        // stencil. All material, wall and fog neighbours then share this view.
-        let first = GridPos::new(camera.first.x - 6, camera.first.y - 6);
-        let columns = camera.columns + 12;
-        let rows = camera.rows + 12;
-        let known_cells: Vec<_> = (0..rows)
-            .flat_map(|row| {
-                (0..columns)
-                    .map(move |column| self.known(GridPos::new(first.x + column, first.y + row)))
-            })
-            .collect();
-        let known_at = |at: GridPos| {
-            let x = at.x - first.x;
-            let y = at.y - first.y;
-            if (0..columns).contains(&x) && (0..rows).contains(&y) {
-                known_cells[(y * columns + x) as usize]
-            } else {
-                self.known(at)
-            }
-        };
+        let cryogenic_camp = crate::cryogenic_camp_render::active(game);
+        let prison_street = crate::prison_street_render::active(game);
         let surface_city = game.current_zone().is_some_and(|zone| zone.depth == 0);
-        let street_decor = |p| {
-            known_at(p).map(|t| {
-                if surface_city && t.decor == Decor::Lane {
-                    Decor::Street
-                } else {
-                    t.decor
-                }
-            })
-        };
+        let window = TerrainWindow::new(&camera, !cryogenic_camp && !prison_street, surface_city);
+        let mut presentation = self.presentation.borrow_mut();
+        if presentation
+            .viewport
+            .as_ref()
+            .is_none_or(|view| view.window != window)
+        {
+            presentation.viewport = Some(TerrainViewport::new(self, window));
+        }
+        let terrain = presentation.viewport.as_ref().expect("terrain viewport prepared");
+        let known_at = |at| terrain.known_at(self, at);
         // Reuse exactly one sample per visible cell across map, overhead
         // badges, sensor contacts and inspection. Never persist across frames:
         // motion, changed perception and commands are reflected immediately.
@@ -1116,8 +1136,6 @@ impl TerminalView {
                 camera.viewport.h as i32,
             )));
         }
-        let cryogenic_camp = crate::cryogenic_camp_render::active(game);
-        let prison_street = crate::prison_street_render::active(game);
         let outline_target = crate::target_outline::enabled()
             .then(|| crate::target_outline::pointer(camera.hit(mouse_position())))
             .flatten();
@@ -1147,36 +1165,22 @@ impl TerminalView {
                 ambience_time,
             );
         } else {
-            for row in 0..camera.rows {
-                for column in 0..camera.columns {
-                    let position = GridPos::new(camera.first.x + column, camera.first.y + row);
-                    let rect = camera.rect(position);
-                    let known = known_at(position);
-                    if known.is_none() {
-                        continue;
-                    }
-                    let visible = visibility.is_visible(position);
-                    if let Some(tile) = known {
-                        let sidewalk = terminal_roads::sidewalk(position, tile.decor, street_decor);
-                        draw_tile_on_surface(
-                            rect,
-                            tile.decor,
-                            position
-                                .cardinal_neighbors()
-                                .map(|p| known_at(p).is_some_and(|t| t.terrain == Terrain::Wall)),
-                            visible,
-                            position,
-                            sidewalk,
-                        );
-                        if sidewalk {
-                            terminal_roads::draw_curb(rect, visible, position, street_decor);
-                        }
-                        terminal_roads::draw(rect, tile.decor, visible, position, |p| {
-                            known_at(p).map(|t| t.decor)
-                        });
-                    } else {
-                        draw_rectangle(rect.x, rect.y, rect.w, rect.h, BLACK);
-                    }
+            for tile in &terrain.tiles {
+                let rect = camera.rect(tile.position);
+                let visible = visibility.is_visible(tile.position);
+                draw_tile_on_surface(
+                    rect,
+                    tile.decor,
+                    tile.joins,
+                    visible,
+                    tile.position,
+                    tile.sidewalk,
+                );
+                if tile.sidewalk {
+                    terminal_roads::draw_curb(rect, visible, tile.curb);
+                }
+                if let Some(mark) = tile.marking {
+                    terminal_roads::draw_marking(rect, visible, mark);
                 }
             }
             terminal_lighting::draw(&camera, visibility, known_at, reduced_motion);
@@ -2062,6 +2066,7 @@ impl TerminalView {
             muted,
         );
         set_default_camera();
+        drop(presentation);
         if sidebar {
             self.draw_sidebar(
                 game,
@@ -2153,8 +2158,10 @@ impl TerminalView {
             sensors.w - 24.0,
             (sensors.h - 129.0 - extra_lines as f32 * 18.0).clamp(60.0, 154.0),
         );
+        let mut presentation = self.presentation.borrow_mut();
+        let radar = presentation.radar.get_or_insert_with(|| RadarTerrain::new(self));
         let (known_min, known_max) = remembered_bounds(
-            &self.remembered,
+            radar.corners.into_iter().flatten(),
             game.player_position(),
             game.map().width(),
             game.map().height(),
@@ -2171,7 +2178,7 @@ impl TerminalView {
         );
         draw_sensor_scope(
             map_area,
-            &self.remembered,
+            &radar.tiles,
             game,
             known_min,
             known_max,
@@ -2296,7 +2303,7 @@ fn draw_inspection_panel_with_pointer(
             // Analysis changes the text, never the portrait scale.
             let side = if inspection.h < 180.0 { 64.0 } else { 96.0 };
             let image = Rect::new(rect.right() - side, rect.y + 3.0, side, side);
-            crate::game_art::draw_portrait(image, visual);
+            crate::game_art::draw_inspection_portrait(image, visual);
             image
         });
         let width = portrait.map_or(rect.w, |p| p.x - rect.x - 8.0);
@@ -2431,7 +2438,7 @@ fn draw_compact_preview(panel: Rect, target: &TerminalTargetSummary) {
     crate::terminal_chrome::module(panel, "06 / INSPECTION");
     if panel.h < 160.0 {
         let side = (panel.h - 36.0).clamp(12.0, 96.0);
-        crate::game_art::draw_portrait(
+        crate::game_art::draw_inspection_portrait(
             Rect::new(panel.right() - side - 8.0, panel.y + 30.0, side, side),
             visual,
         );
@@ -2447,7 +2454,7 @@ fn draw_compact_preview(panel: Rect, target: &TerminalTargetSummary) {
         return;
     }
     let side = (panel.h - 76.0).min(128.0).min(panel.w - 24.0).max(48.0);
-    crate::game_art::draw_portrait(
+    crate::game_art::draw_inspection_portrait(
         Rect::new(panel.x + (panel.w - side) * 0.5, panel.y + 30.0, side, side),
         visual,
     );
@@ -2465,7 +2472,7 @@ fn draw_compact_preview(panel: Rect, target: &TerminalTargetSummary) {
 #[allow(clippy::too_many_arguments)]
 fn draw_sensor_scope(
     area: Rect,
-    remembered: &BTreeMap<GridPos, KnownTile>,
+    terrain: &[(GridPos, RadarTile)],
     game: &WorldState,
     known_min: GridPos,
     known_max: GridPos,
@@ -2514,24 +2521,18 @@ fn draw_sensor_scope(
         scanline_y += 5.0;
     }
 
-    for (position, tile) in remembered {
+    for (position, tile) in terrain {
         if !sensor_position_is_inside(*position, known_min, known_max) {
             continue;
         }
         let cell = sensor_cell_rect(*position, known_min, pixel, origin);
         let visible = game.player_visibility().is_visible(*position);
-        if tile.terrain.blocks_movement() {
+        if let RadarTile::Wall(edges) = tile {
             let edge_color = if visible { phosphor_dim } else { memory };
-            let neighbours = position.cardinal_neighbors();
-            let joined = neighbours.map(|neighbour| {
-                remembered
-                    .get(&neighbour)
-                    .is_some_and(|known| known.terrain.blocks_movement())
-            });
-            if !joined[0] {
+            if edges[0] {
                 draw_sensor_edge(cell.x, cell.y, cell.right(), cell.y, edge_color, !visible);
             }
-            if !joined[1] {
+            if edges[1] {
                 draw_sensor_edge(
                     cell.right(),
                     cell.y,
@@ -2541,7 +2542,7 @@ fn draw_sensor_scope(
                     !visible,
                 );
             }
-            if !joined[2] {
+            if edges[2] {
                 draw_sensor_edge(
                     cell.x,
                     cell.bottom(),
@@ -2551,7 +2552,7 @@ fn draw_sensor_scope(
                     !visible,
                 );
             }
-            if !joined[3] {
+            if edges[3] {
                 draw_sensor_edge(cell.x, cell.y, cell.x, cell.bottom(), edge_color, !visible);
             }
         } else if visible {
@@ -2566,7 +2567,7 @@ fn draw_sensor_scope(
                     Color::from_rgba(56, 159, 149, 150)
                 },
             );
-        } else if sensor_memory_sample(*position) {
+        } else if matches!(tile, RadarTile::Floor { show_in_memory: true }) {
             let dot = (pixel * 0.13).clamp(0.5, 0.9);
             draw_circle(
                 cell.x + cell.w * 0.5,
@@ -3016,7 +3017,7 @@ fn draw_sensor_corners(area: Rect, color: Color) {
 }
 
 fn remembered_bounds(
-    remembered: &BTreeMap<GridPos, KnownTile>,
+    remembered: impl IntoIterator<Item = GridPos>,
     player: Option<GridPos>,
     map_width: usize,
     map_height: usize,
@@ -3024,7 +3025,7 @@ fn remembered_bounds(
     let fallback = player.unwrap_or(GridPos::new(0, 0));
     let mut minimum = fallback;
     let mut maximum = fallback;
-    for position in remembered.keys().copied().chain(player) {
+    for position in remembered {
         minimum.x = minimum.x.min(position.x);
         minimum.y = minimum.y.min(position.y);
         maximum.x = maximum.x.max(position.x);
@@ -4265,25 +4266,11 @@ pub(crate) fn draw_debug_floor_palette(page: usize) {
                         sample_index == 9,
                     );
                 }
-                if matches!(kind, Decor::Street | Decor::Lane) {
-                    terminal_roads::draw(
-                        Rect::new(
-                            x + column as f32 * 32.0,
-                            y + 14.0 + row as f32 * 32.0,
-                            32.0,
-                            32.0,
-                        ),
-                        kind,
-                        true,
-                        GridPos::new(column + 3, row + 2),
-                        |p| {
-                            Some(if (2..7).contains(&p.y) {
-                                kind
-                            } else {
-                                Decor::Wall
-                            })
-                        },
-                    );
+                let position = GridPos::new(column + 3, row + 2);
+                if let Some(mark) = terminal_roads::prepare_marking(kind, position, |p| {
+                    Some(if (2..7).contains(&p.y) { kind } else { Decor::Wall })
+                }) {
+                    terminal_roads::draw_marking(rect, true, mark);
                 }
             }
         }
@@ -5781,11 +5768,11 @@ mod tests {
             }
         }
         assert_eq!(
-            remembered_bounds(&remembered, Some(GridPos::new(73, 42)), 160, 96),
+            remembered_bounds(remembered.keys().copied(), Some(GridPos::new(73, 42)), 160, 96),
             (GridPos::new(68, 38), GridPos::new(78, 46))
         );
         assert_eq!(
-            remembered_bounds(&BTreeMap::new(), Some(GridPos::new(0, 0)), 160, 96),
+            remembered_bounds([], Some(GridPos::new(0, 0)), 160, 96),
             (GridPos::new(0, 0), GridPos::new(2, 2))
         );
     }

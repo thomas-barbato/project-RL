@@ -1,0 +1,84 @@
+{
+  "review": "CITY-NORTH01-SECTEUR08-r03",
+  "status": "visual-candidate-awaiting-prevalidation",
+  "tool": "image_gen.imagegen built-in edit",
+  "sources": [
+    {
+      "file": "assets/source-art/north-city-01/sector08/SECTEUR08-01-source.png",
+      "sha256": "d22fe6952447565f32dd52c1e180b57661ec51e0e7c59105ba29f6253d806e71",
+      "size": [
+        1536,
+        1024
+      ],
+      "source_unchanged": true
+    },
+    {
+      "file": "assets/source-art/north-city-01/sector08/SECTEUR08-01-r02-source.png",
+      "sha256": "f54be1bfb71ae8573b397da8ba90eb61480c090e565b1dde832b331da4243f4d",
+      "size": [
+        1536,
+        1024
+      ],
+      "source_unchanged": true
+    },
+    {
+      "file": "assets/source-art/north-city-01/sector08/SECTEUR08-B02-interieur-r03-source.png",
+      "sha256": "f7dee0c7510cc1464710096dd72d0f54a1c95070a925a39b834ea353542f4bf2",
+      "size": [
+        1536,
+        1024
+      ],
+      "source_unchanged": true
+    }
+  ],
+  "references": [
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-style-r07/SCENE-U01-07-r01.png",
+      "sha256": "1dd45907310699da19977f8e86ebaa79f374dcc8df1086b6d5a456e30562346a"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/street.png",
+      "sha256": "9d148ec217b112f3f276b324c72e86d18cb80ca0515fd4a2968002cef062f62a"
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/house-a-body-native.png",
+      "sha256": "9d81afa94d46e163204794f0536adc688eb8f6fd06e064661dba65b258ef7ead"
+    },
+    {
+      "file": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P01-r01-native64.png",
+      "sha256": "a1fd3482085814c0464fc9e0d3a6986c129c3565522ade4dd5439befbd8ae270"
+    }
+  ],
+  "prompts": [
+    "docs/reviews/north-city-01/SECTEUR08-PROMPT-r01.txt",
+    "docs/reviews/north-city-01/SECTEUR08-PROMPT-r02.txt",
+    "docs/reviews/north-city-01/SECTEUR08-INTERIEUR-PROMPT-r03.txt"
+  ],
+  "layout": "assets/source-art/north-city-01/sector08/scene.json",
+  "native_scale": 0.75,
+  "native_size": [
+    1152,
+    768
+  ],
+  "actor_native_size": [
+    64,
+    64
+  ],
+  "gameplay_integrated": false,
+  "local_patch": {
+    "id": "S08-B02",
+    "source_rect": [
+      992,
+      24,
+      432,
+      440
+    ],
+    "native_rect": [
+      744,
+      18,
+      324,
+      330
+    ],
+    "all_pixels_outside_identical": true
+  }
+}

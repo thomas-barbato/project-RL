@@ -27,6 +27,9 @@ fn same(a: &Image, b: &Image) -> bool {
 }
 pub(crate) async fn capture(output: &Path) -> Result<(), String> {
     std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
+    if std::env::args().any(|arg| arg == "--cultists") {
+        return capture_cultists(output).await;
+    }
     let manifest: serde_json::Value = serde_json::from_str(include_str!(
         "../assets/animations/biped-lateral-01/manifest.json"
     ))
@@ -200,4 +203,95 @@ pub(crate) async fn capture(output: &Path) -> Result<(), String> {
     )
     .map_err(|e| e.to_string())?;
     Ok(())
+}
+
+async fn capture_cultists(output: &Path) -> Result<(), String> {
+    let visuals: Vec<_> = project_rl::monster_art::MONSTER_ART
+        .iter()
+        .filter(|art| art.name == "Cultiste")
+        .map(|art| Visual::CampaignMonster {
+            number: art.number,
+            variant: art.variant,
+        })
+        .collect();
+    let scene = Scene::new()?;
+    let player: EntityId = serde_json::from_str("1").unwrap();
+    let id: EntityId = serde_json::from_str("2").unwrap();
+    let mut rows = Vec::new();
+    for &visual in &visuals {
+        game_art::vertical::prepare(&[visual])?;
+        game_art::biped::prepare(&[visual])?;
+        let before = asset_preparation::stats();
+        let render = |pose| {
+            scene
+                .render_actor(|cell| {
+                    walking::with_pose(pose, || {
+                        game_art::draw_world_animated(cell, visual, 1., None)
+                    });
+                })
+                .0
+        };
+        let idle = render(None);
+        let phases: &[f64] = if game_art::biped::supports(Some(visual)) {
+            &[0.025, 0.13, 0.24, 0.36]
+        } else {
+            &[0.025, 0.16, 0.30]
+        };
+        for facing in [-1, 1] {
+            let mut motion = CombatMotion::default();
+            let mut pictures = std::collections::BTreeSet::new();
+            for step in 0..2 {
+                let start = 2. + f64::from(step);
+                motion.glide_timed(
+                    id,
+                    GridPos::new(step * facing, 0),
+                    GridPos::new((step + 1) * facing, 0),
+                    start - 0.45,
+                    400,
+                );
+                motion.start_npc_glides_after_update(player, start - 0.45, start);
+                for &t in phases {
+                    let pose =
+                        walking::world_pose(&motion, id, Some(visual), false, start + t, false)
+                            .filter(|p| p.facing == facing as i8)
+                            .ok_or_else(|| {
+                                format!("Missing cultist heading {visual:?} {facing}")
+                            })?;
+                    let picture = render(Some(pose));
+                    if same(&picture, &idle) {
+                        return Err(format!(
+                            "Cultist is rendered at rest while moving: {visual:?}"
+                        ));
+                    }
+                    pictures.insert(picture.bytes);
+                }
+                let at_rest =
+                    walking::world_pose(&motion, id, Some(visual), false, start + 0.401, false);
+                if at_rest.is_some() || !same(&render(at_rest), &idle) {
+                    return Err(format!("Cultist does not return to rest: {visual:?}"));
+                }
+            }
+            if pictures.len() != phases.len() * 2 {
+                return Err(format!(
+                    "Cultist phase did not reach the normal renderer: {visual:?} {facing}"
+                ));
+            }
+            rows.push(serde_json::json!({"visual":format!("{visual:?}"),"facing":facing,"distinct_phases":pictures.len()}));
+        }
+        let after = asset_preparation::stats();
+        for metric in ["source_reads", "uploads", "jobs"] {
+            if before[metric] != after[metric] {
+                return Err(format!(
+                    "Resource work in cultist draw: {visual:?} {metric}"
+                ));
+            }
+        }
+        next_frame().await;
+    }
+    let result = serde_json::json!({"cultist_appearances":visuals.len(),"cases":rows,"draw_resource_work":false});
+    std::fs::write(
+        output.join("checks.json"),
+        serde_json::to_vec_pretty(&result).unwrap(),
+    )
+    .map_err(|e| e.to_string())
 }

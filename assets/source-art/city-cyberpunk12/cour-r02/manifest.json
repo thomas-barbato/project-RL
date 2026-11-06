@@ -1,0 +1,60 @@
+{
+  "review": "CITY-CYBERPUNK12-COUR-r02",
+  "status": "artwork-awaiting-user-prevalidation",
+  "base": "assets/maps/prison-street-expanded-01/street-with-sewer-entry-lits-r01.png",
+  "base_sha256": "721e4c572de7a4741b0dfc46210b3723ca2e1eb509e3248f05a8c4699c5cd44c",
+  "previous_review": "assets/source-art/city-cyberpunk12/cour-r01/manifest.json",
+  "items": [
+    {
+      "id": "V1-C06-station-cour-r02A",
+      "source": "assets/source-art/city-cyberpunk12/cour-r02/pompe-source.png",
+      "source_sha256": "76d56f0300cb1efe2aa129924d5708bc3d4c017af6a75f5f89cc7858f231a92a",
+      "prompt": "docs/reviews/city-cyberpunk12/COUR-r02A-PROMPT.txt",
+      "parts": [
+        {
+          "id": "V1-C06-station-cour-r02A",
+          "label": "Groupe de pompage",
+          "file": "assets/source-art/city-cyberpunk12/cour-r02/V1-C06-station-cour-r02A-compose.png",
+          "sha256": "f5f9064db45ad9679c4f780343ac779b35d36ccd0c1ed5c613be9743cd6b1367",
+          "at_px": [
+            699,
+            2500
+          ],
+          "sprite": "assets/source-art/city-cyberpunk12/cour-r02/V1-C06-station-cour-r02A-native.png",
+          "sprite_sha256": "f2ef4a74583e0b9f810fd81eca4fbe6299aa2fc726c53f0d9226e144ece92a96",
+          "sprite_native_size": [
+            100,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "V1-C06-station-cour-r02B",
+      "source": "assets/source-art/city-cyberpunk12/cour-r02/caisson-source.png",
+      "source_sha256": "af966c1272164bc1fc4aad4b2016a072c51db9c643336b8d693db764692210d6",
+      "prompt": "docs/reviews/city-cyberpunk12/COUR-r02B-PROMPT.txt",
+      "parts": [
+        {
+          "id": "V1-C06-station-cour-r02B",
+          "label": "Caisson de raccordement",
+          "file": "assets/source-art/city-cyberpunk12/cour-r02/V1-C06-station-cour-r02B-compose.png",
+          "sha256": "fddf2eae1047c6d260fe961855c809108bb11b892b74c7beb6a9ccd1c4698744",
+          "at_px": [
+            699,
+            2500
+          ],
+          "sprite": "assets/source-art/city-cyberpunk12/cour-r02/V1-C06-station-cour-r02B-native.png",
+          "sprite_sha256": "4a586d83fd3d99d76da3af88f060a38966ec79490915ebf46570b0d6eb9ecbba",
+          "sprite_native_size": [
+            121,
+            127
+          ]
+        }
+      ]
+    }
+  ],
+  "roofs": [],
+  "presented_for_user_review": true,
+  "campaign_integrated": false
+}

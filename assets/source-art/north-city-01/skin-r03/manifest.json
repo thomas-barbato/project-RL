@@ -1,0 +1,61 @@
+{
+  "review": "CITY-NORTH01-STYLE03-r01",
+  "status": "candidate-awaiting-user-prevalidation",
+  "generator": "image_gen.imagegen built-in",
+  "prompt_specification": "docs/reviews/north-city-01/STYLE03-PROMPTS.md",
+  "sources": [
+    {
+      "file": "assets/source-art/north-city-01/skin-r03/materials-source.png",
+      "sha256": "ccc6a6e66ff067c322f5aaa645df75cabb369057eb34d4ae4c3bfc55e24ece68",
+      "size": [
+        1254,
+        1254
+      ],
+      "has_transparent_pixels": false,
+      "generated_origin": "exec-ff97b7d0-47c1-4b15-9423-44b904365baf.png"
+    },
+    {
+      "file": "assets/source-art/north-city-01/skin-r03/furniture-source.png",
+      "sha256": "e3df894d694708bc22480851f935e098d30b1056573efd46ef3170150901eb01",
+      "size": [
+        1254,
+        1254
+      ],
+      "has_transparent_pixels": true,
+      "generated_origin": "exec-97160746-4388-418c-83a0-5040bd15ea3d.png"
+    },
+    {
+      "file": "assets/source-art/north-city-01/skin-r03/service-source.png",
+      "sha256": "efa898d66ffa30c595c2e250f9fe159b684b18d07fd3e9f2c3f434a974810e14",
+      "size": [
+        1263,
+        1245
+      ],
+      "has_transparent_pixels": true,
+      "generated_origin": "exec-8592c53b-5b40-470a-aaba-91d1b5905230.png"
+    }
+  ],
+  "references": [
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-style-r07/references/street-native-lighting.png",
+      "sha256": "dfd77b2925e9c3e730ac4a32689a06bd4af50c89aed5e94259bb6740630a9f21",
+      "size": [
+        1024,
+        520
+      ],
+      "has_transparent_pixels": false
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-style-r07/references/home-native-lighting.png",
+      "sha256": "c0b8336dba2af413c21387007281073032b8306460f2972e83c753e93f49fed9",
+      "size": [
+        480,
+        320
+      ],
+      "has_transparent_pixels": false
+    }
+  ],
+  "projection": "STYLE-RL-2026-10-18-r01",
+  "native_cell_px": 64,
+  "campaign_integrated": false
+}

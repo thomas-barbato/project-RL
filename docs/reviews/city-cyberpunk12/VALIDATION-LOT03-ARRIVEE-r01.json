@@ -1,0 +1,63 @@
+{
+  "review": "CITY-CYBERPUNK12-LOT03-ARRIVEE-r01",
+  "status": "artwork-awaiting-user-prevalidation",
+  "native_views": [
+    {
+      "id": "lot03-maison",
+      "size": [
+        640,
+        480
+      ],
+      "before_sha256": "90a9dcb28f5d5a5bc26b32ebd170ed56620ba126f73fa5f34e8a38fa92943c9d",
+      "after_sha256": "98f205518d7b62fb6950240195ff3f96a186d04b993c57c950d8794f68608547"
+    },
+    {
+      "id": "lot03-commerce",
+      "size": [
+        512,
+        480
+      ],
+      "before_sha256": "eea40013a64b78eed5736b7db82f87fa95614952ea327129fb07bdb047d79150",
+      "after_sha256": "28f2f3ad053939e222d8924bd1c20798f5209c077ddc1fbde8d420615b16cfb3"
+    },
+    {
+      "id": "lot03-portail",
+      "size": [
+        520,
+        320
+      ],
+      "before_sha256": "5e72b695e91cb49f167b6014b95576a4d2f6848246386bf8bc28aef38102f177",
+      "after_sha256": "3391340eb30cf12a6aec81c78ed0d8ca7def6cd34310a79a97aadfa54703973b"
+    },
+    {
+      "id": "lot03-secteur",
+      "size": [
+        1568,
+        960
+      ],
+      "before_sha256": "e70b926eb4a8ae5cd071ae7920b73b2cc7a3d7f597e8223176f13261fc211cfb",
+      "after_sha256": "94180d95ad48ea032f37e63b29ab6b15f19ec9b83dd76ad3ec0c3cdfb8a29a6f"
+    }
+  ],
+  "map_files_verified": 152,
+  "approved_layers_verified": 23,
+  "thresholds_and_lane_verified": true,
+  "native_pixels_outside_targeted_regions_match": true,
+  "resource_cache": {
+    "decode_ms": 4066.4049,
+    "decoded_source_budget": 67108864,
+    "decoded_source_peak_bytes": 59448644,
+    "jobs": 9,
+    "pending": 0,
+    "read_bytes": 23105705,
+    "read_ms": 25.638,
+    "source_reads": 9,
+    "texture_budget": 134217728,
+    "texture_bytes": 59448644,
+    "texture_create_ms": 20.2177,
+    "uploads": 9,
+    "worker_build_ms_including_sources": 4112.8447
+  },
+  "manifest_sha256": "bd409491cec903b8d23dbb02216f14a544a13c154ca1b441d9cdd151ca6d5db6",
+  "campaign_integrated": false
+}

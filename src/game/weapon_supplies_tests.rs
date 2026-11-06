@@ -1,4 +1,5 @@
 use super::*;
+use crate::ai::{AiBehavior, AiProfile};
 use crate::combat::DamageType;
 use crate::weapon::WeaponSupply;
 
@@ -294,4 +295,54 @@ fn shared_supplies_armed_hostile_drops_matter_alongside_its_weapon() {
             .iter()
             .any(|(_, entry)| entry.item() == &id("matter") && (2..=6).contains(&entry.quantity()))
     );
+}
+
+#[test]
+fn equipped_rifle_telegraphs_and_fires_at_an_exposed_player_beyond_melee() {
+    let (reference, _) = fixture();
+    let mut rules = reference.rules().clone();
+    rules.stealth_rules = Some(crate::stealth::StealthRules {
+        // Reproduce passive optical difficulty greater than the rifleman's
+        // score even though the player is out in the open.
+        base_concealment_difficulty: 100,
+        ..Default::default()
+    });
+    let mut game = GameState::new_with_rules(
+        Map::filled(12, 9, Terrain::Floor).unwrap(),
+        GridPos::new(3, 4),
+        123,
+        rules,
+    )
+    .unwrap();
+    let at = GridPos::new(7, 4);
+    let enemy = game
+        .spawn_actor(
+            Actor::new(at, 10)
+                .unwrap()
+                .with_player_relation(crate::social::PlayerRelation::Hostile)
+                .with_ai(AiProfile::new(AiBehavior::TelegraphedShooter, 8, 0, 256, 0))
+                .with_equipped_weapon(id("rifle"), None, &game.rules.weapons)
+                .unwrap(),
+        )
+        .unwrap();
+    assert!(!game.actor_optically_detects_player(enemy));
+    assert_eq!(
+        game.process_player_command(GameCommand::EnableTurnFlowCorrections),
+        CommandOutcome::AppliedWithoutTime
+    );
+    let player = game.player_id();
+    let target_at = game.player_position().unwrap();
+    assert_eq!(
+        game.process_player_command(GameCommand::Wait),
+        CommandOutcome::Applied
+    );
+    assert!(game.drain_events().iter().any(|event| matches!(event,
+        GameEvent::AttackTelegraphed { attacker, target_at: target, .. } if *attacker == enemy && *target == target_at)));
+    assert_eq!(
+        game.process_player_command(GameCommand::Wait),
+        CommandOutcome::Applied
+    );
+    assert!(game.drain_events().iter().any(|event| matches!(event,
+        GameEvent::AttackPerformed { attacker, target: Some(victim), weapon: Some(weapon), .. }
+            if *attacker == enemy && *victim == player && *weapon == id("rifle"))));
 }

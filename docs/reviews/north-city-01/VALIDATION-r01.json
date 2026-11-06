@@ -1,0 +1,54 @@
+{
+  "review": "CITY-NORTH01-r01",
+  "date": "2026-11-05",
+  "automated_status": "passed",
+  "test_command": "cargo test --locked --example north_city_review north_city_tests -- --nocapture",
+  "targeted_tests": 3,
+  "creation_seeds_checked": 48,
+  "basement_variants": 6,
+  "native_views": 10,
+  "native_cell_px": 64,
+  "manual_gameplay_check": "not_completed_window_activation_failed",
+  "validation": {
+    "layout_prevalidation": "pending-user-inspection",
+    "visual_prevalidation": "pending-user-inspection",
+    "final_in_game_validation": "pending-user-inspection",
+    "automated_checks_are_user_approval": false
+  },
+  "campaign_integrated": false,
+  "geometry_protected_during_police_variant_addition": [
+    "north_city.json",
+    "police_upper.json"
+  ],
+  "resource_preparation": {
+    "decode_ms": 1715.5949,
+    "decoded_source_budget": 67108864,
+    "decoded_source_peak_bytes": 34568848,
+    "jobs": 13,
+    "pending": 0,
+    "read_bytes": 13347995,
+    "read_ms": 9.7479,
+    "source_reads": 13,
+    "texture_budget": 134217728,
+    "texture_bytes": 34568848,
+    "texture_create_ms": 5.2943,
+    "uploads": 13,
+    "worker_build_ms_including_sources": 1731.1136
+  },
+  "files": {
+    "AGENTS.md": "3cd0f5e206e72980155a20cf254ea829b81cd97d2e442fa9d60ad51bd5c1fc3f",
+    "Apercu_quartier_nord.cmd": "6ae9413d903dd18335e94a169d2fe90b6c8dc37d06b4dfde45c4245a3546111f",
+    "assets/maps/north-city-01/north_city.json": "937b3815df946226e3b4b13dce1882e7f0e716f532008b99063ee013742ff397",
+    "assets/maps/north-city-01/police_basement.json": "04003d3d669a7eceb4219b2234572c5a8b8b152253240dcab49788c0fafac3e1",
+    "assets/maps/north-city-01/police_basement_layout01.json": "01edf6f79497a028fbd06668fe3afe3b6b023aacd78c4770e7aedb9c7522094e",
+    "assets/maps/north-city-01/police_basement_layout02.json": "da036355b0b73f3b9926df47719f8e3a1d7f6bdcfa1b9f858dd7d20b52ee3b7f",
+    "assets/maps/north-city-01/police_basement_layout03.json": "8de382687d14a6fc04bf37a5788678d5174c340829c701e7e485e8991fd40011",
+    "assets/maps/north-city-01/police_deep_layout01.json": "63034b640674595e04551f8141a4d431731c3a5d6adaff7f4c5c68269d52ae38",
+    "assets/maps/north-city-01/police_deep_layout02.json": "2065a8452c237446648faa7b11b5f436dd62c1998ee21d4bd0df9608d8cbe9a1",
+    "assets/maps/north-city-01/police_deep_layout03.json": "95fa6c2d6af82fe9d548589ee5834f285cf31b622e9d7baa2d3dc82b441a74f9",
+    "assets/maps/north-city-01/police_upper.json": "5e74c4a9eb0ac907edc377eb2162af7970006750c18bf596cce89c1a1af5a1b7",
+    "assets/maps/north-city-01/review.json": "e7719573c12cc86fd1b130167c22833dc0036a015966619e396b3dded492e6d3",
+    "examples/north_city_review.rs": "ec5244cd669e6581e5b6c9debe5ebd1983237ac6a70135f6bd79d98b58a8734e",
+    "examples/north_city/model.rs": "601cd6fe1c86953cc9df7c47eae9c5feb8929329b8adf6204db119374c500f3c"
+  }
+}

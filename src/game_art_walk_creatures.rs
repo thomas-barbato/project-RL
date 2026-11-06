@@ -1,10 +1,10 @@
 //! Exact WALK07 creature poses authorized on 24 October 2026.
+use super::creature_palette as palette;
 use super::*;
+use crate::asset_preparation::{self as preparation, PreparedImage, Request};
 use project_rl::asset_cache::ByteCache;
 use serde::Deserialize;
 use std::{cell::RefCell, collections::BTreeMap, sync::OnceLock};
-#[path = "game_art_walk_palette.rs"]
-mod palette;
 
 #[cfg(all(debug_assertions, test))]
 pub(super) fn vertical_palette(number: u16, variant: u8, image: &mut Image) -> Option<()> {
@@ -150,18 +150,52 @@ thread_local! {
         const { RefCell::new(ByteCache::new(64 * 1024 * 1024)) };
 }
 
-pub(super) fn image(number: u16, variant: u8) -> Option<Image> {
+#[cfg(test)]
+fn image(number: u16, variant: u8) -> Option<Image> {
     let entry = selected_entry(number)?;
-    let mut image = Image::from_file_with_format(
-        &project_rl::data_paths::read(&entry.file).ok()?,
-        Some(ImageFormat::Png),
-    )
-    .ok()?;
+    image_for(entry, variant)
+}
+
+fn image_for(entry: &Creature, variant: u8) -> Option<Image> {
+    let mut image = (*preparation::image(&entry.file).ok()?).clone();
     if (image.width, image.height) != (896, 256) {
         return None;
     }
-    palette::apply(number, variant, &mut image)?;
+    palette::apply(entry.number, variant, &mut image)?;
     Some(image)
+}
+
+fn cultist_key(visual: Visual) -> Option<(u16, u8)> {
+    let Visual::CampaignMonster { number, variant } = visual else {
+        return None;
+    };
+    let art = project_rl::monster_art::art(number, variant)?;
+    (art.name == "Cultiste"
+        && super::proportions_enabled()
+        && !super::corrections_enabled()
+        && !super::super::biped::supports(Some(visual)))
+    .then_some((number, variant))
+}
+
+fn preparation_key(entry: &Creature, variant: u8) -> String {
+    format!("{}/palette/{variant}", entry.file)
+}
+
+pub(in crate::game_art) fn cultist_request(visual: Visual) -> Option<Request> {
+    let (number, variant) = cultist_key(visual)?;
+    let entry = selected_entry(number)?;
+    Some((
+        preparation_key(entry, variant),
+        Box::new(move || {
+            let image = image_for(entry, variant)
+                .ok_or_else(|| format!("Animation latérale indisponible : {}", entry.file))?;
+            Ok(PreparedImage {
+                image,
+                cell: [entry.side; 2],
+                anchor: entry.foot.map(f32::from),
+            })
+        }),
+    ))
 }
 
 pub(super) fn draw(cell: Rect, visual: Visual, opacity: f32, pose: Option<Pose>) -> bool {
@@ -173,24 +207,7 @@ pub(super) fn draw(cell: Rect, visual: Visual, opacity: f32, pose: Option<Pose>)
     } else {
         0
     };
-    let key = (entry.number, variant, super::proportions_enabled());
-    CACHE.with_borrow_mut(|cache| {
-        if cache.get(&key).is_none() {
-            let image = image(entry.number, variant);
-            let bytes = image.as_ref().map_or(0, |image| image.bytes.len());
-            let texture = image.map(|image| {
-                let texture = Texture2D::from_image(&image);
-                texture.set_filter(FilterMode::Nearest);
-                texture
-            });
-            if texture.is_none() {
-                eprintln!("[WALK07] Animation indisponible : {}", entry.file);
-            }
-            cache.insert(key, texture, bytes);
-        }
-        let Some(texture) = cache.get(&key).and_then(Option::as_ref) else {
-            return false;
-        };
+    let draw_texture = |texture: &Texture2D| {
         let target = destination(cell, entry);
         if entry.shadow {
             let mut shadow_cell = cell;
@@ -208,7 +225,33 @@ pub(super) fn draw(cell: Rect, visual: Visual, opacity: f32, pose: Option<Pose>)
                 ..Default::default()
             },
         );
-        true
+    };
+    if cultist_key(visual).is_some() {
+        return preparation::with_texture(&preparation_key(entry, variant), |prepared| {
+            draw_texture(&prepared.texture);
+        })
+        .is_some();
+    }
+    let key = (entry.number, variant, super::proportions_enabled());
+    CACHE.with_borrow_mut(|cache| {
+        if cache.get(&key).is_none() {
+            let image = image_for(entry, variant);
+            let bytes = image.as_ref().map_or(0, |image| image.bytes.len());
+            let texture = image.map(|image| {
+                let texture = Texture2D::from_image(&image);
+                texture.set_filter(FilterMode::Nearest);
+                texture
+            });
+            if texture.is_none() {
+                eprintln!("[WALK07] Animation indisponible : {}", entry.file);
+            }
+            cache.insert(key, texture, bytes);
+        }
+        cache
+            .get(&key)
+            .and_then(Option::as_ref)
+            .map(draw_texture)
+            .is_some()
     })
 }
 

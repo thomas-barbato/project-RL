@@ -1,0 +1,100 @@
+{
+  "review": "CITY-NORTH01-PLAN09-r01",
+  "status": "layout-prevalidated-artwork-pending",
+  "native_cell": 64,
+  "world": [
+    112,
+    112
+  ],
+  "native_world": [
+    7168,
+    7168
+  ],
+  "building_count": 100,
+  "enterable_candidates": 22,
+  "counts_by_kind": {
+    "apartment": 33,
+    "house": 44,
+    "ruin": 2,
+    "shop": 11,
+    "fire": 1,
+    "school": 1,
+    "police": 1,
+    "military": 1,
+    "workshop": 6
+  },
+  "green_areas": 6,
+  "trees": 103,
+  "roads": 14,
+  "unique_ids": true,
+  "no_building_overlap": true,
+  "no_building_on_street": true,
+  "both_arrivals_reach_all_proposed_entrances_and_exit": true,
+  "police_variant_files_unchanged": true,
+  "existing_map_files_unchanged": {
+    "assets/maps/north-city-01/police_basement.json": {
+      "sha256": "04003d3d669a7eceb4219b2234572c5a8b8b152253240dcab49788c0fafac3e1",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout01.json": {
+      "sha256": "1e86da684f67b39622c7cc8cce4f80b6d84e1ae88e5d17011581307dcd09b352",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout02.json": {
+      "sha256": "dcf25cd48f4e50d6558e4c4026f0837fff240aeaebba516f265cde7f25ec436b",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout03.json": {
+      "sha256": "61adc9efa60690a5d447f573ca17ee12c285a79d8bb015c5971ab458d716e8f9",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout01.json": {
+      "sha256": "2cb405d677b7363b966515e0dec60f04c96ba75ea17027b3d939c9901acb9885",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout02.json": {
+      "sha256": "f1a1b43a0afc7e98834524eac857e5b0bda3c3028d1b89b5934b77111c08b0c6",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout03.json": {
+      "sha256": "2b692fb8942044c6b7e5dba2b5ed14be8489da2b809a70dd8c17e23643aab291",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_upper.json": {
+      "sha256": "87f75208ada22193d62b21df80c96e325144cb38bdcb41e5c91a0952f499a825",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/review.json": {
+      "sha256": "dcc3af6219d369a284e5e1c504604a3556988081f3eefe3a27baa059d4992aad",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/north_city.json": {
+      "sha256": "9e9fac2a223911310faa34a7ce178dce6003e7b21dacee7ca5da4f15c195a807",
+      "unchanged": true
+    }
+  },
+  "plan_file": "assets/maps/north-city-01/city-plan09.json",
+  "plan_sha256": "94657266c7c8b7b9cd6fbb96ee51186e5f8d20142de11a5359ee6674a4909a14",
+  "schematic": "artifacts/north-city-01/city-plan09.png",
+  "schematic_sha256": "eefb8771e3ba983374cc7f14deed1df81ac272d263cc3f43dc8347fe4638aff5",
+  "gameplay_integrated": false,
+  "check_scope": "Planning grid only; no engine terrain, final artwork, interior navigation or gameplay validation claimed.",
+  "browser_qa": {
+    "default_view": "Complete city plan",
+    "building_selection": "B08 from the dropdown and H90 from the SVG both show the correct stable IDs and entrance coordinates.",
+    "native_art_comparison": "Loaded at natural and displayed 1536x736 pixels; original actor remains native64.",
+    "interior_image": "Loaded successfully; view restored to the city plan for delivery.",
+    "tab_retained": true,
+    "approval_scope": "Layout prevalidated; new B01 drawing still pending."
+  },
+  "files": {
+    "tools/prepare_north_city_plan09.py": "c4b97b9dac4898d7b2172a9a752286c28952f3dc77fe482e80dc0c4be7a32cdc",
+    "tools/infill_north_city_plan09.py": "940bd9143582a475a377dca59482dbc81a5ae81ee164f7ddb3128fe69ddd63d1",
+    "tools/render_north_city_plan09.py": "da65ca0f55069f59bf53162cb2dff586ce4d53fb22f065de6106c0d6fa0af972",
+    "tools/show_north_city_review.py": "9b74b923d6ad43cc696f5e8990cb03d8649cd52a21e208e0c208f22608121589",
+    "examples/north_city_sector_review.rs": "ce3309c67e33e549c71e8b1b0c235f97bffcd54fceaac53f980e45712d24821a"
+  },
+  "acceptance": "docs/reviews/north-city-01/PLAN09-ACCEPTANCE-r01.json",
+  "geometry_sha256": "4b7cceb549bfd352652ca6bfed8baa296410376e6c7c7875f96eda1958775fc1",
+  "geometry_unchanged_after_approval": true
+}

@@ -1,4 +1,4 @@
-//! Accepted BIPED-LATERAL01..04, original palettes only. No I/O in draw.
+//! Accepted BIPED-LATERAL01..04 and the street rifle cultists. No I/O in draw.
 use super::{Visual, walking::Pose};
 use crate::asset_preparation::{self as preparation, PreparedImage, Request};
 use macroquad::prelude::*;
@@ -45,30 +45,43 @@ fn entries() -> &'static BTreeMap<u16, Entry> {
             .collect()
     })
 }
-fn entry(visual: Visual) -> Option<&'static Entry> {
-    if let Visual::CampaignMonster { number, variant: 0 } = visual {
-        entries().get(&number)
-    } else {
-        None
+const RIFLE_WALK_MODEL: u16 = 164;
+
+fn entry(visual: Visual) -> Option<(&'static Entry, Option<(u16, u8)>)> {
+    match visual {
+        Visual::CampaignMonster {
+            number: number @ (22 | 24),
+            variant: variant @ (0 | 1),
+        } => Some((entries().get(&RIFLE_WALK_MODEL)?, Some((number, variant)))),
+        Visual::CampaignMonster { number, variant: 0 } => Some((entries().get(&number)?, None)),
+        _ => None,
     }
 }
 pub(crate) fn supports(visual: Option<Visual>) -> bool {
     visual.and_then(entry).is_some()
 }
-fn key(e: &Entry) -> String {
+fn key(e: &Entry, street_palette: Option<(u16, u8)>) -> String {
+    if let Some((number, 1)) = street_palette {
+        return format!("biped-lateral01/{number}/1");
+    }
     format!("biped-lateral01/{}", e.number)
 }
 fn request(visual: Visual) -> Option<Request> {
-    let e = entry(visual)?;
+    let (e, street_palette) = entry(visual)?;
     Some((
-        key(e),
+        key(e, street_palette),
         Box::new(move || {
             let image = preparation::image(&e.file)?;
             if (image.width, image.height) != (e.cell[0] * 9, e.cell[1] * 2) {
                 return Err(format!("Invalid biped atlas: {}", e.file));
             }
+            let mut image = (*image).clone();
+            if let Some((number, 1)) = street_palette {
+                super::walking::apply_creature_palette(number, 1, &mut image)
+                    .ok_or("Missing green street rifle cultist palette")?;
+            }
             Ok(PreparedImage {
-                image: (*image).clone(),
+                image,
                 cell: e.cell,
                 anchor: e.anchor,
             })
@@ -85,21 +98,25 @@ pub(crate) fn anticipate(visuals: &[Visual]) {
         }
     }
 }
-fn selection(visual: Visual, pose: Option<Pose>) -> Option<(&'static Entry, u8, u16)> {
-    let e = entry(visual)?;
-    match pose {
-        None | Some(Pose { frame: 8, .. }) => Some((e, 8, 0)),
+fn selection(
+    visual: Visual,
+    pose: Option<Pose>,
+) -> Option<(&'static Entry, Option<(u16, u8)>, u8, u16)> {
+    let (e, street_palette) = entry(visual)?;
+    let (phase, row) = match pose {
+        None | Some(Pose { frame: 8, .. }) if street_palette.is_none() => (8, 0),
         Some(Pose { facing, frame }) if [-1, 1].contains(&facing) && frame < 8 => {
-            Some((e, frame, u16::from(facing > 0)))
+            (frame, u16::from(facing > 0))
         }
-        _ => None,
-    }
+        _ => return None,
+    };
+    Some((e, street_palette, phase, row))
 }
 pub(crate) fn draw(cell: Rect, visual: Visual, opacity: f32, pose: Option<Pose>) -> bool {
-    let Some((e, phase, row)) = selection(visual, pose) else {
+    let Some((e, street_palette, phase, row)) = selection(visual, pose) else {
         return false;
     };
-    preparation::with_texture(&key(e), |p| {
+    preparation::with_texture(&key(e, street_palette), |p| {
         let scale = cell.w / 64.;
         let mut at = cell;
         at.y += f32::from(e.vertical_offset) * scale;
@@ -154,7 +171,7 @@ mod tests {
                 number: *n,
                 variant: 0,
             };
-            assert!(supports(Some(visual)) && selection(visual, None).unwrap().1 == 8);
+            assert!(supports(Some(visual)) && selection(visual, None).unwrap().2 == 8);
             assert!(!supports(Some(Visual::CampaignMonster {
                 number: *n,
                 variant: 1
@@ -165,15 +182,36 @@ mod tests {
             for facing in [-1, 1] {
                 for frame in 0..8 {
                     assert_eq!(
-                        selection(visual, Some(Pose { facing, frame })).unwrap().1,
+                        selection(visual, Some(Pose { facing, frame })).unwrap().2,
                         frame
                     );
                 }
             }
         }
         assert!(!supports(Some(Visual::CampaignMonster {
-            number: 22,
+            number: 25,
             variant: 0
         })));
+    }
+
+    #[test]
+    fn street_rifles_share_the_approved_stride_and_keep_their_own_rest_and_vertical_art() {
+        for (number, variant) in [(22, 0), (22, 1), (24, 0), (24, 1)] {
+            let visual = Visual::CampaignMonster { number, variant };
+            assert!(supports(Some(visual)));
+            assert!(selection(visual, None).is_none());
+            for facing in [-2, 2] {
+                assert!(selection(visual, Some(Pose { facing, frame: 1 })).is_none());
+            }
+            for facing in [-1, 1] {
+                for frame in 0..8 {
+                    let (atlas, palette, phase, row) =
+                        selection(visual, Some(Pose { facing, frame })).unwrap();
+                    assert_eq!(atlas.number, RIFLE_WALK_MODEL);
+                    assert_eq!(palette, Some((number, variant)));
+                    assert_eq!((phase, row), (frame, u16::from(facing > 0)));
+                }
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@
     26,
     66
   ],
-  "background": "assets/maps/prison-sewer-01/art/background-b3fe8948652d.png",
+  "background": "assets/maps/prison-street-expanded-01/street-with-sewer-entry-cour-r03.png",
   "entrance": [
     7,
     62
@@ -380,7 +380,7 @@
     ]
   ],
   "source": "assets/maps/prison-sewer-01/art/SCENE-U01-07-r01-1dd459073106.png",
-  "background_sha256": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+  "background_sha256": "00d84ff73893e48117c8f8a27eaf2edd2006e3d1a9601eb78fbef7516f53114a",
   "layout_sha256": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
   "walkable_cells": 695,
   "all_walkable_connected": true,
@@ -429,7 +429,7 @@
   "lighting_review": "LUM-U01-08-r06",
   "style": "STYLE-RL-2026-10-18-r01",
   "atmosphere": {
-    "correction": "assets/maps/prison-sewer-01/art/correction-ab4b90375898.png",
+    "correction": "assets/maps/prison-street-expanded-01/correction.png",
     "irradiance": "assets/maps/prison-sewer-01/art/irradiance-19c4157c479d.png",
     "ambient": [
       0.56,
@@ -704,66 +704,6 @@
           1.0,
           0.82,
           0.46
-        ],
-        "state": "on"
-      },
-      {
-        "id": "ruin-west",
-        "at": [
-          924,
-          3977
-        ],
-        "origin": [
-          14,
-          58
-        ],
-        "box": [
-          904,
-          3971,
-          945,
-          3983
-        ],
-        "radius": 105,
-        "power": 0.28,
-        "color": [
-          1.0,
-          0.055,
-          0.025
-        ],
-        "lens_color": [
-          1.0,
-          0.055,
-          0.025
-        ],
-        "state": "on"
-      },
-      {
-        "id": "ruin-east",
-        "at": [
-          1388,
-          3978
-        ],
-        "origin": [
-          21,
-          58
-        ],
-        "box": [
-          1368,
-          3972,
-          1407,
-          3984
-        ],
-        "radius": 105,
-        "power": 0.28,
-        "color": [
-          1.0,
-          0.055,
-          0.025
-        ],
-        "lens_color": [
-          1.0,
-          0.055,
-          0.025
         ],
         "state": "on"
       },

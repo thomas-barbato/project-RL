@@ -1,0 +1,56 @@
+{
+  "review": "CITY-CYBERPUNK12-LITS-r01",
+  "status": "integrated-awaiting-in-game-validation",
+  "manifest": "assets/source-art/city-cyberpunk12/lits-r01/manifest.json",
+  "title": "Première ville · lits simples r01",
+  "summary": "Les deux logements jouables reprennent les proportions du lit simple validé.",
+  "intro": "Le comparatif montre les lits avec le personnage à 64 px par case.",
+  "revision_note": "Lits compacts intégrés dans la première ville.",
+  "revision_note_detail": "Le comparatif garde les vues présentées pour la prévalidation.",
+  "review_doc": "LITS-r01.md",
+  "before": "assets/maps/prison-street-expanded-01/street-with-sewer-entry.png",
+  "after": "assets/source-art/city-cyberpunk12/lits-r01/street-candidate-r01.png",
+  "before_label": "carte actuelle",
+  "after_label": "lit compact",
+  "default_view": "lits-r01-arrivee",
+  "roof_overrides": {},
+  "before_roof_overrides": {},
+  "views": [
+    {
+      "id": "lits-r01-arrivee",
+      "name": "Maison du départ",
+      "rect": [
+        64,
+        3120,
+        640,
+        448
+      ],
+      "actor": [
+        6,
+        52
+      ],
+      "hide_roofs": [
+        0
+      ],
+      "item": "V1-I03-maison-arrivee-lit"
+    },
+    {
+      "id": "lits-r01-intermediaire",
+      "name": "Logement intermédiaire",
+      "rect": [
+        384,
+        1088,
+        704,
+        512
+      ],
+      "actor": [
+        12,
+        21
+      ],
+      "hide_roofs": [
+        2
+      ],
+      "item": "V1-I01-logement-D05-lit"
+    }
+  ]
+}

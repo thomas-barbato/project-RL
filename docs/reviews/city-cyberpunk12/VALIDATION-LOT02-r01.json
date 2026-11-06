@@ -1,0 +1,307 @@
+{
+  "actor": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P01-r01-native64.png",
+  "actor_size": [
+    64,
+    64
+  ],
+  "campaign_integrated": false,
+  "lighting": "Source map illumination only; live campaign light shader and visibility are not evaluated by this review.",
+  "native_cell": 64,
+  "resource_cache": {
+    "decode_ms": 3324.3206,
+    "decoded_source_budget": 67108864,
+    "decoded_source_peak_bytes": 59448644,
+    "jobs": 9,
+    "pending": 0,
+    "read_bytes": 22968267,
+    "read_ms": 15.9711,
+    "source_reads": 9,
+    "texture_budget": 134217728,
+    "texture_bytes": 59448644,
+    "texture_create_ms": 10.2481,
+    "uploads": 9,
+    "worker_build_ms_including_sources": 3350.2609
+  },
+  "resources_prepared_before_display": true,
+  "review": "CITY-CYBERPUNK12-LOT02-r01",
+  "review_only": true,
+  "roof_visibility": "Explicit inspection views only; game door/roof rules are unchanged.",
+  "status": "artwork-awaiting-user-prevalidation",
+  "views": [
+    {
+      "actor": [
+        18,
+        31
+      ],
+      "hide_roofs": [],
+      "id": "lot02-secteur",
+      "name": "Quartier intermédiaire",
+      "rect": [
+        0.0,
+        1024.0,
+        1664.0,
+        1088.0
+      ]
+    },
+    {
+      "actor": [
+        11,
+        23
+      ],
+      "hide_roofs": [],
+      "id": "lot02-logement-exterieur",
+      "name": "Logement · toit visible",
+      "rect": [
+        384.0,
+        1088.0,
+        704.0,
+        512.0
+      ]
+    },
+    {
+      "actor": [
+        12,
+        21
+      ],
+      "hide_roofs": [
+        2
+      ],
+      "id": "lot02-logement-interieur",
+      "name": "Logement · intérieur",
+      "rect": [
+        384.0,
+        1088.0,
+        704.0,
+        512.0
+      ]
+    },
+    {
+      "actor": [
+        11,
+        31
+      ],
+      "hide_roofs": [],
+      "id": "lot02-boutique-exterieur",
+      "name": "Boutique · toit visible",
+      "rect": [
+        384.0,
+        1584.0,
+        704.0,
+        512.0
+      ]
+    },
+    {
+      "actor": [
+        11,
+        29
+      ],
+      "hide_roofs": [
+        3
+      ],
+      "id": "lot02-boutique-interieur",
+      "name": "Boutique · intérieur",
+      "rect": [
+        384.0,
+        1584.0,
+        704.0,
+        512.0
+      ]
+    },
+    {
+      "actor": [
+        10,
+        8
+      ],
+      "hide_roofs": [],
+      "id": "lot02-entrepot",
+      "name": "Entrepôt en L",
+      "rect": [
+        96.0,
+        192.0,
+        832.0,
+        640.0
+      ]
+    },
+    {
+      "actor": [
+        7,
+        43
+      ],
+      "hide_roofs": [],
+      "id": "lot02-garage-corrige",
+      "name": "Garage · correction sécurité",
+      "rect": [
+        64.0,
+        2304.0,
+        640.0,
+        640.0
+      ]
+    },
+    {
+      "actor": [
+        19,
+        42
+      ],
+      "hide_roofs": [],
+      "id": "lot02-bleu-corrige",
+      "name": "Bâtiment bleu · correction sécurité",
+      "rect": [
+        1056.0,
+        2112.0,
+        608.0,
+        704.0
+      ]
+    },
+    {
+      "actor": [
+        19,
+        48
+      ],
+      "hide_roofs": [],
+      "id": "lot02-annexe-corrige",
+      "name": "Annexe · correction sécurité",
+      "rect": [
+        1056.0,
+        2624.0,
+        608.0,
+        704.0
+      ]
+    }
+  ],
+  "active_map_files_preserved": 152,
+  "approved_source_files_preserved": 17,
+  "accepted_lot01_captures_preserved": true,
+  "other_approved_parts_preserved": true,
+  "security_layers_removed": 4,
+  "ordinary_building_scanners": false,
+  "added_access_readers_remaining": 1,
+  "scanner_controller_visible": false,
+  "original_walls_thresholds_and_warehouse_breach_preserved": true,
+  "apartment_floor_reaches_original_wall_and_threshold": true,
+  "source_actor_preserved": true,
+  "native_views": [
+    {
+      "view": "lot02-secteur",
+      "size": [
+        1664,
+        1120
+      ],
+      "outside_authorized_pixels_unchanged": true,
+      "before_sha256": "4d7672d4a4fa31074d5920d4220446842f2418a428c3e903b61aa89ab7b467cd",
+      "after_sha256": "e819c4104de3cbf307a8f888ec88b5eefa49844c94e3b9e6a9e9f6638e5024fa"
+    },
+    {
+      "view": "lot02-logement-exterieur",
+      "size": [
+        704,
+        544
+      ],
+      "outside_authorized_pixels_unchanged": true,
+      "before_sha256": "d1363c51f2157d83f184ed6cdb680618a9a2af45cec478b07cebaa20e05ab1c4",
+      "after_sha256": "24352c94bf985104b347342ef62d9fa188bd6e74f752a1c509c079a46880b0e2"
+    },
+    {
+      "view": "lot02-logement-interieur",
+      "size": [
+        704,
+        544
+      ],
+      "outside_authorized_pixels_unchanged": true,
+      "before_sha256": "1ab4211e6ddf155c29d83ecfcc518ff94ce562d396ca388a27ce1a92ebbdf813",
+      "after_sha256": "5a835b3ea72a82cca8679c8af1c3c9477f868ef5a274d1225fece486b66e3987"
+    },
+    {
+      "view": "lot02-boutique-exterieur",
+      "size": [
+        704,
+        544
+      ],
+      "outside_authorized_pixels_unchanged": true,
+      "before_sha256": "e4db6327b655327c1ed61fa5b61a2cd218c89a192e88493ced70b1571cdafb86",
+      "after_sha256": "d3087b5900621b8c257f42fa6d86c2f037d454a71d58f3b0540d7345c057f82e"
+    },
+    {
+      "view": "lot02-boutique-interieur",
+      "size": [
+        704,
+        544
+      ],
+      "outside_authorized_pixels_unchanged": true,
+      "before_sha256": "b10fb241a33355b6f7283ec171214918b006dcf73594dd48ffe63753dd419e89",
+      "after_sha256": "fecefb3cc53931df4845e5a5305294085b8d563937defdc8a5f9ea3792b16f81"
+    },
+    {
+      "view": "lot02-entrepot",
+      "size": [
+        832,
+        672
+      ],
+      "outside_authorized_pixels_unchanged": true,
+      "before_sha256": "72a9b5a5d1fce2ce45ef327296d037d502722a52126a7d1d9494e5347e73485a",
+      "after_sha256": "22718afb5307d8f3368ec2b5877ee82b62380c0550f14e01ef463236cb5deb84"
+    },
+    {
+      "view": "lot02-garage-corrige",
+      "size": [
+        640,
+        672
+      ],
+      "outside_authorized_pixels_unchanged": true,
+      "before_sha256": "de39db289a70f71b944c3841d3126b022655e6472879ac502a86dfd62bb70bb6",
+      "after_sha256": "cbdf42514326b19eeee641ecb9e883ec1287688dee3b97ec31a937b3a4f4efed"
+    },
+    {
+      "view": "lot02-bleu-corrige",
+      "size": [
+        608,
+        736
+      ],
+      "outside_authorized_pixels_unchanged": true,
+      "before_sha256": "1b811548dc16a8fb31b681f11de92ec7c041ddd00f75ee77930f6c51b3e7a5e2",
+      "after_sha256": "5f7463f347445823447ea2ea6734414c2bdae7a760d4b5799f6b3c805dddb4c1"
+    },
+    {
+      "view": "lot02-annexe-corrige",
+      "size": [
+        608,
+        736
+      ],
+      "outside_authorized_pixels_unchanged": true,
+      "before_sha256": "7bfcb3d1d664c5bdce4b071a74cc642a5e055e761b42d3aa736f37c1309b5a98",
+      "after_sha256": "69eaa5730f7bbf01271c0086a8a538f42163f4bb37e3070d4744592c42bc51e4"
+    }
+  ],
+  "candidate_sha256": "4a109fff54b8e1b58df5dcc4dd5d2d0f0b3fedb8349b128f21a6f23de4bde549",
+  "source_manifest": "assets/source-art/city-cyberpunk12/lot02/manifest.json",
+  "source_manifest_sha256": "52536539b48b9bb2ff84e8b5d8d05e34fd4397a4009fabc3f5d20b43999d14ff",
+  "security_manifest": "assets/source-art/city-cyberpunk12/security-r02/manifest.json",
+  "validation_scope": "Artwork composition and unchanged map geometry. Final campaign lighting, movement and door behavior remain to be inspected in game.",
+  "presented_generation_locked": true,
+  "browser_qa": {
+    "before_after": "passed",
+    "view_selector": "passed for security correction, apartment and shop",
+    "apartment_native_image": {
+      "complete": true,
+      "natural": [
+        704,
+        544
+      ],
+      "displayed": [
+        704,
+        544
+      ]
+    },
+    "shop_native_image": {
+      "complete": true,
+      "natural": [
+        704,
+        544
+      ],
+      "independent_parts": 9
+    },
+    "delivered_view": "Garage, after security correction, adapted to page",
+    "tab_retained": true,
+    "proof": "artifacts/city-cyberpunk12/lot02-apercu-browser.png",
+    "proof_sha256": "dd0ad8eb49054e637a773b539e81b9cc7517eebaa4c1345d3a2df7c98ed0f4d3"
+  }
+}

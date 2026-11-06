@@ -1,0 +1,65 @@
+{
+  "campaign_integrated": false,
+  "crop_empty_margin_only": [
+    116.0,
+    94.0,
+    1056.0,
+    1034.0
+  ],
+  "figures": [
+    "projection06-scene.png",
+    "projection06-comparaison.png",
+    "projection06-reperes.png"
+  ],
+  "foot_of_both_buildings_y": 448.0,
+  "limits": [
+    "New single-building projection study; no change to B01 or its surroundings.",
+    "No walking/collision or final-lighting validation is claimed."
+  ],
+  "native_cell": 64,
+  "native_object": [
+    384.0,
+    376.0
+  ],
+  "piecewise_image_warp": false,
+  "reference": "assets/source-art/first-sector-review-01/u01-expansion-r06/west-garage-native.png",
+  "reference_drawn_at_original_native_size": true,
+  "review": "CITY-NORTH01-PROJECTION06-r01",
+  "road_edge_y": 512.0,
+  "same_actor_64px": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P01-r01-native64.png",
+  "scale_xy": [
+    0.3636363744735718,
+    0.3636363744735718
+  ],
+  "source": "assets/source-art/north-city-01/projection06/VOLUME06-01-source.png",
+  "status": "projection-study-awaiting-user-prevalidation",
+  "uniform_scale_only": true,
+  "whole_building_visible": true,
+  "date": "2026-11-05",
+  "source_manifest": "assets/source-art/north-city-01/projection06/manifest.json",
+  "solid_source_contours_not_clipped": true,
+  "original_reference_retained": true,
+  "playable_files_unchanged": {
+    "examples/north_city_review.rs": true,
+    "examples/north_city/decor.rs": true,
+    "examples/north_city/street_skin.rs": true,
+    "assets/maps/north-city-01/north_city.json": true
+  },
+  "paint05_renderer_kept_as_history": true,
+  "ground_anchors_native_y": {
+    "new": 375,
+    "reference": 302
+  },
+  "prevalidation": "pending-user-inspection",
+  "actual_in_game_validation": "not-performed-art-study-only",
+  "command": "cargo run --locked --example north_city_projection_review -- artifacts/north-city-01",
+  "files": {
+    "examples/north_city_projection_review.rs": "c69a7ac36b2de5292c00ca12fb1841babb3d62c2be8d85e3be381ebca9a33416",
+    "tools/show_north_city_review.py": "3748cb85c9430a6935e5dfdbdf6facbd83b92929c94b4395033e55867b2e133e",
+    "assets/source-art/north-city-01/projection06/VOLUME06-01-source.png": "98be4032278bc5d702e16edd81211fb749d032dd9165f429be7b2052cb8a7b60",
+    "assets/source-art/north-city-01/projection06/manifest.json": "f2f18753407c5cca813e0be39c57b2dfdf8d441a66b7b87bfbc93eab8c88a1b6",
+    "artifacts/north-city-01/projection06-scene.png": "e5a8bdae031501fd378d19e3b3ce75ee08f3a0ff0660f0e249b287c2f13c3934",
+    "artifacts/north-city-01/projection06-comparaison.png": "d147a1fa5847feb8088bd5ba13f0d6bb341582f55de50b9d12435f44513d498e",
+    "artifacts/north-city-01/projection06-reperes.png": "4b4646f6aaa998bb2980c8b587f829e08f553e27d710c784328ea051de4de721"
+  }
+}

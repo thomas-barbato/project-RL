@@ -107,6 +107,7 @@ struct Motion {
 #[derive(Clone, Debug)]
 struct TileGlide {
     offset: Vec2,
+    step: Vec2,
     destination: GridPos,
     started: f64,
     seconds: f64,
@@ -175,6 +176,16 @@ impl CombatMotion {
             }
         }
     }
+
+    /// Give NPCs their first movement frame after the turn has been resolved.
+    /// The player's clock also drives the paced input and camera.
+    pub fn start_npc_glides_after_update(&mut self, player: EntityId, started: f64, finished: f64) {
+        for (entity, glide) in &mut self.glides {
+            if *entity != player && glide.started >= started {
+                glide.started = finished;
+            }
+        }
+    }
     #[cfg(any(debug_assertions, test))]
     pub fn glide(&mut self, entity: EntityId, from: GridPos, to: GridPos, now: f64) {
         self.glide_timed(entity, from, to, now, 120);
@@ -238,17 +249,22 @@ impl CombatMotion {
         let previous = self
             .glides
             .get(&entity)
-            .filter(|glide| glide.destination == from)
-            .map_or(Vec2::ZERO, |glide| glide.offset(now));
+            .filter(|glide| glide.destination == from);
+        let offset = if crate::game_art::walking::player_enabled() {
+            // An early turn starts from the last displayed position. Same-heading
+            // repeats and several moves committed in one batch keep their cadence.
+            delta
+                + previous
+                    .filter(|glide| glide.step != delta && now > glide.started)
+                    .map_or(Vec2::ZERO, |glide| glide.offset(now))
+        } else {
+            delta + previous.map_or(Vec2::ZERO, |glide| glide.offset(now))
+        };
         self.glides.insert(
             entity,
             TileGlide {
-                offset: if crate::game_art::walking::player_enabled() {
-                    // Never carry unfinished distance into the next step.
-                    delta
-                } else {
-                    delta + previous
-                },
+                offset,
+                step: delta,
                 destination: to,
                 started: now,
                 seconds,
@@ -303,6 +319,12 @@ impl CombatMotion {
                 .get(&entity)
                 .map_or(Vec2::ZERO, |glide| glide.offset(now))
         }
+    }
+
+    pub fn glide_ends_at(&self, entity: EntityId) -> Option<f64> {
+        self.glides
+            .get(&entity)
+            .map(|glide| glide.started + glide.seconds)
     }
 
     pub fn player_walk_pose(
@@ -396,6 +418,39 @@ impl CombatMotion {
             pose.facing = self.walk_lateral_facings.get(&entity).copied().unwrap_or(1);
         }
         Some(pose)
+    }
+
+    pub(crate) fn drone_walk_pose(
+        &self,
+        entity: EntityId,
+        now: f64,
+        reduced: bool,
+        motion: crate::game_art::drones::Motion,
+    ) -> Option<crate::game_art::walking::Pose> {
+        use crate::game_art::drones::Motion;
+        if reduced {
+            return None;
+        }
+        let glide = self.glides.get(&entity)?;
+        let progress = glide.progress(now);
+        if progress >= 1. {
+            return None;
+        }
+        let facing = if glide.step.x == 0. {
+            -2 * glide.step.y.signum() as i8
+        } else {
+            -glide.step.x.signum() as i8
+        };
+        let frame = match motion {
+            Motion::Hover => match (progress * std::f64::consts::TAU).sin().round() as i8 {
+                1 => 1,
+                -1 => 2,
+                _ => 0,
+            },
+            Motion::Roll => (progress * 6.) as u8,
+            Motion::Walk => glide.support * 3 + (progress * 3.) as u8,
+        };
+        Some(crate::game_art::walking::Pose { facing, frame })
     }
 
     pub fn actor_rect(&self, entity: EntityId, rect: Rect, now: f64, reduced_motion: bool) -> Rect {
@@ -1257,17 +1312,18 @@ mod tests {
     }
 
     #[test]
-    fn a_new_step_covers_only_its_committed_cell_without_a_queue() {
+    fn a_new_turn_replaces_the_previous_glide_without_a_queue() {
         let id: EntityId = serde_json::from_str("1").unwrap();
         let mut motion = CombatMotion::default();
         let a = GridPos::new(10, 10);
         let b = GridPos::new(11, 10);
         let c = GridPos::new(11, 9);
         motion.glide(id, a, b, 1.0);
+        let before = vec2(b.x as f32, b.y as f32) + motion.offset(id, 1.02, false);
         motion.glide(id, b, c, 1.02);
         assert_eq!(
             vec2(c.x as f32, c.y as f32) + motion.offset(id, 1.02, false),
-            vec2(b.x as f32, b.y as f32)
+            before
         );
         assert_eq!(motion.offset(id, 1.141, false), Vec2::ZERO);
         assert_eq!(motion.glides.len(), 1);
@@ -1509,6 +1565,35 @@ mod tests {
                 motion.continue_walk(id, true);
                 motion.stop_glide(id);
                 assert!(!motion.continuing_walks.contains(&id));
+            }
+        }
+    }
+
+    #[test]
+    fn early_turn_keeps_the_map_and_actor_position_continuous() {
+        let id: EntityId = serde_json::from_str("1").unwrap();
+        let origin = GridPos::new(5, 5);
+        let corner = GridPos::new(6, 5);
+        for milliseconds in [120, 200, 400] {
+            let seconds = f64::from(milliseconds) / 1000.;
+            for (target, facing) in [(GridPos::new(6, 4), -2), (origin, -1)] {
+                let mut motion = CombatMotion::default();
+                motion.glide_timed(id, origin, corner, 1., milliseconds);
+                let time = 1. + seconds / 4.;
+                let position = |at: GridPos, motion: &CombatMotion| {
+                    vec2(at.x as f32, at.y as f32) + motion.glide_offset(id, time, false)
+                };
+                let before = position(corner, &motion);
+                motion.glide_timed(id, corner, target, time, milliseconds);
+                assert!(before.distance(position(target, &motion)) < 0.001);
+                let pose = if facing == -2 {
+                    motion.vertical_walk_pose(id, time, false)
+                } else {
+                    motion.player_walk_pose(id, time, false)
+                };
+                assert_eq!(pose.unwrap().facing, facing);
+                assert_eq!(motion.glide_offset(id, time + seconds, false), Vec2::ZERO);
+                assert!(motion.player_walk_pose(id, time + seconds, false).is_none());
             }
         }
     }

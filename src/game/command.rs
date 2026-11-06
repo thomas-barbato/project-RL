@@ -157,6 +157,8 @@ pub enum GameCommand {
     /// Internal, replayable adoption of the accepted six-cell player sight.
     UpgradePlayerVision,
     EnableCircularPlayerVision,
+    /// Journal boundary for the corrected turn and NPC combat behavior.
+    EnableTurnFlowCorrections,
     /// Internal journalled correction of false static collision cells.
     RepairStaticZoneFloors {
         zone: crate::content::ContentId,
@@ -180,6 +182,7 @@ impl GameCommand {
                 | Self::UpgradeWeaponSets { .. }
                 | Self::UpgradePlayerVision
                 | Self::EnableCircularPlayerVision
+                | Self::EnableTurnFlowCorrections
                 | Self::RepairStaticZoneFloors { .. }
                 | Self::SetAgentGrenadeVariant { .. }
                 | Self::LearnTechnique { .. }

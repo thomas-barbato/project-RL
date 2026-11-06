@@ -8,6 +8,10 @@ use std::{cell::Cell, collections::BTreeMap, sync::OnceLock};
 mod approved;
 #[path = "game_art_walk_creatures.rs"]
 mod creatures;
+pub(super) use creatures::cultist_request;
+#[path = "game_art_walk_palette.rs"]
+mod creature_palette;
+pub(super) use creature_palette::apply as apply_creature_palette;
 #[path = "game_art_walk_extras.rs"]
 mod extras;
 #[path = "game_art_walk_rifle.rs"]
@@ -206,6 +210,9 @@ pub(crate) fn world_pose(
     now: f64,
     reduced: bool,
 ) -> Option<Pose> {
+    if let Some(locomotion) = visual.and_then(super::drones::motion) {
+        return motion.drone_walk_pose(entity, now, reduced, locomotion);
+    }
     if super::monster_vertical::supports(visual)
         && let Some(pose) = motion.monster_vertical_walk_pose(entity, now, reduced)
     {
@@ -353,6 +360,9 @@ pub(super) fn draw(cell: Rect, visual: Visual, opacity: f32) -> bool {
         return true;
     }
     if extras::draw(cell, visual, opacity, POSE.get()) {
+        return true;
+    }
+    if super::drones::draw_motion(cell, visual, opacity, POSE.get()) {
         return true;
     }
     if approved::draw(cell, visual, opacity, POSE.get()) {

@@ -1,0 +1,81 @@
+{
+  "campaign_integrated": false,
+  "limits": [
+    "Art direction study; not yet used as a playable map background.",
+    "Neutral albedo comparison, not the final engine lighting.",
+    "Production layer separation and exact door/collision registration remain subject to prevalidation."
+  ],
+  "native_cell": 64,
+  "neighbour_edit_changed_protected_pixels": 0,
+  "neighbour_edit_protected_pixels": 1113372,
+  "neighbour_prefab": "assets/source-art/first-sector-review-01/u01-expansion-r06/east-long-native.png",
+  "outputs": [
+    "paint05-logement.png",
+    "paint05-comparaison.png"
+  ],
+  "prefab_size": [
+    265,
+    563
+  ],
+  "prefabs_drawn_at_original_native_size": true,
+  "registration": {
+    "x_native": [
+      0.0,
+      160.0,
+      608.0,
+      800.0,
+      1056.0,
+      1376.0,
+      1536.0
+    ],
+    "x_source": [
+      0.0,
+      160.0,
+      626.0,
+      834.0,
+      1083.0,
+      1427.0,
+      1585.0
+    ],
+    "y_native": [
+      0.0,
+      176.0,
+      496.0,
+      816.0,
+      960.0
+    ],
+    "y_source": [
+      0.0,
+      153.0,
+      507.0,
+      837.0,
+      992.0
+    ]
+  },
+  "review": "CITY-NORTH01-PAINT05-r04",
+  "simulation_modified": false,
+  "source": "assets/source-art/north-city-01/paint05/B01-PAINT05-r01.png",
+  "status": "art-study-awaiting-user-prevalidation",
+  "unchanged_playable_prototype": {
+    "examples/north_city_review.rs": true,
+    "examples/north_city/decor.rs": true,
+    "examples/north_city/street_skin.rs": true,
+    "assets/maps/north-city-01/north_city.json": true
+  },
+  "source_manifest": "assets/source-art/north-city-01/paint05/manifest.json",
+  "reference_source_unchanged": true,
+  "files": {
+    "examples/north_city_paint_review.rs": "ba5e6fce1b22849debea837571a1ed77f6a0b55464930b9f9b4173eb8e678376",
+    "tools/show_north_city_review.py": "ab13727e569807d4f76758eb90560082589b3dda8f7b928706815782fc6dfe48",
+    "assets/source-art/north-city-01/paint05/manifest.json": "3c1a07d2c125c7f56e3185399c7b30043ab073b51eff1f876be9ccc909098614",
+    "artifacts/north-city-01/paint05-logement.png": "62738caf2c1d3495902a164c54286b7790d7a8d5ce00079ed67f976e65236879",
+    "artifacts/north-city-01/paint05-comparaison.png": "288525daac2a1c806ec48542738e44dbaad1fc2ff34765103fbc97a60d816851"
+  },
+  "built_and_captured": "cargo run --locked --example north_city_paint_review -- artifacts/north-city-01",
+  "exterior_contact_shadow_band": [
+    132,
+    150,
+    1276,
+    17
+  ]
+}

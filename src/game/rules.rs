@@ -39,6 +39,8 @@ pub struct GameRules {
     pub player_field_of_view: FieldOfViewRules,
     /// The player's circular perception ignores walls; attacks and NPC sight do not.
     pub circular_player_vision: bool,
+    /// Enabled by a recorded migration after verifying any historical replay.
+    pub turn_flow_corrections: bool,
     /// Explicit ordinary NPC sight; None retains the legacy shared fallback.
     pub ordinary_actor_field_of_view: Option<FieldOfViewRules>,
     pub damage: DamageRules,
@@ -160,6 +162,9 @@ impl Debug for GameRules {
         }
         if self.circular_player_vision {
             rules.field("circular_player_vision", &true);
+        }
+        if self.turn_flow_corrections {
+            rules.field("turn_flow_corrections", &true);
         }
         if self.player_full_heal_on_level_up {
             rules.field("player_full_heal_on_level_up", &true);
@@ -339,6 +344,7 @@ impl Default for GameRules {
             equipment_color_variants: false,
             player_field_of_view: FieldOfViewRules::default(),
             circular_player_vision: false,
+            turn_flow_corrections: false,
             ordinary_actor_field_of_view: None,
             damage: DamageRules::default(),
             armor_rules: None,

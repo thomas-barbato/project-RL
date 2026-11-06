@@ -1,0 +1,2738 @@
+{
+  "review": "CITY-NORTH01-r01",
+  "status": "candidate-awaiting-visual-review",
+  "native_cell": 64,
+  "campaign_integrated": false,
+  "seed": 20261105,
+  "street_links": [
+    {
+      "at": [
+        18,
+        1
+      ],
+      "arrival": [
+        41,
+        108
+      ]
+    },
+    {
+      "at": [
+        18,
+        2
+      ],
+      "arrival": [
+        41,
+        109
+      ]
+    }
+  ],
+  "links": [
+    {
+      "source": "review:north_city",
+      "at": [
+        26,
+        20
+      ],
+      "destination": "review:police_basement",
+      "arrival": [
+        29,
+        23
+      ]
+    },
+    {
+      "source": "review:north_city",
+      "at": [
+        29,
+        20
+      ],
+      "destination": "review:police_upper",
+      "arrival": [
+        29,
+        23
+      ]
+    },
+    {
+      "source": "review:police_basement",
+      "at": [
+        29,
+        3
+      ],
+      "destination": "review:police_deep",
+      "arrival": [
+        29,
+        23
+      ]
+    }
+  ],
+  "future_exit": {
+    "zone": "review:north_city",
+    "at": [
+      41,
+      4
+    ],
+    "target": "core:military_barracks"
+  },
+  "zones": [
+    {
+      "id": "review:north_city",
+      "name": "Quartier nord — route de la caserne",
+      "file": "assets/maps/north-city-01/north_city.json",
+      "buildings": [
+        {
+          "id": "south_west",
+          "name": "Immeuble éventré",
+          "rect": [
+            12,
+            96,
+            31,
+            106
+          ],
+          "doors": [
+            [
+              31,
+              101
+            ]
+          ],
+          "accessible": true,
+          "roof_floor": 23
+        },
+        {
+          "id": "south_east",
+          "name": "Logements abandonnés",
+          "rect": [
+            51,
+            96,
+            67,
+            106
+          ],
+          "doors": [
+            [
+              51,
+              101
+            ]
+          ],
+          "accessible": true,
+          "roof_floor": 23
+        },
+        {
+          "id": "apartments",
+          "name": "Immeuble d'habitation",
+          "rect": [
+            12,
+            66,
+            31,
+            82
+          ],
+          "doors": [
+            [
+              31,
+              74
+            ]
+          ],
+          "accessible": true,
+          "roof_floor": 23
+        },
+        {
+          "id": "collapsed",
+          "name": "Tour effondrée — inaccessible",
+          "rect": [
+            50,
+            65,
+            66,
+            72
+          ],
+          "doors": [],
+          "accessible": false,
+          "roof_floor": 23
+        },
+        {
+          "id": "shop_home",
+          "name": "Ancien commerce et logement",
+          "rect": [
+            50,
+            76,
+            66,
+            83
+          ],
+          "doors": [
+            [
+              50,
+              79
+            ]
+          ],
+          "accessible": true,
+          "roof_floor": 23
+        },
+        {
+          "id": "fire_station",
+          "name": "Caserne de pompiers",
+          "rect": [
+            11,
+            35,
+            31,
+            51
+          ],
+          "doors": [
+            [
+              31,
+              43
+            ]
+          ],
+          "accessible": true,
+          "roof_floor": 26
+        },
+        {
+          "id": "school",
+          "name": "École abandonnée",
+          "rect": [
+            50,
+            35,
+            67,
+            52
+          ],
+          "doors": [
+            [
+              50,
+              43
+            ]
+          ],
+          "accessible": true,
+          "roof_floor": 26
+        },
+        {
+          "id": "police",
+          "name": "Commissariat — rez-de-chaussée",
+          "rect": [
+            12,
+            7,
+            32,
+            23
+          ],
+          "doors": [
+            [
+              32,
+              15
+            ]
+          ],
+          "accessible": true,
+          "roof_floor": 26
+        },
+        {
+          "id": "checkpoint",
+          "name": "Ancien poste militaire",
+          "rect": [
+            51,
+            10,
+            66,
+            22
+          ],
+          "doors": [
+            [
+              51,
+              16
+            ]
+          ],
+          "accessible": true,
+          "roof_floor": 26
+        },
+        {
+          "id": "sealed_block",
+          "name": "Immeuble incendié — inaccessible",
+          "rect": [
+            13,
+            1,
+            30,
+            4
+          ],
+          "doors": [],
+          "accessible": false,
+          "roof_floor": 23
+        }
+      ],
+      "scenery": [
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+          "at_px": [
+            890,
+            6587
+          ],
+          "kind": "civilian",
+          "building": "south_west",
+          "id": "north_city:scenery:001"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            969,
+            6589
+          ],
+          "kind": "blood",
+          "building": "south_west",
+          "id": "north_city:scenery:002"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+          "at_px": [
+            3391,
+            6589
+          ],
+          "kind": "civilian",
+          "building": "south_east",
+          "id": "north_city:scenery:003"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            3465,
+            6594
+          ],
+          "kind": "blood",
+          "building": "south_east",
+          "id": "north_city:scenery:004"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+          "at_px": [
+            891,
+            5048
+          ],
+          "kind": "civilian",
+          "building": "apartments",
+          "id": "north_city:scenery:005"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            958,
+            5058
+          ],
+          "kind": "blood",
+          "building": "apartments",
+          "id": "north_city:scenery:006"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png",
+          "at_px": [
+            3333,
+            5114
+          ],
+          "kind": "civilian",
+          "building": "shop_home",
+          "id": "north_city:scenery:007"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            3400,
+            5117
+          ],
+          "kind": "blood",
+          "building": "shop_home",
+          "id": "north_city:scenery:008"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            1083,
+            3012
+          ],
+          "kind": "military",
+          "building": "fire_station",
+          "id": "north_city:scenery:009"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            1285,
+            2944
+          ],
+          "kind": "blood",
+          "building": "fire_station",
+          "id": "north_city:scenery:010"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+          "at_px": [
+            3395,
+            2809
+          ],
+          "kind": "civilian",
+          "building": "school",
+          "id": "north_city:scenery:011"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            3575,
+            2887
+          ],
+          "kind": "blood",
+          "building": "school",
+          "id": "north_city:scenery:012"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            1667,
+            963
+          ],
+          "kind": "military",
+          "building": "police",
+          "id": "north_city:scenery:013"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            1789,
+            1019
+          ],
+          "kind": "blood",
+          "building": "police",
+          "id": "north_city:scenery:014"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+          "at_px": [
+            1014,
+            1160
+          ],
+          "kind": "civilian",
+          "building": "police",
+          "id": "north_city:scenery:015"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+          "at_px": [
+            3644,
+            1160
+          ],
+          "kind": "military",
+          "building": "checkpoint",
+          "id": "north_city:scenery:016"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            3842,
+            1153
+          ],
+          "kind": "blood",
+          "building": "checkpoint",
+          "id": "north_city:scenery:017"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+          "at_px": [
+            2756,
+            6272
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:018"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2816,
+            6272
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:019"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png",
+          "at_px": [
+            2762,
+            6398
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:020"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2808,
+            6405
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:021"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+          "at_px": [
+            2552,
+            6336
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:022"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2624,
+            6332
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:023"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png",
+          "at_px": [
+            2744,
+            6396
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:024"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2806,
+            6393
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:025"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+          "at_px": [
+            2757,
+            6277
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:026"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2809,
+            6271
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:027"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+          "at_px": [
+            2744,
+            6456
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:028"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2824,
+            6464
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:029"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+          "at_px": [
+            2623,
+            6656
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:030"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2686,
+            6659
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:031"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+          "at_px": [
+            2748,
+            6466
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:032"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2808,
+            6457
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:033"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+          "at_px": [
+            2554,
+            6661
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:034"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2633,
+            6662
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:035"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+          "at_px": [
+            2624,
+            5816
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:036"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2694,
+            5827
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:037"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+          "at_px": [
+            2618,
+            5689
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:038"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2697,
+            5695
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:039"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+          "at_px": [
+            2506,
+            5816
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:040"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2569,
+            5829
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:041"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+          "at_px": [
+            2423,
+            5636
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:042"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2502,
+            5638
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:043"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+          "at_px": [
+            2432,
+            5954
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:044"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2494,
+            5954
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:045"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+          "at_px": [
+            2563,
+            5702
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:046"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2633,
+            5696
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:047"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+          "at_px": [
+            2121,
+            4417
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:048"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2170,
+            4420
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:049"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+          "at_px": [
+            2307,
+            4296
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:050"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2369,
+            4284
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:051"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+          "at_px": [
+            2308,
+            4678
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:052"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2366,
+            4677
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:053"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+          "at_px": [
+            2249,
+            4352
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:054"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2300,
+            4353
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:055"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+          "at_px": [
+            2108,
+            4607
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:056"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2170,
+            4616
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:057"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+          "at_px": [
+            2114,
+            4667
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:058"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2174,
+            4667
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:059"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            2810,
+            3782
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:060"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2873,
+            3784
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:061"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+          "at_px": [
+            2743,
+            3705
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:062"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2815,
+            3706
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:063"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            2935,
+            3654
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:064"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            3017,
+            3644
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:065"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            2810,
+            4037
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:066"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2881,
+            4037
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:067"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            2819,
+            3966
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:068"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2879,
+            3964
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:069"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+          "at_px": [
+            3010,
+            3908
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:070"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            3080,
+            3900
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:071"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            2820,
+            3718
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:072"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2889,
+            3706
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:073"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            2880,
+            4040
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:074"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2941,
+            4030
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:075"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-08-native.png",
+          "at_px": [
+            2119,
+            3002
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:076"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2174,
+            3015
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:077"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png",
+          "at_px": [
+            2119,
+            2879
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:078"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2176,
+            2878
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:079"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+          "at_px": [
+            2301,
+            2745
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:080"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2375,
+            2745
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:081"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-06-native.png",
+          "at_px": [
+            2230,
+            2760
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:082"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2300,
+            2756
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:083"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+          "at_px": [
+            2110,
+            2887
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:084"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2179,
+            2886
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:085"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-04-native.png",
+          "at_px": [
+            2118,
+            2940
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "north_city:scenery:086"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2185,
+            2947
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:087"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            2810,
+            1850
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:088"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2885,
+            1864
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:089"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            2876,
+            1918
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:090"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2948,
+            1922
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:091"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            3005,
+            2040
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:092"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            3066,
+            2049
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:093"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+          "at_px": [
+            2882,
+            1733
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:094"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2940,
+            1732
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:095"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            2874,
+            1980
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:096"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2934,
+            1977
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:097"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            3077,
+            1981
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:098"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            3128,
+            1980
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:099"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            2815,
+            2047
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:100"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2885,
+            2052
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:101"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            3011,
+            1980
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:102"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            3079,
+            1987
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:103"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            3063,
+            1982
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:104"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            3128,
+            1979
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:105"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            2564,
+            967
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:106"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2615,
+            966
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:107"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+          "at_px": [
+            2626,
+            639
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:108"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2679,
+            646
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:109"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            2631,
+            698
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:110"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2686,
+            711
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:111"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+          "at_px": [
+            2628,
+            902
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:112"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2685,
+            890
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:113"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            2634,
+            572
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:114"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2685,
+            572
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:115"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+          "at_px": [
+            2634,
+            831
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:116"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2691,
+            831
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:117"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            2570,
+            776
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:118"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2622,
+            771
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:119"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            2491,
+            904
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:120"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2562,
+            899
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:121"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+          "at_px": [
+            2679,
+            569
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:122"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2752,
+            583
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:123"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            2500,
+            835
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:124"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            2560,
+            825
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:125"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-03.png",
+          "at_px": [
+            2550,
+            702
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:126"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2617,
+            699
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:127"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            2631,
+            832
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "north_city:scenery:128"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            2682,
+            840
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "north_city:scenery:129"
+        }
+      ],
+      "views": [
+        {
+          "id": "01-arrivee",
+          "at": [
+            41,
+            102
+          ]
+        },
+        {
+          "id": "02-logement",
+          "at": [
+            26,
+            102
+          ]
+        },
+        {
+          "id": "03-carrefour",
+          "at": [
+            41,
+            60
+          ]
+        },
+        {
+          "id": "04-pompiers",
+          "at": [
+            25,
+            48
+          ]
+        },
+        {
+          "id": "05-ecole",
+          "at": [
+            55,
+            44
+          ]
+        },
+        {
+          "id": "06-commissariat",
+          "at": [
+            27,
+            15
+          ]
+        },
+        {
+          "id": "07-caserne",
+          "at": [
+            41,
+            10
+          ]
+        }
+      ],
+      "sealed": [
+        [
+          51,
+          66
+        ],
+        [
+          52,
+          66
+        ],
+        [
+          53,
+          66
+        ],
+        [
+          54,
+          66
+        ],
+        [
+          55,
+          66
+        ],
+        [
+          56,
+          66
+        ],
+        [
+          57,
+          66
+        ],
+        [
+          58,
+          66
+        ],
+        [
+          59,
+          66
+        ],
+        [
+          60,
+          66
+        ],
+        [
+          61,
+          66
+        ],
+        [
+          62,
+          66
+        ],
+        [
+          63,
+          66
+        ],
+        [
+          64,
+          66
+        ],
+        [
+          65,
+          66
+        ],
+        [
+          51,
+          67
+        ],
+        [
+          52,
+          67
+        ],
+        [
+          53,
+          67
+        ],
+        [
+          54,
+          67
+        ],
+        [
+          55,
+          67
+        ],
+        [
+          56,
+          67
+        ],
+        [
+          57,
+          67
+        ],
+        [
+          58,
+          67
+        ],
+        [
+          59,
+          67
+        ],
+        [
+          60,
+          67
+        ],
+        [
+          61,
+          67
+        ],
+        [
+          62,
+          67
+        ],
+        [
+          63,
+          67
+        ],
+        [
+          64,
+          67
+        ],
+        [
+          65,
+          67
+        ],
+        [
+          51,
+          68
+        ],
+        [
+          52,
+          68
+        ],
+        [
+          53,
+          68
+        ],
+        [
+          54,
+          68
+        ],
+        [
+          55,
+          68
+        ],
+        [
+          56,
+          68
+        ],
+        [
+          57,
+          68
+        ],
+        [
+          58,
+          68
+        ],
+        [
+          59,
+          68
+        ],
+        [
+          60,
+          68
+        ],
+        [
+          61,
+          68
+        ],
+        [
+          62,
+          68
+        ],
+        [
+          63,
+          68
+        ],
+        [
+          64,
+          68
+        ],
+        [
+          65,
+          68
+        ],
+        [
+          51,
+          69
+        ],
+        [
+          52,
+          69
+        ],
+        [
+          53,
+          69
+        ],
+        [
+          54,
+          69
+        ],
+        [
+          55,
+          69
+        ],
+        [
+          56,
+          69
+        ],
+        [
+          57,
+          69
+        ],
+        [
+          58,
+          69
+        ],
+        [
+          59,
+          69
+        ],
+        [
+          60,
+          69
+        ],
+        [
+          61,
+          69
+        ],
+        [
+          62,
+          69
+        ],
+        [
+          63,
+          69
+        ],
+        [
+          64,
+          69
+        ],
+        [
+          65,
+          69
+        ],
+        [
+          51,
+          70
+        ],
+        [
+          52,
+          70
+        ],
+        [
+          53,
+          70
+        ],
+        [
+          54,
+          70
+        ],
+        [
+          55,
+          70
+        ],
+        [
+          56,
+          70
+        ],
+        [
+          57,
+          70
+        ],
+        [
+          58,
+          70
+        ],
+        [
+          59,
+          70
+        ],
+        [
+          60,
+          70
+        ],
+        [
+          61,
+          70
+        ],
+        [
+          62,
+          70
+        ],
+        [
+          63,
+          70
+        ],
+        [
+          64,
+          70
+        ],
+        [
+          65,
+          70
+        ],
+        [
+          51,
+          71
+        ],
+        [
+          52,
+          71
+        ],
+        [
+          53,
+          71
+        ],
+        [
+          54,
+          71
+        ],
+        [
+          55,
+          71
+        ],
+        [
+          56,
+          71
+        ],
+        [
+          57,
+          71
+        ],
+        [
+          58,
+          71
+        ],
+        [
+          59,
+          71
+        ],
+        [
+          60,
+          71
+        ],
+        [
+          61,
+          71
+        ],
+        [
+          62,
+          71
+        ],
+        [
+          63,
+          71
+        ],
+        [
+          64,
+          71
+        ],
+        [
+          65,
+          71
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          16,
+          2
+        ],
+        [
+          17,
+          2
+        ],
+        [
+          18,
+          2
+        ],
+        [
+          19,
+          2
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          22,
+          2
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          24,
+          2
+        ],
+        [
+          25,
+          2
+        ],
+        [
+          26,
+          2
+        ],
+        [
+          27,
+          2
+        ],
+        [
+          28,
+          2
+        ],
+        [
+          29,
+          2
+        ],
+        [
+          14,
+          3
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          16,
+          3
+        ],
+        [
+          17,
+          3
+        ],
+        [
+          18,
+          3
+        ],
+        [
+          19,
+          3
+        ],
+        [
+          20,
+          3
+        ],
+        [
+          21,
+          3
+        ],
+        [
+          22,
+          3
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          24,
+          3
+        ],
+        [
+          25,
+          3
+        ],
+        [
+          26,
+          3
+        ],
+        [
+          27,
+          3
+        ],
+        [
+          28,
+          3
+        ],
+        [
+          29,
+          3
+        ]
+      ],
+      "walkable_cells": 7673
+    },
+    {
+      "id": "review:police_basement",
+      "name": "Commissariat — cellules et réserves",
+      "file": "assets/maps/north-city-01/police_basement.json",
+      "buildings": [],
+      "scenery": [
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+          "at_px": [
+            196,
+            762
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "police_basement:scenery:001"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            258,
+            767
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "police_basement:scenery:002"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+          "at_px": [
+            712,
+            762
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "police_basement:scenery:003"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            758,
+            765
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "police_basement:scenery:004"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+          "at_px": [
+            1215,
+            767
+          ],
+          "kind": "civilian",
+          "building": null,
+          "id": "police_basement:scenery:005"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            1290,
+            760
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "police_basement:scenery:006"
+        }
+      ],
+      "views": [
+        {
+          "id": "08-cellules",
+          "at": [
+            20,
+            12
+          ]
+        }
+      ],
+      "sealed": [],
+      "walkable_cells": 740,
+      "variants": [
+        {
+          "number": 1,
+          "file": "assets/maps/north-city-01/police_basement_layout01.json",
+          "scenery": [
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                832,
+                128
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_basement_layout01:scenery:001"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                1344,
+                768
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_basement_layout01:scenery:002"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                2048,
+                768
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_basement_layout01:scenery:003"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+              "at_px": [
+                1856,
+                192
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_basement_layout01:scenery:004"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+              "at_px": [
+                704,
+                1152
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_basement_layout01:scenery:005"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                832,
+                704
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_basement_layout01:scenery:006"
+            }
+          ],
+          "views": [
+            {
+              "id": "08-cellules",
+              "at": [
+                29,
+                14
+              ]
+            }
+          ],
+          "sealed": []
+        },
+        {
+          "number": 2,
+          "file": "assets/maps/north-city-01/police_basement_layout02.json",
+          "scenery": [
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                704,
+                768
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_basement_layout02:scenery:001"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                1792,
+                1088
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_basement_layout02:scenery:002"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                256,
+                384
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_basement_layout02:scenery:003"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+              "at_px": [
+                1472,
+                1472
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_basement_layout02:scenery:004"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+              "at_px": [
+                1152,
+                832
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_basement_layout02:scenery:005"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                960,
+                448
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_basement_layout02:scenery:006"
+            }
+          ],
+          "views": [
+            {
+              "id": "08-cellules",
+              "at": [
+                29,
+                14
+              ]
+            }
+          ],
+          "sealed": []
+        },
+        {
+          "number": 3,
+          "file": "assets/maps/north-city-01/police_basement_layout03.json",
+          "scenery": [
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                1920,
+                448
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_basement_layout03:scenery:001"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                1984,
+                1088
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_basement_layout03:scenery:002"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                1792,
+                448
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_basement_layout03:scenery:003"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+              "at_px": [
+                1856,
+                192
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_basement_layout03:scenery:004"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+              "at_px": [
+                576,
+                384
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_basement_layout03:scenery:005"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                1408,
+                1088
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_basement_layout03:scenery:006"
+            }
+          ],
+          "views": [
+            {
+              "id": "08-cellules",
+              "at": [
+                29,
+                14
+              ]
+            }
+          ],
+          "sealed": []
+        }
+      ],
+      "variant_salt": 5786927923739308081
+    },
+    {
+      "id": "review:police_upper",
+      "name": "Commissariat — bureaux et archives",
+      "file": "assets/maps/north-city-01/police_upper.json",
+      "buildings": [],
+      "scenery": [
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            442,
+            1218
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "police_upper:scenery:001"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            519,
+            1224
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "police_upper:scenery:002"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-01.png",
+          "at_px": [
+            1142,
+            520
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "police_upper:scenery:003"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+          "at_px": [
+            1217,
+            520
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "police_upper:scenery:004"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/CORP-U01-02.png",
+          "at_px": [
+            1730,
+            964
+          ],
+          "kind": "military",
+          "building": null,
+          "id": "police_upper:scenery:005"
+        },
+        {
+          "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+          "at_px": [
+            1791,
+            955
+          ],
+          "kind": "blood",
+          "building": null,
+          "id": "police_upper:scenery:006"
+        }
+      ],
+      "views": [
+        {
+          "id": "09-archives",
+          "at": [
+            7,
+            20
+          ]
+        }
+      ],
+      "sealed": [],
+      "walkable_cells": 772
+    },
+    {
+      "id": "review:police_deep",
+      "name": "Commissariat — réserves sécurisées",
+      "buildings": [],
+      "scenery": [],
+      "views": [],
+      "sealed": [],
+      "file": "assets/maps/north-city-01/police_deep_layout01.json",
+      "variants": [
+        {
+          "number": 1,
+          "file": "assets/maps/north-city-01/police_deep_layout01.json",
+          "scenery": [
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                448,
+                640
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_deep_layout01:scenery:001"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                320,
+                1536
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_deep_layout01:scenery:002"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                384,
+                128
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_deep_layout01:scenery:003"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+              "at_px": [
+                320,
+                896
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_deep_layout01:scenery:004"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+              "at_px": [
+                896,
+                896
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_deep_layout01:scenery:005"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                1728,
+                1536
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_deep_layout01:scenery:006"
+            }
+          ],
+          "views": [
+            {
+              "id": "10-reserves",
+              "at": [
+                29,
+                14
+              ]
+            }
+          ],
+          "sealed": []
+        },
+        {
+          "number": 2,
+          "file": "assets/maps/north-city-01/police_deep_layout02.json",
+          "scenery": [
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                576,
+                576
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_deep_layout02:scenery:001"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                704,
+                704
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_deep_layout02:scenery:002"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                1728,
+                704
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_deep_layout02:scenery:003"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+              "at_px": [
+                1024,
+                768
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_deep_layout02:scenery:004"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+              "at_px": [
+                128,
+                640
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_deep_layout02:scenery:005"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                320,
+                128
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_deep_layout02:scenery:006"
+            }
+          ],
+          "views": [
+            {
+              "id": "10-reserves",
+              "at": [
+                29,
+                14
+              ]
+            }
+          ],
+          "sealed": []
+        },
+        {
+          "number": 3,
+          "file": "assets/maps/north-city-01/police_deep_layout03.json",
+          "scenery": [
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                1344,
+                192
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_deep_layout03:scenery:001"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                1088,
+                320
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_deep_layout03:scenery:002"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-05-native.png",
+              "at_px": [
+                128,
+                640
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_deep_layout03:scenery:003"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-04-native.png",
+              "at_px": [
+                1152,
+                320
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_deep_layout03:scenery:004"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/CIV-U01-07-native.png",
+              "at_px": [
+                1472,
+                1088
+              ],
+              "kind": "civilian",
+              "building": null,
+              "id": "police_deep_layout03:scenery:005"
+            },
+            {
+              "file": "assets/maps/prison-street-expanded-01/decor/civilians-08/SANG-U01-05-native.png",
+              "at_px": [
+                320,
+                768
+              ],
+              "kind": "blood",
+              "building": null,
+              "id": "police_deep_layout03:scenery:006"
+            }
+          ],
+          "views": [
+            {
+              "id": "10-reserves",
+              "at": [
+                29,
+                14
+              ]
+            }
+          ],
+          "sealed": []
+        }
+      ],
+      "variant_salt": 5786927923739308082
+    }
+  ],
+  "scope_notes": [
+    "Exploration prototype using the real map/door/passage/snapshot engine.",
+    "No new combat stats, loot, narrative quest or barracks interior.",
+    "Civilian and armoured adult corpses reuse accepted native artwork.",
+    "Small monster corpse artwork remains to draw and review.",
+    "Buildings are cutaway footprints; final facade identities require review."
+  ],
+  "randomization": {
+    "decision": "At new-game construction, from game seed and a dedicated stable per-floor salt.",
+    "policy": "Different visits, saves and cache eviction never reroll a floor.",
+    "basement_levels": 2,
+    "variants_per_level": 3,
+    "retained": "Same materials and same furniture/decal inventories per floor.",
+    "persistent_selection": "Selected variant is included in the zone ID stored by WorldState."
+  },
+  "validation": {
+    "layout_prevalidation": "pending-user-inspection",
+    "visual_prevalidation": "pending-user-inspection",
+    "final_in_game_validation": "pending-user-inspection",
+    "automated_checks_are_user_approval": false
+  }
+}

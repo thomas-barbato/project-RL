@@ -1,0 +1,130 @@
+{
+  "actor": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P01-r01-native64.png",
+  "actor_size": [
+    64,
+    64
+  ],
+  "campaign_integrated": false,
+  "lighting": "Source map illumination only; live campaign light shader and visibility are not evaluated by this review.",
+  "native_cell": 64,
+  "resource_cache": {
+    "decode_ms": 3335.7998,
+    "decoded_source_budget": 67108864,
+    "decoded_source_peak_bytes": 58236996,
+    "jobs": 7,
+    "pending": 0,
+    "read_bytes": 22372791,
+    "read_ms": 16.772,
+    "source_reads": 7,
+    "texture_budget": 134217728,
+    "texture_bytes": 58236996,
+    "texture_create_ms": 11.344,
+    "uploads": 7,
+    "worker_build_ms_including_sources": 3362.0882
+  },
+  "resources_prepared_before_display": true,
+  "review": "CITY-CYBERPUNK12-LOT01-r01",
+  "review_only": true,
+  "status": "artwork-awaiting-user-prevalidation",
+  "viewpoint": [
+    0,
+    2112
+  ],
+  "viewport": [
+    1664,
+    1024
+  ],
+  "baseline_files_unchanged": 152,
+  "accepted_B01_reference_unchanged": true,
+  "layouts_and_connections_unchanged": true,
+  "original_building_and_ground_assets_unchanged": true,
+  "protected_door_pixels_unchanged": true,
+  "independent_device_count": 11,
+  "compose_only_preserves_independent_layers": true,
+  "native_capture_outside_devices_unchanged": true,
+  "source_manifest": "assets/source-art/city-cyberpunk12/manifest.json",
+  "source_manifest_sha256": "d1d6a72ed79469e66549771b6b06d0f837d409bd4f4be3a0c30a218ac8c077c6",
+  "scope": "First-city lot01 on three buildings only. Other sectors/interiors pending; north-city remake follows first city. Sewers excluded.",
+  "captures": {
+    "apercu-browser.png": {
+      "size": [
+        639,
+        864
+      ],
+      "sha256": "43a088c097d635722aabe24c9faf74e3be71629fb40138bf127d0c9d8a55b321"
+    },
+    "secteur-apres.png": {
+      "size": [
+        1664,
+        1056
+      ],
+      "sha256": "9d75390cd814493ecc80475ac8df30eff6b5f5648d056d007ccf3f2f097a3c4f"
+    },
+    "secteur-avant.png": {
+      "size": [
+        1664,
+        1056
+      ],
+      "sha256": "d0bce9c3fc5ac7be0810c591cbf17f2ae76117f6e73c8cf7c8a99f172d1ab16a"
+    },
+    "V1-B01-apres.png": {
+      "size": [
+        640,
+        672
+      ],
+      "sha256": "d4b991b2c78f70664c1477f6add27c781d382b95ec76f1de6c5dcb92323b5e4a"
+    },
+    "V1-B01-avant.png": {
+      "size": [
+        640,
+        672
+      ],
+      "sha256": "54a42db6d588d404ca39893fbe157c5e96b8be2d8987a6ce25a17a84ae785017"
+    },
+    "V1-B02-apres.png": {
+      "size": [
+        608,
+        736
+      ],
+      "sha256": "fb7d1be083fa5a0aae2af43270c6541b5ad3949defe8c89b5a590812c573fcdb"
+    },
+    "V1-B02-avant.png": {
+      "size": [
+        608,
+        736
+      ],
+      "sha256": "4decce717dda576510ba280555f67ecb3554c1e88231cf22361d58a50a6e69ad"
+    },
+    "V1-B03-apres.png": {
+      "size": [
+        608,
+        736
+      ],
+      "sha256": "6266b2a7c18211b299d1a6733210a1d05b8c5d96c86148ffe8f6b2b18b5e2d68"
+    },
+    "V1-B03-avant.png": {
+      "size": [
+        608,
+        736
+      ],
+      "sha256": "60d6c0ba6ebbc4101e72d1b9d192288575096cf251ab234c8332381873bd8654"
+    }
+  },
+  "browser_qa": {
+    "before_after_toggle": "passed; all three detail views switch together",
+    "native_main_image": {
+      "complete": true,
+      "natural": [
+        1664,
+        1056
+      ],
+      "displayed": [
+        1664,
+        1056
+      ]
+    },
+    "delivered_view": "after, adapted to page; native views available",
+    "retained_tab": true,
+    "proof": "artifacts/city-cyberpunk12/apercu-browser.png"
+  }
+}

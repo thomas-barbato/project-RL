@@ -126,7 +126,7 @@ mod bestiary;
 #[path = "game_art_campaign.rs"]
 pub(crate) mod campaign;
 #[path = "game_art_drone.rs"]
-mod drones;
+pub(crate) mod drones;
 #[path = "game_art_player.rs"]
 mod player_layers;
 #[path = "game_art_portrait.rs"]
@@ -537,8 +537,18 @@ pub(crate) fn draw_world_animated(
     });
 }
 
+pub(crate) fn draw_inspection_portrait(rect: Rect, visual: Visual) {
+    if matches!(visual, Visual::Player { body: 5, .. })
+        && !traqueuse_trial::enabled()
+        && vertical::draw_frontal_portrait(rect, visual)
+    {
+        return;
+    }
+    draw_portrait(rect, visual);
+}
+
 pub(crate) fn draw_portrait(rect: Rect, visual: Visual) {
-    if traqueuse_trial::draw_portrait(rect, visual) {
+    if traqueuse_trial::draw_portrait(rect, visual) || drones::draw_motion_portrait(rect, visual) {
         return;
     }
     TEXTURES.with(|art| match visual {

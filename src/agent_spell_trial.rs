@@ -373,6 +373,9 @@ impl AsciiApp {
     #[cfg(debug_assertions)]
     pub async fn capture_agent_drone_playable(output: &std::path::Path) -> Result<(), String> {
         std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
+        if std::env::args().any(|arg| arg == "--motion") {
+            return Self::capture_agent_drone_motion(output).await;
+        }
         let mut app = Self::new_agent_drone_trial()?;
         app.suspension_path = output.join("isolated-run.json");
         request_new_screen_size(1280., 800.);
@@ -456,6 +459,138 @@ impl AsciiApp {
         )?;
         Ok(())
     }
+    #[cfg(debug_assertions)]
+    async fn capture_agent_drone_motion(output: &std::path::Path) -> Result<(), String> {
+        use crate::game_art;
+        use project_rl::drone::{DroneCapabilities, DroneProfile};
+        use project_rl::world::Map;
+
+        let mut app = Self::new_agent_drone_trial()?;
+        app.suspension_path = output.join("isolated-run.json");
+        app.crash_recovery_enabled = false;
+        app.graphics.active.world_cell_px = 64;
+        app.graphics.active.walk_duration_ms = 400;
+        app.graphics.active.reduced_motion = false;
+        let map =
+            Map::from_ascii(&vec!["............."; 13].join("\n")).map_err(|e| e.to_string())?;
+        let center = GridPos::new(6, 6);
+        request_new_screen_size(1280., 800.);
+        for _ in 0..3 {
+            next_frame().await;
+        }
+        for id in ["d56", "d57", "d58", "d59", "d66"] {
+            for (direction, facing) in [
+                (Direction::West, -1),
+                (Direction::East, 1),
+                (Direction::South, 2),
+                (Direction::North, -2),
+            ] {
+                let mut game =
+                    GameState::new_with_rules(map.clone(), center, 123, app.rules.clone())
+                        .map_err(|e| e.to_string())?;
+                let next = center.step(direction);
+                let from = GridPos::new(
+                    center.x - 3 * (next.x - center.x),
+                    center.y - 3 * (next.y - center.y),
+                );
+                let profile = DroneProfile::new(
+                    format!("agent:{id}").parse().map_err(|e| format!("{e}"))?,
+                    12,
+                    20,
+                    1,
+                    1,
+                    1,
+                    6,
+                    1,
+                    1,
+                    DroneCapabilities::default(),
+                )
+                .map_err(|e| e.to_string())?;
+                let drone = game
+                    .spawn_player_drone(
+                        Actor::new(from, 25).map_err(|e| e.to_string())?,
+                        profile,
+                        30,
+                        30,
+                    )
+                    .map_err(|e| e.to_string())?;
+                app.terminal =
+                    TerminalView::new(SectorDecor::default(), game.map(), game.player_visibility());
+                app.game = WorldState::single(game);
+                app.combat_motion = Default::default();
+                app.capture_events_at(Some(0.));
+                app.prepare_presentation()?;
+                if app.execute_command(GameCommand::Wait) != CommandOutcome::Applied
+                    || app.game.actors().get(drone).map(Actor::position)
+                        != Some(from.step(direction))
+                {
+                    return Err(format!("{id}: suivi du joueur absent vers {direction:?}"));
+                }
+                app.capture_events_at(Some(1.));
+                app.prepare_presentation()?;
+                let end = app
+                    .combat_motion
+                    .glide_ends_at(drone)
+                    .ok_or("Pas de glissement")?;
+                let visual = app
+                    .front_actor_visual(drone)
+                    .ok_or("Visuel de drone absent")?;
+                if !game_art::drones::motion(visual).is_some() {
+                    return Err(format!("{id}: modèle absent de la banque"));
+                }
+                let phase = |time, reduced| {
+                    game_art::walking::world_pose(
+                        &app.combat_motion,
+                        drone,
+                        Some(visual),
+                        false,
+                        time,
+                        reduced,
+                    )
+                };
+                let middle = end - 0.2;
+                if phase(middle, false).map(|p| p.facing) != Some(facing)
+                    || phase(end + 0.001, false).is_some()
+                    || phase(middle, true).is_some()
+                    || (end - 1.4).abs() > 0.01
+                {
+                    return Err(format!(
+                        "{id}: orientation ou cadence incorrecte vers {direction:?}"
+                    ));
+                }
+                app.selected_target = Some(drone);
+                app.selected_world_cell = None;
+                let before = crate::asset_preparation::stats();
+                {
+                    let _time = crate::effect_geometry::frame_time(middle);
+                    let layers = crate::world_readability::audit_textures(|| app.draw());
+                    if !layers
+                        .iter()
+                        .any(|row| row.world && row.texture_size == [896., 512.])
+                    {
+                        return Err(format!("{id}: atlas absent du rendu de la carte"));
+                    }
+                    crate::ui_capture::framebuffer()?.export_png(
+                        output
+                            .join(format!("{id}-{direction:?}.png"))
+                            .to_str()
+                            .unwrap(),
+                    );
+                }
+                let after = crate::asset_preparation::stats();
+                if ["jobs", "source_reads", "uploads"]
+                    .iter()
+                    .any(|key| before[*key] != after[*key])
+                {
+                    return Err(format!("{id}: chargement pendant le dessin"));
+                }
+                println!("{id}: {direction:?}, déplacement réel à 400 ms et retour au repos");
+                next_frame().await;
+            }
+        }
+        Ok(())
+    }
+
     pub fn new_agent_drone_trial() -> Result<Self, String> {
         let mut app = Self::new_mixed_weapon_trial()?;
         for skill in ["D58", "D59", "D66"] {

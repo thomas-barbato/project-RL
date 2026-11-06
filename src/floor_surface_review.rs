@@ -43,13 +43,18 @@ pub fn street_path(source: &str) -> Option<&'static str> {
         return None;
     }
     match source {
-        "assets/maps/prison-street-expanded-01/street.png" => {
+        "assets/maps/prison-street-expanded-01/street.png"
+        | "assets/maps/prison-street-expanded-01/street-lits-r01.png"
+        | "assets/maps/prison-street-expanded-01/street-cour-r03.png" => {
             Some("assets/source-art/floor-continuous-01/street-0.png")
         }
         "assets/maps/prison-sewer-01/art/background-afe7b21dff4c.png" => {
             Some("assets/source-art/floor-continuous-01/street-1.png")
         }
-        "assets/maps/prison-sewer-01/art/background-b3fe8948652d.png" => {
+        "assets/maps/prison-sewer-01/art/background-b3fe8948652d.png"
+        | "assets/maps/prison-street-expanded-01/street-with-sewer-entry.png"
+        | "assets/maps/prison-street-expanded-01/street-with-sewer-entry-lits-r01.png"
+        | "assets/maps/prison-street-expanded-01/street-with-sewer-entry-cour-r03.png" => {
             Some("assets/source-art/floor-continuous-01/street-1.png")
         }
         _ => None,

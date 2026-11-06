@@ -15,7 +15,7 @@
     26,
     66
   ],
-  "background": "assets/maps/prison-street-expanded-01/street.png",
+  "background": "assets/maps/prison-street-expanded-01/street-cour-r03.png",
   "entrance": [
     7,
     62
@@ -424,7 +424,7 @@
     ]
   ],
   "source": "assets/source-art/first-sector-review-01/u01-style-r07/SCENE-U01-07-r01.png",
-  "background_sha256": "d4002950a486c840ee22f5e1a5f37af1249720284ad31bd67c473fa9110953c9",
+  "background_sha256": "de79cab5ba6b0dea4040c420969036b6a5dbffe83f22d557cc2befc7bf58c0c8",
   "layout_sha256": "66ec057226c2c8ab9e6e1cecfe02335d9397966a1b70f86ace01185f4bd91e42",
   "walkable_cells": 695,
   "all_walkable_connected": true,
@@ -749,66 +749,6 @@
           1.0,
           0.82,
           0.46
-        ],
-        "state": "on"
-      },
-      {
-        "id": "ruin-west",
-        "at": [
-          924,
-          3977
-        ],
-        "origin": [
-          14,
-          58
-        ],
-        "box": [
-          904,
-          3971,
-          945,
-          3983
-        ],
-        "radius": 105,
-        "power": 0.28,
-        "color": [
-          1.0,
-          0.055,
-          0.025
-        ],
-        "lens_color": [
-          1.0,
-          0.055,
-          0.025
-        ],
-        "state": "on"
-      },
-      {
-        "id": "ruin-east",
-        "at": [
-          1388,
-          3978
-        ],
-        "origin": [
-          21,
-          58
-        ],
-        "box": [
-          1368,
-          3972,
-          1407,
-          3984
-        ],
-        "radius": 105,
-        "power": 0.28,
-        "color": [
-          1.0,
-          0.055,
-          0.025
-        ],
-        "lens_color": [
-          1.0,
-          0.055,
-          0.025
         ],
         "state": "on"
       },
@@ -2683,5 +2623,23 @@
   ],
   "surface_style": "STYLE-MAP-U01-04",
   "paving_review": "PAV-U01-06",
-  "civilians_review": "CIVILS-U01-08"
+  "civilians_review": "CIVILS-U01-08",
+  "courtyard_clearance": [
+    [
+      11,
+      39
+    ],
+    [
+      11,
+      40
+    ],
+    [
+      12,
+      39
+    ],
+    [
+      12,
+      40
+    ]
+  ]
 }

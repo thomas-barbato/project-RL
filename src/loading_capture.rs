@@ -164,6 +164,12 @@ impl AsciiApp {
         let history_before = self.history.len();
         let mut cpu = Vec::with_capacity(frames);
         let mut present = Vec::with_capacity(frames);
+        let mut frame_intervals = Vec::with_capacity(frames - 1);
+        let mut previous_start = None;
+        let limit_frames = crate::frame_limit_enabled();
+        let mut frame_pacer = crate::FramePacer::new(limit_frames);
+        let rebuild_presentation =
+            std::env::args().any(|arg| arg == "--loading-rebuild-presentation");
         for frame in 0..frames {
             loading_profile::phase(&format!("{label}/frame-{frame}"));
             if demo {
@@ -171,7 +177,14 @@ impl AsciiApp {
                     .skill_demo
                     .capture_time(Some(10. + frame as f64 * 0.01));
             }
+            if rebuild_presentation {
+                self.terminal.clear_presentation();
+            }
+            frame_pacer.wait();
             let started = Instant::now();
+            if let Some(previous) = previous_start.replace(started) {
+                frame_intervals.push(started.duration_since(previous).as_secs_f64() * 1000.);
+            }
             self.draw();
             cpu.push(started.elapsed().as_secs_f64() * 1000.);
             next_frame().await;
@@ -198,6 +211,8 @@ impl AsciiApp {
         let row = serde_json::json!({"scene":label,"frames":frames,"first_cpu_ms":cpu[0],
             "first_frame_with_present_ms":present[0], "all_cpu":summary(&cpu),
             "steady_cpu_excluding_first_10":summary(&cpu[10..]), "frame_with_present":summary(&present),
+            "frame_limit_60":limit_frames, "rebuild_presentation":rebuild_presentation,
+            "steady_frame_interval":summary(&frame_intervals[9..]),
             "cpu_by_frame_ms":cpu,"frame_with_present_by_frame_ms":present,
             "engine_fingerprint":suspension::fingerprint(&self.game),
             "terminal_fingerprint":suspension::fingerprint(&self.terminal),"read_only":true});

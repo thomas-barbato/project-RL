@@ -1,0 +1,38 @@
+{
+  "review": "CITY-NORTH01-PAINT05-r04",
+  "status": "art-study-awaiting-user-prevalidation",
+  "generator": "image_gen.imagegen built-in",
+  "sources": [
+    {
+      "file": "assets/source-art/north-city-01/paint05/B01-PAINT05-r01.png",
+      "sha256": "0afd79c8332a781b9be5f523a42494e4ee8bb50899cd34f59206a35afaa7d9d4",
+      "status": "interior-painting-candidate"
+    },
+    {
+      "file": "assets/source-art/north-city-01/paint05/B01-PAINT05-r02.png",
+      "sha256": "5fc823ac75fd41bee37932dd88378af6506e79afb0d4beda204d4488f49a8dd3",
+      "status": "superseded-ambiguous-roof-height"
+    },
+    {
+      "file": "assets/source-art/north-city-01/paint05/B01-PAINT05-r03-rejete.png",
+      "sha256": "5ad87ae1a7e29c172ee5e5d0c55cf2eee1565fa3f07d9aad885bec4dcc18f46f",
+      "status": "rejected-roof-equipment-on-vertical-facade"
+    }
+  ],
+  "prompt_files": [
+    "docs/reviews/north-city-01/PAINT05-PROMPT-r01.txt",
+    "docs/reviews/north-city-01/PAINT05-PROMPT-r02-toits.txt",
+    "docs/reviews/north-city-01/PAINT05-PROMPT-r03-volume-rejete.txt"
+  ],
+  "accepted_reference": {
+    "file": "assets/source-art/first-sector-review-01/u01-style-r07/SCENE-U01-07-r01.png",
+    "sha256": "1dd45907310699da19977f8e86ebaa79f374dcc8df1086b6d5a456e30562346a"
+  },
+  "native_neighbour": {
+    "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/east-long-native.png",
+    "sha256": "1d67dc7a28c75bf7006fd74c15ceaa4a33dd28fff683f74ab153da8840068386",
+    "used_without_resizing": true
+  },
+  "renderer": "examples/north_city_paint_review.rs",
+  "campaign_integrated": false
+}

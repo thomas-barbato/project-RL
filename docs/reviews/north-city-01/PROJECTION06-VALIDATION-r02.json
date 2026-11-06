@@ -1,0 +1,70 @@
+{
+  "actor_position_preserved": true,
+  "campaign_integrated": false,
+  "crop_empty_margin_only": [
+    116.0,
+    94.0,
+    1056.0,
+    1034.0
+  ],
+  "door_axis_preserved": true,
+  "figures": [
+    "projection06-scene.png",
+    "projection06-comparaison.png",
+    "projection06-reperes.png"
+  ],
+  "foot_of_both_buildings_y": 448.0,
+  "ground_anchor_native_y": 281.25,
+  "limits": [
+    "New single-building projection study; no change to B01 or its surroundings.",
+    "No walking/collision or final-lighting validation is claimed."
+  ],
+  "native_cell": 64,
+  "native_object": [
+    288.0,
+    282.0
+  ],
+  "piecewise_image_warp": false,
+  "previous_native_object": [
+    384.0,
+    376.0
+  ],
+  "reduction_xy": [
+    0.75,
+    0.75
+  ],
+  "reference": "assets/source-art/first-sector-review-01/u01-expansion-r06/west-garage-native.png",
+  "reference_drawn_at_original_native_size": true,
+  "review": "CITY-NORTH01-PROJECTION06-r02",
+  "road_edge_y": 512.0,
+  "same_actor_64px": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P01-r01-native64.png",
+  "scale_xy": [
+    0.27272728085517883,
+    0.27272728085517883
+  ],
+  "source": "assets/source-art/north-city-01/projection06/VOLUME06-01-source.png",
+  "status": "relative-scale-awaiting-user-prevalidation",
+  "uniform_scale_only": true,
+  "whole_building_visible": true,
+  "date": "2026-11-05",
+  "preservation": [
+    "character source and 64px canvas",
+    "both character positions",
+    "left reference panel, pixel-identical",
+    "pavement and road outside old right-building bounds, pixel-identical",
+    "world/map data",
+    "perspective and original painting"
+  ],
+  "preservation_checks_passed": true,
+  "actor_visible_height": 58,
+  "door_opening_height_approx": 70.36363636363636,
+  "source_manifest": "assets/source-art/north-city-01/projection06/manifest.json",
+  "user_perspective_feedback": "better",
+  "user_scale_prevalidation": "pending",
+  "files": {
+    "examples/north_city_projection_review.rs": "cadca4c01012333b5e41c68221f2523e9ab5323ae1e83f8b5c5be48ea3c70c43",
+    "tools/show_north_city_review.py": "aec3c96e87c1a870fdb12263e2d3feb76ba5203242d865fc7489349c4de370d2",
+    "assets\\source-art\\north-city-01\\projection06\\manifest.json": "08d41e09c0297852c8e560f0e52969bc485fd0b68968aeef2fe9b7564757102b",
+    "docs\\reviews\\north-city-01\\ECHELLE06-r02.json": "6accbd8f204e1ff8b1a1a3c0dee5486e715a33c14c34e780ac5f53a7f8d94574"
+  }
+}

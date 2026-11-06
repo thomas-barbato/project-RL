@@ -2522,6 +2522,9 @@ impl GameState {
     }
 
     pub fn spawn_actor(&mut self, mut actor: Actor) -> Result<EntityId, SpawnError> {
+        if self.rules.turn_flow_corrections {
+            campaign_aggression::correct_cultist_rifle(&mut actor);
+        }
         if actor
             .companion_origin()
             .is_some_and(|origin| origin.uses_slot())
@@ -2825,6 +2828,13 @@ impl GameState {
     }
 
     pub fn process_player_command(&mut self, command: GameCommand) -> CommandOutcome {
+        if matches!(command, GameCommand::EnableTurnFlowCorrections) {
+            if !self.rules.turn_flow_corrections {
+                campaign_aggression::correct_existing_cultist_rifles(&mut self.actors);
+                self.rules.turn_flow_corrections = true;
+            }
+            return CommandOutcome::AppliedWithoutTime;
+        }
         // Recovery verifies the historical world before recording this timeless
         // rules update. It must not interrupt a channel or tick any actor/status.
         if matches!(
@@ -2992,15 +3002,8 @@ impl GameState {
                 .unwrap_or(1),
             _ => 1,
         };
-        if starts_normal_action
-            && let Some(player) = self.actors.get_mut(self.player)
-            && let Some(expired) = player.begin_normal_action()
-        {
-            self.events.push(GameEvent::ReactionExpired {
-                entity: self.player,
-                technique: expired.technique().clone(),
-                reaction: expired.kind(),
-            });
+        if starts_normal_action {
+            self.begin_player_normal_action();
         }
         if starts_normal_action && !self.command_continues_player_preparation(&command) {
             self.cancel_player_preparation(PreparationCancellationReason::DifferentAction);
@@ -3134,7 +3137,9 @@ impl GameState {
                     CommandOutcome::AppliedWithoutTime
                 }
             }
-            GameCommand::UpgradePlayerVision | GameCommand::EnableCircularPlayerVision => {
+            GameCommand::UpgradePlayerVision
+            | GameCommand::EnableCircularPlayerVision
+            | GameCommand::EnableTurnFlowCorrections => {
                 unreachable!("handled before action dispatch")
             }
             GameCommand::RepairStaticZoneFloors { .. } => {
@@ -3340,13 +3345,7 @@ impl GameState {
         match outcome {
             CommandOutcome::Applied => {
                 if let Some(technique) = &successful_channel_command {
-                    if technique != &crate::skills::agent::technique("SU04") {
-                        self.agent_runtime_mut().support.regeneration = None;
-                    }
-                    self.agent_runtime_mut().magic.effects.retain(|e| {
-                        !matches!(e.skill.as_str(), "FE02" | "OC05")
-                            || crate::skills::agent::technique(&e.skill) == *technique
-                    });
+                    self.cancel_player_channel_for_action(technique);
                 }
                 if was_recovering {
                     self.advance_action_recovery(self.player);
@@ -10552,7 +10551,15 @@ impl GameState {
         // Ordinary class attributes and merely standing beside a wall must
         // not make an exposed campaign player permanently invisible. Explicit
         // concealment and sensor interference still use their existing rules.
-        if self.campaign_monster_is_aggressive(observer)
+        let exposed_to_carried_rifle = self.rules.turn_flow_corrections
+            && !covered
+            && actor.player_relation() == crate::social::PlayerRelation::Hostile
+            && actor.equipped_weapon().is_some()
+            && actor.attack(0).is_some_and(|attack| {
+                attack.delivery() == AttackDelivery::Ranged
+                    && attack.is_in_range(actor.position(), player_position)
+            });
+        if (self.campaign_monster_is_aggressive(observer) || exposed_to_carried_rifle)
             && movement_bonus == 0
             && posture_bonus == 0
             && active_bonus == 0
@@ -14308,7 +14315,54 @@ impl GameState {
         );
     }
 
-    pub(super) fn complete_turn(&mut self) {
+    fn begin_player_normal_action(&mut self) {
+        if let Some(player) = self.actors.get_mut(self.player)
+            && let Some(expired) = player.begin_normal_action()
+        {
+            self.events.push(GameEvent::ReactionExpired {
+                entity: self.player,
+                technique: expired.technique().clone(),
+                reaction: expired.kind(),
+            });
+        }
+    }
+
+    fn cancel_player_channel_for_action(&mut self, technique: &TechniqueId) {
+        if technique != &crate::skills::agent::technique("SU04") {
+            self.agent_runtime_mut().support.regeneration = None;
+        }
+        self.agent_runtime_mut().magic.effects.retain(|e| {
+            !matches!(e.skill.as_str(), "FE02" | "OC05")
+                || crate::skills::agent::technique(&e.skill) == *technique
+        });
+    }
+
+    pub(super) fn correct_inactive_cultist_rifles(actors: &mut ActorRegistry) {
+        campaign_aggression::correct_existing_cultist_rifles(actors);
+    }
+
+    /// The world has committed a timed interaction outside the command dispatcher.
+    pub(super) fn complete_interaction_turn(&mut self, first_arrival: bool) {
+        if self.rules.turn_flow_corrections {
+            self.player_drone_support_target_this_action = None;
+            self.begin_player_normal_action();
+            self.cancel_player_preparation(PreparationCancellationReason::DifferentAction);
+            self.clear_player_persistent_ranged_aim();
+            self.cancel_player_weapon_barrage();
+            self.cancel_player_charge();
+            self.cancel_player_channel_for_action(&crate::skills::agent::technique(
+                "cancel_channel",
+            ));
+            self.advance_action_recovery(self.player);
+        }
+        self.complete_turn_with_arrival(self.rules.turn_flow_corrections && first_arrival);
+    }
+
+    fn complete_turn(&mut self) {
+        self.complete_turn_with_arrival(false);
+    }
+
+    fn complete_turn_with_arrival(&mut self, first_arrival: bool) {
         #[cfg(debug_assertions)]
         let _profile = crate::action_profile::Scope::new("engine.complete-turn");
         self.presentation_heard_incidents.clear();
@@ -14317,7 +14371,7 @@ impl GameState {
         if self.status == RunStatus::Active {
             self.resolve_status_trigger(StatusTrigger::TurnStart);
             if self.status == RunStatus::Active {
-                self.resolve_ai_turn();
+                self.resolve_ai_turn_with_arrival(first_arrival);
             }
         }
         self.phase = TurnPhase::ResolvingEnvironment;
@@ -15115,7 +15169,12 @@ impl GameState {
         }
     }
 
+    #[cfg(test)]
     fn resolve_ai_turn(&mut self) {
+        self.resolve_ai_turn_with_arrival(false);
+    }
+
+    fn resolve_ai_turn_with_arrival(&mut self, first_arrival: bool) {
         #[cfg(debug_assertions)]
         let _profile = crate::action_profile::Scope::new("engine.ai");
         self.clear_invalid_agent_taunts();
@@ -15148,12 +15207,24 @@ impl GameState {
             let Some(mut actor) = self.actors.get(entity).cloned() else {
                 continue;
             };
+            // A first crossing pays its normal turn, but gives the player the
+            // first decision in the newly discovered area.
+            if first_arrival
+                && actor.player_relation() == crate::social::PlayerRelation::Hostile
+                && !self.agent_support_owned(entity)
+            {
+                continue;
+            }
             if actor.action_is_delayed(self.turn) {
                 continue;
             }
             let Some(mut profile) = actor.ai() else {
                 continue;
             };
+            if self.rules.turn_flow_corrections && actor.equipped_weapon().is_some() {
+                // An equipped NPC weapon replaces the prototype with slot zero.
+                profile.preferred_attack_slot = 0;
+            }
             let perception_reduction = self
                 .actor_failed_component_effects(entity)
                 .into_iter()
@@ -15222,6 +15293,30 @@ impl GameState {
                 .map_or(player_position, Actor::position);
             let lure = self.agent_device_lure_target(entity);
             let target_position = lure.unwrap_or(target_position);
+            let preferred_attack = if lure.is_some() {
+                None
+            } else {
+                actor
+                    .attack(profile.preferred_attack_slot)
+                    .filter(|attack| {
+                        !self.rules.turn_flow_corrections
+                            || !target_visible
+                            || !attack.requires_line_of_sight()
+                            || !attack.is_in_range(actor.position(), target_position)
+                            || has_line_of_sight(&self.map, actor.position(), target_position, true)
+                    })
+            };
+            if self.rules.turn_flow_corrections
+                && target_visible
+                && preferred_attack.is_some_and(|attack| {
+                    attack.delivery() == AttackDelivery::Ranged
+                        && attack.is_in_range(actor.position(), target_position)
+                })
+            {
+                // Use a clear shot beyond contact instead of retreating turn
+                // after turn while the player can keep the same distance.
+                profile.preferred_minimum_distance = profile.preferred_minimum_distance.min(2);
+            }
             let audible_incident = self.audible_incident_for(entity);
             if let Some(incident) = audible_incident {
                 self.presentation_heard_incidents.insert(entity, incident);
@@ -15246,11 +15341,7 @@ impl GameState {
                     target_position,
                     occupied_positions: occupied,
                     profile,
-                    preferred_attack: if lure.is_some() {
-                        None
-                    } else {
-                        actor.attack(profile.preferred_attack_slot)
-                    },
+                    preferred_attack,
                 };
                 if let Some(lifecycle) = profile.pursuit_lifecycle() {
                     if aggressive

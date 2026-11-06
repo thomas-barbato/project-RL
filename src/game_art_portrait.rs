@@ -78,7 +78,7 @@ fn opaque_bounds(image: &Image, cell: Rect) -> Option<Rect> {
     })
 }
 
-fn contain(frame: Rect, source: Rect) -> Rect {
+pub(super) fn contain(frame: Rect, source: Rect) -> Rect {
     let scale = (frame.w / source.w).min(frame.h / source.h);
     let size = source.size() * scale;
     Rect::new(

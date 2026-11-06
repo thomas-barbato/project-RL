@@ -132,7 +132,7 @@ impl WorldState {
                 });
             }
         }
-        self.active.complete_turn();
+        self.active.complete_interaction_turn(false);
         CommandOutcome::Applied
     }
 }
@@ -286,6 +286,18 @@ mod tests {
     #[test]
     fn installation_intel_is_durable_and_rereading_is_free_without_revealing_terrain() {
         let mut world = fixture(false);
+        assert_eq!(
+            world.process_player_command(GameCommand::EnableTurnFlowCorrections),
+            CommandOutcome::AppliedWithoutTime
+        );
+        let player = world.player_id();
+        let recovery = crate::time::TimeUnits::ONE;
+        world
+            .active
+            .actors
+            .get_mut(player)
+            .unwrap()
+            .start_action_recovery(recovery);
         let known = world.active.player_visibility.clone();
         assert_eq!(
             world.process_player_command(command(
@@ -294,6 +306,11 @@ mod tests {
             )),
             CommandOutcome::Applied
         );
+        assert_eq!(world.turn(), 1);
+        assert_eq!(
+            world.actors().get(player).unwrap().recovery_remaining(),
+            None
+        );
         assert!(
             world
                 .discovered_data_terminal_records()
@@ -301,6 +318,12 @@ mod tests {
         );
         assert_eq!(world.active.player_visibility, known);
         world.drain_events();
+        world
+            .active
+            .actors
+            .get_mut(player)
+            .unwrap()
+            .start_action_recovery(recovery);
         let bytes = world.recovery_snapshot_bytes().unwrap();
         assert_eq!(
             world.process_player_command(command(
@@ -310,6 +333,10 @@ mod tests {
             CommandOutcome::AppliedWithoutTime
         );
         assert_eq!(bytes, world.recovery_snapshot_bytes().unwrap());
+        assert_eq!(
+            world.actors().get(player).unwrap().recovery_remaining(),
+            Some(recovery)
+        );
         let restored =
             WorldState::from_recovery_snapshot_bytes(&bytes, world.rules().clone()).unwrap();
         assert_eq!(bytes, restored.recovery_snapshot_bytes().unwrap());

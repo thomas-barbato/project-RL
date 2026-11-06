@@ -1,0 +1,227 @@
+{
+  "review": "CITY-CYBERPUNK12-SECURITY-r02",
+  "status": "artwork-awaiting-user-prevalidation",
+  "map": "first-city",
+  "native_cell": 64,
+  "reference": "assets/source-art/north-city-01/production10/B01-cyberpunk-r04-source.png",
+  "items": [
+    {
+      "id": "V1-B01-west-garage",
+      "original": "assets/source-art/first-sector-review-01/u01-expansion-r06/west-garage-native.png",
+      "original_sha256": "62491a5e482245e3d86813dda3dfb1604127d15b8400630aaeb62ab3aa1ead2e",
+      "at_px": [
+        176,
+        2400
+      ],
+      "native_size": [
+        326,
+        309
+      ],
+      "source": "assets/source-art/city-cyberpunk12/V1-B01-west-garage-source-r01.png",
+      "native": "assets/source-art/city-cyberpunk12/security-r02/V1-B01-west-garage-native-r02.png",
+      "prompt": "docs/reviews/city-cyberpunk12/V1-B01-west-garage-PROMPT-r01.txt",
+      "status": "security-correction-awaiting-user-review",
+      "source_sha256": "5ef766f4fe2a11ecde06bf610972e5e9038f3762f4ea052e3bebf26ebee37476",
+      "native_sha256": "528f55cfc7ab4db867f1841b2c2c0b0d3170552c58a0d9c414b9c34fd6c43cf5",
+      "source_uniform_scale": 0.25307125307125306,
+      "parts": [
+        {
+          "id": "V1-B01-west-garage-D01-relais",
+          "file": "assets/source-art/city-cyberpunk12/security-r02/V1-B01-west-garage-D01-relais-native-r02.png",
+          "sha256": "f8cd5184d701a5e27d181bd3e73114fea0f0a90a0d356fb409e64ed7b71b8874",
+          "native_bbox": [
+            134,
+            101,
+            216,
+            152
+          ],
+          "label": "D01 · Refroidissement du garage",
+          "revision": "r02-security-scope",
+          "source": "assets/source-art/city-cyberpunk12/security-r02/HVAC-source-r02.png",
+          "source_sha256": "11e801c555e48e262e1e37b3e7e46a09f0fdab719bac88a9ff2d88fa870a782f",
+          "prompt": "docs/reviews/city-cyberpunk12/HVAC-SECURITE-r02-PROMPT.txt"
+        },
+        {
+          "id": "V1-B01-west-garage-D02-reseau",
+          "file": "assets/source-art/city-cyberpunk12/V1-B01-west-garage-D02-reseau-native-r01.png",
+          "sha256": "7be2b679fc9ae0f03e1c5168820aae1dad9569c53db8cebdf1b845ba052516a0",
+          "native_bbox": [
+            154,
+            138,
+            259,
+            220
+          ]
+        },
+        {
+          "id": "V1-B01-west-garage-D03-camera",
+          "file": "assets/source-art/city-cyberpunk12/V1-B01-west-garage-D03-camera-native-r01.png",
+          "sha256": "35b519bf465013c20d9131974febc3449b75924d304de4ba8d100a231ecf6a52",
+          "native_bbox": [
+            183,
+            203,
+            209,
+            225
+          ]
+        }
+      ],
+      "composition": "Technology layers only. Existing architecture and openings retained.",
+      "protected_doors": [
+        [
+          44,
+          222,
+          171,
+          295
+        ],
+        [
+          178,
+          225,
+          230,
+          304
+        ]
+      ]
+    },
+    {
+      "id": "V1-B02-east-blue",
+      "original": "assets/source-art/first-sector-review-01/u01-expansion-r05/east-blue-native.png",
+      "original_sha256": "cd3b2e7b23bcb185bcfa6bf184761792b2f97352c64fc3c89c5d78745981d0df",
+      "at_px": [
+        1340,
+        2176
+      ],
+      "native_size": [
+        233,
+        484
+      ],
+      "source": "assets/source-art/city-cyberpunk12/V1-B02-east-blue-source-r01.png",
+      "native": "assets/source-art/city-cyberpunk12/security-r02/V1-B02-east-blue-native-r02.png",
+      "prompt": "docs/reviews/city-cyberpunk12/V1-B02-east-blue-PROMPT-r01.txt",
+      "status": "security-correction-awaiting-user-review",
+      "source_sha256": "04c30eb6140e60488e96a4570367ecedcb25a1daba959f9be3620ed02530cd22",
+      "native_sha256": "f1b45f82e4a1ae205078e9386ce1b7fc8d1040b7491475aa8f5b2b10b7a58506",
+      "source_uniform_scale": 0.267816091954023,
+      "parts": [
+        {
+          "id": "V1-B02-east-blue-D01-relais",
+          "file": "assets/source-art/city-cyberpunk12/security-r02/V1-B02-east-blue-D01-relais-native-r02.png",
+          "sha256": "f1b45f82e4a1ae205078e9386ce1b7fc8d1040b7491475aa8f5b2b10b7a58506",
+          "native_bbox": [
+            130,
+            193,
+            190,
+            252
+          ],
+          "label": "D01 · Antennes de communication passives",
+          "revision": "r02-security-scope",
+          "source": "assets/source-art/city-cyberpunk12/security-r02/ANTENNE-source-r02.png",
+          "source_sha256": "77f7d324d0ccab158064052c8491195130b2d8a078d3f339da7f9857d76a057b",
+          "prompt": "docs/reviews/city-cyberpunk12/ANTENNE-SECURITE-r02-PROMPT.txt"
+        }
+      ],
+      "composition": "Technology layers only. Existing architecture and openings retained.",
+      "protected_doors": [
+        [
+          76,
+          416,
+          143,
+          477
+        ]
+      ]
+    },
+    {
+      "id": "V1-B03-east-south",
+      "original": "assets/source-art/first-sector-review-01/u01-expansion-r05/east-south-native.png",
+      "original_sha256": "7dc83a63f427095ad77f0858de43a352059c8286c859b0d55c87debf4bf4cea0",
+      "at_px": [
+        1350,
+        2740
+      ],
+      "native_size": [
+        220,
+        359
+      ],
+      "source": "assets/source-art/city-cyberpunk12/V1-B03-east-south-source-r01.png",
+      "native": "assets/source-art/city-cyberpunk12/security-r02/V1-B03-east-south-native-r02.png",
+      "prompt": "docs/reviews/city-cyberpunk12/V1-B03-east-south-PROMPT-r01.txt",
+      "status": "security-correction-awaiting-user-review",
+      "source_sha256": "c840ae5cfce9f82902c9b453851888a39247484b370a8d12b296ef52fc312396",
+      "native_sha256": "7d0a7f49b1aa271037e948b2260bebc0a85094e52e8498726295e938a590bdd9",
+      "source_uniform_scale": 0.2240325865580448,
+      "parts": [
+        {
+          "id": "V1-B03-east-south-D01-relais",
+          "file": "assets/source-art/city-cyberpunk12/V1-B03-east-south-D01-relais-native-r01.png",
+          "sha256": "40ad17f096513ad13193306b0e973ce4d07052c08e8f11fe7a47fd0c3feb04e0",
+          "native_bbox": [
+            68,
+            31,
+            142,
+            85
+          ]
+        },
+        {
+          "id": "V1-B03-east-south-D02-reseau",
+          "file": "assets/source-art/city-cyberpunk12/V1-B03-east-south-D02-reseau-native-r01.png",
+          "sha256": "dc20a5da25d71f1d8ae6e0b6bf215c2fc883fc1c4718461938adcd071b9ab370",
+          "native_bbox": [
+            27,
+            47,
+            80,
+            246
+          ]
+        },
+        {
+          "id": "V1-B03-east-south-D03-plaque",
+          "file": "assets/source-art/city-cyberpunk12/V1-B03-east-south-D03-plaque-native-r01.png",
+          "sha256": "81751a36190307b01dbc7f8ae585474f6dd7516665a6ee549391a37d91dc098d",
+          "native_bbox": [
+            144,
+            206,
+            185,
+            240
+          ]
+        }
+      ],
+      "composition": "Technology layers only. Existing architecture and openings retained.",
+      "protected_doors": [
+        [
+          85,
+          289,
+          158,
+          357
+        ]
+      ]
+    }
+  ],
+  "candidate": "assets/source-art/city-cyberpunk12/security-r02/street-candidate-r02.png",
+  "candidate_sha256": "94a2dd34745aad70c70cb30b987cfccf33d569fbd983c5646f6ad27e2f299942",
+  "viewpoint": [
+    0,
+    2112
+  ],
+  "view_size": [
+    1664,
+    1024
+  ],
+  "actor_cell": [
+    7,
+    43
+  ],
+  "active_assets_unchanged": true,
+  "outside_device_pixels_unchanged": true,
+  "architecture_ground_and_doors_preserved": true,
+  "campaign_integrated": false,
+  "presented_for_user_review": true,
+  "acceptance": "docs/reviews/city-cyberpunk12/LOT01-ACCEPTANCE-r01.json",
+  "final_in_game_validation": "pending",
+  "accepted_original": "docs/reviews/city-cyberpunk12/LOT01-ACCEPTANCE-r01.json",
+  "authorized_mask": "assets/source-art/city-cyberpunk12/security-r02/authorized-mask-r02.png",
+  "removed_parts": [
+    "V1-B01-west-garage-D04-acces",
+    "V1-B02-east-blue-D02-reseau",
+    "V1-B02-east-blue-D03-acces",
+    "V1-B03-east-south-D04-acces"
+  ],
+  "visible_scanner_controllers": false,
+  "ordinary_building_scanners": false,
+  "other_approved_parts_unchanged": true
+}

@@ -1,0 +1,142 @@
+{
+  "actor": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P01-r01-native64.png",
+  "actor_size": [
+    64,
+    64
+  ],
+  "approach": [
+    13,
+    97
+  ],
+  "building": "B01",
+  "campaign_integrated": false,
+  "native": [
+    576.0,
+    474.65252685546875
+  ],
+  "plan_geometry_unchanged": true,
+  "rect": [
+    12,
+    91,
+    20,
+    96
+  ],
+  "resource_cache": {
+    "decode_ms": 793.5473,
+    "decoded_source_budget": 67108864,
+    "decoded_source_peak_bytes": 19600184,
+    "jobs": 11,
+    "pending": 0,
+    "read_bytes": 7114128,
+    "read_ms": 6.8073,
+    "source_reads": 10,
+    "texture_budget": 134217728,
+    "texture_bytes": 22745912,
+    "texture_create_ms": 4.3101,
+    "uploads": 11,
+    "worker_build_ms_including_sources": 927.1057
+  },
+  "review": "CITY-NORTH01-PRODUCTION10-B01-r04",
+  "scope": "Closed building perspective and futuristic grimdark direction candidate on PLAN09 coordinates; no interior or collision validation claimed.",
+  "status": "artwork-awaiting-user-prevalidation",
+  "world_baseline": 6208,
+  "accepted_layout": "docs/reviews/north-city-01/PLAN09-ACCEPTANCE-r01.json",
+  "accepted_plan_content_unchanged": true,
+  "accepted_plan_sha256": "94657266c7c8b7b9cd6fbb96ee51186e5f8d20142de11a5359ee6674a4909a14",
+  "accepted_geometry_sha256": "4b7cceb549bfd352652ca6bfed8baa296410376e6c7c7875f96eda1958775fc1",
+  "source_manifest": "assets/source-art/north-city-01/production10/manifest.json",
+  "source_sha256": "c78b574cd89e9aeb291801dc780304adb974878ae80c90dc853fa2e9e7fc284e",
+  "actor_source_unchanged": true,
+  "original_user_image_unchanged": true,
+  "existing_map_data_unchanged": {
+    "assets/maps/north-city-01/police_basement.json": {
+      "sha256": "04003d3d669a7eceb4219b2234572c5a8b8b152253240dcab49788c0fafac3e1",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout01.json": {
+      "sha256": "1e86da684f67b39622c7cc8cce4f80b6d84e1ae88e5d17011581307dcd09b352",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout02.json": {
+      "sha256": "dcf25cd48f4e50d6558e4c4026f0837fff240aeaebba516f265cde7f25ec436b",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout03.json": {
+      "sha256": "61adc9efa60690a5d447f573ca17ee12c285a79d8bb015c5971ab458d716e8f9",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout01.json": {
+      "sha256": "2cb405d677b7363b966515e0dec60f04c96ba75ea17027b3d939c9901acb9885",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout02.json": {
+      "sha256": "f1a1b43a0afc7e98834524eac857e5b0bda3c3028d1b89b5934b77111c08b0c6",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout03.json": {
+      "sha256": "2b692fb8942044c6b7e5dba2b5ed14be8489da2b809a70dd8c17e23643aab291",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_upper.json": {
+      "sha256": "87f75208ada22193d62b21df80c96e325144cb38bdcb41e5c91a0952f499a825",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/review.json": {
+      "sha256": "dcc3af6219d369a284e5e1c504604a3556988081f3eefe3a27baa059d4992aad",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/north_city.json": {
+      "sha256": "9e9fac2a223911310faa34a7ce178dce6003e7b21dacee7ca5da4f15c195a807",
+      "unchanged": true
+    }
+  },
+  "sewer_assets_changed": [],
+  "outside_building_native_pixels_unchanged": true,
+  "pixel_comparison_regions": [
+    [
+      0,
+      32,
+      224,
+      768
+    ],
+    [
+      800,
+      32,
+      1024,
+      768
+    ],
+    [
+      224,
+      536,
+      800,
+      768
+    ]
+  ],
+  "build": "cargo run --locked --example north_city_building_review -- --capture artifacts/north-city-01",
+  "validation_scope": "Native exterior artwork and plan registration only; aesthetic prevalidation and in-game inspection pending.",
+  "captures": {
+    "production10-B01-native.png": [
+      1024,
+      768
+    ],
+    "production10-B01-avant-apres.png": [
+      2048,
+      800
+    ],
+    "production10-B01-comparaison.png": [
+      1536,
+      800
+    ],
+    "production10-B01-emprise.png": [
+      1024,
+      768
+    ]
+  },
+  "files": {
+    "examples/north_city_building_review.rs": "dea3bf35d27bf2645b43776f00731dd47bd1fee84350fddc587cd1f7ac49ade1",
+    "assets/source-art/north-city-01/production10/B01.json": "c0a9dbe106256f5b33c044127912e44d70f5856a368062d120c480cf97caa0ad",
+    "assets/source-art/north-city-01/production10/manifest.json": "54b6990518d030fb5dfa35ad2a218db50108daad1fcd6cc03db840c8a7fdcfc6",
+    "tools/show_north_city_review.py": "c6eee772968d82c8a5855c012bfa18a6734896062a5f30430d4928b386e0565d",
+    "docs/reviews/north-city-01/CYBERPUNK11.md": "eb3a7099c7272fde638b5c13f0348feeba7df51a69f5eb2fc21713c6449cb428"
+  }
+}

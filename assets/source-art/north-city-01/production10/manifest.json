@@ -1,0 +1,71 @@
+{
+  "review": "CITY-NORTH01-PRODUCTION10-B01-r04",
+  "status": "artwork-prevalidated",
+  "layout_accepted": true,
+  "layout_acceptance": "docs/reviews/north-city-01/PLAN09-ACCEPTANCE-r01.json",
+  "accepted_geometry_sha256": "4b7cceb549bfd352652ca6bfed8baa296410376e6c7c7875f96eda1958775fc1",
+  "source": "assets/source-art/north-city-01/production10/B01-cyberpunk-r04-source.png",
+  "source_sha256": "c78b574cd89e9aeb291801dc780304adb974878ae80c90dc853fa2e9e7fc284e",
+  "source_size": [
+    1350,
+    1165
+  ],
+  "source_unchanged": true,
+  "crop": [
+    109,
+    111,
+    1131,
+    932
+  ],
+  "native": [
+    576,
+    474.6525198938992
+  ],
+  "uniform_scale": 0.5092838196286472,
+  "height_rounding": "none; uniform floating-point scale",
+  "rect": [
+    12,
+    91,
+    20,
+    96
+  ],
+  "approach": [
+    13,
+    97
+  ],
+  "world_baseline": 6208,
+  "tool": "image_gen.imagegen built-in edit",
+  "prompts": [
+    "docs/reviews/north-city-01/PRODUCTION10-B01-PROMPT-r01.txt",
+    "docs/reviews/north-city-01/PRODUCTION10-B01-PROMPT-r02.txt",
+    "docs/reviews/north-city-01/PRODUCTION10-B01-PROMPT-r03-perspective.txt",
+    "docs/reviews/north-city-01/PRODUCTION10-B01-PROMPT-r04-cyberpunk.txt"
+  ],
+  "guide": {
+    "file": "assets/source-art/north-city-01/production10/B01-geometry-guide.png",
+    "sha256": "6cf4fe8cd65e47b2b8532a037db201820eae548471837341fd94db3156109079"
+  },
+  "actor": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P01-r01-native64.png",
+  "campaign_integrated": false,
+  "history": [
+    {
+      "review": "CITY-NORTH01-PRODUCTION10-B01-r02",
+      "source": "assets/source-art/north-city-01/production10/B01-closed-r02-source.png",
+      "sha256": "044478c5dc7dfc460fbc80a39f8df661f588b5840a6d338335fb5a16cce38f81",
+      "status": "superseded-unapproved-style-study-perspective-inherited"
+    },
+    {
+      "file": "assets/source-art/north-city-01/production10/B01-closed-r01-source.png",
+      "sha256": "1b7471d3a9df93296519d14326dec34cbf28e8e2b138bc0252a68040f0ca5d44",
+      "status": "perspective-rejected-by-user"
+    },
+    {
+      "source": "assets/source-art/north-city-01/production10/B01-perspective-r03-source.png",
+      "sha256": "c28150f36174a01ad70553c6a5e65717f5dd5236227c6253782a8d3ba45c9b59",
+      "status": "unapproved-perspective-study-scope-extended-to-futuristic-direction-by-user"
+    }
+  ],
+  "art_direction": "Futuristic cyberpunk, grimdark, dirty and damaged. One building candidate; all scenery except sewers requested for subsequent review.",
+  "acceptance": "docs/reviews/north-city-01/PRODUCTION10-B01-ACCEPTANCE-r04.json",
+  "final_in_game_validation": "pending"
+}

@@ -54,19 +54,20 @@ pub(super) fn sidewalk(
     false
 }
 
-pub(super) fn draw_curb(
-    rect: Rect,
-    visible: bool,
-    position: GridPos,
-    known: impl Fn(GridPos) -> Option<Decor>,
-) {
-    let color = dim(Color::from_rgba(98, 102, 93, 255), visible);
-    let width = (rect.w * 0.06).max(1.0);
-    for (i, p) in position.cardinal_neighbors().into_iter().enumerate() {
-        if !matches!(
+pub(super) fn curb_edges(position: GridPos, known: impl Fn(GridPos) -> Option<Decor>) -> [bool; 4] {
+    position.cardinal_neighbors().map(|p| {
+        matches!(
             known(p),
             Some(Decor::Street | Decor::StreetDrain | Decor::Hydrant | Decor::RoadBollard)
-        ) {
+        )
+    })
+}
+
+pub(super) fn draw_curb(rect: Rect, visible: bool, edges: [bool; 4]) {
+    let color = dim(Color::from_rgba(98, 102, 93, 255), visible);
+    let width = (rect.w * 0.06).max(1.0);
+    for (i, edge) in edges.into_iter().enumerate() {
+        if !edge {
             continue;
         }
         let (x, y, w, h) = match i {
@@ -80,7 +81,7 @@ pub(super) fn draw_curb(
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
-struct Marking {
+pub(super) struct Marking {
     horizontal: bool,
     offset: f32,
 }
@@ -132,27 +133,24 @@ fn marking(position: GridPos, known: impl Fn(GridPos) -> Option<Decor>) -> Optio
         .then_some(Marking { horizontal, offset })
 }
 
-pub(super) fn draw(
-    rect: Rect,
+pub(super) fn prepare_marking(
     kind: Decor,
-    visible: bool,
     position: GridPos,
     known: impl Fn(GridPos) -> Option<Decor>,
-) {
+) -> Option<Marking> {
     if !matches!(kind, Decor::Lane | Decor::Street) {
-        return;
+        return None;
     }
-    let Some(mark) = marking(position, known) else {
-        return;
-    };
+    let mark = marking(position, known)?;
     let along = if mark.horizontal {
         position.x
     } else {
         position.y
     };
-    if along.rem_euclid(3) == 2 {
-        return;
-    }
+    (along.rem_euclid(3) != 2).then_some(mark)
+}
+
+pub(super) fn draw_marking(rect: Rect, visible: bool, mark: Marking) {
     let thickness = (rect.w * 0.055).max(1.0);
     let color = dim(Color::from_rgba(152, 150, 130, 255), visible);
     // Clip both halves of an even-width avenue's central line to their own

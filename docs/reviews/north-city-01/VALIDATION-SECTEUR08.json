@@ -1,0 +1,117 @@
+{
+  "actor": "assets/source-art/class-readability-01/bastion-copper-wave-01/accepted/native64/BA-CU01-P01-r01-native64.png",
+  "actor_pixels_unchanged": true,
+  "actor_size": [
+    64,
+    64
+  ],
+  "campaign_integrated": false,
+  "figures": [
+    "secteur08-ensemble.png",
+    "secteur08-interieur.png",
+    "secteur08-native.png",
+    "secteur08-comparaison.png"
+  ],
+  "local_patch": "S08-B02 only; source rect 992,24,432,440, native destination 744,18,324,330",
+  "map_data_changed": false,
+  "native_cell": 64,
+  "native_environment": [
+    1152,
+    768
+  ],
+  "reference": "assets/maps/prison-street-expanded-01/street.png",
+  "resource_cache": {
+    "decode_ms": 2217.7788,
+    "decoded_source_budget": 67108864,
+    "decoded_source_peak_bytes": 40714240,
+    "jobs": 4,
+    "pending": 0,
+    "read_bytes": 16327705,
+    "read_ms": 19.29,
+    "source_reads": 4,
+    "texture_budget": 134217728,
+    "texture_bytes": 40714240,
+    "texture_create_ms": 6.6616,
+    "uploads": 4,
+    "worker_build_ms_including_sources": 2244.0424
+  },
+  "review": "CITY-NORTH01-SECTEUR08-r03",
+  "scale_motivation": "Doors, furniture and bodies matched against the approved native actor; the initial image canvas is not the world scale.",
+  "scene_mode": "Whole-sector visual composition; no gameplay or collision validation claimed",
+  "source": "assets/source-art/north-city-01/sector08/SECTEUR08-01-r02-source.png",
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "source_uniform_scale": 0.75,
+  "status": "visual-candidate-awaiting-prevalidation",
+  "local_patch_qa": {
+    "rect": [
+      744,
+      50,
+      1068,
+      380
+    ],
+    "all_rgba_pixels_outside_patch_identical": true,
+    "interior_pixels_changed": true
+  },
+  "map_json_sha256_unchanged": {
+    "assets/maps/north-city-01/police_basement.json": {
+      "sha256": "04003d3d669a7eceb4219b2234572c5a8b8b152253240dcab49788c0fafac3e1",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout01.json": {
+      "sha256": "1e86da684f67b39622c7cc8cce4f80b6d84e1ae88e5d17011581307dcd09b352",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout02.json": {
+      "sha256": "dcf25cd48f4e50d6558e4c4026f0837fff240aeaebba516f265cde7f25ec436b",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout03.json": {
+      "sha256": "61adc9efa60690a5d447f573ca17ee12c285a79d8bb015c5971ab458d716e8f9",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout01.json": {
+      "sha256": "2cb405d677b7363b966515e0dec60f04c96ba75ea17027b3d939c9901acb9885",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout02.json": {
+      "sha256": "f1a1b43a0afc7e98834524eac857e5b0bda3c3028d1b89b5934b77111c08b0c6",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout03.json": {
+      "sha256": "2b692fb8942044c6b7e5dba2b5ed14be8489da2b809a70dd8c17e23643aab291",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_upper.json": {
+      "sha256": "87f75208ada22193d62b21df80c96e325144cb38bdcb41e5c91a0952f499a825",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/review.json": {
+      "sha256": "dcc3af6219d369a284e5e1c504604a3556988081f3eefe3a27baa059d4992aad",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/north_city.json": {
+      "sha256": "9e9fac2a223911310faa34a7ce178dce6003e7b21dacee7ca5da4f15c195a807",
+      "unchanged": true
+    }
+  },
+  "role_after_user_clarification": "Local finish/scale witness only; large city layout is PLAN09, not a repeat of this scene.",
+  "source_manifest": "assets/source-art/north-city-01/sector08/manifest.json",
+  "native_renderer": "examples/north_city_sector_review.rs",
+  "runtime_renderer_sha256": "ce3309c67e33e549c71e8b1b0c235f97bffcd54fceaac53f980e45712d24821a",
+  "approval": "pending",
+  "gameplay_integrated": false,
+  "browser_native_comparison": {
+    "natural": [
+      1536,
+      736
+    ],
+    "displayed": [
+      1536,
+      736
+    ],
+    "loaded": true
+  }
+}

@@ -54,6 +54,10 @@ impl ActorRegistry {
         self.actors.iter().map(|(id, actor)| (*id, actor))
     }
 
+    pub(crate) fn actors_mut(&mut self) -> impl Iterator<Item = &mut Actor> {
+        self.actors.values_mut()
+    }
+
     pub fn entity_at(&self, position: GridPos) -> Option<EntityId> {
         self.actors
             .iter()

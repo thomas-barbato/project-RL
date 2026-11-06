@@ -3,6 +3,43 @@
 //! no actor replacement, save migration, or combat-stat change is needed.
 use super::*;
 
+/// MON-022 carries a rifle in every palette. Give it the already authored
+/// shot of its street/sewer counterpart without replacing the actor or its loot.
+pub(super) fn correct_cultist_rifle(actor: &mut Actor) {
+    if actor.equipped_weapon().is_some()
+        || actor.player_relation() != crate::social::PlayerRelation::Hostile
+        || !matches!(actor.attacks(), [attack] if attack.range() == 1)
+        || !matches!(crate::monster_art::appearance(actor), Some((22, _)))
+    {
+        return;
+    }
+    let Some(mut ai) = actor.ai() else { return };
+    let stronger = actor.tags().iter().any(|tag| {
+        matches!(
+            tag.as_str(),
+            "core:encounter_level_2" | "core:encounter_level_3"
+        )
+    });
+    let (range, damage, penetration, spacing) = if stronger { (5, 2, 1, 3) } else { (4, 1, 0, 2) };
+    ai.behavior = crate::ai::AiBehavior::Skirmisher;
+    ai.preferred_minimum_distance = spacing;
+    actor.replace_attacks([AttackProfile::new(
+        range,
+        DistanceMetric::Euclidean,
+        true,
+        crate::combat::DamageType::Piercing,
+        damage,
+        penetration,
+    )]);
+    actor.set_ai_profile(ai);
+}
+
+pub(super) fn correct_existing_cultist_rifles(actors: &mut ActorRegistry) {
+    for actor in actors.actors_mut() {
+        correct_cultist_rifle(actor);
+    }
+}
+
 impl GameState {
     pub(super) fn campaign_monster_is_aggressive(&self, entity: EntityId) -> bool {
         self.actors.get(entity).is_some_and(|actor| {
@@ -57,6 +94,72 @@ mod tests {
             .unwrap();
         game.drain_events();
         (game, enemy)
+    }
+
+    #[test]
+    fn both_cultist_rifle_silhouettes_fire_from_two_cells_and_respect_walls() {
+        for number in [22, 24] {
+            for variant in [0, 1] {
+                for blocked in [false, true] {
+                    let (mut game, _) = fixture("core:street_population_01", GridPos::new(17, 10));
+                    let at = GridPos::new(5, 6);
+                    if blocked {
+                        game.map
+                            .set_terrain(GridPos::new(4, 6), Terrain::Wall)
+                            .unwrap();
+                    }
+                    let (attack, ai) = if number == 22 {
+                        (
+                            AttackProfile::melee(crate::combat::DamageType::Kinetic, 1),
+                            AiProfile::hunter(9, 0),
+                        )
+                    } else {
+                        (
+                            AttackProfile::new(
+                                5,
+                                DistanceMetric::Euclidean,
+                                true,
+                                crate::combat::DamageType::Piercing,
+                                2,
+                                1,
+                            ),
+                            AiProfile::skirmisher(9, 0, 3),
+                        )
+                    };
+                    let enemy = game
+                        .spawn_actor(
+                            Actor::new(at, 10)
+                                .unwrap()
+                                .with_attack(attack)
+                                .with_ai(ai)
+                                .with_player_relation(PlayerRelation::Hostile)
+                                .with_tags([
+                                    format!("core:monster_art_{number}_{variant}")
+                                        .parse()
+                                        .unwrap(),
+                                    "core:street_population_01".parse().unwrap(),
+                                    "core:encounter_level_2".parse().unwrap(),
+                                ]),
+                        )
+                        .unwrap();
+                    let player = game.player_id();
+                    assert_eq!(
+                        game.process_player_command(GameCommand::EnableTurnFlowCorrections),
+                        CommandOutcome::AppliedWithoutTime
+                    );
+                    assert_eq!(
+                        game.process_player_command(GameCommand::Wait),
+                        CommandOutcome::Applied
+                    );
+                    assert_eq!(
+                        game.drain_events().iter().any(|event| matches!(event,
+                        GameEvent::AttackPerformed { attacker, target: Some(victim), origin, .. }
+                            if *attacker == enemy && *victim == player && *origin == at)),
+                        !blocked
+                    );
+                }
+            }
+        }
     }
 
     #[test]

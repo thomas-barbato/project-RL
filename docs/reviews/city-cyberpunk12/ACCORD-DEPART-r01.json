@@ -1,0 +1,30 @@
+{
+  "review": "CITY-CYBERPUNK12-DEPART-r01",
+  "date": "2026-11-05",
+  "user_quote": "ok je valide :)",
+  "status": "integrated-awaiting-in-game-validation",
+  "accepted_parts": [
+    "DEP-I01",
+    "DEP-B01",
+    "DEP-M01"
+  ],
+  "native_cell": 64,
+  "visual_source_sha256": "fb0559d7a1d03001e779f22ff23b5da5644024fbfe8ef66373b4af920ee4f917",
+  "active_files_sha256": {
+    "assets/maps/prison-street-expanded-01/correction.png": "7dfb8033998e3672720302ef8f2aabe30c7e1912644f31c05e7bf0d381e59f06",
+    "assets/maps/prison-street-expanded-01/street.json": "fbe8a6c3115e7da34a186345b0e5b86158610a2b97c8e4eac2b6bf209949075f",
+    "assets/maps/prison-street-expanded-01/street.png": "fb0559d7a1d03001e779f22ff23b5da5644024fbfe8ef66373b4af920ee4f917",
+    "assets/maps/prison-street-expanded-01/street-with-sewer-entry.png": "840335f5bfd387af2c2db714b308611a04fe7b8d79c747f55a10d61a51bef2fe",
+    "assets/maps/prison-sewer-01/entry.json": "c734d0f8339be768f11d622521c90fce6f60fca14df33e03bf4ebae88dee6221"
+  },
+  "removed_lights": [
+    "ruin-east",
+    "ruin-west"
+  ],
+  "irradiance_sha256": "19c4157c479dbae87de50052f3a38beae2c8070d7baccd24ea7398d7f8525d98",
+  "final_in_game_validation": "pending",
+  "street_with_sewer_entry_base": {
+    "path": "assets/maps/prison-sewer-01/art/background-b3fe8948652d.png",
+    "sha256": "b3fe8948652ddfa37fd886be4d11e296e617f4a21d180455005b294034677c41"
+  }
+}

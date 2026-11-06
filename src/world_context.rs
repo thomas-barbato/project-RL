@@ -783,6 +783,57 @@ mod tests {
     }
 
     #[test]
+    fn world_context_mouse_walk_stops_when_a_known_hostile_misses() {
+        let mut app = app("fusil_d_assaut");
+        let mut rules = app.game.rules().clone();
+        rules.hit_rules = Some(project_rl::combat::HitRules {
+            minimum_hit_chance: 0,
+            maximum_hit_chance: 0,
+            ..Default::default()
+        });
+        app.game = WorldState::single(
+            GameState::new_with_rules(
+                Map::filled(18, 15, Terrain::Floor).unwrap(),
+                GridPos::new(5, 6),
+                129,
+                rules,
+            )
+            .unwrap(),
+        );
+        let enemy = app
+            .game
+            .spawn_actor(
+                Actor::new(GridPos::new(6, 9), 20)
+                    .unwrap()
+                    .with_ai(project_rl::ai::AiProfile::sentry(6, 0))
+                    .with_player_relation(PlayerRelation::Hostile)
+                    .with_attack(project_rl::combat::AttackProfile::new(
+                        5,
+                        DistanceMetric::Euclidean,
+                        true,
+                        DamageType::Piercing,
+                        2,
+                        0,
+                    )),
+            )
+            .unwrap();
+        assert!(app.context_visible_hostiles().contains(&enemy));
+        let player = app.game.player_id();
+        let hp = app.game.actors().get(player).unwrap().integrity();
+        app.start_mouse_walk(GridPos::new(9, 6), 0.0);
+        assert_eq!(app.game.actors().get(player).unwrap().integrity(), hp);
+        assert_eq!(app.game.player_position(), Some(GridPos::new(6, 6)));
+        assert!(app.mouse_walk.is_none());
+        assert!(
+            app.log
+                .iter()
+                .any(|line| line.contains("vous êtes pris pour cible"))
+        );
+        app.tick_mouse_walk(1.0);
+        assert_eq!(app.game.turn(), 1);
+    }
+
+    #[test]
     fn world_context_npc_talk_approaches_then_opens_without_extra_turn() {
         let mut app = app("fusil_d_assaut");
         app.prepare_clinic_diagnostic().unwrap();
@@ -905,6 +956,17 @@ mod tests {
         let actor = app.game.spawn_actor(Actor::new(at, 100).unwrap()).unwrap();
         let turn = app.game.turn();
         open(&mut app, at);
+        assert_eq!(
+            app.world_context
+                .as_ref()
+                .unwrap()
+                .rows
+                .iter()
+                .find(|row| row.choice == Choice::Inspect)
+                .unwrap()
+                .label,
+            "Se rapprocher pour examiner"
+        );
         click(&mut app, Choice::Inspect);
         assert!(!app.ux.inspected_target);
         app.tick_mouse_walk(1.0);
@@ -915,6 +977,14 @@ mod tests {
         assert_eq!(app.game.player_position(), Some(GridPos::new(7, 6)));
         assert_eq!(app.game.turn(), turn + 2);
         assert!(app.mouse_walk.is_none());
+        assert_eq!(
+            app.world_context_rows(at, false)
+                .into_iter()
+                .find(|row| row.choice == Choice::Inspect)
+                .unwrap()
+                .label,
+            "Examiner"
+        );
     }
 
     #[test]
@@ -2860,6 +2930,9 @@ impl AsciiApp {
         let Some(path) = self.approach_path(&action) else {
             return;
         };
+        if matches!(action, ArrivalAction::Inspect { .. }) {
+            self.push_log("Approche pour examiner : le trajet consomme des tours.".into());
+        }
         self.mouse_walk = Some(MouseWalk {
             trigger_key: None,
             expected: self.game.player_position().unwrap(),
@@ -3081,10 +3154,16 @@ impl AsciiApp {
         }
         add(Choice::Skills, "Compétences".into(), None);
         if let Some(actor) = entity {
+            let action = ArrivalAction::Inspect { at, actor };
             add(
                 Choice::Inspect,
-                "Examiner".into(),
-                self.approach_action_blocked(&ArrivalAction::Inspect { at, actor }),
+                if self.arrival_ready(&action) {
+                    "Examiner"
+                } else {
+                    "Se rapprocher pour examiner"
+                }
+                .into(),
+                self.approach_action_blocked(&action),
             );
         }
         rows
@@ -3478,13 +3557,32 @@ impl AsciiApp {
             return;
         }
         self.step_mouse_walk(now);
+        if !self.graphics.active.reduced_motion
+            && crate::game_art::walking::player_enabled()
+            && self
+                .mouse_walk
+                .as_ref()
+                .is_some_and(|walk| !walk.cells.is_empty())
+        {
+            self.combat_motion
+                .continue_walk(self.game.player_id(), true);
+        }
     }
 
     fn step_mouse_walk(&mut self, now: f64) {
         let Some(mut walk) = self.mouse_walk.take() else {
             return;
         };
-        if now < walk.next_at {
+        let player = self.game.player_id();
+        let paced =
+            crate::game_art::walking::player_enabled() && !self.graphics.active.reduced_motion;
+        if now < walk.next_at
+            || (paced
+                && self
+                    .combat_motion
+                    .glide_ends_at(player)
+                    .is_some_and(|end| now < end))
+        {
             self.mouse_walk = Some(walk);
             return;
         }
@@ -3556,8 +3654,42 @@ impl AsciiApp {
             .get(self.game.player_id())
             .unwrap()
             .integrity();
+        let event_checkpoint = self.game.events().len();
         let result = self.execute_command(GameCommand::Move(direction));
-        self.capture_events();
+        let under_attack = self.game.events()[event_checkpoint..]
+            .iter()
+            .any(|event| match event {
+                GameEvent::AttackPerformed {
+                    attacker,
+                    target,
+                    affected_cells,
+                    ..
+                } => {
+                    *attacker != player
+                        && (*target == Some(player)
+                            || affected_cells.iter().any(|cell| cell.position == at))
+                }
+                GameEvent::AttackHitResolved {
+                    attacker, target, ..
+                }
+                | GameEvent::AgentSpellCast {
+                    entity: attacker,
+                    victim: target,
+                    ..
+                } => *attacker != player && *target == player,
+                GameEvent::AttackTelegraphed {
+                    attacker,
+                    target_at,
+                    ..
+                } => *attacker != player && *target_at == at,
+                _ => false,
+            });
+        self.capture_events_with_navigation(Some(now), true);
+        self.update_crash_recovery();
+        if under_attack {
+            self.push_log("Déplacement interrompu : vous êtes pris pour cible.".into());
+            return;
+        }
         if result != CommandOutcome::Applied
             || self.game.player_position() != Some(at)
             || self
@@ -3573,7 +3705,14 @@ impl AsciiApp {
         }
         if !walk.cells.is_empty() || walk.arrival.is_some() {
             walk.expected = at;
-            walk.next_at = now + 0.16;
+            walk.next_at = if paced {
+                self.combat_motion
+                    .glide_ends_at(player)
+                    .filter(|end| *end > now)
+                    .unwrap_or(now + 0.16)
+            } else {
+                now + 0.16
+            };
             self.mouse_walk = Some(walk);
         }
     }

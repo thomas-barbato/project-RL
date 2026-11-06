@@ -1,0 +1,31 @@
+{
+  "review": "CITY-CYBERPUNK12-LITS-r01",
+  "date": "2026-11-06",
+  "user_quote": "ok je valide on peut continuer",
+  "accepted_parts": [
+    "V1-I03-maison-arrivee-lit-r01",
+    "V1-I01-logement-D05-lit-r01"
+  ],
+  "status": "integrated-awaiting-in-game-validation",
+  "approved_visual_sha256": "721e4c572de7a4741b0dfc46210b3723ca2e1eb509e3248f05a8c4699c5cd44c",
+  "active_files_sha256": {
+    "assets/maps/prison-street-expanded-01/street.json": "cde2ab013653382dcdc6687a6a5f67e937019dc765ba97179e2f275893eaf674",
+    "assets/maps/prison-street-expanded-01/street-lits-r01.png": "a3119d0b235e5354b0528a3bc3053dfb9c947d07730f79ae58da137e33766b20",
+    "assets/maps/prison-sewer-01/entry.json": "1742fd2ff25a71950161409134c76b5b3f8a4f2f5b86a352bdce1d4fed7704bd",
+    "assets/maps/prison-street-expanded-01/street-with-sewer-entry-lits-r01.png": "721e4c572de7a4741b0dfc46210b3723ca2e1eb509e3248f05a8c4699c5cd44c"
+  },
+  "north_prototype": {
+    "compact_beds_default": true,
+    "max_native_px": [
+      44,
+      96
+    ],
+    "shared_sprites": [
+      72,
+      73,
+      74,
+      75
+    ]
+  },
+  "final_in_game_validation": "pending"
+}

@@ -1,3 +1,17 @@
+# Modifications ciblées — EDIT-SCOPE01
+
+Politique demandée par le joueur le 5 novembre 2026, applicable à tout le projet :
+après inspection ou lors d'une demande de retouche, modifier uniquement l'élément
+et les propriétés demandés, en conservant le reste. Une demande locale ne vaut
+pas autorisation de redessiner, régénérer, réorganiser ou rééquilibrer l'ensemble.
+
+Donner des identifiants stables aux éléments à revoir et séparer les données
+éditables pour permettre une retouche précise. Les générateurs ne doivent pas
+écraser des retouches manuelles ou des versions déjà inspectées. Si une
+modification impose un raccord ou une dépendance supplémentaire, en limiter
+la portée, l'expliquer et conserver les autres éléments, placements, textes,
+réglages et décisions acceptés. Vérifier le diff et les invariants concernés.
+
 # Contenu visuel
 
 Pour les cartes, décors et personnages, appliquer la règle de cohérence visuelle

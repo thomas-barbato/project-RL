@@ -1,0 +1,485 @@
+{
+  "review": "CITY-CYBERPUNK12-LOT02-r01",
+  "status": "artwork-awaiting-user-prevalidation",
+  "base": "assets/source-art/city-cyberpunk12/street-candidate-r01.png",
+  "base_sha256": "f696df415177678e1a9c5a9c5ac46ce968b993061da3c49eaf4d12a12349c093",
+  "accepted_lot01": "docs/reviews/city-cyberpunk12/LOT01-ACCEPTANCE-r01.json",
+  "native_cell": 64,
+  "items": [
+    {
+      "id": "V1-I01-logement",
+      "original": "assets/source-art/first-sector-review-01/u01-expansion-r06/house-a-body-native.png",
+      "original_sha256": "9d81afa94d46e163204794f0536adc688eb8f6fd06e064661dba65b258ef7ead",
+      "at_px": [
+        458,
+        1162
+      ],
+      "native_size": [
+        527,
+        339
+      ],
+      "source": "assets/source-art/city-cyberpunk12/lot02/V1-I01-logement-source-r01.png",
+      "prompt": "docs/reviews/city-cyberpunk12/V1-I01-logement-PROMPT-r01.txt",
+      "status": "artwork-awaiting-user-prevalidation",
+      "boundary": [
+        [
+          37,
+          55
+        ],
+        [
+          478,
+          55
+        ],
+        [
+          478,
+          251
+        ],
+        [
+          477,
+          251
+        ],
+        [
+          477,
+          267
+        ],
+        [
+          51,
+          267
+        ],
+        [
+          51,
+          251
+        ],
+        [
+          37,
+          251
+        ]
+      ],
+      "parts": [
+        {
+          "id": "V1-I01-logement-D02-rayonnage",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I01-logement-D02-rayonnage-native-r01.png",
+          "sha256": "08074b673487d50d36b874cddfeb87bf29f0f843a800db1b1f3267c3ee072558",
+          "bbox": [
+            37,
+            55,
+            102,
+            268
+          ]
+        },
+        {
+          "id": "V1-I01-logement-D03-cuisine",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I01-logement-D03-cuisine-native-r01.png",
+          "sha256": "41d6fe72e3bff8da1905ba1049e1b4500c20b3bf58e7ea5ceb9c11c8ee1bf151",
+          "bbox": [
+            102,
+            55,
+            354,
+            142
+          ]
+        },
+        {
+          "id": "V1-I01-logement-D04-rangements",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I01-logement-D04-rangements-native-r01.png",
+          "sha256": "a4668da08fb9b7f77a06c5b0f4118cc80f5e37a731ccd357572e52bcfdc14739",
+          "bbox": [
+            353,
+            55,
+            399,
+            217
+          ]
+        },
+        {
+          "id": "V1-I01-logement-D05-lit",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I01-logement-D05-lit-native-r01.png",
+          "sha256": "a5b8bd00436f8ce6a27c1f85bb14c49f018a509df71ec2cad4ac852883e16052",
+          "bbox": [
+            398,
+            55,
+            479,
+            256
+          ]
+        },
+        {
+          "id": "V1-I01-logement-D06-table",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I01-logement-D06-table-native-r01.png",
+          "sha256": "48ca04069f5f01599f3bd0694a94c25432fc7df32ee7fe07ecf7989a069860fe",
+          "bbox": [
+            139,
+            154,
+            275,
+            268
+          ]
+        },
+        {
+          "id": "V1-I01-logement-D07-chevet",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I01-logement-D07-chevet-native-r01.png",
+          "sha256": "935af2ce6d97a8400413d169055626f6473a49b79a988f927dbc3edf7f2a2da8",
+          "bbox": [
+            360,
+            218,
+            399,
+            268
+          ]
+        },
+        {
+          "id": "V1-I01-logement-D01-sol",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I01-logement-D01-sol-native-r01.png",
+          "sha256": "64ade26892c007f0034969c6063386e8850f0e2bb383dbfce40088f374ea7e94",
+          "bbox": [
+            102,
+            142,
+            478,
+            268
+          ]
+        },
+        {
+          "id": "V1-I01-logement-D08-raccord-sol",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I01-logement-D08-raccord-sol-native-r01.png",
+          "sha256": "f5b052427639978c89c71b6faf17d2878347dfea6d98d0be16e652b00313d819",
+          "bbox": [
+            69,
+            258,
+            478,
+            292
+          ]
+        }
+      ],
+      "native": "assets/source-art/city-cyberpunk12/lot02/V1-I01-logement-native-r01.png",
+      "native_sha256": "38a31d7a2aaeff0b6605169785dbb1f997ea059163474f93c56285b08248b597",
+      "source_sha256": "87281e59a593c7a10f0d2146ae14104671101bed1ba806ca15f6b179e5904300",
+      "source_uniform_scale": 0.336741214057508,
+      "floor_extension_material": {
+        "source_native_rect": [
+          277,
+          205,
+          350,
+          250
+        ],
+        "target_zones": [
+          [
+            51,
+            258,
+            228,
+            267
+          ],
+          [
+            315,
+            258,
+            477,
+            267
+          ],
+          [
+            234,
+            267,
+            311,
+            293
+          ]
+        ],
+        "condition": "Copy generated floor material on original floor pigment only; original walls/jambs retained."
+      }
+    },
+    {
+      "id": "V1-I02-boutique",
+      "original": "assets/source-art/first-sector-review-01/u01-expansion-r06/house-b-body-native.png",
+      "original_sha256": "fd8d9ab6f5557579989614740b4b1e691e47b59fafd83ff20e518d872d1b9cc9",
+      "at_px": [
+        474,
+        1658
+      ],
+      "native_size": [
+        495,
+        347
+      ],
+      "source": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-source-r01.png",
+      "prompt": "docs/reviews/city-cyberpunk12/V1-I02-boutique-PROMPT-r01.txt",
+      "status": "artwork-awaiting-user-prevalidation",
+      "boundary": [
+        [
+          36,
+          43
+        ],
+        [
+          464,
+          43
+        ],
+        [
+          464,
+          251
+        ],
+        [
+          445,
+          251
+        ],
+        [
+          445,
+          276
+        ],
+        [
+          320,
+          276
+        ],
+        [
+          320,
+          277
+        ],
+        [
+          194,
+          277
+        ],
+        [
+          194,
+          276
+        ],
+        [
+          51,
+          276
+        ],
+        [
+          51,
+          251
+        ],
+        [
+          36,
+          251
+        ]
+      ],
+      "parts": [
+        {
+          "id": "V1-I02-boutique-D02-rayon-nord",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-D02-rayon-nord-native-r01.png",
+          "sha256": "740524cb669ff35a93709e3cf180ec906c5c96271ebc1d44c64a50cf095f8799",
+          "bbox": [
+            68,
+            43,
+            175,
+            131
+          ]
+        },
+        {
+          "id": "V1-I02-boutique-D03-frigo",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-D03-frigo-native-r01.png",
+          "sha256": "f45addd5c1017e8b32f00419310798bc06f46cc244253b258779b26a628d695b",
+          "bbox": [
+            175,
+            45,
+            216,
+            135
+          ]
+        },
+        {
+          "id": "V1-I02-boutique-D04-rayon-nord-est",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-D04-rayon-nord-est-native-r01.png",
+          "sha256": "3732f0bab9a6cfc43e70e389ede0bd4be0d0ef617daf57f033c3e0df2655cc8c",
+          "bbox": [
+            215,
+            43,
+            336,
+            131
+          ]
+        },
+        {
+          "id": "V1-I02-boutique-D05-caisse",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-D05-caisse-native-r01.png",
+          "sha256": "dea3dec68825b88c4c7e5850d66275d879e46bb3bcdc20440897024dc54219b7",
+          "bbox": [
+            342,
+            43,
+            465,
+            171
+          ]
+        },
+        {
+          "id": "V1-I02-boutique-D06-vitrines-ouest",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-D06-vitrines-ouest-native-r01.png",
+          "sha256": "c668a9e7aad1eb5a4e760d6f6c924d51f1d3b880b840a37959867d9971249707",
+          "bbox": [
+            36,
+            150,
+            109,
+            277
+          ]
+        },
+        {
+          "id": "V1-I02-boutique-D07-presentoir",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-D07-presentoir-native-r01.png",
+          "sha256": "5f5f542a93ccbe29703ba712d553ddebb4d5e0f268060c359c46ad62405e03a3",
+          "bbox": [
+            109,
+            235,
+            150,
+            277
+          ]
+        },
+        {
+          "id": "V1-I02-boutique-D08-vitrine-sud",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-D08-vitrine-sud-native-r01.png",
+          "sha256": "17368a324563dbf95d567096a3d648f144b938e8dc340618fce6538036e25165",
+          "bbox": [
+            329,
+            234,
+            446,
+            277
+          ]
+        },
+        {
+          "id": "V1-I02-boutique-D09-rayon-est",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-D09-rayon-est-native-r01.png",
+          "sha256": "9f379649f2ceaa4b5684a26bec90b2e0637b8ab1c16c73996f6556aee43d057f",
+          "bbox": [
+            421,
+            171,
+            465,
+            252
+          ]
+        },
+        {
+          "id": "V1-I02-boutique-D01-sol",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-D01-sol-native-r01.png",
+          "sha256": "86bf78a55215b6aa76512874ef10c853d433f5e2f5d85168d3e06cc82f9bc19b",
+          "bbox": [
+            36,
+            43,
+            421,
+            278
+          ]
+        }
+      ],
+      "native": "assets/source-art/city-cyberpunk12/lot02/V1-I02-boutique-native-r01.png",
+      "native_sha256": "d06bf82bf202f28075d8fe5d2d7293ca599c8e6bc0994e0dcfcb0df527dc503d",
+      "source_sha256": "5109d27c00a35adba0bbaa4b2104e2081d62daa18655393336ba9575bbf1b83e",
+      "source_uniform_scale": 0.33044058744993327
+    },
+    {
+      "id": "V1-B04-entrepot",
+      "original": "assets/source-art/first-sector-review-01/u01-expansion-r06/warehouse-native.png",
+      "original_sha256": "92dfaf25cbd493ff03e4f9a08e09f3a9bf625dab301ae7f14ec34c6015b14e2f",
+      "at_px": [
+        160,
+        256
+      ],
+      "native_size": [
+        651,
+        403
+      ],
+      "source": "assets/source-art/city-cyberpunk12/lot02/V1-B04-entrepot-source-r01.png",
+      "prompt": "docs/reviews/city-cyberpunk12/V1-B04-entrepot-PROMPT-r01.txt",
+      "status": "artwork-awaiting-user-prevalidation",
+      "parts": [
+        {
+          "id": "V1-B04-entrepot-D01-controleur",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-B04-entrepot-D01-controleur-native-r01.png",
+          "sha256": "57ce416a6c2e6824d19489fcb72548177d500a1ba37a301374599f96ccb21360",
+          "bbox": [
+            45,
+            175,
+            133,
+            230
+          ],
+          "label": "D01 · Refroidissement de l’entrepôt",
+          "source": "assets/source-art/city-cyberpunk12/security-r02/HVAC-native-r02.png"
+        },
+        {
+          "id": "V1-B04-entrepot-D02-reseau",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-B04-entrepot-D02-reseau-native-r01.png",
+          "sha256": "1725662f8c7e516e8c72e8f639fb1d7415ce8080276533c6ed39a2027aa54b90",
+          "bbox": [
+            74,
+            229,
+            153,
+            283
+          ]
+        },
+        {
+          "id": "V1-B04-entrepot-D03-acces",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-B04-entrepot-D03-acces-native-r01.png",
+          "sha256": "379fe5a1f4b1faa26c356e4a7ac5053dfa8baae4b3950ca16a7b7f4dce066b2b",
+          "bbox": [
+            202,
+            147,
+            231,
+            186
+          ]
+        },
+        {
+          "id": "V1-B04-entrepot-D04-alimentation",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-B04-entrepot-D04-alimentation-native-r01.png",
+          "sha256": "719cde1441a4affab2796f4fcd6ee8fd007157f353e54cc3dd3f9da8e8dd2d7c",
+          "bbox": [
+            240,
+            46,
+            365,
+            102
+          ]
+        }
+      ],
+      "native": "assets/source-art/city-cyberpunk12/lot02/V1-B04-entrepot-native-r01.png",
+      "native_sha256": "a1df6ea62683d112494861448d5c3a5a2a853413299e5539b3e6f2d5491e2ad8",
+      "source_sha256": "a3529f0061d8f5ca63be6e00d64b6366fbb5070156a1b8801c21f04795d00e05",
+      "source_uniform_scale": 0.40815047021943573
+    }
+  ],
+  "candidate": "assets/source-art/city-cyberpunk12/lot02/street-candidate-r01.png",
+  "candidate_sha256": "4a109fff54b8e1b58df5dcc4dd5d2d0f0b3fedb8349b128f21a6f23de4bde549",
+  "roofs": [
+    {
+      "id": "V1-R01-logement",
+      "index": 2,
+      "original": "assets/maps/prison-street-expanded-01/roof-2.png",
+      "at_px": [
+        448,
+        1152
+      ],
+      "parts": [
+        {
+          "id": "V1-R01-logement-D01-distribution",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-R01-logement-D01-distribution-native-r01.png",
+          "sha256": "7eb3fc462bf3dda8dfefcde4f693c9f3c2b08cb028eeef1bdb76672f1ebfc5f5",
+          "bbox": [
+            230,
+            60,
+            295,
+            100
+          ],
+          "source": "assets/source-art/city-cyberpunk12/security-r02/HVAC-native-r02.png"
+        }
+      ],
+      "candidate": "assets/source-art/city-cyberpunk12/lot02/V1-R01-logement-native-r01.png",
+      "original_sha256": "2381e0b8139249ddefaf77b70ad14912556036df46900021a808ebc2a3efd37b",
+      "candidate_sha256": "a5b9d56bd7293b6f56ff0b7b9a293d244897077e482aa92705cfdd98d4b60d51"
+    },
+    {
+      "id": "V1-R02-boutique",
+      "index": 3,
+      "original": "assets/maps/prison-street-expanded-01/roof-3.png",
+      "at_px": [
+        464,
+        1648
+      ],
+      "parts": [
+        {
+          "id": "V1-R02-boutique-D01-relais",
+          "file": "assets/source-art/city-cyberpunk12/lot02/V1-R02-boutique-D01-relais-native-r01.png",
+          "sha256": "c152d95189165002f778933f85d33fd1538c20bce823c4d0acf5ecd20fede875",
+          "bbox": [
+            245,
+            169,
+            320,
+            215
+          ],
+          "source": "assets/source-art/city-cyberpunk12/security-r02/HVAC-native-r02.png"
+        }
+      ],
+      "candidate": "assets/source-art/city-cyberpunk12/lot02/V1-R02-boutique-native-r01.png",
+      "original_sha256": "36f55710f3341eaed78d0a24b11a5a1a365d8d3e55b012e21f1bf74d43f0e636",
+      "candidate_sha256": "5de8cc9d4ec257dcd680f448862cb6f0578c7d0593a592502bfdf5790b13e0ed"
+    }
+  ],
+  "campaign_integrated": false,
+  "outside_authorized_pixels_unchanged": true,
+  "security_revision": "assets/source-art/city-cyberpunk12/security-r02/manifest.json",
+  "accepted_lot01_source_layers_preserved": true,
+  "accepted_lot01_other_parts_unchanged": true,
+  "presented_for_user_review": true,
+  "final_in_game_validation": "pending"
+}

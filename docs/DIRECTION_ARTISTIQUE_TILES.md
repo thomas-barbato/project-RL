@@ -754,6 +754,42 @@ de secteur restent un chantier distinct.
 
 ### Orientation globale demandée le 19 octobre 2026 — grimdark et glauque
 
+**Précision du joueur, 5 novembre 2026 :** conserver une direction grimdark,
+mais rendre les décors réellement **futuristes**, sales et abîmés. La ruine
+et la saleté seules ne suffisent pas à exprimer l'identité cyberpunk du monde.
+La reprise demandée concerne l'ensemble des décors ; **les égouts sont exclus**,
+le joueur jugeant leur direction actuelle satisfaisante. Conserver la projection,
+l'échelle et la qualité de dessin acceptées. Les nouveaux dessins restent à
+présenter avant intégration. Le premier essai est isolé sur B01 du quartier nord ;
+son tracé pré-validé reste conservé. Suivi : `reviews/north-city-01/CYBERPUNK11.md`.
+
+**Accord du 5 novembre 2026 :** « oui c'est bien comme ca :) » pré-valide
+le dessin fermé **B01 / 10-1 r04**, montré avec le personnage natif de 64 px.
+Il devient une référence acceptée pour la direction futuriste grimdark des
+prochains décors. Le tracé accepté et les égouts sont conservés. Les dessins
+suivants et la validation définitive en jeu gardent leur revue propre.
+Source et portée figées : `reviews/north-city-01/PRODUCTION10-B01-ACCEPTANCE-r04.json`.
+
+Le joueur précise ensuite l'ordre : **refaire la première map de ville, puis
+la nouvelle, en gardant leurs tracés**. La reprise visuelle débute par la
+première ville, avec des pièces techniques séparées et des ouvertures conservées.
+Suivi : `reviews/city-cyberpunk12/REVUE.md`. Les égouts restent en l'état.
+
+**Précision sur les accès, 5 novembre 2026 :** les scanners ne sont pas
+systématiques. Choisir la sécurité selon l'usage du bâtiment ; les logements
+et petits commerces gardent des accès ordinaires. Les rares accès protégés
+ont leur électronique de commande dissimulée à l'intérieur, sans calculateur
+de scanner exposé sur le toit. Les équipements extérieurs doivent avoir une
+fonction lisible et cohérente : ventilation, refroidissement, antennes passives.
+Cette correction vise les accessoires concernés et conserve les autres dessins,
+les tracés et les ouvertures. Suivi : `reviews/city-cyberpunk12/SECURITE-r02.md`.
+
+Le joueur demande ensuite de retirer les petits symboles à trois barres
+répétés sur le lit, le réfrigérateur et l'évier : ils ne correspondent pas
+à une fonction cohérente. Les interfaces du décor doivent avoir un sens lié
+à leur usage. La correction conserve les appareils, les matériaux et les
+autres pixels du dessin. Suivi : `reviews/city-cyberpunk12/SYMBOLES-r03.md`.
+
 Le 19 octobre, après FIN-28 à FIN-31, le joueur demande « je te laisse tous les
 finires » puis « et les valider ». **ART-FINISH-COMPLETE-06** conserve cette
 délégation : Codex peut terminer, contrôler et accepter visuellement les

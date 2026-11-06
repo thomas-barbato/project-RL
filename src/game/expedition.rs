@@ -3121,6 +3121,14 @@ impl WorldState {
     pub fn process_player_command(&mut self, command: GameCommand) -> CommandOutcome {
         #[cfg(debug_assertions)]
         let _profile = crate::action_profile::Scope::new("world.command");
+        if matches!(command, GameCommand::EnableTurnFlowCorrections) {
+            if !self.active.rules.turn_flow_corrections {
+                for zone in self.inactive.values_mut() {
+                    GameState::correct_inactive_cultist_rifles(&mut zone.actors);
+                }
+            }
+            return self.active.process_player_command(command);
+        }
         if let GameCommand::RepairStaticZoneFloors { zone, cells } = &command {
             let map = if self.current.as_ref() == Some(zone) {
                 Some(&mut self.active.map)
@@ -4314,7 +4322,7 @@ impl WorldState {
                             quantity: deposit.quantity,
                         },
                     ));
-                    self.active.complete_turn();
+                    self.active.complete_interaction_turn(false);
                     self.active.assign_equipment_palettes();
                     Some(CommandOutcome::Applied)
                 }
@@ -4342,7 +4350,7 @@ impl WorldState {
                     first_access: first_discovery,
                 }));
             self.record_data_record_quest_progress(&record);
-            self.active.complete_turn();
+            self.active.complete_interaction_turn(false);
             self.active.assign_equipment_palettes();
             return Some(CommandOutcome::Applied);
         }
@@ -4360,7 +4368,7 @@ impl WorldState {
                         quantity: deposit.quantity,
                     },
                 ));
-                self.active.complete_turn();
+                self.active.complete_interaction_turn(false);
                 self.active.assign_equipment_palettes();
                 Some(CommandOutcome::Applied)
             }
@@ -4590,6 +4598,7 @@ impl WorldState {
         let Some(arrival) = link.arrival else {
             return reject(CommandRejection::PassageUnavailable);
         };
+        let first_arrival = self.pending.contains_key(&link.destination);
         if let Some(blueprint) = self.pending.get(&link.destination) {
             let Ok(mut zone) = self.prepare_zone(blueprint) else {
                 return reject(CommandRejection::PassageUnavailable);
@@ -4759,7 +4768,7 @@ impl WorldState {
             origin: arrival,
         });
         self.record_exploration_quest_progress(&link.destination);
-        self.active.complete_turn();
+        self.active.complete_interaction_turn(first_arrival);
         self.active.assign_equipment_palettes();
         CommandOutcome::Applied
     }
@@ -5321,6 +5330,79 @@ mod tests {
             "#########\n#.......#\n#.......#\n#.......#\n#.......#\n#.......#\n#########",
         )
         .unwrap()
+    }
+
+    #[test]
+    fn first_arrival_consumes_recovery_and_only_the_first_crossing_delays_enemies() {
+        let mut world = WorldState::single(
+            GameState::new_with_rules(map(), GridPos::new(1, 1), 42, GameRules::default()).unwrap(),
+        );
+        world.enable(info("a", 0)).unwrap();
+        world
+            .add_zone(ZoneBlueprint {
+                info: info("b", 0),
+                map: map(),
+                entrance: GridPos::new(1, 1),
+                seed: 42,
+                actors: vec![
+                    Actor::new(GridPos::new(2, 1), 10)
+                        .unwrap()
+                        .with_ai(AiProfile::hunter(6, 0))
+                        .with_attack(AttackProfile::melee(DamageType::Kinetic, 1))
+                        .with_player_relation(PlayerRelation::Hostile),
+                ],
+                loot: vec![],
+                threat_sources: vec![],
+            })
+            .unwrap();
+        let exit = GridPos::new(2, 1);
+        let arrival = GridPos::new(1, 1);
+        world.connect(id("a"), exit, id("b"), arrival).unwrap();
+        assert_eq!(
+            world.process_player_command(GameCommand::EnableTurnFlowCorrections),
+            CommandOutcome::AppliedWithoutTime
+        );
+        let player = world.player_id();
+        world
+            .active
+            .actors
+            .get_mut(player)
+            .unwrap()
+            .start_action_recovery(TimeUnits::ONE);
+        assert!(matches!(
+            world.process_player_command(GameCommand::Interact {
+                target: GridPos::new(8, 5)
+            }),
+            CommandOutcome::Rejected(_)
+        ));
+        assert_eq!(
+            world.actors().get(player).unwrap().recovery_remaining(),
+            Some(TimeUnits::ONE)
+        );
+        let apply = |world: &mut WorldState, command| {
+            assert_eq!(
+                world.process_player_command(command),
+                CommandOutcome::Applied
+            );
+        };
+        apply(&mut world, GameCommand::Interact { target: exit });
+        assert_eq!(world.turn(), 1);
+        assert_eq!(
+            world.actors().get(player).unwrap().recovery_remaining(),
+            None
+        );
+        let attack_on_player = |event: &GameEvent| {
+            matches!(event,
+            GameEvent::AttackPerformed { target: Some(victim), .. } if *victim == player)
+        };
+        assert!(!world.drain_events().iter().any(attack_on_player));
+        apply(&mut world, GameCommand::Wait);
+        assert!(world.drain_events().iter().any(attack_on_player));
+        apply(&mut world, GameCommand::Interact { target: arrival });
+        world.drain_events();
+        apply(&mut world, GameCommand::Interact { target: exit });
+        assert_eq!(world.turn(), 4);
+        assert!(world.drain_events().iter().any(attack_on_player));
     }
 
     #[test]

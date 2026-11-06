@@ -1,5 +1,5 @@
 //! Exact pixel ownership and rigid premultiplied weapon sampling for VERT18.
-use super::{Gear, Transform};
+use super::{Family, Gear, Transform};
 use crate::asset_preparation::{self as preparation, PreparedImage};
 use macroquad::prelude::*;
 
@@ -201,5 +201,100 @@ pub(super) fn compact(frames: &[Image], anchor: [f32; 2]) -> PreparedImage {
         image,
         cell: [w as u16, h as u16],
         anchor: [anchor[0] - b[0] as f32, anchor[1] - b[1] as f32],
+    }
+}
+
+fn luminance(pixel: &[u8]) -> u8 {
+    ((54 * u16::from(pixel[0]) + 183 * u16::from(pixel[1]) + 19 * u16::from(pixel[2])) >> 8) as u8
+}
+
+/// Match the approved lateral scale and tones at the same ground contact.
+/// Use the frontal body as reference so a long weapon does not set the scale.
+pub(super) fn match_frontal(
+    source: PreparedImage,
+    core: &Image,
+    family: &Family,
+    body_anchor: [f32; 2],
+    [target_height, target_mid, target_high]: [f32; 3],
+) -> PreparedImage {
+    let [bw, bh] = family.cell.map(f32::from);
+    let front = core.sub_image(Rect::new(0., bh * 2., bw, bh));
+    let mut tones = Vec::new();
+    let mut top = front.height;
+    let mut bottom = 0;
+    for (index, pixel) in front.bytes.chunks_exact(4).enumerate() {
+        if pixel[3] >= 128 {
+            let y = index as u16 / front.width;
+            top = top.min(y);
+            bottom = bottom.max(y + 1);
+        }
+        if pixel[3] >= 220 {
+            tones.push(luminance(pixel));
+        }
+    }
+    if tones.is_empty() || bottom <= top {
+        return source;
+    }
+    tones.sort_unstable();
+    let middle = f32::from(tones[(tones.len() - 1) / 2]).clamp(1., 253.);
+    let highlight = f32::from(tones[(tones.len() - 1) * 9 / 10]).clamp(middle + 1., 254.);
+    let shade: [f32; 256] = std::array::from_fn(|value| {
+        let light = value as f32;
+        let mapped = if light <= middle {
+            light * target_mid / middle
+        } else if light <= highlight {
+            target_mid + (light - middle) * (target_high - target_mid) / (highlight - middle)
+        } else {
+            target_high + (light - highlight) * (255. - target_high) / (255. - highlight)
+        };
+        mapped / light.max(1.)
+    });
+    let factor = target_height / f32::from(bottom - top);
+    let feet = source.anchor[1] + family.origin[1] as f32 + f32::from(bottom) - body_anchor[1];
+    let pad = 8;
+    let anchor = source.anchor.map(|v| v + pad as f32);
+    let [w, h] = source.cell.map(usize::from);
+    let [out_w, out_h] = [w + 2 * pad, h + 2 * pad];
+    let mut image = Image::gen_image_color((out_w * 6) as u16, (out_h * 3) as u16, BLANK);
+    for n in 0..13 {
+        let frontal = n < 6 || n == 12;
+        let (scale, shift) = if frontal {
+            (
+                factor,
+                [
+                    anchor[0] - source.anchor[0] * factor,
+                    anchor[1] - feet * factor,
+                ],
+            )
+        } else {
+            (1., [pad as f32; 2])
+        };
+        for y in 0..out_h {
+            let sy = ((y as f32 + 0.5 - shift[1]) / scale).floor() as isize;
+            if !(0..h as isize).contains(&sy) {
+                continue;
+            }
+            for x in 0..out_w {
+                let sx = ((x as f32 + 0.5 - shift[0]) / scale).floor() as isize;
+                if !(0..w as isize).contains(&sx) {
+                    continue;
+                }
+                let from = ((n / 6 * h + sy as usize) * w * 6 + n % 6 * w + sx as usize) * 4;
+                let to = ((n / 6 * out_h + y) * out_w * 6 + n % 6 * out_w + x) * 4;
+                let pixel = &source.image.bytes[from..from + 4];
+                image.bytes[to..to + 4].copy_from_slice(pixel);
+                if frontal && pixel[3] != 0 {
+                    let gain = shade[usize::from(luminance(pixel))];
+                    for c in &mut image.bytes[to..to + 3] {
+                        *c = (f32::from(*c) * gain).round().clamp(0., 255.) as u8;
+                    }
+                }
+            }
+        }
+    }
+    PreparedImage {
+        image,
+        cell: [out_w as u16, out_h as u16],
+        anchor,
     }
 }

@@ -1,0 +1,5187 @@
+{
+  "review": "CITY-NORTH01-PLAN09-r01",
+  "status": "layout-prevalidated-artwork-pending",
+  "width": 112,
+  "height": 112,
+  "native_cell": 64,
+  "native_world": [
+    7168,
+    7168
+  ],
+  "entrance": [
+    41,
+    109
+  ],
+  "street_links": [
+    {
+      "at": [
+        18,
+        1
+      ],
+      "arrival": [
+        41,
+        108
+      ]
+    },
+    {
+      "at": [
+        18,
+        2
+      ],
+      "arrival": [
+        41,
+        109
+      ]
+    }
+  ],
+  "future_exit": {
+    "at": [
+      99,
+      4
+    ],
+    "target": "core:military_barracks"
+  },
+  "roads": [
+    {
+      "id": "R01",
+      "name": "Avenue vers la caserne",
+      "width": 4,
+      "points": [
+        [
+          41,
+          110
+        ],
+        [
+          41,
+          102
+        ],
+        [
+          45,
+          96
+        ],
+        [
+          46,
+          85
+        ],
+        [
+          51,
+          77
+        ],
+        [
+          54,
+          70
+        ],
+        [
+          55,
+          61
+        ],
+        [
+          60,
+          52
+        ],
+        [
+          60,
+          42
+        ],
+        [
+          66,
+          34
+        ],
+        [
+          66,
+          26
+        ],
+        [
+          76,
+          21
+        ],
+        [
+          82,
+          13
+        ],
+        [
+          93,
+          9
+        ],
+        [
+          99,
+          4
+        ]
+      ],
+      "kind": "avenue"
+    },
+    {
+      "id": "R02",
+      "name": "Rue des faubourgs",
+      "width": 3,
+      "points": [
+        [
+          3,
+          99
+        ],
+        [
+          23,
+          99
+        ],
+        [
+          41,
+          102
+        ],
+        [
+          62,
+          100
+        ],
+        [
+          83,
+          102
+        ],
+        [
+          109,
+          95
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R03",
+      "name": "Rue de la vieille enceinte",
+      "width": 2,
+      "points": [
+        [
+          3,
+          110
+        ],
+        [
+          3,
+          81
+        ],
+        [
+          4,
+          62
+        ],
+        [
+          3,
+          44
+        ],
+        [
+          4,
+          27
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R04",
+      "name": "Rue du commissariat",
+      "width": 3,
+      "points": [
+        [
+          4,
+          29
+        ],
+        [
+          15,
+          29
+        ],
+        [
+          28,
+          29
+        ],
+        [
+          40,
+          30
+        ],
+        [
+          52,
+          29
+        ],
+        [
+          66,
+          26
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R05",
+      "name": "Rue de l’école et des services",
+      "width": 3,
+      "points": [
+        [
+          4,
+          57
+        ],
+        [
+          20,
+          57
+        ],
+        [
+          31,
+          54
+        ],
+        [
+          43,
+          51
+        ],
+        [
+          60,
+          52
+        ],
+        [
+          73,
+          49
+        ],
+        [
+          90,
+          48
+        ],
+        [
+          109,
+          46
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R06",
+      "name": "Rue des halles",
+      "width": 3,
+      "points": [
+        [
+          8,
+          82
+        ],
+        [
+          23,
+          83
+        ],
+        [
+          36,
+          80
+        ],
+        [
+          51,
+          77
+        ],
+        [
+          69,
+          79
+        ],
+        [
+          86,
+          77
+        ],
+        [
+          109,
+          78
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R07",
+      "name": "Boulevard des ateliers",
+      "width": 3,
+      "points": [
+        [
+          109,
+          7
+        ],
+        [
+          105,
+          22
+        ],
+        [
+          102,
+          37
+        ],
+        [
+          103,
+          52
+        ],
+        [
+          108,
+          64
+        ],
+        [
+          104,
+          83
+        ],
+        [
+          109,
+          108
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R08",
+      "name": "Accès des pompiers",
+      "width": 2,
+      "points": [
+        [
+          66,
+          36
+        ],
+        [
+          73,
+          44
+        ],
+        [
+          86,
+          45
+        ],
+        [
+          102,
+          40
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R09",
+      "name": "Rue des cours",
+      "width": 2,
+      "points": [
+        [
+          44,
+          4
+        ],
+        [
+          43,
+          20
+        ],
+        [
+          45,
+          33
+        ],
+        [
+          48,
+          41
+        ],
+        [
+          43,
+          51
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R10",
+      "name": "Passages du quartier ancien",
+      "width": 2,
+      "points": [
+        [
+          7,
+          64
+        ],
+        [
+          21,
+          63
+        ],
+        [
+          34,
+          66
+        ],
+        [
+          33,
+          73
+        ],
+        [
+          36,
+          80
+        ],
+        [
+          36,
+          98
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R11",
+      "name": "Promenade du jardin",
+      "width": 1,
+      "points": [
+        [
+          65,
+          63
+        ],
+        [
+          74,
+          64
+        ],
+        [
+          83,
+          61
+        ],
+        [
+          94,
+          57
+        ],
+        [
+          103,
+          52
+        ]
+      ],
+      "kind": "path"
+    },
+    {
+      "id": "R12",
+      "name": "Rue du poste militaire",
+      "width": 2,
+      "points": [
+        [
+          79,
+          22
+        ],
+        [
+          90,
+          25
+        ],
+        [
+          104,
+          22
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R13",
+      "name": "Rue des jardins de fond de cour",
+      "width": 2,
+      "points": [
+        [
+          32,
+          88
+        ],
+        [
+          47,
+          89
+        ],
+        [
+          65,
+          87
+        ],
+        [
+          84,
+          85
+        ],
+        [
+          104,
+          83
+        ]
+      ],
+      "kind": "street"
+    },
+    {
+      "id": "R14",
+      "name": "Allée du parc",
+      "width": 1,
+      "points": [
+        [
+          71,
+          68
+        ],
+        [
+          76,
+          68
+        ],
+        [
+          83,
+          74
+        ]
+      ],
+      "kind": "path"
+    }
+  ],
+  "green_spaces": [
+    {
+      "id": "G01",
+      "name": "Jardin public",
+      "rect": [
+        68,
+        61,
+        85,
+        75
+      ],
+      "kind": "park"
+    },
+    {
+      "id": "G02",
+      "name": "Arbres de la cour d’école",
+      "rect": [
+        8,
+        52,
+        24,
+        55
+      ],
+      "kind": "school"
+    },
+    {
+      "id": "G03",
+      "name": "Jardins des maisons anciennes",
+      "rect": [
+        13,
+        84,
+        30,
+        89
+      ],
+      "kind": "gardens"
+    },
+    {
+      "id": "G04",
+      "name": "Lisière du domaine militaire",
+      "rect": [
+        83,
+        3,
+        95,
+        7
+      ],
+      "kind": "greenbelt"
+    },
+    {
+      "id": "G05",
+      "name": "Friche des ateliers",
+      "rect": [
+        90,
+        29,
+        99,
+        36
+      ],
+      "kind": "wasteland"
+    },
+    {
+      "id": "G06",
+      "name": "Jardins de fond de cour",
+      "rect": [
+        52,
+        82,
+        67,
+        85
+      ],
+      "kind": "gardens"
+    }
+  ],
+  "plazas": [
+    {
+      "id": "P01",
+      "name": "Place du marché",
+      "rect": [
+        48,
+        64,
+        61,
+        72
+      ]
+    },
+    {
+      "id": "P02",
+      "name": "Parvis du commissariat",
+      "rect": [
+        25,
+        27,
+        37,
+        29
+      ]
+    },
+    {
+      "id": "P03",
+      "name": "Cour des pompiers",
+      "rect": [
+        75,
+        37,
+        89,
+        43
+      ]
+    },
+    {
+      "id": "P04",
+      "name": "Cour de l’école",
+      "rect": [
+        12,
+        43,
+        23,
+        50
+      ]
+    }
+  ],
+  "campuses": [
+    {
+      "id": "CP-POL",
+      "name": "Commissariat",
+      "rect": [
+        17,
+        10,
+        37,
+        26
+      ]
+    },
+    {
+      "id": "CP-ECO",
+      "name": "École",
+      "rect": [
+        8,
+        34,
+        25,
+        51
+      ]
+    },
+    {
+      "id": "CP-FEU",
+      "name": "Caserne de pompiers",
+      "rect": [
+        72,
+        27,
+        89,
+        43
+      ]
+    },
+    {
+      "id": "CP-MIL",
+      "name": "Poste militaire",
+      "rect": [
+        83,
+        10,
+        98,
+        22
+      ]
+    }
+  ],
+  "buildings": [
+    {
+      "id": "B01",
+      "name": "Immeuble éventré",
+      "kind": "apartment",
+      "rects": [
+        [
+          12,
+          91,
+          20,
+          96
+        ]
+      ],
+      "door": [
+        13,
+        97
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          13,
+          97
+        ],
+        [
+          13,
+          98
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "B02",
+      "name": "Logements abandonnés",
+      "kind": "house",
+      "rects": [
+        [
+          77,
+          91,
+          85,
+          97
+        ]
+      ],
+      "door": [
+        78,
+        98
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          78,
+          98
+        ],
+        [
+          78,
+          99
+        ],
+        [
+          78,
+          100
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "B03",
+      "name": "Immeuble du quartier ancien",
+      "kind": "apartment",
+      "rects": [
+        [
+          12,
+          68,
+          20,
+          75
+        ]
+      ],
+      "door": [
+        12,
+        67
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          12,
+          67
+        ],
+        [
+          12,
+          66
+        ],
+        [
+          12,
+          65
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "B04",
+      "name": "Îlot effondré",
+      "kind": "ruin",
+      "rects": [
+        [
+          93,
+          64,
+          102,
+          69
+        ]
+      ],
+      "door": [
+        103,
+        66
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          103,
+          66
+        ],
+        [
+          104,
+          66
+        ],
+        [
+          105,
+          66
+        ],
+        [
+          106,
+          66
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "B05",
+      "name": "Commerce et logement",
+      "kind": "shop",
+      "rects": [
+        [
+          46,
+          55,
+          52,
+          59
+        ]
+      ],
+      "door": [
+        53,
+        59
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          53,
+          59
+        ],
+        [
+          54,
+          59
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "B06",
+      "name": "Caserne de pompiers",
+      "kind": "fire",
+      "rects": [
+        [
+          74,
+          29,
+          87,
+          35
+        ]
+      ],
+      "door": [
+        80,
+        36
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          80,
+          36
+        ],
+        [
+          80,
+          37
+        ],
+        [
+          80,
+          38
+        ],
+        [
+          80,
+          39
+        ],
+        [
+          80,
+          40
+        ],
+        [
+          80,
+          41
+        ],
+        [
+          80,
+          42
+        ],
+        [
+          80,
+          43
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "B07",
+      "name": "École",
+      "kind": "school",
+      "rects": [
+        [
+          8,
+          34,
+          18,
+          40
+        ],
+        [
+          21,
+          34,
+          25,
+          46
+        ]
+      ],
+      "door": [
+        17,
+        41
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          17,
+          41
+        ],
+        [
+          18,
+          41
+        ],
+        [
+          19,
+          41
+        ],
+        [
+          19,
+          40
+        ],
+        [
+          19,
+          39
+        ],
+        [
+          19,
+          38
+        ],
+        [
+          19,
+          37
+        ],
+        [
+          19,
+          36
+        ],
+        [
+          19,
+          35
+        ],
+        [
+          19,
+          34
+        ],
+        [
+          19,
+          33
+        ],
+        [
+          19,
+          32
+        ],
+        [
+          19,
+          31
+        ],
+        [
+          19,
+          30
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "B08",
+      "name": "Commissariat",
+      "kind": "police",
+      "rects": [
+        [
+          17,
+          10,
+          37,
+          15
+        ],
+        [
+          17,
+          16,
+          22,
+          20
+        ],
+        [
+          32,
+          16,
+          37,
+          20
+        ],
+        [
+          24,
+          21,
+          35,
+          26
+        ]
+      ],
+      "door": [
+        29,
+        27
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          29,
+          27
+        ],
+        [
+          29,
+          28
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "B09",
+      "name": "Poste militaire",
+      "kind": "military",
+      "rects": [
+        [
+          86,
+          15,
+          96,
+          21
+        ]
+      ],
+      "door": [
+        91,
+        22
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          91,
+          22
+        ],
+        [
+          92,
+          22
+        ],
+        [
+          92,
+          23
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "B10",
+      "name": "Maisons incendiées",
+      "kind": "ruin",
+      "rects": [
+        [
+          54,
+          7,
+          61,
+          10
+        ],
+        [
+          64,
+          7,
+          71,
+          10
+        ]
+      ],
+      "door": [
+        53,
+        8
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          53,
+          8
+        ],
+        [
+          52,
+          8
+        ],
+        [
+          51,
+          8
+        ],
+        [
+          50,
+          8
+        ],
+        [
+          49,
+          8
+        ],
+        [
+          48,
+          8
+        ],
+        [
+          47,
+          8
+        ],
+        [
+          46,
+          8
+        ],
+        [
+          45,
+          8
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H01",
+      "name": "Immeuble 1",
+      "kind": "apartment",
+      "rects": [
+        [
+          51,
+          22,
+          55,
+          25
+        ]
+      ],
+      "door": [
+        54,
+        26
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          54,
+          26
+        ],
+        [
+          54,
+          27
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H02",
+      "name": "Commerce 2",
+      "kind": "shop",
+      "rects": [
+        [
+          41,
+          72,
+          46,
+          75
+        ]
+      ],
+      "door": [
+        43,
+        76
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          43,
+          76
+        ],
+        [
+          43,
+          77
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H03",
+      "name": "Maison 3",
+      "kind": "house",
+      "rects": [
+        [
+          9,
+          76,
+          13,
+          79
+        ]
+      ],
+      "door": [
+        9,
+        80
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          9,
+          80
+        ],
+        [
+          9,
+          81
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H04",
+      "name": "Maison 4",
+      "kind": "house",
+      "rects": [
+        [
+          53,
+          94,
+          59,
+          97
+        ]
+      ],
+      "door": [
+        58,
+        98
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          58,
+          98
+        ],
+        [
+          58,
+          99
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H05",
+      "name": "Commerce 5",
+      "kind": "shop",
+      "rects": [
+        [
+          63,
+          58,
+          67,
+          61
+        ]
+      ],
+      "door": [
+        66,
+        62
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          66,
+          62
+        ],
+        [
+          66,
+          63
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H06",
+      "name": "Immeuble 6",
+      "kind": "apartment",
+      "rects": [
+        [
+          75,
+          56,
+          80,
+          60
+        ]
+      ],
+      "door": [
+        78,
+        61
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          78,
+          61
+        ],
+        [
+          78,
+          62
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H07",
+      "name": "Atelier 7",
+      "kind": "workshop",
+      "rects": [
+        [
+          95,
+          70,
+          101,
+          74
+        ]
+      ],
+      "door": [
+        95,
+        75
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          95,
+          75
+        ],
+        [
+          95,
+          76
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H08",
+      "name": "Maison 8",
+      "kind": "house",
+      "rects": [
+        [
+          19,
+          102,
+          24,
+          106
+        ]
+      ],
+      "door": [
+        25,
+        102
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          25,
+          102
+        ],
+        [
+          25,
+          101
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H09",
+      "name": "Maison 9",
+      "kind": "house",
+      "rects": [
+        [
+          71,
+          104,
+          75,
+          108
+        ]
+      ],
+      "door": [
+        75,
+        103
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          75,
+          103
+        ],
+        [
+          75,
+          102
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H10",
+      "name": "Maison 10",
+      "kind": "house",
+      "rects": [
+        [
+          9,
+          102,
+          13,
+          105
+        ]
+      ],
+      "door": [
+        10,
+        101
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          10,
+          101
+        ],
+        [
+          10,
+          100
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H11",
+      "name": "Immeuble 11",
+      "kind": "apartment",
+      "rects": [
+        [
+          75,
+          52,
+          79,
+          55
+        ]
+      ],
+      "door": [
+        75,
+        51
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          75,
+          51
+        ],
+        [
+          75,
+          50
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H12",
+      "name": "Maison 12",
+      "kind": "house",
+      "rects": [
+        [
+          7,
+          20,
+          11,
+          25
+        ]
+      ],
+      "door": [
+        6,
+        21
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          6,
+          21
+        ],
+        [
+          5,
+          21
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H13",
+      "name": "Commerce 13",
+      "kind": "shop",
+      "rects": [
+        [
+          37,
+          66,
+          41,
+          71
+        ]
+      ],
+      "door": [
+        36,
+        68
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          36,
+          68
+        ],
+        [
+          35,
+          68
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H14",
+      "name": "Maison 14",
+      "kind": "house",
+      "rects": [
+        [
+          31,
+          104,
+          35,
+          107
+        ]
+      ],
+      "door": [
+        35,
+        103
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          35,
+          103
+        ],
+        [
+          35,
+          102
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H15",
+      "name": "Immeuble 15",
+      "kind": "apartment",
+      "rects": [
+        [
+          99,
+          14,
+          103,
+          18
+        ]
+      ],
+      "door": [
+        104,
+        17
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          104,
+          17
+        ],
+        [
+          105,
+          17
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H16",
+      "name": "Immeuble 16",
+      "kind": "apartment",
+      "rects": [
+        [
+          29,
+          58,
+          34,
+          61
+        ]
+      ],
+      "door": [
+        30,
+        57
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          30,
+          57
+        ],
+        [
+          30,
+          56
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H17",
+      "name": "Maison 17",
+      "kind": "house",
+      "rects": [
+        [
+          19,
+          76,
+          24,
+          80
+        ]
+      ],
+      "door": [
+        20,
+        81
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          20,
+          81
+        ],
+        [
+          20,
+          82
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H18",
+      "name": "Maison 18",
+      "kind": "house",
+      "rects": [
+        [
+          25,
+          70,
+          30,
+          74
+        ]
+      ],
+      "door": [
+        31,
+        72
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          31,
+          72
+        ],
+        [
+          32,
+          72
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H19",
+      "name": "Maison 19",
+      "kind": "house",
+      "rects": [
+        [
+          23,
+          92,
+          28,
+          96
+        ]
+      ],
+      "door": [
+        24,
+        97
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          24,
+          97
+        ],
+        [
+          24,
+          98
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H20",
+      "name": "Immeuble 20",
+      "kind": "apartment",
+      "rects": [
+        [
+          31,
+          46,
+          35,
+          50
+        ]
+      ],
+      "door": [
+        35,
+        51
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          35,
+          51
+        ],
+        [
+          36,
+          51
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H21",
+      "name": "Atelier 21",
+      "kind": "workshop",
+      "rects": [
+        [
+          89,
+          92,
+          94,
+          96
+        ]
+      ],
+      "door": [
+        95,
+        96
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          95,
+          96
+        ],
+        [
+          95,
+          97
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H22",
+      "name": "Maison 22",
+      "kind": "house",
+      "rects": [
+        [
+          65,
+          90,
+          70,
+          94
+        ]
+      ],
+      "door": [
+        67,
+        89
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          67,
+          89
+        ],
+        [
+          67,
+          88
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H23",
+      "name": "Atelier 23",
+      "kind": "workshop",
+      "rects": [
+        [
+          89,
+          70,
+          94,
+          74
+        ]
+      ],
+      "door": [
+        90,
+        75
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          90,
+          75
+        ],
+        [
+          90,
+          76
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H24",
+      "name": "Maison 24",
+      "kind": "house",
+      "rects": [
+        [
+          55,
+          104,
+          59,
+          107
+        ]
+      ],
+      "door": [
+        56,
+        103
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          56,
+          103
+        ],
+        [
+          56,
+          102
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H25",
+      "name": "Maison 25",
+      "kind": "house",
+      "rects": [
+        [
+          27,
+          32,
+          31,
+          35
+        ]
+      ],
+      "door": [
+        27,
+        31
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          27,
+          31
+        ],
+        [
+          27,
+          30
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H26",
+      "name": "Atelier 26",
+      "kind": "workshop",
+      "rects": [
+        [
+          97,
+          88,
+          102,
+          92
+        ]
+      ],
+      "door": [
+        103,
+        88
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          103,
+          88
+        ],
+        [
+          104,
+          88
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H27",
+      "name": "Maison 27",
+      "kind": "house",
+      "rects": [
+        [
+          87,
+          88,
+          91,
+          91
+        ]
+      ],
+      "door": [
+        87,
+        87
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          87,
+          87
+        ],
+        [
+          87,
+          86
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H28",
+      "name": "Immeuble 28",
+      "kind": "apartment",
+      "rects": [
+        [
+          57,
+          20,
+          62,
+          24
+        ]
+      ],
+      "door": [
+        60,
+        25
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          60,
+          25
+        ],
+        [
+          60,
+          26
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H29",
+      "name": "Commerce 29",
+      "kind": "shop",
+      "rects": [
+        [
+          37,
+          56,
+          43,
+          60
+        ]
+      ],
+      "door": [
+        37,
+        55
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          37,
+          55
+        ],
+        [
+          37,
+          54
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H30",
+      "name": "Maison 30",
+      "kind": "house",
+      "rects": [
+        [
+          61,
+          104,
+          66,
+          107
+        ]
+      ],
+      "door": [
+        66,
+        103
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          66,
+          103
+        ],
+        [
+          67,
+          103
+        ],
+        [
+          67,
+          102
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H31",
+      "name": "Immeuble 31",
+      "kind": "apartment",
+      "rects": [
+        [
+          85,
+          52,
+          91,
+          56
+        ]
+      ],
+      "door": [
+        90,
+        57
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          90,
+          57
+        ],
+        [
+          90,
+          58
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H32",
+      "name": "Maison 32",
+      "kind": "house",
+      "rects": [
+        [
+          95,
+          102,
+          99,
+          107
+        ]
+      ],
+      "door": [
+        96,
+        101
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          96,
+          101
+        ],
+        [
+          96,
+          100
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H33",
+      "name": "Immeuble 33",
+      "kind": "apartment",
+      "rects": [
+        [
+          35,
+          6,
+          41,
+          9
+        ]
+      ],
+      "door": [
+        42,
+        8
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          42,
+          8
+        ],
+        [
+          43,
+          8
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H34",
+      "name": "Atelier 34",
+      "kind": "workshop",
+      "rects": [
+        [
+          97,
+          58,
+          102,
+          61
+        ]
+      ],
+      "door": [
+        103,
+        59
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          103,
+          59
+        ],
+        [
+          104,
+          59
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H35",
+      "name": "Commerce 35",
+      "kind": "shop",
+      "rects": [
+        [
+          69,
+          54,
+          73,
+          57
+        ]
+      ],
+      "door": [
+        72,
+        53
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          72,
+          53
+        ],
+        [
+          72,
+          52
+        ],
+        [
+          72,
+          51
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H36",
+      "name": "Immeuble 36",
+      "kind": "apartment",
+      "rects": [
+        [
+          51,
+          32,
+          56,
+          37
+        ]
+      ],
+      "door": [
+        54,
+        31
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          54,
+          31
+        ],
+        [
+          54,
+          30
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H37",
+      "name": "Immeuble 37",
+      "kind": "apartment",
+      "rects": [
+        [
+          65,
+          16,
+          70,
+          20
+        ]
+      ],
+      "door": [
+        70,
+        21
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          70,
+          21
+        ],
+        [
+          70,
+          22
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H38",
+      "name": "Immeuble 38",
+      "kind": "apartment",
+      "rects": [
+        [
+          39,
+          40,
+          43,
+          45
+        ]
+      ],
+      "door": [
+        43,
+        46
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          43,
+          46
+        ],
+        [
+          44,
+          46
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H39",
+      "name": "Immeuble 39",
+      "kind": "apartment",
+      "rects": [
+        [
+          35,
+          34,
+          41,
+          38
+        ]
+      ],
+      "door": [
+        35,
+        33
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          35,
+          33
+        ],
+        [
+          35,
+          32
+        ],
+        [
+          35,
+          31
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H40",
+      "name": "Maison 40",
+      "kind": "house",
+      "rects": [
+        [
+          49,
+          104,
+          53,
+          109
+        ]
+      ],
+      "door": [
+        52,
+        103
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          52,
+          103
+        ],
+        [
+          52,
+          102
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H41",
+      "name": "Maison 41",
+      "kind": "house",
+      "rects": [
+        [
+          87,
+          104,
+          93,
+          109
+        ]
+      ],
+      "door": [
+        88,
+        103
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          88,
+          103
+        ],
+        [
+          88,
+          102
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H42",
+      "name": "Maison 42",
+      "kind": "house",
+      "rects": [
+        [
+          7,
+          72,
+          11,
+          75
+        ]
+      ],
+      "door": [
+        6,
+        72
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          6,
+          72
+        ],
+        [
+          5,
+          72
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H43",
+      "name": "Maison 43",
+      "kind": "house",
+      "rects": [
+        [
+          7,
+          86,
+          12,
+          90
+        ]
+      ],
+      "door": [
+        6,
+        88
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          6,
+          88
+        ],
+        [
+          5,
+          88
+        ],
+        [
+          4,
+          88
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H44",
+      "name": "Immeuble 44",
+      "kind": "apartment",
+      "rects": [
+        [
+          87,
+          62,
+          91,
+          67
+        ]
+      ],
+      "door": [
+        87,
+        61
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          87,
+          61
+        ],
+        [
+          87,
+          60
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H45",
+      "name": "Immeuble 45",
+      "kind": "apartment",
+      "rects": [
+        [
+          47,
+          16,
+          52,
+          19
+        ]
+      ],
+      "door": [
+        46,
+        17
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          46,
+          17
+        ],
+        [
+          45,
+          17
+        ],
+        [
+          44,
+          17
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H46",
+      "name": "Maison 46",
+      "kind": "house",
+      "rects": [
+        [
+          9,
+          12,
+          15,
+          16
+        ]
+      ],
+      "door": [
+        8,
+        12
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          8,
+          12
+        ],
+        [
+          7,
+          12
+        ],
+        [
+          6,
+          12
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H47",
+      "name": "Maison 47",
+      "kind": "house",
+      "rects": [
+        [
+          9,
+          4,
+          14,
+          7
+        ]
+      ],
+      "door": [
+        8,
+        6
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          8,
+          6
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H48",
+      "name": "Immeuble 48",
+      "kind": "apartment",
+      "rects": [
+        [
+          47,
+          10,
+          52,
+          15
+        ]
+      ],
+      "door": [
+        46,
+        11
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          46,
+          11
+        ],
+        [
+          45,
+          11
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H49",
+      "name": "Immeuble 49",
+      "kind": "apartment",
+      "rects": [
+        [
+          73,
+          8,
+          78,
+          12
+        ]
+      ],
+      "door": [
+        78,
+        13
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          78,
+          13
+        ],
+        [
+          79,
+          13
+        ],
+        [
+          80,
+          13
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H50",
+      "name": "Maison 50",
+      "kind": "house",
+      "rects": [
+        [
+          27,
+          36,
+          32,
+          39
+        ]
+      ],
+      "door": [
+        33,
+        36
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          33,
+          36
+        ],
+        [
+          33,
+          35
+        ],
+        [
+          33,
+          34
+        ],
+        [
+          33,
+          33
+        ],
+        [
+          33,
+          32
+        ],
+        [
+          33,
+          31
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H51",
+      "name": "Commerce 51",
+      "kind": "shop",
+      "rects": [
+        [
+          43,
+          62,
+          47,
+          66
+        ]
+      ],
+      "door": [
+        48,
+        66
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          48,
+          66
+        ],
+        [
+          49,
+          66
+        ],
+        [
+          50,
+          66
+        ],
+        [
+          51,
+          66
+        ],
+        [
+          52,
+          66
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H52",
+      "name": "Immeuble 52",
+      "kind": "apartment",
+      "rects": [
+        [
+          65,
+          12,
+          70,
+          15
+        ]
+      ],
+      "door": [
+        71,
+        15
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          71,
+          15
+        ],
+        [
+          72,
+          15
+        ],
+        [
+          73,
+          15
+        ],
+        [
+          74,
+          15
+        ],
+        [
+          75,
+          15
+        ],
+        [
+          76,
+          15
+        ],
+        [
+          77,
+          15
+        ],
+        [
+          78,
+          15
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H53",
+      "name": "Immeuble 53",
+      "kind": "apartment",
+      "rects": [
+        [
+          53,
+          16,
+          59,
+          19
+        ]
+      ],
+      "door": [
+        56,
+        20
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          56,
+          20
+        ],
+        [
+          56,
+          21
+        ],
+        [
+          56,
+          22
+        ],
+        [
+          56,
+          23
+        ],
+        [
+          56,
+          24
+        ],
+        [
+          56,
+          25
+        ],
+        [
+          56,
+          26
+        ],
+        [
+          56,
+          27
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H54",
+      "name": "Immeuble 54",
+      "kind": "apartment",
+      "rects": [
+        [
+          75,
+          4,
+          80,
+          7
+        ]
+      ],
+      "door": [
+        81,
+        7
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          81,
+          7
+        ],
+        [
+          82,
+          7
+        ],
+        [
+          82,
+          8
+        ],
+        [
+          82,
+          9
+        ],
+        [
+          82,
+          10
+        ],
+        [
+          82,
+          11
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H55",
+      "name": "Immeuble 55",
+      "kind": "apartment",
+      "rects": [
+        [
+          31,
+          40,
+          37,
+          44
+        ]
+      ],
+      "door": [
+        37,
+        45
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          37,
+          45
+        ],
+        [
+          37,
+          46
+        ],
+        [
+          37,
+          47
+        ],
+        [
+          37,
+          48
+        ],
+        [
+          37,
+          49
+        ],
+        [
+          37,
+          50
+        ],
+        [
+          37,
+          51
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H56",
+      "name": "Immeuble 56",
+      "kind": "apartment",
+      "rects": [
+        [
+          29,
+          4,
+          34,
+          9
+        ]
+      ],
+      "door": [
+        35,
+        5
+      ],
+      "accessible": true,
+      "access_path": [
+        [
+          35,
+          5
+        ],
+        [
+          36,
+          5
+        ],
+        [
+          37,
+          5
+        ],
+        [
+          38,
+          5
+        ],
+        [
+          39,
+          5
+        ],
+        [
+          40,
+          5
+        ],
+        [
+          41,
+          5
+        ],
+        [
+          42,
+          5
+        ],
+        [
+          43,
+          5
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64"
+    },
+    {
+      "id": "H57",
+      "name": "Maison mitoyenne 57",
+      "kind": "house",
+      "rects": [
+        [
+          9,
+          8,
+          13,
+          11
+        ]
+      ],
+      "door": [
+        8,
+        8
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          8,
+          8
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          6,
+          8
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H58",
+      "name": "Immeuble mitoyen 58",
+      "kind": "apartment",
+      "rects": [
+        [
+          99,
+          10,
+          103,
+          13
+        ]
+      ],
+      "door": [
+        104,
+        12
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          104,
+          12
+        ],
+        [
+          105,
+          12
+        ],
+        [
+          106,
+          12
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H59",
+      "name": "Immeuble mitoyen 59",
+      "kind": "apartment",
+      "rects": [
+        [
+          47,
+          20,
+          50,
+          24
+        ]
+      ],
+      "door": [
+        47,
+        25
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          47,
+          25
+        ],
+        [
+          46,
+          25
+        ],
+        [
+          45,
+          25
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H60",
+      "name": "Maison mitoyenne 60",
+      "kind": "house",
+      "rects": [
+        [
+          12,
+          21,
+          15,
+          25
+        ]
+      ],
+      "door": [
+        12,
+        26
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          12,
+          26
+        ],
+        [
+          12,
+          27
+        ],
+        [
+          12,
+          28
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H61",
+      "name": "Immeuble mitoyen 61",
+      "kind": "apartment",
+      "rects": [
+        [
+          57,
+          32,
+          60,
+          36
+        ]
+      ],
+      "door": [
+        60,
+        31
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          60,
+          31
+        ],
+        [
+          60,
+          30
+        ],
+        [
+          60,
+          29
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H62",
+      "name": "Immeuble mitoyen 62",
+      "kind": "apartment",
+      "rects": [
+        [
+          51,
+          38,
+          54,
+          42
+        ]
+      ],
+      "door": [
+        50,
+        39
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          50,
+          39
+        ],
+        [
+          50,
+          40
+        ],
+        [
+          49,
+          40
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H63",
+      "name": "Immeuble mitoyen 63",
+      "kind": "apartment",
+      "rects": [
+        [
+          51,
+          43,
+          54,
+          47
+        ]
+      ],
+      "door": [
+        50,
+        44
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          50,
+          44
+        ],
+        [
+          49,
+          44
+        ],
+        [
+          48,
+          44
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H64",
+      "name": "Maison mitoyenne 64",
+      "kind": "house",
+      "rects": [
+        [
+          27,
+          46,
+          30,
+          50
+        ]
+      ],
+      "door": [
+        29,
+        51
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          29,
+          51
+        ],
+        [
+          29,
+          52
+        ],
+        [
+          29,
+          53
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H65",
+      "name": "Immeuble mitoyen 65",
+      "kind": "apartment",
+      "rects": [
+        [
+          80,
+          52,
+          84,
+          55
+        ]
+      ],
+      "door": [
+        84,
+        51
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          84,
+          51
+        ],
+        [
+          83,
+          51
+        ],
+        [
+          83,
+          50
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H66",
+      "name": "Boutique 66",
+      "kind": "shop",
+      "rects": [
+        [
+          64,
+          54,
+          68,
+          57
+        ]
+      ],
+      "door": [
+        68,
+        53
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          68,
+          53
+        ],
+        [
+          67,
+          53
+        ],
+        [
+          67,
+          52
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H67",
+      "name": "Boutique 67",
+      "kind": "shop",
+      "rects": [
+        [
+          37,
+          61,
+          40,
+          65
+        ]
+      ],
+      "door": [
+        36,
+        65
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          36,
+          65
+        ],
+        [
+          36,
+          66
+        ],
+        [
+          35,
+          66
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H68",
+      "name": "Maison mitoyenne 68",
+      "kind": "house",
+      "rects": [
+        [
+          7,
+          67,
+          10,
+          71
+        ]
+      ],
+      "door": [
+        11,
+        67
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          11,
+          67
+        ],
+        [
+          11,
+          66
+        ],
+        [
+          11,
+          65
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H69",
+      "name": "Boutique 69",
+      "kind": "shop",
+      "rects": [
+        [
+          37,
+          72,
+          40,
+          75
+        ]
+      ],
+      "door": [
+        39,
+        76
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          39,
+          76
+        ],
+        [
+          39,
+          77
+        ],
+        [
+          39,
+          78
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H70",
+      "name": "Maison mitoyenne 70",
+      "kind": "house",
+      "rects": [
+        [
+          25,
+          75,
+          28,
+          79
+        ]
+      ],
+      "door": [
+        29,
+        78
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          29,
+          78
+        ],
+        [
+          29,
+          79
+        ],
+        [
+          29,
+          80
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H71",
+      "name": "Maison mitoyenne 71",
+      "kind": "house",
+      "rects": [
+        [
+          14,
+          76,
+          18,
+          79
+        ]
+      ],
+      "door": [
+        18,
+        80
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          18,
+          80
+        ],
+        [
+          18,
+          81
+        ],
+        [
+          18,
+          82
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H72",
+      "name": "Petit atelier 72",
+      "kind": "workshop",
+      "rects": [
+        [
+          92,
+          87,
+          95,
+          91
+        ]
+      ],
+      "door": [
+        96,
+        87
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          96,
+          87
+        ],
+        [
+          96,
+          86
+        ],
+        [
+          96,
+          85
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H73",
+      "name": "Maison mitoyenne 73",
+      "kind": "house",
+      "rects": [
+        [
+          62,
+          90,
+          64,
+          94
+        ]
+      ],
+      "door": [
+        61,
+        91
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          61,
+          91
+        ],
+        [
+          61,
+          90
+        ],
+        [
+          61,
+          89
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H74",
+      "name": "Maison mitoyenne 74",
+      "kind": "house",
+      "rects": [
+        [
+          71,
+          90,
+          74,
+          94
+        ]
+      ],
+      "door": [
+        72,
+        89
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          72,
+          89
+        ],
+        [
+          72,
+          88
+        ],
+        [
+          72,
+          87
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H75",
+      "name": "Maison mitoyenne 75",
+      "kind": "house",
+      "rects": [
+        [
+          7,
+          91,
+          10,
+          95
+        ]
+      ],
+      "door": [
+        6,
+        92
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          6,
+          92
+        ],
+        [
+          5,
+          92
+        ],
+        [
+          4,
+          92
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H76",
+      "name": "Maison mitoyenne 76",
+      "kind": "house",
+      "rects": [
+        [
+          29,
+          92,
+          32,
+          96
+        ]
+      ],
+      "door": [
+        29,
+        97
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          29,
+          97
+        ],
+        [
+          29,
+          98
+        ],
+        [
+          29,
+          99
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H77",
+      "name": "Maison mitoyenne 77",
+      "kind": "house",
+      "rects": [
+        [
+          86,
+          92,
+          88,
+          96
+        ]
+      ],
+      "door": [
+        88,
+        97
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          88,
+          97
+        ],
+        [
+          88,
+          98
+        ],
+        [
+          88,
+          99
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H78",
+      "name": "Maison mitoyenne 78",
+      "kind": "house",
+      "rects": [
+        [
+          49,
+          93,
+          52,
+          97
+        ]
+      ],
+      "door": [
+        52,
+        98
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          52,
+          98
+        ],
+        [
+          52,
+          99
+        ],
+        [
+          52,
+          100
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H79",
+      "name": "Maison mitoyenne 79",
+      "kind": "house",
+      "rects": [
+        [
+          71,
+          95,
+          75,
+          98
+        ]
+      ],
+      "door": [
+        76,
+        98
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          76,
+          98
+        ],
+        [
+          76,
+          99
+        ],
+        [
+          76,
+          100
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H80",
+      "name": "Maison mitoyenne 80",
+      "kind": "house",
+      "rects": [
+        [
+          14,
+          102,
+          17,
+          106
+        ]
+      ],
+      "door": [
+        18,
+        102
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          18,
+          102
+        ],
+        [
+          18,
+          101
+        ],
+        [
+          18,
+          100
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H81",
+      "name": "Maison mitoyenne 81",
+      "kind": "house",
+      "rects": [
+        [
+          100,
+          102,
+          103,
+          106
+        ]
+      ],
+      "door": [
+        100,
+        101
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          100,
+          101
+        ],
+        [
+          100,
+          100
+        ],
+        [
+          100,
+          99
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H82",
+      "name": "Maison mitoyenne 82",
+      "kind": "house",
+      "rects": [
+        [
+          25,
+          103,
+          29,
+          106
+        ]
+      ],
+      "door": [
+        30,
+        103
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          30,
+          103
+        ],
+        [
+          31,
+          103
+        ],
+        [
+          31,
+          102
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H83",
+      "name": "Maison mitoyenne 83",
+      "kind": "house",
+      "rects": [
+        [
+          21,
+          70,
+          24,
+          74
+        ]
+      ],
+      "door": [
+        24,
+        69
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          24,
+          69
+        ],
+        [
+          24,
+          68
+        ],
+        [
+          24,
+          67
+        ],
+        [
+          24,
+          66
+        ],
+        [
+          24,
+          65
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H84",
+      "name": "Immeuble mitoyen 84",
+      "kind": "apartment",
+      "rects": [
+        [
+          60,
+          15,
+          63,
+          19
+        ]
+      ],
+      "door": [
+        63,
+        20
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          63,
+          20
+        ],
+        [
+          63,
+          21
+        ],
+        [
+          63,
+          22
+        ],
+        [
+          63,
+          23
+        ],
+        [
+          63,
+          24
+        ],
+        [
+          63,
+          25
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H85",
+      "name": "Boutique 85",
+      "kind": "shop",
+      "rects": [
+        [
+          43,
+          67,
+          46,
+          71
+        ]
+      ],
+      "door": [
+        47,
+        68
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          47,
+          68
+        ],
+        [
+          48,
+          68
+        ],
+        [
+          49,
+          68
+        ],
+        [
+          50,
+          68
+        ],
+        [
+          51,
+          68
+        ],
+        [
+          52,
+          68
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H86",
+      "name": "Maison mitoyenne 86",
+      "kind": "house",
+      "rects": [
+        [
+          12,
+          17,
+          16,
+          20
+        ]
+      ],
+      "door": [
+        11,
+        19
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          11,
+          19
+        ],
+        [
+          10,
+          19
+        ],
+        [
+          9,
+          19
+        ],
+        [
+          8,
+          19
+        ],
+        [
+          7,
+          19
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          5,
+          19
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H87",
+      "name": "Immeuble mitoyen 87",
+      "kind": "apartment",
+      "rects": [
+        [
+          86,
+          70,
+          88,
+          74
+        ]
+      ],
+      "door": [
+        86,
+        69
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          86,
+          69
+        ],
+        [
+          85,
+          69
+        ],
+        [
+          85,
+          70
+        ],
+        [
+          85,
+          71
+        ],
+        [
+          85,
+          72
+        ],
+        [
+          84,
+          72
+        ],
+        [
+          83,
+          72
+        ],
+        [
+          82,
+          72
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H88",
+      "name": "Immeuble mitoyen 88",
+      "kind": "apartment",
+      "rects": [
+        [
+          53,
+          11,
+          56,
+          15
+        ]
+      ],
+      "door": [
+        53,
+        10
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          53,
+          10
+        ],
+        [
+          53,
+          9
+        ],
+        [
+          52,
+          9
+        ],
+        [
+          51,
+          9
+        ],
+        [
+          50,
+          9
+        ],
+        [
+          49,
+          9
+        ],
+        [
+          48,
+          9
+        ],
+        [
+          47,
+          9
+        ],
+        [
+          46,
+          9
+        ],
+        [
+          45,
+          9
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H89",
+      "name": "Maison mitoyenne 89",
+      "kind": "house",
+      "rects": [
+        [
+          26,
+          40,
+          30,
+          43
+        ]
+      ],
+      "door": [
+        26,
+        39
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          26,
+          39
+        ],
+        [
+          26,
+          38
+        ],
+        [
+          26,
+          37
+        ],
+        [
+          26,
+          36
+        ],
+        [
+          26,
+          35
+        ],
+        [
+          26,
+          34
+        ],
+        [
+          26,
+          33
+        ],
+        [
+          26,
+          32
+        ],
+        [
+          26,
+          31
+        ],
+        [
+          26,
+          30
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    },
+    {
+      "id": "H90",
+      "name": "Maison mitoyenne 90",
+      "kind": "house",
+      "rects": [
+        [
+          15,
+          4,
+          19,
+          7
+        ]
+      ],
+      "door": [
+        15,
+        3
+      ],
+      "accessible": false,
+      "access_path": [
+        [
+          15,
+          3
+        ],
+        [
+          14,
+          3
+        ],
+        [
+          13,
+          3
+        ],
+        [
+          12,
+          3
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "art_status": "individual-artwork-to-produce-at-native64",
+      "frontage": "attached"
+    }
+  ],
+  "trees": [
+    {
+      "id": "T001",
+      "at": [
+        69,
+        62
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T002",
+      "at": [
+        72,
+        62
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T003",
+      "at": [
+        75,
+        62
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T004",
+      "at": [
+        84,
+        62
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T005",
+      "at": [
+        69,
+        65
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T006",
+      "at": [
+        72,
+        65
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T007",
+      "at": [
+        75,
+        65
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T008",
+      "at": [
+        78,
+        65
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T009",
+      "at": [
+        81,
+        65
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T010",
+      "at": [
+        84,
+        65
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T011",
+      "at": [
+        69,
+        68
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T012",
+      "at": [
+        78,
+        68
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T013",
+      "at": [
+        81,
+        68
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T014",
+      "at": [
+        84,
+        68
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T015",
+      "at": [
+        69,
+        71
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T016",
+      "at": [
+        72,
+        71
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T017",
+      "at": [
+        75,
+        71
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T018",
+      "at": [
+        81,
+        71
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T019",
+      "at": [
+        84,
+        71
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T020",
+      "at": [
+        69,
+        74
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T021",
+      "at": [
+        72,
+        74
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T022",
+      "at": [
+        75,
+        74
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T023",
+      "at": [
+        78,
+        74
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T024",
+      "at": [
+        81,
+        74
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T025",
+      "at": [
+        84,
+        74
+      ],
+      "area": "G01"
+    },
+    {
+      "id": "T026",
+      "at": [
+        9,
+        53
+      ],
+      "area": "G02"
+    },
+    {
+      "id": "T027",
+      "at": [
+        12,
+        53
+      ],
+      "area": "G02"
+    },
+    {
+      "id": "T028",
+      "at": [
+        15,
+        53
+      ],
+      "area": "G02"
+    },
+    {
+      "id": "T029",
+      "at": [
+        18,
+        53
+      ],
+      "area": "G02"
+    },
+    {
+      "id": "T030",
+      "at": [
+        21,
+        53
+      ],
+      "area": "G02"
+    },
+    {
+      "id": "T031",
+      "at": [
+        14,
+        85
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T032",
+      "at": [
+        17,
+        85
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T033",
+      "at": [
+        20,
+        85
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T034",
+      "at": [
+        23,
+        85
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T035",
+      "at": [
+        26,
+        85
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T036",
+      "at": [
+        29,
+        85
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T037",
+      "at": [
+        14,
+        88
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T038",
+      "at": [
+        17,
+        88
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T039",
+      "at": [
+        20,
+        88
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T040",
+      "at": [
+        26,
+        88
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T041",
+      "at": [
+        29,
+        88
+      ],
+      "area": "G03"
+    },
+    {
+      "id": "T042",
+      "at": [
+        84,
+        4
+      ],
+      "area": "G04"
+    },
+    {
+      "id": "T043",
+      "at": [
+        87,
+        4
+      ],
+      "area": "G04"
+    },
+    {
+      "id": "T044",
+      "at": [
+        90,
+        4
+      ],
+      "area": "G04"
+    },
+    {
+      "id": "T045",
+      "at": [
+        93,
+        4
+      ],
+      "area": "G04"
+    },
+    {
+      "id": "T046",
+      "at": [
+        91,
+        30
+      ],
+      "area": "G05"
+    },
+    {
+      "id": "T047",
+      "at": [
+        94,
+        30
+      ],
+      "area": "G05"
+    },
+    {
+      "id": "T048",
+      "at": [
+        97,
+        30
+      ],
+      "area": "G05"
+    },
+    {
+      "id": "T049",
+      "at": [
+        91,
+        33
+      ],
+      "area": "G05"
+    },
+    {
+      "id": "T050",
+      "at": [
+        94,
+        33
+      ],
+      "area": "G05"
+    },
+    {
+      "id": "T051",
+      "at": [
+        97,
+        33
+      ],
+      "area": "G05"
+    },
+    {
+      "id": "T052",
+      "at": [
+        53,
+        83
+      ],
+      "area": "G06"
+    },
+    {
+      "id": "T053",
+      "at": [
+        56,
+        83
+      ],
+      "area": "G06"
+    },
+    {
+      "id": "T054",
+      "at": [
+        59,
+        83
+      ],
+      "area": "G06"
+    },
+    {
+      "id": "T055",
+      "at": [
+        62,
+        83
+      ],
+      "area": "G06"
+    },
+    {
+      "id": "T056",
+      "at": [
+        65,
+        83
+      ],
+      "area": "G06"
+    },
+    {
+      "id": "T057",
+      "at": [
+        48,
+        93
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T058",
+      "at": [
+        49,
+        87
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T059",
+      "at": [
+        51,
+        82
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T060",
+      "at": [
+        56,
+        73
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T061",
+      "at": [
+        57,
+        67
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T062",
+      "at": [
+        58,
+        61
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T063",
+      "at": [
+        61,
+        57
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T064",
+      "at": [
+        63,
+        45
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T065",
+      "at": [
+        65,
+        40
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T066",
+      "at": [
+        69,
+        30
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T067",
+      "at": [
+        73,
+        26
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T068",
+      "at": [
+        83,
+        16
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T069",
+      "at": [
+        89,
+        14
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T070",
+      "at": [
+        94,
+        12
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T071",
+      "at": [
+        97,
+        9
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T072",
+      "at": [
+        101,
+        6
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T073",
+      "at": [
+        68,
+        103
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T074",
+      "at": [
+        86,
+        104
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T075",
+      "at": [
+        97,
+        101
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T076",
+      "at": [
+        6,
+        82
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T077",
+      "at": [
+        7,
+        62
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T078",
+      "at": [
+        7,
+        55
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T079",
+      "at": [
+        63,
+        30
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T080",
+      "at": [
+        35,
+        56
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T081",
+      "at": [
+        71,
+        52
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T082",
+      "at": [
+        44,
+        81
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T083",
+      "at": [
+        75,
+        81
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T084",
+      "at": [
+        101,
+        81
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T085",
+      "at": [
+        105,
+        35
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T086",
+      "at": [
+        106,
+        48
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T087",
+      "at": [
+        109,
+        59
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T088",
+      "at": [
+        109,
+        76
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T089",
+      "at": [
+        107,
+        81
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T090",
+      "at": [
+        109,
+        93
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T091",
+      "at": [
+        69,
+        36
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T092",
+      "at": [
+        72,
+        40
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T093",
+      "at": [
+        73,
+        46
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T094",
+      "at": [
+        79,
+        47
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T095",
+      "at": [
+        96,
+        45
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T096",
+      "at": [
+        104,
+        40
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T097",
+      "at": [
+        44,
+        53
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T098",
+      "at": [
+        32,
+        68
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T099",
+      "at": [
+        35,
+        65
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T100",
+      "at": [
+        102,
+        26
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T101",
+      "at": [
+        70,
+        89
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T102",
+      "at": [
+        89,
+        87
+      ],
+      "area": "street"
+    },
+    {
+      "id": "T103",
+      "at": [
+        102,
+        86
+      ],
+      "area": "street"
+    }
+  ],
+  "aftermath": [
+    {
+      "id": "EV01",
+      "name": "Évacuation civile interrompue",
+      "at": [
+        52,
+        68
+      ],
+      "kind": "civilian"
+    },
+    {
+      "id": "EV02",
+      "name": "Barricade et militaires tombés",
+      "at": [
+        92,
+        23
+      ],
+      "kind": "military"
+    },
+    {
+      "id": "EV03",
+      "name": "Petit monstre mort dans le jardin",
+      "at": [
+        79,
+        70
+      ],
+      "kind": "creature"
+    },
+    {
+      "id": "EV04",
+      "name": "Traces de secours près de l’école",
+      "at": [
+        17,
+        49
+      ],
+      "kind": "civilian"
+    },
+    {
+      "id": "EV05",
+      "name": "Pompiers et matériel abandonné",
+      "at": [
+        82,
+        40
+      ],
+      "kind": "civilian"
+    },
+    {
+      "id": "EV06",
+      "name": "Sang sur le parvis",
+      "at": [
+        29,
+        28
+      ],
+      "kind": "military"
+    },
+    {
+      "id": "EV07",
+      "name": "Ruelle éventrée",
+      "at": [
+        24,
+        88
+      ],
+      "kind": "creature"
+    }
+  ],
+  "police": {
+    "building": "B08",
+    "upper_floor": "assets/maps/north-city-01/police_upper.json",
+    "lower_floors": [
+      {
+        "variants": [
+          "assets/maps/north-city-01/police_basement_layout01.json",
+          "assets/maps/north-city-01/police_basement_layout02.json",
+          "assets/maps/north-city-01/police_basement_layout03.json"
+        ]
+      },
+      {
+        "variants": [
+          "assets/maps/north-city-01/police_deep_layout01.json",
+          "assets/maps/north-city-01/police_deep_layout02.json",
+          "assets/maps/north-city-01/police_deep_layout03.json"
+        ]
+      }
+    ],
+    "choice": "at-game-creation-and-persisted",
+    "stair_anchors": [
+      [
+        31,
+        23
+      ],
+      [
+        34,
+        23
+      ]
+    ]
+  },
+  "inspiration": [
+    {
+      "city": "Strasbourg",
+      "url": "https://www.visitstrasbourg.fr/wp-content/uploads/2020/09/OTSR_Plan-guide_2021.pdf"
+    },
+    {
+      "city": "Paris",
+      "url": "https://www.paris.fr/pages/plans-donnees-et-documents-d-urbanisme-3708"
+    }
+  ],
+  "layout_policy": "Fixed authored city; independent of the seeded police basement variants. Bootstrap refuses to overwrite this file.",
+  "checks": {
+    "all_building_entrances_reachable": true,
+    "exit_reachable": true,
+    "building_count": 100,
+    "enterable_candidates": 22,
+    "tree_count": 103,
+    "building_cells": 3134,
+    "street_cells": 3292,
+    "attached_frontages_added": 34
+  },
+  "gameplay_integrated": false,
+  "frontage_infill_applied": true,
+  "districts": [
+    {
+      "id": "Q01",
+      "name": "Faubourg résidentiel",
+      "character": "Maisons mitoyennes, petits immeubles, jardins de fond de parcelle et accès depuis la première carte."
+    },
+    {
+      "id": "Q02",
+      "name": "Quartier ancien",
+      "character": "Îlots serrés, passages, cours et immeuble éventré. Implantation propre à cette ville."
+    },
+    {
+      "id": "Q03",
+      "name": "Marché et jardin public",
+      "character": "Commerces en rez-de-chaussée, place, parc, promenade et friches ponctuelles."
+    },
+    {
+      "id": "Q04",
+      "name": "École et services",
+      "character": "École en plusieurs ailes et cour ; caserne de pompiers avec garages, cour de manœuvre et voie de sortie."
+    },
+    {
+      "id": "Q05",
+      "name": "Pôle du commissariat",
+      "character": "Bâtiment administratif en plusieurs ailes, cour de service, étage et deux sous-sols à variantes."
+    },
+    {
+      "id": "Q06",
+      "name": "Ateliers et îlots détruits",
+      "character": "Petits ateliers, cours de livraison, maisons incendiées et bâtiments effondrés."
+    },
+    {
+      "id": "Q07",
+      "name": "Approche militaire",
+      "character": "Poste de contrôle, emprise dégagée, lisière végétale et sortie vers la caserne militaire."
+    }
+  ],
+  "visual_policy": "Use the first city only for finish, native64 scale and projection. New town layout and individual building identities; do not copy or repeat its small scene."
+}

@@ -267,7 +267,7 @@ fn request(visual: Visual) -> Option<Request> {
             if let Some(style) = review {
                 return crate::animation_polish_review::with_source(style, || prepare_image(&s));
             }
-            prepare_image(&s)
+            prepare_display_image(&s)
         }),
     ))
 }
@@ -276,9 +276,14 @@ pub fn prepare(visuals: &[Visual]) -> Result<std::time::Duration, String> {
         visuals
             .iter()
             .flat_map(|&visual| {
-                [request(visual), super::monster_vertical::request(visual)]
-                    .into_iter()
-                    .flatten()
+                [
+                    request(visual),
+                    super::monster_vertical::request(visual),
+                    super::walking::cultist_request(visual),
+                    super::drones::request(visual),
+                ]
+                .into_iter()
+                .flatten()
             })
             .collect()
     })
@@ -286,9 +291,14 @@ pub fn prepare(visuals: &[Visual]) -> Result<std::time::Duration, String> {
 pub fn anticipate(visuals: &[Visual]) {
     preparation::pump();
     for &visual in visuals.iter().take(4) {
-        for (id, build) in [request(visual), super::monster_vertical::request(visual)]
-            .into_iter()
-            .flatten()
+        for (id, build) in [
+            request(visual),
+            super::monster_vertical::request(visual),
+            super::walking::cultist_request(visual),
+            super::drones::request(visual),
+        ]
+        .into_iter()
+        .flatten()
         {
             preparation::request(id, build);
         }
@@ -408,6 +418,43 @@ fn prepare_image(s: &Selection) -> Result<PreparedImage, String> {
         }
     }
 }
+
+fn prepare_display_image(s: &Selection) -> Result<PreparedImage, String> {
+    let prepared = prepare_image(s)?;
+    let (profile, main) = match *s {
+        Selection::Player { profile, main, .. } => (profile, main),
+        Selection::FixedPlayer { profile, loadout } => (
+            profile,
+            Some(manifest().profiles[profile].fixed_loadouts[loadout].main),
+        ),
+        _ => return Ok(prepared),
+    };
+    let p = &manifest().profiles[profile];
+    // Traqueuse outfits 10..14. Reference height, midtone and highlight from
+    // the opaque body pixels of the installed WALK12 poses in both directions.
+    let targets = [
+        [57., 53., 148.],
+        [56., 48., 134.],
+        [56., 53., 144.],
+        [56., 62., 151.],
+        [56., 82., 177.],
+    ];
+    let Some(target) = p
+        .outfit
+        .checked_sub(10)
+        .and_then(|tier| targets.get(usize::from(tier)))
+    else {
+        return Ok(prepared);
+    };
+    let family = main
+        .and_then(|model| p.cases.iter().find(|c| !c.left && c.model == model))
+        .map_or_else(|| unarmed_family(p), |c| c.family.as_str());
+    let family = &p.families[family];
+    let core = preparation::image(&family.body_file)?;
+    Ok(geometry::match_frontal(
+        prepared, &core, family, p.anchor, *target,
+    ))
+}
 #[cfg(debug_assertions)]
 pub(crate) fn review_image(visual: Visual) -> Result<PreparedImage, String> {
     prepare_image(&selection(visual).ok_or("ANIM-POLISH01 unsupported profile")?)
@@ -463,13 +510,35 @@ pub fn draw(cell: Rect, visual: Visual, opacity: f32, pose: Option<Pose>) -> boo
             at.bottom() - p.anchor[1] * scale,
             Color::new(1., 1., 1., opacity),
             DrawTextureParams {
-                source: Some(Rect::new(
-                    (frame % 6) as f32 * f32::from(w),
-                    (frame / 6) as f32 * f32::from(h),
-                    f32::from(w),
-                    f32::from(h),
-                )),
+                source: Some(frame_rect(p.cell, frame)),
                 dest_size: Some(vec2(f32::from(w) * scale, f32::from(h) * scale)),
+                ..Default::default()
+            },
+        );
+    })
+    .is_some()
+}
+
+fn frame_rect([w, h]: [u16; 2], frame: usize) -> Rect {
+    let (w, h) = (f32::from(w), f32::from(h));
+    Rect::new((frame % 6) as f32 * w, (frame / 6) as f32 * h, w, h)
+}
+
+pub(super) fn draw_frontal_portrait(rect: Rect, visual: Visual) -> bool {
+    let Some(s) = selection(visual) else {
+        return false;
+    };
+    preparation::with_texture(&key(&s), |p| {
+        let source = frame_rect(p.cell, 12);
+        let target = super::portrait::contain(rect, source);
+        crate::world_readability::texture(
+            &p.texture,
+            target.x,
+            target.y,
+            WHITE,
+            DrawTextureParams {
+                source: Some(source),
+                dest_size: Some(target.size()),
                 ..Default::default()
             },
         );

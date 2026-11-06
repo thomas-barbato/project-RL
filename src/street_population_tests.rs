@@ -175,6 +175,91 @@ fn street_population_first_enemy_can_be_defeated_with_starting_equipment() {
 }
 
 #[test]
+fn street_turn_flow_migration_preserves_old_replay_and_existing_cultists() {
+    let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();
+    let mut app = AsciiApp::from_seed_version(
+        1872,
+        rules,
+        texts,
+        loot,
+        expeditions,
+        CURRENT_GENERATION_VERSION,
+    )
+    .unwrap();
+    app.crash_recovery_enabled = false;
+    let exit = pos(camp::scene().exits[0]);
+    app.walk_fixture_to_unchecked(exit).unwrap();
+    assert_eq!(
+        app.execute_command(GameCommand::Interact { target: exit }),
+        CommandOutcome::Applied
+    );
+    app.capture_events_at(Some(0.0));
+    let rifles: Vec<_> = enemies(&app)
+        .into_iter()
+        .filter_map(|(id, actor)| {
+            matches!(project_rl::monster_art::appearance(actor), Some((22, _))).then_some((
+                id,
+                actor.position(),
+                actor.integrity(),
+            ))
+        })
+        .collect();
+    assert_eq!(rifles.len(), 7);
+    let (rules, texts, loot, expeditions) = (
+        app.rules.clone(),
+        app.texts.clone(),
+        app.loot.clone(),
+        app.expeditions.clone(),
+    );
+    let restore = |saved: &Suspension| {
+        AsciiApp::restore_suspension(
+            saved,
+            rules.clone(),
+            texts.clone(),
+            loot.clone(),
+            expeditions.clone(),
+        )
+        .unwrap()
+    };
+    let mut old = app.suspension().unwrap();
+    old.recovery = Some(RecoveryPayload::replay(old.commands.len()).unwrap());
+    let mut upgraded = restore(&old);
+    assert_eq!(suspension::fingerprint(&upgraded.game), old.state);
+    assert!(rifles.iter().all(|(id, _, _)| {
+        upgraded
+            .game
+            .actors()
+            .get(*id)
+            .unwrap()
+            .attack(0)
+            .unwrap()
+            .range()
+            == 1
+    }));
+
+    upgraded.migrate_turn_flow().unwrap();
+    upgraded.migrate_turn_flow().unwrap();
+    assert_eq!(upgraded.game.turn(), app.game.turn());
+    assert_eq!(
+        &upgraded.history[old.commands.len()..],
+        &[RecordedCommand::EnableTurnFlowCorrections]
+    );
+    for (id, position, hp) in rifles {
+        let actor = upgraded.game.actors().get(id).unwrap();
+        assert_eq!((actor.position(), actor.integrity()), (position, hp));
+        assert!(
+            actor
+                .attack(0)
+                .is_some_and(|attack| attack.range() > 1 && attack.requires_line_of_sight())
+        );
+    }
+    let mut saved = upgraded.suspension().unwrap();
+    assert_eq!(suspension::fingerprint(&restore(&saved).game), saved.state);
+    saved.recovery = Some(RecoveryPayload::replay(saved.commands.len()).unwrap());
+    assert_eq!(suspension::fingerprint(&restore(&saved).game), saved.state);
+}
+
+#[test]
 fn street_population_legacy_world_keeps_its_empty_street() {
     assert!(!crate::street_population::enabled());
     let (rules, texts, loot, expeditions) = ascii_game_content().unwrap();

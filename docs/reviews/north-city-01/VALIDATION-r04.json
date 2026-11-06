@@ -1,0 +1,806 @@
+{
+  "review": "CITY-NORTH01-DECOR04-r01",
+  "date": "2026-11-05",
+  "status": "automated-checks-passed-user-prevalidation-pending",
+  "campaign_integrated": false,
+  "user_visual_prevalidation": "pending",
+  "final_in_game_validation": "pending",
+  "native_cell": 64,
+  "tests_passed": 11,
+  "test_groups": {
+    "model::north_city_tests": 4,
+    "street_skin::tests": 3,
+    "decor::tests": 4
+  },
+  "test_commands": [
+    "cargo test --locked --example north_city_review north_city_tests -- --nocapture",
+    "cargo test --locked --example north_city_review street_skin::tests -- --nocapture",
+    "cargo test --locked --example north_city_review decor::tests -- --nocapture"
+  ],
+  "build": "cargo build --locked --example north_city_review",
+  "structural_repair": {
+    "review": "CITY-NORTH01-DECOR04-r01",
+    "reason": "Six unintended gaps in north facades of B01 and B05; no doorway or explicit opening at these cells.",
+    "file": "assets/maps/north-city-01/north_city.json",
+    "before_sha256": "3be69d31c8fbdf3b84909ef40d5e1a2c7993cb69769762d014c5756e5438afb9",
+    "after_sha256": "9e9fac2a223911310faa34a7ce178dce6003e7b21dacee7ca5da4f15c195a807",
+    "added_structures": [
+      {
+        "id": "north_city:wall:DECOR04:28:92",
+        "pos": {
+          "x": 28,
+          "y": 92
+        },
+        "door": null,
+        "rotation": 0,
+        "style": 1
+      },
+      {
+        "id": "north_city:wall:DECOR04:29:92",
+        "pos": {
+          "x": 29,
+          "y": 92
+        },
+        "door": null,
+        "rotation": 0,
+        "style": 1
+      },
+      {
+        "id": "north_city:wall:DECOR04:30:92",
+        "pos": {
+          "x": 30,
+          "y": 92
+        },
+        "door": null,
+        "rotation": 0,
+        "style": 1
+      },
+      {
+        "id": "north_city:wall:DECOR04:62:54",
+        "pos": {
+          "x": 62,
+          "y": 54
+        },
+        "door": null,
+        "rotation": 0,
+        "style": 1
+      },
+      {
+        "id": "north_city:wall:DECOR04:63:54",
+        "pos": {
+          "x": 63,
+          "y": 54
+        },
+        "door": null,
+        "rotation": 0,
+        "style": 1
+      },
+      {
+        "id": "north_city:wall:DECOR04:64:54",
+        "pos": {
+          "x": 64,
+          "y": 54
+        },
+        "door": null,
+        "rotation": 0,
+        "style": 1
+      }
+    ],
+    "only_added_six_walls": true,
+    "all_other_data_deep_equal": true,
+    "line_endings_preserved": "CRLF",
+    "removing_only_added_records_recovers_exact_original_bytes": true
+  },
+  "unchanged_from_r03": {
+    "examples/north_city/model.rs": true,
+    "assets/maps/north-city-01/police_basement.json": true,
+    "assets/maps/north-city-01/police_basement_layout01.json": true,
+    "assets/maps/north-city-01/police_basement_layout02.json": true,
+    "assets/maps/north-city-01/police_basement_layout03.json": true,
+    "assets/maps/north-city-01/police_deep_layout01.json": true,
+    "assets/maps/north-city-01/police_deep_layout02.json": true,
+    "assets/maps/north-city-01/police_deep_layout03.json": true,
+    "assets/maps/north-city-01/police_upper.json": true,
+    "assets/maps/north-city-01/review.json": true
+  },
+  "files": {
+    "examples/north_city_review.rs": "8c9dafb232e226c4a8f0f7b3aea60584457fbb64a410309de0440a38ec6e3e85",
+    "examples/north_city/decor.rs": "196bdbb3e9f5b2770d62c8d7479373a3d967f23a7e85b6d7f41574f8581756f1",
+    "examples/north_city/street_skin.rs": "2ec0796ceae23eb6481f8c0587544dcb2bf5e358872195e177e98b3b6b07c786",
+    "tools/show_north_city_review.py": "cf9bd238c443e5b2cb3b11fa8175715e4da9f4bcb679141957877fbb7d0ba1c5",
+    "tools/assemble_north_city_walk.py": "df8fdfd382d30c1d535611ffad6f814edc1b93e405abbb8465a580c6139bfbcb",
+    "Apercu_logement_nord.cmd": "11c9253fdfa208b15b62742b60628829b57bd6dda718559af9eb5394e5caf793",
+    "assets/maps/north-city-01/north_city.json": "9e9fac2a223911310faa34a7ce178dce6003e7b21dacee7ca5da4f15c195a807"
+  },
+  "media": {
+    "decor04-logement.png": "f090dbe8169c9005077241250ee84084e217014f8081000945b0a474f9de9a71",
+    "decor04-parcours.webp": "4d0778b5c7ad7f70c08b17122cf8bd952e1dc848b4962deee2479a5b25cbc74e"
+  },
+  "native_views": 10,
+  "police_variant_previews": 6,
+  "browser_qa": "Candidate 04 whole-house overview, native inspection control, expanded real engine walkthrough and launcher instructions verified in user preview tab.",
+  "runtime_checks": {
+    "architecture": "Continuous backdrop compiled from actual room floors and wall geometry",
+    "basement_choices": [
+      {
+        "file": "assets/maps/north-city-01/police_basement_layout01.json",
+        "variant": 1,
+        "zone": "review:police_basement_layout01"
+      },
+      {
+        "file": "assets/maps/north-city-01/police_deep_layout02.json",
+        "variant": 2,
+        "zone": "review:police_deep_layout02"
+      }
+    ],
+    "campaign_integrated": false,
+    "corner_review": "raccords-r03.png",
+    "house_walk": {
+      "animation": "decor04-parcours.webp",
+      "doors_opened_through_engine": true,
+      "final_position": {
+        "x": 32,
+        "y": 97
+      },
+      "frame_directory": "walk-frames",
+      "frames": [
+        {
+          "at": {
+            "x": 31,
+            "y": 97
+          },
+          "frame": 0,
+          "pause": false,
+          "title": "Entree"
+        },
+        {
+          "at": {
+            "x": 30,
+            "y": 97
+          },
+          "frame": 1,
+          "pause": false,
+          "title": "Entree"
+        },
+        {
+          "at": {
+            "x": 29,
+            "y": 97
+          },
+          "frame": 2,
+          "pause": false,
+          "title": "Entree"
+        },
+        {
+          "at": {
+            "x": 28,
+            "y": 97
+          },
+          "frame": 3,
+          "pause": true,
+          "title": "Entree"
+        },
+        {
+          "at": {
+            "x": 28,
+            "y": 96
+          },
+          "frame": 4,
+          "pause": false,
+          "title": "Cuisine"
+        },
+        {
+          "at": {
+            "x": 28,
+            "y": 95
+          },
+          "frame": 5,
+          "pause": false,
+          "title": "Cuisine"
+        },
+        {
+          "at": {
+            "x": 27,
+            "y": 95
+          },
+          "frame": 6,
+          "pause": false,
+          "title": "Cuisine"
+        },
+        {
+          "at": {
+            "x": 26,
+            "y": 95
+          },
+          "frame": 7,
+          "pause": false,
+          "title": "Cuisine"
+        },
+        {
+          "at": {
+            "x": 25,
+            "y": 95
+          },
+          "frame": 8,
+          "pause": false,
+          "title": "Cuisine"
+        },
+        {
+          "at": {
+            "x": 24,
+            "y": 95
+          },
+          "frame": 9,
+          "pause": true,
+          "title": "Cuisine"
+        },
+        {
+          "at": {
+            "x": 24,
+            "y": 94
+          },
+          "frame": 10,
+          "pause": false,
+          "title": "Chambre"
+        },
+        {
+          "at": {
+            "x": 23,
+            "y": 94
+          },
+          "frame": 11,
+          "pause": false,
+          "title": "Chambre"
+        },
+        {
+          "at": {
+            "x": 22,
+            "y": 94
+          },
+          "frame": 12,
+          "pause": false,
+          "title": "Chambre"
+        },
+        {
+          "at": {
+            "x": 21,
+            "y": 94
+          },
+          "frame": 13,
+          "pause": false,
+          "title": "Chambre"
+        },
+        {
+          "at": {
+            "x": 20,
+            "y": 94
+          },
+          "frame": 14,
+          "pause": false,
+          "title": "Chambre"
+        },
+        {
+          "at": {
+            "x": 19,
+            "y": 94
+          },
+          "frame": 15,
+          "pause": false,
+          "title": "Chambre"
+        },
+        {
+          "at": {
+            "x": 18,
+            "y": 94
+          },
+          "frame": 16,
+          "pause": false,
+          "title": "Chambre"
+        },
+        {
+          "at": {
+            "x": 18,
+            "y": 95
+          },
+          "frame": 17,
+          "pause": false,
+          "title": "Chambre"
+        },
+        {
+          "at": {
+            "x": 17,
+            "y": 95
+          },
+          "frame": 18,
+          "pause": false,
+          "title": "Chambre"
+        },
+        {
+          "at": {
+            "x": 16,
+            "y": 95
+          },
+          "frame": 19,
+          "pause": true,
+          "title": "Chambre"
+        },
+        {
+          "at": {
+            "x": 16,
+            "y": 96
+          },
+          "frame": 20,
+          "pause": false,
+          "title": "Sejour"
+        },
+        {
+          "at": {
+            "x": 15,
+            "y": 96
+          },
+          "frame": 21,
+          "pause": false,
+          "title": "Sejour"
+        },
+        {
+          "at": {
+            "x": 15,
+            "y": 97
+          },
+          "frame": 22,
+          "pause": false,
+          "title": "Sejour"
+        },
+        {
+          "at": {
+            "x": 15,
+            "y": 98
+          },
+          "frame": 23,
+          "pause": false,
+          "title": "Sejour"
+        },
+        {
+          "at": {
+            "x": 16,
+            "y": 98
+          },
+          "frame": 24,
+          "pause": false,
+          "title": "Sejour"
+        },
+        {
+          "at": {
+            "x": 16,
+            "y": 99
+          },
+          "frame": 25,
+          "pause": false,
+          "title": "Sejour"
+        },
+        {
+          "at": {
+            "x": 16,
+            "y": 100
+          },
+          "frame": 26,
+          "pause": true,
+          "title": "Sejour"
+        },
+        {
+          "at": {
+            "x": 16,
+            "y": 99
+          },
+          "frame": 27,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 16,
+            "y": 98
+          },
+          "frame": 28,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 17,
+            "y": 98
+          },
+          "frame": 29,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 18,
+            "y": 98
+          },
+          "frame": 30,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 19,
+            "y": 98
+          },
+          "frame": 31,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 20,
+            "y": 98
+          },
+          "frame": 32,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 21,
+            "y": 98
+          },
+          "frame": 33,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 21,
+            "y": 99
+          },
+          "frame": 34,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 22,
+            "y": 99
+          },
+          "frame": 35,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 23,
+            "y": 99
+          },
+          "frame": 36,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 24,
+            "y": 99
+          },
+          "frame": 37,
+          "pause": false,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 24,
+            "y": 100
+          },
+          "frame": 38,
+          "pause": true,
+          "title": "Salle d'eau"
+        },
+        {
+          "at": {
+            "x": 24,
+            "y": 99
+          },
+          "frame": 39,
+          "pause": false,
+          "title": "Retour dehors"
+        },
+        {
+          "at": {
+            "x": 25,
+            "y": 99
+          },
+          "frame": 40,
+          "pause": false,
+          "title": "Retour dehors"
+        },
+        {
+          "at": {
+            "x": 26,
+            "y": 99
+          },
+          "frame": 41,
+          "pause": false,
+          "title": "Retour dehors"
+        },
+        {
+          "at": {
+            "x": 27,
+            "y": 99
+          },
+          "frame": 42,
+          "pause": false,
+          "title": "Retour dehors"
+        },
+        {
+          "at": {
+            "x": 27,
+            "y": 98
+          },
+          "frame": 43,
+          "pause": false,
+          "title": "Retour dehors"
+        },
+        {
+          "at": {
+            "x": 27,
+            "y": 97
+          },
+          "frame": 44,
+          "pause": false,
+          "title": "Retour dehors"
+        },
+        {
+          "at": {
+            "x": 28,
+            "y": 97
+          },
+          "frame": 45,
+          "pause": false,
+          "title": "Retour dehors"
+        },
+        {
+          "at": {
+            "x": 29,
+            "y": 97
+          },
+          "frame": 46,
+          "pause": false,
+          "title": "Retour dehors"
+        },
+        {
+          "at": {
+            "x": 30,
+            "y": 97
+          },
+          "frame": 47,
+          "pause": false,
+          "title": "Retour dehors"
+        },
+        {
+          "at": {
+            "x": 31,
+            "y": 97
+          },
+          "frame": 48,
+          "pause": false,
+          "title": "Retour dehors"
+        },
+        {
+          "at": {
+            "x": 32,
+            "y": 97
+          },
+          "frame": 49,
+          "pause": true,
+          "title": "Retour dehors"
+        }
+      ],
+      "height": 960,
+      "movement_commands": 50,
+      "native_cell": 64,
+      "native_image": "decor04-logement.png",
+      "teleports": 0,
+      "visited": [
+        {
+          "at": [
+            28,
+            97
+          ],
+          "room": "Entree"
+        },
+        {
+          "at": [
+            24,
+            95
+          ],
+          "room": "Cuisine"
+        },
+        {
+          "at": [
+            16,
+            95
+          ],
+          "room": "Chambre"
+        },
+        {
+          "at": [
+            16,
+            100
+          ],
+          "room": "Sejour"
+        },
+        {
+          "at": [
+            24,
+            100
+          ],
+          "room": "Salle d'eau"
+        },
+        {
+          "at": [
+            32,
+            97
+          ],
+          "room": "Retour dehors"
+        }
+      ],
+      "width": 1536,
+      "animation_qa": {
+        "lossless": true,
+        "frames": 50,
+        "all_frames_pixel_equal_to_engine": true,
+        "bytes": 2629108
+      }
+    },
+    "limits": [
+      "Exploration fixture; no population or loot balance yet.",
+      "CPU draw measurements, not GPU/present timings.",
+      "DECOR04 awaits visual prevalidation; ambient lighting is a review fixture."
+    ],
+    "loading": {
+      "city_return_prepare_ms": 719.1401,
+      "first_city_prepare_ms": 2151.1974,
+      "street_prepare_ms": 1550.9511
+    },
+    "native_cell": 64,
+    "optional_dungeon_round_trips": true,
+    "overview": {
+      "cell_px": 8.0,
+      "height": 896.0,
+      "width": 896.0
+    },
+    "resource_cache": {
+      "decode_ms": 2314.4534,
+      "decoded_source_budget": 67108864,
+      "decoded_source_peak_bytes": 47763052,
+      "jobs": 314,
+      "pending": 0,
+      "read_bytes": 14674197,
+      "read_ms": 11.0761,
+      "source_reads": 16,
+      "texture_budget": 134217728,
+      "texture_bytes": 121946112,
+      "texture_create_ms": 72.327,
+      "uploads": 314,
+      "worker_build_ms_including_sources": 14285.1739
+    },
+    "review": "CITY-NORTH01-r02",
+    "saves_touched": false,
+    "scenes": [
+      {
+        "cell_px": 64,
+        "id": "01-arrivee",
+        "render_cpu_ms": 3.3093
+      },
+      {
+        "cell_px": 64,
+        "id": "02-logement",
+        "render_cpu_ms": 2.2459
+      },
+      {
+        "cell_px": 64,
+        "id": "03-carrefour",
+        "render_cpu_ms": 1.9902000000000002
+      },
+      {
+        "cell_px": 64,
+        "id": "04-pompiers",
+        "render_cpu_ms": 2.3719
+      },
+      {
+        "cell_px": 64,
+        "id": "05-ecole",
+        "render_cpu_ms": 2.5850999999999997
+      },
+      {
+        "cell_px": 64,
+        "id": "06-commissariat",
+        "render_cpu_ms": 2.6786000000000003
+      },
+      {
+        "cell_px": 64,
+        "id": "07-caserne",
+        "render_cpu_ms": 3.1235
+      },
+      {
+        "cell_px": 64,
+        "id": "08-cellules",
+        "render_cpu_ms": 0.4726
+      },
+      {
+        "cell_px": 64,
+        "id": "09-archives",
+        "render_cpu_ms": 0.5032
+      },
+      {
+        "cell_px": 64,
+        "id": "10-reserves",
+        "render_cpu_ms": 0.47619999999999996
+      }
+    ],
+    "seed": 20261105,
+    "snapshot_restored": true,
+    "street_anchors": [
+      [
+        18,
+        1
+      ],
+      [
+        18,
+        2
+      ]
+    ],
+    "style_sources": [
+      "assets/source-art/north-city-01/skin-r03/materials-source.png",
+      "assets/source-art/north-city-01/skin-r03/furniture-source.png",
+      "assets/source-art/north-city-01/skin-r03/service-source.png"
+    ],
+    "variant_previews": [
+      {
+        "floor": 1,
+        "image": "sous-sol-1-variante-1.png",
+        "seed": 1,
+        "variant": 1
+      },
+      {
+        "floor": 1,
+        "image": "sous-sol-1-variante-2.png",
+        "seed": 2,
+        "variant": 2
+      },
+      {
+        "floor": 1,
+        "image": "sous-sol-1-variante-3.png",
+        "seed": 6,
+        "variant": 3
+      },
+      {
+        "floor": 2,
+        "image": "sous-sol-2-variante-1.png",
+        "seed": 2,
+        "variant": 1
+      },
+      {
+        "floor": 2,
+        "image": "sous-sol-2-variante-2.png",
+        "seed": 1,
+        "variant": 2
+      },
+      {
+        "floor": 2,
+        "image": "sous-sol-2-variante-3.png",
+        "seed": 5,
+        "variant": 3
+      }
+    ],
+    "visual_comparison": "comparaison-style-r03.png",
+    "visual_revision": "CITY-NORTH01-DECOR04-r01",
+    "zone_count": 4
+  },
+  "limitations": [
+    "Exploration fixture without population/loot balance.",
+    "Lighting and player animation are not final presentation validation.",
+    "Walkthrough follows real commands, not a completed manual keyboard playtest.",
+    "CPU render timings do not measure GPU or present latency."
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "review": "CITY-NORTH01-DECOR04-r01",
+  "reason": "Six unintended gaps in north facades of B01 and B05; no doorway or explicit opening at these cells.",
+  "file": "assets/maps/north-city-01/north_city.json",
+  "before_sha256": "3be69d31c8fbdf3b84909ef40d5e1a2c7993cb69769762d014c5756e5438afb9",
+  "after_sha256": "9e9fac2a223911310faa34a7ce178dce6003e7b21dacee7ca5da4f15c195a807",
+  "added_structures": [
+    {
+      "id": "north_city:wall:DECOR04:28:92",
+      "pos": {
+        "x": 28,
+        "y": 92
+      },
+      "door": null,
+      "rotation": 0,
+      "style": 1
+    },
+    {
+      "id": "north_city:wall:DECOR04:29:92",
+      "pos": {
+        "x": 29,
+        "y": 92
+      },
+      "door": null,
+      "rotation": 0,
+      "style": 1
+    },
+    {
+      "id": "north_city:wall:DECOR04:30:92",
+      "pos": {
+        "x": 30,
+        "y": 92
+      },
+      "door": null,
+      "rotation": 0,
+      "style": 1
+    },
+    {
+      "id": "north_city:wall:DECOR04:62:54",
+      "pos": {
+        "x": 62,
+        "y": 54
+      },
+      "door": null,
+      "rotation": 0,
+      "style": 1
+    },
+    {
+      "id": "north_city:wall:DECOR04:63:54",
+      "pos": {
+        "x": 63,
+        "y": 54
+      },
+      "door": null,
+      "rotation": 0,
+      "style": 1
+    },
+    {
+      "id": "north_city:wall:DECOR04:64:54",
+      "pos": {
+        "x": 64,
+        "y": 54
+      },
+      "door": null,
+      "rotation": 0,
+      "style": 1
+    }
+  ],
+  "only_added_six_walls": true,
+  "all_other_data_deep_equal": true,
+  "line_endings_preserved": "CRLF",
+  "removing_only_added_records_recovers_exact_original_bytes": true
+}

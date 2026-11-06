@@ -1,0 +1,177 @@
+{
+  "review": "CITY-NORTH01-r02",
+  "size": [
+    112,
+    112
+  ],
+  "moves": [
+    {
+      "id": "south_west",
+      "before": [
+        12,
+        96,
+        31,
+        106
+      ],
+      "after": [
+        12,
+        92,
+        31,
+        102
+      ]
+    },
+    {
+      "id": "south_east",
+      "before": [
+        51,
+        96,
+        67,
+        106
+      ],
+      "after": [
+        75,
+        87,
+        91,
+        97
+      ]
+    },
+    {
+      "id": "apartments",
+      "before": [
+        12,
+        66,
+        31,
+        82
+      ],
+      "after": [
+        12,
+        65,
+        31,
+        81
+      ]
+    },
+    {
+      "id": "collapsed",
+      "before": [
+        50,
+        65,
+        66,
+        72
+      ],
+      "after": [
+        90,
+        62,
+        106,
+        69
+      ]
+    },
+    {
+      "id": "shop_home",
+      "before": [
+        50,
+        76,
+        66,
+        83
+      ],
+      "after": [
+        49,
+        54,
+        65,
+        61
+      ]
+    },
+    {
+      "id": "fire_station",
+      "before": [
+        11,
+        35,
+        31,
+        51
+      ],
+      "after": [
+        72,
+        27,
+        92,
+        43
+      ]
+    },
+    {
+      "id": "school",
+      "before": [
+        50,
+        35,
+        67,
+        52
+      ],
+      "after": [
+        8,
+        34,
+        25,
+        51
+      ]
+    },
+    {
+      "id": "police",
+      "before": [
+        12,
+        7,
+        32,
+        23
+      ],
+      "after": [
+        17,
+        10,
+        37,
+        26
+      ]
+    },
+    {
+      "id": "checkpoint",
+      "before": [
+        51,
+        10,
+        66,
+        22
+      ],
+      "after": [
+        83,
+        10,
+        98,
+        22
+      ]
+    },
+    {
+      "id": "sealed_block",
+      "before": [
+        13,
+        1,
+        30,
+        4
+      ],
+      "after": [
+        54,
+        7,
+        71,
+        10
+      ]
+    }
+  ],
+  "protected_files_unchanged": {
+    "police_basement.json": "04003d3d669a7eceb4219b2234572c5a8b8b152253240dcab49788c0fafac3e1",
+    "police_basement_layout01.json": "01edf6f79497a028fbd06668fe3afe3b6b023aacd78c4770e7aedb9c7522094e",
+    "police_basement_layout02.json": "da036355b0b73f3b9926df47719f8e3a1d7f6bdcfa1b9f858dd7d20b52ee3b7f",
+    "police_basement_layout03.json": "8de382687d14a6fc04bf37a5788678d5174c340829c701e7e485e8991fd40011",
+    "police_deep_layout01.json": "63034b640674595e04551f8141a4d431731c3a5d6adaff7f4c5c68269d52ae38",
+    "police_deep_layout02.json": "2065a8452c237446648faa7b11b5f436dd62c1998ee21d4bd0df9608d8cbe9a1",
+    "police_deep_layout03.json": "95fa6c2d6af82fe9d548589ee5834f285cf31b622e9d7baa2d3dc82b441a74f9",
+    "police_upper.json": "5e74c4a9eb0ac907edc377eb2162af7970006750c18bf596cce89c1a1af5a1b7"
+  },
+  "source_props_retained": 113,
+  "current_props": 144,
+  "decal_ids_retained": 129,
+  "rooms": 36,
+  "walkable_cells": 8016,
+  "fabric_blocks": 9,
+  "streets": 11,
+  "phase": "City-layout migration; police surface-only edits are separately verified in SOLS-r02.json."
+}

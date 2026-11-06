@@ -1,0 +1,233 @@
+{
+  "review": "CITY-NORTH01-STYLE03-r01",
+  "layout_revision": "CITY-NORTH01-r02",
+  "date": "2026-11-05",
+  "status": "checks-passed-user-prevalidation-pending",
+  "campaign_integrated": false,
+  "user_approval": false,
+  "native_cell_px": 64,
+  "targeted_tests_passed": 7,
+  "test_commands": [
+    "cargo test --locked --example north_city_review street_skin::tests -- --nocapture",
+    "cargo test --locked --example north_city_review north_city_tests -- --nocapture"
+  ],
+  "native_views": 10,
+  "police_variant_previews": 6,
+  "comparison": "artifacts/north-city-01/comparaison-style-r03.png",
+  "corners": "artifacts/north-city-01/raccords-r03.png",
+  "browser_qa": "User tab refreshed to candidate 03; comparison, corner board and native view tab verified. Native images scroll at narrow viewport without scaling.",
+  "retained_from_r02": {
+    "examples/north_city/model.rs": {
+      "sha256": "abf173634b70320fb883f012ac38be5391eee671b460909a06a19e11b8ce59b8",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/north_city.json": {
+      "sha256": "3be69d31c8fbdf3b84909ef40d5e1a2c7993cb69769762d014c5756e5438afb9",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement.json": {
+      "sha256": "04003d3d669a7eceb4219b2234572c5a8b8b152253240dcab49788c0fafac3e1",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout01.json": {
+      "sha256": "1e86da684f67b39622c7cc8cce4f80b6d84e1ae88e5d17011581307dcd09b352",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout02.json": {
+      "sha256": "dcf25cd48f4e50d6558e4c4026f0837fff240aeaebba516f265cde7f25ec436b",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_basement_layout03.json": {
+      "sha256": "61adc9efa60690a5d447f573ca17ee12c285a79d8bb015c5971ab458d716e8f9",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout01.json": {
+      "sha256": "2cb405d677b7363b966515e0dec60f04c96ba75ea17027b3d939c9901acb9885",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout02.json": {
+      "sha256": "f1a1b43a0afc7e98834524eac857e5b0bda3c3028d1b89b5934b77111c08b0c6",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_deep_layout03.json": {
+      "sha256": "2b692fb8942044c6b7e5dba2b5ed14be8489da2b809a70dd8c17e23643aab291",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/police_upper.json": {
+      "sha256": "87f75208ada22193d62b21df80c96e325144cb38bdcb41e5c91a0952f499a825",
+      "unchanged": true
+    },
+    "assets/maps/north-city-01/review.json": {
+      "sha256": "dcc3af6219d369a284e5e1c504604a3556988081f3eefe3a27baa059d4992aad",
+      "unchanged": true
+    }
+  },
+  "files": {
+    "examples/north_city_review.rs": "5fa7925a3511dcbcc1209d370f29d4cb9a95ade6b30ed3cb6f205f765da16a56",
+    "examples/north_city/street_skin.rs": "ce78f732fb827a77c43748c2cd00f3ec18af38f5aa8e3d41736645cd6e841ef4",
+    "tools/show_north_city_review.py": "e76f213ad23313bf46162aae5ede8dfad717356147f16ed16dc4f7c06e585817",
+    "assets/source-art/north-city-01/skin-r03/materials-source.png": "ccc6a6e66ff067c322f5aaa645df75cabb369057eb34d4ae4c3bfc55e24ece68",
+    "assets/source-art/north-city-01/skin-r03/furniture-source.png": "e3df894d694708bc22480851f935e098d30b1056573efd46ef3170150901eb01",
+    "assets/source-art/north-city-01/skin-r03/service-source.png": "efa898d66ffa30c595c2e250f9fe159b684b18d07fd3e9f2c3f434a974810e14"
+  },
+  "runtime_checks": {
+    "basement_choices": [
+      {
+        "file": "assets/maps/north-city-01/police_basement_layout01.json",
+        "variant": 1,
+        "zone": "review:police_basement_layout01"
+      },
+      {
+        "file": "assets/maps/north-city-01/police_deep_layout02.json",
+        "variant": 2,
+        "zone": "review:police_deep_layout02"
+      }
+    ],
+    "campaign_integrated": false,
+    "corner_review": "raccords-r03.png",
+    "limits": [
+      "Exploration fixture; no population or loot balance yet.",
+      "CPU draw measurements, not GPU/present timings.",
+      "STYLE03 artwork awaits visual prevalidation; ambient lighting is a review fixture."
+    ],
+    "loading": {
+      "city_return_prepare_ms": 0.022099999999999998,
+      "first_city_prepare_ms": 1205.479,
+      "street_prepare_ms": 1659.0212
+    },
+    "native_cell": 64,
+    "optional_dungeon_round_trips": true,
+    "overview": {
+      "cell_px": 8.0,
+      "height": 896.0,
+      "width": 896.0
+    },
+    "resource_cache": {
+      "decode_ms": 2451.445,
+      "decoded_source_budget": 67108864,
+      "decoded_source_peak_bytes": 47763052,
+      "jobs": 48,
+      "pending": 0,
+      "read_bytes": 14674197,
+      "read_ms": 18.1392,
+      "source_reads": 16,
+      "texture_budget": 134217728,
+      "texture_bytes": 38412288,
+      "texture_create_ms": 9.5224,
+      "uploads": 48,
+      "worker_build_ms_including_sources": 2792.5665
+    },
+    "review": "CITY-NORTH01-r02",
+    "saves_touched": false,
+    "scenes": [
+      {
+        "cell_px": 64,
+        "id": "01-arrivee",
+        "render_cpu_ms": 12.3351
+      },
+      {
+        "cell_px": 64,
+        "id": "02-logement",
+        "render_cpu_ms": 12.4476
+      },
+      {
+        "cell_px": 64,
+        "id": "03-carrefour",
+        "render_cpu_ms": 3.8877
+      },
+      {
+        "cell_px": 64,
+        "id": "04-pompiers",
+        "render_cpu_ms": 7.1293
+      },
+      {
+        "cell_px": 64,
+        "id": "05-ecole",
+        "render_cpu_ms": 10.1523
+      },
+      {
+        "cell_px": 64,
+        "id": "06-commissariat",
+        "render_cpu_ms": 7.460299999999999
+      },
+      {
+        "cell_px": 64,
+        "id": "07-caserne",
+        "render_cpu_ms": 6.2559
+      },
+      {
+        "cell_px": 64,
+        "id": "08-cellules",
+        "render_cpu_ms": 2.8137000000000003
+      },
+      {
+        "cell_px": 64,
+        "id": "09-archives",
+        "render_cpu_ms": 2.7311
+      },
+      {
+        "cell_px": 64,
+        "id": "10-reserves",
+        "render_cpu_ms": 3.1159
+      }
+    ],
+    "seed": 20261105,
+    "snapshot_restored": true,
+    "street_anchors": [
+      [
+        18,
+        1
+      ],
+      [
+        18,
+        2
+      ]
+    ],
+    "style_sources": [
+      "assets/source-art/north-city-01/skin-r03/materials-source.png",
+      "assets/source-art/north-city-01/skin-r03/furniture-source.png",
+      "assets/source-art/north-city-01/skin-r03/service-source.png"
+    ],
+    "variant_previews": [
+      {
+        "floor": 1,
+        "image": "sous-sol-1-variante-1.png",
+        "seed": 1,
+        "variant": 1
+      },
+      {
+        "floor": 1,
+        "image": "sous-sol-1-variante-2.png",
+        "seed": 2,
+        "variant": 2
+      },
+      {
+        "floor": 1,
+        "image": "sous-sol-1-variante-3.png",
+        "seed": 6,
+        "variant": 3
+      },
+      {
+        "floor": 2,
+        "image": "sous-sol-2-variante-1.png",
+        "seed": 2,
+        "variant": 1
+      },
+      {
+        "floor": 2,
+        "image": "sous-sol-2-variante-2.png",
+        "seed": 1,
+        "variant": 2
+      },
+      {
+        "floor": 2,
+        "image": "sous-sol-2-variante-3.png",
+        "seed": 5,
+        "variant": 3
+      }
+    ],
+    "visual_comparison": "comparaison-style-r03.png",
+    "visual_revision": "CITY-NORTH01-STYLE03-r01",
+    "zone_count": 4
+  }
+}

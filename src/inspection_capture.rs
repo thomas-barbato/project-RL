@@ -230,8 +230,58 @@ impl AsciiApp {
         Ok(())
     }
 
+    async fn capture_traqueuse_inspection(
+        output: &std::path::Path,
+        path: &std::path::Path,
+    ) -> Result<(), String> {
+        let saved = Suspension::read(path)?;
+        let (rules, texts, loot, expeditions) = ascii_game_content()?;
+        let mut app = Self::restore_suspension(&saved, rules, texts, loot, expeditions)?;
+        let visual = app.front_player_visual();
+        if !matches!(visual, Visual::Player { body: 5, .. })
+            || !crate::game_art::vertical::supports(Some(visual))
+        {
+            return Err(format!("Traqueuse frontal unavailable for {visual:?}"));
+        }
+        app.suspension_path = output.join("isolated-run.json");
+        app.crash_recovery_enabled = false;
+        app.graphics.active.world_cell_px = 64;
+        app.graphics.active.reduced_motion = false;
+        app.open_menu(MenuScreen::Hidden);
+        app.selected_target = Some(app.game.player_id());
+        app.selected_world_cell = None;
+        app.prepare_presentation()?;
+        let target = app
+            .terminal_target_summary()
+            .ok_or("Inspection joueur absente")?;
+        if target.visual != Some(visual) {
+            return Err("Le panneau et la carte ont des visuels différents".into());
+        }
+        request_new_screen_size(1920., 1080.);
+        for _ in 0..3 {
+            next_frame().await;
+        }
+        app.draw();
+        crate::terminal_view::capture_inspection_in_layout(
+            app.terminal_bounds(),
+            app.ui_scale(),
+            &target,
+        )
+        .ok_or("Panneau Cible hors écran")?;
+        crate::ui_capture::framebuffer()?
+            .export_png(output.join("traqueuse-inspection.png").to_str().unwrap());
+        println!("Traqueuse native64, frontal et inspection : {visual:?}");
+        Ok(())
+    }
+
     pub async fn capture_inspection(output: &std::path::Path) -> Result<(), String> {
         std::fs::create_dir_all(output).map_err(|e| e.to_string())?;
+        if std::env::args().nth(3).as_deref() == Some("--traqueuse-session") {
+            let path = std::env::args_os()
+                .nth(4)
+                .ok_or("Fichier de partie requis")?;
+            return Self::capture_traqueuse_inspection(output, std::path::Path::new(&path)).await;
+        }
         let mut app = Self::new_agent_drone_trial()?;
         app.suspension_path = output.join("isolated-run.json");
         let fingerprint = suspension::fingerprint(&app.game);

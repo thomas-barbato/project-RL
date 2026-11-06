@@ -1,0 +1,98 @@
+{
+  "review": "CITY-NORTH01-CONTOURS07-r02",
+  "status": "candidate-awaiting-user-prevalidation",
+  "tool": "image_gen.imagegen built-in edit",
+  "source": "assets/source-art/north-city-01/style07/VOLUME07-01-r02-source.png",
+  "source_sha256": "5a4aa3d9630a3fdbfa2a642db91700530241c0c5f28dd501bb7f1ee497f745b9",
+  "source_size": [
+    1289,
+    1221
+  ],
+  "source_unchanged": true,
+  "prompt": "docs/reviews/north-city-01/CONTOURS07-r02-PROMPT.txt",
+  "generated_origin": "exec-d0ae96b9-3fdb-4a7e-a49f-fec0a4a620c6.png",
+  "edit_target": "assets/source-art/north-city-01/projection06/VOLUME06-01-source.png",
+  "reference_roles": {
+    "west_garage": "line weight and material treatment",
+    "original_house": "geometry, camera and content invariants"
+  },
+  "references": [
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/west-garage-native.png",
+      "sha256": "62491a5e482245e3d86813dda3dfb1604127d15b8400630aaeb62ab3aa1ead2e"
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-expansion-r06/house-a-body-native.png",
+      "sha256": "9d81afa94d46e163204794f0536adc688eb8f6fd06e064661dba65b258ef7ead"
+    },
+    {
+      "file": "assets/maps/prison-street-expanded-01/roof-0.png",
+      "sha256": "daa333e2a8fef5fe7ee7de620dd69139b7377d2c82c7d883d5e34feb9599bfdf"
+    },
+    {
+      "file": "assets/source-art/floor-continuous-01/material-source.png",
+      "sha256": "3f032e628966441d179c1fdc01479b5024853ed0983a1fecee14ccbd85c94d50"
+    },
+    {
+      "file": "assets/source-art/first-sector-review-01/u01-repairs-r09/ROAD-U01-09-native.png",
+      "sha256": "c70c720cf8b18af5f0de214aaa153e3ef7caaf88056ac04a4cee136d098da000"
+    }
+  ],
+  "native_box": [
+    288,
+    282
+  ],
+  "crop": [
+    114,
+    93,
+    1062,
+    1041
+  ],
+  "scale_rule": "Fit complete source to native width 288, round native height to 282; no piecewise warp",
+  "actor_unchanged": true,
+  "earlier_attempt": {
+    "file": "assets/source-art/north-city-01/style07/VOLUME07-01-source.png",
+    "status": "not-selected-lines-too-thin-at-native-size"
+  },
+  "campaign_integrated": false,
+  "whole_block": {
+    "review": "CITY-NORTH01-ILOT07-B01-r02",
+    "source": "assets/source-art/north-city-01/style07/ILOT07-B01-r02-source.png",
+    "sha256": "01088dee30ca35c3d641a03c98eda3b6d5af556b7453f8400b0a07deb338f182",
+    "source_size": [
+      1586,
+      992
+    ],
+    "source_unchanged": true,
+    "native_size": [
+      1280,
+      842
+    ],
+    "crop": [
+      57,
+      15,
+      1472,
+      968
+    ],
+    "scale": "1280/1472, rounded native height",
+    "footprint": [
+      12,
+      92,
+      31,
+      102
+    ],
+    "facade_elevation": 138,
+    "ground_baseline_world_y": 6592,
+    "tool": "image_gen.imagegen built-in edit",
+    "prompts": [
+      "docs/reviews/north-city-01/ILOT07-PROMPT.txt",
+      "docs/reviews/north-city-01/ILOT07-r02-PROMPT.txt"
+    ],
+    "earlier_attempt": {
+      "source": "assets/source-art/north-city-01/style07/ILOT07-B01-r01-source.png",
+      "status": "not-selected-roof-too-shallow"
+    },
+    "status": "user-prevalidation-pending",
+    "campaign_integrated": false
+  }
+}

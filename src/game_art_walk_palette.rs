@@ -12,7 +12,7 @@ fn index(p: &[u8]) -> usize {
     ((p[0] as usize >> 3) << 10) | ((p[1] as usize >> 3) << 5) | (p[2] as usize >> 3)
 }
 
-pub(super) fn apply(number: u16, variant: u8, image: &mut Image) -> Option<()> {
+pub(in crate::game_art) fn apply(number: u16, variant: u8, image: &mut Image) -> Option<()> {
     if variant == 0 {
         return Some(());
     }
